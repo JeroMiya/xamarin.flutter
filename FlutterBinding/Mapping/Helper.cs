@@ -94,6 +94,11 @@ namespace FlutterBinding.Mapping
             return new SKRectI((int)rect.left, (int)rect.top, (int)rect.right, (int)rect.bottom);
         }
 
+        public static Rect ToRect(this SKRect skRect)
+        {
+            return Rect.fromLTRB(skRect.Left, skRect.Top, skRect.Right, skRect.Bottom);
+        }
+
         public static SKPoint ToSKPoint(this Offset offset)
         {
             return new SKPoint((float)offset.dx, (float)offset.dy);

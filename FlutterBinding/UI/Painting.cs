@@ -2009,18 +2009,15 @@ namespace FlutterBinding.UI
         // //@pragma('vm:entry-point')
         private Path() {  }
 
+        private Path(SKPath path) : base(path) { }
+
         /// Creates a copy of another [Path].
         ///
         /// This copy is fast and does not require additional memory unless either
         /// the `source` path or the path returned by this constructor are modified.
-        public static Path from(Path source)
+        public static Path from(SKPath source)
         {
-            return source._clone();
-        }
-        Path _clone()
-        {
-            // native 'Path_clone';
-            return null; // Tmp to resolve build
+            return new Path(source);
         }
 
         /// Determines how the interior of this path is calculated.
@@ -2028,44 +2025,34 @@ namespace FlutterBinding.UI
         /// Defaults to the non-zero winding rule, [PathFillType.nonZero].
         public PathFillType fillType
         {
-            get => (PathFillType)_getFillType();
-            set => _setFillType((int)value);
-        }
-
-        int _getFillType()
-        {
-            // native 'Path_getFillType';
-            return 0; // Tmp to resolve build
-        }
-        void _setFillType(int fillType)
-        {
-            // native 'Path_setFillType';
+            get => (PathFillType) base.FillType;
+            set => base.FillType = (SKPathFillType)value;
         }
 
         /// Starts a new subpath at the given coordinate.
         public void moveTo(double x, double y)
         {
-            // native 'Path_moveTo';
+            base.MoveTo((float)x, (float)y);
         }
 
         /// Starts a new subpath at the given offset from the current point.
         public void relativeMoveTo(double dx, double dy)
         {
-            // native 'Path_relativeMoveTo';
+            base.RMoveTo((float)dx, (float)dy);
         }
 
         /// Adds a straight line segment from the current point to the given
         /// point.
         public void lineTo(double x, double y)
         {
-            // native 'Path_lineTo';
+            base.LineTo((float)x, (float)y);
         }
 
         /// Adds a straight line segment from the current point to the point
         /// at the given offset from the current point.
         public void relativeLineTo(double dx, double dy)
         {
-            // native 'Path_relativeLineTo';
+            base.RLineTo((float)dx, (float)dy);
         }
 
         /// Adds a quadratic bezier segment that curves from the current
@@ -2073,7 +2060,7 @@ namespace FlutterBinding.UI
         /// (x1,y1).
         public void quadraticBezierTo(double x1, double y1, double x2, double y2)
         {
-            // native 'Path_quadraticBezierTo';
+            base.QuadTo((float)x1, (float)y1, (float)x2, (float)y2);
         }
 
         /// Adds a quadratic bezier segment that curves from the current
@@ -2082,7 +2069,7 @@ namespace FlutterBinding.UI
         /// point.
         public void relativeQuadraticBezierTo(double x1, double y1, double x2, double y2)
         {
-            // native 'Path_relativeQuadraticBezierTo';
+            base.RQuadTo((float)x1, (float)y1, (float)x2, (float)y2);
         }
 
         /// Adds a cubic bezier segment that curves from the current point
@@ -2090,7 +2077,7 @@ namespace FlutterBinding.UI
         /// (x2,y2).
         public void cubicTo(double x1, double y1, double x2, double y2, double x3, double y3)
         {
-            // native 'Path_cubicTo';
+            base.CubicTo((float)x1, (float)y1, (float)x2, (float)y2, (float)x3, (float)y3);
         }
 
         /// Adds a cubic bezier segment that curves from the current point
@@ -2099,7 +2086,7 @@ namespace FlutterBinding.UI
         /// current point.
         public void relativeCubicTo(double x1, double y1, double x2, double y2, double x3, double y3)
         {
-            // native 'Path_relativeCubicTo';
+            base.RCubicTo((float)x1, (float)y1, (float)x2, (float)y2, (float)x3, (float)y3);
         }
 
         /// Adds a bezier segment that curves from the current point to the
@@ -2109,7 +2096,7 @@ namespace FlutterBinding.UI
         /// less than 1, it is an ellipse.
         public void conicTo(double x1, double y1, double x2, double y2, double w)
         {
-            // native 'Path_conicTo';
+            base.ConicTo((float)x1, (float)y1, (float)x2, (float)y2, (float)w);
         }
 
         /// Adds a bezier segment that curves from the current point to the
@@ -2120,7 +2107,7 @@ namespace FlutterBinding.UI
         /// is less than 1, it is an ellipse.
         public void relativeConicTo(double x1, double y1, double x2, double y2, double w)
         {
-            // native 'Path_relativeConicTo';
+            base.RConicTo((float)x1, (float)y1, (float)x2, (float)y2, (float)w);
         }
 
         /// If the `forceMoveTo` argument is false, adds a straight line
@@ -2142,12 +2129,8 @@ namespace FlutterBinding.UI
         public void arcTo(Rect rect, double startAngle, double sweepAngle, bool forceMoveTo)
         {
             //assert(_rectIsValid(rect));
-            _arcTo(rect.left, rect.top, rect.right, rect.bottom, startAngle, sweepAngle, forceMoveTo);
-        }
-        void _arcTo(double left, double top, double right, double bottom,
-                    double startAngle, double sweepAngle, bool forceMoveTo)
-        {
-            // native 'Path_arcTo';
+
+            base.ArcTo(rect.ToSKRect(), (float)startAngle, (float)sweepAngle, forceMoveTo);
         }
 
         /// Appends up to four conic curves weighted to describe an oval of `radius`
@@ -2162,24 +2145,19 @@ namespace FlutterBinding.UI
         /// point in the path is `arcEnd`. The radii are scaled to fit the last path
         /// point if both are greater than zero but too small to describe an arc.
         ///
-        public void arcToPoint(Offset arcEnd,
+        public void arcToPoint(
+            Offset arcEnd,
             Radius radius = null,
-        double rotation = 0.0,
-        bool largeArc = false,
-        bool clockwise = true)
+            double rotation = 0.0,
+            bool largeArc = false,
+            bool clockwise = true)
         {
             if (radius == null)
                 radius = Radius.zero;
             //assert(_offsetIsValid(arcEnd));
             //assert(_radiusIsValid(radius));
-            _arcToPoint(arcEnd.dx, arcEnd.dy, radius.x, radius.y, rotation,
-                        largeArc, clockwise);
-        }
-        void _arcToPoint(double arcEndX, double arcEndY, double radiusX,
-                         double radiusY, double rotation, bool largeArc,
-                         bool clockwise)
-        {
-            // native 'Path_arcToPoint';
+
+            // TODO: ArcToPoint not currently supported by SkiaSharp
         }
 
 
@@ -2197,24 +2175,19 @@ namespace FlutterBinding.UI
         /// `arcEndDelta.dx` and `arcEndDelta.dy` are zero. The radii are scaled to
         /// fit the last path point if both are greater than zero but too small to
         /// describe an arc.
-        public void relativeArcToPoint(Offset arcEndDelta,
-              Radius radius = null,
-          double rotation = 0.0,
-          bool largeArc = false,
-          bool clockwise = true)
+        public void relativeArcToPoint(
+            Offset arcEndDelta,
+            Radius radius = null,
+            double rotation = 0.0,
+            bool largeArc = false,
+            bool clockwise = true)
         {
             if (radius == null)
                 radius = Radius.zero;
             //assert(_offsetIsValid(arcEndDelta));
             //assert(_radiusIsValid(radius));
-            _relativeArcToPoint(arcEndDelta.dx, arcEndDelta.dy, radius.x, radius.y,
-                                rotation, largeArc, clockwise);
-        }
-        void _relativeArcToPoint(double arcEndX, double arcEndY, double radiusX,
-                                 double radiusY, double rotation,
-                                 bool largeArc, bool clockwise)
-        {
-            // native 'Path_relativeArcToPoint';
+
+            // TODO: ArcToPoint not currently supported by SkiaSharp
         }
 
         /// Adds a new subpath that consists of four lines that outline the
@@ -2222,11 +2195,8 @@ namespace FlutterBinding.UI
         public void addRect(Rect rect)
         {
             //assert(_rectIsValid(rect));
-            _addRect(rect.left, rect.top, rect.right, rect.bottom);
-        }
-        void _addRect(double left, double top, double right, double bottom)
-        {
-            // native 'Path_addRect';
+
+            base.AddRect(rect.ToSKRect());
         }
 
         /// Adds a new subpath that consists of a curve that forms the
@@ -2237,11 +2207,8 @@ namespace FlutterBinding.UI
         public void addOval(Rect oval)
         {
             //assert(_rectIsValid(oval));
-            _addOval(oval.left, oval.top, oval.right, oval.bottom);
-        }
-        void _addOval(double left, double top, double right, double bottom)
-        {
-            // native 'Path_addOval';
+
+            base.AddOval(oval.ToSKRect());
         }
 
         /// Adds a new subpath with one arc segment that consists of the arc
@@ -2255,12 +2222,8 @@ namespace FlutterBinding.UI
         public void addArc(Rect oval, double startAngle, double sweepAngle)
         {
             //assert(_rectIsValid(oval));
-            _addArc(oval.left, oval.top, oval.right, oval.bottom, startAngle, sweepAngle);
-        }
-        void _addArc(double left, double top, double right, double bottom,
-                     double startAngle, double sweepAngle)
-        {
-            // native 'Path_addArc';
+
+            base.AddArc(oval.ToSKRect(), (float)startAngle, (float)sweepAngle);
         }
 
         /// Adds a new subpath with a sequence of line segments that connect the given
@@ -2273,11 +2236,9 @@ namespace FlutterBinding.UI
         public void addPolygon(List<Offset> points, bool close)
         {
             //assert(points != null);
-            _addPolygon(_encodePointList(points), close);
-        }
-        void _addPolygon(List<double> points, bool close)
-        {
-            // native 'Path_addPolygon';
+
+            var array = points.Select(p => new SKPoint((float)p.dx, (float)p.dy)).ToArray();
+            base.AddPoly(array, close);
         }
 
         /// Adds a new subpath that consists of the straight lines and
@@ -2286,11 +2247,8 @@ namespace FlutterBinding.UI
         public void addRRect(RRect rrect)
         {
             //assert(_rrectIsValid(rrect));
-            _addRRect(rrect._value);
-        }
-        void _addRRect(List<double> rrect)
-        {
-            // native 'Path_addRRect';
+
+            base.AddRoundRect(rrect.ToSKRoundRect());
         }
 
         /// Adds a new subpath that consists of the given `path` offset by the given
@@ -2306,20 +2264,14 @@ namespace FlutterBinding.UI
             if (matrix4 != null)
             {
                 //assert(_matrix4IsValid(matrix4));
-                _addPathWithMatrix(path, offset.dx, offset.dy, matrix4);
+
+                var skMatix = matrix4.ToSKMatrix();
+                base.AddPath(path, ref skMatix, SKPathAddMode.Append);
             }
             else
             {
-                _addPath(path, offset.dx, offset.dy);
+                base.AddPath(path, (float)offset.dx, (float)offset.dy);
             }
-        }
-        void _addPath(Path path, double dx, double dy)
-        {
-            // native 'Path_addPath';
-        }
-        void _addPathWithMatrix(Path path, double dx, double dy, Float64List matrix)
-        {
-            // native 'Path_addPathWithMatrix';
         }
 
         /// Adds the given path to this path by extending the current segment of this
@@ -2335,27 +2287,21 @@ namespace FlutterBinding.UI
             if (matrix4 != null)
             {
                 //assert(_matrix4IsValid(matrix4));
-                _extendWithPathAndMatrix(path, offset.dx, offset.dy, matrix4);
+
+                var skMatix = matrix4.ToSKMatrix();
+                base.AddPath(path, ref skMatix, SKPathAddMode.Extend);
             }
             else
             {
-                _extendWithPath(path, offset.dx, offset.dy);
+                base.AddPath(path, (float)offset.dx, (float)offset.dy, SKPathAddMode.Extend);
             }
-        }
-        void _extendWithPath(Path path, double dx, double dy)
-        {
-            // native 'Path_extendWithPath';
-        }
-
-        void _extendWithPathAndMatrix(Path path, double dx, double dy, Float64List matrix)
-        { // native 'Path_extendWithPathAndMatrix';
         }
 
         /// Closes the last subpath, as if a straight line had been drawn
         /// from the current point to the first point of the subpath.
         public void close()
         {
-            // native 'Path_close';
+            base.Close();
         }
 
         /// Clears the [Path] object of all subpaths, returning it to the
@@ -2363,7 +2309,7 @@ namespace FlutterBinding.UI
         /// reset to the origin.
         public void reset()
         {
-            // native 'Path_reset';
+            base.Reset();
         }
 
         /// Tests to see if the given point is within the path. (That is, whether the
@@ -2376,12 +2322,8 @@ namespace FlutterBinding.UI
         public bool contains(Offset point)
         {
             //assert(_offsetIsValid(point));
-            return _contains(point.dx, point.dy);
-        }
-        bool _contains(double x, double y)
-        {
-            // native 'Path_contains';
-            return true; // Tmp to resolve build
+
+            return base.Contains((float)point.dx, (float)point.dy);
         }
 
         /// Returns a copy of the path with all the segments of every
@@ -2389,12 +2331,10 @@ namespace FlutterBinding.UI
         public Path shift(Offset offset)
         {
             //assert(_offsetIsValid(offset));
-            return _shift(offset.dx, offset.dy);
-        }
-        Path _shift(double dx, double dy)
-        {
-            // native 'Path_shift';
-            return null; // Tmp to resolve build
+
+            var path = new Path(this);
+            path.Offset(offset.ToSKPoint());
+            return path;
         }
 
         /// Returns a copy of the path with all the segments of every
@@ -2402,12 +2342,10 @@ namespace FlutterBinding.UI
         public Path transform(Float64List matrix4)
         {
             //assert(_matrix4IsValid(matrix4));
-            return _transform(matrix4);
-        }
-        Path _transform(Float64List matrix4)
-        {
-            // native 'Path_transform';
-            return null; // Tmp to resolve build
+
+            var path = new Path(this);
+            path.Transform(matrix4.ToSKMatrix());
+            return path;
         }
 
         /// Computes the bounding rectangle for this path.
@@ -2427,13 +2365,7 @@ namespace FlutterBinding.UI
         // see https://skia.org/user/api/SKPath_Reference#SKPath_getBounds
         public Rect getBounds()
         {
-            List<float> rect = _getBounds();
-            return Rect.fromLTRB(rect[0], rect[1], rect[2], rect[3]);
-        }
-        List<float> _getBounds()
-        {
-            // native 'Path_getBounds';
-            return null; // Tmp to resolve build
+            return base.Bounds.ToRect();
         }
 
         /// Combines the two paths according to the manner specified by the given
@@ -2446,17 +2378,8 @@ namespace FlutterBinding.UI
         {
             //assert(path1 != null);
             //assert(path2 != null);
-            Path path = new Path();
-            if (path._op(path1, path2, (int)operation))
-            {
-                return path;
-            }
-            throw new StateError("Path.combine() failed.  This may be due an invalid path; in particular, check for NaN values.");
-        }
-        bool _op(Path path1, Path path2, int operation)
-        {
-            // native 'Path_op';
-            return true; // Tmp to resolve build
+
+            return new Path( path1.Op(path2, (SKPathOp)operation) );
         }
 
         /// Creates a [PathMetrics] object for this path.
@@ -2587,20 +2510,18 @@ namespace FlutterBinding.UI
     /// Once created, metrics will only be valid while the iterator is at the given
     /// contour. When the next contour's [PathMetric] is obtained, this object
     /// becomes invalid.
-    public class PathMetric : NativeFieldWrapperClass2
+    public class PathMetric
     {
+        private SKPathMeasure _pathMeasure;
+
         /// Create a new empty [Path] object.
-        internal PathMetric(Path path, bool forceClosed)
+        internal PathMetric(Path path, bool forceClosed = false)
         {
-            _constructor(path, forceClosed);
-        }
-        void _constructor(Path path, bool forceClosed)
-        {
-            // native 'PathMeasure_constructor';
+            _pathMeasure = new SKPathMeasure(path, forceClosed);
         }
 
         /// Return the total length of the current contour.
-        public double length => 0.0; // native 'PathMeasure_getLength';
+        public double length => _pathMeasure.Length;
 
         /// Computes the position of hte current contour at the given offset, and the
         /// angle of the path at that point.
@@ -2614,28 +2535,24 @@ namespace FlutterBinding.UI
         /// The distance is clamped to the [length] of the current contour.
         public Tangent getTangentForOffset(double distance)
         {
-            List<float> posTan = _getPosTan(distance);
-            // first entry == 0 indicates that Skia returned false
-            if (posTan[0] == 0.0)
-            {
-                return null;
-            }
-            else
-            {
-                return new Tangent(
-                  new Offset(posTan[1], posTan[2]),
-                  new Offset(posTan[3], posTan[4])
-                );
-            }
+            if (_pathMeasure.GetPositionAndTangent((float)distance, out var position, out var tangent))
+                return new Tangent(new Offset(position.X, position.Y), new Offset(tangent.X, tangent.Y));
+
+            return null;
         }
-        public List<float> _getPosTan(double distance) => new List<float>(); // native 'PathMeasure_getPosTan';
 
         /// Given a start and stop distance, return the intervening segment(s).
         ///
         /// `start` and `end` are pinned to legal values (0..[length])
         /// Returns null if the segment is 0 length or `start` > `stop`.
         /// Begin the segment with a moveTo if `startWithMoveTo` is true.
-        public Path extractPath(double start, double end, bool startWithMoveTo = true) => null; // native 'PathMeasure_getSegment';
+        public Path extractPath(double start, double end, bool startWithMoveTo = true)
+        {
+            var dst = new SKPath();
+            if (_pathMeasure.GetSegment((float)start, (float)end, dst, startWithMoveTo))
+                return Path.@from(dst);
+            return null;
+        }
 
         /// Whether the contour is closed.
         ///
@@ -2643,7 +2560,7 @@ namespace FlutterBinding.UI
         /// have been implied when using [Path.addRect]) or if `forceClosed` was
         /// specified as true in the call to [Path.computeMetrics].  Returns false
         /// otherwise.
-        public bool isClosed => true; // native 'PathMeasure_isClosed';
+        public bool isClosed => _pathMeasure.IsClosed;
 
         // Move to the next contour in the path.
         //
@@ -2655,7 +2572,7 @@ namespace FlutterBinding.UI
         // [Iterator.current]. In this case, the [PathMetric] is valid before
         // calling `_moveNext` - `_moveNext` should be called after the first
         // iteration is done instead of before.
-        public bool _moveNext() => true; // native 'PathMeasure_nextContour';
+        public bool _moveNext() => _pathMeasure.NextContour();
     }
 
     /// Styles to use for blurs in [MaskFilter] objects.
