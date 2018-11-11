@@ -77,6 +77,11 @@ namespace FlutterBinding.UI
             return new Int32List(colors.Select(c => (int)c.value).ToList());
         }
 
+        public static List<SKColor> _decodeColorList(Int32List list)
+        {
+            return list.Select(i => new SKColor((uint)i)).ToList();
+        }
+
         public static Float32List _encodePointList(List<Offset> points)
         {
             //assert(points != null);
@@ -1829,7 +1834,7 @@ namespace FlutterBinding.UI
     ///
     /// To obtain an instance of the [FrameInfo] interface, see
     /// [Codec.getNextFrame].
-    public class FrameInfo : NativeFieldWrapperClass2
+    public class FrameInfo 
     {
         /// This class is created by the engine, and should not be instantiated
         /// or extended directly.
@@ -1839,33 +1844,39 @@ namespace FlutterBinding.UI
         // //@pragma('vm:entry-point')
         private FrameInfo() { }
 
-        /// The duration this frame should be shown.
-        public Duration duration => new Duration(milliseconds: _durationMillis);
-        int _durationMillis => 0; // native 'FrameInfo_durationMillis';
+        internal FrameInfo(Image image, int durationMillis)
+        {
+            this.image = image;
+            this.durationMillis = durationMillis;
+        }
 
+        /// The duration this frame should be shown.
+        public Duration duration => new Duration(milliseconds: durationMillis);
+
+        public int durationMillis { get; }
+    
         /// The [Image] object for this frame.
-        public Image image => null; // native 'FrameInfo_image';
+        public Image image { get; }
     }
 
     /// A handle to an image codec.
-    public class Codec : NativeFieldWrapperClass2
+    public abstract class Codec
     {
         /// This class is created by the engine, and should not be instantiated
         /// or extended directly.
         ///
         /// To obtain an instance of the [Codec] interface, see
         /// [instantiateImageCodec].
-        // //@pragma('vm:entry-point')
-        private Codec() { }
+        //@pragma('vm:entry-point')
 
         /// Number of frames in this image.
-        public int frameCount => 0; // native 'Codec_frameCount';
+        public abstract int frameCount { get; }
 
         /// Number of times to repeat the animation.
         ///
         /// * 0 when the animation should be played once.
         /// * -1 for infinity repetitions.
-        public int repetitionCount => 0; // native 'Codec_repetitionCount';
+        public abstract int repetitionCount { get; }
 
         /// Fetches the next animation frame.
         ///
@@ -1878,18 +1889,7 @@ namespace FlutterBinding.UI
         }
 
         /// Returns an error message on failure, null on success.
-        String _getNextFrame(_Callback<FrameInfo> callback)
-        {
-            // native 'Codec_getNextFrame';
-            return string.Empty; // Tmp to resolve build
-        }
-
-        /// Release the resources used by this object. The object is no longer usable
-        /// after this method is called.
-        public void dispose()
-        {
-            // native 'Codec_dispose';
-        }
+        protected abstract FrameInfo _getNextFrame(_Callback<FrameInfo> callback);
     }
 
 
@@ -2716,63 +2716,59 @@ namespace FlutterBinding.UI
     ///  * [BackdropFilter], a widget that applies [ImageFilter] to its rendering.
     ///  * [SceneBuilder.pushBackdropFilter], which is the low-level API for using
     ///    this class.
-    public class ImageFilter : NativeFieldWrapperClass2
+    public class ImageFilter
     {
-        void _constructor()
+        private readonly SKImageFilter _filter;
+        public SKImageFilter ToSKImageFilter() => _filter;
+
+        private ImageFilter(SKImageFilter filter)
         {
-            // native 'ImageFilter_constructor';
+            _filter = filter;
         }
 
         /// Creates an image filter that applies a Gaussian blur.
         public static ImageFilter blur(double sigmaX = 0.0, double sigmaY = 0.0)
         {
-            return new ImageFilter(sigmaX, sigmaY);
-        }
-
-        private ImageFilter(double sigmaX, double sigmaY)
-        {
-            _constructor();
-            _initBlur(sigmaX, sigmaY);
-        }
-
-        void _initBlur(double sigmaX, double sigmaY)
-        {
-            // native 'ImageFilter_initBlur';
+            var skFilter = SKImageFilter.CreateBlur((float)sigmaX, (float)sigmaY);
+            return new ImageFilter(skFilter);
         }
 
         /// Creates an image filter that applies a matrix transformation.
         ///
         /// For example, applying a positive scale matrix (see [new Matrix4.diagonal3])
         /// when used with [BackdropFilter] would magnify the background image.
-        public static ImageFilter matrix(Float64List matrix4,
-                          FilterQuality filterQuality = FilterQuality.low)
+        public static ImageFilter matrix(
+            Float64List matrix4,
+            FilterQuality filterQuality = FilterQuality.low)
         {
             if (matrix4.Count != 16)
                 throw new ArgumentException("'matrix4' must have 16 entries.");
 
-            return new ImageFilter(matrix4, filterQuality);
-        }
+            var skFilter = SKImageFilter.CreateMatrix(
+                matrix4.ToSKMatrix(), 
+                (SKFilterQuality)filterQuality);
 
-        private ImageFilter(Float64List matrix4, FilterQuality filterQuality)
-        {
-            _constructor();
-            _initMatrix(matrix4, (int)filterQuality);
-        }
-
-        void _initMatrix(Float64List matrix4, int filterQuality)
-        {
-            // native 'ImageFilter_initMatrix';
+            return new ImageFilter(skFilter);
         }
     }
 
     /// Base class for objects such as [Gradient] and [ImageShader] which
     /// correspond to shaders as used by [Paint.shader].
-    public class Shader : NativeFieldWrapperClass2
+    public class Shader
     {
+        protected SKShader _shader;
+
+        public SKShader ToSKShader() => _shader;
+
         /// This class is created by the engine, and should not be instantiated
         /// or extended directly.
         // //@pragma('vm:entry-point')
-        internal Shader() { }
+        protected Shader() { }
+
+        public Shader(SKShader shader)
+        {
+            _shader = shader;
+        }
     }
 
     /// Defines what happens at the edge of the gradient.
@@ -2835,12 +2831,6 @@ namespace FlutterBinding.UI
     /// on this class.
     public class Gradient : Shader
     {
-
-        void _constructor()
-        {
-            // native 'Gradient_constructor';
-        }
-
         /// Creates a linear gradient from `from` to `to`.
         ///
         /// If `colorStops` is provided, `colorStops[i]` is a number from 0.0 to 1.0
@@ -2873,24 +2863,36 @@ namespace FlutterBinding.UI
             return new Gradient(from, to, colors, colorStops, tileMode);
         }
 
-        private Gradient(Offset from,
-                                Offset to,
-                                List<Color> colors,
-                                List<double> colorStops = null,
-                                TileMode tileMode = TileMode.clamp)
+        private Gradient(
+            Offset from,
+            Offset to,
+            List<Color> colors,
+            List<double> colorStops = null,
+            TileMode tileMode = TileMode.clamp)
         {
             _validateColorStops(colors, colorStops);
             var endPointsBuffer = _encodeTwoPoints(from, to);
             var colorsBuffer = _encodeColorList(colors);
             var colorStopsBuffer = colorStops == null ? null : new Float32List(colorStops);
-            _constructor();
-            _initLinear(endPointsBuffer, colorsBuffer, colorStopsBuffer, (int)tileMode);
+            
+            _initLinear(endPointsBuffer, colorsBuffer, colorStopsBuffer, (SKShaderTileMode)tileMode);
         }
 
 
-        void _initLinear(Float32List endPoints, Int32List colors, Float32List colorStops, int tileMode)
+        void _initLinear(Float32List endPoints, Int32List colors, Float32List colorStops, SKShaderTileMode tileMode)
         {
-            // native 'Gradient_initLinear';
+            //FML_DCHECK(end_points.Count == 4);
+            //FML_DCHECK(colorStops == null || colors.Count == colorStops.Count);
+
+            //static_assert(sizeof(SkPoint) == sizeof(float) * 2, "SkPoint doesn't use floats.");
+            //static_assert(sizeof(SkColor) == sizeof(int32_t), "SkColor doesn't use int32_t.");
+
+            _shader = SKShader.CreateLinearGradient(
+                new SKPoint((float)endPoints[0], (float)endPoints[1]),
+                new SKPoint((float)endPoints[2], (float)endPoints[3]),
+                _decodeColorList(colors).ToArray(), 
+                colorStops.Cast<float>().ToArray(), 
+                (SKShaderTileMode)tileMode );
         }
 
         /// Creates a radial gradient centered at `center` that ends at `radius`
@@ -2957,13 +2959,12 @@ namespace FlutterBinding.UI
             // If focal == center and the focal radius is 0.0, it's still a regular radial gradient
             if (focal == null || (focal == center && focalRadius == 0.0))
             {
-                _constructor();
                 _initRadial(center.dx, center.dy, radius, colorsBuffer, colorStopsBuffer, (int)tileMode, matrix4);
             }
             else
             {
                 //assert(center != Offset.zero || focal != Offset.zero); // will result in exception(s) in Skia side
-                _constructor();
+
                 _initConical(focal.dx, focal.dy, focalRadius, center.dx, center.dy, radius, colorsBuffer, colorStopsBuffer, (int)tileMode, matrix4);
             }
         }
@@ -2978,7 +2979,28 @@ namespace FlutterBinding.UI
             int tileMode, 
             Float64List matrix4)
         {
-            // native 'Gradient_initRadial';
+            // FML_DCHECK(colorStops == null || colors.Count == colorStops.Count );
+
+            //static_assert(sizeof(SkColor) == sizeof(int32_t), "SkColor doesn't use int32_t.");
+
+            SKMatrix? sk_matrix = matrix4?.ToSKMatrix();
+
+            if (sk_matrix.HasValue)
+                _shader = SKShader.CreateRadialGradient(
+                    new SKPoint((float)centerX, (float)centerY),
+                    (float)radius, 
+                    _decodeColorList(colors).ToArray(), 
+                    colorStops.Cast<float>().ToArray(), 
+                    (SKShaderTileMode)tileMode, 
+                    sk_matrix.Value);
+            else
+                _shader = SKShader.CreateRadialGradient(
+                    new SKPoint((float)centerX, (float)centerY),
+                    (float)radius,
+                    _decodeColorList(colors).ToArray(),
+                    colorStops.Cast<float>().ToArray(),
+                    (SKShaderTileMode)tileMode);
+
         }
 
         void _initConical(
@@ -2993,7 +3015,31 @@ namespace FlutterBinding.UI
             int tileMode,
             Float64List matrix4)
         {
-            // native 'Gradient_initTwoPointConical';
+            //FML_DCHECK(colorStops == null || colors.Count == colorStops.Count);
+            // static_assert(sizeof(SkColor) == sizeof(int32_t), "SkColor doesn't use int32_t.");
+
+            SKMatrix? sk_matrix = matrix4?.ToSKMatrix();
+
+            if (sk_matrix.HasValue)
+                _shader = SKShader.CreateTwoPointConicalGradient(
+                    new SKPoint((float)startX, (float)startY), 
+                    (float)startRadius, 
+                    new SKPoint((float)endX, (float)endY), 
+                    (float)endRadius, 
+                    _decodeColorList(colors).ToArray(), 
+                    colorStops.Cast<float>().ToArray(),
+                    (SKShaderTileMode)tileMode);
+            else
+                _shader = SKShader.CreateTwoPointConicalGradient(
+                    new SKPoint((float)startX, (float)startY),
+                    (float)startRadius,
+                    new SKPoint((float)endX, (float)endY),
+                    (float)endRadius,
+                    _decodeColorList(colors).ToArray(),
+                    colorStops.Cast<float>().ToArray(),
+                    (SKShaderTileMode)tileMode,
+                    sk_matrix.Value);
+
         }
 
         /// Creates a sweep gradient centered at `center` that starts at `startAngle`
@@ -3054,7 +3100,7 @@ namespace FlutterBinding.UI
             _validateColorStops(colors, colorStops);
             var colorsBuffer = _encodeColorList(colors);
             var colorStopsBuffer = colorStops == null ? null : new Float32List(colorStops);
-            _constructor();
+            
             _initSweep(center.dx, center.dy, colorsBuffer, colorStopsBuffer, (int)tileMode, startAngle, endAngle, matrix4);
         }
 
@@ -3065,9 +3111,36 @@ namespace FlutterBinding.UI
             Float32List colorStops, 
             int tileMode, 
             double startAngle, 
-            double endAngle, Float64List matrix)
+            double endAngle, 
+            Float64List matrix4)
         {
-            // native 'Gradient_initSweep';
+            // FML_DCHECK(colorStops == null ||colors.Count == colorStops.Count );
+            // static_assert(sizeof(SkColor) == sizeof(int32_t), "SkColor doesn't use int32_t.");
+
+            SKMatrix? sk_matrix = matrix4?.ToSKMatrix();
+
+            if (sk_matrix.HasValue)
+                _shader = SKShader.CreateSweepGradient(
+                    new SKPoint((float)centerX, (float)centerY),
+                    _decodeColorList(colors).ToArray(),
+                    colorStops.Cast<float>().ToArray(),
+                    sk_matrix.Value);
+            else
+                _shader = SKShader.CreateSweepGradient(
+                    new SKPoint((float)centerX, (float)centerY),
+                    _decodeColorList(colors).ToArray(),
+                    colorStops.Cast<float>().ToArray());
+
+            //set_shader(UIDartState::CreateGPUObject(SkGradientShader::MakeSweep(
+            //    center_x, 
+            //    center_y, 
+            //    reinterpret_cast <const SkColor*> (colors.data()),
+            //    color_stops.data(), 
+            //    colors.num_elements(), 
+            //    tile_mode,
+            //    start_angle * 180.0 / M_PI, 
+            //    end_angle * 180.0 / M_PI, 0,
+            //    has_matrix ? &sk_matrix : null)));
         }
 
         static void _validateColorStops(List<Color> colors, List<double> colorStops)

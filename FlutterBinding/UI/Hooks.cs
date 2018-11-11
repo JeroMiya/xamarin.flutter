@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using FlutterBinding.Engine.Semantics;
 using static FlutterBinding.Mapping.Helper;
 using static FlutterBinding.Mapping.Types;
 using static FlutterBinding.UI.Painting;
@@ -141,7 +142,7 @@ namespace FlutterBinding.UI
              (a, b, c) => Window.Instance.onSemanticsAction(a, b, c),
               Window.Instance._onSemanticsActionZone,
               id,
-              SemanticsAction.values[action],
+              (SemanticsAction)action,
               args);
         }
 

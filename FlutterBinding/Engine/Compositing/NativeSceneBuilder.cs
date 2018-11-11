@@ -3,6 +3,7 @@ using FlutterBinding.Flow.Layers;
 using FlutterBinding.UI;
 using SkiaSharp;
 using System.Collections.Generic;
+using FlutterBinding.Mapping;
 
 namespace FlutterBinding.Engine.Compositing
 {
@@ -16,9 +17,9 @@ namespace FlutterBinding.Engine.Compositing
 
         protected void Constructor() { }
 
-        protected void PushTransform(List<double> matrix4)
+        protected void PushTransform(Float64List matrix4)
         {
-            var sk_matrix = Matrix.ToSkMatrix(matrix4);
+            var sk_matrix = matrix4.ToSKMatrix();
             var layer = new TransformLayer();
             layer.set_transform(sk_matrix);
             PushLayer(layer);

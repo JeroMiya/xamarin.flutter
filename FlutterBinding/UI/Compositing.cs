@@ -76,7 +76,7 @@ namespace FlutterBinding.UI
         /// The objects are transformed by the given matrix before rasterization.
         ///
         /// See [pop] for details about the operation stack.
-        public void pushTransform(List<double> matrix4)
+        public void pushTransform(Float64List matrix4)
         {
             if (matrix4 == null)
                 throw new ArgumentException("'matrix4' argument cannot be null");
@@ -84,7 +84,8 @@ namespace FlutterBinding.UI
                 throw new ArgumentException("'matrix4' must have 16 entries.");
             _pushTransform(matrix4);
         }
-        void _pushTransform(List<double> matrix4)
+
+        void _pushTransform(Float64List matrix4)
         {
             this.PushTransform(matrix4);
             // [DONE] native 'SceneBuilder_pushTransform';
