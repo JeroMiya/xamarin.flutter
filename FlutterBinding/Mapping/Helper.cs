@@ -1,6 +1,7 @@
 ﻿using FlutterBinding.UI;
 using System;
 using System.Collections.Generic;
+using SkiaSharp;
 
 namespace FlutterBinding.Mapping
 {
@@ -49,7 +50,55 @@ namespace FlutterBinding.Mapping
         public static bool isFinite(this double value) => !double.IsInfinity(value);
 
         public static double abs(this double value) => Math.Abs(value);
-        
+
+
+        private static int[] kSkMatrixIndexToMatrix4Index =
+        {
+            0, 4, 12,
+            1, 5, 13,
+            3, 7, 15
+        };
+
+        public static SKMatrix ToSKMatrix(this Float64List matrix4)
+        {
+            // Mappings from SkMatrix-index to input-index.
+
+            SKMatrix sk_matrix = new SKMatrix();
+            for (int i = 0; i < 9; ++i)
+            {
+                int matrix4_index = kSkMatrixIndexToMatrix4Index[i];
+                if (matrix4_index < matrix4.Count)
+                    sk_matrix.Values[i] = matrix4[matrix4_index];
+                else
+                    sk_matrix.Values[i] = 0.0f;
+            }
+            return sk_matrix;
+
+        }
+
+        public static SKRoundRect ToSKRoundRect(this RRect rrect)
+        {
+            return new SKRoundRect( 
+                new SKRect((float)rrect.left, (float)rrect.top, (float)rrect.right, (float)rrect.bottom),
+                (float)rrect.tlRadiusX, 
+                (float)rrect.tlRadiusY);
+        }
+
+        public static SKRect ToSKRect(this Rect rect)
+        {
+            return new SKRect((float)rect.left, (float)rect.top, (float)rect.right, (float)rect.bottom);
+        }
+
+        public static SKRectI ToSKRectI(this Rect rect)
+        {
+            return new SKRectI((int)rect.left, (int)rect.top, (int)rect.right, (int)rect.bottom);
+        }
+
+        public static SKPoint ToSKPoint(this Offset offset)
+        {
+            return new SKPoint((float)offset.dx, (float)offset.dy);
+        }
+
         public static Future<T> _futurize<T>(Action<_Callback<T>> callback)
         {
             // Question, why is this so complicated for running a new Task.
@@ -71,6 +120,5 @@ namespace FlutterBinding.Mapping
 
             return new Future(() => {  });
         }
-
     }
 }

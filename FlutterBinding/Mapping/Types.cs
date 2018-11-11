@@ -67,7 +67,132 @@ namespace FlutterBinding.Mapping
         public class StateError : Exception {
             public StateError(string message) : base(message) { }
         }
-
-
     }
+
+    public class Uint8List : List<byte>
+    {
+        /// <inheritdoc />
+        public Uint8List() { }
+
+        /// <inheritdoc />
+        public Uint8List(IEnumerable<byte> collection) : base(collection) { }
+
+        /// <inheritdoc />
+        public Uint8List(int capacity) : base(capacity) { }
+    }
+
+    public class Int8List : List<sbyte>
+    {
+        /// <inheritdoc />
+        public Int8List() { }
+
+        /// <inheritdoc />
+        public Int8List(IEnumerable<sbyte> collection) : base(collection) { }
+
+        /// <inheritdoc />
+        public Int8List(int capacity) : base(capacity) { }
+    }
+
+    public class Uint16List : List<UInt16>
+    {
+        /// <inheritdoc />
+        public Uint16List() { }
+
+        /// <inheritdoc />
+        public Uint16List(IEnumerable<ushort> collection) : base(collection) { }
+
+        /// <inheritdoc />
+        public Uint16List(int capacity) : base(capacity) { }
+    }
+
+    public class Int16List : List<Int16>
+    {
+        /// <inheritdoc />
+        public Int16List() { }
+
+        /// <inheritdoc />
+        public Int16List(IEnumerable<short> collection) : base(collection) { }
+
+        /// <inheritdoc />
+        public Int16List(int capacity) : base(capacity) { }
+    }
+
+    public class Uint32List : List<UInt32>
+    {
+        /// <inheritdoc />
+        public Uint32List() { }
+
+        /// <inheritdoc />
+        public Uint32List(IEnumerable<uint> collection) : base(collection) { }
+
+        /// <inheritdoc />
+        public Uint32List(int capacity) : base(capacity) { }
+    }
+
+    public class Int32List : List<Int32>
+    {
+        /// <inheritdoc />
+        public Int32List() { }
+
+        /// <inheritdoc />
+        public Int32List(IEnumerable<int> collection) : base(collection) { }
+
+        /// <inheritdoc />
+        public Int32List(int capacity) : base(capacity) { }
+    }
+
+    public class Uint64List : List<UInt64>
+    {
+        /// <inheritdoc />
+        public Uint64List() { }
+
+        /// <inheritdoc />
+        public Uint64List(IEnumerable<ulong> collection) : base(collection) { }
+
+        /// <inheritdoc />
+        public Uint64List(int capacity) : base(capacity) { }
+    }
+
+    public class Int64List : List<Int64>
+    {
+        /// <inheritdoc />
+        public Int64List() { }
+
+        /// <inheritdoc />
+        public Int64List(IEnumerable<long> collection) : base(collection) { }
+
+        /// <inheritdoc />
+        public Int64List(int capacity) : base(capacity) { }
+    }
+
+    public class Float32List : List<double>
+    {
+        /// <inheritdoc />
+        public Float32List() { }
+
+        /// <inheritdoc />
+        public Float32List(IEnumerable<double> collection) : base(collection) { }
+
+        /// <inheritdoc />
+        public Float32List(int capacity) : base(capacity) { }
+    }
+
+    public class Float64List : List<float>
+    {
+        /// <inheritdoc />
+        public Float64List() { }
+
+        /// <inheritdoc />
+        public Float64List(IEnumerable<float> collection) : base(collection) { }
+
+        /// <inheritdoc />
+        public Float64List(int capacity) : base(capacity) { }
+    }
+
+    // The PaintData argument is a placeholder to receive encoded data for Paint
+    // objects. The data is actually processed by DartConverter<Paint>, which reads
+    // both at the given index and at the next index (which it assumes is a byte
+    // data for a Paint object).
+    public class PaintData { };
+
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using static FlutterBinding.Mapping.Types;
@@ -53,7 +53,7 @@ namespace FlutterBinding.UI
             return true;
         }
 
-        public static bool _matrix4IsValid(List<float> matrix4)
+        public static bool _matrix4IsValid(Float64List matrix4)
         {
             //assert(matrix4 != null, 'Matrix4 argument was null.');
             //assert(matrix4.length == 16, 'Matrix4 must have 16 entries.');
@@ -72,20 +72,17 @@ namespace FlutterBinding.UI
             return a.withAlpha((uint)(a.alpha * factor).round().clamp(0, 255));
         }
 
-        public static List<uint> _encodeColorList(List<Color> colors)
+        public static Int32List _encodeColorList(List<Color> colors)
         {
-            int colorCount = colors.Count;
-            List<uint> result = new List<uint>(colorCount);
-            for (int i = 0; i < colorCount; ++i)
-                result[i] = colors[i].value;
-            return result;
+            return new Int32List(colors.Select(c => (int)c.value).ToList());
         }
 
-        public static List<double> _encodePointList(List<Offset> points)
+        public static Float32List _encodePointList(List<Offset> points)
         {
             //assert(points != null);
+
             int pointCount = points.Count;
-            List<double> result = new List<double>(pointCount * 2);
+            var result = new Float32List(pointCount * 2);
             for (int i = 0; i < pointCount; ++i)
             {
                 int xIndex = i * 2;
@@ -95,14 +92,15 @@ namespace FlutterBinding.UI
                 result[xIndex] = point.dx;
                 result[yIndex] = point.dy;
             }
+
             return result;
         }
 
-        public static List<double> _encodeTwoPoints(Offset pointA, Offset pointB)
+        public static Float32List _encodeTwoPoints(Offset pointA, Offset pointB)
         {
             //assert(_offsetIsValid(pointA));
             //assert(_offsetIsValid(pointB));
-            List<double> result = new List<double>(4);
+            var result = new Float32List(4);
             result[0] = pointA.dx;
             result[1] = pointA.dy;
             result[2] = pointB.dx;
@@ -1767,8 +1765,10 @@ namespace FlutterBinding.UI
     ///
     /// To draw an [Image], use one of the methods on the [Canvas] class, such as
     /// [Canvas.drawImage].
-    public class Image : NativeFieldWrapperClass2
+    public class Image
     {
+        public SKImage SkImage { get; set; }
+
         /// This class is created by the engine, and should not be instantiated
         /// or extended directly.
         ///
@@ -1776,11 +1776,16 @@ namespace FlutterBinding.UI
         // //@pragma('vm:entry-point')
         private Image() { }
 
+        public Image(SKImage image)
+        {
+            SkImage = image;
+        }
+
         /// The number of image pixels along the image's horizontal axis.
-        public int width => 0; // native 'Image_width';
+        public int width => SkImage.Width;
 
         /// The number of image pixels along the image's vertical axis.
-        public int height => 0; // native 'Image_height';
+        public int height => SkImage.Height;
 
         /// Converts the [Image] object into a byte array.
         ///
@@ -1998,15 +2003,11 @@ namespace FlutterBinding.UI
     ///
     /// Paths can be drawn on canvases using [Canvas.drawPath], and can
     /// used to create clip regions using [Canvas.clipPath].
-    public class Path : NativeFieldWrapperClass2
+    public class Path : SKPath
     {
         /// Create a new empty [Path] object.
         // //@pragma('vm:entry-point')
-        public Path() { _constructor(); }
-        void _constructor()
-        {
-            // native 'Path_constructor';
-        }
+        private Path() {  }
 
         /// Creates a copy of another [Path].
         ///
@@ -2298,7 +2299,7 @@ namespace FlutterBinding.UI
         /// If `matrix4` is specified, the path will be transformed by this matrix
         /// after the matrix is translated by the given offset. The matrix is a 4x4
         /// matrix stored in column major order.
-        public void addPath(Path path, Offset offset, List<float> matrix4 = null)
+        public void addPath(Path path, Offset offset, Float64List matrix4 = null)
         {
             //assert(path != null); // path is checked on the engine side
             //assert(_offsetIsValid(offset));
@@ -2316,7 +2317,7 @@ namespace FlutterBinding.UI
         {
             // native 'Path_addPath';
         }
-        void _addPathWithMatrix(Path path, double dx, double dy, List<float> matrix)
+        void _addPathWithMatrix(Path path, double dx, double dy, Float64List matrix)
         {
             // native 'Path_addPathWithMatrix';
         }
@@ -2327,7 +2328,7 @@ namespace FlutterBinding.UI
         /// If `matrix4` is specified, the path will be transformed by this matrix
         /// after the matrix is translated by the given `offset`.  The matrix is a 4x4
         /// matrix stored in column major order.
-        public void extendWithPath(Path path, Offset offset, List<float> matrix4 = null)
+        public void extendWithPath(Path path, Offset offset, Float64List matrix4 = null)
         {
             //assert(path != null); // path is checked on the engine side
             //assert(_offsetIsValid(offset));
@@ -2346,7 +2347,7 @@ namespace FlutterBinding.UI
             // native 'Path_extendWithPath';
         }
 
-        void _extendWithPathAndMatrix(Path path, double dx, double dy, List<float> matrix)
+        void _extendWithPathAndMatrix(Path path, double dx, double dy, Float64List matrix)
         { // native 'Path_extendWithPathAndMatrix';
         }
 
@@ -2398,12 +2399,12 @@ namespace FlutterBinding.UI
 
         /// Returns a copy of the path with all the segments of every
         /// subpath transformed by the given matrix.
-        public Path transform(List<float> matrix4)
+        public Path transform(Float64List matrix4)
         {
             //assert(_matrix4IsValid(matrix4));
             return _transform(matrix4);
         }
-        Path _transform(List<float> matrix4)
+        Path _transform(Float64List matrix4)
         {
             // native 'Path_transform';
             return null; // Tmp to resolve build
@@ -2826,7 +2827,7 @@ namespace FlutterBinding.UI
         ///
         /// For example, applying a positive scale matrix (see [new Matrix4.diagonal3])
         /// when used with [BackdropFilter] would magnify the background image.
-        public static ImageFilter matrix(List<float> matrix4,
+        public static ImageFilter matrix(Float64List matrix4,
                           FilterQuality filterQuality = FilterQuality.low)
         {
             if (matrix4.Count != 16)
@@ -2835,13 +2836,13 @@ namespace FlutterBinding.UI
             return new ImageFilter(matrix4, filterQuality);
         }
 
-        private ImageFilter(List<float> matrix4, FilterQuality filterQuality)
+        private ImageFilter(Float64List matrix4, FilterQuality filterQuality)
         {
             _constructor();
             _initMatrix(matrix4, (int)filterQuality);
         }
 
-        void _initMatrix(List<float> matrix4, int filterQuality)
+        void _initMatrix(Float64List matrix4, int filterQuality)
         {
             // native 'ImageFilter_initMatrix';
         }
@@ -2941,11 +2942,11 @@ namespace FlutterBinding.UI
         /// `colorStops` contain null values, this constructor will throw a
         /// [NoSuchMethodError].
         public static Gradient linear(
-        Offset from,
-        Offset to,
-        List<Color> colors,
-        List<double> colorStops = null,
-        TileMode tileMode = TileMode.clamp)
+            Offset from,
+            Offset to,
+            List<Color> colors,
+            List<double> colorStops = null,
+            TileMode tileMode = TileMode.clamp)
         {
             //assert(_offsetIsValid(from)),
             //assert(_offsetIsValid(to)),
@@ -2962,15 +2963,15 @@ namespace FlutterBinding.UI
                                 TileMode tileMode = TileMode.clamp)
         {
             _validateColorStops(colors, colorStops);
-            List<double> endPointsBuffer = _encodeTwoPoints(from, to);
-            List<uint> colorsBuffer = _encodeColorList(colors);
-            List<double> colorStopsBuffer = colorStops == null ? null : new List<double>(colorStops);
+            var endPointsBuffer = _encodeTwoPoints(from, to);
+            var colorsBuffer = _encodeColorList(colors);
+            var colorStopsBuffer = colorStops == null ? null : new Float32List(colorStops);
             _constructor();
             _initLinear(endPointsBuffer, colorsBuffer, colorStopsBuffer, (int)tileMode);
         }
 
 
-        void _initLinear(List<double> endPoints, List<uint> colors, List<double> colorStops, int tileMode)
+        void _initLinear(Float32List endPoints, Int32List colors, Float32List colorStops, int tileMode)
         {
             // native 'Gradient_initLinear';
         }
@@ -3005,14 +3006,14 @@ namespace FlutterBinding.UI
         /// provided and not equal to `center`, at least one of the two offsets must
         /// not be equal to [Offset.zero].
         public static Gradient radial(
-        Offset center,
-        double radius,
-        List<Color> colors,
-        List<double> colorStops = null,
-        TileMode tileMode = TileMode.clamp,
-        List<float> matrix4 = null,
-        Offset focal = null,
-        double focalRadius = 0.0)
+            Offset center,
+            double radius,
+            List<Color> colors,
+            List<double> colorStops = null,
+            TileMode tileMode = TileMode.clamp,
+            Float64List matrix4 = null,
+            Offset focal = null,
+            double focalRadius = 0.0)
         {
             //assert(_offsetIsValid(center)),
             //assert(colors != null),
@@ -3027,13 +3028,13 @@ namespace FlutterBinding.UI
                         List<Color> colors,
                         List<double> colorStops = null,
                         TileMode tileMode = TileMode.clamp,
-                        List<float> matrix4 = null,
+                        Float64List matrix4 = null,
                         Offset focal = null,
                         double focalRadius = 0.0)
         {
             _validateColorStops(colors, colorStops);
-            List<uint> colorsBuffer = _encodeColorList(colors);
-            List<double> colorStopsBuffer = colorStops == null ? null : new List<double>(colorStops);
+            var colorsBuffer = _encodeColorList(colors);
+            var colorStopsBuffer = colorStops == null ? null : new Float32List(colorStops);
 
             // If focal is null or focal radius is null, this should be treated as a regular radial gradient
             // If focal == center and the focal radius is 0.0, it's still a regular radial gradient
@@ -3051,12 +3052,29 @@ namespace FlutterBinding.UI
         }
 
 
-        void _initRadial(double centerX, double centerY, double radius, List<uint> colors, List<double> colorStops, int tileMode, List<float> matrix4)
+        void _initRadial(
+            double centerX, 
+            double centerY, 
+            double radius, 
+            Int32List colors, 
+            Float32List colorStops, 
+            int tileMode, 
+            Float64List matrix4)
         {
             // native 'Gradient_initRadial';
         }
 
-        void _initConical(double startX, double startY, double startRadius, double endX, double endY, double endRadius, List<uint> colors, List<double> colorStops, int tileMode, List<float> matrix4)
+        void _initConical(
+            double startX, 
+            double startY, 
+            double startRadius, 
+            double endX, 
+            double endY, 
+            double endRadius, 
+            Int32List colors, 
+            Float32List colorStops, 
+            int tileMode,
+            Float64List matrix4)
         {
             // native 'Gradient_initTwoPointConical';
         }
@@ -3088,13 +3106,13 @@ namespace FlutterBinding.UI
         /// specified 4x4 matrix relative to the local coordinate system. `matrix4` must
         /// be a column-major matrix packed into a list of 16 values.
         public static Gradient sweep(
-        Offset center,
-        List<Color> colors,
-        List<double> colorStops = null,
-        TileMode tileMode = TileMode.clamp,
-        double startAngle = 0.0,
-        double endAngle = Math.PI * 2,
-        List<float> matrix4 = null)
+            Offset center,
+            List<Color> colors,
+            List<double> colorStops = null,
+            TileMode tileMode = TileMode.clamp,
+            double startAngle = 0.0,
+            double endAngle = Math.PI * 2,
+            Float64List matrix4 = null)
         {
             //assert(_offsetIsValid(center)),
             //assert(colors != null),
@@ -3108,25 +3126,33 @@ namespace FlutterBinding.UI
         }
 
         private Gradient(
-        Offset center,
-        List<Color> colors,
-        List<double> colorStops = null,
-        TileMode tileMode = TileMode.clamp,
-        double startAngle = 0.0,
-        double endAngle = Math.PI * 2,
-        List<float> matrix4 = null)
+            Offset center,
+            List<Color> colors,
+            List<double> colorStops = null,
+            TileMode tileMode = TileMode.clamp,
+            double startAngle = 0.0,
+            double endAngle = Math.PI * 2,
+            Float64List matrix4 = null)
         {
             _validateColorStops(colors, colorStops);
-            List<uint> colorsBuffer = _encodeColorList(colors);
-            List<double> colorStopsBuffer = colorStops == null ? null : new List<double>(colorStops);
+            var colorsBuffer = _encodeColorList(colors);
+            var colorStopsBuffer = colorStops == null ? null : new Float32List(colorStops);
             _constructor();
             _initSweep(center.dx, center.dy, colorsBuffer, colorStopsBuffer, (int)tileMode, startAngle, endAngle, matrix4);
         }
 
-        void _initSweep(double centerX, double centerY, List<uint> colors, List<double> colorStops, int tileMode, double startAngle, double endAngle, List<float> matrix)
+        void _initSweep(
+            double centerX, 
+            double centerY, 
+            Int32List colors, 
+            Float32List colorStops, 
+            int tileMode, 
+            double startAngle, 
+            double endAngle, Float64List matrix)
         {
             // native 'Gradient_initSweep';
         }
+
         static void _validateColorStops(List<Color> colors, List<double> colorStops)
         {
             if (colorStops == null)
@@ -3190,14 +3216,14 @@ namespace FlutterBinding.UI
     }
 
     /// A set of vertex data used by [Canvas.drawVertices].
-    public class Vertices : NativeFieldWrapperClass2
+    public class Vertices : NativeVertices
     {
         public Vertices(
-        VertexMode mode,
-        List<Offset> positions,
+            VertexMode mode,
+            List<Offset> positions,
             List<Offset> textureCoordinates = null,
             List<Color> colors = null,
-    List<int> indices = null)
+            List<int> indices = null)
         {
             //assert(mode != null),
             //assert(positions != null)
@@ -3209,29 +3235,23 @@ namespace FlutterBinding.UI
             if (indices != null && indices.Any((int i) => i < 0 || i >= positions.Count))
                 throw new ArgumentException("'indices' values must be valid indices in the positions list.");
 
-            List<double> encodedPositions = _encodePointList(positions);
-            List<double> encodedTextureCoordinates = (textureCoordinates != null)
-                  ? _encodePointList(textureCoordinates)
-                  : null;
-            List<uint> encodedColors = colors != null
-              ? _encodeColorList(colors)
-              : null;
-            List<Int32> encodedIndices = indices != null
-              ? new List<int>(indices)
-              : null;
+            var encodedPositions = _encodePointList(positions);
+            var encodedTextureCoordinates = (textureCoordinates != null) ? _encodePointList(textureCoordinates) : null;
+            var encodedColors = colors != null ? _encodeColorList(colors) : null;
+            var encodedIndices = indices != null ? new Int32List(indices) : null;
 
-            _constructor();
-            _init((int)mode, encodedPositions, encodedTextureCoordinates, encodedColors, encodedIndices);
+            base.init((SKVertexMode)mode, encodedPositions, encodedTextureCoordinates, encodedColors, encodedIndices);
         }
 
-        public Vertices raw(
-        VertexMode mode,
-        List<double> positions,
-        List<double> textureCoordinates = null,
-        List<uint> colors = null,
-    List<Int32> indices = null)
-        { //assert(mode != null),
-          //assert(positions != null)
+        public static Vertices raw(
+            VertexMode mode,
+            Float32List positions,
+            Float32List textureCoordinates = null,
+            Int32List colors = null,
+            Int32List indices = null)
+        {
+            //assert(mode != null),
+            //assert(positions != null)
 
             if (textureCoordinates != null && textureCoordinates.Count != positions.Count)
                 throw new ArgumentException("'positions' and 'textureCoordinates' lengths must match.");
@@ -3244,30 +3264,13 @@ namespace FlutterBinding.UI
         }
 
         private Vertices(
-        VertexMode mode,
-        List<double> positions,
-        List<double> textureCoordinates,
-        List<uint> colors,
-    List<Int32> indices)
+            VertexMode mode,
+            Float32List positions,
+            Float32List textureCoordinates,
+            Int32List colors,
+            Int32List indices)
         {
-            _constructor();
-            _init((int)mode, positions, textureCoordinates, colors, indices);
-
-        }
-
-        void _constructor()
-        {
-            // native 'Vertices_constructor';
-        }
-
-
-        void _init(int mode,
-                   List<double> positions,
-                   List<double> textureCoordinates,
-                   List<uint> colors,
-                   List<Int32> indices)
-        {
-            // native 'Vertices_init';
+            base.init((SKVertexMode)mode, positions, textureCoordinates, colors, indices);
         }
     }
 
@@ -3334,8 +3337,10 @@ namespace FlutterBinding.UI
     ///
     /// The current transform and clip can be saved and restored using the stack
     /// managed by the [save], [saveLayer], and [restore] methods.
-    public class Canvas : NativeCanvas
+    public class Canvas
     {
+        public SKCanvas _canvas;
+
         /// Creates a canvas for recording graphical operations into the
         /// given picture recorder.
         ///
@@ -3349,22 +3354,36 @@ namespace FlutterBinding.UI
         /// To end the recording, call [PictureRecorder.endRecording] on the
         /// given recorder.
         // //@pragma('vm:entry-point')
-        public Canvas(PictureRecorder recorder, Rect cullRect = null): base(new SKBitmap()) //: //assert(recorder != null)
+        public Canvas(PictureRecorder recorder, Rect cullRect = null)
         {
+            //assert(recorder != null)
+
             if (recorder.isRecording)
                 throw new ArgumentException("'recorder' must not already be associated with another Canvas.");
             if (cullRect == null)
                 cullRect = Rect.largest;
-            _constructor(recorder, cullRect.left, cullRect.top, cullRect.right, cullRect.bottom);
+
+            Constructor(recorder, cullRect.left, cullRect.top, cullRect.right, cullRect.bottom);
         }
-        void _constructor(PictureRecorder recorder,
-                          double left,
-                          double top,
-                          double right,
-                          double bottom)
+
+        public Canvas(SKCanvas canvas)
         {
-            this.Constructor(recorder, left, top, right, bottom);
-            // [DONE] native 'Canvas_constructor';
+            _canvas = canvas;
+        }
+
+        public Canvas(SKBitmap bitmap)
+        {
+            _canvas = new SKCanvas(bitmap);
+        }
+
+        private void Constructor(
+            PictureRecorder recorder,
+            double left,
+            double top,
+            double right,
+            double bottom)
+        {
+            _canvas = recorder.BeginRecording(new SKRect((float)left, (float)top, (float)right, (float)bottom));
         }
 
         /// Saves a copy of the current transform and clip on the save stack.
@@ -3375,10 +3394,7 @@ namespace FlutterBinding.UI
         ///
         ///  * [saveLayer], which does the same thing but additionally also groups the
         ///    commands done until the matching [restore].
-        public void save()
-        {
-            // native 'Canvas_save';
-        }
+        public void save() => _canvas.Save();
 
         /// Saves a copy of the current transform and clip on the save stack, and then
         /// creates a new group which subsequent calls will become a part of. When the
@@ -3489,33 +3505,22 @@ namespace FlutterBinding.UI
         ///    for subsequent commands.
         ///  * [BlendMode], which discusses the use of [Paint.blendMode] with
         ///    [saveLayer].
-        void saveLayer(Rect bounds, Paint paint)
+        public void saveLayer(Rect bounds, SKPaint paint)
         {
-            ////assert(paint != null);
+            //assert(paint != null);
+
             if (bounds == null)
             {
-                _saveLayerWithoutBounds(paint._objects, paint._data);
+                _canvas.SaveLayer(paint);
             }
             else
             {
-                ////assert(_rectIsValid(bounds));
-                _saveLayer(bounds.left, bounds.top, bounds.right, bounds.bottom,
-                           paint._objects, paint._data);
-            }
-        }
-        void _saveLayerWithoutBounds(List<Object> paintObjects, ByteData paintData)
-        {
-            // native 'Canvas_saveLayerWithoutBounds';
-        }
+                //assert(_rectIsValid(bounds));
 
-        void _saveLayer(double left,
-                        double top,
-                        double right,
-                        double bottom,
-                        List<Object> paintObjects,
-                        ByteData paintData)
-        {
-            // native 'Canvas_saveLayer';
+                _canvas.SaveLayer(
+                    new SKRect((float)bounds.left, (float)bounds.top, (float)bounds.right, (float)bounds.bottom),
+                    paint);
+            }
         }
 
         /// Pops the current save stack, if there is anything to pop.
@@ -3525,10 +3530,7 @@ namespace FlutterBinding.UI
         ///
         /// If the state was pushed with with [saveLayer], then this call will also
         /// cause the new layer to be composited into the previous layer.
-        public void restore()
-        {
-            // native 'Canvas_restore';
-        }
+        public void restore() => _canvas.Restore();
 
         /// Returns the number of items on the save stack, including the
         /// initial state. This means it returns 1 for a clean canvas, and
@@ -3536,18 +3538,11 @@ namespace FlutterBinding.UI
         /// each matching call to [restore] decrements it.
         ///
         /// This number cannot go below 1.
-        public int getSaveCount()
-        {
-            // native 'Canvas_getSaveCount';
-            return 0; // Tmp to resolve build
-        }
+        public int getSaveCount() => _canvas.SaveCount;
 
         /// Add a translation to the current transform, shifting the coordinate space
         /// horizontally by the first argument and vertically by the second argument.
-        public void translate(double dx, double dy)
-        {
-            // native 'Canvas_translate';
-        }
+        public void translate(double dx, double dy) => _canvas.Translate((float)dx, (float)dy);
 
         /// Add an axis-aligned scale to the current transform, scaling by the first
         /// argument in the horizontal direction and the second in the vertical
@@ -3555,41 +3550,27 @@ namespace FlutterBinding.UI
         ///
         /// If [sy] is unspecified, [sx] will be used for the scale in both
         /// directions.
-        public void scale(double sx, double? sy) => _scale(sx, sy ?? sx);
-
-        void _scale(double sx, double sy)
-        {
-            RecordingCanvas.Scale((float)sx, (float)sy);
-            // [DONE] native 'Canvas_scale';
-        }
+        public void scale(double sx, double? sy) => _canvas.Scale((float)sx, (float)(sy ?? sx));
 
         /// Add a rotation to the current transform. The argument is in radians clockwise.
-        public void rotate(double radians)
-        {
-            // native 'Canvas_rotate';
-        }
+        public void rotate(double radians) => _canvas.RotateRadians((float)radians);
 
         /// Add an axis-aligned skew to the current transform, with the first argument
         /// being the horizontal skew in radians clockwise around the origin, and the
         /// second argument being the vertical skew in radians clockwise around the
         /// origin.
-        public void skew(double sx, double sy)
-        {
-            // native 'Canvas_skew';
-        }
+        public void skew(double sx, double sy) => _canvas.Skew((float)sx, (float)sy);
 
         /// Multiply the current transform by the specified 4⨉4 transformation matrix
         /// specified as a list of values in column-major order.
-        public void transform(List<float> matrix4)
+        public void transform(Float64List matrix4)
         {
             ////assert(matrix4 != null);
             if (matrix4.Count != 16)
                 throw new ArgumentException("'matrix4' must have 16 entries.");
-            _transform(matrix4);
-        }
-        void _transform(List<float> matrix4)
-        {
-            // native 'Canvas_transform';
+
+            var skMatrix = matrix4.ToSKMatrix();
+            _canvas.Concat(ref skMatrix);
         }
 
         /// Reduces the clip region to the intersection of the current clip and the
@@ -3608,16 +3589,11 @@ namespace FlutterBinding.UI
             ////assert(_rectIsValid(rect));
             ////assert(clipOp != null);
             ////assert(doAntiAlias != null);
-            _clipRect(rect.left, rect.top, rect.right, rect.bottom, (int)clipOp, doAntiAlias);
-        }
-        void _clipRect(double left,
-                       double top,
-                       double right,
-                       double bottom,
-                       int clipOp,
-                       bool doAntiAlias)
-        {
-            // native 'Canvas_clipRect';
+
+            _canvas.ClipRect(
+                new SKRect((float)rect.left, (float)rect.top, (float)rect.right, (float)rect.bottom),
+                (SKClipOperation)clipOp,
+                doAntiAlias);
         }
 
         /// Reduces the clip region to the intersection of the current clip and the
@@ -3630,13 +3606,10 @@ namespace FlutterBinding.UI
         /// discussion of how to address that and some examples of using [clipRRect].
         public void clipRRect(RRect rrect, bool doAntiAlias = true)
         {
-            ////assert(_rrectIsValid(rrect));
-            ////assert(doAntiAlias != null);
-            _clipRRect(rrect._value, doAntiAlias);
-        }
-        void _clipRRect(List<double> rrect, bool doAntiAlias)
-        {
-            // native 'Canvas_clipRRect';
+            //assert(_rrectIsValid(rrect));
+            //assert(doAntiAlias != null);
+
+            _canvas.ClipRoundRect(rrect.ToSKRoundRect(), SKClipOperation.Intersect, doAntiAlias);
         }
 
         /// Reduces the clip region to the intersection of the current clip and the
@@ -3652,94 +3625,70 @@ namespace FlutterBinding.UI
         {
             ////assert(path != null); // path is checked on the engine side
             ////assert(doAntiAlias != null);
-            _clipPath(path, doAntiAlias);
-        }
-        void _clipPath(Path path, bool doAntiAlias)
-        {
-            // native 'Canvas_clipPath';
+            _canvas.ClipPath(path, SKClipOperation.Intersect, doAntiAlias);
         }
 
         /// Paints the given [Color] onto the canvas, applying the given
         /// [BlendMode], with the given color being the source and the background
         /// being the destination.
-        public void drawColor(Color color, BlendMode blendMode)
+        public void drawColor(Color color, BlendMode blendMode = BlendMode.src)
         {
             ////assert(color != null);
             ////assert(blendMode != null);
-            _drawColor(color.value, (int)blendMode);
-        }
-        void _drawColor(uint color, int blendMode)
-        {
-            // native 'Canvas_drawColor';
+
+            _canvas.DrawColor(new SKColor(color.value), (SKBlendMode)blendMode);
         }
 
         /// Draws a line between the given points using the given paint. The line is
         /// stroked, the value of the [Paint.style] is ignored for this call.
         ///
         /// The `p1` and `p2` arguments are interpreted as offsets from the origin.
-        public void drawLine(Offset p1, Offset p2, Paint paint)
+        public void drawLine(Offset p1, Offset p2, SKPaint paint)
         {
             ////assert(_offsetIsValid(p1));
             ////assert(_offsetIsValid(p2));
             ////assert(paint != null);
-            _drawLine(p1.dx, p1.dy, p2.dx, p2.dy, paint._objects, paint._data);
-        }
-        void _drawLine(double x1,
-                       double y1,
-                       double x2,
-                       double y2,
-                       List<Object> paintObjects,
-                       ByteData paintData)
-        {
-            // native 'Canvas_drawLine';
+
+            _canvas.DrawLine((float)p1.dx, (float)p1.dy, (float)p2.dx, (float)p2.dy, paint);
         }
 
         /// Fills the canvas with the given [Paint].
         ///
         /// To fill the canvas with a solid color and blend mode, consider
         /// [drawColor] instead.
-        void drawPaint(Paint paint)
+        public void drawPaint(SKPaint paint)
         {
             //assert(paint != null);
-            _drawPaint(paint._objects, paint._data);
-        }
-        void _drawPaint(List<Object> paintObjects, ByteData paintData)
-        {
-            // native 'Canvas_drawPaint';
+
+            _canvas.DrawPaint(paint);
         }
 
         /// Draws a rectangle with the given [Paint]. Whether the rectangle is filled
         /// or stroked (or both) is controlled by [Paint.style].
-        void drawRect(Rect rect, Paint paint)
+        public void drawRect(Rect rect, SKPaint paint)
         {
             //assert(_rectIsValid(rect));
             //assert(paint != null);
-            _drawRect(rect.left, rect.top, rect.right, rect.bottom,
-                      paint._objects, paint._data);
-        }
-        void _drawRect(double left,
-                       double top,
-                       double right,
-                       double bottom,
-                       List<Object> paintObjects,
-                       ByteData paintData)
-        {
-            // native 'Canvas_drawRect';
+
+            var width = (float)rect.right - (float)rect.left;
+            var height = (float)rect.bottom - (float)rect.top;
+
+            _canvas.DrawRect(
+                (float)rect.left,
+                (float)rect.top,
+                width,
+                height,
+                paint);
         }
 
         /// Draws a rounded rectangle with the given [Paint]. Whether the rectangle is
         /// filled or stroked (or both) is controlled by [Paint.style].
-        void drawRRect(RRect rrect, Paint paint)
+        public void drawRRect(RRect rrect, SKPaint paint)
         {
             //assert(_rrectIsValid(rrect));
             //assert(paint != null);
-            _drawRRect(rrect._value, paint._objects, paint._data);
-        }
-        void _drawRRect(List<double> rrect,
-                        List<Object> paintObjects,
-                        ByteData paintData)
-        {
-            // native 'Canvas_drawRRect';
+
+            _canvas.DrawRoundRect(rrect.ToSKRoundRect(), paint);
         }
 
         /// Draws a shape consisting of the difference between two rounded rectangles
@@ -3747,58 +3696,37 @@ namespace FlutterBinding.UI
         /// is controlled by [Paint.style].
         ///
         /// This shape is almost but not quite entirely unlike an annulus.
-        void drawDRRect(RRect outer, RRect inner, Paint paint)
+        public void drawDRRect(RRect outer, RRect inner, SKPaint paint)
         {
             //assert(_rrectIsValid(outer));
             //assert(_rrectIsValid(inner));
             //assert(paint != null);
-            _drawDRRect(outer._value, inner._value, paint._objects, paint._data);
-        }
-        void _drawDRRect(List<double> outer,
-                         List<double> inner,
-                         List<Object> paintObjects,
-                         ByteData paintData)
-        {
-            // native 'Canvas_drawDRRect';
+
+            // TODO: Not yet implemented in SkiaSharp
+            _canvas.DrawRoundRect(outer.ToSKRoundRect(), paint);
         }
 
         /// Draws an axis-aligned oval that fills the given axis-aligned rectangle
         /// with the given [Paint]. Whether the oval is filled or stroked (or both) is
         /// controlled by [Paint.style].
-        void drawOval(Rect rect, Paint paint)
+        public void drawOval(Rect rect, SKPaint paint)
         {
             //assert(_rectIsValid(rect));
             //assert(paint != null);
-            _drawOval(rect.left, rect.top, rect.right, rect.bottom,
-                      paint._objects, paint._data);
-        }
-        void _drawOval(double left,
-                       double top,
-                       double right,
-                       double bottom,
-                       List<Object> paintObjects,
-                       ByteData paintData)
-        {
-            // native 'Canvas_drawOval';
+
+            _canvas.DrawOval(rect.ToSKRect(), paint);
         }
 
         /// Draws a circle centered at the point given by the first argument and
         /// that has the radius given by the second argument, with the [Paint] given in
         /// the third argument. Whether the circle is filled or stroked (or both) is
         /// controlled by [Paint.style].
-        void drawCircle(Offset c, double radius, Paint paint)
+        public void drawCircle(Offset c, double radius, SKPaint paint)
         {
             //assert(_offsetIsValid(c));
             //assert(paint != null);
-            _drawCircle(c.dx, c.dy, radius, paint._objects, paint._data);
-        }
-        void _drawCircle(double x,
-                         double y,
-                         double radius,
-                         List<Object> paintObjects,
-                         ByteData paintData)
-        {
-            // native 'Canvas_drawCircle';
+
+            _canvas.DrawCircle((float)c.dx, (float)c.dy, (float)radius, paint);
         }
 
         /// Draw an arc scaled to fit inside the given rectangle. It starts from
@@ -3811,58 +3739,36 @@ namespace FlutterBinding.UI
         /// not closed, forming a circle segment.
         ///
         /// This method is optimized for drawing arcs and should be faster than [Path.arcTo].
-        void drawArc(Rect rect, double startAngle, double sweepAngle, bool useCenter, Paint paint)
+        public void drawArc(Rect rect, double startAngle, double sweepAngle, bool useCenter, Paint paint)
         {
             //assert(_rectIsValid(rect));
             //assert(paint != null);
-            _drawArc(rect.left, rect.top, rect.right, rect.bottom, startAngle,
-                     sweepAngle, useCenter, paint._objects, paint._data);
-        }
-        void _drawArc(double left,
-                      double top,
-                      double right,
-                      double bottom,
-                      double startAngle,
-                      double sweepAngle,
-                      bool useCenter,
-                      List<Object> paintObjects,
-                      ByteData paintData)
-        {
-            // native 'Canvas_drawArc';
+
+            // TODO: Draw Arc not implemented in SkiaSharp
+            // Maybe try the following link:
+            // https://docs.microsoft.com/en-us/xamarin/xamarin-forms/user-interface/graphics/skiasharp/curves/arcs
         }
 
         /// Draws the given [Path] with the given [Paint]. Whether this shape is
         /// filled or stroked (or both) is controlled by [Paint.style]. If the path is
         /// filled, then subpaths within it are implicitly closed (see [Path.close]).
-        void drawPath(Path path, Paint paint)
+        public void drawPath(Path path, SKPaint paint)
         {
             //assert(path != null); // path is checked on the engine side
             //assert(paint != null);
-            _drawPath(path, paint._objects, paint._data);
-        }
-        void _drawPath(Path path,
-                       List<Object> paintObjects,
-                       ByteData paintData)
-        {
-            // native 'Canvas_drawPath';
+
+            _canvas.DrawPath(path, paint);
         }
 
         /// Draws the given [Image] into the canvas with its top-left corner at the
         /// given [Offset]. The image is composited into the canvas using the given [Paint].
-        void drawImage(Image image, Offset p, Paint paint)
+        public void drawImage(Image image, Offset p, SKPaint paint)
         {
             //assert(image != null); // image is checked on the engine side
             //assert(_offsetIsValid(p));
             //assert(paint != null);
-            _drawImage(image, p.dx, p.dy, paint._objects, paint._data);
-        }
-        void _drawImage(Image image,
-                        double x,
-                        double y,
-                        List<Object> paintObjects,
-                        ByteData paintData)
-        {
-            // native 'Canvas_drawImage';
+
+            _canvas.DrawImage(image.SkImage, (float)p.dx, (float)p.dy, paint);
         }
 
         /// Draws the subset of the given image described by the `src` argument into
@@ -3874,37 +3780,14 @@ namespace FlutterBinding.UI
         /// Multiple calls to this method with different arguments (from the same
         /// image) can be batched into a single call to [drawAtlas] to improve
         /// performance.
-        void drawImageRect(Image image, Rect src, Rect dst, Paint paint)
+        public void drawImageRect(Image image, Rect src, Rect dst, SKPaint paint)
         {
             //assert(image != null); // image is checked on the engine side
             //assert(_rectIsValid(src));
             //assert(_rectIsValid(dst));
             //assert(paint != null);
-            _drawImageRect(image,
-                           src.left,
-                           src.top,
-                           src.right,
-                           src.bottom,
-                           dst.left,
-                           dst.top,
-                           dst.right,
-                           dst.bottom,
-                           paint._objects,
-                           paint._data);
-        }
-        void _drawImageRect(Image image,
-                            double srcLeft,
-                            double srcTop,
-                            double srcRight,
-                            double srcBottom,
-                            double dstLeft,
-                            double dstTop,
-                            double dstRight,
-                            double dstBottom,
-                            List<Object> paintObjects,
-                            ByteData paintData)
-        {
-            // native 'Canvas_drawImageRect';
+
+            _canvas.DrawImage(image.SkImage, src.ToSKRect(), dst.ToSKRect(), paint);
         }
 
         /// Draws the given [Image] into the canvas using the given [Paint].
@@ -3920,37 +3803,18 @@ namespace FlutterBinding.UI
         /// five regions are drawn by stretching them to fit such that they exactly
         /// cover the destination rectangle while maintaining their relative
         /// positions.
-        public void drawImageNine(Image image, Rect center, Rect dst, Paint paint)
+        public void drawImageNine(Image image, Rect center, Rect dst, SKPaint paint)
         {
             //assert(image != null); // image is checked on the engine side
             //assert(_rectIsValid(center));
             //assert(_rectIsValid(dst));
             //assert(paint != null);
-            _drawImageNine(image,
-                           center.left,
-                           center.top,
-                           center.right,
-                           center.bottom,
-                           dst.left,
-                           dst.top,
-                           dst.right,
-                           dst.bottom,
-                           paint._objects,
-                           paint._data);
-        }
-        void _drawImageNine(Image image,
-                            double centerLeft,
-                            double centerTop,
-                            double centerRight,
-                            double centerBottom,
-                            double dstLeft,
-                            double dstTop,
-                            double dstRight,
-                            double dstBottom,
-                            List<Object> paintObjects,
-                            ByteData paintData)
-        {
-            // native 'Canvas_drawImageNine';
+
+            _canvas.DrawImageNinePatch(
+                image.SkImage,
+                center.ToSKRectI(),
+                dst.ToSKRect(),
+                paint);
         }
 
         /// Draw the given picture onto the canvas. To create a picture, see
@@ -3958,11 +3822,8 @@ namespace FlutterBinding.UI
         public void drawPicture(SKPicture picture)
         {
             //assert(picture != null); // picture is checked on the engine side
-            _drawPicture(picture);
-        }
-        void _drawPicture(SKPicture picture)
-        {
-            // native 'Canvas_drawPicture';
+
+            _canvas.DrawPicture(picture);
         }
 
         /// Draws the text in the given [Paragraph] into this canvas at the given
@@ -3989,7 +3850,8 @@ namespace FlutterBinding.UI
         {
             //assert(paragraph != null);
             //assert(_offsetIsValid(offset));
-            paragraph._paint(RecordingCanvas, offset.dx, offset.dy);
+
+            paragraph._paint(_canvas, offset.dx, offset.dy);
         }
 
         /// Draws a sequence of points according to the given [PointMode].
@@ -4000,12 +3862,17 @@ namespace FlutterBinding.UI
         ///
         ///  * [drawRawPoints], which takes `points` as a [List<float> ] rather than a
         ///    [List<Offset>].
-        void drawPoints(PointMode pointMode, List<Offset> points, Paint paint)
+        public void drawPoints(PointMode pointMode, List<Offset> points, SKPaint paint)
         {
             //assert(pointMode != null);
             //assert(points != null);
             //assert(paint != null);
-            _drawPoints(paint._objects, paint._data, (int)pointMode, _encodePointList(points));
+
+            var pointArray = points
+                            .Select(p => new SKPoint((float)p.dx, (float)p.dy))
+                            .ToArray();
+
+            _canvas.DrawPoints((SKPointMode)pointMode, pointArray, paint);
         }
 
         /// Draws a sequence of points according to the given [PointMode].
@@ -4017,37 +3884,28 @@ namespace FlutterBinding.UI
         ///
         ///  * [drawPoints], which takes `points` as a [List<Offset>] rather than a
         ///    [List<List<float> >].
-        void drawRawPoints(PointMode pointMode, List<double> points, Paint paint)
+        public void drawRawPoints(PointMode pointMode, Float32List points, SKPaint paint)
         {
             //assert(pointMode != null);
             //assert(points != null);
             //assert(paint != null);
             if (points.Count % 2 != 0)
                 throw new ArgumentException("'points' must have an even number of values.");
-            _drawPoints(paint._objects, paint._data, (int)pointMode, points);
+
+            var pointsList = new List<SKPoint>();
+            for (int i = 0; i < points.Count; i += 2)
+                pointsList.Add(new SKPoint((float)points[i], (float)points[i + 1]));
+
+            _canvas.DrawPoints((SKPointMode)pointMode, pointsList.ToArray(), paint);
         }
 
-        void _drawPoints(List<Object> paintObjects,
-                         ByteData paintData,
-                         int pointMode,
-                         List<double> points)
-        {
-            // native 'Canvas_drawPoints';
-        }
-
-        void drawVertices(Vertices vertices, BlendMode blendMode, Paint paint)
+        public void drawVertices(Vertices vertices, BlendMode blendMode, SKPaint paint)
         {
             //assert(vertices != null); // vertices is checked on the engine side
             //assert(paint != null);
             //assert(blendMode != null);
-            _drawVertices(vertices, (int)blendMode, paint._objects, paint._data);
-        }
-        void _drawVertices(Vertices vertices,
-                           int blendMode,
-                           List<Object> paintObjects,
-                           ByteData paintData)
-        {
-            // native 'Canvas_drawVertices';
+
+            _canvas.DrawVertices(vertices.ToSKVertices(), (SKBlendMode)blendMode, paint);
         }
 
         //
@@ -4055,13 +3913,14 @@ namespace FlutterBinding.UI
         //
         //  * [drawRawAtlas], which takes its arguments as typed data lists rather
         //    than objects.
-        void drawAtlas(Image atlas,
-                       List<RSTransform> transforms,
-                       List<Rect> rects,
-                       List<Color> colors,
-                       BlendMode blendMode,
-                       Rect cullRect,
-                       Paint paint)
+        public void drawAtlas(
+            Image atlas,
+            List<RSTransform> transforms,
+            List<Rect> rects,
+            List<Color> colors,
+            BlendMode blendMode,
+            Rect cullRect,
+            Paint paint)
         {
             //assert(atlas != null); // atlas is checked on the engine side
             //assert(transforms != null);
@@ -4076,8 +3935,8 @@ namespace FlutterBinding.UI
             if (colors.Count > 0 && colors.Count != rectCount)
                 throw new ArgumentException("'If non-null, 'colors' length must match that of 'transforms' and 'rects'.");
 
-            List<double> rstTransformBuffer = new List<double>(rectCount * 4);
-            List<double> rectBuffer = new List<double>(rectCount * 4);
+            var rstTransformBuffer = new Float32List(rectCount * 4);
+            var rectBuffer = new Float32List(rectCount * 4);
 
             for (int i = 0; i < rectCount; ++i)
             {
@@ -4098,13 +3957,10 @@ namespace FlutterBinding.UI
                 rectBuffer[index3] = rect.bottom;
             }
 
-            List<uint> colorBuffer = colors.Count == 0 ? null : _encodeColorList(colors);
-            List<double> cullRectBuffer = cullRect?._value;
+            var colorBuffer = colors.Count == 0 ? null : _encodeColorList(colors);
+            var cullRectBuffer = cullRect?._value;
 
-            _drawAtlas(
-              paint._objects, paint._data, atlas, rstTransformBuffer, rectBuffer,
-              colorBuffer, (int)blendMode, cullRectBuffer
-            );
+            // TODO: Draw Atlas is not available in SkiaSharp
         }
 
         //
@@ -4122,13 +3978,14 @@ namespace FlutterBinding.UI
         //
         //  * [drawAtlas], which takes its arguments as objects rather than typed
         //    data lists.
-        public void drawRawAtlas(Image atlas,
-                          List<double> rstTransforms,
-                          List<double> rects,
-                          List<uint> colors,
-                          BlendMode blendMode,
-                          Rect cullRect,
-                          Paint paint)
+        public void drawRawAtlas(
+            Image atlas,
+            Float32List rstTransforms,
+            Float32List rects,
+            Int32List colors,
+            BlendMode blendMode,
+            Rect cullRect,
+            Paint paint)
         {
             ////assert(atlas != null); // atlas is checked on the engine side
             ////assert(rstTransforms != null);
@@ -4145,22 +4002,7 @@ namespace FlutterBinding.UI
             if (colors != null && colors.Count * 4 != rectCount)
                 throw new ArgumentException("If non-null, 'colors' length must be one fourth the length of 'rstTransforms' and 'rects'.");
 
-            _drawAtlas(
-              paint._objects, paint._data, atlas, rstTransforms, rects,
-              colors, (int)blendMode, cullRect?._value
-            );
-        }
-
-        void _drawAtlas(List<Object> paintObjects,
-                        ByteData paintData,
-                        Image atlas,
-                        List<double> rstTransforms,
-                        List<double> rects,
-                        List<uint> colors,
-                        int blendMode,
-                        List<double> cullRect)
-        {
-            // native 'Canvas_drawAtlas';
+            // TODO: Draw Atlas is not available in SkiaSharp
         }
 
         /// Draws a shadow for a [Path] representing the given material elevation.
@@ -4174,16 +4016,11 @@ namespace FlutterBinding.UI
             //assert(path != null); // path is checked on the engine side
             //assert(color != null);
             //assert(transparentOccluder != null);
-            _drawShadow(path, color.value, elevation, transparentOccluder);
-        }
-        void _drawShadow(Path path,
-                         uint color,
-                         double elevation,
-                         bool transparentOccluder)
-        {
-            // native 'Canvas_drawShadow';
+
+            // TODO: SkiaSharp does not have DrawShaddow yet
         }
     }
+
 
     /// An object representing a sequence of recorded graphical operations.
     ///
@@ -4192,58 +4029,60 @@ namespace FlutterBinding.UI
     /// A [Picture] can be placed in a [Scene] using a [SceneBuilder], via
     /// the [SceneBuilder.addPicture] method. A [Picture] can also be
     /// drawn into a [Canvas], using the [Canvas.drawPicture] method.
-    //public class SKPicture// : SkiaSharp.SKPicture
-    //{
-    //    /// This class is created by the engine, and should not be instantiated
-    //    /// or extended directly.
-    //    ///
-    //    /// To create a [Picture], use a [PictureRecorder].
-    //    // //@pragma('vm:entry-point')
-    //    //private Picture() { }
+    public class Picture
+    {
+        public SKPicture _picture;
 
-    //    /// Creates an image from this picture.
-    //    ///
-    //    /// The picture is rasterized using the number of pixels specified by the
-    //    /// given width and height.
-    //    ///
-    //    /// Although the image is returned synchronously, the picture is actually
-    //    /// rasterized the first time the image is drawn and then cached.
-    //    public Image toImage(int width, int height)
-    //    {
-    //        // native 'Picture_toImage';
-    //        return null; // Tmp to resolve build
-    //    }
+        /// This class is created by the engine, and should not be instantiated
+        /// or extended directly.
+        ///
+        /// To create a [Picture], use a [PictureRecorder].
+        //@pragma('vm:entry-point')
+        private Picture() { }
 
-    //    /// Release the resources used by this object. The object is no longer usable
-    //    /// after this method is called.
-    //    public void dispose()
-    //    {
-    //        // native 'Picture_dispose';
-    //    }
+        public Picture(SKPicture picture)
+        {
+            _picture = picture;
+        }
 
-    //    /// Returns the approximate number of bytes allocated for this object.
-    //    ///
-    //    /// The actual size of this picture may be larger, particularly if it contains
-    //    /// references to image or other large objects.
-    //    public int approximateBytesUsed => 0; // native 'Picture_GetAllocationSize';
-    //}
+        /// Creates an image from this picture.
+        ///
+        /// The picture is rasterized using the number of pixels specified by the
+        /// given width and height.
+        ///
+        /// Although the image is returned synchronously, the picture is actually
+        /// rasterized the first time the image is drawn and then cached.
+        public Image toImage(int width, int height)
+        {
+            return new Image(
+                SKImage.FromPicture(_picture, new SKSizeI(width, height)));
+        }
+
+        public SKPicture ToSKPicture() => _picture;
+    }
 
     /// Records a [Picture] containing a sequence of graphical operations.
     ///
     /// To begin recording, construct a [Canvas] to record the commands.
     /// To end recording, use the [PictureRecorder.endRecording] method.
-    public class PictureRecorder : NativePictureRecorder
+    public class PictureRecorder
     {
+        private SKPictureRecorder _skPictureRecorder;
+
+        public SKPictureRecorder SkPictureRecorder
+        {
+            get => _skPictureRecorder ?? (_skPictureRecorder = new SKPictureRecorder());
+            set => _skPictureRecorder = value;
+        }
+
+        public SKCanvas SkCanvas { get; set; }
+
+
         /// Creates a new idle PictureRecorder. To associate it with a
         /// [Canvas] and begin recording, pass this [PictureRecorder] to the
         /// [Canvas] constructor.
         // //@pragma('vm:entry-point')
-        public PictureRecorder() { _constructor(); }
-        void _constructor()
-        {
-            
-            // native 'PictureRecorder_constructor';
-        }
+
         /// Whether this object is currently recording commands.
         ///
         /// Specifically, this returns true if a [Canvas] object has been
@@ -4251,14 +4090,15 @@ namespace FlutterBinding.UI
         /// call to [endRecording], and false if either this
         /// [PictureRecorder] has not yet been associated with a [Canvas],
         /// or the [endRecording] method has already been called.
-        public bool isRecording
+        public bool isRecording => SkCanvas != null && SkPictureRecorder.RecordingCanvas != null;
+
+        public SKCanvas BeginRecording(Rect cullRect) => BeginRecording(cullRect.ToSKRect());
+
+        public SKCanvas BeginRecording(SKRect cullRect)
         {
-            get
-            {
-                return this.RecordingCanvas != null;
-                // native 'PictureRecorder_isRecording';
-            }
+            return SkCanvas = SkPictureRecorder.BeginRecording(cullRect);
         }
+
         /// Finishes recording graphical operations.
         ///
         /// Returns a picture containing the graphical operations that have been
@@ -4266,10 +4106,15 @@ namespace FlutterBinding.UI
         /// and the canvas objects are invalid and cannot be used further.
         ///
         /// Returns null if the PictureRecorder is not associated with a canvas.
-        public SKPicture endRecording()
+        public Picture endRecording()
         {
-            return this.EndRecording();
-            // [DONE] native 'PictureRecorder_endRecording';           
+            if (!isRecording)
+                return null;
+
+            var skPicture = SkPictureRecorder.EndRecording();
+            SkCanvas = null;
+
+            return new Picture(skPicture);
         }
     }
 

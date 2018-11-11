@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using FlutterBinding.Mapping;
 using static FlutterBinding.UI.Lerp;
 using static FlutterBinding.Mapping.Helper;
 
@@ -611,7 +612,7 @@ namespace FlutterBinding.UI
             _value[3] = four;
         }
 
-        private Rect(List<double> values)
+        private Rect(Float32List values)
         {
             _value = values;
         }
@@ -629,7 +630,7 @@ namespace FlutterBinding.UI
         /// rectangle constructor operator `&`. See [Offset.&].
         public static Rect fromLTWH(double left, double top, double width, double height)
         {
-            var list = new List<double>(_kDataSize)
+            var list = new Float32List(_kDataSize)
             {
                 left,
                 top,
@@ -644,7 +645,7 @@ namespace FlutterBinding.UI
         /// The `center` argument is assumed to be an offset from the origin.
         public static Rect fromCircle(Offset center = null, double radius = 0.0)
         {
-            var list = new List<double>(_kDataSize)
+            var list = new Float32List(_kDataSize)
             {
                center.dx - radius,
                center.dy - radius,
@@ -659,7 +660,7 @@ namespace FlutterBinding.UI
         /// them as vectors from the origin.
         public static Rect fromPoints(Offset a, Offset b)
         {
-            var list = new List<double>(_kDataSize)
+            var list = new Float32List(_kDataSize)
             {
                Math.Min(a.dx, b.dx),
                Math.Min(a.dy, b.dy),
@@ -671,7 +672,7 @@ namespace FlutterBinding.UI
         }
 
         const int _kDataSize = 4;
-        public readonly List<double> _value = new List<double>(_kDataSize);
+        public readonly Float32List _value = new Float32List(_kDataSize);
 
         /// The offset of the left edge of this rectangle from the x axis.
         public double left => _value[0];

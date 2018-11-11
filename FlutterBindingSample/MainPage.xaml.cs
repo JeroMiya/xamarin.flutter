@@ -2,6 +2,7 @@
 using FlutterBinding.UI;
 using SkiaSharp.Views.UWP;
 using Windows.UI.Xaml.Controls;
+using SkiaSharp;
 
 namespace FlutterBindingSample
 {
@@ -54,16 +55,26 @@ namespace FlutterBindingSample
 
             var canvas = new FlutterBinding.UI.Canvas(recorder, physicalBounds);
             canvas.scale((float)devicePixelRatio, (float)devicePixelRatio);
+
+            var paint = new SKPaint
+            {
+                Color       = SKColors.OrangeRed,
+                IsAntialias = true,
+                Style       = SKPaintStyle.Stroke, 
+                StrokeWidth = 3
+            };
+            canvas.drawCircle(new Offset(logicalSize.width /2, logicalSize.height / 2), 100, paint);
+
             canvas.drawParagraph(paragraph, new Offset(
                 (logicalSize.width - paragraph.maxIntrinsicWidth) / 2.0,
                 (logicalSize.height - paragraph.height) / 2.0
-                ));
+            ));
 
             var picture = recorder.endRecording();
 
             var sceneBuilder = new SceneBuilder();
             sceneBuilder.pushClipRect(physicalBounds);
-            sceneBuilder.addPicture(Offset.zero, picture);
+            sceneBuilder.addPicture(Offset.zero, picture.ToSKPicture());
             sceneBuilder.pop();
 
             var scene = sceneBuilder.build();

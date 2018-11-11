@@ -51,20 +51,7 @@ namespace FlutterBinding.Engine
             //// make sure the canvas is blank
             //_canvas.Clear(SKColors.White);
 
-            //// draw some text
-            //var paint = new SKPaint
-            //{
-            //    Color = SKColors.Black,
-            //    IsAntialias = true,
-            //    Style = SKPaintStyle.Fill,
-            //    TextAlign = SKTextAlign.Center,
-            //    TextSize = 24
-            //};
-            //var coord = new SKPoint(scaledSize.Width / 2, (scaledSize.Height + paint.TextSize) / 2);
-            //_canvas.DrawText("Xamarin.Flutter", coord, paint);
             _canvas.DrawPicture(picture);
-
-            //_canvas.DrawText("Hello", scaledSize.Width / 2, (scaledSize.Height + paint.TextSize) / 2, paint);
 
             // ** End Hack
 
