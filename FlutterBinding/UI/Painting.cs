@@ -2716,27 +2716,59 @@ namespace FlutterBinding.UI
     ///  * [BackdropFilter], a widget that applies [ImageFilter] to its rendering.
     ///  * [SceneBuilder.pushBackdropFilter], which is the low-level API for using
     ///    this class.
-    public class ImageFilter : NativeFieldWrapperClass2
+    public class ImageFilter
     {
-        /// Creates an image filter that applies a Gaussian blur.
-        public static SKImageFilter blur(double sigmaX = 0.0, double sigmaY = 0.0)
+        private readonly SKImageFilter _filter;
+        public SKImageFilter ToSKImageFilter() => _filter;
+
+        private ImageFilter(SKImageFilter filter)
         {
-            return SKImageFilter.CreateBlur((float)sigmaX, (float)sigmaY);
+            _filter = filter;
+        }
+
+        /// Creates an image filter that applies a Gaussian blur.
+        public static ImageFilter blur(double sigmaX = 0.0, double sigmaY = 0.0)
+        {
+            var skFilter = SKImageFilter.CreateBlur((float)sigmaX, (float)sigmaY);
+            return new ImageFilter(skFilter);
         }
 
         /// Creates an image filter that applies a matrix transformation.
         ///
         /// For example, applying a positive scale matrix (see [new Matrix4.diagonal3])
         /// when used with [BackdropFilter] would magnify the background image.
-        public static SKImageFilter matrix(List<float> matrix4,
-                          FilterQuality filterQuality = FilterQuality.low)
+        public static ImageFilter matrix(
+            Float64List matrix4,
+            FilterQuality filterQuality = FilterQuality.low)
         {
             if (matrix4.Count != 16)
                 throw new ArgumentException("'matrix4' must have 16 entries.");
 
-            return SKImageFilter.CreateMatrix(Matrix.ToSkMatrix(matrix4), (SKFilterQuality)filterQuality);
-        }
+            var skFilter = SKImageFilter.CreateMatrix(
+                Matrix.ToSkMatrix(matrix4),
+                (SKFilterQuality)filterQuality);
 
+            return new ImageFilter(skFilter);
+        }
+    }
+
+    /// Base class for objects such as [Gradient] and [ImageShader] which
+    /// correspond to shaders as used by [Paint.shader].
+    public class Shader
+    {
+        protected SKShader _shader;
+
+        public SKShader ToSKShader() => _shader;
+
+        /// This class is created by the engine, and should not be instantiated
+        /// or extended directly.
+        // //@pragma('vm:entry-point')
+        protected Shader() { }
+
+        public Shader(SKShader shader)
+        {
+            _shader = shader;
+        }
     }
 
     /// Defines what happens at the edge of the gradient.
@@ -2797,8 +2829,9 @@ namespace FlutterBinding.UI
     ///
     /// There are several types of gradients, represented by the various constructors
     /// on this class.
-    public class Gradient
+    public class Gradient : Shader
     {
+        public Gradient(SKShader skShader) : base(skShader) { }
 
         /// Creates a linear gradient from `from` to `to`.
         ///
@@ -2817,19 +2850,26 @@ namespace FlutterBinding.UI
         /// If `from`, `to`, `colors`, or `tileMode` are null, or if `colors` or
         /// `colorStops` contain null values, this constructor will throw a
         /// [NoSuchMethodError].
-        public static SKShader linear(
-        Offset from,
-        Offset to,
-        List<Color> colors,
-        List<double> colorStops = null,
-        TileMode tileMode = TileMode.clamp)
+        public static Shader linear(
+            Offset from,
+            Offset to,
+            List<Color> colors,
+            List<double> colorStops = null,
+            TileMode tileMode = TileMode.clamp)
         {
             //assert(_offsetIsValid(from)),
             //assert(_offsetIsValid(to)),
             //assert(colors != null),
             //assert(tileMode != null),
 
-            return SKShader.CreateLinearGradient(from.ToPoint(), to.ToPoint(), colors.ToColors().ToArray(), colorStops.Cast<float>().ToArray(), (SKShaderTileMode)tileMode);
+            var skShader = SKShader.CreateLinearGradient(
+                from.ToPoint(), 
+                to.ToPoint(), 
+                colors.ToColors().ToArray(), 
+                colorStops.Cast<float>().ToArray(), 
+                (SKShaderTileMode)tileMode);
+
+            return new Gradient(skShader);
         }
 
         /// Creates a radial gradient centered at `center` that ends at `radius`
@@ -2861,15 +2901,15 @@ namespace FlutterBinding.UI
         /// circle and `focalRadius` being the radius of that circle. If `focal` is
         /// provided and not equal to `center`, at least one of the two offsets must
         /// not be equal to [Offset.zero].
-        public static SKShader radial(
-        Offset center,
-        double radius,
-        List<Color> colors,
-        List<double> colorStops = null,
-        TileMode tileMode = TileMode.clamp,
-        List<float> matrix4 = null,
-        Offset focal = null,
-        double focalRadius = 0.0)
+        public static Shader radial(
+            Offset center,
+            double radius,
+            List<Color> colors,
+            List<double> colorStops = null,
+            TileMode tileMode = TileMode.clamp,
+            List<float> matrix4 = null,
+            Offset focal = null,
+            double focalRadius = 0.0)
         {
             //assert(_offsetIsValid(center)),
             //assert(colors != null),
@@ -2880,16 +2920,34 @@ namespace FlutterBinding.UI
             //List<uint> colorsBuffer = _encodeColorList(colors);
             List<double> colorStopsBuffer = colorStops == null ? null : new List<double>(colorStops);
 
+            SKShader skShader;
+
             // If focal is null or focal radius is null, this should be treated as a regular radial gradient
             // If focal == center and the focal radius is 0.0, it's still a regular radial gradient
             if (focal == null || (focal == center && focalRadius == 0.0))
             {
-                return SKShader.CreateRadialGradient(center.ToPoint(), (float)radius, colors.ToColors().ToArray(), colorStopsBuffer.Cast<float>().ToArray(), (SKShaderTileMode)tileMode, Matrix.ToSkMatrix(matrix4));
+                skShader = SKShader.CreateRadialGradient(
+                    center.ToPoint(), 
+                    (float)radius, 
+                    colors.ToColors().ToArray(), 
+                    colorStopsBuffer.Cast<float>().ToArray(), 
+                    (SKShaderTileMode)tileMode, 
+                    Matrix.ToSkMatrix(matrix4));
+
             }
             else
             {
-                return SKShader.CreateTwoPointConicalGradient(focal.ToPoint(), (float)focalRadius, center.ToPoint(), (float)radius, colors.ToColors().ToArray(), colorStopsBuffer.Cast<float>().ToArray(), (SKShaderTileMode)tileMode, Matrix.ToSkMatrix(matrix4));
+                skShader = SKShader.CreateTwoPointConicalGradient(
+                    focal.ToPoint(), 
+                    (float)focalRadius, 
+                    center.ToPoint(), 
+                    (float)radius, 
+                    colors.ToColors().ToArray(), 
+                    colorStopsBuffer.Cast<float>().ToArray(), 
+                    (SKShaderTileMode)tileMode, 
+                    Matrix.ToSkMatrix(matrix4));
             }
+            return new Gradient(skShader);
         }
 
 
@@ -2919,14 +2977,14 @@ namespace FlutterBinding.UI
         /// If `matrix4` is provided, the gradient fill will be transformed by the
         /// specified 4x4 matrix relative to the local coordinate system. `matrix4` must
         /// be a column-major matrix packed into a list of 16 values.
-        public static SKShader sweep(
-        Offset center,
-        List<Color> colors,
-        List<double> colorStops = null,
-        TileMode tileMode = TileMode.clamp,
-        double startAngle = 0.0,
-        double endAngle = Math.PI * 2,
-        List<float> matrix4 = null)
+        public static Shader sweep(
+            Offset center,
+            List<Color> colors,
+            List<double> colorStops = null,
+            TileMode tileMode = TileMode.clamp,
+            double startAngle = 0.0,
+            double endAngle = Math.PI * 2,
+            List<float> matrix4 = null)
         {
             //assert(_offsetIsValid(center)),
             //assert(colors != null),
@@ -2939,7 +2997,12 @@ namespace FlutterBinding.UI
             _validateColorStops(colors, colorStops);
             List<uint> colorsBuffer = _encodeColorList(colors);
             List<double> colorStopsBuffer = colorStops == null ? null : new List<double>(colorStops);
-            return SKShader.CreateSweepGradient(center.ToPoint(), colors.ToColors().ToArray(), colorStopsBuffer.Cast<float>().ToArray(), Matrix.ToSkMatrix(matrix4));
+            var skShader = SKShader.CreateSweepGradient(
+                center.ToPoint(), 
+                colors.ToColors().ToArray(), 
+                colorStopsBuffer?.Cast<float>().ToArray(), 
+                Matrix.ToSkMatrix(matrix4));
+            return new Shader(skShader);
         }
 
         static void _validateColorStops(List<Color> colors, List<double> colorStops)

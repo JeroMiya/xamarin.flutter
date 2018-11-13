@@ -26,6 +26,8 @@ namespace FlutterBinding.Flow.Layers
         public SKRect child_paint_bounds = new SKRect();
 
         // The following allows us to paint in the end of subtree preroll
+        public Stopwatch frame_time;
+        public Stopwatch engine_time;
         public TextureRegistry texture_registry;
         public readonly bool checkerboard_offscreen_layers;
 
@@ -33,6 +35,8 @@ namespace FlutterBinding.Flow.Layers
                               GRContext gr_context,
                               SKColorSpace dst_color_space,
                               SKRect child_paint_bounds,
+                              Stopwatch frameTime,
+                              Stopwatch engineTime,
                               TextureRegistry texture_registry,
                               bool checkerboard_offscreen_layers)
         {
@@ -44,6 +48,8 @@ namespace FlutterBinding.Flow.Layers
             this.gr_context = gr_context;
             this.dst_color_space = dst_color_space;
             this.child_paint_bounds = child_paint_bounds;
+            this.frame_time = frameTime;
+            this.engine_time = engineTime;
             this.texture_registry = texture_registry;
             this.checkerboard_offscreen_layers = checkerboard_offscreen_layers;
         }
@@ -69,18 +75,24 @@ namespace FlutterBinding.Flow.Layers
         {
             public SKCanvas canvas;
             public ExternalViewEmbedder view_embedder;
+            public Stopwatch frame_time;
+            public Stopwatch engine_time;
             public TextureRegistry texture_registry;
             public readonly RasterCache raster_cache;
             public readonly bool checkerboard_offscreen_layers;
 
             public PaintContext(SKCanvas canvas,
                                 ExternalViewEmbedder view_embedder,
+                                Stopwatch frame_time,
+                                Stopwatch engine_time,
                                 TextureRegistry texture_registry,
                                 RasterCache raster_cache,
                                 bool checkerboard_offscreen_layers)
             {
                 this.canvas = canvas;
                 this.view_embedder = view_embedder;
+                this.frame_time = frame_time;
+                this.engine_time = engine_time;
                 this.texture_registry = texture_registry;
                 this.raster_cache = raster_cache;
                 this.checkerboard_offscreen_layers = checkerboard_offscreen_layers;

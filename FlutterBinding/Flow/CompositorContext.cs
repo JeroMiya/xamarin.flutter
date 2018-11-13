@@ -1,4 +1,5 @@
-﻿using FlutterBinding.Flow.Layers;
+﻿using System.Threading;
+using FlutterBinding.Flow.Layers;
 using SkiaSharp;
 using static FlutterBinding.Flow.Helper;
 
@@ -12,7 +13,13 @@ namespace FlutterBinding.Flow
     {
         public class ScopedFrame : System.IDisposable
         {
-            public ScopedFrame(CompositorContext context, GRContext gr_context, SKCanvas canvas, ExternalViewEmbedder view_embedder, SKMatrix root_surface_transformation, bool instrumentation_enabled)
+            public ScopedFrame(
+                CompositorContext context, 
+                GRContext gr_context, 
+                SKCanvas canvas, 
+                ExternalViewEmbedder view_embedder, 
+                SKMatrix root_surface_transformation, 
+                bool instrumentation_enabled)
             {
                 this.context_ = context;
                 this.gr_context_ = gr_context;
@@ -95,16 +102,31 @@ namespace FlutterBinding.Flow
             return texture_registry_;
         }
 
+        public int frame_count() => _frame_count;
+        public Stopwatch frame_time() { return frame_time_; }
+        public Stopwatch engine_time() { return engine_time_; }
+
         private RasterCache raster_cache_ = new RasterCache();
         private TextureRegistry texture_registry_ = new TextureRegistry();
+        private int _frame_count;
+        private Stopwatch frame_time_ = new Stopwatch();
+        private Stopwatch engine_time_ = new Stopwatch();
+
 
         private void BeginFrame(ScopedFrame frame, bool enable_instrumentation)
         {
+            if (enable_instrumentation)
+            {
+                Interlocked.Increment(ref _frame_count);
+                frame_time_.Start();
+            }
         }
 
         private void EndFrame(ScopedFrame frame, bool enable_instrumentation)
         {
             raster_cache_.SweepAfterFrame();
+            if (enable_instrumentation)
+                frame_time_.Stop();
         }
     }
 }

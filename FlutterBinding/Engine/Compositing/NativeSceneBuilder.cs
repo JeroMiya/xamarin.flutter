@@ -1,4 +1,5 @@
-﻿using FlutterBinding.Engine.Painting;
+﻿using System;
+using FlutterBinding.Engine.Painting;
 using FlutterBinding.Flow.Layers;
 using FlutterBinding.UI;
 using SkiaSharp;
@@ -9,14 +10,9 @@ namespace FlutterBinding.Engine.Compositing
     //https://github.com/flutter/engine/blob/master/lib/ui/compositing/scene_builder.h
     //https://github.com/flutter/engine/blob/master/lib/ui/compositing/scene_builder.cc
 
-    public class NativeSceneBuilder
+    public abstract class NativeSceneBuilder
     {
-        ContainerLayer root_layer_;
-        ContainerLayer current_layer_;
-
-        protected void Constructor() { }
-
-        protected void PushTransform(List<double> matrix4)
+        public void PushTransform(List<double> matrix4)
         {
             var sk_matrix = Matrix.ToSkMatrix(matrix4);
             var layer = new TransformLayer();
@@ -24,7 +20,7 @@ namespace FlutterBinding.Engine.Compositing
             PushLayer(layer);
         }
 
-        protected NativeEngineLayer PushOffset(double dx, double dy)
+        public NativeEngineLayer PushOffset(double dx, double dy)
         {
             SKMatrix sk_matrix = SKMatrix.MakeTranslation((float)dx, (float)dy);
             var layer = new TransformLayer();
@@ -33,7 +29,7 @@ namespace FlutterBinding.Engine.Compositing
             return NativeEngineLayer.MakeRetained(layer);
         }
 
-        protected void PushClipRect(double left,
+        public void PushClipRect(double left,
                                 double right,
                                 double top,
                                 double bottom,
@@ -45,12 +41,192 @@ namespace FlutterBinding.Engine.Compositing
             PushLayer(layer);
         }
 
-        protected void PushClipPath(SKPath path, int clipBehavior)
+        public void PushClipRRect(RRect rrect, int clipBehavior)
+        {
+            var clip_behavior = (Flow.Layers.Clip)clipBehavior;
+            var layer = new ClipRRectLayer(clip_behavior);
+            layer.set_clip_rrect(rrect.ToRoundedRect());
+            PushLayer(layer);
+        }
+
+        public void PushClipPath(SKPath path, int clipBehavior)
         {
             // FML_DCHECK(clip_behavior != flow::Clip::none);
             var layer = new ClipPathLayer((Flow.Layers.Clip)clipBehavior);
             layer.set_clip_path(path);
             PushLayer(layer);
+        }
+
+        public void PushOpacity(int alpha, double dx = 0, double dy = 0)
+        {
+            var layer = new OpacityLayer();
+            layer.set_alpha(alpha);
+            layer.set_offset(new SKPoint((float)dx, (float)dy));
+            PushLayer(layer);
+        }
+
+        public void PushColorFilter(int color, int blendMode)
+        {
+            var layer = new ColorFilterLayer();
+            layer.set_color((uint)color);
+            layer.set_blend_mode((SKBlendMode)blendMode);
+            PushLayer(layer);
+        }
+
+        public void PushBackdropFilter(ImageFilter filter)
+        {
+            var layer = new BackdropFilterLayer();
+            layer.set_filter(filter.ToSKImageFilter());
+            PushLayer(layer);
+        }
+
+        public void PushShaderMask(
+            Shader shader,
+            double maskRectLeft,
+            double maskRectRight,
+            double maskRectTop,
+            double maskRectBottom,
+            int blendMode)
+        {
+            var rect = new SKRect((float)maskRectLeft, (float)maskRectTop, (float)maskRectRight, (float)maskRectBottom);
+            var layer = new ShaderMaskLayer();
+            layer.set_shader(shader.ToSKShader());
+            layer.set_mask_rect(rect);
+            layer.set_blend_mode((SKBlendMode)blendMode);
+            PushLayer(layer);
+        }
+
+        public NativeEngineLayer PushPhysicalShape(
+            Path path,
+            double elevation,
+            int color,
+            int shadowColor,
+            int clipBehavior)
+        {
+            SKPath sk_path = path;
+            var clip_behavior = (Flow.Layers.Clip)clipBehavior;
+            var layer = new PhysicalShapeLayer(clip_behavior);
+            layer.set_path(sk_path);
+            layer.set_elevation((float)elevation);
+            layer.set_color((uint)color);
+            layer.set_shadow_color((uint)shadowColor);
+
+            // TODO: Pixel Ratio
+            //layer.set_device_pixel_ratio(UIDartState::Current()->window()->viewport_metrics().device_pixel_ratio);
+
+            PushLayer(layer);
+            return NativeEngineLayer.MakeRetained(layer);
+        }
+
+        public void AddRetained(NativeEngineLayer retainedLayer)
+        {
+            if (this.current_layer_ == null)
+            {
+                return;
+            }
+            current_layer_.Add(retainedLayer.Layer);
+        }
+
+        public void Pop()
+        {
+            if (current_layer_ == null)
+            {
+                return;
+            }
+            current_layer_ = current_layer_.parent();
+        }
+
+        public void AddPerformanceOverlay(
+            UInt64 enabledOptions,
+            double left,
+            double right,
+            double top,
+            double bottom)
+        {
+            if (current_layer_ == null)
+            {
+                return;
+            }
+            var rect = new SKRect((float)left, (float)top, (float)right, (float)bottom);
+            var layer = new PerformanceOverlayLayer(enabledOptions);
+            layer.set_paint_bounds(rect);
+
+            current_layer_.Add(layer);
+        }
+
+        public void AddPicture(double dx, double dy, SKPicture picture, int hints)
+        {
+            if (current_layer_ == null)
+            {
+                return;
+            }
+            SKPoint offset = new SKPoint((float)dx, (float)dy);
+            SKRect pictureRect = picture.CullRect;
+            pictureRect.Offset(offset.X, offset.Y);
+            var layer = new PictureLayer();
+            layer.set_offset(offset);
+            layer.set_picture(picture);
+            layer.set_is_complex((hints & 1) == 1);
+            layer.set_will_change((hints & 2) == 2);
+            current_layer_.Add(layer);
+        }
+
+        public void addTexture(
+            double dx,
+            double dy,
+            double width,
+            double height,
+            Int64 textureId,
+            bool freeze)
+        {
+
+        }
+
+        public void addPlatformView(
+            double dx,
+            double dy,
+            double width,
+            double height,
+            Int64 viewId)
+        {
+
+        }
+
+        public void addChildScene(
+            double dx,
+            double dy,
+            double width,
+            double height,
+            SceneHost sceneHost,
+            bool hitTestable)
+        {
+
+        }
+
+        public void setRasterizerTracingThreshold(UInt32 frameInterval)
+        {
+
+        }
+
+        public void setCheckerboardRasterCacheImages(bool checkerboard)
+        {
+
+        }
+
+        public void setCheckerboardOffscreenLayers(bool checkerboard)
+        {
+
+        }
+
+        public Scene Build()
+        {
+            var scene = new Scene(
+                root_layer_,
+                rasterizer_tracing_threshold_,
+                checkerboard_raster_cache_images_,
+                checkerboard_offscreen_layers_);
+
+            return scene;
         }
 
         protected void PushLayer(ContainerLayer layer)
@@ -71,43 +247,15 @@ namespace FlutterBinding.Engine.Compositing
             current_layer_.Add(layer);
             current_layer_ = newLayer;
         }
-        //Flow.SkiaUnrefQueue _queue = new Flow.SkiaUnrefQueue();
-        public void AddPicture(double dx, double dy, SKPicture picture, int hints)
-        {
-            if (current_layer_ == null)
-            {
-                return;
-            }
-            SKPoint offset = new SKPoint((float)dx, (float)dy);
-            SKRect pictureRect = picture.CullRect;
-            pictureRect.Offset(offset.X, offset.Y);
-            var layer = new PictureLayer();
-            layer.set_offset(offset);
-            layer.set_picture(picture);
-            layer.set_is_complex((hints & 1) == 1);
-            layer.set_will_change((hints & 2) == 2);
-            current_layer_.Add(layer);
-        }
 
-        public void Pop()
-        {
-            if (current_layer_ == null)
-            {
-                return;
-            }
-            current_layer_ = current_layer_.parent();
-        }
+
+        private ContainerLayer root_layer_;
+        private ContainerLayer current_layer_;
+
         uint rasterizer_tracing_threshold_ = 0;
         bool checkerboard_raster_cache_images_ = false;
         bool checkerboard_offscreen_layers_ = false;
 
-        public Scene Build()
-        {
-            var scene = new Scene(root_layer_, rasterizer_tracing_threshold_,
-     checkerboard_raster_cache_images_, checkerboard_offscreen_layers_);
-            
-            return scene;
-        }
 
     }
 }
