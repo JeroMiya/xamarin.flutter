@@ -14,10 +14,13 @@ namespace FlutterBinding.Engine.Painting
         }
         
         ContainerLayer _layer;
+
         NativeEngineLayer(ContainerLayer layer)
         {
             _layer = layer;
         }
+
+        public ContainerLayer Layer => _layer;
 
     }
 }

@@ -64,12 +64,7 @@ namespace FlutterBinding.UI
     public class SceneBuilder : NativeSceneBuilder
     {
         /// Creates an empty [SceneBuilder] object.
-        public SceneBuilder() { _constructor(); }
-        void _constructor()
-        {
-            this.Constructor();
-            // [DONE] native 'SceneBuilder_constructor';
-        }
+        public SceneBuilder() { }
 
         /// Pushes a transform operation onto the operation stack.
         ///

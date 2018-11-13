@@ -131,7 +131,14 @@ namespace FlutterBinding.Flow
             {
                 entry.image = GlobalMembers.Rasterize(context.gr_context, ctm, context.dst_color_space, checkerboard_images_, layer.paint_bounds(), (SKCanvas canvas) =>
                 {
-                    Layer.PaintContext paintContext = new Layer.PaintContext(canvas, null, context.texture_registry, context.raster_cache, context.checkerboard_offscreen_layers);
+                    Layer.PaintContext paintContext = new Layer.PaintContext(
+                        canvas, 
+                        null, 
+                        context.frame_time,
+                        context.engine_time,
+                        context.texture_registry, 
+                        context.raster_cache, 
+                        context.checkerboard_offscreen_layers);
                     layer.Paint(paintContext);
                 });
             }

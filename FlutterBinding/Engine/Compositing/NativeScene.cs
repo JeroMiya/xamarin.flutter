@@ -63,16 +63,15 @@ namespace FlutterBinding.Engine.Compositing
             // thread owns the sole reference to the layer tree. So we flatten the layer
             // tree into a picture and use that as the thread transport mechanism.
 
-            var picture_bounds = new SKSizeI(width, height);
             var picture = m_layerTree.Flatten(new SKRect(0, 0, width, height));
-
             if (picture == null)
             {
                 // Already in Dart scope.
                 return "Could not flatten scene into a layer tree.";
             }
 
-            // TODO: Call Callback to create actual image.
+            var image = SKImage.FromPicture(picture, new SKSizeI(width, height));
+            raw_image_callback(image);
            
             return string.Empty;
         }

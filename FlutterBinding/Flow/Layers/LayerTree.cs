@@ -25,7 +25,15 @@ namespace FlutterBinding.Flow.Layers
             //TODO: frame.canvas().imageInfo().colorSpace()
             SKColorSpace color_space = frame.canvas() != null ? SKImageInfo.Empty.ColorSpace : null;
             frame.context().raster_cache().SetCheckboardCacheImages(checkerboard_raster_cache_images_);
-            PrerollContext context = ignore_raster_cache ? null :new PrerollContext(frame.context().raster_cache(), frame.gr_context(), color_space, SKRect.Empty, frame.context().texture_registry(), checkerboard_offscreen_layers_);
+            PrerollContext context = ignore_raster_cache ? null :new PrerollContext(
+                frame.context().raster_cache(), 
+                frame.gr_context(), 
+                color_space, 
+                SKRect.Empty, 
+                frame.context().frame_time(),
+                frame.context().engine_time(),
+                frame.context().texture_registry(), 
+                checkerboard_offscreen_layers_);
 
             root_layer_.Preroll(context, frame.root_surface_transformation());
         }
@@ -33,7 +41,14 @@ namespace FlutterBinding.Flow.Layers
         public void Paint(CompositorContext.ScopedFrame frame, bool ignore_raster_cache = false)
         {
             TRACE_EVENT0("flutter", "LayerTree::Paint");
-            Layer.PaintContext context = new Layer.PaintContext(frame.canvas(), frame.view_embedder(), frame.context().texture_registry(), ignore_raster_cache ? null : frame.context().raster_cache(), checkerboard_offscreen_layers_);
+            Layer.PaintContext context = new Layer.PaintContext(
+                frame.canvas(),
+                frame.view_embedder(),
+                frame.context().frame_time(),
+                frame.context().engine_time(),
+                frame.context().texture_registry(), 
+                ignore_raster_cache ? null : frame.context().raster_cache(), 
+                checkerboard_offscreen_layers_);
 
             if (root_layer_.needs_painting())
             {
@@ -53,14 +68,26 @@ namespace FlutterBinding.Flow.Layers
                 return null;
             }
 
+            Stopwatch unused_stopwatch = new Stopwatch();
             TextureRegistry unused_texture_registry = new TextureRegistry();
             SKMatrix root_surface_transformation = new SKMatrix();
             // No root surface transformation. So assume identity.
             canvas.ResetMatrix();
 
-            PrerollContext preroll_context = new PrerollContext(null, null, null, SKRect.Empty, unused_texture_registry, false);
+            PrerollContext preroll_context = new PrerollContext(
+                null, null, null, 
+                SKRect.Empty, 
+                unused_stopwatch,
+                unused_stopwatch,
+                unused_texture_registry, 
+                false);
 
-            Layer.PaintContext paint_context = new Layer.PaintContext(canvas, null, unused_texture_registry, null, false);
+            Layer.PaintContext paint_context = new Layer.PaintContext(
+                canvas, null, 
+                unused_stopwatch,
+                unused_stopwatch,
+                unused_texture_registry, 
+                null, false);
 
             // Even if we don't have a root layer, we still need to create an empty
             // picture.

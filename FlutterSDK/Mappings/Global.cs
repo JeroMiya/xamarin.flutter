@@ -1,11 +1,17 @@
-﻿using FlutterSDK.Animation;
+﻿//using FlutterSDK.Animation;
 using System;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using FlutterSDK.Widgets;
+//using FlutterSDK.Widgets;
 
 namespace FlutterSDK
 {
+    public class AnimationStatus { }
+
+    public class Route<T> { }
+
+    public class Element { }
+
     // Instead of changing up code, here I have implemented a number of common things, to tie their approach to .NET
 
     public delegate void AnimationStatusListener(AnimationStatus status);
