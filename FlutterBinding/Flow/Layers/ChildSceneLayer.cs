@@ -37,8 +37,24 @@ namespace FlutterBinding.Flow.Layers
            // FXL_NOTREACHED() << "This layer never needs painting.";
         }
 
+        void UpdateScene(SceneUpdateContext context)
+        {
+            FML_DCHECK(needs_system_composite());
+
+            // TODO(MZ-191): Set clip.
+            // It's worth asking whether all children should be clipped implicitly
+            // or whether we should leave this up to the Flutter application to decide.
+            // In some situations, it might be useful to allow children to draw
+            // outside of their layout bounds.
+            if (export_node_holder_ != null)
+            {
+                context.AddChildScene(export_node_holder_.export_node(), offset_, hit_testable_);
+            }
+        }
+
         private SKPoint offset_ = new SKPoint();
         private SKSize size_ = new SKSize();
+        ExportNodeHolder export_node_holder_;
         private bool hit_testable_ = true;
     }
 }
