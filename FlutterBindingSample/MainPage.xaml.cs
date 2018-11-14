@@ -2,6 +2,8 @@
 using FlutterBinding.UI;
 using SkiaSharp.Views.UWP;
 using Windows.UI.Xaml.Controls;
+using FlutterBinding.Flow;
+using SkiaSharp;
 
 namespace FlutterBindingSample
 {
@@ -49,10 +51,21 @@ namespace FlutterBindingSample
 
             var canvas = new FlutterBinding.UI.Canvas(recorder, physicalBounds);
             canvas.scale((float)devicePixelRatio, (float)devicePixelRatio);
+
+            PaintUtils.DrawCheckerboard(canvas.RecordingCanvas, new SKRect(0,0,(float)physicalSize.width, (float)physicalSize.height));
+
+            var circlePaint = new SKPaint
+            {
+                Style       = SKPaintStyle.Stroke,
+                IsAntialias = true,
+                StrokeWidth = 3,
+                Color       = SKColors.OrangeRed
+            };
+            canvas.drawCircle(new Offset(logicalSize.width / 2, logicalSize.height / 2), 100, circlePaint);
+
             canvas.drawParagraph(paragraph, new Offset(
                 (logicalSize.width - paragraph.maxIntrinsicWidth) / 2.0,
-                (logicalSize.height - paragraph.height) / 2.0
-                ));
+                (logicalSize.height - paragraph.height) / 2.0));
 
             var picture = recorder.endRecording();
 

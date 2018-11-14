@@ -3166,7 +3166,7 @@ namespace FlutterBinding.UI
         ///
         /// To end the recording, call [PictureRecorder.endRecording] on the
         /// given recorder.
-        public Canvas(PictureRecorder recorder, Rect cullRect = null) : base(new SKBitmap()) //: //assert(recorder != null)
+        public Canvas(PictureRecorder recorder, Rect cullRect = null) : base(new SKBitmap()) 
         {
             if (recorder.isRecording)
                 throw new ArgumentException("'recorder' must not already be associated with another Canvas.");
@@ -3303,7 +3303,7 @@ namespace FlutterBinding.UI
         ///    for subsequent commands.
         ///  * [BlendMode], which discusses the use of [Paint.blendMode] with
         ///    [saveLayer].
-        void saveLayer(Rect bounds, SKPaint paint)
+        public void saveLayer(Rect bounds, SKPaint paint)
         {
             ////assert(paint != null);
             if (bounds == null)
@@ -3473,7 +3473,7 @@ namespace FlutterBinding.UI
 
         /// Draws a rectangle with the given [Paint]. Whether the rectangle is filled
         /// or stroked (or both) is controlled by [Paint.style].
-        void drawRect(Rect rect, SKPaint paint)
+        public void drawRect(Rect rect, SKPaint paint)
         {
             //assert(_rectIsValid(rect));
             //assert(paint != null);
@@ -3482,7 +3482,7 @@ namespace FlutterBinding.UI
 
         /// Draws a rounded rectangle with the given [Paint]. Whether the rectangle is
         /// filled or stroked (or both) is controlled by [Paint.style].
-        void drawRRect(RRect rrect, SKPaint paint)
+        public void drawRRect(RRect rrect, SKPaint paint)
         {
             //assert(_rrectIsValid(rrect));
             //assert(paint != null);
@@ -3494,7 +3494,7 @@ namespace FlutterBinding.UI
         /// is controlled by [Paint.style].
         ///
         /// This shape is almost but not quite entirely unlike an annulus.
-        void drawDRRect(RRect outer, RRect inner, Paint paint)
+        public void drawDRRect(RRect outer, RRect inner, Paint paint)
         {
             //assert(_rrectIsValid(outer));
             //assert(_rrectIsValid(inner));
@@ -3507,7 +3507,7 @@ namespace FlutterBinding.UI
         /// Draws an axis-aligned oval that fills the given axis-aligned rectangle
         /// with the given [Paint]. Whether the oval is filled or stroked (or both) is
         /// controlled by [Paint.style].
-        void drawOval(Rect rect, SKPaint paint)
+        public void drawOval(Rect rect, SKPaint paint)
         {
             //assert(_rectIsValid(rect));
             //assert(paint != null);
@@ -3518,11 +3518,11 @@ namespace FlutterBinding.UI
         /// that has the radius given by the second argument, with the [Paint] given in
         /// the third argument. Whether the circle is filled or stroked (or both) is
         /// controlled by [Paint.style].
-        void drawCircle(Offset c, double radius, SKPaint paint)
+        public void drawCircle(Offset c, double radius, SKPaint paint)
         {
             //assert(_offsetIsValid(c));
             //assert(paint != null);
-            this.DrawCircle(c.ToPoint(), (float)radius, paint);
+            RecordingCanvas.DrawCircle(c.ToPoint(), (float)radius, paint);
         }
 
         /// Draw an arc scaled to fit inside the given rectangle. It starts from
@@ -3535,7 +3535,7 @@ namespace FlutterBinding.UI
         /// not closed, forming a circle segment.
         ///
         /// This method is optimized for drawing arcs and should be faster than [Path.arcTo].
-        void drawArc(Rect rect, double startAngle, double sweepAngle, bool useCenter, Paint paint)
+        public void drawArc(Rect rect, double startAngle, double sweepAngle, bool useCenter, Paint paint)
         {
             //assert(_rectIsValid(rect));
             //assert(paint != null);
@@ -3547,7 +3547,7 @@ namespace FlutterBinding.UI
         /// Draws the given [Path] with the given [Paint]. Whether this shape is
         /// filled or stroked (or both) is controlled by [Paint.style]. If the path is
         /// filled, then subpaths within it are implicitly closed (see [Path.close]).
-        void drawPath(Path path, SKPaint paint)
+        public void drawPath(Path path, SKPaint paint)
         {
             //assert(path != null); // path is checked on the engine side
             //assert(paint != null);
@@ -3556,7 +3556,7 @@ namespace FlutterBinding.UI
 
         /// Draws the given [Image] into the canvas with its top-left corner at the
         /// given [Offset]. The image is composited into the canvas using the given [Paint].
-        void drawImage(SKImage image, Offset p, SKPaint paint)
+        public void drawImage(SKImage image, Offset p, SKPaint paint)
         {
             //assert(image != null); // image is checked on the engine side
             //assert(_offsetIsValid(p));
@@ -3573,7 +3573,7 @@ namespace FlutterBinding.UI
         /// Multiple calls to this method with different arguments (from the same
         /// image) can be batched into a single call to [drawAtlas] to improve
         /// performance.
-        void drawImageRect(SKImage image, Rect src, Rect dst, SKPaint paint)
+        public void drawImageRect(SKImage image, Rect src, Rect dst, SKPaint paint)
         {
             //assert(image != null); // image is checked on the engine side
             //assert(_rectIsValid(src));

@@ -21,7 +21,7 @@ namespace FlutterBinding.Flow.Layers
             
             path_ = path;
             isRect_ = false;
-            SKRect rect = new SKRect();
+            //SKRect rect = new SKRect();
 
             // Awaiting API implementation in SkiaSharp
 

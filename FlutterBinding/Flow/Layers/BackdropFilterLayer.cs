@@ -20,7 +20,10 @@ namespace FlutterBinding.Flow.Layers
             TRACE_EVENT0("flutter", "BackdropFilterLayer::Paint");
             FML_DCHECK(needs_painting());
           
-            Layer.AutoSaveLayer save = Layer.AutoSaveLayer.Create(context, paint_bounds(), new SKPaint() { ImageFilter = filter_ }); //, null, filter_, 0);
+            var save = Layer.AutoSaveLayer.Create(
+                context, 
+                paint_bounds(), 
+                new SKPaint() { ImageFilter = filter_ }); //, null, filter_, 0);
             PaintChildren(context);
         }
 

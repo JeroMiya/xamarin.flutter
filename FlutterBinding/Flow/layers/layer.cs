@@ -117,7 +117,7 @@ namespace FlutterBinding.Flow.Layers
             {
                 if (paint_context_.checkerboard_offscreen_layers)
                 {
-                    //DrawCheckerboard(paint_context_.canvas, bounds_);
+                    PaintUtils.DrawCheckerboard(paint_context_.canvas, bounds_);
                 }
                 paint_context_.canvas.Restore();
             }
