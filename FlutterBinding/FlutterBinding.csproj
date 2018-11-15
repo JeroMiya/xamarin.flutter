@@ -74,6 +74,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Engine\Semantics\" />
     <Folder Include="Minikin\" />
     <Folder Include="Txt\" />
   </ItemGroup>

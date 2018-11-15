@@ -38,10 +38,10 @@ namespace FlutterBinding.UI
             return list;
         }
 
-        public static SKRect ToRect(this Rect rect)
+        public static SKRect ToSKRect(this Rect rect)
             => new SKRect((float)rect.left, (float)rect.top, (float)rect.right, (float)rect.bottom);
 
-        public static SKRectI ToRectI(this Rect rect)
+        public static SKRectI ToSKRectI(this Rect rect)
             => new SKRectI((int)rect.left, (int)rect.top, (int)rect.right, (int)rect.bottom);
 
         public static SKRoundRect ToRoundedRect(this RRect rect)
@@ -3313,7 +3313,7 @@ namespace FlutterBinding.UI
             else
             {
                 //assert(_rectIsValid(bounds));
-                this.SaveLayer(bounds.ToRect(), paint);
+                this.SaveLayer(bounds.ToSKRect(), paint);
             }
         }
 
@@ -3403,7 +3403,7 @@ namespace FlutterBinding.UI
             ////assert(clipOp != null);
             ////assert(doAntiAlias != null);
 
-            this.ClipRect(rect.ToRect(), (SKClipOperation)clipOp, doAntiAlias);
+            this.ClipRect(rect.ToSKRect(), (SKClipOperation)clipOp, doAntiAlias);
         }
 
         /// Reduces the clip region to the intersection of the current clip and the
@@ -3477,7 +3477,7 @@ namespace FlutterBinding.UI
         {
             //assert(_rectIsValid(rect));
             //assert(paint != null);
-            this.DrawRect(rect.ToRect(), paint);
+            this.DrawRect(rect.ToSKRect(), paint);
         }
 
         /// Draws a rounded rectangle with the given [Paint]. Whether the rectangle is
@@ -3511,7 +3511,7 @@ namespace FlutterBinding.UI
         {
             //assert(_rectIsValid(rect));
             //assert(paint != null);
-            this.DrawOval(rect.ToRect(), paint);
+            this.DrawOval(rect.ToSKRect(), paint);
         }
 
         /// Draws a circle centered at the point given by the first argument and
@@ -3579,7 +3579,7 @@ namespace FlutterBinding.UI
             //assert(_rectIsValid(src));
             //assert(_rectIsValid(dst));
             //assert(paint != null);
-            this.DrawImage(image, src.ToRect(), dst.ToRect(), paint);
+            this.DrawImage(image, src.ToSKRect(), dst.ToSKRect(), paint);
 
         }
 
@@ -3602,7 +3602,7 @@ namespace FlutterBinding.UI
             //assert(_rectIsValid(center));
             //assert(_rectIsValid(dst));
             //assert(paint != null);
-            this.DrawImageNinePatch(image, center.ToRectI(), dst.ToRect(), paint);
+            this.DrawImageNinePatch(image, center.ToSKRectI(), dst.ToSKRect(), paint);
 
         }
 

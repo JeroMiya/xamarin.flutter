@@ -37,6 +37,7 @@ namespace FlutterBinding.Flow.Layers
            // FXL_NOTREACHED() << "This layer never needs painting.";
         }
 
+        /*
         void UpdateScene(SceneUpdateContext context)
         {
             FML_DCHECK(needs_system_composite());
@@ -51,10 +52,11 @@ namespace FlutterBinding.Flow.Layers
                 context.AddChildScene(export_node_holder_.export_node(), offset_, hit_testable_);
             }
         }
+        */
 
         private SKPoint offset_ = new SKPoint();
         private SKSize size_ = new SKSize();
-        ExportNodeHolder export_node_holder_;
+        //ExportNodeHolder export_node_holder_;
         private bool hit_testable_ = true;
     }
 }
