@@ -29,11 +29,12 @@ namespace FlutterBinding.Engine.Compositing
             return NativeEngineLayer.MakeRetained(layer);
         }
 
-        public void PushClipRect(double left,
-                                double right,
-                                double top,
-                                double bottom,
-                                int clipBehavior)
+        public void PushClipRect(
+            double left,
+            double right,
+            double top,
+            double bottom,
+            int clipBehavior)
         {
             var clipRect = new SKRect((float)left, (float)top, (float)right, (float)bottom);
             var layer = new ClipRectLayer((Flow.Layers.Clip)clipBehavior);
@@ -81,7 +82,7 @@ namespace FlutterBinding.Engine.Compositing
         }
 
         public void PushShaderMask(
-            Shader shader,
+            SKShader skShader,
             double maskRectLeft,
             double maskRectRight,
             double maskRectTop,
@@ -90,7 +91,7 @@ namespace FlutterBinding.Engine.Compositing
         {
             var rect = new SKRect((float)maskRectLeft, (float)maskRectTop, (float)maskRectRight, (float)maskRectBottom);
             var layer = new ShaderMaskLayer();
-            layer.set_shader(shader.ToSKShader());
+            layer.set_shader(skShader);
             layer.set_mask_rect(rect);
             layer.set_blend_mode((SKBlendMode)blendMode);
             PushLayer(layer);
@@ -120,19 +121,13 @@ namespace FlutterBinding.Engine.Compositing
 
         public void AddRetained(NativeEngineLayer retainedLayer)
         {
-            if (this.current_layer_ == null)
-            {
-                return;
-            }
-            current_layer_.Add(retainedLayer.Layer);
+            current_layer_?.Add(retainedLayer.Layer);
         }
 
         public void Pop()
         {
             if (current_layer_ == null)
-            {
                 return;
-            }
             current_layer_ = current_layer_.parent();
         }
 
@@ -144,9 +139,8 @@ namespace FlutterBinding.Engine.Compositing
             double bottom)
         {
             if (current_layer_ == null)
-            {
                 return;
-            }
+
             var rect = new SKRect((float)left, (float)top, (float)right, (float)bottom);
             var layer = new PerformanceOverlayLayer(enabledOptions);
             layer.set_paint_bounds(rect);
@@ -157,9 +151,8 @@ namespace FlutterBinding.Engine.Compositing
         public void AddPicture(double dx, double dy, SKPicture picture, int hints)
         {
             if (current_layer_ == null)
-            {
                 return;
-            }
+
             SKPoint offset = new SKPoint((float)dx, (float)dy);
             SKRect pictureRect = picture.CullRect;
             pictureRect.Offset(offset.X, offset.Y);
@@ -171,7 +164,7 @@ namespace FlutterBinding.Engine.Compositing
             current_layer_.Add(layer);
         }
 
-        public void addTexture(
+        public void AddTexture(
             double dx,
             double dy,
             double width,
@@ -179,20 +172,35 @@ namespace FlutterBinding.Engine.Compositing
             Int64 textureId,
             bool freeze)
         {
+            if (current_layer_ == null)
+                return;
 
+            var layer = new TextureLayer();
+            layer.set_offset(new SKPoint((float)dx, (float)dy));
+            layer.set_size(new SKSize((float)width, (float)height));
+            layer.set_texture_id((ulong)textureId);
+            layer.set_freeze(freeze);
+            current_layer_.Add(layer);
         }
 
-        public void addPlatformView(
+        public void AddPlatformView(
             double dx,
             double dy,
             double width,
             double height,
             Int64 viewId)
         {
+            if (current_layer_ == null)
+                return;
 
+            var layer = new PlatformViewLayer();
+            layer.set_offset(new SKPoint((float)dx, (float)dy));
+            layer.set_size(new SKSize((float)width, (float)height));
+            layer.set_view_id((ulong)viewId);
+            current_layer_.Add(layer);
         }
 
-        public void addChildScene(
+        public void AddChildScene(
             double dx,
             double dy,
             double width,
@@ -200,22 +208,32 @@ namespace FlutterBinding.Engine.Compositing
             SceneHost sceneHost,
             bool hitTestable)
         {
-
+            #if OS_FUCHSIA
+              if (!current_layer_) {
+                return;
+              }
+              auto layer = std::make_unique<flow::ChildSceneLayer>();
+              layer->set_offset(SkPoint::Make(dx, dy));
+              layer->set_size(SkSize::Make(width, height));
+              layer->set_export_node_holder(sceneHost->export_node_holder());
+              layer->set_hit_testable(hitTestable);
+              current_layer_->Add(std::move(layer));
+            #endif // defined(OS_FUCHSIA)
         }
 
-        public void setRasterizerTracingThreshold(UInt32 frameInterval)
+        public void SetRasterizerTracingThreshold(UInt32 frameInterval)
         {
-
+            rasterizer_tracing_threshold_ = frameInterval;
         }
 
-        public void setCheckerboardRasterCacheImages(bool checkerboard)
+        public void SetCheckerboardRasterCacheImages(bool checkerboard)
         {
-
+            checkerboard_raster_cache_images_ = checkerboard;
         }
 
-        public void setCheckerboardOffscreenLayers(bool checkerboard)
+        public void SetCheckerboardOffscreenLayers(bool checkerboard)
         {
-
+            checkerboard_offscreen_layers_ = checkerboard;
         }
 
         public Scene Build()
@@ -233,7 +251,7 @@ namespace FlutterBinding.Engine.Compositing
         {
             if (root_layer_ == null)
             {
-                root_layer_ = layer;
+                root_layer_    = layer;
                 current_layer_ = root_layer_;
                 return;
             }
@@ -255,7 +273,5 @@ namespace FlutterBinding.Engine.Compositing
         uint rasterizer_tracing_threshold_ = 0;
         bool checkerboard_raster_cache_images_ = false;
         bool checkerboard_offscreen_layers_ = false;
-
-
     }
 }

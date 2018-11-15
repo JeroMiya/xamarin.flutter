@@ -1,96 +1,66 @@
 ﻿using System;
 using System.Collections.Generic;
+using FlutterBinding.Mapping;
+using SkiaSharp;
 
 namespace FlutterBinding.UI
 {
-
     /// The possible actions that can be conveyed from the operating system
     /// accessibility APIs to a semantics node.
-    public class SemanticsAction
+    [Flags]
+    public enum SemanticsAction
     {
-        private SemanticsAction(int index)
-        {
-            this.index = index;
-        }
-
-        const int _kTapIndex = 1 << 0;
-        const int _kLongPressIndex = 1 << 1;
-        const int _kScrollLeftIndex = 1 << 2;
-        const int _kScrollRightIndex = 1 << 3;
-        const int _kScrollUpIndex = 1 << 4;
-        const int _kScrollDownIndex = 1 << 5;
-        const int _kIncreaseIndex = 1 << 6;
-        const int _kDecreaseIndex = 1 << 7;
-        const int _kShowOnScreenIndex = 1 << 8;
-        const int _kMoveCursorForwardByCharacterIndex = 1 << 9;
-        const int _kMoveCursorBackwardByCharacterIndex = 1 << 10;
-        const int _kSetSelectionIndex = 1 << 11;
-        const int _kCopyIndex = 1 << 12;
-        const int _kCutIndex = 1 << 13;
-        const int _kPasteIndex = 1 << 14;
-        const int _kDidGainAccessibilityFocusIndex = 1 << 15;
-        const int _kDidLoseAccessibilityFocusIndex = 1 << 16;
-        const int _kCustomAction = 1 << 17;
-        const int _kDismissIndex = 1 << 18;
-        const int _kMoveCursorForwardByWordIndex = 1 << 19;
-        const int _kMoveCursorBackwardByWordIndex = 1 << 20;
-
-        /// The numerical value for this action.
-        ///
-        /// Each action has one bit set in this bit field.
-        public readonly int index;
-
         /// The equivalent of a user briefly tapping the screen with the finger
         /// without moving it.
-        public static SemanticsAction tap = new SemanticsAction(_kTapIndex);
+        tap = 1 << 0,
 
         /// The equivalent of a user pressing and holding the screen with the finger
         /// for a few seconds without moving it.
-        public static SemanticsAction longPress = new SemanticsAction(_kLongPressIndex);
+        longPress = 1 << 1,
 
         /// The equivalent of a user moving their finger across the screen from right
         /// to left.
         ///
         /// This action should be recognized by controls that are horizontally
         /// scrollable.
-        public static SemanticsAction scrollLeft = new SemanticsAction(_kScrollLeftIndex);
+        scrollLeft = 1 << 2,
 
         /// The equivalent of a user moving their finger across the screen from left
         /// to right.
         ///
         /// This action should be recognized by controls that are horizontally
         /// scrollable.
-        public static SemanticsAction scrollRight = new SemanticsAction(_kScrollRightIndex);
+        scrollRight = 1 << 3,
 
         /// The equivalent of a user moving their finger across the screen from
         /// bottom to top.
         ///
         /// This action should be recognized by controls that are vertically
         /// scrollable.
-        public static SemanticsAction scrollUp = new SemanticsAction(_kScrollUpIndex);
+        scrollUp = 1 << 4,
 
         /// The equivalent of a user moving their finger across the screen from top
         /// to bottom.
         ///
         /// This action should be recognized by controls that are vertically
         /// scrollable.
-        public static SemanticsAction scrollDown = new SemanticsAction(_kScrollDownIndex);
+        scrollDown = 1 << 5,
 
         /// A request to increase the value represented by the semantics node.
         ///
         /// For example, this action might be recognized by a slider control.
-        public static SemanticsAction increase = new SemanticsAction(_kIncreaseIndex);
+        increase = 1 << 6,
 
         /// A request to decrease the value represented by the semantics node.
         ///
         /// For example, this action might be recognized by a slider control.
-        public static SemanticsAction decrease = new SemanticsAction(_kDecreaseIndex);
+        decrease = 1 << 7,
 
         /// A request to fully show the semantics node on screen.
         ///
         /// For example, this action might be send to a node in a scrollable list that
         /// is partially off screen to bring it on screen.
-        public static SemanticsAction showOnScreen = new SemanticsAction(_kShowOnScreenIndex);
+        showOnScreen = 1 << 8,
 
         /// Move the cursor forward by one character.
         ///
@@ -98,7 +68,7 @@ namespace FlutterBinding.UI
         ///
         /// The action includes a boolean argument, which indicates whether the cursor
         /// movement should extend (or start) a selection.
-        public static SemanticsAction moveCursorForwardByCharacter = new SemanticsAction(_kMoveCursorForwardByCharacterIndex);
+        moveCursorForwardByCharacter = 1 << 9,
 
         /// Move the cursor backward by one character.
         ///
@@ -106,7 +76,7 @@ namespace FlutterBinding.UI
         ///
         /// The action includes a boolean argument, which indicates whether the cursor
         /// movement should extend (or start) a selection.
-        public static SemanticsAction moveCursorBackwardByCharacter = new SemanticsAction(_kMoveCursorBackwardByCharacterIndex);
+        moveCursorBackwardByCharacter = 1 << 10,
 
         /// Set the text selection to the given range.
         ///
@@ -117,16 +87,16 @@ namespace FlutterBinding.UI
         ///
         /// Setting `base` and `extent` to the same value will move the cursor to
         /// that position (without selecting anything).
-        public static SemanticsAction setSelection = new SemanticsAction(_kSetSelectionIndex);
+        setSelection = 1 << 11,
 
         /// Copy the current selection to the clipboard.
-        public static SemanticsAction copy = new SemanticsAction(_kCopyIndex);
+        copy = 1 << 12,
 
         /// Cut the current selection and place it in the clipboard.
-        public static SemanticsAction cut = new SemanticsAction(_kCutIndex);
+        cut = 1 << 13,
 
         /// Paste the current content of the clipboard.
-        public static SemanticsAction paste = new SemanticsAction(_kPasteIndex);
+        paste = 1 << 14,
 
         /// Indicates that the nodes has gained accessibility focus.
         ///
@@ -139,7 +109,7 @@ namespace FlutterBinding.UI
         /// The accessibility focus is different from the input focus. The input focus
         /// is usually held by the element that currently responds to keyboard inputs.
         /// Accessibility focus and input focus can be held by two different nodes!
-        public static SemanticsAction didGainAccessibilityFocus = new SemanticsAction(_kDidGainAccessibilityFocusIndex);
+        didGainAccessibilityFocus = 1 << 15,
 
         /// Indicates that the nodes has lost accessibility focus.
         ///
@@ -152,13 +122,13 @@ namespace FlutterBinding.UI
         /// The accessibility focus is different from the input focus. The input focus
         /// is usually held by the element that currently responds to keyboard inputs.
         /// Accessibility focus and input focus can be held by two different nodes!
-        public static SemanticsAction didLoseAccessibilityFocus = new SemanticsAction(_kDidLoseAccessibilityFocusIndex);
+        didLoseAccessibilityFocus = 1 << 16,
 
         /// Indicates that the user has invoked a custom accessibility action.
         ///
         /// This handler is added automatically whenever a custom accessibility
         /// action is added to a semantics node.
-        public static SemanticsAction customAction = new SemanticsAction(_kCustomAction);
+        customAction = 1 << 17,
 
         /// A request that the node should be dismissed.
         ///
@@ -167,7 +137,7 @@ namespace FlutterBinding.UI
         /// (with TalkBack) special hint text is spoken when focusing the node and
         /// a custom action is availible in the local context menu. On iOS,
         /// (with VoiceOver) users can perform a standard gesture to dismiss it.
-        public static SemanticsAction dismiss = new SemanticsAction(_kDismissIndex);
+        dismiss = 1 << 18,
 
         /// Move the cursor forward by one word.
         ///
@@ -175,7 +145,7 @@ namespace FlutterBinding.UI
         ///
         /// The action includes a boolean argument, which indicates whether the cursor
         /// movement should extend (or start) a selection.
-        public static SemanticsAction moveCursorForwardByWord = new SemanticsAction(_kMoveCursorForwardByWordIndex);
+        moveCursorForwardByWord = 1 << 19,
 
         /// Move the cursor backward by one word.
         ///
@@ -183,119 +153,13 @@ namespace FlutterBinding.UI
         ///
         /// The action includes a boolean argument, which indicates whether the cursor
         /// movement should extend (or start) a selection.
-        public static SemanticsAction moveCursorBackwardByWord = new SemanticsAction(_kMoveCursorBackwardByWordIndex);
-
-        /// The possible semantics actions.
-        ///
-        /// The map's key is the [index] of the action and the value is the action
-        /// itself.
-        public static Dictionary<int, SemanticsAction> values = new Dictionary<int, SemanticsAction>{
-            { _kTapIndex, tap },
-             { _kLongPressIndex, longPress },
-             { _kScrollLeftIndex, scrollLeft },
-             { _kScrollRightIndex, scrollRight },
-             { _kScrollUpIndex, scrollUp },
-             { _kScrollDownIndex, scrollDown },
-             { _kIncreaseIndex, increase },
-             { _kDecreaseIndex, decrease },
-             { _kShowOnScreenIndex, showOnScreen },
-             { _kMoveCursorForwardByCharacterIndex, moveCursorForwardByCharacter },
-             { _kMoveCursorBackwardByCharacterIndex, moveCursorBackwardByCharacter },
-            {  _kSetSelectionIndex, setSelection },
-             { _kCopyIndex, copy },
-             { _kCutIndex, cut },
-            {  _kPasteIndex, paste },
-            {  _kDidGainAccessibilityFocusIndex, didGainAccessibilityFocus },
-            {  _kDidLoseAccessibilityFocusIndex, didLoseAccessibilityFocus },
-            {  _kCustomAction, customAction },
-            {  _kDismissIndex, dismiss },
-            {  _kMoveCursorForwardByWordIndex, moveCursorForwardByWord },
-            {  _kMoveCursorBackwardByWordIndex, moveCursorBackwardByWord }  };
-
-        public String toString()
-        {
-            switch (index)
-            {
-                case _kTapIndex:
-                    return "SemanticsAction.tap";
-                case _kLongPressIndex:
-                    return "SemanticsAction.longPress";
-                case _kScrollLeftIndex:
-                    return "SemanticsAction.scrollLeft";
-                case _kScrollRightIndex:
-                    return "SemanticsAction.scrollRight";
-                case _kScrollUpIndex:
-                    return "SemanticsAction.scrollUp";
-                case _kScrollDownIndex:
-                    return "SemanticsAction.scrollDown";
-                case _kIncreaseIndex:
-                    return "SemanticsAction.increase";
-                case _kDecreaseIndex:
-                    return "SemanticsAction.decrease";
-                case _kShowOnScreenIndex:
-                    return "SemanticsAction.showOnScreen";
-                case _kMoveCursorForwardByCharacterIndex:
-                    return "SemanticsAction.moveCursorForwardByCharacter";
-                case _kMoveCursorBackwardByCharacterIndex:
-                    return "SemanticsAction.moveCursorBackwardByCharacter";
-                case _kSetSelectionIndex:
-                    return "SemanticsAction.setSelection";
-                case _kCopyIndex:
-                    return "SemanticsAction.copy";
-                case _kCutIndex:
-                    return "SemanticsAction.cut";
-                case _kPasteIndex:
-                    return "SemanticsAction.paste";
-                case _kDidGainAccessibilityFocusIndex:
-                    return "SemanticsAction.didGainAccessibilityFocus";
-                case _kDidLoseAccessibilityFocusIndex:
-                    return "SemanticsAction.didLoseAccessibilityFocus";
-                case _kCustomAction:
-                    return "SemanticsAction.customAction";
-                case _kDismissIndex:
-                    return "SemanticsAction.dismiss";
-                case _kMoveCursorForwardByWordIndex:
-                    return "SemanticsAction.moveCursorForwardByWord";
-                case _kMoveCursorBackwardByWordIndex:
-                    return "SemanticsAction.moveCursorBackwardByWord";
-            }
-            return null;
-        }
+        moveCursorBackwardByWord = 1 << 20,
     }
 
     /// A Boolean value that can be associated with a semantics node.
-    public class SemanticsFlag
+    [Flags]
+    public enum SemanticsFlag
     {
-        const int _kHasCheckedStateIndex = 1 << 0;
-        const int _kIsCheckedIndex = 1 << 1;
-        const int _kIsSelectedIndex = 1 << 2;
-        const int _kIsButtonIndex = 1 << 3;
-        const int _kIsTextFieldIndex = 1 << 4;
-        const int _kIsFocusedIndex = 1 << 5;
-        const int _kHasEnabledStateIndex = 1 << 6;
-        const int _kIsEnabledIndex = 1 << 7;
-        const int _kIsInMutuallyExclusiveGroupIndex = 1 << 8;
-        const int _kIsHeaderIndex = 1 << 9;
-        const int _kIsObscuredIndex = 1 << 10;
-        const int _kScopesRouteIndex = 1 << 11;
-        const int _kNamesRouteIndex = 1 << 12;
-        const int _kIsHiddenIndex = 1 << 13;
-        const int _kIsImageIndex = 1 << 14;
-        const int _kIsLiveRegionIndex = 1 << 15;
-        const int _kHasToggledStateIndex = 1 << 16;
-        const int _kIsToggledIndex = 1 << 17;
-        const int _kHasImplicitScrollingIndex = 1 << 18;
-
-        public SemanticsFlag(int index)
-        {
-            this.index = index;
-        }
-
-        /// The numerical value for this flag.
-        ///
-        /// Each flag has one bit set in this bit field.
-        public readonly int index;
-
         /// The semantics node has the quality of either being "checked" or "unchecked".
         ///
         /// This flag is mutually exclusive with [hasToggledState].
@@ -305,7 +169,7 @@ namespace FlutterBinding.UI
         /// See also:
         ///
         ///   * [SemanticsFlag.isChecked], which controls whether the node is "checked" or "unchecked".
-        public static SemanticsFlag hasCheckedState = new SemanticsFlag(_kHasCheckedStateIndex);
+        hasCheckedState = 1 << 0,
 
         /// Whether a semantics node that [hasCheckedState] is checked.
         ///
@@ -317,7 +181,7 @@ namespace FlutterBinding.UI
         /// See also:
         ///
         ///   * [SemanticsFlag.hasCheckedState], which enables a checked state.
-        public static SemanticsFlag isChecked = new SemanticsFlag(_kIsCheckedIndex);
+        isChecked = 1 << 1,
 
 
         /// Whether a semantics node is selected.
@@ -326,25 +190,25 @@ namespace FlutterBinding.UI
         /// "unselected".
         ///
         /// For example, the active tab in a tab bar has [isSelected] set to true.
-        public static SemanticsFlag isSelected = new SemanticsFlag(_kIsSelectedIndex);
+        isSelected = 1 << 2,
 
         /// Whether the semantic node represents a button.
         ///
         /// Platforms has special handling for buttons, for example Android's TalkBack
         /// and iOS's VoiceOver provides an additional hint when the focused object is
         /// a button.
-        public static SemanticsFlag isButton = new SemanticsFlag(_kIsButtonIndex);
+        isButton = 1 << 3,
 
         /// Whether the semantic node represents a text field.
         ///
         /// Text fields are announced as such and allow text input via accessibility
         /// affordances.
-        public static SemanticsFlag isTextField = new SemanticsFlag(_kIsTextFieldIndex);
+        isTextField = 1 << 4,
 
         /// Whether the semantic node currently holds the user's focus.
         ///
         /// The focused element is usually the current receiver of keyboard inputs.
-        public static SemanticsFlag isFocused = new SemanticsFlag(_kIsFocusedIndex);
+        isFocused = 1 << 5,
 
         /// The semantics node has the quality of either being "enabled" or
         /// "disabled".
@@ -352,33 +216,33 @@ namespace FlutterBinding.UI
         /// For example, a button can be enabled or disabled and therefore has an
         /// "enabled" state. Static text is usually neither enabled nor disabled and
         /// therefore does not have an "enabled" state.
-        public static SemanticsFlag hasEnabledState = new SemanticsFlag(_kHasEnabledStateIndex);
+        hasEnabledState = 1 << 6,
 
         /// Whether a semantic node that [hasEnabledState] is currently enabled.
         ///
         /// A disabled element does not respond to user interaction. For example, a
         /// button that currently does not respond to user interaction should be
         /// marked as disabled.
-        public static SemanticsFlag isEnabled = new SemanticsFlag(_kIsEnabledIndex);
+        isEnabled = 1 << 7,
 
         /// Whether a semantic node is in a mutually exclusive group.
         ///
         /// For example, a radio button is in a mutually exclusive group because
         /// only one radio button in that group can be marked as [isChecked].
-        public static SemanticsFlag isInMutuallyExclusiveGroup = new SemanticsFlag(_kIsInMutuallyExclusiveGroupIndex);
+        isInMutuallyExclusiveGroup = 1 << 8,
 
         /// Whether a semantic node is a header that divides content into sections.
         ///
         /// For example, headers can be used to divide a list of alphabetically
         /// sorted words into the sections A, B, C, etc. as can be found in many
         /// address book applications.
-        public static SemanticsFlag isHeader = new SemanticsFlag(_kIsHeaderIndex);
+        isHeader = 1 << 9,
 
         /// Whether the value of the semantics node is obscured.
         ///
         /// This is usually used for text fields to indicate that its content
         /// is a password or contains other sensitive information.
-        public static SemanticsFlag isObscured = new SemanticsFlag(_kIsObscuredIndex);
+        isObscured = 1 << 10,
 
         /// Whether the semantics node is the root of a subtree for which a route name
         /// should be announced.
@@ -403,7 +267,7 @@ namespace FlutterBinding.UI
         ///
         /// This is used in widgets such as Routes, Drawers, and Dialogs to
         /// communicate significant changes in the visible screen.
-        public static SemanticsFlag scopesRoute = new SemanticsFlag(_kScopesRouteIndex);
+        scopesRoute = 1 << 11,
 
         /// Whether the semantics node label is the name of a visually distinct
         /// route.
@@ -416,7 +280,7 @@ namespace FlutterBinding.UI
         ///
         /// Updating this label within the same active route subtree will not cause
         /// additional announcements.
-        public static SemanticsFlag namesRoute = new SemanticsFlag(_kNamesRouteIndex);
+        namesRoute = 1 << 12,
 
         /// Whether the semantics node is considered hidden.
         ///
@@ -434,13 +298,13 @@ namespace FlutterBinding.UI
         /// the semantics tree altogether. Hidden elements are only included in the
         /// semantics tree to work around platform limitations and they are mainly
         /// used to implement accessibility scrolling on iOS.
-        public static SemanticsFlag isHidden = new SemanticsFlag(_kIsHiddenIndex);
+        isHidden = 1 << 13,
 
         /// Whether the semantics node represents an image.
         ///
         /// Both TalkBack and VoiceOver will inform the user the the semantics node
         /// represents an image.
-        public static SemanticsFlag isImage = new SemanticsFlag(_kIsImageIndex);
+        isImage = 1 << 14,
 
         /// Whether the semantics node is a live region.
         ///
@@ -451,7 +315,7 @@ namespace FlutterBinding.UI
         /// An example of a live region is a [SnackBar] widget. On Android, A live
         /// region causes a polite announcement to be generated automatically, even
         /// if the user does not have focus of the widget.
-        public static SemanticsFlag isLiveRegion = new SemanticsFlag(_kIsLiveRegionIndex);
+        isLiveRegion = 1 << 15,
 
         /// The semantics node has the quality of either being "on" or "off".
         ///
@@ -462,7 +326,7 @@ namespace FlutterBinding.UI
         /// See also:
         ///
         ///    * [SemanticsFlag.isToggled], which controls whether the node is "on" or "off".
-        public static SemanticsFlag hasToggledState = new SemanticsFlag(_kHasToggledStateIndex);
+        hasToggledState = 1 << 16,
 
         /// If true, the semantics node is "on". If false, the semantics node is
         /// "off".
@@ -472,7 +336,7 @@ namespace FlutterBinding.UI
         /// See also:
         ///
         ///   * [SemanticsFlag.hasToggledState], which enables a toggled state.
-        public static SemanticsFlag isToggled = new SemanticsFlag(_kIsToggledIndex);
+        isToggled = 1 << 17,
 
         /// Whether the platform can scroll the semantics node when the user attempts
         /// to move focus to an offscreen child.
@@ -481,93 +345,21 @@ namespace FlutterBinding.UI
         /// easily move to the next visible set of children. A [TabBar] widget does
         /// not have implicit scrolling, so that users can navigate into the tab
         /// body when reaching the end of the tab bar.
-        public static SemanticsFlag hasImplicitScrolling = new SemanticsFlag(_kHasImplicitScrollingIndex);
-
-        /// The possible semantics flags.
-        ///
-        /// The map's key is the [index] of the flag and the value is the flag itself.
-        public static Dictionary<int, SemanticsFlag> values = new Dictionary<int, SemanticsFlag>{
-    { _kHasCheckedStateIndex, hasCheckedState},
-    { _kIsCheckedIndex, isChecked},
-    { _kIsSelectedIndex, isSelected},
-    { _kIsButtonIndex, isButton},
-    { _kIsTextFieldIndex, isTextField},
-    { _kIsFocusedIndex, isFocused},
-    { _kHasEnabledStateIndex, hasEnabledState},
-    { _kIsEnabledIndex, isEnabled},
-    { _kIsInMutuallyExclusiveGroupIndex, isInMutuallyExclusiveGroup},
-    { _kIsHeaderIndex, isHeader},
-    { _kIsObscuredIndex, isObscured},
-    { _kScopesRouteIndex, scopesRoute},
-    { _kNamesRouteIndex, namesRoute},
-    { _kIsHiddenIndex, isHidden},
-    { _kIsImageIndex, isImage},
-    { _kIsLiveRegionIndex, isLiveRegion},
-    { _kHasToggledStateIndex, hasToggledState},
-    { _kIsToggledIndex, isToggled},
-    { _kHasImplicitScrollingIndex, hasImplicitScrolling},
-  };
-
-        public String toString()
-        {
-            switch (index)
-            {
-                case _kHasCheckedStateIndex:
-                    return "SemanticsFlag.hasCheckedState";
-                case _kIsCheckedIndex:
-                    return "SemanticsFlag.isChecked";
-                case _kIsSelectedIndex:
-                    return "SemanticsFlag.isSelected";
-                case _kIsButtonIndex:
-                    return "SemanticsFlag.isButton";
-                case _kIsTextFieldIndex:
-                    return "SemanticsFlag.isTextField";
-                case _kIsFocusedIndex:
-                    return "SemanticsFlag.isFocused";
-                case _kHasEnabledStateIndex:
-                    return "SemanticsFlag.hasEnabledState";
-                case _kIsEnabledIndex:
-                    return "SemanticsFlag.isEnabled";
-                case _kIsInMutuallyExclusiveGroupIndex:
-                    return "SemanticsFlag.isInMutuallyExclusiveGroup";
-                case _kIsHeaderIndex:
-                    return "SemanticsFlag.isHeader";
-                case _kIsObscuredIndex:
-                    return "SemanticsFlag.isObscured";
-                case _kScopesRouteIndex:
-                    return "SemanticsFlag.scopesRoute";
-                case _kNamesRouteIndex:
-                    return "SemanticsFlag.namesRoute";
-                case _kIsHiddenIndex:
-                    return "SemanticsFlag.isHidden";
-                case _kIsImageIndex:
-                    return "SemanticsFlag.isImage";
-                case _kIsLiveRegionIndex:
-                    return "SemanticsFlag.isLiveRegion";
-                case _kHasToggledStateIndex:
-                    return "SemanticsFlag.hasToggledState";
-                case _kIsToggledIndex:
-                    return "SemanticsFlag.isToggled";
-                case _kHasImplicitScrollingIndex:
-                    return "SemanticsFlag.hasImplicitScrolling";
-            }
-            return null;
-        }
+        hasImplicitScrolling = 1 << 18
     }
 
     /// An object that creates [SemanticsUpdate] objects.
     ///
     /// Once created, the [SemanticsUpdate] objects can be passed to
     /// [Window.updateSemantics] to update the semantics conveyed to the user.
-    public class SemanticsUpdateBuilder : NativeFieldWrapperClass2
+    public class SemanticsUpdateBuilder
     {
+        SemanticsNodeUpdates nodes_;
+        CustomAccessibilityActionUpdates actions_;
+
         /// Creates an empty [SemanticsUpdateBuilder] object.
         //@pragma('vm:entry-point')
-        public SemanticsUpdateBuilder() { _constructor(); }
-        void _constructor()
-        {
-            // native 'SemanticsUpdateBuilder_constructor';
-        }
+        public SemanticsUpdateBuilder() { }
 
         /// Update the information associated with the node with the given `id`.
         ///
@@ -621,15 +413,15 @@ namespace FlutterBinding.UI
         /// its parent's coordinate system.
         public void updateNode(
             int id = 0,
-          int flags = 0,
-          int actions = 0,
-          int textSelectionBase = 0,
-          int textSelectionExtent = 0,
-          int scrollChildren = 0,
-          int scrollIndex = 0,
-          double scrollPosition = 0.0,
-          double scrollExtentMax = 0.0,
-          double scrollExtentMin = 0.0,
+            SemanticsFlag flags = 0,
+            SemanticsAction actions = 0,
+            int textSelectionBase = 0,
+            int textSelectionExtent = 0,
+            int scrollChildren = 0,
+            int scrollIndex = 0,
+            double scrollPosition = 0.0,
+            double scrollExtentMax = 0.0,
+            double scrollExtentMin = 0.0,
             Rect rect = null,
             String label = null,
             String hint = null,
@@ -637,68 +429,36 @@ namespace FlutterBinding.UI
             String increasedValue = null,
             String decreasedValue = null,
             TextDirection textDirection = TextDirection.ltr,
-            List<double> transform = null,
+            SKMatrix44 transform = null,
             List<int> childrenInTraversalOrder = null,
             List<int> childrenInHitTestOrder = null,
-            //[Obsolete("use additionalActions instead")]
-            List<int> customAcccessibilityActions = null,
             List<int> additionalActions = null)
         {
-            if (transform.Count != 16)
-                throw new ArgumentException("transform argument must have 16 entries.");
-            _updateNode(
-              id,
-              flags,
-              actions,
-              textSelectionBase,
-              textSelectionExtent,
-              scrollChildren,
-              scrollIndex,
-              scrollPosition,
-              scrollExtentMax,
-              scrollExtentMin,
-              rect.left,
-              rect.top,
-              rect.right,
-              rect.bottom,
-              label,
-              hint,
-              value,
-              increasedValue,
-              decreasedValue,
-              (int)textDirection,
-              transform,
-              childrenInTraversalOrder,
-              childrenInHitTestOrder,
-              additionalActions ?? customAcccessibilityActions);
-        }
-        void _updateNode(
-           int id,
-           int flags,
-           int actions,
-           int textSelectionBase,
-           int textSelectionExtent,
-           int scrollChildren,
-           int scrollIndex,
-           double scrollPosition,
-           double scrollExtentMax,
-           double scrollExtentMin,
-           double left,
-           double top,
-           double right,
-           double bottom,
-           String label,
-           String hint,
-           String value,
-           String increasedValue,
-           String decreasedValue,
-           int textDirection,
-           List<double> transform,
-           List<int> childrenInTraversalOrder,
-           List<int> childrenInHitTestOrder,
-           List<int> additionalActions)
-        {
-            // native 'SemanticsUpdateBuilder_updateNode';
+            SemanticsNode node = new SemanticsNode
+            {
+                id                         = id,
+                flags                      = flags,
+                actions                    = actions,
+                textSelectionBase          = textSelectionBase,
+                textSelectionExtent        = textSelectionExtent,
+                scrollChildren             = scrollChildren,
+                scrollIndex                = scrollIndex,
+                scrollPosition             = scrollPosition,
+                scrollExtentMax            = scrollExtentMax,
+                scrollExtentMin            = scrollExtentMin,
+                rect                       = rect.ToSKRect(),
+                label                      = label,
+                hint                       = hint,
+                value                      = value,
+                increasedValue             = increasedValue,
+                decreasedValue             = decreasedValue,
+                textDirection              = textDirection,
+                transform                  = transform,
+                childrenInTraversalOrder   = childrenInTraversalOrder,
+                childrenInHitTestOrder     = childrenInHitTestOrder,
+                customAccessibilityActions = additionalActions
+            };
+            nodes_[id] = node;
         }
 
         /// Update the custom semantics action associated with the given `id`.
@@ -716,15 +476,23 @@ namespace FlutterBinding.UI
         /// For overriden standard actions, `overrideId` corresponds with a
         /// [SemanticsAction.index] value. For custom actions this argument should not be
         /// provided.
-        void updateCustomAction(int id = 0, String label = "", String hint = "", int overrideId = -1)
+        public void updateCustomAction(
+            int id = 0,
+            string label = "",
+            string hint = "",
+            int overrideId = -1)
         {
             //assert(id != null);
             //assert(overrideId != null);
-            _updateCustomAction(id, label, hint, overrideId);
-        }
-        void _updateCustomAction(int id, String label, String hint, int overrideId)
-        {
-            // native 'SemanticsUpdateBuilder_updateCustomAction';
+
+            CustomAccessibilityAction action = new CustomAccessibilityAction
+            {
+                id         = id,
+                overrideId = overrideId,
+                label      = label,
+                hint       = hint
+            };
+            actions_[id] = action;
         }
 
         /// Creates a [SemanticsUpdate] object that encapsulates the updates recorded
@@ -734,10 +502,8 @@ namespace FlutterBinding.UI
         /// update the semantics retained by the system.
         public SemanticsUpdate build()
         {
-            // native 'SemanticsUpdateBuilder_build';
-            return null; // Tmp to resolve build
+            return new SemanticsUpdate(nodes_, actions_);
         }
-
     }
 
     /// An opaque object representing a batch of semantics updates.
@@ -746,22 +512,72 @@ namespace FlutterBinding.UI
     ///
     /// Semantics updates can be applied to the system's retained semantics tree
     /// using the [Window.updateSemantics] method.
-    public class SemanticsUpdate : NativeFieldWrapperClass2
+    public class SemanticsUpdate
     {
+        SemanticsNodeUpdates nodes_;
+        CustomAccessibilityActionUpdates actions_;
+
         /// This class is created by the engine, and should not be instantiated
         /// or extended directly.
         ///
         /// To create a SemanticsUpdate object, use a [SemanticsUpdateBuilder].
         //@pragma('vm:entry-point')
-        //SemanticsUpdate();
-
-        /// Releases the resources used by this semantics update.
-        ///
-        /// After calling this function, the semantics update is cannot be used
-        /// further.
-        void dispose()
+        public SemanticsUpdate(
+            SemanticsNodeUpdates nodes,
+            CustomAccessibilityActionUpdates actions)
         {
-            // native 'SemanticsUpdate_dispose';
+            this.nodes_   = nodes;
+            this.actions_ = actions;
         }
+
+        public SemanticsNodeUpdates takeNodes() => nodes_;
+
+        public CustomAccessibilityActionUpdates takeActions() => actions_;
+    }
+
+    public class CustomAccessibilityActionUpdates : Dictionary<int, CustomAccessibilityAction> { }
+
+    public class SemanticsNodeUpdates : Dictionary<int, SemanticsNode> { }
+
+    /// A custom accessibility action is used to indicate additional semantics
+    /// actions that a user can perform on a semantics node beyond the
+    /// preconfigured options.
+    public class CustomAccessibilityAction
+    {
+        public int id = 0;
+        public int overrideId = -1;
+        public string label;
+        public string hint;
+    }
+
+
+    public class SemanticsNode
+    {
+        public bool HasAction(SemanticsAction action) => actions.HasFlag(action);
+
+        public bool HasFlag(SemanticsFlag flag) => flags.HasFlag(flag);
+
+        public int id = 0;
+        public SemanticsFlag flags;
+        public SemanticsAction actions;
+        public int textSelectionBase = -1;
+        public int textSelectionExtent = -1;
+        public int scrollChildren = 0;
+        public int scrollIndex = 0;
+        public double scrollPosition = double.NaN;
+        public double scrollExtentMax = double.NaN;
+        public double scrollExtentMin = double.NaN;
+        public string label;
+        public string hint;
+        public string value;
+        public string increasedValue;
+        public string decreasedValue;
+        public TextDirection textDirection;
+
+        public SKRect rect = SKRect.Empty;
+        public SKMatrix44 transform = SKMatrix44.CreateIdentity();
+        public List<int> childrenInTraversalOrder = new List<int>();
+        public List<int> childrenInHitTestOrder = new List<int>();
+        public List<int> customAccessibilityActions = new List<int>();
     }
 }

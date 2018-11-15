@@ -18,12 +18,13 @@ namespace FlutterBinding.UI
     /// [Window.render] method.
     public class Scene : NativeScene
     {
-
         // Not sure if this should be here and public to the FlutterBinding Library
-        public Scene(Layer rootLayer,
-             uint rasterizerTracingThreshold,
-             bool checkerboardRasterCacheImages,
-             bool checkerboardOffscreenLayers) : base(rootLayer, rasterizerTracingThreshold, checkerboardRasterCacheImages, checkerboardOffscreenLayers)
+        public Scene(
+            Layer rootLayer,
+            uint rasterizerTracingThreshold,
+            bool checkerboardRasterCacheImages,
+            bool checkerboardOffscreenLayers) : 
+            base(rootLayer, rasterizerTracingThreshold, checkerboardRasterCacheImages, checkerboardOffscreenLayers)
         { }
 
         /// Creates a raster image representation of the current state of the scene.
@@ -32,25 +33,9 @@ namespace FlutterBinding.UI
         {
             if (width <= 0 || height <= 0)
                 throw new Exception("Invalid image dimensions.");
-            return _futurize(
-              (_Callback<SKImage> callback) => _toImage(width, height, callback)
+
+            return _futurize((_Callback<SKImage> callback) => ToImage(width, height, callback)
             );
-        }
-
-        String _toImage(int width, int height, _Callback<SKImage> callback)
-        {
-            // create image and send via callback
-            // only send string if an error occurs.
-            return this.ToImage(width, height, callback);
-            // [DONE] native 'Scene_toImage';
-        }
-
-        /// Releases the resources used by this scene.
-        ///
-        /// After calling this function, the scene is cannot be used further.
-        public void dispose()
-        {
-            // native 'Scene_dispose';
         }
     }
 
@@ -77,12 +62,7 @@ namespace FlutterBinding.UI
                 throw new ArgumentException("'matrix4' argument cannot be null");
             if (matrix4.Count != 16)
                 throw new ArgumentException("'matrix4' must have 16 entries.");
-            _pushTransform(matrix4);
-        }
-        void _pushTransform(List<double> matrix4)
-        {
-            this.PushTransform(matrix4);
-            // [DONE] native 'SceneBuilder_pushTransform';
+            PushTransform(matrix4);
         }
 
         /// Pushes an offset operation onto the operation stack.
@@ -92,8 +72,7 @@ namespace FlutterBinding.UI
         /// See [pop] for details about the operation stack.
         public NativeEngineLayer pushOffset(double dx, double dy)
         {
-            return this.PushOffset(dx, dy);
-            // [DONE] native 'SceneBuilder_pushOffset';
+            return PushOffset(dx, dy);
         }
 
         /// Pushes a rectangular clip operation onto the operation stack.
@@ -106,17 +85,7 @@ namespace FlutterBinding.UI
         {
             //assert(clipBehavior != null);
             //assert(clipBehavior != Clip.none);
-            _pushClipRect(rect.left, rect.right, rect.top, rect.bottom, (int)clipBehavior);
-        }
-
-        void _pushClipRect(double left,
-                           double right,
-                           double top,
-                           double bottom,
-                           int clipBehavior)
-        {
-            this.PushClipRect(left, right, top, bottom, clipBehavior);
-            // [DONE] native 'SceneBuilder_pushClipRect';
+            PushClipRect(rect.left, rect.right, rect.top, rect.bottom, (int)clipBehavior);
         }
 
         /// Pushes a rounded-rectangular clip operation onto the operation stack.
@@ -129,11 +98,7 @@ namespace FlutterBinding.UI
         {
             //assert(clipBehavior != null);
             //assert(clipBehavior != Clip.none);
-            _pushClipRRect(rrect._value, (int)clipBehavior);
-        }
-        void _pushClipRRect(List<double> rrect, int clipBehavior)
-        {
-            // native 'SceneBuilder_pushClipRRect';
+            PushClipRRect(rrect, (int)clipBehavior);
         }
 
         /// Pushes a path clip operation onto the operation stack.
@@ -146,11 +111,7 @@ namespace FlutterBinding.UI
         {
             //assert(clipBehavior != null);
             //assert(clipBehavior != Clip.none);
-            _pushClipPath(path, (int)clipBehavior);
-        }
-        void _pushClipPath(Path path, int clipBehavior)
-        {
-            // native 'SceneBuilder_pushClipPath';
+            PushClipPath(path, (int)clipBehavior);
         }
 
         /// Pushes an opacity operation onto the operation stack.
@@ -166,11 +127,7 @@ namespace FlutterBinding.UI
             if (offset == null)
                 offset = Offset.zero;
 
-            _pushOpacity(alpha, offset.dx, offset.dy);
-        }
-        void _pushOpacity(int alpha, double dx, double dy)
-        {
-            // native 'SceneBuilder_pushOpacity';
+            PushOpacity(alpha, offset.dx, offset.dy);
         }
 
         /// Pushes a color filter operation onto the operation stack.
@@ -181,11 +138,7 @@ namespace FlutterBinding.UI
         /// See [pop] for details about the operation stack.
         public void pushColorFilter(Color color, BlendMode blendMode)
         {
-            _pushColorFilter(color.value, (int)blendMode);
-        }
-        void _pushColorFilter(uint color, int blendMode)
-        {
-            // native 'SceneBuilder_pushColorFilter';
+            PushColorFilter((int)color.value, (int)blendMode);
         }
 
         /// Pushes a backdrop filter operation onto the operation stack.
@@ -207,21 +160,12 @@ namespace FlutterBinding.UI
         /// See [pop] for details about the operation stack.
         public void pushShaderMask(SKShader shader, Rect maskRect, BlendMode blendMode)
         {
-            _pushShaderMask(shader,
+            PushShaderMask(shader,
                             maskRect.left,
                             maskRect.right,
                             maskRect.top,
                             maskRect.bottom,
                             (int)blendMode);
-        }
-        void _pushShaderMask(SKShader shader,
-                             double maskRectLeft,
-                             double maskRectRight,
-                             double maskRectTop,
-                             double maskRectBottom,
-                             int blendMode)
-        {
-            // native 'SceneBuilder_pushShaderMask';
         }
 
         /// Pushes a physical layer operation for an arbitrary shape onto the
@@ -239,12 +183,7 @@ namespace FlutterBinding.UI
         // ignore: deprecated_member_use
         public NativeEngineLayer pushPhysicalShape(Path path, double elevation, Color color, Color shadowColor, Clip clipBehavior = Clip.none)
         {
-            return _pushPhysicalShape(path, elevation, color.value, shadowColor?.value ?? 0xFF000000, (int)clipBehavior);
-        }
-        NativeEngineLayer _pushPhysicalShape(Path path, double elevation, uint color, uint shadowColor, int clipBehavior)
-        {
-            // native 'SceneBuilder_pushPhysicalShape';
-            return null; // Tmp to resolve build
+            return PushPhysicalShape(path, elevation, (int)color.value, (int)(shadowColor?.value ?? 0xFF000000), (int)clipBehavior);
         }
 
         /// Ends the effect of the most recently pushed operation.
@@ -255,8 +194,7 @@ namespace FlutterBinding.UI
         /// stack.
         public void pop()
         {
-            this.Pop();
-            // [DONE] native 'SceneBuilder_pop';
+            Pop();
         }
 
         /// Add a retained engine layer subtree from previous frames.
@@ -269,8 +207,8 @@ namespace FlutterBinding.UI
         /// no need to call [addToScene] for its children layers.
         public NativeEngineLayer addRetained(NativeEngineLayer retainedLayer)
         {
-            // native 'SceneBuilder_addRetained';
-            return null; // Tmp to resolve build
+            AddRetained(retainedLayer);
+            return retainedLayer;
         }
 
         /// Adds an object to the scene that displays performance statistics.
@@ -299,19 +237,11 @@ namespace FlutterBinding.UI
         // Values above must match constants in //engine/src/sky/compositor/performance_overlay_layer.h
         public void addPerformanceOverlay(int enabledOptions, Rect bounds)
         {
-            _addPerformanceOverlay(enabledOptions,
+            AddPerformanceOverlay((ulong)enabledOptions,
                                    bounds.left,
                                    bounds.right,
                                    bounds.top,
                                    bounds.bottom);
-        }
-        void _addPerformanceOverlay(int enabledOptions,
-                                    double left,
-                                    double right,
-                                    double top,
-                                    double bottom)
-        {
-            // native 'SceneBuilder_addPerformanceOverlay';
         }
 
         /// Adds a [Picture] to the scene.
@@ -324,12 +254,7 @@ namespace FlutterBinding.UI
                 hints |= 1;
             if (willChangeHint)
                 hints |= 2;
-            _addPicture(offset.dx, offset.dy, picture, hints);
-        }
-        void _addPicture(double dx, double dy, SKPicture picture, int hints)
-        {
-            this.AddPicture(dx, dy, picture, hints);
-            // [DONE] native 'SceneBuilder_addPicture';
+            AddPicture(offset.dx, offset.dy, picture, hints);
         }
 
         /// Adds a backend texture to the scene.
@@ -349,11 +274,7 @@ namespace FlutterBinding.UI
                 offset = Offset.zero;
 
             //assert(offset != null, 'Offset argument was null');
-            _addTexture(offset.dx, offset.dy, width, height, textureId, freeze);
-        }
-        void _addTexture(double dx, double dy, double width, double height, int textureId, bool freeze)
-        {
-            // native 'SceneBuilder_addTexture';
+            AddTexture(offset.dx, offset.dy, width, height, textureId, freeze);
         }
 
         /// Adds a platform view (e.g an iOS UIView) to the scene.
@@ -364,11 +285,7 @@ namespace FlutterBinding.UI
             if (offset == null)
                 offset = Offset.zero;
             //assert(offset != null, 'Offset argument was null');
-            _addPlatformView(offset.dx, offset.dy, width, height, viewId);
-        }
-        void _addPlatformView(double dx, double dy, double width, double height, int viewId)
-        {
-            // native 'SceneBuilder_addPlatformView';
+            AddPlatformView(offset.dx, offset.dy, width, height, viewId);
         }
 
         /// (Fuchsia-only) Adds a scene rendered by another application to the scene
@@ -384,21 +301,12 @@ namespace FlutterBinding.UI
             if (offset == null)
                 offset = Offset.zero;
 
-            _addChildScene(offset.dx,
+            AddChildScene(offset.dx,
                            offset.dy,
                            width,
                            height,
                            sceneHost,
                            hitTestable);
-        }
-        void _addChildScene(double dx,
-                            double dy,
-                            double width,
-                            double height,
-                            SceneHost sceneHost,
-                            bool hitTestable)
-        {
-            // native 'SceneBuilder_addChildScene';
         }
 
 
@@ -410,6 +318,7 @@ namespace FlutterBinding.UI
         /// to you.
         public void setRasterizerTracingThreshold(int frameInterval)
         {
+            base.SetRasterizerTracingThreshold((uint)frameInterval);
             // native 'SceneBuilder_setRasterizerTracingThreshold';
         }
 
@@ -431,7 +340,7 @@ namespace FlutterBinding.UI
         /// interested in using this feature, please contact [flutter-dev](https://groups.google.com/forum/#!forum/flutter-dev).
         public void setCheckerboardRasterCacheImages(bool checkerboard)
         {
-            // native 'SceneBuilder_setCheckerboardRasterCacheImages';
+            SetCheckerboardRasterCacheImages(checkerboard);
         }
 
         /// Sets whether the compositor should checkerboard layers that are rendered
@@ -440,7 +349,7 @@ namespace FlutterBinding.UI
         /// This is only useful for debugging purposes.
         public void setCheckerboardOffscreenLayers(bool checkerboard)
         {
-            // native 'SceneBuilder_setCheckerboardOffscreenLayers';
+            SetCheckerboardOffscreenLayers(checkerboard);
         }
 
         /// Finishes building the scene.
@@ -453,14 +362,15 @@ namespace FlutterBinding.UI
         /// cannot be used further.
         public Scene build()
         {
-            return this.Build();
-            // [DONE] native 'SceneBuilder_build';
-        }
+            return Build();
+         }
     }
 
     /// (Fuchsia-only) Hosts content provided by another application.
-    public class SceneHost : NativeFieldWrapperClass2
+    public class SceneHost
     {
+        public object ExportTokenHandle { get; }
+
         /// Creates a host for a child scene.
         ///
         /// The export token is bound to a scene graph node which acts as a container
@@ -475,19 +385,7 @@ namespace FlutterBinding.UI
         /// The scene host takes ownership of the provided export token handle.
         public SceneHost(object exportTokenHandle)
         {
-            _constructor(exportTokenHandle);
-        }
-        void _constructor(object exportTokenHandle)
-        {
-            // native 'SceneHost_constructor';
-        }
-
-        /// Releases the resources associated with the child scene host.
-        ///
-        /// After calling this function, the child scene host cannot be used further.
-        public void dispose()
-        {
-            // native 'SceneHost_dispose';
+            ExportTokenHandle = exportTokenHandle;
         }
     }
 }
