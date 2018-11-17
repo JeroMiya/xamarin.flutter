@@ -77,15 +77,13 @@ class Methods {
       code.write("override ");
 
     code.write(methodSignature(element));
-
-    code.writeln("{");
+    
     if (overrideMethod == null) {
       code.writeln(
           "${implementedInstanceName}.${name}(${element.parameters.map((p) => Naming.getFormattedName(p.name, NameStyle.LowerCamelCase)).join(",")});");
     } else {
       code.writeln(Implementation.MethodBody(element));
     }
-    code.writeln("}");
 
     return code.toString();
   }
