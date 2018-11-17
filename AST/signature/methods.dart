@@ -48,10 +48,8 @@ class Methods {
 
     code.write(methodSignature(element));
 
-    code.writeln("{");
     code.writeln(Implementation.MethodBody(element));
-    code.writeln("}");
-
+    
     return code.toString();
   }
 
