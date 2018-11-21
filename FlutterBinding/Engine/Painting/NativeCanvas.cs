@@ -5,9 +5,9 @@ using System.Text;
 
 namespace FlutterBinding.Engine.Painting
 {
-    public class NativeCanvas : SKCanvas
+    public class NativeCanvas
     {
-        public NativeCanvas(SKBitmap bitmap) : base(bitmap) { }
+        public NativeCanvas(SKBitmap bitmap) { }
 
         public SKCanvas RecordingCanvas { get; set; }
 
