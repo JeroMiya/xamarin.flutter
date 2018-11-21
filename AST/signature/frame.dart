@@ -67,6 +67,14 @@ class Frame {
       }
       imports.add(name);
     }
+
+    // This includes common functions as part of the Dart Foundation Library
+    // that don't have a direct equivalent, hence need to be created.
+    imports.add("static FlutterSDK.Global");
+    
+    // Just to cover everything that is converted to a Task
+    imports.add("using System.Threading.Tasks");
+
     return imports.map((import) => "using ${import};").join("\n");
   }
 

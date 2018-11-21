@@ -173,24 +173,6 @@ namespace FlutterSDK
         }
     }
 
-    public class Paint
-    {
-        public Color color { get; set; }
-    }
-
-    public class Canvas
-    {
-        public void drawRRect(RRect rect)
-        {
-
-        }
-    }
-
-    public class RRect
-    {
-
-    }
-
     public class Timer
     {
         public static void run(Action task)
@@ -207,45 +189,6 @@ namespace FlutterSDK
         public const AppLifecycleState inactive = null;
     }
 
-
-    public class ui
-    {
-
-        public class Window
-        {
-            public object onBeginFrame { get; set; }
-            public object onDrawFrame { get; set; }
-        }
-
-        public static Window window { get; set; }
-
-
-        public class Picture
-        {
-
-        }
-
-        public class PictureRecorder //TODO
-        {
-            public Picture endRecording() { return null; }
-        }
-
-        public class PointerData //TODO
-        {
-            public double? physicalX { get; set; }
-            public double? physicalY { get; set; }
-        }
-
-
-        public static double? lerpDouble(num a, num b, double? t)
-        {
-            if (a == null && b == null)
-                return null;
-            a = a ?? 0.0;
-            b = b ?? 0.0;
-            return a + (b - a) * t;
-        }
-    }
 
     public class StringBuffer // Similar to System.Text.StringBuilder
     {
@@ -335,11 +278,10 @@ namespace FlutterSDK
 
     public static class Global
     {
-        public static string runtimeType = "runtimeType";
-
-        public static string describeIdentity(object something)
+        
+        public static string DescribeIdentity(object obj)
         {
-            return "describeIdentity";
+            return $"{obj.GetType()}#{obj.GetHashCode()}";
         }
 
         public static void assert(object obj)
@@ -347,13 +289,18 @@ namespace FlutterSDK
             // We do nothing at the moment
         }
 
-        public static double? toDouble(this int i) => Convert.ToDouble(i);
+        public static double ToDouble(this int i) => Convert.ToDouble(i);
 
-        public static double? truncateToDouble(this double? d) => System.Math.Truncate(d.Value);
+        public static double TruncateToDouble(this double d) => Math.Truncate(d);
 
-        public static string toStringAsFixed(this double? d, int value) => d.Value.ToString($"N{value}");
+        public static string ToStringAsFixed(this double d, int value) => d.ToString($"N{value}");
 
-        public static double? clamp(this double? d, double? lower, double? upper)
+        public static double InMicroseconds(this TimeSpan timespan)
+        {
+            return timespan.TotalMilliseconds * 1000;
+        }
+
+        public static double Clamp(this double d, double lower, double upper)
         {
             if (d < lower)
                 return lower;
@@ -364,12 +311,12 @@ namespace FlutterSDK
             return d;
         }
 
-        public static bool isFinite(this double? d)
+        public static bool IsFinite(this double? d)
         {
             return !double.IsInfinity(d.Value);
         }
 
-        public static double? abs(this double? d)
+        public static double Abs(this double d)
         {
             return (double)Math.Abs(Convert.ToDecimal(d));
         }
