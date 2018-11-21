@@ -34,12 +34,12 @@ namespace FlutterBinding.UI
                 right: viewInsetRight,
                 bottom: viewInsetBottom,
                 left: viewInsetLeft);
-            _invoke(Window.Instance.onMetricsChanged, Window.Instance._onMetricsChangedZone);
+            _invoke(Window.Instance.onMetricsChanged, Window.Instance.OnMetricsChangedZone);
         }
 
         delegate string _LocaleClosure();
 
-        static String _localeClosure() => Window.Instance.locale.toString();
+        static String _localeClosure() => Window.Instance.locale.ToString();
 
         static _LocaleClosure _getLocaleClosure() => _localeClosure;
 
@@ -53,7 +53,7 @@ namespace FlutterBinding.UI
                 Window.Instance.locales[localeIndex] = new Locale(locales[localeIndex * stringsPerLocale],
                                                locales[localeIndex * stringsPerLocale + 1]);
             }
-            _invoke(Window.Instance.onLocaleChanged, Window.Instance._onLocaleChangedZone);
+            _invoke(Window.Instance.onLocaleChanged, Window.Instance.OnLocaleChangedZone);
         }
 
         static void _updateUserSettingsData(String jsonData)
@@ -66,7 +66,7 @@ namespace FlutterBinding.UI
         static void _updateTextScaleFactor(double textScaleFactor)
         {
             Window.Instance.textScaleFactor = textScaleFactor;
-            _invoke(Window.Instance.onTextScaleFactorChanged, Window.Instance._onTextScaleFactorChangedZone);
+            _invoke(Window.Instance.onTextScaleFactorChanged, Window.Instance.OnTextScaleFactorChangedZone);
         }
 
         static void _updateAlwaysUse24HourFormat(bool alwaysUse24HourFormat)
@@ -77,16 +77,16 @@ namespace FlutterBinding.UI
         static void _updateSemanticsEnabled(bool enabled)
         {
             Window.Instance.semanticsEnabled = enabled;
-            _invoke(Window.Instance.onSemanticsEnabledChanged, Window.Instance._onSemanticsEnabledChangedZone);
+            _invoke(Window.Instance.onSemanticsEnabledChanged, Window.Instance.OnSemanticsEnabledChangedZone);
         }
 
         static void _updateAccessibilityFeatures(int values)
         {
-            AccessibilityFeatures newFeatures = new AccessibilityFeatures(values);
+            AccessibilityFeatures newFeatures = (AccessibilityFeatures)values;
             if (newFeatures == Window.Instance.accessibilityFeatures)
                 return;
             Window.Instance.accessibilityFeatures = newFeatures;
-            _invoke(Window.Instance.onAccessibilityFeaturesChanged, Window.Instance._onAccessibilityFlagsChangedZone);
+            _invoke(Window.Instance.onAccessibilityFeaturesChanged, Window.Instance.OnAccessibilityFlagsChangedZone);
         }
 
         static void _dispatchPlatformMessage(String name, ByteData data, int responseId)
@@ -95,44 +95,44 @@ namespace FlutterBinding.UI
             {
                 _invoke3<String, ByteData, PlatformMessageResponseCallback>(
                  (a, b, c) => Window.Instance.onPlatformMessage(a, b, c),
-                  Window.Instance._onPlatformMessageZone,
+                  Window.Instance.OnPlatformMessageZone,
                   name,
                   data,
                   (ByteData responseData) =>
                   {
-                      Window.Instance._respondToPlatformMessage(responseId, responseData);
+                      Window.Instance.RespondToPlatformMessage(responseId, responseData);
                   });
             }
             else
             {
-                Window.Instance._respondToPlatformMessage(responseId, null);
+                Window.Instance.RespondToPlatformMessage(responseId, null);
             }
         }
 
         static void _dispatchPointerDataPacket(ByteData packet)
         {
             if (Window.Instance.onPointerDataPacket != null)
-                _invoke1<PointerDataPacket>((d) => Window.Instance.onPointerDataPacket(d), Window.Instance._onPointerDataPacketZone, _unpackPointerDataPacket(packet));
+                _invoke1<PointerDataPacket>((d) => Window.Instance.onPointerDataPacket(d), Window.Instance.OnPointerDataPacketZone, _unpackPointerDataPacket(packet));
         }
 
         static void _dispatchSemanticsAction(int id, int action, ByteData args)
         {
             _invoke3<int, SemanticsAction, ByteData>(
              (a, b, c) => Window.Instance.onSemanticsAction(a, b, c),
-              Window.Instance._onSemanticsActionZone,
+              Window.Instance.OnSemanticsActionZone,
               id,
-              SemanticsAction.values[action],
+              (SemanticsAction)action,
               args);
         }
 
         static void _beginFrame(int microseconds)
         {
-            _invoke1<Duration>((d) => Window.Instance.onBeginFrame(d), Window.Instance._onBeginFrameZone, new Duration(microseconds: microseconds));
+            _invoke1<Duration>((d) => Window.Instance.onBeginFrame(d), Window.Instance.OnBeginFrameZone, new Duration(microseconds: microseconds));
         }
 
         static void _drawFrame()
         {
-            _invoke(Window.Instance.onDrawFrame, Window.Instance._onDrawFrameZone);
+            _invoke(Window.Instance.onDrawFrame, Window.Instance.OnDrawFrameZone);
         }
 
         /// Invokes [callback] inside the given [zone].

@@ -368,7 +368,7 @@ namespace FlutterBinding.UI
                $"letterSpacing: {  ((_encoded[0] & 0x00400) == 0x00400 ? $"{_letterSpacing}x" : "unspecified")}, " +
                $"wordSpacing: {    ((_encoded[0] & 0x00800) == 0x00800 ? $"{_wordSpacing}x" : "unspecified")}, " +
                $"height: {         ((_encoded[0] & 0x01000) == 0x01000 ? $"{_height}x" : "unspecified")}, " +
-               $"locale: {         ((_encoded[0] & 0x02000) == 0x02000 ? _locale.toString() : "unspecified")}, " +
+               $"locale: {         ((_encoded[0] & 0x02000) == 0x02000 ? _locale.ToString() : "unspecified")}, " +
                $"background: {     ((_encoded[0] & 0x04000) == 0x04000 ? _background.toString() : "unspecified")}, " +
                $"foreground: {     ((_encoded[0] & 0x08000) == 0x08000 ? _foreground.toString() : "unspecified")}, " +
                $"shadows: {        ((_encoded[0] & 0x10000) == 0x10000 ? _shadows.ToString() : "unspecified")}" +
@@ -505,7 +505,7 @@ namespace FlutterBinding.UI
                        $"fontSize: {      ((_encoded[0] & 0x080) == 0x080 ? _fontSize.ToString() : "unspecified")}, " +
                        $"lineHeight: {    ((_encoded[0] & 0x100) == 0x100 ? $"{_lineHeight}x" : "unspecified")}, " +
                        $"ellipsis: {      ((_encoded[0] & 0x200) == 0x200 ? $"\"{_ellipsis}\"" : "unspecified")}, " +
-                       $"locale: {        ((_encoded[0] & 0x400) == 0x400 ? _locale.toString() : "unspecified")}" +
+                       $"locale: {        ((_encoded[0] & 0x400) == 0x400 ? _locale.ToString() : "unspecified")}" +
                      ")";
         }
     }
@@ -957,7 +957,7 @@ namespace FlutterBinding.UI
             // native 'ParagraphBuilder_pushStyle';
         }
 
-        static String _encodeLocale(Locale locale) => locale?.toString() ?? "";
+        static String _encodeLocale(Locale locale) => locale?.ToString() ?? "";
 
         /// Ends the effect of the most recent call to [pushStyle].
         ///
