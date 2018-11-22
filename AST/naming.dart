@@ -186,7 +186,7 @@ class Naming {
         return "TimeSpan";
       case "future<void>":
       case "future<null>":
-        return "Task";
+        return "Future";
       default:
         var formattedName =
             getFormattedName(typeName, NameStyle.UpperCamelCase);
