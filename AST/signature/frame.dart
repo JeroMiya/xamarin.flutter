@@ -73,7 +73,7 @@ class Frame {
     imports.add("static FlutterSDK.Global");
     
     // Just to cover everything that is converted to a Task
-    imports.add("using System.Threading.Tasks");
+    imports.add("System.Threading.Tasks");
 
     return imports.map((import) => "using ${import};").join("\n");
   }
