@@ -3166,7 +3166,7 @@ namespace FlutterBinding.UI
         ///
         /// To end the recording, call [PictureRecorder.endRecording] on the
         /// given recorder.
-        public Canvas(PictureRecorder recorder, Rect cullRect = null) : base(new SKBitmap()) 
+        public Canvas(PictureRecorder recorder, Rect cullRect = null)
         {
             if (recorder.isRecording)
                 throw new ArgumentException("'recorder' must not already be associated with another Canvas.");
@@ -3174,6 +3174,7 @@ namespace FlutterBinding.UI
                 cullRect = Rect.largest;
             _constructor(recorder, cullRect.left, cullRect.top, cullRect.right, cullRect.bottom);
         }
+
         void _constructor(PictureRecorder recorder,
                           double left,
                           double top,
@@ -3192,7 +3193,7 @@ namespace FlutterBinding.UI
         ///
         ///  * [saveLayer], which does the same thing but additionally also groups the
         ///    commands done until the matching [restore].
-        public void save() => this.Save();
+        public void save() => _canvas.Save();
 
         /// Saves a copy of the current transform and clip on the save stack, and then
         /// creates a new group which subsequent calls will become a part of. When the
@@ -3308,12 +3309,12 @@ namespace FlutterBinding.UI
             ////assert(paint != null);
             if (bounds == null)
             {
-                this.SaveLayer(paint);
+                _canvas.SaveLayer(paint);
             }
             else
             {
                 //assert(_rectIsValid(bounds));
-                this.SaveLayer(bounds.ToSKRect(), paint);
+                _canvas.SaveLayer(bounds.ToSKRect(), paint);
             }
         }
 
@@ -3327,7 +3328,7 @@ namespace FlutterBinding.UI
         public void restore()
         {
             // [DONE] native 'Canvas_restore';
-            this.Restore();
+            _canvas.Restore();
         }
 
         /// Returns the number of items on the save stack, including the
@@ -3336,11 +3337,11 @@ namespace FlutterBinding.UI
         /// each matching call to [restore] decrements it.
         ///
         /// This number cannot go below 1.
-        public int getSaveCount() => this.SaveCount;
+        public int getSaveCount() => _canvas.SaveCount;
 
         /// Add a translation to the current transform, shifting the coordinate space
         /// horizontally by the first argument and vertically by the second argument.
-        public void translate(double dx, double dy) => this.Translate((float)dx, (float)dy);
+        public void translate(double dx, double dy) => _canvas.Translate((float)dx, (float)dy);
 
         /// Add an axis-aligned scale to the current transform, scaling by the first
         /// argument in the horizontal direction and the second in the vertical
@@ -3352,14 +3353,14 @@ namespace FlutterBinding.UI
 
         void _scale(double sx, double sy)
         {
-            RecordingCanvas.Scale((float)sx, (float)sy);
+            _canvas.Scale((float)sx, (float)sy);
             // [DONE] native 'Canvas_scale';
         }
 
         /// Add a rotation to the current transform. The argument is in radians clockwise.
         public void rotate(double radians)
         {
-            this.RotateRadians((float)radians);
+            _canvas.RotateRadians((float)radians);
         }
 
         /// Add an axis-aligned skew to the current transform, with the first argument
@@ -3368,7 +3369,7 @@ namespace FlutterBinding.UI
         /// origin.
         public void skew(double sx, double sy)
         {
-            this.Skew((float)sx, (float)sy);
+            _canvas.Skew((float)sx, (float)sy);
         }
 
         /// Multiply the current transform by the specified 4⨉4 transformation matrix
@@ -3383,7 +3384,7 @@ namespace FlutterBinding.UI
         void _transform(List<float> matrix4)
         {
             var matrix = Matrix.ToSkMatrix(matrix4);
-            this.Concat(ref matrix);
+            _canvas.Concat(ref matrix);
         }
 
         /// Reduces the clip region to the intersection of the current clip and the
@@ -3403,7 +3404,7 @@ namespace FlutterBinding.UI
             ////assert(clipOp != null);
             ////assert(doAntiAlias != null);
 
-            this.ClipRect(rect.ToSKRect(), (SKClipOperation)clipOp, doAntiAlias);
+            _canvas.ClipRect(rect.ToSKRect(), (SKClipOperation)clipOp, doAntiAlias);
         }
 
         /// Reduces the clip region to the intersection of the current clip and the
@@ -3418,7 +3419,7 @@ namespace FlutterBinding.UI
         {
             ////assert(_rrectIsValid(rrect));
             ////assert(doAntiAlias != null);
-            this.ClipRoundRect(rrect.ToRoundedRect(), antialias: doAntiAlias);
+            _canvas.ClipRoundRect(rrect.ToRoundedRect(), antialias: doAntiAlias);
         }
 
         /// Reduces the clip region to the intersection of the current clip and the
@@ -3434,7 +3435,7 @@ namespace FlutterBinding.UI
         {
             ////assert(path != null); // path is checked on the engine side
             ////assert(doAntiAlias != null);
-            this.ClipPath(path, antialias: doAntiAlias);
+            _canvas.ClipPath(path, antialias: doAntiAlias);
         }
 
         /// Paints the given [Color] onto the canvas, applying the given
@@ -3444,7 +3445,7 @@ namespace FlutterBinding.UI
         {
             ////assert(color != null);
             ////assert(blendMode != null);
-            this.DrawColor(new SKColor(color.value), (SKBlendMode)blendMode);
+            _canvas.DrawColor(new SKColor(color.value), (SKBlendMode)blendMode);
         }
 
         /// Draws a line between the given points using the given paint. The line is
@@ -3457,7 +3458,7 @@ namespace FlutterBinding.UI
             ////assert(_offsetIsValid(p2));
             ////assert(paint != null);
 
-            this.DrawLine(p1.ToPoint(), p2.ToPoint(), paint);
+            _canvas.DrawLine(p1.ToPoint(), p2.ToPoint(), paint);
 
         }
 
@@ -3468,7 +3469,7 @@ namespace FlutterBinding.UI
         public void drawPaint(SKPaint paint)
         {
             //assert(paint != null);
-            this.DrawPaint(paint);
+            _canvas.DrawPaint(paint);
         }
 
         /// Draws a rectangle with the given [Paint]. Whether the rectangle is filled
@@ -3477,7 +3478,7 @@ namespace FlutterBinding.UI
         {
             //assert(_rectIsValid(rect));
             //assert(paint != null);
-            this.DrawRect(rect.ToSKRect(), paint);
+            _canvas.DrawRect(rect.ToSKRect(), paint);
         }
 
         /// Draws a rounded rectangle with the given [Paint]. Whether the rectangle is
@@ -3486,7 +3487,7 @@ namespace FlutterBinding.UI
         {
             //assert(_rrectIsValid(rrect));
             //assert(paint != null);
-            this.DrawRoundRect(rrect.ToRoundedRect(), paint);
+            _canvas.DrawRoundRect(rrect.ToRoundedRect(), paint);
         }
 
         /// Draws a shape consisting of the difference between two rounded rectangles
@@ -3511,7 +3512,7 @@ namespace FlutterBinding.UI
         {
             //assert(_rectIsValid(rect));
             //assert(paint != null);
-            this.DrawOval(rect.ToSKRect(), paint);
+            _canvas.DrawOval(rect.ToSKRect(), paint);
         }
 
         /// Draws a circle centered at the point given by the first argument and
@@ -3522,7 +3523,7 @@ namespace FlutterBinding.UI
         {
             //assert(_offsetIsValid(c));
             //assert(paint != null);
-            RecordingCanvas.DrawCircle(c.ToPoint(), (float)radius, paint);
+            _canvas.DrawCircle(c.ToPoint(), (float)radius, paint);
         }
 
         /// Draw an arc scaled to fit inside the given rectangle. It starts from
@@ -3551,7 +3552,7 @@ namespace FlutterBinding.UI
         {
             //assert(path != null); // path is checked on the engine side
             //assert(paint != null);
-            this.DrawPath(path, paint);
+            _canvas.DrawPath(path, paint);
         }
 
         /// Draws the given [Image] into the canvas with its top-left corner at the
@@ -3561,7 +3562,7 @@ namespace FlutterBinding.UI
             //assert(image != null); // image is checked on the engine side
             //assert(_offsetIsValid(p));
             //assert(paint != null);
-            this.DrawImage(image, p.ToPoint(), paint);
+            _canvas.DrawImage(image, p.ToPoint(), paint);
         }
 
         /// Draws the subset of the given image described by the `src` argument into
@@ -3579,7 +3580,7 @@ namespace FlutterBinding.UI
             //assert(_rectIsValid(src));
             //assert(_rectIsValid(dst));
             //assert(paint != null);
-            this.DrawImage(image, src.ToSKRect(), dst.ToSKRect(), paint);
+            _canvas.DrawImage(image, src.ToSKRect(), dst.ToSKRect(), paint);
 
         }
 
@@ -3602,7 +3603,7 @@ namespace FlutterBinding.UI
             //assert(_rectIsValid(center));
             //assert(_rectIsValid(dst));
             //assert(paint != null);
-            this.DrawImageNinePatch(image, center.ToSKRectI(), dst.ToSKRect(), paint);
+            _canvas.DrawImageNinePatch(image, center.ToSKRectI(), dst.ToSKRect(), paint);
 
         }
 
@@ -3612,7 +3613,7 @@ namespace FlutterBinding.UI
         public void drawPicture(SKPicture picture)
         {
             //assert(picture != null); // picture is checked on the engine side        
-            this.DrawPicture(picture);
+            _canvas.DrawPicture(picture);
         }
 
         /// Draws the text in the given [Paragraph] into this canvas at the given
@@ -3639,7 +3640,7 @@ namespace FlutterBinding.UI
         {
             //assert(paragraph != null);
             //assert(_offsetIsValid(offset));
-            paragraph._paint(RecordingCanvas, offset.dx, offset.dy);
+            paragraph._paint(_canvas, offset.dx, offset.dy);
         }
 
         /// Draws a sequence of points according to the given [PointMode].
@@ -3655,7 +3656,7 @@ namespace FlutterBinding.UI
             //assert(pointMode != null);
             //assert(points != null);
             //assert(paint != null);
-            this.DrawPoints((SKPointMode)pointMode, points.ToPoints().ToArray(), paint);
+            _canvas.DrawPoints((SKPointMode)pointMode, points.ToPoints().ToArray(), paint);
         }
 
         /// Draws a sequence of points according to the given [PointMode].
@@ -3691,7 +3692,7 @@ namespace FlutterBinding.UI
             //assert(vertices != null); // vertices is checked on the engine side
             //assert(paint != null);
             //assert(blendMode != null);
-            this.DrawVertices(vertices, (SKBlendMode)blendMode, paint);
+            _canvas.DrawVertices(vertices, (SKBlendMode)blendMode, paint);
         }       
 
         //

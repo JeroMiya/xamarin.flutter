@@ -52,7 +52,7 @@ namespace FlutterBindingSample
             var canvas = new FlutterBinding.UI.Canvas(recorder, physicalBounds);
             canvas.scale((float)devicePixelRatio, (float)devicePixelRatio);
 
-            PaintUtils.DrawCheckerboard(canvas.RecordingCanvas, new SKRect(0,0,(float)physicalSize.width, (float)physicalSize.height));
+            PaintUtils.DrawCheckerboard(canvas, Rect.fromLTWH(0,0,(float)physicalSize.width, (float)physicalSize.height));
 
             var circlePaint = new SKPaint
             {

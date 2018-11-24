@@ -7,9 +7,9 @@ namespace FlutterBinding.Engine.Painting
 {
     public class NativeCanvas
     {
-        public NativeCanvas(SKBitmap bitmap) { }
+        protected SKCanvas _canvas;
 
-        public SKCanvas RecordingCanvas { get; set; }
+        internal SKCanvas SKCanvas => _canvas;
 
         public void Constructor(SKPictureRecorder recorder,
                           double left,
@@ -17,8 +17,7 @@ namespace FlutterBinding.Engine.Painting
                           double right,
                           double bottom)
         {
-            var canvas = recorder.BeginRecording(new SKRect((float)left, (float)top, (float)right, (float)bottom));
-            RecordingCanvas = canvas;
+            _canvas = recorder.BeginRecording(new SKRect((float)left, (float)top, (float)right, (float)bottom));
         }
 
 

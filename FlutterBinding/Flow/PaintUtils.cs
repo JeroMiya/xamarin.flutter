@@ -1,4 +1,5 @@
 ﻿using System;
+using FlutterBinding.UI;
 using SkiaSharp;
 using static FlutterBinding.Flow.Helper;
 
@@ -27,6 +28,11 @@ namespace FlutterBinding.Flow
                 Shader = CreateCheckerboardShader(c1, c2, size)
             };
             canvas.DrawPaint(paint);
+        }
+
+        public static void DrawCheckerboard(Canvas canvas, Rect rect)
+        {
+            DrawCheckerboard(canvas.SKCanvas, rect.ToSKRect());
         }
 
         public static void DrawCheckerboard(SKCanvas canvas, SKRect rect)
