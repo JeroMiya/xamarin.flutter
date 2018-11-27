@@ -1,6 +1,12 @@
-﻿using FlutterBinding.Flow.Layers;
+﻿using System;
+using System.Data;
+using System.Threading;
+using System.Threading.Tasks;
+using FlutterBinding.Flow.Layers;
+using FlutterBinding.Mapping;
 using FlutterBinding.UI;
 using SkiaSharp;
+using static FlutterBinding.Mapping.Helper;
 
 namespace FlutterBinding.Engine.Compositing
 {
@@ -17,12 +23,12 @@ namespace FlutterBinding.Engine.Compositing
                 checkerboardRasterCacheImages, checkerboardOffscreenLayers);
         }
 
-        LayerTree m_layerTree;
+        private readonly LayerTree _layerTree;
 
 
         public LayerTree TakeLayerTree()
         {
-            return m_layerTree;
+            return _layerTree;
         }
 
         public NativeScene(Layer rootLayer,
@@ -30,50 +36,32 @@ namespace FlutterBinding.Engine.Compositing
              bool checkerboardRasterCacheImages,
              bool checkerboardOffscreenLayers)
         {
-            m_layerTree = new LayerTree();
-            m_layerTree.set_root_layer(rootLayer);
-            m_layerTree.set_rasterizer_tracing_threshold(rasterizerTracingThreshold);
-            m_layerTree.set_checkerboard_raster_cache_images(
+            _layerTree = new LayerTree();
+            _layerTree.set_root_layer(rootLayer);
+            _layerTree.set_rasterizer_tracing_threshold(rasterizerTracingThreshold);
+            _layerTree.set_checkerboard_raster_cache_images(
                 checkerboardRasterCacheImages);
-            m_layerTree.set_checkerboard_offscreen_layers(checkerboardOffscreenLayers);
+            _layerTree.set_checkerboard_offscreen_layers(checkerboardOffscreenLayers);
         }
 
-        public string ToImage(int width,
-                              int height,
-                              _Callback<SKImage> raw_image_callback)
+        public Future<SKImage> ToImage(int width, int height)
         {
-
-            if (raw_image_callback == null)
-            {
-                return "Image callback was invalid";
-            }
-
-            if (m_layerTree == null)
-            {
-                return "Scene did not contain a layer tree.";
-            }
+            if (_layerTree == null)
+                throw new FlutterException("Scene did not contain a layer tree.");
 
             if (width == 0 || height == 0)
-            {
-                return "Image dimensions for scene were invalid.";
-            }
+                throw new FlutterException("Image dimensions for scene were invalid.");
 
             // We can't create an image on this task runner because we don't have a
             // graphics context. Even if we did, it would be slow anyway. Also, this
             // thread owns the sole reference to the layer tree. So we flatten the layer
             // tree into a picture and use that as the thread transport mechanism.
 
-            var picture = m_layerTree.Flatten(new SKRect(0, 0, width, height));
+            var picture = _layerTree.Flatten(new SKRect(0, 0, width, height));
             if (picture == null)
-            {
-                // Already in Dart scope.
-                return "Could not flatten scene into a layer tree.";
-            }
+                throw new FlutterException("Could not flatten scene into a layer tree.");
 
-            var image = SKImage.FromPicture(picture, new SKSizeI(width, height));
-            raw_image_callback(image);
-           
-            return string.Empty;
+            return _futurize(() => SKImage.FromPicture(picture, new SKSizeI(width, height)));
         }
     }
 }

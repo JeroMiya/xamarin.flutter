@@ -1,6 +1,8 @@
 ﻿using FlutterBinding.UI;
 using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace FlutterBinding.Mapping
 {
@@ -50,26 +52,21 @@ namespace FlutterBinding.Mapping
 
         public static double abs(this double value) => Math.Abs(value);
         
-        public static Future<T> _futurize<T>(Action<_Callback<T>> callback)
+        public static Future<T> _futurize<T>(Func<T> func)
         {
-            // Question, why is this so complicated for running a new Task.
-            // Could be a Dart -> C# translation issue
+            var future = new Future<T>(func);
+            future.Start();
+            return future;
 
-            var result = default(T);
-
-            var resolve = new _Callback<T>((t) => { result = t; });
-
-            return new Future<T>(() => { return result; });
+            // NOTE: Would prefer to kill Future<> and just use Task.Run(func);
         }
 
-        public static Future _futurize(Action<_Callback> callback)
+        public static Future _futurize(Action action)
         {
-            // Question, why is this so complicated for running a new Task.
-            // Could be a Dart -> C# translation issue
-
-            var resolve = new _Callback(()=> { });
-
-            return new Future(() => {  });
+            var future = new Future(action);
+            future.Start();
+            return future;
+            // NOTE: Would prefer to kill Future and just use Task.Run(action);
         }
 
     }

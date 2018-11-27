@@ -5,6 +5,7 @@ using FlutterBinding.Mapping;
 using SkiaSharp;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using static FlutterBinding.Mapping.Helper;
 
 namespace FlutterBinding.UI
@@ -34,8 +35,7 @@ namespace FlutterBinding.UI
             if (width <= 0 || height <= 0)
                 throw new Exception("Invalid image dimensions.");
 
-            return _futurize((_Callback<SKImage> callback) => ToImage(width, height, callback)
-            );
+            return ToImage(width, height);
         }
     }
 

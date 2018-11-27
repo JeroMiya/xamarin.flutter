@@ -1006,15 +1006,15 @@ namespace FlutterBinding.UI
         ///  If this is not provided, then the family name will be extracted from the font file.
         static Task loadFontFromList(List<int> list, String fontFamily = "")
         {
-            return _futurize(
-              (_Callback callback) => _loadFontFromList(list, callback, fontFamily)
-            );
+            return _futurize(() =>
+            {
+                _loadFontFromList(list, fontFamily);
+            });
         }
 
-        static String _loadFontFromList(List<int> list, _Callback callback, String fontFamily)
+        static void _loadFontFromList(List<int> list, String fontFamily)
         {
             // native 'loadFontFromList';
-            return string.Empty; // Tmp to resolve build
         }
 
         // This encoding must match the C++ version ParagraphBuilder::build.

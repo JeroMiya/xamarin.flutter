@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using static FlutterBinding.Mapping.Types;
 using static FlutterBinding.UI.Lerp;
 using static FlutterBinding.Mapping.Helper;
-using static FlutterBinding.UI.Helper;
 using static FlutterBinding.UI.Painting;
 using System.Linq;
 using FlutterBinding.Mapping;
@@ -179,15 +178,14 @@ namespace FlutterBinding.UI
         public Task<SKCodec> instantiateImageCodec(List<int> list,
             double decodedCacheRatioCap = double.PositiveInfinity)
         {
-            return _futurize(
-              (_Callback<SKCodec> callback) => _instantiateImageCodec(list, callback, null, decodedCacheRatioCap));
+            return _instantiateImageCodec(list, null, decodedCacheRatioCap);
         }
 
         /// Instantiates a [Codec] object for an image binary data.
         ///
         /// Returns an error message if the instantiation has failed, null otherwise.
-        String _instantiateImageCodec(List<int> list, _Callback<SKCodec> callback, _ImageInfo imageInfo, double decodedCacheRatioCap)
-            => NativeCodec.InstantiateImageCodec(list, callback, imageInfo, decodedCacheRatioCap);
+        Task<SKCodec> _instantiateImageCodec(List<int> list, _ImageInfo imageInfo, double decodedCacheRatioCap)
+            => NativeCodec.InstantiateImageCodec(list, imageInfo, decodedCacheRatioCap);
 
         /// Loads a single image frame from a byte array into an [Image] object.
         ///
@@ -222,7 +220,7 @@ namespace FlutterBinding.UI
         /// multiple) animated images. Note that GIFs are highly compressed, and it's
         /// unlikely that a factor that low will be sufficient to cache all decoded
         /// frames. The default value is `25.0`.
-        public void decodeImageFromPixels(
+        public async void decodeImageFromPixels(
           List<int> pixels,
           int width,
           int height,
@@ -231,10 +229,8 @@ namespace FlutterBinding.UI
           int rowBytes = 0, double decodedCacheRatioCap = double.PositiveInfinity)
         {
             _ImageInfo imageInfo = new _ImageInfo(width, height, (int)format, rowBytes);
-            Future<SKCodec> codecFuture = _futurize(
-              (_Callback<SKCodec> cb) => _instantiateImageCodec(pixels, cb, imageInfo, decodedCacheRatioCap)
-            );
-            codecFuture.ContinueWith(async (Task<SKCodec> codec) => callback(codec.Result.FrameInfo[0].GetImage(codec.Result)));
+            var codec = await _instantiateImageCodec(pixels, imageInfo, decodedCacheRatioCap);
+            callback(codec.FrameInfo[0].GetImage(codec));
         }
 
     }
@@ -3172,17 +3168,12 @@ namespace FlutterBinding.UI
                 throw new ArgumentException("'recorder' must not already be associated with another Canvas.");
             if (cullRect == null)
                 cullRect = Rect.largest;
-            _constructor(recorder, cullRect.left, cullRect.top, cullRect.right, cullRect.bottom);
+            this.Constructor(recorder, cullRect.left, cullRect.top, cullRect.right, cullRect.bottom);
         }
 
-        void _constructor(PictureRecorder recorder,
-                          double left,
-                          double top,
-                          double right,
-                          double bottom)
+        public Canvas(SKCanvas canvas)
         {
-            this.Constructor(recorder, left, top, right, bottom);
-            // [DONE] native 'Canvas_constructor';
+            _canvas = canvas;
         }
 
         /// Saves a copy of the current transform and clip on the save stack.
@@ -4097,15 +4088,4 @@ namespace FlutterBinding.UI
 
         public String toString() => $"TextShadow({color}, {offset}, {blurRadius})";
     }
-
-    // TODO: I think these should just be Action's or Func's no need for a delegate
-    /// Generic callback signature, used by [_futurize].
-    public delegate void _Callback<T>(T result);
-    public delegate void _Callback();
-
-    /// Signature for a method that receives a [_Callback].
-    ///
-    /// Return value should be null on success, and a string error message on
-    /// failure.
-    public delegate String _Callbacker<T>(_Callback<T> callback);
 }

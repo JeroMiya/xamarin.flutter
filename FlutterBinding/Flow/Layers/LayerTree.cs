@@ -1,4 +1,5 @@
-﻿using SkiaSharp;
+﻿using FlutterBinding.Engine;
+using SkiaSharp;
 using static FlutterBinding.Flow.Helper;
 
 // Copyright 2015 The Chromium Authors. All rights reserved.
@@ -109,40 +110,24 @@ namespace FlutterBinding.Flow.Layers
             root_layer_ = root_layer;
         }
 
-        public SKSizeI frame_size()
-        {
-            return frame_size_;
-        }
+        public SKSizeI frame_size() => frame_size_;
+        public void set_frame_size(SKSizeI frame_size) => frame_size_ = frame_size;
 
-        public void set_frame_size(SKSizeI frame_size)
-        {
-            frame_size_ = frame_size;
-        }
+        public void set_construction_time(TimeDelta delta) => construction_time_ = delta;
+        public TimeDelta construction_time() => construction_time_;
 
         // The number of frame intervals missed after which the compositor must
         // trace the rasterized picture to a trace file. Specify 0 to disable all
         // tracing
-        public void set_rasterizer_tracing_threshold(uint interval)
-        {
-            rasterizer_tracing_threshold_ = interval;
-        }
-        public uint rasterizer_tracing_threshold()
-        {
-            return rasterizer_tracing_threshold_;
-        }
+        public void set_rasterizer_tracing_threshold(uint interval) => rasterizer_tracing_threshold_ = interval;
+        public uint rasterizer_tracing_threshold() => rasterizer_tracing_threshold_;
 
-        public void set_checkerboard_raster_cache_images(bool checkerboard)
-        {
-            checkerboard_raster_cache_images_ = checkerboard;
-        }
-
-        public void set_checkerboard_offscreen_layers(bool checkerboard)
-        {
-            checkerboard_offscreen_layers_ = checkerboard;
-        }
+        public void set_checkerboard_raster_cache_images(bool checkerboard) => checkerboard_raster_cache_images_ = checkerboard;
+        public void set_checkerboard_offscreen_layers(bool checkerboard) => checkerboard_offscreen_layers_ = checkerboard;
 
         private SKSizeI frame_size_ = new SKSizeI(); // Physical pixels.
         public Layer root_layer_;
+        TimeDelta construction_time_;
         private uint rasterizer_tracing_threshold_;
         private bool checkerboard_raster_cache_images_;
         private bool checkerboard_offscreen_layers_;
