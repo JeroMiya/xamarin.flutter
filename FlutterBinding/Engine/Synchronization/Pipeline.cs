@@ -61,7 +61,7 @@ namespace FlutterBinding.Engine.Synchronization
                 }
             }
 
-            private void Complete(TResource resource)
+            public void Complete(TResource resource)
             {
                 if (continuation_ != null)
                 {

@@ -10,16 +10,16 @@ namespace FlutterBinding.Shell
 {
     public interface SnapshotDelegate
     {
-        SKImage MakeRasterSnapshot(SKPicture picture, SKSizeI picture_size);
+        SKImage MakeRasterSnapshot(SKPicture picture, SKSizeI pictureSize);
     };
 
 
     public class Rasterizer : SnapshotDelegate
     {
-        public Rasterizer(TaskRunners task_runners, CompositorContext compositor_context = null)
+        public Rasterizer(TaskRunners taskRunners, CompositorContext compositorContext = null)
         {
-            _taskRunners = task_runners;
-            _compositorContext = compositor_context;
+            _taskRunners = taskRunners;
+            _compositorContext = compositorContext;
         }
 
         public void Setup(Surface surface)

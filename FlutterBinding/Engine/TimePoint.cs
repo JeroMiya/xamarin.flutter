@@ -19,6 +19,20 @@ namespace FlutterBinding.Engine
 
     public class TimePoint
     {
+        // Number of 100ns ticks per time unit
+        public const long TicksPerMicrosecond = 10;
+        public const long TicksPerMillisecond = 10000;
+        public const long TicksPerSecond = TicksPerMillisecond * 1000;
+        public const long TicksPerMinute = TicksPerSecond * 60;
+        public const long TicksPerHour = TicksPerMinute * 60;
+        public const long TicksPerDay = TicksPerHour * 24;
+
+        // Number of milliseconds per time unit
+        public const int MillisPerSecond = 1000;
+        public const int MillisPerMinute = MillisPerSecond * 60;
+        public const int MillisPerHour = MillisPerMinute * 60;
+        public const int MillisPerDay = MillisPerHour * 24;
+
         private readonly DateTime _dateTime;
         private static DateTime Epoch = new DateTime(1970, 1, 1);
 
@@ -26,6 +40,11 @@ namespace FlutterBinding.Engine
         {
             _dateTime = dt ?? DateTime.MinValue;
         }
+
+        public DateTime DateTime => _dateTime;
+        public long Ticks => _dateTime.Ticks;
+        public long TotalMicroseconds => _dateTime.Ticks / TicksPerMicrosecond;
+        public long Microseconds => (_dateTime.Ticks / TicksPerMicrosecond) % 1000;
 
         public static implicit operator DateTime(TimePoint tp) => tp._dateTime;
         public static implicit operator TimePoint(DateTime dt) => new TimePoint(dt);
