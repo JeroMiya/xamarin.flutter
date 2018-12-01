@@ -43,10 +43,10 @@ namespace FlutterBinding.Mapping
         public class Zone
         {
             public static Zone current = new Zone();
-            public void runUnaryGuarded(PlatformMessageResponseCallback callback, ByteData data)
-            {
-                // TODO:
-            }
+            //public void runUnaryGuarded(PlatformMessageResponseCallback callback, object data)
+            //{
+            //    // TODO:
+            //}
 
             public void runUnaryGuarded<A>(Action<A> callback, A data)
             {

@@ -1,40 +1,73 @@
 ﻿using FlutterBinding.Engine;
+using FlutterBinding.Engine.Assets;
 
 namespace FlutterBinding.Shell
 {
     public class RunConfiguration
     {
-        /*
-        public static RunConfiguration InferFromSettings( Settings settings, TaskRunner io_worker = null) { }
+        public static RunConfiguration InferFromSettings(
+            Settings settings, 
+            TaskRunner io_worker = null)
+        {
+            var asset_manager = new AssetManager();
 
-        public RunConfiguration(IsolateConfiguration configuration) { }
+            asset_manager.PushBack(new DirectoryAssetBundle(settings.assets_dir));
+            asset_manager.PushBack(new DirectoryAssetBundle(settings.assets_path));
 
-        public RunConfiguration(IsolateConfiguration configuration, AssetManager asset_manager) { }
+            return new RunConfiguration(
+                //IsolateConfiguration::InferFromSettings(settings, asset_manager, io_worker),
+                asset_manager);
+        }
 
-        public RunConfiguration(RunConfiguration configuration) { }
+        public RunConfiguration(
+            //IsolateConfiguration configuration, 
+            AssetManager asset_manager = null)
+        {
+            //isolate_configuration_ = configuration;
+            asset_manager_ = asset_manager ?? new AssetManager();
+        }
 
-        public bool IsValid() { }
+        public bool IsValid() => asset_manager_ != null;
+            //&& isolate_configuration_ != null;
 
-        public bool AddAssetResolver(AssetResolver resolver) { }
+        public bool AddAssetResolver(AssetResolver resolver)
+        {
+            if (resolver == null || !resolver.IsValid())
+                return false;
 
-        public void SetEntrypoint(string entrypoint) { }
+            asset_manager_.PushBack(resolver);
+            return true;
+        }
 
-        public void SetEntrypointAndLibrary(string entrypoint, string library) { }
+        public void SetEntrypoint(string entrypoint)
+        {
+            entrypoint_ = entrypoint;
+        }
 
-        public AssetManager GetAssetManager() { }
+        public void SetEntrypointAndLibrary(string entrypoint, string library)
+        {
+            SetEntrypoint(entrypoint);
+            entrypoint_library_ = library;
+        }
 
-        public string GetEntrypoint() { }
+        public AssetManager GetAssetManager() => asset_manager_;
 
-        public string GetEntrypointLibrary() { }
+        public string GetEntrypoint() => entrypoint_;
 
-        public IsolateConfiguration TakeIsolateConfiguration() { }
+        public string GetEntrypointLibrary() => entrypoint_library_;
+
+        //public IsolateConfiguration TakeIsolateConfiguration()
+        //{
+        //    var result = isolate_configuration_;
+        //    isolate_configuration_ = null;
+        //    return result;
+        //}
 
 
-        private IsolateConfiguration isolate_configuration_;
+        //private IsolateConfiguration isolate_configuration_;
         private AssetManager asset_manager_;
         private string entrypoint_ = "main";
         private string entrypoint_library_ = "";
-        */
 
         //FML_DISALLOW_COPY_AND_ASSIGN(RunConfiguration);
     };

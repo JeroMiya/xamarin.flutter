@@ -13,6 +13,15 @@ namespace FlutterBinding.Engine
             _timeSpan = ts ?? TimeSpan.Zero;
         }
 
+        public TimeDelta(long ticks)
+        {
+            _timeSpan = new TimeSpan(ticks);
+        }
+
+        public static TimeDelta operator +(TimeDelta td, TimeDelta other) => td._timeSpan + other._timeSpan;
+        public static TimeDelta operator -(TimeDelta td, TimeDelta other) => td._timeSpan - other._timeSpan;
+        public static TimeDelta operator %(TimeDelta td, TimeDelta other) => new TimeDelta(td._timeSpan.Ticks % other._timeSpan.Ticks);
+
         public static implicit operator TimeSpan(TimeDelta td) => td._timeSpan;
         public static implicit operator TimeDelta(TimeSpan td) => new TimeDelta(td);
     }

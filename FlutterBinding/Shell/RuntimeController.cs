@@ -21,8 +21,8 @@ namespace FlutterBinding.Shell
         void ScheduleFrame();
         void Render(Scene scene);
         void UpdateSemantics(SemanticsUpdate update);
+        void SetIsolateDebugName(string isolateName);
         //void HandlePlatformMessage(PlatformMessage message);
-        //void SetIsolateDebugName(string isolateName);
         //FontCollection GetFontCollection();
     };
 
@@ -38,7 +38,7 @@ namespace FlutterBinding.Shell
         public string user_settings_data = "{}";
         public bool semantics_enabled = false;
         public bool assistive_technology_enabled = false;
-        public Int32 accessibility_feature_flags_ = 0;
+        public AccessibilityFeatures accessibility_feature_flags_;
     };
 
     public class RuntimeController : WindowClient
@@ -206,7 +206,7 @@ namespace FlutterBinding.Shell
             return false;
         }
 
-        public bool SetAccessibilityFeatures(int flags)
+        public bool SetAccessibilityFeatures(AccessibilityFeatures flags)
         {
             window_data_.accessibility_feature_flags_ = flags;
             var window = GetWindowIfAvailable();
@@ -249,7 +249,7 @@ namespace FlutterBinding.Shell
         //    if (window != null)
         //    {
         //        //TRACE_EVENT1("flutter", "RuntimeController::DispatchPlatformMessage", "mode", "basic");
-        //        window.DispatchPlatformMessage(std::move(message));
+        //        window.DispatchPlatformMessage(message);
         //        return true;
         //    }
         //    return false;
@@ -354,7 +354,7 @@ namespace FlutterBinding.Shell
         // |blink::WindowClient|
         public void Render(Scene scene)
         {
-            client_.Render(scene.takeLayerTree());
+            client_.Render(scene.TakeLayerTree());
         }
 
         // |blink::WindowClient|
@@ -365,10 +365,10 @@ namespace FlutterBinding.Shell
         }
 
         // |blink::WindowClient|
-        public void HandlePlatformMessage(PlatformMessage message)
-        {
-            client_.HandlePlatformMessage(message);
-        }
+        //public void HandlePlatformMessage(PlatformMessage message)
+        //{
+        //    client_.HandlePlatformMessage(message);
+        //}
 
         // |blink::WindowClient|
         public void SetIsolateDebugName(string name)
@@ -379,11 +379,12 @@ namespace FlutterBinding.Shell
             //root_isolate.set_debug_name(name);
         }
 
+        // TODO: How are we going to do Fonts
         // |blink::WindowClient|
-        public FontCollection GetFontCollection()
-        {
-            return client_.GetFontCollection();
-        }
+        //public FontCollection GetFontCollection()
+        //{
+        //    return client_.GetFontCollection();
+        //}
 
         //FML_DISALLOW_COPY_AND_ASSIGN(RuntimeController);
     }

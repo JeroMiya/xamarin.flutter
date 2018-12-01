@@ -1,12 +1,15 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using FlutterBinding.Engine.Window;
 using static FlutterBinding.Mapping.Helper;
 using static FlutterBinding.Mapping.Types;
 using static FlutterBinding.UI.Painting;
 
 namespace FlutterBinding.UI
 {
+    // These appear to be called from the C++ Window
+
     public static class Hooks
     {      
         static void _updateWindowMetrics(double devicePixelRatio,
@@ -89,25 +92,19 @@ namespace FlutterBinding.UI
             _invoke(Window.Instance.onAccessibilityFeaturesChanged, Window.Instance.OnAccessibilityFlagsChangedZone);
         }
 
-        static void _dispatchPlatformMessage(String name, ByteData data, int responseId)
-        {
-            if (Window.Instance.onPlatformMessage != null)
-            {
-                _invoke3<String, ByteData, PlatformMessageResponseCallback>(
-                 (a, b, c) => Window.Instance.onPlatformMessage(a, b, c),
-                  Window.Instance.OnPlatformMessageZone,
-                  name,
-                  data,
-                  (ByteData responseData) =>
-                  {
-                      Window.Instance.RespondToPlatformMessage(responseId, responseData);
-                  });
-            }
-            else
-            {
-                Window.Instance.RespondToPlatformMessage(responseId, null);
-            }
-        }
+        //static void _dispatchPlatformMessage(PlatformMessage platformMessage)
+        //{
+        //    if (Window.Instance.onPlatformMessage != null)
+        //    {
+        //        _invoke(
+        //            () => Window.Instance.onPlatformMessage(platformMessage),
+        //            Window.Instance.OnPlatformMessageZone);
+        //    }
+        //    //else
+        //    //{
+        //    //    Window.Instance.RespondToPlatformMessage(responseId, null);
+        //    //}
+        //}
 
         static void _dispatchPointerDataPacket(ByteData packet)
         {

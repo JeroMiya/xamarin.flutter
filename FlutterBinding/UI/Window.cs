@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using FlutterBinding.Engine.Window;
 using static FlutterBinding.Mapping.Types;
 
 namespace FlutterBinding.UI
@@ -16,16 +17,16 @@ namespace FlutterBinding.UI
     public delegate void PointerDataPacketCallback(PointerDataPacket packet);
 
     /// Signature for [Window.onSemanticsAction].
-    public delegate void SemanticsActionCallback(int id, SemanticsAction action, ByteData args);
+    public delegate void SemanticsActionCallback(int id, SemanticsAction action, object args);
 
     /// Signature for responses to platform messages.
     ///
     /// Used as a parameter to [Window.sendPlatformMessage] and
     /// [Window.onPlatformMessage].
-    public delegate void PlatformMessageResponseCallback(ByteData data);
+    //public delegate void PlatformMessageResponseCallback(PlatformMessageResponse response);
 
     /// Signature for [Window.onPlatformMessage].
-    public delegate void PlatformMessageCallback(string name, ByteData data, PlatformMessageResponseCallback callback);
+    //public delegate void PlatformMessageCallback(PlatformMessage platformMessage);
 
     /// States that an application can be in.
     ///
@@ -359,6 +360,9 @@ namespace FlutterBinding.UI
     /// obtain from the [window] property.
     public class Window: Engine.Window.NativeWindow
     {
+        /// The [Window] singleton. This object exposes the size of the display, the
+        /// core scheduler API, the input event callback, the graphics drawing API, and
+        /// other such core services.
         private static Window _instance;
         public static Window Instance => _instance ?? (_instance = new Window());
 
@@ -684,12 +688,7 @@ namespace FlutterBinding.UI
         ///  * [Navigator], a widget that handles routing.
         ///  * [SystemChannels.navigation], which handles subsequent navigation
         ///    requests from the embedder.
-        public string defaultRouteName => _defaultRouteName();
-        private string _defaultRouteName()
-        {
-            // native 'Window_defaultRouteName';
-            return string.Empty; // Tmp to resolve build
-        }
+        public string defaultRouteName => client_.DefaultRouteName();
 
 
         /// Requests that, at the next appropriate opportunity, the [onBeginFrame]
@@ -699,10 +698,8 @@ namespace FlutterBinding.UI
         ///
         ///  * [SchedulerBinding], the Flutter framework class which manages the
         ///    scheduling of frames.
-        public void scheduleFrame()
-        {
-            // native 'Window_scheduleFrame';
-        }
+        public void scheduleFrame() => client_.ScheduleFrame();
+
 
         /// Updates the application's rendering on the GPU with the newly provided
         /// [Scene]. This function must be called within the scope of the
@@ -728,11 +725,8 @@ namespace FlutterBinding.UI
         ///    scheduling of frames.
         ///  * [RendererBinding], the Flutter framework class which manages layout and
         ///    painting.
-        public void render(Scene scene)
-        {
-            this.Render(scene);
-            // [DONE] native 'Window_render';
-        }
+        public void render(Scene scene) => base.Render(scene);
+        
 
         /// Whether the user has requested that [updateSemantics] be called when
         /// the semantic contents of window changes.
@@ -806,10 +800,8 @@ namespace FlutterBinding.UI
         ///
         /// In either case, this function disposes the given update, which means the
         /// semantics update cannot be used further.
-        public void updateSemantics(SemanticsUpdate update)
-        {
-            // native 'Window_updateSemantics';
-        }
+        public void updateSemantics(SemanticsUpdate update) => client_.UpdateSemantics(update);
+
 
         /// Set the debug name associated with this window's root isolate.
         ///
@@ -819,10 +811,8 @@ namespace FlutterBinding.UI
         /// This can be combined with flutter tools `--isolate-filter` flag to debug
         /// specific root isolates. For example: `flutter attach --isolate-filter=[name]`.
         /// Note that this does not rename any child isolates of the root.
-        public void setIsolateDebugName(string name)
-        {
-            // native 'Window_setIsolateDebugName';
-        }
+        public void setIsolateDebugName(string name) => client_.SetIsolateDebugName(name);
+
 
         /// Sends a message to a platform-specific plugin.
         ///
@@ -833,23 +823,17 @@ namespace FlutterBinding.UI
         ///
         /// The framework invokes [callback] in the same zone in which this method
         /// was called.
-        public void sendPlatformMessage(string name,
-                                 ByteData data,
-                                 PlatformMessageResponseCallback callback)
-        {
-            string error =
-                _sendPlatformMessage(name, _zonedPlatformMessageResponseCallback(callback), data);
-            if (error != null)
-                throw new Exception(error);
-        }
+        //public void sendPlatformMessage(
+        //    string name,
+        //    object data,
+        //    PlatformMessageResponse response)
+        //{
+        //    SendPlatformMessage(
+        //        name,
+        //        data,
+        //        response);
+        //}
 
-        private string _sendPlatformMessage(string name,
-                                    PlatformMessageResponseCallback callback,
-                                    ByteData data)
-        {
-            // native 'Window_sendPlatformMessage';
-            return string.Empty; // Tmp to resolve build
-        }
 
         /// Called whenever this window receives a message from a platform-specific
         /// plugin.
@@ -864,37 +848,38 @@ namespace FlutterBinding.UI
         ///
         /// The framework invokes this callback in the same zone in which the
         /// callback was set.
-        public PlatformMessageCallback onPlatformMessage
-        {
-            get => _onPlatformMessage;
-            set
-            {
-                _onPlatformMessage = value;
-                OnPlatformMessageZone = Zone.current;
-            }
-        }
+        //public PlatformMessageCallback onPlatformMessage
+        //{
+        //    get => _onPlatformMessage;
+        //    set
+        //    {
+        //        _onPlatformMessage = value;
+        //        OnPlatformMessageZone = Zone.current;
+        //    }
+        //}
 
-        private PlatformMessageCallback _onPlatformMessage;
-        internal Zone OnPlatformMessageZone;
+        //private PlatformMessageCallback _onPlatformMessage;
+        //internal Zone OnPlatformMessageZone;
 
         /// Called by [_dispatchPlatformMessage].
-        internal void RespondToPlatformMessage(int responseId, ByteData data)
-        {
-            // native 'Window_respondToPlatformMessage';
-        }
+        //internal void RespondToPlatformMessage(int responseId, ByteData data)
+        //{
+        //    // native 'Window_respondToPlatformMessage';
+        //}
+
+        // TODO: Improve/remove callback mechanism for talking to platform
         /// Wraps the given [callback] in another callback that ensures that the
         /// original callback is called in the zone it was registered in.
-        private static PlatformMessageResponseCallback _zonedPlatformMessageResponseCallback(PlatformMessageResponseCallback callback)
-        {
-            if (callback == null)
-                return null;
+        //private static PlatformMessageResponseCallback _zonedPlatformMessageResponseCallback(PlatformMessageResponseCallback callback)
+        //{
+        //    if (callback == null)
+        //        return null;
 
-            // Store the zone in which the callback is being registered.
-            Zone registrationZone = Zone.current;
+        //    // Store the zone in which the callback is being registered.
+        //    Zone registrationZone = Zone.current;
 
-            return (data) => registrationZone.runUnaryGuarded(callback, data);
-
-        }
+        //    return (data) => registrationZone.runUnaryGuarded(callback, data);
+        //}
     }
 
     /// Additional accessibility features that may be enabled by the platform.
@@ -912,11 +897,5 @@ namespace FlutterBinding.UI
         ReduceMotion = 1 << 4,
     };
 
-
-    /// The [Window] singleton. This object exposes the size of the display, the
-    /// core scheduler API, the input event callback, the graphics drawing API, and
-    /// other such core services.
-    //readonly Window window = new Window();
-    // Do Window.Instance instead
 }
 

@@ -64,7 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
-    <Folder Include="Resources\layout\" />
+    <Folder Include="Shell\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FlutterBinding\FlutterBinding.csproj">
