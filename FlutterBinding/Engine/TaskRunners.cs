@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace FlutterBinding.Engine
 {
@@ -37,7 +38,7 @@ namespace FlutterBinding.Engine
         private readonly EventWaitHandle _wh = new AutoResetEvent(false);
         private readonly Thread _worker;
         private readonly object _locker = new object();
-        private readonly Queue<Action> _tasks = new Queue<Action>();
+        private readonly Queue<TaskAction> _tasks = new Queue<TaskAction>();
         private readonly List<DelayedTask> _delayedTasks = new List<DelayedTask>();
         private int _order = 0;
         private bool _terminated = false;
@@ -53,15 +54,18 @@ namespace FlutterBinding.Engine
             EnqueueTask(task);
         }
 
-        public void PostTaskForTime(Action task, TimePoint targetTime)
+        public Task PostTaskForTime(Action task, TimePoint targetTime)
         {
             var order = Interlocked.Increment(ref _order);
-            var delayedTask = new DelayedTask(order, task, targetTime);
+            var tcs = new TaskCompletionSource<bool>();
+            var delayedTask = new DelayedTask(order, task, tcs, targetTime);
             lock (_locker)
             {
                 _delayedTasks.Add(delayedTask);
                 _wh.Set();
             }
+
+            return tcs.Task;
         }
 
         public virtual void PostDelayedTask(Action task, TimeDelta delay)
@@ -71,22 +75,41 @@ namespace FlutterBinding.Engine
 
         public bool RunsTasksOnCurrentThread => Thread.CurrentThread == _worker;
 
-        public static void RunNowOrPostTask(TaskRunner runner, Action task)
+        public static Task RunNowOrPostTask(TaskRunner runner, Action task)
         {
             if (runner.RunsTasksOnCurrentThread)
+            {
                 task();
-            else
-                runner.EnqueueTask(task);
+                return Task.FromResult(true);
+            }
+
+            return runner.EnqueueTask(task);
         }
 
-        private void EnqueueTask(Action action)
+        public Task RunNowOrPostTask(Action task)
+        {
+            if (RunsTasksOnCurrentThread)
+            {
+                task();
+                return Task.FromResult(true);
+            }
+
+            return EnqueueTask(task);
+        }
+
+        private Task EnqueueTask(Action action)
         {
             if (_terminated)
-                return;
+                return Task.FromResult(false);
 
+            var tcs = new TaskCompletionSource<bool>();
             lock (_locker)
-                _tasks.Enqueue(action);
+            {
+                _tasks.Enqueue(new TaskAction(action, tcs));
+            }
+
             _wh.Set();
+            return tcs.Task;
         }
 
         public void RunExpiredTasksNow()
@@ -107,12 +130,15 @@ namespace FlutterBinding.Engine
                 if (_terminated)
                     return;
 
-                Action task = null;
+                Action action = null;
+                TaskCompletionSource<bool> tcs = null;
                 lock (_locker)
                 {
                     if (_tasks.Count > 0)
                     {
-                        task = _tasks.Dequeue();
+                        var taskAction = _tasks.Dequeue();
+                        action = taskAction.Action;
+                        tcs = taskAction.Tcs;
                     }
                     else if (_delayedTasks.Count > 0)
                     {
@@ -120,7 +146,8 @@ namespace FlutterBinding.Engine
                         {
                             if (delayedTask.TargetTime <= TimePoint.Now())
                             {
-                                task = delayedTask.Task;
+                                action = delayedTask.Action;
+                                tcs = delayedTask.Tcs;
                                 _delayedTasks.Remove(delayedTask);
                                 break;
                             }
@@ -128,16 +155,17 @@ namespace FlutterBinding.Engine
                     }
                 }
 
-                if (task != null)
+                if (action != null)
                 {
                     try
                     {
-                        task();
+                        action();
+                        tcs.SetResult(true);
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine(e);
-                        throw;
+                        FLog.Error(e.ToString());
+                        tcs.SetException(e);
                     }
                 }
                 else
@@ -177,18 +205,34 @@ namespace FlutterBinding.Engine
         private class DelayedTask
         {
             public int Order { get; }
-            public Action Task { get; }
+            public Action Action { get; }
+            public TaskCompletionSource<bool> Tcs { get; }
             public TimePoint TargetTime { get; }
 
             public DelayedTask(
                 int order,
                 Action task,
+                TaskCompletionSource<bool> tcs,
                 TimePoint targetTime)
             {
                 Order = order;
-                Task = task;
+                Action = task;
+                Tcs = tcs;
                 TargetTime = targetTime;
             }
         };
+
+        private class TaskAction
+        {
+            public Action Action { get; }
+            public TaskCompletionSource<bool> Tcs { get; }
+
+            public TaskAction(Action action, TaskCompletionSource<bool> tcs)
+            {
+                Action = action;
+                Tcs    = tcs;
+            }
+        }
+
     }
 }

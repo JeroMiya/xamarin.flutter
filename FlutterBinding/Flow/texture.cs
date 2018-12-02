@@ -43,17 +43,17 @@ namespace FlutterBinding.Flow
         // Called from GPU thread.
         public void RegisterTexture(Texture texture)
         {
-            mapping_[texture.Id()] = texture;
+            mapping_[(long)texture.Id()] = texture;
         }
 
         // Called from GPU thread.
-        public void UnregisterTexture(ulong id)
+        public void UnregisterTexture(long id)
         {
             mapping_.Remove(id);
         }
 
         // Called from GPU thread.
-        public Texture GetTexture(ulong id)
+        public Texture GetTexture(long id)
         {
             var it = mapping_[id];
             return it; //: null; // This isn't right either
@@ -77,7 +77,7 @@ namespace FlutterBinding.Flow
             }
         }
 
-        private SortedDictionary<ulong, Texture> mapping_ = new SortedDictionary<ulong, Texture>();
+        private SortedDictionary<long, Texture> mapping_ = new SortedDictionary<long, Texture>();
     }
 
 }

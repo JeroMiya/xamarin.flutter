@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using FlutterBinding.Engine;
 using FlutterBinding.Engine.Assets;
 using FlutterBinding.Engine.Window;
@@ -46,10 +47,10 @@ namespace FlutterBinding.Shell
         {
             void OnEngineUpdateSemantics(SemanticsNodeUpdates update, CustomAccessibilityActionUpdates actions);
             //void OnEngineHandlePlatformMessage(PlatformMessage message);
-            void OnPreEngineRestart();
+            Task OnPreEngineRestart();
         };
 
-        private Engine(
+        public Engine(
             Delegate @delegate,
             //DartVM vm,
             //DartSnapshot isolate_snapshot,
@@ -58,8 +59,8 @@ namespace FlutterBinding.Shell
             Settings settings,
             Animator animator,
             SnapshotDelegate snapshot_delegate,
-            GRContext resource_context
-            //SkiaUnrefQueue unref_queue
+            GRContext resource_context,
+            SkiaUnrefQueue unref_queue
             )
         {
             delegate_ = @delegate;
@@ -78,8 +79,8 @@ namespace FlutterBinding.Shell
                 //shared_snapshot,          // shared snapshot
                 task_runners,               // task runners
                 snapshot_delegate,          // snapshot delegate
-                resource_context            // resource context
-                //unref_queue,              // skia unref queue
+                resource_context,           // resource context
+                unref_queue                 // skia unref queue
                 //settings_.advisory_script_uri,       // advisory script uri
                 //settings_.advisory_script_entrypoint // advisory script entrypoint
             );
@@ -171,13 +172,13 @@ namespace FlutterBinding.Shell
             return true;
         }
 
-        private void BeginFrame(TimePoint frame_time)
+        public void BeginFrame(TimePoint frame_time)
         {
             //TRACE_EVENT0("flutter", "Engine::BeginFrame");
             runtime_controller_.BeginFrame(frame_time);
         }
 
-        private void NotifyIdle(long deadline)
+        public void NotifyIdle(long deadline)
         {
             //TRACE_EVENT1("flutter", "Engine::NotifyIdle", "deadline_now_delta", (deadline - TimePoint.Now().TotalMicroseconds).ToString());
             runtime_controller_.NotifyIdle(deadline);
@@ -189,20 +190,20 @@ namespace FlutterBinding.Shell
         //private tonic::DartErrorHandleType GetUIIsolateLastError();
         //private std::pair<bool, uint32_t> GetUIIsolateReturnCode();
 
-        private void OnOutputSurfaceCreated()
+        public void OnOutputSurfaceCreated()
         {
             have_surface_ = true;
             StartAnimatorIfPossible();
             ScheduleFrame();
         }
 
-        private void OnOutputSurfaceDestroyed()
+        public void OnOutputSurfaceDestroyed()
         {
             have_surface_ = false;
             StopAnimator();
         }
 
-        private void SetViewportMetrics(ViewportMetrics metrics)
+        public void SetViewportMetrics(ViewportMetrics metrics)
         {
             bool dimensions_changed =
                 viewport_metrics_.physical_height != metrics.physical_height ||
@@ -249,25 +250,25 @@ namespace FlutterBinding.Shell
         //        HandleNavigationPlatformMessage(message);
         //}
 
-        private void DispatchPointerDataPacket(PointerDataPacket packet)
+        public void DispatchPointerDataPacket(PointerDataPacket packet)
         {
             runtime_controller_.DispatchPointerDataPacket(packet);
         }
 
-        private void DispatchSemanticsAction(
+        public void DispatchSemanticsAction(
             int id,
             SemanticsAction action,
-            List<byte> args)
+            object args)
         {
             runtime_controller_.DispatchSemanticsAction(id, action, args);
         }
 
-        private void SetSemanticsEnabled(bool enabled)
+        public void SetSemanticsEnabled(bool enabled)
         {
             runtime_controller_.SetSemanticsEnabled(enabled);
         }
 
-        private void SetAccessibilityFeatures(AccessibilityFeatures flags)
+        public void SetAccessibilityFeatures(AccessibilityFeatures flags)
         {
             runtime_controller_.SetAccessibilityFeatures(flags);
         }

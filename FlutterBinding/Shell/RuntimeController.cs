@@ -50,8 +50,8 @@ namespace FlutterBinding.Shell
             //DartSnapshot shared_snapshot,
             TaskRunners task_runners,
             SnapshotDelegate snapshot_delegate,
-            GRContext resource_context
-            //SkiaUnrefQueue unref_queue,
+            GRContext resource_context,
+            SkiaUnrefQueue unref_queue
             //string advisory_script_uri,
             //string advisory_script_entrypoint
             ) : this(
@@ -59,6 +59,7 @@ namespace FlutterBinding.Shell
             task_runners, 
             snapshot_delegate, 
             resource_context, 
+            unref_queue,
             new WindowData())
         { }
 
@@ -70,7 +71,7 @@ namespace FlutterBinding.Shell
             TaskRunners task_runners,
             SnapshotDelegate snapshot_delegate,
             GRContext resource_context,
-            //SkiaUnrefQueue unref_queue,
+            SkiaUnrefQueue unref_queue,
             //string advisory_script_uri,
             //string advisory_script_entrypoint,
             WindowData data)
@@ -82,7 +83,7 @@ namespace FlutterBinding.Shell
             task_runners_ = task_runners;
             snapshot_delegate_ = snapshot_delegate;
             resource_context_ = resource_context;
-            //unref_queue_ = unref_queue;
+            unref_queue_ = unref_queue;
             //advisory_script_uri_ = advisory_script_uri;
             //advisory_script_entrypoint_ = advisory_script_entrypoint;
             window_data_ = data;
@@ -145,7 +146,7 @@ namespace FlutterBinding.Shell
                 task_runners_,               //
                 snapshot_delegate_,          //
                 resource_context_,           //
-                //unref_queue_,                //
+                unref_queue_,                //
                 //advisory_script_uri_,        //
                 //advisory_script_entrypoint_, //
                 window_data_                 //
@@ -267,7 +268,7 @@ namespace FlutterBinding.Shell
             return false;
         }
 
-        public bool DispatchSemanticsAction(Int32 id, SemanticsAction action, List<byte> args)
+        public bool DispatchSemanticsAction(Int32 id, SemanticsAction action, object args)
         {
             //TRACE_EVENT1("flutter", "RuntimeController::DispatchSemanticsAction", "mode", "basic");
             var window = GetWindowIfAvailable();
@@ -317,7 +318,7 @@ namespace FlutterBinding.Shell
         private TaskRunners task_runners_;
         private SnapshotDelegate snapshot_delegate_;
         private GRContext resource_context_;
-        //SkiaUnrefQueue unref_queue_;
+        SkiaUnrefQueue unref_queue_;
         //string advisory_script_uri_;
         //string advisory_script_entrypoint_;
         private WindowData window_data_;
