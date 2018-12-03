@@ -7,27 +7,27 @@ namespace FlutterBinding.Shell
     {
         public static RunConfiguration InferFromSettings(
             Settings settings, 
-            TaskRunner io_worker = null)
+            TaskRunner ioWorker = null)
         {
-            var asset_manager = new AssetManager();
+            var assetManager = new AssetManager();
 
-            asset_manager.PushBack(new DirectoryAssetBundle(settings.assets_dir));
-            asset_manager.PushBack(new DirectoryAssetBundle(settings.assets_path));
+            assetManager.PushBack(new DirectoryAssetBundle(settings.AssetsDir));
+            assetManager.PushBack(new DirectoryAssetBundle(settings.AssetsPath));
 
             return new RunConfiguration(
                 //IsolateConfiguration::InferFromSettings(settings, asset_manager, io_worker),
-                asset_manager);
+                assetManager);
         }
 
         public RunConfiguration(
             //IsolateConfiguration configuration, 
-            AssetManager asset_manager = null)
+            AssetManager assetManager = null)
         {
             //isolate_configuration_ = configuration;
-            asset_manager_ = asset_manager ?? new AssetManager();
+            _assetManager = assetManager ?? new AssetManager();
         }
 
-        public bool IsValid() => asset_manager_ != null;
+        public bool IsValid() => _assetManager != null;
             //&& isolate_configuration_ != null;
 
         public bool AddAssetResolver(AssetResolver resolver)
@@ -35,26 +35,26 @@ namespace FlutterBinding.Shell
             if (resolver == null || !resolver.IsValid())
                 return false;
 
-            asset_manager_.PushBack(resolver);
+            _assetManager.PushBack(resolver);
             return true;
         }
 
         public void SetEntrypoint(string entrypoint)
         {
-            entrypoint_ = entrypoint;
+            _entrypoint = entrypoint;
         }
 
         public void SetEntrypointAndLibrary(string entrypoint, string library)
         {
             SetEntrypoint(entrypoint);
-            entrypoint_library_ = library;
+            _entrypointLibrary = library;
         }
 
-        public AssetManager GetAssetManager() => asset_manager_;
+        public AssetManager GetAssetManager() => _assetManager;
 
-        public string GetEntrypoint() => entrypoint_;
+        public string GetEntrypoint() => _entrypoint;
 
-        public string GetEntrypointLibrary() => entrypoint_library_;
+        public string GetEntrypointLibrary() => _entrypointLibrary;
 
         //public IsolateConfiguration TakeIsolateConfiguration()
         //{
@@ -65,9 +65,9 @@ namespace FlutterBinding.Shell
 
 
         //private IsolateConfiguration isolate_configuration_;
-        private AssetManager asset_manager_;
-        private string entrypoint_ = "main";
-        private string entrypoint_library_ = "";
+        private readonly AssetManager _assetManager;
+        private string _entrypoint = "main";
+        private string _entrypointLibrary = "";
 
         //FML_DISALLOW_COPY_AND_ASSIGN(RunConfiguration);
     };

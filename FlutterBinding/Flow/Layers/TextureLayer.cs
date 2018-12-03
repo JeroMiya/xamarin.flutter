@@ -34,7 +34,7 @@ namespace FlutterBinding.Flow.Layers
         }
         public override void Paint(PaintContext context)
         {
-            Texture texture = context.texture_registry.GetTexture(texture_id_);
+            Texture texture = context.texture_registry.GetTexture((long)texture_id_);
             if (texture == null)
             {
                 return;
@@ -44,7 +44,7 @@ namespace FlutterBinding.Flow.Layers
 
         private SKPoint offset_ = new SKPoint();
         private SKSize size_ = new SKSize();
-        private ulong texture_id_ = new ulong();
+        private ulong texture_id_ = 0;
         private bool freeze_;
     }
 

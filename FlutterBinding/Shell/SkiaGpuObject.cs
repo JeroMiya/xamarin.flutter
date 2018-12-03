@@ -13,11 +13,11 @@ namespace FlutterBinding.Shell
     // runner.
     public class SkiaUnrefQueue
     {
-        public SkiaUnrefQueue(TaskRunner task_runner, TimeDelta delay)
+        public SkiaUnrefQueue(TaskRunner taskRunner, TimeDelta delay)
         {
-            task_runner_ = task_runner;
-            drain_delay_ = delay;
-            drain_pending_ = false;
+            _taskRunner = taskRunner;
+            _drainDelay = delay;
+            _drainPending = false;
         }
 
         ~SkiaUnrefQueue()
@@ -27,13 +27,13 @@ namespace FlutterBinding.Shell
 
         public void Unref(SKObject obj)
         {
-            lock (mutex_)
+            lock (_lockObject)
             {
-                objects_.Add(obj);
-                if (!drain_pending_)
+                _objects.Add(obj);
+                if (!_drainPending)
                 {
-                    drain_pending_ = true;
-                    task_runner_.PostDelayedTask( Drain, drain_delay_);
+                    _drainPending = true;
+                    _taskRunner.PostDelayedTask( Drain, _drainDelay);
                 }
             }
         }
@@ -45,23 +45,23 @@ namespace FlutterBinding.Shell
         // after this call.
         public void Drain()
         {
-            List<SKObject> skia_objects = null;
-            lock (mutex_)
+            List<SKObject> skiaObjects = null;
+            lock (_lockObject)
             {
-                skia_objects = objects_.ToList();
-                objects_.Clear();
+                skiaObjects = _objects.ToList();
+                _objects.Clear();
             }
 
-            drain_pending_ = false;
-            foreach (var skiaObject in skia_objects)
+            _drainPending = false;
+            foreach (var skiaObject in skiaObjects)
                 skiaObject.Dispose();
         }
 
-        private TaskRunner task_runner_;
-        private TimeDelta drain_delay_;
-        private Mutex mutex_ = new Mutex();
-        private List<SKObject> objects_ = new List<SKObject>();
-        private bool drain_pending_;
+        private TaskRunner _taskRunner;
+        private TimeDelta _drainDelay;
+        private object _lockObject = new object();
+        private List<SKObject> _objects = new List<SKObject>();
+        private bool _drainPending;
 
         //FML_FRIEND_REF_COUNTED_THREAD_SAFE(SkiaUnrefQueue);
         //FML_FRIEND_MAKE_REF_COUNTED(SkiaUnrefQueue);
@@ -77,8 +77,8 @@ namespace FlutterBinding.Shell
 
         public SkiaGPUObject(TSkiaObjectType obj, SkiaUnrefQueue queue)
         {
-            object_ = obj;
-            queue_ = queue;
+            _object = obj;
+            _queue = queue;
             //FML_DCHECK(queue_ && object_);
         }
 
@@ -103,20 +103,20 @@ namespace FlutterBinding.Shell
 
         void reset()
         {
-            if (object_ != null)
+            if (_object != null)
             {
-                queue_.Unref(object_);
-                object_.Dispose();
-                object_ = null;
+                _queue.Unref(_object);
+                _object.Dispose();
+                _object = null;
             }
-            queue_ = null;
+            _queue = null;
             //FML_DCHECK(object_ == nullptr);
         }
 
-        private TSkiaObjectType object_;
-        private SkiaUnrefQueue queue_;
+        private TSkiaObjectType _object;
+        private SkiaUnrefQueue _queue;
 
-        public TSkiaObjectType Object => object_;
+        public TSkiaObjectType Object => _object;
 
         //FML_DISALLOW_COPY_AND_ASSIGN(SkiaGPUObject);
     };

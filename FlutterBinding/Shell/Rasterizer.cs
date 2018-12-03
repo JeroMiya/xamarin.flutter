@@ -225,13 +225,13 @@ namespace FlutterBinding.Shell
             // threads for embedded platform views.
             ExternalViewEmbedder externalViewEmbedder = null;
 
-            CompositorContext.ScopedFrame compositor_frame = _compositorContext.AcquireFrame(
+            CompositorContext.ScopedFrame compositorFrame = _compositorContext.AcquireFrame(
                 _surface.GetContext(), canvas, externalViewEmbedder,
                 _surface.GetRootTransformation(), true);
 
             canvas?.Clear(SKColors.Transparent);
 
-            if (compositor_frame?.Raster(layerTree, false) ?? false)
+            if (compositorFrame?.Raster(layerTree, false) ?? false)
             {
                 frame.Submit();
                 FireNextFrameCallbackIfPresent();
@@ -282,7 +282,7 @@ namespace FlutterBinding.Shell
                 // be referenced in the layer tree about to be drawn.
                 return SKSurface.CreateAsRenderTarget(
                     surfaceContext,
-                    new GRGlBackendTextureDesc()
+                    new GRGlBackendTextureDesc
                     {
                         Width = size.Width,
                         Height = size.Height

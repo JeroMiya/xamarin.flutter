@@ -29,16 +29,16 @@ namespace FlutterBinding.Shell
     // TODO: Should ignore all this locale stuff
     public class WindowData
     {
-        public ViewportMetrics viewport_metrics;
-        public string language_code;
-        public string country_code;
-        public string script_code;
-        public string variant_code;
-        public List<string> locale_data;
-        public string user_settings_data = "{}";
-        public bool semantics_enabled = false;
-        public bool assistive_technology_enabled = false;
-        public AccessibilityFeatures accessibility_feature_flags_;
+        public ViewportMetrics ViewportMetrics;
+        public string LanguageCode;
+        public string CountryCode;
+        public string ScriptCode;
+        public string VariantCode;
+        public List<string> LocaleData;
+        public string UserSettingsData = "{}";
+        public bool SemanticsEnabled = false;
+        public bool AssistiveTechnologyEnabled = false;
+        public AccessibilityFeatures AccessibilityFeatureFlags;
     };
 
     public class RuntimeController : WindowClient
@@ -48,18 +48,18 @@ namespace FlutterBinding.Shell
             //DartVM vm,
             //DartSnapshot isolate_snapshot,
             //DartSnapshot shared_snapshot,
-            TaskRunners task_runners,
-            SnapshotDelegate snapshot_delegate,
-            GRContext resource_context,
-            SkiaUnrefQueue unref_queue
+            TaskRunners taskRunners,
+            SnapshotDelegate snapshotDelegate,
+            GRContext resourceContext,
+            SkiaUnrefQueue unrefQueue
             //string advisory_script_uri,
             //string advisory_script_entrypoint
             ) : this(
             client, 
-            task_runners, 
-            snapshot_delegate, 
-            resource_context, 
-            unref_queue,
+            taskRunners, 
+            snapshotDelegate, 
+            resourceContext, 
+            unrefQueue,
             new WindowData())
         { }
 
@@ -68,25 +68,25 @@ namespace FlutterBinding.Shell
             //DartVM vm,
             //DartSnapshot isolate_snapshot,
             //DartSnapshot shared_snapshot,
-            TaskRunners task_runners,
-            SnapshotDelegate snapshot_delegate,
-            GRContext resource_context,
-            SkiaUnrefQueue unref_queue,
+            TaskRunners taskRunners,
+            SnapshotDelegate snapshotDelegate,
+            GRContext resourceContext,
+            SkiaUnrefQueue unrefQueue,
             //string advisory_script_uri,
             //string advisory_script_entrypoint,
             WindowData data)
         {
-            client_ = client;
+            _client = client;
             //vm_ = vm;
             //isolate_snapshot_ = isolate_snapshot;
             //shared_snapshot_ = shared_snapshot;
-            task_runners_ = task_runners;
-            snapshot_delegate_ = snapshot_delegate;
-            resource_context_ = resource_context;
-            unref_queue_ = unref_queue;
+            _taskRunners = taskRunners;
+            _snapshotDelegate = snapshotDelegate;
+            _resourceContext = resourceContext;
+            _unrefQueue = unrefQueue;
             //advisory_script_uri_ = advisory_script_uri;
             //advisory_script_entrypoint_ = advisory_script_entrypoint;
-            window_data_ = data;
+            _windowData = data;
             //root_isolate_ = DartIsolate::CreateRootIsolate(
             //    vm_,
             //    isolate_snapshot_,
@@ -112,7 +112,8 @@ namespace FlutterBinding.Shell
                 {
                     //FML_DLOG(ERROR) << "Could not setup intial isolate state.";
                 }
-            } else
+            }
+            else
             {
                 //FML_DCHECK(false) << "RuntimeController created without window binding.";
             }
@@ -139,23 +140,23 @@ namespace FlutterBinding.Shell
         public RuntimeController Clone()
         {
             return new RuntimeController(
-                client_,                     //
+                _client,                     //
                 //vm_,                         //
                 //isolate_snapshot_,           //
                 //shared_snapshot_,            //
-                task_runners_,               //
-                snapshot_delegate_,          //
-                resource_context_,           //
-                unref_queue_,                //
+                _taskRunners,               //
+                _snapshotDelegate,          //
+                _resourceContext,           //
+                _unrefQueue,                //
                 //advisory_script_uri_,        //
                 //advisory_script_entrypoint_, //
-                window_data_                 //
+                _windowData                 //
             );
         }
 
         public bool SetViewportMetrics(ViewportMetrics metrics)
         {
-            window_data_.viewport_metrics = metrics;
+            _windowData.ViewportMetrics = metrics;
 
             var window = GetWindowIfAvailable();
             if (window != null)
@@ -166,27 +167,23 @@ namespace FlutterBinding.Shell
             return false;
         }
 
-        public bool SetLocales(List<string> locale_data)
+        public bool SetLocales(List<string> localeData)
         {
-            window_data_.locale_data = locale_data;
+            _windowData.LocaleData = localeData;
 
             var window = GetWindowIfAvailable();
-            if (window != null)
-            { 
-                window.UpdateLocales(locale_data);
-                return true;
-            }
-            return true;
+            window?.UpdateLocales(localeData);
+            return window != null;
         }
 
         public bool SetUserSettingsData(string data)
         {
-            window_data_.user_settings_data = data;
+            _windowData.UserSettingsData = data;
 
             var window = GetWindowIfAvailable();
             if (window != null)
             {
-                window.UpdateUserSettingsData(window_data_.user_settings_data);
+                window.UpdateUserSettingsData(_windowData.UserSettingsData);
                 return true;
             }
 
@@ -195,12 +192,12 @@ namespace FlutterBinding.Shell
 
         public bool SetSemanticsEnabled(bool enabled)
         {
-            window_data_.semantics_enabled = enabled;
+            _windowData.SemanticsEnabled = enabled;
 
             var window = GetWindowIfAvailable();
             if (window != null)
             {
-                window.UpdateSemanticsEnabled(window_data_.semantics_enabled);
+                window.UpdateSemanticsEnabled(_windowData.SemanticsEnabled);
                 return true;
             }
 
@@ -209,23 +206,23 @@ namespace FlutterBinding.Shell
 
         public bool SetAccessibilityFeatures(AccessibilityFeatures flags)
         {
-            window_data_.accessibility_feature_flags_ = flags;
+            _windowData.AccessibilityFeatureFlags = flags;
             var window = GetWindowIfAvailable();
             if (window != null)
             {
-                window.UpdateAccessibilityFeatures(window_data_.accessibility_feature_flags_);
+                window.UpdateAccessibilityFeatures(_windowData.AccessibilityFeatureFlags);
                 return true;
             }
 
             return false;
         }
 
-        public bool BeginFrame(TimePoint frame_time)
+        public bool BeginFrame(TimePoint frameTime)
         {
             var window = GetWindowIfAvailable();
             if (window != null)
             {
-                window.BeginFrame(frame_time);
+                window.BeginFrame(frameTime);
                 return true;
             }
             return false;
@@ -295,35 +292,36 @@ namespace FlutterBinding.Shell
         private class Locale
         {
             Locale(
-                string language_code_,
-                string country_code_,
-                string script_code_,
-                string variant_code_)
+                string languageCode,
+                string countryCode,
+                string scriptCode,
+                string variantCode)
             {
-                language_code = language_code_;
-                country_code = country_code_;
-                script_code = script_code_;
-                variant_code = variant_code_;
+                LanguageCode = languageCode;
+                CountryCode = countryCode;
+                ScriptCode = scriptCode;
+                VariantCode = variantCode;
             }
-            string language_code;
-            string country_code;
-            string script_code;
-            string variant_code;
+
+            public string LanguageCode;
+            public string CountryCode;
+            public string ScriptCode;
+            public string VariantCode;
         };
 
-        private RuntimeDelegate client_;
+        private RuntimeDelegate _client;
         //DartVM const vm_;
         //DartSnapshot isolate_snapshot_;
         //DartSnapshot shared_snapshot_;
-        private TaskRunners task_runners_;
-        private SnapshotDelegate snapshot_delegate_;
-        private GRContext resource_context_;
-        SkiaUnrefQueue unref_queue_;
+        private TaskRunners _taskRunners;
+        private SnapshotDelegate _snapshotDelegate;
+        private GRContext _resourceContext;
+        SkiaUnrefQueue _unrefQueue;
         //string advisory_script_uri_;
         //string advisory_script_entrypoint_;
-        private WindowData window_data_;
+        private WindowData _windowData;
         //DartIsolate root_isolate_;
-        private Tuple<bool, UInt32> root_isolate_return_code_ = new Tuple<bool, uint>(false, 0);
+        private Tuple<bool, uint> _rootIsolateReturnCode = new Tuple<bool, uint>(false, 0);
 
         private Window GetWindowIfAvailable()
         {
@@ -334,35 +332,35 @@ namespace FlutterBinding.Shell
 
         private bool FlushRuntimeStateToIsolate()
         {
-            return SetViewportMetrics(window_data_.viewport_metrics) &&
-                SetLocales(window_data_.locale_data) &&
-                SetSemanticsEnabled(window_data_.semantics_enabled) &&
-                SetAccessibilityFeatures(window_data_.accessibility_feature_flags_);
+            return SetViewportMetrics(_windowData.ViewportMetrics) &&
+                SetLocales(_windowData.LocaleData) &&
+                SetSemanticsEnabled(_windowData.SemanticsEnabled) &&
+                SetAccessibilityFeatures(_windowData.AccessibilityFeatureFlags);
         }
 
         // |blink::WindowClient|
         public string DefaultRouteName()
         {
-            return client_.DefaultRouteName();
+            return _client.DefaultRouteName();
         }
 
         // |blink::WindowClient|
         public void ScheduleFrame()
         {
-            client_.ScheduleFrame();
+            _client.ScheduleFrame();
         }
 
         // |blink::WindowClient|
         public void Render(Scene scene)
         {
-            client_.Render(scene.TakeLayerTree());
+            _client.Render(scene.TakeLayerTree());
         }
 
         // |blink::WindowClient|
         public void UpdateSemantics(SemanticsUpdate update)
         {
-            if (window_data_.semantics_enabled)
-                client_.UpdateSemantics(update.takeNodes(), update.takeActions());
+            if (_windowData.SemanticsEnabled)
+                _client.UpdateSemantics(update.takeNodes(), update.takeActions());
         }
 
         // |blink::WindowClient|

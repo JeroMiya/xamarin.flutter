@@ -9,7 +9,7 @@ namespace FlutterBinding.Shell
 
         protected VsyncWaiter(TaskRunners taskRunners)
         {
-            _task_runners = taskRunners;
+            _taskRunners = taskRunners;
         }
 
         public void AsyncWaitForVsync(Callback callback)
@@ -20,22 +20,22 @@ namespace FlutterBinding.Shell
 
         public void FireCallback(TimePoint frameStartTime, TimePoint frameTargetTime)
         {
-            _task_runners.UITaskRunner.PostTask(() => { _callback?.Invoke(frameStartTime, frameTargetTime); });
+            _taskRunners.UITaskRunner.PostTask(() => { _callback?.Invoke(frameStartTime, frameTargetTime); });
         }
 
-        protected readonly TaskRunners _task_runners;
+        protected readonly TaskRunners _taskRunners;
         protected Callback _callback;
 
         protected abstract void AwaitVSync();
 
         public static TimePoint SnapToNextTick(
             TimePoint value,
-            TimePoint tick_phase,
-            TimeDelta tick_interval)
+            TimePoint tickPhase,
+            TimeDelta tickInterval)
         {
-            TimeDelta offset = (tick_phase - value) % tick_interval;
+            TimeDelta offset = (tickPhase - value) % tickInterval;
             if (offset != TimeSpan.Zero)
-                offset = offset + tick_interval;
+                offset = offset + tickInterval;
             return value + offset;
         }
 
@@ -48,22 +48,22 @@ namespace FlutterBinding.Shell
 
         public VsyncWaiterFallback(TaskRunners taskRunners) : base(taskRunners)
         {
-            phase_ = TimePoint.Now();
+            _phase = TimePoint.Now();
         }
 
-        private TimePoint phase_;
+        private TimePoint _phase;
     
         // |shell::VsyncWaiter|
         protected override void AwaitVSync()
         {
             TimePoint now = TimePoint.Now();
-            TimePoint next = SnapToNextTick(now, phase_, interval);
+            TimePoint next = SnapToNextTick(now, _phase, interval);
 
-            _task_runners.UITaskRunner.PostDelayedTask(
+            _taskRunners.UITaskRunner.PostDelayedTask(
                     () =>
                     {
-                        var frame_time = TimePoint.Now();
-                        FireCallback(frame_time, frame_time + interval);
+                        var frameTime = TimePoint.Now();
+                        FireCallback(frameTime, frameTime + interval);
                     }, next - now);
         }
 

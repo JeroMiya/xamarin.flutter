@@ -14,9 +14,9 @@ namespace FlutterBinding.Shell
     {
         string DefaultRouteName();
 
-        void ScheduleFrame(bool regenerate_layer_tree = true);
+        void ScheduleFrame(bool regenerateLayerTree = true);
 
-        void Render(LayerTree layer_tree);
+        void Render(LayerTree layerTree);
 
         void UpdateSemantics(
             SemanticsNodeUpdates update,
@@ -55,32 +55,32 @@ namespace FlutterBinding.Shell
             //DartVM vm,
             //DartSnapshot isolate_snapshot,
             //DartSnapshot shared_snapshot,
-            TaskRunners task_runners,
+            TaskRunners taskRunners,
             Settings settings,
             Animator animator,
-            SnapshotDelegate snapshot_delegate,
-            GRContext resource_context,
-            SkiaUnrefQueue unref_queue
+            SnapshotDelegate snapshotDelegate,
+            GRContext resourceContext,
+            SkiaUnrefQueue unrefQueue
             )
         {
-            delegate_ = @delegate;
-            settings_ = settings;
-            animator_ = animator;
-            activity_running_ = false;
-            have_surface_ = false;
+            _delegate = @delegate;
+            _settings = settings;
+            _animator = animator;
+            _activityRunning = false;
+            _haveSurface = false;
 
             // Runtime controller is initialized here because it takes a reference to this
             // object as its delegate. The delegate may be called in the constructor and
             // we want to be fully initilazed by that point.
-            runtime_controller_ = new RuntimeController(
+            _runtimeController = new RuntimeController(
                 this,                       // runtime delegate
                 //vm,                       // VM
                 //isolate_snapshot,         // isolate snapshot
                 //shared_snapshot,          // shared snapshot
-                task_runners,               // task runners
-                snapshot_delegate,          // snapshot delegate
-                resource_context,           // resource context
-                unref_queue                 // skia unref queue
+                taskRunners,               // task runners
+                snapshotDelegate,          // snapshot delegate
+                resourceContext,           // resource context
+                unrefQueue                 // skia unref queue
                 //settings_.advisory_script_uri,       // advisory script uri
                 //settings_.advisory_script_entrypoint // advisory script entrypoint
             );
@@ -146,20 +146,20 @@ namespace FlutterBinding.Shell
                 return false;
             }
 
-            delegate_.OnPreEngineRestart();
-            runtime_controller_ = runtime_controller_.Clone();
+            _delegate.OnPreEngineRestart();
+            _runtimeController = _runtimeController.Clone();
             UpdateAssetManager(null);
 
             return Run(configuration) == RunStatus.Success;
         }
 
-        private bool UpdateAssetManager(AssetManager new_asset_manager)
+        private bool UpdateAssetManager(AssetManager newAssetManager)
         {
-            if (asset_manager_ == new_asset_manager)
+            if (_assetManager == newAssetManager)
                 return false;
 
-            asset_manager_ = new_asset_manager;
-            if (asset_manager_ == null)
+            _assetManager = newAssetManager;
+            if (_assetManager == null)
                 return false;
 
             // TODO: Figure out how to use Fonts
@@ -172,16 +172,16 @@ namespace FlutterBinding.Shell
             return true;
         }
 
-        public void BeginFrame(TimePoint frame_time)
+        public void BeginFrame(TimePoint frameTime)
         {
             //TRACE_EVENT0("flutter", "Engine::BeginFrame");
-            runtime_controller_.BeginFrame(frame_time);
+            _runtimeController.BeginFrame(frameTime);
         }
 
         public void NotifyIdle(long deadline)
         {
             //TRACE_EVENT1("flutter", "Engine::NotifyIdle", "deadline_now_delta", (deadline - TimePoint.Now().TotalMicroseconds).ToString());
-            runtime_controller_.NotifyIdle(deadline);
+            _runtimeController.NotifyIdle(deadline);
         }
 
         //private Dart_Port GetUIIsolateMainPort();
@@ -192,29 +192,29 @@ namespace FlutterBinding.Shell
 
         public void OnOutputSurfaceCreated()
         {
-            have_surface_ = true;
+            _haveSurface = true;
             StartAnimatorIfPossible();
             ScheduleFrame();
         }
 
         public void OnOutputSurfaceDestroyed()
         {
-            have_surface_ = false;
+            _haveSurface = false;
             StopAnimator();
         }
 
         public void SetViewportMetrics(ViewportMetrics metrics)
         {
-            bool dimensions_changed =
-                viewport_metrics_.physical_height != metrics.physical_height ||
-                viewport_metrics_.physical_width != metrics.physical_width;
-            viewport_metrics_ = metrics;
-            runtime_controller_.SetViewportMetrics(viewport_metrics_);
-            if (animator_ != null)
+            bool dimensionsChanged =
+                _viewportMetrics.physical_height != metrics.physical_height ||
+                _viewportMetrics.physical_width != metrics.physical_width;
+            _viewportMetrics = metrics;
+            _runtimeController.SetViewportMetrics(_viewportMetrics);
+            if (_animator != null)
             {
-                if (dimensions_changed)
-                    animator_.SetDimensionChangePending();
-                if (have_surface_)
+                if (dimensionsChanged)
+                    _animator.SetDimensionChangePending();
+                if (_haveSurface)
                     ScheduleFrame();
             }
         }
@@ -252,7 +252,7 @@ namespace FlutterBinding.Shell
 
         public void DispatchPointerDataPacket(PointerDataPacket packet)
         {
-            runtime_controller_.DispatchPointerDataPacket(packet);
+            _runtimeController.DispatchPointerDataPacket(packet);
         }
 
         public void DispatchSemanticsAction(
@@ -260,59 +260,59 @@ namespace FlutterBinding.Shell
             SemanticsAction action,
             object args)
         {
-            runtime_controller_.DispatchSemanticsAction(id, action, args);
+            _runtimeController.DispatchSemanticsAction(id, action, args);
         }
 
         public void SetSemanticsEnabled(bool enabled)
         {
-            runtime_controller_.SetSemanticsEnabled(enabled);
+            _runtimeController.SetSemanticsEnabled(enabled);
         }
 
         public void SetAccessibilityFeatures(AccessibilityFeatures flags)
         {
-            runtime_controller_.SetAccessibilityFeatures(flags);
+            _runtimeController.SetAccessibilityFeatures(flags);
         }
 
         public void ScheduleFrame(bool regenerate_layer_tree = true)
         {
-            animator_.RequestFrame(regenerate_layer_tree);
+            _animator.RequestFrame(regenerate_layer_tree);
         }
 
         // |blink::RuntimeDelegate|
         //public FontCollection private GetFontCollection() => font_collection_;
 
-        private Engine.Delegate delegate_;
-        private Settings settings_;
-        private Animator animator_;
-        private RuntimeController runtime_controller_;
-        private string initial_route_;
-        private ViewportMetrics viewport_metrics_;
-        private AssetManager asset_manager_;
-        private bool activity_running_;
-        private bool have_surface_;
+        private readonly Delegate _delegate;
+        private Settings _settings;
+        private readonly Animator _animator;
+        private RuntimeController _runtimeController;
+        private string _initialRoute;
+        private ViewportMetrics _viewportMetrics;
+        private AssetManager _assetManager;
+        private bool _activityRunning;
+        private bool _haveSurface;
         //private readonly FontCollection font_collection_;
         //private readonly Engine weak_factory_;
 
         // |blink::RuntimeDelegate|
         public string DefaultRouteName()
         {
-            if (!string.IsNullOrWhiteSpace(initial_route_))
-                return initial_route_;
+            if (!string.IsNullOrWhiteSpace(_initialRoute))
+                return _initialRoute;
             return "/";
         }
 
         // |blink::RuntimeDelegate|
-        public void Render(LayerTree layer_tree)
+        public void Render(LayerTree layerTree)
         {
-            if (layer_tree == null)
+            if (layerTree == null)
                 return;
 
-            var frame_size = new SKSizeI((int)viewport_metrics_.physical_width, (int)viewport_metrics_.physical_height);
-            if (frame_size.IsEmpty)
+            var frameSize = new SKSizeI((int)_viewportMetrics.physical_width, (int)_viewportMetrics.physical_height);
+            if (frameSize.IsEmpty)
                 return;
 
-            layer_tree.set_frame_size(frame_size);
-            animator_.Render(layer_tree);
+            layerTree.set_frame_size(frameSize);
+            _animator.Render(layerTree);
         }
 
         // |blink::RuntimeDelegate|
@@ -320,7 +320,7 @@ namespace FlutterBinding.Shell
             SemanticsNodeUpdates update,
             CustomAccessibilityActionUpdates actions)
         {
-            delegate_.OnEngineUpdateSemantics(update, actions);
+            _delegate.OnEngineUpdateSemantics(update, actions);
         }
 
         // |blink::RuntimeDelegate|
@@ -334,13 +334,13 @@ namespace FlutterBinding.Shell
 
         private void StopAnimator()
         {
-            animator_.Stop();
+            _animator.Stop();
         }
 
         private void StartAnimatorIfPossible()
         {
-            if (activity_running_ && have_surface_)
-                animator_.Start();
+            if (_activityRunning && _haveSurface)
+                _animator.Start();
         }
 
         //private bool HandleLifecyclePlatformMessage(PlatformMessage message)

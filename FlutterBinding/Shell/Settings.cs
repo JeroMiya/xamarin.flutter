@@ -44,7 +44,7 @@ namespace FlutterBinding.Shell
         //public bool ipv6 = false;
 
         // Font settings
-        public bool use_test_fonts = false;
+        public bool UseTestFonts = false;
 
         // Engine settings
         //public TaskObserverAdd task_observer_add;
@@ -62,8 +62,8 @@ namespace FlutterBinding.Shell
         //public string icu_data_path;
 
         // Assets settings
-        public string assets_dir = null;
-        public string assets_path = null;
+        public string AssetsDir = null;
+        public string AssetsPath = null;
         //public string flx_path;
     }
 }

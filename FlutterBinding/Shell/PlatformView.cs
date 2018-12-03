@@ -24,22 +24,22 @@ namespace FlutterBinding.Shell
             void OnPlatformViewSetSemanticsEnabled(bool enabled);
             void OnPlatformViewSetAccessibilityFeatures(AccessibilityFeatures flags);
             void OnPlatformViewRegisterTexture(Texture texture);
-            void OnPlatformViewUnregisterTexture(long texture_id);
-            void OnPlatformViewMarkTextureFrameAvailable(long texture_id);
+            void OnPlatformViewUnregisterTexture(long textureId);
+            void OnPlatformViewMarkTextureFrameAvailable(long textureId);
         }
 
-        public PlatformView(Delegate @delegate, TaskRunners task_runners)
+        public PlatformView(Delegate @delegate, TaskRunners taskRunners)
         {
             delegate_ = @delegate;
-            task_runners_ = task_runners;
-            size_ = SKSizeI.Empty;
+            _taskRunners = taskRunners;
+            _size = SKSizeI.Empty;
         }
 
         public virtual VsyncWaiter CreateVSyncWaiter()
         {
             //FML_DLOG(WARNING) << "This platform does not provide a Vsync waiter implementation. A simple timer based fallback is being used.";
 
-            return new VsyncWaiterFallback(task_runners_);
+            return new VsyncWaiterFallback(_taskRunners);
         }
 
         //public void DispatchPlatformMessage(PlatformMessage message) => delegate_.OnPlatformViewDispatchPlatformMessage(message);
@@ -106,21 +106,21 @@ namespace FlutterBinding.Shell
         }
 
         // Called once per texture, on the platform thread.
-        public void UnregisterTexture(long texture_id)
+        public void UnregisterTexture(long textureId)
         {
-            delegate_.OnPlatformViewUnregisterTexture(texture_id);
+            delegate_.OnPlatformViewUnregisterTexture(textureId);
         }
 
         // Called once per texture update (e.g. video frame), on the platform thread.
-        public void MarkTextureFrameAvailable(long texture_id)
+        public void MarkTextureFrameAvailable(long textureId)
         {
-            delegate_.OnPlatformViewMarkTextureFrameAvailable(texture_id);
+            delegate_.OnPlatformViewMarkTextureFrameAvailable(textureId);
         }
 
         protected PlatformView.Delegate delegate_;
-        protected TaskRunners task_runners_;
+        protected TaskRunners _taskRunners;
 
-        protected SKSizeI size_;
+        protected SKSizeI _size;
 
         protected virtual Surface CreateRenderingSurface()
         {

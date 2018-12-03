@@ -20,16 +20,16 @@ namespace FlutterBinding.Shell
 
         public interface Delegate
         {
-            void OnAnimatorBeginFrame(TimePoint frame_time);
+            void OnAnimatorBeginFrame(TimePoint frameTime);
             void OnAnimatorNotifyIdle(Int64 deadline);
             void OnAnimatorDraw(Pipeline<LayerTree> pipeline);
             void OnAnimatorDrawLastLayerTree();
         };
 
-        public Animator(Delegate @delegate, TaskRunners task_runners, VsyncWaiter waiter)
+        public Animator(Delegate @delegate, TaskRunners taskRunners, VsyncWaiter waiter)
         {
             _delegate = @delegate;
-            _taskRunners = task_runners;
+            _taskRunners = taskRunners;
             _waiter = waiter;
             _lastBeginFrameTime = new TimePoint();
             _dartFrameDeadline = 0;
@@ -43,9 +43,9 @@ namespace FlutterBinding.Shell
             _dimensionChangePending = false;
         }
 
-        public void RequestFrame(bool regenerate_layer_tree = true)
+        public void RequestFrame(bool regenerateLayerTree = true)
         {
-            if (regenerate_layer_tree)
+            if (regenerateLayerTree)
             {
                 _regenerateLayerTree = true;
             }
@@ -76,19 +76,19 @@ namespace FlutterBinding.Shell
             _frameScheduled = true;
         }
 
-        public void Render(LayerTree layer_tree)
+        public void Render(LayerTree layerTree)
         {
-            if (_dimensionChangePending && layer_tree.frame_size() != _lastLayerTreeSize)
+            if (_dimensionChangePending && layerTree.frame_size() != _lastLayerTreeSize)
             {
                 _dimensionChangePending = false;
             }
-            _lastLayerTreeSize = layer_tree.frame_size();
+            _lastLayerTreeSize = layerTree.frame_size();
 
                 // Note the frame time for instrumentation.
-            layer_tree?.set_construction_time(TimePoint.Now() - _lastBeginFrameTime);
+            layerTree?.set_construction_time(TimePoint.Now() - _lastBeginFrameTime);
 
             // Commit the pending continuation.
-            _producerContinuation.Complete(layer_tree);
+            _producerContinuation.Complete(layerTree);
 
             _delegate.OnAnimatorDraw(_layerTreePipeline);
         }
@@ -118,7 +118,7 @@ namespace FlutterBinding.Shell
             return totalTicks;
         }
 
-        private void BeginFrame(TimePoint frame_start_time, TimePoint frame_target_time)
+        private void BeginFrame(TimePoint frameStartTime, TimePoint frameTargetTime)
         {
             //TRACE_EVENT_ASYNC_END0("flutter", "Frame Request Pending", frame_number_++);
 
@@ -148,8 +148,8 @@ namespace FlutterBinding.Shell
             // to service potential frame.
             //FML_DCHECK(producer_continuation_);
 
-            _lastBeginFrameTime = frame_start_time;
-            _dartFrameDeadline = FxlToDartOrEarlier(frame_target_time);
+            _lastBeginFrameTime = frameStartTime;
+            _dartFrameDeadline = FxlToDartOrEarlier(frameTargetTime);
             {
                 //TRACE_EVENT2("flutter", "Framework Workload", "mode", "basic", "frame", FrameParity());
                 _delegate.OnAnimatorBeginFrame(_lastBeginFrameTime);
@@ -164,13 +164,13 @@ namespace FlutterBinding.Shell
                 // viewport event).  Because of this, we hold off on calling
                 // |OnAnimatorNotifyIdle| for a little bit, as that could cause garbage
                 // collection to trigger at a highly undesirable time.
-                var notify_idle_task_id = _notifyIdleTaskId;
+                var notifyIdleTaskId = _notifyIdleTaskId;
                 _taskRunners.UITaskRunner.PostDelayedTask(() =>
                     {
                         // If our (this task's) task id is the same as the current one, then
                         // no further frames were produced, and it is safe (w.r.t. jank) to
                         // notify the engine we are idle.
-                        if (notify_idle_task_id == _notifyIdleTaskId)
+                        if (notifyIdleTaskId == _notifyIdleTaskId)
                         {
                             _delegate.OnAnimatorNotifyIdle(TimePoint.Now().TotalMicroseconds + 100000);
                         }
@@ -191,13 +191,12 @@ namespace FlutterBinding.Shell
 
         private void AwaitVSync()
         {
-            _waiter.AsyncWaitForVsync( 
-                (TimePoint frame_start_time, TimePoint frame_target_time) =>
+            _waiter.AsyncWaitForVsync( (frameStartTime, frameTargetTime) =>
                 {
                     if (CanReuseLastLayerTree())
                         DrawLastLayerTree();
                     else
-                        BeginFrame(frame_start_time, frame_target_time);
+                        BeginFrame(frameStartTime, frameTargetTime);
                 });
 
             _delegate.OnAnimatorNotifyIdle(_dartFrameDeadline);
