@@ -16,10 +16,10 @@ namespace Flutter.Shell.Droid.App
         public override void OnCreate()
         {
             base.OnCreate();
-            FlutterMain.startInitialization(this);
+            FlutterMain.StartInitialization(this);
         }
 
-        public AppCompatActivity CurrentActivity { get; set; }
+        public Activity CurrentActivity { get; set; }
 
     }
 }

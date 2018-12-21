@@ -11,6 +11,9 @@ namespace FlutterBinding.Engine
     /// </summary>
     public class FlutterException : Exception
     {
+        public string code;
+        public object details;
+
         public FlutterException() { }
 
         public FlutterException(string message) : base(message) { }

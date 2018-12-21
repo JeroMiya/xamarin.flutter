@@ -39,7 +39,6 @@ namespace FlutterBinding.Flow
 
     public class TextureRegistry
     {
-
         // Called from GPU thread.
         public void RegisterTexture(Texture texture)
         {

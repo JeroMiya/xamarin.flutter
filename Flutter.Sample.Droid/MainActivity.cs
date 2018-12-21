@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Flutter.Sample.App;
+using Flutter.Shell.Droid.App;
 
 namespace Flutter.Sample.Droid
 {

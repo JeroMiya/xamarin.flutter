@@ -1,16 +1,9 @@
 ﻿using FlutterBinding.UI;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using FlutterBinding.Flow.Layers;
-using FlutterBinding.Mapping;
 using FlutterBinding.Shell;
 using Newtonsoft.Json;
-using static FlutterBinding.Mapping.Helper;
 using static FlutterBinding.Mapping.Types;
-
 
 namespace FlutterBinding.Engine.Window
 {
@@ -18,38 +11,38 @@ namespace FlutterBinding.Engine.Window
 
     public class NativeWindow
     {
-        protected WindowClient client_ { get; set; }
+        protected WindowClient _client { get; set; }
 
         //private DartPersistentValue library_;
-        private ViewportMetrics viewport_metrics_;
+        private ViewportMetrics _viewport_metrics;
 
-        public ViewportMetrics viewport_metrics() { return viewport_metrics_; }
+        public ViewportMetrics viewport_metrics() { return _viewport_metrics; }
 
         // TODO: Not required
         void DidCreateIsolate() { }
 
-        private UI.Window window => UI.Window.Instance;
+        private UI.Window _window => UI.Window.Instance;
 
         public void UpdateWindowMetrics(ViewportMetrics metrics)
         {
-            viewport_metrics_ = metrics;
+            _viewport_metrics = metrics;
 
             // This bypasses Hooks.cs
-            window.devicePixelRatio = metrics.device_pixel_ratio;
-            window.physicalSize     = new Size(metrics.physical_width, metrics.physical_height);
-            window.padding = new WindowPadding(
+            _window.devicePixelRatio = metrics.device_pixel_ratio;
+            _window.physicalSize     = new Size(metrics.physical_width, metrics.physical_height);
+            _window.padding = new WindowPadding(
                 left: metrics.physical_padding_left,
                 top: metrics.physical_padding_top,
                 right: metrics.physical_padding_right,
                 bottom: metrics.physical_padding_bottom
                 );
-            window.viewInsets = new WindowPadding(
+            _window.viewInsets = new WindowPadding(
                 left: metrics.physical_view_inset_left,
                 top: metrics.physical_view_inset_top,
                 right: metrics.physical_view_inset_right,
                 bottom: metrics.physical_view_inset_bottom);
 
-            _invoke(window.onMetricsChanged, window.OnMetricsChangedZone);
+            _invoke(_window.onMetricsChanged, _window.OnMetricsChangedZone);
         }
 
         public void UpdateLocales(List<string> locales)
@@ -57,38 +50,38 @@ namespace FlutterBinding.Engine.Window
             const int stringsPerLocale = 4;
             int numLocales = (int)Math.Truncate((double)locales.Count / stringsPerLocale);
 
-            window.locales = new List<Locale>(numLocales);
+            _window.locales = new List<Locale>(numLocales);
             for (int localeIndex = 0; localeIndex < numLocales; localeIndex++)
             {
-                window.locales[localeIndex] = new Locale(
+                _window.locales[localeIndex] = new Locale(
                     locales[localeIndex * stringsPerLocale],
                     locales[localeIndex * stringsPerLocale + 1]);
             }
-            _invoke(window.onLocaleChanged, window.OnLocaleChangedZone);
+            _invoke(_window.onLocaleChanged, _window.OnLocaleChangedZone);
         }
 
         public void UpdateUserSettingsData(string jsonData)
         {
             var data = JsonConvert.DeserializeObject<Dictionary<string, object>>(jsonData);
 
-            window.textScaleFactor = Convert.ToDouble(data["textScaleFactor"]);
-            window.alwaysUse24HourFormat = Convert.ToBoolean(data["alwaysUse24HourFormat"]);
+            _window.textScaleFactor = Convert.ToDouble(data["textScaleFactor"]);
+            _window.alwaysUse24HourFormat = Convert.ToBoolean(data["alwaysUse24HourFormat"]);
 
-            _invoke(window.onTextScaleFactorChanged, window.OnTextScaleFactorChangedZone);
+            _invoke(_window.onTextScaleFactorChanged, _window.OnTextScaleFactorChangedZone);
         }
 
         public void UpdateSemanticsEnabled(bool enabled)
         {
-            window.semanticsEnabled = enabled;
-            _invoke(window.onSemanticsEnabledChanged, window.OnSemanticsEnabledChangedZone);
+            _window.semanticsEnabled = enabled;
+            _invoke(_window.onSemanticsEnabledChanged, _window.OnSemanticsEnabledChangedZone);
         }
 
         public void UpdateAccessibilityFeatures(AccessibilityFeatures newFeatures)
         {
-            if (newFeatures == window.accessibilityFeatures)
+            if (newFeatures == _window.accessibilityFeatures)
                 return;
-            window.accessibilityFeatures = newFeatures;
-            _invoke(window.onAccessibilityFeaturesChanged, window.OnAccessibilityFlagsChangedZone);
+            _window.accessibilityFeatures = newFeatures;
+            _invoke(_window.onAccessibilityFeaturesChanged, _window.OnAccessibilityFlagsChangedZone);
         }
 
         //public void DispatchPlatformMessage(PlatformMessage message)
@@ -100,21 +93,21 @@ namespace FlutterBinding.Engine.Window
 
         public void DispatchPointerDataPacket(PointerDataPacket packet)
         {
-            if (window.onPointerDataPacket == null)
+            if (_window.onPointerDataPacket == null)
                 return;
             _invoke(
-                () => window.onPointerDataPacket(packet), 
-                window.OnPointerDataPacketZone);
+                () => _window.onPointerDataPacket(packet), 
+                _window.OnPointerDataPacketZone);
         }
 
         public void DispatchSemanticsAction(int id, SemanticsAction action, object args)
         {
-            if (window.onSemanticsAction == null)
+            if (_window.onSemanticsAction == null)
                 return;
 
             _invoke(
-                () => { window.onSemanticsAction(id, action, args); }, 
-                window.OnSemanticsActionZone);
+                () => { _window.onSemanticsAction(id, action, args); }, 
+                _window.OnSemanticsActionZone);
         }
 
         public void BeginFrame(TimePoint frameTime)
@@ -123,8 +116,8 @@ namespace FlutterBinding.Engine.Window
             var diff = now.TotalMicroseconds - frameTime.TotalMicroseconds;
 
             _invoke(
-                () => window.onBeginFrame(new Duration(microseconds:diff)), 
-                window.OnBeginFrameZone);
+                () => _window.onBeginFrame(new Duration(microseconds:diff)), 
+                _window.OnBeginFrameZone);
         }
 
         //public void CompletePlatformMessageResponse(int response_id, std::vector<uint8_t> data);
@@ -137,7 +130,6 @@ namespace FlutterBinding.Engine.Window
         {
             Engine.Instance.Render(scene.TakeLayerTree());
         }
-
 
         //protected void SendPlatformMessage(string name,
         //                                   object data = null,

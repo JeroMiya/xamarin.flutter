@@ -601,9 +601,9 @@ namespace FlutterBinding.UI
     /// ```
     public class Rect
     {
-        private Rect() { }
+        public Rect() { }
 
-        private Rect(double one, double two, double three, double four)
+        public Rect(double one, double two, double three, double four)
         {
             _value[0] = one;
             _value[1] = two;
@@ -611,7 +611,7 @@ namespace FlutterBinding.UI
             _value[3] = four;
         }
 
-        private Rect(List<double> values)
+        public Rect(List<double> values)
         {
             _value = values;
         }

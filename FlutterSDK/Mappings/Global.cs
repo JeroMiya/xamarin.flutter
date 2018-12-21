@@ -114,7 +114,7 @@ namespace FlutterSDK
 
     public delegate void VoidCallback();
 
-    public class Rect { }
+    //public class Rect { }
     public class Color
     {
         public Color(uint? i)

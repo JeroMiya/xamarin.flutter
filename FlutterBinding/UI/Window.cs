@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Flutter.Shell;
 using FlutterBinding.Engine.Window;
 using static FlutterBinding.Mapping.Types;
 
@@ -688,7 +689,7 @@ namespace FlutterBinding.UI
         ///  * [Navigator], a widget that handles routing.
         ///  * [SystemChannels.navigation], which handles subsequent navigation
         ///    requests from the embedder.
-        public string defaultRouteName => client_.DefaultRouteName();
+        public string defaultRouteName => _client.DefaultRouteName();
 
 
         /// Requests that, at the next appropriate opportunity, the [onBeginFrame]
@@ -698,7 +699,7 @@ namespace FlutterBinding.UI
         ///
         ///  * [SchedulerBinding], the Flutter framework class which manages the
         ///    scheduling of frames.
-        public void scheduleFrame() => client_.ScheduleFrame();
+        public void scheduleFrame() => _client.ScheduleFrame();
 
 
         /// Updates the application's rendering on the GPU with the newly provided
@@ -800,7 +801,7 @@ namespace FlutterBinding.UI
         ///
         /// In either case, this function disposes the given update, which means the
         /// semantics update cannot be used further.
-        public void updateSemantics(SemanticsUpdate update) => client_.UpdateSemantics(update);
+        public void updateSemantics(SemanticsUpdate update) => _client.UpdateSemantics(update);
 
 
         /// Set the debug name associated with this window's root isolate.
@@ -811,7 +812,7 @@ namespace FlutterBinding.UI
         /// This can be combined with flutter tools `--isolate-filter` flag to debug
         /// specific root isolates. For example: `flutter attach --isolate-filter=[name]`.
         /// Note that this does not rename any child isolates of the root.
-        public void setIsolateDebugName(string name) => client_.SetIsolateDebugName(name);
+        public void setIsolateDebugName(string name) => _client.SetIsolateDebugName(name);
 
 
         /// Sends a message to a platform-specific plugin.
@@ -882,20 +883,6 @@ namespace FlutterBinding.UI
         //}
     }
 
-    /// Additional accessibility features that may be enabled by the platform.
-    ///
-    /// It is not possible to enable these settings from Flutter, instead they are
-    /// used by the platform to indicate that additional accessibility features are
-    /// enabled.
-    [Flags]
-    public enum AccessibilityFeatures
-    {
-        AccessibleNavigation = 1 << 0,
-        InvertColors = 1 << 1,
-        DisableAnimations = 1 << 2,
-        BoldText = 1 << 3,
-        ReduceMotion = 1 << 4,
-    };
 
 }
 

@@ -46,12 +46,42 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App\FlutterActivity.cs" />
+    <Compile Include="App\FlutterActivityDelegate.cs" />
+    <Compile Include="App\FlutterActivityEvents.cs" />
     <Compile Include="App\FlutterApplication.cs" />
+    <Compile Include="App\FlutterPluginRegistry.cs" />
+    <Compile Include="Plugin\Common\ActivityLifecycleListener.cs" />
+    <Compile Include="Plugin\Common\BasicMessageChannel.cs" />
+    <Compile Include="Plugin\Common\BinaryMessenger.cs" />
+    <Compile Include="Plugin\Common\MethodCall.cs" />
+    <Compile Include="Plugin\Common\MethodChannel.cs" />
+    <Compile Include="Plugin\Common\MethodCodec.cs" />
+    <Compile Include="Plugin\Common\PluginRegistry.cs" />
+    <Compile Include="Plugin\Common\StandardMessageCodec.cs" />
+    <Compile Include="Plugin\Common\StandardMethodCodec.cs" />
+    <Compile Include="Plugin\Common\StringCodec.cs" />
+    <Compile Include="Plugin\Editing\InputConnectionAdaptor.cs" />
+    <Compile Include="Plugin\Editing\TextInputPlugin.cs" />
+    <Compile Include="Plugin\Platform\PlatformPlugin.cs" />
+    <Compile Include="Plugin\Platform\PlatformView.cs" />
+    <Compile Include="Plugin\Platform\PlatformViewFactory.cs" />
+    <Compile Include="Plugin\Platform\PlatformViewRegistry.cs" />
+    <Compile Include="Plugin\Platform\PlatformViewsController.cs" />
+    <Compile Include="Plugin\Platform\SingleViewPresentation.cs" />
+    <Compile Include="Plugin\Platform\VirtualDisplayController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="FlutterCanvas.cs" />
+    <Compile Include="Util\PathUtils.cs" />
+    <Compile Include="View\AccessibilityBridge.cs" />
     <Compile Include="View\FlutterMain.cs" />
+    <Compile Include="View\FlutterNativeView.cs" />
+    <Compile Include="View\FlutterRunArguments.cs" />
+    <Compile Include="View\FlutterView.cs" />
     <Compile Include="View\ResourceCleaner.cs" />
+    <Compile Include="View\ResourceExtractor.cs" />
+    <Compile Include="View\ResourceUpdater.cs" />
+    <Compile Include="View\TextureRegistry.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="27.0.2.1" />
@@ -71,6 +101,10 @@
     <Folder Include="Shell\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Flutter.Shell\Flutter.Shell.csproj">
+      <Project>{1868a51f-0945-448b-99fd-afa5589ff717}</Project>
+      <Name>Flutter.Shell</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FlutterBinding\FlutterBinding.csproj">
       <Project>{c9313643-3357-4872-9b00-03e2c79ad297}</Project>
       <Name>FlutterBinding</Name>

@@ -84,4 +84,8 @@
     <Folder Include="Txt\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Flutter.Shell\Flutter.Shell.csproj" />
+  </ItemGroup>
+
 </Project>

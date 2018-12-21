@@ -4,7 +4,6 @@ using System.Text;
 using FlutterBinding.Flow;
 using FlutterBinding.UI;
 using SkiaSharp;
-using Rect = FlutterSDK.Rect;
 
 namespace Flutter.Sample.App
 {
