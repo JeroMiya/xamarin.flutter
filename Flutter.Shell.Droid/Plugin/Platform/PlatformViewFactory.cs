@@ -6,13 +6,13 @@ namespace Flutter.Shell.Droid.Plugin.Platform
 {
     public abstract class PlatformViewFactory
     {
-        private readonly MessageCodec<object> _createArgsCodec;
+        private readonly IMessageCodec<object> _createArgsCodec;
 
         /**
          *
          * @param createArgsCodec the codec used to decode the args parameter of {@link #create}.
          */
-        protected PlatformViewFactory(MessageCodec<object> createArgsCodec)
+        protected PlatformViewFactory(IMessageCodec<object> createArgsCodec)
         {
             _createArgsCodec = createArgsCodec;
         }
@@ -26,11 +26,11 @@ namespace Flutter.Shell.Droid.Plugin.Platform
          *             argument passed to the constructor. This is null if createArgsCodec was null, or no arguments were
          *             sent from the Flutter app.
          */
-        public abstract PlatformView Create(Context context, int viewId, Object args);
+        public abstract IPlatformView Create(Context context, int viewId, Object args);
 
         /**
          * Returns the codec to be used for decoding the args parameter of {@link #create}.
          */
-        public MessageCodec<object> GetCreateArgsCodec() => _createArgsCodec;
+        public IMessageCodec<object> GetCreateArgsCodec() => _createArgsCodec;
     }
 }

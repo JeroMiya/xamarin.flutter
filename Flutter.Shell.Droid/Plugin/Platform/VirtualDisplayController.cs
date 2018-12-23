@@ -38,15 +38,15 @@ namespace Flutter.Shell.Droid.Plugin.Platform
         public static VirtualDisplayController Create(
                 Context context,
                 PlatformViewFactory viewFactory,
-                SurfaceTextureEntry textureEntry,
+                ITextureRegistrySurfaceTextureEntry textureEntry,
                 int width,
                 int height,
                 int viewId,
                 object createParams
         )
         {
-            textureEntry.SurfaceTexture().SetDefaultBufferSize(width, height);
-            Surface surface = new Surface(textureEntry.SurfaceTexture());
+            textureEntry.SurfaceTexture.SetDefaultBufferSize(width, height);
+            Surface surface = new Surface(textureEntry.SurfaceTexture);
             DisplayManager displayManager = (DisplayManager)context.GetSystemService(Context.DisplayService);
 
             DisplayMetricsDensity densityDpi = context.Resources.DisplayMetrics.DensityDpi;
@@ -68,7 +68,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
 
         private readonly Context _context;
         private readonly DisplayMetricsDensity _densityDpi;
-        private readonly SurfaceTextureEntry _textureEntry;
+        private readonly ITextureRegistrySurfaceTextureEntry _textureEntry;
         private VirtualDisplay _virtualDisplay;
         private SingleViewPresentation _presentation;
         private readonly Surface _surface;
@@ -79,7 +79,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
                 VirtualDisplay virtualDisplay,
                 PlatformViewFactory viewFactory,
                 Surface surface,
-                SurfaceTextureEntry textureEntry,
+                ITextureRegistrySurfaceTextureEntry textureEntry,
                 int viewId,
                 object createParams)
         {
@@ -104,7 +104,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
             _virtualDisplay.Surface = null;
             _virtualDisplay.Release();
 
-            _textureEntry.SurfaceTexture().SetDefaultBufferSize(width, height);
+            _textureEntry.SurfaceTexture.SetDefaultBufferSize(width, height);
             DisplayManager displayManager = (DisplayManager)_context.GetSystemService(Context.DisplayService);
             _virtualDisplay = displayManager.CreateVirtualDisplay(
                     "flutter-vd",
@@ -146,7 +146,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
 
         public void Dispose()
         {
-            PlatformView view = _presentation.GetView();
+            IPlatformView view = _presentation.GetView();
             _presentation.DetachState();
             view.Dispose();
             _virtualDisplay.Release();
@@ -155,10 +155,8 @@ namespace Flutter.Shell.Droid.Plugin.Platform
 
         public Android.Views.View GetView()
         {
-            if (_presentation == null)
-                return null;
-            PlatformView platformView = _presentation.GetView();
-            return platformView.GetView();
+            var platformView = _presentation?.GetView();
+            return platformView?.GetView();
         }
 
         //@TargetApi(Build.VERSION_CODES.JELLY_BEAN)

@@ -9,7 +9,7 @@
      *
      * All operations throw {@link IllegalArgumentException}, if conversion fails.
      */
-    public interface MethodCodec
+    public interface IMethodCodec
     {
         /**
          * Encodes a message call into binary.

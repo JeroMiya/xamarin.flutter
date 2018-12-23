@@ -2,7 +2,6 @@
 using Android.Content;
 using Android.Content.PM;
 using Flutter.Shell.Droid.View;
-using TextureRegistry = Flutter.Shell.Droid.View.TextureRegistry;
 
 namespace Flutter.Shell.Droid.Plugin.Common
 {
@@ -17,7 +16,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
      * defaults to an instance of {@link io.flutter.app.FlutterActivity}, itself a
      * {@link PluginRegistry}.</p>
      */
-    public interface PluginRegistry
+    public interface IPluginRegistry
     {
         /**
          * Returns a {@link Registrar} for receiving the registrations pertaining
@@ -26,7 +25,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
          * @param pluginKey a unique String identifying the plugin; typically the
          * fully qualified name of the plugin's main class.
          */
-        Registrar RegistrarFor(string pluginKey);
+        IRegistrar RegistrarFor(string pluginKey);
 
         /**
          * Returns whether the specified plugin is known to this registry.
@@ -57,7 +56,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
     /**
      * Receiver of registrations from a single plugin.
      */
-    public interface Registrar
+    public interface IRegistrar
     {
         /**
          * Returns the {@link Activity} that forms the plugin's operating context.
@@ -96,7 +95,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
          * Returns a {@link TextureRegistry} which the plugin can use for
          * managing backend textures.
          */
-        TextureRegistry Textures();
+        ITextureRegistry Textures();
 
         /**
          * Returns the application's {@link PlatformViewRegistry}.
@@ -149,7 +148,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
          * @param value the value, possibly null.
          * @return this {@link Registrar}.
          */
-        Registrar Publish(object value);
+        IRegistrar Publish(object value);
 
         /**
          * Adds a callback allowing the plugin to take part in handling incoming
@@ -159,7 +158,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
          * @param listener a {@link RequestPermissionsResultListener} callback.
          * @return this {@link Registrar}.
          */
-        Registrar AddRequestPermissionsResultListener(RequestPermissionsResultListener listener);
+        IRegistrar AddRequestPermissionsResultListener(IRequestPermissionsResultListener listener);
 
         /*
          * Method addRequestPermissionResultListener(RequestPermissionResultListener listener)
@@ -188,7 +187,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
          * @param listener an {@link ActivityResultListener} callback.
          * @return this {@link Registrar}.
          */
-        Registrar AddActivityResultListener(ActivityResultListener listener);
+        IRegistrar AddActivityResultListener(IActivityResultListener listener);
 
         /**
          * Adds a callback allowing the plugin to take part in handling incoming
@@ -197,7 +196,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
          * @param listener a {@link NewIntentListener} callback.
          * @return this {@link Registrar}.
          */
-        Registrar AddNewIntentListener(NewIntentListener listener);
+        IRegistrar AddNewIntentListener(INewIntentListener listener);
 
         /**
          * Adds a callback allowing the plugin to take part in handling incoming
@@ -206,7 +205,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
          * @param listener a {@link UserLeaveHintListener} callback.
          * @return this {@link Registrar}.
          */
-        Registrar AddUserLeaveHintListener(UserLeaveHintListener listener);
+        IRegistrar AddUserLeaveHintListener(IUserLeaveHintListener listener);
 
         /**
          * Adds a callback allowing the plugin to take part in handling incoming
@@ -215,14 +214,14 @@ namespace Flutter.Shell.Droid.Plugin.Common
          * @param listener a {@link ViewDestroyListener} callback.
          * @return this {@link Registrar}.
          */
-        Registrar AddViewDestroyListener(ViewDestroyListener listener);
+        IRegistrar AddViewDestroyListener(IViewDestroyListener listener);
     }
 
     /**
      * Delegate interface for handling result of permissions requests on
      * behalf of the main {@link Activity}.
      */
-    public interface RequestPermissionsResultListener
+    public interface IRequestPermissionsResultListener
     {
         /**
          * @return true if the result has been handled.
@@ -250,7 +249,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
      * Delegate interface for handling activity results on behalf of the main
      * {@link Activity}.
      */
-    public interface ActivityResultListener
+    public interface IActivityResultListener
     {
         /**
          * @return true if the result has been handled.
@@ -262,7 +261,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
      * Delegate interface for handling new intents on behalf of the main
      * {@link Activity}.
      */
-    public interface NewIntentListener
+    public interface INewIntentListener
     {
         /**
          * @return true if the new intent has been handled.
@@ -274,7 +273,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
      * Delegate interface for handling user leave hints on behalf of the main
      * {@link Activity}.
      */
-    public interface UserLeaveHintListener
+    public interface IUserLeaveHintListener
     {
         void OnUserLeaveHint();
     }
@@ -284,7 +283,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
      * method being called. A plugin that implements this interface can
      * adopt the FlutterNativeView by retaining a reference and returning true.
      */
-    public interface ViewDestroyListener
+    public interface IViewDestroyListener
     {
         bool OnViewDestroy(FlutterNativeView view);
     }
@@ -296,8 +295,8 @@ namespace Flutter.Shell.Droid.Plugin.Common
      * provide a background service with a callback for calling its
      * GeneratedPluginRegistrant.registerWith method.</p>
      */
-    public interface PluginRegistrantCallback
+    public interface IPluginRegistrantCallback
     {
-        void RegisterWith(PluginRegistry registry);
+        void RegisterWith(IPluginRegistry registry);
     }
 }

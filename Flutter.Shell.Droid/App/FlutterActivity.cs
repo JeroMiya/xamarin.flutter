@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -17,15 +13,15 @@ using SkiaSharp.Views.Android;
 
 namespace Flutter.Shell.Droid.App
 {
-    public class FlutterActivity : Activity, Provider, ViewFactory
+    public class FlutterActivity : Activity, IProvider, ViewFactory
     {
         private FlutterActivityDelegate _delegate;
 
         // These aliases ensure that the methods we forward to the delegate adhere
         // to relevant interfaces versus just existing in FlutterActivityDelegate.
-        private FlutterActivityEvents _eventDelegate;
-        private Provider _viewProvider;
-        private PluginRegistry _pluginRegistry;
+        private IFlutterActivityEvents _eventDelegate;
+        private IProvider _viewProvider;
+        private IPluginRegistry _pluginRegistry;
 
         public SKCanvasView Canvas { get; private set; }
         public FlutterSurface Surface { get; private set; }
@@ -40,20 +36,19 @@ namespace Flutter.Shell.Droid.App
             _pluginRegistry = _delegate;
 
             FrameLayout.LayoutParams rootLayout;
-            ViewGroup.LayoutParams canvasLayoutParams;
-            var root = new FrameLayout(this)
+            FrameLayout root = new FrameLayout(this)
             {
                 LayoutParameters = rootLayout = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent)
             };
-            rootLayout.SetMargins(0,0,0,0);
+            rootLayout.SetMargins(0, 0, 0, 0);
             Canvas = new SKCanvasView(this)
             {
-                LayoutParameters = canvasLayoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent)
+                LayoutParameters = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent)
             };
             root.AddView(Canvas);
             SetContentView(root);
 
-            var scale = Resources.DisplayMetrics.Density;
+            float scale = Resources.DisplayMetrics.Density;
             Surface = new FlutterSurface(scale);
 
             Canvas.PaintSurface += OnCanvasPaintSurface;
@@ -76,7 +71,10 @@ namespace Flutter.Shell.Droid.App
          * {@link #onCreate(Bundle)} is called.
          */
         //@Override
-        public FlutterView GetFlutterView() => _viewProvider.GetFlutterView();
+        public FlutterView GetFlutterView()
+        {
+            return _viewProvider.GetFlutterView();
+        }
 
         /**
          * Hook for subclasses to customize the creation of the
@@ -86,7 +84,10 @@ namespace Flutter.Shell.Droid.App
          * activity to use a newly instantiated full-screen view.</p>
          */
         //@Override
-        public FlutterView CreateFlutterView(Context context) => null;
+        public FlutterView CreateFlutterView(Context context)
+        {
+            return null;
+        }
 
         /**
          * Hook for subclasses to customize the creation of the
@@ -96,19 +97,34 @@ namespace Flutter.Shell.Droid.App
          * activity to use a newly instantiated native view object.</p>
          */
         //@Override
-        public FlutterNativeView CreateFlutterNativeView() => null;
+        public FlutterNativeView CreateFlutterNativeView()
+        {
+            return null;
+        }
 
         //@Override
-        public bool RetainFlutterNativeView() => false;
+        public bool RetainFlutterNativeView()
+        {
+            return false;
+        }
 
         //@Override
-        public bool HasPlugin(string key) => _pluginRegistry.HasPlugin(key);
+        public bool HasPlugin(string key)
+        {
+            return _pluginRegistry.HasPlugin(key);
+        }
 
         //@Override
-        public T ValuePublishedByPlugin<T>(string pluginKey) => _pluginRegistry.ValuePublishedByPlugin<T>(pluginKey);
+        public T ValuePublishedByPlugin<T>(string pluginKey)
+        {
+            return _pluginRegistry.ValuePublishedByPlugin<T>(pluginKey);
+        }
 
         //@Override
-        public Registrar RegistrarFor(string pluginKey) => _pluginRegistry.RegistrarFor(pluginKey);
+        public IRegistrar RegistrarFor(string pluginKey)
+        {
+            return _pluginRegistry.RegistrarFor(pluginKey);
+        }
 
         /// <inheritdoc />
         public override void OnCreate(Bundle savedInstanceState, PersistableBundle persistentState)

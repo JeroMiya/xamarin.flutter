@@ -63,7 +63,7 @@
     <Compile Include="Plugin\Editing\InputConnectionAdaptor.cs" />
     <Compile Include="Plugin\Editing\TextInputPlugin.cs" />
     <Compile Include="Plugin\Platform\PlatformPlugin.cs" />
-    <Compile Include="Plugin\Platform\PlatformView.cs" />
+    <Compile Include="Plugin\Platform\IPlatformView.cs" />
     <Compile Include="Plugin\Platform\PlatformViewFactory.cs" />
     <Compile Include="Plugin\Platform\PlatformViewRegistry.cs" />
     <Compile Include="Plugin\Platform\PlatformViewsController.cs" />
@@ -82,6 +82,7 @@
     <Compile Include="View\ResourceExtractor.cs" />
     <Compile Include="View\ResourceUpdater.cs" />
     <Compile Include="View\TextureRegistry.cs" />
+    <Compile Include="View\VsyncWaiter.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="27.0.2.1" />

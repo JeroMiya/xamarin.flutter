@@ -1,5 +1,4 @@
 ﻿using System;
-using Android.App;
 
 namespace Flutter.Shell.Droid.Plugin.Common
 {
@@ -13,7 +12,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
     /// @see MethodChannel , which supports communication using asynchronous method invocation.
     /// @see EventChannel , which supports communication using event streams.
     /// </summary>
-    public interface BinaryMessenger
+    public interface IBinaryMessenger
     {
         /**
          * Sends a binary message to the Flutter application.
@@ -37,7 +36,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
          * message, possibly null.
          */
         // TODO: ByteBuffer->object
-        void Send(string channel, object message, BinaryReply callback);
+        void Send(string channel, object message, IBinaryReply callback);
 
         /**
          * Registers a handler to be invoked when the Flutter application sends a message
@@ -52,14 +51,14 @@ namespace Flutter.Shell.Droid.Plugin.Common
          * @param channel the name {@link String} of the channel.
          * @param handler a {@link BinaryMessageHandler} to be invoked on incoming messages, or null.
          */
-        void SetMessageHandler(string channel, BinaryMessageHandler handler);
+        void SetMessageHandler(string channel, IBinaryMessageHandler handler);
 
     }
 
     /**
      * Handler for incoming binary messages from Flutter.
      */
-    public interface BinaryMessageHandler
+    public interface IBinaryMessageHandler
     {
         /**
          * Handles the specified message.
@@ -75,7 +74,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
          * @param reply A {@link BinaryReply} used for submitting a reply back to Flutter.
          */
         // TODO: ByteBuffer->object
-        void OnMessage(object message, BinaryReply reply);
+        void OnMessage(object message, IBinaryReply reply);
     }
 
     /**
@@ -83,7 +82,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
      * message from Flutter. Also used in the dual capacity to handle a reply
      * received from Flutter after sending a message.
      */
-    public interface BinaryReply
+    public interface IBinaryReply
     {
         /**
          * Handles the specified reply.
@@ -96,10 +95,10 @@ namespace Flutter.Shell.Droid.Plugin.Common
         void Reply(object reply);
     }
 
-    public class BinaryReplyImpl : BinaryReply
+    public class BinaryReplyImpl : IBinaryReply
     {
         public Action<object> OnReply;
-        
+
         /// <inheritdoc />
         public void Reply(object reply)
         {

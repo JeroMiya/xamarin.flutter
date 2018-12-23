@@ -14,9 +14,9 @@ namespace Flutter.Shell.Droid.Plugin.Common
      * <p>Values supported as method arguments and result payloads are those supported by
      * {@link StandardMessageCodec}.</p>
      */
-    public sealed class StandardMethodCodec : MethodCodec
+    public sealed class StandardMethodCodec : IMethodCodec
     {
-        public static StandardMethodCodec INSTANCE = new StandardMethodCodec(StandardMessageCodec.INSTANCE);
+        public static readonly StandardMethodCodec Instance = new StandardMethodCodec(StandardMessageCodec.Instance);
         private StandardMessageCodec _messageCodec;
 
         /**
@@ -32,13 +32,6 @@ namespace Flutter.Shell.Droid.Plugin.Common
         public object EncodeMethodCall(MethodCall methodCall)
         {
             return methodCall;
-
-            //ExposedByteArrayOutputStream stream = new ExposedByteArrayOutputStream();
-            //messageCodec.writeValue(stream, methodCall.method);
-            //messageCodec.writeValue(stream, methodCall.arguments);
-            //ByteBuffer buffer = ByteBuffer.allocateDirect(stream.size());
-            //buffer.put(stream.buffer(), 0, stream.size());
-            //return buffer;
         }
 
         //@Override
@@ -46,13 +39,6 @@ namespace Flutter.Shell.Droid.Plugin.Common
         public MethodCall DecodeMethodCall(object methodCall)
         {
             return (MethodCall)methodCall;
-            //methodCall.order(ByteOrder.nativeOrder());
-            //object method = messageCodec.readValue(methodCall);
-            //object arguments = messageCodec.readValue(methodCall);
-            //if (method is String && !methodCall.hasRemaining()) {
-            //    return new MethodCall((string)method, arguments);
-            //}
-            //throw new IllegalArgumentException("Method call corrupted");
         }
 
         //@Override
@@ -60,13 +46,6 @@ namespace Flutter.Shell.Droid.Plugin.Common
         public object EncodeSuccessEnvelope(object result)
         {
             return result;
-
-            //ExposedByteArrayOutputStream stream = new ExposedByteArrayOutputStream();
-            //stream.write(0);
-            //messageCodec.writeValue(stream, result);
-            //ByteBuffer buffer = ByteBuffer.allocateDirect(stream.size());
-            //buffer.put(stream.buffer(), 0, stream.size());
-            //return buffer;
         }
 
         //@Override
@@ -75,19 +54,10 @@ namespace Flutter.Shell.Droid.Plugin.Common
         {
             return new ErrorEnvelope
             {
-                errorCode = errorCode,
-                errorMessage = errorMessage,
-                errorDetails = errorDetails
+                ErrorCode = errorCode,
+                ErrorMessage = errorMessage,
+                ErrorDetails = errorDetails
             };
-
-            //ExposedByteArrayOutputStream stream = new ExposedByteArrayOutputStream();
-            //stream.write(1);
-            //messageCodec.writeValue(stream, errorCode);
-            //messageCodec.writeValue(stream, errorMessage);
-            //messageCodec.writeValue(stream, errorDetails);
-            //ByteBuffer buffer = ByteBuffer.allocateDirect(stream.size());
-            //buffer.put(stream.buffer(), 0, stream.size());
-            //return buffer;
         }
 
         //@Override
@@ -97,40 +67,13 @@ namespace Flutter.Shell.Droid.Plugin.Common
             if (envelope is ErrorEnvelope errorEnvelope)
                 return errorEnvelope;
             return envelope;
-
-            //envelope.order(ByteOrder.nativeOrder());
-            //byte flag = envelope.get();
-            //switch (flag)
-            //{
-            //    case 0:
-            //        {
-            //            object result = messageCodec.readValue(envelope);
-            //            if (!envelope.hasRemaining())
-            //            {
-            //                return result;
-            //            }
-            //        }
-            //    // Falls through intentionally.
-            //    case 1:
-            //        {
-            //            object code = messageCodec.readValue(envelope);
-            //            object message = messageCodec.readValue(envelope);
-            //            object details = messageCodec.readValue(envelope);
-            //            if (code is String
-            //        && (message == null || message is String)
-            //        && !envelope.hasRemaining()) {
-            //                throw new FlutterException((string)code, (string)message, details);
-            //            }
-            //        }
-            //}
-            //throw new IllegalArgumentException("Envelope corrupted");
         }
     }
 
     public class ErrorEnvelope
     {
-        public string errorCode;
-        public string errorMessage;
-        public object errorDetails;
+        public string ErrorCode;
+        public string ErrorMessage;
+        public object ErrorDetails;
     }
 }

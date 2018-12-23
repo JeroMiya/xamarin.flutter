@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Flutter.Shell;
 using FlutterBinding.Engine;
 using FlutterBinding.Engine.Assets;
 using FlutterBinding.Engine.Window;

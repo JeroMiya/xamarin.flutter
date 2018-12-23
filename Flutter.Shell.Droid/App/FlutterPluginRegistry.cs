@@ -6,18 +6,16 @@ using Flutter.Shell.Droid.View;
 using Java.Lang;
 using System.Collections.Generic;
 using Android.Content.PM;
-using Result = Flutter.Shell.Droid.Plugin.Common.Result;
-using TextureRegistry = Flutter.Shell.Droid.View.TextureRegistry;
 
 namespace Flutter.Shell.Droid.App
 {
     public class FlutterPluginRegistry : 
-            PluginRegistry,
-             RequestPermissionsResultListener,
-             ActivityResultListener,
-             NewIntentListener,
-             UserLeaveHintListener,
-             ViewDestroyListener
+            IPluginRegistry,
+             IRequestPermissionsResultListener,
+             IActivityResultListener,
+             INewIntentListener,
+             IUserLeaveHintListener,
+             IViewDestroyListener
     {
         private static readonly string TAG = "FlutterPluginRegistry";
 
@@ -28,11 +26,11 @@ namespace Flutter.Shell.Droid.App
 
         internal PlatformViewsController _platformViewsController;
         internal Dictionary<string, object> _pluginMap = new Dictionary<string, object>();
-        internal readonly List<RequestPermissionsResultListener> _requestPermissionsResultListeners = new List<RequestPermissionsResultListener>();
-        internal readonly List<ActivityResultListener> _activityResultListeners = new List<ActivityResultListener>();
-        internal readonly List<NewIntentListener> _newIntentListeners = new List<NewIntentListener>();
-        internal readonly List<UserLeaveHintListener> _userLeaveHintListeners = new List<UserLeaveHintListener>();
-        internal readonly List<ViewDestroyListener> _viewDestroyListeners = new List<ViewDestroyListener>();
+        internal readonly List<IRequestPermissionsResultListener> _requestPermissionsResultListeners = new List<IRequestPermissionsResultListener>();
+        internal readonly List<IActivityResultListener> _activityResultListeners = new List<IActivityResultListener>();
+        internal readonly List<INewIntentListener> _newIntentListeners = new List<INewIntentListener>();
+        internal readonly List<IUserLeaveHintListener> _userLeaveHintListeners = new List<IUserLeaveHintListener>();
+        internal readonly List<IViewDestroyListener> _viewDestroyListeners = new List<IViewDestroyListener>();
 
         public FlutterPluginRegistry(FlutterNativeView nativeView, Context context)
         {
@@ -55,7 +53,7 @@ namespace Flutter.Shell.Droid.App
         }
 
         //@Override
-        public Registrar RegistrarFor(string pluginKey)
+        public IRegistrar RegistrarFor(string pluginKey)
         {
             if (_pluginMap.ContainsKey(pluginKey))
             {
@@ -108,7 +106,7 @@ namespace Flutter.Shell.Droid.App
          */
 
         //@Override
-        public bool OnActivityResult(int requestCode, Result resultCode, Intent data)
+        public bool OnActivityResult(int requestCode, Android.App.Result resultCode, Intent data)
         {
             foreach (var listener in _activityResultListeners)
             {
@@ -163,7 +161,7 @@ namespace Flutter.Shell.Droid.App
 
     }
 
-    internal class FlutterRegistrar : Registrar
+    internal class FlutterRegistrar : IRegistrar
     {
         private readonly string pluginKey;
         private readonly FlutterPluginRegistry _registry;
@@ -184,13 +182,13 @@ namespace Flutter.Shell.Droid.App
         public Context ActiveContext() => _registry._activity ?? _registry._appContext;
 
         //@Override
-        public BinaryMessenger Messenger() => _registry._nativeView;
+        public IBinaryMessenger Messenger() => _registry._nativeView;
 
         //@Override
-        public TextureRegistry Textures() => _registry._flutterView;
+        public ITextureRegistry Textures() => _registry._flutterView;
 
         //@Override
-        public PlatformViewRegistry PlatformViewRegistry() => _registry._platformViewsController.GetRegistry();
+        public IPlatformViewRegistry PlatformViewRegistry() => _registry._platformViewsController.GetRegistry();
 
         //@Override
         public FlutterView View() => _registry._flutterView;
@@ -202,7 +200,7 @@ namespace Flutter.Shell.Droid.App
         public string LookupKeyForAsset(string asset, string packageName) => FlutterMain.GetLookupKeyForAsset(asset, packageName);
 
         //@Override
-        public Registrar Publish(object value)
+        public IRegistrar Publish(object value)
         {
             _registry._pluginMap[pluginKey] = value;
             return this;
@@ -217,35 +215,35 @@ namespace Flutter.Shell.Droid.App
          * https://github.com/flutter/flutter/wiki/Changelog#typo-fixed-in-flutter-engine-android-api
          */
         //@Override
-        public Registrar AddRequestPermissionsResultListener(RequestPermissionsResultListener listener)
+        public IRegistrar AddRequestPermissionsResultListener(IRequestPermissionsResultListener listener)
         {
             _registry._requestPermissionsResultListeners.Add(listener);
             return this;
         }
 
         /// <inheritdoc />
-        public Registrar AddActivityResultListener(ActivityResultListener listener)
+        public IRegistrar AddActivityResultListener(IActivityResultListener listener)
         {
             _registry._activityResultListeners.Add(listener);
             return this;
         }
 
         //@Override
-        public Registrar AddNewIntentListener(NewIntentListener listener)
+        public IRegistrar AddNewIntentListener(INewIntentListener listener)
         {
             _registry._newIntentListeners.Add(listener);
             return this;
         }
 
         //@Override
-        public Registrar AddUserLeaveHintListener(UserLeaveHintListener listener)
+        public IRegistrar AddUserLeaveHintListener(IUserLeaveHintListener listener)
         {
             _registry._userLeaveHintListeners.Add(listener);
             return this;
         }
 
         //@Override
-        public Registrar AddViewDestroyListener(ViewDestroyListener listener)
+        public IRegistrar AddViewDestroyListener(IViewDestroyListener listener)
         {
             _registry._viewDestroyListeners.Add(listener);
             return this;

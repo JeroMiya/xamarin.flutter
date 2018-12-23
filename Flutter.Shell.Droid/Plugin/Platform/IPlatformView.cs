@@ -3,7 +3,7 @@
     /**
      * A handle to an Android view to be embedded in the Flutter hierarchy.
      */
-    public interface PlatformView
+    public interface IPlatformView
     {
         /**
          * Returns the Android view to be embedded in the Flutter hierarchy.

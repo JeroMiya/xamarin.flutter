@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.Graphics;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+﻿using Android.Graphics;
 
 namespace Flutter.Shell.Droid.View
 {
@@ -19,34 +8,34 @@ namespace Flutter.Shell.Droid.View
      * <a href="https://docs.flutter.io/flutter/widgets/Texture-class.html">Texture</a>
      * widget.
      */
-    public interface TextureRegistry
+    public interface ITextureRegistry
     {
         /**
          * Creates and registers a SurfaceTexture managed by the Flutter engine.
          *
          * @return A SurfaceTextureEntry.
          */
-        TextureRegistry_SurfaceTextureEntry CreateSurfaceTexture();
+        ITextureRegistrySurfaceTextureEntry CreateSurfaceTexture();
     }
 
     /**
      * A registry entry for a managed SurfaceTexture.
      */
-    public interface TextureRegistry_SurfaceTextureEntry
+    public interface ITextureRegistrySurfaceTextureEntry
     {
-        /**
-         * @return The managed SurfaceTexture.
-         */
-        SurfaceTexture SurfaceTexture();
+        /// <summary>
+        /// The managed SurfaceTexture.
+        /// </summary>
+        SurfaceTexture SurfaceTexture { get; }
 
-        /**
-         * @return The identity of this SurfaceTexture.
-         */
-        long Id();
+        /// <summary>
+        /// The identity of this SurfaceTexture.
+        /// </summary>
+        long Id { get; }
 
-        /**
-         * Deregisters and releases this SurfaceTexture.
-         */
+        /// <summary>
+        /// Deregisters and releases this SurfaceTexture.
+        /// </summary>
         void Release();
     }
 

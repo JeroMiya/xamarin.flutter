@@ -6,73 +6,55 @@ using Flutter.Shell.Droid.Plugin.Common;
 
 namespace Flutter.Shell.Droid.App
 {
-    /**
-     * A collection of Android {@code Activity} methods that are relevant to the
-     * core operation of Flutter applications.
-     *
-     * <p>Application authors that use an activity other than
-     * {@link FlutterActivity} should forward all events herein from their activity
-     * to an instance of {@link FlutterActivityDelegate} in order to wire the
-     * activity up to the Flutter framework. This forwarding is already provided in
-     * {@code FlutterActivity}.</p>
-     */
-    public interface FlutterActivityEvents : 
+    /// <summary>
+    /// A collection of Android {@code Activity} methods that are relevant to the
+    /// core operation of Flutter applications.
+    ///
+    /// <p>Application authors that use an activity other than
+    /// { @link FlutterActivity} should forward all events herein from their activity
+    /// to an instance of {@link FlutterActivityDelegate} in order to wire the
+    /// activity up to the Flutter framework.This forwarding is already provided in
+    /// {@code FlutterActivity}.</p>
+    /// </summary>
+    public interface IFlutterActivityEvents : 
         Android.Content.IComponentCallbacks2, 
-        RequestPermissionsResultListener,
-        ActivityResultListener
+        IRequestPermissionsResultListener,
+        IActivityResultListener
     {
-        /**
-         * @see android.app.Activity#onCreate(android.os.Bundle)
-         */
+        ///<summary> <see cref="Activity#onCreate(android.os.Bundle)"/> </summary>
         void OnCreate(Bundle savedInstanceState);
 
-        /**
-         * @see android.app.Activity#onNewIntent(Intent)
-         */
+        ///<summary> <see cref="Activity#onNewIntent(Intent)"/> </summary>
         void OnNewIntent(Intent intent);
 
-        /**
-         * @see android.app.Activity#onPause()
-         */
+        ///<summary> <see cref="Activity#onPause()"/> </summary>
         void OnPause();
 
-        /**
-         * @see android.app.Activity#onStart()
-         */
+        ///<summary> <see cref="Activity#onStart()"/> </summary>
         void OnStart();
 
-        /**
-         * @see android.app.Activity#onResume()
-         */
+        ///<summary> <see cref="Activity#onResume()"/> </summary>
         void OnResume();
 
-        /**
-         * @see android.app.Activity#onPostResume()
-         */
+        ///<summary> <see cref="Activity#onPostResume()"/> </summary>
         void OnPostResume();
 
-        /**
-         * @see android.app.Activity#onDestroy()
-         */
+        ///<summary> <see cref="Activity#onDestroy()"/> </summary>
         void OnDestroy();
 
-        /**
-         * @see android.app.Activity#onStop()
-         */
+        ///<summary><see cref="Activity#onStop()"/></summary>
         void OnStop();
 
-        /**
-         * Invoked when the activity has detected the user's press of the back key.
-         *
-         * @return {@code true} if the listener handled the event; {@code false}
-         *     to let the activity continue with its default back button handling.
-         * @see android.app.Activity#onBackPressed()
-         */
+        ///<summary>
+        /// Invoked when the activity has detected the user's press of the back key.
+        ///
+        /// @return {@code true} if the listener handled the event; { @code false}
+        ///     to let the activity continue with its default back button handling.
+        /// <see cref="Activity#onBackPressed()"/>
+        /// </summary>
         bool OnBackPressed();
 
-        /**
-         * @see android.app.Activity#onUserLeaveHint()
-         */
+        ///<summary><see cref="Activity#onUserLeaveHint"/></summary>
         void OnUserLeaveHint();
     }
 }

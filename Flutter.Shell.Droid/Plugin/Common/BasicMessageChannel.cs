@@ -1,15 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Util;
-using Android.Views;
-using Android.Widget;
+﻿using Android.Util;
+using System;
 
 namespace Flutter.Shell.Droid.Plugin.Common
 {
@@ -28,11 +18,11 @@ namespace Flutter.Shell.Droid.Plugin.Common
      */
     public class BasicMessageChannel<T> where T : class
     {
-        private static string TAG = "BasicMessageChannel#";
+        private static readonly string TAG = "BasicMessageChannel#";
 
-        private BinaryMessenger messenger;
-        private string name;
-        private MessageCodec<T> codec;
+        private readonly IBinaryMessenger _messenger;
+        private readonly string _name;
+        private readonly IMessageCodec<T> _codec;
 
         /**
          * Creates a new channel associated with the specified {@link BinaryMessenger}
@@ -42,14 +32,14 @@ namespace Flutter.Shell.Droid.Plugin.Common
          * @param name a channel name String.
          * @param codec a {@link MessageCodec}.
          */
-        public BasicMessageChannel(BinaryMessenger messenger, string name, MessageCodec<T> codec)
+        public BasicMessageChannel(IBinaryMessenger messenger, string name, IMessageCodec<T> codec)
         {
             //assert messenger != null;
             //assert name != null;
             //assert codec != null;
-            this.messenger = messenger;
-            this.name = name;
-            this.codec = codec;
+            _messenger = messenger;
+            _name = name;
+            _codec = codec;
         }
 
         /**
@@ -70,10 +60,10 @@ namespace Flutter.Shell.Droid.Plugin.Common
          * @param message the message, possibly null.
          * @param callback a {@link Reply} callback, possibly null.
          */
-        public void Send(T message, Reply<T> callback)
+        public void Send(T message, IReply callback)
         {
-            messenger.Send(name, codec.EncodeMessage(message),
-                callback == null ? null : new IncomingReplyHandler(callback, name, codec));
+            _messenger.Send(_name, _codec.EncodeMessage(message),
+                callback == null ? null : new IncomingReplyHandler(callback, _name, _codec));
         }
 
         /**
@@ -87,16 +77,16 @@ namespace Flutter.Shell.Droid.Plugin.Common
          *
          * @param handler a {@link MessageHandler}, or null to deregister.
          */
-        public void SetMessageHandler(MessageHandler<T> handler)
+        public void SetMessageHandler(IMessageHandler handler)
         {
-            messenger.SetMessageHandler(name,
-                handler == null ? null : new IncomingMessageHandler(handler, name, codec));
+            _messenger.SetMessageHandler(_name,
+                handler == null ? null : new IncomingMessageHandler(handler, _name, _codec));
         }
 
         /**
          * A handler of incoming messages.
          */
-        public interface MessageHandler<T>
+        public interface IMessageHandler
         {
 
             /**
@@ -116,7 +106,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
              * @param message the message, possibly null.
              * @param reply a {@link Reply} for sending a single message reply back to Flutter.
              */
-            void OnMessage(T message, Reply<T> reply);
+            void OnMessage(T message, IReply reply);
         }
 
         /**
@@ -124,7 +114,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
          * message from Flutter. Also used in the dual capacity to handle a reply
          * received from Flutter after sending a message.
          */
-        public interface Reply<T>
+        public interface IReply
         {
             /**
              * Handles the specified message reply.
@@ -134,7 +124,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
             void Reply(T reply);
         }
 
-        public class ReplyImpl<T> : Reply<T>
+        private class ReplyImpl : IReply
         {
             public Action<T> OnReply;
 
@@ -145,17 +135,17 @@ namespace Flutter.Shell.Droid.Plugin.Common
             }
         }
 
-        private class IncomingReplyHandler : BinaryReply
+        private class IncomingReplyHandler : IBinaryReply
         {
-            private Reply<T> callback;
-            private string name;
-            private MessageCodec<T> codec;
+            private readonly IReply _callback;
+            private readonly string _name;
+            private readonly IMessageCodec<T> _codec;
 
-            public IncomingReplyHandler(Reply<T> callback, string name, MessageCodec<T> codec)
+            public IncomingReplyHandler(IReply callback, string name, IMessageCodec<T> codec)
             {
-                this.callback = callback;
-                this.name = name;
-                this.codec = codec;
+                _callback = callback;
+                _name = name;
+                _codec = codec;
             }
 
             //@Override
@@ -164,44 +154,44 @@ namespace Flutter.Shell.Droid.Plugin.Common
             {
                 try
                 {
-                    callback.Reply(codec.DecodeMessage(reply));
+                    _callback.Reply(_codec.DecodeMessage(reply));
                 }
                 catch (Exception e)
                 {
-                    Log.Error(TAG + name, "Failed to handle message reply", e);
+                    Log.Error(TAG + _name, "Failed to handle message reply", e);
                 }
             }
         }
 
-        private class IncomingMessageHandler : BinaryMessageHandler
+        private class IncomingMessageHandler : IBinaryMessageHandler
         {
-            private MessageHandler<T> handler;
-            private string name;
-            private MessageCodec<T> codec;
+            private readonly IMessageHandler _handler;
+            private readonly string _name;
+            private readonly IMessageCodec<T> _codec;
 
-            public IncomingMessageHandler(MessageHandler<T> handler, string name, MessageCodec<T> codec)
+            public IncomingMessageHandler(IMessageHandler handler, string name, IMessageCodec<T> codec)
             {
-                this.handler = handler;
-                this.name = name;
-                this.codec = codec;
+                _handler = handler;
+                _name = name;
+                _codec = codec;
             }
 
             //@Override
             //TODO: ByteBuffer->object
-            public void OnMessage(object message, BinaryReply callback)
+            public void OnMessage(object message, IBinaryReply callback)
             {
                 try
                 {
-                    handler.OnMessage(
-                        codec.DecodeMessage(message),
-                        new ReplyImpl<T>
+                    _handler.OnMessage(
+                        _codec.DecodeMessage(message),
+                        new ReplyImpl
                         {
-                            OnReply = (reply) => { callback.Reply(codec.EncodeMessage(reply)); }
+                            OnReply = (reply) => { callback.Reply(_codec.EncodeMessage(reply)); }
                         });
                 }
                 catch (Exception e)
                 {
-                    Log.Error(TAG + name, "Failed to handle message", e);
+                    Log.Error(TAG + _name, "Failed to handle message", e);
                     callback.Reply(null);
                 }
             }

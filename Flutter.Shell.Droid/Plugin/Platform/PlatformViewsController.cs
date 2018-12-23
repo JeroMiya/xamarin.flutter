@@ -8,7 +8,6 @@ using Java.Lang;
 using System.Collections.Generic;
 using LayoutDirection = Android.Views.LayoutDirection;
 using Math = System.Math;
-using Result = Flutter.Shell.Droid.Plugin.Common.Result;
 
 namespace Flutter.Shell.Droid.Plugin.Platform
 {
@@ -18,7 +17,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
      * Each {@link io.flutter.app.FlutterPluginRegistry} has a single platform views controller.
      * A platform views controller can be attached to at most one Flutter view.
      */
-    public class PlatformViewsController : MethodCallHandler
+    public class PlatformViewsController : IMethodCallHandler
     {
         private static readonly string TAG = "PlatformViewsController";
 
@@ -33,10 +32,10 @@ namespace Flutter.Shell.Droid.Plugin.Platform
         private Context _context;
 
         // The texture registry maintaining the textures into which the embedded views will be rendered.
-        private TextureRegistry _textureRegistry;
+        private ITextureRegistry _textureRegistry;
 
         // The messenger used to communicate with the framework over the platform views channel.
-        private BinaryMessenger _messenger;
+        private IBinaryMessenger _messenger;
 
         private Dictionary<int, VirtualDisplayController> _vdControllers;
 
@@ -55,7 +54,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
          *                        will be rendered.
          * @param messenger The Flutter application on the other side of this messenger drives this platform views controller.
          */
-        public void Attach(Context context, TextureRegistry textureRegistry, BinaryMessenger messenger)
+        public void Attach(Context context, ITextureRegistry textureRegistry, IBinaryMessenger messenger)
         {
             if (_context != null)
             {
@@ -67,7 +66,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
             _context = context;
             _textureRegistry = textureRegistry;
             _messenger = messenger;
-            MethodChannel channel = new MethodChannel(messenger, CHANNEL_NAME, StandardMethodCodec.INSTANCE);
+            MethodChannel channel = new MethodChannel(messenger, CHANNEL_NAME, StandardMethodCodec.Instance);
             channel.SetMethodCallHandler(this);
         }
 
@@ -86,7 +85,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
             _textureRegistry = null;
         }
 
-        public PlatformViewRegistry GetRegistry()
+        public IPlatformViewRegistry GetRegistry()
         {
             return _registry;
         }
@@ -102,7 +101,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
         }
 
         //@Override
-        public void OnMethodCall(MethodCall call, Result result)
+        public void OnMethodCall(MethodCall call, IResult result)
         {
             if (Build.VERSION.SdkInt < MINIMAL_SDK)
             {
@@ -132,7 +131,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
         }
 
         //@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-        private void CreatePlatformView(MethodCall call, Result result)
+        private void CreatePlatformView(MethodCall call, IResult result)
         {
             Dictionary<string, object> args = (Dictionary<string, object>)call.Arguments;
             int id = (int)args["id"];
@@ -181,7 +180,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
                     );
             }
 
-            SurfaceTextureEntry textureEntry = _textureRegistry.CreateSurfaceTexture();
+            var textureEntry = _textureRegistry.CreateSurfaceTexture();
             VirtualDisplayController vdController = VirtualDisplayController.Create(
                     _context,
                     viewFactory,
@@ -207,10 +206,10 @@ namespace Flutter.Shell.Droid.Plugin.Platform
 
             // TODO(amirh): copy accessibility nodes to the FlutterView's accessibility tree.
 
-            result.Success(textureEntry.Id());
+            result.Success(textureEntry.Id);
         }
 
-        private void DisposePlatformView(MethodCall call, Result result)
+        private void DisposePlatformView(MethodCall call, IResult result)
         {
             int id = (int)call.Arguments;
 
@@ -230,7 +229,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
             result.Success(null);
         }
 
-        private void ResizePlatformView(MethodCall call, Result result)
+        private void ResizePlatformView(MethodCall call, IResult result)
         {
             Dictionary<string, object> args = (Dictionary<string, object>)call.Arguments;
             int id = (int)args["id"];
@@ -253,7 +252,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
                     () => result.Success(null));       // Runnable
         }
 
-        public void OnTouch(MethodCall call, Result result)
+        public void OnTouch(MethodCall call, IResult result)
         {
             List<object> args = (List<object>)call.Arguments;
 
@@ -309,7 +308,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
         }
 
         //@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-        private void SetDirection(MethodCall call, Result result)
+        private void SetDirection(MethodCall call, IResult result)
         {
             var args = (Dictionary<string, object>)call.Arguments;
             int id = (int)args["id"];

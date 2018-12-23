@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+﻿using System.Collections.Generic;
 
 namespace Flutter.Shell.Droid.Plugin.Platform
 {
@@ -17,7 +7,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
      * <p>
      * Plugins can register factories for specific view types.
      */
-    public interface PlatformViewRegistry
+    public interface IPlatformViewRegistry
     {
         /**
          * Registers a factory for a platform view.
@@ -29,7 +19,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
         bool RegisterViewFactory(string viewTypeId, PlatformViewFactory factory);
     }
 
-    public class PlatformViewRegistryImpl : PlatformViewRegistry
+    public class PlatformViewRegistryImpl : IPlatformViewRegistry
     {
         public PlatformViewRegistryImpl()
         {

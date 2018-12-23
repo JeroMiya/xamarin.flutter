@@ -12,16 +12,16 @@ using Android.Widget;
 
 namespace Flutter.Shell.Droid.View
 {
-    /**
-     * A class containing arguments for entering a FlutterNativeView's isolate for
-     * the first time.
-     */
+
+    /// <summary>
+    /// A class containing arguments for entering a FlutterNativeView's isolate for the first time.
+    /// </summary>
     public class FlutterRunArguments
     {
-        public string[] bundlePaths;
-        public string bundlePath;
-        public string entrypoint;
-        public string libraryPath;
-        public string defaultPath;
+        public string[] BundlePaths;
+        public string BundlePath;
+        public string Entrypoint;
+        public string LibraryPath;
+        public string DefaultPath;
     }
 }

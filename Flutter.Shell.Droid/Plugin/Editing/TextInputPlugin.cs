@@ -6,33 +6,32 @@ using Flutter.Shell.Droid.Plugin.Common;
 using Flutter.Shell.Droid.View;
 using Java.Lang;
 using Org.Json;
-using Result = Flutter.Shell.Droid.Plugin.Common.Result;
 
 namespace Flutter.Shell.Droid.Plugin.Editing
 {
     /**
      * Android implementation of the text input plugin.
      */
-    public class TextInputPlugin : MethodCallHandler
+    public class TextInputPlugin : IMethodCallHandler
     {
-        private readonly FlutterView mView;
-        private readonly InputMethodManager mImm;
-        private MethodChannel mFlutterChannel;
-        private int mClient = 0;
-        private JSONObject mConfiguration;
-        private IEditable mEditable;
-        private bool mRestartInputPending;
+        private readonly FlutterView _view;
+        private readonly InputMethodManager _imm;
+        private MethodChannel _flutterChannel;
+        private int _client = 0;
+        private JSONObject _configuration;
+        private IEditable _editable;
+        private bool _restartInputPending;
 
         public TextInputPlugin(FlutterView view)
         {
-            mView = view;
-            mImm = (InputMethodManager)view.Context.GetSystemService(Context.InputMethodService);
-            mFlutterChannel = new MethodChannel(view, "flutter/textinput", StandardMethodCodec.INSTANCE); // JSONMethodCodec.INSTANCE);
-            mFlutterChannel.SetMethodCallHandler(this);
+            _view = view;
+            _imm = (InputMethodManager)view.Context.GetSystemService(Context.InputMethodService);
+            _flutterChannel = new MethodChannel(view, "flutter/textinput", StandardMethodCodec.Instance); // JSONMethodCodec.INSTANCE);
+            _flutterChannel.SetMethodCallHandler(this);
         }
 
         //@Override
-        public void OnMethodCall(MethodCall call, Result result)
+        public void OnMethodCall(MethodCall call, IResult result)
         {
             string method = call.Method;
             object args = call.Arguments;
@@ -40,23 +39,23 @@ namespace Flutter.Shell.Droid.Plugin.Editing
             {
                 if (method.Equals("TextInput.show"))
                 {
-                    ShowTextInput(mView);
+                    ShowTextInput(_view);
                     result.Success(null);
                 }
                 else if (method.Equals("TextInput.hide"))
                 {
-                    HideTextInput(mView);
+                    HideTextInput(_view);
                     result.Success(null);
                 }
                 else if (method.Equals("TextInput.setClient"))
                 {
                     JSONArray argumentList = (JSONArray)args;
-                    SetTextInputClient(mView, argumentList.GetInt(0), argumentList.GetJSONObject(1));
+                    SetTextInputClient(_view, argumentList.GetInt(0), argumentList.GetJSONObject(1));
                     result.Success(null);
                 }
                 else if (method.Equals("TextInput.setEditingState"))
                 {
-                    SetTextInputEditingState(mView, (JSONObject)args);
+                    SetTextInputEditingState(_view, (JSONObject)args);
                     result.Success(null);
                 }
                 else if (method.Equals("TextInput.clearClient"))
@@ -151,15 +150,15 @@ namespace Flutter.Shell.Droid.Plugin.Editing
 
         public IInputConnection CreateInputConnection(FlutterView view, EditorInfo outAttrs)
         {
-            if (mClient == 0) return null;
+            if (_client == 0) return null;
 
-            outAttrs.InputType = InputTypeFromTextInputType(mConfiguration.GetJSONObject("inputType"),
-                mConfiguration.OptBoolean("obscureText"),
-                mConfiguration.OptBoolean("autocorrect", true),
-                mConfiguration.GetString("textCapitalization"));
+            outAttrs.InputType = InputTypeFromTextInputType(_configuration.GetJSONObject("inputType"),
+                _configuration.OptBoolean("obscureText"),
+                _configuration.OptBoolean("autocorrect", true),
+                _configuration.GetString("textCapitalization"));
             outAttrs.ImeOptions = ImeFlags.NoFullscreen;
             ImeAction enterAction;
-            if (mConfiguration.IsNull("inputAction"))
+            if (_configuration.IsNull("inputAction"))
             {
                 // If an explicit input action isn't set, then default to none for multi-line fields
                 // and done for single line fields.
@@ -167,22 +166,22 @@ namespace Flutter.Shell.Droid.Plugin.Editing
             }
             else
             {
-                enterAction = InputActionFromTextInputAction(mConfiguration.GetString("inputAction"));
+                enterAction = InputActionFromTextInputAction(_configuration.GetString("inputAction"));
             }
-            if (!mConfiguration.IsNull("actionLabel"))
+            if (!_configuration.IsNull("actionLabel"))
             {
-                outAttrs.ActionLabel = new String(mConfiguration.GetString("actionLabel"));
+                outAttrs.ActionLabel = new String(_configuration.GetString("actionLabel"));
                 outAttrs.ActionId = (int)enterAction;
             }
             outAttrs.ImeOptions = (ImeFlags)((int)outAttrs.ImeOptions | (int)enterAction);
 
             InputConnectionAdaptor connection = new InputConnectionAdaptor(
                 view, 
-                mClient, 
-                mFlutterChannel, 
-                mEditable);
-            outAttrs.InitialSelStart = Selection.GetSelectionStart(mEditable);
-            outAttrs.InitialSelEnd = Selection.GetSelectionEnd(mEditable);
+                _client, 
+                _flutterChannel, 
+                _editable);
+            outAttrs.InitialSelStart = Selection.GetSelectionStart(_editable);
+            outAttrs.InitialSelEnd = Selection.GetSelectionEnd(_editable);
 
             return connection;
         }
@@ -190,62 +189,62 @@ namespace Flutter.Shell.Droid.Plugin.Editing
         private void ShowTextInput(FlutterView view)
         {
             view.RequestFocus();
-            mImm.ShowSoftInput(view, 0);
+            _imm.ShowSoftInput(view, 0);
         }
 
         private void HideTextInput(FlutterView view)
         {
-            mImm.HideSoftInputFromWindow(view.ApplicationWindowToken, 0);
+            _imm.HideSoftInputFromWindow(view.ApplicationWindowToken, 0);
         }
 
         private void SetTextInputClient(FlutterView view, int client, JSONObject configuration)
         {
-            mClient = client;
-            mConfiguration = configuration;
-            mEditable = EditableFactory.Instance.NewEditable("");
+            _client = client;
+            _configuration = configuration;
+            _editable = EditableFactory.Instance.NewEditable("");
 
             // setTextInputClient will be followed by a call to setTextInputEditingState.
             // Do a restartInput at that time.
-            mRestartInputPending = true;
+            _restartInputPending = true;
         }
 
         private void ApplyStateToSelection(JSONObject state)
         {
             int selStart = state.GetInt("selectionBase");
             int selEnd = state.GetInt("selectionExtent");
-            if (selStart >= 0 && selStart <= mEditable.Length() && selEnd >= 0
-                    && selEnd <= mEditable.Length())
+            if (selStart >= 0 && selStart <= _editable.Length() && selEnd >= 0
+                    && selEnd <= _editable.Length())
             {
-                Selection.SetSelection(mEditable, selStart, selEnd);
+                Selection.SetSelection(_editable, selStart, selEnd);
             }
             else
             {
-                Selection.RemoveSelection(mEditable);
+                Selection.RemoveSelection(_editable);
             }
         }
 
         private void SetTextInputEditingState(FlutterView view, JSONObject state)
         {
-            if (!mRestartInputPending && state.GetString("text").Equals(mEditable.ToString()))
+            if (!_restartInputPending && state.GetString("text").Equals(_editable.ToString()))
             {
                 ApplyStateToSelection(state);
-                mImm.UpdateSelection(mView, Math.Max(Selection.GetSelectionStart(mEditable), 0),
-                        Math.Max(Selection.GetSelectionEnd(mEditable), 0),
-                        BaseInputConnection.GetComposingSpanStart(mEditable),
-                        BaseInputConnection.GetComposingSpanEnd(mEditable));
+                _imm.UpdateSelection(_view, Math.Max(Selection.GetSelectionStart(_editable), 0),
+                        Math.Max(Selection.GetSelectionEnd(_editable), 0),
+                        BaseInputConnection.GetComposingSpanStart(_editable),
+                        BaseInputConnection.GetComposingSpanEnd(_editable));
             }
             else
             {
-                mEditable.Replace(0, mEditable.Length(), state.GetString("text"));
+                _editable.Replace(0, _editable.Length(), state.GetString("text"));
                 ApplyStateToSelection(state);
-                mImm.RestartInput(view);
-                mRestartInputPending = false;
+                _imm.RestartInput(view);
+                _restartInputPending = false;
             }
         }
 
         private void ClearTextInputClient()
         {
-            mClient = 0;
+            _client = 0;
         }
     }
 }

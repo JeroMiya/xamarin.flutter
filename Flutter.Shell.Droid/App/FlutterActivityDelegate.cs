@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Android.Animation;
+﻿using Android.Animation;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -14,6 +11,9 @@ using Android.Views;
 using Flutter.Shell.Droid.Plugin.Common;
 using Flutter.Shell.Droid.View;
 using Java.Interop;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Result = Android.App.Result;
 
 namespace Flutter.Shell.Droid.App
@@ -63,7 +63,7 @@ namespace Flutter.Shell.Droid.App
      * {@link PluginRegistry} and/or {@link io.flutter.view.FlutterView.Provider}
      * and forward those methods to this class as well.</p>
      */
-    public sealed class FlutterActivityDelegate : JavaObject, FlutterActivityEvents, Provider, PluginRegistry
+    public sealed class FlutterActivityDelegate : JavaObject, IFlutterActivityEvents, IProvider, IPluginRegistry
     {
         private static readonly string SPLASH_SCREEN_META_DATA_KEY = "io.flutter.app.android.SplashScreenUntilFirstFrame";
         private static readonly string TAG = "FlutterActivityDelegate";
@@ -83,39 +83,43 @@ namespace Flutter.Shell.Droid.App
         }
 
         //@Override
-        public FlutterView GetFlutterView() => flutterView;
+        public FlutterView GetFlutterView()
+        {
+            return flutterView;
+        }
 
         // The implementation of PluginRegistry forwards to flutterView.
         //@Override
-        public bool HasPlugin(String key)
+        public bool HasPlugin(string key)
         {
-            return flutterView.getPluginRegistry().hasPlugin(key);
+            return flutterView.GetPluginRegistry().HasPlugin(key);
         }
 
         //@Override
         //@SuppressWarnings("unchecked")
-        public T ValuePublishedByPlugin<T>(String pluginKey)
+        public T ValuePublishedByPlugin<T>(string pluginKey)
         {
-            return (T)flutterView.getPluginRegistry().valuePublishedByPlugin(pluginKey);
+            return flutterView.GetPluginRegistry().ValuePublishedByPlugin<T>(pluginKey);
         }
 
         //@Override
-        public Registrar RegistrarFor(String pluginKey)
+        public IRegistrar RegistrarFor(string pluginKey)
         {
-            return flutterView.getPluginRegistry().registrarFor(pluginKey);
+            return flutterView.GetPluginRegistry().RegistrarFor(pluginKey);
         }
 
         //@Override
         public bool OnRequestPermissionsResult(
             int requestCode, string[] permissions, Permission[] grantResults)
         {
-            return flutterView.getPluginRegistry().onRequestPermissionsResult(requestCode, permissions, grantResults);
+            return flutterView.GetPluginRegistry().OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-        
+
         //@Override
+        /// <inheritdoc />
         public bool OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
-            return flutterView.getPluginRegistry().onActivityResult(requestCode, resultCode, data);
+            return flutterView.GetPluginRegistry().OnActivityResult(requestCode, resultCode, data);
         }
 
         /*
@@ -146,8 +150,10 @@ namespace Flutter.Shell.Droid.App
             if (flutterView == null)
             {
                 FlutterNativeView nativeView = viewFactory.CreateFlutterNativeView();
-                flutterView = new FlutterView(activity, null, nativeView);
-                flutterView.LayoutParameters = matchParent;
+                flutterView = new FlutterView(activity, null, nativeView)
+                {
+                    LayoutParameters = matchParent
+                };
                 activity.SetContentView(flutterView);
                 launchView = createLaunchView();
                 if (launchView != null)
@@ -161,21 +167,21 @@ namespace Flutter.Shell.Droid.App
                 return;
             }
 
-            if (!flutterView.getFlutterNativeView().isApplicationRunning())
+            if (!flutterView.GetFlutterNativeView().IsApplicationRunning())
             {
                 string appBundlePath = FlutterMain.FindAppBundlePath(activity.ApplicationContext);
                 if (appBundlePath != null)
                 {
                     FlutterRunArguments arguments = new FlutterRunArguments();
-                    var bundlePaths = new List<string>();
+                    List<string> bundlePaths = new List<string>();
                     if (FlutterMain.GetUpdateInstallationPath() != null)
                     {
                         bundlePaths.Add(FlutterMain.GetUpdateInstallationPath());
                     }
                     bundlePaths.Add(appBundlePath);
-                    arguments.bundlePaths = bundlePaths.ToArray();
-                    arguments.entrypoint = "main";
-                    flutterView.runFromBundle(arguments);
+                    arguments.BundlePaths = bundlePaths.ToArray();
+                    arguments.Entrypoint = "main";
+                    flutterView.RunFromBundle(arguments);
                 }
             }
         }
@@ -187,11 +193,14 @@ namespace Flutter.Shell.Droid.App
             // the debuggable flag as an indicator that we are in development mode.
             if (!isDebuggable() || !loadIntent(intent))
             {
-                flutterView.getPluginRegistry().onNewIntent(intent);
+                flutterView.GetPluginRegistry().OnNewIntent(intent);
             }
         }
 
-        private bool isDebuggable() => activity.ApplicationInfo.Flags.HasFlag(ApplicationInfoFlags.Debuggable);
+        private bool isDebuggable()
+        {
+            return activity.ApplicationInfo.Flags.HasFlag(ApplicationInfoFlags.Debuggable);
+        }
 
         //@Override
         public void OnPause()
@@ -223,7 +232,8 @@ namespace Flutter.Shell.Droid.App
         public void OnResume()
         {
             Application app = (Application)activity.ApplicationContext;
-            if (app is FlutterApplication flutterApp) {
+            if (app is FlutterApplication flutterApp)
+            {
                 flutterApp.CurrentActivity = activity;
             }
         }
@@ -256,7 +266,7 @@ namespace Flutter.Shell.Droid.App
             }
             if (flutterView != null)
             {
-                bool detach = flutterView.getPluginRegistry().onViewDestroy(flutterView.getFlutterNativeView());
+                bool detach = flutterView.GetPluginRegistry().OnViewDestroy(flutterView.GetFlutterNativeView());
                 if (detach || viewFactory.RetainFlutterNativeView())
                 {
                     // Detach, but do not destroy the FlutterView if a plugin
@@ -275,7 +285,7 @@ namespace Flutter.Shell.Droid.App
         {
             if (flutterView != null)
             {
-                flutterView.popRoute();
+                flutterView.PopRoute();
                 return true;
             }
             return false;
@@ -284,15 +294,15 @@ namespace Flutter.Shell.Droid.App
         //@Override
         public void OnUserLeaveHint()
         {
-            flutterView.getPluginRegistry().onUserLeaveHint();
+            flutterView.GetPluginRegistry().OnUserLeaveHint();
         }
 
         //@Override
-        public void OnTrimMemory(int level)
+        public void OnTrimMemory(TrimMemory level)
         {
             // Use a trim level delivered while the application is running so the
             // framework has a chance to react to the notification.
-            if (level == TRIM_MEMORY_RUNNING_LOW)
+            if (level == TrimMemory.RunningLow)
             {
                 flutterView.OnMemoryPressure();
             }
@@ -302,12 +312,6 @@ namespace Flutter.Shell.Droid.App
         public void OnLowMemory()
         {
             flutterView.OnMemoryPressure();
-        }
-
-        /// <inheritdoc />
-        public void OnTrimMemory(TrimMemory level)
-        {
-            throw new NotImplementedException();
         }
 
         //@Override
@@ -375,20 +379,20 @@ namespace Flutter.Shell.Droid.App
                 }
                 if (route != null)
                 {
-                    flutterView.setInitialRoute(route);
+                    flutterView.SetInitialRoute(route);
                 }
-                if (!flutterView.getFlutterNativeView().isApplicationRunning())
+                if (!flutterView.GetFlutterNativeView().IsApplicationRunning())
                 {
                     FlutterRunArguments args = new FlutterRunArguments();
-                    var bundlePaths = new List<string>();
+                    List<string> bundlePaths = new List<string>();
                     if (FlutterMain.GetUpdateInstallationPath() != null)
                     {
                         bundlePaths.Add(FlutterMain.GetUpdateInstallationPath());
                     }
                     bundlePaths.Add(appBundlePath);
-                    args.bundlePaths = bundlePaths.ToArray();
-                    args.entrypoint = "main";
-                    flutterView.runFromBundle(args);
+                    args.BundlePaths = bundlePaths.ToArray();
+                    args.Entrypoint = "main";
+                    flutterView.RunFromBundle(args);
                 }
                 return true;
             }
@@ -408,13 +412,13 @@ namespace Flutter.Shell.Droid.App
             {
                 return null;
             }
-            var launchScreenDrawable = getLaunchScreenDrawableFromActivityTheme();
+            Drawable launchScreenDrawable = getLaunchScreenDrawableFromActivityTheme();
             if (launchScreenDrawable == null)
             {
                 return null;
             }
 
-            var view = new Android.Views.View(activity)
+            Android.Views.View view = new Android.Views.View(activity)
             {
                 LayoutParameters = matchParent,
                 Background = launchScreenDrawable
@@ -448,9 +452,9 @@ namespace Flutter.Shell.Droid.App
             }
             try
             {
-                #pragma warning disable 618 // Deprecation
+#pragma warning disable 618 // Deprecation
                 return activity.Resources.GetDrawable(typedValue.ResourceId);
-                #pragma warning restore 618
+#pragma warning restore 618
             }
             catch (Resources.NotFoundException e)
             {
@@ -467,8 +471,8 @@ namespace Flutter.Shell.Droid.App
         {
             try
             {
-                var activityInfo = activity.PackageManager.GetActivityInfo(
-                    activity.ComponentName, 
+                ActivityInfo activityInfo = activity.PackageManager.GetActivityInfo(
+                    activity.ComponentName,
                     PackageInfoFlags.MetaData | PackageInfoFlags.Activities);
                 Bundle metadata = activityInfo.MetaData;
                 return metadata != null && metadata.GetBoolean(SPLASH_SCREEN_META_DATA_KEY);
@@ -518,15 +522,14 @@ namespace Flutter.Shell.Droid.App
             }
 
             activity.AddContentView(launchView, matchParent);
-            flutterView.addFirstFrameListener(
-                () =>
+            flutterView.FirstFrame += (s, e) =>
                 {
-                    var viewPropertyAnimate = launchView.Animate();
+                    ViewPropertyAnimator viewPropertyAnimate = launchView.Animate();
                     viewPropertyAnimate.Alpha(0f);
-                    var adapter = new FirstFrameListener(launchView, () => launchView = null);
+                    FirstFrameListener adapter = new FirstFrameListener(launchView, () => launchView = null);
                     viewPropertyAnimate.SetListener(adapter);
-                    flutterView.removeFirstFrameListener(this);
-                });
+                    //flutterView.RemoveFirstFrameListener(this);
+                };
 
             // Resets the activity theme from the one containing the launch screen in the window
             // background to a blank one since the launch screen is now in a view in front of the
@@ -538,6 +541,5 @@ namespace Flutter.Shell.Droid.App
 
         /// <inheritdoc />
         public IntPtr Handle { get; }
-
     }
 }

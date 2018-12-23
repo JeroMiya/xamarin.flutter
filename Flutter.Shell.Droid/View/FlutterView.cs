@@ -15,12 +15,20 @@ using Java.Util;
 using Java.Util.Concurrent.Atomic;
 using System;
 using Android.Database;
+using Android.InputMethodServices;
+using Android.Locations;
+using Android.Support.V4.View.Accessibility;
+using FlutterBinding.Shell;
 using FlutterSDK;
+using Java.Nio;
+using Format = Android.Graphics.Format;
 using KeyboardType = Android.Views.KeyboardType;
+using Keycode = Android.Views.Keycode;
+using Surface = Android.Views.Surface;
 
 namespace Flutter.Shell.Droid.View
 {
-    public interface Provider
+    public interface IProvider
     {
         /**
          * Returns a reference to the Flutter view maintained by this object. This may
@@ -43,8 +51,8 @@ namespace Flutter.Shell.Droid.View
     public class FlutterView :
         SurfaceView,
         ISurfaceHolderCallback,
-        BinaryMessenger,
-        TextureRegistry,
+        IBinaryMessenger,
+        ITextureRegistry,
         AccessibilityManager.IAccessibilityStateChangeListener
     {
         private static readonly string TAG = "FlutterView";
@@ -64,25 +72,26 @@ namespace Flutter.Shell.Droid.View
             public int physicalViewInsetLeft = 0;
         }
 
-        private InputMethodManager mImm;
-        private TextInputPlugin mTextInputPlugin;
-        private readonly ISurfaceHolderCallback mSurfaceCallback;
-        private ViewportMetrics mMetrics;
-        private readonly AccessibilityManager mAccessibilityManager;
-        private MethodChannel mFlutterLocalizationChannel;
-        private MethodChannel mFlutterNavigationChannel;
-        private BasicMessageChannel<object> mFlutterKeyEventChannel;
-        private BasicMessageChannel<string> mFlutterLifecycleChannel;
-        private BasicMessageChannel<object> mFlutterSystemChannel;
-        private BasicMessageChannel<object> mFlutterSettingsChannel;
-        private System.Collections.Generic.List<ActivityLifecycleListener> mActivityLifecycleListeners;
-        private System.Collections.Generic.List<FirstFrameListener> mFirstFrameListeners;
-        private readonly AtomicLong nextTextureId = new AtomicLong(0L);
-        private FlutterNativeView mNativeView;
-        private readonly AnimationScaleObserver mAnimationScaleObserver;
-        private readonly bool mIsSoftwareRenderingEnabled = false; // using the software renderer or not
-        private IInputConnection mLastInputConnection;
+        private InputMethodManager _imm;
+        private TextInputPlugin _textInputPlugin;
+        private readonly ISurfaceHolderCallback _surfaceCallback;
+        private ViewportMetrics _metrics;
+        private readonly AccessibilityManager _accessibilityManager;
+        private MethodChannel _flutterLocalizationChannel;
+        private MethodChannel _flutterNavigationChannel;
+        private BasicMessageChannel<object> _flutterKeyEventChannel;
+        private BasicMessageChannel<string> _flutterLifecycleChannel;
+        private BasicMessageChannel<object> _flutterSystemChannel;
+        private BasicMessageChannel<object> _flutterSettingsChannel;
+        private System.Collections.Generic.List<IActivityLifecycleListener> _activityLifecycleListeners;
+        //private System.Collections.Generic.List<FirstFrameListener> _firstFrameListeners;
+        private readonly AtomicLong _nextTextureId = new AtomicLong(0L);
+        private FlutterNativeView _nativeView;
+        private readonly AnimationScaleObserver _animationScaleObserver;
+        private readonly bool _isSoftwareRenderingEnabled = false; // using the software renderer or not
+        private IInputConnection _lastInputConnection;
 
+        public EventHandler FirstFrame;
 
         /// <inheritdoc />
         protected FlutterView(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer) { }
@@ -95,41 +104,40 @@ namespace Flutter.Shell.Droid.View
 
         public FlutterView(Context context, IAttributeSet attrs, FlutterNativeView nativeView) : base(context, attrs)
         {
-            mIsSoftwareRenderingEnabled = nativeGetIsSoftwareRenderingEnabled();
-            mAnimationScaleObserver = new AnimationScaleObserver(new Handler());
-            mMetrics = new ViewportMetrics
+            _isSoftwareRenderingEnabled = nativeGetIsSoftwareRenderingEnabled();
+            _animationScaleObserver = new AnimationScaleObserver(this, new Handler());
+            _metrics = new ViewportMetrics
             {
                 devicePixelRatio = context.Resources.DisplayMetrics.Density
             };
             SetFocusable(ViewFocusability.Focusable);
-            SetFocusableInTouchMode(true);
+            // SetFocusableInTouchMode(true);   // Not required with Compat
 
             Activity activity = (Activity)Context;
-            mNativeView = nativeView ?? new FlutterNativeView(activity.ApplicationContext);
-            mNativeView.AttachViewAndActivity(this, activity);
+            _nativeView = nativeView ?? new FlutterNativeView(activity.ApplicationContext);
+            _nativeView.AttachViewAndActivity(this, activity);
 
-            mSurfaceCallback = (ISurfaceHolderCallback)this;
-            Holder.AddCallback(mSurfaceCallback);
+            _surfaceCallback = (ISurfaceHolderCallback)this;
+            Holder.AddCallback(_surfaceCallback);
 
-            mAccessibilityManager = (AccessibilityManager)Context.GetSystemService(Context.AccessibilityService);
+            _accessibilityManager = (AccessibilityManager)Context.GetSystemService(Context.AccessibilityService);
 
-            mActivityLifecycleListeners = new System.Collections.Generic.List<ActivityLifecycleListener>();
-            mFirstFrameListeners = new System.Collections.Generic.List<FirstFrameListener>();
+            _activityLifecycleListeners = new System.Collections.Generic.List<IActivityLifecycleListener>();
 
             // Configure the platform plugins and flutter channels.
-            mFlutterLocalizationChannel = new MethodChannel(this, "flutter/localization", StandardMethodCodec.INSTANCE);    // JSON
-            mFlutterNavigationChannel = new MethodChannel(this, "flutter/navigation", StandardMethodCodec.INSTANCE);    // JSON
-            mFlutterKeyEventChannel = new BasicMessageChannel<object>(this, "flutter/keyevent", StandardMessageCodec.INSTANCE);   // JSON
-            mFlutterLifecycleChannel = new BasicMessageChannel<string>(this, "flutter/lifecycle", StringCodec.INSTANCE);  // string
-            mFlutterSystemChannel = new BasicMessageChannel<object>(this, "flutter/system", StandardMessageCodec.INSTANCE);   // JSON
-            mFlutterSettingsChannel = new BasicMessageChannel<object>(this, "flutter/settings", StandardMessageCodec.INSTANCE);   //JSON
+            _flutterLocalizationChannel = new MethodChannel(this, "flutter/localization", StandardMethodCodec.Instance);    // JSON
+            _flutterNavigationChannel = new MethodChannel(this, "flutter/navigation", StandardMethodCodec.Instance);    // JSON
+            _flutterKeyEventChannel = new BasicMessageChannel<object>(this, "flutter/keyevent", StandardMessageCodec.Instance);   // JSON
+            _flutterLifecycleChannel = new BasicMessageChannel<string>(this, "flutter/lifecycle", StringCodec.Instance);  // string
+            _flutterSystemChannel = new BasicMessageChannel<object>(this, "flutter/system", StandardMessageCodec.Instance);   // JSON
+            _flutterSettingsChannel = new BasicMessageChannel<object>(this, "flutter/settings", StandardMessageCodec.Instance);   //JSON
 
             //PlatformPlugin platformPlugin = new PlatformPlugin(activity);
             //MethodChannel flutterPlatformChannel = new MethodChannel(this, "flutter/platform", JSONMethodCodec.INSTANCE);
             //flutterPlatformChannel.setMethodCallHandler(platformPlugin);
             //addActivityLifecycleListener(platformPlugin);
-            mImm = (InputMethodManager)Context.GetSystemService(Context.InputMethodService);
-            mTextInputPlugin = new TextInputPlugin(this);
+            _imm = (InputMethodManager)Context.GetSystemService(Context.InputMethodService);
+            _textInputPlugin = new TextInputPlugin(this);
 
             SetLocales(Resources.Configuration);
             SetUserSettings();
@@ -138,22 +146,22 @@ namespace Flutter.Shell.Droid.View
         /// <inheritdoc />
         void ISurfaceHolderCallback.SurfaceChanged(ISurfaceHolder holder, Format format, int width, int height)
         {
-            assertAttached();
-            nativeSurfaceChanged(mNativeView.Get(), width, height);
+            AssertAttached();
+            nativeSurfaceChanged(_nativeView.Get(), width, height);
         }
 
         /// <inheritdoc />
         void ISurfaceHolderCallback.SurfaceCreated(ISurfaceHolder holder)
         {
-            assertAttached();
-            nativeSurfaceCreated(mNativeView.Get(), holder.Surface);
+            AssertAttached();
+            nativeSurfaceCreated(_nativeView.Get(), holder.Surface);
         }
 
         /// <inheritdoc />
         void ISurfaceHolderCallback.SurfaceDestroyed(ISurfaceHolder holder)
         {
-            assertAttached();
-            nativeSurfaceDestroyed(mNativeView.Get());
+            AssertAttached();
+            nativeSurfaceDestroyed(_nativeView.Get());
         }
 
         private void EncodeKeyEvent(KeyEvent @event, System.Collections.Generic.Dictionary<string, object> message)
@@ -179,7 +187,7 @@ namespace Flutter.Shell.Droid.View
                 ["keymap"] = "android"
             };
             EncodeKeyEvent(@event, message);
-            mFlutterKeyEventChannel.Send(message);
+            _flutterKeyEventChannel.Send(message);
             return base.OnKeyUp(keyCode, @event);
         }
 
@@ -193,9 +201,9 @@ namespace Flutter.Shell.Droid.View
 
             if (@event.DeviceId != (int)KeyboardType.VirtualKeyboard)
             {
-                if (mLastInputConnection != null && mImm.IsAcceptingText)
+                if (_lastInputConnection != null && _imm.IsAcceptingText)
                 {
-                    mLastInputConnection.SendKeyEvent(@event);
+                    _lastInputConnection.SendKeyEvent(@event);
                 }
             }
 
@@ -205,81 +213,73 @@ namespace Flutter.Shell.Droid.View
                 ["keymap"] = "android"
             };
             EncodeKeyEvent(@event, message);
-            mFlutterKeyEventChannel.Send(message);
+            _flutterKeyEventChannel.Send(message);
             return base.OnKeyDown(keyCode, @event);
         }
 
-        public FlutterNativeView getFlutterNativeView()
+        public FlutterNativeView GetFlutterNativeView()
         {
-            return mNativeView;
+            return _nativeView;
         }
 
-        public FlutterPluginRegistry getPluginRegistry()
+        public FlutterPluginRegistry GetPluginRegistry()
         {
-            return mNativeView.GetPluginRegistry();
+            return _nativeView.GetPluginRegistry();
         }
 
-        public string getLookupKeyForAsset(string asset)
+        public string GetLookupKeyForAsset(string asset)
         {
             return FlutterMain.GetLookupKeyForAsset(asset);
         }
 
-        public string getLookupKeyForAsset(string asset, string packageName)
+        public string GetLookupKeyForAsset(string asset, string packageName)
         {
             return FlutterMain.GetLookupKeyForAsset(asset, packageName);
         }
 
-        public void addActivityLifecycleListener(ActivityLifecycleListener listener)
+        public void AddActivityLifecycleListener(IActivityLifecycleListener listener)
         {
-            mActivityLifecycleListeners.Add(listener);
+            _activityLifecycleListeners.Add(listener);
         }
 
-        public void onStart()
+        public void OnStart()
         {
-            mFlutterLifecycleChannel.Send("AppLifecycleState.inactive");
+            _flutterLifecycleChannel.Send("AppLifecycleState.inactive");
         }
 
-        public void onPause()
+        public void OnPause()
         {
-            mFlutterLifecycleChannel.Send("AppLifecycleState.inactive");
+            _flutterLifecycleChannel.Send("AppLifecycleState.inactive");
         }
 
-        public void onPostResume()
+        public void OnPostResume()
         {
             UpdateAccessibilityFeatures();
-            foreach (ActivityLifecycleListener listener in mActivityLifecycleListeners)
+            foreach (IActivityLifecycleListener listener in _activityLifecycleListeners)
             {
                 listener.OnPostResume();
             }
-            mFlutterLifecycleChannel.Send("AppLifecycleState.resumed");
+            _flutterLifecycleChannel.Send("AppLifecycleState.resumed");
         }
 
         public void OnStop()
         {
-            mFlutterLifecycleChannel.Send("AppLifecycleState.paused");
+            _flutterLifecycleChannel.Send("AppLifecycleState.paused");
         }
 
         public void OnMemoryPressure()
         {
             System.Collections.Generic.Dictionary<string, object> message = new System.Collections.Generic.Dictionary<string, object>(1) { ["type"] = "memoryPressure" };
-            mFlutterSystemChannel.Send(message);
+            _flutterSystemChannel.Send(message);
         }
 
         /**
          * Provide a listener that will be called once when the FlutterView renders its
          * first frame to the underlaying SurfaceView.
          */
-        public void AddFirstFrameListener(FirstFrameListener listener)
+        public void AddFirstFrameListener(System.Action listener)
         {
-            mFirstFrameListeners.Add(listener);
-        }
-
-        /**
-         * Remove an existing first frame listener.
-         */
-        public void RemoveFirstFrameListener(FirstFrameListener listener)
-        {
-            mFirstFrameListeners.Remove(listener);
+            FirstFrame += (s, e) => listener();
         }
 
         /**
@@ -306,25 +306,27 @@ namespace Flutter.Shell.Droid.View
 
         public void SetInitialRoute(string route)
         {
-            mFlutterNavigationChannel.InvokeMethod("setInitialRoute", route);
+            _flutterNavigationChannel.InvokeMethod("setInitialRoute", route);
         }
 
         public void PushRoute(string route)
         {
-            mFlutterNavigationChannel.InvokeMethod("pushRoute", route);
+            _flutterNavigationChannel.InvokeMethod("pushRoute", route);
         }
 
         public void PopRoute()
         {
-            mFlutterNavigationChannel.InvokeMethod("popRoute", null);
+            _flutterNavigationChannel.InvokeMethod("popRoute", null);
         }
 
         private void SetUserSettings()
         {
-            System.Collections.Generic.Dictionary<string, object> message = new System.Collections.Generic.Dictionary<string, object>();
-            message["textScaleFactor"] = Resources.Configuration.FontScale;
-            message["alwaysUse24HourFormat"] = Java.Text.DateFormat.Is24HourFormat(Context);
-            mFlutterSettingsChannel.Send(message);
+            var message = new System.Collections.Generic.Dictionary<string, object>
+            {
+                ["textScaleFactor"] = Resources.Configuration.FontScale,
+                ["alwaysUse24HourFormat"] = Android.Text.Format.DateFormat.Is24HourFormat(Context)
+            };
+            _flutterSettingsChannel.Send(message);
         }
 
         private void SetLocales(Android.Content.Res.Configuration config)
@@ -359,7 +361,7 @@ namespace Flutter.Shell.Droid.View
             // Fallback single locale passing for android API < 24. Should work always.
             Locale locale = config.Locale;
             // getScript() is gated because it is added in API 21.
-            mFlutterLocalizationChannel.InvokeMethod(
+            _flutterLocalizationChannel.InvokeMethod(
                 "setLocale",
                 new object[]
                 {
@@ -368,7 +370,8 @@ namespace Flutter.Shell.Droid.View
         }
 
         //@Override
-        protected void OnConfigurationChanged(Android.Content.Res.Configuration newConfig)
+        /// <inheritdoc />
+        protected override void OnConfigurationChanged(Configuration newConfig)
         {
             base.OnConfigurationChanged(newConfig);
             SetLocales(newConfig);
@@ -377,18 +380,18 @@ namespace Flutter.Shell.Droid.View
 
         private float GetDevicePixelRatio()
         {
-            return mMetrics.devicePixelRatio;
+            return _metrics.devicePixelRatio;
         }
 
         public FlutterNativeView Detach()
         {
             if (!IsAttached())
                 return null;
-            Holder.RemoveCallback(mSurfaceCallback);
-            mNativeView.Detach();
+            Holder.RemoveCallback(_surfaceCallback);
+            _nativeView.Detach();
 
-            FlutterNativeView view = mNativeView;
-            mNativeView = null;
+            FlutterNativeView view = _nativeView;
+            _nativeView = null;
             return view;
         }
 
@@ -397,10 +400,10 @@ namespace Flutter.Shell.Droid.View
             if (!IsAttached())
                 return;
 
-            Holder.RemoveCallback(mSurfaceCallback);
+            Holder.RemoveCallback(_surfaceCallback);
 
-            mNativeView.Destroy();
-            mNativeView = null;
+            _nativeView.Destroy();
+            _nativeView = null;
         }
 
         //@Override
@@ -408,8 +411,8 @@ namespace Flutter.Shell.Droid.View
         {
             try
             {
-                mLastInputConnection = mTextInputPlugin.CreateInputConnection(this, outAttrs);
-                return mLastInputConnection;
+                _lastInputConnection = _textInputPlugin.CreateInputConnection(this, outAttrs);
+                return _lastInputConnection;
             }
             catch (Exception e)
             {
@@ -434,7 +437,7 @@ namespace Flutter.Shell.Droid.View
         private static readonly int kPointerDeviceKindInvertedStylus = 3;
         private static readonly int kPointerDeviceKindUnknown = 4;
 
-        private int getPointerChangeForAction(MotionEventActions maskedAction)
+        private int GetPointerChangeForAction(MotionEventActions maskedAction)
         {
             // Primary pointer:
             if (maskedAction == MotionEventActions.Down)
@@ -460,7 +463,7 @@ namespace Flutter.Shell.Droid.View
             return -1;
         }
 
-        private int getPointerDeviceTypeForToolType(MotionEventToolType toolType)
+        private int GetPointerDeviceTypeForToolType(MotionEventToolType toolType)
         {
             switch (toolType)
             {
@@ -478,77 +481,82 @@ namespace Flutter.Shell.Droid.View
             }
         }
 
+        public class PointerParameter
+        {
+            public long Timestamp;
+            public int PointerIndex;
+            public int PointerChange;
+            public int PointerKind;
+            public MotionEvent MotionEvent;
+            public int PointerId;
+            public float X;
+            public float Y;
+            public long ButtonState;
+            public double Pressure;
+            public double PressureMin;
+            public double PressureMax;
+            public double Distance;
+            public double DistanceMax;
+            public double Size;
+            public double RadiusMinor;
+            public double RadiusMajor;
+            public double RadiusMin;
+            public double RadiusMax;
+            public double Orientation;
+            public double Tilt;
+            public long PointerData;
+        }
+
         // TODO: ByteBuffer->object
-        private void AddPointerForIndex(MotionEvent @event, int pointerIndex, int pointerChange, int pointerData, object packet)
+        private PointerParameter AddPointerForIndex(MotionEvent @event, int pointerIndex, int pointerChange, int pointerData)
         {
             if (pointerChange == -1)
-            {
-                return;
-            }
+                return null;
 
-            int pointerKind = getPointerDeviceTypeForToolType(@event.GetToolType(pointerIndex));
-
-            long timeStamp = @event.EventTime * 1000; // Convert from milliseconds to microseconds.
-
-            packet.putLong(timeStamp); // time_stamp
-            packet.putLong(pointerChange); // change
-            packet.putLong(pointerKind); // kind
-            packet.putLong(@event.getPointerId(pointerIndex)); // device
-            packet.putDouble(@event.getX(pointerIndex)); // physical_x
-            packet.putDouble(@event.getY(pointerIndex)); // physical_y
+            int pointerKind = GetPointerDeviceTypeForToolType(@event.GetToolType(pointerIndex));
+            long buttonState = 0;
+            double tilt = 0.0d;
 
             if (pointerKind == kPointerDeviceKindMouse)
-            {
-                packet.putLong(@event.getButtonState() & 0x1F); // buttons
-            }
+                buttonState = (int)@event.ButtonState & 0x1F; // mouse buttons
             else if (pointerKind == kPointerDeviceKindStylus)
             {
-                packet.putLong((@event.getButtonState() >> 4) & 0xF); // buttons
+                buttonState = ((int)@event.ButtonState >> 4) & 0xF; // stylus buttons
+                tilt = @event.GetAxisValue(Axis.Tilt, pointerIndex);
             }
-            else
+
+            double pressure = @event.GetPressure(pointerIndex);
+            var distance = @event.GetAxisValue(Axis.Distance, pointerIndex);
+            var size = @event.GetSize(pointerIndex);
+            var radiusMajor = @event.GetToolMajor(pointerIndex);
+            var radiusMinor = @event.GetToolMinor(pointerIndex);
+            var orientation = @event.GetAxisValue(Axis.Orientation, pointerIndex);
+
+            return new PointerParameter
             {
-                packet.putLong(0); // buttons
-            }
-
-            packet.putLong(0); // obscured
-
-            // TODO(eseidel): Could get the calibrated range if necessary:
-            // event.getDevice().getMotionRange(MotionEvent.AXIS_PRESSURE)
-            packet.putDouble(@event.getPressure(pointerIndex)); // pressure
-            packet.putDouble(0.0); // pressure_min
-            packet.putDouble(1.0); // pressure_max
-
-            if (pointerKind == kPointerDeviceKindStylus)
-            {
-                packet.putDouble(@event.getAxisValue(MotionEvent.AXIS_DISTANCE, pointerIndex)); // distance
-                packet.putDouble(0.0); // distance_max
-            }
-            else
-            {
-                packet.putDouble(0.0); // distance
-                packet.putDouble(0.0); // distance_max
-            }
-
-            packet.putDouble(@event.getSize(pointerIndex)); // size
-
-            packet.putDouble(@event.getToolMajor(pointerIndex)); // radius_major
-            packet.putDouble(@event.getToolMinor(pointerIndex)); // radius_minor
-
-            packet.putDouble(0.0); // radius_min
-            packet.putDouble(0.0); // radius_max
-
-            packet.putDouble(@event.getAxisValue(MotionEvent.AXIS_ORIENTATION, pointerIndex)); // orientation
-
-            if (pointerKind == kPointerDeviceKindStylus)
-            {
-                packet.putDouble(@event.getAxisValue(MotionEvent.AXIS_TILT, pointerIndex)); // tilt
-            }
-            else
-            {
-                packet.putDouble(0.0); // tilt
-            }
-
-            packet.putLong(pointerData); // platformData
+                Timestamp = @event.EventTime * 1000, // Convert from milliseconds to microseconds.
+                PointerIndex = pointerIndex,
+                PointerChange = pointerChange,
+                PointerKind = pointerKind,
+                MotionEvent = @event,
+                PointerId = @event.GetPointerId(pointerIndex),
+                X = @event.GetX(pointerIndex),
+                Y = @event.GetY(pointerIndex),
+                ButtonState = buttonState,
+                Pressure = pressure,
+                PressureMin = 0.0d,
+                PressureMax = 1.0d,
+                Distance = distance,
+                DistanceMax = 0.0d,
+                Size = size,
+                RadiusMinor = radiusMinor,
+                RadiusMajor = radiusMajor,
+                RadiusMin = 0.0d,
+                RadiusMax = 0.0d,
+                Orientation = orientation,
+                Tilt = tilt,
+                PointerData = pointerData
+            };
         }
 
         //@Override
@@ -582,12 +590,15 @@ namespace Flutter.Shell.Droid.View
             //ByteBuffer packet = ByteBuffer.allocateDirect(pointerCount * kPointerDataFieldCount * kBytePerField);
             //packet.order(ByteOrder.LITTLE_ENDIAN);
 
+            var packet = new List<PointerParameter>();
+
             MotionEventActions maskedAction = @event.ActionMasked;
-            int pointerChange = getPointerChangeForAction(@event.ActionMasked);
+            int pointerChange = GetPointerChangeForAction(@event.ActionMasked);
             if (maskedAction == MotionEventActions.Down || maskedAction == MotionEventActions.PointerDown)
             {
                 // ACTION_DOWN and ACTION_POINTER_DOWN always apply to a single pointer only.
-                AddPointerForIndex(@event, @event.ActionIndex, pointerChange, 0, packet);
+                packet.Add(
+                    AddPointerForIndex(@event, @event.ActionIndex, pointerChange, 0));
             }
             else if (maskedAction == MotionEventActions.Up || maskedAction == MotionEventActions.PointerUp)
             {
@@ -601,14 +612,16 @@ namespace Flutter.Shell.Droid.View
                     {
                         if (@event.GetToolType(p) == MotionEventToolType.Finger)
                         {
-                            AddPointerForIndex(@event, p, kPointerChangeMove, kPointerDataFlagBatched, packet);
+                            packet.Add(
+                                AddPointerForIndex(@event, p, kPointerChangeMove, kPointerDataFlagBatched));
                         }
                     }
                 }
 
                 // It's important that we're sending the UP event last. This allows PlatformView
                 // to correctly batch everything back into the original Android event if needed.
-                AddPointerForIndex(@event, @event.ActionIndex, pointerChange, 0, packet);
+                packet.Add(
+                    AddPointerForIndex(@event, @event.ActionIndex, pointerChange, 0));
             }
             else
             {
@@ -617,12 +630,13 @@ namespace Flutter.Shell.Droid.View
                 // ignore 0-deltas if desired.
                 for (int p = 0; p < pointerCount; p++)
                 {
-                    AddPointerForIndex(@event, p, pointerChange, 0, packet);
+                    packet.Add(
+                        AddPointerForIndex(@event, p, pointerChange, 0));
                 }
             }
 
             //assert packet.position() % (kPointerDataFieldCount* kBytePerField) == 0;
-            nativeDispatchPointerDataPacket(mNativeView.Get(), packet, packet.position());
+            nativeDispatchPointerDataPacket(_nativeView.Get(), packet);
             return true;
         }
 
@@ -634,7 +648,7 @@ namespace Flutter.Shell.Droid.View
                 return false;
             }
 
-            bool handled = handleAccessibilityHoverEvent(@event);
+            bool handled = HandleAccessibilityHoverEvent(@event);
             if (!handled)
             {
                 // TODO(ianh): Expose hover events to the platform,
@@ -646,9 +660,9 @@ namespace Flutter.Shell.Droid.View
         //@Override
         protected override void OnSizeChanged(int width, int height, int oldWidth, int oldHeight)
         {
-            mMetrics.physicalWidth = width;
-            mMetrics.physicalHeight = height;
-            updateViewportMetrics();
+            _metrics.physicalWidth = width;
+            _metrics.physicalHeight = height;
+            UpdateViewportMetrics();
             base.OnSizeChanged(width, height, oldWidth, oldHeight);
         }
 
@@ -657,8 +671,8 @@ namespace Flutter.Shell.Droid.View
         // android may decide to place the software navigation bars on the side. When the nav
         // bar is hidden, the reported insets should be removed to prevent extra useless space
         // on the sides.
-        public enum ZeroSides { NONE, LEFT, RIGHT, BOTH }
-        public ZeroSides calculateShouldZeroSides()
+        public enum ZeroSides { None, Left, Right, Both }
+        public ZeroSides CalculateShouldZeroSides()
         {
             // We get both orientation and rotation because rotation is all 4
             // rotations relative to default rotation while orientation is portrait
@@ -671,19 +685,19 @@ namespace Flutter.Shell.Droid.View
             if (orientation == Orientation.Landscape)
             {
                 if (rotation == SurfaceOrientation.Rotation90)
-                    return ZeroSides.RIGHT;
+                    return ZeroSides.Right;
 
                 if (rotation == SurfaceOrientation.Rotation270)
                     // In android API >= 23, the nav bar always appears on the "bottom" (USB) side.
-                    return Build.VERSION.SdkInt >= BuildVersionCodes.M ? ZeroSides.LEFT : ZeroSides.RIGHT;
+                    return Build.VERSION.SdkInt >= BuildVersionCodes.M ? ZeroSides.Left : ZeroSides.Right;
 
                 // Ambiguous orientation due to landscape left/right default. Zero both sides.
                 if (rotation == SurfaceOrientation.Rotation0 || rotation == SurfaceOrientation.Rotation180)
-                    return ZeroSides.BOTH;
+                    return ZeroSides.Both;
             }
             // Square orientation deprecated in API 16, we will not check for it and return false
             // to be safe and not remove any unique padding for the devices that do use it.
-            return ZeroSides.NONE;
+            return ZeroSides.None;
         }
 
         // TODO(garyq): Use clean ways to detect keyboard instead of heuristics if possible
@@ -722,28 +736,28 @@ namespace Flutter.Shell.Droid.View
 
             // We zero the left and/or right sides to prevent the padding the
             // navigation bar would have caused.
-            ZeroSides zeroSides = ZeroSides.NONE;
+            ZeroSides zeroSides = ZeroSides.None;
             if (navigationBarHidden)
             {
-                zeroSides = calculateShouldZeroSides();
+                zeroSides = CalculateShouldZeroSides();
             }
 
             // The padding on top should be removed when the statusbar is hidden.
-            mMetrics.physicalPaddingTop = statusBarHidden ? 0 : insets.SystemWindowInsetTop;
-            mMetrics.physicalPaddingRight =
-                zeroSides == ZeroSides.RIGHT || zeroSides == ZeroSides.BOTH ? 0 : insets.SystemWindowInsetRight;
-            mMetrics.physicalPaddingBottom = 0;
-            mMetrics.physicalPaddingLeft =
-                zeroSides == ZeroSides.LEFT || zeroSides == ZeroSides.BOTH ? 0 : insets.SystemWindowInsetLeft;
+            _metrics.physicalPaddingTop = statusBarHidden ? 0 : insets.SystemWindowInsetTop;
+            _metrics.physicalPaddingRight =
+                zeroSides == ZeroSides.Right || zeroSides == ZeroSides.Both ? 0 : insets.SystemWindowInsetRight;
+            _metrics.physicalPaddingBottom = 0;
+            _metrics.physicalPaddingLeft =
+                zeroSides == ZeroSides.Left || zeroSides == ZeroSides.Both ? 0 : insets.SystemWindowInsetLeft;
 
             // Bottom system inset (keyboard) should adjust scrollable bottom edge (inset).
-            mMetrics.physicalViewInsetTop = 0;
-            mMetrics.physicalViewInsetRight = 0;
+            _metrics.physicalViewInsetTop = 0;
+            _metrics.physicalViewInsetRight = 0;
             // We perform hidden navbar and keyboard handling if the navbar is set to hidden. Otherwise,
             // the navbar padding should always be provided.
-            mMetrics.physicalViewInsetBottom =
+            _metrics.physicalViewInsetBottom =
                 navigationBarHidden ? CalculateBottomKeyboardInset(insets) : insets.SystemWindowInsetBottom;
-            mMetrics.physicalViewInsetLeft = 0;
+            _metrics.physicalViewInsetLeft = 0;
             UpdateViewportMetrics();
             return base.OnApplyWindowInsets(insets);
         }
@@ -756,16 +770,16 @@ namespace Flutter.Shell.Droid.View
             if (Build.VERSION.SdkInt <= BuildVersionCodes.Kitkat)
             {
                 // Status bar, left/right system insets partially obscure content (padding).
-                mMetrics.physicalPaddingTop = insets.Top;
-                mMetrics.physicalPaddingRight = insets.Right;
-                mMetrics.physicalPaddingBottom = 0;
-                mMetrics.physicalPaddingLeft = insets.Left;
+                _metrics.physicalPaddingTop = insets.Top;
+                _metrics.physicalPaddingRight = insets.Right;
+                _metrics.physicalPaddingBottom = 0;
+                _metrics.physicalPaddingLeft = insets.Left;
 
                 // Bottom system inset (keyboard) should adjust scrollable bottom edge (inset).
-                mMetrics.physicalViewInsetTop = 0;
-                mMetrics.physicalViewInsetRight = 0;
-                mMetrics.physicalViewInsetBottom = insets.Bottom;
-                mMetrics.physicalViewInsetLeft = 0;
+                _metrics.physicalViewInsetTop = 0;
+                _metrics.physicalViewInsetRight = 0;
+                _metrics.physicalViewInsetBottom = insets.Bottom;
+                _metrics.physicalViewInsetLeft = 0;
                 UpdateViewportMetrics();
                 return true;
             }
@@ -774,7 +788,7 @@ namespace Flutter.Shell.Droid.View
 
         private bool IsAttached()
         {
-            return mNativeView != null && mNativeView.IsAttached();
+            return _nativeView != null && _nativeView.IsAttached();
         }
 
         private void AssertAttached()
@@ -785,18 +799,18 @@ namespace Flutter.Shell.Droid.View
 
         private void PreRun()
         {
-            resetAccessibilityTree();
+            ResetAccessibilityTree();
         }
 
         private void PostRun()
         {
         }
 
-        public void runFromBundle(FlutterRunArguments args)
+        public void RunFromBundle(FlutterRunArguments args)
         {
             AssertAttached();
             PreRun();
-            mNativeView.RunFromBundle(args);
+            _nativeView.RunFromBundle(args);
             PostRun();
         }
 
@@ -811,11 +825,11 @@ namespace Flutter.Shell.Droid.View
         {
             FlutterRunArguments args = new FlutterRunArguments
             {
-                bundlePath = bundlePath,
-                entrypoint = entrypoint,
-                defaultPath = defaultPath
+                BundlePath = bundlePath,
+                Entrypoint = entrypoint,
+                DefaultPath = defaultPath
             };
-            runFromBundle(args);
+            RunFromBundle(args);
         }
 
         /**
@@ -826,7 +840,7 @@ namespace Flutter.Shell.Droid.View
         public Bitmap GetBitmap()
         {
             AssertAttached();
-            return nativeGetBitmap(mNativeView.Get());
+            return nativeGetBitmap(_nativeView.Get());
         }
 
         private static void nativeSurfaceCreated(long nativePlatformViewAndroid, Surface surface);      // native
@@ -838,17 +852,18 @@ namespace Flutter.Shell.Droid.View
         private static void nativeSetViewportMetrics(long nativePlatformViewAndroid, float devicePixelRatio,
                 int physicalWidth, int physicalHeight, int physicalPaddingTop, int physicalPaddingRight,
                 int physicalPaddingBottom, int physicalPaddingLeft, int physicalViewInsetTop, int physicalViewInsetRight,
-                int physicalViewInsetBottom, int physicalViewInsetLeft);                                // native
+                int physicalViewInsetBottom, int physicalViewInsetLeft);                                // native engine->SetViewportMetrics(metrics);
 
         private static Bitmap nativeGetBitmap(long nativePlatformViewAndroid);                          // native
 
         // TODO: ByteBuffer->object
-        private static void nativeDispatchPointerDataPacket(long nativePlatformViewAndroid, object buffer, int position); 
-                                                                                                        // native
+        private static void nativeDispatchPointerDataPacket(long nativePlatformViewAndroid, object buffer);
+        // native
 
         // TODO: ByteBuffer->object
-        private static void nativeDispatchSemanticsAction(long nativePlatformViewAndroid, int id, int action, object args, int argsPosition); 
-                                                                                                        // native
+        // native shell::DispatchSemanticsAction
+        private static void nativeDispatchSemanticsAction(long nativePlatformViewAndroid, int id, int action, object args);
+        
 
         private static void nativeSetSemanticsEnabled(long nativePlatformViewAndroid, bool enabled);    // native
 
@@ -868,15 +883,15 @@ namespace Flutter.Shell.Droid.View
         {
             if (!IsAttached())
                 return;
-            nativeSetViewportMetrics(mNativeView.Get(), mMetrics.devicePixelRatio, mMetrics.physicalWidth,
-                    mMetrics.physicalHeight, mMetrics.physicalPaddingTop, mMetrics.physicalPaddingRight,
-                    mMetrics.physicalPaddingBottom, mMetrics.physicalPaddingLeft, mMetrics.physicalViewInsetTop,
-                    mMetrics.physicalViewInsetRight, mMetrics.physicalViewInsetBottom, mMetrics.physicalViewInsetLeft);
+            nativeSetViewportMetrics(_nativeView.Get(), _metrics.devicePixelRatio, _metrics.physicalWidth,
+                    _metrics.physicalHeight, _metrics.physicalPaddingTop, _metrics.physicalPaddingRight,
+                    _metrics.physicalPaddingBottom, _metrics.physicalPaddingLeft, _metrics.physicalViewInsetTop,
+                    _metrics.physicalViewInsetRight, _metrics.physicalViewInsetBottom, _metrics.physicalViewInsetLeft);
 
             IWindowManager wm = (IWindowManager)Context.GetSystemService(Context.WindowService);
             float fps = wm.DefaultDisplay.RefreshRate;
-            VsyncWaiter.refreshPeriodNanos = (long)(1000000000.0 / fps);
-            VsyncWaiter.refreshRateFPS = fps;
+            VsyncWaiter.RefreshPeriodNanos = (long)(1000000000.0 / fps);
+            VsyncWaiter.RefreshRateFps = fps;
         }
 
         // Called by native to update the semantics/accessibility tree.
@@ -885,10 +900,10 @@ namespace Flutter.Shell.Droid.View
         {
             try
             {
-                if (mAccessibilityNodeProvider != null)
+                if (_accessibilityNodeProvider != null)
                 {
-                    buffer.order(ByteOrder.LITTLE_ENDIAN);
-                    mAccessibilityNodeProvider.updateSemantics(buffer, strings);
+                    //buffer.order(ByteOrder.LITTLE_ENDIAN);
+                    _accessibilityNodeProvider.UpdateSemantics(buffer, strings);
                 }
             }
             catch (Exception ex)
@@ -902,11 +917,8 @@ namespace Flutter.Shell.Droid.View
         {
             try
             {
-                if (mAccessibilityNodeProvider != null)
-                {
-                    buffer.order(ByteOrder.LITTLE_ENDIAN);
-                    mAccessibilityNodeProvider.updateCustomAccessibilityActions(buffer, strings);
-                }
+                //buffer.order(ByteOrder.LITTLE_ENDIAN);
+                _accessibilityNodeProvider?.UpdateCustomAccessibilityActions(buffer, strings);
             }
             catch (Exception ex)
             {
@@ -915,71 +927,67 @@ namespace Flutter.Shell.Droid.View
         }
 
         // Called by native to notify first Flutter frame rendered.
-        public void OnFirstFrame()
+        public void RaiseFirstFrame()
         {
-            // Allow listeners to remove themselves when they are called.
-            foreach (var listener in mFirstFrameListeners)
-                listener.onFirstFrame();
+            FirstFrame?.Invoke(this, new EventArgs());
         }
 
         // ACCESSIBILITY
 
-        private bool mAccessibilityEnabled = false;
-        private bool mTouchExplorationEnabled = false;
-        private AccessibilityFeatures mAccessibilityFeatureFlags;
-        private TouchExplorationListener mTouchExplorationListener;
+        private bool _accessibilityEnabled = false;
+        private bool _touchExplorationEnabled = false;
+        private AccessibilityFeatures _accessibilityFeatureFlags;
+        private TouchExplorationListener _touchExplorationListener;
 
-        public void DispatchSemanticsAction(int id, AccessibilityBridge.Action action)
+        public void DispatchSemanticsAction(int id, AccessibilityBridge.AccessibilityBridgeAction accessibilityBridgeAction)
         {
-            DispatchSemanticsAction(id, action, null);
+            DispatchSemanticsAction(id, accessibilityBridgeAction, null);
         }
 
-        public void DispatchSemanticsAction(int id, AccessibilityBridge.Action action, object args)
+        public void DispatchSemanticsAction(int id, AccessibilityBridge.AccessibilityBridgeAction accessibilityBridgeAction, object args)
         {
             if (!IsAttached())
                 return;
             object encodedArgs = null;
-            int position = 0;
             if (args != null)
             {
-                encodedArgs = StandardMessageCodec.INSTANCE.EncodeMessage(args);
-                position = encodedArgs.position();
+                encodedArgs = StandardMessageCodec.Instance.EncodeMessage(args);
             }
-            nativeDispatchSemanticsAction(mNativeView.Get(), id, action.value, encodedArgs, position);
+            nativeDispatchSemanticsAction(_nativeView.Get(), id, (int)accessibilityBridgeAction, encodedArgs);
         }
 
         //@Override
         protected override void OnAttachedToWindow()
         {
             base.OnAttachedToWindow();
-            mAccessibilityEnabled = mAccessibilityManager.IsEnabled;
-            mTouchExplorationEnabled = mAccessibilityManager.IsTouchExplorationEnabled;
+            _accessibilityEnabled = _accessibilityManager.IsEnabled;
+            _touchExplorationEnabled = _accessibilityManager.IsTouchExplorationEnabled;
             if (Build.VERSION.SdkInt >= BuildVersionCodes.JellyBeanMr1)
             {
-                Uri transitionUri = Settings.Global.getUriFor(Settings.Global.TRANSITION_ANIMATION_SCALE);
-                Context.ContentResolver.RegisterContentObserver(transitionUri, false, mAnimationScaleObserver);
+                var transitionUri = Android.Provider.Settings.Global.GetUriFor(Android.Provider.Settings.Global.TransitionAnimationScale);
+                Context.ContentResolver.RegisterContentObserver(transitionUri, false, _animationScaleObserver);
             }
 
-            if (mAccessibilityEnabled || mTouchExplorationEnabled)
+            if (_accessibilityEnabled || _touchExplorationEnabled)
             {
-                ensureAccessibilityEnabled();
+                EnsureAccessibilityEnabled();
             }
-            if (mTouchExplorationEnabled)
-                mAccessibilityFeatureFlags |= AccessibilityFeatures.AccessibleNavigation;
+            if (_touchExplorationEnabled)
+                _accessibilityFeatureFlags |= AccessibilityFeatures.AccessibleNavigation;
             else
-                mAccessibilityFeatureFlags &= ~AccessibilityFeatures.AccessibleNavigation;
+                _accessibilityFeatureFlags &= ~AccessibilityFeatures.AccessibleNavigation;
 
             // Apply additional accessibility settings
             UpdateAccessibilityFeatures();
             ResetWillNotDraw();
-            mAccessibilityManager.AddAccessibilityStateChangeListener(this);
+            _accessibilityManager.AddAccessibilityStateChangeListener(this);
             if (Build.VERSION.SdkInt >= BuildVersionCodes.Kitkat)
             {
-                if (mTouchExplorationListener == null)
+                if (_touchExplorationListener == null)
                 {
-                    mTouchExplorationListener = new TouchExplorationListener();
+                    _touchExplorationListener = new TouchExplorationListener(this);
                 }
-                mAccessibilityManager.AddTouchExplorationStateChangeListener(mTouchExplorationListener);
+                _accessibilityManager.AddTouchExplorationStateChangeListener(_touchExplorationListener);
             }
         }
 
@@ -987,32 +995,33 @@ namespace Flutter.Shell.Droid.View
         {
             if (Build.VERSION.SdkInt >= BuildVersionCodes.JellyBeanMr1)
             {
-                string transitionAnimationScale = Settings.Global.getString(Context.ContentResolver,
-                    Settings.Global.TRANSITION_ANIMATION_SCALE);
+                string transitionAnimationScale = Android.Provider.Settings.Global.GetString(
+                    Context.ContentResolver, 
+                    Android.Provider.Settings.Global.TransitionAnimationScale);
                 if (transitionAnimationScale != null && transitionAnimationScale.Equals("0"))
-                    mAccessibilityFeatureFlags |= AccessibilityFeatures.DisableAnimations;
+                    _accessibilityFeatureFlags |= AccessibilityFeatures.DisableAnimations;
                 else
-                    mAccessibilityFeatureFlags &= ~AccessibilityFeatures.DisableAnimations;
+                    _accessibilityFeatureFlags &= ~AccessibilityFeatures.DisableAnimations;
             }
-            NativeSetAccessibilityFeatures(mNativeView.Get(), mAccessibilityFeatureFlags);
+            NativeSetAccessibilityFeatures(_nativeView.Get(), _accessibilityFeatureFlags);
         }
 
         //@Override
         protected override void OnDetachedFromWindow()
         {
             base.OnDetachedFromWindow();
-            Context.ContentResolver.UnregisterContentObserver(mAnimationScaleObserver);
-            mAccessibilityManager.RemoveAccessibilityStateChangeListener(this);
+            Context.ContentResolver.UnregisterContentObserver(_animationScaleObserver);
+            _accessibilityManager.RemoveAccessibilityStateChangeListener(this);
             if (Build.VERSION.SdkInt >= BuildVersionCodes.Kitkat)
             {
-                mAccessibilityManager.RemoveTouchExplorationStateChangeListener(mTouchExplorationListener);
+                _accessibilityManager.RemoveTouchExplorationStateChangeListener(_touchExplorationListener);
             }
         }
 
-        private void ResetWillNotDraw()
+        public void ResetWillNotDraw()
         {
-            if (!mIsSoftwareRenderingEnabled)
-                SetWillNotDraw(!(mAccessibilityEnabled || mTouchExplorationEnabled));
+            if (!_isSoftwareRenderingEnabled)
+                SetWillNotDraw(!(_accessibilityEnabled || _touchExplorationEnabled));
             else
                 SetWillNotDraw(false);
         }
@@ -1022,16 +1031,13 @@ namespace Flutter.Shell.Droid.View
         {
             if (enabled)
             {
-                ensureAccessibilityEnabled();
+                EnsureAccessibilityEnabled();
             }
             else
             {
-                mAccessibilityEnabled = false;
-                if (mAccessibilityNodeProvider != null)
-                {
-                    mAccessibilityNodeProvider.setAccessibilityEnabled(false);
-                }
-                nativeSetSemanticsEnabled(mNativeView.Get(), false);
+                _accessibilityEnabled = false;
+                _accessibilityNodeProvider?.SetAccessibilityEnabled(false);
+                nativeSetSemanticsEnabled(_nativeView.Get(), false);
             }
             ResetWillNotDraw();
         }
@@ -1041,8 +1047,11 @@ namespace Flutter.Shell.Droid.View
         // that we can disable animations in Flutter.
         private class AnimationScaleObserver : ContentObserver
         {
-            public AnimationScaleObserver(Handler handler) : base(handler)
+            private readonly FlutterView _flutterView;
+
+            public AnimationScaleObserver(FlutterView flutterView, Handler handler) : base(handler)
             {
+                _flutterView = flutterView;
             }
 
             //@Override
@@ -1052,91 +1061,95 @@ namespace Flutter.Shell.Droid.View
             }
 
             //@Override
-            public void OnChange(bool selfChange, Uri uri)
+            private void OnChange(bool selfChange, Uri uri)
             {
-                string value = Settings.Global.getString(getContext().getContentResolver(),
-                        Settings.Global.TRANSITION_ANIMATION_SCALE);
+                string value = Android.Provider.Settings.Global.GetString(_flutterView.Context.ContentResolver,
+                        Android.Provider.Settings.Global.TransitionAnimationScale);
                 if (value != null && value.Equals("0"))
-                    mAccessibilityFeatureFlags |= AccessibilityFeatures.DisableAnimations;
+                    _flutterView._accessibilityFeatureFlags |= AccessibilityFeatures.DisableAnimations;
                 else
-                    mAccessibilityFeatureFlags &= ~AccessibilityFeature.DISABLE_ANIMATIONS.value;
-                NativeSetAccessibilityFeatures(mNativeView.get(), mAccessibilityFeatureFlags);
+                    _flutterView._accessibilityFeatureFlags &= ~AccessibilityFeatures.DisableAnimations;
+                NativeSetAccessibilityFeatures(_flutterView._nativeView.Get(), _flutterView._accessibilityFeatureFlags);
             }
         }
 
-        internal class TouchExplorationListener : Java.Lang.Object, AccessibilityManager.ITouchExplorationStateChangeListener
+        private class TouchExplorationListener : Java.Lang.Object, AccessibilityManager.ITouchExplorationStateChangeListener
         {
+            private readonly FlutterView _flutterView;
+
+            public TouchExplorationListener(FlutterView flutterView)
+            {
+                _flutterView = flutterView;
+            }
+
             //@Override
             public void OnTouchExplorationStateChanged(bool enabled)
             {
                 if (enabled)
                 {
-                    mTouchExplorationEnabled = true;
-                    ensureAccessibilityEnabled();
-                    mAccessibilityFeatureFlags |= AccessibilityFeatures.AccessibleNavigation;
-                    NativeSetAccessibilityFeatures(mNativeView.Get(), mAccessibilityFeatureFlags);
+                    _flutterView._touchExplorationEnabled = true;
+                    _flutterView.EnsureAccessibilityEnabled();
+                    _flutterView._accessibilityFeatureFlags |= AccessibilityFeatures.AccessibleNavigation;
+                    NativeSetAccessibilityFeatures(_flutterView._nativeView.Get(), _flutterView._accessibilityFeatureFlags);
                 }
                 else
                 {
-                    mTouchExplorationEnabled = false;
-                    if (mAccessibilityNodeProvider != null)
+                    _flutterView._touchExplorationEnabled = false;
+                    if (_flutterView._accessibilityNodeProvider != null)
                     {
-                        mAccessibilityNodeProvider.handleTouchExplorationExit();
+                        _flutterView._accessibilityNodeProvider.HandleTouchExplorationExit();
                     }
-                    mAccessibilityFeatureFlags &= ~AccessibilityFeatures.AccessibleNavigation;
-                    NativeSetAccessibilityFeatures(mNativeView.Get(), mAccessibilityFeatureFlags);
+                    _flutterView._accessibilityFeatureFlags &= ~AccessibilityFeatures.AccessibleNavigation;
+                    NativeSetAccessibilityFeatures(_flutterView._nativeView.Get(), _flutterView._accessibilityFeatureFlags);
                 }
-                ResetWillNotDraw();
+                _flutterView.ResetWillNotDraw();
             }
         }
 
         //@Override
         public AccessibilityNodeProvider GetAccessibilityNodeProvider()
         {
-            if (mAccessibilityEnabled)
-                return mAccessibilityNodeProvider;
+            if (_accessibilityEnabled)
+                return _accessibilityNodeProvider;
             // TODO(goderbauer): when a11y is off this should return a one-off snapshot of
             // the a11y
             // tree.
             return null;
         }
 
-        private AccessibilityBridge mAccessibilityNodeProvider;
+        private AccessibilityBridge _accessibilityNodeProvider;
 
-        private void EnsureAccessibilityEnabled()
+        public void EnsureAccessibilityEnabled()
         {
             if (!IsAttached())
                 return;
-            mAccessibilityEnabled = true;
-            if (mAccessibilityNodeProvider == null)
+            _accessibilityEnabled = true;
+            if (_accessibilityNodeProvider == null)
             {
-                mAccessibilityNodeProvider = new AccessibilityBridge(this);
+                _accessibilityNodeProvider = new AccessibilityBridge(this);
             }
-            nativeSetSemanticsEnabled(mNativeView.Get(), true);
-            mAccessibilityNodeProvider.setAccessibilityEnabled(true);
+            nativeSetSemanticsEnabled(_nativeView.Get(), true);
+            _accessibilityNodeProvider.SetAccessibilityEnabled(true);
         }
 
-        private void ResetAccessibilityTree()
+        public void ResetAccessibilityTree()
         {
-            if (mAccessibilityNodeProvider != null)
-            {
-                mAccessibilityNodeProvider.reset();
-            }
+            _accessibilityNodeProvider?.Reset();
         }
 
-        private bool HandleAccessibilityHoverEvent(MotionEvent @event)
+        public bool HandleAccessibilityHoverEvent(MotionEvent @event)
         {
-            if (!mTouchExplorationEnabled)
+            if (!_touchExplorationEnabled)
             {
                 return false;
             }
             if (@event.Action == MotionEventActions.HoverEnter || @event.Action == MotionEventActions.HoverMove)
             {
-                mAccessibilityNodeProvider.handleTouchExploration(@event.GetX(), @event.GetY());
+                _accessibilityNodeProvider.HandleTouchExploration(@event.GetX(), @event.GetY());
             } 
             else if (@event.Action == MotionEventActions.HoverExit) 
             {
-                mAccessibilityNodeProvider.handleTouchExplorationExit();
+                _accessibilityNodeProvider.HandleTouchExplorationExit();
             } 
             else 
             {
@@ -1155,108 +1168,92 @@ namespace Flutter.Shell.Droid.View
 
         //@Override
         // TODO: ByteBuffer->object
-        public void Send(string channel, object message, BinaryReply callback)
+        public void Send(string channel, object message, IBinaryReply callback)
         {
             if (!IsAttached())
             {
                 Log.Debug(TAG, "FlutterView.send called on a detached view, channel=" + channel);
                 return;
             }
-            mNativeView.Send(channel, message, callback);
+            _nativeView.Send(channel, message, callback);
         }
 
         //@Override
-        public void SetMessageHandler(string channel, BinaryMessageHandler handler)
+        public void SetMessageHandler(string channel, IBinaryMessageHandler handler)
         {
-            mNativeView.SetMessageHandler(channel, handler);
-        }
-
-        /**
-         * Listener will be called on the Android UI thread once when Flutter renders
-         * the first frame.
-         */
-        public interface FirstFrameListener
-        {
-            void onFirstFrame();
+            _nativeView.SetMessageHandler(channel, handler);
         }
 
         //@Override
-        public TextureRegistry_SurfaceTextureEntry CreateSurfaceTexture()
+        public ITextureRegistrySurfaceTextureEntry CreateSurfaceTexture()
         {
             SurfaceTexture surfaceTexture = new SurfaceTexture(0);
             surfaceTexture.DetachFromGLContext();
-            var entry = new SurfaceTextureRegistryEntry(nextTextureId.GetAndIncrement(), surfaceTexture);
-            nativeRegisterTexture(mNativeView.Get(), entry.Id(), surfaceTexture);
+            var entry = new SurfaceTextureRegistryEntry(_nextTextureId.GetAndIncrement(), surfaceTexture, _nativeView);
+            nativeRegisterTexture(_nativeView.Get(), entry.Id, surfaceTexture);
             return entry;
         }
 
-        internal class SurfaceTextureRegistryEntry : TextureRegistry_SurfaceTextureEntry
+        internal class SurfaceTextureRegistryEntry : ITextureRegistrySurfaceTextureEntry
         {
-            private readonly long id;
-            private readonly SurfaceTexture surfaceTexture;
-            private readonly bool released;
+            private readonly long _id;
+            private readonly SurfaceTexture _surfaceTexture;
+            private readonly FlutterNativeView _flutterNativeView;
+            private bool _released = false;
 
-            public SurfaceTextureRegistryEntry(long id, SurfaceTexture surfaceTexture)
+            public SurfaceTextureRegistryEntry(long id, SurfaceTexture surfaceTexture, FlutterNativeView flutterNativeView)
             {
-                this.id = id;
-                this.surfaceTexture = surfaceTexture;
+                _id = id;
+                _surfaceTexture = surfaceTexture;
+                _flutterNativeView = flutterNativeView;
 
+                var onFrameListener = new OnFrameAvailableListenerImpl { FrameAvailable = OnFrameAvailable };
                 if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
                 {
                     // The callback relies on being executed on the UI thread (unsynchronised read of mNativeView
                     // and also the engine code check for platform thread in Shell::OnPlatformViewMarkTextureFrameAvailable),
                     // so we explicitly pass a Handler for the current thread.
-                    this.surfaceTexture.SetOnFrameAvailableListener(OnFrameListener, new Handler());
+                    _surfaceTexture.SetOnFrameAvailableListener(onFrameListener, new Handler());
                 }
                 else
                 {
                     // Android documentation states that the listener can be called on an arbitrary thread.
                     // But in practice, versions of Android that predate the newer API will call the listener
                     // on the thread where the SurfaceTexture was constructed.
-                    this.surfaceTexture.SetOnFrameAvailableListener(OnFrameListener);
+                    _surfaceTexture.SetOnFrameAvailableListener(onFrameListener);
                 }
             }
 
-            private readonly SurfaceTexture.IOnFrameAvailableListener OnFrameListener = new OnFrameAvailableListenerImpl
+            private void OnFrameAvailable(SurfaceTexture texture)
             {
-                FrameAvailable = (texture) =>
+                if (_released)
                 {
-                    if (released)
-                    {
-                        // Even though we make sure to unregister the callback before releasing, as of Android O
-                        // SurfaceTexture has a data race when accessing the callback, so the callback may
-                        // still be called by a stale reference after released==true and mNativeView==null.
-                        return;
-                    }
-                    nativeMarkTextureFrameAvailable(mNativeView.Get(), SurfaceTextureRegistryEntry.Id);
+                    // Even though we make sure to unregister the callback before releasing, as of Android O
+                    // SurfaceTexture has a data race when accessing the callback, so the callback may
+                    // still be called by a stale reference after released==true and mNativeView==null.
+                    return;
                 }
-            };
-
-            //@Override
-            public SurfaceTexture SurfaceTexture()
-            {
-                return surfaceTexture;
+                nativeMarkTextureFrameAvailable(_flutterNativeView.Get(), _id);
             }
 
             //@Override
-            public long Id()
-            {
-                return id;
-            }
+            public SurfaceTexture SurfaceTexture => _surfaceTexture;
+
+            //@Override
+            public long Id => _id;
 
             //@Override
             public void Release()
             {
-                if (released)
-                {
+                if (_released)
                     return;
-                }
-                released = true;
-                nativeUnregisterTexture(mNativeView.Get(), id);
+
+                _released = true;
+                nativeUnregisterTexture(_flutterNativeView.Get(), _id);
                 // Otherwise onFrameAvailableListener might be called after mNativeView==null
                 // (https://github.com/flutter/flutter/issues/20951). See also the check in onFrameAvailable.
-                surfaceTexture.SetOnFrameAvailableListener(null);
-                surfaceTexture.Release();
+                _surfaceTexture.SetOnFrameAvailableListener(null);
+                _surfaceTexture.Release();
             }
         }
     }

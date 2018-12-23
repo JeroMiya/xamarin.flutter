@@ -8,7 +8,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
     /**
      * A handler of incoming method calls.
      */
-    public interface MethodCallHandler
+    public interface IMethodCallHandler
     {
         /**
          * Handles the specified method call received from Flutter.
@@ -28,7 +28,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
          * @param call A {@link MethodCall}.
          * @param result A {@link Result} used for submitting the result of the call.
          */
-        void OnMethodCall(MethodCall call, Result result);
+        void OnMethodCall(MethodCall call, IResult result);
     }
 
     /**
@@ -41,7 +41,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
      * <a href="https://github.com/flutter/engine/wiki/Threading-in-the-Flutter-Engine">Threading in the Flutter
      * Engine</a>.</p>
      */
-    public interface Result
+    public interface IResult
     {
         /**
          * Handles a successful result.
@@ -65,7 +65,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
         void NotImplemented();
     }
 
-    public class ResultImpl : Result
+    public class ResultImpl : IResult
     {
         public Action<object> OnSuccess;
         public Action<string, string, object> OnError;
@@ -109,9 +109,9 @@ namespace Flutter.Shell.Droid.Plugin.Common
     {
         private static readonly string TAG = "MethodChannel#";
 
-        private readonly BinaryMessenger _messenger;
+        private readonly IBinaryMessenger _messenger;
         private readonly string _name;
-        private readonly MethodCodec _codec;
+        private readonly IMethodCodec _codec;
 
         /**
          * Creates a new channel associated with the specified {@link BinaryMessenger}
@@ -121,12 +121,12 @@ namespace Flutter.Shell.Droid.Plugin.Common
          * @param name a channel name String.
          */
         public MethodChannel(
-            BinaryMessenger messenger,
+            IBinaryMessenger messenger,
             string name)
             : this(
                 messenger,
                 name,
-                StandardMethodCodec.INSTANCE)
+                StandardMethodCodec.Instance)
         {
         }
 
@@ -138,14 +138,14 @@ namespace Flutter.Shell.Droid.Plugin.Common
          * @param name a channel name String.
          * @param codec a {@link MessageCodec}.
          */
-        public MethodChannel(BinaryMessenger messenger, string name, MethodCodec codec)
+        public MethodChannel(IBinaryMessenger messenger, string name, IMethodCodec codec)
         {
             //assert messenger != null;
             //assert name != null;
             //assert codec != null;
-            this._messenger = messenger;
-            this._name = name;
-            this._codec = codec;
+            _messenger = messenger;
+            _name = name;
+            _codec = codec;
         }
 
         /**
@@ -168,7 +168,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
          * @param arguments the arguments for the invocation, possibly null.
          * @param callback a {@link Result} callback for the invocation result, or null.
          */
-        public void InvokeMethod(string method, /* @Nullable */ object arguments, Result callback)
+        public void InvokeMethod(string method, /* @Nullable */ object arguments, IResult callback)
         {
             _messenger.Send(
                 _name,
@@ -190,20 +190,20 @@ namespace Flutter.Shell.Droid.Plugin.Common
          *
          * @param handler a {@link MethodCallHandler}, or null to deregister.
          */
-        public void SetMethodCallHandler(/* @Nullable */ MethodCallHandler handler)
+        public void SetMethodCallHandler(/* @Nullable */ IMethodCallHandler handler)
         {
             _messenger.SetMessageHandler(
                 _name,
                 handler == null ? null : new IncomingMethodCallHandler(handler, _codec, _name));
         }
 
-        public class IncomingResultHandler : BinaryReply
+        public class IncomingResultHandler : IBinaryReply
         {
-            private readonly Result _callback;
-            private readonly MethodCodec _codec;
+            private readonly IResult _callback;
+            private readonly IMethodCodec _codec;
             private readonly string _name;
 
-            public IncomingResultHandler(Result callback, MethodCodec codec, string name)
+            public IncomingResultHandler(IResult callback, IMethodCodec codec, string name)
             {
                 _callback = callback;
                 _codec = codec;
@@ -240,14 +240,14 @@ namespace Flutter.Shell.Droid.Plugin.Common
         }
     }
 
-    public class IncomingMethodCallHandler : BinaryMessageHandler
+    public class IncomingMethodCallHandler : IBinaryMessageHandler
     {
 
-        private readonly MethodCallHandler _handler;
-        private readonly MethodCodec _codec;
+        private readonly IMethodCallHandler _handler;
+        private readonly IMethodCodec _codec;
         private readonly string _name;
 
-        public IncomingMethodCallHandler(MethodCallHandler handler, MethodCodec codec, string name)
+        public IncomingMethodCallHandler(IMethodCallHandler handler, IMethodCodec codec, string name)
         {
             _handler = handler;
             _codec = codec;
@@ -256,7 +256,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
 
         //@Override
         //TODO: ByteBuffer->object
-        public void OnMessage(object message, BinaryReply reply)
+        public void OnMessage(object message, IBinaryReply reply)
         {
             MethodCall call = _codec.DecodeMethodCall(message);
             try

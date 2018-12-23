@@ -7,14 +7,13 @@ using Android.Util;
 using Android.Views;
 using Flutter.Shell.Droid.Plugin.Common;
 using Org.Json;
-using Result = Flutter.Shell.Droid.Plugin.Common.Result;
 
 namespace Flutter.Shell.Droid.Plugin.Platform
 {
     /**
      * Android implementation of the platform plugin.
      */
-    public class PlatformPlugin : MethodCallHandler, ActivityLifecycleListener
+    public class PlatformPlugin : IMethodCallHandler, IActivityLifecycleListener
     {
         private SystemUiFlags _enabledOverlays;
         private readonly Activity _activity;
@@ -29,7 +28,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
         }
 
         //@Override
-        public void OnMethodCall(MethodCall call, Result result)
+        public void OnMethodCall(MethodCall call, IResult result)
         {
             string method = call.Method;
             object arguments = call.Arguments;

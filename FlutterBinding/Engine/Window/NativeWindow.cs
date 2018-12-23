@@ -1,6 +1,7 @@
 ﻿using FlutterBinding.UI;
 using System;
 using System.Collections.Generic;
+using Flutter.Shell;
 using FlutterBinding.Shell;
 using Newtonsoft.Json;
 using static FlutterBinding.Mapping.Types;

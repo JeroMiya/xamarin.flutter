@@ -39,7 +39,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
         public class PresentationState
         {
             // The Android view we are embedding in the Flutter app.
-            public PlatformView View;
+            public IPlatformView View;
 
             // The InvocationHandler for a WindowManager proxy. This is essentially the custom window manager for the
             // presentation.
@@ -136,7 +136,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
             return _state;
         }
 
-        public PlatformView GetView()
+        public IPlatformView GetView()
         {
             return _state.View;
         }
