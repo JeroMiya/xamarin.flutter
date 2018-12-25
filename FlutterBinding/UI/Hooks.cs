@@ -1,11 +1,9 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using Flutter.Shell;
-using FlutterBinding.Engine.Window;
+using FlutterBinding.Mapping;
+using FlutterBinding.Shell;
+using Newtonsoft.Json;
 using static FlutterBinding.Mapping.Helper;
-using static FlutterBinding.Mapping.Types;
-using static FlutterBinding.UI.Painting;
 
 namespace FlutterBinding.UI
 {
@@ -107,15 +105,15 @@ namespace FlutterBinding.UI
         //    //}
         //}
 
-        static void _dispatchPointerDataPacket(ByteData packet)
+        static void _dispatchPointerDataPacket(Types.ByteData packet)
         {
             if (Window.Instance.onPointerDataPacket != null)
                 _invoke1<PointerDataPacket>((d) => Window.Instance.onPointerDataPacket(d), Window.Instance.OnPointerDataPacketZone, _unpackPointerDataPacket(packet));
         }
 
-        static void _dispatchSemanticsAction(int id, int action, ByteData args)
+        static void _dispatchSemanticsAction(int id, int action, Types.ByteData args)
         {
-            _invoke3<int, SemanticsAction, ByteData>(
+            _invoke3<int, SemanticsAction, Types.ByteData>(
              (a, b, c) => Window.Instance.onSemanticsAction(a, b, c),
               Window.Instance.OnSemanticsActionZone,
               id,
@@ -125,7 +123,7 @@ namespace FlutterBinding.UI
 
         static void _beginFrame(int microseconds)
         {
-            _invoke1<Duration>((d) => Window.Instance.onBeginFrame(d), Window.Instance.OnBeginFrameZone, new Duration(microseconds: microseconds));
+            _invoke1<Types.Duration>((d) => Window.Instance.onBeginFrame(d), Window.Instance.OnBeginFrameZone, new Types.Duration(microseconds: microseconds));
         }
 
         static void _drawFrame()
@@ -134,14 +132,14 @@ namespace FlutterBinding.UI
         }
 
         /// Invokes [callback] inside the given [zone].
-        static void _invoke(VoidCallback callback, Zone zone)
+        static void _invoke(VoidCallback callback, Types.Zone zone)
         {
             if (callback == null)
                 return;
 
             //assert(zone != null);
 
-            if (identical(zone, Zone.current))
+            if (identical(zone, Types.Zone.current))
             {
                 callback();
             }
@@ -152,12 +150,12 @@ namespace FlutterBinding.UI
         }
 
         /// Invokes [callback] inside the given [zone] passing it [arg].
-        static void _invoke1<A>(Action<A> callback, Zone zone, A arg)
+        static void _invoke1<A>(Action<A> callback, Types.Zone zone, A arg)
         {
             if (callback == null)
                 return;
             
-            if (identical(zone, Zone.current))
+            if (identical(zone, Types.Zone.current))
             {
                 callback(arg);
             }
@@ -168,12 +166,12 @@ namespace FlutterBinding.UI
         }
 
         /// Invokes [callback] inside the given [zone] passing it [arg1] and [arg2].
-        static void _invoke2<A1, A2>(Action<A1, A2> callback, Zone zone, A1 arg1, A2 arg2)
+        static void _invoke2<A1, A2>(Action<A1, A2> callback, Types.Zone zone, A1 arg1, A2 arg2)
         {
             if (callback == null)
                 return;
             
-            if (identical(zone, Zone.current))
+            if (identical(zone, Types.Zone.current))
             {
                 callback(arg1, arg2);
             }
@@ -184,12 +182,12 @@ namespace FlutterBinding.UI
         }
 
         /// Invokes [callback] inside the given [zone] passing it [arg1], [arg2] and [arg3].
-        static void _invoke3<A1, A2, A3>(Action<A1, A2, A3> callback, Zone zone, A1 arg1, A2 arg2, A3 arg3)
+        static void _invoke3<A1, A2, A3>(Action<A1, A2, A3> callback, Types.Zone zone, A1 arg1, A2 arg2, A3 arg3)
         {
             if (callback == null)
                 return;
 
-            if (identical(zone, Zone.current))
+            if (identical(zone, Types.Zone.current))
             {
                 callback(arg1, arg2, arg3);
             }
@@ -208,7 +206,7 @@ namespace FlutterBinding.UI
         //  * FlutterView.java
         const int _kPointerDataFieldCount = 19;
 
-        static PointerDataPacket _unpackPointerDataPacket(ByteData packet)
+        static PointerDataPacket _unpackPointerDataPacket(Types.ByteData packet)
         {
             const int kStride = 8; // Its an 8 const anyway - Int64List.bytesPerElement;
             const int kBytesPerPointerData = _kPointerDataFieldCount * kStride;
@@ -218,25 +216,25 @@ namespace FlutterBinding.UI
             {
                 int offset = i * _kPointerDataFieldCount;
                 data[i] = new PointerData(
-                  timeStamp: new Duration(microseconds: packet.getInt64(kStride * offset++, (int)_kFakeHostEndian)),
-                  change: (PointerChange)packet.getInt64(kStride * offset++, (int)_kFakeHostEndian),
-                  kind: (PointerDeviceKind)packet.getInt64(kStride * offset++, (int)_kFakeHostEndian),
-                  device: packet.getInt64(kStride * offset++, (int)_kFakeHostEndian),
-                  physicalX: packet.getFloat64(kStride * offset++, (int)_kFakeHostEndian),
-                  physicalY: packet.getFloat64(kStride * offset++, (int)_kFakeHostEndian),
-                  buttons: packet.getInt64(kStride * offset++, (int)_kFakeHostEndian),
-                  obscured: packet.getInt64(kStride * offset++, (int)_kFakeHostEndian) != 0,
-                  pressure: packet.getFloat64(kStride * offset++, (int)_kFakeHostEndian),
-                  pressureMin: packet.getFloat64(kStride * offset++, (int)_kFakeHostEndian),
-                  pressureMax: packet.getFloat64(kStride * offset++, (int)_kFakeHostEndian),
-                  distance: packet.getFloat64(kStride * offset++, (int)_kFakeHostEndian),
-                  distanceMax: packet.getFloat64(kStride * offset++, (int)_kFakeHostEndian),
-                  radiusMajor: packet.getFloat64(kStride * offset++, (int)_kFakeHostEndian),
-                  radiusMinor: packet.getFloat64(kStride * offset++, (int)_kFakeHostEndian),
-                  radiusMin: packet.getFloat64(kStride * offset++, (int)_kFakeHostEndian),
-                  radiusMax: packet.getFloat64(kStride * offset++, (int)_kFakeHostEndian),
-                  orientation: packet.getFloat64(kStride * offset++, (int)_kFakeHostEndian),
-                  tilt: packet.getFloat64(kStride * offset++, (int)_kFakeHostEndian)
+                  timeStamp: new Types.Duration(microseconds: packet.getInt64(kStride * offset++, (int)Painting._kFakeHostEndian)),
+                  change: (PointerChange)packet.getInt64(kStride * offset++, (int)Painting._kFakeHostEndian),
+                  kind: (PointerDeviceKind)packet.getInt64(kStride * offset++, (int)Painting._kFakeHostEndian),
+                  device: packet.getInt64(kStride * offset++, (int)Painting._kFakeHostEndian),
+                  physicalX: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
+                  physicalY: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
+                  buttons: packet.getInt64(kStride * offset++, (int)Painting._kFakeHostEndian),
+                  obscured: packet.getInt64(kStride * offset++, (int)Painting._kFakeHostEndian) != 0,
+                  pressure: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
+                  pressureMin: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
+                  pressureMax: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
+                  distance: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
+                  distanceMax: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
+                  radiusMajor: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
+                  radiusMinor: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
+                  radiusMin: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
+                  radiusMax: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
+                  orientation: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
+                  tilt: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian)
                 );
             }
             return new PointerDataPacket(data: data);

@@ -1,34 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Flutter.Shell;
-using FlutterBinding.Engine;
+﻿using FlutterBinding.Engine;
 using FlutterBinding.Engine.Assets;
-using FlutterBinding.Engine.Window;
 using FlutterBinding.Flow.Layers;
 using FlutterBinding.UI;
 using SkiaSharp;
 
 namespace FlutterBinding.Shell
 {
-    public interface RuntimeDelegate
-    {
-        string DefaultRouteName();
-
-        void ScheduleFrame(bool regenerateLayerTree = true);
-
-        void Render(LayerTree layerTree);
-
-        void UpdateSemantics(
-            SemanticsNodeUpdates update,
-            CustomAccessibilityActionUpdates actions);
-
-        // Use dependency injection, not platform messages!
-        //void HandlePlatformMessage(PlatformMessage message);
-        //FontCollection GetFontCollection();
-    };
-
-    public class Engine : RuntimeDelegate
+    public partial class Engine : IRuntimeDelegate
     {
         private const string kAssetChannel = "flutter/assets";
         private const string kLifecycleChannel = "flutter/lifecycle";
@@ -44,15 +22,8 @@ namespace FlutterBinding.Shell
             Failure,  // Isolate could not be started or other unspecified failure
         };
 
-        public interface Delegate
-        {
-            void OnEngineUpdateSemantics(SemanticsNodeUpdates update, CustomAccessibilityActionUpdates actions);
-            //void OnEngineHandlePlatformMessage(PlatformMessage message);
-            Task OnPreEngineRestart();
-        };
-
         public Engine(
-            Delegate @delegate,
+            Engine.IEngineDelegate @delegate,
             //DartVM vm,
             //DartSnapshot isolate_snapshot,
             //DartSnapshot shared_snapshot,
@@ -75,20 +46,20 @@ namespace FlutterBinding.Shell
             // we want to be fully initilazed by that point.
             _runtimeController = new RuntimeController(
                 this,                       // runtime delegate
-                //vm,                       // VM
-                //isolate_snapshot,         // isolate snapshot
-                //shared_snapshot,          // shared snapshot
+                                            //vm,                       // VM
+                                            //isolate_snapshot,         // isolate snapshot
+                                            //shared_snapshot,          // shared snapshot
                 taskRunners,               // task runners
                 snapshotDelegate,          // snapshot delegate
                 resourceContext,           // resource context
                 unrefQueue                 // skia unref queue
-                //settings_.advisory_script_uri,       // advisory script uri
-                //settings_.advisory_script_entrypoint // advisory script entrypoint
+                                           //settings_.advisory_script_uri,       // advisory script uri
+                                           //settings_.advisory_script_entrypoint // advisory script entrypoint
             );
         }
 
         //private readonly FML_WARN_UNUSED_RESULT
-        private RunStatus Run(RunConfiguration configuration)
+        public RunStatus Run(RunConfiguration configuration)
         {
             if (!configuration.IsValid())
             {
@@ -138,7 +109,7 @@ namespace FlutterBinding.Shell
         // isolate is torn down and restarted with the new configuration. Only used in
         // the development workflow.
         //FML_WARN_UNUSED_RESULT 
-        private bool Restart(RunConfiguration configuration)
+        public bool Restart(RunConfiguration configuration)
         {
             //TRACE_EVENT0("flutter", "Engine::Restart");
             if (!configuration.IsValid())
@@ -154,7 +125,7 @@ namespace FlutterBinding.Shell
             return Run(configuration) == RunStatus.Success;
         }
 
-        private bool UpdateAssetManager(AssetManager newAssetManager)
+        public bool UpdateAssetManager(AssetManager newAssetManager)
         {
             if (_assetManager == newAssetManager)
                 return false;
@@ -207,8 +178,8 @@ namespace FlutterBinding.Shell
         public void SetViewportMetrics(ViewportMetrics metrics)
         {
             bool dimensionsChanged =
-                _viewportMetrics.physical_height != metrics.physical_height ||
-                _viewportMetrics.physical_width != metrics.physical_width;
+                _viewportMetrics.PhysicalHeight != metrics.PhysicalHeight ||
+                _viewportMetrics.PhysicalWidth != metrics.PhysicalWidth;
             _viewportMetrics = metrics;
             _runtimeController.SetViewportMetrics(_viewportMetrics);
             if (_animator != null)
@@ -220,36 +191,36 @@ namespace FlutterBinding.Shell
             }
         }
 
-        //private void DispatchPlatformMessage(PlatformMessage message)
-        //{
-        //    switch (message.channel())
-        //    {
-        //        case kLifecycleChannel:
-        //            if (HandleLifecyclePlatformMessage(message))
-        //                return;
-        //            break;
+        private void DispatchPlatformMessage(PlatformMessage message)
+        {
+            switch (message.Channel)
+            {
+                case kLifecycleChannel:
+                    if (HandleLifecyclePlatformMessage(message))
+                        return;
+                    break;
 
-        //        case kLocalizationChannel:
-        //            if (HandleLocalizationPlatformMessage(message))
-        //                return;
-        //            break;
+                case kLocalizationChannel:
+                    if (HandleLocalizationPlatformMessage(message))
+                        return;
+                    break;
 
-        //        case kSettingsChannel:
-        //            HandleSettingsPlatformMessage(message);
-        //            return;
+                case kSettingsChannel:
+                    HandleSettingsPlatformMessage(message);
+                    return;
 
-        //    }
+            }
 
-        //    if (runtime_controller_.IsRootIsolateRunning() &&
-        //        runtime_controller_.DispatchPlatformMessage(message))
-        //    {
-        //        return;
-        //    }
+            if (runtime_controller_.IsRootIsolateRunning() &&
+                runtime_controller_.DispatchPlatformMessage(message))
+            {
+                return;
+            }
 
-        //    // If there's no runtime_, we may still need to set the initial route.
-        //    if (message.channel() == kNavigationChannel)
-        //        HandleNavigationPlatformMessage(message);
-        //}
+            // If there's no runtime_, we may still need to set the initial route.
+            if (message.Channel == kNavigationChannel)
+                HandleNavigationPlatformMessage(message);
+        }
 
         public void DispatchPointerDataPacket(PointerDataPacket packet)
         {
@@ -282,7 +253,7 @@ namespace FlutterBinding.Shell
         // |blink::RuntimeDelegate|
         //public FontCollection private GetFontCollection() => font_collection_;
 
-        private readonly Delegate _delegate;
+        private readonly Engine.IEngineDelegate _delegate;
         private Settings _settings;
         private readonly Animator _animator;
         private RuntimeController _runtimeController;
@@ -308,7 +279,7 @@ namespace FlutterBinding.Shell
             if (layerTree == null)
                 return;
 
-            var frameSize = new SKSizeI((int)_viewportMetrics.physical_width, (int)_viewportMetrics.physical_height);
+            SKSizeI frameSize = new SKSizeI(_viewportMetrics.PhysicalWidth, _viewportMetrics.PhysicalHeight);
             if (frameSize.IsEmpty)
                 return;
 
@@ -391,7 +362,7 @@ namespace FlutterBinding.Shell
         //private bool HandleLocalizationPlatformMessage(PlatformMessage message)
         //{
         //    var data = message.Data;
-            
+
         //    rapidjson::Document document = new rapidjson::Document();
         //    document.Parse(reinterpret_cast <const char*> (data.data()), data.size());
         //    if (document.HasParseError() || !document.IsObject())

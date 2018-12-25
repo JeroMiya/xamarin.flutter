@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FlutterBinding.Shell
+﻿namespace FlutterBinding.Shell
 {
     public class Settings
     {

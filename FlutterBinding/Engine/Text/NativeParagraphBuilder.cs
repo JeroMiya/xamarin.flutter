@@ -1,7 +1,7 @@
-﻿using FlutterBinding.UI;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using FlutterBinding.UI;
 
 namespace FlutterBinding.Engine.Text
 {

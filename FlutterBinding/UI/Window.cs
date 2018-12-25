@@ -1,10 +1,8 @@
-﻿using FlutterBinding.Engine;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Flutter.Shell;
 using FlutterBinding.Engine.Window;
-using static FlutterBinding.Mapping.Types;
+using FlutterBinding.Mapping;
+using FlutterBinding.Shell;
 
 namespace FlutterBinding.UI
 {
@@ -12,7 +10,7 @@ namespace FlutterBinding.UI
     public delegate void VoidCallback();
 
     /// Signature for [Window.onBeginFrame].
-    public delegate void FrameCallback(Duration duration);
+    public delegate void FrameCallback(Types.Duration duration);
 
     /// Signature for [Window.onPointerDataPacket].
     public delegate void PointerDataPacketCallback(PointerDataPacket packet);
@@ -359,7 +357,7 @@ namespace FlutterBinding.UI
     ///
     /// There is a single Window instance in the system, which you can
     /// obtain from the [window] property.
-    public class Window: Engine.Window.NativeWindow
+    public class Window: NativeWindow
     {
         /// The [Window] singleton. This object exposes the size of the display, the
         /// core scheduler API, the input event callback, the graphics drawing API, and
@@ -468,12 +466,12 @@ namespace FlutterBinding.UI
             set
             {
                 _onMetricsChanged = value;
-                OnMetricsChangedZone = Zone.current;
+                OnMetricsChangedZone = Types.Zone.current;
             }
         }
 
         private VoidCallback _onMetricsChanged;
-        internal Zone OnMetricsChangedZone;
+        internal Types.Zone OnMetricsChangedZone;
 
 
         /// The system-reported default locale of the device.
@@ -529,12 +527,12 @@ namespace FlutterBinding.UI
             set
             {
                 _onLocaleChanged = value;
-                OnLocaleChangedZone = Zone.current;
+                OnLocaleChangedZone = Types.Zone.current;
             }
         }
 
         private VoidCallback _onLocaleChanged;
-        internal Zone OnLocaleChangedZone;
+        internal Types.Zone OnLocaleChangedZone;
 
         /// The system-reported text scale.
         ///
@@ -571,12 +569,12 @@ namespace FlutterBinding.UI
             set
             {
                 _onTextScaleFactorChanged = value;
-                OnTextScaleFactorChangedZone = Zone.current;
+                OnTextScaleFactorChangedZone = Types.Zone.current;
             }
         }
 
         private VoidCallback _onTextScaleFactorChanged;
-        internal Zone OnTextScaleFactorChangedZone;
+        internal Types.Zone OnTextScaleFactorChangedZone;
 
         /// A callback that is invoked to notify the application that it is an
         /// appropriate time to provide a scene using the [SceneBuilder] API and the
@@ -603,12 +601,12 @@ namespace FlutterBinding.UI
             set
             {
                 _onBeginFrame = value;
-                OnBeginFrameZone = Zone.current;
+                OnBeginFrameZone = Types.Zone.current;
             }
         }
 
         private FrameCallback _onBeginFrame;
-        internal Zone OnBeginFrameZone;
+        internal Types.Zone OnBeginFrameZone;
 
         /// A callback that is invoked for each frame after [onBeginFrame] has
         /// completed and after the microtask queue has been drained. This can be
@@ -630,12 +628,12 @@ namespace FlutterBinding.UI
             set
             {
                 _onDrawFrame = value;
-                OnDrawFrameZone = Zone.current;
+                OnDrawFrameZone = Types.Zone.current;
             }
         }
 
         private VoidCallback _onDrawFrame;
-        internal Zone OnDrawFrameZone;
+        internal Types.Zone OnDrawFrameZone;
 
         /// A callback that is invoked when pointer data is available.
         ///
@@ -652,12 +650,12 @@ namespace FlutterBinding.UI
             set
             {
                 _onPointerDataPacket = value;
-                OnPointerDataPacketZone = Zone.current;
+                OnPointerDataPacketZone = Types.Zone.current;
             }
         }
 
         private PointerDataPacketCallback _onPointerDataPacket;
-        internal Zone OnPointerDataPacketZone;
+        internal Types.Zone OnPointerDataPacketZone;
 
         /// The route or path that the embedder requested when the application was
         /// launched.
@@ -746,12 +744,12 @@ namespace FlutterBinding.UI
             set
             {
                 _onSemanticsEnabledChanged = value;
-                OnSemanticsEnabledChangedZone = Zone.current;
+                OnSemanticsEnabledChangedZone = Types.Zone.current;
             }
         }
 
         private VoidCallback _onSemanticsEnabledChanged;
-        internal Zone OnSemanticsEnabledChangedZone;
+        internal Types.Zone OnSemanticsEnabledChangedZone;
 
         /// A callback that is invoked whenever the user requests an action to be
         /// performed.
@@ -767,12 +765,12 @@ namespace FlutterBinding.UI
             set
             {
                 _onSemanticsAction = value;
-                OnSemanticsActionZone = Zone.current;
+                OnSemanticsActionZone = Types.Zone.current;
             }
         }
 
         private SemanticsActionCallback _onSemanticsAction;
-        internal Zone OnSemanticsActionZone;
+        internal Types.Zone OnSemanticsActionZone;
 
         /// Additional accessibility features that may be enabled by the platform.
         public AccessibilityFeatures accessibilityFeatures { get; set; }
@@ -787,12 +785,12 @@ namespace FlutterBinding.UI
             set
             {
                 _onAccessibilityFeaturesChanged = value;
-                OnAccessibilityFlagsChangedZone = Zone.current;
+                OnAccessibilityFlagsChangedZone = Types.Zone.current;
             }
         }
 
         private VoidCallback _onAccessibilityFeaturesChanged;
-        internal Zone OnAccessibilityFlagsChangedZone;
+        internal Types.Zone OnAccessibilityFlagsChangedZone;
 
         /// Change the retained semantics data about this window.
         ///

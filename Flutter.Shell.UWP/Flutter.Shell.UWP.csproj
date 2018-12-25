@@ -125,10 +125,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Flutter.Shell\Flutter.Shell.csproj">
-      <Project>{1868a51f-0945-448b-99fd-afa5589ff717}</Project>
-      <Name>Flutter.Shell</Name>
-    </ProjectReference>
     <ProjectReference Include="..\FlutterBinding\FlutterBinding.csproj">
       <Project>{c9313643-3357-4872-9b00-03e2c79ad297}</Project>
       <Name>FlutterBinding</Name>

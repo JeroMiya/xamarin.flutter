@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using FlutterBinding.Flow;
+﻿using FlutterBinding.Flow;
 using SkiaSharp;
 
 namespace FlutterBinding.Shell

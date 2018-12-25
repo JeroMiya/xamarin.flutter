@@ -1,12 +1,10 @@
-﻿using FlutterBinding.Engine.Compositing;
+﻿using System;
+using System.Collections.Generic;
+using FlutterBinding.Engine.Compositing;
 using FlutterBinding.Engine.Painting;
 using FlutterBinding.Flow.Layers;
 using FlutterBinding.Mapping;
 using SkiaSharp;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using static FlutterBinding.Mapping.Helper;
 
 namespace FlutterBinding.UI
 {

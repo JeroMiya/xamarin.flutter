@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.Content.Res;
+using Android.Database;
 using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
@@ -11,16 +12,11 @@ using Android.Views.InputMethods;
 using Flutter.Shell.Droid.App;
 using Flutter.Shell.Droid.Plugin.Common;
 using Flutter.Shell.Droid.Plugin.Editing;
+using FlutterSDK;
 using Java.Util;
 using Java.Util.Concurrent.Atomic;
 using System;
-using Android.Database;
-using Android.InputMethodServices;
-using Android.Locations;
-using Android.Support.V4.View.Accessibility;
 using FlutterBinding.Shell;
-using FlutterSDK;
-using Java.Nio;
 using Format = Android.Graphics.Format;
 using KeyboardType = Android.Views.KeyboardType;
 using Keycode = Android.Views.Keycode;
@@ -28,27 +24,7 @@ using Surface = Android.Views.Surface;
 
 namespace Flutter.Shell.Droid.View
 {
-    public interface IProvider
-    {
-        /**
-         * Returns a reference to the Flutter view maintained by this object. This may
-         * be {@code null}.
-         */
-        FlutterView GetFlutterView();
-    }
-
-    public class OnFrameAvailableListenerImpl : Java.Lang.Object, SurfaceTexture.IOnFrameAvailableListener
-    {
-        public Action<SurfaceTexture> FrameAvailable;
-
-        /// <inheritdoc />
-        public void OnFrameAvailable(SurfaceTexture surfaceTexture)
-        {
-            FrameAvailable?.Invoke(surfaceTexture);
-        }
-    }
-
-    public class FlutterView :
+    public partial class FlutterView :
         SurfaceView,
         ISurfaceHolderCallback,
         IBinaryMessenger,
@@ -56,21 +32,6 @@ namespace Flutter.Shell.Droid.View
         AccessibilityManager.IAccessibilityStateChangeListener
     {
         private static readonly string TAG = "FlutterView";
-
-        public class ViewportMetrics
-        {
-            public float devicePixelRatio = 1.0f;
-            public int physicalWidth = 0;
-            public int physicalHeight = 0;
-            public int physicalPaddingTop = 0;
-            public int physicalPaddingRight = 0;
-            public int physicalPaddingBottom = 0;
-            public int physicalPaddingLeft = 0;
-            public int physicalViewInsetTop = 0;
-            public int physicalViewInsetRight = 0;
-            public int physicalViewInsetBottom = 0;
-            public int physicalViewInsetLeft = 0;
-        }
 
         private InputMethodManager _imm;
         private TextInputPlugin _textInputPlugin;
@@ -108,7 +69,7 @@ namespace Flutter.Shell.Droid.View
             _animationScaleObserver = new AnimationScaleObserver(this, new Handler());
             _metrics = new ViewportMetrics
             {
-                devicePixelRatio = context.Resources.DisplayMetrics.Density
+                DevicePixelRatio = context.Resources.DisplayMetrics.Density
             };
             SetFocusable(ViewFocusability.Focusable);
             // SetFocusableInTouchMode(true);   // Not required with Compat
@@ -321,7 +282,7 @@ namespace Flutter.Shell.Droid.View
 
         private void SetUserSettings()
         {
-            var message = new System.Collections.Generic.Dictionary<string, object>
+            System.Collections.Generic.Dictionary<string, object> message = new System.Collections.Generic.Dictionary<string, object>
             {
                 ["textScaleFactor"] = Resources.Configuration.FontScale,
                 ["alwaysUse24HourFormat"] = Android.Text.Format.DateFormat.Is24HourFormat(Context)
@@ -378,10 +339,7 @@ namespace Flutter.Shell.Droid.View
             SetUserSettings();
         }
 
-        private float GetDevicePixelRatio()
-        {
-            return _metrics.devicePixelRatio;
-        }
+        public float GetDevicePixelRatio() => _metrics.DevicePixelRatio;
 
         public FlutterNativeView Detach()
         {
@@ -437,7 +395,7 @@ namespace Flutter.Shell.Droid.View
         private static readonly int kPointerDeviceKindInvertedStylus = 3;
         private static readonly int kPointerDeviceKindUnknown = 4;
 
-        private int GetPointerChangeForAction(MotionEventActions maskedAction)
+        public int GetPointerChangeForAction(MotionEventActions maskedAction)
         {
             // Primary pointer:
             if (maskedAction == MotionEventActions.Down)
@@ -463,7 +421,7 @@ namespace Flutter.Shell.Droid.View
             return -1;
         }
 
-        private int GetPointerDeviceTypeForToolType(MotionEventToolType toolType)
+        public int GetPointerDeviceTypeForToolType(MotionEventToolType toolType)
         {
             switch (toolType)
             {
@@ -508,7 +466,7 @@ namespace Flutter.Shell.Droid.View
         }
 
         // TODO: ByteBuffer->object
-        private PointerParameter AddPointerForIndex(MotionEvent @event, int pointerIndex, int pointerChange, int pointerData)
+        public PointerParameter AddPointerForIndex(MotionEvent @event, int pointerIndex, int pointerChange, int pointerData)
         {
             if (pointerChange == -1)
                 return null;
@@ -526,11 +484,11 @@ namespace Flutter.Shell.Droid.View
             }
 
             double pressure = @event.GetPressure(pointerIndex);
-            var distance = @event.GetAxisValue(Axis.Distance, pointerIndex);
-            var size = @event.GetSize(pointerIndex);
-            var radiusMajor = @event.GetToolMajor(pointerIndex);
-            var radiusMinor = @event.GetToolMinor(pointerIndex);
-            var orientation = @event.GetAxisValue(Axis.Orientation, pointerIndex);
+            float distance = @event.GetAxisValue(Axis.Distance, pointerIndex);
+            float size = @event.GetSize(pointerIndex);
+            float radiusMajor = @event.GetToolMajor(pointerIndex);
+            float radiusMinor = @event.GetToolMinor(pointerIndex);
+            float orientation = @event.GetAxisValue(Axis.Orientation, pointerIndex);
 
             return new PointerParameter
             {
@@ -590,7 +548,7 @@ namespace Flutter.Shell.Droid.View
             //ByteBuffer packet = ByteBuffer.allocateDirect(pointerCount * kPointerDataFieldCount * kBytePerField);
             //packet.order(ByteOrder.LITTLE_ENDIAN);
 
-            var packet = new List<PointerParameter>();
+            List<PointerParameter> packet = new List<PointerParameter>();
 
             MotionEventActions maskedAction = @event.ActionMasked;
             int pointerChange = GetPointerChangeForAction(@event.ActionMasked);
@@ -660,8 +618,8 @@ namespace Flutter.Shell.Droid.View
         //@Override
         protected override void OnSizeChanged(int width, int height, int oldWidth, int oldHeight)
         {
-            _metrics.physicalWidth = width;
-            _metrics.physicalHeight = height;
+            _metrics.PhysicalWidth = width;
+            _metrics.PhysicalHeight = height;
             UpdateViewportMetrics();
             base.OnSizeChanged(width, height, oldWidth, oldHeight);
         }
@@ -743,21 +701,21 @@ namespace Flutter.Shell.Droid.View
             }
 
             // The padding on top should be removed when the statusbar is hidden.
-            _metrics.physicalPaddingTop = statusBarHidden ? 0 : insets.SystemWindowInsetTop;
-            _metrics.physicalPaddingRight =
+            _metrics.PhysicalPaddingTop = statusBarHidden ? 0 : insets.SystemWindowInsetTop;
+            _metrics.PhysicalPaddingRight =
                 zeroSides == ZeroSides.Right || zeroSides == ZeroSides.Both ? 0 : insets.SystemWindowInsetRight;
-            _metrics.physicalPaddingBottom = 0;
-            _metrics.physicalPaddingLeft =
+            _metrics.PhysicalPaddingBottom = 0;
+            _metrics.PhysicalPaddingLeft =
                 zeroSides == ZeroSides.Left || zeroSides == ZeroSides.Both ? 0 : insets.SystemWindowInsetLeft;
 
             // Bottom system inset (keyboard) should adjust scrollable bottom edge (inset).
-            _metrics.physicalViewInsetTop = 0;
-            _metrics.physicalViewInsetRight = 0;
+            _metrics.PhysicalViewInsetTop = 0;
+            _metrics.PhysicalViewInsetRight = 0;
             // We perform hidden navbar and keyboard handling if the navbar is set to hidden. Otherwise,
             // the navbar padding should always be provided.
-            _metrics.physicalViewInsetBottom =
+            _metrics.PhysicalViewInsetBottom =
                 navigationBarHidden ? CalculateBottomKeyboardInset(insets) : insets.SystemWindowInsetBottom;
-            _metrics.physicalViewInsetLeft = 0;
+            _metrics.PhysicalViewInsetLeft = 0;
             UpdateViewportMetrics();
             return base.OnApplyWindowInsets(insets);
         }
@@ -770,16 +728,16 @@ namespace Flutter.Shell.Droid.View
             if (Build.VERSION.SdkInt <= BuildVersionCodes.Kitkat)
             {
                 // Status bar, left/right system insets partially obscure content (padding).
-                _metrics.physicalPaddingTop = insets.Top;
-                _metrics.physicalPaddingRight = insets.Right;
-                _metrics.physicalPaddingBottom = 0;
-                _metrics.physicalPaddingLeft = insets.Left;
+                _metrics.PhysicalPaddingTop = insets.Top;
+                _metrics.PhysicalPaddingRight = insets.Right;
+                _metrics.PhysicalPaddingBottom = 0;
+                _metrics.PhysicalPaddingLeft = insets.Left;
 
                 // Bottom system inset (keyboard) should adjust scrollable bottom edge (inset).
-                _metrics.physicalViewInsetTop = 0;
-                _metrics.physicalViewInsetRight = 0;
-                _metrics.physicalViewInsetBottom = insets.Bottom;
-                _metrics.physicalViewInsetLeft = 0;
+                _metrics.PhysicalViewInsetTop = 0;
+                _metrics.PhysicalViewInsetRight = 0;
+                _metrics.PhysicalViewInsetBottom = insets.Bottom;
+                _metrics.PhysicalViewInsetLeft = 0;
                 UpdateViewportMetrics();
                 return true;
             }
@@ -863,7 +821,7 @@ namespace Flutter.Shell.Droid.View
         // TODO: ByteBuffer->object
         // native shell::DispatchSemanticsAction
         private static void nativeDispatchSemanticsAction(long nativePlatformViewAndroid, int id, int action, object args);
-        
+
 
         private static void nativeSetSemanticsEnabled(long nativePlatformViewAndroid, bool enabled);    // native
 
@@ -871,11 +829,11 @@ namespace Flutter.Shell.Droid.View
 
         private static bool nativeGetIsSoftwareRenderingEnabled();                                      // native
 
-        private static void nativeRegisterTexture(long nativePlatformViewAndroid, long textureId, SurfaceTexture surfaceTexture); 
-                                                                                                        // native
+        private static void nativeRegisterTexture(long nativePlatformViewAndroid, long textureId, SurfaceTexture surfaceTexture);
+        // native
 
-        private static void nativeMarkTextureFrameAvailable(long nativePlatformViewAndroid, long textureId); 
-                                                                                                        // native
+        private static void nativeMarkTextureFrameAvailable(long nativePlatformViewAndroid, long textureId);
+        // native
 
         private static void nativeUnregisterTexture(long nativePlatformViewAndroid, long textureId);    // native
 
@@ -883,10 +841,12 @@ namespace Flutter.Shell.Droid.View
         {
             if (!IsAttached())
                 return;
-            nativeSetViewportMetrics(_nativeView.Get(), _metrics.devicePixelRatio, _metrics.physicalWidth,
-                    _metrics.physicalHeight, _metrics.physicalPaddingTop, _metrics.physicalPaddingRight,
-                    _metrics.physicalPaddingBottom, _metrics.physicalPaddingLeft, _metrics.physicalViewInsetTop,
-                    _metrics.physicalViewInsetRight, _metrics.physicalViewInsetBottom, _metrics.physicalViewInsetLeft);
+            nativeSetViewportMetrics(
+                _nativeView.Get(), 
+                _metrics.DevicePixelRatio, 
+                _metrics.PhysicalWidth, _metrics.PhysicalHeight, 
+                _metrics.PhysicalPaddingTop, _metrics.PhysicalPaddingRight, _metrics.PhysicalPaddingBottom, _metrics.PhysicalPaddingLeft, 
+                _metrics.PhysicalViewInsetTop, _metrics.PhysicalViewInsetRight, _metrics.PhysicalViewInsetBottom, _metrics.PhysicalViewInsetLeft);
 
             IWindowManager wm = (IWindowManager)Context.GetSystemService(Context.WindowService);
             float fps = wm.DefaultDisplay.RefreshRate;
@@ -964,7 +924,7 @@ namespace Flutter.Shell.Droid.View
             _touchExplorationEnabled = _accessibilityManager.IsTouchExplorationEnabled;
             if (Build.VERSION.SdkInt >= BuildVersionCodes.JellyBeanMr1)
             {
-                var transitionUri = Android.Provider.Settings.Global.GetUriFor(Android.Provider.Settings.Global.TransitionAnimationScale);
+                Android.Net.Uri transitionUri = Android.Provider.Settings.Global.GetUriFor(Android.Provider.Settings.Global.TransitionAnimationScale);
                 Context.ContentResolver.RegisterContentObserver(transitionUri, false, _animationScaleObserver);
             }
 
@@ -996,7 +956,7 @@ namespace Flutter.Shell.Droid.View
             if (Build.VERSION.SdkInt >= BuildVersionCodes.JellyBeanMr1)
             {
                 string transitionAnimationScale = Android.Provider.Settings.Global.GetString(
-                    Context.ContentResolver, 
+                    Context.ContentResolver,
                     Android.Provider.Settings.Global.TransitionAnimationScale);
                 if (transitionAnimationScale != null && transitionAnimationScale.Equals("0"))
                     _accessibilityFeatureFlags |= AccessibilityFeatures.DisableAnimations;
@@ -1146,12 +1106,12 @@ namespace Flutter.Shell.Droid.View
             if (@event.Action == MotionEventActions.HoverEnter || @event.Action == MotionEventActions.HoverMove)
             {
                 _accessibilityNodeProvider.HandleTouchExploration(@event.GetX(), @event.GetY());
-            } 
-            else if (@event.Action == MotionEventActions.HoverExit) 
+            }
+            else if (@event.Action == MotionEventActions.HoverExit)
             {
                 _accessibilityNodeProvider.HandleTouchExplorationExit();
-            } 
-            else 
+            }
+            else
             {
                 Log.Debug("flutter", "unexpected accessibility hover event: " + @event);
                 return false;
@@ -1189,7 +1149,7 @@ namespace Flutter.Shell.Droid.View
         {
             SurfaceTexture surfaceTexture = new SurfaceTexture(0);
             surfaceTexture.DetachFromGLContext();
-            var entry = new SurfaceTextureRegistryEntry(_nextTextureId.GetAndIncrement(), surfaceTexture, _nativeView);
+            SurfaceTextureRegistryEntry entry = new SurfaceTextureRegistryEntry(_nextTextureId.GetAndIncrement(), surfaceTexture, _nativeView);
             nativeRegisterTexture(_nativeView.Get(), entry.Id, surfaceTexture);
             return entry;
         }
@@ -1207,7 +1167,7 @@ namespace Flutter.Shell.Droid.View
                 _surfaceTexture = surfaceTexture;
                 _flutterNativeView = flutterNativeView;
 
-                var onFrameListener = new OnFrameAvailableListenerImpl { FrameAvailable = OnFrameAvailable };
+                OnFrameAvailableListenerImpl onFrameListener = new OnFrameAvailableListenerImpl { FrameAvailable = OnFrameAvailable };
                 if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
                 {
                     // The callback relies on being executed on the UI thread (unsynchronised read of mNativeView

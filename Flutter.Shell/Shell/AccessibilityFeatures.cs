@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Flutter.Shell
+namespace Flutter.Framework.Shell
 {
     /// Additional accessibility features that may be enabled by the platform.
     ///

@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using Flutter.Shell;
 using FlutterBinding.Engine;
-using FlutterBinding.Engine.Window;
 using FlutterBinding.UI;
 using SkiaSharp;
 
@@ -14,18 +11,6 @@ namespace FlutterBinding.Shell
     //  This whole class feels like a simple intermediary between Dart/Flutter Window <=> Native Window <=> Shell
     //
 
-
-
-    public interface  WindowClient
-    {
-        string DefaultRouteName();
-        void ScheduleFrame();
-        void Render(Scene scene);
-        void UpdateSemantics(SemanticsUpdate update);
-        void SetIsolateDebugName(string isolateName);
-        //void HandlePlatformMessage(PlatformMessage message);
-        //FontCollection GetFontCollection();
-    };
 
     // TODO: Should ignore all this locale stuff
     public class WindowData
@@ -42,10 +27,10 @@ namespace FlutterBinding.Shell
         public AccessibilityFeatures AccessibilityFeatureFlags;
     };
 
-    public class RuntimeController : WindowClient
+    public class RuntimeController : IWindowClient
     {
         public RuntimeController(
-            RuntimeDelegate client,
+            IRuntimeDelegate client,
             //DartVM vm,
             //DartSnapshot isolate_snapshot,
             //DartSnapshot shared_snapshot,
@@ -65,7 +50,7 @@ namespace FlutterBinding.Shell
         { }
 
         private RuntimeController(
-            RuntimeDelegate client,
+            IRuntimeDelegate client,
             //DartVM vm,
             //DartSnapshot isolate_snapshot,
             //DartSnapshot shared_snapshot,
@@ -242,17 +227,17 @@ namespace FlutterBinding.Shell
 
         //public bool IsRootIsolateRunning() { }
 
-        //public bool DispatchPlatformMessage(PlatformMessage message)
-        //{
-        //    var window = GetWindowIfAvailable();
-        //    if (window != null)
-        //    {
-        //        //TRACE_EVENT1("flutter", "RuntimeController::DispatchPlatformMessage", "mode", "basic");
-        //        window.DispatchPlatformMessage(message);
-        //        return true;
-        //    }
-        //    return false;
-        //}
+        public bool DispatchPlatformMessage(PlatformMessage message)
+        {
+            var window = GetWindowIfAvailable();
+            if (window != null)
+            {
+                //TRACE_EVENT1("flutter", "RuntimeController::DispatchPlatformMessage", "mode", "basic");
+                window.DispatchPlatformMessage(message);
+                return true;
+            }
+            return false;
+        }
 
         public bool DispatchPointerDataPacket(PointerDataPacket packet)
         {
@@ -310,7 +295,7 @@ namespace FlutterBinding.Shell
             public string VariantCode;
         };
 
-        private RuntimeDelegate _client;
+        private IRuntimeDelegate _client;
         //DartVM const vm_;
         //DartSnapshot isolate_snapshot_;
         //DartSnapshot shared_snapshot_;
@@ -365,10 +350,10 @@ namespace FlutterBinding.Shell
         }
 
         // |blink::WindowClient|
-        //public void HandlePlatformMessage(PlatformMessage message)
-        //{
-        //    client_.HandlePlatformMessage(message);
-        //}
+        public void HandlePlatformMessage(PlatformMessage message)
+        {
+            _client.HandlePlatformMessage(message);
+        }
 
         // |blink::WindowClient|
         public void SetIsolateDebugName(string name)

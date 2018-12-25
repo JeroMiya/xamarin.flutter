@@ -1,7 +1,7 @@
-﻿using FlutterBinding.UI;
-using SkiaSharp;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using FlutterBinding.UI;
+using SkiaSharp;
 
 namespace FlutterBinding.Engine.Painting
 {

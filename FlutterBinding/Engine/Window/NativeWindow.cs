@@ -1,10 +1,9 @@
-﻿using FlutterBinding.UI;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using Flutter.Shell;
+using FlutterBinding.Mapping;
 using FlutterBinding.Shell;
+using FlutterBinding.UI;
 using Newtonsoft.Json;
-using static FlutterBinding.Mapping.Types;
 
 namespace FlutterBinding.Engine.Window
 {
@@ -12,7 +11,7 @@ namespace FlutterBinding.Engine.Window
 
     public class NativeWindow
     {
-        protected WindowClient _client { get; set; }
+        protected IWindowClient _client { get; set; }
 
         //private DartPersistentValue library_;
         private ViewportMetrics _viewport_metrics;
@@ -29,19 +28,19 @@ namespace FlutterBinding.Engine.Window
             _viewport_metrics = metrics;
 
             // This bypasses Hooks.cs
-            _window.devicePixelRatio = metrics.device_pixel_ratio;
-            _window.physicalSize     = new Size(metrics.physical_width, metrics.physical_height);
+            _window.devicePixelRatio = metrics.DevicePixelRatio;
+            _window.physicalSize     = new Size(metrics.PhysicalWidth, metrics.PhysicalHeight);
             _window.padding = new WindowPadding(
-                left: metrics.physical_padding_left,
-                top: metrics.physical_padding_top,
-                right: metrics.physical_padding_right,
-                bottom: metrics.physical_padding_bottom
+                left: metrics.PhysicalPaddingLeft,
+                top: metrics.PhysicalPaddingTop,
+                right: metrics.PhysicalPaddingRight,
+                bottom: metrics.PhysicalPaddingBottom
                 );
             _window.viewInsets = new WindowPadding(
-                left: metrics.physical_view_inset_left,
-                top: metrics.physical_view_inset_top,
-                right: metrics.physical_view_inset_right,
-                bottom: metrics.physical_view_inset_bottom);
+                left: metrics.PhysicalViewInsetLeft,
+                top: metrics.PhysicalViewInsetTop,
+                right: metrics.PhysicalViewInsetRight,
+                bottom: metrics.PhysicalViewInsetBottom);
 
             _invoke(_window.onMetricsChanged, _window.OnMetricsChangedZone);
         }
@@ -117,7 +116,7 @@ namespace FlutterBinding.Engine.Window
             var diff = now.TotalMicroseconds - frameTime.TotalMicroseconds;
 
             _invoke(
-                () => _window.onBeginFrame(new Duration(microseconds:diff)), 
+                () => _window.onBeginFrame(new Types.Duration(microseconds:diff)), 
                 _window.OnBeginFrameZone);
         }
 
@@ -141,11 +140,11 @@ namespace FlutterBinding.Engine.Window
         //}
 
         /// Invokes [callback] inside the given [zone].
-        static void _invoke(VoidCallback callback, Zone zone)
+        static void _invoke(VoidCallback callback, Types.Zone zone)
         {
             if (callback == null)
                 return;
-            if (Zone.current == zone)
+            if (Types.Zone.current == zone)
                 callback();
             else
                 zone.runGuarded(callback);

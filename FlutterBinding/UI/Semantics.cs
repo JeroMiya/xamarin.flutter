@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using FlutterBinding.Mapping;
 using SkiaSharp;
 
 namespace FlutterBinding.UI

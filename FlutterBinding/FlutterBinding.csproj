@@ -65,7 +65,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
     <PackageReference Include="SkiaSharp" Version="1.60.3" />
     <PackageReference Include="SkiaSharp.Extended" Version="1.60.0" />
     <PackageReference Include="SkiaSharp.HarfBuzz" Version="1.60.3" />
@@ -76,16 +76,13 @@
   <ItemGroup>
     <Folder Include="Engine\Semantics\" />
     <Folder Include="Minikin\" />
+    <Folder Include="Shell\" />
     <Folder Include="Txt\" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Minikin\" />
     <Folder Include="Txt\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Flutter.Shell\Flutter.Shell.csproj" />
   </ItemGroup>
 
 </Project>

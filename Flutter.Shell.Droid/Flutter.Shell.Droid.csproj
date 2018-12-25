@@ -53,6 +53,7 @@
     <Compile Include="Plugin\Common\ActivityLifecycleListener.cs" />
     <Compile Include="Plugin\Common\BasicMessageChannel.cs" />
     <Compile Include="Plugin\Common\BinaryMessenger.cs" />
+    <Compile Include="Plugin\Common\EventChannel.cs" />
     <Compile Include="Plugin\Common\MethodCall.cs" />
     <Compile Include="Plugin\Common\MethodChannel.cs" />
     <Compile Include="Plugin\Common\MethodCodec.cs" />
@@ -78,6 +79,8 @@
     <Compile Include="View\FlutterNativeView.cs" />
     <Compile Include="View\FlutterRunArguments.cs" />
     <Compile Include="View\FlutterView.cs" />
+    <Compile Include="View\IProvider.cs" />
+    <Compile Include="View\OnFrameAvailableListenerImpl.cs" />
     <Compile Include="View\ResourceCleaner.cs" />
     <Compile Include="View\ResourceExtractor.cs" />
     <Compile Include="View\ResourceUpdater.cs" />
@@ -85,7 +88,7 @@
     <Compile Include="View\VsyncWaiter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="27.0.2.1" />
+    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0" />
     <PackageReference Include="SkiaSharp">
       <Version>1.60.3</Version>
     </PackageReference>
@@ -102,12 +105,8 @@
     <Folder Include="Shell\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Flutter.Shell\Flutter.Shell.csproj">
-      <Project>{1868a51f-0945-448b-99fd-afa5589ff717}</Project>
-      <Name>Flutter.Shell</Name>
-    </ProjectReference>
     <ProjectReference Include="..\FlutterBinding\FlutterBinding.csproj">
-      <Project>{c9313643-3357-4872-9b00-03e2c79ad297}</Project>
+      <Project>{C9313643-3357-4872-9B00-03E2C79AD297}</Project>
       <Name>FlutterBinding</Name>
     </ProjectReference>
     <ProjectReference Include="..\FlutterSDK\FlutterSDK.csproj">

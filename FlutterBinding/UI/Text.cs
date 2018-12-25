@@ -1,11 +1,8 @@
-﻿using FlutterBinding.Engine.Text;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using FlutterBinding.Engine.Text;
 using static FlutterBinding.Mapping.Helper;
-using static FlutterBinding.Mapping.Types;
-using static FlutterBinding.UI.Lerp;
-using static FlutterBinding.UI.Text;
 
 namespace FlutterBinding.UI
 {
@@ -92,7 +89,7 @@ namespace FlutterBinding.UI
         public static FontWeight lerp(FontWeight a, FontWeight b, double t)
         {
             //assert(t != null);
-            return values[(int)lerpDouble(a?.index ?? normal.index, b?.index ?? normal.index, t).round().clamp(0, 8)];
+            return values[(int)Lerp.lerpDouble(a?.index ?? normal.index, b?.index ?? normal.index, t).round().clamp(0, 8)];
         }
 
         public String toString()
@@ -283,7 +280,7 @@ namespace FlutterBinding.UI
             //        "Cannot provide both a color and a foreground\n" +
             //        "The color argument is just a shorthand for 'foreground: new Paint()..color = color'."
             //      );
-            _encoded = _encodeTextStyle(
+            _encoded = Text._encodeTextStyle(
               color,
               decoration,
               decorationColor,
@@ -444,7 +441,7 @@ namespace FlutterBinding.UI
             if (locale == null)
                 locale = new Locale("");
 
-            _encoded = _encodeParagraphStyle(
+            _encoded = Text._encodeParagraphStyle(
           textAlign,
           textDirection,
           fontWeight,
@@ -951,8 +948,34 @@ namespace FlutterBinding.UI
         /// Applies the given style to the added text until [pop] is called.
         ///
         /// See [pop] for details.
-        void pushStyle(TextStyle style) => _pushStyle(style._encoded, style._fontFamily, style._fontSize, style._letterSpacing, style._wordSpacing, style._height, _encodeLocale(style._locale), style._background?._objects, style._background?._data, style._foreground?._objects, style._foreground?._data, Shadow._encodeShadows(style._shadows));
-        void _pushStyle(List<int> encoded, String fontFamily, double fontSize, double letterSpacing, double wordSpacing, double height, String locale, List<dynamic> backgroundObjects, ByteData backgroundData, List<dynamic> foregroundObjects, ByteData foregroundData, ByteData shadowsData)
+        void pushStyle(TextStyle style) => _pushStyle(
+            style._encoded, 
+            style._fontFamily, 
+            style._fontSize, 
+            style._letterSpacing, 
+            style._wordSpacing, 
+            style._height, 
+            _encodeLocale(style._locale), 
+            style._background?._objects, 
+            style._background?._data, 
+            style._foreground?._objects, 
+            style._foreground?._data, 
+            Shadow._encodeShadows(style._shadows));
+
+        // TODO: ByteData->object
+        void _pushStyle(
+            List<int> encoded, 
+            string fontFamily, 
+            double fontSize, 
+            double letterSpacing, 
+            double wordSpacing, 
+            double  height, 
+            string locale, 
+            List<dynamic> backgroundObjects, 
+            object backgroundData, 
+            List<dynamic> foregroundObjects, 
+            object foregroundData, 
+            object shadowsData)
         {
             // native 'ParagraphBuilder_pushStyle';
         }

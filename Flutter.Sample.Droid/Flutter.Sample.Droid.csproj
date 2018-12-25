@@ -92,7 +92,7 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_round.png" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2.1" />
+    <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Flutter.Sample.App\Flutter.Sample.App.csproj">

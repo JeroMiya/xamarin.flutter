@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using static FlutterBinding.UI.Lerp;
+using FlutterBinding.Mapping;
 using static FlutterBinding.Mapping.Helper;
 
 namespace FlutterBinding.UI
@@ -322,7 +322,7 @@ namespace FlutterBinding.UI
                 return b * t;
             if (b == null)
                 return a * (1.0 - t);
-            return new Offset(lerpDouble(a.dx, b.dx, t), lerpDouble(a.dy, b.dy, t));
+            return new Offset(Lerp.lerpDouble(a.dx, b.dx, t), Lerp.lerpDouble(a.dy, b.dy, t));
         }
 
         /// Compares two Offsets for equality.
@@ -569,7 +569,7 @@ namespace FlutterBinding.UI
                 return b * t;
             if (b == null)
                 return a * (1.0 - t);
-            return new Size(lerpDouble(a.width, b.width, t), lerpDouble(a.height, b.height, t));
+            return new Size(Lerp.lerpDouble(a.width, b.width, t), Lerp.lerpDouble(a.height, b.height, t));
         }
 
         /// Compares two Sizes for equality.
@@ -877,10 +877,10 @@ namespace FlutterBinding.UI
                 return Rect.fromLTRB(a.left * k, a.top * k, a.right * k, a.bottom * k);
             }
             return Rect.fromLTRB(
-              lerpDouble(a.left, b.left, t),
-              lerpDouble(a.top, b.top, t),
-              lerpDouble(a.right, b.right, t),
-              lerpDouble(a.bottom, b.bottom, t));
+              Lerp.lerpDouble(a.left, b.left, t),
+              Lerp.lerpDouble(a.top, b.top, t),
+              Lerp.lerpDouble(a.right, b.right, t),
+              Lerp.lerpDouble(a.bottom, b.bottom, t));
         }
 
         //public static bool operator ==(Rect rect, Object other)
@@ -1017,8 +1017,8 @@ namespace FlutterBinding.UI
                 return Radius.elliptical(a.x * k, a.y * k);
             }
             return Radius.elliptical(
-              lerpDouble(a.x, b.x, t),
-              lerpDouble(a.y, b.y, t));
+              Lerp.lerpDouble(a.x, b.x, t),
+              Lerp.lerpDouble(a.y, b.y, t));
         }
 
         public static bool operator ==(Radius radius, Object other)
@@ -1643,18 +1643,18 @@ namespace FlutterBinding.UI
                   a.blRadiusY * k});
             }
             return RRect._fromList(new List<double> {
-          lerpDouble(a.left, b.left, t),
-          lerpDouble(a.top, b.top, t),
-          lerpDouble(a.right, b.right, t),
-          lerpDouble(a.bottom, b.bottom, t),
-          lerpDouble(a.tlRadiusX, b.tlRadiusX, t),
-          lerpDouble(a.tlRadiusY, b.tlRadiusY, t),
-          lerpDouble(a.trRadiusX, b.trRadiusX, t),
-          lerpDouble(a.trRadiusY, b.trRadiusY, t),
-          lerpDouble(a.brRadiusX, b.brRadiusX, t),
-          lerpDouble(a.brRadiusY, b.brRadiusY, t),
-          lerpDouble(a.blRadiusX, b.blRadiusX, t),
-          lerpDouble(a.blRadiusY, b.blRadiusY, t)});
+          Lerp.lerpDouble(a.left, b.left, t),
+          Lerp.lerpDouble(a.top, b.top, t),
+          Lerp.lerpDouble(a.right, b.right, t),
+          Lerp.lerpDouble(a.bottom, b.bottom, t),
+          Lerp.lerpDouble(a.tlRadiusX, b.tlRadiusX, t),
+          Lerp.lerpDouble(a.tlRadiusY, b.tlRadiusY, t),
+          Lerp.lerpDouble(a.trRadiusX, b.trRadiusX, t),
+          Lerp.lerpDouble(a.trRadiusY, b.trRadiusY, t),
+          Lerp.lerpDouble(a.brRadiusX, b.brRadiusX, t),
+          Lerp.lerpDouble(a.brRadiusY, b.brRadiusY, t),
+          Lerp.lerpDouble(a.blRadiusX, b.blRadiusX, t),
+          Lerp.lerpDouble(a.blRadiusY, b.blRadiusY, t)});
         }
 
         public static bool operator ==(RRect rrect, Object other)

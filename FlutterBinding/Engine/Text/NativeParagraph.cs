@@ -1,5 +1,4 @@
-﻿using FlutterBinding.Engine.Painting;
-using SkiaSharp;
+﻿using SkiaSharp;
 
 namespace FlutterBinding.Engine.Text
 {

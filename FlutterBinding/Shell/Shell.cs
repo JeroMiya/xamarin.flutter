@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Flutter.Shell;
 using FlutterBinding.Engine;
 using FlutterBinding.Engine.Synchronization;
-using FlutterBinding.Engine.Window;
 using FlutterBinding.Flow;
 using FlutterBinding.Flow.Layers;
 using FlutterBinding.UI;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using SkiaSharp;
 
 namespace FlutterBinding.Shell
@@ -24,8 +17,8 @@ namespace FlutterBinding.Shell
     //public delegate bool ServiceProtocolHandler(ServiceProtocol.Handler.ServiceProtocolMap, JObject document);
 
     public sealed class Shell : PlatformView.Delegate,
-                    Animator.Delegate,
-                    Engine.Delegate
+                    Animator.IAnimatorDelegate,
+                    Engine.IEngineDelegate
                     //public blink::ServiceProtocol::Handler 
     {
         // Create a shell with the given task runners and settings. The isolate

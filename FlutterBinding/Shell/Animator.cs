@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using FlutterBinding.Engine;
-using FlutterBinding.Engine.Synchronization;
 using FlutterBinding.Flow.Layers;
 using SkiaSharp;
 using LayerTreePipeline = FlutterBinding.Engine.Synchronization.Pipeline<FlutterBinding.Flow.Layers.LayerTree>;
 
 namespace FlutterBinding.Shell
 {
-    public sealed class Animator
+    public sealed partial class Animator
     {
 
         // Wait 51 milliseconds (which is 1 more milliseconds than 3 frames at 60hz)
@@ -18,15 +15,7 @@ namespace FlutterBinding.Shell
         // for further discussion on why this is necessary.
         private readonly TimeDelta kNotifyIdleTaskWaitTime = TimeSpan.FromMilliseconds(51);
 
-        public interface Delegate
-        {
-            void OnAnimatorBeginFrame(TimePoint frameTime);
-            void OnAnimatorNotifyIdle(Int64 deadline);
-            void OnAnimatorDraw(Pipeline<LayerTree> pipeline);
-            void OnAnimatorDrawLastLayerTree();
-        };
-
-        public Animator(Delegate @delegate, TaskRunners taskRunners, VsyncWaiter waiter)
+        public Animator(Animator.IAnimatorDelegate @delegate, TaskRunners taskRunners, VsyncWaiter waiter)
         {
             _delegate = @delegate;
             _taskRunners = taskRunners;
@@ -204,7 +193,7 @@ namespace FlutterBinding.Shell
 
         private string FrameParity() => ((_frameNumber % 2) == 0) ? "even" : "odd";
 
-        private readonly Delegate _delegate;
+        private readonly Animator.IAnimatorDelegate _delegate;
         private readonly TaskRunners _taskRunners;
         private readonly VsyncWaiter _waiter;
 

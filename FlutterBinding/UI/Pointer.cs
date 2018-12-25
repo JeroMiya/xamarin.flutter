@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using static FlutterBinding.Mapping.Types;
 
 namespace FlutterBinding.UI
 {

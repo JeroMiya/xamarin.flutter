@@ -1,10 +1,10 @@
-﻿using FlutterBinding.Engine;
+﻿using System;
+using System.Text;
+using FlutterBinding.Engine;
 using FlutterBinding.Engine.Synchronization;
 using FlutterBinding.Flow;
 using FlutterBinding.Flow.Layers;
 using SkiaSharp;
-using System;
-using System.Text;
 
 namespace FlutterBinding.Shell
 {

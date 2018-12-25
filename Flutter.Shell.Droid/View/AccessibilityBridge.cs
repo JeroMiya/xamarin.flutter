@@ -7,6 +7,7 @@ using Java.Lang;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using FlutterBinding.Extensions;
 //using AccessibilityNodeInfo = Android.Support.V4.View.Accessibility.AccessibilityNodeInfoCompat;
 using Math = System.Math;
 using Matrix = Android.Opengl.Matrix;
