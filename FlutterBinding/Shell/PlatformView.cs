@@ -14,7 +14,9 @@ namespace FlutterBinding.Shell
             Task OnPlatformViewCreated(Surface surface);
             Task OnPlatformViewDestroyed();
             void OnPlatformViewSetNextFrameCallback(Action callback);
+
             void OnPlatformViewSetViewportMetrics(ViewportMetrics metrics);
+
             //void OnPlatformViewDispatchPlatformMessage(PlatformMessage message);
             void OnPlatformViewDispatchPointerDataPacket(PointerDataPacket packet);
             void OnPlatformViewDispatchSemanticsAction(int id, SemanticsAction action, object args);
@@ -27,9 +29,9 @@ namespace FlutterBinding.Shell
 
         public PlatformView(Delegate @delegate, TaskRunners taskRunners)
         {
-            delegate_ = @delegate;
+            delegate_    = @delegate;
             _taskRunners = taskRunners;
-            _size = SKSizeI.Empty;
+            _size        = SKSizeI.Empty;
         }
 
         public virtual VsyncWaiter CreateVSyncWaiter()

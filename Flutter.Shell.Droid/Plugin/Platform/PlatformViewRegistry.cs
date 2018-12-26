@@ -43,5 +43,4 @@ namespace Flutter.Shell.Droid.Plugin.Platform
             return _viewFactories[viewTypeId];
         }
     }
-
 }

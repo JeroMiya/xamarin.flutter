@@ -223,7 +223,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
 
             int color = description.GetInt("primaryColor");
             if (color != 0)
-            {                               // 0 means color isn't set, use system default
+            {                                            // 0 means color isn't set, use system default
                 color = (int)((uint)color | 0xFF000000); // color must be opaque if set
             }
 
@@ -238,8 +238,8 @@ namespace Flutter.Shell.Droid.Plugin.Platform
 
         private void SetSystemChromeEnabledSystemUiOverlays(JSONArray overlays)
         {
-            SystemUiFlags enabledOverlays = DEFAULT_SYSTEM_UI 
-                | SystemUiFlags.Fullscreen 
+            SystemUiFlags enabledOverlays = DEFAULT_SYSTEM_UI
+                | SystemUiFlags.Fullscreen
                 | SystemUiFlags.LayoutHideNavigation
                 | SystemUiFlags.HideNavigation;
 
@@ -339,7 +339,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
                 }
 
                 view.SystemUiVisibility = (StatusBarVisibility)flags;
-                _currentTheme = message;
+                _currentTheme           = message;
             }
             catch (JSONException err)
             {
@@ -354,7 +354,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
 
         private JSONObject GetClipboardData(string format)
         {
-            ClipboardManager clipboard = (ClipboardManager)_activity.GetSystemService( Context.ClipboardService);
+            ClipboardManager clipboard = (ClipboardManager)_activity.GetSystemService(Context.ClipboardService);
             ClipData clip = clipboard.PrimaryClip;
             if (clip == null)
                 return null;

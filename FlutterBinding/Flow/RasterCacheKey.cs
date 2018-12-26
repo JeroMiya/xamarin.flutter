@@ -8,12 +8,11 @@ using static FlutterBinding.Flow.RasterCache;
 
 namespace FlutterBinding.Flow
 {
-
     public class RasterCacheKey<ID> where ID : Entry
     {
         public RasterCacheKey(ID id, SKMatrix ctm)
         {
-            this.id_ = id;
+            this.id_     = id;
             this.matrix_ = ctm;
 #if !SUPPORT_FRACTIONAL_TRANSLATION
             FML_DCHECK(ctm.TransX == 0F && ctm.TransY == 0F);
@@ -34,7 +33,7 @@ namespace FlutterBinding.Flow
         {
             public static uint functorMethod(RasterCacheKey<ID> key)
             {
-               return (uint)key.GetHashCode();
+                return (uint)key.GetHashCode();
             }
         }
 

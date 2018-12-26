@@ -52,7 +52,6 @@ namespace Flutter.Shell.Droid.Plugin.Common
          * @param handler a {@link BinaryMessageHandler} to be invoked on incoming messages, or null.
          */
         void SetMessageHandler(string channel, IBinaryMessageHandler handler);
-
     }
 
     /**
@@ -105,5 +104,4 @@ namespace Flutter.Shell.Droid.Plugin.Common
             OnReply?.Invoke(reply);
         }
     }
-
 }

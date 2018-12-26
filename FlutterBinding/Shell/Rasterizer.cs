@@ -18,7 +18,7 @@ namespace FlutterBinding.Shell
     {
         public Rasterizer(TaskRunners taskRunners, CompositorContext compositorContext = null)
         {
-            _taskRunners = taskRunners;
+            _taskRunners       = taskRunners;
             _compositorContext = compositorContext;
         }
 
@@ -64,12 +64,12 @@ namespace FlutterBinding.Shell
             // Consume as many pipeline items as possible. But yield the event loop between successive tries.
             switch (pipeline.Consume(consumer))
             {
-                case PipelineConsumeResult.MoreAvailable:
-                    _taskRunners.GPUTaskRunner.PostTask(() => Draw(pipeline));
-                    break;
+            case PipelineConsumeResult.MoreAvailable:
+                _taskRunners.GPUTaskRunner.PostTask(() => Draw(pipeline));
+                break;
 
-                default:
-                    break;
+            default:
+                break;
             }
         }
 
@@ -89,7 +89,7 @@ namespace FlutterBinding.Shell
 
             public Screenshot(SKData data, SKSizeI size)
             {
-                Data = data;
+                Data      = data;
                 FrameSize = size;
             }
         };
@@ -108,15 +108,15 @@ namespace FlutterBinding.Shell
 
             switch (type)
             {
-                case ScreenshotType.SkiaPicture:
-                    data = ScreenshotLayerTreeAsPicture(layer_tree, _compositorContext);
-                    break;
-                case ScreenshotType.UncompressedImage:
-                    data = ScreenshotLayerTreeAsImage(layer_tree, _compositorContext, surfaceContext, false);
-                    break;
-                case ScreenshotType.CompressedImage:
-                    data = ScreenshotLayerTreeAsImage(layer_tree, _compositorContext, surfaceContext, true);
-                    break;
+            case ScreenshotType.SkiaPicture:
+                data = ScreenshotLayerTreeAsPicture(layer_tree, _compositorContext);
+                break;
+            case ScreenshotType.UncompressedImage:
+                data = ScreenshotLayerTreeAsImage(layer_tree, _compositorContext, surfaceContext, false);
+                break;
+            case ScreenshotType.CompressedImage:
+                data = ScreenshotLayerTreeAsImage(layer_tree, _compositorContext, surfaceContext, true);
+                break;
             }
 
             if (data == null)
@@ -226,8 +226,11 @@ namespace FlutterBinding.Shell
             ExternalViewEmbedder externalViewEmbedder = null;
 
             CompositorContext.ScopedFrame compositorFrame = _compositorContext.AcquireFrame(
-                _surface.GetContext(), canvas, externalViewEmbedder,
-                _surface.GetRootTransformation(), true);
+                _surface.GetContext(),
+                canvas,
+                externalViewEmbedder,
+                _surface.GetRootTransformation(),
+                true);
 
             canvas?.Clear(SKColors.Transparent);
 
@@ -264,7 +267,11 @@ namespace FlutterBinding.Shell
             // TODO(amirh): figure out how to take a screenshot with embedded UIView.
             // https://github.com/flutter/flutter/issues/23435
             CompositorContext.ScopedFrame frame = compositorContext.AcquireFrame(
-                null, canvas, null, rootSurfaceTransformation, false);
+                null,
+                canvas,
+                null,
+                rootSurfaceTransformation,
+                false);
 
             frame.Raster(tree, true);
 
@@ -284,7 +291,7 @@ namespace FlutterBinding.Shell
                     surfaceContext,
                     new GRGlBackendTextureDesc
                     {
-                        Width = size.Width,
+                        Width  = size.Width,
                         Height = size.Height
                     });
             }

@@ -112,20 +112,20 @@ namespace Flutter.Shell.Droid.View
                 {
                     shellArgs.Add(
                         "--" + AOT_SHARED_LIBRARY_PATH + "=" +
-                        Path.Combine(PathUtils.getDataDirectory(applicationContext), _aotSharedLibraryPath));
+                        Path.Combine(PathUtils.GetDataDirectory(applicationContext), _aotSharedLibraryPath));
                 }
                 else
                 {
                     if (_isPrecompiledAsBlobs)
                     {
-                        shellArgs.Add("--" + AOT_SNAPSHOT_PATH_KEY + "=" + PathUtils.getDataDirectory(applicationContext));
+                        shellArgs.Add("--" + AOT_SNAPSHOT_PATH_KEY + "=" + PathUtils.GetDataDirectory(applicationContext));
                     }
                     else
                     {
-                        shellArgs.Add("--cache-dir-path=" + PathUtils.getCacheDirectory(applicationContext));
+                        shellArgs.Add("--cache-dir-path=" + PathUtils.GetCacheDirectory(applicationContext));
                         shellArgs.Add(
                             "--" + AOT_SNAPSHOT_PATH_KEY + "=" +
-                            Path.Combine(PathUtils.getDataDirectory(applicationContext), _flutterAssetsDir));
+                            Path.Combine(PathUtils.GetDataDirectory(applicationContext), _flutterAssetsDir));
                     }
 
                     shellArgs.Add("--" + AOT_VM_SNAPSHOT_DATA_KEY + "=" + _aotVmSnapshotData);
@@ -161,7 +161,7 @@ namespace Flutter.Shell.Droid.View
 
         public static string FindAppBundlePath(Context applicationContext)
         {
-            var dataDirectory = PathUtils.getDataDirectory(applicationContext);
+            var dataDirectory = PathUtils.GetDataDirectory(applicationContext);
             var appBundle = new File(dataDirectory, _flutterAssetsDir);
             return appBundle.Exists() ? appBundle.Path : null;
         }
@@ -308,7 +308,7 @@ namespace Flutter.Shell.Droid.View
 
             var icuAssetPath = Path.Combine(SHARED_ASSET_DIR, SHARED_ASSET_ICU_DATA);
             _resourceExtractor.AddResource(icuAssetPath);
-            _icuDataPath = Path.Combine(PathUtils.getDataDirectory(applicationContext), icuAssetPath);
+            _icuDataPath = Path.Combine(PathUtils.GetDataDirectory(applicationContext), icuAssetPath);
 
             _resourceExtractor
                .AddResource(FromFlutterAssets(_flx))

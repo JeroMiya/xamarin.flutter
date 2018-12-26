@@ -7,14 +7,13 @@ using static FlutterBinding.Flow.Helper;
 
 namespace FlutterBinding.Flow.Layers
 {
-
     public class OpacityLayer : ContainerLayer
     {
-
         public void set_alpha(int alpha)
         {
             alpha_ = alpha;
         }
+
         public void set_offset(SKPoint offset)
         {
             offset_ = offset;
@@ -27,7 +26,7 @@ namespace FlutterBinding.Flow.Layers
             base.Preroll(context, child_matrix);
             if (context.raster_cache != null && layers().Count == 1)
             {
-                Layer child = layers()[0];//.get();
+                Layer child = layers()[0]; //.get();
                 SKMatrix ctm = child_matrix;
 
 #if !SUPPORT_FRACTIONAL_TRANSLATION

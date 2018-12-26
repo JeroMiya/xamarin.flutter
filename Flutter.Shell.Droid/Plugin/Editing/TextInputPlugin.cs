@@ -24,8 +24,8 @@ namespace Flutter.Shell.Droid.Plugin.Editing
 
         public TextInputPlugin(FlutterView view)
         {
-            _view = view;
-            _imm = (InputMethodManager)view.Context.GetSystemService(Context.InputMethodService);
+            _view           = view;
+            _imm            = (InputMethodManager)view.Context.GetSystemService(Context.InputMethodService);
             _flutterChannel = new MethodChannel(view, "flutter/textinput", StandardMethodCodec.Instance); // JSONMethodCodec.INSTANCE);
             _flutterChannel.SetMethodCallHandler(this);
         }
@@ -87,10 +87,11 @@ namespace Flutter.Shell.Droid.Plugin.Editing
             if (inputType.Equals("TextInputType.number"))
             {
                 InputTypes numTextType = InputTypes.ClassNumber;
-                if (type.OptBoolean("signed")) numTextType |= InputTypes.NumberFlagSigned;
+                if (type.OptBoolean("signed")) numTextType  |= InputTypes.NumberFlagSigned;
                 if (type.OptBoolean("decimal")) numTextType |= InputTypes.NumberFlagDecimal;
                 return numTextType;
             }
+
             if (inputType.Equals("TextInputType.phone"))
                 return InputTypes.ClassPhone;
 
@@ -124,27 +125,27 @@ namespace Flutter.Shell.Droid.Plugin.Editing
         {
             switch (inputAction)
             {
-                case "TextInputAction.newline":
-                    return ImeAction.None;
-                case "TextInputAction.none":
-                    return ImeAction.None;
-                case "TextInputAction.unspecified":
-                    return ImeAction.Unspecified;
-                case "TextInputAction.done":
-                    return ImeAction.Done;
-                case "TextInputAction.go":
-                    return ImeAction.Go;
-                case "TextInputAction.search":
-                    return ImeAction.Search;
-                case "TextInputAction.send":
-                    return ImeAction.Send;
-                case "TextInputAction.next":
-                    return ImeAction.Next;
-                case "TextInputAction.previous":
-                    return ImeAction.Previous;
-                default:
-                    // Present default key if bad input type is given.
-                    return ImeAction.Unspecified;
+            case "TextInputAction.newline":
+                return ImeAction.None;
+            case "TextInputAction.none":
+                return ImeAction.None;
+            case "TextInputAction.unspecified":
+                return ImeAction.Unspecified;
+            case "TextInputAction.done":
+                return ImeAction.Done;
+            case "TextInputAction.go":
+                return ImeAction.Go;
+            case "TextInputAction.search":
+                return ImeAction.Search;
+            case "TextInputAction.send":
+                return ImeAction.Send;
+            case "TextInputAction.next":
+                return ImeAction.Next;
+            case "TextInputAction.previous":
+                return ImeAction.Previous;
+            default:
+                // Present default key if bad input type is given.
+                return ImeAction.Unspecified;
             }
         }
 
@@ -152,7 +153,8 @@ namespace Flutter.Shell.Droid.Plugin.Editing
         {
             if (_client == 0) return null;
 
-            outAttrs.InputType = InputTypeFromTextInputType(_configuration.GetJSONObject("inputType"),
+            outAttrs.InputType = InputTypeFromTextInputType(
+                _configuration.GetJSONObject("inputType"),
                 _configuration.OptBoolean("obscureText"),
                 _configuration.OptBoolean("autocorrect", true),
                 _configuration.GetString("textCapitalization"));
@@ -168,20 +170,22 @@ namespace Flutter.Shell.Droid.Plugin.Editing
             {
                 enterAction = InputActionFromTextInputAction(_configuration.GetString("inputAction"));
             }
+
             if (!_configuration.IsNull("actionLabel"))
             {
                 outAttrs.ActionLabel = new String(_configuration.GetString("actionLabel"));
-                outAttrs.ActionId = (int)enterAction;
+                outAttrs.ActionId    = (int)enterAction;
             }
+
             outAttrs.ImeOptions = (ImeFlags)((int)outAttrs.ImeOptions | (int)enterAction);
 
             InputConnectionAdaptor connection = new InputConnectionAdaptor(
-                view, 
-                _client, 
-                _flutterChannel, 
+                view,
+                _client,
+                _flutterChannel,
                 _editable);
             outAttrs.InitialSelStart = Selection.GetSelectionStart(_editable);
-            outAttrs.InitialSelEnd = Selection.GetSelectionEnd(_editable);
+            outAttrs.InitialSelEnd   = Selection.GetSelectionEnd(_editable);
 
             return connection;
         }
@@ -199,9 +203,9 @@ namespace Flutter.Shell.Droid.Plugin.Editing
 
         private void SetTextInputClient(FlutterView view, int client, JSONObject configuration)
         {
-            _client = client;
+            _client        = client;
             _configuration = configuration;
-            _editable = EditableFactory.Instance.NewEditable("");
+            _editable      = EditableFactory.Instance.NewEditable("");
 
             // setTextInputClient will be followed by a call to setTextInputEditingState.
             // Do a restartInput at that time.
@@ -213,7 +217,7 @@ namespace Flutter.Shell.Droid.Plugin.Editing
             int selStart = state.GetInt("selectionBase");
             int selEnd = state.GetInt("selectionExtent");
             if (selStart >= 0 && selStart <= _editable.Length() && selEnd >= 0
-                    && selEnd <= _editable.Length())
+                && selEnd <= _editable.Length())
             {
                 Selection.SetSelection(_editable, selStart, selEnd);
             }
@@ -228,10 +232,12 @@ namespace Flutter.Shell.Droid.Plugin.Editing
             if (!_restartInputPending && state.GetString("text").Equals(_editable.ToString()))
             {
                 ApplyStateToSelection(state);
-                _imm.UpdateSelection(_view, Math.Max(Selection.GetSelectionStart(_editable), 0),
-                        Math.Max(Selection.GetSelectionEnd(_editable), 0),
-                        BaseInputConnection.GetComposingSpanStart(_editable),
-                        BaseInputConnection.GetComposingSpanEnd(_editable));
+                _imm.UpdateSelection(
+                    _view,
+                    Math.Max(Selection.GetSelectionStart(_editable), 0),
+                    Math.Max(Selection.GetSelectionEnd(_editable), 0),
+                    BaseInputConnection.GetComposingSpanStart(_editable),
+                    BaseInputConnection.GetComposingSpanEnd(_editable));
             }
             else
             {

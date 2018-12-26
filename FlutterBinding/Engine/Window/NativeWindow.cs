@@ -16,7 +16,10 @@ namespace FlutterBinding.Engine.Window
         //private DartPersistentValue library_;
         private ViewportMetrics _viewport_metrics;
 
-        public ViewportMetrics viewport_metrics() { return _viewport_metrics; }
+        public ViewportMetrics viewport_metrics()
+        {
+            return _viewport_metrics;
+        }
 
         // TODO: Not required
         void DidCreateIsolate() { }
@@ -35,7 +38,7 @@ namespace FlutterBinding.Engine.Window
                 top: metrics.PhysicalPaddingTop,
                 right: metrics.PhysicalPaddingRight,
                 bottom: metrics.PhysicalPaddingBottom
-                );
+            );
             _window.viewInsets = new WindowPadding(
                 left: metrics.PhysicalViewInsetLeft,
                 top: metrics.PhysicalViewInsetTop,
@@ -57,6 +60,7 @@ namespace FlutterBinding.Engine.Window
                     locales[localeIndex * stringsPerLocale],
                     locales[localeIndex * stringsPerLocale + 1]);
             }
+
             _invoke(_window.onLocaleChanged, _window.OnLocaleChangedZone);
         }
 
@@ -64,7 +68,7 @@ namespace FlutterBinding.Engine.Window
         {
             var data = JsonConvert.DeserializeObject<Dictionary<string, object>>(jsonData);
 
-            _window.textScaleFactor = Convert.ToDouble(data["textScaleFactor"]);
+            _window.textScaleFactor       = Convert.ToDouble(data["textScaleFactor"]);
             _window.alwaysUse24HourFormat = Convert.ToBoolean(data["alwaysUse24HourFormat"]);
 
             _invoke(_window.onTextScaleFactorChanged, _window.OnTextScaleFactorChangedZone);
@@ -96,7 +100,7 @@ namespace FlutterBinding.Engine.Window
             if (_window.onPointerDataPacket == null)
                 return;
             _invoke(
-                () => _window.onPointerDataPacket(packet), 
+                () => _window.onPointerDataPacket(packet),
                 _window.OnPointerDataPacketZone);
         }
 
@@ -106,7 +110,7 @@ namespace FlutterBinding.Engine.Window
                 return;
 
             _invoke(
-                () => { _window.onSemanticsAction(id, action, args); }, 
+                () => { _window.onSemanticsAction(id, action, args); },
                 _window.OnSemanticsActionZone);
         }
 
@@ -116,7 +120,7 @@ namespace FlutterBinding.Engine.Window
             var diff = now.TotalMicroseconds - frameTime.TotalMicroseconds;
 
             _invoke(
-                () => _window.onBeginFrame(new Types.Duration(microseconds:diff)), 
+                () => _window.onBeginFrame(new Types.Duration(microseconds: diff)),
                 _window.OnBeginFrameZone);
         }
 

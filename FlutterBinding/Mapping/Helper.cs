@@ -13,7 +13,7 @@ namespace FlutterBinding.Mapping
         public static int hashValues(object first, object second, object third = null, object fourth = null, object fifth = null, object sixth = null, object seventh = null, object eigth = null, object ninth = null) => 0; // TODO:
 
         public static int hashList(List<double> list) => 0; // TODO:
-        public static int hashList(List<int> list) => 0; // TODO:
+        public static int hashList(List<int> list) => 0;    // TODO:
 
         public static string toStringAsFixed(this double value, int points)
         {
@@ -51,7 +51,7 @@ namespace FlutterBinding.Mapping
         public static bool isFinite(this double value) => !double.IsInfinity(value);
 
         public static double abs(this double value) => Math.Abs(value);
-        
+
         public static Future<T> _futurize<T>(Func<T> func)
         {
             var future = new Future<T>(func);
@@ -68,6 +68,5 @@ namespace FlutterBinding.Mapping
             return future;
             // NOTE: Would prefer to kill Future and just use Task.Run(action);
         }
-
     }
 }

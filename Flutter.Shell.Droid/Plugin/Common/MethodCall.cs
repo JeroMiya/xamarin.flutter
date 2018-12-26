@@ -29,7 +29,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
         public MethodCall(string method, object arguments)
         {
             //assert method != null;
-            Method = method;
+            Method    = method;
             Arguments = arguments;
         }
 

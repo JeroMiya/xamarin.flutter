@@ -54,10 +54,14 @@
     <Compile Include="Plugin\Common\BasicMessageChannel.cs" />
     <Compile Include="Plugin\Common\BinaryMessenger.cs" />
     <Compile Include="Plugin\Common\EventChannel.cs" />
+    <Compile Include="Plugin\Common\IMethodCallHandler.cs" />
+    <Compile Include="Plugin\Common\IRegistrar.cs" />
+    <Compile Include="Plugin\Common\IRequestPermissionsResultListener.cs" />
+    <Compile Include="Plugin\Common\IResult.cs" />
     <Compile Include="Plugin\Common\MethodCall.cs" />
     <Compile Include="Plugin\Common\MethodChannel.cs" />
-    <Compile Include="Plugin\Common\MethodCodec.cs" />
-    <Compile Include="Plugin\Common\PluginRegistry.cs" />
+    <Compile Include="Plugin\Common\IMethodCodec.cs" />
+    <Compile Include="Plugin\Common\IPluginRegistry.cs" />
     <Compile Include="Plugin\Common\StandardMessageCodec.cs" />
     <Compile Include="Plugin\Common\StandardMethodCodec.cs" />
     <Compile Include="Plugin\Common\StringCodec.cs" />

@@ -6,7 +6,6 @@ namespace FlutterBinding.Shell
 {
     public class IOManager
     {
-        
         // Convenience methods for platforms to create a GrContext used to supply to
         // the IOManager. The platforms may create the context themselves if they so
         // desire.
@@ -48,7 +47,7 @@ namespace FlutterBinding.Shell
         public IOManager(GRContext resourceContext, TaskRunner unrefQueueTaskRunner)
         {
             _resourceContext = resourceContext;
-            _unrefQueue = new SkiaUnrefQueue(unrefQueueTaskRunner, TimeSpan.FromMilliseconds(250));
+            _unrefQueue      = new SkiaUnrefQueue(unrefQueueTaskRunner, TimeSpan.FromMilliseconds(250));
 
             if (_resourceContext == null)
             {

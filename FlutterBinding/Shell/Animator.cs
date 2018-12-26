@@ -9,7 +9,6 @@ namespace FlutterBinding.Shell
 {
     public sealed partial class Animator
     {
-
         // Wait 51 milliseconds (which is 1 more milliseconds than 3 frames at 60hz)
         // before notifying the engine that we are idle.  See comments in |BeginFrame|
         // for further discussion on why this is necessary.
@@ -17,18 +16,18 @@ namespace FlutterBinding.Shell
 
         public Animator(Animator.IAnimatorDelegate @delegate, TaskRunners taskRunners, VsyncWaiter waiter)
         {
-            _delegate = @delegate;
-            _taskRunners = taskRunners;
-            _waiter = waiter;
-            _lastBeginFrameTime = new TimePoint();
-            _dartFrameDeadline = 0;
-            _layerTreePipeline = new LayerTreePipeline(2);
-            _pendingFrameSemaphore = new Semaphore(1, 1);
-            _frameNumber = 1;
-            _paused = false;
-            _regenerateLayerTree = false;
-            _frameScheduled = false;
-            _notifyIdleTaskId = 0;
+            _delegate               = @delegate;
+            _taskRunners            = taskRunners;
+            _waiter                 = waiter;
+            _lastBeginFrameTime     = new TimePoint();
+            _dartFrameDeadline      = 0;
+            _layerTreePipeline      = new LayerTreePipeline(2);
+            _pendingFrameSemaphore  = new Semaphore(1, 1);
+            _frameNumber            = 1;
+            _paused                 = false;
+            _regenerateLayerTree    = false;
+            _frameScheduled         = false;
+            _notifyIdleTaskId       = 0;
             _dimensionChangePending = false;
         }
 
@@ -38,6 +37,7 @@ namespace FlutterBinding.Shell
             {
                 _regenerateLayerTree = true;
             }
+
             if (_paused && !_dimensionChangePending)
             {
                 return;
@@ -57,7 +57,8 @@ namespace FlutterBinding.Shell
             // started an expensive operation right after posting this message however.
             // To support that, we need edge triggered wakes on VSync.
 
-            _taskRunners.UITaskRunner.PostTask( () =>
+            _taskRunners.UITaskRunner.PostTask(
+                () =>
                 {
                     //TRACE_EVENT_ASYNC_BEGIN0("flutter", "Frame Request Pending", frame_number);
                     AwaitVSync();
@@ -71,9 +72,10 @@ namespace FlutterBinding.Shell
             {
                 _dimensionChangePending = false;
             }
+
             _lastLayerTreeSize = layerTree.frame_size();
 
-                // Note the frame time for instrumentation.
+            // Note the frame time for instrumentation.
             layerTree?.set_construction_time(TimePoint.Now() - _lastBeginFrameTime);
 
             // Commit the pending continuation.
@@ -138,7 +140,7 @@ namespace FlutterBinding.Shell
             //FML_DCHECK(producer_continuation_);
 
             _lastBeginFrameTime = frameStartTime;
-            _dartFrameDeadline = FxlToDartOrEarlier(frameTargetTime);
+            _dartFrameDeadline  = FxlToDartOrEarlier(frameTargetTime);
             {
                 //TRACE_EVENT2("flutter", "Framework Workload", "mode", "basic", "frame", FrameParity());
                 _delegate.OnAnimatorBeginFrame(_lastBeginFrameTime);
@@ -154,7 +156,8 @@ namespace FlutterBinding.Shell
                 // |OnAnimatorNotifyIdle| for a little bit, as that could cause garbage
                 // collection to trigger at a highly undesirable time.
                 var notifyIdleTaskId = _notifyIdleTaskId;
-                _taskRunners.UITaskRunner.PostDelayedTask(() =>
+                _taskRunners.UITaskRunner.PostDelayedTask(
+                    () =>
                     {
                         // If our (this task's) task id is the same as the current one, then
                         // no further frames were produced, and it is safe (w.r.t. jank) to
@@ -163,7 +166,8 @@ namespace FlutterBinding.Shell
                         {
                             _delegate.OnAnimatorNotifyIdle(TimePoint.Now().TotalMicroseconds + 100000);
                         }
-                    }, kNotifyIdleTaskWaitTime);
+                    },
+                    kNotifyIdleTaskWaitTime);
             }
         }
 
@@ -180,7 +184,8 @@ namespace FlutterBinding.Shell
 
         private void AwaitVSync()
         {
-            _waiter.AsyncWaitForVsync( (frameStartTime, frameTargetTime) =>
+            _waiter.AsyncWaitForVsync(
+                (frameStartTime, frameTargetTime) =>
                 {
                     if (CanReuseLastLayerTree())
                         DrawLastLayerTree();

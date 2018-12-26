@@ -6,7 +6,6 @@ using static FlutterBinding.Mapping.Helper;
 
 namespace FlutterBinding.UI
 {
-
     /// Whether to slant the glyphs in the font
     public enum FontStyle
     {
@@ -62,8 +61,9 @@ namespace FlutterBinding.UI
         public static FontWeight bold = w700;
 
         /// A list of all the font weights.
-        public static List<FontWeight> values = new List<FontWeight>{
-          w100, w200, w300, w400, w500, w600, w700, w800, w900
+        public static List<FontWeight> values = new List<FontWeight>
+        {
+            w100, w200, w300, w400, w500, w600, w700, w800, w900
         };
 
         /// Linearly interpolates between two font weights.
@@ -94,16 +94,17 @@ namespace FlutterBinding.UI
 
         public String toString()
         {
-            return new Dictionary<int, String>{
-                { 0,  "FontWeight.w100" },
-              { 1, "FontWeight.w200" },
-              { 2, "FontWeight.w300" },
-             {  3, "FontWeight.w400" },
-             {  4, "FontWeight.w500" },
-             {  5, "FontWeight.w600" },
-              { 6, "FontWeight.w700" },
-             {  7, "FontWeight.w800" },
-              { 8, "FontWeight.w900" },
+            return new Dictionary<int, String>
+            {
+                {0, "FontWeight.w100"},
+                {1, "FontWeight.w200"},
+                {2, "FontWeight.w300"},
+                {3, "FontWeight.w400"},
+                {4, "FontWeight.w500"},
+                {5, "FontWeight.w600"},
+                {6, "FontWeight.w700"},
+                {7, "FontWeight.w800"},
+                {8, "FontWeight.w900"},
             }[index];
         }
     }
@@ -281,31 +282,31 @@ namespace FlutterBinding.UI
             //        "The color argument is just a shorthand for 'foreground: new Paint()..color = color'."
             //      );
             _encoded = Text._encodeTextStyle(
-              color,
-              decoration,
-              decorationColor,
-              decorationStyle,
-              fontWeight,
-              fontStyle,
-              textBaseline,
-              fontFamily,
-              fontSize,
-              letterSpacing,
-              wordSpacing,
-              height,
-              locale,
-              background,
-              foreground,
-              shadows);
-            _fontFamily = fontFamily ?? "";
-            _fontSize = fontSize;
+                color,
+                decoration,
+                decorationColor,
+                decorationStyle,
+                fontWeight,
+                fontStyle,
+                textBaseline,
+                fontFamily,
+                fontSize,
+                letterSpacing,
+                wordSpacing,
+                height,
+                locale,
+                background,
+                foreground,
+                shadows);
+            _fontFamily    = fontFamily ?? "";
+            _fontSize      = fontSize;
             _letterSpacing = letterSpacing;
-            _wordSpacing = wordSpacing;
-            _height = height;
-            _locale = locale;
-            _background = background;
-            _foreground = foreground;
-            _shadows = shadows;
+            _wordSpacing   = wordSpacing;
+            _height        = height;
+            _locale        = locale;
+            _background    = background;
+            _foreground    = foreground;
+            _shadows       = shadows;
         }
 
         public List<int> _encoded;
@@ -328,7 +329,7 @@ namespace FlutterBinding.UI
                 return false;
             TextStyle typedOther = (TextStyle)other;
             if (style._fontFamily != typedOther._fontFamily ||
-               style._fontSize != typedOther._fontSize ||
+                style._fontSize != typedOther._fontSize ||
                 style._letterSpacing != typedOther._letterSpacing ||
                 style._wordSpacing != typedOther._wordSpacing ||
                 style._height != typedOther._height ||
@@ -341,6 +342,7 @@ namespace FlutterBinding.UI
                 if (style._encoded[index] != typedOther._encoded[index])
                     return false;
             }
+
             if (!Shadow._shadowsListEquals(style._shadows, typedOther._shadows))
                 return false;
             return true;
@@ -353,23 +355,23 @@ namespace FlutterBinding.UI
         public String toString()
         {
             return "TextStyle(" +
-               $"color: {          ((_encoded[0] & 0x00002) == 0x00002 ? new Color((uint)_encoded[1]).toString() : "unspecified") }, " +
-               $"decoration: {     ((_encoded[0] & 0x00004) == 0x00004 ? new TextDecoration(_encoded[2]).toString() : "unspecified")}, " +
-               $"decorationColor:{((_encoded[0] & 0x00008) == 0x00008 ? new Color((uint)_encoded[3]).toString() : "unspecified")}, " +
-               $"decorationStyle: {((_encoded[0] & 0x00010) == 0x00010 ? ((TextDecorationStyle)(_encoded[4])).ToString() : "unspecified")}, " +
-               $"fontWeight: {     ((_encoded[0] & 0x00020) == 0x00020 ? FontWeight.values[_encoded[5]].toString() : "unspecified")}, " +
-               $"fontStyle: {      ((_encoded[0] & 0x00040) == 0x00040 ? ((FontStyle)(_encoded[6])).ToString() : "unspecified")}, " +
-               $"textBaseline: {   ((_encoded[0] & 0x00080) == 0x00080 ? ((TextBaseline)(_encoded[7])).ToString() : "unspecified")}, " +
-               $"fontFamily: {     ((_encoded[0] & 0x00100) == 0x00100 ? _fontFamily : "unspecified")}, " +
-               $"fontSize: {       ((_encoded[0] & 0x00200) == 0x00200 ? _fontSize.ToString() : "unspecified")}, " +
-               $"letterSpacing: {  ((_encoded[0] & 0x00400) == 0x00400 ? $"{_letterSpacing}x" : "unspecified")}, " +
-               $"wordSpacing: {    ((_encoded[0] & 0x00800) == 0x00800 ? $"{_wordSpacing}x" : "unspecified")}, " +
-               $"height: {         ((_encoded[0] & 0x01000) == 0x01000 ? $"{_height}x" : "unspecified")}, " +
-               $"locale: {         ((_encoded[0] & 0x02000) == 0x02000 ? _locale.ToString() : "unspecified")}, " +
-               $"background: {     ((_encoded[0] & 0x04000) == 0x04000 ? _background.toString() : "unspecified")}, " +
-               $"foreground: {     ((_encoded[0] & 0x08000) == 0x08000 ? _foreground.toString() : "unspecified")}, " +
-               $"shadows: {        ((_encoded[0] & 0x10000) == 0x10000 ? _shadows.ToString() : "unspecified")}" +
-             ")";
+                $"color: {((_encoded[0] & 0x00002) == 0x00002 ? new Color((uint)_encoded[1]).toString() : "unspecified")}, " +
+                $"decoration: {((_encoded[0] & 0x00004) == 0x00004 ? new TextDecoration(_encoded[2]).toString() : "unspecified")}, " +
+                $"decorationColor:{((_encoded[0] & 0x00008) == 0x00008 ? new Color((uint)_encoded[3]).toString() : "unspecified")}, " +
+                $"decorationStyle: {((_encoded[0] & 0x00010) == 0x00010 ? ((TextDecorationStyle)(_encoded[4])).ToString() : "unspecified")}, " +
+                $"fontWeight: {((_encoded[0] & 0x00020) == 0x00020 ? FontWeight.values[_encoded[5]].toString() : "unspecified")}, " +
+                $"fontStyle: {((_encoded[0] & 0x00040) == 0x00040 ? ((FontStyle)(_encoded[6])).ToString() : "unspecified")}, " +
+                $"textBaseline: {((_encoded[0] & 0x00080) == 0x00080 ? ((TextBaseline)(_encoded[7])).ToString() : "unspecified")}, " +
+                $"fontFamily: {((_encoded[0] & 0x00100) == 0x00100 ? _fontFamily : "unspecified")}, " +
+                $"fontSize: {((_encoded[0] & 0x00200) == 0x00200 ? _fontSize.ToString() : "unspecified")}, " +
+                $"letterSpacing: {((_encoded[0] & 0x00400) == 0x00400 ? $"{_letterSpacing}x" : "unspecified")}, " +
+                $"wordSpacing: {((_encoded[0] & 0x00800) == 0x00800 ? $"{_wordSpacing}x" : "unspecified")}, " +
+                $"height: {((_encoded[0] & 0x01000) == 0x01000 ? $"{_height}x" : "unspecified")}, " +
+                $"locale: {((_encoded[0] & 0x02000) == 0x02000 ? _locale.ToString() : "unspecified")}, " +
+                $"background: {((_encoded[0] & 0x04000) == 0x04000 ? _background.toString() : "unspecified")}, " +
+                $"foreground: {((_encoded[0] & 0x08000) == 0x08000 ? _foreground.toString() : "unspecified")}, " +
+                $"shadows: {((_encoded[0] & 0x10000) == 0x10000 ? _shadows.ToString() : "unspecified")}" +
+                ")";
         }
     }
 
@@ -442,22 +444,23 @@ namespace FlutterBinding.UI
                 locale = new Locale("");
 
             _encoded = Text._encodeParagraphStyle(
-          textAlign,
-          textDirection,
-          fontWeight,
-          fontStyle,
-          maxLines,
-          fontFamily,
-          fontSize,
-          lineHeight,
-          ellipsis,
-          locale);
+                textAlign,
+                textDirection,
+                fontWeight,
+                fontStyle,
+                maxLines,
+                fontFamily,
+                fontSize,
+                lineHeight,
+                ellipsis,
+                locale);
             _fontFamily = fontFamily;
-            _fontSize = fontSize;
+            _fontSize   = fontSize;
             _lineHeight = lineHeight;
-            _ellipsis = ellipsis;
-            _locale = locale;
+            _ellipsis   = ellipsis;
+            _locale     = locale;
         }
+
         public readonly List<int> _encoded;
         public readonly String _fontFamily;
         public readonly double _fontSize;
@@ -483,6 +486,7 @@ namespace FlutterBinding.UI
                 if (paragraph._encoded[index] != typedOther._encoded[index])
                     return false;
             }
+
             return true;
         }
 
@@ -493,17 +497,17 @@ namespace FlutterBinding.UI
         String toString()
         {
             return "{GetType().ToString()}(" +
-                       $"textAlign: {     ((_encoded[0] & 0x002) == 0x002 ? ((TextAlign)(_encoded[1])).ToString() : "unspecified")}, " +
-                       $"textDirection: { ((_encoded[0] & 0x004) == 0x004 ? ((TextDirection)(_encoded[2])).ToString() : "unspecified")}, " +
-                       $"fontWeight: {    ((_encoded[0] & 0x008) == 0x008 ? (FontWeight.values[_encoded[3]]).ToString() : "unspecified")}, " +
-                       $"fontStyle: {     ((_encoded[0] & 0x010) == 0x010 ? ((FontStyle)(_encoded[4])).ToString() : "unspecified")}, " +
-                       $"maxLines: {      ((_encoded[0] & 0x020) == 0x020 ? _encoded[5].ToString() : "unspecified")}, " +
-                       $"fontFamily: {    ((_encoded[0] & 0x040) == 0x040 ? _fontFamily.ToString() : "unspecified")}, " +
-                       $"fontSize: {      ((_encoded[0] & 0x080) == 0x080 ? _fontSize.ToString() : "unspecified")}, " +
-                       $"lineHeight: {    ((_encoded[0] & 0x100) == 0x100 ? $"{_lineHeight}x" : "unspecified")}, " +
-                       $"ellipsis: {      ((_encoded[0] & 0x200) == 0x200 ? $"\"{_ellipsis}\"" : "unspecified")}, " +
-                       $"locale: {        ((_encoded[0] & 0x400) == 0x400 ? _locale.ToString() : "unspecified")}" +
-                     ")";
+                $"textAlign: {((_encoded[0] & 0x002) == 0x002 ? ((TextAlign)(_encoded[1])).ToString() : "unspecified")}, " +
+                $"textDirection: {((_encoded[0] & 0x004) == 0x004 ? ((TextDirection)(_encoded[2])).ToString() : "unspecified")}, " +
+                $"fontWeight: {((_encoded[0] & 0x008) == 0x008 ? (FontWeight.values[_encoded[3]]).ToString() : "unspecified")}, " +
+                $"fontStyle: {((_encoded[0] & 0x010) == 0x010 ? ((FontStyle)(_encoded[4])).ToString() : "unspecified")}, " +
+                $"maxLines: {((_encoded[0] & 0x020) == 0x020 ? _encoded[5].ToString() : "unspecified")}, " +
+                $"fontFamily: {((_encoded[0] & 0x040) == 0x040 ? _fontFamily.ToString() : "unspecified")}, " +
+                $"fontSize: {((_encoded[0] & 0x080) == 0x080 ? _fontSize.ToString() : "unspecified")}, " +
+                $"lineHeight: {((_encoded[0] & 0x100) == 0x100 ? $"{_lineHeight}x" : "unspecified")}, " +
+                $"ellipsis: {((_encoded[0] & 0x200) == 0x200 ? $"\"{_ellipsis}\"" : "unspecified")}, " +
+                $"locale: {((_encoded[0] & 0x400) == 0x400 ? _locale.ToString() : "unspecified")}" +
+                ")";
         }
     }
 
@@ -607,28 +611,31 @@ namespace FlutterBinding.UI
     public class TextBox
     {
         /// Creates an object that describes a box containing text.
-        public static TextBox fromLTRBD(double left,
-                                        double top,
-                                        double right,
-                                        double bottom,
-                                        int direction)
+        public static TextBox fromLTRBD(
+            double left,
+            double top,
+            double right,
+            double bottom,
+            int direction)
         {
             return new TextBox(left, top, right, bottom, direction);
         }
 
         //@pragma('vm:entry-point')
-        public TextBox(double left,
-                        double top,
-                        double right,
-                        double bottom,
-                       int directionIndex)
+        public TextBox(
+            double left,
+            double top,
+            double right,
+            double bottom,
+            int directionIndex)
         {
-            this.left = left;
-            this.top = top;
-            this.right = right;
+            this.left   = left;
+            this.top    = top;
+            this.right  = right;
             this.bottom = bottom;
-            direction = (TextDirection)directionIndex;
+            direction   = (TextDirection)directionIndex;
         }
+
         /// The left edge of the text box, irrespective of direction.
         ///
         /// To get the leading edge (which may depend on the [direction]), consider [start].
@@ -714,14 +721,16 @@ namespace FlutterBinding.UI
         /// Creates an object representing a particular position in a string.
         ///
         /// The arguments must not be null (so the [offset] argument is required).
-        public TextPosition(int offset = 0,
-          TextAffinity affinity = TextAffinity.downstream)
+        public TextPosition(
+            int offset = 0,
+            TextAffinity affinity = TextAffinity.downstream)
         {
             //: assert(offset != null),
             //assert(affinity != null);
-            this.offset = offset;
+            this.offset   = offset;
             this.affinity = affinity;
         }
+
         /// The index of the character that immediately follows the position.
         ///
         /// For example, given the string `'Hello'`, offset 0 represents the cursor
@@ -869,6 +878,7 @@ namespace FlutterBinding.UI
         ///
         /// The [ParagraphConstraints] control how wide the text is allowed to be.
         public void layout(ParagraphConstraints constraints) => _layout(constraints.width);
+
         void _layout(double width)
         {
             this.Layout(width);
@@ -888,6 +898,7 @@ namespace FlutterBinding.UI
             List<int> encoded = _getPositionForOffset(offset.dx, offset.dy);
             return new TextPosition(offset: encoded[0], affinity: (TextAffinity)encoded[1]);
         }
+
         List<int> _getPositionForOffset(double dx, double dy)
         {
             // native 'Paragraph_getPositionForOffset';
@@ -931,7 +942,6 @@ namespace FlutterBinding.UI
     /// paint it with [Canvas.drawParagraph].
     public class ParagraphBuilder : NativeParagraphBuilder
     {
-
         /// Creates a [ParagraphBuilder] object, which is used to create a
         /// [Paragraph].
         //@pragma('vm:entry-point')
@@ -939,6 +949,7 @@ namespace FlutterBinding.UI
         {
             // _constructor();
         }
+
         void _constructor(List<int> encoded, String fontFamily, double fontSize, double lineHeight, String ellipsis, String locale)
         {
             // Completed by base contruction
@@ -949,32 +960,32 @@ namespace FlutterBinding.UI
         ///
         /// See [pop] for details.
         void pushStyle(TextStyle style) => _pushStyle(
-            style._encoded, 
-            style._fontFamily, 
-            style._fontSize, 
-            style._letterSpacing, 
-            style._wordSpacing, 
-            style._height, 
-            _encodeLocale(style._locale), 
-            style._background?._objects, 
-            style._background?._data, 
-            style._foreground?._objects, 
-            style._foreground?._data, 
+            style._encoded,
+            style._fontFamily,
+            style._fontSize,
+            style._letterSpacing,
+            style._wordSpacing,
+            style._height,
+            _encodeLocale(style._locale),
+            style._background?._objects,
+            style._background?._data,
+            style._foreground?._objects,
+            style._foreground?._data,
             Shadow._encodeShadows(style._shadows));
 
         // TODO: ByteData->object
         void _pushStyle(
-            List<int> encoded, 
-            string fontFamily, 
-            double fontSize, 
-            double letterSpacing, 
-            double wordSpacing, 
-            double  height, 
-            string locale, 
-            List<dynamic> backgroundObjects, 
-            object backgroundData, 
-            List<dynamic> foregroundObjects, 
-            object foregroundData, 
+            List<int> encoded,
+            string fontFamily,
+            double fontSize,
+            double letterSpacing,
+            double wordSpacing,
+            double height,
+            string locale,
+            List<dynamic> backgroundObjects,
+            object backgroundData,
+            List<dynamic> foregroundObjects,
+            object foregroundData,
             object shadowsData)
         {
             // native 'ParagraphBuilder_pushStyle';
@@ -1002,6 +1013,7 @@ namespace FlutterBinding.UI
             if (error != null)
                 throw new ArgumentException(error);
         }
+
         String _addText(String text)
         {
             return this.AddText(text);
@@ -1029,10 +1041,7 @@ namespace FlutterBinding.UI
         ///  If this is not provided, then the family name will be extracted from the font file.
         static Task loadFontFromList(List<int> list, String fontFamily = "")
         {
-            return _futurize(() =>
-            {
-                _loadFontFromList(list, fontFamily);
-            });
+            return _futurize(() => { _loadFontFromList(list, fontFamily); });
         }
 
         static void _loadFontFromList(List<int> list, String fontFamily)
@@ -1058,16 +1067,16 @@ namespace FlutterBinding.UI
         //  - Element 4: The value of |maxLines|.
         //
         public static List<int> _encodeParagraphStyle(
-          TextAlign textAlign,
-          TextDirection textDirection,
-          FontWeight fontWeight,
-          FontStyle fontStyle,
-          int maxLines,
-          String fontFamily,
-          double fontSize,
-          double lineHeight,
-          String ellipsis,
-          Locale locale)
+            TextAlign textAlign,
+            TextDirection textDirection,
+            FontWeight fontWeight,
+            FontStyle fontStyle,
+            int maxLines,
+            String fontFamily,
+            double fontSize,
+            double lineHeight,
+            String ellipsis,
+            Locale locale)
         {
             List<int> result = new List<int>(6); // also update paragraph_builder.cc
             for (var i = 0; i <= 6; i++)
@@ -1076,53 +1085,63 @@ namespace FlutterBinding.UI
             if (textAlign != null)
             {
                 result[0] |= 1 << 1;
-                result[1] = (int)textAlign;
+                result[1] =  (int)textAlign;
             }
+
             if (textDirection != null)
             {
                 result[0] |= 1 << 2;
-                result[2] = (int)textDirection;
+                result[2] =  (int)textDirection;
             }
+
             if (fontWeight != null)
             {
                 result[0] |= 1 << 3;
-                result[3] = fontWeight.index;
+                result[3] =  fontWeight.index;
             }
+
             if (fontStyle != null)
             {
                 result[0] |= 1 << 4;
-                result[4] = (int)fontStyle;
+                result[4] =  (int)fontStyle;
             }
+
             if (maxLines != null)
             {
                 result[0] |= 1 << 5;
-                result[5] = maxLines;
+                result[5] =  maxLines;
             }
+
             if (fontFamily != null)
             {
                 result[0] |= 1 << 6;
                 // Passed separately to native.
             }
+
             if (fontSize != null)
             {
                 result[0] |= 1 << 7;
                 // Passed separately to native.
             }
+
             if (lineHeight != null)
             {
                 result[0] |= 1 << 8;
                 // Passed separately to native.
             }
+
             if (ellipsis != null)
             {
                 result[0] |= 1 << 9;
                 // Passed separately to native.
             }
+
             if (locale != null)
             {
                 result[0] |= 1 << 10;
                 // Passed separately to native.
             }
+
             return result;
         }
 
@@ -1152,109 +1171,122 @@ namespace FlutterBinding.UI
         //  - Element 7: The enum index of the |textBaseline|.
         //
         public static List<int> _encodeTextStyle(
-          Color color,
-          TextDecoration decoration,
-          Color decorationColor,
-          TextDecorationStyle decorationStyle,
-          FontWeight fontWeight,
-          FontStyle fontStyle,
-          TextBaseline textBaseline,
-          String fontFamily,
-          double fontSize,
-          double letterSpacing,
-          double wordSpacing,
-          double height,
-          Locale locale,
-          Paint background,
-          Paint foreground,
-          List<Shadow> shadows
+            Color color,
+            TextDecoration decoration,
+            Color decorationColor,
+            TextDecorationStyle decorationStyle,
+            FontWeight fontWeight,
+            FontStyle fontStyle,
+            TextBaseline textBaseline,
+            String fontFamily,
+            double fontSize,
+            double letterSpacing,
+            double wordSpacing,
+            double height,
+            Locale locale,
+            Paint background,
+            Paint foreground,
+            List<Shadow> shadows
         )
         {
             List<int> result = new List<int>(8);
             if (color != null)
             {
                 result[0] |= 1 << 1;
-                result[1] = (int)color.value;
+                result[1] =  (int)color.value;
             }
+
             if (decoration != null)
             {
                 result[0] |= 1 << 2;
-                result[2] = decoration._mask;
+                result[2] =  decoration._mask;
             }
+
             if (decorationColor != null)
             {
                 result[0] |= 1 << 3;
-                result[3] = (int)decorationColor.value;
+                result[3] =  (int)decorationColor.value;
             }
+
             if (decorationStyle != null)
             {
                 result[0] |= 1 << 4;
-                result[4] = (int)decorationStyle;
+                result[4] =  (int)decorationStyle;
             }
+
             if (fontWeight != null)
             {
                 result[0] |= 1 << 5;
-                result[5] = fontWeight.index;
+                result[5] =  fontWeight.index;
             }
+
             if (fontStyle != null)
             {
                 result[0] |= 1 << 6;
-                result[6] = (int)fontStyle;
+                result[6] =  (int)fontStyle;
             }
+
             if (textBaseline != null)
             {
                 result[0] |= 1 << 7;
-                result[7] = (int)textBaseline;
+                result[7] =  (int)textBaseline;
             }
+
             if (fontFamily != null)
             {
                 result[0] |= 1 << 8;
                 // Passed separately to native.
             }
+
             if (fontSize != null)
             {
                 result[0] |= 1 << 9;
                 // Passed separately to native.
             }
+
             if (letterSpacing != null)
             {
                 result[0] |= 1 << 10;
                 // Passed separately to native.
             }
+
             if (wordSpacing != null)
             {
                 result[0] |= 1 << 11;
                 // Passed separately to native.
             }
+
             if (height != null)
             {
                 result[0] |= 1 << 12;
                 // Passed separately to native.
             }
+
             if (locale != null)
             {
                 result[0] |= 1 << 13;
                 // Passed separately to native.
             }
+
             if (background != null)
             {
                 result[0] |= 1 << 14;
                 // Passed separately to native.
             }
+
             if (foreground != null)
             {
                 result[0] |= 1 << 15;
                 // Passed separately to native.
             }
+
             if (shadows != null)
             {
                 result[0] |= 1 << 16;
                 // Passed separately to native.
             }
+
             return result;
         }
     }
-
-
-
 }

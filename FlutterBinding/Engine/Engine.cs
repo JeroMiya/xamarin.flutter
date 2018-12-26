@@ -10,6 +10,7 @@ namespace FlutterBinding.Engine
         public static Engine Instance => _instance ?? (_instance = new Engine());
 
         SKCanvas _canvas;
+
         public void LoadCanvas(SKCanvas canvas)
         {
             _canvas = canvas;
@@ -17,9 +18,10 @@ namespace FlutterBinding.Engine
 
         double _physicalWidth;
         double _physicalHeight;
+
         public void SetSize(double physicalWidth, double physicalHeight)
         {
-            _physicalWidth = physicalWidth;
+            _physicalWidth  = physicalWidth;
             _physicalHeight = physicalHeight;
         }
 
@@ -28,17 +30,17 @@ namespace FlutterBinding.Engine
             if (layer_tree == null)
                 return;
 
-            SKSizeI frame_size = new SKSizeI((int)_physicalWidth,
-                                             (int)_physicalHeight);
+            SKSizeI frame_size = new SKSizeI(
+                (int)_physicalWidth,
+                (int)_physicalHeight);
             if (frame_size.IsEmpty)
                 return;
 
             layer_tree.set_frame_size(frame_size);
 
             var picture = layer_tree.Flatten(new SKRect(0, 0, frame_size.Width, frame_size.Height));
-          
-            _canvas.DrawPicture(picture);
 
+            _canvas.DrawPicture(picture);
         }
     }
 }

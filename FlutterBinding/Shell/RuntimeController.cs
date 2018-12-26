@@ -40,14 +40,13 @@ namespace FlutterBinding.Shell
             SkiaUnrefQueue unrefQueue
             //string advisory_script_uri,
             //string advisory_script_entrypoint
-            ) : this(
-            client, 
-            taskRunners, 
-            snapshotDelegate, 
-            resourceContext, 
+        ) : this(
+            client,
+            taskRunners,
+            snapshotDelegate,
+            resourceContext,
             unrefQueue,
-            new WindowData())
-        { }
+            new WindowData()) { }
 
         private RuntimeController(
             IRuntimeDelegate client,
@@ -66,10 +65,10 @@ namespace FlutterBinding.Shell
             //vm_ = vm;
             //isolate_snapshot_ = isolate_snapshot;
             //shared_snapshot_ = shared_snapshot;
-            _taskRunners = taskRunners;
+            _taskRunners      = taskRunners;
             _snapshotDelegate = snapshotDelegate;
-            _resourceContext = resourceContext;
-            _unrefQueue = unrefQueue;
+            _resourceContext  = resourceContext;
+            _unrefQueue       = unrefQueue;
             //advisory_script_uri_ = advisory_script_uri;
             //advisory_script_entrypoint_ = advisory_script_entrypoint;
             _windowData = data;
@@ -90,7 +89,7 @@ namespace FlutterBinding.Shell
             //    root_isolate_return_code_ =  { true, code};
             //});
             var window = GetWindowIfAvailable();
-            if (window != null ) 
+            if (window != null)
             {
                 //tonic::DartState::Scope scope(root_isolate);
                 //window.DidCreateIsolate();
@@ -103,6 +102,7 @@ namespace FlutterBinding.Shell
             {
                 //FML_DCHECK(false) << "RuntimeController created without window binding.";
             }
+
             //FML_DCHECK(Dart_CurrentIsolate() == nullptr);
         }
 
@@ -126,17 +126,17 @@ namespace FlutterBinding.Shell
         public RuntimeController Clone()
         {
             return new RuntimeController(
-                _client,                     //
+                _client, //
                 //vm_,                         //
                 //isolate_snapshot_,           //
                 //shared_snapshot_,            //
-                _taskRunners,               //
-                _snapshotDelegate,          //
-                _resourceContext,           //
-                _unrefQueue,                //
+                _taskRunners,      //
+                _snapshotDelegate, //
+                _resourceContext,  //
+                _unrefQueue,       //
                 //advisory_script_uri_,        //
                 //advisory_script_entrypoint_, //
-                _windowData                 //
+                _windowData //
             );
         }
 
@@ -150,6 +150,7 @@ namespace FlutterBinding.Shell
                 window.UpdateWindowMetrics(metrics);
                 return true;
             }
+
             return false;
         }
 
@@ -211,6 +212,7 @@ namespace FlutterBinding.Shell
                 window.BeginFrame(frameTime);
                 return true;
             }
+
             return false;
         }
 
@@ -236,6 +238,7 @@ namespace FlutterBinding.Shell
                 window.DispatchPlatformMessage(message);
                 return true;
             }
+
             return false;
         }
 
@@ -248,6 +251,7 @@ namespace FlutterBinding.Shell
                 window.DispatchPointerDataPacket(packet);
                 return true;
             }
+
             return false;
         }
 
@@ -260,6 +264,7 @@ namespace FlutterBinding.Shell
                 window.DispatchSemanticsAction(id, action, args);
                 return true;
             }
+
             return false;
         }
 
@@ -284,9 +289,9 @@ namespace FlutterBinding.Shell
                 string variantCode)
             {
                 LanguageCode = languageCode;
-                CountryCode = countryCode;
-                ScriptCode = scriptCode;
-                VariantCode = variantCode;
+                CountryCode  = countryCode;
+                ScriptCode   = scriptCode;
+                VariantCode  = variantCode;
             }
 
             public string LanguageCode;
@@ -296,16 +301,20 @@ namespace FlutterBinding.Shell
         };
 
         private IRuntimeDelegate _client;
+
         //DartVM const vm_;
         //DartSnapshot isolate_snapshot_;
         //DartSnapshot shared_snapshot_;
         private TaskRunners _taskRunners;
         private SnapshotDelegate _snapshotDelegate;
         private GRContext _resourceContext;
+
         SkiaUnrefQueue _unrefQueue;
+
         //string advisory_script_uri_;
         //string advisory_script_entrypoint_;
         private WindowData _windowData;
+
         //DartIsolate root_isolate_;
         private Tuple<bool, uint> _rootIsolateReturnCode = new Tuple<bool, uint>(false, 0);
 

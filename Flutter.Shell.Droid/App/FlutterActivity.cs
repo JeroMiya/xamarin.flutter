@@ -1,5 +1,4 @@
-﻿
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.Content.Res;
@@ -30,9 +29,9 @@ namespace Flutter.Shell.Droid.App
         {
             base.OnCreate(savedInstanceState);
 
-            _delegate = new FlutterActivityDelegate(this, this);
-            _eventDelegate = _delegate;
-            _viewProvider = _delegate;
+            _delegate       = new FlutterActivityDelegate(this, this);
+            _eventDelegate  = _delegate;
+            _viewProvider   = _delegate;
             _pluginRegistry = _delegate;
 
             FrameLayout.LayoutParams rootLayout;

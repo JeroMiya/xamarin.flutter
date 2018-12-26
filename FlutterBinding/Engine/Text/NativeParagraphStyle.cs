@@ -4,7 +4,5 @@ using System.Text;
 
 namespace FlutterBinding.Engine.Text
 {
-    public class NativeParagraphStyle
-    {
-    }
+    public class NativeParagraphStyle { }
 }

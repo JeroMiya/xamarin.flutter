@@ -7,14 +7,13 @@ using SkiaSharp;
 
 namespace FlutterBinding.Flow.Layers
 {
-
     public class PictureLayer : Layer
     {
-
         public void set_offset(SKPoint offset)
         {
             offset_ = offset;
         }
+
         public void set_picture(SKPicture picture)
         {
             picture_ = picture;
@@ -24,6 +23,7 @@ namespace FlutterBinding.Flow.Layers
         {
             is_complex_ = value;
         }
+
         public void set_will_change(bool value)
         {
             will_change_ = value;
@@ -40,7 +40,7 @@ namespace FlutterBinding.Flow.Layers
 
             var cache = context.raster_cache;
             SKMatrix ctm = matrix;
-            
+
             ctm.SetScaleTranslate(ctm.ScaleX, ctm.ScaleY, offset_.X, offset_.Y);
 #if !SUPPORT_FRACTIONAL_TRANSLATION
             ctm = RasterCache.GetIntegralTransCTM(ctm);
@@ -74,15 +74,16 @@ namespace FlutterBinding.Flow.Layers
                     return;
                 }
             }
+
             context.canvas.DrawPicture(picture());
         }
 
         private SKPoint offset_ = new SKPoint();
+
         // Even though pictures themselves are not GPU resources, they may reference
         // images that have a reference to a GPU resource.
         private SKPicture picture_;
         private bool is_complex_ = false;
         private bool will_change_ = false;
     }
-
 }

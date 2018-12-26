@@ -7,7 +7,6 @@ using static FlutterBinding.Flow.Helper;
 
 namespace FlutterBinding.Flow.Layers
 {
-
     public class ClipRectLayer : ContainerLayer
     {
         public ClipRectLayer(Clip clip_behavior)
@@ -17,7 +16,7 @@ namespace FlutterBinding.Flow.Layers
 
         public void set_clip_rect(SKRect clip_rect)
         {
-            clip_rect_=clip_rect;
+            clip_rect_ = clip_rect;
         }
 
         public override void Preroll(PrerollContext context, SKMatrix matrix)
@@ -30,6 +29,7 @@ namespace FlutterBinding.Flow.Layers
                 set_paint_bounds(child_paint_bounds);
             }
         }
+
         public override void Paint(PaintContext context)
         {
             TRACE_EVENT0("flutter", "ClipRectLayer::Paint");
@@ -40,6 +40,7 @@ namespace FlutterBinding.Flow.Layers
             {
                 context.canvas.SaveLayer(paint_bounds(), null);
             }
+
             PaintChildren(context);
             if (clip_behavior_ == Clip.antiAliasWithSaveLayer)
             {
@@ -50,5 +51,4 @@ namespace FlutterBinding.Flow.Layers
         private SKRect clip_rect_ = new SKRect();
         private Clip clip_behavior_;
     }
-
 }

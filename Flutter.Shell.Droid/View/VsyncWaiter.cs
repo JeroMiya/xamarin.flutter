@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+﻿using Android.Views;
+using System;
 
 namespace Flutter.Shell.Droid.View
 {
@@ -41,10 +32,7 @@ namespace Flutter.Shell.Droid.View
         {
             Choreographer.Instance.PostFrameCallback(
                 new FrameCallback(
-                    (frameTimeNanos) =>
-                    {
-                        nativeOnVsync(frameTimeNanos, frameTimeNanos + RefreshPeriodNanos, cookie);
-                    }));
+                    (frameTimeNanos) => { nativeOnVsync(frameTimeNanos, frameTimeNanos + RefreshPeriodNanos, cookie); }));
         }
 
         // TODO: native

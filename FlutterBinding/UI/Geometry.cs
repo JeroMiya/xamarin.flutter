@@ -5,7 +5,6 @@ using static FlutterBinding.Mapping.Helper;
 
 namespace FlutterBinding.UI
 {
-
     /// Base class for [Size] and [Offset], which are both ways to describe
     /// a distance as a two-dimensional axis-aligned vector.
     public abstract class OffsetBase
@@ -86,14 +85,13 @@ namespace FlutterBinding.UI
         /// [Size], and returns true if the horizontal and vertical values of the
         /// left-hand-side operand are equal to the horizontal and vertical values of
         /// the right-hand-side operand respectively. Returns false otherwise.
-
         public static bool operator ==(OffsetBase offset, Object other)
         {
             if (!(other is OffsetBase))
                 return false;
             OffsetBase typedOther = (OffsetBase)other;
             return offset._dx == typedOther._dx &&
-                   offset._dy == typedOther._dy;
+                offset._dy == typedOther._dy;
         }
 
         public static bool operator !=(OffsetBase offset, Object other) => !(offset == other);
@@ -332,7 +330,7 @@ namespace FlutterBinding.UI
                 return false;
             Offset typedOther = (Offset)other;
             return offset._dx == typedOther._dx &&
-                   offset._dy == typedOther._dy;
+                offset._dy == typedOther._dy;
         }
 
         public static bool operator !=(Offset offset, Object other) => !(offset == other);
@@ -580,7 +578,7 @@ namespace FlutterBinding.UI
                 return false;
             Size typedOther = (Size)other;
             return size._dx == typedOther._dx &&
-                   size._dy == typedOther._dy;
+                size._dy == typedOther._dy;
         }
 
         public static bool operator !=(Size size, Object other) => !(size == other);
@@ -646,10 +644,10 @@ namespace FlutterBinding.UI
         {
             var list = new List<double>(_kDataSize)
             {
-               center.dx - radius,
-               center.dy - radius,
-               center.dx + radius,
-               center.dy + radius
+                center.dx - radius,
+                center.dy - radius,
+                center.dx + radius,
+                center.dy + radius
             };
 
             return new Rect(list);
@@ -661,10 +659,10 @@ namespace FlutterBinding.UI
         {
             var list = new List<double>(_kDataSize)
             {
-               Math.Min(a.dx, b.dx),
-               Math.Min(a.dy, b.dy),
-               Math.Max(a.dx, b.dx),
-               Math.Max(a.dy, b.dy)
+                Math.Min(a.dx, b.dx),
+                Math.Min(a.dy, b.dy),
+                Math.Max(a.dx, b.dx),
+                Math.Max(a.dy, b.dy)
             };
 
             return new Rect(list);
@@ -709,9 +707,9 @@ namespace FlutterBinding.UI
         /// Whether any of the coordinates of this rectangle are equal to positive infinity.
         // included for consistency with Offset and Size
         public bool isInfinite => left >= double.PositiveInfinity
-                                || top >= double.PositiveInfinity
-                                || right >= double.PositiveInfinity
-                                || bottom >= double.PositiveInfinity;
+            || top >= double.PositiveInfinity
+            || right >= double.PositiveInfinity
+            || bottom >= double.PositiveInfinity;
 
 
         /// Whether all coordinates of this rectangle are finite.
@@ -756,10 +754,10 @@ namespace FlutterBinding.UI
         public Rect intersect(Rect other)
         {
             return Rect.fromLTRB(
-              Math.Max(left, other.left),
-              Math.Max(top, other.top),
-              Math.Min(right, other.right),
-              Math.Min(bottom, other.bottom)
+                Math.Max(left, other.left),
+                Math.Max(top, other.top),
+                Math.Min(right, other.right),
+                Math.Min(bottom, other.bottom)
             );
         }
 
@@ -876,11 +874,12 @@ namespace FlutterBinding.UI
                 double k = 1.0 - t;
                 return Rect.fromLTRB(a.left * k, a.top * k, a.right * k, a.bottom * k);
             }
+
             return Rect.fromLTRB(
-              Lerp.lerpDouble(a.left, b.left, t),
-              Lerp.lerpDouble(a.top, b.top, t),
-              Lerp.lerpDouble(a.right, b.right, t),
-              Lerp.lerpDouble(a.bottom, b.bottom, t));
+                Lerp.lerpDouble(a.left, b.left, t),
+                Lerp.lerpDouble(a.top, b.top, t),
+                Lerp.lerpDouble(a.right, b.right, t),
+                Lerp.lerpDouble(a.bottom, b.bottom, t));
         }
 
         //public static bool operator ==(Rect rect, Object other)
@@ -919,6 +918,7 @@ namespace FlutterBinding.UI
         {
             return new Radius(x, y);
         }
+
         private Radius(double x, double y)
         {
             this.x = x;
@@ -1016,9 +1016,10 @@ namespace FlutterBinding.UI
                 double k = 1.0 - t;
                 return Radius.elliptical(a.x * k, a.y * k);
             }
+
             return Radius.elliptical(
-              Lerp.lerpDouble(a.x, b.x, t),
-              Lerp.lerpDouble(a.y, b.y, t));
+                Lerp.lerpDouble(a.x, b.x, t),
+                Lerp.lerpDouble(a.y, b.y, t));
         }
 
         public static bool operator ==(Radius radius, Object other)
@@ -1037,9 +1038,10 @@ namespace FlutterBinding.UI
 
         public String toString()
         {
-            return x == y ? $"Radius.circular({x.toStringAsFixed(1)})" :
-                            $"Radius.elliptical({x.toStringAsFixed(1)}, " +
-                            $"{y.toStringAsFixed(1)})";
+            return x == y
+                ? $"Radius.circular({x.toStringAsFixed(1)})"
+                : $"Radius.elliptical({x.toStringAsFixed(1)}, " +
+                $"{y.toStringAsFixed(1)})";
         }
     }
 
@@ -1053,23 +1055,24 @@ namespace FlutterBinding.UI
 
         /// Construct a rounded rectangle from its left, top, right, and bottom edges,
         /// and the same radii along its horizontal axis and its vertical axis.
-        public static RRect fromLTRBXY(double left, double top, double right, double bottom,
-                         double radiusX, double radiusY)
+        public static RRect fromLTRBXY(
+            double left, double top, double right, double bottom,
+            double radiusX, double radiusY)
         {
             var list = new List<double>(_kDataSize)
             {
                 left,
-              top,
-              right,
-              bottom,
-             radiusX,
-              radiusY,
-              radiusX,
-              radiusY,
-             radiusX,
-             radiusY,
-             radiusX,
-              radiusY,
+                top,
+                right,
+                bottom,
+                radiusX,
+                radiusY,
+                radiusX,
+                radiusY,
+                radiusX,
+                radiusY,
+                radiusX,
+                radiusY,
             };
 
             return new RRect(list);
@@ -1077,23 +1080,24 @@ namespace FlutterBinding.UI
 
         /// Construct a rounded rectangle from its left, top, right, and bottom edges,
         /// and the same radius in each corner.
-        public static RRect fromLTRBR(double left, double top, double right, double bottom,
-                        Radius radius)
+        public static RRect fromLTRBR(
+            double left, double top, double right, double bottom,
+            Radius radius)
         {
             var list = new List<double>(_kDataSize)
             {
-              left,
-              top,
-             right,
-              bottom,
-              radius.x,
-              radius.y,
-              radius.x,
-              radius.y,
-              radius.x,
-              radius.y,
-              radius.x,
-              radius.y
+                left,
+                top,
+                right,
+                bottom,
+                radius.x,
+                radius.y,
+                radius.x,
+                radius.y,
+                radius.x,
+                radius.y,
+                radius.x,
+                radius.y
             };
             return new RRect(list);
         }
@@ -1104,18 +1108,18 @@ namespace FlutterBinding.UI
         {
             var list = new List<double>(_kDataSize)
             {
-               rect.left,
-              rect.top,
-              rect.right,
-              rect.bottom,
-              radiusX,
-              radiusY,
-              radiusX,
-              radiusY,
-              radiusX,
-              radiusY,
-              radiusX,
-              radiusY
+                rect.left,
+                rect.top,
+                rect.right,
+                rect.bottom,
+                radiusX,
+                radiusY,
+                radiusX,
+                radiusY,
+                radiusX,
+                radiusY,
+                radiusX,
+                radiusY
             };
             return new RRect(list);
         }
@@ -1126,18 +1130,18 @@ namespace FlutterBinding.UI
         {
             var list = new List<double>(_kDataSize)
             {
-               rect.left,
-              rect.top,
-              rect.right,
-              rect.bottom,
-              radius.x,
-              radius.y,
-              radius.x,
-              radius.y,
-              radius.x,
-              radius.y,
-              radius.x,
-              radius.y
+                rect.left,
+                rect.top,
+                rect.right,
+                rect.bottom,
+                radius.x,
+                radius.y,
+                radius.x,
+                radius.y,
+                radius.x,
+                radius.y,
+                radius.x,
+                radius.y
             };
             return new RRect(list);
         }
@@ -1147,14 +1151,14 @@ namespace FlutterBinding.UI
         ///
         /// The corner radii default to [Radius.zero], i.e. right-angled corners.
         public static RRect fromLTRBAndCorners(
-          double left,
-          double top,
-          double right,
-          double bottom,
-          Radius topLeft = null,
-          Radius topRight = null,
-          Radius bottomRight = null,
-          Radius bottomLeft = null)
+            double left,
+            double top,
+            double right,
+            double bottom,
+            Radius topLeft = null,
+            Radius topRight = null,
+            Radius bottomRight = null,
+            Radius bottomLeft = null)
         {
             if (topLeft == null)
                 topLeft = Radius.zero;
@@ -1171,19 +1175,19 @@ namespace FlutterBinding.UI
 
             var list = new List<double>(_kDataSize)
             {
-               left,
-              top,
-              right,
-              bottom,
-              topLeft.x,
-              topLeft.y,
-              topRight.x,
-              topRight.y,
-              bottomRight.x,
-              bottomRight.y,
-              bottomLeft.x,
-              bottomLeft.y
-        };
+                left,
+                top,
+                right,
+                bottom,
+                topLeft.x,
+                topLeft.y,
+                topRight.x,
+                topRight.y,
+                bottomRight.x,
+                bottomRight.y,
+                bottomLeft.x,
+                bottomLeft.y
+            };
             return new RRect(list);
         }
 
@@ -1192,11 +1196,11 @@ namespace FlutterBinding.UI
         ///
         /// The corner radii default to [Radius.zero], i.e. right-angled corners
         public static RRect fromRectAndCorners(
-          Rect rect,
+            Rect rect,
             Radius topLeft = null,
-          Radius topRight = null,
-          Radius bottomRight = null,
-          Radius bottomLeft = null)
+            Radius topRight = null,
+            Radius bottomRight = null,
+            Radius bottomLeft = null)
         {
             if (topLeft == null)
                 topLeft = Radius.zero;
@@ -1295,26 +1299,26 @@ namespace FlutterBinding.UI
         public RRect shift(Offset offset)
         {
             return RRect.fromLTRBAndCorners(
-              _value[0] + offset.dx,
-              _value[1] + offset.dy,
-              _value[2] + offset.dx,
-              _value[3] + offset.dy,
-              topLeft: Radius.elliptical(
-                _value[4],
-                _value[5]
-              ),
-              topRight: Radius.elliptical(
-                _value[6],
-                _value[7]
-              ),
-              bottomRight: Radius.elliptical(
-                _value[8],
-                _value[9]
-              ),
-              bottomLeft: Radius.elliptical(
-                _value[10],
-                _value[11]
-              )
+                _value[0] + offset.dx,
+                _value[1] + offset.dy,
+                _value[2] + offset.dx,
+                _value[3] + offset.dy,
+                topLeft: Radius.elliptical(
+                    _value[4],
+                    _value[5]
+                ),
+                topRight: Radius.elliptical(
+                    _value[6],
+                    _value[7]
+                ),
+                bottomRight: Radius.elliptical(
+                    _value[8],
+                    _value[9]
+                ),
+                bottomLeft: Radius.elliptical(
+                    _value[10],
+                    _value[11]
+                )
             );
         }
 
@@ -1323,26 +1327,26 @@ namespace FlutterBinding.UI
         public RRect inflate(double delta)
         {
             return RRect.fromLTRBAndCorners(
-              _value[0] - delta,
-              _value[1] - delta,
-              _value[2] + delta,
-              _value[3] + delta,
-              topLeft: Radius.elliptical(
-                _value[4] + delta,
-                _value[5] + delta
-              ),
-              topRight: Radius.elliptical(
-                _value[6] + delta,
-                _value[7] + delta
-              ),
-              bottomRight: Radius.elliptical(
-                _value[8] + delta,
-                _value[9] + delta
-              ),
-              bottomLeft: Radius.elliptical(
-                _value[10] + delta,
-                _value[11] + delta
-              )
+                _value[0] - delta,
+                _value[1] - delta,
+                _value[2] + delta,
+                _value[3] + delta,
+                topLeft: Radius.elliptical(
+                    _value[4] + delta,
+                    _value[5] + delta
+                ),
+                topRight: Radius.elliptical(
+                    _value[6] + delta,
+                    _value[7] + delta
+                ),
+                bottomRight: Radius.elliptical(
+                    _value[8] + delta,
+                    _value[9] + delta
+                ),
+                bottomLeft: Radius.elliptical(
+                    _value[10] + delta,
+                    _value[11] + delta
+                )
             );
         }
 
@@ -1374,13 +1378,14 @@ namespace FlutterBinding.UI
                 double bottomRadius = Math.Max(brRadiusY, blRadiusY);
 
                 return Rect.fromLTRB(
-                  left + leftRadius * kInsetFactor,
-                  top + topRadius * kInsetFactor,
-                  right - rightRadius * kInsetFactor,
-                  bottom - bottomRadius * kInsetFactor
+                    left + leftRadius * kInsetFactor,
+                    top + topRadius * kInsetFactor,
+                    right - rightRadius * kInsetFactor,
+                    bottom - bottomRadius * kInsetFactor
                 );
             }
         }
+
         /// The rectangle that would be formed using the axis-aligned intersection of
         /// the sides of the rectangle, i.e., the rectangle formed from the
         /// inner-most centers of the ellipses that form the corners. This is the
@@ -1396,10 +1401,10 @@ namespace FlutterBinding.UI
                 double topRadius = Math.Max(tlRadiusY, trRadiusY);
                 double bottomRadius = Math.Max(brRadiusY, blRadiusY);
                 return Rect.fromLTRB(
-                  left + leftRadius,
-                  top + topRadius,
-                  right - rightRadius,
-                  bottom - bottomRadius
+                    left + leftRadius,
+                    top + topRadius,
+                    right - rightRadius,
+                    bottom - bottomRadius
                 );
             }
         }
@@ -1415,10 +1420,10 @@ namespace FlutterBinding.UI
                 double topRadius = Math.Max(tlRadiusY, trRadiusY);
                 double bottomRadius = Math.Max(brRadiusY, blRadiusY);
                 return Rect.fromLTRB(
-                  left,
-                  top + topRadius,
-                  right,
-                  bottom - bottomRadius
+                    left,
+                    top + topRadius,
+                    right,
+                    bottom - bottomRadius
                 );
             }
         }
@@ -1434,10 +1439,10 @@ namespace FlutterBinding.UI
                 double leftRadius = Math.Max(blRadiusX, tlRadiusX);
                 double rightRadius = Math.Max(trRadiusX, brRadiusX);
                 return Rect.fromLTRB(
-                  left + leftRadius,
-                  top,
-                  right - rightRadius,
-                  bottom
+                    left + leftRadius,
+                    top,
+                    right - rightRadius,
+                    bottom
                 );
             }
         }
@@ -1452,24 +1457,24 @@ namespace FlutterBinding.UI
         /// Whether this rounded rectangle is a simple rectangle with zero
         /// corner radii.
         public bool isRect => (tlRadiusX == 0.0 || tlRadiusY == 0.0) &&
-           (trRadiusX == 0.0 || trRadiusY == 0.0) &&
-           (blRadiusX == 0.0 || blRadiusY == 0.0) &&
-           (brRadiusX == 0.0 || brRadiusY == 0.0);
+            (trRadiusX == 0.0 || trRadiusY == 0.0) &&
+            (blRadiusX == 0.0 || blRadiusY == 0.0) &&
+            (brRadiusX == 0.0 || brRadiusY == 0.0);
 
 
         /// Whether this rounded rectangle has a side with no straight section.
         public bool isStadium => tlRadius == trRadius
-        && trRadius == brRadius
-        && brRadius == blRadius
-        && (width <= 2.0 * tlRadiusX || height <= 2.0 * tlRadiusY);
+            && trRadius == brRadius
+            && brRadius == blRadius
+            && (width <= 2.0 * tlRadiusX || height <= 2.0 * tlRadiusY);
 
 
         /// Whether this rounded rectangle has no side with a straight section.
         public bool isEllipse => tlRadius == trRadius
-        && trRadius == brRadius
-        && brRadius == blRadius
-        && width <= 2.0 * tlRadiusX
-        && height <= 2.0 * tlRadiusY;
+            && trRadius == brRadius
+            && brRadius == blRadius
+            && width <= 2.0 * tlRadiusX
+            && height <= 2.0 * tlRadiusY;
 
         /// Whether this rounded rectangle would draw as a circle.
         public bool isCircle => width == height && isEllipse;
@@ -1547,32 +1552,32 @@ namespace FlutterBinding.UI
             if (point.dx < left + _scaled.tlRadiusX &&
                 point.dy < top + _scaled.tlRadiusY)
             {
-                x = point.dx - left - _scaled.tlRadiusX;
-                y = point.dy - top - _scaled.tlRadiusY;
+                x       = point.dx - left - _scaled.tlRadiusX;
+                y       = point.dy - top - _scaled.tlRadiusY;
                 radiusX = _scaled.tlRadiusX;
                 radiusY = _scaled.tlRadiusY;
             }
             else if (point.dx > right - _scaled.trRadiusX &&
-                     point.dy < top + _scaled.trRadiusY)
+                point.dy < top + _scaled.trRadiusY)
             {
-                x = point.dx - right + _scaled.trRadiusX;
-                y = point.dy - top - _scaled.trRadiusY;
+                x       = point.dx - right + _scaled.trRadiusX;
+                y       = point.dy - top - _scaled.trRadiusY;
                 radiusX = _scaled.trRadiusX;
                 radiusY = _scaled.trRadiusY;
             }
             else if (point.dx > right - _scaled.brRadiusX &&
-                     point.dy > bottom - _scaled.brRadiusY)
+                point.dy > bottom - _scaled.brRadiusY)
             {
-                x = point.dx - right + _scaled.brRadiusX;
-                y = point.dy - bottom + _scaled.brRadiusY;
+                x       = point.dx - right + _scaled.brRadiusX;
+                y       = point.dy - bottom + _scaled.brRadiusY;
                 radiusX = _scaled.brRadiusX;
                 radiusY = _scaled.brRadiusY;
             }
             else if (point.dx < left + _scaled.blRadiusX &&
-                     point.dy > bottom - _scaled.blRadiusY)
+                point.dy > bottom - _scaled.blRadiusY)
             {
-                x = point.dx - left - _scaled.blRadiusX;
-                y = point.dy - bottom + _scaled.blRadiusY;
+                x       = point.dx - left - _scaled.blRadiusX;
+                y       = point.dy - bottom + _scaled.blRadiusY;
                 radiusX = _scaled.blRadiusX;
                 radiusY = _scaled.blRadiusY;
             }
@@ -1611,50 +1616,61 @@ namespace FlutterBinding.UI
                 return null;
             if (a == null)
             {
-                return _fromList(new List<double> {
-                  b.left * t,
-                  b.top * t,
-                  b.right * t,
-                  b.bottom * t,
-                  b.tlRadiusX * t,
-                  b.tlRadiusY * t,
-                  b.trRadiusX * t,
-                  b.trRadiusY * t,
-                  b.brRadiusX * t,
-                  b.brRadiusY * t,
-                  b.blRadiusX * t,
-                  b.blRadiusY * t});
+                return _fromList(
+                    new List<double>
+                    {
+                        b.left * t,
+                        b.top * t,
+                        b.right * t,
+                        b.bottom * t,
+                        b.tlRadiusX * t,
+                        b.tlRadiusY * t,
+                        b.trRadiusX * t,
+                        b.trRadiusY * t,
+                        b.brRadiusX * t,
+                        b.brRadiusY * t,
+                        b.blRadiusX * t,
+                        b.blRadiusY * t
+                    });
             }
+
             if (b == null)
             {
                 double k = 1.0 - t;
-                return _fromList(new List<double> {
-                  a.left * k,
-                  a.top * k,
-                  a.right * k,
-                  a.bottom * k,
-                  a.tlRadiusX * k,
-                  a.tlRadiusY * k,
-                  a.trRadiusX * k,
-                  a.trRadiusY * k,
-                  a.brRadiusX * k,
-                  a.brRadiusY * k,
-                  a.blRadiusX * k,
-                  a.blRadiusY * k});
+                return _fromList(
+                    new List<double>
+                    {
+                        a.left * k,
+                        a.top * k,
+                        a.right * k,
+                        a.bottom * k,
+                        a.tlRadiusX * k,
+                        a.tlRadiusY * k,
+                        a.trRadiusX * k,
+                        a.trRadiusY * k,
+                        a.brRadiusX * k,
+                        a.brRadiusY * k,
+                        a.blRadiusX * k,
+                        a.blRadiusY * k
+                    });
             }
-            return RRect._fromList(new List<double> {
-          Lerp.lerpDouble(a.left, b.left, t),
-          Lerp.lerpDouble(a.top, b.top, t),
-          Lerp.lerpDouble(a.right, b.right, t),
-          Lerp.lerpDouble(a.bottom, b.bottom, t),
-          Lerp.lerpDouble(a.tlRadiusX, b.tlRadiusX, t),
-          Lerp.lerpDouble(a.tlRadiusY, b.tlRadiusY, t),
-          Lerp.lerpDouble(a.trRadiusX, b.trRadiusX, t),
-          Lerp.lerpDouble(a.trRadiusY, b.trRadiusY, t),
-          Lerp.lerpDouble(a.brRadiusX, b.brRadiusX, t),
-          Lerp.lerpDouble(a.brRadiusY, b.brRadiusY, t),
-          Lerp.lerpDouble(a.blRadiusX, b.blRadiusX, t),
-          Lerp.lerpDouble(a.blRadiusY, b.blRadiusY, t)});
+
+            return RRect._fromList(
+                new List<double>
+                {
+                    Lerp.lerpDouble(a.left, b.left, t),
+                    Lerp.lerpDouble(a.top, b.top, t),
+                    Lerp.lerpDouble(a.right, b.right, t),
+                    Lerp.lerpDouble(a.bottom, b.bottom, t),
+                    Lerp.lerpDouble(a.tlRadiusX, b.tlRadiusX, t),
+                    Lerp.lerpDouble(a.tlRadiusY, b.tlRadiusY, t),
+                    Lerp.lerpDouble(a.trRadiusX, b.trRadiusX, t),
+                    Lerp.lerpDouble(a.trRadiusY, b.trRadiusY, t),
+                    Lerp.lerpDouble(a.brRadiusX, b.brRadiusX, t),
+                    Lerp.lerpDouble(a.brRadiusY, b.brRadiusY, t),
+                    Lerp.lerpDouble(a.blRadiusX, b.blRadiusX, t),
+                    Lerp.lerpDouble(a.blRadiusY, b.blRadiusY, t)
+                });
         }
 
         public static bool operator ==(RRect rrect, Object other)
@@ -1669,6 +1685,7 @@ namespace FlutterBinding.UI
                 if (rrect._value[i] != typedOther._value[i])
                     return false;
             }
+
             return true;
         }
 
@@ -1679,9 +1696,9 @@ namespace FlutterBinding.UI
         public String toString()
         {
             String rect = $"{left.toStringAsFixed(1)}, " +
-                                $"{top.toStringAsFixed(1)}, " +
-                                $"{right.toStringAsFixed(1)}, " +
-                                $"{bottom.toStringAsFixed(1)}";
+                $"{top.toStringAsFixed(1)}, " +
+                $"{right.toStringAsFixed(1)}, " +
+                $"{bottom.toStringAsFixed(1)}";
             if (tlRadius == trRadius &&
                 trRadius == brRadius &&
                 brRadius == blRadius)
@@ -1690,13 +1707,14 @@ namespace FlutterBinding.UI
                     return $"RRect.fromLTRBR({rect}, {tlRadius.x.toStringAsFixed(1)})";
                 return $"RRect.fromLTRBXY({rect}, {tlRadius.x.toStringAsFixed(1)}, {tlRadius.y.toStringAsFixed(1)})";
             }
+
             return "RRect.fromLTRBAndCorners(" +
-                     $"{rect}, " +
-                     $"topLeft: {tlRadius}, " +
-                     $"topRight: {trRadius}, " +
-                     $"bottomRight: {brRadius}, " +
-                     $"bottomLeft: {blRadius}" +
-                   ")";
+                $"{rect}, " +
+                $"topLeft: {tlRadius}, " +
+                $"topRight: {trRadius}, " +
+                $"bottomRight: {brRadius}, " +
+                $"bottomLeft: {blRadius}" +
+                ")";
         }
     }
 
@@ -1758,12 +1776,13 @@ namespace FlutterBinding.UI
         /// (which are computed each time this constructor is called) and reuse them
         /// over multiple [RSTransform] objects, it may be more efficient to directly
         /// use the more direct [new RSTransform] constructor instead.
-        public static RSTransform fromComponents(double rotation = 0.0,
-          double scale = 0.0,
-          double anchorX = 0.0,
-          double anchorY = 0.0,
-          double translateX = 0.0,
-          double translateY = 0.0
+        public static RSTransform fromComponents(
+            double rotation = 0.0,
+            double scale = 0.0,
+            double anchorX = 0.0,
+            double anchorY = 0.0,
+            double translateX = 0.0,
+            double translateY = 0.0
         )
         {
             double scos = Math.Cos(rotation) * scale;

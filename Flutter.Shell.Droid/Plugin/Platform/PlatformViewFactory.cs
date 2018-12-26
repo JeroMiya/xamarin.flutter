@@ -26,7 +26,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
          *             argument passed to the constructor. This is null if createArgsCodec was null, or no arguments were
          *             sent from the Flutter app.
          */
-        public abstract IPlatformView Create(Context context, int viewId, Object args);
+        public abstract IPlatformView Create(Context context, int viewId, object args);
 
         /**
          * Returns the codec to be used for decoding the args parameter of {@link #create}.

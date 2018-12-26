@@ -8,7 +8,6 @@ using static FlutterBinding.Flow.Helper;
 
 namespace FlutterBinding.Flow
 {
-
     public abstract class Texture
     {
         protected Texture(ulong id)
@@ -34,7 +33,6 @@ namespace FlutterBinding.Flow
         }
 
         private ulong id_ = new ulong();
-
     }
 
     public class TextureRegistry
@@ -78,5 +76,4 @@ namespace FlutterBinding.Flow
 
         private SortedDictionary<long, Texture> mapping_ = new SortedDictionary<long, Texture>();
     }
-
 }

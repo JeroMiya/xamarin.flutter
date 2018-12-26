@@ -59,6 +59,7 @@ namespace FlutterBinding.Engine
         public static TimePoint Now() => DateTime.Now;
         public static TimePoint Min() => DateTime.MinValue;
         public static TimePoint Max() => DateTime.MaxValue;
+
         public static TimePoint FromEpochDelta(TimeDelta ticks)
         {
             return Epoch + ticks;

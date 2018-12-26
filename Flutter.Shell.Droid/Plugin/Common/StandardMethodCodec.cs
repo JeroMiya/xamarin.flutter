@@ -1,8 +1,4 @@
-﻿using FlutterBinding.Engine;
-using Java.Lang;
-using Java.Nio;
-
-namespace Flutter.Shell.Droid.Plugin.Common
+﻿namespace Flutter.Shell.Droid.Plugin.Common
 {
     /**
      * A {@link MethodCodec} using the Flutter standard binary encoding.
@@ -17,7 +13,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
     public sealed class StandardMethodCodec : IMethodCodec
     {
         public static readonly StandardMethodCodec Instance = new StandardMethodCodec(StandardMessageCodec.Instance);
-        private StandardMessageCodec _messageCodec;
+        private readonly StandardMessageCodec _messageCodec;
 
         /**
          * Creates a new method codec based on the specified message codec.

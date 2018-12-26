@@ -12,6 +12,7 @@ using FlutterBinding.Extensions;
 using Math = System.Math;
 using Matrix = Android.Opengl.Matrix;
 using Rect = Android.Graphics.Rect;
+
 // ReSharper disable All
 
 namespace Flutter.Shell.Droid.View
@@ -99,10 +100,10 @@ namespace Flutter.Shell.Droid.View
         public AccessibilityBridge(FlutterView owner)
         {
             //assert owner != null;
-            _owner = owner;
-            _objects = new Dictionary<int, SemanticsObject>();
+            _owner                      = owner;
+            _objects                    = new Dictionary<int, SemanticsObject>();
             _customAccessibilityActions = new Dictionary<int, CustomAccessibilityAction>();
-            _previousRoutes = new List<int>();
+            _previousRoutes             = new List<int>();
             _flutterAccessibilityChannel = new BasicMessageChannel<object>(
                 owner,
                 "flutter/accessibility",
@@ -146,7 +147,7 @@ namespace Flutter.Shell.Droid.View
             }
 
             result.PackageName = _owner.Context.PackageName;
-            result.ClassName = "android.view.View";
+            result.ClassName   = "android.view.View";
             result.SetSource(_owner, virtualViewId);
             result.Focusable = @object.IsFocusable;
             if (_inputFocusedObject != null)
@@ -161,7 +162,7 @@ namespace Flutter.Shell.Droid.View
 
             if (@object.HasFlag(Flag.IsTextField))
             {
-                result.Password = @object.HasFlag(Flag.IsObscured);
+                result.Password  = @object.HasFlag(Flag.IsObscured);
                 result.ClassName = "android.widget.EditText";
                 if (Build.VERSION.SdkInt >= BuildVersionCodes.JellyBeanMr2)
                 {
@@ -275,15 +276,16 @@ namespace Flutter.Shell.Droid.View
 
             result.SetBoundsInScreen(bounds);
             result.VisibleToUser = true;
-            result.Enabled = !@object.HasFlag(Flag.HasEnabledState) || @object.HasFlag(Flag.IsEnabled);
+            result.Enabled       = !@object.HasFlag(Flag.HasEnabledState) || @object.HasFlag(Flag.IsEnabled);
 
             if (@object.HasAction(AccessibilityBridgeAction.Tap))
             {
                 if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop && @object.onTapOverride != null)
                 {
-                    result.ActionList.Add(new AccessibilityNodeInfo.AccessibilityAction(
-                        (int)AccessibilityNodeInfo.AccessibilityAction.ActionClick,
-                        new Java.Lang.String(@object.onTapOverride.Hint)));
+                    result.ActionList.Add(
+                        new AccessibilityNodeInfo.AccessibilityAction(
+                            (int)AccessibilityNodeInfo.AccessibilityAction.ActionClick,
+                            new Java.Lang.String(@object.onTapOverride.Hint)));
                     result.Clickable = true;
                 }
                 else
@@ -297,9 +299,10 @@ namespace Flutter.Shell.Droid.View
             {
                 if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop && @object.onLongPressOverride != null)
                 {
-                    result.ActionList.Add(new AccessibilityNodeInfo.AccessibilityAction(
-                        (int)AccessibilityNodeInfo.AccessibilityAction.ActionLongClick,
-                        new Java.Lang.String(@object.onLongPressOverride.Hint)));
+                    result.ActionList.Add(
+                        new AccessibilityNodeInfo.AccessibilityAction(
+                            (int)AccessibilityNodeInfo.AccessibilityAction.ActionLongClick,
+                            new Java.Lang.String(@object.onLongPressOverride.Hint)));
                     result.LongClickable = true;
                 }
                 else
@@ -356,7 +359,6 @@ namespace Flutter.Shell.Droid.View
                 {
                     result.ActionList.Add(AccessibilityNodeInfo.AccessibilityAction.ActionScrollBackward);
                 }
-
             }
 
             if (@object.HasFlag(Flag.IsLiveRegion) && Build.VERSION.SdkInt > BuildVersionCodes.JellyBeanMr2)
@@ -370,7 +372,7 @@ namespace Flutter.Shell.Droid.View
             result.Checkable = (hasCheckedState || hasToggledState);
             if (hasCheckedState)
             {
-                result.Checked = @object.HasFlag(Flag.IsChecked);
+                result.Checked            = @object.HasFlag(Flag.IsChecked);
                 result.ContentDescription = @object.GetValueLabelHint();
                 if (@object.HasFlag(Flag.IsInMutuallyExclusiveGroup))
                     result.ClassName = "android.widget.RadioButton";
@@ -379,8 +381,8 @@ namespace Flutter.Shell.Droid.View
             }
             else if (hasToggledState)
             {
-                result.Checked = @object.HasFlag(Flag.IsToggled);
-                result.ClassName = "android.widget.Switch";
+                result.Checked            = @object.HasFlag(Flag.IsToggled);
+                result.ClassName          = "android.widget.Switch";
                 result.ContentDescription = @object.GetValueLabelHint();
             }
             else
@@ -566,13 +568,13 @@ namespace Flutter.Shell.Droid.View
                     && arguments.ContainsKey(AccessibilityNodeInfo.ActionArgumentSelectionEndInt);
                 if (hasSelection)
                 {
-                    selection["base"] = arguments.GetInt(AccessibilityNodeInfo.ActionArgumentSelectionStartInt);
+                    selection["base"]   = arguments.GetInt(AccessibilityNodeInfo.ActionArgumentSelectionStartInt);
                     selection["extent"] = arguments.GetInt(AccessibilityNodeInfo.ActionArgumentSelectionEndInt);
                 }
                 else
                 {
                     // Clear the selection
-                    selection["base"] = @object.TextSelectionExtent;
+                    selection["base"]   = @object.TextSelectionExtent;
                     selection["extent"] = @object.TextSelectionExtent;
                 }
 
@@ -631,48 +633,48 @@ namespace Flutter.Shell.Droid.View
             bool extendSelection = arguments.GetBoolean(AccessibilityNodeInfo.ActionArgumentExtendSelectionBoolean);
             switch (granularity)
             {
-                case MovementGranularity.Character:
-                    {
-                        if (forward && @object.HasAction(AccessibilityBridgeAction.MoveCursorForwardByCharacter))
-                        {
-                            _owner.DispatchSemanticsAction(
-                                virtualViewId,
-                                AccessibilityBridgeAction.MoveCursorForwardByCharacter,
-                                extendSelection);
-                            return true;
-                        }
+            case MovementGranularity.Character:
+            {
+                if (forward && @object.HasAction(AccessibilityBridgeAction.MoveCursorForwardByCharacter))
+                {
+                    _owner.DispatchSemanticsAction(
+                        virtualViewId,
+                        AccessibilityBridgeAction.MoveCursorForwardByCharacter,
+                        extendSelection);
+                    return true;
+                }
 
-                        if (!forward && @object.HasAction(AccessibilityBridgeAction.MoveCursorBackwardByCharacter))
-                        {
-                            _owner.DispatchSemanticsAction(
-                                virtualViewId,
-                                AccessibilityBridgeAction.MoveCursorBackwardByCharacter,
-                                extendSelection);
-                            return true;
-                        }
+                if (!forward && @object.HasAction(AccessibilityBridgeAction.MoveCursorBackwardByCharacter))
+                {
+                    _owner.DispatchSemanticsAction(
+                        virtualViewId,
+                        AccessibilityBridgeAction.MoveCursorBackwardByCharacter,
+                        extendSelection);
+                    return true;
+                }
 
-                        break;
-                    }
-                case MovementGranularity.Word:
-                    if (forward && @object.HasAction(AccessibilityBridgeAction.MoveCursorForwardByWord))
-                    {
-                        _owner.DispatchSemanticsAction(
-                            virtualViewId,
-                            AccessibilityBridgeAction.MoveCursorForwardByWord,
-                            extendSelection);
-                        return true;
-                    }
+                break;
+            }
+            case MovementGranularity.Word:
+                if (forward && @object.HasAction(AccessibilityBridgeAction.MoveCursorForwardByWord))
+                {
+                    _owner.DispatchSemanticsAction(
+                        virtualViewId,
+                        AccessibilityBridgeAction.MoveCursorForwardByWord,
+                        extendSelection);
+                    return true;
+                }
 
-                    if (!forward && @object.HasAction(AccessibilityBridgeAction.MoveCursorBackwardByWord))
-                    {
-                        _owner.DispatchSemanticsAction(
-                            virtualViewId,
-                            AccessibilityBridgeAction.MoveCursorBackwardByWord,
-                            extendSelection);
-                        return true;
-                    }
+                if (!forward && @object.HasAction(AccessibilityBridgeAction.MoveCursorBackwardByWord))
+                {
+                    _owner.DispatchSemanticsAction(
+                        virtualViewId,
+                        AccessibilityBridgeAction.MoveCursorBackwardByWord,
+                        extendSelection);
+                    return true;
+                }
 
-                    break;
+                break;
             }
 
             return false;
@@ -727,7 +729,7 @@ namespace Flutter.Shell.Droid.View
             {
                 action = new CustomAccessibilityAction
                 {
-                    Id = id,
+                    Id         = id,
                     ResourceId = id + firstResourceId
                 };
                 _customAccessibilityActions[id] = action;
@@ -750,7 +752,7 @@ namespace Flutter.Shell.Droid.View
             if (_objects.Count == 0)
                 return;
 
-            SemanticsObject newObject = GetRootObject().HitTest(new float[] { x, y, 0, 1 });
+            SemanticsObject newObject = GetRootObject().HitTest(new float[] {x, y, 0, 1});
             if (newObject != _hoveredObject)
             {
                 // sending ENTER before EXIT is how Android wants it
@@ -776,8 +778,8 @@ namespace Flutter.Shell.Droid.View
             {
                 CustomAccessibilityAction origAction = GetOrCreateAction(action.Id);
                 origAction.OverrideId = action.OverrideId;
-                origAction.Label = action.Label;
-                origAction.Hint = action.Hint;
+                origAction.Label      = action.Label;
+                origAction.Hint       = action.Hint;
             }
         }
 
@@ -799,7 +801,6 @@ namespace Flutter.Shell.Droid.View
 
                 if (@object.HadPreviousConfig)
                     updated.Add(@object);
-
             }
 
             List<SemanticsObject> visitedObjects = new List<SemanticsObject>();
@@ -818,7 +819,7 @@ namespace Flutter.Shell.Droid.View
                     _decorView.GetWindowVisibleDisplayFrame(visibleFrame);
                     if (!_lastLeftFrameInset.Equals(visibleFrame.Left))
                     {
-                        rootObject.globalGeometryDirty = true;
+                        rootObject.globalGeometryDirty   = true;
                         rootObject.inverseTransformDirty = true;
                     }
 
@@ -840,6 +841,7 @@ namespace Flutter.Shell.Droid.View
                     lastAdded = semanticsObject;
                 }
             }
+
             if (lastAdded == null && newRoutes.Count > 0)
             {
                 lastAdded = newRoutes[newRoutes.Count - 1];
@@ -903,19 +905,19 @@ namespace Flutter.Shell.Droid.View
                     }
                     else
                     {
-                        max -= @object.ScrollExtentMin;
+                        max      -= @object.ScrollExtentMin;
                         position -= @object.ScrollExtentMin;
                     }
 
                     if (@object.HadAction(AccessibilityBridgeAction.ScrollUp) || @object.HadAction(AccessibilityBridgeAction.ScrollDown))
                     {
-                        @event.ScrollY = (int)position;
+                        @event.ScrollY    = (int)position;
                         @event.MaxScrollY = (int)max;
                     }
                     else if (@object.HadAction(AccessibilityBridgeAction.ScrollLeft)
                         || @object.HadAction(AccessibilityBridgeAction.ScrollRight))
                     {
-                        @event.ScrollX = (int)position;
+                        @event.ScrollX    = (int)position;
                         @event.MaxScrollX = (int)max;
                     }
 
@@ -996,10 +998,11 @@ namespace Flutter.Shell.Droid.View
                         || @object.Previous.TextSelectionExtent != @object.TextSelectionExtent)
                     {
                         AccessibilityEvent selectionEvent = ObtainAccessibilityEvent(
-                            @object.Id, EventTypes.ViewTextSelectionChanged);
+                            @object.Id,
+                            EventTypes.ViewTextSelectionChanged);
                         selectionEvent.Text.Add(new Java.Lang.String(newValue));
                         selectionEvent.FromIndex = @object.TextSelectionBase;
-                        selectionEvent.ToIndex = @object.TextSelectionExtent;
+                        selectionEvent.ToIndex   = @object.TextSelectionExtent;
                         selectionEvent.ItemCount = newValue.Length;
                         SendAccessibilityEvent(selectionEvent);
                     }
@@ -1038,7 +1041,7 @@ namespace Flutter.Shell.Droid.View
             }
 
             e.RemovedCount = oldIndex - firstDifference + 1;
-            e.AddedCount = newIndex - firstDifference + 1;
+            e.AddedCount   = newIndex - firstDifference + 1;
 
             return e;
         }
@@ -1090,32 +1093,32 @@ namespace Flutter.Shell.Droid.View
 
             switch (type)
             {
-                case "announce":
-                    _owner.AnnounceForAccessibility((string)data["message"]);
-                    break;
-                case "longPress":
-                    {
-                        int nodeId = (int)annotatedEvent["nodeId"];
+            case "announce":
+                _owner.AnnounceForAccessibility((string)data["message"]);
+                break;
+            case "longPress":
+            {
+                int nodeId = (int)annotatedEvent["nodeId"];
 
-                        SendAccessibilityEvent(nodeId, EventTypes.ViewLongClicked);
-                        break;
-                    }
-                case "tap":
-                    {
-                        int nodeId = (int)annotatedEvent["nodeId"];
+                SendAccessibilityEvent(nodeId, EventTypes.ViewLongClicked);
+                break;
+            }
+            case "tap":
+            {
+                int nodeId = (int)annotatedEvent["nodeId"];
 
-                        SendAccessibilityEvent(nodeId, EventTypes.ViewClicked);
-                        break;
-                    }
-                case "tooltip":
-                    {
-                        AccessibilityEvent e = ObtainAccessibilityEvent(
-                            ROOT_NODE_ID,
-                            EventTypes.WindowStateChanged);
-                        e.Text.Add(new Java.Lang.String((string)data["message"]));
-                        SendAccessibilityEvent(e);
-                        break;
-                    }
+                SendAccessibilityEvent(nodeId, EventTypes.ViewClicked);
+                break;
+            }
+            case "tooltip":
+            {
+                AccessibilityEvent e = ObtainAccessibilityEvent(
+                    ROOT_NODE_ID,
+                    EventTypes.WindowStateChanged);
+                e.Text.Add(new Java.Lang.String((string)data["message"]));
+                SendAccessibilityEvent(e);
+                break;
+            }
             }
         }
 
@@ -1159,7 +1162,7 @@ namespace Flutter.Shell.Droid.View
                     _a11YFocusedObject.Id,
                     EventTypes.ViewAccessibilityFocusCleared);
             _a11YFocusedObject = null;
-            _hoveredObject = null;
+            _hoveredObject     = null;
             SendAccessibilityEvent(0, EventTypes.WindowContentChanged);
         }
 
@@ -1177,6 +1180,7 @@ namespace Flutter.Shell.Droid.View
             /// Resource id is the id of the custom action plus a minimum value so that the identifier
             /// does not collide with existing Android accessibility actions.
             public int ResourceId = -1;
+
             public int Id = -1;
             public AccessibilityBridgeAction OverrideId = AccessibilityBridgeAction.Unknown;
 
@@ -1187,7 +1191,6 @@ namespace Flutter.Shell.Droid.View
             public string Hint;
 
             public bool IsStandardAction => OverrideId != AccessibilityBridgeAction.Unknown;
-
         }
 
         /// Value is derived from ACTION_TYPE_MASK in AccessibilityNodeInfo.java
@@ -1336,47 +1339,47 @@ namespace Flutter.Shell.Droid.View
                 HadPreviousConfig = true;
                 Previous = new SemanticsParameter
                 {
-                    Value = Value,
-                    Label = Label,
-                    Flags = Flags,
-                    Actions = Actions,
-                    TextSelectionBase = TextSelectionBase,
+                    Value               = Value,
+                    Label               = Label,
+                    Flags               = Flags,
+                    Actions             = Actions,
+                    TextSelectionBase   = TextSelectionBase,
                     TextSelectionExtent = TextSelectionExtent,
-                    ScrollPosition = ScrollPosition,
-                    ScrollExtentMax = ScrollExtentMax,
-                    ScrollExtentMin = ScrollExtentMin
+                    ScrollPosition      = ScrollPosition,
+                    ScrollExtentMax     = ScrollExtentMax,
+                    ScrollExtentMin     = ScrollExtentMin
                 };
 
                 SemanticsParameter parameter = (SemanticsParameter)buffer;
 
-                Flags = parameter.Flags;
-                Actions = parameter.Actions;
-                TextSelectionBase = parameter.TextSelectionBase;
+                Flags               = parameter.Flags;
+                Actions             = parameter.Actions;
+                TextSelectionBase   = parameter.TextSelectionBase;
                 TextSelectionExtent = parameter.TextSelectionExtent;
-                ScrollChildren = parameter.ScrollChildren;
-                ScrollIndex = parameter.ScrollIndex;
-                ScrollPosition = parameter.ScrollPosition;
-                ScrollExtentMax = parameter.ScrollExtentMax;
-                ScrollExtentMin = parameter.ScrollExtentMin;
+                ScrollChildren      = parameter.ScrollChildren;
+                ScrollIndex         = parameter.ScrollIndex;
+                ScrollPosition      = parameter.ScrollPosition;
+                ScrollExtentMax     = parameter.ScrollExtentMax;
+                ScrollExtentMin     = parameter.ScrollExtentMin;
 
-                Label = parameter.Label;
-                Value = parameter.Value;
+                Label          = parameter.Label;
+                Value          = parameter.Value;
                 IncreasedValue = parameter.IncreasedValue;
                 DecreasedValue = parameter.DecreasedValue;
-                Hint = parameter.Hint;
-                TextDirection = parameter.TextDirection;
+                Hint           = parameter.Hint;
+                TextDirection  = parameter.TextDirection;
 
-                left = parameter.Left;
-                top = parameter.Top;
-                right = parameter.Right;
-                bottom = parameter.Bottom;
+                left      = parameter.Left;
+                top       = parameter.Top;
+                right     = parameter.Right;
+                bottom    = parameter.Bottom;
                 transform = parameter.Transform;
 
                 inverseTransformDirty = true;
-                globalGeometryDirty = true;
+                globalGeometryDirty   = true;
 
                 childrenInTraversalOrder = new FlutterSDK.List<SemanticsObject>();
-                childrenInHitTestOrder = new FlutterSDK.List<SemanticsObject>();
+                childrenInHitTestOrder   = new FlutterSDK.List<SemanticsObject>();
 
                 foreach (int id in parameter.ChildrenInTraversalOrder)
                 {
@@ -1607,7 +1610,7 @@ namespace Flutter.Shell.Droid.View
                 result[0] /= w;
                 result[1] /= w;
                 result[2] /= w;
-                result[3] = 0;
+                result[3] =  0;
             }
 
             private float Min(float a, float b, float c, float d)
@@ -1622,7 +1625,7 @@ namespace Flutter.Shell.Droid.View
 
             public string GetValueLabelHint()
             {
-                string[] array = { Value, Label, Hint };
+                string[] array = {Value, Label, Hint};
 
                 string line = string.Join(", ", array);
                 return string.IsNullOrWhiteSpace(line) ? null : line;

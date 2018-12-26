@@ -12,8 +12,8 @@ namespace FlutterBinding.Shell
     {
         public SkiaUnrefQueue(TaskRunner taskRunner, TimeDelta delay)
         {
-            _taskRunner = taskRunner;
-            _drainDelay = delay;
+            _taskRunner   = taskRunner;
+            _drainDelay   = delay;
             _drainPending = false;
         }
 
@@ -30,7 +30,7 @@ namespace FlutterBinding.Shell
                 if (!_drainPending)
                 {
                     _drainPending = true;
-                    _taskRunner.PostDelayedTask( Drain, _drainDelay);
+                    _taskRunner.PostDelayedTask(Drain, _drainDelay);
                 }
             }
         }
@@ -75,7 +75,7 @@ namespace FlutterBinding.Shell
         public SkiaGPUObject(TSkiaObjectType obj, SkiaUnrefQueue queue)
         {
             _object = obj;
-            _queue = queue;
+            _queue  = queue;
             //FML_DCHECK(queue_ && object_);
         }
 
@@ -106,6 +106,7 @@ namespace FlutterBinding.Shell
                 _object.Dispose();
                 _object = null;
             }
+
             _queue = null;
             //FML_DCHECK(object_ == nullptr);
         }
@@ -117,5 +118,4 @@ namespace FlutterBinding.Shell
 
         //FML_DISALLOW_COPY_AND_ASSIGN(SkiaGPUObject);
     };
-
 }

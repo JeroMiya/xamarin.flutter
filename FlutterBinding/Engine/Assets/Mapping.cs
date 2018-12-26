@@ -23,7 +23,7 @@ namespace FlutterBinding.Engine.Assets
         public FileMapping(string fd, Protection protection = Protection.Read)
         {
             _mapping = System.IO.File.ReadAllBytes(fd);
-            _size = _mapping?.Length ?? 0;
+            _size    = _mapping?.Length ?? 0;
         }
 
         public long GetSize() => _size;
@@ -63,7 +63,7 @@ namespace FlutterBinding.Engine.Assets
             _data = data;
             _size = size;
         }
-    
+
         public long GetSize() => _size;
         public byte[] GetMapping() => _data;
 

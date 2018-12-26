@@ -12,9 +12,7 @@
         //private static Charset UTF8 = Charset.forName("UTF8");
         public static readonly StringCodec Instance = new StringCodec();
 
-        private StringCodec()
-        {
-        }
+        private StringCodec() { }
 
         //@Override
         public object EncodeMessage(string message)

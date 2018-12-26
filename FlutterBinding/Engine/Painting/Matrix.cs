@@ -7,13 +7,14 @@ namespace FlutterBinding.Engine.Painting
     public class Matrix
     {
         // Mappings from SkMatrix-index to input-index.
-        static int[] kSkMatrixIndexToMatrix4Index = new int[] {
-                                                                    // clang-format off
-                                                                    0, 4, 12,
-                                                                    1, 5, 13,
-                                                                    3, 7, 15,
-                                                                    // clang-format on
-                                                                };
+        static int[] kSkMatrixIndexToMatrix4Index = new int[]
+        {
+            // clang-format off
+            0, 4, 12,
+            1, 5, 13,
+            3, 7, 15,
+            // clang-format on
+        };
 
         public static SKMatrix ToSkMatrix(List<float> matrix4)
         {
@@ -31,8 +32,8 @@ namespace FlutterBinding.Engine.Painting
                 else
                     sk_matrix.Values[i] = 0.0f;
             }
+
             return sk_matrix;
         }
-
     }
 }

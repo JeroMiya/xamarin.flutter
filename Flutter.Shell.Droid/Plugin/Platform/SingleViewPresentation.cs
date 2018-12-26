@@ -1,5 +1,4 @@
-﻿
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.Graphics;
 using Android.OS;
@@ -30,7 +29,6 @@ namespace Flutter.Shell.Droid.Plugin.Platform
     //@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     internal class SingleViewPresentation : Presentation
     {
-
         /*
          * When an embedded view is resized in Flutterverse we move the Android view to a new virtual display
          * that has the new size. This class keeps the presentation state that moves with the view to the presentation of
@@ -73,16 +71,16 @@ namespace Flutter.Shell.Droid.Plugin.Platform
          * platform view in the presentation's onCreate, and attach it.
          */
         public SingleViewPresentation(
-                Context outerContext,
-                Display display,
-                PlatformViewFactory viewFactory,
-                int viewId,
-                object createParams) : base(outerContext, display)
+            Context outerContext,
+            Display display,
+            PlatformViewFactory viewFactory,
+            int viewId,
+            object createParams) : base(outerContext, display)
         {
-            _viewFactory = viewFactory;
-            _viewId = viewId;
+            _viewFactory  = viewFactory;
+            _viewId       = viewId;
             _createParams = createParams;
-            _state = new PresentationState();
+            _state        = new PresentationState();
             Window.SetFlags(WindowManagerFlags.NotFocusable, WindowManagerFlags.NotFocusable);
         }
 
@@ -96,7 +94,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
         public SingleViewPresentation(Context outerContext, Display display, PresentationState state) : base(outerContext, display)
         {
             _viewFactory = null;
-            _state = state;
+            _state       = state;
             Window.SetFlags(WindowManagerFlags.NotFocusable, WindowManagerFlags.NotFocusable);
         }
 
@@ -108,14 +106,15 @@ namespace Flutter.Shell.Droid.Plugin.Platform
             {
                 _state.FakeWindowRootView = new FakeWindowViewGroup(Context);
             }
+
             if (_state.WindowManagerHandler == null)
             {
-                IWindowManager windowManagerDelegate = (IWindowManager)Context.GetSystemService(Context.WindowService);
+                var windowManagerDelegate = (IWindowManager)Context.GetSystemService(Context.WindowService);
                 _state.WindowManagerHandler = new WindowManagerHandler(windowManagerDelegate, _state.FakeWindowRootView);
             }
 
             _container = new FrameLayout(Context);
-            PresentationContext context = new PresentationContext(Context, _state.WindowManagerHandler);
+            var context = new PresentationContext(Context, _state.WindowManagerHandler);
 
             if (_state.View == null)
             {
@@ -160,16 +159,16 @@ namespace Flutter.Shell.Droid.Plugin.Platform
             public FakeWindowViewGroup(Context context) : base(context)
             {
                 _viewBounds = new Rect();
-                _childRect = new Rect();
+                _childRect  = new Rect();
             }
 
             //@Override
             protected override void OnLayout(bool changed, int l, int t, int r, int b)
             {
-                for (int i = 0; i < ChildCount; i++)
+                for (var i = 0; i < ChildCount; i++)
                 {
-                    Android.Views.View child = GetChildAt(i);
-                    WindowManagerLayoutParams @params = (WindowManagerLayoutParams)child.LayoutParameters;
+                    var child = GetChildAt(i);
+                    var @params = (WindowManagerLayoutParams)child.LayoutParameters;
                     _viewBounds.Set(l, t, r, b);
                     Gravity.Apply(
                         @params.Gravity,
@@ -186,11 +185,12 @@ namespace Flutter.Shell.Droid.Plugin.Platform
             //@Override
             protected override void OnMeasure(int widthMeasureSpec, int heightMeasureSpec)
             {
-                for (int i = 0; i < ChildCount; i++)
+                for (var i = 0; i < ChildCount; i++)
                 {
-                    Android.Views.View child = GetChildAt(i);
+                    var child = GetChildAt(i);
                     child.Measure(AtMost(widthMeasureSpec), AtMost(heightMeasureSpec));
                 }
+
                 base.OnMeasure(widthMeasureSpec, heightMeasureSpec);
             }
 
@@ -220,6 +220,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
                 {
                     return (Object)GetWindowManager();
                 }
+
                 return base.GetSystemService(name);
             }
 
@@ -255,37 +256,38 @@ namespace Flutter.Shell.Droid.Plugin.Platform
                 IWindowManager @delegate,
                 FakeWindowViewGroup fakeWindowViewGroup)
             {
-                _delegate = @delegate;
+                _delegate           = @delegate;
                 _fakeWindowRootView = fakeWindowViewGroup;
             }
 
             public IWindowManager GetWindowManager()
             {
-                Class @class = Class.FromType(typeof(IWindowManager));
+                var @class = Class.FromType(typeof(IWindowManager));
                 return (IWindowManager)Proxy.NewProxyInstance(
                     @class.ClassLoader,
-                    new[] { @class },
+                    new[] {@class},
                     this);
             }
 
             /// <inheritdoc />
-            public Java.Lang.Object Invoke(Java.Lang.Object proxy, Method method, Java.Lang.Object[] args)
+            public Object Invoke(Object proxy, Method method, Object[] args)
             {
                 switch (method.Name)
                 {
-                    case "addView":
-                        AddView(args);
-                        return null;
-                    case "removeView":
-                        RemoveView(args);
-                        return null;
-                    case "removeViewImmediate":
-                        RemoveViewImmediate(args);
-                        return null;
-                    case "updateViewLayout":
-                        UpdateViewLayout(args);
-                        return null;
+                case "addView":
+                    AddView(args);
+                    return null;
+                case "removeView":
+                    RemoveView(args);
+                    return null;
+                case "removeViewImmediate":
+                    RemoveViewImmediate(args);
+                    return null;
+                case "updateViewLayout":
+                    UpdateViewLayout(args);
+                    return null;
                 }
+
                 try
                 {
                     return method.Invoke((Object)_delegate, args);
@@ -303,8 +305,9 @@ namespace Flutter.Shell.Droid.Plugin.Platform
                     Log.Warn(TAG, "Embedded view called addView while detached from presentation");
                     return;
                 }
-                Android.Views.View view = (Android.Views.View)args[0];
-                WindowManagerLayoutParams layoutParams = (WindowManagerLayoutParams)args[1];
+
+                var view = (Android.Views.View)args[0];
+                var layoutParams = (WindowManagerLayoutParams)args[1];
                 _fakeWindowRootView.AddView(view, layoutParams);
             }
 
@@ -315,7 +318,8 @@ namespace Flutter.Shell.Droid.Plugin.Platform
                     Log.Warn(TAG, "Embedded view called removeView while detached from presentation");
                     return;
                 }
-                Android.Views.View view = (Android.Views.View)args[0];
+
+                var view = (Android.Views.View)args[0];
                 _fakeWindowRootView.RemoveView(view);
             }
 
@@ -326,7 +330,8 @@ namespace Flutter.Shell.Droid.Plugin.Platform
                     Log.Warn(TAG, "Embedded view called removeViewImmediate while detached from presentation");
                     return;
                 }
-                Android.Views.View view = (Android.Views.View)args[0];
+
+                var view = (Android.Views.View)args[0];
                 view.ClearAnimation();
                 _fakeWindowRootView.RemoveView(view);
             }
@@ -338,11 +343,11 @@ namespace Flutter.Shell.Droid.Plugin.Platform
                     Log.Warn(TAG, "Embedded view called updateViewLayout while detached from presentation");
                     return;
                 }
-                Android.Views.View view = (Android.Views.View)args[0];
-                WindowManagerLayoutParams layoutParams = (WindowManagerLayoutParams)args[1];
+
+                var view = (Android.Views.View)args[0];
+                var layoutParams = (WindowManagerLayoutParams)args[1];
                 _fakeWindowRootView.UpdateViewLayout(view, layoutParams);
             }
-
         }
     }
 }

@@ -11,21 +11,18 @@ using static FlutterBinding.Flow.RasterCache;
 
 namespace FlutterBinding.Flow
 {
-
     public class RasterCacheResult
     {
-        public RasterCacheResult()
-        {
-        }
+        public RasterCacheResult() { }
 
         public RasterCacheResult(SKImage image, SKRect logical_rect)
         {
-            this.image_ = image;
+            this.image_        = image;
             this.logical_rect_ = new SKRect(logical_rect.Left, logical_rect.Top, logical_rect.Right, logical_rect.Bottom);
         }
 
         public bool is_valid => image_ != null; //?? I'm not sure if this is right
-       
+
 
         //C++ TO C# CONVERTER WARNING: 'const' methods are not available in C#:
         //ORIGINAL LINE: void draw(SKCanvas& canvas, const SKPaint* paint = null) const
@@ -39,7 +36,7 @@ namespace FlutterBinding.Flow
         private SKImage image_;
         private SKRect logical_rect_;
     }
-    
+
     public class UniqueEntry : Entry
     {
         public UniqueEntry(uint value) => Value = value;
@@ -51,9 +48,9 @@ namespace FlutterBinding.Flow
     {
         public RasterCache(int threshold = 3)
         {
-            this.threshold_ = threshold;
+            this.threshold_           = threshold;
             this.checkerboard_images_ = false;
-            this.weak_factory_ = this;
+            this.weak_factory_        = this;
         }
 
         //C++ TO C# CONVERTER TODO TASK: The implementation of the following method could not be found:
@@ -63,7 +60,7 @@ namespace FlutterBinding.Flow
         {
             SKRect device_rect = new SKRect();
             SKMatrix.MapRect(ref ctm, out device_rect, ref rect);
-            var bounds = SKRectI.Round(device_rect);      
+            var bounds = SKRectI.Round(device_rect);
             return bounds;
         }
 
@@ -104,7 +101,7 @@ namespace FlutterBinding.Flow
             RasterCacheKey<UniqueEntry> cache_key = new RasterCacheKey<UniqueEntry>(new UniqueEntry(picture.UniqueId), transformation_matrix);
 
             Entry entry = picture_cache_.First(x => x.Equals(cache_key)).id(); // I used Linq, that aint going to be good for performance
-            entry.access_count = GlobalMembers.ClampSize(entry.access_count + 1, 0, threshold_);
+            entry.access_count    = GlobalMembers.ClampSize(entry.access_count + 1, 0, threshold_);
             entry.used_this_frame = true;
 
             if (entry.access_count < threshold_ || threshold_ == 0)
@@ -117,30 +114,37 @@ namespace FlutterBinding.Flow
             {
                 entry.image = GlobalMembers.RasterizePicture(picture, context, transformation_matrix, dst_color_space, checkerboard_images_);
             }
+
             return true;
         }
 
         public void Prepare(PrerollContext context, Layer layer, SKMatrix ctm)
         {
             RasterCacheKey<Layer> cache_key = new RasterCacheKey<Layer>(layer, ctm);
-            Entry entry = layer_cache_.First(x=>x == cache_key).id(); // I used Linq, that aint going to be good for performance
-         
-            entry.access_count = GlobalMembers.ClampSize(entry.access_count + 1, 0, threshold_);
+            Entry entry = layer_cache_.First(x => x == cache_key).id(); // I used Linq, that aint going to be good for performance
+
+            entry.access_count    = GlobalMembers.ClampSize(entry.access_count + 1, 0, threshold_);
             entry.used_this_frame = true;
             if (!entry.image.is_valid)
             {
-                entry.image = GlobalMembers.Rasterize(context.gr_context, ctm, context.dst_color_space, checkerboard_images_, layer.paint_bounds(), (SKCanvas canvas) =>
-                {
-                    Layer.PaintContext paintContext = new Layer.PaintContext(
-                        canvas, 
-                        null, 
-                        context.frame_time,
-                        context.engine_time,
-                        context.texture_registry, 
-                        context.raster_cache, 
-                        context.checkerboard_offscreen_layers);
-                    layer.Paint(paintContext);
-                });
+                entry.image = GlobalMembers.Rasterize(
+                    context.gr_context,
+                    ctm,
+                    context.dst_color_space,
+                    checkerboard_images_,
+                    layer.paint_bounds(),
+                    (SKCanvas canvas) =>
+                    {
+                        Layer.PaintContext paintContext = new Layer.PaintContext(
+                            canvas,
+                            null,
+                            context.frame_time,
+                            context.engine_time,
+                            context.texture_registry,
+                            context.raster_cache,
+                            context.checkerboard_offscreen_layers);
+                        layer.Paint(paintContext);
+                    });
             }
         }
 
@@ -150,7 +154,7 @@ namespace FlutterBinding.Flow
             var it = picture_cache_.First(x => x.Equals(cache_key));
             return it == picture_cache_.Last() ? new RasterCacheResult() : new RasterCacheResult(); // This aint right;
         }
-        
+
         public RasterCacheResult Get(Layer layer, SKMatrix ctm)
         {
             //RasterCacheKey<Layer> cache_key = new RasterCacheKey<Layer>(layer, ctm);
@@ -202,6 +206,7 @@ namespace FlutterBinding.Flow
                 {
                     dead.Add(cache[i]);
                 }
+
                 entry.used_this_frame = false;
             }
 
@@ -213,9 +218,8 @@ namespace FlutterBinding.Flow
 
         private readonly int threshold_ = new int();
         private List<RasterCacheKey<Entry>> picture_cache_ = new List<RasterCacheKey<Entry>>(); // = new PictureRasterCacheKey.Map<Entry>();
-        private List<RasterCacheKey<Layer>> layer_cache_ = new List<RasterCacheKey<Layer>>(); // new LayerRasterCacheKey.Map<Entry>();
+        private List<RasterCacheKey<Layer>> layer_cache_ = new List<RasterCacheKey<Layer>>();   // new LayerRasterCacheKey.Map<Entry>();
         private bool checkerboard_images_;
         private RasterCache weak_factory_;
     }
-
 }

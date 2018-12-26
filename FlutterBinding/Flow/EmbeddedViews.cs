@@ -8,7 +8,6 @@ using SkiaSharp;
 
 namespace FlutterBinding.Flow
 {
-
     public class EmbeddedViewParams
     {
         public SKPoint offsetPixels = new SKPoint();
@@ -19,13 +18,8 @@ namespace FlutterBinding.Flow
     // in this case ViewEmbedded is a reference to the
     // FlutterPlatformViewsController which is owned by FlutterViewController.
     public class ExternalViewEmbedder
-    {      
-
+    {
         // Must be called on the UI thread.
-        public virtual void CompositeEmbeddedView(ulong view_id, EmbeddedViewParams @params)
-        {
-        }
+        public virtual void CompositeEmbeddedView(ulong view_id, EmbeddedViewParams @params) { }
     }
-
 } // namespace flow
-

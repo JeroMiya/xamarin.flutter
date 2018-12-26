@@ -7,27 +7,25 @@ using static FlutterBinding.Flow.Helper;
 
 namespace FlutterBinding.Flow.Layers
 {
-
     public class BackdropFilterLayer : ContainerLayer
     {
-
         public void set_filter(SKImageFilter filter)
         {
             filter_ = filter;
         }
+
         public override void Paint(PaintContext context)
         {
             TRACE_EVENT0("flutter", "BackdropFilterLayer::Paint");
             FML_DCHECK(needs_painting());
-          
+
             var save = Layer.AutoSaveLayer.Create(
-                context, 
-                paint_bounds(), 
-                new SKPaint() { ImageFilter = filter_ }); //, null, filter_, 0);
+                context,
+                paint_bounds(),
+                new SKPaint() {ImageFilter = filter_}); //, null, filter_, 0);
             PaintChildren(context);
         }
 
         private SKImageFilter filter_;
     }
-
 }

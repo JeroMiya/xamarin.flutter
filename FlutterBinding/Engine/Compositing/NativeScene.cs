@@ -7,15 +7,17 @@ namespace FlutterBinding.Engine.Compositing
 {
     public class NativeScene
     {
-
-        public static NativeScene Create(Layer rootLayer,
-                                 uint rasterizerTracingThreshold,
-                                 bool checkerboardRasterCacheImages,
-                                 bool checkerboardOffscreenLayers)
+        public static NativeScene Create(
+            Layer rootLayer,
+            uint rasterizerTracingThreshold,
+            bool checkerboardRasterCacheImages,
+            bool checkerboardOffscreenLayers)
         {
             return new NativeScene(
-                rootLayer, rasterizerTracingThreshold,
-                checkerboardRasterCacheImages, checkerboardOffscreenLayers);
+                rootLayer,
+                rasterizerTracingThreshold,
+                checkerboardRasterCacheImages,
+                checkerboardOffscreenLayers);
         }
 
         private readonly LayerTree _layerTree;
@@ -26,10 +28,11 @@ namespace FlutterBinding.Engine.Compositing
             return _layerTree;
         }
 
-        public NativeScene(Layer rootLayer,
-             uint rasterizerTracingThreshold,
-             bool checkerboardRasterCacheImages,
-             bool checkerboardOffscreenLayers)
+        public NativeScene(
+            Layer rootLayer,
+            uint rasterizerTracingThreshold,
+            bool checkerboardRasterCacheImages,
+            bool checkerboardOffscreenLayers)
         {
             _layerTree = new LayerTree();
             _layerTree.set_root_layer(rootLayer);

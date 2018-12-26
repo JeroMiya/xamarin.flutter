@@ -8,9 +8,9 @@ namespace FlutterBinding.Engine
     public static class FLog
     {
         public static FLogSeverity Severity { get; set; }
-        #if DEBUG
+#if DEBUG
             = FLogSeverity.Warning;
-        #else
+#else
             = FLogSeverity.Error;
         #endif
 

@@ -8,7 +8,6 @@ using SkiaSharp;
 
 namespace FlutterBinding.UI
 {
-
     /// An opaque object representing a composited scene.
     ///
     /// To create a Scene object, use a [SceneBuilder].
@@ -22,9 +21,8 @@ namespace FlutterBinding.UI
             Layer rootLayer,
             uint rasterizerTracingThreshold,
             bool checkerboardRasterCacheImages,
-            bool checkerboardOffscreenLayers) : 
-            base(rootLayer, rasterizerTracingThreshold, checkerboardRasterCacheImages, checkerboardOffscreenLayers)
-        { }
+            bool checkerboardOffscreenLayers) :
+            base(rootLayer, rasterizerTracingThreshold, checkerboardRasterCacheImages, checkerboardOffscreenLayers) { }
 
         /// Creates a raster image representation of the current state of the scene.
         /// This is a slow operation that is performed on a background thread.
@@ -158,12 +156,13 @@ namespace FlutterBinding.UI
         /// See [pop] for details about the operation stack.
         public void pushShaderMask(SKShader shader, Rect maskRect, BlendMode blendMode)
         {
-            PushShaderMask(shader,
-                            maskRect.left,
-                            maskRect.right,
-                            maskRect.top,
-                            maskRect.bottom,
-                            (int)blendMode);
+            PushShaderMask(
+                shader,
+                maskRect.left,
+                maskRect.right,
+                maskRect.top,
+                maskRect.bottom,
+                (int)blendMode);
         }
 
         /// Pushes a physical layer operation for an arbitrary shape onto the
@@ -235,11 +234,12 @@ namespace FlutterBinding.UI
         // Values above must match constants in //engine/src/sky/compositor/performance_overlay_layer.h
         public void addPerformanceOverlay(int enabledOptions, Rect bounds)
         {
-            AddPerformanceOverlay((ulong)enabledOptions,
-                                   bounds.left,
-                                   bounds.right,
-                                   bounds.top,
-                                   bounds.bottom);
+            AddPerformanceOverlay(
+                (ulong)enabledOptions,
+                bounds.left,
+                bounds.right,
+                bounds.top,
+                bounds.bottom);
         }
 
         /// Adds a [Picture] to the scene.
@@ -289,22 +289,23 @@ namespace FlutterBinding.UI
         /// (Fuchsia-only) Adds a scene rendered by another application to the scene
         /// for this application.
         public void addChildScene(
-                  Offset offset = null,
-          double width = 0.0,
-          double height = 0.0,
-          SceneHost sceneHost = null,
-          bool hitTestable = true
+            Offset offset = null,
+            double width = 0.0,
+            double height = 0.0,
+            SceneHost sceneHost = null,
+            bool hitTestable = true
         )
         {
             if (offset == null)
                 offset = Offset.zero;
 
-            AddChildScene(offset.dx,
-                           offset.dy,
-                           width,
-                           height,
-                           sceneHost,
-                           hitTestable);
+            AddChildScene(
+                offset.dx,
+                offset.dy,
+                width,
+                height,
+                sceneHost,
+                hitTestable);
         }
 
 
@@ -361,7 +362,7 @@ namespace FlutterBinding.UI
         public Scene build()
         {
             return Build();
-         }
+        }
     }
 
     /// (Fuchsia-only) Hosts content provided by another application.

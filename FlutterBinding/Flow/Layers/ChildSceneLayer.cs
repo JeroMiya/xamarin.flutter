@@ -7,11 +7,9 @@ using static FlutterBinding.Flow.Helper;
 
 namespace FlutterBinding.Flow.Layers
 {
-
     // Layer that represents an embedded child.
     public class ChildSceneLayer : Layer
     {
-
         public void set_offset(SKPoint offset)
         {
             offset_ = offset;
@@ -34,7 +32,7 @@ namespace FlutterBinding.Flow.Layers
 
         public override void Paint(PaintContext context)
         {
-           // FXL_NOTREACHED() << "This layer never needs painting.";
+            // FXL_NOTREACHED() << "This layer never needs painting.";
         }
 
         /*
@@ -55,7 +53,9 @@ namespace FlutterBinding.Flow.Layers
         */
 
         private SKPoint offset_ = new SKPoint();
+
         private SKSize size_ = new SKSize();
+
         //ExportNodeHolder export_node_holder_;
         private bool hit_testable_ = true;
     }

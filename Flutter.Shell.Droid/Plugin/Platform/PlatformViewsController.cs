@@ -41,7 +41,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
 
         public PlatformViewsController()
         {
-            _registry = new PlatformViewRegistryImpl();
+            _registry      = new PlatformViewRegistryImpl();
             _vdControllers = new Dictionary<int, VirtualDisplayController>();
         }
 
@@ -59,13 +59,14 @@ namespace Flutter.Shell.Droid.Plugin.Platform
             if (_context != null)
             {
                 throw new AssertionError(
-                        "A PlatformViewsController can only be attached to a single output target.\n" +
-                                "attach was called while the PlatformViewsController was already attached."
+                    "A PlatformViewsController can only be attached to a single output target.\n" +
+                    "attach was called while the PlatformViewsController was already attached."
                 );
             }
-            _context = context;
+
+            _context         = context;
             _textureRegistry = textureRegistry;
-            _messenger = messenger;
+            _messenger       = messenger;
             MethodChannel channel = new MethodChannel(messenger, CHANNEL_NAME, StandardMethodCodec.Instance);
             channel.SetMethodCallHandler(this);
         }
@@ -80,8 +81,8 @@ namespace Flutter.Shell.Droid.Plugin.Platform
         public void Detach()
         {
             _messenger.SetMessageHandler(CHANNEL_NAME, null);
-            _messenger = null;
-            _context = null;
+            _messenger       = null;
+            _context         = null;
             _textureRegistry = null;
         }
 
@@ -105,28 +106,32 @@ namespace Flutter.Shell.Droid.Plugin.Platform
         {
             if (Build.VERSION.SdkInt < MINIMAL_SDK)
             {
-                Log.Error(TAG, "Trying to use platform views with API " + Build.VERSION.SdkInt
-                        + ", required API level is: " + MINIMAL_SDK);
+                Log.Error(
+                    TAG,
+                    "Trying to use platform views with API " + Build.VERSION.SdkInt
+                    + ", required API level is: " + MINIMAL_SDK);
                 return;
             }
+
             switch (call.Method)
             {
-                case "create":
-                    CreatePlatformView(call, result);
-                    return;
-                case "dispose":
-                    DisposePlatformView(call, result);
-                    return;
-                case "resize":
-                    ResizePlatformView(call, result);
-                    return;
-                case "touch":
-                    OnTouch(call, result);
-                    return;
-                case "setDirection":
-                    SetDirection(call, result);
-                    return;
+            case "create":
+                CreatePlatformView(call, result);
+                return;
+            case "dispose":
+                DisposePlatformView(call, result);
+                return;
+            case "resize":
+                ResizePlatformView(call, result);
+                return;
+            case "touch":
+                OnTouch(call, result);
+                return;
+            case "setDirection":
+                SetDirection(call, result);
+                return;
             }
+
             result.NotImplemented();
         }
 
@@ -143,9 +148,9 @@ namespace Flutter.Shell.Droid.Plugin.Platform
             if (!ValidateDirection(direction))
             {
                 result.Error(
-                        "error",
-                        "Trying to create a view with unknown direction value: " + direction + "(view id: " + id + ")",
-                        null
+                    "error",
+                    "Trying to create a view with unknown direction value: " + direction + "(view id: " + id + ")",
+                    null
                 );
                 return;
             }
@@ -153,9 +158,9 @@ namespace Flutter.Shell.Droid.Plugin.Platform
             if (_vdControllers.ContainsKey(id))
             {
                 result.Error(
-                        "error",
-                        "Trying to create an already created platform view, view id: " + id,
-                        null
+                    "error",
+                    "Trying to create an already created platform view, view id: " + id,
+                    null
                 );
                 return;
             }
@@ -164,9 +169,9 @@ namespace Flutter.Shell.Droid.Plugin.Platform
             if (viewFactory == null)
             {
                 result.Error(
-                        "error",
-                        "Trying to create a platform view of unregistered type: " + viewType,
-                        null
+                    "error",
+                    "Trying to create a platform view of unregistered type: " + viewType,
+                    null
                 );
                 return;
             }
@@ -177,31 +182,31 @@ namespace Flutter.Shell.Droid.Plugin.Platform
                 createParams = viewFactory.GetCreateArgsCodec().DecodeMessage(
                     args["params"]
                     //ByteBuffer.wrap((byte[])args.get("params"))
-                    );
+                );
             }
 
             var textureEntry = _textureRegistry.CreateSurfaceTexture();
             VirtualDisplayController vdController = VirtualDisplayController.Create(
-                    _context,
-                    viewFactory,
-                    textureEntry,
-                    ToPhysicalPixels(logicalWidth),
-                    ToPhysicalPixels(logicalHeight),
-                    id,
-                    createParams
+                _context,
+                viewFactory,
+                textureEntry,
+                ToPhysicalPixels(logicalWidth),
+                ToPhysicalPixels(logicalHeight),
+                id,
+                createParams
             );
 
             if (vdController == null)
             {
                 result.Error(
-                        "error",
-                        "Failed creating virtual display for a " + viewType + " with id: " + id,
-                        null
+                    "error",
+                    "Failed creating virtual display for a " + viewType + " with id: " + id,
+                    null
                 );
                 return;
             }
 
-            _vdControllers[id] = vdController;
+            _vdControllers[id]                     = vdController;
             vdController.GetView().LayoutDirection = direction;
 
             // TODO(amirh): copy accessibility nodes to the FlutterView's accessibility tree.
@@ -217,9 +222,9 @@ namespace Flutter.Shell.Droid.Plugin.Platform
             if (vdController == null)
             {
                 result.Error(
-                        "error",
-                        "Trying to dispose a platform view with unknown id: " + id,
-                        null
+                    "error",
+                    "Trying to dispose a platform view with unknown id: " + id,
+                    null
                 );
                 return;
             }
@@ -240,16 +245,17 @@ namespace Flutter.Shell.Droid.Plugin.Platform
             if (vdController == null)
             {
                 result.Error(
-                        "error",
-                        "Trying to resize a platform view with unknown id: " + id,
-                        null
+                    "error",
+                    "Trying to resize a platform view with unknown id: " + id,
+                    null
                 );
                 return;
             }
-            vdController.resize(
-                    ToPhysicalPixels(width),
-                    ToPhysicalPixels(height),
-                    () => result.Success(null));       // Runnable
+
+            vdController.Resize(
+                ToPhysicalPixels(width),
+                ToPhysicalPixels(height),
+                () => result.Success(null)); // Runnable
         }
 
         public void OnTouch(MethodCall call, IResult result)
@@ -279,28 +285,28 @@ namespace Flutter.Shell.Droid.Plugin.Platform
             if (view == null)
             {
                 result.Error(
-                        "error",
-                        "Sending touch to an unknown view with id: " + id,
-                        null
+                    "error",
+                    "Sending touch to an unknown view with id: " + id,
+                    null
                 );
                 return;
             }
 
             var @event = MotionEvent.Obtain(
-                    downTime.LongValue(),
-                    eventTime.LongValue(),
-                    action,
-                    pointerCount,
-                    pointerProperties.ToArray(),
-                    pointerCoords.ToArray(),
-                    metaState,
-                    buttonState,
-                    xPrecision,
-                    yPrecision,
-                    deviceId,
-                    edgeFlags,
-                    source,
-                    flags
+                downTime.LongValue(),
+                eventTime.LongValue(),
+                action,
+                pointerCount,
+                pointerProperties.ToArray(),
+                pointerCoords.ToArray(),
+                metaState,
+                buttonState,
+                xPrecision,
+                yPrecision,
+                deviceId,
+                edgeFlags,
+                source,
+                flags
             );
 
             view.DispatchTouchEvent(@event);
@@ -317,9 +323,9 @@ namespace Flutter.Shell.Droid.Plugin.Platform
             if (!ValidateDirection(direction))
             {
                 result.Error(
-                        "error",
-                        "Trying to set unknown direction value: " + direction + "(view id: " + id + ")",
-                        null
+                    "error",
+                    "Trying to set unknown direction value: " + direction + "(view id: " + id + ")",
+                    null
                 );
                 return;
             }
@@ -328,9 +334,9 @@ namespace Flutter.Shell.Droid.Plugin.Platform
             if (view == null)
             {
                 result.Error(
-                        "error",
-                        "Sending touch to an unknown view with id: " + id,
-                        null
+                    "error",
+                    "Sending touch to an unknown view with id: " + id,
+                    null
                 );
                 return;
             }
@@ -353,6 +359,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
             {
                 pointerProperties.Add(ParsePointerProperties(o));
             }
+
             return pointerProperties;
         }
 
@@ -362,7 +369,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
             List<object> propertiesList = (List<object>)rawProperties;
             MotionEvent.PointerProperties properties = new MotionEvent.PointerProperties
             {
-                Id = (int)propertiesList[0],
+                Id       = (int)propertiesList[0],
                 ToolType = (MotionEventToolType)propertiesList[1]
             };
             return properties;
@@ -377,6 +384,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
             {
                 pointerCoords.Add(ParsePointerCoords(o, density));
             }
+
             return pointerCoords;
         }
 
@@ -387,14 +395,14 @@ namespace Flutter.Shell.Droid.Plugin.Platform
             MotionEvent.PointerCoords coords = new MotionEvent.PointerCoords
             {
                 Orientation = (float)(double)coordsList[0],
-                Pressure = (float)(double)coordsList[1],
-                Size = (float)(double)coordsList[2],
-                ToolMajor = (float)(double)coordsList[3] * density,
-                ToolMinor = (float)(double)coordsList[4] * density,
-                TouchMajor = (float)(double)coordsList[5] * density,
-                TouchMinor = (float)(double)coordsList[6] * density,
-                X = (float)(double)coordsList[7] * density,
-                Y = (float)(double)coordsList[8] * density
+                Pressure    = (float)(double)coordsList[1],
+                Size        = (float)(double)coordsList[2],
+                ToolMajor   = (float)(double)coordsList[3] * density,
+                ToolMinor   = (float)(double)coordsList[4] * density,
+                TouchMajor  = (float)(double)coordsList[5] * density,
+                TouchMinor  = (float)(double)coordsList[6] * density,
+                X           = (float)(double)coordsList[7] * density,
+                Y           = (float)(double)coordsList[8] * density
             };
             return coords;
         }

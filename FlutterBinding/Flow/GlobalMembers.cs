@@ -30,6 +30,7 @@ namespace FlutterBinding.Flow
             {
                 unitHeight = 1.0;
             }
+
             return unitHeight;
         }
 
@@ -91,7 +92,7 @@ namespace FlutterBinding.Flow
 
             SKImageInfo image_info = new SKImageInfo(cache_rect.Width, cache_rect.Height);
 
-            SKSurface surface = context != null ? SKSurface.CreateAsRenderTarget(context, new GRGlBackendTextureDesc() { Width = cache_rect.Width, Height = cache_rect.Height } ) : SKSurface.Create(image_info); //{ image_info.
+            SKSurface surface = context != null ? SKSurface.CreateAsRenderTarget(context, new GRGlBackendTextureDesc() {Width = cache_rect.Width, Height = cache_rect.Height}) : SKSurface.Create(image_info); //{ image_info.
 
             if (surface == null)
             {
@@ -126,10 +127,7 @@ namespace FlutterBinding.Flow
         {
             TRACE_EVENT0("flutter", "RasterCachePopulate");
 
-            return Rasterize(context, ctm, dst_color_space, checkerboard, picture.CullRect, (SKCanvas canvas) =>
-            {
-                canvas.DrawPicture(picture);
-            });
+            return Rasterize(context, ctm, dst_color_space, checkerboard, picture.CullRect, (SKCanvas canvas) => { canvas.DrawPicture(picture); });
         }
 
         internal static int ClampSize(int value, int min, int max)

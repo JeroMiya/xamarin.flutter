@@ -16,10 +16,11 @@ namespace FlutterBinding.Shell
 
         public enum RunStatus
         {
-            Success,                // Successful call to Run()
-            FailureAlreadyRunning,  // Isolate was already running; may not be
-                                    // considered a failure by callers
-            Failure,  // Isolate could not be started or other unspecified failure
+            Success,               // Successful call to Run()
+            FailureAlreadyRunning, // Isolate was already running; may not be
+
+            // considered a failure by callers
+            Failure, // Isolate could not be started or other unspecified failure
         };
 
         public Engine(
@@ -33,28 +34,28 @@ namespace FlutterBinding.Shell
             SnapshotDelegate snapshotDelegate,
             GRContext resourceContext,
             SkiaUnrefQueue unrefQueue
-            )
+        )
         {
-            _delegate = @delegate;
-            _settings = settings;
-            _animator = animator;
+            _delegate        = @delegate;
+            _settings        = settings;
+            _animator        = animator;
             _activityRunning = false;
-            _haveSurface = false;
+            _haveSurface     = false;
 
             // Runtime controller is initialized here because it takes a reference to this
             // object as its delegate. The delegate may be called in the constructor and
             // we want to be fully initilazed by that point.
             _runtimeController = new RuntimeController(
-                this,                       // runtime delegate
-                                            //vm,                       // VM
-                                            //isolate_snapshot,         // isolate snapshot
-                                            //shared_snapshot,          // shared snapshot
-                taskRunners,               // task runners
-                snapshotDelegate,          // snapshot delegate
-                resourceContext,           // resource context
-                unrefQueue                 // skia unref queue
-                                           //settings_.advisory_script_uri,       // advisory script uri
-                                           //settings_.advisory_script_entrypoint // advisory script entrypoint
+                this, // runtime delegate
+                //vm,                       // VM
+                //isolate_snapshot,         // isolate snapshot
+                //shared_snapshot,          // shared snapshot
+                taskRunners,      // task runners
+                snapshotDelegate, // snapshot delegate
+                resourceContext,  // resource context
+                unrefQueue        // skia unref queue
+                //settings_.advisory_script_uri,       // advisory script uri
+                //settings_.advisory_script_entrypoint // advisory script entrypoint
             );
         }
 
@@ -195,20 +196,19 @@ namespace FlutterBinding.Shell
         {
             switch (message.Channel)
             {
-                case kLifecycleChannel:
-                    if (HandleLifecyclePlatformMessage(message))
-                        return;
-                    break;
-
-                case kLocalizationChannel:
-                    if (HandleLocalizationPlatformMessage(message))
-                        return;
-                    break;
-
-                case kSettingsChannel:
-                    HandleSettingsPlatformMessage(message);
+            case kLifecycleChannel:
+                if (HandleLifecyclePlatformMessage(message))
                     return;
+                break;
 
+            case kLocalizationChannel:
+                if (HandleLocalizationPlatformMessage(message))
+                    return;
+                break;
+
+            case kSettingsChannel:
+                HandleSettingsPlatformMessage(message);
+                return;
             }
 
             if (runtime_controller_.IsRootIsolateRunning() &&
@@ -261,6 +261,7 @@ namespace FlutterBinding.Shell
         private ViewportMetrics _viewportMetrics;
         private AssetManager _assetManager;
         private bool _activityRunning;
+
         private bool _haveSurface;
         //private readonly FontCollection font_collection_;
         //private readonly Engine weak_factory_;

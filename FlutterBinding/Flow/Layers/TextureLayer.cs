@@ -7,22 +7,23 @@ using SkiaSharp;
 
 namespace FlutterBinding.Flow.Layers
 {
-
     public class TextureLayer : Layer
     {
-
         public void set_offset(SKPoint offset)
         {
             offset_ = offset;
         }
+
         public void set_size(SKSize size)
         {
             size_ = size;
         }
+
         public void set_texture_id(ulong texture_id)
         {
             texture_id_ = texture_id;
         }
+
         public void set_freeze(bool freeze)
         {
             freeze_ = freeze;
@@ -32,6 +33,7 @@ namespace FlutterBinding.Flow.Layers
         {
             set_paint_bounds(new SKRect(offset_.X, offset_.Y, size_.Width, size_.Height));
         }
+
         public override void Paint(PaintContext context)
         {
             Texture texture = context.texture_registry.GetTexture((long)texture_id_);
@@ -39,6 +41,7 @@ namespace FlutterBinding.Flow.Layers
             {
                 return;
             }
+
             texture.Paint(context.canvas, paint_bounds(), freeze_);
         }
 
@@ -47,5 +50,4 @@ namespace FlutterBinding.Flow.Layers
         private ulong texture_id_ = 0;
         private bool freeze_;
     }
-
 }

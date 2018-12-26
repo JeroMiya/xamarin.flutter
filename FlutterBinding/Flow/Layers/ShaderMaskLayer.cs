@@ -7,10 +7,8 @@ using static FlutterBinding.Flow.Helper;
 
 namespace FlutterBinding.Flow.Layers
 {
-
     public class ShaderMaskLayer : ContainerLayer
     {
-
         public void set_shader(SKShader shader)
         {
             shader_ = shader;
@@ -25,6 +23,7 @@ namespace FlutterBinding.Flow.Layers
         {
             blend_mode_ = blend_mode;
         }
+
         public override void Paint(PaintContext context)
         {
             TRACE_EVENT0("flutter", "ShaderMaskLayer::Paint");
@@ -35,7 +34,7 @@ namespace FlutterBinding.Flow.Layers
 
             SKPaint paint = new SKPaint();
             paint.BlendMode = blend_mode_;
-            paint.Shader = shader_;
+            paint.Shader    = shader_;
             context.canvas.Translate(mask_rect_.Left, mask_rect_.Top);
             context.canvas.DrawRect(new SKRect(0, 0, mask_rect_.Width, mask_rect_.Height), paint);
         }
@@ -44,5 +43,4 @@ namespace FlutterBinding.Flow.Layers
         private SKRect mask_rect_;
         private SKBlendMode blend_mode_;
     }
-
 }

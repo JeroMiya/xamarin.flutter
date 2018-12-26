@@ -38,8 +38,8 @@ namespace Flutter.Shell.Droid.Plugin.Common
             //assert name != null;
             //assert codec != null;
             _messenger = messenger;
-            _name = name;
-            _codec = codec;
+            _name      = name;
+            _codec     = codec;
         }
 
         /**
@@ -62,7 +62,9 @@ namespace Flutter.Shell.Droid.Plugin.Common
          */
         public void Send(T message, IReply callback)
         {
-            _messenger.Send(_name, _codec.EncodeMessage(message),
+            _messenger.Send(
+                _name,
+                _codec.EncodeMessage(message),
                 callback == null ? null : new IncomingReplyHandler(callback, _name, _codec));
         }
 
@@ -79,7 +81,8 @@ namespace Flutter.Shell.Droid.Plugin.Common
          */
         public void SetMessageHandler(IMessageHandler handler)
         {
-            _messenger.SetMessageHandler(_name,
+            _messenger.SetMessageHandler(
+                _name,
                 handler == null ? null : new IncomingMessageHandler(handler, _name, _codec));
         }
 
@@ -88,7 +91,6 @@ namespace Flutter.Shell.Droid.Plugin.Common
          */
         public interface IMessageHandler
         {
-
             /**
              * Handles the specified message received from Flutter.
              *
@@ -144,8 +146,8 @@ namespace Flutter.Shell.Droid.Plugin.Common
             public IncomingReplyHandler(IReply callback, string name, IMessageCodec<T> codec)
             {
                 _callback = callback;
-                _name = name;
-                _codec = codec;
+                _name     = name;
+                _codec    = codec;
             }
 
             //@Override
@@ -172,8 +174,8 @@ namespace Flutter.Shell.Droid.Plugin.Common
             public IncomingMessageHandler(IMessageHandler handler, string name, IMessageCodec<T> codec)
             {
                 _handler = handler;
-                _name = name;
-                _codec = codec;
+                _name    = name;
+                _codec   = codec;
             }
 
             //@Override

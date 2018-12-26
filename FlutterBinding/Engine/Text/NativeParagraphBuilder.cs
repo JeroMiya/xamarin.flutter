@@ -10,9 +10,7 @@ namespace FlutterBinding.Engine.Text
 
     public class NativeParagraphBuilder
     {
-
         // TextStyle
-
 
 
         const int tsColorIndex = 1;
@@ -48,7 +46,6 @@ namespace FlutterBinding.Engine.Text
         const int tsTextShadowsIndex = 16;
 
 
-
         const int tsColorMask = 1 << tsColorIndex;
 
         const int tsTextDecorationMask = 1 << tsTextDecorationIndex;
@@ -82,9 +79,7 @@ namespace FlutterBinding.Engine.Text
         const int tsTextShadowsMask = 1 << tsTextShadowsIndex;
 
 
-
         // ParagraphStyle
-
 
 
         const int psTextAlignIndex = 1;
@@ -108,7 +103,6 @@ namespace FlutterBinding.Engine.Text
         const int psLocaleIndex = 10;
 
 
-
         const int psTextAlignMask = 1 << psTextAlignIndex;
 
         const int psTextDirectionMask = 1 << psTextDirectionIndex;
@@ -130,7 +124,6 @@ namespace FlutterBinding.Engine.Text
         const int psLocaleMask = 1 << psLocaleIndex;
 
 
-
         // TextShadows decoding
 
         const uint kColorDefault = 0xFF000000;
@@ -149,14 +142,14 @@ namespace FlutterBinding.Engine.Text
 
         //Txt.ParagraphBuilder m_paragraphBuilder;
 
-        protected NativeParagraphBuilder(List<int> encoded,
-                         string fontFamily,
-                         double fontSize,
-                         double lineHeight,
-                         string ellipsis,
-                         string locale)
+        protected NativeParagraphBuilder(
+            List<int> encoded,
+            string fontFamily,
+            double fontSize,
+            double lineHeight,
+            string ellipsis,
+            string locale)
         {
-
             //int mask = encoded[0];
 
             //Txt.ParagraphStyle style;
@@ -166,11 +159,9 @@ namespace FlutterBinding.Engine.Text
             //    style.text_align = TextAlign(encoded[psTextAlignIndex]);
 
 
-
             //if (mask & psTextDirectionMask)
 
             //    style.text_direction = txt::TextDirection(encoded[psTextDirectionIndex]);
-
 
 
             //if (mask & psFontWeightMask)
@@ -180,11 +171,9 @@ namespace FlutterBinding.Engine.Text
             //        static_cast<txt::FontWeight>(encoded[psFontWeightIndex]);
 
 
-
             //if (mask & psFontStyleMask)
 
             //    style.font_style = static_cast<txt::FontStyle>(encoded[psFontStyleIndex]);
-
 
 
             //if (mask & psFontFamilyMask)
@@ -192,11 +181,9 @@ namespace FlutterBinding.Engine.Text
             //    style.font_family = fontFamily;
 
 
-
             //if (mask & psFontSizeMask)
 
             //    style.font_size = fontSize;
-
 
 
             //if (mask & psLineHeightMask)
@@ -204,11 +191,9 @@ namespace FlutterBinding.Engine.Text
             //    style.line_height = lineHeight;
 
 
-
             //if (mask & psMaxLinesMask)
 
             //    style.max_lines = encoded[psMaxLinesIndex];
-
 
 
             //if (mask & psEllipsisMask)
@@ -216,11 +201,9 @@ namespace FlutterBinding.Engine.Text
             //    style.ellipsis = ellipsis;
 
 
-
             //if (mask & psLocaleMask)
 
             //    style.locale = locale;
-
 
 
             //Txt.FontCollection font_collection =
@@ -229,18 +212,18 @@ namespace FlutterBinding.Engine.Text
 
             //m_paragraphBuilder = new Txt.ParagraphBuilder(
             //    style, font_collection.GetFontCollection());
-
-        }  // namespace blink
+        } // namespace blink
 
 
         string _text = "";
+
         protected string AddText(string text)
         {
             if (string.IsNullOrEmpty(text))
                 return null;
 
             _text += text;
-            
+
             // TODO:
             //m_paragraphBuilder->AddText(text);
 
@@ -249,7 +232,7 @@ namespace FlutterBinding.Engine.Text
 
         protected Paragraph Build()
         {
-            return new Paragraph() { Text = _text };
+            return new Paragraph() {Text = _text};
         }
     }
 }

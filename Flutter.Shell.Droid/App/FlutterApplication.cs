@@ -8,9 +8,7 @@ namespace Flutter.Shell.Droid.App
 {
     public class FlutterApplication : Application
     {
-        public FlutterApplication(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
-        {
-        }
+        public FlutterApplication(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer) { }
 
         /// <inheritdoc />
         public override void OnCreate()
@@ -20,6 +18,5 @@ namespace Flutter.Shell.Droid.App
         }
 
         public Activity CurrentActivity { get; set; }
-
     }
 }

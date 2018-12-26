@@ -24,9 +24,9 @@ namespace Flutter.Shell.Droid.Plugin.Common
     {
         private static readonly string TAG = "EventChannel#";
 
-        private IBinaryMessenger messenger;
-        private readonly string name;
-        private readonly IMethodCodec codec;
+        private IBinaryMessenger Messenger { get; }
+        private string Name { get; }
+        private IMethodCodec Codec { get; }
 
         /**
          * Creates a new channel associated with the specified {@link BinaryMessenger}
@@ -35,10 +35,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
          * @param messenger a {@link BinaryMessenger}.
          * @param name a channel name String.
          */
-        public EventChannel(IBinaryMessenger messenger, string name) : this(messenger, name, StandardMethodCodec.Instance)
-        {
-
-        }
+        public EventChannel(IBinaryMessenger messenger, string name) : this(messenger, name, StandardMethodCodec.Instance) { }
 
         /**
          * Creates a new channel associated with the specified {@link BinaryMessenger}
@@ -53,9 +50,9 @@ namespace Flutter.Shell.Droid.Plugin.Common
             //assert messenger != null;
             //assert name != null;
             //assert codec != null;
-            this.messenger = messenger;
-            this.name = name;
-            this.codec = codec;
+            Messenger = messenger;
+            Name      = name;
+            Codec     = codec;
         }
 
         /**
@@ -68,9 +65,9 @@ namespace Flutter.Shell.Droid.Plugin.Common
          *
          * @param handler a {@link StreamHandler}, or null to deregister.
          */
-        public void setStreamHandler(StreamHandler handler)
+        public void SetStreamHandler(IStreamHandler handler)
         {
-            messenger.SetMessageHandler(name, handler == null ? null : new IncomingStreamRequestHandler(handler, this));
+            Messenger.SetMessageHandler(Name, handler == null ? null : new IncomingStreamRequestHandler(handler, this));
         }
 
         /**
@@ -83,7 +80,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
          * with platform-specific event sources {@code onListen} and deregister again
          * {@code onCancel}.</p>
          */
-        public interface StreamHandler
+        public interface IStreamHandler
         {
             /**
              * Handles a request to set up an event stream.
@@ -94,7 +91,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
              * @param arguments stream configuration arguments, possibly null.
              * @param events an {@link EventSink} for emitting events to the Flutter receiver.
              */
-            void onListen(object arguments, EventSink events);
+            void OnListen(object arguments, IEventSink events);
 
             /**
              * Handles a request to tear down the most recently created event stream.
@@ -109,7 +106,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
              *
              * @param arguments stream configuration arguments, possibly null.
              */
-            void onCancel(object arguments);
+            void OnCancel(object arguments);
         }
 
         /**
@@ -118,14 +115,14 @@ namespace Flutter.Shell.Droid.Plugin.Common
          * from Flutter implement this interface for handling received events (the latter
          * facility has not been implemented yet).
          */
-        public interface EventSink
+        public interface IEventSink
         {
             /**
              * Consumes a successful event.
              *
              * @param event the event, possibly null.
              */
-            void success(object @event);
+            void Success(object @event);
 
             /**
              * Consumes an error event.
@@ -134,35 +131,35 @@ namespace Flutter.Shell.Droid.Plugin.Common
              * @param errorMessage a human-readable error message String, possibly null.
              * @param errorDetails error details, possibly null
              */
-            void error(string errorCode, string errorMessage, object errorDetails);
+            void Error(string errorCode, string errorMessage, object errorDetails);
 
             /**
              * Consumes end of stream. Ensuing calls to {@link #success(Object)} or
              * {@link #error(String, String, Object)}, if any, are ignored.
              */
-            void endOfStream();
+            void EndOfStream();
         }
 
         private class IncomingStreamRequestHandler : IBinaryMessageHandler
         {
-            private StreamHandler handler;
+            private IStreamHandler Handler { get; }
 
             //TODO: Concurrency
             //private AtomicReference<EventSink> activeSink = new AtomicReference<EventSink>(null);
-            private EventSink activeSink = null;
-            private EventChannel _parent = null;
+            private IEventSink ActiveSink { get; set; }
+            private EventChannel _parent { get; }
 
-            public IncomingStreamRequestHandler(StreamHandler handler, EventChannel parent)
+            public IncomingStreamRequestHandler(IStreamHandler handler, EventChannel parent)
             {
-                this.handler = handler;
-                _parent = parent;
+                Handler = handler;
+                _parent      = parent;
             }
 
             //@Override
             // TODO: ByteBuffer->object
             public void OnMessage(object message, IBinaryReply reply)
             {
-                MethodCall call = _parent.codec.DecodeMethodCall(message);
+                MethodCall call = _parent.Codec.DecodeMethodCall(message);
                 if (call.Method.Equals("listen"))
                 {
                     OnListen(call.Arguments, reply);
@@ -179,9 +176,9 @@ namespace Flutter.Shell.Droid.Plugin.Common
 
             private void OnListen(object arguments, IBinaryReply callback)
             {
-                EventSink eventSink = new EventSinkImplementation(this);
-                EventSink oldSink = activeSink;
-                activeSink = eventSink;
+                IEventSink eventSink = new EventSinkImplementation(this);
+                IEventSink oldSink = ActiveSink;
+                ActiveSink = eventSink;
 
                 if (oldSink != null)
                 {
@@ -189,97 +186,100 @@ namespace Flutter.Shell.Droid.Plugin.Common
                     // We separate them with a call to onCancel.
                     try
                     {
-                        handler.onCancel(null);
+                        Handler.OnCancel(null);
                     }
                     catch (Exception e)
                     {
-                        Log.Error(TAG + _parent.name, "Failed to close existing event stream", e);
+                        Log.Error(TAG + _parent.Name, "Failed to close existing event stream", e);
                     }
                 }
+
                 try
                 {
-                    handler.onListen(arguments, eventSink);
-                    callback.Reply(_parent.codec.EncodeSuccessEnvelope(null));
+                    Handler.OnListen(arguments, eventSink);
+                    callback.Reply(_parent.Codec.EncodeSuccessEnvelope(null));
                 }
                 catch (RuntimeException e)
                 {
-                    activeSink = null;
-                    Log.Error(TAG + _parent.name, "Failed to open event stream", e);
-                    callback.Reply(_parent.codec.EncodeErrorEnvelope("error", e.Message, null));
+                    ActiveSink = null;
+                    Log.Error(TAG + _parent.Name, "Failed to open event stream", e);
+                    callback.Reply(_parent.Codec.EncodeErrorEnvelope("error", e.Message, null));
                 }
             }
 
             private void OnCancel(object arguments, IBinaryReply callback)
             {
-                EventSink oldSink = activeSink;
-                activeSink = null;
+                IEventSink oldSink = ActiveSink;
+                ActiveSink = null;
 
                 if (oldSink != null)
                 {
                     try
                     {
-                        handler.onCancel(arguments);
-                        callback.Reply(_parent.codec.EncodeSuccessEnvelope(null));
+                        Handler.OnCancel(arguments);
+                        callback.Reply(_parent.Codec.EncodeSuccessEnvelope(null));
                     }
                     catch (RuntimeException e)
                     {
-                        Log.Error(TAG + _parent.name, "Failed to close event stream", e);
-                        callback.Reply(_parent.codec.EncodeErrorEnvelope("error", e.Message, null));
+                        Log.Error(TAG + _parent.Name, "Failed to close event stream", e);
+                        callback.Reply(_parent.Codec.EncodeErrorEnvelope("error", e.Message, null));
                     }
                 }
                 else
                 {
-                    callback.Reply(_parent.codec.EncodeErrorEnvelope("error", "No active stream to cancel", null));
+                    callback.Reply(_parent.Codec.EncodeErrorEnvelope("error", "No active stream to cancel", null));
                 }
             }
 
-            private class EventSinkImplementation : EventSink
+            private class EventSinkImplementation : IEventSink
             {
                 //TODO: Concurrency
                 //AtomicBoolean hasEnded = new AtomicBoolean(false);
-                private bool hasEnded = false;
+                private bool HasEnded { get; set; }
                 private IncomingStreamRequestHandler _incomingStreamRequestHandler;
+
                 public EventSinkImplementation(IncomingStreamRequestHandler incomingStreamRequestHandler)
                 {
                     _incomingStreamRequestHandler = incomingStreamRequestHandler;
                 }
 
                 //@Override
-                public void success(object @event)
+                public void Success(object @event)
                 {
-                    if (hasEnded || _incomingStreamRequestHandler.activeSink != this)
+                    if (HasEnded || _incomingStreamRequestHandler.ActiveSink != this)
                     {
                         return;
                     }
-                    _incomingStreamRequestHandler._parent.messenger.Send(
-                        _incomingStreamRequestHandler._parent.name, 
-                        _incomingStreamRequestHandler._parent.codec.EncodeSuccessEnvelope(@event));
+
+                    _incomingStreamRequestHandler._parent.Messenger.Send(
+                        _incomingStreamRequestHandler._parent.Name,
+                        _incomingStreamRequestHandler._parent.Codec.EncodeSuccessEnvelope(@event));
                 }
 
                 //@Override
-                public void error(string errorCode, string errorMessage, object errorDetails)
+                public void Error(string errorCode, string errorMessage, object errorDetails)
                 {
-                    if (hasEnded || _incomingStreamRequestHandler.activeSink != this)
+                    if (HasEnded || _incomingStreamRequestHandler.ActiveSink != this)
                         return;
 
-                    _incomingStreamRequestHandler._parent.messenger.Send(
-                        _incomingStreamRequestHandler._parent.name,
-                        _incomingStreamRequestHandler._parent.codec.EncodeErrorEnvelope(errorCode, errorMessage, errorDetails));
+                    _incomingStreamRequestHandler._parent.Messenger.Send(
+                        _incomingStreamRequestHandler._parent.Name,
+                        _incomingStreamRequestHandler._parent.Codec.EncodeErrorEnvelope(errorCode, errorMessage, errorDetails));
                 }
 
                 //@Override
-                public void endOfStream()
+                public void EndOfStream()
                 {
-                    var hadEnded = hasEnded;
-                    hasEnded = true;
-                    if (hadEnded || _incomingStreamRequestHandler.activeSink != this)
+                    var hadEnded = HasEnded;
+                    HasEnded = true;
+                    if (hadEnded || _incomingStreamRequestHandler.ActiveSink != this)
                         return;
 
-                    _incomingStreamRequestHandler._parent.messenger.Send(
-                        _incomingStreamRequestHandler._parent.name, null);
+                    _incomingStreamRequestHandler._parent.Messenger.Send(
+                        _incomingStreamRequestHandler._parent.Name,
+                        null);
                 }
             }
         }
     }
-
 }

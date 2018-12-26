@@ -1,11 +1,6 @@
 ﻿using Android.Content;
-using Android.OS;
-using Android.Util;
-using Java.Lang;
-using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using String = System.String;
 
 namespace Flutter.Shell.Droid.View
 {
@@ -15,19 +10,21 @@ namespace Flutter.Shell.Droid.View
     public class ResourceCleaner
     {
         private static readonly string TAG = "ResourceCleaner";
-        private static readonly long DELAY_MS = 5000;
+        private static readonly long DelayMs = 5000;
 
         private void DeleteRecursively(string path)
         {
             if (Directory.Exists(path))
             {
-                foreach (var child in Directory.EnumerateFileSystemEntries(path))
+                foreach (string child in Directory.EnumerateFileSystemEntries(path))
                 {
                     DeleteRecursively(child);
                 }
+
                 //Directory.Delete(path, false);
                 return;
             }
+
             if (path.Contains(".xamarin.flutter.") && File.Exists(path))
             {
                 File.Delete(path);
@@ -46,7 +43,7 @@ namespace Flutter.Shell.Droid.View
             Task.Run(
                 () =>
                 {
-                    var cacheDir = _context.CacheDir;
+                    Java.IO.File cacheDir = _context.CacheDir;
                     if (cacheDir == null)
                         return;
 

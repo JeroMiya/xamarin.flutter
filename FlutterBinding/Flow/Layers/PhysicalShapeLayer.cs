@@ -7,19 +7,17 @@ using static FlutterBinding.Flow.Helper;
 
 namespace FlutterBinding.Flow.Layers
 {
-
     public class PhysicalShapeLayer : ContainerLayer
     {
         public PhysicalShapeLayer(Clip clip_behavior)
         {
-            this.isRect_ = false;
+            this.isRect_        = false;
             this.clip_behavior_ = clip_behavior;
         }
 
         public void set_path(SKPath path)
         {
-            
-            path_ = path;
+            path_   = path;
             isRect_ = false;
             //SKRect rect = new SKRect();
 
@@ -42,13 +40,13 @@ namespace FlutterBinding.Flow.Layers
             //}
             //else
             //{
-                // Scenic currently doesn't provide an easy way to create shapes from
-                // arbitrary paths.
-                // For shapes that cannot be represented as a rounded rectangle we
-                // default to use the bounding rectangle.
-                // TODO(amirh): fix this once we have a way to create a Scenic shape from
-                // an SKPath.
-                frameRRect_ = new SKRoundRect(path.Bounds);
+            // Scenic currently doesn't provide an easy way to create shapes from
+            // arbitrary paths.
+            // For shapes that cannot be represented as a rounded rectangle we
+            // default to use the bounding rectangle.
+            // TODO(amirh): fix this once we have a way to create a Scenic shape from
+            // an SKPath.
+            frameRRect_ = new SKRoundRect(path.Bounds);
             //}
         }
 
@@ -56,14 +54,17 @@ namespace FlutterBinding.Flow.Layers
         {
             elevation_ = elevation;
         }
+
         public void set_color(uint color)
         {
             color_ = color;
         }
+
         public void set_shadow_color(uint shadow_color)
         {
             shadow_color_ = shadow_color;
         }
+
         public void set_device_pixel_ratio(float dpr)
         {
             device_pixel_ratio_ = dpr;
@@ -130,18 +131,18 @@ namespace FlutterBinding.Flow.Layers
             int saveCount = context.canvas.Save();
             switch (clip_behavior_)
             {
-                case Clip.hardEdge:
-                    context.canvas.ClipPath(path_, antialias: false);
-                    break;
-                case Clip.antiAlias:
-                    context.canvas.ClipPath(path_, antialias: true);
-                    break;
-                case Clip.antiAliasWithSaveLayer:
-                    context.canvas.ClipPath(path_, antialias: true);
-                    context.canvas.SaveLayer(paint_bounds(), null);
-                    break;
-                case Clip.none:
-                    break;
+            case Clip.hardEdge:
+                context.canvas.ClipPath(path_, antialias: false);
+                break;
+            case Clip.antiAlias:
+                context.canvas.ClipPath(path_, antialias: true);
+                break;
+            case Clip.antiAliasWithSaveLayer:
+                context.canvas.ClipPath(path_, antialias: true);
+                context.canvas.SaveLayer(paint_bounds(), null);
+                break;
+            case Clip.none:
+                break;
             }
 
             if (clip_behavior_ == Clip.antiAliasWithSaveLayer)

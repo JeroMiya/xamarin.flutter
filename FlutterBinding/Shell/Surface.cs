@@ -11,8 +11,8 @@ namespace FlutterBinding.Shell
 
         public SurfaceFrame(SKSurface surface, SubmitCallback submitCallback)
         {
-            _submitted = false;
-            _surface = surface;
+            _submitted      = false;
+            _surface        = surface;
             _submitCallback = submitCallback;
             if (_surface != null)
             {

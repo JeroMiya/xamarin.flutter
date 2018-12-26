@@ -15,11 +15,11 @@ namespace FlutterBinding.Engine
             TaskRunner ui,
             TaskRunner io)
         {
-            Label = label;
+            Label              = label;
             PlatformTaskRunner = platform;
-            GPUTaskRunner = gpu;
-            UITaskRunner = ui;
-            IOTaskRunner = io;
+            GPUTaskRunner      = gpu;
+            UITaskRunner       = ui;
+            IOTaskRunner       = io;
         }
 
         public string Label { get; }
@@ -137,7 +137,7 @@ namespace FlutterBinding.Engine
                     {
                         var taskAction = _tasks.Dequeue();
                         action = taskAction.Action;
-                        tcs = taskAction.Tcs;
+                        tcs    = taskAction.Tcs;
                     }
                     else if (_delayedTasks.Count > 0)
                     {
@@ -146,7 +146,7 @@ namespace FlutterBinding.Engine
                             if (delayedTask.TargetTime <= TimePoint.Now())
                             {
                                 action = delayedTask.Action;
-                                tcs = delayedTask.Tcs;
+                                tcs    = delayedTask.Tcs;
                                 _delayedTasks.Remove(delayedTask);
                                 break;
                             }
@@ -214,9 +214,9 @@ namespace FlutterBinding.Engine
                 TaskCompletionSource<bool> tcs,
                 TimePoint targetTime)
             {
-                Order = order;
-                Action = task;
-                Tcs = tcs;
+                Order      = order;
+                Action     = task;
+                Tcs        = tcs;
                 TargetTime = targetTime;
             }
         };
@@ -232,6 +232,5 @@ namespace FlutterBinding.Engine
                 Tcs    = tcs;
             }
         }
-
     }
 }

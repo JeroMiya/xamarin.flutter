@@ -11,13 +11,10 @@ namespace FlutterBinding.Mapping
             big,
             little
         }
-        
+
         public class Duration
         {
-            public Duration(long milliseconds = 0, long microseconds = 0)
-            {
-
-            }
+            public Duration(long milliseconds = 0, long microseconds = 0) { }
 
             public static Duration zero = new Duration(); //TODO: make an actual zero
         }
@@ -27,8 +24,8 @@ namespace FlutterBinding.Mapping
             public ByteData() { }
             public ByteData(int value) { }
 
-            public int getInt32(int first, int second) => 0; // TODO:
-            public int getInt64(int first, int second) => 0; // TODO:
+            public int getInt32(int first, int second) => 0;      // TODO:
+            public int getInt64(int first, int second) => 0;      // TODO:
             public double getFloat64(int first, int second) => 0; // TODO:
             public double getFloat32(int first, int second) => 0; // TODO:
 
@@ -64,10 +61,10 @@ namespace FlutterBinding.Mapping
             }
         }
 
-        public class StateError : Exception {
+        public class StateError : Exception
+        {
             public StateError(string message) : base(message) { }
         }
-
     }
 
     public class Uint8List : List<byte>
@@ -189,5 +186,4 @@ namespace FlutterBinding.Mapping
         /// <inheritdoc />
         public Float64List(int capacity) : base(capacity) { }
     }
-
 }

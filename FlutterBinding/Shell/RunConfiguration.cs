@@ -6,7 +6,7 @@ namespace FlutterBinding.Shell
     public class RunConfiguration
     {
         public static RunConfiguration InferFromSettings(
-            Settings settings, 
+            Settings settings,
             TaskRunner ioWorker = null)
         {
             var assetManager = new AssetManager();
@@ -28,7 +28,7 @@ namespace FlutterBinding.Shell
         }
 
         public bool IsValid() => _assetManager != null;
-            //&& isolate_configuration_ != null;
+        //&& isolate_configuration_ != null;
 
         public bool AddAssetResolver(AssetResolver resolver)
         {

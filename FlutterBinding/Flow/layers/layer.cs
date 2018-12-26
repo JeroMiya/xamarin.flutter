@@ -8,7 +8,6 @@ using static FlutterBinding.Flow.RasterCache;
 
 namespace FlutterBinding.Flow.Layers
 {
-
     // This should be an exact copy of the Clip enum in painting.dart.
     public enum Clip
     {
@@ -31,45 +30,43 @@ namespace FlutterBinding.Flow.Layers
         public TextureRegistry texture_registry;
         public readonly bool checkerboard_offscreen_layers;
 
-        public PrerollContext(RasterCache raster_cache,
-                              GRContext gr_context,
-                              SKColorSpace dst_color_space,
-                              SKRect child_paint_bounds,
-                              Stopwatch frameTime,
-                              Stopwatch engineTime,
-                              TextureRegistry texture_registry,
-                              bool checkerboard_offscreen_layers)
+        public PrerollContext(
+            RasterCache raster_cache,
+            GRContext gr_context,
+            SKColorSpace dst_color_space,
+            SKRect child_paint_bounds,
+            Stopwatch frameTime,
+            Stopwatch engineTime,
+            TextureRegistry texture_registry,
+            bool checkerboard_offscreen_layers)
         {
             this.raster_cache = raster_cache;
 
             if (raster_cache == null)
                 this.raster_cache = new RasterCache();
 
-            this.gr_context = gr_context;
-            this.dst_color_space = dst_color_space;
-            this.child_paint_bounds = child_paint_bounds;
-            this.frame_time = frameTime;
-            this.engine_time = engineTime;
-            this.texture_registry = texture_registry;
+            this.gr_context                    = gr_context;
+            this.dst_color_space               = dst_color_space;
+            this.child_paint_bounds            = child_paint_bounds;
+            this.frame_time                    = frameTime;
+            this.engine_time                   = engineTime;
+            this.texture_registry              = texture_registry;
             this.checkerboard_offscreen_layers = checkerboard_offscreen_layers;
         }
-
     }
 
     // Represents a single composited layer. Created on the UI thread but then
     // subquently used on the Rasterizer thread.
-    public abstract class Layer: Entry
+    public abstract class Layer : Entry
     {
         public Layer()
         {
-            this.parent_ = null;
+            this.parent_                 = null;
             this.needs_system_composite_ = false;
-            this.paint_bounds_ = SKRect.Empty;
+            this.paint_bounds_           = SKRect.Empty;
         }
 
-        public virtual void Preroll(PrerollContext context, SKMatrix matrix)
-        {
-        }
+        public virtual void Preroll(PrerollContext context, SKMatrix matrix) { }
 
         public class PaintContext
         {
@@ -81,20 +78,21 @@ namespace FlutterBinding.Flow.Layers
             public readonly RasterCache raster_cache;
             public readonly bool checkerboard_offscreen_layers;
 
-            public PaintContext(SKCanvas canvas,
-                                ExternalViewEmbedder view_embedder,
-                                Stopwatch frame_time,
-                                Stopwatch engine_time,
-                                TextureRegistry texture_registry,
-                                RasterCache raster_cache,
-                                bool checkerboard_offscreen_layers)
+            public PaintContext(
+                SKCanvas canvas,
+                ExternalViewEmbedder view_embedder,
+                Stopwatch frame_time,
+                Stopwatch engine_time,
+                TextureRegistry texture_registry,
+                RasterCache raster_cache,
+                bool checkerboard_offscreen_layers)
             {
-                this.canvas = canvas;
-                this.view_embedder = view_embedder;
-                this.frame_time = frame_time;
-                this.engine_time = engine_time;
-                this.texture_registry = texture_registry;
-                this.raster_cache = raster_cache;
+                this.canvas                        = canvas;
+                this.view_embedder                 = view_embedder;
+                this.frame_time                    = frame_time;
+                this.engine_time                   = engine_time;
+                this.texture_registry              = texture_registry;
+                this.raster_cache                  = raster_cache;
                 this.checkerboard_offscreen_layers = checkerboard_offscreen_layers;
             }
         }
@@ -119,13 +117,14 @@ namespace FlutterBinding.Flow.Layers
                 {
                     PaintUtils.DrawCheckerboard(paint_context_.canvas, bounds_);
                 }
+
                 paint_context_.canvas.Restore();
             }
 
             private AutoSaveLayer(PaintContext paint_context, SKRect bounds, SKPaint paint)
             {
                 this.paint_context_ = paint_context;
-                this.bounds_ = bounds;
+                this.bounds_        = bounds;
                 //C++ TO C# CONVERTER TODO TASK: The following line was determined to contain a copy constructor call - this should be verified and a copy constructor should be created:
                 //ORIGINAL LINE: paint_context_.canvas.saveLayer(bounds_, paint);
                 paint_context_.canvas.SaveLayer(bounds_, paint);
@@ -158,6 +157,7 @@ namespace FlutterBinding.Flow.Layers
         {
             return needs_system_composite_;
         }
+
         public void set_needs_system_composite(bool value)
         {
             needs_system_composite_ = value;
@@ -174,6 +174,7 @@ namespace FlutterBinding.Flow.Layers
         {
             paint_bounds_ = paint_bounds;
         }
+
         public bool needs_painting()
         {
             return !paint_bounds_.IsEmpty;
@@ -183,5 +184,4 @@ namespace FlutterBinding.Flow.Layers
         private bool needs_system_composite_;
         private SKRect paint_bounds_ = new SKRect();
     }
-
 }

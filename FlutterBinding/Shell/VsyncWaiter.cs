@@ -52,7 +52,7 @@ namespace FlutterBinding.Shell
         }
 
         private TimePoint _phase;
-    
+
         // |shell::VsyncWaiter|
         protected override void AwaitVSync()
         {
@@ -60,11 +60,12 @@ namespace FlutterBinding.Shell
             TimePoint next = SnapToNextTick(now, _phase, interval);
 
             _taskRunners.UITaskRunner.PostDelayedTask(
-                    () =>
-                    {
-                        var frameTime = TimePoint.Now();
-                        FireCallback(frameTime, frameTime + interval);
-                    }, next - now);
+                () =>
+                {
+                    var frameTime = TimePoint.Now();
+                    FireCallback(frameTime, frameTime + interval);
+                },
+                next - now);
         }
 
         //FML_DISALLOW_COPY_AND_ASSIGN(VsyncWaiterFallback);

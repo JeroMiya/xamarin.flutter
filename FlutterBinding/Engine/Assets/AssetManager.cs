@@ -3,7 +3,6 @@ using System.Linq;
 
 namespace FlutterBinding.Engine.Assets
 {
-
     public class AssetManager : AssetResolver
     {
         public void PushFront(AssetResolver resolver)
@@ -41,7 +40,6 @@ namespace FlutterBinding.Engine.Assets
 
             //FML_DLOG(WARNING) << "Could not find asset: " << asset_name;
             return null;
-
         }
 
         private List<AssetResolver> resolvers_ = new List<AssetResolver>();
@@ -58,5 +56,4 @@ namespace FlutterBinding.Engine.Assets
 
         //FML_DISALLOW_COPY_AND_ASSIGN(AssetResolver);
     }
-
 }

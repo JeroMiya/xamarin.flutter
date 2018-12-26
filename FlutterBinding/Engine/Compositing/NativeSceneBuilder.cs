@@ -208,7 +208,7 @@ namespace FlutterBinding.Engine.Compositing
             SceneHost sceneHost,
             bool hitTestable)
         {
-            #if OS_FUCHSIA
+#if OS_FUCHSIA
               if (!current_layer_) {
                 return;
               }

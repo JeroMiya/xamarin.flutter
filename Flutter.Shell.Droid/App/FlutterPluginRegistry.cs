@@ -9,13 +9,13 @@ using Android.Content.PM;
 
 namespace Flutter.Shell.Droid.App
 {
-    public class FlutterPluginRegistry : 
-            IPluginRegistry,
-             IRequestPermissionsResultListener,
-             IActivityResultListener,
-             INewIntentListener,
-             IUserLeaveHintListener,
-             IViewDestroyListener
+    public class FlutterPluginRegistry :
+        IPluginRegistry,
+        IRequestPermissionsResultListener,
+        IActivityResultListener,
+        INewIntentListener,
+        IUserLeaveHintListener,
+        IViewDestroyListener
     {
         private static readonly string TAG = "FlutterPluginRegistry";
 
@@ -34,8 +34,8 @@ namespace Flutter.Shell.Droid.App
 
         public FlutterPluginRegistry(FlutterNativeView nativeView, Context context)
         {
-            _nativeView = nativeView;
-            _appContext = context;
+            _nativeView              = nativeView;
+            _appContext              = context;
             _platformViewsController = new PlatformViewsController();
         }
 
@@ -59,6 +59,7 @@ namespace Flutter.Shell.Droid.App
             {
                 throw new IllegalStateException("Plugin key " + pluginKey + " is already in use");
             }
+
             _pluginMap[pluginKey] = null;
             return new FlutterRegistrar(pluginKey, this);
         }
@@ -66,7 +67,7 @@ namespace Flutter.Shell.Droid.App
         public void Attach(FlutterView flutterView, Activity activity)
         {
             _flutterView = flutterView;
-            _activity = activity;
+            _activity    = activity;
             _platformViewsController.Attach(activity, flutterView, flutterView);
         }
 
@@ -75,7 +76,7 @@ namespace Flutter.Shell.Droid.App
             _platformViewsController.Detach();
             _platformViewsController.OnFlutterViewDestroyed();
             _flutterView = null;
-            _activity = null;
+            _activity    = null;
         }
 
         public void OnPreEngineRestart()
@@ -93,6 +94,7 @@ namespace Flutter.Shell.Droid.App
                     return true;
                 }
             }
+
             return false;
         }
 
@@ -115,6 +117,7 @@ namespace Flutter.Shell.Droid.App
                     return true;
                 }
             }
+
             return false;
         }
 
@@ -128,6 +131,7 @@ namespace Flutter.Shell.Droid.App
                     return true;
                 }
             }
+
             return false;
         }
 
@@ -151,6 +155,7 @@ namespace Flutter.Shell.Droid.App
                     handled = true;
                 }
             }
+
             return handled;
         }
 
@@ -158,7 +163,6 @@ namespace Flutter.Shell.Droid.App
         {
             _platformViewsController.OnFlutterViewDestroyed();
         }
-
     }
 
     internal class FlutterRegistrar : IRegistrar
@@ -169,7 +173,7 @@ namespace Flutter.Shell.Droid.App
         public FlutterRegistrar(string pluginKey, FlutterPluginRegistry registry)
         {
             this.pluginKey = pluginKey;
-            _registry = registry;
+            _registry      = registry;
         }
 
         //@Override

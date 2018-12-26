@@ -10,7 +10,6 @@ using static FlutterBinding.Mapping.Helper;
 
 namespace FlutterBinding.UI
 {
-
     public static class Helper
     {
         public static SKPoint ToPoint(this Offset offset) => new SKPoint((float)offset.dx, (float)offset.dy);
@@ -63,7 +62,6 @@ namespace FlutterBinding.UI
         /// {@template flutter.dart:ui.imageFormats}
         /// JPEG, PNG, GIF, Animated GIF, WebP, Animated WebP, BMP, and WBMP
         /// {@endtemplate}
-
         public static bool _rectIsValid(Rect rect)
         {
             //assert(rect != null, 'Rect argument was null.');
@@ -127,6 +125,7 @@ namespace FlutterBinding.UI
                 result[xIndex] = point.dx;
                 result[yIndex] = point.dy;
             }
+
             return result;
         }
 
@@ -172,7 +171,8 @@ namespace FlutterBinding.UI
         ///
         /// The returned future can complete with an error if the image decoding has
         /// failed.
-        public Task<SKCodec> instantiateImageCodec(List<int> list,
+        public Task<SKCodec> instantiateImageCodec(
+            List<int> list,
             double decodedCacheRatioCap = double.PositiveInfinity)
         {
             return _instantiateImageCodec(list, null, decodedCacheRatioCap);
@@ -193,8 +193,9 @@ namespace FlutterBinding.UI
             _decodeImageFromListAsync(list, callback);
         }
 
-        async Task _decodeImageFromListAsync(List<int> list,
-                                           ImageDecoderCallback callback)
+        async Task _decodeImageFromListAsync(
+            List<int> list,
+            ImageDecoderCallback callback)
         {
             SKCodec codec = await instantiateImageCodec(list);
             SKCodecFrameInfo frameInfo = codec.FrameInfo[0]; // TODO: .getNextFrame();
@@ -218,18 +219,17 @@ namespace FlutterBinding.UI
         /// unlikely that a factor that low will be sufficient to cache all decoded
         /// frames. The default value is `25.0`.
         public async void decodeImageFromPixels(
-          List<int> pixels,
-          int width,
-          int height,
-          PixelFormat format,
-          ImageDecoderCallback callback,
-          int rowBytes = 0, double decodedCacheRatioCap = double.PositiveInfinity)
+            List<int> pixels,
+            int width,
+            int height,
+            PixelFormat format,
+            ImageDecoderCallback callback,
+            int rowBytes = 0, double decodedCacheRatioCap = double.PositiveInfinity)
         {
             _ImageInfo imageInfo = new _ImageInfo(width, height, (int)format, rowBytes);
             var codec = await _instantiateImageCodec(pixels, imageInfo, decodedCacheRatioCap);
             callback(codec.FrameInfo[0].GetImage(codec));
         }
-
     }
 
     /// An immutable 32 bit color value in ARGB format.
@@ -301,9 +301,9 @@ namespace FlutterBinding.UI
         public static Color fromARGB(uint a, uint r, uint g, uint b)
         {
             var value = (((a & 0xff) << 24) |
-                     ((r & 0xff) << 16) |
-                     ((g & 0xff) << 8) |
-                     ((b & 0xff) << 0)) & 0xFFFFFFFF;
+                ((r & 0xff) << 16) |
+                ((g & 0xff) << 8) |
+                ((b & 0xff) << 0)) & 0xFFFFFFFF;
             return new Color(value);
         }
 
@@ -321,12 +321,13 @@ namespace FlutterBinding.UI
         public static Color fromRGBO(int r, int g, int b, double opacity)
         {
             var value = (uint)((((int)Math.Truncate(opacity * 0xff / 1.0) & 0xff) << 24) |
-                      ((r & 0xff) << 16) |
-                      ((g & 0xff) << 8) |
-                      ((b & 0xff) << 0)) & 0xFFFFFFFF;
+                ((r & 0xff) << 16) |
+                ((g & 0xff) << 8) |
+                ((b & 0xff) << 0)) & 0xFFFFFFFF;
 
             return new Color(value);
         }
+
         /// A 32 bit value representing this color.
         ///
         /// The bits are assigned as follows:
@@ -459,10 +460,10 @@ namespace FlutterBinding.UI
             if (b == null)
                 return Painting._scaleAlpha(a, 1.0 - t);
             return Color.fromARGB(
-              (uint)Lerp.lerpDouble(a.alpha, b.alpha, t).toInt().clamp(0, 255),
-              (uint)Lerp.lerpDouble(a.red, b.red, t).toInt().clamp(0, 255),
-              (uint)Lerp.lerpDouble(a.green, b.green, t).toInt().clamp(0, 255),
-              (uint)Lerp.lerpDouble(a.blue, b.blue, t).toInt().clamp(0, 255));
+                (uint)Lerp.lerpDouble(a.alpha, b.alpha, t).toInt().clamp(0, 255),
+                (uint)Lerp.lerpDouble(a.red, b.red, t).toInt().clamp(0, 255),
+                (uint)Lerp.lerpDouble(a.green, b.green, t).toInt().clamp(0, 255),
+                (uint)Lerp.lerpDouble(a.blue, b.blue, t).toInt().clamp(0, 255));
         }
 
         /// Combine the foreground color as a transparent color over top
@@ -480,15 +481,16 @@ namespace FlutterBinding.UI
             { // Foreground completely transparent.
                 return background;
             }
+
             int invAlpha = 0xff - alpha;
             int backAlpha = (int)background.alpha;
             if (backAlpha == 0xff)
             { // Opaque background case
                 return Color.fromARGB(
-                  0xff,
-                  (uint)((alpha * foreground.red + invAlpha * background.red) / 0xff),
-                  (uint)((alpha * foreground.green + invAlpha * background.green) / 0xff),
-                  (uint)((alpha * foreground.blue + invAlpha * background.blue) / 0xff));
+                    0xff,
+                    (uint)((alpha * foreground.red + invAlpha * background.red) / 0xff),
+                    (uint)((alpha * foreground.green + invAlpha * background.green) / 0xff),
+                    (uint)((alpha * foreground.blue + invAlpha * background.blue) / 0xff));
             }
             else
             { // General case
@@ -496,10 +498,10 @@ namespace FlutterBinding.UI
                 int outAlpha = alpha + backAlpha;
                 //assert(outAlpha != 0x00);
                 return Color.fromARGB(
-                  (uint)outAlpha,
-                  (uint)((foreground.red * alpha + background.red * backAlpha) / outAlpha),
-                  (uint)((foreground.green * alpha + background.green * backAlpha) / outAlpha),
-                  (uint)((foreground.blue * alpha + background.blue * backAlpha) / outAlpha));
+                    (uint)outAlpha,
+                    (uint)((foreground.red * alpha + background.red * backAlpha) / outAlpha),
+                    (uint)((foreground.green * alpha + background.green * backAlpha) / outAlpha),
+                    (uint)((foreground.blue * alpha + background.blue * backAlpha) / outAlpha));
             }
         }
 
@@ -784,7 +786,7 @@ namespace FlutterBinding.UI
         ///    destination image.
         ///  * [hardLight], which combines [modulate] and [screen] to favor the
         ///    source image.
-        screen,  // The last coeff mode.
+        screen, // The last coeff mode.
 
         /// Multiply the components of the source and destination images after
         /// adjusting them to favor the destination.
@@ -919,7 +921,7 @@ namespace FlutterBinding.UI
         /// channel, consider [modulate].
         ///
         /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_multiply.png)
-        multiply,  // The last separable mode.
+        multiply, // The last separable mode.
 
         /// Take the hue of the source image, and the saturation and luminosity of the
         /// destination image.
@@ -1228,8 +1230,6 @@ namespace FlutterBinding.UI
     /// to use for that operation.
     public class Paint
     {
-
-
         // Paint objects are encoded in two buffers:
         //
         // * _data is binary data in four-byte fields, each of which is either a
@@ -1277,7 +1277,9 @@ namespace FlutterBinding.UI
         const int _kMaskFilterOffset = _kMaskFilterIndex << 2;
         const int _kMaskFilterBlurStyleOffset = _kMaskFilterBlurStyleIndex << 2;
         const int _kMaskFilterSigmaOffset = _kMaskFilterSigmaIndex << 2;
+
         const int _kInvertColorOffset = _kInvertColorIndex << 2;
+
         // If you add more fields, remember to update _kDataByteCount.
         const int _kDataByteCount = 75;
 
@@ -1292,10 +1294,7 @@ namespace FlutterBinding.UI
         /// Defaults to true.
         public bool isAntiAlias
         {
-            get
-            {
-                return _data.getInt32(_kIsAntiAliasOffset, (int)Painting._kFakeHostEndian) == 0;
-            }
+            get { return _data.getInt32(_kIsAntiAliasOffset, (int)Painting._kFakeHostEndian) == 0; }
             set
             {
                 // We encode true as zero and false as one because the default value, which
@@ -1303,7 +1302,6 @@ namespace FlutterBinding.UI
                 int encoded = value ? 0 : 1;
                 _data.setInt32(_kIsAntiAliasOffset, encoded, (int)Painting._kFakeHostEndian);
             }
-
         }
 
         // Must be kept in sync with the default in paint.cc.
@@ -1377,10 +1375,7 @@ namespace FlutterBinding.UI
         /// Defaults to [PaintingStyle.fill].
         public PaintingStyle style
         {
-            get
-            {
-                return (PaintingStyle)_data.getInt32(_kStyleOffset, (int)Painting._kFakeHostEndian);
-            }
+            get { return (PaintingStyle)_data.getInt32(_kStyleOffset, (int)Painting._kFakeHostEndian); }
             set
             {
                 //assert(value != null);
@@ -1396,10 +1391,7 @@ namespace FlutterBinding.UI
         /// Defaults to 0.0, which correspond to a hairline width.
         public double strokeWidth
         {
-            get
-            {
-                return _data.getFloat32(_kStrokeWidthOffset, (int)Painting._kFakeHostEndian);
-            }
+            get { return _data.getFloat32(_kStrokeWidthOffset, (int)Painting._kFakeHostEndian); }
             set
             {
                 //assert(value != null);
@@ -1414,10 +1406,7 @@ namespace FlutterBinding.UI
         /// Defaults to [StrokeCap.butt], i.e. no caps.
         public StrokeCap strokeCap
         {
-            get
-            {
-                return (StrokeCap)_data.getInt32(_kStrokeCapOffset, (int)Painting._kFakeHostEndian);
-            }
+            get { return (StrokeCap)_data.getInt32(_kStrokeCapOffset, (int)Painting._kFakeHostEndian); }
             set
             {
                 int encoded = (int)value;
@@ -1452,16 +1441,12 @@ namespace FlutterBinding.UI
         ///  * [StrokeJoin] for the definitive list of stroke joins.
         public StrokeJoin strokeJoin
         {
-            get
-            {
-                return (StrokeJoin)_data.getInt32(_kStrokeJoinOffset, (int)Painting._kFakeHostEndian);
-            }
+            get { return (StrokeJoin)_data.getInt32(_kStrokeJoinOffset, (int)Painting._kFakeHostEndian); }
             set
             {
                 //assert(value != null);
                 int encoded = (int)value;
                 _data.setInt32(_kStrokeJoinOffset, encoded, (int)Painting._kFakeHostEndian);
-
             }
         }
 
@@ -1496,10 +1481,7 @@ namespace FlutterBinding.UI
         ///  * [strokeCap] to control what is drawn at the ends of the stroke.
         public double strokeMiterLimit
         {
-            get
-            {
-                return _data.getFloat32(_kStrokeMiterLimitOffset, (int)Painting._kFakeHostEndian);
-            }
+            get { return _data.getFloat32(_kStrokeMiterLimitOffset, (int)Painting._kFakeHostEndian); }
             set
             {
                 //assert(value != null);
@@ -1518,13 +1500,14 @@ namespace FlutterBinding.UI
             {
                 switch (_data.getInt32(_kMaskFilterOffset, (int)Painting._kFakeHostEndian))
                 {
-                    case MaskFilter._TypeNone:
-                        return null;
-                    case MaskFilter._TypeBlur:
-                        return MaskFilter.blur(
-                          (BlurStyle)_data.getInt32(_kMaskFilterBlurStyleOffset, (int)Painting._kFakeHostEndian),
-                          _data.getFloat32(_kMaskFilterSigmaOffset, (int)Painting._kFakeHostEndian));
+                case MaskFilter._TypeNone:
+                    return null;
+                case MaskFilter._TypeBlur:
+                    return MaskFilter.blur(
+                        (BlurStyle)_data.getInt32(_kMaskFilterBlurStyleOffset, (int)Painting._kFakeHostEndian),
+                        _data.getFloat32(_kMaskFilterSigmaOffset, (int)Painting._kFakeHostEndian));
                 }
+
                 return null;
             }
             set
@@ -1554,10 +1537,7 @@ namespace FlutterBinding.UI
         // TODO(ianh): verify that the image drawing methods actually respect this
         public FilterQuality filterQuality
         {
-            get
-            {
-                return (FilterQuality)(_data.getInt32(_kFilterQualityOffset, (int)Painting._kFakeHostEndian));
-            }
+            get { return (FilterQuality)(_data.getInt32(_kFilterQualityOffset, (int)Painting._kFakeHostEndian)); }
             set
             {
                 //assert(value != null);
@@ -1606,8 +1586,8 @@ namespace FlutterBinding.UI
                 if (isNull)
                     return null;
                 return ColorFilter.mode(
-                  new Color((uint)_data.getInt32(_kColorFilterColorOffset, (int)Painting._kFakeHostEndian)),
-                  (BlendMode)(_data.getInt32(_kColorFilterBlendModeOffset, (int)Painting._kFakeHostEndian))
+                    new Color((uint)_data.getInt32(_kColorFilterColorOffset, (int)Painting._kFakeHostEndian)),
+                    (BlendMode)(_data.getInt32(_kColorFilterBlendModeOffset, (int)Painting._kFakeHostEndian))
                 );
             }
             set
@@ -1634,14 +1614,8 @@ namespace FlutterBinding.UI
         /// used for implementing smart invert on iOS.
         public bool invertColors
         {
-            get
-            {
-                return _data.getInt32(_kInvertColorOffset, (int)Painting._kFakeHostEndian) == 1;
-            }
-            set
-            {
-                _data.setInt32(_kInvertColorOffset, value ? 1 : 0, (int)Painting._kFakeHostEndian);
-            }
+            get { return _data.getInt32(_kInvertColorOffset, (int)Painting._kFakeHostEndian) == 1; }
+            set { _data.setInt32(_kInvertColorOffset, value ? 1 : 0, (int)Painting._kFakeHostEndian); }
         }
 
         public String toString()
@@ -1667,13 +1641,16 @@ namespace FlutterBinding.UI
                 {
                     result.Append($" {strokeJoin}");
                 }
+
                 semicolon = "; ";
             }
+
             if (isAntiAlias != true)
             {
                 result.Append($"{semicolon}antialias off");
                 semicolon = "; ";
             }
+
             if (color != new Color(_kColorDefault))
             {
                 if (color != null)
@@ -1682,31 +1659,37 @@ namespace FlutterBinding.UI
                     result.Append($"{semicolon}no color");
                 semicolon = "; ";
             }
+
             if ((int)blendMode != _kBlendModeDefault)
             {
                 result.Append($"{semicolon}{blendMode}");
                 semicolon = "; ";
             }
+
             if (colorFilter != null)
             {
                 result.Append($"{semicolon}colorFilter: {colorFilter}");
                 semicolon = "; ";
             }
+
             if (maskFilter != null)
             {
                 result.Append($"{semicolon}maskFilter: {maskFilter}");
                 semicolon = "; ";
             }
+
             if (filterQuality != FilterQuality.none)
             {
                 result.Append($"{semicolon}filterQuality: {filterQuality}");
                 semicolon = "; ";
             }
+
             if (shader != null)
             {
                 result.Append($"{semicolon}shader: {shader}");
                 semicolon = "; ";
             }
+
             if (invertColors)
                 result.Append($"{semicolon}invert: {invertColors}");
             result.Append(")");
@@ -1765,7 +1748,7 @@ namespace FlutterBinding.UI
     {
         public _ImageInfo(int width, int height, int format, int? rowBytes)
         {
-            this.width = width;
+            this.width  = width;
             this.height = height;
             this.format = format;
 
@@ -1828,6 +1811,7 @@ namespace FlutterBinding.UI
         ///  * [reverseDifference], which is the same but subtracting the first path
         ///    from the second.
         difference,
+
         /// Create a new path that is the intersection of the two paths, leaving the
         /// overlapping pieces of the path.
         ///
@@ -1838,12 +1822,14 @@ namespace FlutterBinding.UI
         /// See also:
         ///  * [xor], which is the inverse of this operation
         intersect,
+
         /// Create a new path that is the union (inclusive-or) of the two paths.
         ///
         /// For example, if the two paths are overlapping circles of equal diameter
         /// but differing centers, the result would be a figure-eight like shape
         /// matching the outer boundaries of both circles.
         union,
+
         /// Create a new path that is the exclusive-or of the two paths, leaving
         /// everything but the overlapping pieces of the path.
         ///
@@ -1853,6 +1839,7 @@ namespace FlutterBinding.UI
         /// See also:
         ///  * [intersect], which is the inverse of this operation
         xor,
+
         /// Subtract the first path from the second path.
         ///
         /// For example, if the two paths are overlapping circles of equal diameter
@@ -1886,7 +1873,11 @@ namespace FlutterBinding.UI
     public class Path : NativePath
     {
         /// Create a new empty [Path] object.
-        public Path() { _constructor(); }
+        public Path()
+        {
+            _constructor();
+        }
+
         void _constructor()
         {
             // [DONE] native 'Path_constructor';
@@ -1900,6 +1891,7 @@ namespace FlutterBinding.UI
         {
             return source._clone();
         }
+
         Path _clone()
         {
             return (Path)this.MemberwiseClone();
@@ -1918,6 +1910,7 @@ namespace FlutterBinding.UI
         {
             return (int)this.FillType;
         }
+
         void _setFillType(int fillType)
         {
             this.FillType = (SKPathFillType)fillType;
@@ -2024,8 +2017,10 @@ namespace FlutterBinding.UI
         {
             _arcTo(rect.left, rect.top, rect.right, rect.bottom, startAngle, sweepAngle, forceMoveTo);
         }
-        void _arcTo(double left, double top, double right, double bottom,
-                    double startAngle, double sweepAngle, bool forceMoveTo)
+
+        void _arcTo(
+            double left, double top, double right, double bottom,
+            double startAngle, double sweepAngle, bool forceMoveTo)
         {
             this.ArcTo(new SKRect((float)left, (float)top, (float)right, (float)bottom), (float)startAngle, (float)sweepAngle, forceMoveTo);
         }
@@ -2042,29 +2037,44 @@ namespace FlutterBinding.UI
         /// point in the path is `arcEnd`. The radii are scaled to fit the last path
         /// point if both are greater than zero but too small to describe an arc.
         ///
-        public void arcToPoint(Offset arcEnd,
+        public void arcToPoint(
+            Offset arcEnd,
             Radius radius = null,
-        double rotation = 0.0,
-        bool largeArc = false,
-        bool clockwise = true)
+            double rotation = 0.0,
+            bool largeArc = false,
+            bool clockwise = true)
         {
             if (radius == null)
                 radius = Radius.zero;
             //assert(_offsetIsValid(arcEnd));
             //assert(_radiusIsValid(radius));
-            _arcToPoint(arcEnd.dx, arcEnd.dy, radius.x, radius.y, rotation,
-                        largeArc, clockwise);
+            _arcToPoint(
+                arcEnd.dx,
+                arcEnd.dy,
+                radius.x,
+                radius.y,
+                rotation,
+                largeArc,
+                clockwise);
         }
-        void _arcToPoint(double arcEndX, double arcEndY, double radiusX,
-                         double radiusY, double rotation, bool largeArc,
-                         bool clockwise)
+
+        void _arcToPoint(
+            double arcEndX, double arcEndY, double radiusX,
+            double radiusY, double rotation, bool largeArc,
+            bool clockwise)
         {
             var arcSize = largeArc ? SKPathArcSize.Large : SKPathArcSize.Small;
 
             var direction = clockwise ? SKPathDirection.Clockwise : SKPathDirection.CounterClockwise;
 
-            this.ArcTo((float)radiusX, (float)radiusY, (float)rotation, arcSize, direction, (float)arcEndX,
-                        (float)arcEndY);
+            this.ArcTo(
+                (float)radiusX,
+                (float)radiusY,
+                (float)rotation,
+                arcSize,
+                direction,
+                (float)arcEndX,
+                (float)arcEndY);
         }
 
 
@@ -2082,30 +2092,44 @@ namespace FlutterBinding.UI
         /// `arcEndDelta.dx` and `arcEndDelta.dy` are zero. The radii are scaled to
         /// fit the last path point if both are greater than zero but too small to
         /// describe an arc.
-        public void relativeArcToPoint(Offset arcEndDelta,
-              Radius radius = null,
-          double rotation = 0.0,
-          bool largeArc = false,
-          bool clockwise = true)
+        public void relativeArcToPoint(
+            Offset arcEndDelta,
+            Radius radius = null,
+            double rotation = 0.0,
+            bool largeArc = false,
+            bool clockwise = true)
         {
             if (radius == null)
                 radius = Radius.zero;
             //assert(_offsetIsValid(arcEndDelta));
             //assert(_radiusIsValid(radius));
-            _relativeArcToPoint(arcEndDelta.dx, arcEndDelta.dy, radius.x, radius.y,
-                                rotation, largeArc, clockwise);
+            _relativeArcToPoint(
+                arcEndDelta.dx,
+                arcEndDelta.dy,
+                radius.x,
+                radius.y,
+                rotation,
+                largeArc,
+                clockwise);
         }
-        void _relativeArcToPoint(double arcEndX, double arcEndY, double radiusX,
-                                 double radiusY, double rotation,
-                                 bool largeArc, bool clockwise)
-        {
 
+        void _relativeArcToPoint(
+            double arcEndX, double arcEndY, double radiusX,
+            double radiusY, double rotation,
+            bool largeArc, bool clockwise)
+        {
             var arcSize = largeArc ? SKPathArcSize.Large : SKPathArcSize.Small;
 
             var direction = clockwise ? SKPathDirection.Clockwise : SKPathDirection.CounterClockwise;
 
-            this.RArcTo((float)radiusX, (float)radiusY, (float)rotation, arcSize, direction, (float)arcEndX,
-                        (float)arcEndY);
+            this.RArcTo(
+                (float)radiusX,
+                (float)radiusY,
+                (float)rotation,
+                arcSize,
+                direction,
+                (float)arcEndX,
+                (float)arcEndY);
         }
 
         /// Adds a new subpath that consists of four lines that outline the
@@ -2115,6 +2139,7 @@ namespace FlutterBinding.UI
             //assert(_rectIsValid(rect));
             _addRect(rect.left, rect.top, rect.right, rect.bottom);
         }
+
         void _addRect(double left, double top, double right, double bottom)
         {
             this.AddRect(new SKRect((float)left, (float)top, (float)right, (float)bottom));
@@ -2130,6 +2155,7 @@ namespace FlutterBinding.UI
             //assert(_rectIsValid(oval));
             _addOval(oval.left, oval.top, oval.right, oval.bottom);
         }
+
         void _addOval(double left, double top, double right, double bottom)
         {
             this.AddOval(new SKRect((float)left, (float)top, (float)right, (float)bottom));
@@ -2148,8 +2174,10 @@ namespace FlutterBinding.UI
             //assert(_rectIsValid(oval));
             _addArc(oval.left, oval.top, oval.right, oval.bottom, startAngle, sweepAngle);
         }
-        void _addArc(double left, double top, double right, double bottom,
-                     double startAngle, double sweepAngle)
+
+        void _addArc(
+            double left, double top, double right, double bottom,
+            double startAngle, double sweepAngle)
         {
             this.AddArc(new SKRect((float)left, (float)top, (float)right, (float)bottom), (float)startAngle, (float)sweepAngle);
         }
@@ -2166,6 +2194,7 @@ namespace FlutterBinding.UI
             //assert(points != null);
             _addPolygon(points, close);
         }
+
         void _addPolygon(List<Offset> points, bool close)
         {
             var list = new List<SKPoint>();
@@ -2205,10 +2234,12 @@ namespace FlutterBinding.UI
                 _addPath(path, offset.dx, offset.dy);
             }
         }
+
         void _addPath(Path path, double dx, double dy)
         {
             this.AddPath(path, (float)dx, (float)dy);
         }
+
         void _addPathWithMatrix(Path path, double dx, double dy, List<float> matrix)
         {
             var skMatrix = Matrix.ToSkMatrix(matrix);
@@ -2237,6 +2268,7 @@ namespace FlutterBinding.UI
                 _extendWithPath(path, offset.dx, offset.dy);
             }
         }
+
         void _extendWithPath(Path path, double dx, double dy)
         {
             this.AddPath(path, (float)dx, (float)dy, SKPathAddMode.Extend);
@@ -2277,6 +2309,7 @@ namespace FlutterBinding.UI
             //assert(_offsetIsValid(point));
             return _contains(point.dx, point.dy);
         }
+
         bool _contains(double x, double y)
         {
             return this.Contains((float)x, (float)y);
@@ -2289,6 +2322,7 @@ namespace FlutterBinding.UI
             //assert(_offsetIsValid(offset));
             return _shift(offset.dx, offset.dy);
         }
+
         Path _shift(double dx, double dy)
         {
             var path = this._clone();
@@ -2303,6 +2337,7 @@ namespace FlutterBinding.UI
             //assert(_matrix4IsValid(matrix4));
             return _transform(matrix4);
         }
+
         Path _transform(List<float> matrix4)
         {
             var path = this._clone();
@@ -2330,6 +2365,7 @@ namespace FlutterBinding.UI
             List<float> rect = _getBounds();
             return Rect.fromLTRB(rect[0], rect[1], rect[2], rect[3]);
         }
+
         List<float> _getBounds()
         {
             var skRect = new SKRect();
@@ -2358,6 +2394,7 @@ namespace FlutterBinding.UI
             {
                 return path;
             }
+
             throw new Types.StateError("Path.combine() failed.  This may be due an invalid path; in particular, check for NaN values.");
         }
 
@@ -2385,7 +2422,7 @@ namespace FlutterBinding.UI
             //assert(position != null),
             //assert(vector != null);
             this.position = position;
-            this.vector = vector;
+            this.vector   = vector;
         }
 
 
@@ -2476,6 +2513,7 @@ namespace FlutterBinding.UI
             {
                 return true;
             }
+
             _pathMetric = null;
             return false;
         }
@@ -2491,12 +2529,8 @@ namespace FlutterBinding.UI
     /// becomes invalid.
     public class PathMetric : NativePathMetric
     {
-
         /// Create a new empty [Path] object.
-        internal PathMetric(Path path, bool forceClosed) : base(path, forceClosed)
-        {
-
-        }
+        internal PathMetric(Path path, bool forceClosed) : base(path, forceClosed) { }
 
         /// Return the total length of the current contour.
         public double length => this.Length;
@@ -2523,8 +2557,8 @@ namespace FlutterBinding.UI
             else
             {
                 return new Tangent(
-                  new Offset(position.X, position.Y),
-                  new Offset(tangent.X, tangent.Y)
+                    new Offset(position.X, position.Y),
+                    new Offset(tangent.X, tangent.Y)
                 );
             }
         }
@@ -2620,7 +2654,7 @@ namespace FlutterBinding.UI
         ///  * [Canvas.drawShadow], which is a more efficient way to draw shadows.
         public static MaskFilter blur(BlurStyle _style, double _sigma)
         { //assert(_style != null),
-          //assert(_sigma != null);
+            //assert(_sigma != null);
 
             return new MaskFilter(_style, _sigma);
         }
@@ -2645,7 +2679,7 @@ namespace FlutterBinding.UI
                 return false;
             MaskFilter typedOther = (MaskFilter)other;
             return mask._style == typedOther._style &&
-                   mask._sigma == typedOther._sigma;
+                mask._sigma == typedOther._sigma;
         }
 
         public static bool operator !=(MaskFilter mask, Object other) => !(mask == other);
@@ -2679,7 +2713,7 @@ namespace FlutterBinding.UI
 
         public ColorFilter(Color color, BlendMode blendMode)
         {
-            _color = color;
+            _color     = color;
             _blendMode = blendMode;
         }
 
@@ -2692,7 +2726,7 @@ namespace FlutterBinding.UI
                 return false;
             ColorFilter typedOther = (ColorFilter)other;
             return filter._color == typedOther._color &&
-                   filter._blendMode == typedOther._blendMode;
+                filter._blendMode == typedOther._blendMode;
         }
 
         public static bool operator !=(ColorFilter filter, Object other) => !(filter == other);
@@ -2817,7 +2851,6 @@ namespace FlutterBinding.UI
     }
 
 
-
     /// A shader (as used by [Paint.shader]) that renders a color gradient.
     ///
     /// There are several types of gradients, represented by the various constructors
@@ -2856,10 +2889,10 @@ namespace FlutterBinding.UI
             //assert(tileMode != null),
 
             var skShader = SKShader.CreateLinearGradient(
-                from.ToPoint(), 
-                to.ToPoint(), 
-                colors.ToColors().ToArray(), 
-                colorStops.Cast<float>().ToArray(), 
+                from.ToPoint(),
+                to.ToPoint(),
+                colors.ToColors().ToArray(),
+                colorStops.Cast<float>().ToArray(),
                 (SKShaderTileMode)tileMode);
 
             return new Gradient(skShader);
@@ -2920,26 +2953,26 @@ namespace FlutterBinding.UI
             if (focal == null || (focal == center && focalRadius == 0.0))
             {
                 skShader = SKShader.CreateRadialGradient(
-                    center.ToPoint(), 
-                    (float)radius, 
-                    colors.ToColors().ToArray(), 
-                    colorStopsBuffer.Cast<float>().ToArray(), 
-                    (SKShaderTileMode)tileMode, 
+                    center.ToPoint(),
+                    (float)radius,
+                    colors.ToColors().ToArray(),
+                    colorStopsBuffer.Cast<float>().ToArray(),
+                    (SKShaderTileMode)tileMode,
                     Matrix.ToSkMatrix(matrix4));
-
             }
             else
             {
                 skShader = SKShader.CreateTwoPointConicalGradient(
-                    focal.ToPoint(), 
-                    (float)focalRadius, 
-                    center.ToPoint(), 
-                    (float)radius, 
-                    colors.ToColors().ToArray(), 
-                    colorStopsBuffer.Cast<float>().ToArray(), 
-                    (SKShaderTileMode)tileMode, 
+                    focal.ToPoint(),
+                    (float)focalRadius,
+                    center.ToPoint(),
+                    (float)radius,
+                    colors.ToColors().ToArray(),
+                    colorStopsBuffer.Cast<float>().ToArray(),
+                    (SKShaderTileMode)tileMode,
                     Matrix.ToSkMatrix(matrix4));
             }
+
             return new Gradient(skShader);
         }
 
@@ -2991,9 +3024,9 @@ namespace FlutterBinding.UI
             List<uint> colorsBuffer = Painting._encodeColorList(colors);
             List<double> colorStopsBuffer = colorStops == null ? null : new List<double>(colorStops);
             var skShader = SKShader.CreateSweepGradient(
-                center.ToPoint(), 
-                colors.ToColors().ToArray(), 
-                colorStopsBuffer?.Cast<float>().ToArray(), 
+                center.ToPoint(),
+                colors.ToColors().ToArray(),
+                colorStopsBuffer?.Cast<float>().ToArray(),
                 Matrix.ToSkMatrix(matrix4));
             return new Shader(skShader);
         }
@@ -3369,6 +3402,7 @@ namespace FlutterBinding.UI
                 throw new ArgumentException("'matrix4' must have 16 entries.");
             _transform(matrix4);
         }
+
         void _transform(List<float> matrix4)
         {
             var matrix = Matrix.ToSkMatrix(matrix4);
@@ -3447,7 +3481,6 @@ namespace FlutterBinding.UI
             ////assert(paint != null);
 
             _canvas.DrawLine(p1.ToPoint(), p2.ToPoint(), paint);
-
         }
 
         /// Fills the canvas with the given [Paint].
@@ -3569,7 +3602,6 @@ namespace FlutterBinding.UI
             //assert(_rectIsValid(dst));
             //assert(paint != null);
             _canvas.DrawImage(image, src.ToSKRect(), dst.ToSKRect(), paint);
-
         }
 
         /// Draws the given [Image] into the canvas using the given [Paint].
@@ -3592,7 +3624,6 @@ namespace FlutterBinding.UI
             //assert(_rectIsValid(dst));
             //assert(paint != null);
             _canvas.DrawImageNinePatch(image, center.ToSKRectI(), dst.ToSKRect(), paint);
-
         }
 
 
@@ -3674,27 +3705,27 @@ namespace FlutterBinding.UI
         }
 
 
-
         public void drawVertices(SKVertices vertices, BlendMode blendMode, SKPaint paint)
         {
             //assert(vertices != null); // vertices is checked on the engine side
             //assert(paint != null);
             //assert(blendMode != null);
             _canvas.DrawVertices(vertices, (SKBlendMode)blendMode, paint);
-        }       
+        }
 
         //
         // See also:
         //
         //  * [drawRawAtlas], which takes its arguments as typed data lists rather
         //    than objects.
-        void drawAtlas(SKImage atlas,
-                       List<RSTransform> transforms,
-                       List<Rect> rects,
-                       List<Color> colors,
-                       BlendMode blendMode,
-                       Rect cullRect,
-                       Paint paint)
+        void drawAtlas(
+            SKImage atlas,
+            List<RSTransform> transforms,
+            List<Rect> rects,
+            List<Color> colors,
+            BlendMode blendMode,
+            Rect cullRect,
+            Paint paint)
         {
             //assert(atlas != null); // atlas is checked on the engine side
             //assert(transforms != null);
@@ -3725,21 +3756,25 @@ namespace FlutterBinding.UI
                 rstTransformBuffer[index1] = rstTransform.ssin;
                 rstTransformBuffer[index2] = rstTransform.tx;
                 rstTransformBuffer[index3] = rstTransform.ty;
-                rectBuffer[index0] = rect.left;
-                rectBuffer[index1] = rect.top;
-                rectBuffer[index2] = rect.right;
-                rectBuffer[index3] = rect.bottom;
+                rectBuffer[index0]         = rect.left;
+                rectBuffer[index1]         = rect.top;
+                rectBuffer[index2]         = rect.right;
+                rectBuffer[index3]         = rect.bottom;
             }
 
             List<uint> colorBuffer = colors.Count == 0 ? null : Painting._encodeColorList(colors);
             List<double> cullRectBuffer = cullRect?._value;
 
             _drawAtlas(
-              paint._objects, paint._data, atlas, rstTransformBuffer, rectBuffer,
-              colorBuffer, (int)blendMode, cullRectBuffer
+                paint._objects,
+                paint._data,
+                atlas,
+                rstTransformBuffer,
+                rectBuffer,
+                colorBuffer,
+                (int)blendMode,
+                cullRectBuffer
             );
-
-            
         }
 
         //
@@ -3757,13 +3792,14 @@ namespace FlutterBinding.UI
         //
         //  * [drawAtlas], which takes its arguments as objects rather than typed
         //    data lists.
-        public void drawRawAtlas(SKImage atlas,
-                          List<double> rstTransforms,
-                          List<double> rects,
-                          List<uint> colors,
-                          BlendMode blendMode,
-                          Rect cullRect,
-                          Paint paint)
+        public void drawRawAtlas(
+            SKImage atlas,
+            List<double> rstTransforms,
+            List<double> rects,
+            List<uint> colors,
+            BlendMode blendMode,
+            Rect cullRect,
+            Paint paint)
         {
             ////assert(atlas != null); // atlas is checked on the engine side
             ////assert(rstTransforms != null);
@@ -3781,19 +3817,26 @@ namespace FlutterBinding.UI
                 throw new ArgumentException("If non-null, 'colors' length must be one fourth the length of 'rstTransforms' and 'rects'.");
 
             _drawAtlas(
-              paint._objects, paint._data, atlas, rstTransforms, rects,
-              colors, (int)blendMode, cullRect?._value
+                paint._objects,
+                paint._data,
+                atlas,
+                rstTransforms,
+                rects,
+                colors,
+                (int)blendMode,
+                cullRect?._value
             );
         }
 
-        void _drawAtlas(List<Object> paintObjects,
-                        Types.ByteData paintData,
-                        SKImage atlas,
-                        List<double> rstTransforms,
-                        List<double> rects,
-                        List<uint> colors,
-                        int blendMode,
-                        List<double> cullRect)
+        void _drawAtlas(
+            List<Object> paintObjects,
+            Types.ByteData paintData,
+            SKImage atlas,
+            List<double> rstTransforms,
+            List<double> rects,
+            List<uint> colors,
+            int blendMode,
+            List<double> cullRect)
         {
             // native 'Canvas_drawAtlas';
         }
@@ -3813,8 +3856,7 @@ namespace FlutterBinding.UI
             // TODO: Draw shadow
             // https://github.com/flutter/engine/blob/master/lib/ui/painting/canvas.cc
             // Requires: Flow.PhysicalShapeLayer
-            
-        }       
+        }
     }
 
     /// Records a [Picture] containing a sequence of graphical operations.
@@ -3832,11 +3874,9 @@ namespace FlutterBinding.UI
         /// or the [endRecording] method has already been called.
         public bool isRecording
         {
-            get
-            {
-                return this.RecordingCanvas != null;
-            }
+            get { return this.RecordingCanvas != null; }
         }
+
         /// Finishes recording graphical operations.
         ///
         /// Returns a picture containing the graphical operations that have been
@@ -3865,9 +3905,10 @@ namespace FlutterBinding.UI
         ///
         /// Shadow order matters due to compositing multiple translucent objects not
         /// being commutative.
-        public Shadow(Color color = null,
-                      Offset offset = null,
-                      double blurRadius = 0.0)
+        public Shadow(
+            Color color = null,
+            Offset offset = null,
+            double blurRadius = 0.0)
         {
             //assert(color != null, 'Text shadow color was null.'),
             //assert(offset != null, 'Text shadow offset was null.'),
@@ -3886,6 +3927,7 @@ namespace FlutterBinding.UI
         }
 
         const uint _kColorDefault = 0xFF000000;
+
         // Constants for shadow encoding.
         const int _kBytesPerShadow = 16;
         const int _kColorOffset = 0 << 2;
@@ -3938,7 +3980,7 @@ namespace FlutterBinding.UI
         {
             return new Paint
             {
-                color = color,
+                color      = color,
                 maskFilter = MaskFilter.blur(BlurStyle.normal, blurSigma)
             };
         }
@@ -3948,9 +3990,9 @@ namespace FlutterBinding.UI
         public Shadow scale(double factor)
         {
             return new Shadow(
-              color: color,
-              offset: offset * factor,
-              blurRadius: blurRadius * factor);
+                color: color,
+                offset: offset * factor,
+                blurRadius: blurRadius * factor);
         }
 
         /// Linearly interpolate between two shadows.
@@ -3982,9 +4024,9 @@ namespace FlutterBinding.UI
             if (b == null)
                 return a.scale(1.0 - t);
             return new Shadow(
-              color: Color.lerp(a.color, b.color, t),
-              offset: Offset.lerp(a.offset, b.offset, t),
-              blurRadius: Lerp.lerpDouble(a.blurRadius, b.blurRadius, t));
+                color: Color.lerp(a.color, b.color, t),
+                offset: Offset.lerp(a.offset, b.offset, t),
+                blurRadius: Lerp.lerpDouble(a.blurRadius, b.blurRadius, t));
         }
 
         /// Linearly interpolate between two lists of shadows.
@@ -4022,8 +4064,8 @@ namespace FlutterBinding.UI
 
             Shadow typedOther = second;
             return first.color == typedOther.color &&
-                   first.offset == typedOther.offset &&
-                   first.blurRadius == typedOther.blurRadius;
+                first.offset == typedOther.offset &&
+                first.blurRadius == typedOther.blurRadius;
         }
 
         public static bool operator !=(Shadow first, Shadow second) => !(first == second);
@@ -4067,17 +4109,25 @@ namespace FlutterBinding.UI
                     continue;
                 shadowOffset = shadowIndex * _kBytesPerShadow;
 
-                shadowsData.setInt32(_kColorOffset + shadowOffset,
-                 (int)(shadow.color.value ^ Shadow._kColorDefault), (int)Painting._kFakeHostEndian);
+                shadowsData.setInt32(
+                    _kColorOffset + shadowOffset,
+                    (int)(shadow.color.value ^ Shadow._kColorDefault),
+                    (int)Painting._kFakeHostEndian);
 
-                shadowsData.setFloat32(_kXOffset + shadowOffset,
-                  shadow.offset.dx, (int)Painting._kFakeHostEndian);
+                shadowsData.setFloat32(
+                    _kXOffset + shadowOffset,
+                    shadow.offset.dx,
+                    (int)Painting._kFakeHostEndian);
 
-                shadowsData.setFloat32(_kYOffset + shadowOffset,
-                  shadow.offset.dy, (int)Painting._kFakeHostEndian);
+                shadowsData.setFloat32(
+                    _kYOffset + shadowOffset,
+                    shadow.offset.dy,
+                    (int)Painting._kFakeHostEndian);
 
-                shadowsData.setFloat32(_kBlurOffset + shadowOffset,
-                  shadow.blurRadius, (int)Painting._kFakeHostEndian);
+                shadowsData.setFloat32(
+                    _kBlurOffset + shadowOffset,
+                    shadow.blurRadius,
+                    (int)Painting._kFakeHostEndian);
             }
 
             return shadowsData;

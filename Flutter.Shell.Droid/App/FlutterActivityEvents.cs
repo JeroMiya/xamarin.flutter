@@ -1,6 +1,5 @@
 ﻿using Android.App;
 using Android.Content;
-using Android.Content.PM;
 using Android.OS;
 using Flutter.Shell.Droid.Plugin.Common;
 
@@ -16,8 +15,8 @@ namespace Flutter.Shell.Droid.App
     /// activity up to the Flutter framework.This forwarding is already provided in
     /// {@code FlutterActivity}.</p>
     /// </summary>
-    public interface IFlutterActivityEvents : 
-        Android.Content.IComponentCallbacks2, 
+    public interface IFlutterActivityEvents :
+        Android.Content.IComponentCallbacks2,
         IRequestPermissionsResultListener,
         IActivityResultListener
     {

@@ -7,8 +7,8 @@ namespace Flutter.Shell.Droid
 {
     public class FlutterCanvas : AppCompatActivity
     {
-        public SKCanvasView Canvas { get; private set; }
-        public FlutterSurface Surface { get; private set; }
+        private SKCanvasView Canvas { get; set; }
+        private FlutterSurface Surface { get; set; }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -18,11 +18,7 @@ namespace Flutter.Shell.Droid
             Canvas = FindViewById<SKCanvasView>(Resource.Id.skiaView);
 
             var scale = Resources.DisplayMetrics.Density;
-
-            if (Canvas != null)
-            {
-                Surface = new FlutterSurface(scale);
-            }
+            Surface = new FlutterSurface(scale);
 
             Canvas.PaintSurface += OnCanvasPaintSurface;
         }

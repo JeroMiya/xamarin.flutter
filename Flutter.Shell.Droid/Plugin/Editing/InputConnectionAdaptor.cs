@@ -25,12 +25,12 @@ namespace Flutter.Shell.Droid.Plugin.Editing
             MethodChannel flutterChannel,
             IEditable editable) : base(view, true)
         {
-            _flutterView = view;
-            _client = client;
+            _flutterView    = view;
+            _client         = client;
             _flutterChannel = flutterChannel;
-            _editable = editable;
-            _batchCount = 0;
-            _imm = (InputMethodManager)view.Context.GetSystemService(Context.InputMethodService);
+            _editable       = editable;
+            _batchCount     = 0;
+            _imm            = (InputMethodManager)view.Context.GetSystemService(Context.InputMethodService);
         }
 
         // Send the current state of the editable to Flutter.
@@ -45,9 +45,12 @@ namespace Flutter.Shell.Droid.Plugin.Editing
             int composingStart = GetComposingSpanStart(_editable);
             int composingEnd = GetComposingSpanEnd(_editable);
 
-            _imm.UpdateSelection(_flutterView,
-                                 selectionStart, selectionEnd,
-                                 composingStart, composingEnd);
+            _imm.UpdateSelection(
+                _flutterView,
+                selectionStart,
+                selectionEnd,
+                composingStart,
+                composingEnd);
 
             Dictionary<string, object> state = new Dictionary<string, object>
             {
@@ -57,7 +60,7 @@ namespace Flutter.Shell.Droid.Plugin.Editing
                 {"composingBase", composingStart},
                 {"composingExtent", composingEnd}
             };
-            _flutterChannel.InvokeMethod("TextInputClient.updateEditingState", new object[] { _client, state });
+            _flutterChannel.InvokeMethod("TextInputClient.updateEditingState", new object[] {_client, state});
         }
 
         //@Override
@@ -121,6 +124,7 @@ namespace Flutter.Shell.Droid.Plugin.Editing
             {
                 result = base.SetComposingText(text, newCursorPosition);
             }
+
             UpdateEditingState();
             return result;
         }
@@ -150,6 +154,7 @@ namespace Flutter.Shell.Droid.Plugin.Editing
                         UpdateEditingState();
                         return true;
                     }
+
                     if (selStart > 0)
                     {
                         // Delete to the left of the cursor.
@@ -188,9 +193,11 @@ namespace Flutter.Shell.Droid.Plugin.Editing
                         SetSelection(selStart + 1, selStart + 1);
                         UpdateEditingState();
                     }
+
                     return true;
                 }
             }
+
             return false;
         }
 
@@ -199,33 +206,34 @@ namespace Flutter.Shell.Droid.Plugin.Editing
         {
             switch (actionCode)
             {
-                // TODO(mattcarroll): is newline an appropriate action for "none"?
-                case ImeAction.None:
-                    _flutterChannel.InvokeMethod("TextInputClient.performAction", new object[] { _client, "TextInputAction.newline" });
-                    break;
-                case ImeAction.Unspecified:
-                    _flutterChannel.InvokeMethod("TextInputClient.performAction", new object[] { _client, "TextInputAction.unspecified" });
-                    break;
-                case ImeAction.Go:
-                    _flutterChannel.InvokeMethod("TextInputClient.performAction", new object[] { _client, "TextInputAction.go" });
-                    break;
-                case ImeAction.Search:
-                    _flutterChannel.InvokeMethod("TextInputClient.performAction", new object[] { _client, "TextInputAction.search" });
-                    break;
-                case ImeAction.Send:
-                    _flutterChannel.InvokeMethod("TextInputClient.performAction", new object[] { _client, "TextInputAction.send" });
-                    break;
-                case ImeAction.Next:
-                    _flutterChannel.InvokeMethod("TextInputClient.performAction", new object[] { _client, "TextInputAction.next" });
-                    break;
-                case ImeAction.Previous:
-                    _flutterChannel.InvokeMethod("TextInputClient.performAction", new object[] { _client, "TextInputAction.previous" });
-                    break;
-                case ImeAction.Done:
-                default:
-                    _flutterChannel.InvokeMethod("TextInputClient.performAction", new object[] { _client, "TextInputAction.done" });
-                    break;
+            // TODO(mattcarroll): is newline an appropriate action for "none"?
+            case ImeAction.None:
+                _flutterChannel.InvokeMethod("TextInputClient.performAction", new object[] {_client, "TextInputAction.newline"});
+                break;
+            case ImeAction.Unspecified:
+                _flutterChannel.InvokeMethod("TextInputClient.performAction", new object[] {_client, "TextInputAction.unspecified"});
+                break;
+            case ImeAction.Go:
+                _flutterChannel.InvokeMethod("TextInputClient.performAction", new object[] {_client, "TextInputAction.go"});
+                break;
+            case ImeAction.Search:
+                _flutterChannel.InvokeMethod("TextInputClient.performAction", new object[] {_client, "TextInputAction.search"});
+                break;
+            case ImeAction.Send:
+                _flutterChannel.InvokeMethod("TextInputClient.performAction", new object[] {_client, "TextInputAction.send"});
+                break;
+            case ImeAction.Next:
+                _flutterChannel.InvokeMethod("TextInputClient.performAction", new object[] {_client, "TextInputAction.next"});
+                break;
+            case ImeAction.Previous:
+                _flutterChannel.InvokeMethod("TextInputClient.performAction", new object[] {_client, "TextInputAction.previous"});
+                break;
+            case ImeAction.Done:
+            default:
+                _flutterChannel.InvokeMethod("TextInputClient.performAction", new object[] {_client, "TextInputAction.done"});
+                break;
             }
+
             return true;
         }
     }

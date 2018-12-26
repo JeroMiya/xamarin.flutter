@@ -10,22 +10,23 @@ namespace FlutterBinding.UI
     // These appear to be called from the C++ Window
 
     public static class Hooks
-    {      
-        static void _updateWindowMetrics(double devicePixelRatio,
-                                  double width,
-                                  double height,
-                                  double paddingTop,
-                                  double paddingRight,
-                                  double paddingBottom,
-                                  double paddingLeft,
-                                  double viewInsetTop,
-                                  double viewInsetRight,
-                                  double viewInsetBottom,
-                                  double viewInsetLeft)
+    {
+        static void _updateWindowMetrics(
+            double devicePixelRatio,
+            double width,
+            double height,
+            double paddingTop,
+            double paddingRight,
+            double paddingBottom,
+            double paddingLeft,
+            double viewInsetTop,
+            double viewInsetRight,
+            double viewInsetBottom,
+            double viewInsetLeft)
         {
             var window = Window.Instance;
             window.devicePixelRatio = devicePixelRatio;
-            window.physicalSize = new Size(width, height);
+            window.physicalSize     = new Size(width, height);
             window.padding = new WindowPadding(
                 top: paddingTop,
                 right: paddingRight,
@@ -52,9 +53,11 @@ namespace FlutterBinding.UI
             Window.Instance.locales = new List<Locale>(numLocales);
             for (int localeIndex = 0; localeIndex < numLocales; localeIndex++)
             {
-                Window.Instance.locales[localeIndex] = new Locale(locales[localeIndex * stringsPerLocale],
-                                               locales[localeIndex * stringsPerLocale + 1]);
+                Window.Instance.locales[localeIndex] = new Locale(
+                    locales[localeIndex * stringsPerLocale],
+                    locales[localeIndex * stringsPerLocale + 1]);
             }
+
             _invoke(Window.Instance.onLocaleChanged, Window.Instance.OnLocaleChangedZone);
         }
 
@@ -114,11 +117,11 @@ namespace FlutterBinding.UI
         static void _dispatchSemanticsAction(int id, int action, Types.ByteData args)
         {
             _invoke3<int, SemanticsAction, Types.ByteData>(
-             (a, b, c) => Window.Instance.onSemanticsAction(a, b, c),
-              Window.Instance.OnSemanticsActionZone,
-              id,
-              (SemanticsAction)action,
-              args);
+                (a, b, c) => Window.Instance.onSemanticsAction(a, b, c),
+                Window.Instance.OnSemanticsActionZone,
+                id,
+                (SemanticsAction)action,
+                args);
         }
 
         static void _beginFrame(int microseconds)
@@ -154,7 +157,7 @@ namespace FlutterBinding.UI
         {
             if (callback == null)
                 return;
-            
+
             if (identical(zone, Types.Zone.current))
             {
                 callback(arg);
@@ -170,7 +173,7 @@ namespace FlutterBinding.UI
         {
             if (callback == null)
                 return;
-            
+
             if (identical(zone, Types.Zone.current))
             {
                 callback(arg1, arg2);
@@ -193,10 +196,7 @@ namespace FlutterBinding.UI
             }
             else
             {
-                zone.runGuarded(() =>
-                {
-                    callback(arg1, arg2, arg3);
-                });
+                zone.runGuarded(() => { callback(arg1, arg2, arg3); });
             }
         }
 
@@ -216,27 +216,28 @@ namespace FlutterBinding.UI
             {
                 int offset = i * _kPointerDataFieldCount;
                 data[i] = new PointerData(
-                  timeStamp: new Types.Duration(microseconds: packet.getInt64(kStride * offset++, (int)Painting._kFakeHostEndian)),
-                  change: (PointerChange)packet.getInt64(kStride * offset++, (int)Painting._kFakeHostEndian),
-                  kind: (PointerDeviceKind)packet.getInt64(kStride * offset++, (int)Painting._kFakeHostEndian),
-                  device: packet.getInt64(kStride * offset++, (int)Painting._kFakeHostEndian),
-                  physicalX: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
-                  physicalY: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
-                  buttons: packet.getInt64(kStride * offset++, (int)Painting._kFakeHostEndian),
-                  obscured: packet.getInt64(kStride * offset++, (int)Painting._kFakeHostEndian) != 0,
-                  pressure: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
-                  pressureMin: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
-                  pressureMax: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
-                  distance: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
-                  distanceMax: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
-                  radiusMajor: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
-                  radiusMinor: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
-                  radiusMin: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
-                  radiusMax: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
-                  orientation: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
-                  tilt: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian)
+                    timeStamp: new Types.Duration(microseconds: packet.getInt64(kStride * offset++, (int)Painting._kFakeHostEndian)),
+                    change: (PointerChange)packet.getInt64(kStride * offset++, (int)Painting._kFakeHostEndian),
+                    kind: (PointerDeviceKind)packet.getInt64(kStride * offset++, (int)Painting._kFakeHostEndian),
+                    device: packet.getInt64(kStride * offset++, (int)Painting._kFakeHostEndian),
+                    physicalX: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
+                    physicalY: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
+                    buttons: packet.getInt64(kStride * offset++, (int)Painting._kFakeHostEndian),
+                    obscured: packet.getInt64(kStride * offset++, (int)Painting._kFakeHostEndian) != 0,
+                    pressure: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
+                    pressureMin: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
+                    pressureMax: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
+                    distance: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
+                    distanceMax: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
+                    radiusMajor: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
+                    radiusMinor: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
+                    radiusMin: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
+                    radiusMax: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
+                    orientation: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
+                    tilt: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian)
                 );
             }
+
             return new PointerDataPacket(data: data);
         }
     }

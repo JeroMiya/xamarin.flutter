@@ -114,7 +114,7 @@ namespace Flutter.Shell.Droid.View
 
         internal void DeleteFiles()
         {
-            var dataDir = new File(PathUtils.getDataDirectory(_context));
+            var dataDir = new File(PathUtils.GetDataDirectory(_context));
             foreach (var resource in _resources)
             {
                 var file = new File(dataDir, resource);
@@ -182,7 +182,7 @@ namespace Flutter.Shell.Droid.View
 
         internal void ExtractResources()
         {
-            var dataDir = new File(PathUtils.getDataDirectory(_context));
+            var dataDir = new File(PathUtils.GetDataDirectory(_context));
 
             var updateManifest = ReadUpdateManifest();
             if (!ValidateUpdateManifest(updateManifest))

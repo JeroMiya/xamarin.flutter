@@ -59,6 +59,7 @@
 
         // Assets settings
         public string AssetsDir = null;
+
         public string AssetsPath = null;
         //public string flx_path;
     }

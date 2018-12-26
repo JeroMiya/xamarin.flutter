@@ -7,10 +7,8 @@ using static FlutterBinding.Flow.Helper;
 
 namespace FlutterBinding.Flow.Layers
 {
-
     public class TransformLayer : ContainerLayer
     {
-
         public void set_transform(SKMatrix transform)
         {
             transform_ = transform;
@@ -20,7 +18,7 @@ namespace FlutterBinding.Flow.Layers
         {
             SKMatrix child_matrix = new SKMatrix();
             SKMatrix.Concat(ref child_matrix, matrix, transform_);
-            
+
             SKRect child_paint_bounds = SKRect.Empty;
             PrerollChildren(context, child_matrix, ref child_paint_bounds);
 
@@ -39,5 +37,4 @@ namespace FlutterBinding.Flow.Layers
 
         private SKMatrix transform_ = new SKMatrix();
     }
-
 }

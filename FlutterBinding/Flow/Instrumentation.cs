@@ -6,8 +6,6 @@ using SkiaSharp;
 
 namespace FlutterBinding.Flow
 {
-    
-
     public class Stopwatch
     {
         public const float kOneFrameMS = 1e3f / 60.0f;
@@ -26,8 +24,8 @@ namespace FlutterBinding.Flow
 
         public Stopwatch()
         {
-            start_ = DateTime.Now;
-            laps_ = new List<TimeSpan>(kMaxSamples);
+            start_       = DateTime.Now;
+            laps_        = new List<TimeSpan>(kMaxSamples);
             cache_dirty_ = true;
         }
 
@@ -61,6 +59,7 @@ namespace FlutterBinding.Flow
                 if (laps_[i] > maxDelta)
                     maxDelta = laps_[i];
             }
+
             return maxDelta;
         }
 
@@ -72,9 +71,9 @@ namespace FlutterBinding.Flow
 
             // TODO(garyq): Use a GPU surface instead of a CPU surface.
             visualize_cache_surface_ = SKSurface.Create(
-                (int)rect.Width, 
-                (int)rect.Height, 
-                SKColorType.Rgba8888, 
+                (int)rect.Width,
+                (int)rect.Height,
+                SKColorType.Rgba8888,
                 SKAlphaType.Premul);
 
             var cache_canvas = visualize_cache_surface_.Canvas;
@@ -110,6 +109,7 @@ namespace FlutterBinding.Flow
                 path.LineTo(x + width * unit_x, sample_y);
                 path.LineTo(x + width * unit_next_x, sample_y);
             }
+
             path.LineTo(
                 width,
                 y + height * (1.0f - UnitHeight((float)laps_[kMaxSamples - 1].TotalMilliseconds, max_unit_interval)));
@@ -221,7 +221,7 @@ namespace FlutterBinding.Flow
 
         public void Start()
         {
-            start_ = DateTime.Now;
+            start_          = DateTime.Now;
             current_sample_ = (current_sample_ + 1) % kMaxSamples;
         }
 
@@ -232,9 +232,8 @@ namespace FlutterBinding.Flow
 
         public void SetLapTime(TimeSpan delta)
         {
-            current_sample_ = (current_sample_ + 1) % kMaxSamples;
+            current_sample_        = (current_sample_ + 1) % kMaxSamples;
             laps_[current_sample_] = delta;
         }
-
     }
 }

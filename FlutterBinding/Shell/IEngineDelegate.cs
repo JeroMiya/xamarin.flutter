@@ -8,6 +8,7 @@ namespace FlutterBinding.Shell
         public interface IEngineDelegate
         {
             void OnEngineUpdateSemantics(SemanticsNodeUpdates update, CustomAccessibilityActionUpdates actions);
+
             //void OnEngineHandlePlatformMessage(PlatformMessage message);
             Task OnPreEngineRestart();
         };
@@ -59,7 +60,7 @@ namespace FlutterBinding.Shell
         //private bool HandleLocalizationPlatformMessage(PlatformMessage message)
         //{
         //    var data = message.Data;
-            
+
         //    rapidjson::Document document = new rapidjson::Document();
         //    document.Parse(reinterpret_cast <const char*> (data.data()), data.size());
         //    if (document.HasParseError() || !document.IsObject())

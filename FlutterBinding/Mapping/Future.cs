@@ -13,5 +13,4 @@ namespace FlutterBinding.Mapping
     {
         public Future(Action action) : base(action) { }
     }
-
 }

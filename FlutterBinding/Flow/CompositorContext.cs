@@ -14,19 +14,19 @@ namespace FlutterBinding.Flow
         public class ScopedFrame : System.IDisposable
         {
             public ScopedFrame(
-                CompositorContext context, 
-                GRContext gr_context, 
-                SKCanvas canvas, 
-                ExternalViewEmbedder view_embedder, 
-                SKMatrix root_surface_transformation, 
+                CompositorContext context,
+                GRContext gr_context,
+                SKCanvas canvas,
+                ExternalViewEmbedder view_embedder,
+                SKMatrix root_surface_transformation,
                 bool instrumentation_enabled)
             {
-                this.context_ = context;
-                this.gr_context_ = gr_context;
-                this.canvas_ = canvas;
-                this.view_embedder_ = view_embedder;
+                this.context_                     = context;
+                this.gr_context_                  = gr_context;
+                this.canvas_                      = canvas;
+                this.view_embedder_               = view_embedder;
                 this.root_surface_transformation_ = root_surface_transformation;
-                this.instrumentation_enabled_ = instrumentation_enabled;
+                this.instrumentation_enabled_     = instrumentation_enabled;
                 context_.BeginFrame(this, instrumentation_enabled_);
             }
 
@@ -103,8 +103,16 @@ namespace FlutterBinding.Flow
         }
 
         public int frame_count() => _frame_count;
-        public Stopwatch frame_time() { return frame_time_; }
-        public Stopwatch engine_time() { return engine_time_; }
+
+        public Stopwatch frame_time()
+        {
+            return frame_time_;
+        }
+
+        public Stopwatch engine_time()
+        {
+            return engine_time_;
+        }
 
         private RasterCache raster_cache_ = new RasterCache();
         private TextureRegistry texture_registry_ = new TextureRegistry();

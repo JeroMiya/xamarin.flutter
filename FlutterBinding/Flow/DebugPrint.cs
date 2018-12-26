@@ -9,15 +9,15 @@ namespace FlutterBinding.Flow
     {
         public static string Debug(this SKMatrix m)
         {
-            return 
-                $"[{m.ScaleX:8.4f} {m.SkewX:8.4f} {m.TransX:8.4f}]" + 
-                $"[{m.ScaleY:8.4f} {m.SkewY:8.4f} {m.TransY:8.4f}]" + 
+            return
+                $"[{m.ScaleX:8.4f} {m.SkewX:8.4f} {m.TransX:8.4f}]" +
+                $"[{m.ScaleY:8.4f} {m.SkewY:8.4f} {m.TransY:8.4f}]" +
                 $"[{m.Persp0:8.4f} {m.Persp1:8.4f} {m.Persp2:8.4f}]";
         }
 
         public static string Debug(this SKMatrix44 m)
         {
-            return 
+            return
                 $"{m[0, 0]}, {m[0, 1]}, {m[0, 2]}, {m[0, 3]}\n" +
                 $"{m[1, 0]}, {m[1, 1]}, {m[1, 2]}, {m[1, 3]}\n" +
                 $"{m[2, 0]}, {m[2, 1]}, {m[2, 2]}, {m[2, 3]}\n" +

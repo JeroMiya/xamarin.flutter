@@ -6,10 +6,8 @@
 
 namespace FlutterBinding.Flow.Layers
 {
-
     public class ColorFilterLayer : ContainerLayer
     {
-
         public void set_color(uint color)
         {
             color_ = color;
@@ -19,10 +17,9 @@ namespace FlutterBinding.Flow.Layers
         {
             blend_mode_ = blend_mode;
         }
-        
+
         public override void Paint(PaintContext context)
         {
-
             var color_filter = SKColorFilter.CreateBlendMode(color_, blend_mode_);
             SKPaint paint = new SKPaint();
             paint.ColorFilter = color_filter;
@@ -34,5 +31,4 @@ namespace FlutterBinding.Flow.Layers
         private uint color_;
         private SKBlendMode blend_mode_;
     }
-
 }

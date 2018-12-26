@@ -36,13 +36,13 @@ namespace Flutter.Shell.Droid.Plugin.Platform
     internal class VirtualDisplayController
     {
         public static VirtualDisplayController Create(
-                Context context,
-                PlatformViewFactory viewFactory,
-                ITextureRegistrySurfaceTextureEntry textureEntry,
-                int width,
-                int height,
-                int viewId,
-                object createParams
+            Context context,
+            PlatformViewFactory viewFactory,
+            ITextureRegistrySurfaceTextureEntry textureEntry,
+            int width,
+            int height,
+            int viewId,
+            object createParams
         )
         {
             textureEntry.SurfaceTexture.SetDefaultBufferSize(width, height);
@@ -51,19 +51,25 @@ namespace Flutter.Shell.Droid.Plugin.Platform
 
             DisplayMetricsDensity densityDpi = context.Resources.DisplayMetrics.DensityDpi;
             VirtualDisplay virtualDisplay = displayManager.CreateVirtualDisplay(
-                    "flutter-vd",
-                    width,
-                    height,
-                    (int)densityDpi,
-                    surface,
-                    0
+                "flutter-vd",
+                width,
+                height,
+                (int)densityDpi,
+                surface,
+                0
             );
 
             if (virtualDisplay == null)
                 return null;
 
             return new VirtualDisplayController(
-                    context, virtualDisplay, viewFactory, surface, textureEntry, viewId, createParams);
+                context,
+                virtualDisplay,
+                viewFactory,
+                surface,
+                textureEntry,
+                viewId,
+                createParams);
         }
 
         private readonly Context _context;
@@ -75,25 +81,29 @@ namespace Flutter.Shell.Droid.Plugin.Platform
 
 
         private VirtualDisplayController(
-                Context context,
-                VirtualDisplay virtualDisplay,
-                PlatformViewFactory viewFactory,
-                Surface surface,
-                ITextureRegistrySurfaceTextureEntry textureEntry,
-                int viewId,
-                object createParams)
+            Context context,
+            VirtualDisplay virtualDisplay,
+            PlatformViewFactory viewFactory,
+            Surface surface,
+            ITextureRegistrySurfaceTextureEntry textureEntry,
+            int viewId,
+            object createParams)
         {
-            _textureEntry = textureEntry;
-            _surface = surface;
-            _context = context;
+            _textureEntry   = textureEntry;
+            _surface        = surface;
+            _context        = context;
             _virtualDisplay = virtualDisplay;
-            _densityDpi = context.Resources.DisplayMetrics.DensityDpi;
+            _densityDpi     = context.Resources.DisplayMetrics.DensityDpi;
             _presentation = new SingleViewPresentation(
-                    context, _virtualDisplay.Display, viewFactory, viewId, createParams);
+                context,
+                _virtualDisplay.Display,
+                viewFactory,
+                viewId,
+                createParams);
             _presentation.Show();
         }
 
-        public void resize(int width, int height, Action onNewSizeFrameAvailable)
+        public void Resize(int width, int height, Action onNewSizeFrameAvailable)
         {
             SingleViewPresentation.PresentationState presentationState = _presentation.DetachState();
             // We detach the surface to prevent it being destroyed when releasing the vd.
@@ -107,12 +117,12 @@ namespace Flutter.Shell.Droid.Plugin.Platform
             _textureEntry.SurfaceTexture.SetDefaultBufferSize(width, height);
             DisplayManager displayManager = (DisplayManager)_context.GetSystemService(Context.DisplayService);
             _virtualDisplay = displayManager.CreateVirtualDisplay(
-                    "flutter-vd",
-                    width,
-                    height,
-                    (int)_densityDpi,
-                    _surface,
-                    0
+                "flutter-vd",
+                width,
+                height,
+                (int)_densityDpi,
+                _surface,
+                0
             );
 
             Android.Views.View embeddedView = GetView();
@@ -126,16 +136,17 @@ namespace Flutter.Shell.Droid.Plugin.Platform
 
                 OneTimeOnDrawListener.Schedule(
                     embeddedView,
-                    new Runnable(() =>
-                    {
-                        // We need some delay here until the frame propagates through the vd surface to the texture,
-                        // 128ms was picked pretty arbitrarily based on trial and error.
-                        // As long as we invoke the runnable after a new frame is available we avoid the scaling jank
-                        // described in: https://github.com/flutter/flutter/issues/19572
-                        // We should ideally run onNewSizeFrameAvailable ASAP to make the embedded view more responsive
-                        // following a resize.
-                        embeddedView.PostDelayed(onNewSizeFrameAvailable, 128);
-                    }));
+                    new Runnable(
+                        () =>
+                        {
+                            // We need some delay here until the frame propagates through the vd surface to the texture,
+                            // 128ms was picked pretty arbitrarily based on trial and error.
+                            // As long as we invoke the runnable after a new frame is available we avoid the scaling jank
+                            // described in: https://github.com/flutter/flutter/issues/19572
+                            // We should ideally run onNewSizeFrameAvailable ASAP to make the embedded view more responsive
+                            // following a resize.
+                            embeddedView.PostDelayed(onNewSizeFrameAvailable, 128);
+                        }));
                 embeddedView.RemoveOnAttachStateChangeListener(listener);
             };
             embeddedView.AddOnAttachStateChangeListener(listener);
@@ -173,7 +184,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
 
             public OneTimeOnDrawListener(Android.Views.View view, Runnable onDrawRunnable)
             {
-                _view = view;
+                _view           = view;
                 _onDrawRunnable = onDrawRunnable;
             }
 
@@ -189,5 +200,4 @@ namespace Flutter.Shell.Droid.Plugin.Platform
             }
         }
     }
-
 }

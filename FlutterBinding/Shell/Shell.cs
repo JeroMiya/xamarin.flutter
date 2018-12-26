@@ -17,9 +17,9 @@ namespace FlutterBinding.Shell
     //public delegate bool ServiceProtocolHandler(ServiceProtocol.Handler.ServiceProtocolMap, JObject document);
 
     public sealed class Shell : PlatformView.Delegate,
-                    Animator.IAnimatorDelegate,
-                    Engine.IEngineDelegate
-                    //public blink::ServiceProtocol::Handler 
+            Animator.IAnimatorDelegate,
+            Engine.IEngineDelegate
+        //public blink::ServiceProtocol::Handler 
     {
         // Create a shell with the given task runners and settings. The isolate
         // snapshot will be shared with the snapshot of the service isolate.
@@ -31,7 +31,7 @@ namespace FlutterBinding.Shell
         {
             PerformInitializationTasks(settings);
 
-            if (!taskRunners.IsValid() || 
+            if (!taskRunners.IsValid() ||
                 onCreatePlatformView == null ||
                 onCreateRasterizer == null)
             {
@@ -41,10 +41,10 @@ namespace FlutterBinding.Shell
             Shell shell = null;
             await TaskRunner.RunNowOrPostTask(
                 taskRunners.PlatformTaskRunner,
-                async () => 
+                async () =>
                 {
                     shell = await CreateShellOnPlatformThread(
-                        taskRunners, 
+                        taskRunners,
                         settings,
                         //std::move(isolate_snapshot),
                         //std::move(shared_snapshot),
@@ -71,29 +71,30 @@ namespace FlutterBinding.Shell
         public TaskRunners TaskRunners => _taskRunners;
         public Rasterizer Rasterizer => _rasterizer;
         public Engine Engine => _engine;
+
         public PlatformView PlatformView => _platformView;
+
         //public DartVM DartVM => vm_;
         public bool IsSetup => _isSetup;
 
         public async Task<Rasterizer.Screenshot> Screenshot(Rasterizer.ScreenshotType type, bool base64Encode)
         {
             //TRACE_EVENT0("flutter", "Shell::Screenshot");
-            
+
             Rasterizer.Screenshot screenshot = null;
-            await _taskRunners.GPUTaskRunner.RunNowOrPostTask( () =>
-            {
-                screenshot = _rasterizer?.ScreenshotLastLayerTree(type, base64Encode);
-            });
+            await _taskRunners.GPUTaskRunner.RunNowOrPostTask(() => { screenshot = _rasterizer?.ScreenshotLastLayerTree(type, base64Encode); });
             return screenshot;
         }
 
         private TaskRunners _taskRunners;
+
         private Settings _settings;
+
         //private DartVM vm_;
-        private PlatformView _platformView;   // on platform task runner
-        private Engine _engine;               // on UI task runner
-        private Rasterizer _rasterizer;       // on GPU task runner
-        private IOManager _ioManager;         // on IO task runner
+        private PlatformView _platformView; // on platform task runner
+        private Engine _engine;             // on UI task runner
+        private Rasterizer _rasterizer;     // on GPU task runner
+        private IOManager _ioManager;       // on IO task runner
 
         //private Dictionary<string,  Tuple<TaskRunner, ServiceProtocolHandler> service_protocol_handlers_;
         private bool _isSetup = false;
@@ -101,7 +102,7 @@ namespace FlutterBinding.Shell
         private Shell(TaskRunners taskRunners, Settings settings)
         {
             _taskRunners = taskRunners;
-            _settings = settings;
+            _settings    = settings;
             //vm_ = DartVM.ForProcess(settings_);
 
             //FML_DCHECK(task_runners_.IsValid());
@@ -155,11 +156,11 @@ namespace FlutterBinding.Shell
             GRContext resourceContext = null;
             SkiaUnrefQueue unrefQueue = null;
             await shell.TaskRunners.IOTaskRunner.RunNowOrPostTask(
-                () => 
+                () =>
                 {
-                    ioManager = new IOManager(platformView.CreateResourceContext(), shell.TaskRunners.IOTaskRunner);
+                    ioManager       = new IOManager(platformView.CreateResourceContext(), shell.TaskRunners.IOTaskRunner);
                     resourceContext = ioManager.GetResourceContext();
-                    unrefQueue = ioManager.GetSkiaUnrefQueue();
+                    unrefQueue      = ioManager.GetSkiaUnrefQueue();
                 });
 
             // Create the rasterizer on the GPU thread.
@@ -171,7 +172,7 @@ namespace FlutterBinding.Shell
                     var newRasterizer = onCreateRasterizer(shell);
                     if (newRasterizer != null)
                     {
-                        rasterizer = newRasterizer;
+                        rasterizer       = newRasterizer;
                         snapshotDelegate = rasterizer.GetSnapshotDelegate();
                     }
                 });
@@ -179,32 +180,34 @@ namespace FlutterBinding.Shell
             // Create the engine on the UI thread.
             Engine engine = null;
             await shell.TaskRunners.UITaskRunner.RunNowOrPostTask(
-                () => 
+                () =>
                 {
                     // The animator is owned by the UI thread but it gets its vsync pulses
                     // from the platform.
                     var animator = new Animator(shell, taskRunners, vsyncWaiter);
 
-                    engine = new Engine(shell,               
-                                        //shell.GetDartVM(), 
-                                        //isolate_snapshot,  
-                                        //shared_snapshot,   
-                                        taskRunners,         
-                                        shell.Settings,      
-                                        animator,          
-                                        snapshotDelegate,  
-                                        resourceContext,   
-                                        unrefQueue         
+                    engine = new Engine(
+                        shell,
+                        //shell.GetDartVM(), 
+                        //isolate_snapshot,  
+                        //shared_snapshot,   
+                        taskRunners,
+                        shell.Settings,
+                        animator,
+                        snapshotDelegate,
+                        resourceContext,
+                        unrefQueue
                     );
                 });
 
             // We are already on the platform thread. So there is no platform latch to
             // wait on.
 
-            if (!shell.Setup(platformView,  
-                             engine,         
-                             rasterizer,     
-                             ioManager))
+            if (!shell.Setup(
+                platformView,
+                engine,
+                rasterizer,
+                ioManager))
             {
                 return null;
             }
@@ -221,9 +224,9 @@ namespace FlutterBinding.Shell
             if (_isSetup)
                 return false;
 
-            if (platformView == null || 
-                engine == null || 
-                rasterizer == null || 
+            if (platformView == null ||
+                engine == null ||
+                rasterizer == null ||
                 ioManager == null)
                 return false;
 
@@ -372,13 +375,13 @@ namespace FlutterBinding.Shell
 
             // Tell the rasterizer that one of its textures has a new frame available.
             _taskRunners.GPUTaskRunner.PostTask(
-                    () =>
-                    {
-                        _rasterizer
-                            ?.GetTextureRegistry()
-                            ?.GetTexture(textureId)
-                            ?.MarkNewFrameAvailable();
-                    });
+                () =>
+                {
+                    _rasterizer
+                      ?.GetTextureRegistry()
+                      ?.GetTexture(textureId)
+                      ?.MarkNewFrameAvailable();
+                });
 
             // Schedule a new frame without having to rebuild the layer tree.
             _taskRunners.UITaskRunner.PostTask(
@@ -386,7 +389,7 @@ namespace FlutterBinding.Shell
         }
 
         // |shell::PlatformView::Delegate|
-        public void OnPlatformViewSetNextFrameCallback( Action action )
+        public void OnPlatformViewSetNextFrameCallback(Action action)
         {
             //FML_DCHECK(is_setup_);
             //FML_DCHECK(task_runners_.GetPlatformTaskRunner()->RunsTasksOnCurrentThread());
@@ -486,6 +489,7 @@ namespace FlutterBinding.Shell
         //FML_DISALLOW_COPY_AND_ASSIGN(Shell);
 
         private static long _engineMainEnterTs = 0;
+
         private static void RecordStartupTimestamp()
         {
             if (_engineMainEnterTs == 0)

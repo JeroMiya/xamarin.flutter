@@ -22,7 +22,7 @@ namespace FlutterBinding.UI
             canvas.Scale(_scale);
 
             // make sure the canvas is blank
-            canvas.Clear(new SKColor(0,145, 234, 255));
+            canvas.Clear(new SKColor(0, 145, 234, 255));
 
             // draw some text
             var paint = new SKPaint

@@ -16,6 +16,7 @@ namespace FlutterBinding.Engine.Synchronization
         //using ResourcePtr = std::unique_ptr<TResource>;
 
         private static long _nextPipelineTraceId;
+
         private static long GetNextPipelineTraceId()
         {
             return Interlocked.Increment(ref _nextPipelineTraceId);
@@ -29,10 +30,10 @@ namespace FlutterBinding.Engine.Synchronization
 
             public ProducerContinuation(ProducerContinuation other)
             {
-                continuation_ = other.continuation_;
-                trace_id_ = other.trace_id_;
+                continuation_       = other.continuation_;
+                trace_id_           = other.trace_id_;
                 other.continuation_ = null;
-                other.trace_id_ = 0;
+                other.trace_id_     = 0;
             }
 
             /* Weird syntax. 
@@ -45,7 +46,7 @@ namespace FlutterBinding.Engine.Synchronization
             {
                 Continuation x = other.continuation_;
                 other.continuation_ = continuation_;
-                continuation_ = x;
+                continuation_       = x;
                 return this;
             }
 
@@ -81,7 +82,7 @@ namespace FlutterBinding.Engine.Synchronization
             internal ProducerContinuation(Continuation continuation, long trace_id)
             {
                 continuation_ = continuation;
-                trace_id_ = trace_id;
+                trace_id_     = trace_id;
                 //TRACE_FLOW_BEGIN("flutter", "PipelineItem", trace_id_);
                 //TRACE_EVENT_ASYNC_BEGIN0("flutter", "PipelineProduce", trace_id_);
             }
@@ -89,7 +90,7 @@ namespace FlutterBinding.Engine.Synchronization
 
         public Pipeline(int depth)
         {
-            empty_ = new Semaphore(depth, depth);
+            empty_     = new Semaphore(depth, depth);
             available_ = new Semaphore(0, depth);
         }
 
@@ -123,10 +124,10 @@ namespace FlutterBinding.Engine.Synchronization
             long trace_id = 0;
             long items_count = 0;
 
-            lock(queue_mutex_)
+            lock (queue_mutex_)
             {
                 (resource, trace_id) = queue_.Dequeue();
-                items_count = queue_.Count;
+                items_count          = queue_.Count;
             }
 
             //TRACE_EVENT0("flutter", "PipelineConsume");
@@ -146,7 +147,7 @@ namespace FlutterBinding.Engine.Synchronization
 
         private void ProducerCommit(TResource resource, long trace_id)
         {
-            lock(queue_mutex_)
+            lock (queue_mutex_)
             {
                 queue_.Enqueue(new Tuple<TResource, long>(resource, trace_id));
             }
@@ -155,5 +156,4 @@ namespace FlutterBinding.Engine.Synchronization
             available_.Release();
         }
     };
-
 }

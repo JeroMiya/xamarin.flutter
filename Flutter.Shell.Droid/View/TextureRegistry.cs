@@ -38,5 +38,4 @@ namespace Flutter.Shell.Droid.View
         /// </summary>
         void Release();
     }
-
 }

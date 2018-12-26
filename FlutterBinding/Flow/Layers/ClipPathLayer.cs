@@ -7,7 +7,6 @@ using static FlutterBinding.Flow.Helper;
 
 namespace FlutterBinding.Flow.Layers
 {
-
     public class ClipPathLayer : ContainerLayer
     {
         public ClipPathLayer(Clip clip_behavior = Clip.antiAlias)
@@ -35,12 +34,13 @@ namespace FlutterBinding.Flow.Layers
         {
             TRACE_EVENT0("flutter", "ClipPathLayer::Paint");
             FML_DCHECK(needs_painting());
-            
+
             context.canvas.ClipPath(clip_path_, antialias: clip_behavior_ != Clip.hardEdge);
             if (clip_behavior_ == Clip.antiAliasWithSaveLayer)
             {
                 context.canvas.SaveLayer(paint_bounds(), null);
             }
+
             PaintChildren(context);
             if (clip_behavior_ == Clip.antiAliasWithSaveLayer)
             {
@@ -51,5 +51,4 @@ namespace FlutterBinding.Flow.Layers
         private SKPath clip_path_ = new SKPath();
         private Clip clip_behavior_;
     }
-
 }

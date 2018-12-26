@@ -19,16 +19,16 @@ namespace FlutterBinding.Flow.Layers
         {
             SKPaint paint = new SKPaint
             {
-                TextSize = 15,
+                TextSize     = 15,
                 IsLinearText = false,
-                Color = SKColors.Gray
+                Color        = SKColors.Gray
             };
             canvas.DrawText(str, x, y, paint);
         }
 
         public static void VisualizeStopWatch(
-            SKCanvas canvas, 
-            Flow.Stopwatch stopwatch, 
+            SKCanvas canvas,
+            Flow.Stopwatch stopwatch,
             float x,
             float y,
             float width,

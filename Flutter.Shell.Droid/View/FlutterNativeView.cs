@@ -28,7 +28,7 @@ namespace Flutter.Shell.Droid.View
 
         public FlutterNativeView(Context context, bool isBackgroundView)
         {
-            _context = context;
+            _context        = context;
             _pluginRegistry = new FlutterPluginRegistry(this, context);
             Attach(this, isBackgroundView);
             AssertAttached();
@@ -47,7 +47,7 @@ namespace Flutter.Shell.Droid.View
             _pluginRegistry.Destroy();
             _flutterView = null;
             nativeDestroy(_nativePlatformView);
-            _nativePlatformView = 0;
+            _nativePlatformView   = 0;
             _applicationIsRunning = false;
         }
 
@@ -101,7 +101,7 @@ namespace Flutter.Shell.Droid.View
             }
             else
             {
-                RunFromBundleInternal(new[] { args.BundlePath, args.DefaultPath }, args.Entrypoint, args.LibraryPath);
+                RunFromBundleInternal(new[] {args.BundlePath, args.DefaultPath}, args.Entrypoint, args.LibraryPath);
             }
         }
 
@@ -113,7 +113,7 @@ namespace Flutter.Shell.Droid.View
         //@Deprecated
         public void RunFromBundle(string bundlePath, string defaultPath, string entrypoint, bool reuseRuntimeController)
         {
-            RunFromBundleInternal(new [] { bundlePath, defaultPath }, entrypoint, null);
+            RunFromBundleInternal(new[] {bundlePath, defaultPath}, entrypoint, null);
         }
 
         private void RunFromBundleInternal(string[] bundlePaths, string entrypoint, string libraryPath)
@@ -122,8 +122,12 @@ namespace Flutter.Shell.Droid.View
             if (_applicationIsRunning)
                 throw new AssertionError("This Flutter engine instance is already running an application");
 
-            nativeRunBundleAndSnapshotFromLibrary(_nativePlatformView, bundlePaths,
-                entrypoint, libraryPath, _context.Resources.Assets);
+            nativeRunBundleAndSnapshotFromLibrary(
+                _nativePlatformView,
+                bundlePaths,
+                entrypoint,
+                libraryPath,
+                _context.Resources.Assets);
 
             _applicationIsRunning = true;
         }
@@ -156,9 +160,10 @@ namespace Flutter.Shell.Droid.View
             int replyId = 0;
             if (callback != null)
             {
-                replyId = _nextReplyId++;
+                replyId                  = _nextReplyId++;
                 _pendingReplies[replyId] = callback;
             }
+
             if (message == null)
                 nativeDispatchEmptyPlatformMessage(_nativePlatformView, channel, replyId);
             else
@@ -190,30 +195,34 @@ namespace Flutter.Shell.Droid.View
                 try
                 {
                     //ByteBuffer buffer = (message == null ? null : ByteBuffer.wrap(message));
-                    handler.OnMessage(message, new BinaryReplyImpl
-                    {
-                        // private readonly final AtomicBoolean done = private new AtomicBoolean(false);
-                        OnReply = (reply) =>
+                    handler.OnMessage(
+                        message,
+                        new BinaryReplyImpl
                         {
-                            if (!IsAttached())
+                            // private readonly final AtomicBoolean done = private new AtomicBoolean(false);
+                            OnReply = (reply) =>
                             {
-                                Log.Debug(TAG, "handlePlatformMessage replying to a detached view, channel=" + channel);
-                                return;
+                                if (!IsAttached())
+                                {
+                                    Log.Debug(TAG, "handlePlatformMessage replying to a detached view, channel=" + channel);
+                                    return;
+                                }
+
+                                //if (done.getAndSet(true))
+                                //    throw new IllegalStateException("Reply already submitted");
+                                if (reply == null)
+                                    nativeInvokePlatformMessageEmptyResponseCallback(_nativePlatformView, replyId);
+                                else
+                                    nativeInvokePlatformMessageResponseCallback(_nativePlatformView, replyId, reply);
                             }
-                            //if (done.getAndSet(true))
-                            //    throw new IllegalStateException("Reply already submitted");
-                            if (reply == null)
-                                nativeInvokePlatformMessageEmptyResponseCallback(_nativePlatformView, replyId);
-                            else
-                                nativeInvokePlatformMessageResponseCallback(_nativePlatformView, replyId, reply);
-                        }
-                    });
+                        });
                 }
                 catch (Exception ex)
                 {
                     Log.Error(TAG, "Uncaught exception in binary message listener", ex);
                     nativeInvokePlatformMessageEmptyResponseCallback(_nativePlatformView, replyId);
                 }
+
                 return;
             }
 
@@ -265,33 +274,35 @@ namespace Flutter.Shell.Droid.View
             _pluginRegistry?.OnPreEngineRestart();
         }
 
-        private static long nativeAttach(FlutterNativeView view, bool isBackgroundView);    // native shell::Attach
-        private static void nativeDestroy(long nativePlatformViewAndroid);                  // native shell::Destroy
-        private static void nativeDetach(long nativePlatformViewAndroid);                   // native shell::Detach
+        private static long nativeAttach(FlutterNativeView view, bool isBackgroundView); // native shell::Attach
+        private static void nativeDestroy(long nativePlatformViewAndroid);               // native shell::Destroy
+        private static void nativeDetach(long nativePlatformViewAndroid);                // native shell::Detach
 
         private static void nativeRunBundleAndSnapshotFromLibrary(
-                long nativePlatformViewAndroid, string[] bundlePaths,
-                string entrypoint, string libraryUrl, AssetManager manager);                // native shell::RunBundleAndSnapshotFromLibrary
+            long nativePlatformViewAndroid, string[] bundlePaths,
+            string entrypoint, string libraryUrl, AssetManager manager); // native shell::RunBundleAndSnapshotFromLibrary
 
-        private static string nativeGetObservatoryUri();                                    // native shell::GetObservatoryUri
+        private static string nativeGetObservatoryUri(); // native shell::GetObservatoryUri
 
         // Send an empty platform message to Dart.
         private static void nativeDispatchEmptyPlatformMessage(
-                long nativePlatformViewAndroid, string channel, int responseId);            // native shell::DispatchEmptyPlatformMessage
+            long nativePlatformViewAndroid, string channel, int responseId); // native shell::DispatchEmptyPlatformMessage
 
         // Send a data-carrying platform message to Dart.
-        private static void nativeDispatchPlatformMessage(long nativePlatformViewAndroid,
-                string channel, object message, int responseId);              // native shell::DispatchPlatformMessage
+        private static void nativeDispatchPlatformMessage(
+            long nativePlatformViewAndroid,
+            string channel, object message, int responseId); // native shell::DispatchPlatformMessage
 
         // Send an empty response to a platform message received from Dart.
         private static void nativeInvokePlatformMessageEmptyResponseCallback(
-                long nativePlatformViewAndroid, int responseId);                            // native 
+            long nativePlatformViewAndroid, int responseId); // native 
 
         // Send a data-carrying response to a platform message received from Dart.
         private static void nativeInvokePlatformMessageResponseCallback(
-                long nativePlatformViewAndroid, int responseId, 
-                object message);                                              // c++  native shell::InvokePlatformMessageEmptyResponseCallback
-                                                                              // c++  FlutterViewHandlePlatformMessageResponse
-                                                                              // java FlutternativeView -> handlePlatformMessageResponse
+            long nativePlatformViewAndroid, int responseId,
+            object message); // c++  native shell::InvokePlatformMessageEmptyResponseCallback
+
+        // c++  FlutterViewHandlePlatformMessageResponse
+        // java FlutternativeView -> handlePlatformMessageResponse
     }
 }

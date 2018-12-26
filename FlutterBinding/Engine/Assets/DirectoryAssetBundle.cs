@@ -10,6 +10,7 @@ namespace FlutterBinding.Engine.Assets
         {
             _path = path;
         }
+
         /// <inheritdoc />
         public bool IsValid() => Directory.Exists(_path);
 

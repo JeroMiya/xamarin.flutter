@@ -99,9 +99,9 @@ namespace FlutterBinding.UI
     {
         public WindowPadding(double left, double top, double right, double bottom)
         {
-            this.left = left;
-            this.top = top;
-            this.right = right;
+            this.left   = left;
+            this.top    = top;
+            this.right  = right;
             this.bottom = bottom;
         }
 
@@ -125,7 +125,6 @@ namespace FlutterBinding.UI
             return $"{nameof(WindowPadding)}(left: {left}, top: {top}, right: {right}, bottom: {bottom})";
         }
     }
-
 
 
     /// An identifier used to select a user's language and formatting preferences,
@@ -167,7 +166,7 @@ namespace FlutterBinding.UI
         public Locale(string languageCode, string countryCode = "")
         {
             this._languageCode = languageCode;
-            this._countryCode = countryCode;
+            this._countryCode  = countryCode;
             // assert(_languageCode != null);
         }
 
@@ -189,6 +188,7 @@ namespace FlutterBinding.UI
         /// [languageCode] `he`, because `iw` is a deprecated language subtag that was
         /// replaced by the subtag `he`.
         public string languageCode => _canonicalizeLanguageCode(_languageCode);
+
         private readonly string _languageCode;
 
         private static string _canonicalizeLanguageCode(string languageCode)
@@ -197,85 +197,85 @@ namespace FlutterBinding.UI
             // Mappings generated for language subtag registry as of 2018-08-08.
             switch (languageCode)
             {
-                case "in": return "id"; // Indonesian; deprecated 1989-01-01
-                case "iw": return "he"; // Hebrew; deprecated 1989-01-01
-                case "ji": return "yi"; // Yiddish; deprecated 1989-01-01
-                case "jw": return "jv"; // Javanese; deprecated 2001-08-13
-                case "mo": return "ro"; // Moldavian, Moldovan; deprecated 2008-11-22
-                case "aam": return "aas"; // Aramanik; deprecated 2015-02-12
-                case "adp": return "dz"; // Adap; deprecated 2015-02-12
-                case "aue": return "ktz"; // =/Kx"au//"ein; deprecated 2015-02-12
-                case "ayx": return "nun"; // Ayi (China); deprecated 2011-08-16
-                case "bgm": return "bcg"; // Baga Mboteni; deprecated 2016-05-30
-                case "bjd": return "drl"; // Bandjigali; deprecated 2012-08-12
-                case "ccq": return "rki"; // Chaungtha; deprecated 2012-08-12
-                case "cjr": return "mom"; // Chorotega; deprecated 2010-03-11
-                case "cka": return "cmr"; // Khumi Awa Chin; deprecated 2012-08-12
-                case "cmk": return "xch"; // Chimakum; deprecated 2010-03-11
-                case "coy": return "pij"; // Coyaima; deprecated 2016-05-30
-                case "cqu": return "quh"; // Chilean Quechua; deprecated 2016-05-30
-                case "drh": return "khk"; // Darkhat; deprecated 2010-03-11
-                case "drw": return "prs"; // Darwazi; deprecated 2010-03-11
-                case "gav": return "dev"; // Gabutamon; deprecated 2010-03-11
-                case "gfx": return "vaj"; // Mangetti Dune !Xung; deprecated 2015-02-12
-                case "ggn": return "gvr"; // Eastern Gurung; deprecated 2016-05-30
-                case "gti": return "nyc"; // Gbati-ri; deprecated 2015-02-12
-                case "guv": return "duz"; // Gey; deprecated 2016-05-30
-                case "hrr": return "jal"; // Horuru; deprecated 2012-08-12
-                case "ibi": return "opa"; // Ibilo; deprecated 2012-08-12
-                case "ilw": return "gal"; // Talur; deprecated 2013-09-10
-                case "jeg": return "oyb"; // Jeng; deprecated 2017-02-23
-                case "kgc": return "tdf"; // Kasseng; deprecated 2016-05-30
-                case "kgh": return "kml"; // Upper Tanudan Kalinga; deprecated 2012-08-12
-                case "koj": return "kwv"; // Sara Dunjo; deprecated 2015-02-12
-                case "krm": return "bmf"; // Krim; deprecated 2017-02-23
-                case "ktr": return "dtp"; // Kota Marudu Tinagas; deprecated 2016-05-30
-                case "kvs": return "gdj"; // Kunggara; deprecated 2016-05-30
-                case "kwq": return "yam"; // Kwak; deprecated 2015-02-12
-                case "kxe": return "tvd"; // Kakihum; deprecated 2015-02-12
-                case "kzj": return "dtp"; // Coastal Kadazan; deprecated 2016-05-30
-                case "kzt": return "dtp"; // Tambunan Dusun; deprecated 2016-05-30
-                case "lii": return "raq"; // Lingkhim; deprecated 2015-02-12
-                case "lmm": return "rmx"; // Lamam; deprecated 2014-02-28
-                case "meg": return "cir"; // Mea; deprecated 2013-09-10
-                case "mst": return "mry"; // Cataelano Mandaya; deprecated 2010-03-11
-                case "mwj": return "vaj"; // Maligo; deprecated 2015-02-12
-                case "myt": return "mry"; // Sangab Mandaya; deprecated 2010-03-11
-                case "nad": return "xny"; // Nijadali; deprecated 2016-05-30
-                case "ncp": return "kdz"; // Ndaktup; deprecated 2018-03-08
-                case "nnx": return "ngv"; // Ngong; deprecated 2015-02-12
-                case "nts": return "pij"; // Natagaimas; deprecated 2016-05-30
-                case "oun": return "vaj"; // !O!ung; deprecated 2015-02-12
-                case "pcr": return "adx"; // Panang; deprecated 2013-09-10
-                case "pmc": return "huw"; // Palumata; deprecated 2016-05-30
-                case "pmu": return "phr"; // Mirpur Panjabi; deprecated 2015-02-12
-                case "ppa": return "bfy"; // Pao; deprecated 2016-05-30
-                case "ppr": return "lcq"; // Piru; deprecated 2013-09-10
-                case "pry": return "prt"; // Pray 3; deprecated 2016-05-30
-                case "puz": return "pub"; // Purum Naga; deprecated 2014-02-28
-                case "sca": return "hle"; // Sansu; deprecated 2012-08-12
-                case "skk": return "oyb"; // Sok; deprecated 2017-02-23
-                case "tdu": return "dtp"; // Tempasuk Dusun; deprecated 2016-05-30
-                case "thc": return "tpo"; // Tai Hang Tong; deprecated 2016-05-30
-                case "thx": return "oyb"; // The; deprecated 2015-02-12
-                case "tie": return "ras"; // Tingal; deprecated 2011-08-16
-                case "tkk": return "twm"; // Takpa; deprecated 2011-08-16
-                case "tlw": return "weo"; // South Wemale; deprecated 2012-08-12
-                case "tmp": return "tyj"; // Tai Mène; deprecated 2016-05-30
-                case "tne": return "kak"; // Tinoc Kallahan; deprecated 2016-05-30
-                case "tnf": return "prs"; // Tangshewi; deprecated 2010-03-11
-                case "tsf": return "taj"; // Southwestern Tamang; deprecated 2015-02-12
-                case "uok": return "ema"; // Uokha; deprecated 2015-02-12
-                case "xba": return "cax"; // Kamba (Brazil); deprecated 2016-05-30
-                case "xia": return "acn"; // Xiandao; deprecated 2013-09-10
-                case "xkh": return "waw"; // Karahawyana; deprecated 2016-05-30
-                case "xsj": return "suj"; // Subi; deprecated 2015-02-12
-                case "ybd": return "rki"; // Yangbye; deprecated 2012-08-12
-                case "yma": return "lrr"; // Yamphe; deprecated 2012-08-12
-                case "ymt": return "mtm"; // Mator-Taygi-Karagas; deprecated 2015-02-12
-                case "yos": return "zom"; // Yos; deprecated 2013-09-10
-                case "yuu": return "yug"; // Yugh; deprecated 2014-02-28
-                default: return languageCode;
+            case "in":  return "id";  // Indonesian; deprecated 1989-01-01
+            case "iw":  return "he";  // Hebrew; deprecated 1989-01-01
+            case "ji":  return "yi";  // Yiddish; deprecated 1989-01-01
+            case "jw":  return "jv";  // Javanese; deprecated 2001-08-13
+            case "mo":  return "ro";  // Moldavian, Moldovan; deprecated 2008-11-22
+            case "aam": return "aas"; // Aramanik; deprecated 2015-02-12
+            case "adp": return "dz";  // Adap; deprecated 2015-02-12
+            case "aue": return "ktz"; // =/Kx"au//"ein; deprecated 2015-02-12
+            case "ayx": return "nun"; // Ayi (China); deprecated 2011-08-16
+            case "bgm": return "bcg"; // Baga Mboteni; deprecated 2016-05-30
+            case "bjd": return "drl"; // Bandjigali; deprecated 2012-08-12
+            case "ccq": return "rki"; // Chaungtha; deprecated 2012-08-12
+            case "cjr": return "mom"; // Chorotega; deprecated 2010-03-11
+            case "cka": return "cmr"; // Khumi Awa Chin; deprecated 2012-08-12
+            case "cmk": return "xch"; // Chimakum; deprecated 2010-03-11
+            case "coy": return "pij"; // Coyaima; deprecated 2016-05-30
+            case "cqu": return "quh"; // Chilean Quechua; deprecated 2016-05-30
+            case "drh": return "khk"; // Darkhat; deprecated 2010-03-11
+            case "drw": return "prs"; // Darwazi; deprecated 2010-03-11
+            case "gav": return "dev"; // Gabutamon; deprecated 2010-03-11
+            case "gfx": return "vaj"; // Mangetti Dune !Xung; deprecated 2015-02-12
+            case "ggn": return "gvr"; // Eastern Gurung; deprecated 2016-05-30
+            case "gti": return "nyc"; // Gbati-ri; deprecated 2015-02-12
+            case "guv": return "duz"; // Gey; deprecated 2016-05-30
+            case "hrr": return "jal"; // Horuru; deprecated 2012-08-12
+            case "ibi": return "opa"; // Ibilo; deprecated 2012-08-12
+            case "ilw": return "gal"; // Talur; deprecated 2013-09-10
+            case "jeg": return "oyb"; // Jeng; deprecated 2017-02-23
+            case "kgc": return "tdf"; // Kasseng; deprecated 2016-05-30
+            case "kgh": return "kml"; // Upper Tanudan Kalinga; deprecated 2012-08-12
+            case "koj": return "kwv"; // Sara Dunjo; deprecated 2015-02-12
+            case "krm": return "bmf"; // Krim; deprecated 2017-02-23
+            case "ktr": return "dtp"; // Kota Marudu Tinagas; deprecated 2016-05-30
+            case "kvs": return "gdj"; // Kunggara; deprecated 2016-05-30
+            case "kwq": return "yam"; // Kwak; deprecated 2015-02-12
+            case "kxe": return "tvd"; // Kakihum; deprecated 2015-02-12
+            case "kzj": return "dtp"; // Coastal Kadazan; deprecated 2016-05-30
+            case "kzt": return "dtp"; // Tambunan Dusun; deprecated 2016-05-30
+            case "lii": return "raq"; // Lingkhim; deprecated 2015-02-12
+            case "lmm": return "rmx"; // Lamam; deprecated 2014-02-28
+            case "meg": return "cir"; // Mea; deprecated 2013-09-10
+            case "mst": return "mry"; // Cataelano Mandaya; deprecated 2010-03-11
+            case "mwj": return "vaj"; // Maligo; deprecated 2015-02-12
+            case "myt": return "mry"; // Sangab Mandaya; deprecated 2010-03-11
+            case "nad": return "xny"; // Nijadali; deprecated 2016-05-30
+            case "ncp": return "kdz"; // Ndaktup; deprecated 2018-03-08
+            case "nnx": return "ngv"; // Ngong; deprecated 2015-02-12
+            case "nts": return "pij"; // Natagaimas; deprecated 2016-05-30
+            case "oun": return "vaj"; // !O!ung; deprecated 2015-02-12
+            case "pcr": return "adx"; // Panang; deprecated 2013-09-10
+            case "pmc": return "huw"; // Palumata; deprecated 2016-05-30
+            case "pmu": return "phr"; // Mirpur Panjabi; deprecated 2015-02-12
+            case "ppa": return "bfy"; // Pao; deprecated 2016-05-30
+            case "ppr": return "lcq"; // Piru; deprecated 2013-09-10
+            case "pry": return "prt"; // Pray 3; deprecated 2016-05-30
+            case "puz": return "pub"; // Purum Naga; deprecated 2014-02-28
+            case "sca": return "hle"; // Sansu; deprecated 2012-08-12
+            case "skk": return "oyb"; // Sok; deprecated 2017-02-23
+            case "tdu": return "dtp"; // Tempasuk Dusun; deprecated 2016-05-30
+            case "thc": return "tpo"; // Tai Hang Tong; deprecated 2016-05-30
+            case "thx": return "oyb"; // The; deprecated 2015-02-12
+            case "tie": return "ras"; // Tingal; deprecated 2011-08-16
+            case "tkk": return "twm"; // Takpa; deprecated 2011-08-16
+            case "tlw": return "weo"; // South Wemale; deprecated 2012-08-12
+            case "tmp": return "tyj"; // Tai Mène; deprecated 2016-05-30
+            case "tne": return "kak"; // Tinoc Kallahan; deprecated 2016-05-30
+            case "tnf": return "prs"; // Tangshewi; deprecated 2010-03-11
+            case "tsf": return "taj"; // Southwestern Tamang; deprecated 2015-02-12
+            case "uok": return "ema"; // Uokha; deprecated 2015-02-12
+            case "xba": return "cax"; // Kamba (Brazil); deprecated 2016-05-30
+            case "xia": return "acn"; // Xiandao; deprecated 2013-09-10
+            case "xkh": return "waw"; // Karahawyana; deprecated 2016-05-30
+            case "xsj": return "suj"; // Subi; deprecated 2015-02-12
+            case "ybd": return "rki"; // Yangbye; deprecated 2012-08-12
+            case "yma": return "lrr"; // Yamphe; deprecated 2012-08-12
+            case "ymt": return "mtm"; // Mator-Taygi-Karagas; deprecated 2015-02-12
+            case "yos": return "zom"; // Yos; deprecated 2013-09-10
+            case "yuu": return "yug"; // Yugh; deprecated 2014-02-28
+            default:    return languageCode;
             }
         }
 
@@ -294,6 +294,7 @@ namespace FlutterBinding.UI
         /// [countryCode] `DE`, because `DD` is a deprecated language subtag that was
         /// replaced by the subtag `DE`.
         private string countryCode => _canonicalizeRegionCode(_countryCode);
+
         private readonly string _countryCode;
 
         private static string _canonicalizeRegionCode(string regionCode)
@@ -302,20 +303,20 @@ namespace FlutterBinding.UI
             // Mappings generated for language subtag registry as of 2018-08-08.
             switch (regionCode)
             {
-                case "BU": return "MM"; // Burma; deprecated 1989-12-05
-                case "DD": return "DE"; // German Democratic Republic; deprecated 1990-10-30
-                case "FX": return "FR"; // Metropolitan France; deprecated 1997-07-14
-                case "TP": return "TL"; // East Timor; deprecated 2002-05-20
-                case "YD": return "YE"; // Democratic Yemen; deprecated 1990-08-14
-                case "ZR": return "CD"; // Zaire; deprecated 1997-07-14
-                default: return regionCode;
+            case "BU": return "MM"; // Burma; deprecated 1989-12-05
+            case "DD": return "DE"; // German Democratic Republic; deprecated 1990-10-30
+            case "FX": return "FR"; // Metropolitan France; deprecated 1997-07-14
+            case "TP": return "TL"; // East Timor; deprecated 2002-05-20
+            case "YD": return "YE"; // Democratic Yemen; deprecated 1990-08-14
+            case "ZR": return "CD"; // Zaire; deprecated 1997-07-14
+            default:   return regionCode;
             }
         }
 
         protected bool Equals(Locale other)
         {
-            return 
-                string.Equals(_languageCode, other._languageCode) && 
+            return
+                string.Equals(_languageCode, other._languageCode) &&
                 string.Equals(_countryCode, other._countryCode);
         }
 
@@ -357,12 +358,13 @@ namespace FlutterBinding.UI
     ///
     /// There is a single Window instance in the system, which you can
     /// obtain from the [window] property.
-    public class Window: NativeWindow
+    public class Window : NativeWindow
     {
         /// The [Window] singleton. This object exposes the size of the display, the
         /// core scheduler API, the input event callback, the graphics drawing API, and
         /// other such core services.
         private static Window _instance;
+
         public static Window Instance => _instance ?? (_instance = new Window());
 
         private Window() { }
@@ -465,7 +467,7 @@ namespace FlutterBinding.UI
             get => _onMetricsChanged;
             set
             {
-                _onMetricsChanged = value;
+                _onMetricsChanged    = value;
                 OnMetricsChangedZone = Types.Zone.current;
             }
         }
@@ -492,6 +494,7 @@ namespace FlutterBinding.UI
                 {
                     return locales.First();
                 }
+
                 return Locale.none;
             }
         }
@@ -510,7 +513,7 @@ namespace FlutterBinding.UI
         ///
         ///  * [WidgetsBindingObserver], for a mechanism at the widgets layer to
         ///    observe when this value changes.
-        public List<Locale> locales { get; set;  }
+        public List<Locale> locales { get; set; }
 
         /// A callback that is invoked whenever [locale] changes value.
         ///
@@ -526,7 +529,7 @@ namespace FlutterBinding.UI
             get => _onLocaleChanged;
             set
             {
-                _onLocaleChanged = value;
+                _onLocaleChanged    = value;
                 OnLocaleChangedZone = Types.Zone.current;
             }
         }
@@ -568,7 +571,7 @@ namespace FlutterBinding.UI
             get => _onTextScaleFactorChanged;
             set
             {
-                _onTextScaleFactorChanged = value;
+                _onTextScaleFactorChanged    = value;
                 OnTextScaleFactorChangedZone = Types.Zone.current;
             }
         }
@@ -600,7 +603,7 @@ namespace FlutterBinding.UI
             get => _onBeginFrame;
             set
             {
-                _onBeginFrame = value;
+                _onBeginFrame    = value;
                 OnBeginFrameZone = Types.Zone.current;
             }
         }
@@ -627,7 +630,7 @@ namespace FlutterBinding.UI
             get => _onDrawFrame;
             set
             {
-                _onDrawFrame = value;
+                _onDrawFrame    = value;
                 OnDrawFrameZone = Types.Zone.current;
             }
         }
@@ -649,7 +652,7 @@ namespace FlutterBinding.UI
             get => _onPointerDataPacket;
             set
             {
-                _onPointerDataPacket = value;
+                _onPointerDataPacket    = value;
                 OnPointerDataPacketZone = Types.Zone.current;
             }
         }
@@ -725,7 +728,7 @@ namespace FlutterBinding.UI
         ///  * [RendererBinding], the Flutter framework class which manages layout and
         ///    painting.
         public void render(Scene scene) => base.Render(scene);
-        
+
 
         /// Whether the user has requested that [updateSemantics] be called when
         /// the semantic contents of window changes.
@@ -743,7 +746,7 @@ namespace FlutterBinding.UI
             get => _onSemanticsEnabledChanged;
             set
             {
-                _onSemanticsEnabledChanged = value;
+                _onSemanticsEnabledChanged    = value;
                 OnSemanticsEnabledChangedZone = Types.Zone.current;
             }
         }
@@ -764,7 +767,7 @@ namespace FlutterBinding.UI
             get => _onSemanticsAction;
             set
             {
-                _onSemanticsAction = value;
+                _onSemanticsAction    = value;
                 OnSemanticsActionZone = Types.Zone.current;
             }
         }
@@ -880,7 +883,4 @@ namespace FlutterBinding.UI
         //    return (data) => registrationZone.runUnaryGuarded(callback, data);
         //}
     }
-
-
 }
-

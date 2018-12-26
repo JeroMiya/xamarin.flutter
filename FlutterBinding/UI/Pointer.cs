@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace FlutterBinding.UI
 {
-
     /// How the pointer has changed since the last report.
     public enum PointerChange
     {
@@ -61,49 +60,49 @@ namespace FlutterBinding.UI
     {
         /// Creates an object that represents the state of a pointer.
         public PointerData(
-          Duration timeStamp = null,
-          PointerChange change = PointerChange.cancel,
-          PointerDeviceKind kind = PointerDeviceKind.touch,
-          int device = 0,
-          double physicalX = 0.0,
-          double physicalY = 0.0,
-          int buttons = 0,
-          bool obscured = false,
-          double pressure = 0.0,
-          double pressureMin = 0.0,
-          double pressureMax = 0.0,
-          double distance = 0.0,
-          double distanceMax = 0.0,
-          double radiusMajor = 0.0,
-          double radiusMinor = 0.0,
-          double radiusMin = 0.0,
-          double radiusMax = 0.0,
-          double orientation = 0.0,
-          double tilt = 0.0
-      )
+            Duration timeStamp = null,
+            PointerChange change = PointerChange.cancel,
+            PointerDeviceKind kind = PointerDeviceKind.touch,
+            int device = 0,
+            double physicalX = 0.0,
+            double physicalY = 0.0,
+            int buttons = 0,
+            bool obscured = false,
+            double pressure = 0.0,
+            double pressureMin = 0.0,
+            double pressureMax = 0.0,
+            double distance = 0.0,
+            double distanceMax = 0.0,
+            double radiusMajor = 0.0,
+            double radiusMinor = 0.0,
+            double radiusMin = 0.0,
+            double radiusMax = 0.0,
+            double orientation = 0.0,
+            double tilt = 0.0
+        )
         {
             if (timeStamp == null)
                 timeStamp = Duration.zero;
 
-            this.timeStamp = timeStamp;
-            this.change = change;
-            this.kind = kind;
-            this.device = device;
-            this.physicalX = physicalX;
-            this.physicalY = physicalY;
-            this.buttons = buttons;
-            this.obscured = obscured;
-            this.pressure = pressure;
+            this.timeStamp   = timeStamp;
+            this.change      = change;
+            this.kind        = kind;
+            this.device      = device;
+            this.physicalX   = physicalX;
+            this.physicalY   = physicalY;
+            this.buttons     = buttons;
+            this.obscured    = obscured;
+            this.pressure    = pressure;
             this.pressureMin = pressureMin;
             this.pressureMax = pressureMax;
-            this.distance = distance;
+            this.distance    = distance;
             this.distanceMax = distanceMax;
             this.radiusMajor = radiusMajor;
             this.radiusMinor = radiusMinor;
-            this.radiusMin = radiusMin;
-            this.radiusMax = radiusMax;
+            this.radiusMin   = radiusMin;
+            this.radiusMax   = radiusMax;
             this.orientation = orientation;
-            this.tilt = tilt;
+            this.tilt        = tilt;
         }
 
         /// Time of event dispatch, relative to an arbitrary timeline.
@@ -223,25 +222,25 @@ namespace FlutterBinding.UI
         public String toStringFull()
         {
             return $"{nameof(PointerData)}(" +
-                   $"timeStamp: {timeStamp}, " +
-                   $"change: {change}, " +
-                   $"kind: {kind}, " +
-                   $"device: {device}, " +
-                   $"physicalX: {physicalX}, " +
-                   $"physicalY: {physicalY}, " +
-                   $"buttons: {buttons}, " +
-                   $"pressure: {pressure}, " +
-                   $"pressureMin: {pressureMin}, " +
-                   $"pressureMax: {pressureMax}, " +
-                   $"distance: {distance}, " +
-                   $"distanceMax: {distanceMax}, " +
-                   $"radiusMajor: {radiusMajor}, " +
-                   $"radiusMinor: {radiusMinor}, " +
-                   $"radiusMin: {radiusMin}, " +
-                   $"radiusMax: {radiusMax}, " +
-                   $"orientation: {orientation}, " +
-                   $"tilt: {tilt}" +
-                    ")";
+                $"timeStamp: {timeStamp}, " +
+                $"change: {change}, " +
+                $"kind: {kind}, " +
+                $"device: {device}, " +
+                $"physicalX: {physicalX}, " +
+                $"physicalY: {physicalY}, " +
+                $"buttons: {buttons}, " +
+                $"pressure: {pressure}, " +
+                $"pressureMin: {pressureMin}, " +
+                $"pressureMax: {pressureMax}, " +
+                $"distance: {distance}, " +
+                $"distanceMax: {distanceMax}, " +
+                $"radiusMajor: {radiusMajor}, " +
+                $"radiusMinor: {radiusMinor}, " +
+                $"radiusMin: {radiusMin}, " +
+                $"radiusMax: {radiusMax}, " +
+                $"orientation: {orientation}, " +
+                $"tilt: {tilt}" +
+                ")";
         }
     }
 

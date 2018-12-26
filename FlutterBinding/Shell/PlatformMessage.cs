@@ -12,7 +12,7 @@ namespace FlutterBinding.Shell
 
         public PlatformMessage(string channel, TRequestData requestData)
         {
-            Channel = channel;
+            Channel     = channel;
             RequestData = requestData;
         }
 
@@ -35,5 +35,4 @@ namespace FlutterBinding.Shell
         /// <inheritdoc />
         public PlatformMessage(string channel, object requestData) : base(channel, requestData) { }
     }
-
 }

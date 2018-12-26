@@ -8,10 +8,8 @@ using static FlutterBinding.Flow.Helper;
 
 namespace FlutterBinding.Flow.Layers
 {
-
     public abstract class ContainerLayer : Layer
     {
-
         public void Add(Layer layer)
         {
             layer.set_parent(this);
@@ -26,6 +24,7 @@ namespace FlutterBinding.Flow.Layers
             PrerollChildren(context, matrix, ref child_paint_bounds);
             set_paint_bounds(child_paint_bounds);
         }
+
         public List<Layer> layers()
         {
             return layers_;
@@ -42,9 +41,11 @@ namespace FlutterBinding.Flow.Layers
                 {
                     set_needs_system_composite(true);
                 }
+
                 child_paint_bounds.Union(layer.paint_bounds());
             }
         }
+
         protected void PaintChildren(PaintContext context)
         {
             FML_DCHECK(needs_painting());
@@ -62,5 +63,4 @@ namespace FlutterBinding.Flow.Layers
 
         public List<Layer> layers_ = new List<Layer>();
     }
-
 }
