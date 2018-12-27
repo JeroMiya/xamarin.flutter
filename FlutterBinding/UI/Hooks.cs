@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using FlutterBinding.Engine;
 using FlutterBinding.Mapping;
 using FlutterBinding.Shell;
 using Newtonsoft.Json;
@@ -71,7 +72,7 @@ namespace FlutterBinding.UI
         static void _updateTextScaleFactor(double textScaleFactor)
         {
             Window.Instance.textScaleFactor = textScaleFactor;
-            _invoke(Window.Instance.onTextScaleFactorChanged, Window.Instance.OnTextScaleFactorChangedZone);
+            _invoke(Window.Instance.OnTextScaleFactorChanged, Window.Instance.OnTextScaleFactorChangedZone);
         }
 
         static void _updateAlwaysUse24HourFormat(bool alwaysUse24HourFormat)
@@ -126,7 +127,7 @@ namespace FlutterBinding.UI
 
         static void _beginFrame(int microseconds)
         {
-            _invoke1<Types.Duration>((d) => Window.Instance.onBeginFrame(d), Window.Instance.OnBeginFrameZone, new Types.Duration(microseconds: microseconds));
+            _invoke1((d) => Window.Instance.onBeginFrame(d), Window.Instance.OnBeginFrameZone, TimeDelta.FromMicroseconds(microseconds));
         }
 
         static void _drawFrame()
@@ -216,7 +217,7 @@ namespace FlutterBinding.UI
             {
                 int offset = i * _kPointerDataFieldCount;
                 data[i] = new PointerData(
-                    timeStamp: new Types.Duration(microseconds: packet.getInt64(kStride * offset++, (int)Painting._kFakeHostEndian)),
+                    timeStamp: TimeDelta.FromMicroseconds(packet.getInt64(kStride * offset++, (int)Painting._kFakeHostEndian)),
                     change: (PointerChange)packet.getInt64(kStride * offset++, (int)Painting._kFakeHostEndian),
                     kind: (PointerDeviceKind)packet.getInt64(kStride * offset++, (int)Painting._kFakeHostEndian),
                     device: packet.getInt64(kStride * offset++, (int)Painting._kFakeHostEndian),

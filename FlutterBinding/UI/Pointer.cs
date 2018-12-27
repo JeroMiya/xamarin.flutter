@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using FlutterBinding.Mapping;
 
 namespace FlutterBinding.UI
 {
@@ -60,7 +61,7 @@ namespace FlutterBinding.UI
     {
         /// Creates an object that represents the state of a pointer.
         public PointerData(
-            Duration timeStamp = null,
+            TimeSpan? timeStamp = null,
             PointerChange change = PointerChange.cancel,
             PointerDeviceKind kind = PointerDeviceKind.touch,
             int device = 0,
@@ -81,10 +82,7 @@ namespace FlutterBinding.UI
             double tilt = 0.0
         )
         {
-            if (timeStamp == null)
-                timeStamp = Duration.zero;
-
-            this.timeStamp   = timeStamp;
+            this.timeStamp   = timeStamp ?? TimeSpan.Zero;
             this.change      = change;
             this.kind        = kind;
             this.device      = device;
@@ -106,7 +104,7 @@ namespace FlutterBinding.UI
         }
 
         /// Time of event dispatch, relative to an arbitrary timeline.
-        public readonly Duration timeStamp;
+        public readonly TimeSpan timeStamp;
 
         /// How the pointer has changed since the last report.
         public readonly PointerChange change;

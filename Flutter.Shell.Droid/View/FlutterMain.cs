@@ -9,6 +9,7 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Util;
 using Flutter.Shell.Droid.Util;
+using FlutterBinding.Shell;
 using Java.Lang;
 using Java.Util;
 using Exception = System.Exception;
@@ -41,7 +42,7 @@ namespace Flutter.Shell.Droid.View
         private static bool _isPrecompiledAsSharedLibrary;
         private static ResourceExtractor _resourceExtractor;
         private static ResourceUpdater _resourceUpdater;
-        private static Settings _settings;
+        private static FlutterSettings _settings;
         private static Stopwatch _stopwatch;
         private static readonly string AOT_ISOLATE_SNAPSHOT_DATA_KEY = "isolate-snapshot-data";
         private static readonly string AOT_ISOLATE_SNAPSHOT_INSTR_KEY = "isolate-snapshot-instr";
@@ -139,16 +140,16 @@ namespace Flutter.Shell.Droid.View
                     shellArgs.Add("--log-tag=" + _settings.LogTag);
                 }
 
-                //var appBundlePath = findAppBundlePath(applicationContext);
-                //var appStoragePath = PathUtils.getFilesDir(applicationContext);
-                //var engineCachesPath = PathUtils.getCacheDirectory(applicationContext);
+                var appBundlePath = FindAppBundlePath(applicationContext);
+                var appStoragePath = PathUtils.GetFilesDir(applicationContext);
+                var engineCachesPath = PathUtils.GetCacheDirectory(applicationContext);
 
-                //nativeInit(
-                //    applicationContext,
-                //    shellArgs.ToArray(),
-                //    appBundlePath,
-                //    appStoragePath,
-                //    engineCachesPath);
+                NativeInit(
+                    applicationContext,
+                    shellArgs.ToArray(),
+                    appBundlePath,
+                    appStoragePath,
+                    engineCachesPath);
 
                 _initialized = true;
             }
@@ -208,7 +209,7 @@ namespace Flutter.Shell.Droid.View
          * @param applicationContext The Android application context.
          * @param settings Configuration settings.
          */
-        public static async Task StartInitialization(Context applicationContext, Settings settings = null)
+        public static async Task StartInitialization(Context applicationContext, FlutterSettings settings = null)
         {
             if (!IsMainLoop)
                 throw new ThreadStateException("startInitialization must be called on the main thread");
@@ -250,7 +251,17 @@ namespace Flutter.Shell.Droid.View
             }
         }
 
-        //private static native private void nativeInit(Context context, string[] args, string bundlePath, string appStoragePath, string engineCachesPath);
+        /// <summary>
+        /// Src: flutter_main.cc + .h
+        /// This was all the native Dart stuff and optimizations
+        /// </summary>
+        private static void NativeInit(
+            Context context,
+            string[] args,
+            string bundlePath,
+            string appStoragePath,
+            string engineCachesPath)
+        { }
 
         /**
          * Initialize our Flutter config values by obtaining them from the
@@ -357,13 +368,6 @@ namespace Flutter.Shell.Droid.View
             }
         }
 
-        public class Settings
-        {
-            /**
-             * The tag associated with Flutter app log messages.
-             * @param tag Log tag.
-             */
-            public string LogTag { get; set; } = TAG;
-        }
+        public static Settings Settings { get; }
     }
 }

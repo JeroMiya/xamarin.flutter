@@ -57,6 +57,9 @@
         //public string log_tag = "flutter";
         //public string icu_data_path;
 
+        public string LogTag { get; set; } = "Xamarin.Flutter";
+
+
         // Assets settings
         public string AssetsDir = null;
 

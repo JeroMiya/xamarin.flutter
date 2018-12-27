@@ -2,6 +2,10 @@
 
 namespace FlutterBinding.Engine
 {
+    /// <summary>
+    /// TimeDelta is the FML equivalent to .Net TimeSpan, but with a Microsecond accuracy
+    /// Dart lang uses a Duration class
+    /// </summary>
     public class TimeDelta
     {
         internal readonly TimeSpan _timeSpan;
@@ -22,8 +26,19 @@ namespace FlutterBinding.Engine
 
         public static implicit operator TimeSpan(TimeDelta td) => td._timeSpan;
         public static implicit operator TimeDelta(TimeSpan td) => new TimeDelta(td);
+
+        public static TimeDelta FromMilliseconds(double value) => new TimeDelta((long)(value * TimePoint.TicksPerMicrosecond));
+        public static TimeDelta FromMicroseconds(double value) => new TimeDelta((long)(value * TimePoint.TicksPerMillisecond));
+        public static TimeDelta FromSeconds(double value) => new TimeDelta((long)(value * TimePoint.TicksPerSecond));
+        public static TimeDelta FromMinutes(double value) => new TimeDelta((long)(value * TimePoint.TicksPerMinute));
+        public static TimeDelta FromHours(double value) => new TimeDelta((long)(value * TimePoint.TicksPerHour));
+        public static TimeDelta FromDays(double value) => new TimeDelta((long)(value * TimePoint.TicksPerDay));
     }
 
+    /// <summary>
+    /// TimePoint is the FML equivalent to .Net DateTime, but with a Microsecond accuracy
+    /// Dart lang also uses a DateTime class
+    /// </summary>
     public class TimePoint
     {
         // Number of 100ns ticks per time unit

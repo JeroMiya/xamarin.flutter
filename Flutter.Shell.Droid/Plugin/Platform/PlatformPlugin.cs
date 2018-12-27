@@ -6,6 +6,7 @@ using Android.OS;
 using Android.Util;
 using Android.Views;
 using Flutter.Shell.Droid.Plugin.Common;
+using FlutterBinding.Plugin.Common;
 using Org.Json;
 
 namespace Flutter.Shell.Droid.Plugin.Platform

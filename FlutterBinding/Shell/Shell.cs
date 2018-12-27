@@ -447,7 +447,7 @@ namespace FlutterBinding.Shell
         }
 
         // |shell::Engine::Delegate|
-        //public void OnEngineHandlePlatformMessage(PlatformMessage message) { }
+        public void OnEngineHandlePlatformMessage(PlatformMessage message) { }
 
         // |shell::Engine::Delegate|
         public async Task OnPreEngineRestart()

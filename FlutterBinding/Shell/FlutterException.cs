@@ -11,6 +11,12 @@ namespace FlutterBinding.Shell
         public FlutterException() { }
 
         /// <inheritdoc />
+        public FlutterException(string message) : base(message) { }
+
+        /// <inheritdoc />
+        public FlutterException(string message, Exception innerException) : base(message, innerException) { }
+
+        /// <inheritdoc />
         public FlutterException(string code, string message, object details = null) : base(message)
         {
             Code    = code;

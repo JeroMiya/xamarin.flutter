@@ -12,13 +12,6 @@ namespace FlutterBinding.Mapping
             little
         }
 
-        public class Duration
-        {
-            public Duration(long milliseconds = 0, long microseconds = 0) { }
-
-            public static Duration zero = new Duration(); //TODO: make an actual zero
-        }
-
         public class ByteData
         {
             public ByteData() { }

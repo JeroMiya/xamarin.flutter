@@ -6,7 +6,9 @@ using Flutter.Shell.Droid.Plugin.Common;
 using Java.Lang;
 using Java.Nio;
 using System.Collections.Generic;
-using Android.Content.Res;
+using FlutterBinding.Engine.Assets;
+using FlutterBinding.Shell;
+using AssetManager = Android.Content.Res.AssetManager;
 
 namespace Flutter.Shell.Droid.View
 {
@@ -19,7 +21,7 @@ namespace Flutter.Shell.Droid.View
         private Dictionary<int, IBinaryReply> _pendingReplies = new Dictionary<int, IBinaryReply>();
 
         private FlutterPluginRegistry _pluginRegistry;
-        private long _nativePlatformView;
+        private AndroidShellHolder _shellHolder;
         private FlutterView _flutterView;
         private Context _context;
         private bool _applicationIsRunning;
@@ -39,15 +41,13 @@ namespace Flutter.Shell.Droid.View
         {
             _pluginRegistry.Detach();
             _flutterView = null;
-            nativeDetach(_nativePlatformView);
         }
 
         public void Destroy()
         {
             _pluginRegistry.Destroy();
             _flutterView = null;
-            nativeDestroy(_nativePlatformView);
-            _nativePlatformView   = 0;
+            _shellHolder = null;
             _applicationIsRunning = false;
         }
 
@@ -64,12 +64,12 @@ namespace Flutter.Shell.Droid.View
 
         public bool IsAttached()
         {
-            return _nativePlatformView != 0;
+            return _shellHolder != null;
         }
 
-        public long Get()
+        public AndroidShellHolder Get()
         {
-            return _nativePlatformView;
+            return _shellHolder;
         }
 
         public void AssertAttached()
@@ -122,8 +122,8 @@ namespace Flutter.Shell.Droid.View
             if (_applicationIsRunning)
                 throw new AssertionError("This Flutter engine instance is already running an application");
 
-            nativeRunBundleAndSnapshotFromLibrary(
-                _nativePlatformView,
+            NativeRunBundleAndSnapshotFromLibrary(
+                _shellHolder,
                 bundlePaths,
                 entrypoint,
                 libraryPath,
@@ -139,7 +139,7 @@ namespace Flutter.Shell.Droid.View
 
         public static string GetObservatoryUri()
         {
-            return nativeGetObservatoryUri();
+            return NativeGetObservatoryUri();
         }
 
         //@Override
@@ -165,9 +165,9 @@ namespace Flutter.Shell.Droid.View
             }
 
             if (message == null)
-                nativeDispatchEmptyPlatformMessage(_nativePlatformView, channel, replyId);
+                NativeDispatchEmptyPlatformMessage(_shellHolder, channel, replyId);
             else
-                nativeDispatchPlatformMessage(_nativePlatformView, channel, message, replyId);
+                nativeDispatchPlatformMessage(_shellHolder, channel, message, replyId);
         }
 
         //@Override
@@ -181,7 +181,7 @@ namespace Flutter.Shell.Droid.View
 
         private void Attach(FlutterNativeView view, bool isBackgroundView)
         {
-            _nativePlatformView = nativeAttach(view, isBackgroundView);
+            _shellHolder = NativeAttach(view, isBackgroundView);
         }
 
         // Called by native to send us a platform message.
@@ -211,22 +211,22 @@ namespace Flutter.Shell.Droid.View
                                 //if (done.getAndSet(true))
                                 //    throw new IllegalStateException("Reply already submitted");
                                 if (reply == null)
-                                    nativeInvokePlatformMessageEmptyResponseCallback(_nativePlatformView, replyId);
+                                    nativeInvokePlatformMessageEmptyResponseCallback(_shellHolder, replyId);
                                 else
-                                    nativeInvokePlatformMessageResponseCallback(_nativePlatformView, replyId, reply);
+                                    nativeInvokePlatformMessageResponseCallback(_shellHolder, replyId, reply);
                             }
                         });
                 }
                 catch (Exception ex)
                 {
                     Log.Error(TAG, "Uncaught exception in binary message listener", ex);
-                    nativeInvokePlatformMessageEmptyResponseCallback(_nativePlatformView, replyId);
+                    nativeInvokePlatformMessageEmptyResponseCallback(_shellHolder, replyId);
                 }
 
                 return;
             }
 
-            nativeInvokePlatformMessageEmptyResponseCallback(_nativePlatformView, replyId);
+            nativeInvokePlatformMessageEmptyResponseCallback(_shellHolder, replyId);
         }
 
         // Called by native to respond to a platform message that we sent.
@@ -274,19 +274,74 @@ namespace Flutter.Shell.Droid.View
             _pluginRegistry?.OnPreEngineRestart();
         }
 
-        private static long nativeAttach(FlutterNativeView view, bool isBackgroundView); // native shell::Attach
-        private static void nativeDestroy(long nativePlatformViewAndroid);               // native shell::Destroy
-        private static void nativeDetach(long nativePlatformViewAndroid);                // native shell::Detach
+        private static AndroidShellHolder NativeAttach(FlutterNativeView view, bool isBackgroundView)
+        {
+            return new AndroidShellHolder(
+                FlutterMain.Settings,
+                view,
+                isBackgroundView);
+        }
 
-        private static void nativeRunBundleAndSnapshotFromLibrary(
-            long nativePlatformViewAndroid, string[] bundlePaths,
-            string entrypoint, string libraryUrl, AssetManager manager); // native shell::RunBundleAndSnapshotFromLibrary
+        private static void NativeRunBundleAndSnapshotFromLibrary(
+            AndroidShellHolder shellHolder,
+            string[] bundlePaths,
+            string entrypoint,
+            string libraryUrl,
+            FlutterBinding.Engine.Assets.AssetManager assetManager) // native shell::RunBundleAndSnapshotFromLibrary
+        {
+            foreach (var bundlePath in bundlePaths)
+            {
+                if (string.IsNullOrWhiteSpace(bundlePath))
+                    continue;
 
-        private static string nativeGetObservatoryUri(); // native shell::GetObservatoryUri
+                // If we got a bundle path, attempt to use that as a directory asset
+                // bundle or a zip asset bundle.
+                var fileExtIndex = bundlePath.LastIndexOf('.');
+                if (bundlePath.Substring(fileExtIndex) == ".zip")
+                {
+                    //TODO: ZipAssetStore
+                    //assetManager.PushBack(new ZipAssetStore(bundlePath));
+                }
+                else
+                {
+                    assetManager.PushBack(new DirectoryAssetBundle(bundlePath));
+
+                    // Use the last path component of the bundle path to determine the
+                    // directory in the APK assets.
+                    var lastSlashIndex = bundlePath.LastIndexOf('/');
+                    if (lastSlashIndex > 1)
+                    {
+                        var apkAssetDir = bundlePath.Substring(lastSlashIndex + 1);
+
+                        //TODO: APKAssetProvider
+                        //assetManager.PushBack(new APKAssetProvider(apkAssetDir));
+                    }
+                }
+            }
+
+            var config = new RunConfiguration(assetManager);
+
+            if (!string.IsNullOrWhiteSpace(entrypoint) && !string.IsNullOrWhiteSpace(libraryUrl))
+                config.SetEntrypointAndLibrary(entrypoint, libraryUrl);
+            else
+                config.SetEntrypoint(entrypoint);
+            
+            shellHolder.Launch(config);
+        }
+
+        private static string NativeGetObservatoryUri() // native shell::GetObservatoryUri
+        {
+            return null;    // TODO: ??
+        }
 
         // Send an empty platform message to Dart.
-        private static void nativeDispatchEmptyPlatformMessage(
-            long nativePlatformViewAndroid, string channel, int responseId); // native shell::DispatchEmptyPlatformMessage
+        private static void NativeDispatchEmptyPlatformMessage(
+            AndroidShellHolder shellHolder,
+            string channel,
+            int responseId) // native shell::DispatchEmptyPlatformMessage
+        {
+            shellHolder.GetPlatformView().Dis
+        }
 
         // Send a data-carrying platform message to Dart.
         private static void nativeDispatchPlatformMessage(

@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>7.2</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -76,6 +77,10 @@
   <ItemGroup>
     <Folder Include="Engine\Semantics\" />
     <Folder Include="Minikin\" />
+    <Folder Include="App\" />
+    <Folder Include="View\" />
+    <Folder Include="Plugin\Editing\" />
+    <Folder Include="Plugin\Platform\" />
     <Folder Include="Txt\" />
   </ItemGroup>
 

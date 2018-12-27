@@ -16,7 +16,7 @@ namespace FlutterBinding.Shell
             CustomAccessibilityActionUpdates actions);
 
         // Use dependency injection, not platform messages!
-        //void HandlePlatformMessage(PlatformMessage message);
+        void HandlePlatformMessage(PlatformMessage message);
         //FontCollection GetFontCollection();
     };
 }

@@ -1,4 +1,6 @@
-﻿namespace Flutter.Shell.Droid.Plugin.Common
+﻿using FlutterBinding.Plugin.Common;
+
+namespace Flutter.Shell.Droid.Plugin.Common
 {
     /**
      * A handler of incoming method calls.

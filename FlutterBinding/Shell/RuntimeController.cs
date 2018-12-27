@@ -20,7 +20,7 @@ namespace FlutterBinding.Shell
         public string CountryCode;
         public string ScriptCode;
         public string VariantCode;
-        public List<string> LocaleData;
+        public List<Locale> LocaleData;
         public string UserSettingsData = "{}";
         public bool SemanticsEnabled = false;
         public bool AssistiveTechnologyEnabled = false;
@@ -154,7 +154,7 @@ namespace FlutterBinding.Shell
             return false;
         }
 
-        public bool SetLocales(List<string> localeData)
+        public bool SetLocales(List<Locale> localeData)
         {
             _windowData.LocaleData = localeData;
 
@@ -280,6 +280,7 @@ namespace FlutterBinding.Shell
         //public DartIsolate GetRootIsolate() { }
         //Tuple<bool, UInt32> GetRootIsolateReturnCode() { }
 
+        /*
         private class Locale
         {
             Locale(
@@ -299,6 +300,7 @@ namespace FlutterBinding.Shell
             public string ScriptCode;
             public string VariantCode;
         };
+        */
 
         private IRuntimeDelegate _client;
 

@@ -15,9 +15,9 @@ namespace FlutterBinding.Engine.Assets
         public bool IsValid() => Directory.Exists(_path);
 
         /// <inheritdoc />
-        public Mapping GetAsMapping(string asset_name)
+        public Mapping GetAsMapping(string assetName)
         {
-            var filename = Path.Combine(_path, asset_name);
+            var filename = Path.Combine(_path, assetName);
             var contents = File.ReadAllBytes(filename);
             return new DataMapping(contents);
         }

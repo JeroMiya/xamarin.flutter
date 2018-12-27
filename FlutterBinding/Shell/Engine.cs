@@ -1,6 +1,11 @@
-﻿using FlutterBinding.Engine;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using FlutterBinding.Engine;
 using FlutterBinding.Engine.Assets;
 using FlutterBinding.Flow.Layers;
+using FlutterBinding.Plugin.Common;
 using FlutterBinding.UI;
 using SkiaSharp;
 
@@ -21,6 +26,14 @@ namespace FlutterBinding.Shell
 
             // considered a failure by callers
             Failure, // Isolate could not be started or other unspecified failure
+        };
+
+        public interface IEngineDelegate
+        {
+            void OnEngineUpdateSemantics(SemanticsNodeUpdates update, CustomAccessibilityActionUpdates actions);
+
+            void OnEngineHandlePlatformMessage(PlatformMessage message);
+            Task OnPreEngineRestart();
         };
 
         public Engine(
@@ -211,8 +224,9 @@ namespace FlutterBinding.Shell
                 return;
             }
 
-            if (runtime_controller_.IsRootIsolateRunning() &&
-                runtime_controller_.DispatchPlatformMessage(message))
+            if ( //TODO: Assume always running ->
+                 //_runtimeController.IsRootIsolateRunning() &&
+                _runtimeController.DispatchPlatformMessage(message))
             {
                 return;
             }
@@ -297,13 +311,13 @@ namespace FlutterBinding.Shell
         }
 
         // |blink::RuntimeDelegate|
-        //public void HandlePlatformMessage(PlatformMessage message)
-        //{
-        //    if (message.channel() == kAssetChannel)
-        //        HandleAssetPlatformMessage(message);
-        //    else
-        //        delegate_.OnEngineHandlePlatformMessage(message);
-        //}
+        public void HandlePlatformMessage(PlatformMessage message)
+        {
+            if (message.Channel == kAssetChannel)
+                HandleAssetPlatformMessage(message);
+            else
+                _delegate.OnEngineHandlePlatformMessage(message);
+        }
 
         private void StopAnimator()
         {
@@ -316,97 +330,85 @@ namespace FlutterBinding.Shell
                 _animator.Start();
         }
 
-        //private bool HandleLifecyclePlatformMessage(PlatformMessage message)
-        //{
-        //    var data = message.Data;
-        //    string state = (string)data;// (reinterpret_cast<const char*> (data.data()), data.size());
-        //    if (state == "AppLifecycleState.paused" ||
-        //        state == "AppLifecycleState.suspending")
-        //    {
-        //        activity_running_ = false;
-        //        StopAnimator();
-        //    }
-        //    else if (state == "AppLifecycleState.resumed" ||
-        //        state == "AppLifecycleState.inactive")
-        //    {
-        //        activity_running_ = true;
-        //        StartAnimatorIfPossible();
-        //    }
+        private bool HandleLifecyclePlatformMessage(PlatformMessage message)
+        {
+            string state = message.ResponseData.ToString(); // (reinterpret_cast<const char*> (data.data()), data.size());
+            if (state == "AppLifecycleState.paused" ||
+                state == "AppLifecycleState.suspending")
+            {
+                _activityRunning = false;
+                StopAnimator();
+            }
+            else if (state == "AppLifecycleState.resumed" ||
+                state == "AppLifecycleState.inactive")
+            {
+                _activityRunning = true;
+                StartAnimatorIfPossible();
+            }
 
-        //    // Always schedule a frame when the app does become active as per API
-        //    // recommendation
-        //    // https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622956-applicationdidbecomeactive?language=objc
-        //    if (state == "AppLifecycleState.resumed" && have_surface_)
-        //    {
-        //        ScheduleFrame();
-        //    }
-        //    return false; 
-        //}
+            // Always schedule a frame when the app does become active as per API
+            // recommendation
+            // https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622956-applicationdidbecomeactive?language=objc
+            if (state == "AppLifecycleState.resumed" && _haveSurface)
+            {
+                ScheduleFrame();
+            }
+            return false;
+        }
 
-        //private bool HandleNavigationPlatformMessage(PlatformMessage message)
-        //{
-        //    var data = message.data();
+        private bool HandleNavigationPlatformMessage(PlatformMessage message)
+        {
+            if (!(message.RequestData is MethodCall methodCall))
+                throw new InvalidOperationException($"HandleNavigationPlatformMessage: {message}");
 
-        //    rapidjson::Document document;
-        //    document.Parse(reinterpret_cast <const char*> (data.data()), data.size());
-        //    if (document.HasParseError() || !document.IsObject())
-        //        return false;
-        //    auto root = document.GetObject();
-        //    auto method = root.FindMember("method");
-        //    if (method->value != "setInitialRoute")
-        //        return false;
-        //    auto route = root.FindMember("args");
-        //    initial_route_ = std::move(route->value.GetString());
-        //    return true;
-        //}
+            switch (methodCall.Method)
+            {
+                case "setInitialRoute":
+                    _initialRoute = (string)methodCall.Arguments;
+                    return true;
+            }
+            throw new InvalidOperationException($"HandleNavigationPlatformMessage: Method: {methodCall.Method}");
+        }
 
-        //private bool HandleLocalizationPlatformMessage(PlatformMessage message)
-        //{
-        //    var data = message.Data;
+        private bool HandleLocalizationPlatformMessage(PlatformMessage message)
+        {
+            if (!(message.RequestData is MethodCall methodCall))
+                throw new InvalidOperationException($"HandleLocalizationPlatformMessage: {message}");
 
-        //    rapidjson::Document document = new rapidjson::Document();
-        //    document.Parse(reinterpret_cast <const char*> (data.data()), data.size());
-        //    if (document.HasParseError() || !document.IsObject())
-        //        return false;
-        //    var root = document.GetObject();
-        //    var method = root.FindMember("method");
-        //    if (method == root.MemberEnd() || method->value != "setLocale")
-        //        return false;
+            switch (methodCall.Method)
+            {
+                case "setLocale":
+                    var locales = methodCall.GetArguments<List<Locale>>();
+                    _runtimeController.SetLocales(locales);
+                    return true;
+            }
 
-        //    var args = root.FindMember("args");
-        //    if (args == root.MemberEnd() || !args->value.IsArray())
-        //        return false;
+            throw new InvalidOperationException($"HandleLocalizationPlatformMessage: Method: {methodCall.Method}");
+        }
 
-        //    int strings_per_locale = 4;
-        //    if (args.value.Size() % strings_per_locale != 0)
-        //        return false;
-        //    var locale_data = new List<string>();
-        //    for (var locale_index = 0; locale_index < args.value.Size(); locale_index += strings_per_locale)
-        //    {
-        //        if (!args.value[locale_index].IsString() ||
-        //            !args.value[locale_index + 1].IsString())
-        //            return false;
-        //        locale_data.Add(args.value[locale_index].GetString());
-        //        locale_data.Add(args.value[locale_index + 1].GetString());
-        //        locale_data.Add(args.value[locale_index + 2].GetString());
-        //        locale_data.Add(args.value[locale_index + 3].GetString());
-        //    }
+        private void HandleSettingsPlatformMessage(PlatformMessage message)
+        {
+            var data = (string)message.RequestData;
+            if (_runtimeController.SetUserSettingsData(data) && _haveSurface)
+            {
+                ScheduleFrame();
+            }
+        }
 
-        //    return runtime_controller_.SetLocales(locale_data);
-        //}
+        private void HandleAssetPlatformMessage(PlatformMessage message)
+        {
+            if (!(message.ResponseData is string assetName))
+                return;
 
-        //private void HandleSettingsPlatformMessage(PlatformMessage message)
-        //{
-        //    var data = (string)message.Data;
-        //    if (runtime_controller_.SetUserSettingsData(data) && have_surface_)
-        //    {
-        //        ScheduleFrame();
-        //    }
-        //}
+            var assetMapping = _assetManager?.GetAsMapping(assetName);
+            if (assetMapping != null)
+            {
+                message.OnResponse?.Invoke(assetMapping);
+                return;
+            }
 
-        //private void HandleAssetPlatformMessage(PlatformMessage message)
-        //{
-        //}
+            message.OnResponse?.Invoke(null);
+        }
 
         // TODO: Can't find implmentation for this, or any use
         //private bool GetAssetAsBuffer(string name, List<byte> data)

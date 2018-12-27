@@ -2,6 +2,7 @@
 using Android.App;
 using Android.Runtime;
 using Flutter.Shell.Droid.App;
+using Flutter.Shell.Droid.View;
 
 namespace Flutter.Sample.Droid
 {
@@ -15,6 +16,17 @@ namespace Flutter.Sample.Droid
     {
         public MainApplication(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
         {
+        }
+
+        /// <inheritdoc />
+        public override void OnCreate()
+        {
+            base.OnCreate();
+
+            FlutterMain.StartInitialization(this)
+                       .ConfigureAwait(true)
+                       .GetAwaiter()
+                       .GetResult();
         }
     }
 }

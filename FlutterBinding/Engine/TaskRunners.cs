@@ -42,9 +42,9 @@ namespace FlutterBinding.Engine
         private int _order = 0;
         private bool _terminated = false;
 
-        public TaskRunner()
+        public TaskRunner(string name)
         {
-            _worker = new Thread(Work);
+            _worker = new Thread(Work) {Name = name};
             _worker.Start();
         }
 

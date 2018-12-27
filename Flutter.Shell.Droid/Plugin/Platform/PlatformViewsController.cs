@@ -6,6 +6,7 @@ using Flutter.Shell.Droid.Plugin.Common;
 using Flutter.Shell.Droid.View;
 using Java.Lang;
 using System.Collections.Generic;
+using FlutterBinding.Plugin.Common;
 using LayoutDirection = Android.Views.LayoutDirection;
 using Math = System.Math;
 

@@ -4,6 +4,7 @@ using Android.Text;
 using Android.Views.InputMethods;
 using Flutter.Shell.Droid.Plugin.Common;
 using Flutter.Shell.Droid.View;
+using FlutterBinding.Plugin.Common;
 using Java.Lang;
 using Org.Json;
 

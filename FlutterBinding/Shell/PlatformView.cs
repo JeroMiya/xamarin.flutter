@@ -41,7 +41,7 @@ namespace FlutterBinding.Shell
             return new VsyncWaiterFallback(_taskRunners);
         }
 
-        //public void DispatchPlatformMessage(PlatformMessage message) => delegate_.OnPlatformViewDispatchPlatformMessage(message);
+        public void DispatchPlatformMessage(PlatformMessage message) => delegate_.OnPlatformViewDispatchPlatformMessage(message);
 
         public void DispatchSemanticsAction(int id, SemanticsAction action, object args)
         {
@@ -87,7 +87,7 @@ namespace FlutterBinding.Shell
 
         public virtual void UpdateSemantics(SemanticsNodeUpdates updates, CustomAccessibilityActionUpdates actions) { }
 
-        //public virtual void HandlePlatformMessage( PlatformMessage message) { }
+        public virtual void HandlePlatformMessage( PlatformMessage message) { }
 
         public virtual void OnPreEngineRestart() { }
 

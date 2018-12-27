@@ -48,19 +48,9 @@ namespace FlutterBinding.Engine.Window
             _invoke(_window.onMetricsChanged, _window.OnMetricsChangedZone);
         }
 
-        public void UpdateLocales(List<string> locales)
+        public void UpdateLocales(List<Locale> locales)
         {
-            const int stringsPerLocale = 4;
-            int numLocales = (int)Math.Truncate((double)locales.Count / stringsPerLocale);
-
-            _window.locales = new List<Locale>(numLocales);
-            for (int localeIndex = 0; localeIndex < numLocales; localeIndex++)
-            {
-                _window.locales[localeIndex] = new Locale(
-                    locales[localeIndex * stringsPerLocale],
-                    locales[localeIndex * stringsPerLocale + 1]);
-            }
-
+            _window.locales = locales;
             _invoke(_window.onLocaleChanged, _window.OnLocaleChangedZone);
         }
 
@@ -71,7 +61,7 @@ namespace FlutterBinding.Engine.Window
             _window.textScaleFactor       = Convert.ToDouble(data["textScaleFactor"]);
             _window.alwaysUse24HourFormat = Convert.ToBoolean(data["alwaysUse24HourFormat"]);
 
-            _invoke(_window.onTextScaleFactorChanged, _window.OnTextScaleFactorChangedZone);
+            _invoke(_window.OnTextScaleFactorChanged, _window.OnTextScaleFactorChangedZone);
         }
 
         public void UpdateSemanticsEnabled(bool enabled)
@@ -88,12 +78,12 @@ namespace FlutterBinding.Engine.Window
             _invoke(_window.onAccessibilityFeaturesChanged, _window.OnAccessibilityFlagsChangedZone);
         }
 
-        //public void DispatchPlatformMessage(PlatformMessage message)
-        //{
-        //    if (window.onPlatformMessage == null)
-        //        return;
-        //    _invoke(() => window.onPlatformMessage(message), window.OnPlatformMessageZone);
-        //}
+        public void DispatchPlatformMessage(PlatformMessage message)
+        {
+            if (_window.OnPlatformMessage == null)
+                return;
+            _invoke(() => _window.OnPlatformMessage(message), _window.OnPlatformMessageZone);
+        }
 
         public void DispatchPointerDataPacket(PointerDataPacket packet)
         {
@@ -120,7 +110,7 @@ namespace FlutterBinding.Engine.Window
             var diff = now.TotalMicroseconds - frameTime.TotalMicroseconds;
 
             _invoke(
-                () => _window.onBeginFrame(new Types.Duration(microseconds: diff)),
+                () => _window.onBeginFrame(TimeDelta.FromMicroseconds(diff)),
                 _window.OnBeginFrameZone);
         }
 
@@ -135,13 +125,14 @@ namespace FlutterBinding.Engine.Window
             Engine.Instance.Render(scene.TakeLayerTree());
         }
 
-        //protected void SendPlatformMessage(string name,
-        //                                   object data = null,
-        //                                   PlatformMessageResponse response = null)
-        //{
-        //    response = response ?? new PlatformMessageResponse();
-        //    client_.HandlePlatformMessage(new PlatformMessage(name, data, response ));
-        //}
+        protected void SendPlatformMessage(string name,
+                                           object data = null,
+                                           Action<object> response = null)
+        {
+            var message = new PlatformMessage(name, data, response);
+            _client.HandlePlatformMessage(message);
+        }
+
 
         /// Invokes [callback] inside the given [zone].
         static void _invoke(VoidCallback callback, Types.Zone zone)

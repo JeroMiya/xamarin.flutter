@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using FlutterBinding.Engine;
 using FlutterBinding.Engine.Window;
 using FlutterBinding.Mapping;
 using FlutterBinding.Shell;
@@ -10,7 +12,7 @@ namespace FlutterBinding.UI
     public delegate void VoidCallback();
 
     /// Signature for [Window.onBeginFrame].
-    public delegate void FrameCallback(Types.Duration duration);
+    public delegate void FrameCallback(TimeDelta duration);
 
     /// Signature for [Window.onPointerDataPacket].
     public delegate void PointerDataPacketCallback(PointerDataPacket packet);
@@ -25,7 +27,7 @@ namespace FlutterBinding.UI
     //public delegate void PlatformMessageResponseCallback(PlatformMessageResponse response);
 
     /// Signature for [Window.onPlatformMessage].
-    //public delegate void PlatformMessageCallback(PlatformMessage platformMessage);
+    public delegate void PlatformMessageCallback(PlatformMessage platformMessage);
 
     /// States that an application can be in.
     ///
@@ -165,8 +167,8 @@ namespace FlutterBinding.UI
         /// the region subtag should be uppercase.
         public Locale(string languageCode, string countryCode = "")
         {
-            this._languageCode = languageCode;
-            this._countryCode  = countryCode;
+            _languageCode = languageCode;
+            _countryCode  = countryCode;
             // assert(_languageCode != null);
         }
 
@@ -566,7 +568,7 @@ namespace FlutterBinding.UI
         ///
         ///  * [WidgetsBindingObserver], for a mechanism at the widgets layer to
         ///    observe when this callback is invoked.
-        public VoidCallback onTextScaleFactorChanged
+        public VoidCallback OnTextScaleFactorChanged
         {
             get => _onTextScaleFactorChanged;
             set
@@ -825,16 +827,16 @@ namespace FlutterBinding.UI
         ///
         /// The framework invokes [callback] in the same zone in which this method
         /// was called.
-        //public void sendPlatformMessage(
-        //    string name,
-        //    object data,
-        //    PlatformMessageResponse response)
-        //{
-        //    SendPlatformMessage(
-        //        name,
-        //        data,
-        //        response);
-        //}
+        public void sendPlatformMessage(
+            string name,
+            object data,
+            Action<object> response)
+        {
+            SendPlatformMessage(
+                name,
+                data,
+                response);
+        }
 
 
         /// Called whenever this window receives a message from a platform-specific
@@ -850,18 +852,18 @@ namespace FlutterBinding.UI
         ///
         /// The framework invokes this callback in the same zone in which the
         /// callback was set.
-        //public PlatformMessageCallback onPlatformMessage
-        //{
-        //    get => _onPlatformMessage;
-        //    set
-        //    {
-        //        _onPlatformMessage = value;
-        //        OnPlatformMessageZone = Zone.current;
-        //    }
-        //}
+        public PlatformMessageCallback OnPlatformMessage
+        {
+            get => _onPlatformMessage;
+            set
+            {
+                _onPlatformMessage = value;
+                OnPlatformMessageZone = Types.Zone.current;
+            }
+        }
 
-        //private PlatformMessageCallback _onPlatformMessage;
-        //internal Zone OnPlatformMessageZone;
+        private PlatformMessageCallback _onPlatformMessage;
+        internal Types.Zone OnPlatformMessageZone;
 
         /// Called by [_dispatchPlatformMessage].
         //internal void RespondToPlatformMessage(int responseId, ByteData data)
