@@ -1,6 +1,5 @@
 ﻿using SkiaSharp;
 using System.Collections.Generic;
-using static FlutterBinding.Flow.Helper;
 
 // Copyright 2017 The Chromium Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
@@ -10,9 +9,9 @@ namespace FlutterBinding.Flow
 {
     public abstract class Texture
     {
-        protected Texture(ulong id)
+        protected Texture(long id)
         {
-            this.id_ = id;
+            Id = id;
         }
 
         // Called from GPU thread.
@@ -27,12 +26,7 @@ namespace FlutterBinding.Flow
         // Called on GPU thread.
         public abstract void MarkNewFrameAvailable();
 
-        public ulong Id()
-        {
-            return id_;
-        }
-
-        private ulong id_ = new ulong();
+        public long Id { get; }
     }
 
     public class TextureRegistry
@@ -40,40 +34,35 @@ namespace FlutterBinding.Flow
         // Called from GPU thread.
         public void RegisterTexture(Texture texture)
         {
-            mapping_[(long)texture.Id()] = texture;
+            _mapping[texture.Id] = texture;
         }
 
         // Called from GPU thread.
         public void UnregisterTexture(long id)
         {
-            mapping_.Remove(id);
+            _mapping.Remove(id);
         }
 
         // Called from GPU thread.
         public Texture GetTexture(long id)
         {
-            var it = mapping_[id];
-            return it; //: null; // This isn't right either
+            return _mapping[id];
         }
 
         // Called from GPU thread.
         public void OnGRContextCreated()
         {
-            foreach (var it in mapping_)
-            {
-                it.Value.OnGRContextCreated();
-            }
+            foreach (KeyValuePair<long, Texture> pair in _mapping)
+                pair.Value.OnGRContextCreated();
         }
 
         // Called from GPU thread.
         public void OnGRContextDestroyed()
         {
-            foreach (var it in mapping_)
-            {
-                it.Value.OnGRContextDestroyed();
-            }
+            foreach (KeyValuePair<long, Texture> pair in _mapping)
+                pair.Value.OnGRContextDestroyed();
         }
 
-        private SortedDictionary<long, Texture> mapping_ = new SortedDictionary<long, Texture>();
+        private readonly SortedDictionary<long, Texture> _mapping = new SortedDictionary<long, Texture>();
     }
 }

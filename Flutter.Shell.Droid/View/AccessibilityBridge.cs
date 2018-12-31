@@ -8,10 +8,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using FlutterBinding.Extensions;
+using FlutterBinding.UI;
+using SkiaSharp;
 //using AccessibilityNodeInfo = Android.Support.V4.View.Accessibility.AccessibilityNodeInfoCompat;
 using Math = System.Math;
 using Matrix = Android.Opengl.Matrix;
 using Rect = Android.Graphics.Rect;
+using TextDirection = FlutterBinding.UI.TextDirection;
 
 // ReSharper disable All
 
@@ -46,7 +49,7 @@ namespace Flutter.Shell.Droid.View
 
         private readonly BasicMessageChannel<object> _flutterAccessibilityChannel;
 
-
+        /*
         [Flags]
         public enum AccessibilityBridgeAction
         {
@@ -73,7 +76,7 @@ namespace Flutter.Shell.Droid.View
             MoveCursorForwardByWord = 1 << 19,
             MoveCursorBackwardByWord = 1 << 20
         }
-
+        
         public enum Flag
         {
             HasCheckedState = 1 << 0,
@@ -96,6 +99,7 @@ namespace Flutter.Shell.Droid.View
             IsToggled = 1 << 17,
             HasImplicitScrolling = 1 << 18
         }
+        */
 
         public AccessibilityBridge(FlutterView owner)
         {
@@ -160,9 +164,9 @@ namespace Flutter.Shell.Droid.View
                 result.AccessibilityFocused = (_a11YFocusedObject.Id == virtualViewId);
             }
 
-            if (@object.HasFlag(Flag.IsTextField))
+            if (@object.HasFlag(SemanticsFlag.isTextField))
             {
-                result.Password  = @object.HasFlag(Flag.IsObscured);
+                result.Password  = @object.HasFlag(SemanticsFlag.isObscured);
                 result.ClassName = "android.widget.EditText";
                 if (Build.VERSION.SdkInt >= BuildVersionCodes.JellyBeanMr2)
                 {
@@ -185,25 +189,25 @@ namespace Flutter.Shell.Droid.View
 
                 // Cursor movements
                 int granularities = 0;
-                if (@object.HasAction(AccessibilityBridgeAction.MoveCursorForwardByCharacter))
+                if (@object.HasAction(SemanticsAction.MoveCursorForwardByCharacter))
                 {
                     result.ActionList.Add(AccessibilityNodeInfo.AccessibilityAction.ActionNextAtMovementGranularity);
                     granularities |= (int)MovementGranularity.Character;
                 }
 
-                if (@object.HasAction(AccessibilityBridgeAction.MoveCursorBackwardByCharacter))
+                if (@object.HasAction(SemanticsAction.MoveCursorBackwardByCharacter))
                 {
                     result.ActionList.Add(AccessibilityNodeInfo.AccessibilityAction.ActionPreviousAtMovementGranularity);
                     granularities |= (int)MovementGranularity.Character;
                 }
 
-                if (@object.HasAction(AccessibilityBridgeAction.MoveCursorForwardByWord))
+                if (@object.HasAction(SemanticsAction.MoveCursorForwardByWord))
                 {
                     result.ActionList.Add(AccessibilityNodeInfo.AccessibilityAction.ActionNextAtMovementGranularity);
                     granularities |= (int)MovementGranularity.Word;
                 }
 
-                if (@object.HasAction(AccessibilityBridgeAction.MoveCursorBackwardByWord))
+                if (@object.HasAction(SemanticsAction.MoveCursorBackwardByWord))
                 {
                     result.ActionList.Add(AccessibilityNodeInfo.AccessibilityAction.ActionPreviousAtMovementGranularity);
                     granularities |= (int)MovementGranularity.Word;
@@ -212,39 +216,39 @@ namespace Flutter.Shell.Droid.View
                 result.MovementGranularities = (MovementGranularity)granularities;
             }
 
-            if (@object.HasAction(AccessibilityBridgeAction.SetSelection))
+            if (@object.HasAction(SemanticsAction.SetSelection))
             {
                 result.ActionList.Add(AccessibilityNodeInfo.AccessibilityAction.ActionSetSelection);
             }
 
-            if (@object.HasAction(AccessibilityBridgeAction.Copy))
+            if (@object.HasAction(SemanticsAction.Copy))
             {
                 result.ActionList.Add(AccessibilityNodeInfo.AccessibilityAction.ActionCopy);
             }
 
-            if (@object.HasAction(AccessibilityBridgeAction.Cut))
+            if (@object.HasAction(SemanticsAction.Cut))
             {
                 result.ActionList.Add(AccessibilityNodeInfo.AccessibilityAction.ActionCut);
             }
 
-            if (@object.HasAction(AccessibilityBridgeAction.Paste))
+            if (@object.HasAction(SemanticsAction.Paste))
             {
                 result.ActionList.Add(AccessibilityNodeInfo.AccessibilityAction.ActionPaste);
             }
 
-            if (@object.HasFlag(Flag.IsButton))
+            if (@object.HasFlag(SemanticsFlag.IsButton))
             {
                 result.ClassName = "android.widget.Button";
             }
 
-            if (@object.HasFlag(Flag.IsImage))
+            if (@object.HasFlag(SemanticsFlag.isImage))
             {
                 result.ClassName = "android.widget.ImageView";
                 // TODO(jonahwilliams): Figure out a way conform to the expected id from TalkBack's
                 // CustomLabelManager. talkback/src/main/java/labeling/CustomLabelManager.java#L525
             }
 
-            if (Build.VERSION.SdkInt > BuildVersionCodes.JellyBeanMr2 && @object.HasAction(AccessibilityBridgeAction.Dismiss))
+            if (Build.VERSION.SdkInt > BuildVersionCodes.JellyBeanMr2 && @object.HasAction(SemanticsAction.Dismiss))
             {
                 result.Dismissable = true;
                 result.ActionList.Add(AccessibilityNodeInfo.AccessibilityAction.ActionDismiss);
@@ -276,9 +280,9 @@ namespace Flutter.Shell.Droid.View
 
             result.SetBoundsInScreen(bounds);
             result.VisibleToUser = true;
-            result.Enabled       = !@object.HasFlag(Flag.HasEnabledState) || @object.HasFlag(Flag.IsEnabled);
+            result.Enabled       = !@object.HasFlag(SemanticsFlag.hasEnabledState) || @object.HasFlag(SemanticsFlag.isEnabled);
 
-            if (@object.HasAction(AccessibilityBridgeAction.Tap))
+            if (@object.HasAction(SemanticsAction.Tap))
             {
                 if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop && @object.onTapOverride != null)
                 {
@@ -295,7 +299,7 @@ namespace Flutter.Shell.Droid.View
                 }
             }
 
-            if (@object.HasAction(AccessibilityBridgeAction.LongPress))
+            if (@object.HasAction(SemanticsAction.LongPress))
             {
                 if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop && @object.onLongPressOverride != null)
                 {
@@ -312,16 +316,16 @@ namespace Flutter.Shell.Droid.View
                 }
             }
 
-            if (@object.HasAction(AccessibilityBridgeAction.ScrollLeft) || @object.HasAction(AccessibilityBridgeAction.ScrollUp)
-                || @object.HasAction(AccessibilityBridgeAction.ScrollRight) || @object.HasAction(AccessibilityBridgeAction.ScrollDown))
+            if (@object.HasAction(SemanticsAction.ScrollLeft) || @object.HasAction(SemanticsAction.ScrollUp)
+                || @object.HasAction(SemanticsAction.ScrollRight) || @object.HasAction(SemanticsAction.ScrollDown))
             {
                 result.Scrollable = true;
                 // This tells Android's a11y to send scroll events when reaching the end of
                 // the visible viewport of a scrollable, unless the node itself does not
                 // allow implicit scrolling - then we leave the className as view.View.
-                if (@object.HasFlag(Flag.HasImplicitScrolling))
+                if (@object.HasFlag(SemanticsFlag.hasImplicitScrolling))
                 {
-                    if (@object.HasAction(AccessibilityBridgeAction.ScrollLeft) || @object.HasAction(AccessibilityBridgeAction.ScrollRight))
+                    if (@object.HasAction(SemanticsAction.ScrollLeft) || @object.HasAction(SemanticsAction.ScrollRight))
                     {
                         result.ClassName = "android.widget.HorizontalScrollView";
                     }
@@ -334,54 +338,54 @@ namespace Flutter.Shell.Droid.View
                 // TODO(ianh): Once we're on SDK v23+, call addAction to
                 // expose AccessibilityAction.ACTION_SCROLL_LEFT, _RIGHT,
                 // _UP, and _DOWN when appropriate.
-                if (@object.HasAction(AccessibilityBridgeAction.ScrollLeft) || @object.HasAction(AccessibilityBridgeAction.ScrollUp))
+                if (@object.HasAction(SemanticsAction.ScrollLeft) || @object.HasAction(SemanticsAction.ScrollUp))
                 {
                     result.ActionList.Add(AccessibilityNodeInfo.AccessibilityAction.ActionScrollForward);
                 }
 
-                if (@object.HasAction(AccessibilityBridgeAction.ScrollRight) || @object.HasAction(AccessibilityBridgeAction.ScrollDown))
+                if (@object.HasAction(SemanticsAction.ScrollRight) || @object.HasAction(SemanticsAction.ScrollDown))
                 {
                     result.ActionList.Add(AccessibilityNodeInfo.AccessibilityAction.ActionScrollBackward);
                 }
             }
 
-            if (@object.HasAction(AccessibilityBridgeAction.Increase) || @object.HasAction(AccessibilityBridgeAction.Decrease))
+            if (@object.HasAction(SemanticsAction.Increase) || @object.HasAction(SemanticsAction.Decrease))
             {
                 // TODO(jonahwilliams): support AccessibilityAction.ACTION_SET_PROGRESS once SDK is
                 // updated.
                 result.ClassName = "android.widget.SeekBar";
-                if (@object.HasAction(AccessibilityBridgeAction.Increase))
+                if (@object.HasAction(SemanticsAction.Increase))
                 {
                     result.ActionList.Add(AccessibilityNodeInfo.AccessibilityAction.ActionScrollForward);
                 }
 
-                if (@object.HasAction(AccessibilityBridgeAction.Decrease))
+                if (@object.HasAction(SemanticsAction.Decrease))
                 {
                     result.ActionList.Add(AccessibilityNodeInfo.AccessibilityAction.ActionScrollBackward);
                 }
             }
 
-            if (@object.HasFlag(Flag.IsLiveRegion) && Build.VERSION.SdkInt > BuildVersionCodes.JellyBeanMr2)
+            if (@object.HasFlag(SemanticsFlag.isLiveRegion) && Build.VERSION.SdkInt > BuildVersionCodes.JellyBeanMr2)
             {
                 result.LiveRegion = AccessibilityLiveRegion.Polite;
             }
 
-            bool hasCheckedState = @object.HasFlag(Flag.HasCheckedState);
-            bool hasToggledState = @object.HasFlag(Flag.HasToggledState);
+            bool hasCheckedState = @object.HasFlag(SemanticsFlag.hasCheckedState);
+            bool hasToggledState = @object.HasFlag(SemanticsFlag.hasToggledState);
             //assert !(hasCheckedState && hasToggledState);
             result.Checkable = (hasCheckedState || hasToggledState);
             if (hasCheckedState)
             {
-                result.Checked            = @object.HasFlag(Flag.IsChecked);
+                result.Checked            = @object.HasFlag(SemanticsFlag.isChecked);
                 result.ContentDescription = @object.GetValueLabelHint();
-                if (@object.HasFlag(Flag.IsInMutuallyExclusiveGroup))
+                if (@object.HasFlag(SemanticsFlag.isInMutuallyExclusiveGroup))
                     result.ClassName = "android.widget.RadioButton";
                 else
                     result.ClassName = "android.widget.CheckBox";
             }
             else if (hasToggledState)
             {
-                result.Checked            = @object.HasFlag(Flag.IsToggled);
+                result.Checked            = @object.HasFlag(SemanticsFlag.isToggled);
                 result.ClassName          = "android.widget.Switch";
                 result.ContentDescription = @object.GetValueLabelHint();
             }
@@ -392,7 +396,7 @@ namespace Flutter.Shell.Droid.View
                 result.Text = @object.GetValueLabelHint();
             }
 
-            result.Selected = @object.HasFlag(Flag.IsSelected);
+            result.Selected = @object.HasFlag(SemanticsFlag.isSelected);
 
             // Accessibility Focus
             if (_a11YFocusedObject != null && _a11YFocusedObject.Id == virtualViewId)
@@ -420,7 +424,7 @@ namespace Flutter.Shell.Droid.View
             {
                 foreach (SemanticsObject child in @object.childrenInTraversalOrder)
                 {
-                    if (!child.HasFlag(Flag.IsHidden))
+                    if (!child.HasFlag(SemanticsFlag.isHidden))
                     {
                         result.AddChild(_owner, child.Id);
                     }
@@ -444,7 +448,7 @@ namespace Flutter.Shell.Droid.View
                 // Note: TalkBack prior to Oreo doesn't use this handler and instead simulates a
                 //     click event at the center of the SemanticsNode. Other a11y services might go
                 //     through this handler though.
-                _owner.DispatchSemanticsAction(virtualViewId, AccessibilityBridgeAction.Tap);
+                _owner.DispatchSemanticsAction(virtualViewId, SemanticsAction.Tap);
                 return true;
             }
 
@@ -453,27 +457,27 @@ namespace Flutter.Shell.Droid.View
                 // Note: TalkBack doesn't use this handler and instead simulates a long click event
                 //     at the center of the SemanticsNode. Other a11y services might go through this
                 //     handler though.
-                _owner.DispatchSemanticsAction(virtualViewId, AccessibilityBridgeAction.LongPress);
+                _owner.DispatchSemanticsAction(virtualViewId, SemanticsAction.LongPress);
                 return true;
             }
 
             if (action == Android.Views.Accessibility.Action.ScrollForward)
             {
-                if (@object.HasAction(AccessibilityBridgeAction.ScrollUp))
+                if (@object.HasAction(SemanticsAction.ScrollUp))
                 {
-                    _owner.DispatchSemanticsAction(virtualViewId, AccessibilityBridgeAction.ScrollUp);
+                    _owner.DispatchSemanticsAction(virtualViewId, SemanticsAction.ScrollUp);
                 }
-                else if (@object.HasAction(AccessibilityBridgeAction.ScrollLeft))
+                else if (@object.HasAction(SemanticsAction.ScrollLeft))
                 {
                     // TODO(ianh): bidi support using textDirection
-                    _owner.DispatchSemanticsAction(virtualViewId, AccessibilityBridgeAction.ScrollLeft);
+                    _owner.DispatchSemanticsAction(virtualViewId, SemanticsAction.ScrollLeft);
                 }
-                else if (@object.HasAction(AccessibilityBridgeAction.Increase))
+                else if (@object.HasAction(SemanticsAction.Increase))
                 {
                     @object.Value = @object.IncreasedValue;
                     // Event causes Android to read out the updated value.
                     SendAccessibilityEvent(virtualViewId, EventTypes.ViewSelected);
-                    _owner.DispatchSemanticsAction(virtualViewId, AccessibilityBridgeAction.Increase);
+                    _owner.DispatchSemanticsAction(virtualViewId, SemanticsAction.Increase);
                 }
                 else
                 {
@@ -485,21 +489,21 @@ namespace Flutter.Shell.Droid.View
 
             if (action == Android.Views.Accessibility.Action.ScrollBackward)
             {
-                if (@object.HasAction(AccessibilityBridgeAction.ScrollDown))
+                if (@object.HasAction(SemanticsAction.ScrollDown))
                 {
-                    _owner.DispatchSemanticsAction(virtualViewId, AccessibilityBridgeAction.ScrollDown);
+                    _owner.DispatchSemanticsAction(virtualViewId, SemanticsAction.ScrollDown);
                 }
-                else if (@object.HasAction(AccessibilityBridgeAction.ScrollRight))
+                else if (@object.HasAction(SemanticsAction.ScrollRight))
                 {
                     // TODO(ianh): bidi support using textDirection
-                    _owner.DispatchSemanticsAction(virtualViewId, AccessibilityBridgeAction.ScrollRight);
+                    _owner.DispatchSemanticsAction(virtualViewId, SemanticsAction.ScrollRight);
                 }
-                else if (@object.HasAction(AccessibilityBridgeAction.Decrease))
+                else if (@object.HasAction(SemanticsAction.Decrease))
                 {
                     @object.Value = @object.DecreasedValue;
                     // Event causes Android to read out the updated value.
                     SendAccessibilityEvent(virtualViewId, EventTypes.ViewSelected);
-                    _owner.DispatchSemanticsAction(virtualViewId, AccessibilityBridgeAction.Decrease);
+                    _owner.DispatchSemanticsAction(virtualViewId, SemanticsAction.Decrease);
                 }
                 else
                 {
@@ -521,7 +525,7 @@ namespace Flutter.Shell.Droid.View
 
             if (action == Android.Views.Accessibility.Action.ClearAccessibilityFocus)
             {
-                _owner.DispatchSemanticsAction(virtualViewId, AccessibilityBridgeAction.DidLoseAccessibilityFocus);
+                _owner.DispatchSemanticsAction(virtualViewId, SemanticsAction.DidLoseAccessibilityFocus);
                 SendAccessibilityEvent(
                     virtualViewId,
                     EventTypes.ViewAccessibilityFocusCleared);
@@ -531,7 +535,7 @@ namespace Flutter.Shell.Droid.View
 
             if (action == Android.Views.Accessibility.Action.AccessibilityFocus)
             {
-                _owner.DispatchSemanticsAction(virtualViewId, AccessibilityBridgeAction.DidGainAccessibilityFocus);
+                _owner.DispatchSemanticsAction(virtualViewId, SemanticsAction.DidGainAccessibilityFocus);
                 SendAccessibilityEvent(
                     virtualViewId,
                     EventTypes.ViewAccessibilityFocused);
@@ -545,7 +549,7 @@ namespace Flutter.Shell.Droid.View
 
                 _a11YFocusedObject = @object;
 
-                if (@object.HasAction(AccessibilityBridgeAction.Increase) || @object.HasAction(AccessibilityBridgeAction.Decrease))
+                if (@object.HasAction(SemanticsAction.Increase) || @object.HasAction(SemanticsAction.Decrease))
                 {
                     // SeekBars only announce themselves after this event.
                     SendAccessibilityEvent(virtualViewId, EventTypes.ViewSelected);
@@ -578,37 +582,37 @@ namespace Flutter.Shell.Droid.View
                     selection["extent"] = @object.TextSelectionExtent;
                 }
 
-                _owner.DispatchSemanticsAction(virtualViewId, AccessibilityBridgeAction.SetSelection, selection);
+                _owner.DispatchSemanticsAction(virtualViewId, SemanticsAction.SetSelection, selection);
                 return true;
             }
 
             if (action == Android.Views.Accessibility.Action.Copy)
             {
-                _owner.DispatchSemanticsAction(virtualViewId, AccessibilityBridgeAction.Copy);
+                _owner.DispatchSemanticsAction(virtualViewId, SemanticsAction.Copy);
                 return true;
             }
 
             if (action == Android.Views.Accessibility.Action.Cut)
             {
-                _owner.DispatchSemanticsAction(virtualViewId, AccessibilityBridgeAction.Cut);
+                _owner.DispatchSemanticsAction(virtualViewId, SemanticsAction.Cut);
                 return true;
             }
 
             if (action == Android.Views.Accessibility.Action.Paste)
             {
-                _owner.DispatchSemanticsAction(virtualViewId, AccessibilityBridgeAction.Paste);
+                _owner.DispatchSemanticsAction(virtualViewId, SemanticsAction.Paste);
                 return true;
             }
 
             if (action == Android.Views.Accessibility.Action.Dismiss)
             {
-                _owner.DispatchSemanticsAction(virtualViewId, AccessibilityBridgeAction.Dismiss);
+                _owner.DispatchSemanticsAction(virtualViewId, SemanticsAction.Dismiss);
                 return true;
             }
 
             if ((int)action == ACTION_SHOW_ON_SCREEN)
             {
-                _owner.DispatchSemanticsAction(virtualViewId, AccessibilityBridgeAction.ShowOnScreen);
+                _owner.DispatchSemanticsAction(virtualViewId, SemanticsAction.ShowOnScreen);
                 return true;
             }
 
@@ -619,7 +623,7 @@ namespace Flutter.Shell.Droid.View
             {
                 _owner.DispatchSemanticsAction(
                     virtualViewId,
-                    AccessibilityBridgeAction.CustomAction,
+                    SemanticsAction.CustomAction,
                     contextAction.Id);
                 return true;
             }
@@ -635,20 +639,20 @@ namespace Flutter.Shell.Droid.View
             {
             case MovementGranularity.Character:
             {
-                if (forward && @object.HasAction(AccessibilityBridgeAction.MoveCursorForwardByCharacter))
+                if (forward && @object.HasAction(SemanticsAction.MoveCursorForwardByCharacter))
                 {
                     _owner.DispatchSemanticsAction(
                         virtualViewId,
-                        AccessibilityBridgeAction.MoveCursorForwardByCharacter,
+                        SemanticsAction.MoveCursorForwardByCharacter,
                         extendSelection);
                     return true;
                 }
 
-                if (!forward && @object.HasAction(AccessibilityBridgeAction.MoveCursorBackwardByCharacter))
+                if (!forward && @object.HasAction(SemanticsAction.MoveCursorBackwardByCharacter))
                 {
                     _owner.DispatchSemanticsAction(
                         virtualViewId,
-                        AccessibilityBridgeAction.MoveCursorBackwardByCharacter,
+                        SemanticsAction.MoveCursorBackwardByCharacter,
                         extendSelection);
                     return true;
                 }
@@ -656,20 +660,20 @@ namespace Flutter.Shell.Droid.View
                 break;
             }
             case MovementGranularity.Word:
-                if (forward && @object.HasAction(AccessibilityBridgeAction.MoveCursorForwardByWord))
+                if (forward && @object.HasAction(SemanticsAction.MoveCursorForwardByWord))
                 {
                     _owner.DispatchSemanticsAction(
                         virtualViewId,
-                        AccessibilityBridgeAction.MoveCursorForwardByWord,
+                        SemanticsAction.MoveCursorForwardByWord,
                         extendSelection);
                     return true;
                 }
 
-                if (!forward && @object.HasAction(AccessibilityBridgeAction.MoveCursorBackwardByWord))
+                if (!forward && @object.HasAction(SemanticsAction.MoveCursorBackwardByWord))
                 {
                     _owner.DispatchSemanticsAction(
                         virtualViewId,
-                        AccessibilityBridgeAction.MoveCursorBackwardByWord,
+                        SemanticsAction.MoveCursorBackwardByWord,
                         extendSelection);
                     return true;
                 }
@@ -784,19 +788,23 @@ namespace Flutter.Shell.Droid.View
         }
 
         // TODO: ByteBuffer->object
-        public void UpdateSemantics(object buffer, string[] strings)
+        public void UpdateSemantics(SemanticsNodeUpdates update, CustomAccessibilityActionUpdates actions)
         {
             List<SemanticsObject> updated = new List<SemanticsObject>();
+            //List<SemanticsParameter> list = (List<SemanticsParameter>)buffer;
 
-            List<SemanticsParameter> list = (List<SemanticsParameter>)buffer;
-            foreach (SemanticsParameter parameter in list)
+
+            foreach (var pair in update)
             {
-                SemanticsObject @object = GetOrCreateObject(parameter.Id);
-                @object.UpdateWith(parameter, strings);
-                if (@object.HasFlag(Flag.IsHidden))
+                var id = pair.Key;
+                var semanticNode = pair.Value;
+
+                SemanticsObject @object = GetOrCreateObject(id);
+                @object.UpdateWith(semanticNode, actions);
+                if (@object.HasFlag(SemanticsFlag.isHidden))
                     continue;
 
-                if (@object.HasFlag(Flag.IsFocused))
+                if (@object.HasFlag(SemanticsFlag.isFocused))
                     _inputFocusedObject = @object;
 
                 if (@object.HadPreviousConfig)
@@ -909,13 +917,13 @@ namespace Flutter.Shell.Droid.View
                         position -= @object.ScrollExtentMin;
                     }
 
-                    if (@object.HadAction(AccessibilityBridgeAction.ScrollUp) || @object.HadAction(AccessibilityBridgeAction.ScrollDown))
+                    if (@object.HadAction(SemanticsAction.ScrollUp) || @object.HadAction(SemanticsAction.ScrollDown))
                     {
                         @event.ScrollY    = (int)position;
                         @event.MaxScrollY = (int)max;
                     }
-                    else if (@object.HadAction(AccessibilityBridgeAction.ScrollLeft)
-                        || @object.HadAction(AccessibilityBridgeAction.ScrollRight))
+                    else if (@object.HadAction(SemanticsAction.ScrollLeft)
+                        || @object.HadAction(SemanticsAction.ScrollRight))
                     {
                         @event.ScrollX    = (int)position;
                         @event.MaxScrollX = (int)max;
@@ -930,7 +938,7 @@ namespace Flutter.Shell.Droid.View
                         // handle hidden children at the beginning and end of the list.
                         foreach (SemanticsObject child in @object.childrenInHitTestOrder)
                         {
-                            if (!child.HasFlag(Flag.IsHidden))
+                            if (!child.HasFlag(SemanticsFlag.isHidden))
                             {
                                 visibleChildren += 1;
                             }
@@ -952,16 +960,16 @@ namespace Flutter.Shell.Droid.View
                     SendAccessibilityEvent(@event);
                 }
 
-                if (@object.HasFlag(Flag.IsLiveRegion))
+                if (@object.HasFlag(SemanticsFlag.isLiveRegion))
                 {
                     string label = @object.Label == null ? "" : @object.Label;
                     string previousLabel = @object.Previous?.Label ?? @object.Label;
-                    if (!label.Equals(previousLabel) || !@object.HadFlag(Flag.IsLiveRegion))
+                    if (!label.Equals(previousLabel) || !@object.HadFlag(SemanticsFlag.isLiveRegion))
                     {
                         SendAccessibilityEvent(@object.Id, EventTypes.WindowContentChanged);
                     }
                 }
-                else if (@object.HasFlag(Flag.IsTextField) && @object.DidChangeLabel()
+                else if (@object.HasFlag(SemanticsFlag.isTextField) && @object.DidChangeLabel()
                     && _inputFocusedObject != null && _inputFocusedObject.Id == @object.Id)
                 {
                     // Text fields should announce when their label changes while focused. We use a live
@@ -970,7 +978,7 @@ namespace Flutter.Shell.Droid.View
                 }
 
                 if (_a11YFocusedObject != null && _a11YFocusedObject.Id == @object.Id
-                    && !@object.HadFlag(Flag.IsSelected) && @object.HasFlag(Flag.IsSelected))
+                    && !@object.HadFlag(SemanticsFlag.isSelected) && @object.HasFlag(SemanticsFlag.isSelected))
                 {
                     AccessibilityEvent @event =
                         ObtainAccessibilityEvent(@object.Id, EventTypes.ViewSelected);
@@ -979,7 +987,7 @@ namespace Flutter.Shell.Droid.View
                 }
 
                 if (_inputFocusedObject != null && _inputFocusedObject.Id == @object.Id
-                    && @object.HadFlag(Flag.IsTextField) && @object.HasFlag(Flag.IsTextField)
+                    && @object.HadFlag(SemanticsFlag.isTextField) && @object.HasFlag(SemanticsFlag.isTextField)
                     // If we have a TextField that has InputFocus, we should avoid announcing it if something
                     // else we track has a11y focus. This needs to still work when, e.g., IME has a11y focus
                     // or the "PASTE" popup is used though.
@@ -1166,12 +1174,14 @@ namespace Flutter.Shell.Droid.View
             SendAccessibilityEvent(0, EventTypes.WindowContentChanged);
         }
 
+        /*
         public enum TextDirection
         {
             UNKNOWN,
             LTR = 2,
             RTL = 1
         }
+        */
 
         private class CustomAccessibilityAction
         {
@@ -1182,7 +1192,7 @@ namespace Flutter.Shell.Droid.View
             public int ResourceId = -1;
 
             public int Id = -1;
-            public AccessibilityBridgeAction OverrideId = AccessibilityBridgeAction.Unknown;
+            public SemanticsAction OverrideId = SemanticsAction.Unknown;
 
             /// The label is the user presented value which is displayed in the local context menu.
             public string Label;
@@ -1190,7 +1200,7 @@ namespace Flutter.Shell.Droid.View
             /// The hint is the text used in overriden standard actions.
             public string Hint;
 
-            public bool IsStandardAction => OverrideId != AccessibilityBridgeAction.Unknown;
+            public bool IsStandardAction => OverrideId != SemanticsAction.Unknown;
         }
 
         /// Value is derived from ACTION_TYPE_MASK in AccessibilityNodeInfo.java
@@ -1199,8 +1209,8 @@ namespace Flutter.Shell.Droid.View
         public class SemanticsParameter
         {
             public int Id;
-            public Flag Flags;
-            public AccessibilityBridgeAction Actions;
+            public SemanticsFlag Flags;
+            public SemanticsAction Actions;
             public int TextSelectionBase;
             public int TextSelectionExtent;
             public int ScrollChildren;
@@ -1236,8 +1246,8 @@ namespace Flutter.Shell.Droid.View
             }
 
             public int Id = -1;
-            public Flag Flags;
-            public AccessibilityBridgeAction Actions;
+            public SemanticsFlag Flags;
+            public SemanticsAction Actions;
             public int TextSelectionBase;
             public int TextSelectionExtent;
             public int ScrollChildren;
@@ -1260,7 +1270,7 @@ namespace Flutter.Shell.Droid.View
             private float top;
             private float right;
             private float bottom;
-            private float[] transform;
+            private SKMatrix44 transform;
 
             public SemanticsObject parent;
             public List<SemanticsObject> childrenInTraversalOrder;
@@ -1276,22 +1286,22 @@ namespace Flutter.Shell.Droid.View
             public float[] globalTransform;
             public Rect globalRect;
 
-            public bool HasAction(AccessibilityBridgeAction accessibilityBridgeAction)
+            public bool HasAction(SemanticsAction accessibilityBridgeAction)
             {
                 return Actions.HasFlag(accessibilityBridgeAction);
             }
 
-            public bool HadAction(AccessibilityBridgeAction accessibilityBridgeAction)
+            public bool HadAction(SemanticsAction accessibilityBridgeAction)
             {
                 return Previous.Actions.HasFlag(accessibilityBridgeAction);
             }
 
-            public bool HasFlag(Flag flag)
+            public bool HasFlag(SemanticsFlag flag)
             {
                 return Flags.HasFlag(flag);
             }
 
-            public bool HadFlag(Flag flag)
+            public bool HadFlag(SemanticsFlag flag)
             {
                 //assert hadPreviousConfig;
                 return Previous.Flags.HasFlag(flag);
@@ -1321,7 +1331,7 @@ namespace Flutter.Shell.Droid.View
                     + " flags=" + Flags + "\n" + indent + "  +-- textDirection="
                     + TextDirection + "\n" + indent + "  +-- rect.ltrb=(" + left + ", "
                     + top + ", " + right + ", " + bottom + ")\n" + indent
-                    + "  +-- transform=" + transform.ToDisplay() + "\n");
+                    + "  +-- transform=" + transform.ToString() + "\n");
 
                 if (childrenInTraversalOrder != null && recursive)
                 {
@@ -1334,7 +1344,7 @@ namespace Flutter.Shell.Droid.View
             }
 
             // TODO: ByteBuffer->object
-            public void UpdateWith(object buffer, string[] strings)
+            public void UpdateWith(SemanticsNode parameter, CustomAccessibilityActionUpdates actions)
             {
                 HadPreviousConfig = true;
                 Previous = new SemanticsParameter
@@ -1349,8 +1359,6 @@ namespace Flutter.Shell.Droid.View
                     ScrollExtentMax     = ScrollExtentMax,
                     ScrollExtentMin     = ScrollExtentMin
                 };
-
-                SemanticsParameter parameter = (SemanticsParameter)buffer;
 
                 Flags               = parameter.Flags;
                 Actions             = parameter.Actions;
@@ -1369,10 +1377,10 @@ namespace Flutter.Shell.Droid.View
                 Hint           = parameter.Hint;
                 TextDirection  = parameter.TextDirection;
 
-                left      = parameter.Left;
-                top       = parameter.Top;
-                right     = parameter.Right;
-                bottom    = parameter.Bottom;
+                left      = parameter.Rect.Left;
+                top       = parameter.Rect.Top;
+                right     = parameter.Rect.Right;
+                bottom    = parameter.Rect.Bottom;
                 transform = parameter.Transform;
 
                 inverseTransformDirty = true;
@@ -1399,11 +1407,11 @@ namespace Flutter.Shell.Droid.View
                 foreach (int id in parameter.CustomAccessibilityActions)
                 {
                     CustomAccessibilityAction action = _parent.GetOrCreateAction(id);
-                    if (action.OverrideId == AccessibilityBridgeAction.Tap)
+                    if (action.OverrideId == SemanticsAction.Tap)
                     {
                         onTapOverride = action;
                     }
-                    else if (action.OverrideId == AccessibilityBridgeAction.LongPress)
+                    else if (action.OverrideId == SemanticsAction.LongPress)
                     {
                         onLongPressOverride = action;
                     }
@@ -1432,7 +1440,7 @@ namespace Flutter.Shell.Droid.View
                     inverseTransform = new float[16];
                 }
 
-                if (!Matrix.InvertM(inverseTransform, 0, transform, 0))
+                if (!Matrix.InvertM(inverseTransform, 0, transform.ToColumnMajor(), 0))
                 {
                     Array.Fill(inverseTransform, 0);
                 }
@@ -1455,7 +1463,7 @@ namespace Flutter.Shell.Droid.View
                     float[] transformedPoint = new float[4];
                     foreach (SemanticsObject child in childrenInHitTestOrder)
                     {
-                        if (child.HasFlag(Flag.IsHidden))
+                        if (child.HasFlag(SemanticsFlag.isHidden))
                             continue;
 
                         child.EnsureInverseTransform();
@@ -1478,16 +1486,16 @@ namespace Flutter.Shell.Droid.View
                 {
                     // We enforce in the framework that no other useful semantics are merged with these
                     // nodes.
-                    if (HasFlag(Flag.ScopesRoute))
+                    if (HasFlag(SemanticsFlag.scopesRoute))
                     {
                         return false;
                     }
 
-                    AccessibilityBridgeAction scrollableActions =
-                        AccessibilityBridgeAction.ScrollRight |
-                        AccessibilityBridgeAction.ScrollLeft |
-                        AccessibilityBridgeAction.ScrollUp |
-                        AccessibilityBridgeAction.ScrollDown;
+                    SemanticsAction scrollableActions =
+                        SemanticsAction.ScrollRight |
+                        SemanticsAction.ScrollLeft |
+                        SemanticsAction.ScrollUp |
+                        SemanticsAction.ScrollDown;
                     return (Actions & ~scrollableActions) != 0 ||
                         Flags != 0 ||
                         (Label != null && !string.IsNullOrWhiteSpace(Label)) ||
@@ -1498,7 +1506,7 @@ namespace Flutter.Shell.Droid.View
 
             public void CollectRoutes(List<SemanticsObject> edges)
             {
-                if (HasFlag(Flag.ScopesRoute))
+                if (HasFlag(SemanticsFlag.scopesRoute))
                     edges.Add(this);
 
                 if (childrenInTraversalOrder == null)
@@ -1512,7 +1520,7 @@ namespace Flutter.Shell.Droid.View
             {
                 // Returns the first non-null and non-empty semantic label of a child
                 // with an NamesRoute flag. Otherwise returns null.
-                if (HasFlag(Flag.NamesRoute))
+                if (HasFlag(SemanticsFlag.namesRoute))
                 {
                     if (Label != null && !string.IsNullOrWhiteSpace(Label))
                         return Label;
@@ -1549,8 +1557,7 @@ namespace Flutter.Shell.Droid.View
                     {
                         globalTransform = new float[16];
                     }
-
-                    Matrix.MultiplyMM(globalTransform, 0, ancestorTransform, 0, transform, 0);
+                    Matrix.MultiplyMM(globalTransform, 0, ancestorTransform, 0, transform.ToColumnMajor(), 0);
 
                     float[] sample = new float[4];
                     sample[2] = 0;

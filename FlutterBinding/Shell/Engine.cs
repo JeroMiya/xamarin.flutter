@@ -205,7 +205,7 @@ namespace FlutterBinding.Shell
             }
         }
 
-        private void DispatchPlatformMessage(PlatformMessage message)
+        public void DispatchPlatformMessage(PlatformMessage message)
         {
             switch (message.Channel)
             {

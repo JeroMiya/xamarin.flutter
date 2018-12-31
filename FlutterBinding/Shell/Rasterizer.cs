@@ -82,14 +82,14 @@ namespace FlutterBinding.Shell
 
         public class Screenshot
         {
-            public SKData Data { get; set; }
-            public SKSizeI FrameSize { get; set; } = SKSizeI.Empty;
+            public SKImage Image { get; }
+            public SKSizeI FrameSize { get; } = SKSizeI.Empty;
 
             public Screenshot() { }
 
-            public Screenshot(SKData data, SKSizeI size)
+            public Screenshot(SKImage image, SKSizeI size)
             {
-                Data      = data;
+                Image      = image;
                 FrameSize = size;
             }
         };
@@ -103,36 +103,38 @@ namespace FlutterBinding.Shell
                 return new Screenshot();
             }
 
-            SKData data = null;
+            SKImage image = null;
             GRContext surfaceContext = _surface?.GetContext();
 
             switch (type)
             {
             case ScreenshotType.SkiaPicture:
-                data = ScreenshotLayerTreeAsPicture(layer_tree, _compositorContext);
+                image = ScreenshotLayerTreeAsPicture(layer_tree, _compositorContext);
                 break;
             case ScreenshotType.UncompressedImage:
-                data = ScreenshotLayerTreeAsImage(layer_tree, _compositorContext, surfaceContext, false);
+                image = ScreenshotLayerTreeAsImage(layer_tree, _compositorContext, surfaceContext, false);
                 break;
             case ScreenshotType.CompressedImage:
-                data = ScreenshotLayerTreeAsImage(layer_tree, _compositorContext, surfaceContext, true);
+                image = ScreenshotLayerTreeAsImage(layer_tree, _compositorContext, surfaceContext, true);
                 break;
             }
 
-            if (data == null)
+            if (image == null)
             {
                 //FML_LOG(ERROR) << "Screenshot data was null.";
                 return new Screenshot();
             }
 
+            /*
             if (base64Encode)
             {
-                string b64 = Convert.ToBase64String(data.ToArray());
-                data = SKData.CreateCopy(Encoding.UTF8.GetBytes(b64));
-                return new Screenshot(data, layer_tree.frame_size());
+                string b64 = Convert.ToBase64String(image.ToArray());
+                image = SKData.CreateCopy(Encoding.UTF8.GetBytes(b64));
+                return new Screenshot(image, layer_tree.frame_size());
             }
+            */
 
-            return new Screenshot(data, layer_tree.frame_size());
+            return new Screenshot(image, layer_tree.frame_size());
         }
 
         // Sets a callback that will be executed after the next frame is submitted to
@@ -255,7 +257,7 @@ namespace FlutterBinding.Shell
             callback();
         }
 
-        private static SKData ScreenshotLayerTreeAsPicture(LayerTree tree, CompositorContext compositorContext)
+        private static SKImage ScreenshotLayerTreeAsPicture(LayerTree tree, CompositorContext compositorContext)
         {
             //FML_DCHECK(tree != nullptr);
 
@@ -278,7 +280,8 @@ namespace FlutterBinding.Shell
             SKPicture picture = recorder.EndRecording();
             SKImage image = SKImage.FromPicture(picture, tree.frame_size());
 
-            return image.Encode();
+            //return image.Encode();
+            return image;
         }
 
         private static SKSurface CreateSnapshotSurface(GRContext surfaceContext, SKSizeI size)
@@ -301,7 +304,7 @@ namespace FlutterBinding.Shell
             return SKSurface.Create(new SKImageInfo(size.Width, size.Height));
         }
 
-        private static SKData ScreenshotLayerTreeAsImage(
+        private static SKImage ScreenshotLayerTreeAsImage(
             LayerTree tree,
             CompositorContext compositorContext,
             GRContext surfaceContext,
@@ -345,6 +348,9 @@ namespace FlutterBinding.Shell
                 return null;
             }
 
+            return cpuSnapshot;
+
+            /*
             // If the caller want the pixels to be compressed, there is a Skia utility to
             // compress to PNG. Use that.
             if (compressed)
@@ -362,6 +368,7 @@ namespace FlutterBinding.Shell
 
             ulong len = (ulong)pixmap.Width * (ulong)pixmap.Height * (ulong)pixmap.BytesPerPixel;
             return SKData.CreateCopy(pixmap.GetPixels(), len);
+            */
         }
     }
 }

@@ -305,7 +305,13 @@ namespace FlutterBinding.Shell
         }
 
         // |shell::PlatformView::Delegate|
-        //public void OnPlatformViewDispatchPlatformMessage(PlatformMessage message) { }
+        public void OnPlatformViewDispatchPlatformMessage(PlatformMessage message)
+        {
+            //FML_DCHECK(is_setup_);
+            //FML_DCHECK(task_runners_.GetPlatformTaskRunner()->RunsTasksOnCurrentThread());
+
+            _taskRunners.UITaskRunner.PostTask(() => _engine?.DispatchPlatformMessage(message));
+        }
 
         // |shell::PlatformView::Delegate|
         public void OnPlatformViewDispatchPointerDataPacket(PointerDataPacket packet)
@@ -313,8 +319,7 @@ namespace FlutterBinding.Shell
             //FML_DCHECK(is_setup_);
             //FML_DCHECK(task_runners_.GetPlatformTaskRunner()->RunsTasksOnCurrentThread());
 
-            _taskRunners.UITaskRunner.PostTask(
-                () => { _engine?.DispatchPointerDataPacket(packet); });
+            _taskRunners.UITaskRunner.PostTask(() => _engine?.DispatchPointerDataPacket(packet));
         }
 
         // |shell::PlatformView::Delegate|

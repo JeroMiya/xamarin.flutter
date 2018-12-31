@@ -7,6 +7,8 @@ namespace FlutterBinding.UI
     /// How the pointer has changed since the last report.
     public enum PointerChange
     {
+        unknown = -1,
+
         /// The input from the pointer is no longer directed towards this receiver.
         cancel,
 
@@ -79,7 +81,8 @@ namespace FlutterBinding.UI
             double radiusMin = 0.0,
             double radiusMax = 0.0,
             double orientation = 0.0,
-            double tilt = 0.0
+            double tilt = 0.0,
+            double size = 0.0
         )
         {
             this.timeStamp   = timeStamp ?? TimeSpan.Zero;
@@ -101,6 +104,7 @@ namespace FlutterBinding.UI
             this.radiusMax   = radiusMax;
             this.orientation = orientation;
             this.tilt        = tilt;
+            this.size = this.size;
         }
 
         /// Time of event dispatch, relative to an arbitrary timeline.
@@ -201,6 +205,8 @@ namespace FlutterBinding.UI
         /// pi/4 would indicate that the stylus goes up and to the right, -pi/2 would
         /// indicate that the stylus goes to the left, etc).
         public readonly double orientation;
+
+        public readonly double size;
 
         /// For PointerDeviceKind.stylus and PointerDeviceKind.invertedStylus events:
         ///

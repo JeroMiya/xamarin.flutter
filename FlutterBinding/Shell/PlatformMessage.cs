@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FlutterBinding.Engine;
+using System;
+using FlutterBinding.UI;
 
 namespace FlutterBinding.Shell
 {
@@ -8,60 +10,57 @@ namespace FlutterBinding.Shell
         public string Channel { get; }
         public object RequestData { get; }
         public object ResponseData { get; private set; }
-        public Action<object> OnResponse { get; set; }
+        public PlatformMessageResponse ResponseMessage { get; set; }
 
-        public PlatformMessage(string channel, object requestData, Action<object> onResponse = null)
+        public bool HasData => RequestData != null;
+        
+        public PlatformMessage(string channel, object requestData, PlatformMessageResponse responseMessage = null)
         {
             Channel     = channel;
             RequestData = requestData;
-            OnResponse  = onResponse;
+            ResponseMessage = responseMessage;
         }
 
         public void OnResponseData(object responseData)
         {
             ResponseData = responseData;
-            OnResponse?.Invoke(responseData);
+            ResponseMessage?.Complete(responseData);
         }
     }
 
-    /*
-    public class PlatformMessage<TRequestData, TResponseData> : PlatformMessage
-        where TRequestData : class
-        where TResponseData : class
+    public class PlatformMessageResponse
     {
-        /// <inheritdoc />
-        public PlatformMessage(string channel, TRequestData requestData, Action<TResponseData> onResponse) : base(channel, requestData)
+        private readonly int _responseId;
+        private readonly PlatformMessageResponseCallback _callback;
+        private readonly TaskRunner _uiTaskRunner;
+
+        public object Message { get; private set; }
+        public bool IsComplete { get; set; }
+
+        public PlatformMessageResponse(
+            PlatformMessageResponseCallback callback,
+            TaskRunner uiTaskRunner)
         {
-            OnResponse = (data) => onResponse?.Invoke(data as TResponseData);
+            _callback     = callback;
+            _uiTaskRunner = uiTaskRunner;
         }
 
-        public TRequestData GetRequestData()
+        public PlatformMessageResponse(
+            int responseId,
+            TaskRunner uiTaskRunner)
         {
-            return RequestData as TRequestData;
+            _responseId   = responseId;
+            _uiTaskRunner = uiTaskRunner;
         }
 
-        public TResponseData GetResponseData()
+        // Callable on any thread.
+        public void Complete(object data)
         {
-            return ResponseData as TResponseData;
+            IsComplete = true;
+            Message = data;
+            _uiTaskRunner.RunNowOrPostTask(() => _callback(this));
         }
 
-        public void OnResponseData(TResponseData responseData)
-        {
-            ResponseData = responseData;
-            OnResponse?.Invoke(responseData);
-        }
+        public void CompleteEmpty() => Complete(null);
     }
-
-    /// <inheritdoc />
-    public class PlatformMessage<TRequestData> : PlatformMessage where TRequestData : class
-    {
-        /// <inheritdoc />
-        public PlatformMessage(string channel, TRequestData requestData) : base(channel, requestData) { }
-
-        public TRequestData GetRequestData()
-        {
-            return RequestData as TRequestData;
-        }
-    }
-    */
 }

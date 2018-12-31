@@ -94,7 +94,7 @@ namespace Flutter.Shell.Droid
             // Local functions
             PlatformView OnCreatePlatformView(FlutterBinding.Shell.Shell shell)
             {
-                holder.PlatformView = new AndroidPlatformView(
+                holder.PlatformView = new PlatformViewAndroid(
                     shell,
                     shell.TaskRunners,
                     holder._view);

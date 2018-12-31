@@ -127,9 +127,10 @@ namespace FlutterBinding.Engine.Window
 
         protected void SendPlatformMessage(string name,
                                            object data = null,
-                                           Action<object> response = null)
+                                           PlatformMessageResponseCallback onResponse = null)
         {
-            var message = new PlatformMessage(name, data, response);
+            var responseMessage = new PlatformMessageResponse();
+            var message = new PlatformMessage(name, data, onResponse);
             _client.HandlePlatformMessage(message);
         }
 

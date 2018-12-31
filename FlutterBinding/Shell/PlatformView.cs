@@ -17,7 +17,7 @@ namespace FlutterBinding.Shell
 
             void OnPlatformViewSetViewportMetrics(ViewportMetrics metrics);
 
-            //void OnPlatformViewDispatchPlatformMessage(PlatformMessage message);
+            void OnPlatformViewDispatchPlatformMessage(PlatformMessage message);
             void OnPlatformViewDispatchPointerDataPacket(PointerDataPacket packet);
             void OnPlatformViewDispatchSemanticsAction(int id, SemanticsAction action, object args);
             void OnPlatformViewSetSemanticsEnabled(bool enabled);
@@ -66,6 +66,11 @@ namespace FlutterBinding.Shell
         public void NotifyCreated()
         {
             delegate_.OnPlatformViewCreated(CreateRenderingSurface());
+        }
+
+        public virtual Task NotifyChanged(SKSizeI size)
+        {
+            return Task.FromResult(size);
         }
 
         public virtual void NotifyDestroyed()

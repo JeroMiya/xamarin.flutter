@@ -9,57 +9,59 @@ namespace FlutterBinding.UI
     [Flags]
     public enum SemanticsAction
     {
+        Unknown = 0,
+
         /// The equivalent of a user briefly tapping the screen with the finger
         /// without moving it.
-        tap = 1 << 0,
+        Tap = 1 << 0,
 
         /// The equivalent of a user pressing and holding the screen with the finger
         /// for a few seconds without moving it.
-        longPress = 1 << 1,
+        LongPress = 1 << 1,
 
         /// The equivalent of a user moving their finger across the screen from right
         /// to left.
         ///
         /// This action should be recognized by controls that are horizontally
         /// scrollable.
-        scrollLeft = 1 << 2,
+        ScrollLeft = 1 << 2,
 
         /// The equivalent of a user moving their finger across the screen from left
         /// to right.
         ///
         /// This action should be recognized by controls that are horizontally
         /// scrollable.
-        scrollRight = 1 << 3,
+        ScrollRight = 1 << 3,
 
         /// The equivalent of a user moving their finger across the screen from
         /// bottom to top.
         ///
         /// This action should be recognized by controls that are vertically
         /// scrollable.
-        scrollUp = 1 << 4,
+        ScrollUp = 1 << 4,
 
         /// The equivalent of a user moving their finger across the screen from top
         /// to bottom.
         ///
         /// This action should be recognized by controls that are vertically
         /// scrollable.
-        scrollDown = 1 << 5,
+        ScrollDown = 1 << 5,
 
         /// A request to increase the value represented by the semantics node.
         ///
         /// For example, this action might be recognized by a slider control.
-        increase = 1 << 6,
+        Increase = 1 << 6,
 
         /// A request to decrease the value represented by the semantics node.
         ///
         /// For example, this action might be recognized by a slider control.
-        decrease = 1 << 7,
+        Decrease = 1 << 7,
 
         /// A request to fully show the semantics node on screen.
         ///
         /// For example, this action might be send to a node in a scrollable list that
         /// is partially off screen to bring it on screen.
-        showOnScreen = 1 << 8,
+        ShowOnScreen = 1 << 8,
 
         /// Move the cursor forward by one character.
         ///
@@ -67,7 +69,7 @@ namespace FlutterBinding.UI
         ///
         /// The action includes a boolean argument, which indicates whether the cursor
         /// movement should extend (or start) a selection.
-        moveCursorForwardByCharacter = 1 << 9,
+        MoveCursorForwardByCharacter = 1 << 9,
 
         /// Move the cursor backward by one character.
         ///
@@ -75,7 +77,7 @@ namespace FlutterBinding.UI
         ///
         /// The action includes a boolean argument, which indicates whether the cursor
         /// movement should extend (or start) a selection.
-        moveCursorBackwardByCharacter = 1 << 10,
+        MoveCursorBackwardByCharacter = 1 << 10,
 
         /// Set the text selection to the given range.
         ///
@@ -86,16 +88,16 @@ namespace FlutterBinding.UI
         ///
         /// Setting `base` and `extent` to the same value will move the cursor to
         /// that position (without selecting anything).
-        setSelection = 1 << 11,
+        SetSelection = 1 << 11,
 
         /// Copy the current selection to the clipboard.
-        copy = 1 << 12,
+        Copy = 1 << 12,
 
         /// Cut the current selection and place it in the clipboard.
-        cut = 1 << 13,
+        Cut = 1 << 13,
 
         /// Paste the current content of the clipboard.
-        paste = 1 << 14,
+        Paste = 1 << 14,
 
         /// Indicates that the nodes has gained accessibility focus.
         ///
@@ -108,7 +110,7 @@ namespace FlutterBinding.UI
         /// The accessibility focus is different from the input focus. The input focus
         /// is usually held by the element that currently responds to keyboard inputs.
         /// Accessibility focus and input focus can be held by two different nodes!
-        didGainAccessibilityFocus = 1 << 15,
+        DidGainAccessibilityFocus = 1 << 15,
 
         /// Indicates that the nodes has lost accessibility focus.
         ///
@@ -121,13 +123,13 @@ namespace FlutterBinding.UI
         /// The accessibility focus is different from the input focus. The input focus
         /// is usually held by the element that currently responds to keyboard inputs.
         /// Accessibility focus and input focus can be held by two different nodes!
-        didLoseAccessibilityFocus = 1 << 16,
+        DidLoseAccessibilityFocus = 1 << 16,
 
         /// Indicates that the user has invoked a custom accessibility action.
         ///
         /// This handler is added automatically whenever a custom accessibility
         /// action is added to a semantics node.
-        customAction = 1 << 17,
+        CustomAction = 1 << 17,
 
         /// A request that the node should be dismissed.
         ///
@@ -136,7 +138,7 @@ namespace FlutterBinding.UI
         /// (with TalkBack) special hint text is spoken when focusing the node and
         /// a custom action is availible in the local context menu. On iOS,
         /// (with VoiceOver) users can perform a standard gesture to dismiss it.
-        dismiss = 1 << 18,
+        Dismiss = 1 << 18,
 
         /// Move the cursor forward by one word.
         ///
@@ -144,7 +146,7 @@ namespace FlutterBinding.UI
         ///
         /// The action includes a boolean argument, which indicates whether the cursor
         /// movement should extend (or start) a selection.
-        moveCursorForwardByWord = 1 << 19,
+        MoveCursorForwardByWord = 1 << 19,
 
         /// Move the cursor backward by one word.
         ///
@@ -152,7 +154,7 @@ namespace FlutterBinding.UI
         ///
         /// The action includes a boolean argument, which indicates whether the cursor
         /// movement should extend (or start) a selection.
-        moveCursorBackwardByWord = 1 << 20,
+        MoveCursorBackwardByWord = 1 << 20,
     }
 
     /// A Boolean value that can be associated with a semantics node.
@@ -196,7 +198,7 @@ namespace FlutterBinding.UI
         /// Platforms has special handling for buttons, for example Android's TalkBack
         /// and iOS's VoiceOver provides an additional hint when the focused object is
         /// a button.
-        isButton = 1 << 3,
+        IsButton = 1 << 3,
 
         /// Whether the semantic node represents a text field.
         ///
@@ -418,9 +420,9 @@ namespace FlutterBinding.UI
             int textSelectionExtent = 0,
             int scrollChildren = 0,
             int scrollIndex = 0,
-            double scrollPosition = 0.0,
-            double scrollExtentMax = 0.0,
-            double scrollExtentMin = 0.0,
+            float scrollPosition = 0.0f,
+            float scrollExtentMax = 0.0f,
+            float scrollExtentMin = 0.0f,
             Rect rect = null,
             String label = null,
             String hint = null,
@@ -435,27 +437,27 @@ namespace FlutterBinding.UI
         {
             SemanticsNode node = new SemanticsNode
             {
-                id                         = id,
-                flags                      = flags,
-                actions                    = actions,
-                textSelectionBase          = textSelectionBase,
-                textSelectionExtent        = textSelectionExtent,
-                scrollChildren             = scrollChildren,
-                scrollIndex                = scrollIndex,
-                scrollPosition             = scrollPosition,
-                scrollExtentMax            = scrollExtentMax,
-                scrollExtentMin            = scrollExtentMin,
-                rect                       = rect.ToSKRect(),
-                label                      = label,
-                hint                       = hint,
-                value                      = value,
-                increasedValue             = increasedValue,
-                decreasedValue             = decreasedValue,
-                textDirection              = textDirection,
-                transform                  = transform,
-                childrenInTraversalOrder   = childrenInTraversalOrder,
-                childrenInHitTestOrder     = childrenInHitTestOrder,
-                customAccessibilityActions = additionalActions
+                Id                         = id,
+                Flags                      = flags,
+                Actions                    = actions,
+                TextSelectionBase          = textSelectionBase,
+                TextSelectionExtent        = textSelectionExtent,
+                ScrollChildren             = scrollChildren,
+                ScrollIndex                = scrollIndex,
+                ScrollPosition             = scrollPosition,
+                ScrollExtentMax            = scrollExtentMax,
+                ScrollExtentMin            = scrollExtentMin,
+                Rect                       = rect.ToSKRect(),
+                Label                      = label,
+                Hint                       = hint,
+                Value                      = value,
+                IncreasedValue             = increasedValue,
+                DecreasedValue             = decreasedValue,
+                TextDirection              = textDirection,
+                Transform                  = transform,
+                ChildrenInTraversalOrder   = childrenInTraversalOrder,
+                ChildrenInHitTestOrder     = childrenInHitTestOrder,
+                CustomAccessibilityActions = additionalActions
             };
             nodes_[id] = node;
         }
@@ -552,31 +554,31 @@ namespace FlutterBinding.UI
 
     public class SemanticsNode
     {
-        public bool HasAction(SemanticsAction action) => actions.HasFlag(action);
+        public bool HasAction(SemanticsAction action) => Actions.HasFlag(action);
 
-        public bool HasFlag(SemanticsFlag flag) => flags.HasFlag(flag);
+        public bool HasFlag(SemanticsFlag flag) => Flags.HasFlag(flag);
 
-        public int id = 0;
-        public SemanticsFlag flags;
-        public SemanticsAction actions;
-        public int textSelectionBase = -1;
-        public int textSelectionExtent = -1;
-        public int scrollChildren = 0;
-        public int scrollIndex = 0;
-        public double scrollPosition = double.NaN;
-        public double scrollExtentMax = double.NaN;
-        public double scrollExtentMin = double.NaN;
-        public string label;
-        public string hint;
-        public string value;
-        public string increasedValue;
-        public string decreasedValue;
-        public TextDirection textDirection;
+        public int Id = 0;
+        public SemanticsFlag Flags;
+        public SemanticsAction Actions;
+        public int TextSelectionBase = -1;
+        public int TextSelectionExtent = -1;
+        public int ScrollChildren = 0;
+        public int ScrollIndex = 0;
+        public float ScrollPosition = float.NaN;
+        public float ScrollExtentMax = float.NaN;
+        public float ScrollExtentMin = float.NaN;
+        public string Label;
+        public string Hint;
+        public string Value;
+        public string IncreasedValue;
+        public string DecreasedValue;
+        public TextDirection TextDirection;
 
-        public SKRect rect = SKRect.Empty;
-        public SKMatrix44 transform = SKMatrix44.CreateIdentity();
-        public List<int> childrenInTraversalOrder = new List<int>();
-        public List<int> childrenInHitTestOrder = new List<int>();
-        public List<int> customAccessibilityActions = new List<int>();
+        public SKRect Rect = SKRect.Empty;
+        public SKMatrix44 Transform = SKMatrix44.CreateIdentity();
+        public List<int> ChildrenInTraversalOrder = new List<int>();
+        public List<int> ChildrenInHitTestOrder = new List<int>();
+        public List<int> CustomAccessibilityActions = new List<int>();
     }
 }

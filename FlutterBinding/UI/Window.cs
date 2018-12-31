@@ -24,7 +24,7 @@ namespace FlutterBinding.UI
     ///
     /// Used as a parameter to [Window.sendPlatformMessage] and
     /// [Window.onPlatformMessage].
-    //public delegate void PlatformMessageResponseCallback(PlatformMessageResponse response);
+    public delegate void PlatformMessageResponseCallback(PlatformMessageResponse response);
 
     /// Signature for [Window.onPlatformMessage].
     public delegate void PlatformMessageCallback(PlatformMessage platformMessage);
@@ -830,7 +830,7 @@ namespace FlutterBinding.UI
         public void sendPlatformMessage(
             string name,
             object data,
-            Action<object> response)
+            PlatformMessageResponseCallback response)
         {
             SendPlatformMessage(
                 name,

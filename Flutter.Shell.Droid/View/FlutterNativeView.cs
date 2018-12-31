@@ -8,6 +8,7 @@ using Java.Nio;
 using System.Collections.Generic;
 using FlutterBinding.Engine.Assets;
 using FlutterBinding.Shell;
+using FlutterBinding.UI;
 using AssetManager = Android.Content.Res.AssetManager;
 
 namespace Flutter.Shell.Droid.View
@@ -249,9 +250,9 @@ namespace Flutter.Shell.Droid.View
         }
 
         // Called by native to update the semantics/accessibility tree.
-        public void UpdateSemantics(ByteBuffer buffer, string[] strings)
+        public void UpdateSemantics(SemanticsNodeUpdates update, CustomAccessibilityActionUpdates actions)
         {
-            _flutterView?.UpdateSemantics(buffer, strings);
+            _flutterView?.UpdateSemantics(update, actions);
         }
 
         // Called by native to update the custom accessibility actions.
@@ -274,12 +275,12 @@ namespace Flutter.Shell.Droid.View
             _pluginRegistry?.OnPreEngineRestart();
         }
 
-        private static AndroidShellHolder NativeAttach(FlutterNativeView view, bool isBackgroundView)
+        public static AndroidShellHolder NativeAttach(FlutterNativeView view, bool isBackgroundView)
         {
-            return new AndroidShellHolder(
+            return AndroidShellHolder.Create(
                 FlutterMain.Settings,
                 view,
-                isBackgroundView);
+                isBackgroundView).Result;
         }
 
         private static void NativeRunBundleAndSnapshotFromLibrary(
@@ -287,8 +288,10 @@ namespace Flutter.Shell.Droid.View
             string[] bundlePaths,
             string entrypoint,
             string libraryUrl,
-            FlutterBinding.Engine.Assets.AssetManager assetManager) // native shell::RunBundleAndSnapshotFromLibrary
+            AssetManager nativeAssetManager) // native shell::RunBundleAndSnapshotFromLibrary
         {
+            FlutterBinding.Engine.Assets.AssetManager assetManager = new FlutterBinding.Engine.Assets.AssetManager();
+
             foreach (var bundlePath in bundlePaths)
             {
                 if (string.IsNullOrWhiteSpace(bundlePath))
@@ -340,22 +343,31 @@ namespace Flutter.Shell.Droid.View
             string channel,
             int responseId) // native shell::DispatchEmptyPlatformMessage
         {
-            shellHolder.GetPlatformView().Dis
+            ((PlatformViewAndroid)shellHolder.PlatformView).DispatchPlatformMessage(channel, null, responseId);
         }
 
         // Send a data-carrying platform message to Dart.
         private static void nativeDispatchPlatformMessage(
-            long nativePlatformViewAndroid,
-            string channel, object message, int responseId); // native shell::DispatchPlatformMessage
+            AndroidShellHolder shellHolder,
+            string channel, object message, int responseId) // native shell::DispatchPlatformMessage
+        {
+            ((PlatformViewAndroid)shellHolder.PlatformView).DispatchPlatformMessage(channel, message, responseId);
+        }
 
         // Send an empty response to a platform message received from Dart.
         private static void nativeInvokePlatformMessageEmptyResponseCallback(
-            long nativePlatformViewAndroid, int responseId); // native 
+            AndroidShellHolder shellHolder, int responseId) // c++  native shell::InvokePlatformMessageEmptyResponseCallback
+        {
+            ((PlatformViewAndroid)shellHolder.PlatformView).InvokePlatformMessageEmptyResponseCallback(responseId);
+        }
 
         // Send a data-carrying response to a platform message received from Dart.
         private static void nativeInvokePlatformMessageResponseCallback(
-            long nativePlatformViewAndroid, int responseId,
-            object message); // c++  native shell::InvokePlatformMessageEmptyResponseCallback
+            AndroidShellHolder shellHolder, int responseId,
+            object message) // c++  native shell::InvokePlatformMessageResponseCallback
+        {
+            ((PlatformViewAndroid)shellHolder.PlatformView).InvokePlatformMessageResponseCallback(responseId, message);
+        }
 
         // c++  FlutterViewHandlePlatformMessageResponse
         // java FlutternativeView -> handlePlatformMessageResponse

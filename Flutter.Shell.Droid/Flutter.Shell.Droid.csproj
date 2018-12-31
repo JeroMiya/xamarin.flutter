@@ -47,8 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AndroidPlatformView.cs" />
+    <Compile Include="AndroidExternalTexture.cs" />
+    <Compile Include="PlatformViewAndroid.cs" />
     <Compile Include="AndroidShellHolder.cs" />
+    <Compile Include="AndroidSurface.cs" />
     <Compile Include="App\FlutterActivity.cs" />
     <Compile Include="App\FlutterActivityDelegate.cs" />
     <Compile Include="App\FlutterActivityEvents.cs" />
@@ -92,7 +94,7 @@
     <Compile Include="View\ResourceExtractor.cs" />
     <Compile Include="View\ResourceUpdater.cs" />
     <Compile Include="View\TextureRegistry.cs" />
-    <Compile Include="View\VsyncWaiter.cs" />
+    <Compile Include="VsyncWaiterAndroid.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0" />

@@ -13,13 +13,18 @@ using Flutter.Shell.Droid.App;
 using Flutter.Shell.Droid.Plugin.Common;
 using Flutter.Shell.Droid.Plugin.Editing;
 using FlutterSDK;
-using Java.Util;
 using Java.Util.Concurrent.Atomic;
 using System;
+using FlutterBinding.Flow;
 using FlutterBinding.Shell;
+using FlutterBinding.UI;
+using SkiaSharp;
 using Format = Android.Graphics.Format;
 using KeyboardType = Android.Views.KeyboardType;
 using Keycode = Android.Views.Keycode;
+using Locale = Java.Util.Locale;
+using Rasterizer = FlutterBinding.Shell.Rasterizer;
+using Rect = Android.Graphics.Rect;
 using Surface = Android.Views.Surface;
 
 namespace Flutter.Shell.Droid.View
@@ -398,50 +403,51 @@ namespace Flutter.Shell.Droid.View
         private static readonly int kPointerDeviceKindInvertedStylus = 3;
         private static readonly int kPointerDeviceKindUnknown = 4;
 
-        public int GetPointerChangeForAction(MotionEventActions maskedAction)
+        public PointerChange GetPointerChangeForAction(MotionEventActions maskedAction)
         {
             // Primary pointer:
             if (maskedAction == MotionEventActions.Down)
-                return kPointerChangeDown;
+                return PointerChange.down;
 
             if (maskedAction == MotionEventActions.Up)
-                return kPointerChangeUp;
+                return PointerChange.up;
 
             // Secondary pointer:
             if (maskedAction == MotionEventActions.PointerDown)
-                return kPointerChangeDown;
+                return PointerChange.down;
 
             if (maskedAction == MotionEventActions.PointerUp)
-                return kPointerChangeUp;
+                return PointerChange.up;
 
             // All pointers:
             if (maskedAction == MotionEventActions.Move)
-                return kPointerChangeMove;
+                return PointerChange.move;
 
             if (maskedAction == MotionEventActions.Cancel)
-                return kPointerChangeCancel;
+                return PointerChange.cancel;
 
-            return -1;
+            return PointerChange.unknown;
         }
 
-        public int GetPointerDeviceTypeForToolType(MotionEventToolType toolType)
+        public PointerDeviceKind GetPointerDeviceTypeForToolType(MotionEventToolType toolType)
         {
             switch (toolType)
             {
             case MotionEventToolType.Finger:
-                return kPointerDeviceKindTouch;
+                return PointerDeviceKind.touch;
             case MotionEventToolType.Stylus:
-                return kPointerDeviceKindStylus;
+                return PointerDeviceKind.stylus;
             case MotionEventToolType.Mouse:
-                return kPointerDeviceKindMouse;
+                return PointerDeviceKind.mouse;
             case MotionEventToolType.Eraser:
-                return kPointerDeviceKindInvertedStylus;
+                return PointerDeviceKind.invertedStylus;
             default:
                 // MotionEvent.TOOL_TYPE_UNKNOWN will reach here.
-                return kPointerDeviceKindUnknown;
+                return PointerDeviceKind.unknown;
             }
         }
 
+        /*
         public class PointerParameter
         {
             public long Timestamp;
@@ -467,20 +473,21 @@ namespace Flutter.Shell.Droid.View
             public double Tilt;
             public long PointerData;
         }
+        */
 
         // TODO: ByteBuffer->object
-        public PointerParameter AddPointerForIndex(MotionEvent @event, int pointerIndex, int pointerChange, int pointerData)
+        public PointerData AddPointerForIndex(MotionEvent @event, int pointerIndex, PointerChange pointerChange, int pointerData)
         {
-            if (pointerChange == -1)
+            if (pointerChange == PointerChange.unknown)
                 return null;
 
-            int pointerKind = GetPointerDeviceTypeForToolType(@event.GetToolType(pointerIndex));
-            long buttonState = 0;
+            PointerDeviceKind pointerKind = GetPointerDeviceTypeForToolType(@event.GetToolType(pointerIndex));
+            int buttonState = 0;
             double tilt = 0.0d;
 
-            if (pointerKind == kPointerDeviceKindMouse)
+            if (pointerKind == PointerDeviceKind.mouse)
                 buttonState = (int)@event.ButtonState & 0x1F; // mouse buttons
-            else if (pointerKind == kPointerDeviceKindStylus)
+            else if (pointerKind == PointerDeviceKind.stylus)
             {
                 buttonState = ((int)@event.ButtonState >> 4) & 0xF; // stylus buttons
                 tilt        = @event.GetAxisValue(Axis.Tilt, pointerIndex);
@@ -493,31 +500,32 @@ namespace Flutter.Shell.Droid.View
             float radiusMinor = @event.GetToolMinor(pointerIndex);
             float orientation = @event.GetAxisValue(Axis.Orientation, pointerIndex);
 
-            return new PointerParameter
-            {
-                Timestamp     = @event.EventTime * 1000, // Convert from milliseconds to microseconds.
-                PointerIndex  = pointerIndex,
-                PointerChange = pointerChange,
-                PointerKind   = pointerKind,
-                MotionEvent   = @event,
-                PointerId     = @event.GetPointerId(pointerIndex),
-                X             = @event.GetX(pointerIndex),
-                Y             = @event.GetY(pointerIndex),
-                ButtonState   = buttonState,
-                Pressure      = pressure,
-                PressureMin   = 0.0d,
-                PressureMax   = 1.0d,
-                Distance      = distance,
-                DistanceMax   = 0.0d,
-                Size          = size,
-                RadiusMinor   = radiusMinor,
-                RadiusMajor   = radiusMajor,
-                RadiusMin     = 0.0d,
-                RadiusMax     = 0.0d,
-                Orientation   = orientation,
-                Tilt          = tilt,
-                PointerData   = pointerData
-            };
+            var device = @event.GetPointerId(pointerIndex);
+            return new PointerData
+            (
+                timeStamp: TimeSpan.FromMilliseconds(@event.EventTime), // Convert from milliseconds to microseconds.
+                change: pointerChange,
+                kind: pointerKind,
+                device: device,
+                physicalX: @event.GetX(pointerIndex),
+                physicalY: @event.GetY(pointerIndex),
+                buttons: buttonState,
+                obscured: false,
+                pressure: pressure,
+                pressureMin: 0.0,
+                pressureMax: 1.0,
+                distance: distance,
+                distanceMax: 0.0,
+                radiusMajor: radiusMajor,
+                radiusMinor: radiusMinor,
+                radiusMin: 0.0,
+                radiusMax: 0.0,
+                orientation: orientation,
+                tilt: tilt,
+                size: size
+                //PointerData   = pointerData
+                //MotionEvent = @event
+            );
         }
 
         //@Override
@@ -551,14 +559,15 @@ namespace Flutter.Shell.Droid.View
             //ByteBuffer packet = ByteBuffer.allocateDirect(pointerCount * kPointerDataFieldCount * kBytePerField);
             //packet.order(ByteOrder.LITTLE_ENDIAN);
 
-            List<PointerParameter> packet = new List<PointerParameter>();
+            PointerDataPacket packet = new PointerDataPacket();
+            //List<PointerParameter> packet = new List<PointerParameter>();
 
             MotionEventActions maskedAction = @event.ActionMasked;
-            int pointerChange = GetPointerChangeForAction(@event.ActionMasked);
+            PointerChange pointerChange = GetPointerChangeForAction(@event.ActionMasked);
             if (maskedAction == MotionEventActions.Down || maskedAction == MotionEventActions.PointerDown)
             {
                 // ACTION_DOWN and ACTION_POINTER_DOWN always apply to a single pointer only.
-                packet.Add(
+                packet.data.Add(
                     AddPointerForIndex(@event, @event.ActionIndex, pointerChange, 0));
             }
             else if (maskedAction == MotionEventActions.Up || maskedAction == MotionEventActions.PointerUp)
@@ -573,15 +582,15 @@ namespace Flutter.Shell.Droid.View
                     {
                         if (@event.GetToolType(p) == MotionEventToolType.Finger)
                         {
-                            packet.Add(
-                                AddPointerForIndex(@event, p, kPointerChangeMove, kPointerDataFlagBatched));
+                            packet.data.Add(
+                                AddPointerForIndex(@event, p, PointerChange.move, kPointerDataFlagBatched));
                         }
                     }
                 }
 
                 // It's important that we're sending the UP event last. This allows PlatformView
                 // to correctly batch everything back into the original Android event if needed.
-                packet.Add(
+                packet.data.Add(
                     AddPointerForIndex(@event, @event.ActionIndex, pointerChange, 0));
             }
             else
@@ -591,7 +600,7 @@ namespace Flutter.Shell.Droid.View
                 // ignore 0-deltas if desired.
                 for (int p = 0; p < pointerCount; p++)
                 {
-                    packet.Add(
+                    packet.data.Add(
                         AddPointerForIndex(@event, p, pointerChange, 0));
                 }
             }
@@ -806,48 +815,184 @@ namespace Flutter.Shell.Droid.View
          *
          * @return A bitmap.
          */
-        public Bitmap GetBitmap()
+        public SKImage GetBitmap()
         {
             AssertAttached();
             return nativeGetBitmap(_nativeView.Get());
         }
 
-        private static void nativeSurfaceCreated(long nativePlatformViewAndroid, Surface surface); // native
+        private static void nativeSurfaceCreated(AndroidShellHolder nativePlatformViewAndroid, Surface surface) // native
+        {
+            nativePlatformViewAndroid.PlatformView.NotifyCreated();
+            // TODO: ???
 
-        private static void nativeSurfaceChanged(long nativePlatformViewAndroid, int width, int height); // native
+            // Note: This frame ensures that any local references used by
+            // ANativeWindow_fromSurface are released immediately. This is needed as a
+            // workaround for https://code.google.com/p/android/issues/detail?id=68174
+            //fml::jni::ScopedJavaLocalFrame scoped_local_reference_frame(env);
+            //auto window = fml::MakeRefCounted<AndroidNativeWindow>(
+            //    ANativeWindow_fromSurface(env, jsurface));
+            //ANDROID_SHELL_HOLDER->GetPlatformView()->NotifyCreated(std::move(window));
+        }
 
-        private static void nativeSurfaceDestroyed(long nativePlatformViewAndroid); // native
+        private static void nativeSurfaceChanged(AndroidShellHolder nativePlatformViewAndroid, int width, int height) // native
+        {
+            nativePlatformViewAndroid.PlatformView.NotifyChanged(new SKSizeI(width, height));
+
+        }
+
+        private static void nativeSurfaceDestroyed(AndroidShellHolder nativePlatformViewAndroid) // native
+        {
+            nativePlatformViewAndroid.PlatformView.NotifyDestroyed();
+        }
 
         private static void nativeSetViewportMetrics(
-            long nativePlatformViewAndroid, float devicePixelRatio,
+            AndroidShellHolder nativePlatformViewAndroid, float devicePixelRatio,
             int physicalWidth, int physicalHeight, int physicalPaddingTop, int physicalPaddingRight,
             int physicalPaddingBottom, int physicalPaddingLeft, int physicalViewInsetTop, int physicalViewInsetRight,
-            int physicalViewInsetBottom, int physicalViewInsetLeft); // native engine->SetViewportMetrics(metrics);
+            int physicalViewInsetBottom, int physicalViewInsetLeft) // native engine->SetViewportMetrics(metrics);
+        {
+            nativePlatformViewAndroid.SetViewportMetrics(
+                new ViewportMetrics
+                {
+                    DevicePixelRatio = devicePixelRatio,
+                    PhysicalWidth = physicalWidth,
+                    PhysicalHeight = physicalHeight,
+                    PhysicalPaddingTop = physicalPaddingTop,
+                    PhysicalPaddingRight = physicalPaddingRight,
+                    PhysicalPaddingBottom = physicalPaddingBottom,
+                    PhysicalPaddingLeft = physicalPaddingLeft,
+                    PhysicalViewInsetTop = physicalViewInsetTop,
+                    PhysicalViewInsetRight = physicalViewInsetRight,
+                    PhysicalViewInsetBottom = physicalViewInsetBottom,
+                    PhysicalViewInsetLeft = physicalViewInsetLeft
+                });
+        }
 
-        private static Bitmap nativeGetBitmap(long nativePlatformViewAndroid); // native
+        private static SKImage nativeGetBitmap(AndroidShellHolder nativePlatformViewAndroid) // native
+        {
+            var screenshot = nativePlatformViewAndroid.Screenshot(Rasterizer.ScreenshotType.UncompressedImage, false);
+
+            return screenshot?.Image;
+            //SKSizeI frame_size = screenshot.FrameSize;
+            //long pixels_size = frame_size.Width * frame_size.Height;
+            //var pixels_array = new byte[pixels_size];
+            //if (pixels_array == null)
+            //    return null;
+
+            //jint* pixels = env->GetIntArrayElements(pixels_array, nullptr);
+            //if (pixels == nullptr)
+            //{
+            //    return nullptr;
+            //}
+
+            //auto* pixels_src = static_cast <const int32_t*> (screenshot.data->data());
+
+            //// Our configuration of Skia does not support rendering to the
+            //// BitmapConfig.ARGB_8888 format expected by android.graphics.Bitmap.
+            //// Convert from kRGBA_8888 to kBGRA_8888 (equivalent to ARGB_8888).
+            //for (int i = 0; i < pixels_size; i++)
+            //{
+            //    int32_t src_pixel = pixels_src[i];
+            //    uint8_t* src_bytes = reinterpret_cast<uint8_t*>(&src_pixel);
+            //    std::swap(src_bytes[0], src_bytes[2]);
+            //    pixels[i] = src_pixel;
+            //}
+
+            //env->ReleaseIntArrayElements(pixels_array, pixels, 0);
+
+            //jclass bitmap_class = env->FindClass("android/graphics/Bitmap");
+            //if (bitmap_class == nullptr)
+            //{
+            //    return nullptr;
+            //}
+
+            //jmethodID create_bitmap = env->GetStaticMethodID(
+            //    bitmap_class, "createBitmap",
+            //    "([IIILandroid/graphics/Bitmap$Config;)Landroid/graphics/Bitmap;");
+            //if (create_bitmap == nullptr)
+            //{
+            //    return nullptr;
+            //}
+
+            //jclass bitmap_config_class = env->FindClass("android/graphics/Bitmap$Config");
+            //if (bitmap_config_class == nullptr)
+            //{
+            //    return nullptr;
+            //}
+
+            //jmethodID bitmap_config_value_of = env->GetStaticMethodID(
+            //    bitmap_config_class, "valueOf",
+            //    "(Ljava/lang/String;)Landroid/graphics/Bitmap$Config;");
+            //if (bitmap_config_value_of == nullptr)
+            //{
+            //    return nullptr;
+            //}
+
+            //jstring argb = env->NewStringUTF("ARGB_8888");
+            //if (argb == nullptr)
+            //{
+            //    return nullptr;
+            //}
+
+            //jobject bitmap_config = env->CallStaticObjectMethod(
+            //    bitmap_config_class, bitmap_config_value_of, argb);
+            //if (bitmap_config == nullptr)
+            //{
+            //    return nullptr;
+            //}
+
+            //return env->CallStaticObjectMethod(bitmap_class, create_bitmap, pixels_array,
+            //                                   frame_size.width(), frame_size.height(),
+            //                                   bitmap_config);
+        }
 
         // TODO: ByteBuffer->object
-        private static void nativeDispatchPointerDataPacket(long nativePlatformViewAndroid, object buffer);
+        private static void nativeDispatchPointerDataPacket(AndroidShellHolder nativePlatformViewAndroid, PointerDataPacket packet)
+        {
+            nativePlatformViewAndroid.PlatformView.DispatchPointerDataPacket(packet);
+        }
         // native
 
         // TODO: ByteBuffer->object
         // native shell::DispatchSemanticsAction
-        private static void nativeDispatchSemanticsAction(long nativePlatformViewAndroid, int id, int action, object args);
+        private static void nativeDispatchSemanticsAction(AndroidShellHolder nativePlatformViewAndroid, int id, SemanticsAction action, object args)
+        {
+            nativePlatformViewAndroid.PlatformView.DispatchSemanticsAction(id, action, args);
+        }
 
 
-        private static void nativeSetSemanticsEnabled(long nativePlatformViewAndroid, bool enabled); // native
+        private static void nativeSetSemanticsEnabled(AndroidShellHolder nativePlatformViewAndroid, bool enabled) // native
+        {
+            nativePlatformViewAndroid.PlatformView.SetSemanticsEnabled(enabled);
+        }
 
-        private static void NativeSetAccessibilityFeatures(long nativePlatformViewAndroid, AccessibilityFeatures flags); // native
+        private static void NativeSetAccessibilityFeatures(AndroidShellHolder nativePlatformViewAndroid, AccessibilityFeatures flags) // native
+        {
+            nativePlatformViewAndroid.PlatformView.SetAccessibilityFeatures(flags);
+        }
 
-        private static bool nativeGetIsSoftwareRenderingEnabled(); // native
+        private static bool nativeGetIsSoftwareRenderingEnabled() // native
+        {
+            return false;
+        }
 
-        private static void nativeRegisterTexture(long nativePlatformViewAndroid, long textureId, SurfaceTexture surfaceTexture);
-        // native
+        private static void nativeRegisterTexture(AndroidShellHolder nativePlatformViewAndroid, long textureId, SurfaceTexture surfaceTexture) // native
+        {
+            var platformViewAndroid = (PlatformViewAndroid)nativePlatformViewAndroid.PlatformView;
+            platformViewAndroid.RegisterExternalTexture(textureId, surfaceTexture);
+        }
 
-        private static void nativeMarkTextureFrameAvailable(long nativePlatformViewAndroid, long textureId);
-        // native
+        private static void nativeMarkTextureFrameAvailable(AndroidShellHolder nativePlatformViewAndroid, long textureId) // native
+        {
+            nativePlatformViewAndroid.PlatformView.MarkTextureFrameAvailable(textureId);
+        }
 
-        private static void nativeUnregisterTexture(long nativePlatformViewAndroid, long textureId); // native
+
+        private static void nativeUnregisterTexture(AndroidShellHolder nativePlatformViewAndroid, long textureId) // native
+        {
+            nativePlatformViewAndroid.PlatformView.UnregisterTexture(textureId);
+        }
 
         private void UpdateViewportMetrics()
         {
@@ -875,14 +1020,14 @@ namespace Flutter.Shell.Droid.View
 
         // Called by native to update the semantics/accessibility tree.
         // TODO: ByteBuffer->object
-        public void UpdateSemantics(object buffer, string[] strings)
+        public void UpdateSemantics(SemanticsNodeUpdates update, CustomAccessibilityActionUpdates actions)
         {
             try
             {
                 if (_accessibilityNodeProvider != null)
                 {
                     //buffer.order(ByteOrder.LITTLE_ENDIAN);
-                    _accessibilityNodeProvider.UpdateSemantics(buffer, strings);
+                    _accessibilityNodeProvider.UpdateSemantics(update, actions);
                 }
             }
             catch (Exception ex)
@@ -918,12 +1063,12 @@ namespace Flutter.Shell.Droid.View
         private AccessibilityFeatures _accessibilityFeatureFlags;
         private TouchExplorationListener _touchExplorationListener;
 
-        public void DispatchSemanticsAction(int id, AccessibilityBridge.AccessibilityBridgeAction accessibilityBridgeAction)
+        public void DispatchSemanticsAction(int id, SemanticsAction accessibilityBridgeAction)
         {
             DispatchSemanticsAction(id, accessibilityBridgeAction, null);
         }
 
-        public void DispatchSemanticsAction(int id, AccessibilityBridge.AccessibilityBridgeAction accessibilityBridgeAction, object args)
+        public void DispatchSemanticsAction(int id, SemanticsAction accessibilityBridgeAction, object args)
         {
             if (!IsAttached())
                 return;
@@ -933,7 +1078,7 @@ namespace Flutter.Shell.Droid.View
                 encodedArgs = StandardMessageCodec.Instance.EncodeMessage(args);
             }
 
-            nativeDispatchSemanticsAction(_nativeView.Get(), id, (int)accessibilityBridgeAction, encodedArgs);
+            nativeDispatchSemanticsAction(_nativeView.Get(), id, accessibilityBridgeAction, encodedArgs);
         }
 
         //@Override

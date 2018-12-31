@@ -8,6 +8,8 @@ namespace FlutterBinding.Engine
 {
     public class TaskRunners
     {
+        public static TaskRunners Instance { get; private set; }
+
         public TaskRunners(
             string label,
             TaskRunner platform,
@@ -20,6 +22,8 @@ namespace FlutterBinding.Engine
             GPUTaskRunner      = gpu;
             UITaskRunner       = ui;
             IOTaskRunner       = io;
+
+            Instance = Instance ?? this;
         }
 
         public string Label { get; }
