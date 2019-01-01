@@ -2,6 +2,7 @@
 using FlutterBinding.Engine;
 using Java.Lang;
 using System;
+using FlutterBinding.Plugin.Common;
 
 namespace Flutter.Shell.Droid.Plugin.Common
 {

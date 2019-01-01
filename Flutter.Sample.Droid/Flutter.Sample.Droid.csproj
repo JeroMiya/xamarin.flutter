@@ -105,6 +105,10 @@
       <Project>{c9e1caa4-53f3-4032-92a0-81f5322d446b}</Project>
       <Name>Flutter.Shell.Droid</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FlutterBinding\FlutterBinding.csproj">
+      <Project>{c9313643-3357-4872-9b00-03e2c79ad297}</Project>
+      <Name>FlutterBinding</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\launch_background.xml" />

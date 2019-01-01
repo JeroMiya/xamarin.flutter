@@ -373,7 +373,7 @@ namespace Flutter.Shell.Droid.View
         }
 
         //@Override
-        public IInputConnection OnCreateInputConnection(EditorInfo outAttrs)
+        public override IInputConnection OnCreateInputConnection(EditorInfo outAttrs)
         {
             try
             {

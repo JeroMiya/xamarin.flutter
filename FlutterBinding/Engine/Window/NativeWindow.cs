@@ -129,8 +129,8 @@ namespace FlutterBinding.Engine.Window
                                            object data = null,
                                            PlatformMessageResponseCallback onResponse = null)
         {
-            var responseMessage = new PlatformMessageResponse();
-            var message = new PlatformMessage(name, data, onResponse);
+            var responseMessage = new PlatformMessageResponse(onResponse, null);
+            var message = new PlatformMessage(name, data, responseMessage);
             _client.HandlePlatformMessage(message);
         }
 
@@ -147,9 +147,8 @@ namespace FlutterBinding.Engine.Window
         }
 
 
-        // TODO: This is a poor way of doing request/response management
         // We use id 0 to mean that no response is expected.
-        //private int next_response_id_ = 1;
-        //private Dictionary<int, PlatformMessageResponse> pending_responses_ = new Dictionary<int,PlatformMessageResponse>();
+        //private int _nextResponseId = 1;
+        //private Dictionary<int, PlatformMessageResponse> _pendingResponses_ = new Dictionary<int,PlatformMessageResponse>();
     }
 }

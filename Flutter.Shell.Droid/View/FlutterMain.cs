@@ -42,7 +42,7 @@ namespace Flutter.Shell.Droid.View
         private static bool _isPrecompiledAsSharedLibrary;
         private static ResourceExtractor _resourceExtractor;
         private static ResourceUpdater _resourceUpdater;
-        private static FlutterSettings _settings;
+        private static Settings _settings;
         private static Stopwatch _stopwatch;
         private static readonly string AOT_ISOLATE_SNAPSHOT_DATA_KEY = "isolate-snapshot-data";
         private static readonly string AOT_ISOLATE_SNAPSHOT_INSTR_KEY = "isolate-snapshot-instr";
@@ -209,7 +209,7 @@ namespace Flutter.Shell.Droid.View
          * @param applicationContext The Android application context.
          * @param settings Configuration settings.
          */
-        public static async Task StartInitialization(Context applicationContext, FlutterSettings settings = null)
+        public static async Task StartInitialization(Context applicationContext, Settings settings = null)
         {
             if (!IsMainLoop)
                 throw new ThreadStateException("startInitialization must be called on the main thread");

@@ -400,14 +400,7 @@ namespace FlutterBinding.Shell
             if (!(message.ResponseData is string assetName))
                 return;
 
-            var assetMapping = _assetManager?.GetAsMapping(assetName);
-            if (assetMapping != null)
-            {
-                message.OnResponse?.Invoke(assetMapping);
-                return;
-            }
-
-            message.OnResponse?.Invoke(null);
+            message.OnResponseData(_assetManager?.GetAsMapping(assetName));
         }
 
         // TODO: Can't find implmentation for this, or any use

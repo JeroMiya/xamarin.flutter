@@ -62,7 +62,7 @@ namespace Flutter.Shell.Droid.App
      * {@link PluginRegistry} and/or {@link io.flutter.view.FlutterView.Provider}
      * and forward those methods to this class as well.</p>
      */
-    public sealed class FlutterActivityDelegate : JavaObject, IFlutterActivityEvents, IProvider, IPluginRegistry
+    public sealed class FlutterActivityDelegate : Java.Lang.Object, IFlutterActivityEvents, IProvider, IPluginRegistry
     {
         private static readonly string SPLASH_SCREEN_META_DATA_KEY = "io.flutter.app.android.SplashScreenUntilFirstFrame";
         private static readonly string TAG = "FlutterActivityDelegate";
