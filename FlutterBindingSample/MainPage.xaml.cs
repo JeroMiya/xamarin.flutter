@@ -76,7 +76,7 @@ namespace FlutterBindingSample
 
             var scene = sceneBuilder.build();
 
-            window.render(scene);
+            window.Render(scene);
         }
     }
 }

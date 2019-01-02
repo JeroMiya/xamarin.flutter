@@ -53,14 +53,16 @@
     <Compile Include="AndroidSurface.cs" />
     <Compile Include="App\FlutterActivity.cs" />
     <Compile Include="App\FlutterActivityDelegate.cs" />
-    <Compile Include="App\FlutterActivityEvents.cs" />
+    <Compile Include="App\IFlutterActivityEvents.cs" />
     <Compile Include="App\FlutterApplication.cs" />
     <Compile Include="App\FlutterPluginRegistry.cs" />
     <Compile Include="Plugin\Common\ActivityLifecycleListener.cs" />
     <Compile Include="Plugin\Common\BasicMessageChannel.cs" />
     <Compile Include="Plugin\Common\BinaryMessenger.cs" />
     <Compile Include="Plugin\Common\EventChannel.cs" />
+    <Compile Include="Plugin\Common\IActivityResultListener.cs" />
     <Compile Include="Plugin\Common\IMethodCallHandler.cs" />
+    <Compile Include="Plugin\Common\INewIntentListener.cs" />
     <Compile Include="Plugin\Common\IRegistrar.cs" />
     <Compile Include="Plugin\Common\IRequestPermissionsResultListener.cs" />
     <Compile Include="Plugin\Common\IResult.cs" />
@@ -88,7 +90,7 @@
     <Compile Include="View\FlutterNativeView.cs" />
     <Compile Include="View\FlutterRunArguments.cs" />
     <Compile Include="View\FlutterView.cs" />
-    <Compile Include="View\IProvider.cs" />
+    <Compile Include="View\IFlutterViewProvider.cs" />
     <Compile Include="View\OnFrameAvailableListenerImpl.cs" />
     <Compile Include="View\ResourceCleaner.cs" />
     <Compile Include="View\ResourceExtractor.cs" />

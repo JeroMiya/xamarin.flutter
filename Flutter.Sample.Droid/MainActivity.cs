@@ -26,7 +26,6 @@ namespace Flutter.Sample.Droid
             ConfigChanges.Density,
         HardwareAccelerated = true,
         WindowSoftInputMode = SoftInput.AdjustResize)]
-    [MetaData("io.flutter.app.android.SplashScreenUntilFirstFrame", Value = "true")]
     public class MainActivity : FlutterActivity
     {
         public MyFlutterApp _flutterApp;

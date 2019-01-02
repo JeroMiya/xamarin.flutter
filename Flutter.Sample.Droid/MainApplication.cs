@@ -12,21 +12,11 @@ namespace Flutter.Sample.Droid
         RoundIcon   = "@mipmap/ic_launcher_round",
         SupportsRtl = true,
         Theme       = "@style/AppTheme")]
+    [MetaData("io.flutter.app.android.SplashScreenUntilFirstFrame", Value = "true")]
     public class MainApplication : FlutterApplication
     {
         public MainApplication(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
         {
-        }
-
-        /// <inheritdoc />
-        public override void OnCreate()
-        {
-            base.OnCreate();
-
-            FlutterMain.StartInitialization(this)
-                       .ConfigureAwait(true)
-                       .GetAwaiter()
-                       .GetResult();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace FlutterBinding.Shell
 {
     public class PlatformView
     {
-        public interface Delegate
+        public interface IPlatformViewDelegate
         {
             Task OnPlatformViewCreated(Surface surface);
             Task OnPlatformViewDestroyed();
@@ -27,9 +27,9 @@ namespace FlutterBinding.Shell
             void OnPlatformViewMarkTextureFrameAvailable(long textureId);
         }
 
-        public PlatformView(Delegate @delegate, TaskRunners taskRunners)
+        public PlatformView(IPlatformViewDelegate platformViewDelegate, TaskRunners taskRunners)
         {
-            delegate_    = @delegate;
+            PlatformViewDelegate    = platformViewDelegate;
             _taskRunners = taskRunners;
             _size        = SKSizeI.Empty;
         }
@@ -41,31 +41,31 @@ namespace FlutterBinding.Shell
             return new VsyncWaiterFallback(_taskRunners);
         }
 
-        public void DispatchPlatformMessage(PlatformMessage message) => delegate_.OnPlatformViewDispatchPlatformMessage(message);
+        public void DispatchPlatformMessage(PlatformMessage message) => PlatformViewDelegate.OnPlatformViewDispatchPlatformMessage(message);
 
         public void DispatchSemanticsAction(int id, SemanticsAction action, object args)
         {
-            delegate_.OnPlatformViewDispatchSemanticsAction(id, action, args);
+            PlatformViewDelegate.OnPlatformViewDispatchSemanticsAction(id, action, args);
         }
 
         public virtual void SetSemanticsEnabled(bool enabled)
         {
-            delegate_.OnPlatformViewSetSemanticsEnabled(enabled);
+            PlatformViewDelegate.OnPlatformViewSetSemanticsEnabled(enabled);
         }
 
         public virtual void SetAccessibilityFeatures(AccessibilityFeatures flags)
         {
-            delegate_.OnPlatformViewSetAccessibilityFeatures(flags);
+            PlatformViewDelegate.OnPlatformViewSetAccessibilityFeatures(flags);
         }
 
         public void SetViewportMetrics(ViewportMetrics metrics)
         {
-            delegate_.OnPlatformViewSetViewportMetrics(metrics);
+            PlatformViewDelegate.OnPlatformViewSetViewportMetrics(metrics);
         }
 
         public void NotifyCreated()
         {
-            delegate_.OnPlatformViewCreated(CreateRenderingSurface());
+            PlatformViewDelegate.OnPlatformViewCreated(CreateRenderingSurface());
         }
 
         public virtual Task NotifyChanged(SKSizeI size)
@@ -75,7 +75,7 @@ namespace FlutterBinding.Shell
 
         public virtual void NotifyDestroyed()
         {
-            delegate_.OnPlatformViewDestroyed();
+            PlatformViewDelegate.OnPlatformViewDestroyed();
         }
 
         // Unlike all other methods on the platform view, this one may be called on a
@@ -98,7 +98,7 @@ namespace FlutterBinding.Shell
 
         public void SetNextFrameCallback(Action callback)
         {
-            delegate_.OnPlatformViewSetNextFrameCallback(callback);
+            PlatformViewDelegate.OnPlatformViewSetNextFrameCallback(callback);
         }
 
         public void DispatchPointerDataPacket(PointerDataPacket packet) { }
@@ -106,22 +106,22 @@ namespace FlutterBinding.Shell
         // Called once per texture, on the platform thread.
         public void RegisterTexture(Texture texture)
         {
-            delegate_.OnPlatformViewRegisterTexture(texture);
+            PlatformViewDelegate.OnPlatformViewRegisterTexture(texture);
         }
 
         // Called once per texture, on the platform thread.
         public void UnregisterTexture(long textureId)
         {
-            delegate_.OnPlatformViewUnregisterTexture(textureId);
+            PlatformViewDelegate.OnPlatformViewUnregisterTexture(textureId);
         }
 
         // Called once per texture update (e.g. video frame), on the platform thread.
         public void MarkTextureFrameAvailable(long textureId)
         {
-            delegate_.OnPlatformViewMarkTextureFrameAvailable(textureId);
+            PlatformViewDelegate.OnPlatformViewMarkTextureFrameAvailable(textureId);
         }
 
-        protected PlatformView.Delegate delegate_;
+        protected PlatformView.IPlatformViewDelegate PlatformViewDelegate;
         protected TaskRunners _taskRunners;
 
         protected SKSizeI _size;

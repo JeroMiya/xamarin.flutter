@@ -9,6 +9,9 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Util;
 using Flutter.Shell.Droid.Util;
+using FlutterBinding.Engine;
+using FlutterBinding.Extensions;
+using FlutterBinding.Runtime;
 using FlutterBinding.Shell;
 using Java.Lang;
 using Java.Util;
@@ -227,6 +230,8 @@ namespace Flutter.Shell.Droid.View
             InitConfig(applicationContext);
             InitAot(applicationContext);
             await InitResources(applicationContext);
+
+            NativeRecordStartTimestamp();
         }
 
         private static string FromFlutterAssets(string filePath)
@@ -261,7 +266,41 @@ namespace Flutter.Shell.Droid.View
             string bundlePath,
             string appStoragePath,
             string engineCachesPath)
-        { }
+        {
+            // TODO: None of this looks interesting enough to implement yet
+            //// Restore the callback cache.
+            //DartCallbackCache.SetCachePath(appStoragePath);
+            //paths.InitializeAndroidCachesPath(engineCachesPath);
+            //DartCallbackCache.LoadCacheFromDisk();
+
+            //if (!DartVM.IsRunningPrecompiledCode())
+            //{
+            //    // Check to see if the appropriate kernel files are present and configure
+            //    // settings accordingly.
+            //    var application_kernel_path = paths.JoinPaths({ settings.assets_path, "kernel_blob.bin"});
+
+            //    if (IsFile(application_kernel_path))
+            //        settings.application_kernel_asset = application_kernel_path;
+            //}
+
+            //settings.task_observer_add =  (intptr_t key, fml::closure callback) =>
+            //{
+            //    MessageLoop.GetCurrent().AddTaskObserver(key, callback);
+            //};
+
+            //settings.task_observer_remove =  (intptr_t key) => 
+            //{
+            //    MessageLoop.GetCurrent().RemoveTaskObserver(key);
+            //};
+            //// Not thread safe. Will be removed when FlutterMain is refactored to no
+            //// longer be a singleton.
+            //g_flutter_main.reset(new FlutterMain(settings));
+        }
+
+        private static void NativeRecordStartTimestamp()
+        {
+            Blink.EngineMainEnter = TimePoint.Now();
+        }
 
         /**
          * Initialize our Flutter config values by obtaining them from the
@@ -294,7 +333,9 @@ namespace Flutter.Shell.Droid.View
         private static async Task InitResources(Context applicationContext)
         {
             var context = applicationContext;
-            new ResourceCleaner(context).Start();
+            new ResourceCleaner(context)
+               .Start()
+               .FireAndForget();
 
             Bundle metaData = null;
             try

@@ -12,28 +12,97 @@ using SkiaSharp.Views.Android;
 
 namespace Flutter.Shell.Droid.App
 {
-    public class FlutterActivity : Activity, IProvider, ViewFactory
+    public class FlutterActivity : Activity, IFlutterViewProvider, IViewFactory
     {
-        private FlutterActivityDelegate _delegate;
+        private readonly FlutterActivityDelegate _delegate;
 
         // These aliases ensure that the methods we forward to the delegate adhere
         // to relevant interfaces versus just existing in FlutterActivityDelegate.
-        private IFlutterActivityEvents _eventDelegate;
-        private IProvider _viewProvider;
-        private IPluginRegistry _pluginRegistry;
+        private readonly IFlutterActivityEvents _eventDelegate;
+        private readonly IFlutterViewProvider _flutterViewProvider;
+        private readonly IPluginRegistry _pluginRegistry;
 
-        public SKCanvasView Canvas { get; private set; }
-        public FlutterSurface Surface { get; private set; }
+        public FlutterActivity()
+        {
+            _delegate       = new FlutterActivityDelegate(this, this);
+            _eventDelegate  = _delegate;
+            _flutterViewProvider   = _delegate;
+            _pluginRegistry = _delegate;
+        }
 
+        // public SKCanvasView Canvas { get; private set; }
+        // public FlutterSurface Surface { get; private set; }
+
+        //private void OnCanvasPaintSurface(object sender, SKPaintSurfaceEventArgs args)
+        //{
+        //    Surface.OnPaintSurface(args.Surface, args.Info);
+        //}
+
+        //protected override void OnDestroy()
+        //{
+        //    Canvas.PaintSurface -= OnCanvasPaintSurface;
+        //    _eventDelegate.OnDestroy();
+        //    base.OnDestroy();
+        //}
+
+        /// <summary>
+        /// Returns the Flutter view used by this activity; will be null before <code>onCreate(Bundle)</code> is called.
+        /// </summary>
+        public FlutterView GetFlutterView()
+        {
+            return _flutterViewProvider.GetFlutterView();
+        }
+
+        /// <summary>
+        /// Hook for subclasses to customize the creation of the <see cref="FlutterView"/>
+        ///
+        /// The default implementation returns <code>null</code> , which will cause the
+        /// activity to use a newly instantiated full-screen view.
+        /// </summary>
+        public FlutterView CreateFlutterView(Context context)
+        {
+            return null;
+        }
+
+        /// <summary>
+        /// Hook for subclasses to customize the creation of the {@code FlutterNativeView}.
+        ///
+        /// The default implementation returns <code>null</code>, which will cause the
+        /// activity to use a newly instantiated native view object.
+        /// </summary>
+        /// <returns></returns>
+        public FlutterNativeView CreateFlutterNativeView()
+        {
+            return null;
+        }
+
+        public bool RetainFlutterNativeView()
+        {
+            return false;
+        }
+
+        public bool HasPlugin(string key)
+        {
+            return _pluginRegistry.HasPlugin(key);
+        }
+
+        public T ValuePublishedByPlugin<T>(string pluginKey)
+        {
+            return _pluginRegistry.ValuePublishedByPlugin<T>(pluginKey);
+        }
+
+        public IRegistrar RegistrarFor(string pluginKey)
+        {
+            return _pluginRegistry.RegistrarFor(pluginKey);
+        }
+
+        /// <inheritdoc />
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            _delegate.OnCreate(savedInstanceState);
 
-            _delegate       = new FlutterActivityDelegate(this, this);
-            _eventDelegate  = _delegate;
-            _viewProvider   = _delegate;
-            _pluginRegistry = _delegate;
-
+            /*
             FrameLayout.LayoutParams rootLayout;
             FrameLayout root = new FrameLayout(this)
             {
@@ -51,86 +120,9 @@ namespace Flutter.Shell.Droid.App
             Surface = new FlutterSurface(scale);
 
             Canvas.PaintSurface += OnCanvasPaintSurface;
+            */
         }
 
-        private void OnCanvasPaintSurface(object sender, SKPaintSurfaceEventArgs args)
-        {
-            Surface.OnPaintSurface(args.Surface, args.Info);
-        }
-
-        protected override void OnDestroy()
-        {
-            Canvas.PaintSurface -= OnCanvasPaintSurface;
-            _eventDelegate.OnDestroy();
-            base.OnDestroy();
-        }
-
-        /**
-         * Returns the Flutter view used by this activity; will be null before
-         * {@link #onCreate(Bundle)} is called.
-         */
-        //@Override
-        public FlutterView GetFlutterView()
-        {
-            return _viewProvider.GetFlutterView();
-        }
-
-        /**
-         * Hook for subclasses to customize the creation of the
-         * {@code FlutterView}.
-         *
-         * <p>The default implementation returns {@code null}, which will cause the
-         * activity to use a newly instantiated full-screen view.</p>
-         */
-        //@Override
-        public FlutterView CreateFlutterView(Context context)
-        {
-            return null;
-        }
-
-        /**
-         * Hook for subclasses to customize the creation of the
-         * {@code FlutterNativeView}.
-         *
-         * <p>The default implementation returns {@code null}, which will cause the
-         * activity to use a newly instantiated native view object.</p>
-         */
-        //@Override
-        public FlutterNativeView CreateFlutterNativeView()
-        {
-            return null;
-        }
-
-        //@Override
-        public bool RetainFlutterNativeView()
-        {
-            return false;
-        }
-
-        //@Override
-        public bool HasPlugin(string key)
-        {
-            return _pluginRegistry.HasPlugin(key);
-        }
-
-        //@Override
-        public T ValuePublishedByPlugin<T>(string pluginKey)
-        {
-            return _pluginRegistry.ValuePublishedByPlugin<T>(pluginKey);
-        }
-
-        //@Override
-        public IRegistrar RegistrarFor(string pluginKey)
-        {
-            return _pluginRegistry.RegistrarFor(pluginKey);
-        }
-
-        /// <inheritdoc />
-        public override void OnCreate(Bundle savedInstanceState, PersistableBundle persistentState)
-        {
-            base.OnCreate(savedInstanceState, persistentState);
-            _eventDelegate.OnCreate(savedInstanceState);
-        }
 
         /// <inheritdoc />
         protected override void OnStart()
@@ -144,6 +136,13 @@ namespace Flutter.Shell.Droid.App
         {
             base.OnResume();
             _eventDelegate.OnResume();
+        }
+
+        /// <inheritdoc />
+        protected override void OnDestroy()
+        {
+            _eventDelegate.OnDestroy();
+            base.OnDestroy();
         }
 
         /// <inheritdoc />
@@ -204,20 +203,6 @@ namespace Flutter.Shell.Droid.App
         {
             //base.OnUserLeaveHint();
             _eventDelegate.OnUserLeaveHint();
-        }
-
-        /// <inheritdoc />
-        public override void OnTrimMemory(TrimMemory level)
-        {
-            //base.OnTrimMemory(level);
-            _eventDelegate.OnTrimMemory(level);
-        }
-
-        /// <inheritdoc />
-        public override void OnLowMemory()
-        {
-            //base.OnLowMemory();
-            _eventDelegate.OnLowMemory();
         }
 
         /// <inheritdoc />

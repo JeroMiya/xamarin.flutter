@@ -6,6 +6,7 @@ using Flutter.Shell.Droid.Plugin.Common;
 using Java.Lang;
 using Java.Nio;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using FlutterBinding.Engine.Assets;
 using FlutterBinding.Shell;
 using FlutterBinding.UI;
@@ -27,13 +28,11 @@ namespace Flutter.Shell.Droid.View
         private Context _context;
         private bool _applicationIsRunning;
 
-        public FlutterNativeView(Context context) : this(context, false) { }
-
-        public FlutterNativeView(Context context, bool isBackgroundView)
+        public FlutterNativeView(Context context)
         {
             _context        = context;
             _pluginRegistry = new FlutterPluginRegistry(this, context);
-            Attach(this, isBackgroundView);
+            Attach(this);
             AssertAttached();
             _messageHandlers = new Dictionary<string, IBinaryMessageHandler>();
         }
@@ -180,9 +179,9 @@ namespace Flutter.Shell.Droid.View
                 _messageHandlers[channel] = handler;
         }
 
-        private void Attach(FlutterNativeView view, bool isBackgroundView)
+        private async void Attach(FlutterNativeView view)
         {
-            _shellHolder = NativeAttach(view, isBackgroundView);
+            _shellHolder = await NativeAttach(view);
         }
 
         // Called by native to send us a platform message.
@@ -275,12 +274,11 @@ namespace Flutter.Shell.Droid.View
             _pluginRegistry?.OnPreEngineRestart();
         }
 
-        public static AndroidShellHolder NativeAttach(FlutterNativeView view, bool isBackgroundView)
+        public static async Task<AndroidShellHolder> NativeAttach(FlutterNativeView view)
         {
-            return AndroidShellHolder.Create(
+            return await AndroidShellHolder.Create(
                 FlutterMain.Settings,
-                view,
-                isBackgroundView).Result;
+                view);
         }
 
         private static void NativeRunBundleAndSnapshotFromLibrary(

@@ -31,10 +31,10 @@ namespace Flutter.Shell.Droid
         // background execution.
         /// <inheritdoc />
         public PlatformViewAndroid(
-            Delegate @delegate,
+            IPlatformViewDelegate platformViewDelegate,
             TaskRunners taskRunners,
             FlutterNativeView view)
-            : base(@delegate, taskRunners)
+            : base(platformViewDelegate, taskRunners)
         {
             _view = view;
         }

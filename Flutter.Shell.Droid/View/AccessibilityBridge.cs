@@ -49,58 +49,6 @@ namespace Flutter.Shell.Droid.View
 
         private readonly BasicMessageChannel<object> _flutterAccessibilityChannel;
 
-        /*
-        [Flags]
-        public enum AccessibilityBridgeAction
-        {
-            Unknown = 0,
-            Tap = 1 << 0,
-            LongPress = 1 << 1,
-            ScrollLeft = 1 << 2,
-            ScrollRight = 1 << 3,
-            ScrollUp = 1 << 4,
-            ScrollDown = 1 << 5,
-            Increase = 1 << 6,
-            Decrease = 1 << 7,
-            ShowOnScreen = 1 << 8,
-            MoveCursorForwardByCharacter = 1 << 9,
-            MoveCursorBackwardByCharacter = 1 << 10,
-            SetSelection = 1 << 11,
-            Copy = 1 << 12,
-            Cut = 1 << 13,
-            Paste = 1 << 14,
-            DidGainAccessibilityFocus = 1 << 15,
-            DidLoseAccessibilityFocus = 1 << 16,
-            CustomAction = 1 << 17,
-            Dismiss = 1 << 18,
-            MoveCursorForwardByWord = 1 << 19,
-            MoveCursorBackwardByWord = 1 << 20
-        }
-        
-        public enum Flag
-        {
-            HasCheckedState = 1 << 0,
-            IsChecked = 1 << 1,
-            IsSelected = 1 << 2,
-            IsButton = 1 << 3,
-            IsTextField = 1 << 4,
-            IsFocused = 1 << 5,
-            HasEnabledState = 1 << 6,
-            IsEnabled = 1 << 7,
-            IsInMutuallyExclusiveGroup = 1 << 8,
-            IsHeader = 1 << 9,
-            IsObscured = 1 << 10,
-            ScopesRoute = 1 << 11,
-            NamesRoute = 1 << 12,
-            IsHidden = 1 << 13,
-            IsImage = 1 << 14,
-            IsLiveRegion = 1 << 15,
-            HasToggledState = 1 << 16,
-            IsToggled = 1 << 17,
-            HasImplicitScrolling = 1 << 18
-        }
-        */
-
         public AccessibilityBridge(FlutterView owner)
         {
             //assert owner != null;

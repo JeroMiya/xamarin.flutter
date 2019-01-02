@@ -1,6 +1,6 @@
 ﻿namespace Flutter.Shell.Droid.View
 {
-    public interface IProvider
+    public interface IFlutterViewProvider
     {
         /**
          * Returns a reference to the Flutter view maintained by this object. This may

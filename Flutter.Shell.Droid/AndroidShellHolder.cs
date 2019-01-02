@@ -18,8 +18,6 @@ namespace Flutter.Shell.Droid
         private Settings _settings;
         private FlutterNativeView _view;
         public PlatformView PlatformView { get; private set; }
-        private ThreadHost _threadHost;
-        private bool _isBackgroundView;
         private FlutterBinding.Shell.Shell _shell;
         private static int _shellCount = 0;
 
@@ -28,43 +26,20 @@ namespace Flutter.Shell.Droid
 
         public static async Task<AndroidShellHolder> Create(
             Settings settings,
-            FlutterNativeView view,
-            bool isBackgroundView)
+            FlutterNativeView view)
         {
             AndroidShellHolder holder = new AndroidShellHolder
             {
                 _settings         = settings,
                 _view             = view,
-                _isBackgroundView = isBackgroundView
             };
 
             Interlocked.Increment(ref _shellCount);
-
             string threadLabel = $"Shell:{_shellCount}";
-
-            if (isBackgroundView)
-                holder._threadHost = new ThreadHost(threadLabel, ThreadHost.Type.UI | ThreadHost.Type.Platform);
-            else
-                holder._threadHost = new ThreadHost(threadLabel, ThreadHost.Type.UI | ThreadHost.Type.Platform | ThreadHost.Type.GPU | ThreadHost.Type.IO);
-
-            TaskRunner gpuTR, ioTR;
-            if (isBackgroundView)
-            {
-                gpuTR = ioTR = holder._threadHost.UIThread;
-            }
-            else
-            {
-                gpuTR = holder._threadHost.GPUThread;
-                ioTR  = holder._threadHost.IOThread;
-            }
 
             TaskRunners taskRunners = new TaskRunners(
                 threadLabel,
-                holder._threadHost.PlatformThread,
-                gpuTR,
-                holder._threadHost.UIThread,
-                ioTR
-            );
+                TaskRunners.Type.Platform | TaskRunners.Type.UI | TaskRunners.Type.GPU | TaskRunners.Type.IO);
 
             holder._shell = await FlutterBinding.Shell.Shell.Create(
                 taskRunners,
@@ -73,7 +48,6 @@ namespace Flutter.Shell.Droid
                 OnCreateRasterizer);
 
             holder.IsValid = holder._shell != null;
-
             if (holder.IsValid)
             {
                 // Description of Android thread priority

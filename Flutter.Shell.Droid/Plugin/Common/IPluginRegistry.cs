@@ -1,5 +1,4 @@
-﻿using Android.Content;
-using Flutter.Shell.Droid.View;
+﻿using Flutter.Shell.Droid.View;
 
 namespace Flutter.Shell.Droid.Plugin.Common
 {
@@ -50,34 +49,9 @@ namespace Flutter.Shell.Droid.Plugin.Common
         T ValuePublishedByPlugin<T>(string pluginKey);
     }
 
-    /**
-     * Delegate interface for handling activity results on behalf of the main
-     * {@link Activity}.
-     */
-    public interface IActivityResultListener
-    {
-        /**
-         * @return true if the result has been handled.
-         */
-        bool OnActivityResult(int requestCode, Android.App.Result resultCode, Intent data);
-    }
-
-    /**
-     * Delegate interface for handling new intents on behalf of the main
-     * {@link Activity}.
-     */
-    public interface INewIntentListener
-    {
-        /**
-         * @return true if the new intent has been handled.
-         */
-        bool OnNewIntent(Intent intent);
-    }
-
-    /**
-     * Delegate interface for handling user leave hints on behalf of the main
-     * {@link Activity}.
-     */
+    /// <summary>
+    /// Delegate interface for handling user leave hints on behalf of the main {@link Activity}.
+    /// </summary>
     public interface IUserLeaveHintListener
     {
         void OnUserLeaveHint();

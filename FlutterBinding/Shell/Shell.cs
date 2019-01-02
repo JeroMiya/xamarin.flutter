@@ -16,7 +16,7 @@ namespace FlutterBinding.Shell
     //using ServiceProtocolHandler = std::function<bool(const blink::ServiceProtocol::Handler::ServiceProtocolMap&,rapidjson::Document&)>;
     //public delegate bool ServiceProtocolHandler(ServiceProtocol.Handler.ServiceProtocolMap, JObject document);
 
-    public sealed class Shell : PlatformView.Delegate,
+    public sealed class Shell : PlatformView.IPlatformViewDelegate,
             Animator.IAnimatorDelegate,
             Engine.IEngineDelegate
         //public blink::ServiceProtocol::Handler 
@@ -38,12 +38,7 @@ namespace FlutterBinding.Shell
                 return null;
             }
 
-            Shell shell = null;
-            await TaskRunner.RunNowOrPostTask(
-                taskRunners.PlatformTaskRunner,
-                async () =>
-                {
-                    shell = await CreateShellOnPlatformThread(
+            Shell shell = await CreateShellOnPlatformThread(
                         taskRunners,
                         settings,
                         //std::move(isolate_snapshot),
@@ -51,7 +46,6 @@ namespace FlutterBinding.Shell
                         onCreatePlatformView,
                         onCreateRasterizer
                     );
-                });
 
             return shell;
         }

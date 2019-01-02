@@ -38,9 +38,9 @@ namespace Flutter.Shell.Droid.View
             _context = context;
         }
 
-        public void Start()
+        public Task Start()
         {
-            Task.Run(
+            return Task.Run(
                 () =>
                 {
                     Java.IO.File cacheDir = _context.CacheDir;

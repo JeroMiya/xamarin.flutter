@@ -14,10 +14,12 @@ using Java.Interop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Android.Runtime;
 using Result = Android.App.Result;
 
 namespace Flutter.Shell.Droid.App
 {
+    
     /**
      * Specifies the mechanism by which Flutter views are created during the
      * operation of a {@code FlutterActivityDelegate}.
@@ -32,7 +34,7 @@ namespace Flutter.Shell.Droid.App
      * useful for applications to override to reuse the FlutterNativeView held
      * e.g. by a pre-existing background service.</p>
      */
-    public interface ViewFactory
+    public interface IViewFactory
     {
         FlutterView CreateFlutterView(Context context);
         FlutterNativeView CreateFlutterNativeView();
@@ -62,64 +64,64 @@ namespace Flutter.Shell.Droid.App
      * {@link PluginRegistry} and/or {@link io.flutter.view.FlutterView.Provider}
      * and forward those methods to this class as well.</p>
      */
-    public sealed class FlutterActivityDelegate : Java.Lang.Object, IFlutterActivityEvents, IProvider, IPluginRegistry
+    public sealed class FlutterActivityDelegate : IFlutterActivityEvents, IFlutterViewProvider, IPluginRegistry
     {
         private static readonly string SPLASH_SCREEN_META_DATA_KEY = "io.flutter.app.android.SplashScreenUntilFirstFrame";
         private static readonly string TAG = "FlutterActivityDelegate";
 
-        private static readonly ViewGroup.LayoutParams matchParent =
+        private static readonly ViewGroup.LayoutParams MatchParent =
             new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent);
 
 
-        private readonly Activity activity;
-        private readonly ViewFactory viewFactory;
-        private FlutterView flutterView;
-        private Android.Views.View launchView;
+        private readonly FlutterActivity _activity;
+        private readonly IViewFactory _viewFactory;
+        private FlutterView _flutterView;
+        private Android.Views.View _launchView;
 
-        public FlutterActivityDelegate(Activity activity, ViewFactory viewFactory)
+        public FlutterActivityDelegate(FlutterActivity activity, IViewFactory viewFactory)
         {
-            this.activity    = activity ?? throw new ArgumentNullException(nameof(activity));
-            this.viewFactory = viewFactory ?? throw new ArgumentNullException(nameof(viewFactory));
+            _activity    = activity ?? throw new ArgumentNullException(nameof(activity));
+            _viewFactory = viewFactory ?? throw new ArgumentNullException(nameof(viewFactory));
         }
 
         //@Override
         public FlutterView GetFlutterView()
         {
-            return flutterView;
+            return _flutterView;
         }
 
         // The implementation of PluginRegistry forwards to flutterView.
         //@Override
         public bool HasPlugin(string key)
         {
-            return flutterView.GetPluginRegistry().HasPlugin(key);
+            return _flutterView.GetPluginRegistry().HasPlugin(key);
         }
 
         //@Override
         //@SuppressWarnings("unchecked")
         public T ValuePublishedByPlugin<T>(string pluginKey)
         {
-            return flutterView.GetPluginRegistry().ValuePublishedByPlugin<T>(pluginKey);
+            return _flutterView.GetPluginRegistry().ValuePublishedByPlugin<T>(pluginKey);
         }
 
         //@Override
         public IRegistrar RegistrarFor(string pluginKey)
         {
-            return flutterView.GetPluginRegistry().RegistrarFor(pluginKey);
+            return _flutterView.GetPluginRegistry().RegistrarFor(pluginKey);
         }
 
         //@Override
         public bool OnRequestPermissionsResult(
             int requestCode, string[] permissions, Permission[] grantResults)
         {
-            return flutterView.GetPluginRegistry().OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            return _flutterView.GetPluginRegistry().OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
         //@Override
         /// <inheritdoc />
         public bool OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
-            return flutterView.GetPluginRegistry().OnActivityResult(requestCode, resultCode, data);
+            return _flutterView.GetPluginRegistry().OnActivityResult(requestCode, resultCode, data);
         }
 
         /*
@@ -133,43 +135,44 @@ namespace Flutter.Shell.Droid.App
 
 
         //@Override
-        public void OnCreate(Bundle savedInstanceState)
+        public async void OnCreate(Bundle savedInstanceState)
         {
             if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
             {
-                Window window = activity.Window;
+                Window window = _activity.Window;
                 window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
                 window.SetStatusBarColor(new Color(0x40000000));
                 window.DecorView.SystemUiVisibility = (StatusBarVisibility)(SystemUiFlags.Fullscreen | SystemUiFlags.LayoutStable);
             }
 
-            string[] args = getArgsFromIntent(activity.Intent);
-            FlutterMain.EnsureInitializationComplete(activity.ApplicationContext, args);
+            string[] args = GetArgsFromIntent(_activity.Intent);
+            await FlutterMain.EnsureInitializationComplete(_activity.ApplicationContext, args);
 
-            flutterView = viewFactory.CreateFlutterView(activity);
-            if (flutterView == null)
+            _flutterView = _viewFactory.CreateFlutterView(_activity);
+            if (_flutterView == null)
             {
-                FlutterNativeView nativeView = viewFactory.CreateFlutterNativeView();
-                flutterView = new FlutterView(activity, null, nativeView)
+                FlutterNativeView nativeView = _viewFactory.CreateFlutterNativeView();
+                _flutterView = new FlutterView(_activity, null, nativeView)
                 {
-                    LayoutParameters = matchParent
+                    LayoutParameters = MatchParent
                 };
-                activity.SetContentView(flutterView);
-                launchView = createLaunchView();
-                if (launchView != null)
+
+                _activity.SetContentView(_flutterView);
+                _launchView = CreateLaunchView();
+                if (_launchView != null)
                 {
-                    addLaunchView();
+                    AddLaunchView();
                 }
             }
 
-            if (loadIntent(activity.Intent))
+            if (LoadIntent(_activity.Intent))
             {
                 return;
             }
 
-            if (!flutterView.GetFlutterNativeView().IsApplicationRunning())
+            if (!_flutterView.GetFlutterNativeView().IsApplicationRunning())
             {
-                string appBundlePath = FlutterMain.FindAppBundlePath(activity.ApplicationContext);
+                string appBundlePath = FlutterMain.FindAppBundlePath(_activity.ApplicationContext);
                 if (appBundlePath != null)
                 {
                     FlutterRunArguments arguments = new FlutterRunArguments();
@@ -182,7 +185,7 @@ namespace Flutter.Shell.Droid.App
                     bundlePaths.Add(appBundlePath);
                     arguments.BundlePaths = bundlePaths.ToArray();
                     arguments.Entrypoint  = "main";
-                    flutterView.RunFromBundle(arguments);
+                    _flutterView.RunFromBundle(arguments);
                 }
             }
         }
@@ -192,93 +195,90 @@ namespace Flutter.Shell.Droid.App
         {
             // Only attempt to reload the Flutter Dart code during development. Use
             // the debuggable flag as an indicator that we are in development mode.
-            if (!isDebuggable() || !loadIntent(intent))
+            if (!IsDebuggable() || !LoadIntent(intent))
             {
-                flutterView.GetPluginRegistry().OnNewIntent(intent);
+                _flutterView.GetPluginRegistry().OnNewIntent(intent);
             }
         }
 
-        private bool isDebuggable()
+        private bool IsDebuggable()
         {
-            return activity.ApplicationInfo.Flags.HasFlag(ApplicationInfoFlags.Debuggable);
+            return _activity.ApplicationInfo.Flags.HasFlag(ApplicationInfoFlags.Debuggable);
         }
 
         //@Override
         public void OnPause()
         {
-            Application app = (Application)activity.ApplicationContext;
+            Application app = (Application)_activity.ApplicationContext;
             if (app is FlutterApplication flutterApp)
             {
-                if (activity.Equals(flutterApp.CurrentActivity))
+                if (_activity.Equals(flutterApp.CurrentActivity))
                 {
                     flutterApp.CurrentActivity = null;
                 }
             }
 
-            if (flutterView != null)
+            if (_flutterView != null)
             {
-                flutterView.OnPause();
+                _flutterView.OnPause();
             }
         }
 
         //@Override
         public void OnStart()
         {
-            if (flutterView != null)
+            if (_flutterView != null)
             {
-                flutterView.OnStart();
+                _flutterView.OnStart();
             }
         }
 
         //@Override
         public void OnResume()
         {
-            Application app = (Application)activity.ApplicationContext;
+            Application app = (Application)_activity.ApplicationContext;
             if (app is FlutterApplication flutterApp)
             {
-                flutterApp.CurrentActivity = activity;
+                flutterApp.CurrentActivity = _activity;
             }
         }
 
         //@Override
         public void OnStop()
         {
-            flutterView.OnStop();
+            _flutterView.OnStop();
         }
 
         //@Override
         public void OnPostResume()
         {
-            if (flutterView != null)
-            {
-                flutterView.OnPostResume();
-            }
+            _flutterView?.OnPostResume();
         }
 
         //@Override
         public void OnDestroy()
         {
-            Application app = (Application)activity.ApplicationContext;
+            Application app = (Application)_activity.ApplicationContext;
             if (app is FlutterApplication flutterApp)
             {
-                if (activity.Equals(flutterApp.CurrentActivity))
+                if (_activity.Equals(flutterApp.CurrentActivity))
                 {
                     flutterApp.CurrentActivity = null;
                 }
             }
 
-            if (flutterView != null)
+            if (_flutterView != null)
             {
-                bool detach = flutterView.GetPluginRegistry().OnViewDestroy(flutterView.GetFlutterNativeView());
-                if (detach || viewFactory.RetainFlutterNativeView())
+                bool detach = _flutterView.GetPluginRegistry().OnViewDestroy(_flutterView.GetFlutterNativeView());
+                if (detach || _viewFactory.RetainFlutterNativeView())
                 {
                     // Detach, but do not destroy the FlutterView if a plugin
                     // expressed interest in its FlutterNativeView.
-                    flutterView.Detach();
+                    _flutterView.Detach();
                 }
                 else
                 {
-                    flutterView.Destroy();
+                    _flutterView.Destroy();
                 }
             }
         }
@@ -286,9 +286,9 @@ namespace Flutter.Shell.Droid.App
         //@Override
         public bool OnBackPressed()
         {
-            if (flutterView != null)
+            if (_flutterView != null)
             {
-                flutterView.PopRoute();
+                _flutterView.PopRoute();
                 return true;
             }
 
@@ -298,7 +298,7 @@ namespace Flutter.Shell.Droid.App
         //@Override
         public void OnUserLeaveHint()
         {
-            flutterView.GetPluginRegistry().OnUserLeaveHint();
+            _flutterView.GetPluginRegistry().OnUserLeaveHint();
         }
 
         //@Override
@@ -308,20 +308,20 @@ namespace Flutter.Shell.Droid.App
             // framework has a chance to react to the notification.
             if (level == TrimMemory.RunningLow)
             {
-                flutterView.OnMemoryPressure();
+                _flutterView.OnMemoryPressure();
             }
         }
 
         //@Override
         public void OnLowMemory()
         {
-            flutterView.OnMemoryPressure();
+            _flutterView.OnMemoryPressure();
         }
 
         //@Override
         public void OnConfigurationChanged(Configuration newConfig) { }
 
-        private static string[] getArgsFromIntent(Intent intent)
+        private static string[] GetArgsFromIntent(Intent intent)
         {
             // Before adding more entries to this list, consider that arbitrary
             // Android applications can generate intents with extra data and that
@@ -375,7 +375,7 @@ namespace Flutter.Shell.Droid.App
             return null;
         }
 
-        private bool loadIntent(Intent intent)
+        private bool LoadIntent(Intent intent)
         {
             string action = intent.Action;
             if (Intent.ActionRun.Equals(action))
@@ -386,15 +386,15 @@ namespace Flutter.Shell.Droid.App
                 {
                     // Fall back to the installation path if no bundle path
                     // was specified.
-                    appBundlePath = FlutterMain.FindAppBundlePath(activity.ApplicationContext);
+                    appBundlePath = FlutterMain.FindAppBundlePath(_activity.ApplicationContext);
                 }
 
                 if (route != null)
                 {
-                    flutterView.SetInitialRoute(route);
+                    _flutterView.SetInitialRoute(route);
                 }
 
-                if (!flutterView.GetFlutterNativeView().IsApplicationRunning())
+                if (!_flutterView.GetFlutterNativeView().IsApplicationRunning())
                 {
                     FlutterRunArguments args = new FlutterRunArguments();
                     List<string> bundlePaths = new List<string>();
@@ -406,7 +406,7 @@ namespace Flutter.Shell.Droid.App
                     bundlePaths.Add(appBundlePath);
                     args.BundlePaths = bundlePaths.ToArray();
                     args.Entrypoint  = "main";
-                    flutterView.RunFromBundle(args);
+                    _flutterView.RunFromBundle(args);
                 }
 
                 return true;
@@ -421,22 +421,22 @@ namespace Flutter.Shell.Droid.App
          *
          * Returns null if no {@code windowBackground} is set for the activity.
          */
-        private Android.Views.View createLaunchView()
+        private Android.Views.View CreateLaunchView()
         {
-            if (!showSplashScreenUntilFirstFrame())
+            if (!ShowSplashScreenUntilFirstFrame())
             {
                 return null;
             }
 
-            Drawable launchScreenDrawable = getLaunchScreenDrawableFromActivityTheme();
+            Drawable launchScreenDrawable = GetLaunchScreenDrawableFromActivityTheme();
             if (launchScreenDrawable == null)
             {
                 return null;
             }
 
-            Android.Views.View view = new Android.Views.View(activity)
+            Android.Views.View view = new Android.Views.View(_activity)
             {
-                LayoutParameters = matchParent,
+                LayoutParameters = MatchParent,
                 Background       = launchScreenDrawable
             };
             return view;
@@ -452,10 +452,10 @@ namespace Flutter.Shell.Droid.App
          * Returns null if no {@code windowBackground} is set for the activity.
          */
         //@SuppressWarnings("deprecation")
-        private Drawable getLaunchScreenDrawableFromActivityTheme()
+        private Drawable GetLaunchScreenDrawableFromActivityTheme()
         {
             TypedValue typedValue = new TypedValue();
-            if (!activity.Theme.ResolveAttribute(
+            if (!_activity.Theme.ResolveAttribute(
                 Android.Resource.Attribute.WindowBackground,
                 typedValue,
                 true))
@@ -471,7 +471,7 @@ namespace Flutter.Shell.Droid.App
             try
             {
 #pragma warning disable 618 // Deprecation
-                return activity.Resources.GetDrawable(typedValue.ResourceId);
+                return _activity.Resources.GetDrawable(typedValue.ResourceId);
 #pragma warning restore 618
             }
             catch (Resources.NotFoundException e)
@@ -485,12 +485,12 @@ namespace Flutter.Shell.Droid.App
          * Let the user specify whether the activity's {@code windowBackground} is a launch screen
          * and should be shown until the first frame via a <meta-data> tag in the activity.
          */
-        private bool showSplashScreenUntilFirstFrame()
+        private bool ShowSplashScreenUntilFirstFrame()
         {
             try
             {
-                ActivityInfo activityInfo = activity.PackageManager.GetActivityInfo(
-                    activity.ComponentName,
+                ActivityInfo activityInfo = _activity.PackageManager.GetActivityInfo(
+                    _activity.ComponentName,
                     PackageInfoFlags.MetaData | PackageInfoFlags.Activities);
                 Bundle metadata = activityInfo.MetaData;
                 return metadata != null && metadata.GetBoolean(SPLASH_SCREEN_META_DATA_KEY);
@@ -532,19 +532,19 @@ namespace Flutter.Shell.Droid.App
          *
          * Fade it out and remove it when the {@link FlutterView} renders its first frame.
          */
-        private void addLaunchView()
+        private void AddLaunchView()
         {
-            if (launchView == null)
+            if (_launchView == null)
             {
                 return;
             }
 
-            activity.AddContentView(launchView, matchParent);
-            flutterView.FirstFrame += (s, e) =>
+            _activity.AddContentView(_launchView, MatchParent);
+            _flutterView.FirstFrame += (s, e) =>
             {
-                ViewPropertyAnimator viewPropertyAnimate = launchView.Animate();
+                ViewPropertyAnimator viewPropertyAnimate = _launchView.Animate();
                 viewPropertyAnimate.Alpha(0f);
-                FirstFrameListener adapter = new FirstFrameListener(launchView, () => launchView = null);
+                FirstFrameListener adapter = new FirstFrameListener(_launchView, () => _launchView = null);
                 viewPropertyAnimate.SetListener(adapter);
                 //flutterView.RemoveFirstFrameListener(this);
             };
@@ -554,10 +554,7 @@ namespace Flutter.Shell.Droid.App
             // FlutterView.
             //
             // We can make this configurable if users want it.
-            activity.SetTheme(Android.Resource.Style.ThemeBlackNoTitleBar);
+            _activity.SetTheme(Android.Resource.Style.ThemeBlackNoTitleBar);
         }
-
-        /// <inheritdoc />
-        public IntPtr Handle { get; }
     }
 }

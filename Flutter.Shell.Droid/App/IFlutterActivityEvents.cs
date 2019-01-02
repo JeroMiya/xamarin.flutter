@@ -1,5 +1,6 @@
 ﻿using Android.App;
 using Android.Content;
+using Android.Content.Res;
 using Android.OS;
 using Flutter.Shell.Droid.Plugin.Common;
 
@@ -16,7 +17,6 @@ namespace Flutter.Shell.Droid.App
     /// {@code FlutterActivity}.</p>
     /// </summary>
     public interface IFlutterActivityEvents :
-        Android.Content.IComponentCallbacks2,
         IRequestPermissionsResultListener,
         IActivityResultListener
     {
@@ -44,6 +44,9 @@ namespace Flutter.Shell.Droid.App
         ///<summary><see cref="Activity#onStop()"/></summary>
         void OnStop();
 
+        ///<summary><see cref="Activity#onConfigurationChanged()"/></summary>
+        void OnConfigurationChanged(Configuration newConfig);
+
         ///<summary>
         /// Invoked when the activity has detected the user's press of the back key.
         ///
@@ -55,5 +58,6 @@ namespace Flutter.Shell.Droid.App
 
         ///<summary><see cref="Activity#onUserLeaveHint"/></summary>
         void OnUserLeaveHint();
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,18 +11,25 @@ namespace FlutterBinding.Engine
     {
         public static TaskRunners Instance { get; private set; }
 
-        public TaskRunners(
-            string label,
-            TaskRunner platform,
-            TaskRunner gpu,
-            TaskRunner ui,
-            TaskRunner io)
+        [Flags]
+        [SuppressMessage("ReSharper", "InconsistentNaming")]
+        public enum Type
         {
-            Label              = label;
-            PlatformTaskRunner = platform;
-            GPUTaskRunner      = gpu;
-            UITaskRunner       = ui;
-            IOTaskRunner       = io;
+            Platform = 1 << 0,
+            UI = 1 << 1,
+            GPU = 1 << 2,
+            IO = 1 << 3
+        };
+
+        public TaskRunners(string prefix, Type typeMask)
+        {
+            Label              = prefix;
+
+            PlatformTaskRunner = new TaskRunner(prefix + ".platform");
+            UITaskRunner = new TaskRunner(prefix + ".ui");
+
+            GPUTaskRunner = typeMask.HasFlag(Type.GPU) ? new TaskRunner(prefix + ".gpu") : UITaskRunner;
+            IOTaskRunner = typeMask.HasFlag(Type.IO) ? new TaskRunner(prefix + ".io") : PlatformTaskRunner;
 
             Instance = Instance ?? this;
         }
@@ -29,9 +37,11 @@ namespace FlutterBinding.Engine
         public string Label { get; }
 
         public TaskRunner PlatformTaskRunner { get; }
+        // ReSharper disable InconsistentNaming
         public TaskRunner UITaskRunner { get; }
         public TaskRunner IOTaskRunner { get; }
         public TaskRunner GPUTaskRunner { get; }
+        // ReSharper restore InconsistentNaming
 
         public bool IsValid() => PlatformTaskRunner != null && GPUTaskRunner != null && UITaskRunner != null && IOTaskRunner != null;
     }

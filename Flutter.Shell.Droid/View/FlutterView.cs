@@ -72,7 +72,7 @@ namespace Flutter.Shell.Droid.View
 
         public FlutterView(Context context, IAttributeSet attrs, FlutterNativeView nativeView) : base(context, attrs)
         {
-            _isSoftwareRenderingEnabled = nativeGetIsSoftwareRenderingEnabled();
+            _isSoftwareRenderingEnabled = NativeGetIsSoftwareRenderingEnabled();
             _animationScaleObserver     = new AnimationScaleObserver(this, new Handler());
             _metrics = new ViewportMetrics
             {
@@ -115,21 +115,21 @@ namespace Flutter.Shell.Droid.View
         void ISurfaceHolderCallback.SurfaceChanged(ISurfaceHolder holder, Format format, int width, int height)
         {
             AssertAttached();
-            nativeSurfaceChanged(_nativeView.Get(), width, height);
+            NativeSurfaceChanged(_nativeView.Get(), width, height);
         }
 
         /// <inheritdoc />
         void ISurfaceHolderCallback.SurfaceCreated(ISurfaceHolder holder)
         {
             AssertAttached();
-            nativeSurfaceCreated(_nativeView.Get(), holder.Surface);
+            NativeSurfaceCreated(_nativeView.Get(), holder.Surface);
         }
 
         /// <inheritdoc />
         void ISurfaceHolderCallback.SurfaceDestroyed(ISurfaceHolder holder)
         {
             AssertAttached();
-            nativeSurfaceDestroyed(_nativeView.Get());
+            NativeSurfaceDestroyed(_nativeView.Get());
         }
 
         private void EncodeKeyEvent(KeyEvent @event, System.Collections.Generic.Dictionary<string, object> message)
@@ -606,7 +606,7 @@ namespace Flutter.Shell.Droid.View
             }
 
             //assert packet.position() % (kPointerDataFieldCount* kBytePerField) == 0;
-            nativeDispatchPointerDataPacket(_nativeView.Get(), packet);
+            NativeDispatchPointerDataPacket(_nativeView.Get(), packet);
             return true;
         }
 
@@ -818,12 +818,12 @@ namespace Flutter.Shell.Droid.View
         public SKImage GetBitmap()
         {
             AssertAttached();
-            return nativeGetBitmap(_nativeView.Get());
+            return NativeGetBitmap(_nativeView.Get());
         }
 
-        private static void nativeSurfaceCreated(AndroidShellHolder nativePlatformViewAndroid, Surface surface) // native
+        private static void NativeSurfaceCreated(AndroidShellHolder shellHolder, Surface surface) // native
         {
-            nativePlatformViewAndroid.PlatformView.NotifyCreated();
+            shellHolder.PlatformView.NotifyCreated();
             // TODO: ???
 
             // Note: This frame ensures that any local references used by
@@ -835,24 +835,24 @@ namespace Flutter.Shell.Droid.View
             //ANDROID_SHELL_HOLDER->GetPlatformView()->NotifyCreated(std::move(window));
         }
 
-        private static void nativeSurfaceChanged(AndroidShellHolder nativePlatformViewAndroid, int width, int height) // native
+        private static void NativeSurfaceChanged(AndroidShellHolder shellHolder, int width, int height) // native
         {
-            nativePlatformViewAndroid.PlatformView.NotifyChanged(new SKSizeI(width, height));
+            shellHolder.PlatformView.NotifyChanged(new SKSizeI(width, height));
 
         }
 
-        private static void nativeSurfaceDestroyed(AndroidShellHolder nativePlatformViewAndroid) // native
+        private static void NativeSurfaceDestroyed(AndroidShellHolder shellHolder) // native
         {
-            nativePlatformViewAndroid.PlatformView.NotifyDestroyed();
+            shellHolder.PlatformView.NotifyDestroyed();
         }
 
-        private static void nativeSetViewportMetrics(
-            AndroidShellHolder nativePlatformViewAndroid, float devicePixelRatio,
+        private static void NativeSetViewportMetrics(
+            AndroidShellHolder shellHolder, float devicePixelRatio,
             int physicalWidth, int physicalHeight, int physicalPaddingTop, int physicalPaddingRight,
             int physicalPaddingBottom, int physicalPaddingLeft, int physicalViewInsetTop, int physicalViewInsetRight,
             int physicalViewInsetBottom, int physicalViewInsetLeft) // native engine->SetViewportMetrics(metrics);
         {
-            nativePlatformViewAndroid.SetViewportMetrics(
+            shellHolder.SetViewportMetrics(
                 new ViewportMetrics
                 {
                     DevicePixelRatio = devicePixelRatio,
@@ -869,9 +869,9 @@ namespace Flutter.Shell.Droid.View
                 });
         }
 
-        private static SKImage nativeGetBitmap(AndroidShellHolder nativePlatformViewAndroid) // native
+        private static SKImage NativeGetBitmap(AndroidShellHolder shellHolder) // native
         {
-            var screenshot = nativePlatformViewAndroid.Screenshot(Rasterizer.ScreenshotType.UncompressedImage, false);
+            var screenshot = shellHolder.Screenshot(Rasterizer.ScreenshotType.UncompressedImage, false);
 
             return screenshot?.Image;
             //SKSizeI frame_size = screenshot.FrameSize;
@@ -948,57 +948,57 @@ namespace Flutter.Shell.Droid.View
         }
 
         // TODO: ByteBuffer->object
-        private static void nativeDispatchPointerDataPacket(AndroidShellHolder nativePlatformViewAndroid, PointerDataPacket packet)
+        private static void NativeDispatchPointerDataPacket(AndroidShellHolder shellHolder, PointerDataPacket packet)
         {
-            nativePlatformViewAndroid.PlatformView.DispatchPointerDataPacket(packet);
+            shellHolder.PlatformView.DispatchPointerDataPacket(packet);
         }
         // native
 
         // TODO: ByteBuffer->object
         // native shell::DispatchSemanticsAction
-        private static void nativeDispatchSemanticsAction(AndroidShellHolder nativePlatformViewAndroid, int id, SemanticsAction action, object args)
+        private static void NativeDispatchSemanticsAction(AndroidShellHolder shellHolder, int id, SemanticsAction action, object args)
         {
-            nativePlatformViewAndroid.PlatformView.DispatchSemanticsAction(id, action, args);
+            shellHolder.PlatformView.DispatchSemanticsAction(id, action, args);
         }
 
 
-        private static void nativeSetSemanticsEnabled(AndroidShellHolder nativePlatformViewAndroid, bool enabled) // native
+        private static void NativeSetSemanticsEnabled(AndroidShellHolder shellHolder, bool enabled) // native
         {
-            nativePlatformViewAndroid.PlatformView.SetSemanticsEnabled(enabled);
+            shellHolder.PlatformView.SetSemanticsEnabled(enabled);
         }
 
-        private static void NativeSetAccessibilityFeatures(AndroidShellHolder nativePlatformViewAndroid, AccessibilityFeatures flags) // native
+        private static void NativeSetAccessibilityFeatures(AndroidShellHolder shellHolder, AccessibilityFeatures flags) // native
         {
-            nativePlatformViewAndroid.PlatformView.SetAccessibilityFeatures(flags);
+            shellHolder.PlatformView.SetAccessibilityFeatures(flags);
         }
 
-        private static bool nativeGetIsSoftwareRenderingEnabled() // native
+        private static bool NativeGetIsSoftwareRenderingEnabled() // native
         {
             return false;
         }
 
-        private static void nativeRegisterTexture(AndroidShellHolder nativePlatformViewAndroid, long textureId, SurfaceTexture surfaceTexture) // native
+        private static void NativeRegisterTexture(AndroidShellHolder shellHolder, long textureId, SurfaceTexture surfaceTexture) // native
         {
-            var platformViewAndroid = (PlatformViewAndroid)nativePlatformViewAndroid.PlatformView;
+            var platformViewAndroid = (PlatformViewAndroid)shellHolder.PlatformView;
             platformViewAndroid.RegisterExternalTexture(textureId, surfaceTexture);
         }
 
-        private static void nativeMarkTextureFrameAvailable(AndroidShellHolder nativePlatformViewAndroid, long textureId) // native
+        private static void NativeMarkTextureFrameAvailable(AndroidShellHolder shellHolder, long textureId) // native
         {
-            nativePlatformViewAndroid.PlatformView.MarkTextureFrameAvailable(textureId);
+            shellHolder.PlatformView.MarkTextureFrameAvailable(textureId);
         }
 
 
-        private static void nativeUnregisterTexture(AndroidShellHolder nativePlatformViewAndroid, long textureId) // native
+        private static void NativeUnregisterTexture(AndroidShellHolder shellHolder, long textureId) // native
         {
-            nativePlatformViewAndroid.PlatformView.UnregisterTexture(textureId);
+            shellHolder.PlatformView.UnregisterTexture(textureId);
         }
 
         private void UpdateViewportMetrics()
         {
             if (!IsAttached())
                 return;
-            nativeSetViewportMetrics(
+            NativeSetViewportMetrics(
                 _nativeView.Get(),
                 _metrics.DevicePixelRatio,
                 _metrics.PhysicalWidth,
@@ -1078,7 +1078,7 @@ namespace Flutter.Shell.Droid.View
                 encodedArgs = StandardMessageCodec.Instance.EncodeMessage(args);
             }
 
-            nativeDispatchSemanticsAction(_nativeView.Get(), id, accessibilityBridgeAction, encodedArgs);
+            NativeDispatchSemanticsAction(_nativeView.Get(), id, accessibilityBridgeAction, encodedArgs);
         }
 
         //@Override
@@ -1165,7 +1165,7 @@ namespace Flutter.Shell.Droid.View
             {
                 _accessibilityEnabled = false;
                 _accessibilityNodeProvider?.SetAccessibilityEnabled(false);
-                nativeSetSemanticsEnabled(_nativeView.Get(), false);
+                NativeSetSemanticsEnabled(_nativeView.Get(), false);
             }
 
             ResetWillNotDraw();
@@ -1261,7 +1261,7 @@ namespace Flutter.Shell.Droid.View
                 _accessibilityNodeProvider = new AccessibilityBridge(this);
             }
 
-            nativeSetSemanticsEnabled(_nativeView.Get(), true);
+            NativeSetSemanticsEnabled(_nativeView.Get(), true);
             _accessibilityNodeProvider.SetAccessibilityEnabled(true);
         }
 
@@ -1326,7 +1326,7 @@ namespace Flutter.Shell.Droid.View
             SurfaceTexture surfaceTexture = new SurfaceTexture(0);
             surfaceTexture.DetachFromGLContext();
             SurfaceTextureRegistryEntry entry = new SurfaceTextureRegistryEntry(_nextTextureId.GetAndIncrement(), surfaceTexture, _nativeView);
-            nativeRegisterTexture(_nativeView.Get(), entry.Id, surfaceTexture);
+            NativeRegisterTexture(_nativeView.Get(), entry.Id, surfaceTexture);
             return entry;
         }
 
@@ -1370,7 +1370,7 @@ namespace Flutter.Shell.Droid.View
                     return;
                 }
 
-                nativeMarkTextureFrameAvailable(_flutterNativeView.Get(), _id);
+                NativeMarkTextureFrameAvailable(_flutterNativeView.Get(), _id);
             }
 
             //@Override
@@ -1386,7 +1386,7 @@ namespace Flutter.Shell.Droid.View
                     return;
 
                 _released = true;
-                nativeUnregisterTexture(_flutterNativeView.Get(), _id);
+                NativeUnregisterTexture(_flutterNativeView.Get(), _id);
                 // Otherwise onFrameAvailableListener might be called after mNativeView==null
                 // (https://github.com/flutter/flutter/issues/20951). See also the check in onFrameAvailable.
                 _surfaceTexture.SetOnFrameAvailableListener(null);

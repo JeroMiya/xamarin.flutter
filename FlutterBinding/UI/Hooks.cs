@@ -12,38 +12,9 @@ namespace FlutterBinding.UI
 
     public static class Hooks
     {
-        static void _updateWindowMetrics(
-            double devicePixelRatio,
-            double width,
-            double height,
-            double paddingTop,
-            double paddingRight,
-            double paddingBottom,
-            double paddingLeft,
-            double viewInsetTop,
-            double viewInsetRight,
-            double viewInsetBottom,
-            double viewInsetLeft)
-        {
-            var window = Window.Instance;
-            window.devicePixelRatio = devicePixelRatio;
-            window.physicalSize     = new Size(width, height);
-            window.padding = new WindowPadding(
-                top: paddingTop,
-                right: paddingRight,
-                bottom: paddingBottom,
-                left: paddingLeft);
-            window.viewInsets = new WindowPadding(
-                top: viewInsetTop,
-                right: viewInsetRight,
-                bottom: viewInsetBottom,
-                left: viewInsetLeft);
-            _invoke(Window.Instance.onMetricsChanged, Window.Instance.OnMetricsChangedZone);
-        }
-
         delegate string _LocaleClosure();
 
-        static String _localeClosure() => Window.Instance.locale.ToString();
+        static string _localeClosure() => Window.Instance.locale.ToString();
 
         static _LocaleClosure _getLocaleClosure() => _localeClosure;
 

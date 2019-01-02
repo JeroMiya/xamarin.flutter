@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using FlutterBinding.Engine;
-using FlutterBinding.Engine.Window;
 using FlutterBinding.Mapping;
 using FlutterBinding.Shell;
+using Newtonsoft.Json;
 
 namespace FlutterBinding.UI
 {
@@ -29,338 +29,12 @@ namespace FlutterBinding.UI
     /// Signature for [Window.onPlatformMessage].
     public delegate void PlatformMessageCallback(PlatformMessage platformMessage);
 
-    /// States that an application can be in.
-    ///
-    /// The values below describe notifications from the operating system.
-    /// Applications should not expect to always receive all possible
-    /// notifications. For example, if the users pulls out the battery from the
-    /// device, no notification will be sent before the application is suddenly
-    /// terminated, along with the rest of the operating system.
-    ///
-    /// See also:
-    ///
-    ///  * [WidgetsBindingObserver], for a mechanism to observe the lifecycle state
-    ///    from the widgets layer.
-    public enum AppLifecycleState
-    {
-        /// The application is visible and responding to user input.
-        resumed,
-
-        /// The application is in an inactive state and is not receiving user input.
-        ///
-        /// On iOS, this state corresponds to an app or the Flutter host view running
-        /// in the foreground inactive state. Apps transition to this state when in
-        /// a phone call, responding to a TouchID request, when entering the app
-        /// switcher or the control center, or when the UIViewController hosting the
-        /// Flutter app is transitioning.
-        ///
-        /// On Android, this corresponds to an app or the Flutter host view running
-        /// in the foreground inactive state.  Apps transition to this state when
-        /// another activity is focused, such as a split-screen app, a phone call,
-        /// a picture-in-picture app, a system dialog, or another window.
-        ///
-        /// Apps in this state should assume that they may be [paused] at any time.
-        inactive,
-
-        /// The application is not currently visible to the user, not responding to
-        /// user input, and running in the background.
-        ///
-        /// When the application is in this state, the engine will not call the
-        /// [Window.onBeginFrame] and [Window.onDrawFrame] callbacks.
-        ///
-        /// Android apps in this state should assume that they may enter the
-        /// [suspending] state at any time.
-        paused,
-
-        /// The application will be suspended momentarily.
-        ///
-        /// When the application is in this state, the engine will not call the
-        /// [Window.onBeginFrame] and [Window.onDrawFrame] callbacks.
-        ///
-        /// On iOS, this state is currently unused.
-        suspending,
-    }
-
-    /// A representation of distances for each of the four edges of a rectangle,
-    /// used to encode the view insets and padding that applications should place
-    /// around their user interface, as exposed by [Window.viewInsets] and
-    /// [Window.padding]. View insets and padding are preferably read via
-    /// [MediaQuery.of].
-    ///
-    /// For a generic class that represents distances around a rectangle, see the
-    /// [EdgeInsets] class.
-    ///
-    /// See also:
-    ///
-    ///  * [WidgetsBindingObserver], for a widgets layer mechanism to receive
-    ///    notifications when the padding changes.
-    ///  * [MediaQuery.of], for the preferred mechanism for accessing these values.
-    ///  * [Scaffold], which automatically applies the padding in material design
-    ///    applications.
-    public class WindowPadding
-    {
-        public WindowPadding(double left, double top, double right, double bottom)
-        {
-            this.left   = left;
-            this.top    = top;
-            this.right  = right;
-            this.bottom = bottom;
-        }
-
-        /// The distance from the left edge to the first unpadded pixel, in physical pixels.
-        public readonly double left;
-
-        /// The distance from the top edge to the first unpadded pixel, in physical pixels.
-        public readonly double top;
-
-        /// The distance from the right edge to the first unpadded pixel, in physical pixels.
-        public readonly double right;
-
-        /// The distance from the bottom edge to the first unpadded pixel, in physical pixels.
-        public readonly double bottom;
-
-        /// A window padding that has zeros for each edge.
-        public static WindowPadding zero = new WindowPadding(left: 0.0, top: 0.0, right: 0.0, bottom: 0.0);
-
-        public override string ToString()
-        {
-            return $"{nameof(WindowPadding)}(left: {left}, top: {top}, right: {right}, bottom: {bottom})";
-        }
-    }
-
-
-    /// An identifier used to select a user's language and formatting preferences,
-    /// consisting of a language and a country. This is a subset of locale
-    /// identifiers as defined by BCP 47.
-    ///
-    /// Locales are canonicalized according to the "preferred value" entries in the
-    /// [IANA Language Subtag
-    /// Registry](https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry).
-    /// For example, `const Locale('he')` and `const Locale('iw')` are equal and
-    /// both have the [languageCode] `he`, because `iw` is a deprecated language
-    /// subtag that was replaced by the subtag `he`.
-    ///
-    /// See also:
-    ///
-    ///  * [Window.locale], which specifies the system's currently selected
-    ///    [Locale].
-    /// TODO: Consider dropping this for the .Net Runtime System.Globalization.CultureInfo
-    public class Locale
-    {
-        /// Creates a new Locale object. The first argument is the
-        /// primary language subtag, the second is the region subtag.
-        ///
-        /// For example:
-        ///
-        /// ```dart
-        /// const Locale swissFrench = const Locale('fr', 'CH');
-        /// const Locale canadianFrench = const Locale('fr', 'CA');
-        /// ```
-        ///
-        /// The primary language subtag must not be null. The region subtag is
-        /// optional.
-        ///
-        /// The values are _case sensitive_, and should match the case of the relevant
-        /// subtags in the [IANA Language Subtag
-        /// Registry](https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry).
-        /// Typically this means the primary language subtag should be lowercase and
-        /// the region subtag should be uppercase.
-        public Locale(string languageCode, string countryCode = "")
-        {
-            _languageCode = languageCode;
-            _countryCode  = countryCode;
-            // assert(_languageCode != null);
-        }
-
-        /// Empty locale constant. This is an invalid locale.
-        public static Locale none = new Locale("", "");
-
-        /// The primary language subtag for the locale.
-        ///
-        /// This must not be null.
-        ///
-        /// This is expected to be string registered in the [IANA Language Subtag
-        /// Registry](https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry)
-        /// with the type "language". The string specified must match the case of the
-        /// string in the registry.
-        ///
-        /// Language subtags that are deprecated in the registry and have a preferred
-        /// code are changed to their preferred code. For example, `const
-        /// Locale('he')` and `const Locale('iw')` are equal, and both have the
-        /// [languageCode] `he`, because `iw` is a deprecated language subtag that was
-        /// replaced by the subtag `he`.
-        public string languageCode => _canonicalizeLanguageCode(_languageCode);
-
-        private readonly string _languageCode;
-
-        private static string _canonicalizeLanguageCode(string languageCode)
-        {
-            // This switch statement is generated by //flutter/tools/gen_locale.dart
-            // Mappings generated for language subtag registry as of 2018-08-08.
-            switch (languageCode)
-            {
-            case "in":  return "id";  // Indonesian; deprecated 1989-01-01
-            case "iw":  return "he";  // Hebrew; deprecated 1989-01-01
-            case "ji":  return "yi";  // Yiddish; deprecated 1989-01-01
-            case "jw":  return "jv";  // Javanese; deprecated 2001-08-13
-            case "mo":  return "ro";  // Moldavian, Moldovan; deprecated 2008-11-22
-            case "aam": return "aas"; // Aramanik; deprecated 2015-02-12
-            case "adp": return "dz";  // Adap; deprecated 2015-02-12
-            case "aue": return "ktz"; // =/Kx"au//"ein; deprecated 2015-02-12
-            case "ayx": return "nun"; // Ayi (China); deprecated 2011-08-16
-            case "bgm": return "bcg"; // Baga Mboteni; deprecated 2016-05-30
-            case "bjd": return "drl"; // Bandjigali; deprecated 2012-08-12
-            case "ccq": return "rki"; // Chaungtha; deprecated 2012-08-12
-            case "cjr": return "mom"; // Chorotega; deprecated 2010-03-11
-            case "cka": return "cmr"; // Khumi Awa Chin; deprecated 2012-08-12
-            case "cmk": return "xch"; // Chimakum; deprecated 2010-03-11
-            case "coy": return "pij"; // Coyaima; deprecated 2016-05-30
-            case "cqu": return "quh"; // Chilean Quechua; deprecated 2016-05-30
-            case "drh": return "khk"; // Darkhat; deprecated 2010-03-11
-            case "drw": return "prs"; // Darwazi; deprecated 2010-03-11
-            case "gav": return "dev"; // Gabutamon; deprecated 2010-03-11
-            case "gfx": return "vaj"; // Mangetti Dune !Xung; deprecated 2015-02-12
-            case "ggn": return "gvr"; // Eastern Gurung; deprecated 2016-05-30
-            case "gti": return "nyc"; // Gbati-ri; deprecated 2015-02-12
-            case "guv": return "duz"; // Gey; deprecated 2016-05-30
-            case "hrr": return "jal"; // Horuru; deprecated 2012-08-12
-            case "ibi": return "opa"; // Ibilo; deprecated 2012-08-12
-            case "ilw": return "gal"; // Talur; deprecated 2013-09-10
-            case "jeg": return "oyb"; // Jeng; deprecated 2017-02-23
-            case "kgc": return "tdf"; // Kasseng; deprecated 2016-05-30
-            case "kgh": return "kml"; // Upper Tanudan Kalinga; deprecated 2012-08-12
-            case "koj": return "kwv"; // Sara Dunjo; deprecated 2015-02-12
-            case "krm": return "bmf"; // Krim; deprecated 2017-02-23
-            case "ktr": return "dtp"; // Kota Marudu Tinagas; deprecated 2016-05-30
-            case "kvs": return "gdj"; // Kunggara; deprecated 2016-05-30
-            case "kwq": return "yam"; // Kwak; deprecated 2015-02-12
-            case "kxe": return "tvd"; // Kakihum; deprecated 2015-02-12
-            case "kzj": return "dtp"; // Coastal Kadazan; deprecated 2016-05-30
-            case "kzt": return "dtp"; // Tambunan Dusun; deprecated 2016-05-30
-            case "lii": return "raq"; // Lingkhim; deprecated 2015-02-12
-            case "lmm": return "rmx"; // Lamam; deprecated 2014-02-28
-            case "meg": return "cir"; // Mea; deprecated 2013-09-10
-            case "mst": return "mry"; // Cataelano Mandaya; deprecated 2010-03-11
-            case "mwj": return "vaj"; // Maligo; deprecated 2015-02-12
-            case "myt": return "mry"; // Sangab Mandaya; deprecated 2010-03-11
-            case "nad": return "xny"; // Nijadali; deprecated 2016-05-30
-            case "ncp": return "kdz"; // Ndaktup; deprecated 2018-03-08
-            case "nnx": return "ngv"; // Ngong; deprecated 2015-02-12
-            case "nts": return "pij"; // Natagaimas; deprecated 2016-05-30
-            case "oun": return "vaj"; // !O!ung; deprecated 2015-02-12
-            case "pcr": return "adx"; // Panang; deprecated 2013-09-10
-            case "pmc": return "huw"; // Palumata; deprecated 2016-05-30
-            case "pmu": return "phr"; // Mirpur Panjabi; deprecated 2015-02-12
-            case "ppa": return "bfy"; // Pao; deprecated 2016-05-30
-            case "ppr": return "lcq"; // Piru; deprecated 2013-09-10
-            case "pry": return "prt"; // Pray 3; deprecated 2016-05-30
-            case "puz": return "pub"; // Purum Naga; deprecated 2014-02-28
-            case "sca": return "hle"; // Sansu; deprecated 2012-08-12
-            case "skk": return "oyb"; // Sok; deprecated 2017-02-23
-            case "tdu": return "dtp"; // Tempasuk Dusun; deprecated 2016-05-30
-            case "thc": return "tpo"; // Tai Hang Tong; deprecated 2016-05-30
-            case "thx": return "oyb"; // The; deprecated 2015-02-12
-            case "tie": return "ras"; // Tingal; deprecated 2011-08-16
-            case "tkk": return "twm"; // Takpa; deprecated 2011-08-16
-            case "tlw": return "weo"; // South Wemale; deprecated 2012-08-12
-            case "tmp": return "tyj"; // Tai Mène; deprecated 2016-05-30
-            case "tne": return "kak"; // Tinoc Kallahan; deprecated 2016-05-30
-            case "tnf": return "prs"; // Tangshewi; deprecated 2010-03-11
-            case "tsf": return "taj"; // Southwestern Tamang; deprecated 2015-02-12
-            case "uok": return "ema"; // Uokha; deprecated 2015-02-12
-            case "xba": return "cax"; // Kamba (Brazil); deprecated 2016-05-30
-            case "xia": return "acn"; // Xiandao; deprecated 2013-09-10
-            case "xkh": return "waw"; // Karahawyana; deprecated 2016-05-30
-            case "xsj": return "suj"; // Subi; deprecated 2015-02-12
-            case "ybd": return "rki"; // Yangbye; deprecated 2012-08-12
-            case "yma": return "lrr"; // Yamphe; deprecated 2012-08-12
-            case "ymt": return "mtm"; // Mator-Taygi-Karagas; deprecated 2015-02-12
-            case "yos": return "zom"; // Yos; deprecated 2013-09-10
-            case "yuu": return "yug"; // Yugh; deprecated 2014-02-28
-            default:    return languageCode;
-            }
-        }
-
-        /// The region subtag for the locale.
-        ///
-        /// This can be null.
-        ///
-        /// This is expected to be string registered in the [IANA Language Subtag
-        /// Registry](https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry)
-        /// with the type "region". The string specified must match the case of the
-        /// string in the registry.
-        ///
-        /// Region subtags that are deprecated in the registry and have a preferred
-        /// code are changed to their preferred code. For example, `const Locale('de',
-        /// 'DE')` and `const Locale('de', 'DD')` are equal, and both have the
-        /// [countryCode] `DE`, because `DD` is a deprecated language subtag that was
-        /// replaced by the subtag `DE`.
-        private string countryCode => _canonicalizeRegionCode(_countryCode);
-
-        private readonly string _countryCode;
-
-        private static string _canonicalizeRegionCode(string regionCode)
-        {
-            // This switch statement is generated by //flutter/tools/gen_locale.dart
-            // Mappings generated for language subtag registry as of 2018-08-08.
-            switch (regionCode)
-            {
-            case "BU": return "MM"; // Burma; deprecated 1989-12-05
-            case "DD": return "DE"; // German Democratic Republic; deprecated 1990-10-30
-            case "FX": return "FR"; // Metropolitan France; deprecated 1997-07-14
-            case "TP": return "TL"; // East Timor; deprecated 2002-05-20
-            case "YD": return "YE"; // Democratic Yemen; deprecated 1990-08-14
-            case "ZR": return "CD"; // Zaire; deprecated 1997-07-14
-            default:   return regionCode;
-            }
-        }
-
-        protected bool Equals(Locale other)
-        {
-            return
-                string.Equals(_languageCode, other._languageCode) &&
-                string.Equals(_countryCode, other._countryCode);
-        }
-
-        /// <inheritdoc />
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
-            return Equals((Locale)obj);
-        }
-
-        /// <inheritdoc />
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                return ((_languageCode != null ? _languageCode.GetHashCode() : 0) * 397) ^ (_countryCode != null ? _countryCode.GetHashCode() : 0);
-            }
-        }
-
-        public static bool operator ==(Locale left, Locale right)
-        {
-            return Equals(left, right);
-        }
-
-        public static bool operator !=(Locale left, Locale right)
-        {
-            return !Equals(left, right);
-        }
-
-        public override string ToString()
-        {
-            return _countryCode == null ? languageCode : $"{languageCode}_{countryCode}";
-        }
-    }
 
     /// The most basic interface to the host operating system's user interface.
     ///
     /// There is a single Window instance in the system, which you can
     /// obtain from the [window] property.
-    public class Window : NativeWindow
+    public class Window
     {
         /// The [Window] singleton. This object exposes the size of the display, the
         /// core scheduler API, the input event callback, the graphics drawing API, and
@@ -729,7 +403,10 @@ namespace FlutterBinding.UI
         ///    scheduling of frames.
         ///  * [RendererBinding], the Flutter framework class which manages layout and
         ///    painting.
-        public void render(Scene scene) => base.Render(scene);
+        public void Render(Scene scene)
+        {
+            Engine.Engine.Instance.Render(scene.TakeLayerTree());
+        }
 
 
         /// Whether the user has requested that [updateSemantics] be called when
@@ -884,5 +561,140 @@ namespace FlutterBinding.UI
 
         //    return (data) => registrationZone.runUnaryGuarded(callback, data);
         //}
+
+        // NOTE: What is following in this file is mostly from the C++ Engine side of Window
+
+        protected IWindowClient _client { get; set; }
+
+        //private DartPersistentValue library_;
+        private ViewportMetrics _viewport_metrics;
+
+        public ViewportMetrics viewport_metrics()
+        {
+            return _viewport_metrics;
+        }
+
+        // TODO: Not required
+        void DidCreateIsolate() { }
+
+        public void UpdateWindowMetrics(ViewportMetrics metrics)
+        {
+            _viewport_metrics = metrics;
+
+            // This bypasses Hooks.cs
+            devicePixelRatio = metrics.DevicePixelRatio;
+            physicalSize = new Size(metrics.PhysicalWidth, metrics.PhysicalHeight);
+            padding = new WindowPadding(
+                left: metrics.PhysicalPaddingLeft,
+                top: metrics.PhysicalPaddingTop,
+                right: metrics.PhysicalPaddingRight,
+                bottom: metrics.PhysicalPaddingBottom
+            );
+            viewInsets = new WindowPadding(
+                left: metrics.PhysicalViewInsetLeft,
+                top: metrics.PhysicalViewInsetTop,
+                right: metrics.PhysicalViewInsetRight,
+                bottom: metrics.PhysicalViewInsetBottom);
+
+            _invoke(onMetricsChanged, OnMetricsChangedZone);
+        }
+
+        public void UpdateLocales(List<Locale> locales)
+        {
+            this.locales = locales;
+            _invoke(onLocaleChanged, OnLocaleChangedZone);
+        }
+
+        public void UpdateUserSettingsData(string jsonData)
+        {
+            var data = JsonConvert.DeserializeObject<Dictionary<string, object>>(jsonData);
+
+            textScaleFactor = Convert.ToDouble(data["textScaleFactor"]);
+            alwaysUse24HourFormat = Convert.ToBoolean(data["alwaysUse24HourFormat"]);
+
+            _invoke(OnTextScaleFactorChanged, OnTextScaleFactorChangedZone);
+        }
+
+        public void UpdateSemanticsEnabled(bool enabled)
+        {
+            semanticsEnabled = enabled;
+            _invoke(onSemanticsEnabledChanged, OnSemanticsEnabledChangedZone);
+        }
+
+        public void UpdateAccessibilityFeatures(AccessibilityFeatures newFeatures)
+        {
+            if (newFeatures == accessibilityFeatures)
+                return;
+            accessibilityFeatures = newFeatures;
+            _invoke(onAccessibilityFeaturesChanged, OnAccessibilityFlagsChangedZone);
+        }
+
+        public void DispatchPlatformMessage(PlatformMessage message)
+        {
+            if (OnPlatformMessage == null)
+                return;
+            _invoke(() => OnPlatformMessage(message), OnPlatformMessageZone);
+        }
+
+        public void DispatchPointerDataPacket(PointerDataPacket packet)
+        {
+            if (onPointerDataPacket == null)
+                return;
+            _invoke(
+                () => onPointerDataPacket(packet),
+                OnPointerDataPacketZone);
+        }
+
+        public void DispatchSemanticsAction(int id, SemanticsAction action, object args)
+        {
+            if (onSemanticsAction == null)
+                return;
+
+            _invoke(
+                () => { onSemanticsAction(id, action, args); },
+                OnSemanticsActionZone);
+        }
+
+        public void BeginFrame(TimePoint frameTime)
+        {
+            var now = TimePoint.Now();
+            var diff = now.TotalMicroseconds - frameTime.TotalMicroseconds;
+
+            _invoke(
+                () => onBeginFrame(TimeDelta.FromMicroseconds(diff)),
+                OnBeginFrameZone);
+        }
+
+        //public void CompletePlatformMessageResponse(int response_id, std::vector<uint8_t> data);
+        //public void CompletePlatformMessageEmptyResponse(int response_id);
+
+        // 
+        //public static void RegisterNatives(tonic::DartLibraryNatives* natives);
+
+        protected void SendPlatformMessage(string name,
+                                           object data = null,
+                                           PlatformMessageResponseCallback onResponse = null)
+        {
+            var responseMessage = new PlatformMessageResponse(onResponse, null);
+            var message = new PlatformMessage(name, data, responseMessage);
+            _client.HandlePlatformMessage(message);
+        }
+
+
+        /// Invokes [callback] inside the given [zone].
+        static void _invoke(VoidCallback callback, Types.Zone zone)
+        {
+            if (callback == null)
+                return;
+            if (Types.Zone.current == zone)
+                callback();
+            else
+                zone.runGuarded(callback);
+        }
+
+
+        // We use id 0 to mean that no response is expected.
+        //private int _nextResponseId = 1;
+        //private Dictionary<int, PlatformMessageResponse> _pendingResponses_ = new Dictionary<int,PlatformMessageResponse>();
     }
 }
