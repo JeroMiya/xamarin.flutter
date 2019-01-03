@@ -1,4 +1,4 @@
-﻿namespace Flutter.Shell.Droid.Plugin.Common
+﻿namespace FlutterBinding.Plugin.Common
 {
     /**
      * A message encoding/decoding mechanism.

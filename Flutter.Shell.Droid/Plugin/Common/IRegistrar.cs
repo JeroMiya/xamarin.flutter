@@ -1,5 +1,6 @@
 ﻿using Android.App;
 using Android.Content;
+using Flutter.Shell.Droid.Plugin.Platform;
 using Flutter.Shell.Droid.View;
 
 namespace Flutter.Shell.Droid.Plugin.Common
@@ -53,7 +54,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
          *
          * Plugins can use the platform registry to register their view factories.
          */
-        //PlatformViewRegistry platformViewRegistry();
+        IPlatformViewRegistry PlatformViewRegistry();
 
         /**
          * Returns the {@link FlutterView} that's instantiated by this plugin's
@@ -110,26 +111,6 @@ namespace Flutter.Shell.Droid.Plugin.Common
          * @return this {@link Registrar}.
          */
         IRegistrar AddRequestPermissionsResultListener(IRequestPermissionsResultListener listener);
-
-        /*
-         * Method addRequestPermissionResultListener(RequestPermissionResultListener listener)
-         * was made unavailable on 2018-02-28, leaving this comment as a temporary
-         * tombstone for reference. This comment will be removed on 2018-03-28
-         * (or at least four weeks after the unavailability is released).
-         *
-         * https://github.com/flutter/flutter/wiki/Changelog#typo-fixed-in-flutter-engine-android-api
-         *
-         * Adds a callback allowing the plugin to take part in handling incoming
-         * calls to {@code Activity#onRequestPermissionsResult(int, String[], int[])}
-         * or {@code android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback#onRequestPermissionsResult(int, String[], int[])}.
-         *
-         * @param listener a {@link RequestPermissionResultListener} callback.
-         * @return this {@link Registrar}.
-
-         * @deprecated on 2018-01-02 because of misspelling. This method will be made unavailable
-         * on 2018-02-06 (or at least four weeks after the deprecation is released). Use
-         * {@link #addRequestPermissionsResultListener(RequestPermissionsResultListener)} instead.
-         */
 
         /**
          * Adds a callback allowing the plugin to take part in handling incoming

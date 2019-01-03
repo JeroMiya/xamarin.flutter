@@ -1,6 +1,4 @@
-﻿using FlutterBinding.Plugin.Common;
-
-namespace Flutter.Shell.Droid.Plugin.Common
+﻿namespace FlutterBinding.Plugin.Common
 {
     /**
      * A codec for method calls and enveloped results.

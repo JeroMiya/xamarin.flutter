@@ -52,7 +52,7 @@ namespace FlutterBinding.Plugin.Common
          *
          * @param <T> the intended type of the argument.
          * @param key the String key.
-         * @return the argument value at the specified key, with static type T, or {@code null}, if
+         * @return the argument value at the specified key, with static type T, or <code>null</code>, if
          * such an entry is not present.
          * @throws ClassCastException if {@link #arguments} can be cast to neither {@link Map} nor
          * {@link JSONObject}.
@@ -77,7 +77,7 @@ namespace FlutterBinding.Plugin.Common
          * Returns whether this method call involves a mapping for the given argument key,
          * assuming {@link #arguments} is a {@link Map} or a {@link JSONObject}. The value associated
          * with the key, as returned by {@link #argument(String)}, is not considered, and may be
-         * {@code null}.
+         * <code>null</code>.
          *
          * @param key the String key.
          * @return {@code true}, if {@link #arguments} is a {@link Map} containing key, or a

@@ -16,6 +16,7 @@ using FlutterSDK;
 using Java.Util.Concurrent.Atomic;
 using System;
 using FlutterBinding.Flow;
+using FlutterBinding.Plugin.Common;
 using FlutterBinding.Shell;
 using FlutterBinding.UI;
 using SkiaSharp;
@@ -197,12 +198,12 @@ namespace Flutter.Shell.Droid.View
 
         public string GetLookupKeyForAsset(string asset)
         {
-            return FlutterMain.GetLookupKeyForAsset(asset);
+            return FlutterMainAndroid.GetLookupKeyForAsset(asset);
         }
 
         public string GetLookupKeyForAsset(string asset, string packageName)
         {
-            return FlutterMain.GetLookupKeyForAsset(asset, packageName);
+            return FlutterMainAndroid.GetLookupKeyForAsset(asset, packageName);
         }
 
         public void AddActivityLifecycleListener(IActivityLifecycleListener listener)

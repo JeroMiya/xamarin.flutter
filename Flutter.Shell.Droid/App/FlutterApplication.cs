@@ -1,7 +1,6 @@
 ﻿using System;
 using Android.App;
 using Android.Runtime;
-using Android.Support.V7.App;
 using Flutter.Shell.Droid.View;
 using FlutterBinding.Extensions;
 
@@ -16,7 +15,7 @@ namespace Flutter.Shell.Droid.App
         {
             base.OnCreate();
 
-            FlutterMain.StartInitialization(this)
+            FlutterMainAndroid.StartInitialization(this)
                        .FireAndForget();
         }
 

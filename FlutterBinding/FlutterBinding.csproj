@@ -72,12 +72,16 @@
     <PackageReference Include="SkiaSharp.HarfBuzz" Version="1.60.3" />
     <PackageReference Include="SkiaSharp.Svg" Version="1.60.0" />
     <PackageReference Include="SkiaSharp.Views" Version="1.60.3" />
+    <PackageReference Include="TinyIoC" Version="1.3.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="TinyMessenger" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Engine\Semantics\" />
     <Folder Include="Minikin\" />
-    <Folder Include="App\" />
     <Folder Include="View\" />
     <Folder Include="Plugin\Editing\" />
     <Folder Include="Plugin\Platform\" />

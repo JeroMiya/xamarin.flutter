@@ -4,7 +4,7 @@
     {
         /**
          * Returns a reference to the Flutter view maintained by this object. This may
-         * be {@code null}.
+         * be <code>null</code>.
          */
         FlutterView GetFlutterView();
     }

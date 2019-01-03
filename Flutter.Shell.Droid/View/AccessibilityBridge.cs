@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using FlutterBinding.Extensions;
+using FlutterBinding.Plugin.Common;
 using FlutterBinding.UI;
 using SkiaSharp;
 //using AccessibilityNodeInfo = Android.Support.V4.View.Accessibility.AccessibilityNodeInfoCompat;
@@ -910,7 +911,7 @@ namespace Flutter.Shell.Droid.View
 
                 if (@object.HasFlag(SemanticsFlag.isLiveRegion))
                 {
-                    string label = @object.Label == null ? "" : @object.Label;
+                    string label = @object.Label ?? "";
                     string previousLabel = @object.Previous?.Label ?? @object.Label;
                     if (!label.Equals(previousLabel) || !@object.HadFlag(SemanticsFlag.isLiveRegion))
                     {

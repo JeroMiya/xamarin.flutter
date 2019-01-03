@@ -86,7 +86,7 @@ namespace Flutter.Shell.Droid.View
                     }
                     else
                     {
-                        var updateFile = new File(FlutterMain.GetUpdateInstallationPath());
+                        var updateFile = new File(FlutterMainAndroid.GetUpdateInstallationPath());
                         expectedTimestamp += "-" + updateVersion + "-" + updateFile.LastModified();
                     }
                 }
@@ -218,10 +218,10 @@ namespace Flutter.Shell.Droid.View
         /// otherwise deletes all resources and returns false.
         internal bool ExtractUpdate(File dataDir)
         {
-            if (FlutterMain.GetUpdateInstallationPath() == null)
+            if (FlutterMainAndroid.GetUpdateInstallationPath() == null)
                 return true;
 
-            var updateFile = new File(FlutterMain.GetUpdateInstallationPath());
+            var updateFile = new File(FlutterMainAndroid.GetUpdateInstallationPath());
             if (!updateFile.Exists())
                 return true;
 
@@ -297,10 +297,10 @@ namespace Flutter.Shell.Droid.View
         /// Returns null if no update manifest is found.
         internal JSONObject ReadUpdateManifest()
         {
-            if (FlutterMain.GetUpdateInstallationPath() == null)
+            if (FlutterMainAndroid.GetUpdateInstallationPath() == null)
                 return null;
 
-            var updateFile = new File(FlutterMain.GetUpdateInstallationPath());
+            var updateFile = new File(FlutterMainAndroid.GetUpdateInstallationPath());
             if (!updateFile.Exists())
                 return null;
 

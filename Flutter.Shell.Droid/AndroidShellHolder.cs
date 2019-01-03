@@ -88,15 +88,15 @@ namespace Flutter.Shell.Droid
             _shell.TaskRunners.UITaskRunner.PostTask(
                 () =>
                 {
-                    Log.Info(Tag, "Attempting to launch engine configuration...");
+                    FLog.Info(Tag, "Attempting to launch engine configuration...");
                     Engine engine = _shell.Engine;
                     if (engine == null || engine.Run(configuration) == Engine.RunStatus.Failure)
                     {
-                        Log.Error(Tag, "Could not launch engine in configuration.");
+                        FLog.Error(Tag, "Could not launch engine in configuration.");
                     }
                     else
                     {
-                        Log.Error(Tag, "Engine configuration successfully started and run.");
+                        FLog.Error(Tag, "Engine configuration successfully started and run.");
                     }
                 });
         }

@@ -6,6 +6,7 @@ using Flutter.Shell.Droid.Plugin.Common;
 using Flutter.Shell.Droid.View;
 using Java.Lang;
 using System.Collections.Generic;
+using Android.Annotation;
 using FlutterBinding.Plugin.Common;
 using LayoutDirection = Android.Views.LayoutDirection;
 using Math = System.Math;
@@ -136,7 +137,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
             result.NotImplemented();
         }
 
-        //@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+        [TargetApi(Value = (int)BuildVersionCodes.JellyBeanMr1)]
         private void CreatePlatformView(MethodCall call, IResult result)
         {
             Dictionary<string, object> args = (Dictionary<string, object>)call.Arguments;
@@ -314,7 +315,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
             result.Success(null);
         }
 
-        //@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+        [TargetApi(Value = (int)BuildVersionCodes.JellyBeanMr1)]
         private void SetDirection(MethodCall call, IResult result)
         {
             var args = (Dictionary<string, object>)call.Arguments;

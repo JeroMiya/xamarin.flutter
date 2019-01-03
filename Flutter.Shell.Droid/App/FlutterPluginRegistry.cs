@@ -6,6 +6,7 @@ using Flutter.Shell.Droid.View;
 using Java.Lang;
 using System.Collections.Generic;
 using Android.Content.PM;
+using FlutterBinding.Plugin.Common;
 
 namespace Flutter.Shell.Droid.App
 {
@@ -198,10 +199,10 @@ namespace Flutter.Shell.Droid.App
         public FlutterView View() => _registry._flutterView;
 
         //@Override
-        public string LookupKeyForAsset(string asset) => FlutterMain.GetLookupKeyForAsset(asset);
+        public string LookupKeyForAsset(string asset) => FlutterMainAndroid.GetLookupKeyForAsset(asset);
 
         //@Override
-        public string LookupKeyForAsset(string asset, string packageName) => FlutterMain.GetLookupKeyForAsset(asset, packageName);
+        public string LookupKeyForAsset(string asset, string packageName) => FlutterMainAndroid.GetLookupKeyForAsset(asset, packageName);
 
         //@Override
         public IRegistrar Publish(object value)

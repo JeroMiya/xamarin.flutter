@@ -1,6 +1,4 @@
-﻿using FlutterBinding.Plugin.Common;
-
-namespace Flutter.Shell.Droid.Plugin.Common
+﻿namespace FlutterBinding.Plugin.Common
 {
     /**
      * A {@link MethodCodec} using the Flutter standard binary encoding.

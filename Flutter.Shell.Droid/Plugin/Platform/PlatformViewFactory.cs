@@ -1,6 +1,7 @@
 ﻿using System;
 using Android.Content;
 using Flutter.Shell.Droid.Plugin.Common;
+using FlutterBinding.Plugin.Common;
 
 namespace Flutter.Shell.Droid.Plugin.Platform
 {

@@ -1,10 +1,7 @@
-﻿using Android.Util;
+﻿using System;
 using FlutterBinding.Engine;
-using Java.Lang;
-using System;
-using FlutterBinding.Plugin.Common;
 
-namespace Flutter.Shell.Droid.Plugin.Common
+namespace FlutterBinding.Plugin.Common
 {
     /**
      * A named channel for communicating with the Flutter application using asynchronous
@@ -146,9 +143,9 @@ namespace Flutter.Shell.Droid.Plugin.Common
                         }
                     }
                 }
-                catch (RuntimeException e)
+                catch (Exception e)
                 {
-                    Log.Error(TAG + _name, "Failed to handle method call result", e);
+                    FLog.Error(TAG + _name, "Failed to handle method call result", e);
                 }
             }
         }
@@ -184,9 +181,9 @@ namespace Flutter.Shell.Droid.Plugin.Common
                         OnNotImplemented = () => reply.Reply(null)
                     });
             }
-            catch (RuntimeException e)
+            catch (Exception e)
             {
-                Log.Error("MethodChannel#" + _name, "Failed to handle method call", e);
+                FLog.Error("MethodChannel#" + _name, "Failed to handle method call", e);
                 reply.Reply(_codec.EncodeErrorEnvelope("error", e.Message, null));
             }
         }

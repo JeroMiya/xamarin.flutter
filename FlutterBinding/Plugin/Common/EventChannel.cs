@@ -1,9 +1,7 @@
-﻿using Android.Util;
-using FlutterBinding.Plugin.Common;
-using Java.Lang;
-using Exception = System.Exception;
+﻿using System;
+using FlutterBinding.Engine;
 
-namespace Flutter.Shell.Droid.Plugin.Common
+namespace FlutterBinding.Plugin.Common
 {
     /**
  * A named channel for communicating with the Flutter application using asynchronous
@@ -191,7 +189,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
                     }
                     catch (Exception e)
                     {
-                        Log.Error(TAG + _parent.Name, "Failed to close existing event stream", e);
+                        FLog.Error(TAG + _parent.Name, "Failed to close existing event stream", e);
                     }
                 }
 
@@ -200,10 +198,10 @@ namespace Flutter.Shell.Droid.Plugin.Common
                     Handler.OnListen(arguments, eventSink);
                     callback.Reply(_parent.Codec.EncodeSuccessEnvelope(null));
                 }
-                catch (RuntimeException e)
+                catch (Exception e)
                 {
                     ActiveSink = null;
-                    Log.Error(TAG + _parent.Name, "Failed to open event stream", e);
+                    FLog.Error(TAG + _parent.Name, "Failed to open event stream", e);
                     callback.Reply(_parent.Codec.EncodeErrorEnvelope("error", e.Message, null));
                 }
             }
@@ -220,9 +218,9 @@ namespace Flutter.Shell.Droid.Plugin.Common
                         Handler.OnCancel(arguments);
                         callback.Reply(_parent.Codec.EncodeSuccessEnvelope(null));
                     }
-                    catch (RuntimeException e)
+                    catch (Exception e)
                     {
-                        Log.Error(TAG + _parent.Name, "Failed to close event stream", e);
+                        FLog.Error(TAG + _parent.Name, "Failed to close event stream", e);
                         callback.Reply(_parent.Codec.EncodeErrorEnvelope("error", e.Message, null));
                     }
                 }

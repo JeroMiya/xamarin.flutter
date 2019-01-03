@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿using Android.Annotation;
+using Android.App;
 using Android.Content;
 using Android.Graphics;
 using Android.OS;
@@ -26,7 +27,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
      *      |
      *   EmbeddedView
      */
-    //@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    [TargetApi( Value = (int)BuildVersionCodes.JellyBeanMr1 )]
     internal class SingleViewPresentation : Presentation
     {
         /*

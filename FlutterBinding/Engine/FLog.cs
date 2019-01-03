@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 
 namespace FlutterBinding.Engine
 {
@@ -12,17 +13,30 @@ namespace FlutterBinding.Engine
             = FLogSeverity.Warning;
 #else
             = FLogSeverity.Error;
-        #endif
+#endif
 
-        public static void Log(FLogSeverity severity, string message)
+        public static void Log(FLogSeverity severity, string tag, string message, Exception ex = null)
         {
-            if (severity >= Severity) Trace.Write(message);
+            if (severity < Severity)
+                return;
+
+            if (string.IsNullOrWhiteSpace(tag))
+                Console.WriteLine(ex != null ? $"{tag}: {message}: {ex}" : $"{tag}: {message}");
+            else
+                Console.WriteLine(ex != null ? $"{message}: {ex}" : message);
         }
 
-        public static void Info(string message) => Log(FLogSeverity.Info, message);
-        public static void Warning(string message) => Log(FLogSeverity.Warning, message);
-        public static void Error(string message) => Log(FLogSeverity.Error, message);
-        public static void Fatal(string message) => Log(FLogSeverity.Fatal, message);
+        public static void Info(string tag, string message, Exception ex = null) => Log(FLogSeverity.Info, tag, message, ex);
+        public static void Info(string message, Exception ex = null) => Log(FLogSeverity.Info, null, message, ex);
+
+        public static void Warning(string tag, string message, Exception ex) => Log(FLogSeverity.Warning, tag, message, ex);
+        public static void Warning(string message, Exception ex) => Log(FLogSeverity.Warning, null, message, ex);
+
+        public static void Error(string tag, string message, Exception ex = null) => Log(FLogSeverity.Error, tag, message, ex);
+        public static void Error(string message, Exception ex = null) => Log(FLogSeverity.Error, null, message, ex);
+
+        public static void Fatal(string tag, string message, Exception ex = null) => Log(FLogSeverity.Fatal, tag, message, ex);
+        public static void Fatal(string message, Exception ex) => Log(FLogSeverity.Fatal, null, message, ex);
     }
 
     public enum FLogSeverity

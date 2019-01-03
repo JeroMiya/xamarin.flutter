@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Flutter.Shell.Droid.Plugin.Common
+namespace FlutterBinding.Plugin.Common
 {
     /**
      * Method call result callback. Supports dual use: Implementations of methods

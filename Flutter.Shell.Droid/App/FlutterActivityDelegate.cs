@@ -19,21 +19,36 @@ using Result = Android.App.Result;
 
 namespace Flutter.Shell.Droid.App
 {
-    
+
     /**
      * Specifies the mechanism by which Flutter views are created during the
      * operation of a {@code FlutterActivityDelegate}.
      *
      * <p>A delegate's view factory will be consulted during
-     * {@link #onCreate(Bundle)}. If it returns {@code null}, then the delegate
+     * {@link #onCreate(Bundle)}. If it returns <code>null</code>, then the delegate
      * will fall back to instantiating a new full-screen {@code FlutterView}.</p>
      *
      * <p>A delegate's native view factory will be consulted during
-     * {@link #onCreate(Bundle)}. If it returns {@code null}, then the delegate
+     * {@link #onCreate(Bundle)}. If it returns <code>null</code>, then the delegate
      * will fall back to instantiating a new {@code FlutterNativeView}. This is
      * useful for applications to override to reuse the FlutterNativeView held
      * e.g. by a pre-existing background service.</p>
      */
+
+    /// <summary>
+    /// Specifies the mechanism by which Flutter views are created during the
+    /// operation of a <see cref="FlutterActivityDelegate"/>
+    /// 
+    /// <p>A delegate's view factory will be consulted during <see cref="FlutterActivityDelegate.OnCreate"/>.
+    /// If it returns <code>null</code>, then the delegate
+    /// will fall back to instantiating a new full-screen <code>FlutterView</code>.</p>
+    /// 
+    /// <p>A delegate's native view factory will be consulted during
+    /// <see cref="#onCreate(Bundle)"/>. If it returns <code>null</code>, then the delegate
+    /// will fall back to instantiating a new <code>FlutterNativeView</code>. This is
+    /// useful for applications to override to reuse the FlutterNativeView held
+    /// e.g.by a pre-existing background service.</p>
+    /// </summary>
     public interface IViewFactory
     {
         FlutterView CreateFlutterView(Context context);
@@ -146,7 +161,7 @@ namespace Flutter.Shell.Droid.App
             }
 
             string[] args = GetArgsFromIntent(_activity.Intent);
-            await FlutterMain.EnsureInitializationComplete(_activity.ApplicationContext, args);
+            await FlutterMainAndroid.EnsureInitializationComplete(_activity.ApplicationContext, args);
 
             _flutterView = _viewFactory.CreateFlutterView(_activity);
             if (_flutterView == null)
@@ -172,14 +187,14 @@ namespace Flutter.Shell.Droid.App
 
             if (!_flutterView.GetFlutterNativeView().IsApplicationRunning())
             {
-                string appBundlePath = FlutterMain.FindAppBundlePath(_activity.ApplicationContext);
+                string appBundlePath = FlutterMainAndroid.FindAppBundlePath(_activity.ApplicationContext);
                 if (appBundlePath != null)
                 {
                     FlutterRunArguments arguments = new FlutterRunArguments();
                     List<string> bundlePaths = new List<string>();
-                    if (FlutterMain.GetUpdateInstallationPath() != null)
+                    if (FlutterMainAndroid.GetUpdateInstallationPath() != null)
                     {
-                        bundlePaths.Add(FlutterMain.GetUpdateInstallationPath());
+                        bundlePaths.Add(FlutterMainAndroid.GetUpdateInstallationPath());
                     }
 
                     bundlePaths.Add(appBundlePath);
@@ -386,7 +401,7 @@ namespace Flutter.Shell.Droid.App
                 {
                     // Fall back to the installation path if no bundle path
                     // was specified.
-                    appBundlePath = FlutterMain.FindAppBundlePath(_activity.ApplicationContext);
+                    appBundlePath = FlutterMainAndroid.FindAppBundlePath(_activity.ApplicationContext);
                 }
 
                 if (route != null)
@@ -398,9 +413,9 @@ namespace Flutter.Shell.Droid.App
                 {
                     FlutterRunArguments args = new FlutterRunArguments();
                     List<string> bundlePaths = new List<string>();
-                    if (FlutterMain.GetUpdateInstallationPath() != null)
+                    if (FlutterMainAndroid.GetUpdateInstallationPath() != null)
                     {
-                        bundlePaths.Add(FlutterMain.GetUpdateInstallationPath());
+                        bundlePaths.Add(FlutterMainAndroid.GetUpdateInstallationPath());
                     }
 
                     bundlePaths.Add(appBundlePath);

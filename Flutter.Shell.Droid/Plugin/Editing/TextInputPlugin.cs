@@ -10,9 +10,7 @@ using Org.Json;
 
 namespace Flutter.Shell.Droid.Plugin.Editing
 {
-    /**
-     * Android implementation of the text input plugin.
-     */
+    /// <summary>Android implementation of the text input plugin.</summary>
     public class TextInputPlugin : IMethodCallHandler
     {
         private readonly FlutterView _view;

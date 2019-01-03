@@ -8,6 +8,7 @@ using Java.Nio;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using FlutterBinding.Engine.Assets;
+using FlutterBinding.Plugin.Common;
 using FlutterBinding.Shell;
 using FlutterBinding.UI;
 using AssetManager = Android.Content.Res.AssetManager;
@@ -277,7 +278,7 @@ namespace Flutter.Shell.Droid.View
         public static async Task<AndroidShellHolder> NativeAttach(FlutterNativeView view)
         {
             return await AndroidShellHolder.Create(
-                FlutterMain.Settings,
+                FlutterMainAndroid.Settings,
                 view);
         }
 

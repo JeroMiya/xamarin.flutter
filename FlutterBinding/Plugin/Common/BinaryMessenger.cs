@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Flutter.Shell.Droid.Plugin.Common
+namespace FlutterBinding.Plugin.Common
 {
     ///<Summary>
     /// Facility for communicating with Flutter using asynchronous message passing with binary messages.

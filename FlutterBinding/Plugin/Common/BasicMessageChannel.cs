@@ -1,7 +1,7 @@
-﻿using Android.Util;
-using System;
+﻿using System;
+using FlutterBinding.Engine;
 
-namespace Flutter.Shell.Droid.Plugin.Common
+namespace FlutterBinding.Plugin.Common
 {
     /**
      * A named channel for communicating with the Flutter application using basic, asynchronous message passing.
@@ -160,7 +160,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
                 }
                 catch (Exception e)
                 {
-                    Log.Error(TAG + _name, "Failed to handle message reply", e);
+                    FLog.Error(TAG + _name, "Failed to handle message reply", e);
                 }
             }
         }
@@ -193,7 +193,7 @@ namespace Flutter.Shell.Droid.Plugin.Common
                 }
                 catch (Exception e)
                 {
-                    Log.Error(TAG + _name, "Failed to handle message", e);
+                    FLog.Error(TAG + _name, "Failed to handle message", e);
                     callback.Reply(null);
                 }
             }

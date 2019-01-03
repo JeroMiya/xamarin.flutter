@@ -5,6 +5,8 @@ using Android.Views;
 using Flutter.Shell.Droid.View;
 using Java.Lang;
 using System;
+using Android.Annotation;
+using Android.OS;
 
 namespace Flutter.Shell.Droid.Plugin.Platform
 {
@@ -32,7 +34,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
         }
     }
 
-    //@TargetApi(Build.VERSION_CODES.KITKAT_WATCH)
+    [TargetApi(Value = (int)BuildVersionCodes.KitkatWatch)]
     internal class VirtualDisplayController
     {
         public static VirtualDisplayController Create(
@@ -170,7 +172,7 @@ namespace Flutter.Shell.Droid.Plugin.Platform
             return platformView?.GetView();
         }
 
-        //@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+        [TargetApi(Value = (int)BuildVersionCodes.JellyBean)]
         public class OneTimeOnDrawListener : Java.Lang.Object, ViewTreeObserver.IOnDrawListener
         {
             public static void Schedule(Android.Views.View view, Runnable runnable)

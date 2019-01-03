@@ -20,7 +20,7 @@ using File = Java.IO.File;
 
 namespace Flutter.Shell.Droid.View
 {
-    public class FlutterMain
+    public static class FlutterMainAndroid
     {
         private static readonly string DEFAULT_AOT_ISOLATE_SNAPSHOT_DATA = "isolate_snapshot_data";
         private static string _aotIsolateSnapshotData = DEFAULT_AOT_ISOLATE_SNAPSHOT_DATA;
@@ -65,19 +65,19 @@ namespace Flutter.Shell.Droid.View
         private static readonly string FLX_KEY = "flx";
 
         // XML Attribute keys supported in AndroidManifest.xml
-        public static readonly string PUBLIC_AOT_AOT_SHARED_LIBRARY_PATH = nameof(FlutterMain) + '.' + AOT_SHARED_LIBRARY_PATH;
-        public static readonly string PUBLIC_AOT_ISOLATE_SNAPSHOT_DATA_KEY = nameof(FlutterMain) + '.' + AOT_ISOLATE_SNAPSHOT_DATA_KEY;
-        public static readonly string PUBLIC_AOT_ISOLATE_SNAPSHOT_INSTR_KEY = nameof(FlutterMain) + '.' + AOT_ISOLATE_SNAPSHOT_INSTR_KEY;
-        public static readonly string PUBLIC_AOT_VM_SNAPSHOT_DATA_KEY = nameof(FlutterMain) + '.' + AOT_VM_SNAPSHOT_DATA_KEY;
-        public static readonly string PUBLIC_AOT_VM_SNAPSHOT_INSTR_KEY = nameof(FlutterMain) + '.' + AOT_VM_SNAPSHOT_INSTR_KEY;
-        public static readonly string PUBLIC_FLUTTER_ASSETS_DIR_KEY = nameof(FlutterMain) + "." + FLUTTER_ASSETS_DIR_KEY;
-        public static readonly string PUBLIC_FLX_KEY = nameof(FlutterMain) + "." + FLX_KEY;
+        public static readonly string PUBLIC_AOT_AOT_SHARED_LIBRARY_PATH = nameof(FlutterMainAndroid) + '.' + AOT_SHARED_LIBRARY_PATH;
+        public static readonly string PUBLIC_AOT_ISOLATE_SNAPSHOT_DATA_KEY = nameof(FlutterMainAndroid) + '.' + AOT_ISOLATE_SNAPSHOT_DATA_KEY;
+        public static readonly string PUBLIC_AOT_ISOLATE_SNAPSHOT_INSTR_KEY = nameof(FlutterMainAndroid) + '.' + AOT_ISOLATE_SNAPSHOT_INSTR_KEY;
+        public static readonly string PUBLIC_AOT_VM_SNAPSHOT_DATA_KEY = nameof(FlutterMainAndroid) + '.' + AOT_VM_SNAPSHOT_DATA_KEY;
+        public static readonly string PUBLIC_AOT_VM_SNAPSHOT_INSTR_KEY = nameof(FlutterMainAndroid) + '.' + AOT_VM_SNAPSHOT_INSTR_KEY;
+        public static readonly string PUBLIC_FLUTTER_ASSETS_DIR_KEY = nameof(FlutterMainAndroid) + "." + FLUTTER_ASSETS_DIR_KEY;
+        public static readonly string PUBLIC_FLX_KEY = nameof(FlutterMainAndroid) + "." + FLX_KEY;
 
         // Assets that are shared among all Flutter apps within an APK.
         private static readonly string SHARED_ASSET_DIR = "flutter_shared";
         private static readonly string SHARED_ASSET_ICU_DATA = "icudtl.dat";
 
-        private static readonly string TAG = "FlutterMain";
+        private static readonly string TAG = "FlutterMainAndroid";
 
         private static bool IsMainLoop => Looper.MyLooper() == Looper.MainLooper;
         public static Context MainContext { get; private set; }
@@ -292,9 +292,9 @@ namespace Flutter.Shell.Droid.View
             //{
             //    MessageLoop.GetCurrent().RemoveTaskObserver(key);
             //};
-            //// Not thread safe. Will be removed when FlutterMain is refactored to no
+            //// Not thread safe. Will be removed when FlutterMainAndroid is refactored to no
             //// longer be a singleton.
-            //g_flutter_main.reset(new FlutterMain(settings));
+            //g_flutter_main.reset(new FlutterMainAndroid(settings));
         }
 
         private static void NativeRecordStartTimestamp()
