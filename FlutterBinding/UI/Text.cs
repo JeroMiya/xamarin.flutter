@@ -355,9 +355,9 @@ namespace FlutterBinding.UI
         public String toString()
         {
             return "TextStyle(" +
-                $"color: {((_encoded[0] & 0x00002) == 0x00002 ? new Color((uint)_encoded[1]).toString() : "unspecified")}, " +
+                $"color: {((_encoded[0] & 0x00002) == 0x00002 ? new Color((uint)_encoded[1]).ToString() : "unspecified")}, " +
                 $"decoration: {((_encoded[0] & 0x00004) == 0x00004 ? new TextDecoration(_encoded[2]).toString() : "unspecified")}, " +
-                $"decorationColor:{((_encoded[0] & 0x00008) == 0x00008 ? new Color((uint)_encoded[3]).toString() : "unspecified")}, " +
+                $"decorationColor:{((_encoded[0] & 0x00008) == 0x00008 ? new Color((uint)_encoded[3]).ToString() : "unspecified")}, " +
                 $"decorationStyle: {((_encoded[0] & 0x00010) == 0x00010 ? ((TextDecorationStyle)(_encoded[4])).ToString() : "unspecified")}, " +
                 $"fontWeight: {((_encoded[0] & 0x00020) == 0x00020 ? FontWeight.values[_encoded[5]].toString() : "unspecified")}, " +
                 $"fontStyle: {((_encoded[0] & 0x00040) == 0x00040 ? ((FontStyle)(_encoded[6])).ToString() : "unspecified")}, " +
@@ -368,8 +368,8 @@ namespace FlutterBinding.UI
                 $"wordSpacing: {((_encoded[0] & 0x00800) == 0x00800 ? $"{_wordSpacing}x" : "unspecified")}, " +
                 $"height: {((_encoded[0] & 0x01000) == 0x01000 ? $"{_height}x" : "unspecified")}, " +
                 $"locale: {((_encoded[0] & 0x02000) == 0x02000 ? _locale.ToString() : "unspecified")}, " +
-                $"background: {((_encoded[0] & 0x04000) == 0x04000 ? _background.toString() : "unspecified")}, " +
-                $"foreground: {((_encoded[0] & 0x08000) == 0x08000 ? _foreground.toString() : "unspecified")}, " +
+                $"background: {((_encoded[0] & 0x04000) == 0x04000 ? _background.ToString() : "unspecified")}, " +
+                $"foreground: {((_encoded[0] & 0x08000) == 0x08000 ? _foreground.ToString() : "unspecified")}, " +
                 $"shadows: {((_encoded[0] & 0x10000) == 0x10000 ? _shadows.ToString() : "unspecified")}" +
                 ")";
         }
@@ -1193,7 +1193,7 @@ namespace FlutterBinding.UI
             if (color != null)
             {
                 result[0] |= 1 << 1;
-                result[1] =  (int)color.value;
+                result[1] =  (int)color.Value;
             }
 
             if (decoration != null)
@@ -1205,7 +1205,7 @@ namespace FlutterBinding.UI
             if (decorationColor != null)
             {
                 result[0] |= 1 << 3;
-                result[3] =  (int)decorationColor.value;
+                result[3] =  (int)decorationColor.Value;
             }
 
             if (decorationStyle != null)

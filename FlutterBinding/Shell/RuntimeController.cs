@@ -350,7 +350,7 @@ namespace FlutterBinding.Shell
         // |blink::WindowClient|
         public void Render(Scene scene)
         {
-            _client.Render(scene.TakeLayerTree());
+            _client.Render(scene.LayerTree);
         }
 
         // |blink::WindowClient|

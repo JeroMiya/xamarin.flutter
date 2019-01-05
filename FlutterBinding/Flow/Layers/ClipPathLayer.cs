@@ -1,4 +1,5 @@
-﻿using SkiaSharp;
+﻿using FlutterBinding.UI;
+using SkiaSharp;
 using static FlutterBinding.Flow.Helper;
 
 // Copyright 2015 The Chromium Authors. All rights reserved.
@@ -9,25 +10,23 @@ namespace FlutterBinding.Flow.Layers
 {
     public class ClipPathLayer : ContainerLayer
     {
-        public ClipPathLayer(Clip clip_behavior = Clip.antiAlias)
+        public ClipPathLayer(Clip clipBehavior = Clip.AntiAlias)
         {
-            this.clip_behavior_ = clip_behavior;
+            _clipBehavior = clipBehavior;
         }
 
-        public void set_clip_path(SKPath clip_path)
+        public void SetClipPath(SKPath clipPath)
         {
-            clip_path_ = clip_path;
+            _clipPath = clipPath;
         }
 
         public override void Preroll(PrerollContext context, SKMatrix matrix)
         {
-            SKRect child_paint_bounds = SKRect.Empty;
-            PrerollChildren(context, matrix, ref child_paint_bounds);
+            SKRect childPaintBounds = SKRect.Empty;
+            PrerollChildren(context, matrix, ref childPaintBounds);
 
-            if (child_paint_bounds.IntersectsWith(clip_path_.Bounds))
-            {
-                set_paint_bounds(child_paint_bounds);
-            }
+            if (childPaintBounds.IntersectsWith(_clipPath.Bounds))
+                set_paint_bounds(childPaintBounds);
         }
 
         public override void Paint(PaintContext context)
@@ -35,20 +34,16 @@ namespace FlutterBinding.Flow.Layers
             TRACE_EVENT0("flutter", "ClipPathLayer::Paint");
             FML_DCHECK(needs_painting());
 
-            context.canvas.ClipPath(clip_path_, antialias: clip_behavior_ != Clip.hardEdge);
-            if (clip_behavior_ == Clip.antiAliasWithSaveLayer)
-            {
+            context.canvas.ClipPath(_clipPath, antialias: _clipBehavior != Clip.HardEdge);
+            if (_clipBehavior == Clip.AntiAliasWithSaveLayer)
                 context.canvas.SaveLayer(paint_bounds(), null);
-            }
 
             PaintChildren(context);
-            if (clip_behavior_ == Clip.antiAliasWithSaveLayer)
-            {
+            if (_clipBehavior == Clip.AntiAliasWithSaveLayer)
                 context.canvas.Restore();
-            }
         }
 
-        private SKPath clip_path_ = new SKPath();
-        private Clip clip_behavior_;
+        private SKPath _clipPath = new SKPath();
+        private readonly Clip _clipBehavior;
     }
 }

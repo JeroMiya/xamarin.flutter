@@ -405,7 +405,7 @@ namespace FlutterBinding.UI
         ///    painting.
         public void Render(Scene scene)
         {
-            Engine.Engine.Instance.Render(scene.TakeLayerTree());
+            Engine.Engine.Instance.Render(scene.LayerTree);
         }
 
 

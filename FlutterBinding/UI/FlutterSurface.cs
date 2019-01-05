@@ -29,7 +29,7 @@ namespace FlutterBinding.UI
             {
                 Color       = SKColors.WhiteSmoke,
                 IsAntialias = true,
-                Style       = SKPaintStyle.Fill,
+                Style       = SkiaSharp.SKPaintStyle.Fill,
                 TextAlign   = SKTextAlign.Center,
                 TextSize    = 24
             };

@@ -1,7 +1,7 @@
 ﻿using System;
 using FlutterBinding.UI;
 using SkiaSharp;
-using static FlutterBinding.Flow.Helper;
+using SKPaintStyle = SkiaSharp.SKPaintStyle;
 
 // Copyright 2017 The Chromium Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be

@@ -9,8 +9,10 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Util;
 using Flutter.Shell.Droid.Util;
+using FlutterBinding.App;
 using FlutterBinding.Engine;
 using FlutterBinding.Extensions;
+using FlutterBinding.Plugin.Platform;
 using FlutterBinding.Runtime;
 using FlutterBinding.Shell;
 using Java.Lang;
@@ -45,8 +47,6 @@ namespace Flutter.Shell.Droid.View
         private static bool _isPrecompiledAsSharedLibrary;
         private static ResourceExtractor _resourceExtractor;
         private static ResourceUpdater _resourceUpdater;
-        private static Settings _settings;
-        private static Stopwatch _stopwatch;
         private static readonly string AOT_ISOLATE_SNAPSHOT_DATA_KEY = "isolate-snapshot-data";
         private static readonly string AOT_ISOLATE_SNAPSHOT_INSTR_KEY = "isolate-snapshot-instr";
 
@@ -92,15 +92,18 @@ namespace Flutter.Shell.Droid.View
             if (!IsMainLoop)
                 throw new IllegalStateException("ensureInitializationComplete must be called on the main thread");
 
-            if (_settings == null)
-                throw new IllegalStateException("ensureInitializationComplete must be called after startInitialization");
+            await FlutterMain.InitializationTask;
 
             if (_initialized)
                 return;
 
+            var ioc = FlutterMain.Container;
+
             try
             {
                 await _resourceExtractor.WaitForCompletion();
+
+                ioc.Register<IAssetAccess, AssetAccess>();
 
                 var shellArgs = new List<string>
                 {
@@ -138,9 +141,9 @@ namespace Flutter.Shell.Droid.View
                     shellArgs.Add("--" + AOT_ISOLATE_SNAPSHOT_INSTR_KEY + "=" + _aotIsolateSnapshotInstr);
                 }
 
-                if (_settings.LogTag != null)
+                if (FlutterMain.Settings.LogTag != null)
                 {
-                    shellArgs.Add("--log-tag=" + _settings.LogTag);
+                    shellArgs.Add("--log-tag=" + FlutterMain.Settings.LogTag);
                 }
 
                 var appBundlePath = FindAppBundlePath(applicationContext);
@@ -168,6 +171,21 @@ namespace Flutter.Shell.Droid.View
             var dataDirectory = PathUtils.GetDataDirectory(applicationContext);
             var appBundle = new File(dataDirectory, _flutterAssetsDir);
             return appBundle.Exists() ? appBundle.Path : null;
+        }
+
+        public sealed class AssetAccess : IAssetAccess
+        {
+            /// <inheritdoc />
+            public string GetLookupKeyForAsset(string asset, string packageName)
+            {
+                return FlutterMainAndroid.GetLookupKeyForAsset(asset, packageName);
+            }
+
+            /// <inheritdoc />
+            public string GetLookupKeyForAsset(string asset)
+            {
+                return FlutterMainAndroid.GetLookupKeyForAsset(asset);
+            }
         }
 
         /**
@@ -212,20 +230,12 @@ namespace Flutter.Shell.Droid.View
          * @param applicationContext The Android application context.
          * @param settings Configuration settings.
          */
-        public static async Task StartInitialization(Context applicationContext, Settings settings = null)
+        public static async Task StartInitialization(Context applicationContext)
         {
             if (!IsMainLoop)
                 throw new ThreadStateException("startInitialization must be called on the main thread");
 
-            // Do not run startInitialization more than once.
-            if (_settings != null)
-                return;
-
-            _settings   = settings ?? new Settings();
             MainContext = applicationContext;
-
-            _stopwatch = Stopwatch.StartNew();
-            _stopwatch.Start();
 
             InitConfig(applicationContext);
             InitAot(applicationContext);
@@ -409,6 +419,6 @@ namespace Flutter.Shell.Droid.View
             }
         }
 
-        public static Settings Settings { get; }
+        //public static Settings Settings { get; }
     }
 }

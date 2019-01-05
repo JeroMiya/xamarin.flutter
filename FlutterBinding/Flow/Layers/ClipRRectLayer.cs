@@ -1,4 +1,5 @@
-﻿using SkiaSharp;
+﻿using FlutterBinding.UI;
+using SkiaSharp;
 using static FlutterBinding.Flow.Helper;
 
 // Copyright 2015 The Chromium Authors. All rights reserved.
@@ -9,25 +10,23 @@ namespace FlutterBinding.Flow.Layers
 {
     public class ClipRRectLayer : ContainerLayer
     {
-        public ClipRRectLayer(Clip clip_behavior)
+        public ClipRRectLayer(Clip clipBehavior)
         {
-            this.clip_behavior_ = clip_behavior;
+            _clipBehavior = clipBehavior;
         }
 
-        public void set_clip_rrect(SKRoundRect clip_rrect)
+        public void SetClipRRect(SKRoundRect clipRRect)
         {
-            clip_rrect_ = clip_rrect;
+            _clipRRect = clipRRect;
         }
 
         public override void Preroll(PrerollContext context, SKMatrix matrix)
         {
-            SKRect child_paint_bounds = SKRect.Empty;
-            PrerollChildren(context, matrix, ref child_paint_bounds);
+            SKRect childPaintBounds = SKRect.Empty;
+            PrerollChildren(context, matrix, ref childPaintBounds);
 
-            if (child_paint_bounds.IntersectsWith(clip_rrect_.Rect))
-            {
-                set_paint_bounds(child_paint_bounds);
-            }
+            if (childPaintBounds.IntersectsWith(_clipRRect.Rect))
+                set_paint_bounds(childPaintBounds);
         }
 
         public override void Paint(PaintContext context)
@@ -35,20 +34,20 @@ namespace FlutterBinding.Flow.Layers
             TRACE_EVENT0("flutter", "ClipRRectLayer::Paint");
             FML_DCHECK(needs_painting());
 
-            context.canvas.ClipRoundRect(clip_rrect_, antialias: clip_behavior_ != Clip.hardEdge);
-            if (clip_behavior_ == Clip.antiAliasWithSaveLayer)
+            context.canvas.ClipRoundRect(_clipRRect, antialias: _clipBehavior != Clip.HardEdge);
+            if (_clipBehavior == Clip.AntiAliasWithSaveLayer)
             {
                 context.canvas.SaveLayer(paint_bounds(), null);
             }
 
             PaintChildren(context);
-            if (clip_behavior_ == Clip.antiAliasWithSaveLayer)
+            if (_clipBehavior == Clip.AntiAliasWithSaveLayer)
             {
                 context.canvas.Restore();
             }
         }
 
-        private SKRoundRect clip_rrect_;
-        private Clip clip_behavior_;
+        private SKRoundRect _clipRRect;
+        private readonly Clip _clipBehavior;
     }
 }

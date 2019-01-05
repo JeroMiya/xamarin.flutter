@@ -1,5 +1,6 @@
 ﻿using System;
 using FlutterBinding.Engine;
+using FlutterBinding.Shell;
 
 namespace FlutterBinding.Plugin.Common
 {
@@ -139,7 +140,7 @@ namespace FlutterBinding.Plugin.Common
                         }
                         catch (FlutterException e)
                         {
-                            _callback.Error(e.code, e.Message, e.details);
+                            _callback.Error(e.Code, e.Message, e.Details);
                         }
                     }
                 }

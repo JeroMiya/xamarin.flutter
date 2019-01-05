@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using FlutterBinding.Engine.Painting;
 using FlutterBinding.Mapping;
@@ -10,40 +9,6 @@ using static FlutterBinding.Mapping.Helper;
 
 namespace FlutterBinding.UI
 {
-    public static class Helper
-    {
-        public static SKPoint ToPoint(this Offset offset) => new SKPoint((float)offset.dx, (float)offset.dy);
-
-        public static List<SKPoint> ToPoints(this List<Offset> offset)
-        {
-            var list = new List<SKPoint>();
-            foreach (var point in offset)
-                list.Add(point.ToPoint());
-
-            return list;
-        }
-
-        public static List<SKColor> ToColors(this List<Color> colors)
-        {
-            var list = new List<SKColor>();
-
-            foreach (var color in colors)
-                list.Add(new SKColor(color.value));
-
-            return list;
-        }
-
-        public static SKRect ToSKRect(this Rect rect)
-            => new SKRect((float)rect.left, (float)rect.top, (float)rect.right, (float)rect.bottom);
-
-        public static SKRectI ToSKRectI(this Rect rect)
-            => new SKRectI((int)rect.left, (int)rect.top, (int)rect.right, (int)rect.bottom);
-
-        public static SKRoundRect ToRoundedRect(this RRect rect)
-            => new SKRoundRect(new SKRect((float)rect.left, (float)rect.top, (float)rect.right, (float)rect.bottom), (float)rect.blRadiusX, (float)rect.blRadiusY);
-    }
-
-
     public class Painting
     {
         // Some methods in this file assert that their arguments are not null. These
@@ -97,21 +62,21 @@ namespace FlutterBinding.UI
             return true;
         }
 
-        public static Color _scaleAlpha(Color a, double factor)
+        public static Color ScaleAlpha(Color a, double factor)
         {
-            return a.withAlpha((uint)(a.alpha * factor).round().clamp(0, 255));
+            return a.WithAlpha((uint)(a.Alpha * factor).round().clamp(0, 255));
         }
 
-        public static List<uint> _encodeColorList(List<Color> colors)
+        public static List<uint> EncodeColorList(List<Color> colors)
         {
             int colorCount = colors.Count;
             List<uint> result = new List<uint>(colorCount);
             for (int i = 0; i < colorCount; ++i)
-                result[i] = colors[i].value;
+                result[i] = colors[i].Value;
             return result;
         }
 
-        public static List<double> _encodePointList(List<Offset> points)
+        public static List<double> EncodePointList(List<Offset> points)
         {
             //assert(points != null);
             int pointCount = points.Count;
@@ -129,7 +94,7 @@ namespace FlutterBinding.UI
             return result;
         }
 
-        public static List<double> _encodeTwoPoints(Offset pointA, Offset pointB)
+        public static List<double> EncodeTwoPoints(Offset pointA, Offset pointB)
         {
             //assert(_offsetIsValid(pointA));
             //assert(_offsetIsValid(pointB));
@@ -147,12 +112,12 @@ namespace FlutterBinding.UI
         // TODO(liyuqian): Set it to Clip.none. (https://github.com/flutter/flutter/issues/18057)
         // We currently have Clip.antiAlias to preserve our old behaviors.
         [Obsolete("Do not use this as it'll soon be removed after we set the default behavior to Clip.none.")]
-        public const Clip defaultClipBehavior = Clip.antiAlias;
+        public const Clip DefaultClipBehavior = Clip.AntiAlias;
 
         // If we actually run on big endian machines, we'll need to do something smarter
         // here. We don't use [Endian.Host] because it's not a compile-time
         // constant and can't propagate into the set/get calls.
-        public const Types.Endian _kFakeHostEndian = Types.Endian.little;
+        public const Types.Endian kFakeHostEndian = Types.Endian.little;
 
         /// Instantiates an image codec [Codec] object.
         ///
@@ -171,7 +136,7 @@ namespace FlutterBinding.UI
         ///
         /// The returned future can complete with an error if the image decoding has
         /// failed.
-        public Task<SKCodec> instantiateImageCodec(
+        public Task<SKCodec> InstantiateImageCodec(
             List<int> list,
             double decodedCacheRatioCap = double.PositiveInfinity)
         {
@@ -181,23 +146,23 @@ namespace FlutterBinding.UI
         /// Instantiates a [Codec] object for an image binary data.
         ///
         /// Returns an error message if the instantiation has failed, null otherwise.
-        Task<SKCodec> _instantiateImageCodec(List<int> list, _ImageInfo imageInfo, double decodedCacheRatioCap)
+        private Task<SKCodec> _instantiateImageCodec(List<int> list, _ImageInfo imageInfo, double decodedCacheRatioCap)
             => NativeCodec.InstantiateImageCodec(list, imageInfo, decodedCacheRatioCap);
 
         /// Loads a single image frame from a byte array into an [Image] object.
         ///
-        /// This is a convenience wrapper around [instantiateImageCodec].
-        /// Prefer using [instantiateImageCodec] which also supports multi frame images.
-        void decodeImageFromList(List<int> list, ImageDecoderCallback callback)
+        /// This is a convenience wrapper around [InstantiateImageCodec].
+        /// Prefer using [InstantiateImageCodec] which also supports multi frame images.
+        public void DecodeImageFromList(List<int> list, ImageDecoderCallback callback)
         {
             _decodeImageFromListAsync(list, callback);
         }
 
-        async Task _decodeImageFromListAsync(
+        private async Task _decodeImageFromListAsync(
             List<int> list,
             ImageDecoderCallback callback)
         {
-            SKCodec codec = await instantiateImageCodec(list);
+            SKCodec codec = await InstantiateImageCodec(list);
             SKCodecFrameInfo frameInfo = codec.FrameInfo[0]; // TODO: .getNextFrame();
             callback(frameInfo.GetImage(codec));
         }
@@ -218,7 +183,7 @@ namespace FlutterBinding.UI
         /// multiple) animated images. Note that GIFs are highly compressed, and it's
         /// unlikely that a factor that low will be sufficient to cache all decoded
         /// frames. The default value is `25.0`.
-        public async void decodeImageFromPixels(
+        public async void DecodeImageFromPixels(
             List<int> pixels,
             int width,
             int height,
@@ -232,1470 +197,6 @@ namespace FlutterBinding.UI
         }
     }
 
-    /// An immutable 32 bit color value in ARGB format.
-    ///
-    /// Consider the light teal of the Flutter logo. It is fully opaque, with a red
-    /// channel value of 0x42 (66), a green channel value of 0xA5 (165), and a blue
-    /// channel value of 0xF5 (245). In the common "hash syntax" for colour values,
-    /// it would be described as `#42A5F5`.
-    ///
-    /// Here are some ways it could be constructed:
-    ///
-    /// ```dart
-    /// Color c = const Color(0xFF42A5F5);
-    /// Color c = const Color.fromARGB(0xFF, 0x42, 0xA5, 0xF5);
-    /// Color c = const Color.fromARGB(255, 66, 165, 245);
-    /// Color c = const Color.fromRGBO(66, 165, 245, 1.0);
-    /// ```
-    ///
-    /// If you are having a problem with `Color` wherein it seems your color is just
-    /// not painting, check to make sure you are specifying the full 8 hexadecimal
-    /// digits. If you only specify six, then the leading two digits are assumed to
-    /// be zero, which means fully-transparent:
-    ///
-    /// ```dart
-    /// Color c1 = const Color(0xFFFFFF); // fully transparent white (invisible)
-    /// Color c2 = const Color(0xFFFFFFFF); // fully opaque white (visible)
-    /// ```
-    ///
-    /// See also:
-    ///
-    ///  * [Colors](https://docs.flutter.io/flutter/material/Colors-class.html), which
-    ///    defines the colors found in the Material Design specification.
-    public class Color
-    {
-        /// Construct a color from the lower 32 bits of an [int].
-        ///
-        /// The bits are interpreted as follows:
-        ///
-        /// * Bits 24-31 are the alpha value.
-        /// * Bits 16-23 are the red value.
-        /// * Bits 8-15 are the green value.
-        /// * Bits 0-7 are the blue value.
-        ///
-        /// In other words, if AA is the alpha value in hex, RR the red value in hex,
-        /// GG the green value in hex, and BB the blue value in hex, a color can be
-        /// expressed as `const Color(0xAARRGGBB)`.
-        ///
-        /// For example, to get a fully opaque orange, you would use `const
-        /// Color(0xFFFF9000)` (`FF` for the alpha, `FF` for the red, `90` for the
-        /// green, and `00` for the blue).
-        // //@pragma('vm:entry-point')
-        public Color(uint value)
-        {
-            this.value = value & 0xFFFFFFFF;
-        }
-
-        /// Construct a color from the lower 8 bits of four integers.
-        ///
-        /// * `a` is the alpha value, with 0 being transparent and 255 being fully
-        ///   opaque.
-        /// * `r` is [red], from 0 to 255.
-        /// * `g` is [green], from 0 to 255.
-        /// * `b` is [blue], from 0 to 255.
-        ///
-        /// Out of range values are brought into range using modulo 255.
-        ///
-        /// See also [fromRGBO], which takes the alpha value as a floating point
-        /// value.
-        public static Color fromARGB(uint a, uint r, uint g, uint b)
-        {
-            var value = (((a & 0xff) << 24) |
-                ((r & 0xff) << 16) |
-                ((g & 0xff) << 8) |
-                ((b & 0xff) << 0)) & 0xFFFFFFFF;
-            return new Color(value);
-        }
-
-        /// Create a color from red, green, blue, and opacity, similar to `rgba()` in CSS.
-        ///
-        /// * `r` is [red], from 0 to 255.
-        /// * `g` is [green], from 0 to 255.
-        /// * `b` is [blue], from 0 to 255.
-        /// * `opacity` is alpha channel of this color as a double, with 0.0 being
-        ///   transparent and 1.0 being fully opaque.
-        ///
-        /// Out of range values are brought into range using modulo 255.
-        ///
-        /// See also [fromARGB], which takes the opacity as an integer value.
-        public static Color fromRGBO(int r, int g, int b, double opacity)
-        {
-            var value = (uint)((((int)Math.Truncate(opacity * 0xff / 1.0) & 0xff) << 24) |
-                ((r & 0xff) << 16) |
-                ((g & 0xff) << 8) |
-                ((b & 0xff) << 0)) & 0xFFFFFFFF;
-
-            return new Color(value);
-        }
-
-        /// A 32 bit value representing this color.
-        ///
-        /// The bits are assigned as follows:
-        ///
-        /// * Bits 24-31 are the alpha value.
-        /// * Bits 16-23 are the red value.
-        /// * Bits 8-15 are the green value.
-        /// * Bits 0-7 are the blue value.
-        public uint value;
-
-        /// The alpha channel of this color in an 8 bit value.
-        ///
-        /// A value of 0 means this color is fully transparent. A value of 255 means
-        /// this color is fully opaque.
-        public uint alpha => (0xff000000 & value) >> 24;
-
-        /// The alpha channel of this color as a double.
-        ///
-        /// A value of 0.0 means this color is fully transparent. A value of 1.0 means
-        /// this color is fully opaque.
-        public double opacity => alpha / 0xFF;
-
-        /// The red channel of this color in an 8 bit value.
-        public uint red => (0x00ff0000 & value) >> 16;
-
-        /// The green channel of this color in an 8 bit value.
-        public uint green => (0x0000ff00 & value) >> 8;
-
-        /// The blue channel of this color in an 8 bit value.
-        public uint blue => (0x000000ff & value) >> 0;
-
-        /// Returns a new color that matches this color with the alpha channel
-        /// replaced with `a` (which ranges from 0 to 255).
-        ///
-        /// Out of range values will have unexpected effects.
-        public Color withAlpha(uint a)
-        {
-            return Color.fromARGB(a, red, green, blue);
-        }
-
-        /// Returns a new color that matches this color with the alpha channel
-        /// replaced with the given `opacity` (which ranges from 0.0 to 1.0).
-        ///
-        /// Out of range values will have unexpected effects.
-        public Color withOpacity(double opacity)
-        {
-            //assert(opacity >= 0.0 && opacity <= 1.0);
-            return withAlpha((uint)(255.0 * opacity).round());
-        }
-
-        /// Returns a new color that matches this color with the red channel replaced
-        /// with `r` (which ranges from 0 to 255).
-        ///
-        /// Out of range values will have unexpected effects.
-        public Color withRed(uint r)
-        {
-            return Color.fromARGB(alpha, r, green, blue);
-        }
-
-        /// Returns a new color that matches this color with the green channel
-        /// replaced with `g` (which ranges from 0 to 255).
-        ///
-        /// Out of range values will have unexpected effects.
-        public Color withGreen(uint g)
-        {
-            return Color.fromARGB(alpha, red, g, blue);
-        }
-
-        /// Returns a new color that matches this color with the blue channel replaced
-        /// with `b` (which ranges from 0 to 255).
-        ///
-        /// Out of range values will have unexpected effects.
-        public Color withBlue(uint b)
-        {
-            return Color.fromARGB(alpha, red, green, b);
-        }
-
-        // See <https://www.w3.org/TR/WCAG20/#relativeluminancedef>
-        static double _linearizeColorComponent(double component)
-        {
-            if (component <= 0.03928)
-                return component / 12.92;
-            return Math.Pow((component + 0.055) / 1.055, 2.4);
-        }
-
-        /// Returns a brightness value between 0 for darkest and 1 for lightest.
-        ///
-        /// Represents the relative luminance of the color. This value is computationally
-        /// expensive to calculate.
-        ///
-        /// See <https://en.wikipedia.org/wiki/Relative_luminance>.
-        public double computeLuminance()
-        {
-            // See <https://www.w3.org/TR/WCAG20/#relativeluminancedef>
-            double R = _linearizeColorComponent(red / 0xFF);
-            double G = _linearizeColorComponent(green / 0xFF);
-            double B = _linearizeColorComponent(blue / 0xFF);
-            return 0.2126 * R + 0.7152 * G + 0.0722 * B;
-        }
-
-        /// Linearly interpolate between two colors.
-        ///
-        /// This is intended to be fast but as a result may be ugly. Consider
-        /// [HSVColor] or writing custom logic for interpolating colors.
-        ///
-        /// If either color is null, this function linearly interpolates from a
-        /// transparent instance of the other color. This is usually preferable to
-        /// interpolating from [material.Colors.transparent] (`const
-        /// Color(0x00000000)`), which is specifically transparent _black_.
-        ///
-        /// The `t` argument represents position on the timeline, with 0.0 meaning
-        /// that the interpolation has not started, returning `a` (or something
-        /// equivalent to `a`), 1.0 meaning that the interpolation has finished,
-        /// returning `b` (or something equivalent to `b`), and values in between
-        /// meaning that the interpolation is at the relevant point on the timeline
-        /// between `a` and `b`. The interpolation can be extrapolated beyond 0.0 and
-        /// 1.0, so negative values and values greater than 1.0 are valid (and can
-        /// easily be generated by curves such as [Curves.elasticInOut]). Each channel
-        /// will be clamped to the range 0 to 255.
-        ///
-        /// Values for `t` are usually obtained from an [Animation<double>], such as
-        /// an [AnimationController].
-        public static Color lerp(Color a, Color b, double t)
-        {
-            //assert(t != null);
-            if (a == null && b == null)
-                return null;
-            if (a == null)
-                return Painting._scaleAlpha(b, t);
-            if (b == null)
-                return Painting._scaleAlpha(a, 1.0 - t);
-            return Color.fromARGB(
-                (uint)Lerp.lerpDouble(a.alpha, b.alpha, t).toInt().clamp(0, 255),
-                (uint)Lerp.lerpDouble(a.red, b.red, t).toInt().clamp(0, 255),
-                (uint)Lerp.lerpDouble(a.green, b.green, t).toInt().clamp(0, 255),
-                (uint)Lerp.lerpDouble(a.blue, b.blue, t).toInt().clamp(0, 255));
-        }
-
-        /// Combine the foreground color as a transparent color over top
-        /// of a background color, and return the resulting combined color.
-        ///
-        /// This uses standard alpha blending ("SRC over DST") rules to produce a
-        /// blended color from two colors. This can be used as a performance
-        /// enhancement when trying to avoid needless alpha blending compositing
-        /// operations for two things that are solid colors with the same shape, but
-        /// overlay each other: instead, just paint one with the combined color.
-        static Color alphaBlend(Color foreground, Color background)
-        {
-            int alpha = (int)foreground.alpha;
-            if (alpha == 0x00)
-            { // Foreground completely transparent.
-                return background;
-            }
-
-            int invAlpha = 0xff - alpha;
-            int backAlpha = (int)background.alpha;
-            if (backAlpha == 0xff)
-            { // Opaque background case
-                return Color.fromARGB(
-                    0xff,
-                    (uint)((alpha * foreground.red + invAlpha * background.red) / 0xff),
-                    (uint)((alpha * foreground.green + invAlpha * background.green) / 0xff),
-                    (uint)((alpha * foreground.blue + invAlpha * background.blue) / 0xff));
-            }
-            else
-            { // General case
-                backAlpha = (backAlpha * invAlpha) / 0xff;
-                int outAlpha = alpha + backAlpha;
-                //assert(outAlpha != 0x00);
-                return Color.fromARGB(
-                    (uint)outAlpha,
-                    (uint)((foreground.red * alpha + background.red * backAlpha) / outAlpha),
-                    (uint)((foreground.green * alpha + background.green * backAlpha) / outAlpha),
-                    (uint)((foreground.blue * alpha + background.blue * backAlpha) / outAlpha));
-            }
-        }
-
-        public static bool operator ==(Color color, Object other)
-        {
-            if (identical(color, other))
-                return true;
-            if (other.GetType() != color.GetType())
-                return false;
-            Color typedOther = (Color)other;
-            return color.value == typedOther.value;
-        }
-
-        public static bool operator !=(Color color, Object other) => !(color == other);
-
-        public int hashCode => value.GetHashCode();
-
-        public String toString() => $"Color(0x{value.toRadixString(16).PadLeft(8, '0')})";
-    }
-
-    /// Algorithms to use when painting on the canvas.
-    ///
-    /// When drawing a shape or image onto a canvas, different algorithms can be
-    /// used to blend the pixels. The different values of [BlendMode] specify
-    /// different such algorithms.
-    ///
-    /// Each algorithm has two inputs, the _source_, which is the image being drawn,
-    /// and the _destination_, which is the image into which the source image is
-    /// being composited. The destination is often thought of as the _background_.
-    /// The source and destination both have four color channels, the red, green,
-    /// blue, and alpha channels. These are typically represented as numbers in the
-    /// range 0.0 to 1.0. The output of the algorithm also has these same four
-    /// channels, with values computed from the source and destination.
-    ///
-    /// The documentation of each value below describes how the algorithm works. In
-    /// each case, an image shows the output of blending a source image with a
-    /// destination image. In the images below, the destination is represented by an
-    /// image with horizontal lines and an opaque landscape photograph, and the
-    /// source is represented by an image with vertical lines (the same lines but
-    /// rotated) and a bird clip-art image. The [src] mode shows only the source
-    /// image, and the [dst] mode shows only the destination image. In the
-    /// documentation below, the transparency is illustrated by a checkerboard
-    /// pattern. The [clear] mode drops both the source and destination, resulting
-    /// in an output that is entirely transparent (illustrated by a solid
-    /// checkerboard pattern).
-    ///
-    /// The horizontal and vertical bars in these images show the red, green, and
-    /// blue channels with varying opacity levels, then all three color channels
-    /// together with those same varying opacity levels, then all three color
-    /// channels set to zero with those varying opacity levels, then two bars showing
-    /// a red/green/blue repeating gradient, the first with full opacity and the
-    /// second with partial opacity, and finally a bar with the three color channels
-    /// set to zero but the opacity varying in a repeating gradient.
-    ///
-    /// ## Application to the [Canvas] API
-    ///
-    /// When using [Canvas.saveLayer] and [Canvas.restore], the blend mode of the
-    /// [Paint] given to the [Canvas.saveLayer] will be applied when
-    /// [Canvas.restore] is called. Each call to [Canvas.saveLayer] introduces a new
-    /// layer onto which shapes and images are painted; when [Canvas.restore] is
-    /// called, that layer is then composited onto the parent layer, with the source
-    /// being the most-recently-drawn shapes and images, and the destination being
-    /// the parent layer. (For the first [Canvas.saveLayer] call, the parent layer
-    /// is the canvas itself.)
-    ///
-    /// See also:
-    ///
-    ///  * [Paint.blendMode], which uses [BlendMode] to define the compositing
-    ///    strategy.
-    public enum BlendMode
-    {
-        // This list comes from Skia's SkXfermode.h and the values (order) should be
-        // kept in sync.
-        // See: https://skia.org/user/api/skpaint#SkXfermode
-
-        /// Drop both the source and destination images, leaving nothing.
-        ///
-        /// This corresponds to the "clear" Porter-Duff operator.
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_clear.png)
-        clear,
-
-        /// Drop the destination image, only paint the source image.
-        ///
-        /// Conceptually, the destination is first cleared, then the source image is
-        /// painted.
-        ///
-        /// This corresponds to the "Copy" Porter-Duff operator.
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_src.png)
-        src,
-
-        /// Drop the source image, only paint the destination image.
-        ///
-        /// Conceptually, the source image is discarded, leaving the destination
-        /// untouched.
-        ///
-        /// This corresponds to the "Destination" Porter-Duff operator.
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_dst.png)
-        dst,
-
-        /// Composite the source image over the destination image.
-        ///
-        /// This is the default value. It represents the most intuitive case, where
-        /// shapes are painted on top of what is below, with transparent areas showing
-        /// the destination layer.
-        ///
-        /// This corresponds to the "Source over Destination" Porter-Duff operator,
-        /// also known as the Painter's Algorithm.
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_srcOver.png)
-        srcOver,
-
-        /// Composite the source image under the destination image.
-        ///
-        /// This is the opposite of [srcOver].
-        ///
-        /// This corresponds to the "Destination over Source" Porter-Duff operator.
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_dstOver.png)
-        ///
-        /// This is useful when the source image should have been painted before the
-        /// destination image, but could not be.
-        dstOver,
-
-        /// Show the source image, but only where the two images overlap. The
-        /// destination image is not rendered, it is treated merely as a mask. The
-        /// color channels of the destination are ignored, only the opacity has an
-        /// effect.
-        ///
-        /// To show the destination image instead, consider [dstIn].
-        ///
-        /// To reverse the semantic of the mask (only showing the source where the
-        /// destination is absent, rather than where it is present), consider
-        /// [srcOut].
-        ///
-        /// This corresponds to the "Source in Destination" Porter-Duff operator.
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_srcIn.png)
-        srcIn,
-
-        /// Show the destination image, but only where the two images overlap. The
-        /// source image is not rendered, it is treated merely as a mask. The color
-        /// channels of the source are ignored, only the opacity has an effect.
-        ///
-        /// To show the source image instead, consider [srcIn].
-        ///
-        /// To reverse the semantic of the mask (only showing the source where the
-        /// destination is present, rather than where it is absent), consider [dstOut].
-        ///
-        /// This corresponds to the "Destination in Source" Porter-Duff operator.
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_dstIn.png)
-        dstIn,
-
-        /// Show the source image, but only where the two images do not overlap. The
-        /// destination image is not rendered, it is treated merely as a mask. The color
-        /// channels of the destination are ignored, only the opacity has an effect.
-        ///
-        /// To show the destination image instead, consider [dstOut].
-        ///
-        /// To reverse the semantic of the mask (only showing the source where the
-        /// destination is present, rather than where it is absent), consider [srcIn].
-        ///
-        /// This corresponds to the "Source out Destination" Porter-Duff operator.
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_srcOut.png)
-        srcOut,
-
-        /// Show the destination image, but only where the two images do not overlap. The
-        /// source image is not rendered, it is treated merely as a mask. The color
-        /// channels of the source are ignored, only the opacity has an effect.
-        ///
-        /// To show the source image instead, consider [srcOut].
-        ///
-        /// To reverse the semantic of the mask (only showing the destination where the
-        /// source is present, rather than where it is absent), consider [dstIn].
-        ///
-        /// This corresponds to the "Destination out Source" Porter-Duff operator.
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_dstOut.png)
-        dstOut,
-
-        /// Composite the source image over the destination image, but only where it
-        /// overlaps the destination.
-        ///
-        /// This corresponds to the "Source atop Destination" Porter-Duff operator.
-        ///
-        /// This is essentially the [srcOver] operator, but with the output's opacity
-        /// channel being set to that of the destination image instead of being a
-        /// combination of both image's opacity channels.
-        ///
-        /// For a variant with the destination on top instead of the source, see
-        /// [dstATop].
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_srcATop.png)
-        srcATop,
-
-        /// Composite the destination image over the source image, but only where it
-        /// overlaps the source.
-        ///
-        /// This corresponds to the "Destination atop Source" Porter-Duff operator.
-        ///
-        /// This is essentially the [dstOver] operator, but with the output's opacity
-        /// channel being set to that of the source image instead of being a
-        /// combination of both image's opacity channels.
-        ///
-        /// For a variant with the source on top instead of the destination, see
-        /// [srcATop].
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_dstATop.png)
-        dstATop,
-
-        /// Apply a bitwise `xor` operator to the source and destination images. This
-        /// leaves transparency where they would overlap.
-        ///
-        /// This corresponds to the "Source xor Destination" Porter-Duff operator.
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_xor.png)
-        xor,
-
-        /// Sum the components of the source and destination images.
-        ///
-        /// Transparency in a pixel of one of the images reduces the contribution of
-        /// that image to the corresponding output pixel, as if the color of that
-        /// pixel in that image was darker.
-        ///
-        /// This corresponds to the "Source plus Destination" Porter-Duff operator.
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_plus.png)
-        plus,
-
-        /// Multiply the color components of the source and destination images.
-        ///
-        /// This can only result in the same or darker colors (multiplying by white,
-        /// 1.0, results in no change; multiplying by black, 0.0, results in black).
-        ///
-        /// When compositing two opaque images, this has similar effect to overlapping
-        /// two transparencies on a projector.
-        ///
-        /// For a variant that also multiplies the alpha channel, consider [multiply].
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_modulate.png)
-        ///
-        /// See also:
-        ///
-        ///  * [screen], which does a similar computation but inverted.
-        ///  * [overlay], which combines [modulate] and [screen] to favor the
-        ///    destination image.
-        ///  * [hardLight], which combines [modulate] and [screen] to favor the
-        ///    source image.
-        modulate,
-
-        // Following blend modes are defined in the CSS Compositing standard.
-
-        /// Multiply the inverse of the components of the source and destination
-        /// images, and inverse the result.
-        ///
-        /// Inverting the components means that a fully saturated channel (opaque
-        /// white) is treated as the value 0.0, and values normally treated as 0.0
-        /// (black, transparent) are treated as 1.0.
-        ///
-        /// This is essentially the same as [modulate] blend mode, but with the values
-        /// of the colors inverted before the multiplication and the result being
-        /// inverted back before rendering.
-        ///
-        /// This can only result in the same or lighter colors (multiplying by black,
-        /// 1.0, results in no change; multiplying by white, 0.0, results in white).
-        /// Similarly, in the alpha channel, it can only result in more opaque colors.
-        ///
-        /// This has similar effect to two projectors displaying their images on the
-        /// same screen simultaneously.
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_screen.png)
-        ///
-        /// See also:
-        ///
-        ///  * [modulate], which does a similar computation but without inverting the
-        ///    values.
-        ///  * [overlay], which combines [modulate] and [screen] to favor the
-        ///    destination image.
-        ///  * [hardLight], which combines [modulate] and [screen] to favor the
-        ///    source image.
-        screen, // The last coeff mode.
-
-        /// Multiply the components of the source and destination images after
-        /// adjusting them to favor the destination.
-        ///
-        /// Specifically, if the destination value is smaller, this multiplies it with
-        /// the source value, whereas is the source value is smaller, it multiplies
-        /// the inverse of the source value with the inverse of the destination value,
-        /// then inverts the result.
-        ///
-        /// Inverting the components means that a fully saturated channel (opaque
-        /// white) is treated as the value 0.0, and values normally treated as 0.0
-        /// (black, transparent) are treated as 1.0.
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_overlay.png)
-        ///
-        /// See also:
-        ///
-        ///  * [modulate], which always multiplies the values.
-        ///  * [screen], which always multiplies the inverses of the values.
-        ///  * [hardLight], which is similar to [overlay] but favors the source image
-        ///    instead of the destination image.
-        overlay,
-
-        /// Composite the source and destination image by choosing the lowest value
-        /// from each color channel.
-        ///
-        /// The opacity of the output image is computed in the same way as for
-        /// [srcOver].
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_darken.png)
-        darken,
-
-        /// Composite the source and destination image by choosing the highest value
-        /// from each color channel.
-        ///
-        /// The opacity of the output image is computed in the same way as for
-        /// [srcOver].
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_lighten.png)
-        lighten,
-
-        /// Divide the destination by the inverse of the source.
-        ///
-        /// Inverting the components means that a fully saturated channel (opaque
-        /// white) is treated as the value 0.0, and values normally treated as 0.0
-        /// (black, transparent) are treated as 1.0.
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_colorDodge.png)
-        colorDodge,
-
-        /// Divide the inverse of the destination by the the source, and inverse the result.
-        ///
-        /// Inverting the components means that a fully saturated channel (opaque
-        /// white) is treated as the value 0.0, and values normally treated as 0.0
-        /// (black, transparent) are treated as 1.0.
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_colorBurn.png)
-        colorBurn,
-
-        /// Multiply the components of the source and destination images after
-        /// adjusting them to favor the source.
-        ///
-        /// Specifically, if the source value is smaller, this multiplies it with the
-        /// destination value, whereas is the destination value is smaller, it
-        /// multiplies the inverse of the destination value with the inverse of the
-        /// source value, then inverts the result.
-        ///
-        /// Inverting the components means that a fully saturated channel (opaque
-        /// white) is treated as the value 0.0, and values normally treated as 0.0
-        /// (black, transparent) are treated as 1.0.
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_hardLight.png)
-        ///
-        /// See also:
-        ///
-        ///  * [modulate], which always multiplies the values.
-        ///  * [screen], which always multiplies the inverses of the values.
-        ///  * [overlay], which is similar to [hardLight] but favors the destination
-        ///    image instead of the source image.
-        hardLight,
-
-        /// Use [colorDodge] for source values below 0.5 and [colorBurn] for source
-        /// values above 0.5.
-        ///
-        /// This results in a similar but softer effect than [overlay].
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_softLight.png)
-        ///
-        /// See also:
-        ///
-        ///  * [color], which is a more subtle tinting effect.
-        softLight,
-
-        /// Subtract the smaller value from the bigger value for each channel.
-        ///
-        /// Compositing black has no effect; compositing white inverts the colors of
-        /// the other image.
-        ///
-        /// The opacity of the output image is computed in the same way as for
-        /// [srcOver].
-        ///
-        /// The effect is similar to [exclusion] but harsher.
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_difference.png)
-        difference,
-
-        /// Subtract double the product of the two images from the sum of the two
-        /// images.
-        ///
-        /// Compositing black has no effect; compositing white inverts the colors of
-        /// the other image.
-        ///
-        /// The opacity of the output image is computed in the same way as for
-        /// [srcOver].
-        ///
-        /// The effect is similar to [difference] but softer.
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_exclusion.png)
-        exclusion,
-
-        /// Multiply the components of the source and destination images, including
-        /// the alpha channel.
-        ///
-        /// This can only result in the same or darker colors (multiplying by white,
-        /// 1.0, results in no change; multiplying by black, 0.0, results in black).
-        ///
-        /// Since the alpha channel is also multiplied, a fully-transparent pixel
-        /// (opacity 0.0) in one image results in a fully transparent pixel in the
-        /// output. This is similar to [dstIn], but with the colors combined.
-        ///
-        /// For a variant that multiplies the colors but does not multiply the alpha
-        /// channel, consider [modulate].
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_multiply.png)
-        multiply, // The last separable mode.
-
-        /// Take the hue of the source image, and the saturation and luminosity of the
-        /// destination image.
-        ///
-        /// The effect is to tint the destination image with the source image.
-        ///
-        /// The opacity of the output image is computed in the same way as for
-        /// [srcOver]. Regions that are entirely transparent in the source image take
-        /// their hue from the destination.
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_hue.png)
-        ///
-        /// See also:
-        ///
-        ///  * [color], which is a similar but stronger effect as it also applies the
-        ///    saturation of the source image.
-        ///  * [HSVColor], which allows colors to be expressed using Hue rather than
-        ///    the red/green/blue channels of [Color].
-        hue,
-
-        /// Take the saturation of the source image, and the hue and luminosity of the
-        /// destination image.
-        ///
-        /// The opacity of the output image is computed in the same way as for
-        /// [srcOver]. Regions that are entirely transparent in the source image take
-        /// their saturation from the destination.
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_hue.png)
-        ///
-        /// See also:
-        ///
-        ///  * [color], which also applies the hue of the source image.
-        ///  * [luminosity], which applies the luminosity of the source image to the
-        ///    destination.
-        saturation,
-
-        /// Take the hue and saturation of the source image, and the luminosity of the
-        /// destination image.
-        ///
-        /// The effect is to tint the destination image with the source image.
-        ///
-        /// The opacity of the output image is computed in the same way as for
-        /// [srcOver]. Regions that are entirely transparent in the source image take
-        /// their hue and saturation from the destination.
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_color.png)
-        ///
-        /// See also:
-        ///
-        ///  * [hue], which is a similar but weaker effect.
-        ///  * [softLight], which is a similar tinting effect but also tints white.
-        ///  * [saturation], which only applies the saturation of the source image.
-        color,
-
-        /// Take the luminosity of the source image, and the hue and saturation of the
-        /// destination image.
-        ///
-        /// The opacity of the output image is computed in the same way as for
-        /// [srcOver]. Regions that are entirely transparent in the source image take
-        /// their luminosity from the destination.
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_luminosity.png)
-        ///
-        /// See also:
-        ///
-        ///  * [saturation], which applies the saturation of the source image to the
-        ///    destination.
-        ///  * [ImageFilter.blur], which can be used with [BackdropFilter] for a
-        ///    related effect.
-        luminosity,
-    }
-
-    /// Quality levels for image filters.
-    ///
-    /// See [Paint.filterQuality].
-    public enum FilterQuality
-    {
-        // This list comes from Skia's SkFilterQuality.h and the values (order) should
-        // be kept in sync.
-
-        /// Fastest possible filtering, albeit also the lowest quality.
-        ///
-        /// Typically this implies nearest-neighbour filtering.
-        none,
-
-        /// Better quality than [none], faster than [medium].
-        ///
-        /// Typically this implies bilinear interpolation.
-        low,
-
-        /// Better quality than [low], faster than [high].
-        ///
-        /// Typically this implies a combination of bilinear interpolation and
-        /// pyramidal parametric prefiltering (mipmaps).
-        medium,
-
-        /// Best possible quality filtering, albeit also the slowest.
-        ///
-        /// Typically this implies bicubic interpolation or better.
-        high,
-    }
-
-    /// Styles to use for line endings.
-    ///
-    /// See also:
-    ///
-    ///  * [Paint.strokeCap] for how this value is used.
-    ///  * [StrokeJoin] for the different kinds of line segment joins.
-    // These enum values must be kept in sync with SKPaint::Cap.
-    public enum StrokeCap
-    {
-        /// Begin and end contours with a flat edge and no extension.
-        ///
-        /// ![A butt cap ends line segments with a square end that stops at the end of
-        /// the line segment.](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/butt_cap.png)
-        ///
-        /// Compare to the [square] cap, which has the same shape, but : past
-        /// the end of the line by half a stroke width.
-        butt,
-
-        /// Begin and end contours with a semi-circle extension.
-        ///
-        /// ![A round cap adds a rounded end to the line segment that protrudes
-        /// by one half of the thickness of the line (which is the radius of the cap)
-        /// past the end of the segment.](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/round_cap.png)
-        ///
-        /// The cap is colored in the diagram above to highlight it: in normal use it
-        /// is the same color as the line.
-        round,
-
-        /// Begin and end contours with a half square extension. This is
-        /// similar to extending each contour by half the stroke width (as
-        /// given by [Paint.strokeWidth]).
-        ///
-        /// ![A square cap has a square end that effectively : the line length
-        /// by half of the stroke width.](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/square_cap.png)
-        ///
-        /// The cap is colored in the diagram above to highlight it: in normal use it
-        /// is the same color as the line.
-        ///
-        /// Compare to the [butt] cap, which has the same shape, but doesn't extend
-        /// past the end of the line.
-        square,
-    }
-
-    /// Styles to use for line segment joins.
-    ///
-    /// This only affects line joins for polygons drawn by [Canvas.drawPath] and
-    /// rectangles, not points drawn as lines with [Canvas.drawPoints].
-    ///
-    /// See also:
-    ///
-    /// * [Paint.strokeJoin] and [Paint.strokeMiterLimit] for how this value is
-    ///   used.
-    /// * [StrokeCap] for the different kinds of line endings.
-    // These enum values must be kept in sync with SKPaint::Join.
-    public enum StrokeJoin
-    {
-        /// Joins between line segments form sharp corners.
-        ///
-        /// {@animation 300 300 https://flutter.github.io/assets-for-api-docs/assets/dart-ui/miter_4_join.mp4}
-        ///
-        /// The center of the line segment is colored in the diagram above to
-        /// highlight the join, but in normal usage the join is the same color as the
-        /// line.
-        ///
-        /// See also:
-        ///
-        ///   * [Paint.strokeJoin], used to set the line segment join style to this
-        ///     value.
-        ///   * [Paint.strokeMiterLimit], used to define when a miter is drawn instead
-        ///     of a bevel when the join is set to this value.
-        miter,
-
-        /// Joins between line segments are semi-circular.
-        ///
-        /// {@animation 300 300 https://flutter.github.io/assets-for-api-docs/assets/dart-ui/round_join.mp4}
-        ///
-        /// The center of the line segment is colored in the diagram above to
-        /// highlight the join, but in normal usage the join is the same color as the
-        /// line.
-        ///
-        /// See also:
-        ///
-        ///   * [Paint.strokeJoin], used to set the line segment join style to this
-        ///     value.
-        round,
-
-        /// Joins between line segments connect the corners of the butt ends of the
-        /// line segments to give a beveled appearance.
-        ///
-        /// {@animation 300 300 https://flutter.github.io/assets-for-api-docs/assets/dart-ui/bevel_join.mp4}
-        ///
-        /// The center of the line segment is colored in the diagram above to
-        /// highlight the join, but in normal usage the join is the same color as the
-        /// line.
-        ///
-        /// See also:
-        ///
-        ///   * [Paint.strokeJoin], used to set the line segment join style to this
-        ///     value.
-        bevel,
-    }
-
-    /// Strategies for painting shapes and paths on a canvas.
-    ///
-    /// See [Paint.style].
-    // These enum values must be kept in sync with SKPaint::Style.
-    public enum PaintingStyle
-    {
-        // This list comes from Skia's SKPaint.h and the values (order) should be kept
-        // in sync.
-
-        /// Apply the [Paint] to the inside of the shape. For example, when
-        /// applied to the [Canvas.drawCircle] call, this results in a disc
-        /// of the given size being painted.
-        fill,
-
-        /// Apply the [Paint] to the edge of the shape. For example, when
-        /// applied to the [Canvas.drawCircle] call, this results is a hoop
-        /// of the given size being painted. The line drawn on the edge will
-        /// be the width given by the [Paint.strokeWidth] property.
-        stroke,
-    }
-
-
-    /// Different ways to clip a widget's content.
-    public enum Clip
-    {
-        /// No clip at all.
-        ///
-        /// This is the default option for most widgets: if the content does not
-        /// overflow the widget boundary, don't pay any performance cost for clipping.
-        ///
-        /// If the content does overflow, please explicitly specify the following
-        /// [Clip] options:
-        ///  * [hardEdge], which is the fastest clipping, but with lower fidelity.
-        ///  * [antiAlias], which is a little slower than [hardEdge], but with smoothed edges.
-        ///  * [antiAliasWithSaveLayer], which is much slower than [antiAlias], and should
-        ///    rarely be used.
-        none,
-
-        /// Clip, but do not apply anti-aliasing.
-        ///
-        /// This mode enables clipping, but curves and non-axis-aligned straight lines will be
-        /// jagged as no effort is made to anti-alias.
-        ///
-        /// Faster than other clipping modes, but slower than [none].
-        ///
-        /// This is a reasonable choice when clipping is needed, if the container is an axis-
-        /// aligned rectangle or an axis-aligned rounded rectangle with very small corner radii.
-        ///
-        /// See also:
-        ///
-        ///  * [antiAlias], which is more reasonable when clipping is needed and the shape is not
-        ///    an axis-aligned rectangle.
-        hardEdge,
-
-        /// Clip with anti-aliasing.
-        ///
-        /// This mode has anti-aliased clipping edges to achieve a smoother look.
-        ///
-        /// It' s much faster than [antiAliasWithSaveLayer], but slower than [hardEdge].
-        ///
-        /// This will be the common case when dealing with circles and arcs.
-        ///
-        /// Different from [hardEdge] and [antiAliasWithSaveLayer], this clipping may have
-        /// bleeding edge artifacts.
-        /// (See https://fiddle.skia.org/c/21cb4c2b2515996b537f36e7819288ae for an example.)
-        ///
-        /// See also:
-        ///
-        ///  * [hardEdge], which is a little faster, but with lower fidelity.
-        ///  * [antiAliasWithSaveLayer], which is much slower, but can avoid the
-        ///    bleeding edges if there's no other way.
-        ///  * [Paint.isAntiAlias], which is the anti-aliasing switch for general draw operations.
-        antiAlias,
-
-        /// Clip with anti-aliasing and saveLayer immediately following the clip.
-        ///
-        /// This mode not only clips with anti-aliasing, but also allocates an offscreen
-        /// buffer. All subsequent paints are carried out on that buffer before finally
-        /// being clipped and composited back.
-        ///
-        /// This is very slow. It has no bleeding edge artifacts (that [antiAlias] has)
-        /// but it changes the semantics as an offscreen buffer is now introduced.
-        /// (See https://github.com/flutter/flutter/issues/18057#issuecomment-394197336
-        /// for a difference between paint without saveLayer and paint with saveLayer.)
-        ///
-        /// This will be only rarely needed. One case where you might need this is if
-        /// you have an image overlaid on a very different background color. In these
-        /// cases, consider whether you can avoid overlaying multiple colors in one
-        /// spot (e.g. by having the background color only present where the image is
-        /// absent). If you can, [antiAlias] would be fine and much faster.
-        ///
-        /// See also:
-        ///
-        ///  * [antiAlias], which is much faster, and has similar clipping results.
-        antiAliasWithSaveLayer,
-    }
-
-
-    /// A description of the style to use when drawing on a [Canvas].
-    ///
-    /// Most APIs on [Canvas] take a [Paint] object to describe the style
-    /// to use for that operation.
-    public class Paint
-    {
-        // Paint objects are encoded in two buffers:
-        //
-        // * _data is binary data in four-byte fields, each of which is either a
-        //   uint or a float. The default value for each field is encoded as
-        //   zero to make initialization trivial. Most values already have a default
-        //   value of zero, but some, such as color, have a non-zero default value.
-        //   To encode or decode these values, XOR the value with the default value.
-        //
-        // * _objects is a list of unencodable objects, typically wrappers for native
-        //   objects. The objects are simply stored in the list without any additional
-        //   encoding.
-        //
-        // The binary format must match the deserialization code in paint.cc.
-
-        internal readonly Types.ByteData _data = new Types.ByteData(_kDataByteCount);
-        const int _kIsAntiAliasIndex = 0;
-        const int _kColorIndex = 1;
-        const int _kBlendModeIndex = 2;
-        const int _kStyleIndex = 3;
-        const int _kStrokeWidthIndex = 4;
-        const int _kStrokeCapIndex = 5;
-        const int _kStrokeJoinIndex = 6;
-        const int _kStrokeMiterLimitIndex = 7;
-        const int _kFilterQualityIndex = 8;
-        const int _kColorFilterIndex = 9;
-        const int _kColorFilterColorIndex = 10;
-        const int _kColorFilterBlendModeIndex = 11;
-        const int _kMaskFilterIndex = 12;
-        const int _kMaskFilterBlurStyleIndex = 13;
-        const int _kMaskFilterSigmaIndex = 14;
-        const int _kInvertColorIndex = 15;
-
-        const int _kIsAntiAliasOffset = _kIsAntiAliasIndex << 2;
-        const int _kColorOffset = _kColorIndex << 2;
-        const int _kBlendModeOffset = _kBlendModeIndex << 2;
-        const int _kStyleOffset = _kStyleIndex << 2;
-        const int _kStrokeWidthOffset = _kStrokeWidthIndex << 2;
-        const int _kStrokeCapOffset = _kStrokeCapIndex << 2;
-        const int _kStrokeJoinOffset = _kStrokeJoinIndex << 2;
-        const int _kStrokeMiterLimitOffset = _kStrokeMiterLimitIndex << 2;
-        const int _kFilterQualityOffset = _kFilterQualityIndex << 2;
-        const int _kColorFilterOffset = _kColorFilterIndex << 2;
-        const int _kColorFilterColorOffset = _kColorFilterColorIndex << 2;
-        const int _kColorFilterBlendModeOffset = _kColorFilterBlendModeIndex << 2;
-        const int _kMaskFilterOffset = _kMaskFilterIndex << 2;
-        const int _kMaskFilterBlurStyleOffset = _kMaskFilterBlurStyleIndex << 2;
-        const int _kMaskFilterSigmaOffset = _kMaskFilterSigmaIndex << 2;
-
-        const int _kInvertColorOffset = _kInvertColorIndex << 2;
-
-        // If you add more fields, remember to update _kDataByteCount.
-        const int _kDataByteCount = 75;
-
-        // Binary format must match the deserialization code in paint.cc.
-        internal List<Object> _objects;
-        const int _kShaderIndex = 0;
-        const int _kObjectCount = 1; // Must be one larger than the largest index.
-
-        /// Whether to apply anti-aliasing to lines and images drawn on the
-        /// canvas.
-        ///
-        /// Defaults to true.
-        public bool isAntiAlias
-        {
-            get { return _data.getInt32(_kIsAntiAliasOffset, (int)Painting._kFakeHostEndian) == 0; }
-            set
-            {
-                // We encode true as zero and false as one because the default value, which
-                // we always encode as zero, is true.
-                int encoded = value ? 0 : 1;
-                _data.setInt32(_kIsAntiAliasOffset, encoded, (int)Painting._kFakeHostEndian);
-            }
-        }
-
-        // Must be kept in sync with the default in paint.cc.
-        const uint _kColorDefault = 0xFF000000;
-
-        /// The color to use when stroking or filling a shape.
-        ///
-        /// Defaults to opaque black.
-        ///
-        /// See also:
-        ///
-        ///  * [style], which controls whether to stroke or fill (or both).
-        ///  * [colorFilter], which overrides [color].
-        ///  * [shader], which overrides [color] with more elaborate effects.
-        ///
-        /// This color is not used when compositing. To colorize a layer, use
-        /// [colorFilter].
-        public Color color
-        {
-            get
-            {
-                uint encoded = (uint)_data.getInt32(_kColorOffset, (int)Painting._kFakeHostEndian);
-                return new Color(encoded ^ _kColorDefault);
-            }
-            set
-            {
-                //assert(value != null);
-                int encoded = (int)(value.value ^ _kColorDefault);
-                _data.setInt32(_kColorOffset, encoded, (int)Painting._kFakeHostEndian);
-            }
-        }
-
-
-        // Must be kept in sync with the default in paint.cc.
-        static readonly int _kBlendModeDefault = (int)BlendMode.srcOver;
-
-        /// A blend mode to apply when a shape is drawn or a layer is composited.
-        ///
-        /// The source colors are from the shape being drawn (e.g. from
-        /// [Canvas.drawPath]) or layer being composited (the graphics that were drawn
-        /// between the [Canvas.saveLayer] and [Canvas.restore] calls), after applying
-        /// the [colorFilter], if any.
-        ///
-        /// The destination colors are from the background onto which the shape or
-        /// layer is being composited.
-        ///
-        /// Defaults to [BlendMode.srcOver].
-        ///
-        /// See also:
-        ///
-        ///  * [Canvas.saveLayer], which uses its [Paint]'s [blendMode] to composite
-        ///    the layer when [restore] is called.
-        ///  * [BlendMode], which discusses the user of [saveLayer] with [blendMode].
-        public BlendMode blendMode
-        {
-            get
-            {
-                int encoded = _data.getInt32(_kBlendModeOffset, (int)Painting._kFakeHostEndian);
-                return (BlendMode)(encoded ^ _kBlendModeDefault);
-            }
-            set
-            {
-                //assert(value != null);
-                int encoded = (int)value ^ _kBlendModeDefault;
-                _data.setInt32(_kBlendModeOffset, encoded, (int)Painting._kFakeHostEndian);
-            }
-        }
-
-        /// Whether to paint inside shapes, the edges of shapes, or both.
-        ///
-        /// Defaults to [PaintingStyle.fill].
-        public PaintingStyle style
-        {
-            get { return (PaintingStyle)_data.getInt32(_kStyleOffset, (int)Painting._kFakeHostEndian); }
-            set
-            {
-                //assert(value != null);
-                int encoded = (int)value;
-                _data.setInt32(_kStyleOffset, encoded, (int)Painting._kFakeHostEndian);
-            }
-        }
-
-        /// How wide to make edges drawn when [style] is set to
-        /// [PaintingStyle.stroke]. The width is given in logical pixels measured in
-        /// the direction orthogonal to the direction of the path.
-        ///
-        /// Defaults to 0.0, which correspond to a hairline width.
-        public double strokeWidth
-        {
-            get { return _data.getFloat32(_kStrokeWidthOffset, (int)Painting._kFakeHostEndian); }
-            set
-            {
-                //assert(value != null);
-                double encoded = value;
-                _data.setFloat32(_kStrokeWidthOffset, encoded, (int)Painting._kFakeHostEndian);
-            }
-        }
-
-        /// The kind of finish to place on the end of lines drawn when
-        /// [style] is set to [PaintingStyle.stroke].
-        ///
-        /// Defaults to [StrokeCap.butt], i.e. no caps.
-        public StrokeCap strokeCap
-        {
-            get { return (StrokeCap)_data.getInt32(_kStrokeCapOffset, (int)Painting._kFakeHostEndian); }
-            set
-            {
-                int encoded = (int)value;
-                _data.setInt32(_kStrokeCapOffset, encoded, (int)Painting._kFakeHostEndian);
-            }
-        }
-
-        /// The kind of finish to place on the joins between segments.
-        ///
-        /// This applies to paths drawn when [style] is set to [PaintingStyle.stroke],
-        /// It does not apply to points drawn as lines with [Canvas.drawPoints].
-        ///
-        /// Defaults to [StrokeJoin.miter], i.e. sharp corners.
-        ///
-        /// Some examples of joins:
-        ///
-        /// {@animation 300 300 https://flutter.github.io/assets-for-api-docs/assets/dart-ui/miter_4_join.mp4}
-        ///
-        /// {@animation 300 300 https://flutter.github.io/assets-for-api-docs/assets/dart-ui/round_join.mp4}
-        ///
-        /// {@animation 300 300 https://flutter.github.io/assets-for-api-docs/assets/dart-ui/bevel_join.mp4}
-        ///
-        /// The centers of the line segments are colored in the diagrams above to
-        /// highlight the joins, but in normal usage the join is the same color as the
-        /// line.
-        ///
-        /// See also:
-        ///
-        ///  * [strokeMiterLimit] to control when miters are replaced by bevels when
-        ///    this is set to [StrokeJoin.miter].
-        ///  * [strokeCap] to control what is drawn at the ends of the stroke.
-        ///  * [StrokeJoin] for the definitive list of stroke joins.
-        public StrokeJoin strokeJoin
-        {
-            get { return (StrokeJoin)_data.getInt32(_kStrokeJoinOffset, (int)Painting._kFakeHostEndian); }
-            set
-            {
-                //assert(value != null);
-                int encoded = (int)value;
-                _data.setInt32(_kStrokeJoinOffset, encoded, (int)Painting._kFakeHostEndian);
-            }
-        }
-
-        // Must be kept in sync with the default in paint.cc.
-        const double _kStrokeMiterLimitDefault = 4.0;
-
-        /// The limit for miters to be drawn on segments when the join is set to
-        /// [StrokeJoin.miter] and the [style] is set to [PaintingStyle.stroke]. If
-        /// this limit is exceeded, then a [StrokeJoin.bevel] join will be drawn
-        /// instead. This may cause some 'popping' of the corners of a path if the
-        /// angle between line segments is animated, as seen in the diagrams below.
-        ///
-        /// This limit is expressed as a limit on the length of the miter.
-        ///
-        /// Defaults to 4.0.  Using zero as a limit will cause a [StrokeJoin.bevel]
-        /// join to be used all the time.
-        ///
-        /// {@animation 300 300 https://flutter.github.io/assets-for-api-docs/assets/dart-ui/miter_0_join.mp4}
-        ///
-        /// {@animation 300 300 https://flutter.github.io/assets-for-api-docs/assets/dart-ui/miter_4_join.mp4}
-        ///
-        /// {@animation 300 300 https://flutter.github.io/assets-for-api-docs/assets/dart-ui/miter_6_join.mp4}
-        ///
-        /// The centers of the line segments are colored in the diagrams above to
-        /// highlight the joins, but in normal usage the join is the same color as the
-        /// line.
-        ///
-        /// See also:
-        ///
-        ///  * [strokeJoin] to control the kind of finish to place on the joins
-        ///    between segments.
-        ///  * [strokeCap] to control what is drawn at the ends of the stroke.
-        public double strokeMiterLimit
-        {
-            get { return _data.getFloat32(_kStrokeMiterLimitOffset, (int)Painting._kFakeHostEndian); }
-            set
-            {
-                //assert(value != null);
-                double encoded = value - _kStrokeMiterLimitDefault;
-                _data.setFloat32(_kStrokeMiterLimitOffset, encoded, (int)Painting._kFakeHostEndian);
-            }
-        }
-
-        /// A mask filter (for example, a blur) to apply to a shape after it has been
-        /// drawn but before it has been composited into the image.
-        ///
-        /// See [MaskFilter] for details.
-        public MaskFilter maskFilter
-        {
-            get
-            {
-                switch (_data.getInt32(_kMaskFilterOffset, (int)Painting._kFakeHostEndian))
-                {
-                case MaskFilter._TypeNone:
-                    return null;
-                case MaskFilter._TypeBlur:
-                    return MaskFilter.blur(
-                        (BlurStyle)_data.getInt32(_kMaskFilterBlurStyleOffset, (int)Painting._kFakeHostEndian),
-                        _data.getFloat32(_kMaskFilterSigmaOffset, (int)Painting._kFakeHostEndian));
-                }
-
-                return null;
-            }
-            set
-            {
-                if (value == null)
-                {
-                    _data.setInt32(_kMaskFilterOffset, MaskFilter._TypeNone, (int)Painting._kFakeHostEndian);
-                    _data.setInt32(_kMaskFilterBlurStyleOffset, 0, (int)Painting._kFakeHostEndian);
-                    _data.setFloat32(_kMaskFilterSigmaOffset, 0.0, (int)Painting._kFakeHostEndian);
-                }
-                else
-                {
-                    // For now we only support one kind of MaskFilter, so we don't need to
-                    // check what the type is if it's not null.
-                    _data.setInt32(_kMaskFilterOffset, MaskFilter._TypeBlur, (int)Painting._kFakeHostEndian);
-                    _data.setInt32(_kMaskFilterBlurStyleOffset, (int)value._style, (int)Painting._kFakeHostEndian);
-                    _data.setFloat32(_kMaskFilterSigmaOffset, value._sigma, (int)Painting._kFakeHostEndian);
-                }
-            }
-        }
-
-        /// Controls the performance vs quality trade-off to use when applying
-        /// filters, such as [maskFilter], or when drawing images, as with
-        /// [Canvas.drawImageRect] or [Canvas.drawImageNine].
-        ///
-        /// Defaults to [FilterQuality.none].
-        // TODO(ianh): verify that the image drawing methods actually respect this
-        public FilterQuality filterQuality
-        {
-            get { return (FilterQuality)(_data.getInt32(_kFilterQualityOffset, (int)Painting._kFakeHostEndian)); }
-            set
-            {
-                //assert(value != null);
-                int encoded = (int)value;
-                _data.setInt32(_kFilterQualityOffset, encoded, (int)Painting._kFakeHostEndian);
-            }
-        }
-
-        /// The shader to use when stroking or filling a shape.
-        ///
-        /// When this is null, the [color] is used instead.
-        ///
-        /// See also:
-        ///
-        ///  * [Gradient], a shader that paints a color gradient.
-        ///  * [ImageShader], a shader that tiles an [Image].
-        ///  * [colorFilter], which overrides [shader].
-        ///  * [color], which is used if [shader] and [colorFilter] are null.
-        public SKShader shader
-        {
-            get
-            {
-                if (_objects == null)
-                    return null;
-                return (SKShader)_objects[_kShaderIndex];
-            }
-            set
-            {
-                if (_objects == null)
-                    _objects = new List<Object>(_kObjectCount);
-                _objects[_kShaderIndex] = value;
-            }
-        }
-
-        /// A color filter to apply when a shape is drawn or when a layer is
-        /// composited.
-        ///
-        /// See [ColorFilter] for details.
-        ///
-        /// When a shape is being drawn, [colorFilter] overrides [color] and [shader].
-        public ColorFilter colorFilter
-        {
-            get
-            {
-                bool isNull = _data.getInt32(_kColorFilterOffset, (int)Painting._kFakeHostEndian) == 0;
-                if (isNull)
-                    return null;
-                return ColorFilter.mode(
-                    new Color((uint)_data.getInt32(_kColorFilterColorOffset, (int)Painting._kFakeHostEndian)),
-                    (BlendMode)(_data.getInt32(_kColorFilterBlendModeOffset, (int)Painting._kFakeHostEndian))
-                );
-            }
-            set
-            {
-                if (value == null)
-                {
-                    _data.setInt32(_kColorFilterOffset, 0, (int)Painting._kFakeHostEndian);
-                    _data.setInt32(_kColorFilterColorOffset, 0, (int)Painting._kFakeHostEndian);
-                    _data.setInt32(_kColorFilterBlendModeOffset, 0, (int)Painting._kFakeHostEndian);
-                }
-                else
-                {
-                    _data.setInt32(_kColorFilterOffset, 1, (int)Painting._kFakeHostEndian);
-                    _data.setInt32(_kColorFilterColorOffset, (int)value._color.value, (int)Painting._kFakeHostEndian);
-                    _data.setInt32(_kColorFilterBlendModeOffset, (int)value._blendMode, (int)Painting._kFakeHostEndian);
-                }
-            }
-        }
-
-        /// Whether the colors of the image are inverted when drawn.
-        ///
-        /// inverting the colors of an image applies a new color filter that will
-        /// be composed with any user provided color filters. This is primarily
-        /// used for implementing smart invert on iOS.
-        public bool invertColors
-        {
-            get { return _data.getInt32(_kInvertColorOffset, (int)Painting._kFakeHostEndian) == 1; }
-            set { _data.setInt32(_kInvertColorOffset, value ? 1 : 0, (int)Painting._kFakeHostEndian); }
-        }
-
-        public String toString()
-        {
-            StringBuilder result = new StringBuilder();
-            String semicolon = "";
-            result.Append("Paint(");
-            if (style == PaintingStyle.stroke)
-            {
-                result.Append($"{style}");
-                if (strokeWidth != 0.0)
-                    result.Append($" {strokeWidth.toStringAsFixed(1)}");
-                else
-                    result.Append(" hairline");
-                if (strokeCap != StrokeCap.butt)
-                    result.Append($" {strokeCap}");
-                if (strokeJoin == StrokeJoin.miter)
-                {
-                    if (strokeMiterLimit != _kStrokeMiterLimitDefault)
-                        result.Append($" {strokeJoin} up to ${strokeMiterLimit.toStringAsFixed(1)}");
-                }
-                else
-                {
-                    result.Append($" {strokeJoin}");
-                }
-
-                semicolon = "; ";
-            }
-
-            if (isAntiAlias != true)
-            {
-                result.Append($"{semicolon}antialias off");
-                semicolon = "; ";
-            }
-
-            if (color != new Color(_kColorDefault))
-            {
-                if (color != null)
-                    result.Append($"{semicolon}{color}");
-                else
-                    result.Append($"{semicolon}no color");
-                semicolon = "; ";
-            }
-
-            if ((int)blendMode != _kBlendModeDefault)
-            {
-                result.Append($"{semicolon}{blendMode}");
-                semicolon = "; ";
-            }
-
-            if (colorFilter != null)
-            {
-                result.Append($"{semicolon}colorFilter: {colorFilter}");
-                semicolon = "; ";
-            }
-
-            if (maskFilter != null)
-            {
-                result.Append($"{semicolon}maskFilter: {maskFilter}");
-                semicolon = "; ";
-            }
-
-            if (filterQuality != FilterQuality.none)
-            {
-                result.Append($"{semicolon}filterQuality: {filterQuality}");
-                semicolon = "; ";
-            }
-
-            if (shader != null)
-            {
-                result.Append($"{semicolon}shader: {shader}");
-                semicolon = "; ";
-            }
-
-            if (invertColors)
-                result.Append($"{semicolon}invert: {invertColors}");
-            result.Append(")");
-            return result.ToString();
-        }
-    }
 
     /// The format in which image bytes should be returned when using
     /// [Image.toByteData].
@@ -1870,7 +371,7 @@ namespace FlutterBinding.UI
     ///
     /// Paths can be drawn on canvases using [Canvas.drawPath], and can
     /// used to create clip regions using [Canvas.clipPath].
-    public class Path : NativePath
+    public class Path : SKPath
     {
         /// Create a new empty [Path] object.
         public Path()
@@ -1889,10 +390,10 @@ namespace FlutterBinding.UI
         /// the `source` path or the path returned by this constructor are modified.
         public static Path from(Path source)
         {
-            return source._clone();
+            return source.clone();
         }
 
-        Path _clone()
+        private Path clone()
         {
             return (Path)this.MemberwiseClone();
         }
@@ -2325,7 +826,7 @@ namespace FlutterBinding.UI
 
         Path _shift(double dx, double dy)
         {
-            var path = this._clone();
+            var path = this.clone();
             path.Offset((float)dx, (float)dy);
             return path;
         }
@@ -2340,7 +841,7 @@ namespace FlutterBinding.UI
 
         Path _transform(List<float> matrix4)
         {
-            var path = this._clone();
+            var path = this.clone();
             this.Transform(Matrix.ToSkMatrix(matrix4));
             return path;
         }
@@ -2503,13 +1004,13 @@ namespace FlutterBinding.UI
         public bool moveNext()
         {
             // PathMetric isn't a normal iterable - it's already initialized to its
-            // first Path.  Should only call _moveNext when done with the first one.
+            // first Path.  Should only call MoveNext when done with the first one.
             if (_firstTime == true)
             {
                 _firstTime = false;
                 return true;
             }
-            else if (_pathMetric?._moveNext() == true)
+            else if (_pathMetric?.MoveNext() == true)
             {
                 return true;
             }
@@ -2519,113 +1020,6 @@ namespace FlutterBinding.UI
         }
     }
 
-    /// Utilities for measuring a [Path] and extracting subpaths.
-    ///
-    /// Iterate over the object returned by [Path.computeMetrics] to obtain
-    /// [PathMetric] objects.
-    ///
-    /// Once created, metrics will only be valid while the iterator is at the given
-    /// contour. When the next contour's [PathMetric] is obtained, this object
-    /// becomes invalid.
-    public class PathMetric : NativePathMetric
-    {
-        /// Create a new empty [Path] object.
-        internal PathMetric(Path path, bool forceClosed) : base(path, forceClosed) { }
-
-        /// Return the total length of the current contour.
-        public double length => this.Length;
-
-        /// Computes the position of hte current contour at the given offset, and the
-        /// angle of the path at that point.
-        ///
-        /// For example, calling this method with a distance of 1.41 for a line from
-        /// 0.0,0.0 to 2.0,2.0 would give a point 1.0,1.0 and the angle 45 degrees
-        /// (but in radians).
-        ///
-        /// Returns null if the contour has zero [length].
-        ///
-        /// The distance is clamped to the [length] of the current contour.
-        public Tangent getTangentForOffset(double distance)
-        {
-            // first entry == 0 indicates that Skia returned false
-            SKPoint position = new SKPoint();
-            SKPoint tangent = new SKPoint();
-            if (this.GetPositionAndTangent((float)distance, out position, out tangent))
-            {
-                return null;
-            }
-            else
-            {
-                return new Tangent(
-                    new Offset(position.X, position.Y),
-                    new Offset(tangent.X, tangent.Y)
-                );
-            }
-        }
-
-        /// Given a start and stop distance, return the intervening segment(s).
-        ///
-        /// `start` and `end` are pinned to legal values (0..[length])
-        /// Returns null if the segment is 0 length or `start` > `stop`.
-        /// Begin the segment with a moveTo if `startWithMoveTo` is true.
-        public Path extractPath(double start, double end, bool startWithMoveTo = true)
-        {
-            Path path = new Path();
-            if (this.GetSegment((float)start, (float)end, path, startWithMoveTo))
-            {
-                return path;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// Whether the contour is closed.
-        ///
-        /// Returns true if the contour ends with a call to [Path.close] (which may
-        /// have been implied when using [Path.addRect]) or if `forceClosed` was
-        /// specified as true in the call to [Path.computeMetrics].  Returns false
-        /// otherwise.
-        public bool isClosed => this.IsClosed;
-
-        // Move to the next contour in the path.
-        //
-        // A path can have a next contour if [Path.moveTo] was called after drawing began.
-        // Return true if one exists, or false.
-        //
-        // This is not exactly congruent with a regular [Iterator.moveNext].
-        // Typically, [Iterator.moveNext] should be called before accessing the
-        // [Iterator.current]. In this case, the [PathMetric] is valid before
-        // calling `_moveNext` - `_moveNext` should be called after the first
-        // iteration is done instead of before.
-        public bool _moveNext() => this.NextContour();
-    }
-
-    /// Styles to use for blurs in [MaskFilter] objects.
-    // These enum values must be kept in sync with SkBlurStyle.
-    public enum BlurStyle
-    {
-        // These mirror SkBlurStyle and must be kept in sync.
-
-        /// Fuzzy inside and outside. This is useful for painting shadows that are
-        /// offset from the shape that ostensibly is casting the shadow.
-        normal,
-
-        /// Solid inside, fuzzy outside. This corresponds to drawing the shape, and
-        /// additionally drawing the blur. This can make objects appear brighter,
-        /// maybe even as if they were fluorescent.
-        solid,
-
-        /// Nothing inside, fuzzy outside. This is useful for painting shadows for
-        /// partially transparent shapes, when they are painted separately but without
-        /// an offset, so that the shadow doesn't paint below the shape.
-        outer,
-
-        /// Fuzzy inside, nothing outside. This can make shapes appear to be lit from
-        /// within.
-        inner,
-    }
 
     /// A mask filter to apply to shapes as they are painted. A mask filter is a
     /// function that takes a bitmap of color pixels, and returns another bitmap of
@@ -2638,7 +1032,7 @@ namespace FlutterBinding.UI
         ///
         /// This is commonly used to approximate shadows.
         ///
-        /// The `style` argument controls the kind of effect to draw; see [BlurStyle].
+        /// The `style` argument controls the kind of effect to draw; see [SKBlurStyle].
         ///
         /// The `sigma` argument controls the size of the effect. It is the standard
         /// deviation of the Gaussian blur to apply. The value must be greater than
@@ -2652,20 +1046,20 @@ namespace FlutterBinding.UI
         /// See also:
         ///
         ///  * [Canvas.drawShadow], which is a more efficient way to draw shadows.
-        public static MaskFilter blur(BlurStyle _style, double _sigma)
+        public static MaskFilter blur(SKBlurStyle _style, double _sigma)
         { //assert(_style != null),
             //assert(_sigma != null);
 
             return new MaskFilter(_style, _sigma);
         }
 
-        private MaskFilter(BlurStyle style, double sigma)
+        private MaskFilter(SKBlurStyle style, double sigma)
         {
             _style = style;
             _sigma = sigma;
         }
 
-        public readonly BlurStyle _style;
+        public readonly SKBlurStyle _style;
         public readonly double _sigma;
 
         // The type of MaskFilter class to create for Skia.
@@ -2706,19 +1100,19 @@ namespace FlutterBinding.UI
         /// The output of this filter is then composited into the background according
         /// to the [Paint.blendMode], using the output of this filter as the source
         /// and the background as the destination.
-        public static ColorFilter mode(Color color, BlendMode blendMode)
+        public static ColorFilter mode(Color color, SKBlendMode blendMode)
         {
             return new ColorFilter(color, blendMode);
         }
 
-        public ColorFilter(Color color, BlendMode blendMode)
+        public ColorFilter(Color color, SKBlendMode blendMode)
         {
             _color     = color;
             _blendMode = blendMode;
         }
 
         public readonly Color _color;
-        public readonly BlendMode _blendMode;
+        public readonly SKBlendMode _blendMode;
 
         public static bool operator ==(ColorFilter filter, Object other)
         {
@@ -2766,14 +1160,14 @@ namespace FlutterBinding.UI
         /// when used with [BackdropFilter] would magnify the background image.
         public static ImageFilter matrix(
             Float64List matrix4,
-            FilterQuality filterQuality = FilterQuality.low)
+            SKFilterQuality filterQuality = SKFilterQuality.Low)
         {
             if (matrix4.Count != 16)
                 throw new ArgumentException("'matrix4' must have 16 entries.");
 
             var skFilter = SKImageFilter.CreateMatrix(
                 Matrix.ToSkMatrix(matrix4),
-                (SKFilterQuality)filterQuality);
+                (SkiaSharp.SKFilterQuality)filterQuality);
 
             return new ImageFilter(skFilter);
         }
@@ -2943,7 +1337,7 @@ namespace FlutterBinding.UI
             //assert(matrix4 == null || _matrix4IsValid(matrix4)),
 
             _validateColorStops(colors, colorStops);
-            //List<uint> colorsBuffer = _encodeColorList(colors);
+            //List<uint> colorsBuffer = EncodeColorList(colors);
             List<double> colorStopsBuffer = colorStops == null ? null : new List<double>(colorStops);
 
             SKShader skShader;
@@ -3021,7 +1415,7 @@ namespace FlutterBinding.UI
             //assert(matrix4 == null || _matrix4IsValid(matrix4)),
 
             _validateColorStops(colors, colorStops);
-            List<uint> colorsBuffer = Painting._encodeColorList(colors);
+            List<uint> colorsBuffer = Painting.EncodeColorList(colors);
             List<double> colorStopsBuffer = colorStops == null ? null : new List<double>(colorStops);
             var skShader = SKShader.CreateSweepGradient(
                 center.ToPoint(),
@@ -3124,7 +1518,7 @@ namespace FlutterBinding.UI
     {
         /// Draw each point separately.
         ///
-        /// If the [Paint.strokeCap] is [StrokeCap.round], then each point is drawn
+        /// If the [Paint.strokeCap] is [SKStrokeCap.round], then each point is drawn
         /// as a circle with the diameter of the [Paint.strokeWidth], filled as
         /// described by the [Paint] (ignoring [Paint.style]).
         ///
@@ -3159,704 +1553,6 @@ namespace FlutterBinding.UI
 
         /// Intersect the new region from the existing region.
         intersect,
-    }
-
-    /// An interface for recording graphical operations.
-    ///
-    /// [Canvas] objects are used in creating [Picture] objects, which can
-    /// themselves be used with a [SceneBuilder] to build a [Scene]. In
-    /// normal usage, however, this is all handled by the framework.
-    ///
-    /// A canvas has a current transformation matrix which is applied to all
-    /// operations. Initially, the transformation matrix is the identity transform.
-    /// It can be modified using the [translate], [scale], [rotate], [skew],
-    /// and [transform] methods.
-    ///
-    /// A canvas also has a current clip region which is applied to all operations.
-    /// Initially, the clip region is infinite. It can be modified using the
-    /// [clipRect], [clipRRect], and [clipPath] methods.
-    ///
-    /// The current transform and clip can be saved and restored using the stack
-    /// managed by the [save], [saveLayer], and [restore] methods.
-    public class Canvas : NativeCanvas
-    {
-        /// Creates a canvas for recording graphical operations into the
-        /// given picture recorder.
-        ///
-        /// Graphical operations that affect pixels entirely outside the given
-        /// `cullRect` might be discarded by the implementation. However, the
-        /// implementation might draw outside these bounds if, for example, a command
-        /// draws partially inside and outside the `cullRect`. To ensure that pixels
-        /// outside a given region are discarded, consider using a [clipRect]. The
-        /// `cullRect` is optional; by default, all operations are kept.
-        ///
-        /// To end the recording, call [PictureRecorder.endRecording] on the
-        /// given recorder.
-        public Canvas(PictureRecorder recorder, Rect cullRect = null)
-        {
-            if (recorder.isRecording)
-                throw new ArgumentException("'recorder' must not already be associated with another Canvas.");
-            if (cullRect == null)
-                cullRect = Rect.largest;
-            this.Constructor(recorder, cullRect.left, cullRect.top, cullRect.right, cullRect.bottom);
-        }
-
-        public Canvas(SKCanvas canvas)
-        {
-            _canvas = canvas;
-        }
-
-        /// Saves a copy of the current transform and clip on the save stack.
-        ///
-        /// Call [restore] to pop the save stack.
-        ///
-        /// See also:
-        ///
-        ///  * [saveLayer], which does the same thing but additionally also groups the
-        ///    commands done until the matching [restore].
-        public void save() => _canvas.Save();
-
-        /// Saves a copy of the current transform and clip on the save stack, and then
-        /// creates a new group which subsequent calls will become a part of. When the
-        /// save stack is later popped, the group will be flattened into a layer and
-        /// have the given `paint`'s [Paint.colorFilter] and [Paint.blendMode]
-        /// applied.
-        ///
-        /// This lets you create composite effects, for example making a group of
-        /// drawing commands semi-transparent. Without using [saveLayer], each part of
-        /// the group would be painted individually, so where they overlap would be
-        /// darker than where they do not. By using [saveLayer] to group them
-        /// together, they can be drawn with an opaque color at first, and then the
-        /// entire group can be made transparent using the [saveLayer]'s paint.
-        ///
-        /// Call [restore] to pop the save stack and apply the paint to the group.
-        ///
-        /// ## Using saveLayer with clips
-        ///
-        /// When a rectangular clip operation (from [clipRect]) is not axis-aligned
-        /// with the raster buffer, or when the clip operation is not rectalinear (e.g.
-        /// because it is a rounded rectangle clip created by [clipRRect] or an
-        /// arbitrarily complicated path clip created by [clipPath]), the edge of the
-        /// clip needs to be anti-aliased.
-        ///
-        /// If two draw calls overlap at the edge of such a clipped region, without
-        /// using [saveLayer], the first drawing will be anti-aliased with the
-        /// background first, and then the second will be anti-aliased with the result
-        /// of blending the first drawing and the background. On the other hand, if
-        /// [saveLayer] is used immediately after establishing the clip, the second
-        /// drawing will cover the first in the layer, and thus the second alone will
-        /// be anti-aliased with the background when the layer is clipped and
-        /// composited (when [restore] is called).
-        ///
-        /// For example, this [CustomPainter.paint] method paints a clean white
-        /// rounded rectangle:
-        ///
-        /// ```dart
-        /// void paint(Canvas canvas, Size size) {
-        ///   Rect rect = Offset.zero & size;
-        ///   canvas.save();
-        ///   canvas.clipRRect(new RRect.fromRectXY(rect, 100.0, 100.0));
-        ///   canvas.saveLayer(rect, new Paint());
-        ///   canvas.drawPaint(new Paint()..color = Colors.red);
-        ///   canvas.drawPaint(new Paint()..color = Colors.white);
-        ///   canvas.restore();
-        ///   canvas.restore();
-        /// }
-        /// ```
-        ///
-        /// On the other hand, this one renders a red outline, the result of the red
-        /// paint being anti-aliased with the background at the clip edge, then the
-        /// white paint being similarly anti-aliased with the background _including
-        /// the clipped red paint_:
-        ///
-        /// ```dart
-        /// void paint(Canvas canvas, Size size) {
-        ///   // (this example renders poorly, prefer the example above)
-        ///   Rect rect = Offset.zero & size;
-        ///   canvas.save();
-        ///   canvas.clipRRect(new RRect.fromRectXY(rect, 100.0, 100.0));
-        ///   canvas.drawPaint(new Paint()..color = Colors.red);
-        ///   canvas.drawPaint(new Paint()..color = Colors.white);
-        ///   canvas.restore();
-        /// }
-        /// ```
-        ///
-        /// This point is moot if the clip only clips one draw operation. For example,
-        /// the following paint method paints a pair of clean white rounded
-        /// rectangles, even though the clips are not done on a separate layer:
-        ///
-        /// ```dart
-        /// void paint(Canvas canvas, Size size) {
-        ///   canvas.save();
-        ///   canvas.clipRRect(new RRect.fromRectXY(Offset.zero & (size / 2.0), 50.0, 50.0));
-        ///   canvas.drawPaint(new Paint()..color = Colors.white);
-        ///   canvas.restore();
-        ///   canvas.save();
-        ///   canvas.clipRRect(new RRect.fromRectXY(size.center(Offset.zero) & (size / 2.0), 50.0, 50.0));
-        ///   canvas.drawPaint(new Paint()..color = Colors.white);
-        ///   canvas.restore();
-        /// }
-        /// ```
-        ///
-        /// (Incidentally, rather than using [clipRRect] and [drawPaint] to draw
-        /// rounded rectangles like this, prefer the [drawRRect] method. These
-        /// examples are using [drawPaint] as a proxy for "complicated draw operations
-        /// that will get clipped", to illustrate the point.)
-        ///
-        /// ## Performance considerations
-        ///
-        /// Generally speaking, [saveLayer] is relatively expensive.
-        ///
-        /// There are a several different hardware architectures for GPUs (graphics
-        /// processing units, the hardware that handles graphics), but most of them
-        /// involve batching commands and reordering them for performance. When layers
-        /// are used, they cause the rendering pipeline to have to switch render
-        /// target (from one layer to another). Render target switches can flush the
-        /// GPU's command buffer, which typically means that optimizations that one
-        /// could get with larger batching are lost. Render target switches also
-        /// generate a lot of memory churn because the GPU needs to copy out the
-        /// current frame buffer contents from the part of memory that's optimized for
-        /// writing, and then needs to copy it back in once the previous render target
-        /// (layer) is restored.
-        ///
-        /// See also:
-        ///
-        ///  * [save], which saves the current state, but does not create a new layer
-        ///    for subsequent commands.
-        ///  * [BlendMode], which discusses the use of [Paint.blendMode] with
-        ///    [saveLayer].
-        public void saveLayer(Rect bounds, SKPaint paint)
-        {
-            ////assert(paint != null);
-            if (bounds == null)
-            {
-                _canvas.SaveLayer(paint);
-            }
-            else
-            {
-                //assert(_rectIsValid(bounds));
-                _canvas.SaveLayer(bounds.ToSKRect(), paint);
-            }
-        }
-
-        /// Pops the current save stack, if there is anything to pop.
-        /// Otherwise, does nothing.
-        ///
-        /// Use [save] and [saveLayer] to push state onto the stack.
-        ///
-        /// If the state was pushed with with [saveLayer], then this call will also
-        /// cause the new layer to be composited into the previous layer.
-        public void restore()
-        {
-            // [DONE] native 'Canvas_restore';
-            _canvas.Restore();
-        }
-
-        /// Returns the number of items on the save stack, including the
-        /// initial state. This means it returns 1 for a clean canvas, and
-        /// that each call to [save] and [saveLayer] increments it, and that
-        /// each matching call to [restore] decrements it.
-        ///
-        /// This number cannot go below 1.
-        public int getSaveCount() => _canvas.SaveCount;
-
-        /// Add a translation to the current transform, shifting the coordinate space
-        /// horizontally by the first argument and vertically by the second argument.
-        public void translate(double dx, double dy) => _canvas.Translate((float)dx, (float)dy);
-
-        /// Add an axis-aligned scale to the current transform, scaling by the first
-        /// argument in the horizontal direction and the second in the vertical
-        /// direction.
-        ///
-        /// If [sy] is unspecified, [sx] will be used for the scale in both
-        /// directions.
-        public void scale(double sx, double? sy) => _scale(sx, sy ?? sx);
-
-        void _scale(double sx, double sy)
-        {
-            _canvas.Scale((float)sx, (float)sy);
-            // [DONE] native 'Canvas_scale';
-        }
-
-        /// Add a rotation to the current transform. The argument is in radians clockwise.
-        public void rotate(double radians)
-        {
-            _canvas.RotateRadians((float)radians);
-        }
-
-        /// Add an axis-aligned skew to the current transform, with the first argument
-        /// being the horizontal skew in radians clockwise around the origin, and the
-        /// second argument being the vertical skew in radians clockwise around the
-        /// origin.
-        public void skew(double sx, double sy)
-        {
-            _canvas.Skew((float)sx, (float)sy);
-        }
-
-        /// Multiply the current transform by the specified 4⨉4 transformation matrix
-        /// specified as a list of values in column-major order.
-        public void transform(List<float> matrix4)
-        {
-            ////assert(matrix4 != null);
-            if (matrix4.Count != 16)
-                throw new ArgumentException("'matrix4' must have 16 entries.");
-            _transform(matrix4);
-        }
-
-        void _transform(List<float> matrix4)
-        {
-            var matrix = Matrix.ToSkMatrix(matrix4);
-            _canvas.Concat(ref matrix);
-        }
-
-        /// Reduces the clip region to the intersection of the current clip and the
-        /// given rectangle.
-        ///
-        /// If [doAntiAlias] is true, then the clip will be anti-aliased.
-        ///
-        /// If multiple draw commands intersect with the clip boundary, this can result
-        /// in incorrect blending at the clip boundary. See [saveLayer] for a
-        /// discussion of how to address that.
-        ///
-        /// Use [ClipOp.difference] to subtract the provided rectangle from the
-        /// current clip.
-        public void clipRect(Rect rect, ClipOp clipOp = ClipOp.intersect, bool doAntiAlias = true)
-        {
-            ////assert(_rectIsValid(rect));
-            ////assert(clipOp != null);
-            ////assert(doAntiAlias != null);
-
-            _canvas.ClipRect(rect.ToSKRect(), (SKClipOperation)clipOp, doAntiAlias);
-        }
-
-        /// Reduces the clip region to the intersection of the current clip and the
-        /// given rounded rectangle.
-        ///
-        /// If [doAntiAlias] is true, then the clip will be anti-aliased.
-        ///
-        /// If multiple draw commands intersect with the clip boundary, this can result
-        /// in incorrect blending at the clip boundary. See [saveLayer] for a
-        /// discussion of how to address that and some examples of using [clipRRect].
-        public void clipRRect(RRect rrect, bool doAntiAlias = true)
-        {
-            ////assert(_rrectIsValid(rrect));
-            ////assert(doAntiAlias != null);
-            _canvas.ClipRoundRect(rrect.ToRoundedRect(), antialias: doAntiAlias);
-        }
-
-        /// Reduces the clip region to the intersection of the current clip and the
-        /// given [Path].
-        ///
-        /// If [doAntiAlias] is true, then the clip will be anti-aliased.
-        ///
-        /// If multiple draw commands intersect with the clip boundary, this can result
-        /// multiple draw commands intersect with the clip boundary, this can result
-        /// in incorrect blending at the clip boundary. See [saveLayer] for a
-        /// discussion of how to address that.
-        public void clipPath(Path path, bool doAntiAlias = true)
-        {
-            ////assert(path != null); // path is checked on the engine side
-            ////assert(doAntiAlias != null);
-            _canvas.ClipPath(path, antialias: doAntiAlias);
-        }
-
-        /// Paints the given [Color] onto the canvas, applying the given
-        /// [BlendMode], with the given color being the source and the background
-        /// being the destination.
-        public void drawColor(Color color, BlendMode blendMode)
-        {
-            ////assert(color != null);
-            ////assert(blendMode != null);
-            _canvas.DrawColor(new SKColor(color.value), (SKBlendMode)blendMode);
-        }
-
-        /// Draws a line between the given points using the given paint. The line is
-        /// stroked, the value of the [Paint.style] is ignored for this call.
-        ///
-        /// The `p1` and `p2` arguments are interpreted as offsets from the origin.
-        public void drawLine(Offset p1, Offset p2, SKPaint paint)
-        {
-            ////assert(_offsetIsValid(p1));
-            ////assert(_offsetIsValid(p2));
-            ////assert(paint != null);
-
-            _canvas.DrawLine(p1.ToPoint(), p2.ToPoint(), paint);
-        }
-
-        /// Fills the canvas with the given [Paint].
-        ///
-        /// To fill the canvas with a solid color and blend mode, consider
-        /// [drawColor] instead.
-        public void drawPaint(SKPaint paint)
-        {
-            //assert(paint != null);
-            _canvas.DrawPaint(paint);
-        }
-
-        /// Draws a rectangle with the given [Paint]. Whether the rectangle is filled
-        /// or stroked (or both) is controlled by [Paint.style].
-        public void drawRect(Rect rect, SKPaint paint)
-        {
-            //assert(_rectIsValid(rect));
-            //assert(paint != null);
-            _canvas.DrawRect(rect.ToSKRect(), paint);
-        }
-
-        /// Draws a rounded rectangle with the given [Paint]. Whether the rectangle is
-        /// filled or stroked (or both) is controlled by [Paint.style].
-        public void drawRRect(RRect rrect, SKPaint paint)
-        {
-            //assert(_rrectIsValid(rrect));
-            //assert(paint != null);
-            _canvas.DrawRoundRect(rrect.ToRoundedRect(), paint);
-        }
-
-        /// Draws a shape consisting of the difference between two rounded rectangles
-        /// with the given [Paint]. Whether this shape is filled or stroked (or both)
-        /// is controlled by [Paint.style].
-        ///
-        /// This shape is almost but not quite entirely unlike an annulus.
-        public void drawDRRect(RRect outer, RRect inner, Paint paint)
-        {
-            //assert(_rrectIsValid(outer));
-            //assert(_rrectIsValid(inner));
-            //assert(paint != null);
-
-            // TODO: Missing SkiaSharp reference
-            // native 'Canvas_drawDRRect';
-        }
-
-        /// Draws an axis-aligned oval that fills the given axis-aligned rectangle
-        /// with the given [Paint]. Whether the oval is filled or stroked (or both) is
-        /// controlled by [Paint.style].
-        public void drawOval(Rect rect, SKPaint paint)
-        {
-            //assert(_rectIsValid(rect));
-            //assert(paint != null);
-            _canvas.DrawOval(rect.ToSKRect(), paint);
-        }
-
-        /// Draws a circle centered at the point given by the first argument and
-        /// that has the radius given by the second argument, with the [Paint] given in
-        /// the third argument. Whether the circle is filled or stroked (or both) is
-        /// controlled by [Paint.style].
-        public void drawCircle(Offset c, double radius, SKPaint paint)
-        {
-            //assert(_offsetIsValid(c));
-            //assert(paint != null);
-            _canvas.DrawCircle(c.ToPoint(), (float)radius, paint);
-        }
-
-        /// Draw an arc scaled to fit inside the given rectangle. It starts from
-        /// startAngle radians around the oval up to startAngle + sweepAngle
-        /// radians around the oval, with zero radians being the point on
-        /// the right hand side of the oval that crosses the horizontal line
-        /// that intersects the center of the rectangle and with positive
-        /// angles going clockwise around the oval. If useCenter is true, the arc is
-        /// closed back to the center, forming a circle sector. Otherwise, the arc is
-        /// not closed, forming a circle segment.
-        ///
-        /// This method is optimized for drawing arcs and should be faster than [Path.arcTo].
-        public void drawArc(Rect rect, double startAngle, double sweepAngle, bool useCenter, Paint paint)
-        {
-            //assert(_rectIsValid(rect));
-            //assert(paint != null);
-
-            // TODO: not implemented on SkiaSharp
-            // native 'Canvas_drawArc';
-        }
-
-        /// Draws the given [Path] with the given [Paint]. Whether this shape is
-        /// filled or stroked (or both) is controlled by [Paint.style]. If the path is
-        /// filled, then subpaths within it are implicitly closed (see [Path.close]).
-        public void drawPath(Path path, SKPaint paint)
-        {
-            //assert(path != null); // path is checked on the engine side
-            //assert(paint != null);
-            _canvas.DrawPath(path, paint);
-        }
-
-        /// Draws the given [Image] into the canvas with its top-left corner at the
-        /// given [Offset]. The image is composited into the canvas using the given [Paint].
-        public void drawImage(SKImage image, Offset p, SKPaint paint)
-        {
-            //assert(image != null); // image is checked on the engine side
-            //assert(_offsetIsValid(p));
-            //assert(paint != null);
-            _canvas.DrawImage(image, p.ToPoint(), paint);
-        }
-
-        /// Draws the subset of the given image described by the `src` argument into
-        /// the canvas in the axis-aligned rectangle given by the `dst` argument.
-        ///
-        /// This might sample from outside the `src` rect by up to half the width of
-        /// an applied filter.
-        ///
-        /// Multiple calls to this method with different arguments (from the same
-        /// image) can be batched into a single call to [drawAtlas] to improve
-        /// performance.
-        public void drawImageRect(SKImage image, Rect src, Rect dst, SKPaint paint)
-        {
-            //assert(image != null); // image is checked on the engine side
-            //assert(_rectIsValid(src));
-            //assert(_rectIsValid(dst));
-            //assert(paint != null);
-            _canvas.DrawImage(image, src.ToSKRect(), dst.ToSKRect(), paint);
-        }
-
-        /// Draws the given [Image] into the canvas using the given [Paint].
-        ///
-        /// The image is drawn in nine portions described by splitting the image by
-        /// drawing two horizontal lines and two vertical lines, where the `center`
-        /// argument describes the rectangle formed by the four points where these
-        /// four lines intersect each other. (This forms a 3-by-3 grid of regions,
-        /// the center region being described by the `center` argument.)
-        ///
-        /// The four regions in the corners are drawn, without scaling, in the four
-        /// corners of the destination rectangle described by `dst`. The remaining
-        /// five regions are drawn by stretching them to fit such that they exactly
-        /// cover the destination rectangle while maintaining their relative
-        /// positions.
-        public void drawImageNine(SKImage image, Rect center, Rect dst, SKPaint paint)
-        {
-            //assert(image != null); // image is checked on the engine side
-            //assert(_rectIsValid(center));
-            //assert(_rectIsValid(dst));
-            //assert(paint != null);
-            _canvas.DrawImageNinePatch(image, center.ToSKRectI(), dst.ToSKRect(), paint);
-        }
-
-
-        /// Draw the given picture onto the canvas. To create a picture, see
-        /// [PictureRecorder].
-        public void drawPicture(SKPicture picture)
-        {
-            //assert(picture != null); // picture is checked on the engine side        
-            _canvas.DrawPicture(picture);
-        }
-
-        /// Draws the text in the given [Paragraph] into this canvas at the given
-        /// [Offset].
-        ///
-        /// The [Paragraph] object must have had [Paragraph.layout] called on it
-        /// first.
-        ///
-        /// To align the text, set the `textAlign` on the [ParagraphStyle] object
-        /// passed to the [new ParagraphBuilder] constructor. For more details see
-        /// [TextAlign] and the discussion at [new ParagraphStyle].
-        ///
-        /// If the text is left aligned or justified, the left margin will be at the
-        /// position specified by the `offset` argument's [Offset.dx] coordinate.
-        ///
-        /// If the text is right aligned or justified, the right margin will be at the
-        /// position described by adding the [ParagraphConstraints.width] given to
-        /// [Paragraph.layout], to the `offset` argument's [Offset.dx] coordinate.
-        ///
-        /// If the text is centered, the centering axis will be at the position
-        /// described by adding half of the [ParagraphConstraints.width] given to
-        /// [Paragraph.layout], to the `offset` argument's [Offset.dx] coordinate.
-        public void drawParagraph(Paragraph paragraph, Offset offset)
-        {
-            //assert(paragraph != null);
-            //assert(_offsetIsValid(offset));
-            paragraph._paint(_canvas, offset.dx, offset.dy);
-        }
-
-        /// Draws a sequence of points according to the given [PointMode].
-        ///
-        /// The `points` argument is interpreted as offsets from the origin.
-        ///
-        /// See also:
-        ///
-        ///  * [drawRawPoints], which takes `points` as a [List<float> ] rather than a
-        ///    [List<Offset>].
-        public void drawPoints(PointMode pointMode, List<Offset> points, SKPaint paint)
-        {
-            //assert(pointMode != null);
-            //assert(points != null);
-            //assert(paint != null);
-            _canvas.DrawPoints((SKPointMode)pointMode, points.ToPoints().ToArray(), paint);
-        }
-
-        /// Draws a sequence of points according to the given [PointMode].
-        ///
-        /// The `points` argument is interpreted as a list of pairs of floating point
-        /// numbers, where each pair represents an x and y offset from the origin.
-        ///
-        /// See also:
-        ///
-        ///  * [drawPoints], which takes `points` as a [List<Offset>] rather than a
-        ///    [List<List<float> >].
-        public void drawRawPoints(PointMode pointMode, List<double> points, SKPaint paint)
-        {
-            //assert(pointMode != null);
-            //assert(points != null);
-            //assert(paint != null);
-            if (points.Count % 2 != 0)
-                throw new ArgumentException("'points' must have an even number of values.");
-
-            var list = new List<Offset>();
-            for (int i = 0; i < points.Count; i = i + 2)
-            {
-                list.Add(new Offset(points[i], points[i + 1]));
-            }
-
-            drawPoints(pointMode, list, paint);
-        }
-
-
-        public void drawVertices(SKVertices vertices, BlendMode blendMode, SKPaint paint)
-        {
-            //assert(vertices != null); // vertices is checked on the engine side
-            //assert(paint != null);
-            //assert(blendMode != null);
-            _canvas.DrawVertices(vertices, (SKBlendMode)blendMode, paint);
-        }
-
-        //
-        // See also:
-        //
-        //  * [drawRawAtlas], which takes its arguments as typed data lists rather
-        //    than objects.
-        void drawAtlas(
-            SKImage atlas,
-            List<RSTransform> transforms,
-            List<Rect> rects,
-            List<Color> colors,
-            BlendMode blendMode,
-            Rect cullRect,
-            Paint paint)
-        {
-            //assert(atlas != null); // atlas is checked on the engine side
-            //assert(transforms != null);
-            //assert(rects != null);
-            //assert(colors != null);
-            //assert(blendMode != null);
-            //assert(paint != null);
-
-            int rectCount = rects.Count;
-            if (transforms.Count != rectCount)
-                throw new ArgumentException("'transforms' and 'rects' lengths must match.");
-            if (colors.Count > 0 && colors.Count != rectCount)
-                throw new ArgumentException("'If non-null, 'colors' length must match that of 'transforms' and 'rects'.");
-
-            List<double> rstTransformBuffer = new List<double>(rectCount * 4);
-            List<double> rectBuffer = new List<double>(rectCount * 4);
-
-            for (int i = 0; i < rectCount; ++i)
-            {
-                int index0 = i * 4;
-                int index1 = index0 + 1;
-                int index2 = index0 + 2;
-                int index3 = index0 + 3;
-                RSTransform rstTransform = transforms[i];
-                Rect rect = rects[i];
-                //assert(_rectIsValid(rect));
-                rstTransformBuffer[index0] = rstTransform.scos;
-                rstTransformBuffer[index1] = rstTransform.ssin;
-                rstTransformBuffer[index2] = rstTransform.tx;
-                rstTransformBuffer[index3] = rstTransform.ty;
-                rectBuffer[index0]         = rect.left;
-                rectBuffer[index1]         = rect.top;
-                rectBuffer[index2]         = rect.right;
-                rectBuffer[index3]         = rect.bottom;
-            }
-
-            List<uint> colorBuffer = colors.Count == 0 ? null : Painting._encodeColorList(colors);
-            List<double> cullRectBuffer = cullRect?._value;
-
-            _drawAtlas(
-                paint._objects,
-                paint._data,
-                atlas,
-                rstTransformBuffer,
-                rectBuffer,
-                colorBuffer,
-                (int)blendMode,
-                cullRectBuffer
-            );
-        }
-
-        //
-        // The `rstTransforms` argument is interpreted as a list of four-tuples, with
-        // each tuple being ([RSTransform.scos], [RSTransform.ssin],
-        // [RSTransform.tx], [RSTransform.ty]).
-        //
-        // The `rects` argument is interpreted as a list of four-tuples, with each
-        // tuple being ([Rect.left], [Rect.top], [Rect.right], [Rect.bottom]).
-        //
-        // The `colors` argument, which can be null, is interpreted as a list of
-        // 32-bit colors, with the same packing as [Color.value].
-        //
-        // See also:
-        //
-        //  * [drawAtlas], which takes its arguments as objects rather than typed
-        //    data lists.
-        public void drawRawAtlas(
-            SKImage atlas,
-            List<double> rstTransforms,
-            List<double> rects,
-            List<uint> colors,
-            BlendMode blendMode,
-            Rect cullRect,
-            Paint paint)
-        {
-            ////assert(atlas != null); // atlas is checked on the engine side
-            ////assert(rstTransforms != null);
-            ////assert(rects != null);
-            ////assert(colors != null);
-            ////assert(blendMode != null);
-            ////assert(paint != null);
-
-            int rectCount = rects.Count;
-            if (rstTransforms.Count != rectCount)
-                throw new ArgumentException("'rstTransforms' and 'rects' lengths must match.");
-            if (rectCount % 4 != 0)
-                throw new ArgumentException("'rstTransforms' and 'rects' lengths must be a multiple of four.");
-            if (colors != null && colors.Count * 4 != rectCount)
-                throw new ArgumentException("If non-null, 'colors' length must be one fourth the length of 'rstTransforms' and 'rects'.");
-
-            _drawAtlas(
-                paint._objects,
-                paint._data,
-                atlas,
-                rstTransforms,
-                rects,
-                colors,
-                (int)blendMode,
-                cullRect?._value
-            );
-        }
-
-        void _drawAtlas(
-            List<Object> paintObjects,
-            Types.ByteData paintData,
-            SKImage atlas,
-            List<double> rstTransforms,
-            List<double> rects,
-            List<uint> colors,
-            int blendMode,
-            List<double> cullRect)
-        {
-            // native 'Canvas_drawAtlas';
-        }
-
-        /// Draws a shadow for a [Path] representing the given material elevation.
-        ///
-        /// The `transparentOccluder` argument should be true if the occluding object
-        /// is not opaque.
-        ///
-        /// The arguments must not be null.
-        public void drawShadow(Path path, Color color, double elevation, bool transparentOccluder)
-        {
-            //assert(path != null); // path is checked on the engine side
-            //assert(color != null);
-            //assert(transparentOccluder != null);
-
-            // TODO: Draw shadow
-            // https://github.com/flutter/engine/blob/master/lib/ui/painting/canvas.cc
-            // Requires: Flow.PhysicalShapeLayer
-        }
     }
 
     /// Records a [Picture] containing a sequence of graphical operations.
@@ -3980,8 +1676,8 @@ namespace FlutterBinding.UI
         {
             return new Paint
             {
-                color      = color,
-                maskFilter = MaskFilter.blur(BlurStyle.normal, blurSigma)
+                Color      = color,
+                MaskFilter = MaskFilter.blur(SKBlurStyle.Normal, blurSigma)
             };
         }
 
@@ -4024,7 +1720,7 @@ namespace FlutterBinding.UI
             if (b == null)
                 return a.scale(1.0 - t);
             return new Shadow(
-                color: Color.lerp(a.color, b.color, t),
+                color: Color.Lerp(a.color, b.color, t),
                 offset: Offset.lerp(a.offset, b.offset, t),
                 blurRadius: Lerp.lerpDouble(a.blurRadius, b.blurRadius, t));
         }
@@ -4111,23 +1807,23 @@ namespace FlutterBinding.UI
 
                 shadowsData.setInt32(
                     _kColorOffset + shadowOffset,
-                    (int)(shadow.color.value ^ Shadow._kColorDefault),
-                    (int)Painting._kFakeHostEndian);
+                    (int)(shadow.color.Value ^ Shadow._kColorDefault),
+                    (int)Painting.kFakeHostEndian);
 
                 shadowsData.setFloat32(
                     _kXOffset + shadowOffset,
                     shadow.offset.dx,
-                    (int)Painting._kFakeHostEndian);
+                    (int)Painting.kFakeHostEndian);
 
                 shadowsData.setFloat32(
                     _kYOffset + shadowOffset,
                     shadow.offset.dy,
-                    (int)Painting._kFakeHostEndian);
+                    (int)Painting.kFakeHostEndian);
 
                 shadowsData.setFloat32(
                     _kBlurOffset + shadowOffset,
                     shadow.blurRadius,
-                    (int)Painting._kFakeHostEndian);
+                    (int)Painting.kFakeHostEndian);
             }
 
             return shadowsData;

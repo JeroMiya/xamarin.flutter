@@ -188,25 +188,25 @@ namespace FlutterBinding.UI
             {
                 int offset = i * _kPointerDataFieldCount;
                 data[i] = new PointerData(
-                    timeStamp: TimeDelta.FromMicroseconds(packet.getInt64(kStride * offset++, (int)Painting._kFakeHostEndian)),
-                    change: (PointerChange)packet.getInt64(kStride * offset++, (int)Painting._kFakeHostEndian),
-                    kind: (PointerDeviceKind)packet.getInt64(kStride * offset++, (int)Painting._kFakeHostEndian),
-                    device: packet.getInt64(kStride * offset++, (int)Painting._kFakeHostEndian),
-                    physicalX: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
-                    physicalY: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
-                    buttons: packet.getInt64(kStride * offset++, (int)Painting._kFakeHostEndian),
-                    obscured: packet.getInt64(kStride * offset++, (int)Painting._kFakeHostEndian) != 0,
-                    pressure: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
-                    pressureMin: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
-                    pressureMax: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
-                    distance: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
-                    distanceMax: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
-                    radiusMajor: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
-                    radiusMinor: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
-                    radiusMin: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
-                    radiusMax: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
-                    orientation: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian),
-                    tilt: packet.getFloat64(kStride * offset++, (int)Painting._kFakeHostEndian)
+                    timeStamp: TimeDelta.FromMicroseconds(packet.getInt64(kStride * offset++, (int)Painting.kFakeHostEndian)),
+                    change: (PointerChange)packet.getInt64(kStride * offset++, (int)Painting.kFakeHostEndian),
+                    kind: (PointerDeviceKind)packet.getInt64(kStride * offset++, (int)Painting.kFakeHostEndian),
+                    device: packet.getInt64(kStride * offset++, (int)Painting.kFakeHostEndian),
+                    physicalX: packet.getFloat64(kStride * offset++, (int)Painting.kFakeHostEndian),
+                    physicalY: packet.getFloat64(kStride * offset++, (int)Painting.kFakeHostEndian),
+                    buttons: packet.getInt64(kStride * offset++, (int)Painting.kFakeHostEndian),
+                    obscured: packet.getInt64(kStride * offset++, (int)Painting.kFakeHostEndian) != 0,
+                    pressure: packet.getFloat64(kStride * offset++, (int)Painting.kFakeHostEndian),
+                    pressureMin: packet.getFloat64(kStride * offset++, (int)Painting.kFakeHostEndian),
+                    pressureMax: packet.getFloat64(kStride * offset++, (int)Painting.kFakeHostEndian),
+                    distance: packet.getFloat64(kStride * offset++, (int)Painting.kFakeHostEndian),
+                    distanceMax: packet.getFloat64(kStride * offset++, (int)Painting.kFakeHostEndian),
+                    radiusMajor: packet.getFloat64(kStride * offset++, (int)Painting.kFakeHostEndian),
+                    radiusMinor: packet.getFloat64(kStride * offset++, (int)Painting.kFakeHostEndian),
+                    radiusMin: packet.getFloat64(kStride * offset++, (int)Painting.kFakeHostEndian),
+                    radiusMax: packet.getFloat64(kStride * offset++, (int)Painting.kFakeHostEndian),
+                    orientation: packet.getFloat64(kStride * offset++, (int)Painting.kFakeHostEndian),
+                    tilt: packet.getFloat64(kStride * offset++, (int)Painting.kFakeHostEndian)
                 );
             }
 

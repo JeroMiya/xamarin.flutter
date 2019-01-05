@@ -8,15 +8,6 @@ using static FlutterBinding.Flow.RasterCache;
 
 namespace FlutterBinding.Flow.Layers
 {
-    // This should be an exact copy of the Clip enum in painting.dart.
-    public enum Clip
-    {
-        none,
-        hardEdge,
-        antiAlias,
-        antiAliasWithSaveLayer
-    }
-
     public class PrerollContext
     {
         public RasterCache raster_cache;

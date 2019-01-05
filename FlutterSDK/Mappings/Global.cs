@@ -2,6 +2,8 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using FlutterBinding.UI;
+
 //using FlutterSDK.Widgets;
 
 namespace FlutterSDK
@@ -114,14 +116,6 @@ namespace FlutterSDK
 
     public delegate void VoidCallback();
 
-    //public class Rect { }
-    public class Color
-    {
-        public Color(uint? i)
-        {
-
-        }
-    }
     public class Size
     {
         public Size(double? height)

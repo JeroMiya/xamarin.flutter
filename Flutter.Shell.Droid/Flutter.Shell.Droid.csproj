@@ -48,12 +48,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AndroidExternalTexture.cs" />
+    <Compile Include="App\IViewFactory.cs" />
     <Compile Include="PlatformViewAndroid.cs" />
     <Compile Include="AndroidShellHolder.cs" />
     <Compile Include="AndroidSurface.cs" />
     <Compile Include="App\FlutterActivity.cs" />
-    <Compile Include="App\FlutterActivityDelegate.cs" />
-    <Compile Include="App\IFlutterActivityEvents.cs" />
     <Compile Include="App\FlutterApplication.cs" />
     <Compile Include="App\FlutterPluginRegistry.cs" />
     <Compile Include="Plugin\Common\IActivityLifecycleListener.cs" />

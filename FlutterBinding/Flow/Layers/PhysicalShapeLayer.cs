@@ -1,4 +1,5 @@
-﻿using SkiaSharp;
+﻿using FlutterBinding.UI;
+using SkiaSharp;
 using static FlutterBinding.Flow.Helper;
 
 // Copyright 2017 The Chromium Authors. All rights reserved.
@@ -11,8 +12,8 @@ namespace FlutterBinding.Flow.Layers
     {
         public PhysicalShapeLayer(Clip clip_behavior)
         {
-            this.isRect_        = false;
-            this.clip_behavior_ = clip_behavior;
+            isRect_        = false;
+            clip_behavior_ = clip_behavior;
         }
 
         public void set_path(SKPath path)
@@ -123,7 +124,7 @@ namespace FlutterBinding.Flow.Layers
             // Call drawPath without clip if possible for better performance.
             SKPaint paint = new SKPaint();
             paint.Color = color_;
-            if (clip_behavior_ != Clip.antiAliasWithSaveLayer)
+            if (clip_behavior_ != Clip.AntiAliasWithSaveLayer)
             {
                 context.canvas.DrawPath(path_, paint);
             }
@@ -131,21 +132,21 @@ namespace FlutterBinding.Flow.Layers
             int saveCount = context.canvas.Save();
             switch (clip_behavior_)
             {
-            case Clip.hardEdge:
+            case Clip.HardEdge:
                 context.canvas.ClipPath(path_, antialias: false);
                 break;
-            case Clip.antiAlias:
+            case Clip.AntiAlias:
                 context.canvas.ClipPath(path_, antialias: true);
                 break;
-            case Clip.antiAliasWithSaveLayer:
+            case Clip.AntiAliasWithSaveLayer:
                 context.canvas.ClipPath(path_, antialias: true);
                 context.canvas.SaveLayer(paint_bounds(), null);
                 break;
-            case Clip.none:
+            case Clip.None:
                 break;
             }
 
-            if (clip_behavior_ == Clip.antiAliasWithSaveLayer)
+            if (clip_behavior_ == Clip.AntiAliasWithSaveLayer)
             {
                 // If we want to avoid the bleeding edge artifact
                 // (https://github.com/flutter/flutter/issues/18057#issue-328003931)
