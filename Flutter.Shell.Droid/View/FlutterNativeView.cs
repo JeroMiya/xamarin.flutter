@@ -110,10 +110,9 @@ namespace Flutter.Shell.Droid.View
         /**
          * @deprecated
          * Please use runFromBundle with `FlutterRunArguments`.
-         * Parameter `reuseRuntimeController` has no effect.
          */
         //@Deprecated
-        public void RunFromBundle(string bundlePath, string defaultPath, string entrypoint, bool reuseRuntimeController)
+        public void RunFromBundle(string bundlePath, string defaultPath, string entrypoint)
         {
             RunFromBundleInternal(new[] {bundlePath, defaultPath}, entrypoint, null);
         }

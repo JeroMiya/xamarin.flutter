@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using FlutterBinding.Engine;
 using FlutterBinding.Engine.Assets;
@@ -11,8 +12,12 @@ using SkiaSharp;
 
 namespace FlutterBinding.Shell
 {
-    public class Engine : IRuntimeDelegate
+    public class Engine : IWindowClient
     {
+        public TaskRunners TaskRunners { get; }
+        public SnapshotDelegate SnapshotDelegate { get; }
+        public GRContext ResourceContext { get; }
+        public SkiaUnrefQueue UnrefQueue { get; }
         private const string AssetChannel = "flutter/assets";
         private const string LifecycleChannel = "flutter/lifecycle";
         private const string NavigationChannel = "flutter/navigation";
@@ -46,27 +51,15 @@ namespace FlutterBinding.Shell
             SkiaUnrefQueue unrefQueue
         )
         {
+            TaskRunners = taskRunners;
+            SnapshotDelegate = snapshotDelegate;
+            ResourceContext = resourceContext;
+            UnrefQueue = unrefQueue;
             _delegate        = @delegate;
             _settings        = settings;
             _animator        = animator;
             _activityRunning = false;
             _haveSurface     = false;
-
-            // Runtime controller is initialized here because it takes a reference to this
-            // object as its delegate. The delegate may be called in the constructor and
-            // we want to be fully initilazed by that point.
-            _runtimeController = new RuntimeController(
-                this, // runtime delegate
-                //vm,                       // VM
-                //isolate_snapshot,         // isolate snapshot
-                //shared_snapshot,          // shared snapshot
-                taskRunners,      // task runners
-                snapshotDelegate, // snapshot delegate
-                resourceContext,  // resource context
-                unrefQueue        // skia unref queue
-                //settings_.advisory_script_uri,       // advisory script uri
-                //settings_.advisory_script_entrypoint // advisory script entrypoint
-            );
         }
 
         //private readonly FML_WARN_UNUSED_RESULT
@@ -130,7 +123,7 @@ namespace FlutterBinding.Shell
             }
 
             _delegate.OnPreEngineRestart();
-            _runtimeController = _runtimeController.Clone();
+            _window = null;
             UpdateAssetManager(null);
 
             return Run(configuration) == RunStatus.Success;
@@ -158,13 +151,13 @@ namespace FlutterBinding.Shell
         public void BeginFrame(TimePoint frameTime)
         {
             //TRACE_EVENT0("flutter", "Engine::BeginFrame");
-            _runtimeController.BeginFrame(frameTime);
+            window.BeginFrame(frameTime);
         }
 
         public void NotifyIdle(long deadline)
         {
             //TRACE_EVENT1("flutter", "Engine::NotifyIdle", "deadline_now_delta", (deadline - TimePoint.Now().TotalMicroseconds).ToString());
-            _runtimeController.NotifyIdle(deadline);
+            window.NotifyIdle(deadline);
         }
 
         //private Dart_Port GetUIIsolateMainPort();
@@ -192,7 +185,7 @@ namespace FlutterBinding.Shell
                 _viewportMetrics.PhysicalHeight != metrics.PhysicalHeight ||
                 _viewportMetrics.PhysicalWidth != metrics.PhysicalWidth;
             _viewportMetrics = metrics;
-            _runtimeController.SetViewportMetrics(_viewportMetrics);
+            window.UpdateWindowMetrics(_viewportMetrics);
             if (_animator != null)
             {
                 if (dimensionsChanged)
@@ -212,21 +205,16 @@ namespace FlutterBinding.Shell
                 break;
             }
 
-            if ( //TODO: Assume always running ->
-                 //_runtimeController.IsRootIsolateRunning() &&
-                _runtimeController.DispatchPlatformMessage(message))
-            {
-                return;
-            }
+            window.DispatchPlatformMessage(message);
 
             // If there's no runtime_, we may still need to set the initial route.
-            if (message.Channel == NavigationChannel)
-                HandleNavigationPlatformMessage(message);
+            //if (message.Channel == NavigationChannel)
+            //    HandleNavigationPlatformMessage(message);
         }
 
         public void DispatchPointerDataPacket(PointerDataPacket packet)
         {
-            _runtimeController.DispatchPointerDataPacket(packet);
+            window.DispatchPointerDataPacket(packet);
         }
 
         public void DispatchSemanticsAction(
@@ -234,17 +222,17 @@ namespace FlutterBinding.Shell
             SemanticsAction action,
             object args)
         {
-            _runtimeController.DispatchSemanticsAction(id, action, args);
+            window.DispatchSemanticsAction(id, action, args);
         }
 
         public void SetSemanticsEnabled(bool enabled)
         {
-            _runtimeController.SetSemanticsEnabled(enabled);
+            window.SemanticsEnabled = enabled;
         }
 
         public void SetAccessibilityFeatures(AccessibilityFeatures flags)
         {
-            _runtimeController.SetAccessibilityFeatures(flags);
+            window.AccessibilityFeatures = flags;
         }
 
         public void ScheduleFrame(bool regenerateLayerTree = true)
@@ -258,7 +246,7 @@ namespace FlutterBinding.Shell
         private readonly Engine.IEngineDelegate _delegate;
         private Settings _settings;
         private readonly Animator _animator;
-        private RuntimeController _runtimeController;
+        private Window _window;
         private string _initialRoute;
         private ViewportMetrics _viewportMetrics;
         private AssetManager _assetManager;
@@ -268,12 +256,25 @@ namespace FlutterBinding.Shell
         //private readonly FontCollection font_collection_;
         //private readonly Engine weak_factory_;
 
+        private Window window => _window ?? (_window = Window.Instance);
+
         // |blink::RuntimeDelegate|
         public string DefaultRouteName()
         {
             if (!string.IsNullOrWhiteSpace(_initialRoute))
                 return _initialRoute;
             return "/";
+        }
+
+        public void Render(Scene scene)
+        {
+            Render(scene.LayerTree);
+        }
+
+        /// <inheritdoc />
+        public void SetIsolateDebugName(string isolateName)
+        {
+            Thread.CurrentThread.Name = isolateName;
         }
 
         // |blink::RuntimeDelegate|
@@ -297,6 +298,13 @@ namespace FlutterBinding.Shell
         {
             _delegate.OnEngineUpdateSemantics(update, actions);
         }
+
+        /// <inheritdoc />
+        public void UpdateSemantics(SemanticsUpdate update)
+        {
+            UpdateSemantics(update.Nodes, update.Actions);
+        }
+
 
         // |blink::RuntimeDelegate|
         public void HandlePlatformMessage(PlatformMessage message)

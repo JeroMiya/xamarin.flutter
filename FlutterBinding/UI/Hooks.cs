@@ -28,22 +28,13 @@ namespace FlutterBinding.UI
 
         public static void DispatchPlatformMessage(PlatformMessage platformMessage)
         {
-            if (Window.Instance.OnPlatformMessage != null)
-            {
-                Invoke(
-                    () => Window.Instance.OnPlatformMessage(platformMessage),
-                    Window.Instance.OnPlatformMessageZone);
-            }
-            //else
-            //{
-            //    Window.Instance.RespondToPlatformMessage(responseId, null);
-            //}
+            Window.Instance.DispatchPlatformMessage(platformMessage);
         }
 
         public static void DispatchPointerDataPacket(Types.ByteData byteData)
         {
             var packet = UnpackPointerDataPacket(byteData);
-            Window.Instance.RaisePointerDataPacket(packet);
+            Window.Instance.DispatchPointerDataPacket(packet);
         }
 
         public static void DispatchSemanticsAction(int id, SemanticsAction action, Types.ByteData args)

@@ -19,8 +19,8 @@ namespace Flutter.Sample.App
             var logicalSize = physicalSize / devicePixelRatio;
 
             var paragraphBuilder = new ParagraphBuilder(new ParagraphStyle());
-            paragraphBuilder.addText("Hello, world!");
-            var paragraph = paragraphBuilder.build();
+            paragraphBuilder.AddText("Hello, world!");
+            var paragraph = paragraphBuilder.Build();
 
             paragraph.Layout(new ParagraphConstraints(width: logicalSize.width));
 

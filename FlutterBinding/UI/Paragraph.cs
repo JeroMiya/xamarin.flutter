@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using FlutterBinding.Engine.Text;
 using SkiaSharp;
 
 namespace FlutterBinding.UI {

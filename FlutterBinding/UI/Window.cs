@@ -41,6 +41,17 @@ namespace FlutterBinding.UI
 
         private Window() { }
 
+        public bool NotifyIdle(Int64 deadline)
+        {
+            //DartIsolate root_isolate = root_isolate_.lock () ;
+            //if (root_isolate == null)
+            //    return false;
+
+            //tonic::DartState::Scope scope(root_isolate);
+            //Dart_NotifyIdle(deadline);
+            return true;
+        }
+
         /// The number of device pixels for each logical pixel. This number might not
         /// be a power of two. Indeed, it might not even be an integer. For example,
         /// the Nexus 6 has a device pixel ratio of 3.5.
@@ -241,9 +252,14 @@ namespace FlutterBinding.UI
         ///
         ///  * [GestureBinding], the Flutter framework class which manages pointer events.
         public event EventHandler<PointerDataPacket> PointerDataPacket;
-        public virtual void RaisePointerDataPacket(PointerDataPacket packet)
+        protected virtual void RaisePointerDataPacket(PointerDataPacket packet)
         {
             PointerDataPacket?.Invoke(this, packet);
+        }
+
+        public void DispatchPointerDataPacket(PointerDataPacket packet)
+        {
+            RaisePointerDataPacket(packet);
         }
 
         /// The route or path that the embedder requested when the application was
@@ -416,52 +432,6 @@ namespace FlutterBinding.UI
         public void SetIsolateDebugName(string name) => WindowClient.SetIsolateDebugName(name);
 
 
-        /// Sends a message to a platform-specific plugin.
-        ///
-        /// The `name` parameter determines which plugin receives the message. The
-        /// `data` parameter contains the message payload and is typically UTF-8
-        /// encoded JSON but can be arbitrary data. If the plugin replies to the
-        /// message, `callback` will be called with the response.
-        ///
-        /// The framework invokes [callback] in the same zone in which this method
-        /// was called.
-        public void SendPlatformMessage(
-            string name,
-            object data = null,
-            PlatformMessageResponseCallback responseCallback = null)
-        {
-            var responseMessage = new PlatformMessageResponse(responseCallback, null);
-            var message = new PlatformMessage(name, data, responseMessage);
-            DispatchPlatformMessage(message);
-        }
-
-
-        /// Called whenever this window receives a message from a platform-specific
-        /// plugin.
-        ///
-        /// The `name` parameter determines which plugin sent the message. The `data`
-        /// parameter is the payload and is typically UTF-8 encoded JSON but can be
-        /// arbitrary data.
-        ///
-        /// Message handlers must call the function given in the `callback` parameter.
-        /// If the handler does not need to respond, the handler should pass null to
-        /// the callback.
-        ///
-        /// The framework invokes this callback in the same zone in which the
-        /// callback was set.
-        public PlatformMessageCallback OnPlatformMessage
-        {
-            get => _onPlatformMessage;
-            set
-            {
-                _onPlatformMessage = value;
-                OnPlatformMessageZone = Types.Zone.current;
-            }
-        }
-
-        private PlatformMessageCallback _onPlatformMessage;
-        internal Types.Zone OnPlatformMessageZone;
-
         // Called by [_dispatchPlatformMessage].
         //internal void RespondToPlatformMessage(int responseId, object data)
         //{
@@ -493,6 +463,26 @@ namespace FlutterBinding.UI
             RaisePlatformMessage(message);
             WindowClient.HandlePlatformMessage(message);
         }
+
+        /// Sends a message to a platform-specific plugin.
+        ///
+        /// The `name` parameter determines which plugin receives the message. The
+        /// `data` parameter contains the message payload and is typically UTF-8
+        /// encoded JSON but can be arbitrary data. If the plugin replies to the
+        /// message, `callback` will be called with the response.
+        ///
+        /// The framework invokes [callback] in the same zone in which this method
+        /// was called.
+        public void DispatchPlatformMessage(
+            string name,
+            object data = null,
+            PlatformMessageResponseCallback responseCallback = null)
+        {
+            var responseMessage = new PlatformMessageResponse(responseCallback, null);
+            var message = new PlatformMessage(name, data, responseMessage);
+            DispatchPlatformMessage(message);
+        }
+
 
         public void DispatchSemanticsAction(int id, SemanticsAction action, object args)
         {
