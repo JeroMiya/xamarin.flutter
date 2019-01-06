@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using FlutterBinding.Engine;
 using FlutterBinding.UI;
 using SkiaSharp;
@@ -11,19 +10,10 @@ namespace FlutterBinding.Shell
     //  This whole class feels like a simple intermediary between Dart/Flutter Window <=> Native Window <=> Shell
     //
 
-
-    // TODO: Should ignore all this locale stuff
     public class WindowData
     {
         public ViewportMetrics ViewportMetrics;
-        public string LanguageCode;
-        public string CountryCode;
-        public string ScriptCode;
-        public string VariantCode;
-        public List<Locale> LocaleData;
-        public string UserSettingsData = "{}";
-        public bool SemanticsEnabled = false;
-        public bool AssistiveTechnologyEnabled = false;
+        public bool SemanticsEnabled;
         public AccessibilityFeatures AccessibilityFeatureFlags;
     };
 
@@ -154,29 +144,6 @@ namespace FlutterBinding.Shell
             return false;
         }
 
-        public bool SetLocales(List<Locale> localeData)
-        {
-            _windowData.LocaleData = localeData;
-
-            var window = GetWindowIfAvailable();
-            window?.UpdateLocales(localeData);
-            return window != null;
-        }
-
-        public bool SetUserSettingsData(string data)
-        {
-            _windowData.UserSettingsData = data;
-
-            var window = GetWindowIfAvailable();
-            if (window != null)
-            {
-                window.UpdateUserSettingsData(_windowData.UserSettingsData);
-                return true;
-            }
-
-            return false;
-        }
-
         public bool SetSemanticsEnabled(bool enabled)
         {
             _windowData.SemanticsEnabled = enabled;
@@ -184,7 +151,7 @@ namespace FlutterBinding.Shell
             var window = GetWindowIfAvailable();
             if (window != null)
             {
-                window.UpdateSemanticsEnabled(_windowData.SemanticsEnabled);
+                window.SemanticsEnabled = _windowData.SemanticsEnabled;
                 return true;
             }
 
@@ -197,7 +164,7 @@ namespace FlutterBinding.Shell
             var window = GetWindowIfAvailable();
             if (window != null)
             {
-                window.UpdateAccessibilityFeatures(_windowData.AccessibilityFeatureFlags);
+                window.AccessibilityFeatures = _windowData.AccessibilityFeatureFlags;
                 return true;
             }
 
@@ -248,7 +215,7 @@ namespace FlutterBinding.Shell
             if (window != null)
             {
                 //TRACE_EVENT1("flutter", "RuntimeController::DispatchPointerDataPacket", "mode", "basic");
-                window.DispatchPointerDataPacket(packet);
+                window.RaisePointerDataPacket(packet);
                 return true;
             }
 
@@ -280,27 +247,6 @@ namespace FlutterBinding.Shell
         //public DartIsolate GetRootIsolate() { }
         //Tuple<bool, UInt32> GetRootIsolateReturnCode() { }
 
-        /*
-        private class Locale
-        {
-            Locale(
-                string languageCode,
-                string countryCode,
-                string scriptCode,
-                string variantCode)
-            {
-                LanguageCode = languageCode;
-                CountryCode  = countryCode;
-                ScriptCode   = scriptCode;
-                VariantCode  = variantCode;
-            }
-
-            public string LanguageCode;
-            public string CountryCode;
-            public string ScriptCode;
-            public string VariantCode;
-        };
-        */
 
         private IRuntimeDelegate _client;
 
@@ -330,7 +276,6 @@ namespace FlutterBinding.Shell
         private bool FlushRuntimeStateToIsolate()
         {
             return SetViewportMetrics(_windowData.ViewportMetrics) &&
-                SetLocales(_windowData.LocaleData) &&
                 SetSemanticsEnabled(_windowData.SemanticsEnabled) &&
                 SetAccessibilityFeatures(_windowData.AccessibilityFeatureFlags);
         }

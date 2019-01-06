@@ -11,15 +11,6 @@ namespace FlutterBinding.UI
     /// Signature of callbacks that have no arguments and return no data.
     public delegate void VoidCallback();
 
-    /// Signature for [Window.onBeginFrame].
-    public delegate void FrameCallback(TimeDelta duration);
-
-    /// Signature for [Window.onPointerDataPacket].
-    public delegate void PointerDataPacketCallback(PointerDataPacket packet);
-
-    /// Signature for [Window.onSemanticsAction].
-    public delegate void SemanticsActionCallback(int id, SemanticsAction action, object args);
-
     /// Signature for responses to platform messages.
     ///
     /// Used as a parameter to [Window.sendPlatformMessage] and
@@ -36,12 +27,17 @@ namespace FlutterBinding.UI
     /// obtain from the [window] property.
     public class Window
     {
-        /// The [Window] singleton. This object exposes the size of the display, the
-        /// core scheduler API, the input event callback, the graphics drawing API, and
-        /// other such core services.
+        /// The [Window] singleton. This object exposes
+        ///  - the size of the display,
+        ///  - the core scheduler API,
+        ///  - the input event callback,
+        ///  - the graphics drawing API,
+        ///  - and other such core services.
         private static Window _instance;
 
         public static Window Instance => _instance ?? (_instance = new Window());
+
+        public IWindowClient WindowClient { get; internal set; }
 
         private Window() { }
 
@@ -68,7 +64,7 @@ namespace FlutterBinding.UI
         ///
         ///  * [WidgetsBindingObserver], for a mechanism at the widgets layer to
         ///    observe when this value changes.
-        public double devicePixelRatio { get; set; } = 1.0;
+        public double DevicePixelRatio { get; private set; } = 1.0;
 
         /// The dimensions of the rectangle into which the application will be drawn,
         /// in physical pixels.
@@ -87,7 +83,7 @@ namespace FlutterBinding.UI
         ///
         ///  * [WidgetsBindingObserver], for a mechanism at the widgets layer to
         ///    observe when this value changes.
-        public Size physicalSize { get; set; } = Size.zero;
+        public Size PhysicalSize { get; set; } = Size.zero;
 
         /// The number of physical pixels on each side of the display rectangle into
         /// which the application can render, but over which the operating system
@@ -103,7 +99,7 @@ namespace FlutterBinding.UI
         ///  * [MediaQuery.of], a simpler mechanism for the same.
         ///  * [Scaffold], which automatically applies the view insets in material
         ///    design applications.
-        public WindowPadding viewInsets { get; set; } = WindowPadding.zero;
+        public WindowPadding ViewInsets { get; private set; } = WindowPadding.Zero;
 
         /// The number of physical pixels on each side of the display rectangle into
         /// which the application can render, but which may be partially obscured by
@@ -120,140 +116,75 @@ namespace FlutterBinding.UI
         ///  * [MediaQuery.of], a simpler mechanism for the same.
         ///  * [Scaffold], which automatically applies the padding in material design
         ///    applications.
-        public WindowPadding padding { get; set; } = WindowPadding.zero;
+        public WindowPadding Padding { get; private set; } = WindowPadding.Zero;
 
-        /// A callback that is invoked whenever the [devicePixelRatio],
-        /// [physicalSize], [padding], or [viewInsets] values change, for example
-        /// when the device is rotated or when the application is resized (e.g. when
+        public ViewportMetrics ViewportMetrics { get; private set; }
+
+        /// <summary>
+        /// Raised whenever the [devicePixelRatio], [physicalSize], [padding], or [viewInsets] values change
+        /// for example: when the device is rotated or when the application is resized (e.g. when
         /// showing applications side-by-side on Android).
-        ///
-        /// The engine invokes this callback in the same zone in which the callback
-        /// was set.
-        ///
-        /// The framework registers with this callback and updates the layout
-        /// appropriately.
-        ///
-        /// See also:
-        ///
-        ///  * [WidgetsBindingObserver], for a mechanism at the widgets layer to
-        ///    register for notifications when this is called.
-        ///  * [MediaQuery.of], a simpler mechanism for the same.
-        public VoidCallback onMetricsChanged
+        /// </summary>
+        public event EventHandler<ViewportMetrics> MetricsChanged;
+        protected virtual void RaiseMetricsChanged(ViewportMetrics metrics)
         {
-            get => _onMetricsChanged;
-            set
-            {
-                _onMetricsChanged    = value;
-                OnMetricsChangedZone = Types.Zone.current;
-            }
+            MetricsChanged?.Invoke(this, metrics);
         }
 
-        private VoidCallback _onMetricsChanged;
-        internal Types.Zone OnMetricsChangedZone;
-
-
-        /// The system-reported default locale of the device.
-        ///
-        /// This establishes the language and formatting conventions that application
-        /// should, if possible, use to render their user interface.
-        ///
-        /// This is the first locale selected by the user and is the user's
-        /// primary locale (the locale the device UI is displayed in)
-        ///
-        /// This is equivalent to `locales.first` and will provide an empty non-null locale
-        /// if the [locales] list has not been set or is empty.
-        public Locale locale
+        public void UpdateWindowMetrics(ViewportMetrics metrics)
         {
-            get
-            {
-                if (locales != null && locales.Count > 0)
-                {
-                    return locales.First();
-                }
+            ViewportMetrics = metrics;
 
-                return Locale.none;
-            }
+            // This bypasses Hooks.cs
+            DevicePixelRatio = metrics.DevicePixelRatio;
+            PhysicalSize     = new Size(metrics.PhysicalWidth, metrics.PhysicalHeight);
+            Padding = new WindowPadding(
+                left: metrics.PhysicalPaddingLeft,
+                top: metrics.PhysicalPaddingTop,
+                right: metrics.PhysicalPaddingRight,
+                bottom: metrics.PhysicalPaddingBottom
+            );
+            ViewInsets = new WindowPadding(
+                left: metrics.PhysicalViewInsetLeft,
+                top: metrics.PhysicalViewInsetTop,
+                right: metrics.PhysicalViewInsetRight,
+                bottom: metrics.PhysicalViewInsetBottom);
+
+            RaiseMetricsChanged(metrics);
         }
 
-        /// The full system-reported supported locales of the device.
-        ///
-        /// This establishes the language and formatting conventions that application
-        /// should, if possible, use to render their user interface.
-        ///
-        /// The list is ordered in order of priority, with lower-indexed locales being
-        /// preferred over higher-indexed ones. The first element is the primary [locale].
-        ///
-        /// The [onLocaleChanged] callback is called whenever this value changes.
-        ///
-        /// See also:
-        ///
-        ///  * [WidgetsBindingObserver], for a mechanism at the widgets layer to
-        ///    observe when this value changes.
-        public List<Locale> locales { get; set; }
+        private double _textScaleFactor = 1.0;
 
-        /// A callback that is invoked whenever [locale] changes value.
-        ///
-        /// The framework invokes this callback in the same zone in which the
-        /// callback was set.
-        ///
-        /// See also:
-        ///
-        ///  * [WidgetsBindingObserver], for a mechanism at the widgets layer to
-        ///    observe when this callback is invoked.
-        public VoidCallback onLocaleChanged
-        {
-            get => _onLocaleChanged;
-            set
-            {
-                _onLocaleChanged    = value;
-                OnLocaleChangedZone = Types.Zone.current;
-            }
-        }
-
-        private VoidCallback _onLocaleChanged;
-        internal Types.Zone OnLocaleChangedZone;
-
+        /// <summary>
         /// The system-reported text scale.
         ///
         /// This establishes the text scaling factor to use when rendering text,
         /// according to the user's platform preferences.
         ///
-        /// The [onTextScaleFactorChanged] callback is called whenever this value
-        /// changes.
-        ///
-        /// See also:
-        ///
-        ///  * [WidgetsBindingObserver], for a mechanism at the widgets layer to
-        ///    observe when this value changes.
-        public double textScaleFactor { get; set; } = 1.0;
-
-        /// The setting indicating whether time should always be shown in the 24-hour
-        /// format.
-        ///
-        /// This option is used by [showTimePicker].
-        public bool alwaysUse24HourFormat { get; set; } = false;
-
-        /// A callback that is invoked whenever [textScaleFactor] changes value.
-        ///
-        /// The framework invokes this callback in the same zone in which the
-        /// callback was set.
-        ///
-        /// See also:
-        ///
-        ///  * [WidgetsBindingObserver], for a mechanism at the widgets layer to
-        ///    observe when this callback is invoked.
-        public VoidCallback OnTextScaleFactorChanged
+        /// The [TextScaleFactorChanged] event is raised whenever this value changes.
+        /// </summary>
+        public double TextScaleFactor
         {
-            get => _onTextScaleFactorChanged;
+            get => _textScaleFactor;
             set
             {
-                _onTextScaleFactorChanged    = value;
-                OnTextScaleFactorChangedZone = Types.Zone.current;
+                if (Math.Abs(value - _textScaleFactor) > double.Epsilon)
+                {
+                    _textScaleFactor = value;
+                    RaiseTextScaleFactorChanged(value);
+                }
             }
         }
 
-        private VoidCallback _onTextScaleFactorChanged;
-        internal Types.Zone OnTextScaleFactorChangedZone;
+        /// <summary>
+        /// A callback that is invoked whenever [textScaleFactor] changes value.
+        /// </summary>
+        public event EventHandler<double> TextScaleFactorChanged;
+        protected virtual void RaiseTextScaleFactorChanged(double e)
+        {
+            TextScaleFactorChanged?.Invoke(this, e);
+        }
+
 
         /// A callback that is invoked to notify the application that it is an
         /// appropriate time to provide a scene using the [SceneBuilder] API and the
@@ -274,18 +205,12 @@ namespace FlutterBinding.UI
         ///    scheduling of frames.
         ///  * [RendererBinding], the Flutter framework class which manages layout and
         ///    painting.
-        public FrameCallback onBeginFrame
+        public event EventHandler<TimeDelta> BeginFrameDelta;
+        public virtual void RaiseBeginFrameDelta(TimeDelta delta)
         {
-            get => _onBeginFrame;
-            set
-            {
-                _onBeginFrame    = value;
-                OnBeginFrameZone = Types.Zone.current;
-            }
+            BeginFrameDelta?.Invoke(this, delta);
         }
 
-        private FrameCallback _onBeginFrame;
-        internal Types.Zone OnBeginFrameZone;
 
         /// A callback that is invoked for each frame after [onBeginFrame] has
         /// completed and after the microtask queue has been drained. This can be
@@ -301,18 +226,11 @@ namespace FlutterBinding.UI
         ///    scheduling of frames.
         ///  * [RendererBinding], the Flutter framework class which manages layout and
         ///    painting.
-        public VoidCallback onDrawFrame
+        public event EventHandler DrawFrame;
+        public virtual void RaiseDrawFrame()
         {
-            get => _onDrawFrame;
-            set
-            {
-                _onDrawFrame    = value;
-                OnDrawFrameZone = Types.Zone.current;
-            }
+            DrawFrame?.Invoke(this, EventArgs.Empty);
         }
-
-        private VoidCallback _onDrawFrame;
-        internal Types.Zone OnDrawFrameZone;
 
         /// A callback that is invoked when pointer data is available.
         ///
@@ -321,20 +239,12 @@ namespace FlutterBinding.UI
         ///
         /// See also:
         ///
-        ///  * [GestureBinding], the Flutter framework class which manages pointer
-        ///    events.
-        public PointerDataPacketCallback onPointerDataPacket
+        ///  * [GestureBinding], the Flutter framework class which manages pointer events.
+        public event EventHandler<PointerDataPacket> PointerDataPacket;
+        public virtual void RaisePointerDataPacket(PointerDataPacket packet)
         {
-            get => _onPointerDataPacket;
-            set
-            {
-                _onPointerDataPacket    = value;
-                OnPointerDataPacketZone = Types.Zone.current;
-            }
+            PointerDataPacket?.Invoke(this, packet);
         }
-
-        private PointerDataPacketCallback _onPointerDataPacket;
-        internal Types.Zone OnPointerDataPacketZone;
 
         /// The route or path that the embedder requested when the application was
         /// launched.
@@ -366,7 +276,7 @@ namespace FlutterBinding.UI
         ///  * [Navigator], a widget that handles routing.
         ///  * [SystemChannels.navigation], which handles subsequent navigation
         ///    requests from the embedder.
-        public string defaultRouteName => _client.DefaultRouteName();
+        public string DefaultRouteName => WindowClient.DefaultRouteName();
 
 
         /// Requests that, at the next appropriate opportunity, the [onBeginFrame]
@@ -376,7 +286,7 @@ namespace FlutterBinding.UI
         ///
         ///  * [SchedulerBinding], the Flutter framework class which manages the
         ///    scheduling of frames.
-        public void scheduleFrame() => _client.ScheduleFrame();
+        public void ScheduleFrame() => WindowClient.ScheduleFrame();
 
 
         /// Updates the application's rendering on the GPU with the newly provided
@@ -409,29 +319,29 @@ namespace FlutterBinding.UI
         }
 
 
+        private bool _semanticsEnabled = false;
+
         /// Whether the user has requested that [updateSemantics] be called when
         /// the semantic contents of window changes.
         ///
         /// The [onSemanticsEnabledChanged] callback is called whenever this value
         /// changes.
-        public bool semanticsEnabled { get; set; } = false;
-
-        /// A callback that is invoked when the value of [semanticsEnabled] changes.
-        ///
-        /// The framework invokes this callback in the same zone in which the
-        /// callback was set.
-        public VoidCallback onSemanticsEnabledChanged
+        public bool SemanticsEnabled
         {
-            get => _onSemanticsEnabledChanged;
+            get => _semanticsEnabled;
             set
             {
-                _onSemanticsEnabledChanged    = value;
-                OnSemanticsEnabledChangedZone = Types.Zone.current;
+                _semanticsEnabled = value;
+                RaiseSemanticsEnabledChanged(value);
             }
         }
 
-        private VoidCallback _onSemanticsEnabledChanged;
-        internal Types.Zone OnSemanticsEnabledChangedZone;
+        public event EventHandler<bool> SemanticsEnabledChanged;
+        public virtual void RaiseSemanticsEnabledChanged(bool enabled)
+        {
+            SemanticsEnabledChanged?.Invoke(this, enabled);
+        }
+
 
         /// A callback that is invoked whenever the user requests an action to be
         /// performed.
@@ -441,47 +351,58 @@ namespace FlutterBinding.UI
         ///
         /// The framework invokes this callback in the same zone in which the
         /// callback was set.
-        public SemanticsActionCallback onSemanticsAction
+        public event EventHandler<SemanticsActionArgs> SemanticsAction;
+        protected virtual void RaiseSemanticsAction(SemanticsActionArgs args)
         {
-            get => _onSemanticsAction;
-            set
-            {
-                _onSemanticsAction    = value;
-                OnSemanticsActionZone = Types.Zone.current;
-            }
+            SemanticsAction?.Invoke(this, args);
         }
 
-        private SemanticsActionCallback _onSemanticsAction;
-        internal Types.Zone OnSemanticsActionZone;
+        public class SemanticsActionArgs
+        {
+            public SemanticsActionArgs(int id, SemanticsAction semanticsAction, object args)
+            {
+                Id = id;
+                SemanticsAction = semanticsAction;
+                Args = args;
+            }
+
+            public int Id { get; }
+            public SemanticsAction SemanticsAction { get; }
+            public object Args { get; }
+        }
+
+
+        private AccessibilityFeatures _accessibilityFeatures;
 
         /// Additional accessibility features that may be enabled by the platform.
-        public AccessibilityFeatures accessibilityFeatures { get; set; }
-
-        /// A callback that is invoked when the value of [accessibilityFlags] changes.
-        ///
-        /// The framework invokes this callback in the same zone in which the
-        /// callback was set.
-        public VoidCallback onAccessibilityFeaturesChanged
+        public AccessibilityFeatures AccessibilityFeatures
         {
-            get => _onAccessibilityFeaturesChanged;
+            get => _accessibilityFeatures;
             set
             {
-                _onAccessibilityFeaturesChanged = value;
-                OnAccessibilityFlagsChangedZone = Types.Zone.current;
+                if (_accessibilityFeatures != value)
+                {
+                    _accessibilityFeatures = value;
+                    RaiseAccessibilityFeaturesChanged(value);
+                }
             }
         }
 
-        private VoidCallback _onAccessibilityFeaturesChanged;
-        internal Types.Zone OnAccessibilityFlagsChangedZone;
+        public event EventHandler<AccessibilityFeatures> AccessibilityFeaturesChanged;
+        protected virtual void RaiseAccessibilityFeaturesChanged(AccessibilityFeatures e)
+        {
+            AccessibilityFeaturesChanged?.Invoke(this, e);
+        }
+
 
         /// Change the retained semantics data about this window.
         ///
-        /// If [semanticsEnabled] is true, the user has requested that this funciton
+        /// If [semanticsEnabled] is true, the user has requested that this function
         /// be called whenever the semantic content of this window changes.
         ///
         /// In either case, this function disposes the given update, which means the
         /// semantics update cannot be used further.
-        public void updateSemantics(SemanticsUpdate update) => _client.UpdateSemantics(update);
+        public void UpdateSemantics(SemanticsUpdate update) => WindowClient.UpdateSemantics(update);
 
 
         /// Set the debug name associated with this window's root isolate.
@@ -492,7 +413,7 @@ namespace FlutterBinding.UI
         /// This can be combined with flutter tools `--isolate-filter` flag to debug
         /// specific root isolates. For example: `flutter attach --isolate-filter=[name]`.
         /// Note that this does not rename any child isolates of the root.
-        public void setIsolateDebugName(string name) => _client.SetIsolateDebugName(name);
+        public void SetIsolateDebugName(string name) => WindowClient.SetIsolateDebugName(name);
 
 
         /// Sends a message to a platform-specific plugin.
@@ -504,15 +425,14 @@ namespace FlutterBinding.UI
         ///
         /// The framework invokes [callback] in the same zone in which this method
         /// was called.
-        public void sendPlatformMessage(
+        public void SendPlatformMessage(
             string name,
-            object data,
-            PlatformMessageResponseCallback response)
+            object data = null,
+            PlatformMessageResponseCallback responseCallback = null)
         {
-            SendPlatformMessage(
-                name,
-                data,
-                response);
+            var responseMessage = new PlatformMessageResponse(responseCallback, null);
+            var message = new PlatformMessage(name, data, responseMessage);
+            DispatchPlatformMessage(message);
         }
 
 
@@ -542,8 +462,8 @@ namespace FlutterBinding.UI
         private PlatformMessageCallback _onPlatformMessage;
         internal Types.Zone OnPlatformMessageZone;
 
-        /// Called by [_dispatchPlatformMessage].
-        //internal void RespondToPlatformMessage(int responseId, ByteData data)
+        // Called by [_dispatchPlatformMessage].
+        //internal void RespondToPlatformMessage(int responseId, object data)
         //{
         //    // native 'Window_respondToPlatformMessage';
         //}
@@ -562,97 +482,21 @@ namespace FlutterBinding.UI
         //    return (data) => registrationZone.runUnaryGuarded(callback, data);
         //}
 
-        // NOTE: What is following in this file is mostly from the C++ Engine side of Window
-
-        protected IWindowClient _client { get; set; }
-
-        //private DartPersistentValue library_;
-        private ViewportMetrics _viewport_metrics;
-
-        public ViewportMetrics viewport_metrics()
+        public event EventHandler<PlatformMessage> PlatformMessage;
+        protected virtual void RaisePlatformMessage(PlatformMessage message)
         {
-            return _viewport_metrics;
-        }
-
-        // TODO: Not required
-        void DidCreateIsolate() { }
-
-        public void UpdateWindowMetrics(ViewportMetrics metrics)
-        {
-            _viewport_metrics = metrics;
-
-            // This bypasses Hooks.cs
-            devicePixelRatio = metrics.DevicePixelRatio;
-            physicalSize = new Size(metrics.PhysicalWidth, metrics.PhysicalHeight);
-            padding = new WindowPadding(
-                left: metrics.PhysicalPaddingLeft,
-                top: metrics.PhysicalPaddingTop,
-                right: metrics.PhysicalPaddingRight,
-                bottom: metrics.PhysicalPaddingBottom
-            );
-            viewInsets = new WindowPadding(
-                left: metrics.PhysicalViewInsetLeft,
-                top: metrics.PhysicalViewInsetTop,
-                right: metrics.PhysicalViewInsetRight,
-                bottom: metrics.PhysicalViewInsetBottom);
-
-            _invoke(onMetricsChanged, OnMetricsChangedZone);
-        }
-
-        public void UpdateLocales(List<Locale> locales)
-        {
-            this.locales = locales;
-            _invoke(onLocaleChanged, OnLocaleChangedZone);
-        }
-
-        public void UpdateUserSettingsData(string jsonData)
-        {
-            var data = JsonConvert.DeserializeObject<Dictionary<string, object>>(jsonData);
-
-            textScaleFactor = Convert.ToDouble(data["textScaleFactor"]);
-            alwaysUse24HourFormat = Convert.ToBoolean(data["alwaysUse24HourFormat"]);
-
-            _invoke(OnTextScaleFactorChanged, OnTextScaleFactorChangedZone);
-        }
-
-        public void UpdateSemanticsEnabled(bool enabled)
-        {
-            semanticsEnabled = enabled;
-            _invoke(onSemanticsEnabledChanged, OnSemanticsEnabledChangedZone);
-        }
-
-        public void UpdateAccessibilityFeatures(AccessibilityFeatures newFeatures)
-        {
-            if (newFeatures == accessibilityFeatures)
-                return;
-            accessibilityFeatures = newFeatures;
-            _invoke(onAccessibilityFeaturesChanged, OnAccessibilityFlagsChangedZone);
+            PlatformMessage?.Invoke(this, message);
         }
 
         public void DispatchPlatformMessage(PlatformMessage message)
         {
-            if (OnPlatformMessage == null)
-                return;
-            _invoke(() => OnPlatformMessage(message), OnPlatformMessageZone);
-        }
-
-        public void DispatchPointerDataPacket(PointerDataPacket packet)
-        {
-            if (onPointerDataPacket == null)
-                return;
-            _invoke(
-                () => onPointerDataPacket(packet),
-                OnPointerDataPacketZone);
+            RaisePlatformMessage(message);
+            WindowClient.HandlePlatformMessage(message);
         }
 
         public void DispatchSemanticsAction(int id, SemanticsAction action, object args)
         {
-            if (onSemanticsAction == null)
-                return;
-
-            _invoke(
-                () => { onSemanticsAction(id, action, args); },
-                OnSemanticsActionZone);
+            RaiseSemanticsAction(new SemanticsActionArgs(id, action, args));
         }
 
         public void BeginFrame(TimePoint frameTime)
@@ -660,38 +504,12 @@ namespace FlutterBinding.UI
             var now = TimePoint.Now();
             var diff = now.TotalMicroseconds - frameTime.TotalMicroseconds;
 
-            _invoke(
-                () => onBeginFrame(TimeDelta.FromMicroseconds(diff)),
-                OnBeginFrameZone);
+            RaiseBeginFrameDelta(TimeDelta.FromMicroseconds(diff));
         }
 
         //public void CompletePlatformMessageResponse(int response_id, std::vector<uint8_t> data);
         //public void CompletePlatformMessageEmptyResponse(int response_id);
-
-        // 
         //public static void RegisterNatives(tonic::DartLibraryNatives* natives);
-
-        protected void SendPlatformMessage(string name,
-                                           object data = null,
-                                           PlatformMessageResponseCallback onResponse = null)
-        {
-            var responseMessage = new PlatformMessageResponse(onResponse, null);
-            var message = new PlatformMessage(name, data, responseMessage);
-            _client.HandlePlatformMessage(message);
-        }
-
-
-        /// Invokes [callback] inside the given [zone].
-        static void _invoke(VoidCallback callback, Types.Zone zone)
-        {
-            if (callback == null)
-                return;
-            if (Types.Zone.current == zone)
-                callback();
-            else
-                zone.runGuarded(callback);
-        }
-
 
         // We use id 0 to mean that no response is expected.
         //private int _nextResponseId = 1;

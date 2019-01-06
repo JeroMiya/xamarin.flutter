@@ -33,9 +33,8 @@ namespace FlutterBinding.UI
         {
             // first entry == 0 indicates that Skia returned false
             if (GetPositionAndTangent((float)distance, out var position, out var tangent))
-            {
                 return null;
-            }
+
             return new Tangent(
                 new Offset(position.X, position.Y),
                 new Offset(tangent.X, tangent.Y));

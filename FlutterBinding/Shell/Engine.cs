@@ -11,13 +11,11 @@ using SkiaSharp;
 
 namespace FlutterBinding.Shell
 {
-    public partial class Engine : IRuntimeDelegate
+    public class Engine : IRuntimeDelegate
     {
-        private const string kAssetChannel = "flutter/assets";
-        private const string kLifecycleChannel = "flutter/lifecycle";
-        private const string kNavigationChannel = "flutter/navigation";
-        private const string kLocalizationChannel = "flutter/localization";
-        private const string kSettingsChannel = "flutter/settings";
+        private const string AssetChannel = "flutter/assets";
+        private const string LifecycleChannel = "flutter/lifecycle";
+        private const string NavigationChannel = "flutter/navigation";
 
         public enum RunStatus
         {
@@ -31,7 +29,6 @@ namespace FlutterBinding.Shell
         public interface IEngineDelegate
         {
             void OnEngineUpdateSemantics(SemanticsNodeUpdates update, CustomAccessibilityActionUpdates actions);
-
             void OnEngineHandlePlatformMessage(PlatformMessage message);
             Task OnPreEngineRestart();
         };
@@ -209,19 +206,10 @@ namespace FlutterBinding.Shell
         {
             switch (message.Channel)
             {
-            case kLifecycleChannel:
+            case LifecycleChannel:
                 if (HandleLifecyclePlatformMessage(message))
                     return;
                 break;
-
-            case kLocalizationChannel:
-                if (HandleLocalizationPlatformMessage(message))
-                    return;
-                break;
-
-            case kSettingsChannel:
-                HandleSettingsPlatformMessage(message);
-                return;
             }
 
             if ( //TODO: Assume always running ->
@@ -232,7 +220,7 @@ namespace FlutterBinding.Shell
             }
 
             // If there's no runtime_, we may still need to set the initial route.
-            if (message.Channel == kNavigationChannel)
+            if (message.Channel == NavigationChannel)
                 HandleNavigationPlatformMessage(message);
         }
 
@@ -259,9 +247,9 @@ namespace FlutterBinding.Shell
             _runtimeController.SetAccessibilityFeatures(flags);
         }
 
-        public void ScheduleFrame(bool regenerate_layer_tree = true)
+        public void ScheduleFrame(bool regenerateLayerTree = true)
         {
-            _animator.RequestFrame(regenerate_layer_tree);
+            _animator.RequestFrame(regenerateLayerTree);
         }
 
         // |blink::RuntimeDelegate|
@@ -313,7 +301,7 @@ namespace FlutterBinding.Shell
         // |blink::RuntimeDelegate|
         public void HandlePlatformMessage(PlatformMessage message)
         {
-            if (message.Channel == kAssetChannel)
+            if (message.Channel == AssetChannel)
                 HandleAssetPlatformMessage(message);
             else
                 _delegate.OnEngineHandlePlatformMessage(message);
@@ -368,31 +356,6 @@ namespace FlutterBinding.Shell
                     return true;
             }
             throw new InvalidOperationException($"HandleNavigationPlatformMessage: Method: {methodCall.Method}");
-        }
-
-        private bool HandleLocalizationPlatformMessage(PlatformMessage message)
-        {
-            if (!(message.RequestData is MethodCall methodCall))
-                throw new InvalidOperationException($"HandleLocalizationPlatformMessage: {message}");
-
-            switch (methodCall.Method)
-            {
-                case "setLocale":
-                    var locales = methodCall.GetArguments<List<Locale>>();
-                    _runtimeController.SetLocales(locales);
-                    return true;
-            }
-
-            throw new InvalidOperationException($"HandleLocalizationPlatformMessage: Method: {methodCall.Method}");
-        }
-
-        private void HandleSettingsPlatformMessage(PlatformMessage message)
-        {
-            var data = (string)message.RequestData;
-            if (_runtimeController.SetUserSettingsData(data) && _haveSurface)
-            {
-                ScheduleFrame();
-            }
         }
 
         private void HandleAssetPlatformMessage(PlatformMessage message)

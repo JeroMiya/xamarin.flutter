@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using SkiaSharp;
+// ReSharper disable InconsistentNaming
 
 namespace FlutterBinding.UI
 {
@@ -26,13 +27,13 @@ namespace FlutterBinding.UI
             return list;
         }
 
-        public static SKRect ToSKRect(this Rect rect)
-            => new SKRect((float)rect.left, (float)rect.top, (float)rect.right, (float)rect.bottom);
+        public static SKRect ToSKRect(this Rect rect) => new SKRect((float)rect.left, (float)rect.top, (float)rect.right, (float)rect.bottom);
 
-        public static SKRectI ToSKRectI(this Rect rect)
-            => new SKRectI((int)rect.left, (int)rect.top, (int)rect.right, (int)rect.bottom);
+        public static Rect ToRect(this SKRect rect) => new Rect(rect.Left, rect.Top, rect.Right, rect.Bottom);
+        
 
-        public static SKRoundRect ToRoundedRect(this RRect rect)
-            => new SKRoundRect(new SKRect((float)rect.left, (float)rect.top, (float)rect.right, (float)rect.bottom), (float)rect.blRadiusX, (float)rect.blRadiusY);
+        public static SKRectI ToSKRectI(this Rect rect) => new SKRectI((int)rect.left, (int)rect.top, (int)rect.right, (int)rect.bottom);
+
+        public static SKRoundRect ToRoundedRect(this RRect rect) => new SKRoundRect(new SKRect((float)rect.left, (float)rect.top, (float)rect.right, (float)rect.bottom), (float)rect.blRadiusX, (float)rect.blRadiusY);
     }
 }

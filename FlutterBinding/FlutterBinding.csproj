@@ -82,6 +82,7 @@
   <ItemGroup>
     <Folder Include="Engine\Compositing\" />
     <Folder Include="Engine\Semantics\" />
+    <Folder Include="Engine\Text\" />
     <Folder Include="Minikin\" />
     <Folder Include="View\" />
     <Folder Include="Plugin\Editing\" />

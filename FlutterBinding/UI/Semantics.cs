@@ -170,7 +170,7 @@ namespace FlutterBinding.UI
         /// See also:
         ///
         ///   * [SemanticsFlag.isChecked], which controls whether the node is "checked" or "unchecked".
-        hasCheckedState = 1 << 0,
+        HasCheckedState = 1 << 0,
 
         /// Whether a semantics node that [hasCheckedState] is checked.
         ///
@@ -182,7 +182,7 @@ namespace FlutterBinding.UI
         /// See also:
         ///
         ///   * [SemanticsFlag.hasCheckedState], which enables a checked state.
-        isChecked = 1 << 1,
+        IsChecked = 1 << 1,
 
 
         /// Whether a semantics node is selected.
@@ -191,7 +191,7 @@ namespace FlutterBinding.UI
         /// "unselected".
         ///
         /// For example, the active tab in a tab bar has [isSelected] set to true.
-        isSelected = 1 << 2,
+        IsSelected = 1 << 2,
 
         /// Whether the semantic node represents a button.
         ///
@@ -204,12 +204,12 @@ namespace FlutterBinding.UI
         ///
         /// Text fields are announced as such and allow text input via accessibility
         /// affordances.
-        isTextField = 1 << 4,
+        IsTextField = 1 << 4,
 
         /// Whether the semantic node currently holds the user's focus.
         ///
         /// The focused element is usually the current receiver of keyboard inputs.
-        isFocused = 1 << 5,
+        IsFocused = 1 << 5,
 
         /// The semantics node has the quality of either being "enabled" or
         /// "disabled".
@@ -217,33 +217,33 @@ namespace FlutterBinding.UI
         /// For example, a button can be enabled or disabled and therefore has an
         /// "enabled" state. Static text is usually neither enabled nor disabled and
         /// therefore does not have an "enabled" state.
-        hasEnabledState = 1 << 6,
+        HasEnabledState = 1 << 6,
 
         /// Whether a semantic node that [hasEnabledState] is currently enabled.
         ///
         /// A disabled element does not respond to user interaction. For example, a
         /// button that currently does not respond to user interaction should be
         /// marked as disabled.
-        isEnabled = 1 << 7,
+        IsEnabled = 1 << 7,
 
         /// Whether a semantic node is in a mutually exclusive group.
         ///
         /// For example, a radio button is in a mutually exclusive group because
         /// only one radio button in that group can be marked as [isChecked].
-        isInMutuallyExclusiveGroup = 1 << 8,
+        IsInMutuallyExclusiveGroup = 1 << 8,
 
         /// Whether a semantic node is a header that divides content into sections.
         ///
         /// For example, headers can be used to divide a list of alphabetically
         /// sorted words into the sections A, B, C, etc. as can be found in many
         /// address book applications.
-        isHeader = 1 << 9,
+        IsHeader = 1 << 9,
 
         /// Whether the value of the semantics node is obscured.
         ///
         /// This is usually used for text fields to indicate that its content
         /// is a password or contains other sensitive information.
-        isObscured = 1 << 10,
+        IsObscured = 1 << 10,
 
         /// Whether the semantics node is the root of a subtree for which a route name
         /// should be announced.
@@ -268,7 +268,7 @@ namespace FlutterBinding.UI
         ///
         /// This is used in widgets such as Routes, Drawers, and Dialogs to
         /// communicate significant changes in the visible screen.
-        scopesRoute = 1 << 11,
+        ScopesRoute = 1 << 11,
 
         /// Whether the semantics node label is the name of a visually distinct
         /// route.
@@ -281,7 +281,7 @@ namespace FlutterBinding.UI
         ///
         /// Updating this label within the same active route subtree will not cause
         /// additional announcements.
-        namesRoute = 1 << 12,
+        NamesRoute = 1 << 12,
 
         /// Whether the semantics node is considered hidden.
         ///
@@ -299,13 +299,13 @@ namespace FlutterBinding.UI
         /// the semantics tree altogether. Hidden elements are only included in the
         /// semantics tree to work around platform limitations and they are mainly
         /// used to implement accessibility scrolling on iOS.
-        isHidden = 1 << 13,
+        IsHidden = 1 << 13,
 
         /// Whether the semantics node represents an image.
         ///
         /// Both TalkBack and VoiceOver will inform the user the the semantics node
         /// represents an image.
-        isImage = 1 << 14,
+        IsImage = 1 << 14,
 
         /// Whether the semantics node is a live region.
         ///
@@ -316,7 +316,7 @@ namespace FlutterBinding.UI
         /// An example of a live region is a [SnackBar] widget. On Android, A live
         /// region causes a polite announcement to be generated automatically, even
         /// if the user does not have focus of the widget.
-        isLiveRegion = 1 << 15,
+        IsLiveRegion = 1 << 15,
 
         /// The semantics node has the quality of either being "on" or "off".
         ///
@@ -327,7 +327,7 @@ namespace FlutterBinding.UI
         /// See also:
         ///
         ///    * [SemanticsFlag.isToggled], which controls whether the node is "on" or "off".
-        hasToggledState = 1 << 16,
+        HasToggledState = 1 << 16,
 
         /// If true, the semantics node is "on". If false, the semantics node is
         /// "off".
@@ -337,7 +337,7 @@ namespace FlutterBinding.UI
         /// See also:
         ///
         ///   * [SemanticsFlag.hasToggledState], which enables a toggled state.
-        isToggled = 1 << 17,
+        IsToggled = 1 << 17,
 
         /// Whether the platform can scroll the semantics node when the user attempts
         /// to move focus to an offscreen child.
@@ -346,7 +346,7 @@ namespace FlutterBinding.UI
         /// easily move to the next visible set of children. A [TabBar] widget does
         /// not have implicit scrolling, so that users can navigate into the tab
         /// body when reaching the end of the tab bar.
-        hasImplicitScrolling = 1 << 18
+        HasImplicitScrolling = 1 << 18
     }
 
     /// An object that creates [SemanticsUpdate] objects.
@@ -355,8 +355,8 @@ namespace FlutterBinding.UI
     /// [Window.updateSemantics] to update the semantics conveyed to the user.
     public class SemanticsUpdateBuilder
     {
-        SemanticsNodeUpdates nodes_;
-        CustomAccessibilityActionUpdates actions_;
+        public SemanticsNodeUpdates Nodes { get; } = new SemanticsNodeUpdates();
+        public CustomAccessibilityActionUpdates Actions { get; } = new CustomAccessibilityActionUpdates();
 
         /// Creates an empty [SemanticsUpdateBuilder] object.
         //@pragma('vm:entry-point')
@@ -412,7 +412,7 @@ namespace FlutterBinding.UI
         ///
         /// The `transform` is a matrix that maps this node's coordinate system into
         /// its parent's coordinate system.
-        public void updateNode(
+        public void UpdateNode(
             int id = 0,
             SemanticsFlag flags = 0,
             SemanticsAction actions = 0,
@@ -424,12 +424,12 @@ namespace FlutterBinding.UI
             float scrollExtentMax = 0.0f,
             float scrollExtentMin = 0.0f,
             Rect rect = null,
-            String label = null,
-            String hint = null,
-            String value = null,
-            String increasedValue = null,
-            String decreasedValue = null,
-            TextDirection textDirection = TextDirection.ltr,
+            string label = null,
+            string hint = null,
+            string value = null,
+            string increasedValue = null,
+            string decreasedValue = null,
+            TextDirection textDirection = TextDirection.Ltr,
             SKMatrix44 transform = null,
             List<int> childrenInTraversalOrder = null,
             List<int> childrenInHitTestOrder = null,
@@ -459,7 +459,7 @@ namespace FlutterBinding.UI
                 ChildrenInHitTestOrder     = childrenInHitTestOrder,
                 CustomAccessibilityActions = additionalActions
             };
-            nodes_[id] = node;
+            Nodes[id] = node;
         }
 
         /// Update the custom semantics action associated with the given `id`.
@@ -477,7 +477,7 @@ namespace FlutterBinding.UI
         /// For overriden standard actions, `overrideId` corresponds with a
         /// [SemanticsAction.index] value. For custom actions this argument should not be
         /// provided.
-        public void updateCustomAction(
+        public void UpdateCustomAction(
             int id = 0,
             string label = "",
             string hint = "",
@@ -488,12 +488,12 @@ namespace FlutterBinding.UI
 
             CustomAccessibilityAction action = new CustomAccessibilityAction
             {
-                id         = id,
-                overrideId = overrideId,
-                label      = label,
-                hint       = hint
+                Id         = id,
+                OverrideId = overrideId,
+                Label      = label,
+                Hint       = hint
             };
-            actions_[id] = action;
+            Actions[id] = action;
         }
 
         /// Creates a [SemanticsUpdate] object that encapsulates the updates recorded
@@ -501,9 +501,9 @@ namespace FlutterBinding.UI
         ///
         /// The returned object can be passed to [Window.updateSemantics] to actually
         /// update the semantics retained by the system.
-        public SemanticsUpdate build()
+        public SemanticsUpdate Build()
         {
-            return new SemanticsUpdate(nodes_, actions_);
+            return new SemanticsUpdate(Nodes, Actions);
         }
     }
 
@@ -515,8 +515,8 @@ namespace FlutterBinding.UI
     /// using the [Window.updateSemantics] method.
     public class SemanticsUpdate
     {
-        SemanticsNodeUpdates nodes_;
-        CustomAccessibilityActionUpdates actions_;
+        public SemanticsNodeUpdates Nodes { get; }
+        public CustomAccessibilityActionUpdates Actions { get; }
 
         /// This class is created by the engine, and should not be instantiated
         /// or extended directly.
@@ -527,13 +527,9 @@ namespace FlutterBinding.UI
             SemanticsNodeUpdates nodes,
             CustomAccessibilityActionUpdates actions)
         {
-            this.nodes_   = nodes;
-            this.actions_ = actions;
+            Nodes   = nodes;
+            Actions = actions;
         }
-
-        public SemanticsNodeUpdates takeNodes() => nodes_;
-
-        public CustomAccessibilityActionUpdates takeActions() => actions_;
     }
 
     public class CustomAccessibilityActionUpdates : Dictionary<int, CustomAccessibilityAction> { }
@@ -545,10 +541,10 @@ namespace FlutterBinding.UI
     /// preconfigured options.
     public class CustomAccessibilityAction
     {
-        public int id = 0;
-        public int overrideId = -1;
-        public string label;
-        public string hint;
+        public int Id = 0;
+        public int OverrideId = -1;
+        public string Label;
+        public string Hint;
     }
 
 

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using FlutterBinding.Engine.Text;
 using static FlutterBinding.Mapping.Helper;
 
 namespace FlutterBinding.UI
@@ -10,10 +9,10 @@ namespace FlutterBinding.UI
     public enum FontStyle
     {
         /// Use the upright glyphs
-        normal,
+        Normal,
 
         /// Use glyphs designed for slanting
-        italic,
+        Italic,
     }
 
     /// The thickness of the glyphs used to draw the text
@@ -21,49 +20,49 @@ namespace FlutterBinding.UI
     {
         private FontWeight(int index)
         {
-            this.index = index;
+            Index = index;
         }
 
         /// The encoded integer value of this font weight.
-        public readonly int index;
+        public readonly int Index;
 
         /// Thin, the least thick
-        public static FontWeight w100 = new FontWeight(0);
+        public static readonly FontWeight W100 = new FontWeight(0);
 
         /// Extra-light
-        public static FontWeight w200 = new FontWeight(1);
+        public static readonly FontWeight W200 = new FontWeight(1);
 
         /// Light
-        public static FontWeight w300 = new FontWeight(2);
+        public static readonly FontWeight W300 = new FontWeight(2);
 
         /// Normal / regular / plain
-        public static FontWeight w400 = new FontWeight(3);
+        public static readonly FontWeight W400 = new FontWeight(3);
 
         /// Medium
-        public static FontWeight w500 = new FontWeight(4);
+        public static readonly FontWeight W500 = new FontWeight(4);
 
         /// Semi-bold
-        public static FontWeight w600 = new FontWeight(5);
+        public static readonly FontWeight W600 = new FontWeight(5);
 
         /// Bold
-        public static FontWeight w700 = new FontWeight(6);
+        public static readonly FontWeight W700 = new FontWeight(6);
 
         /// Extra-bold
-        public static FontWeight w800 = new FontWeight(7);
+        public static readonly FontWeight W800 = new FontWeight(7);
 
         /// Black, the most thick
-        static FontWeight w900 = new FontWeight(8);
+        public static readonly FontWeight W900 = new FontWeight(8);
 
         /// The default font weight.
-        public static FontWeight normal = w400;
+        public static readonly FontWeight Normal = W400;
 
         /// A commonly used font weight that is heavier than normal.
-        public static FontWeight bold = w700;
+        public static readonly FontWeight Bold = W700;
 
         /// A list of all the font weights.
-        public static List<FontWeight> values = new List<FontWeight>
+        public static readonly List<FontWeight> Values = new List<FontWeight>
         {
-            w100, w200, w300, w400, w500, w600, w700, w800, w900
+            W100, W200, W300, W400, W500, W600, W700, W800, W900
         };
 
         /// Linearly interpolates between two font weights.
@@ -86,26 +85,26 @@ namespace FlutterBinding.UI
         ///
         /// Values for `t` are usually obtained from an [Animation<double>], such as
         /// an [AnimationController].
-        public static FontWeight lerp(FontWeight a, FontWeight b, double t)
+        public static FontWeight Lerp(FontWeight a, FontWeight b, double t)
         {
             //assert(t != null);
-            return values[(int)Lerp.lerpDouble(a?.index ?? normal.index, b?.index ?? normal.index, t).round().clamp(0, 8)];
+            return Values[(int)UI.Lerp.lerpDouble(a?.Index ?? Normal.Index, b?.Index ?? Normal.Index, t).round().clamp(0, 8)];
         }
 
-        public String toString()
+        public override string ToString()
         {
-            return new Dictionary<int, String>
+            return new Dictionary<int, string>
             {
-                {0, "FontWeight.w100"},
-                {1, "FontWeight.w200"},
-                {2, "FontWeight.w300"},
-                {3, "FontWeight.w400"},
-                {4, "FontWeight.w500"},
-                {5, "FontWeight.w600"},
-                {6, "FontWeight.w700"},
-                {7, "FontWeight.w800"},
-                {8, "FontWeight.w900"},
-            }[index];
+                {0, "FontWeight.W100"},
+                {1, "FontWeight.W200"},
+                {2, "FontWeight.W300"},
+                {3, "FontWeight.W400"},
+                {4, "FontWeight.W500"},
+                {5, "FontWeight.W600"},
+                {6, "FontWeight.W700"},
+                {7, "FontWeight.W800"},
+                {8, "FontWeight.W900"},
+            }[Index];
         }
     }
 
@@ -114,402 +113,73 @@ namespace FlutterBinding.UI
     public enum TextAlign
     {
         /// Align the text on the left edge of the container.
-        left,
+        Left,
 
         /// Align the text on the right edge of the container.
-        right,
+        Right,
 
         /// Align the text in the center of the container.
-        center,
+        Center,
 
         /// Stretch lines of text that end with a soft line break to fill the width of
         /// the container.
         ///
         /// Lines that end with hard line breaks are aligned towards the [start] edge.
-        justify,
+        Justify,
 
         /// Align the text on the leading edge of the container.
         ///
         /// For left-to-right text ([TextDirection.ltr]), this is the left edge.
         ///
         /// For right-to-left text ([TextDirection.rtl]), this is the right edge.
-        start,
+        Start,
 
         /// Align the text on the trailing edge of the container.
         ///
         /// For left-to-right text ([TextDirection.ltr]), this is the right edge.
         ///
         /// For right-to-left text ([TextDirection.rtl]), this is the left edge.
-        end,
+        End,
     }
 
     /// A horizontal line used for aligning text.
     public enum TextBaseline
     {
         /// The horizontal line used to align the bottom of glyphs for alphabetic characters.
-        alphabetic,
+        Alphabetic,
 
         /// The horizontal line used to align ideographic characters.
-        ideographic,
-    }
-
-    /// A linear decoration to draw near the text.
-    public class TextDecoration
-    {
-        public TextDecoration(int _mask)
-        {
-            this._mask = _mask;
-        }
-
-        /// Creates a decoration that paints the union of all the given decorations.
-        public TextDecoration combine(List<TextDecoration> decorations)
-        {
-            int mask = 0;
-            foreach (TextDecoration decoration in decorations)
-                mask |= decoration._mask;
-            return new TextDecoration(mask);
-        }
-
-        public readonly int _mask;
-
-        /// Whether this decoration will paint at least as much decoration as the given decoration.
-        bool contains(TextDecoration other)
-        {
-            return (_mask | other._mask) == _mask;
-        }
-
-        /// Do not draw a decoration
-        public static TextDecoration none = new TextDecoration(0x0);
-
-        /// Draw a line underneath each line of text
-        public static TextDecoration underline = new TextDecoration(0x1);
-
-        /// Draw a line above each line of text
-        public static TextDecoration overline = new TextDecoration(0x2);
-
-        /// Draw a line through each line of text
-        public static TextDecoration lineThrough = new TextDecoration(0x4);
-
-        public static bool operator ==(TextDecoration text, Object other)
-        {
-            if (!(other is TextDecoration))
-                return false;
-            TextDecoration typedOther = (TextDecoration)other;
-            return text._mask == typedOther._mask;
-        }
-
-        public static bool operator !=(TextDecoration text, Object other) => !(text == other);
-
-        public int hashCode => _mask.GetHashCode();
-
-        public String toString()
-        {
-            if (_mask == 0)
-                return "TextDecoration.none";
-            List<String> values = new List<String>();
-            if ((_mask & underline._mask) != 0)
-                values.Add("underline");
-            if ((_mask & overline._mask) != 0)
-                values.Add("overline");
-            if ((_mask & lineThrough._mask) != 0)
-                values.Add("lineThrough");
-            if (values.Count == 1)
-                return $"TextDecoration.{values[0]}";
-            return $"TextDecoration.combine([{string.Join(", ", values)}])";
-        }
+        Ideographic,
     }
 
     /// The style in which to draw a text decoration
     public enum TextDecorationStyle
     {
         /// Draw a solid line
-        solid,
+        Solid,
 
         /// Draw two lines
-        @double,
+        Double,
 
         /// Draw a dotted line
-        dotted,
+        Dotted,
 
         /// Draw a dashed line
-        dashed,
+        Dashed,
 
         /// Draw a sinusoidal line
-        wavy
+        Wavy
     }
 
-
-    /// An opaque object that determines the size, position, and rendering of text.
-    public class TextStyle
+    [Flags]
+    public enum TextDecoration
     {
-        /// Creates a new TextStyle object.
-        ///
-        /// * `color`: The color to use when painting the text. If this is specified, `foreground` must be null.
-        /// * `decoration`: The decorations to paint near the text (e.g., an underline).
-        /// * `decorationColor`: The color in which to paint the text decorations.
-        /// * `decorationStyle`: The style in which to paint the text decorations (e.g., dashed).
-        /// * `fontWeight`: The typeface thickness to use when painting the text (e.g., bold).
-        /// * `fontStyle`: The typeface variant to use when drawing the letters (e.g., italics).
-        /// * `fontFamily`: The name of the font to use when painting the text (e.g., Roboto).
-        /// * `fontSize`: The size of glyphs (in logical pixels) to use when painting the text.
-        /// * `letterSpacing`: The amount of space (in logical pixels) to add between each letter.
-        /// * `wordSpacing`: The amount of space (in logical pixels) to add at each sequence of white-space (i.e. between each word).
-        /// * `textBaseline`: The common baseline that should be aligned between this text span and its parent text span, or, for the root text spans, with the line box.
-        /// * `height`: The height of this text span, as a multiple of the font size.
-        /// * `locale`: The locale used to select region-specific glyphs.
-        /// * `background`: The paint drawn as a background for the text.
-        /// * `foreground`: The paint used to draw the text. If this is specified, `color` must be null.
-        public TextStyle(
-            Color color = null,
-            TextDecoration decoration = null,
-            Color decorationColor = null,
-            TextDecorationStyle decorationStyle = TextDecorationStyle.solid,
-            FontWeight fontWeight = null,
-            FontStyle fontStyle = FontStyle.normal,
-            TextBaseline textBaseline = TextBaseline.alphabetic,
-            String fontFamily = null,
-            double fontSize = 0.0,
-            double letterSpacing = 0.0,
-            double wordSpacing = 0.0,
-            double height = 0.0,
-            Locale locale = null,
-            Paint background = null,
-            Paint foreground = null,
-            List<Shadow> shadows = null)
-        {
-            //assert(color == null || foreground == null,
-            //        "Cannot provide both a color and a foreground\n" +
-            //        "The color argument is just a shorthand for 'foreground: new Paint()..color = color'."
-            //      );
-            _encoded = Text._encodeTextStyle(
-                color,
-                decoration,
-                decorationColor,
-                decorationStyle,
-                fontWeight,
-                fontStyle,
-                textBaseline,
-                fontFamily,
-                fontSize,
-                letterSpacing,
-                wordSpacing,
-                height,
-                locale,
-                background,
-                foreground,
-                shadows);
-            _fontFamily    = fontFamily ?? "";
-            _fontSize      = fontSize;
-            _letterSpacing = letterSpacing;
-            _wordSpacing   = wordSpacing;
-            _height        = height;
-            _locale        = locale;
-            _background    = background;
-            _foreground    = foreground;
-            _shadows       = shadows;
-        }
-
-        public List<int> _encoded;
-        public String _fontFamily;
-        public double _fontSize;
-        public double _letterSpacing;
-        public double _wordSpacing;
-        public double _height;
-        public Locale _locale;
-        public Paint _background;
-        public Paint _foreground;
-        public List<Shadow> _shadows;
-
-
-        public static bool operator ==(TextStyle style, Object other)
-        {
-            if (identical(style, other))
-                return true;
-            if (!(other is TextStyle))
-                return false;
-            TextStyle typedOther = (TextStyle)other;
-            if (style._fontFamily != typedOther._fontFamily ||
-                style._fontSize != typedOther._fontSize ||
-                style._letterSpacing != typedOther._letterSpacing ||
-                style._wordSpacing != typedOther._wordSpacing ||
-                style._height != typedOther._height ||
-                style._locale != typedOther._locale ||
-                style._background != typedOther._background ||
-                style._foreground != typedOther._foreground)
-                return false;
-            for (int index = 0; index < style._encoded.Count; index += 1)
-            {
-                if (style._encoded[index] != typedOther._encoded[index])
-                    return false;
-            }
-
-            if (!Shadow._shadowsListEquals(style._shadows, typedOther._shadows))
-                return false;
-            return true;
-        }
-
-        public static bool operator !=(TextStyle style, Object other) => !(style == other);
-
-        public int hashCode => hashValues(hashList(_encoded), _fontFamily, _fontSize, _letterSpacing, _wordSpacing, _height, _locale, _background, _foreground);
-
-        public String toString()
-        {
-            return "TextStyle(" +
-                $"color: {((_encoded[0] & 0x00002) == 0x00002 ? new Color((uint)_encoded[1]).ToString() : "unspecified")}, " +
-                $"decoration: {((_encoded[0] & 0x00004) == 0x00004 ? new TextDecoration(_encoded[2]).toString() : "unspecified")}, " +
-                $"decorationColor:{((_encoded[0] & 0x00008) == 0x00008 ? new Color((uint)_encoded[3]).ToString() : "unspecified")}, " +
-                $"decorationStyle: {((_encoded[0] & 0x00010) == 0x00010 ? ((TextDecorationStyle)(_encoded[4])).ToString() : "unspecified")}, " +
-                $"fontWeight: {((_encoded[0] & 0x00020) == 0x00020 ? FontWeight.values[_encoded[5]].toString() : "unspecified")}, " +
-                $"fontStyle: {((_encoded[0] & 0x00040) == 0x00040 ? ((FontStyle)(_encoded[6])).ToString() : "unspecified")}, " +
-                $"textBaseline: {((_encoded[0] & 0x00080) == 0x00080 ? ((TextBaseline)(_encoded[7])).ToString() : "unspecified")}, " +
-                $"fontFamily: {((_encoded[0] & 0x00100) == 0x00100 ? _fontFamily : "unspecified")}, " +
-                $"fontSize: {((_encoded[0] & 0x00200) == 0x00200 ? _fontSize.ToString() : "unspecified")}, " +
-                $"letterSpacing: {((_encoded[0] & 0x00400) == 0x00400 ? $"{_letterSpacing}x" : "unspecified")}, " +
-                $"wordSpacing: {((_encoded[0] & 0x00800) == 0x00800 ? $"{_wordSpacing}x" : "unspecified")}, " +
-                $"height: {((_encoded[0] & 0x01000) == 0x01000 ? $"{_height}x" : "unspecified")}, " +
-                $"locale: {((_encoded[0] & 0x02000) == 0x02000 ? _locale.ToString() : "unspecified")}, " +
-                $"background: {((_encoded[0] & 0x04000) == 0x04000 ? _background.ToString() : "unspecified")}, " +
-                $"foreground: {((_encoded[0] & 0x08000) == 0x08000 ? _foreground.ToString() : "unspecified")}, " +
-                $"shadows: {((_encoded[0] & 0x10000) == 0x10000 ? _shadows.ToString() : "unspecified")}" +
-                ")";
-        }
+        None = 0x0,
+        Underline = 0x01,
+        Overline = 0x02,
+        LineThrough = 0x04
     }
 
-
-    /// An opaque object that determines the configuration used by
-    /// [ParagraphBuilder] to position lines within a [Paragraph] of text.
-    public class ParagraphStyle
-    {
-        /// Creates a new ParagraphStyle object.
-        ///
-        /// * `textAlign`: The alignment of the text within the lines of the
-        ///   paragraph. If the last line is ellipsized (see `ellipsis` below), the
-        ///   alignment is applied to that line after it has been truncated but before
-        ///   the ellipsis has been added.
-        //   See: https://github.com/flutter/flutter/issues/9819
-        ///
-        /// * `textDirection`: The directionality of the text, left-to-right (e.g.
-        ///   Norwegian) or right-to-left (e.g. Hebrew). This controls the overall
-        ///   directionality of the paragraph, as well as the meaning of
-        ///   [TextAlign.start] and [TextAlign.end] in the `textAlign` field.
-        ///
-        /// * `fontWeight`: The typeface thickness to use when painting the text
-        ///   (e.g., bold).
-        ///
-        /// * `fontStyle`: The typeface variant to use when drawing the letters (e.g.,
-        ///   italics).
-        ///
-        /// * `maxLines`: The maximum number of lines painted. Lines beyond this
-        ///   number are silently dropped. For example, if `maxLines` is 1, then only
-        ///   one line is rendered. If `maxLines` is null, but `ellipsis` is not null,
-        ///   then lines after the first one that overflows the width constraints are
-        ///   dropped. The width constraints are those set in the
-        ///   [ParagraphConstraints] object passed to the [Paragraph.layout] method.
-        ///
-        /// * `fontFamily`: The name of the font to use when painting the text (e.g.,
-        ///   Roboto).
-        ///
-        /// * `fontSize`: The size of glyphs (in logical pixels) to use when painting
-        ///   the text.
-        ///
-        /// * `lineHeight`: The minimum height of the line boxes, as a multiple of the
-        ///   font size.
-        ///
-        /// * `ellipsis`: String used to ellipsize overflowing text. If `maxLines` is
-        ///   not null, then the `ellipsis`, if any, is applied to the last rendered
-        ///   line, if that line overflows the width constraints. If `maxLines` is
-        ///   null, then the `ellipsis` is applied to the first line that overflows
-        ///   the width constraints, and subsequent lines are dropped. The width
-        ///   constraints are those set in the [ParagraphConstraints] object passed to
-        ///   the [Paragraph.layout] method. The empty string and the null value are
-        ///   considered equivalent and turn off this behavior.
-        ///
-        /// * `locale`: The locale used to select region-specific glyphs.
-        public ParagraphStyle(
-            TextAlign textAlign = TextAlign.left,
-            TextDirection textDirection = TextDirection.ltr,
-            FontWeight fontWeight = null,
-            FontStyle fontStyle = FontStyle.normal,
-            int maxLines = 0,
-            String fontFamily = "",
-            double fontSize = 0.0,
-            double lineHeight = 0.0,
-            String ellipsis = "",
-            Locale locale = null)
-        {
-            if (fontWeight == null)
-                fontWeight = FontWeight.normal;
-
-            if (locale == null)
-                locale = new Locale("");
-
-            _encoded = Text._encodeParagraphStyle(
-                textAlign,
-                textDirection,
-                fontWeight,
-                fontStyle,
-                maxLines,
-                fontFamily,
-                fontSize,
-                lineHeight,
-                ellipsis,
-                locale);
-            _fontFamily = fontFamily;
-            _fontSize   = fontSize;
-            _lineHeight = lineHeight;
-            _ellipsis   = ellipsis;
-            _locale     = locale;
-        }
-
-        public readonly List<int> _encoded;
-        public readonly String _fontFamily;
-        public readonly double _fontSize;
-        public readonly double _lineHeight;
-        public readonly String _ellipsis;
-        public readonly Locale _locale;
-
-        public static bool operator ==(ParagraphStyle paragraph, Object other)
-        {
-            if (identical(paragraph, other))
-                return true;
-            if (other.GetType() != paragraph.GetType())
-                return false;
-            ParagraphStyle typedOther = (ParagraphStyle)other;
-            if (paragraph._fontFamily != typedOther._fontFamily ||
-                paragraph._fontSize != typedOther._fontSize ||
-                paragraph._lineHeight != typedOther._lineHeight ||
-                paragraph._ellipsis != typedOther._ellipsis ||
-                paragraph._locale != typedOther._locale)
-                return false;
-            for (int index = 0; index < paragraph._encoded.Count; index += 1)
-            {
-                if (paragraph._encoded[index] != typedOther._encoded[index])
-                    return false;
-            }
-
-            return true;
-        }
-
-        public static bool operator !=(ParagraphStyle paragraph, Object other) => !(paragraph == other);
-
-        public int hashCode => hashValues(hashList(_encoded), _fontFamily, _fontSize, _lineHeight, _ellipsis, _locale);
-
-        String toString()
-        {
-            return "{GetType().ToString()}(" +
-                $"textAlign: {((_encoded[0] & 0x002) == 0x002 ? ((TextAlign)(_encoded[1])).ToString() : "unspecified")}, " +
-                $"textDirection: {((_encoded[0] & 0x004) == 0x004 ? ((TextDirection)(_encoded[2])).ToString() : "unspecified")}, " +
-                $"fontWeight: {((_encoded[0] & 0x008) == 0x008 ? (FontWeight.values[_encoded[3]]).ToString() : "unspecified")}, " +
-                $"fontStyle: {((_encoded[0] & 0x010) == 0x010 ? ((FontStyle)(_encoded[4])).ToString() : "unspecified")}, " +
-                $"maxLines: {((_encoded[0] & 0x020) == 0x020 ? _encoded[5].ToString() : "unspecified")}, " +
-                $"fontFamily: {((_encoded[0] & 0x040) == 0x040 ? _fontFamily.ToString() : "unspecified")}, " +
-                $"fontSize: {((_encoded[0] & 0x080) == 0x080 ? _fontSize.ToString() : "unspecified")}, " +
-                $"lineHeight: {((_encoded[0] & 0x100) == 0x100 ? $"{_lineHeight}x" : "unspecified")}, " +
-                $"ellipsis: {((_encoded[0] & 0x200) == 0x200 ? $"\"{_ellipsis}\"" : "unspecified")}, " +
-                $"locale: {((_encoded[0] & 0x400) == 0x400 ? _locale.ToString() : "unspecified")}" +
-                ")";
-        }
-    }
 
     /// A direction in which text flows.
     ///
@@ -599,98 +269,10 @@ namespace FlutterBinding.UI
     public enum TextDirection
     {
         /// The text flows from right to left (e.g. Arabic, Hebrew).
-        rtl,
+        Rtl,
 
         /// The text flows from left to right (e.g., English, French).
-        ltr,
-    }
-
-    /// A rectangle enclosing a run of text.
-    ///
-    /// This is similar to [Rect] but includes an inherent [TextDirection].
-    public class TextBox
-    {
-        /// Creates an object that describes a box containing text.
-        public static TextBox fromLTRBD(
-            double left,
-            double top,
-            double right,
-            double bottom,
-            int direction)
-        {
-            return new TextBox(left, top, right, bottom, direction);
-        }
-
-        //@pragma('vm:entry-point')
-        public TextBox(
-            double left,
-            double top,
-            double right,
-            double bottom,
-            int directionIndex)
-        {
-            this.left   = left;
-            this.top    = top;
-            this.right  = right;
-            this.bottom = bottom;
-            direction   = (TextDirection)directionIndex;
-        }
-
-        /// The left edge of the text box, irrespective of direction.
-        ///
-        /// To get the leading edge (which may depend on the [direction]), consider [start].
-        public readonly double left;
-
-        /// The top edge of the text box.
-        public readonly double top;
-
-        /// The right edge of the text box, irrespective of direction.
-        ///
-        /// To get the trailing edge (which may depend on the [direction]), consider [end].
-        public readonly double right;
-
-        /// The bottom edge of the text box.
-        public readonly double bottom;
-
-        /// The direction in which text inside this box flows.
-        public readonly TextDirection direction;
-
-        /// Returns a rect of the same size as this box.
-        public Rect toRect() => Rect.fromLTRB(left, top, right, bottom);
-
-        /// The [left] edge of the box for left-to-right text; the [right] edge of the box for right-to-left text.
-        ///
-        /// See also:
-        ///
-        ///  * [direction], which specifies the text direction.
-        public double start => (direction == TextDirection.ltr) ? left : right;
-
-        /// The [right] edge of the box for left-to-right text; the [left] edge of the box for right-to-left text.
-        ///
-        /// See also:
-        ///
-        ///  * [direction], which specifies the text direction.
-        public double end => (direction == TextDirection.ltr) ? right : left;
-
-        public static bool operator ==(TextBox text, Object other)
-        {
-            if (identical(text, other))
-                return true;
-            if (other.GetType() != text.GetType())
-                return false;
-            TextBox typedOther = (TextBox)other;
-            return typedOther.left == text.left
-                && typedOther.top == text.top
-                && typedOther.right == text.right
-                && typedOther.bottom == text.bottom
-                && typedOther.direction == text.direction;
-        }
-
-        public static bool operator !=(TextBox text, Object other) => !(text == other);
-
-        public int hashCode => hashValues(left, top, right, bottom, direction);
-
-        public String toString() => $"TextBox.fromLTRBD({left.toStringAsFixed(1)}, {top.toStringAsFixed(1)}, {right.toStringAsFixed(1)}, {bottom.toStringAsFixed(1)}, {direction})";
+        Ltr,
     }
 
     /// Whether a [TextPosition] is visually upstream or downstream of its offset.
@@ -706,330 +288,13 @@ namespace FlutterBinding.UI
         ///
         /// For example, if the offset of the text position is a line break, the
         /// position represents the end of the first line.
-        upstream,
+        Upstream,
 
         /// The position has affinity for the downstream side of the text position.
         ///
         /// For example, if the offset of the text position is a line break, the
         /// position represents the start of the second line.
-        downstream,
-    }
-
-    /// A visual position in a string of text.
-    public class TextPosition
-    {
-        /// Creates an object representing a particular position in a string.
-        ///
-        /// The arguments must not be null (so the [offset] argument is required).
-        public TextPosition(
-            int offset = 0,
-            TextAffinity affinity = TextAffinity.downstream)
-        {
-            //: assert(offset != null),
-            //assert(affinity != null);
-            this.offset   = offset;
-            this.affinity = affinity;
-        }
-
-        /// The index of the character that immediately follows the position.
-        ///
-        /// For example, given the string `'Hello'`, offset 0 represents the cursor
-        /// being before the `H`, while offset 5 represents the cursor being just
-        /// after the `o`.
-        public int offset;
-
-        /// If the offset has more than one visual location (e.g., occurs at a line
-        /// break), which of the two locations is represented by this position.
-        ///
-        /// For example, if the text `'AB'` had a forced line break between the `A`
-        /// and the `B`, then the downstream affinity at offset 1 represents the
-        /// cursor being just after the `A` on the first line, while the upstream
-        /// affinity at offset 1 represents the cursor being just before the `B` on
-        /// the first line.
-        public TextAffinity affinity;
-
-        public static bool operator ==(TextPosition position, Object other)
-        {
-            if (other.GetType() != position.GetType())
-                return false;
-            TextPosition typedOther = (TextPosition)other;
-            return typedOther.offset == position.offset
-                && typedOther.affinity == position.affinity;
-        }
-
-        public static bool operator !=(TextPosition position, Object other) => !(position == other);
-
-        public int hashCode => hashValues(offset, affinity);
-
-        public String toString()
-        {
-            return $"{GetType().ToString()}(offset: {offset}, affinity: {affinity})";
-        }
-    }
-
-    /// Layout constraints for [Paragraph] objects.
-    ///
-    /// Instances of this class are typically used with [Paragraph.layout].
-    ///
-    /// The only constraint that can be specified is the [width]. See the discussion
-    /// at [width] for more details.
-    public class ParagraphConstraints
-    {
-        /// Creates constraints for laying out a pargraph.
-        ///
-        /// The [width] argument must not be null.
-        public ParagraphConstraints(double width = 0.0) //: assert(width != null);
-        {
-            this.width = width;
-        }
-
-        /// The width the paragraph should use whey computing the positions of glyphs.
-        ///
-        /// If possible, the paragraph will select a soft line break prior to reaching
-        /// this width. If no soft line break is available, the paragraph will select
-        /// a hard line break prior to reaching this width. If that would force a line
-        /// break without any characters having been placed (i.e. if the next
-        /// character to be laid out does not fit within the given width constraint)
-        /// then the next character is allowed to overflow the width constraint and a
-        /// forced line break is placed after it (even if an explicit line break
-        /// follows).
-        ///
-        /// The width influences how ellipses are applied. See the discussion at [new
-        /// ParagraphStyle] for more details.
-        ///
-        /// This width is also used to position glyphs according to the [TextAlign]
-        /// alignment described in the [ParagraphStyle] used when building the
-        /// [Paragraph] with a [ParagraphBuilder].
-        public readonly double width;
-
-        public static bool operator ==(ParagraphConstraints constraints, Object other)
-        {
-            if (other.GetType() != constraints.GetType())
-                return false;
-            ParagraphConstraints typedOther = (ParagraphConstraints)other;
-            return typedOther.width == constraints.width;
-        }
-
-        public static bool operator !=(ParagraphConstraints constraints, Object other) => !(constraints == other);
-
-        public int hashCode => width.GetHashCode();
-
-        public String toString() => $"{GetType().ToString()}(width: {width})";
-    }
-
-    /// A paragraph of text.
-    ///
-    /// A paragraph retains the size and position of each glyph in the text and can
-    /// be efficiently resized and painted.
-    ///
-    /// To create a [Paragraph] object, use a [ParagraphBuilder].
-    ///
-    /// Paragraphs can be displayed on a [Canvas] using the [Canvas.drawParagraph]
-    /// method.
-    public class Paragraph : NativeParagraph
-    {
-        /// This class is created by the engine, and should not be instantiated
-        /// or extended directly.
-        ///
-        /// To create a [Paragraph] object, use a [ParagraphBuilder].
-        //@pragma('vm:entry-point')
-        public Paragraph() { }
-
-        /// The amount of horizontal space this paragraph occupies.
-        ///
-        /// Valid only after [layout] has been called.
-        public double width => this.Width;
-
-        /// The amount of vertical space this paragraph occupies.
-        ///
-        /// Valid only after [layout] has been called.
-        public double height => this.Height;
-
-        /// The minimum width that this paragraph could be without failing to paint
-        /// its contents within itself.
-        ///
-        /// Valid only after [layout] has been called.
-        public double minIntrinsicWidth => 0.0; // native 'Paragraph_minIntrinsicWidth';
-
-        /// Returns the smallest width beyond which increasing the width never
-        /// decreases the height.
-        ///
-        /// Valid only after [layout] has been called.
-        public double maxIntrinsicWidth => 0.0; // native 'Paragraph_maxIntrinsicWidth';
-
-        /// The distance from the top of the paragraph to the alphabetic
-        /// baseline of the first line, in logical pixels.
-        public double alphabeticBaseline => 0.0; // native 'Paragraph_alphabeticBaseline';
-
-        /// The distance from the top of the paragraph to the ideographic
-        /// baseline of the first line, in logical pixels.
-        public double ideographicBaseline => 0.0; // native 'Paragraph_ideographicBaseline';
-
-        /// True if there is more vertical content, but the text was truncated, either
-        /// because we reached `maxLines` lines of text or because the `maxLines` was
-        /// null, `ellipsis` was not null, and one of the lines exceeded the width
-        /// constraint.
-        ///
-        /// See the discussion of the `maxLines` and `ellipsis` arguments at [new
-        /// ParagraphStyle].
-        public bool didExceedMaxLines => false; // native 'Paragraph_didExceedMaxLines';
-
-        /// Computes the size and position of each glyph in the paragraph.
-        ///
-        /// The [ParagraphConstraints] control how wide the text is allowed to be.
-        public void layout(ParagraphConstraints constraints) => _layout(constraints.width);
-
-        void _layout(double width)
-        {
-            this.Layout(width);
-            // [DONE] native 'Paragraph_layout';
-        }
-
-        /// Returns a list of text boxes that enclose the given text range.
-        public List<TextBox> getBoxesForRange(int start, int end)
-        {
-            // native 'Paragraph_getRectsForRange';
-            return null; // Tmp to resolve build
-        }
-
-        /// Returns the text position closest to the given offset.
-        TextPosition getPositionForOffset(Offset offset)
-        {
-            List<int> encoded = _getPositionForOffset(offset.dx, offset.dy);
-            return new TextPosition(offset: encoded[0], affinity: (TextAffinity)encoded[1]);
-        }
-
-        List<int> _getPositionForOffset(double dx, double dy)
-        {
-            // native 'Paragraph_getPositionForOffset';
-            return null; // Tmp to resolve build
-        }
-
-        /// Returns the [start, end] of the word at the given offset. Characters not
-        /// part of a word, such as spaces, symbols, and punctuation, have word breaks
-        /// on both sides. In such cases, this method will return [offset, offset+1].
-        /// Word boundaries are defined more precisely in Unicode Standard Annex #29
-        /// http://www.unicode.org/reports/tr29/#Word_Boundaries
-        public List<int> getWordBoundary(int offset)
-        {
-            // native 'Paragraph_getWordBoundary';
-            return null; // Tmp to resolve build
-        }
-
-        // Redirecting the paint function in this way solves some dependency problems
-        // in the C++ code. If we straighten out the C++ dependencies, we can remove
-        // this indirection.
-        public void _paint(SkiaSharp.SKCanvas canvas, double x, double y)
-        {
-            this.Paint(canvas, x, y);
-            // [DONE] native 'Paragraph_paint';
-        }
-    }
-
-    /// Builds a [Paragraph] containing text with the given styling information.
-    ///
-    /// To set the paragraph's alignment, truncation, and ellipsising behavior, pass
-    /// an appropriately-configured [ParagraphStyle] object to the [new
-    /// ParagraphBuilder] constructor.
-    ///
-    /// Then, call combinations of [pushStyle], [addText], and [pop] to add styled
-    /// text to the object.
-    ///
-    /// Finally, call [build] to obtain the constructed [Paragraph] object. After
-    /// this point, the builder is no longer usable.
-    ///
-    /// After constructing a [Paragraph], call [Paragraph.layout] on it and then
-    /// paint it with [Canvas.drawParagraph].
-    public class ParagraphBuilder : NativeParagraphBuilder
-    {
-        /// Creates a [ParagraphBuilder] object, which is used to create a
-        /// [Paragraph].
-        //@pragma('vm:entry-point')
-        public ParagraphBuilder(ParagraphStyle style) : base(style._encoded, style._fontFamily, style._fontSize, style._lineHeight, style._ellipsis, _encodeLocale(style._locale))
-        {
-            // _constructor();
-        }
-
-        void _constructor(List<int> encoded, String fontFamily, double fontSize, double lineHeight, String ellipsis, String locale)
-        {
-            // Completed by base contruction
-            // [DONE] native 'ParagraphBuilder_constructor';
-        }
-
-        /// Applies the given style to the added text until [pop] is called.
-        ///
-        /// See [pop] for details.
-        void pushStyle(TextStyle style) => _pushStyle(
-            style._encoded,
-            style._fontFamily,
-            style._fontSize,
-            style._letterSpacing,
-            style._wordSpacing,
-            style._height,
-            _encodeLocale(style._locale),
-            style._background?._objects,
-            style._background?._data,
-            style._foreground?._objects,
-            style._foreground?._data,
-            Shadow._encodeShadows(style._shadows));
-
-        // TODO: ByteData->object
-        void _pushStyle(
-            List<int> encoded,
-            string fontFamily,
-            double fontSize,
-            double letterSpacing,
-            double wordSpacing,
-            double height,
-            string locale,
-            List<dynamic> backgroundObjects,
-            object backgroundData,
-            List<dynamic> foregroundObjects,
-            object foregroundData,
-            object shadowsData)
-        {
-            // native 'ParagraphBuilder_pushStyle';
-        }
-
-        static String _encodeLocale(Locale locale) => locale?.ToString() ?? "";
-
-        /// Ends the effect of the most recent call to [pushStyle].
-        ///
-        /// Internally, the paragraph builder maintains a stack of text styles. Text
-        /// added to the paragraph is affected by all the styles in the stack. Calling
-        /// [pop] removes the topmost style in the stack, leaving the remaining styles
-        /// in effect.
-        public void pop()
-        {
-            // native 'ParagraphBuilder_pop';
-        }
-
-        /// Adds the given text to the paragraph.
-        ///
-        /// The text will be styled according to the current stack of text styles.
-        public void addText(String text)
-        {
-            String error = _addText(text);
-            if (error != null)
-                throw new ArgumentException(error);
-        }
-
-        String _addText(String text)
-        {
-            return this.AddText(text);
-            // [DONE] native 'ParagraphBuilder_addText';
-        }
-
-        /// Applies the given paragraph style and returns a [Paragraph] containing the
-        /// added text and associated styling.
-        ///
-        /// After calling this function, the paragraph builder object is invalid and
-        /// cannot be used further.
-        public Paragraph build()
-        {
-            return this.Build();
-            // [DONE] native 'ParagraphBuilder_build';
-        }
+        Downstream,
     }
 
     public static class Text
@@ -1039,254 +304,18 @@ namespace FlutterBinding.UI
         /// * `list`: A list of bytes containing the font file.
         /// * `fontFamily`: The family name used to identify the font in text styles.
         ///  If this is not provided, then the family name will be extracted from the font file.
-        static Task loadFontFromList(List<int> list, String fontFamily = "")
+        public static Task LoadFontFromList(List<int> list, string fontFamily = "")
         {
-            return _futurize(() => { _loadFontFromList(list, fontFamily); });
+            return _futurize(
+                () =>
+                {
+                    _loadFontFromList(list, fontFamily);
+                });
         }
 
-        static void _loadFontFromList(List<int> list, String fontFamily)
+        private static void _loadFontFromList(List<int> list, string fontFamily)
         {
             // native 'loadFontFromList';
-        }
-
-        // This encoding must match the C++ version ParagraphBuilder::build.
-        //
-        // The encoded array buffer has 5 elements.
-        //
-        //  - Element 0: A bit mask indicating which fields are non-null.
-        //    Bit 0 is unused. Bits 1-n are set if the corresponding index in the
-        //    encoded array is non-null.  The remaining bits represent fields that
-        //    are passed separately from the array.
-        //
-        //  - Element 1: The enum index of the |textAlign|.
-        //
-        //  - Element 2: The index of the |fontWeight|.
-        //
-        //  - Element 3: The enum index of the |fontStyle|.
-        //
-        //  - Element 4: The value of |maxLines|.
-        //
-        public static List<int> _encodeParagraphStyle(
-            TextAlign textAlign,
-            TextDirection textDirection,
-            FontWeight fontWeight,
-            FontStyle fontStyle,
-            int maxLines,
-            String fontFamily,
-            double fontSize,
-            double lineHeight,
-            String ellipsis,
-            Locale locale)
-        {
-            List<int> result = new List<int>(6); // also update paragraph_builder.cc
-            for (var i = 0; i <= 6; i++)
-                result.Add(0);
-
-            if (textAlign != null)
-            {
-                result[0] |= 1 << 1;
-                result[1] =  (int)textAlign;
-            }
-
-            if (textDirection != null)
-            {
-                result[0] |= 1 << 2;
-                result[2] =  (int)textDirection;
-            }
-
-            if (fontWeight != null)
-            {
-                result[0] |= 1 << 3;
-                result[3] =  fontWeight.index;
-            }
-
-            if (fontStyle != null)
-            {
-                result[0] |= 1 << 4;
-                result[4] =  (int)fontStyle;
-            }
-
-            if (maxLines != null)
-            {
-                result[0] |= 1 << 5;
-                result[5] =  maxLines;
-            }
-
-            if (fontFamily != null)
-            {
-                result[0] |= 1 << 6;
-                // Passed separately to native.
-            }
-
-            if (fontSize != null)
-            {
-                result[0] |= 1 << 7;
-                // Passed separately to native.
-            }
-
-            if (lineHeight != null)
-            {
-                result[0] |= 1 << 8;
-                // Passed separately to native.
-            }
-
-            if (ellipsis != null)
-            {
-                result[0] |= 1 << 9;
-                // Passed separately to native.
-            }
-
-            if (locale != null)
-            {
-                result[0] |= 1 << 10;
-                // Passed separately to native.
-            }
-
-            return result;
-        }
-
-        // This encoding must match the C++ version of ParagraphBuilder::pushStyle.
-        //
-        // The encoded array buffer has 8 elements.
-        //
-        //  - Element 0: A bit field where the ith bit indicates wheter the ith element
-        //    has a non-null value. Bits 8 to 12 indicate whether |fontFamily|,
-        //    |fontSize|, |letterSpacing|, |wordSpacing|, and |height| are non-null,
-        //    respectively. Bit 0 is unused.
-        //
-        //  - Element 1: The |color| in ARGB with 8 bits per channel.
-        //
-        //  - Element 2: A bit field indicating which text decorations are present in
-        //    the |textDecoration| list. The ith bit is set if there's a TextDecoration
-        //    with enum index i in the list.
-        //
-        //  - Element 3: The |decorationColor| in ARGB with 8 bits per channel.
-        //
-        //  - Element 4: The bit field of the |decorationStyle|.
-        //
-        //  - Element 5: The index of the |fontWeight|.
-        //
-        //  - Element 6: The enum index of the |fontStyle|.
-        //
-        //  - Element 7: The enum index of the |textBaseline|.
-        //
-        public static List<int> _encodeTextStyle(
-            Color color,
-            TextDecoration decoration,
-            Color decorationColor,
-            TextDecorationStyle decorationStyle,
-            FontWeight fontWeight,
-            FontStyle fontStyle,
-            TextBaseline textBaseline,
-            String fontFamily,
-            double fontSize,
-            double letterSpacing,
-            double wordSpacing,
-            double height,
-            Locale locale,
-            Paint background,
-            Paint foreground,
-            List<Shadow> shadows
-        )
-        {
-            List<int> result = new List<int>(8);
-            if (color != null)
-            {
-                result[0] |= 1 << 1;
-                result[1] =  (int)color.Value;
-            }
-
-            if (decoration != null)
-            {
-                result[0] |= 1 << 2;
-                result[2] =  decoration._mask;
-            }
-
-            if (decorationColor != null)
-            {
-                result[0] |= 1 << 3;
-                result[3] =  (int)decorationColor.Value;
-            }
-
-            if (decorationStyle != null)
-            {
-                result[0] |= 1 << 4;
-                result[4] =  (int)decorationStyle;
-            }
-
-            if (fontWeight != null)
-            {
-                result[0] |= 1 << 5;
-                result[5] =  fontWeight.index;
-            }
-
-            if (fontStyle != null)
-            {
-                result[0] |= 1 << 6;
-                result[6] =  (int)fontStyle;
-            }
-
-            if (textBaseline != null)
-            {
-                result[0] |= 1 << 7;
-                result[7] =  (int)textBaseline;
-            }
-
-            if (fontFamily != null)
-            {
-                result[0] |= 1 << 8;
-                // Passed separately to native.
-            }
-
-            if (fontSize != null)
-            {
-                result[0] |= 1 << 9;
-                // Passed separately to native.
-            }
-
-            if (letterSpacing != null)
-            {
-                result[0] |= 1 << 10;
-                // Passed separately to native.
-            }
-
-            if (wordSpacing != null)
-            {
-                result[0] |= 1 << 11;
-                // Passed separately to native.
-            }
-
-            if (height != null)
-            {
-                result[0] |= 1 << 12;
-                // Passed separately to native.
-            }
-
-            if (locale != null)
-            {
-                result[0] |= 1 << 13;
-                // Passed separately to native.
-            }
-
-            if (background != null)
-            {
-                result[0] |= 1 << 14;
-                // Passed separately to native.
-            }
-
-            if (foreground != null)
-            {
-                result[0] |= 1 << 15;
-                // Passed separately to native.
-            }
-
-            if (shadows != null)
-            {
-                result[0] |= 1 << 16;
-                // Passed separately to native.
-            }
-
-            return result;
         }
     }
 }

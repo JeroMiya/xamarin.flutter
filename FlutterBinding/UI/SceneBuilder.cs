@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FlutterBinding.Engine.Painting;
+using FlutterBinding.Extensions;
 using FlutterBinding.Flow.Layers;
 using SkiaSharp;
 
@@ -32,7 +33,7 @@ namespace FlutterBinding.UI
             if (matrix4.Count != 16)
                 throw new ArgumentException("'matrix4' must have 16 entries.");
 
-            var skMatrix = Matrix.ToSkMatrix(matrix4);
+            var skMatrix = matrix4.ToSkMatrix();
             var layer = new TransformLayer();
             layer.set_transform(skMatrix);
             PushLayer(layer);
@@ -188,7 +189,7 @@ namespace FlutterBinding.UI
             layer.set_color(color.Value);
             layer.set_shadow_color(shadowColor.Value);
 
-            layer.set_device_pixel_ratio((float)Window.Instance.devicePixelRatio);
+            layer.set_device_pixel_ratio((float)Window.Instance.DevicePixelRatio);
             //layer.set_device_pixel_ratio(UIDartState::Current()->window()->viewport_metrics().device_pixel_ratio);
 
             PushLayer(layer);

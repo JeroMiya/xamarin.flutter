@@ -15,7 +15,6 @@ using Flutter.Shell.Droid.Plugin.Editing;
 using FlutterSDK;
 using Java.Util.Concurrent.Atomic;
 using System;
-using FlutterBinding.Flow;
 using FlutterBinding.Plugin.Common;
 using FlutterBinding.Shell;
 using FlutterBinding.UI;
@@ -23,7 +22,6 @@ using SkiaSharp;
 using Format = Android.Graphics.Format;
 using KeyboardType = Android.Views.KeyboardType;
 using Keycode = Android.Views.Keycode;
-using Locale = Java.Util.Locale;
 using Rasterizer = FlutterBinding.Shell.Rasterizer;
 using Rect = Android.Graphics.Rect;
 using Surface = Android.Views.Surface;
@@ -107,9 +105,6 @@ namespace Flutter.Shell.Droid.View
             //addActivityLifecycleListener(platformPlugin);
             _imm             = (InputMethodManager)Context.GetSystemService(Context.InputMethodService);
             _textInputPlugin = new TextInputPlugin(this);
-
-            SetLocales(Resources.Configuration);
-            SetUserSettings();
         }
 
         /// <inheritdoc />
@@ -287,65 +282,6 @@ namespace Flutter.Shell.Droid.View
         public void PopRoute()
         {
             _flutterNavigationChannel.InvokeMethod("popRoute", null);
-        }
-
-        private void SetUserSettings()
-        {
-            System.Collections.Generic.Dictionary<string, object> message = new System.Collections.Generic.Dictionary<string, object>
-            {
-                ["textScaleFactor"]       = Resources.Configuration.FontScale,
-                ["alwaysUse24HourFormat"] = Android.Text.Format.DateFormat.Is24HourFormat(Context)
-            };
-            _flutterSettingsChannel.Send(message);
-        }
-
-        private void SetLocales(Android.Content.Res.Configuration config)
-        {
-            if (Build.VERSION.SdkInt >= BuildVersionCodes.N) // 24
-            {
-                //try
-                //{
-                //    // Passes the full list of locales for android API >= 24 with reflection.
-                //    object localeList = config.getClass().getDeclaredMethod("getLocales").invoke(config);
-                //    Method localeListGet = localeList.getClass().getDeclaredMethod("get", int.class);
-                //    Method localeListSize = localeList.getClass().getDeclaredMethod("size");
-                //    int localeCount = (int)localeListSize.invoke(localeList);
-                //    List<string> data = new ArrayList<string>();
-                //    for (int index = 0; index<localeCount; ++index) 
-                //    {
-                //        Locale locale = (Locale)localeListGet.invoke(localeList, index);
-                //        data.add(locale.getLanguage());
-                //        data.add(locale.getCountry());
-                //        data.add(locale.getScript());
-                //        data.add(locale.getVariant());
-                //    }
-                //    mFlutterLocalizationChannel.invokeMethod("setLocale", data);
-                //    return;
-                //} 
-                //catch (Exception exception) 
-                //{
-                //    // Any exception is a failure. Resort to fallback of sending only one locale.
-                //}
-            }
-
-            // Fallback single locale passing for android API < 24. Should work always.
-            Locale locale = config.Locale;
-            // getScript() is gated because it is added in API 21.
-            _flutterLocalizationChannel.InvokeMethod(
-                "setLocale",
-                new object[]
-                {
-                    locale.Language, locale.Country, Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop ? locale.Script : "", locale.Variant
-                });
-        }
-
-        //@Override
-        /// <inheritdoc />
-        protected override void OnConfigurationChanged(Configuration newConfig)
-        {
-            base.OnConfigurationChanged(newConfig);
-            SetLocales(newConfig);
-            SetUserSettings();
         }
 
         public float GetDevicePixelRatio() => _metrics.DevicePixelRatio;

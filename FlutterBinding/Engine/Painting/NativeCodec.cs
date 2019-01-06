@@ -7,7 +7,7 @@ namespace FlutterBinding.Engine.Painting
 {
     public static class NativeCodec
     {
-        public static Task<SKCodec> InstantiateImageCodec(List<int> list, _ImageInfo imageInfo, double decodedCacheRatioCap)
+        public static Task<SKCodec> InstantiateImageCodec(List<int> list, ImageInfo imageInfo, double decodedCacheRatioCap)
         {
             return Task.FromResult((SKCodec)null);
         }

@@ -19,7 +19,6 @@ namespace Flutter.Sample.Droid
             ConfigChanges.KeyboardHidden |
             ConfigChanges.Keyboard |
             ConfigChanges.ScreenSize |
-            ConfigChanges.Locale |
             ConfigChanges.LayoutDirection |
             ConfigChanges.FontScale |
             ConfigChanges.ScreenLayout |

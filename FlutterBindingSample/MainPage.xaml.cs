@@ -23,7 +23,7 @@ namespace FlutterBindingSample
             var window = Window.Instance;
             var frame = (Frame)Windows.UI.Xaml.Window.Current.Content;
 
-            window.physicalSize = new Size(frame.ActualWidth, frame.ActualHeight);
+            window.PhysicalSize = new Size(frame.ActualWidth, frame.ActualHeight);
 
             Engine.Instance.LoadCanvas(e.Surface.Canvas);
             Engine.Instance.SetSize(frame.ActualWidth, frame.ActualHeight);
@@ -36,18 +36,18 @@ namespace FlutterBindingSample
         {
             var window = Window.Instance;
 
-            double devicePixelRatio = window.devicePixelRatio;
-            var physicalSize = window.physicalSize;
+            double devicePixelRatio = window.DevicePixelRatio;
+            var physicalSize = window.PhysicalSize;
             var logicalSize = physicalSize / devicePixelRatio;
 
             var paragraphBuilder = new ParagraphBuilder(new ParagraphStyle());
-            paragraphBuilder.addText("Hello, world!");
-            var paragraph = paragraphBuilder.build();
+            paragraphBuilder.AddText("Hello, world!");
+            var paragraph = paragraphBuilder.Build();
 
-            paragraph.layout(new ParagraphConstraints(width: logicalSize.width));
+            paragraph.Layout(new ParagraphConstraints(width: logicalSize.width));
 
             var physicalBounds = Offset.zero & physicalSize;
-            var recorder = new PictureRecorder();
+            var recorder = new SKPictureRecorder();
 
             var canvas = new FlutterBinding.UI.Canvas(recorder, physicalBounds);
             canvas.Scale((float)devicePixelRatio, (float)devicePixelRatio);
@@ -64,10 +64,10 @@ namespace FlutterBindingSample
             canvas.DrawCircle(new Offset(logicalSize.width / 2, logicalSize.height / 2), 100, circlePaint);
 
             canvas.DrawParagraph(paragraph, new Offset(
-                (logicalSize.width - paragraph.maxIntrinsicWidth) / 2.0,
-                (logicalSize.height - paragraph.height) / 2.0));
+                (logicalSize.width - Paragraph.MaxIntrinsicWidth) / 2.0,
+                (logicalSize.height - paragraph.Height) / 2.0));
 
-            var picture = recorder.endRecording();
+            var picture = recorder.EndRecording();
 
             var sceneBuilder = new SceneBuilder();
             sceneBuilder.PushClipRect(physicalBounds);

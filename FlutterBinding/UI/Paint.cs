@@ -80,8 +80,8 @@ namespace FlutterBinding.UI
         /// Defaults to true.
         public bool IsAntiAlias
         {
-            get => _data.getInt32(IsAntiAliasOffset, (int)Painting.kFakeHostEndian) == 0;
-            set => _data.setInt32(IsAntiAliasOffset, value ? 0 : 1, (int)Painting.kFakeHostEndian);
+            get => _data.getInt32(IsAntiAliasOffset, (int)Painting.FakeHostEndian) == 0;
+            set => _data.setInt32(IsAntiAliasOffset, value ? 0 : 1, (int)Painting.FakeHostEndian);
         }
 
         // Must be kept in sync with the default in paint.cc.
@@ -103,14 +103,14 @@ namespace FlutterBinding.UI
         {
             get
             {
-                uint encoded = (uint)_data.getInt32(ColorOffset, (int)Painting.kFakeHostEndian);
+                uint encoded = (uint)_data.getInt32(ColorOffset, (int)Painting.FakeHostEndian);
                 return new Color(encoded ^ _kColorDefault);
             }
             set
             {
                 //assert(value != null);
                 int encoded = (int)(value.Value ^ _kColorDefault);
-                _data.setInt32(ColorOffset, encoded, (int)Painting.kFakeHostEndian);
+                _data.setInt32(ColorOffset, encoded, (int)Painting.FakeHostEndian);
             }
         }
 
@@ -139,14 +139,14 @@ namespace FlutterBinding.UI
         {
             get
             {
-                int encoded = _data.getInt32(BlendModeOffset, (int)Painting.kFakeHostEndian);
+                int encoded = _data.getInt32(BlendModeOffset, (int)Painting.FakeHostEndian);
                 return (SKBlendMode)(encoded ^ (int)_kBlendModeDefault);
             }
             set
             {
                 //assert(value != null);
                 int encoded = (int)value ^ (int)_kBlendModeDefault;
-                _data.setInt32(BlendModeOffset, encoded, (int)Painting.kFakeHostEndian);
+                _data.setInt32(BlendModeOffset, encoded, (int)Painting.FakeHostEndian);
             }
         }
 
@@ -155,12 +155,12 @@ namespace FlutterBinding.UI
         /// Defaults to [SKPaintStyle.fill].
         public SKPaintStyle Style
         {
-            get => (SKPaintStyle)_data.getInt32(StyleOffset, (int)Painting.kFakeHostEndian);
+            get => (SKPaintStyle)_data.getInt32(StyleOffset, (int)Painting.FakeHostEndian);
             set
             {
                 //assert(value != null);
                 int encoded = (int)value;
-                _data.setInt32(StyleOffset, encoded, (int)Painting.kFakeHostEndian);
+                _data.setInt32(StyleOffset, encoded, (int)Painting.FakeHostEndian);
             }
         }
 
@@ -171,12 +171,12 @@ namespace FlutterBinding.UI
         /// Defaults to 0.0, which correspond to a hairline width.
         public double StrokeWidth
         {
-            get => _data.getFloat32(StrokeWidthOffset, (int)Painting.kFakeHostEndian);
+            get => _data.getFloat32(StrokeWidthOffset, (int)Painting.FakeHostEndian);
             set
             {
                 //assert(value != null);
                 double encoded = value;
-                _data.setFloat32(StrokeWidthOffset, encoded, (int)Painting.kFakeHostEndian);
+                _data.setFloat32(StrokeWidthOffset, encoded, (int)Painting.FakeHostEndian);
             }
         }
 
@@ -186,11 +186,11 @@ namespace FlutterBinding.UI
         /// Defaults to [SKStrokeCap.butt], i.e. no caps.
         public SKStrokeCap StrokeCap
         {
-            get => (SKStrokeCap)_data.getInt32(StrokeCapOffset, (int)Painting.kFakeHostEndian);
+            get => (SKStrokeCap)_data.getInt32(StrokeCapOffset, (int)Painting.FakeHostEndian);
             set
             {
                 int encoded = (int)value;
-                _data.setInt32(StrokeCapOffset, encoded, (int)Painting.kFakeHostEndian);
+                _data.setInt32(StrokeCapOffset, encoded, (int)Painting.FakeHostEndian);
             }
         }
 
@@ -221,12 +221,12 @@ namespace FlutterBinding.UI
         ///  * [SKStrokeJoin] for the definitive list of stroke joins.
         public SKStrokeJoin StrokeJoin
         {
-            get { return (SKStrokeJoin)_data.getInt32(StrokeJoinOffset, (int)Painting.kFakeHostEndian); }
+            get { return (SKStrokeJoin)_data.getInt32(StrokeJoinOffset, (int)Painting.FakeHostEndian); }
             set
             {
                 //assert(value != null);
                 int encoded = (int)value;
-                _data.setInt32(StrokeJoinOffset, encoded, (int)Painting.kFakeHostEndian);
+                _data.setInt32(StrokeJoinOffset, encoded, (int)Painting.FakeHostEndian);
             }
         }
 
@@ -261,12 +261,12 @@ namespace FlutterBinding.UI
         ///  * [strokeCap] to control what is drawn at the ends of the stroke.
         public double StrokeMiterLimit
         {
-            get => _data.getFloat32(StrokeMiterLimitOffset, (int)Painting.kFakeHostEndian);
+            get => _data.getFloat32(StrokeMiterLimitOffset, (int)Painting.FakeHostEndian);
             set
             {
                 //assert(value != null);
                 double encoded = value - _kStrokeMiterLimitDefault;
-                _data.setFloat32(StrokeMiterLimitOffset, encoded, (int)Painting.kFakeHostEndian);
+                _data.setFloat32(StrokeMiterLimitOffset, encoded, (int)Painting.FakeHostEndian);
             }
         }
 
@@ -278,14 +278,14 @@ namespace FlutterBinding.UI
         {
             get
             {
-                switch (_data.getInt32(MaskFilterOffset, (int)Painting.kFakeHostEndian))
+                switch ((SKBlurMaskFilterFlags)_data.getInt32(MaskFilterOffset, (int)Painting.FakeHostEndian))
                 {
-                case MaskFilter._TypeNone:
+                case MaskFilter.TypeNone:
                     return null;
-                case MaskFilter._TypeBlur:
-                    return MaskFilter.blur(
-                        (SKBlurStyle)_data.getInt32(MaskFilterBlurStyleOffset, (int)Painting.kFakeHostEndian),
-                        _data.getFloat32(MaskFilterSigmaOffset, (int)Painting.kFakeHostEndian));
+                case MaskFilter.TypeBlur:
+                    return MaskFilter.Blur(
+                        (SKBlurStyle)_data.getInt32(MaskFilterBlurStyleOffset, (int)Painting.FakeHostEndian),
+                        _data.getFloat32(MaskFilterSigmaOffset, (int)Painting.FakeHostEndian));
                 }
 
                 return null;
@@ -294,17 +294,17 @@ namespace FlutterBinding.UI
             {
                 if (value == null)
                 {
-                    _data.setInt32(MaskFilterOffset, MaskFilter._TypeNone, (int)Painting.kFakeHostEndian);
-                    _data.setInt32(MaskFilterBlurStyleOffset, 0, (int)Painting.kFakeHostEndian);
-                    _data.setFloat32(MaskFilterSigmaOffset, 0.0, (int)Painting.kFakeHostEndian);
+                    _data.setInt32(MaskFilterOffset, (int)MaskFilter.TypeNone, (int)Painting.FakeHostEndian);
+                    _data.setInt32(MaskFilterBlurStyleOffset, 0, (int)Painting.FakeHostEndian);
+                    _data.setFloat32(MaskFilterSigmaOffset, 0.0, (int)Painting.FakeHostEndian);
                 }
                 else
                 {
                     // For now we only support one kind of MaskFilter, so we don't need to
                     // check what the type is if it's not null.
-                    _data.setInt32(MaskFilterOffset, MaskFilter._TypeBlur, (int)Painting.kFakeHostEndian);
-                    _data.setInt32(MaskFilterBlurStyleOffset, (int)value._style, (int)Painting.kFakeHostEndian);
-                    _data.setFloat32(MaskFilterSigmaOffset, value._sigma, (int)Painting.kFakeHostEndian);
+                    _data.setInt32(MaskFilterOffset, (int)MaskFilter.TypeBlur, (int)Painting.FakeHostEndian);
+                    _data.setInt32(MaskFilterBlurStyleOffset, (int)value.Style, (int)Painting.FakeHostEndian);
+                    _data.setFloat32(MaskFilterSigmaOffset, value.Sigma, (int)Painting.FakeHostEndian);
                 }
             }
         }
@@ -316,12 +316,12 @@ namespace FlutterBinding.UI
         /// Defaults to [SKFilterQuality.none].
         public SKFilterQuality FilterQuality
         {
-            get => (SKFilterQuality)(_data.getInt32(FilterQualityOffset, (int)Painting.kFakeHostEndian));
+            get => (SKFilterQuality)(_data.getInt32(FilterQualityOffset, (int)Painting.FakeHostEndian));
             set
             {
                 //assert(value != null);
                 int encoded = (int)value;
-                _data.setInt32(FilterQualityOffset, encoded, (int)Painting.kFakeHostEndian);
+                _data.setInt32(FilterQualityOffset, encoded, (int)Painting.FakeHostEndian);
             }
         }
 
@@ -361,27 +361,27 @@ namespace FlutterBinding.UI
         {
             get
             {
-                bool isNull = _data.getInt32(ColorFilterOffset, (int)Painting.kFakeHostEndian) == 0;
+                bool isNull = _data.getInt32(ColorFilterOffset, (int)Painting.FakeHostEndian) == 0;
                 if (isNull)
                     return null;
-                return ColorFilter.mode(
-                    new Color((uint)_data.getInt32(ColorFilterColorOffset, (int)Painting.kFakeHostEndian)),
-                    (SKBlendMode)(_data.getInt32(ColorFilterBlendModeOffset, (int)Painting.kFakeHostEndian))
+                return ColorFilter.Mode(
+                    new Color((uint)_data.getInt32(ColorFilterColorOffset, (int)Painting.FakeHostEndian)),
+                    (SKBlendMode)(_data.getInt32(ColorFilterBlendModeOffset, (int)Painting.FakeHostEndian))
                 );
             }
             set
             {
                 if (value == null)
                 {
-                    _data.setInt32(ColorFilterOffset, 0, (int)Painting.kFakeHostEndian);
-                    _data.setInt32(ColorFilterColorOffset, 0, (int)Painting.kFakeHostEndian);
-                    _data.setInt32(ColorFilterBlendModeOffset, 0, (int)Painting.kFakeHostEndian);
+                    _data.setInt32(ColorFilterOffset, 0, (int)Painting.FakeHostEndian);
+                    _data.setInt32(ColorFilterColorOffset, 0, (int)Painting.FakeHostEndian);
+                    _data.setInt32(ColorFilterBlendModeOffset, 0, (int)Painting.FakeHostEndian);
                 }
                 else
                 {
-                    _data.setInt32(ColorFilterOffset, 1, (int)Painting.kFakeHostEndian);
-                    _data.setInt32(ColorFilterColorOffset, (int)value._color.Value, (int)Painting.kFakeHostEndian);
-                    _data.setInt32(ColorFilterBlendModeOffset, (int)value._blendMode, (int)Painting.kFakeHostEndian);
+                    _data.setInt32(ColorFilterOffset, 1, (int)Painting.FakeHostEndian);
+                    _data.setInt32(ColorFilterColorOffset, (int)value.Color.Value, (int)Painting.FakeHostEndian);
+                    _data.setInt32(ColorFilterBlendModeOffset, (int)value.BlendMode, (int)Painting.FakeHostEndian);
                 }
             }
         }
@@ -393,8 +393,8 @@ namespace FlutterBinding.UI
         /// used for implementing smart invert on iOS.
         public bool InvertColors
         {
-            get { return _data.getInt32(InvertColorOffset, (int)Painting.kFakeHostEndian) == 1; }
-            set { _data.setInt32(InvertColorOffset, value ? 1 : 0, (int)Painting.kFakeHostEndian); }
+            get { return _data.getInt32(InvertColorOffset, (int)Painting.FakeHostEndian) == 1; }
+            set { _data.setInt32(InvertColorOffset, value ? 1 : 0, (int)Painting.FakeHostEndian); }
         }
 
         public override string ToString()

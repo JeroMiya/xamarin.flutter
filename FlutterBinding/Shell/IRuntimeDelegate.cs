@@ -6,11 +6,8 @@ namespace FlutterBinding.Shell
     public interface IRuntimeDelegate
     {
         string DefaultRouteName();
-
         void ScheduleFrame(bool regenerateLayerTree = true);
-
         void Render(LayerTree layerTree);
-
         void UpdateSemantics(
             SemanticsNodeUpdates update,
             CustomAccessibilityActionUpdates actions);

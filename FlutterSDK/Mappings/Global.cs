@@ -180,11 +180,6 @@ namespace FlutterSDK
         }
     }
 
-    public class RRect
-    {
-
-    }
-
     public class Timer
     {
         public static void run(Action task)
@@ -202,58 +197,7 @@ namespace FlutterSDK
     }
 
 
-    public class ui
-    {
 
-        public class Window
-        {
-            public object onBeginFrame { get; set; }
-            public object onDrawFrame { get; set; }
-        }
-
-        public static Window window { get; set; }
-
-
-        public class Picture
-        {
-
-        }
-
-        public class PictureRecorder //TODO
-        {
-            public Picture endRecording() { return null; }
-        }
-
-        public class PointerData //TODO
-        {
-            public double? physicalX { get; set; }
-            public double? physicalY { get; set; }
-        }
-
-
-        public static double? lerpDouble(num a, num b, double? t)
-        {
-            if (a == null && b == null)
-                return null;
-            a = a ?? 0.0;
-            b = b ?? 0.0;
-            return a + (b - a) * t;
-        }
-    }
-
-    public class StringBuffer // Similar to System.Text.StringBuilder
-    {
-        private string _value = "";
-        public void write(string value)
-        {
-            _value += value;
-        }
-
-        public string toString()
-        {
-            return _value;
-        }
-    }
 
     public static class math
     {

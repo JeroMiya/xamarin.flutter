@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using FlutterBinding.Engine;
 using FlutterBinding.Mapping;
 using FlutterBinding.Shell;
-using Newtonsoft.Json;
 using static FlutterBinding.Mapping.Helper;
 
 namespace FlutterBinding.UI
@@ -12,102 +11,58 @@ namespace FlutterBinding.UI
 
     public static class Hooks
     {
-        delegate string _LocaleClosure();
-
-        static string _localeClosure() => Window.Instance.locale.ToString();
-
-        static _LocaleClosure _getLocaleClosure() => _localeClosure;
-
-        static void _updateLocales(List<String> locales)
+        public static void UpdateTextScaleFactor(double textScaleFactor)
         {
-            const int stringsPerLocale = 4;
-            int numLocales = (int)Math.Truncate((double)locales.Count / stringsPerLocale);
-            Window.Instance.locales = new List<Locale>(numLocales);
-            for (int localeIndex = 0; localeIndex < numLocales; localeIndex++)
+            Window.Instance.TextScaleFactor = textScaleFactor;
+        }
+
+        public static void UpdateSemanticsEnabled(bool enabled)
+        {
+            Window.Instance.SemanticsEnabled = enabled;
+        }
+
+        public static void UpdateAccessibilityFeatures(AccessibilityFeatures newFeatures)
+        {
+            Window.Instance.AccessibilityFeatures = newFeatures;
+        }
+
+        public static void DispatchPlatformMessage(PlatformMessage platformMessage)
+        {
+            if (Window.Instance.OnPlatformMessage != null)
             {
-                Window.Instance.locales[localeIndex] = new Locale(
-                    locales[localeIndex * stringsPerLocale],
-                    locales[localeIndex * stringsPerLocale + 1]);
+                Invoke(
+                    () => Window.Instance.OnPlatformMessage(platformMessage),
+                    Window.Instance.OnPlatformMessageZone);
             }
-
-            _invoke(Window.Instance.onLocaleChanged, Window.Instance.OnLocaleChangedZone);
+            //else
+            //{
+            //    Window.Instance.RespondToPlatformMessage(responseId, null);
+            //}
         }
 
-        static void _updateUserSettingsData(String jsonData)
+        public static void DispatchPointerDataPacket(Types.ByteData byteData)
         {
-            Dictionary<String, Object> data = JsonConvert.DeserializeObject<Dictionary<String, Object>>(jsonData);
-            _updateTextScaleFactor(Convert.ToDouble(data["textScaleFactor"]));
-            _updateAlwaysUse24HourFormat(Convert.ToBoolean(data["alwaysUse24HourFormat"]));
+            var packet = UnpackPointerDataPacket(byteData);
+            Window.Instance.RaisePointerDataPacket(packet);
         }
 
-        static void _updateTextScaleFactor(double textScaleFactor)
+        public static void DispatchSemanticsAction(int id, SemanticsAction action, Types.ByteData args)
         {
-            Window.Instance.textScaleFactor = textScaleFactor;
-            _invoke(Window.Instance.OnTextScaleFactorChanged, Window.Instance.OnTextScaleFactorChangedZone);
+            Window.Instance.DispatchSemanticsAction(id, action, args);
         }
 
-        static void _updateAlwaysUse24HourFormat(bool alwaysUse24HourFormat)
+        public static void BeginFrame(long microseconds)
         {
-            Window.Instance.alwaysUse24HourFormat = alwaysUse24HourFormat;
+            Window.Instance.RaiseBeginFrameDelta(TimeDelta.FromMicroseconds(microseconds));
         }
 
-        static void _updateSemanticsEnabled(bool enabled)
+        public static void DrawFrame()
         {
-            Window.Instance.semanticsEnabled = enabled;
-            _invoke(Window.Instance.onSemanticsEnabledChanged, Window.Instance.OnSemanticsEnabledChangedZone);
-        }
-
-        static void _updateAccessibilityFeatures(int values)
-        {
-            AccessibilityFeatures newFeatures = (AccessibilityFeatures)values;
-            if (newFeatures == Window.Instance.accessibilityFeatures)
-                return;
-            Window.Instance.accessibilityFeatures = newFeatures;
-            _invoke(Window.Instance.onAccessibilityFeaturesChanged, Window.Instance.OnAccessibilityFlagsChangedZone);
-        }
-
-        //static void _dispatchPlatformMessage(PlatformMessage platformMessage)
-        //{
-        //    if (Window.Instance.onPlatformMessage != null)
-        //    {
-        //        _invoke(
-        //            () => Window.Instance.onPlatformMessage(platformMessage),
-        //            Window.Instance.OnPlatformMessageZone);
-        //    }
-        //    //else
-        //    //{
-        //    //    Window.Instance.RespondToPlatformMessage(responseId, null);
-        //    //}
-        //}
-
-        static void _dispatchPointerDataPacket(Types.ByteData packet)
-        {
-            if (Window.Instance.onPointerDataPacket != null)
-                _invoke1<PointerDataPacket>((d) => Window.Instance.onPointerDataPacket(d), Window.Instance.OnPointerDataPacketZone, _unpackPointerDataPacket(packet));
-        }
-
-        static void _dispatchSemanticsAction(int id, int action, Types.ByteData args)
-        {
-            _invoke3<int, SemanticsAction, Types.ByteData>(
-                (a, b, c) => Window.Instance.onSemanticsAction(a, b, c),
-                Window.Instance.OnSemanticsActionZone,
-                id,
-                (SemanticsAction)action,
-                args);
-        }
-
-        static void _beginFrame(int microseconds)
-        {
-            _invoke1((d) => Window.Instance.onBeginFrame(d), Window.Instance.OnBeginFrameZone, TimeDelta.FromMicroseconds(microseconds));
-        }
-
-        static void _drawFrame()
-        {
-            _invoke(Window.Instance.onDrawFrame, Window.Instance.OnDrawFrameZone);
+            Window.Instance.RaiseDrawFrame();
         }
 
         /// Invokes [callback] inside the given [zone].
-        static void _invoke(VoidCallback callback, Types.Zone zone)
+        private static void Invoke(VoidCallback callback, Types.Zone zone)
         {
             if (callback == null)
                 return;
@@ -125,7 +80,7 @@ namespace FlutterBinding.UI
         }
 
         /// Invokes [callback] inside the given [zone] passing it [arg].
-        static void _invoke1<A>(Action<A> callback, Types.Zone zone, A arg)
+        private static void Invoke1<T>(Action<T> callback, Types.Zone zone, T arg)
         {
             if (callback == null)
                 return;
@@ -136,12 +91,12 @@ namespace FlutterBinding.UI
             }
             else
             {
-                zone.runUnaryGuarded<A>(callback, arg);
+                zone.runUnaryGuarded<T>(callback, arg);
             }
         }
 
         /// Invokes [callback] inside the given [zone] passing it [arg1] and [arg2].
-        static void _invoke2<A1, A2>(Action<A1, A2> callback, Types.Zone zone, A1 arg1, A2 arg2)
+        static void Invoke2<T1, T2>(Action<T1, T2> callback, Types.Zone zone, T1 arg1, T2 arg2)
         {
             if (callback == null)
                 return;
@@ -152,12 +107,12 @@ namespace FlutterBinding.UI
             }
             else
             {
-                zone.runBinaryGuarded<A1, A2>(callback, arg1, arg2);
+                zone.runBinaryGuarded<T1, T2>(callback, arg1, arg2);
             }
         }
 
         /// Invokes [callback] inside the given [zone] passing it [arg1], [arg2] and [arg3].
-        static void _invoke3<A1, A2, A3>(Action<A1, A2, A3> callback, Types.Zone zone, A1 arg1, A2 arg2, A3 arg3)
+        private static void Invoke3<T1, T2, T3>(Action<T1, T2, T3> callback, Types.Zone zone, T1 arg1, T2 arg2, T3 arg3)
         {
             if (callback == null)
                 return;
@@ -176,37 +131,37 @@ namespace FlutterBinding.UI
         //
         //  * pointer_data.cc
         //  * FlutterView.java
-        const int _kPointerDataFieldCount = 19;
+        const int PointerDataFieldCount = 19;
 
-        static PointerDataPacket _unpackPointerDataPacket(Types.ByteData packet)
+        private static PointerDataPacket UnpackPointerDataPacket(Types.ByteData packet)
         {
             const int kStride = 8; // Its an 8 const anyway - Int64List.bytesPerElement;
-            const int kBytesPerPointerData = _kPointerDataFieldCount * kStride;
+            const int kBytesPerPointerData = PointerDataFieldCount * kStride;
             int length = packet.lengthInBytes / kBytesPerPointerData;
             List<PointerData> data = new List<PointerData>(length);
             for (int i = 0; i < length; ++i)
             {
-                int offset = i * _kPointerDataFieldCount;
+                int offset = i * PointerDataFieldCount;
                 data[i] = new PointerData(
-                    timeStamp: TimeDelta.FromMicroseconds(packet.getInt64(kStride * offset++, (int)Painting.kFakeHostEndian)),
-                    change: (PointerChange)packet.getInt64(kStride * offset++, (int)Painting.kFakeHostEndian),
-                    kind: (PointerDeviceKind)packet.getInt64(kStride * offset++, (int)Painting.kFakeHostEndian),
-                    device: packet.getInt64(kStride * offset++, (int)Painting.kFakeHostEndian),
-                    physicalX: packet.getFloat64(kStride * offset++, (int)Painting.kFakeHostEndian),
-                    physicalY: packet.getFloat64(kStride * offset++, (int)Painting.kFakeHostEndian),
-                    buttons: packet.getInt64(kStride * offset++, (int)Painting.kFakeHostEndian),
-                    obscured: packet.getInt64(kStride * offset++, (int)Painting.kFakeHostEndian) != 0,
-                    pressure: packet.getFloat64(kStride * offset++, (int)Painting.kFakeHostEndian),
-                    pressureMin: packet.getFloat64(kStride * offset++, (int)Painting.kFakeHostEndian),
-                    pressureMax: packet.getFloat64(kStride * offset++, (int)Painting.kFakeHostEndian),
-                    distance: packet.getFloat64(kStride * offset++, (int)Painting.kFakeHostEndian),
-                    distanceMax: packet.getFloat64(kStride * offset++, (int)Painting.kFakeHostEndian),
-                    radiusMajor: packet.getFloat64(kStride * offset++, (int)Painting.kFakeHostEndian),
-                    radiusMinor: packet.getFloat64(kStride * offset++, (int)Painting.kFakeHostEndian),
-                    radiusMin: packet.getFloat64(kStride * offset++, (int)Painting.kFakeHostEndian),
-                    radiusMax: packet.getFloat64(kStride * offset++, (int)Painting.kFakeHostEndian),
-                    orientation: packet.getFloat64(kStride * offset++, (int)Painting.kFakeHostEndian),
-                    tilt: packet.getFloat64(kStride * offset++, (int)Painting.kFakeHostEndian)
+                    timeStamp: TimeDelta.FromMicroseconds(packet.getInt64(kStride * offset++, (int)Painting.FakeHostEndian)),
+                    change: (PointerChange)packet.getInt64(kStride * offset++, (int)Painting.FakeHostEndian),
+                    kind: (PointerDeviceKind)packet.getInt64(kStride * offset++, (int)Painting.FakeHostEndian),
+                    device: packet.getInt64(kStride * offset++, (int)Painting.FakeHostEndian),
+                    physicalX: packet.getFloat64(kStride * offset++, (int)Painting.FakeHostEndian),
+                    physicalY: packet.getFloat64(kStride * offset++, (int)Painting.FakeHostEndian),
+                    buttons: packet.getInt64(kStride * offset++, (int)Painting.FakeHostEndian),
+                    obscured: packet.getInt64(kStride * offset++, (int)Painting.FakeHostEndian) != 0,
+                    pressure: packet.getFloat64(kStride * offset++, (int)Painting.FakeHostEndian),
+                    pressureMin: packet.getFloat64(kStride * offset++, (int)Painting.FakeHostEndian),
+                    pressureMax: packet.getFloat64(kStride * offset++, (int)Painting.FakeHostEndian),
+                    distance: packet.getFloat64(kStride * offset++, (int)Painting.FakeHostEndian),
+                    distanceMax: packet.getFloat64(kStride * offset++, (int)Painting.FakeHostEndian),
+                    radiusMajor: packet.getFloat64(kStride * offset++, (int)Painting.FakeHostEndian),
+                    radiusMinor: packet.getFloat64(kStride * offset++, (int)Painting.FakeHostEndian),
+                    radiusMin: packet.getFloat64(kStride * offset++, (int)Painting.FakeHostEndian),
+                    radiusMax: packet.getFloat64(kStride * offset++, (int)Painting.FakeHostEndian),
+                    orientation: packet.getFloat64(kStride * offset++, (int)Painting.FakeHostEndian),
+                    tilt: packet.getFloat64(kStride * offset++, (int)Painting.FakeHostEndian)
                 );
             }
 

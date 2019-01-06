@@ -2,12 +2,10 @@
 using Android.OS;
 using Android.Views;
 using Android.Views.Accessibility;
-using Flutter.Shell.Droid.Plugin.Common;
 using Java.Lang;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using FlutterBinding.Extensions;
 using FlutterBinding.Plugin.Common;
 using FlutterBinding.UI;
 using SkiaSharp;
@@ -113,9 +111,9 @@ namespace Flutter.Shell.Droid.View
                 result.AccessibilityFocused = (_a11YFocusedObject.Id == virtualViewId);
             }
 
-            if (@object.HasFlag(SemanticsFlag.isTextField))
+            if (@object.HasFlag(SemanticsFlag.IsTextField))
             {
-                result.Password  = @object.HasFlag(SemanticsFlag.isObscured);
+                result.Password  = @object.HasFlag(SemanticsFlag.IsObscured);
                 result.ClassName = "android.widget.EditText";
                 if (Build.VERSION.SdkInt >= BuildVersionCodes.JellyBeanMr2)
                 {
@@ -190,7 +188,7 @@ namespace Flutter.Shell.Droid.View
                 result.ClassName = "android.widget.Button";
             }
 
-            if (@object.HasFlag(SemanticsFlag.isImage))
+            if (@object.HasFlag(SemanticsFlag.IsImage))
             {
                 result.ClassName = "android.widget.ImageView";
                 // TODO(jonahwilliams): Figure out a way conform to the expected id from TalkBack's
@@ -229,7 +227,7 @@ namespace Flutter.Shell.Droid.View
 
             result.SetBoundsInScreen(bounds);
             result.VisibleToUser = true;
-            result.Enabled       = !@object.HasFlag(SemanticsFlag.hasEnabledState) || @object.HasFlag(SemanticsFlag.isEnabled);
+            result.Enabled       = !@object.HasFlag(SemanticsFlag.HasEnabledState) || @object.HasFlag(SemanticsFlag.IsEnabled);
 
             if (@object.HasAction(SemanticsAction.Tap))
             {
@@ -272,7 +270,7 @@ namespace Flutter.Shell.Droid.View
                 // This tells Android's a11y to send scroll events when reaching the end of
                 // the visible viewport of a scrollable, unless the node itself does not
                 // allow implicit scrolling - then we leave the className as view.View.
-                if (@object.HasFlag(SemanticsFlag.hasImplicitScrolling))
+                if (@object.HasFlag(SemanticsFlag.HasImplicitScrolling))
                 {
                     if (@object.HasAction(SemanticsAction.ScrollLeft) || @object.HasAction(SemanticsAction.ScrollRight))
                     {
@@ -314,27 +312,27 @@ namespace Flutter.Shell.Droid.View
                 }
             }
 
-            if (@object.HasFlag(SemanticsFlag.isLiveRegion) && Build.VERSION.SdkInt > BuildVersionCodes.JellyBeanMr2)
+            if (@object.HasFlag(SemanticsFlag.IsLiveRegion) && Build.VERSION.SdkInt > BuildVersionCodes.JellyBeanMr2)
             {
                 result.LiveRegion = AccessibilityLiveRegion.Polite;
             }
 
-            bool hasCheckedState = @object.HasFlag(SemanticsFlag.hasCheckedState);
-            bool hasToggledState = @object.HasFlag(SemanticsFlag.hasToggledState);
+            bool hasCheckedState = @object.HasFlag(SemanticsFlag.HasCheckedState);
+            bool hasToggledState = @object.HasFlag(SemanticsFlag.HasToggledState);
             //assert !(hasCheckedState && hasToggledState);
             result.Checkable = (hasCheckedState || hasToggledState);
             if (hasCheckedState)
             {
-                result.Checked            = @object.HasFlag(SemanticsFlag.isChecked);
+                result.Checked            = @object.HasFlag(SemanticsFlag.IsChecked);
                 result.ContentDescription = @object.GetValueLabelHint();
-                if (@object.HasFlag(SemanticsFlag.isInMutuallyExclusiveGroup))
+                if (@object.HasFlag(SemanticsFlag.IsInMutuallyExclusiveGroup))
                     result.ClassName = "android.widget.RadioButton";
                 else
                     result.ClassName = "android.widget.CheckBox";
             }
             else if (hasToggledState)
             {
-                result.Checked            = @object.HasFlag(SemanticsFlag.isToggled);
+                result.Checked            = @object.HasFlag(SemanticsFlag.IsToggled);
                 result.ClassName          = "android.widget.Switch";
                 result.ContentDescription = @object.GetValueLabelHint();
             }
@@ -345,7 +343,7 @@ namespace Flutter.Shell.Droid.View
                 result.Text = @object.GetValueLabelHint();
             }
 
-            result.Selected = @object.HasFlag(SemanticsFlag.isSelected);
+            result.Selected = @object.HasFlag(SemanticsFlag.IsSelected);
 
             // Accessibility Focus
             if (_a11YFocusedObject != null && _a11YFocusedObject.Id == virtualViewId)
@@ -373,7 +371,7 @@ namespace Flutter.Shell.Droid.View
             {
                 foreach (SemanticsObject child in @object.childrenInTraversalOrder)
                 {
-                    if (!child.HasFlag(SemanticsFlag.isHidden))
+                    if (!child.HasFlag(SemanticsFlag.IsHidden))
                     {
                         result.AddChild(_owner, child.Id);
                     }
@@ -750,10 +748,10 @@ namespace Flutter.Shell.Droid.View
 
                 SemanticsObject @object = GetOrCreateObject(id);
                 @object.UpdateWith(semanticNode, actions);
-                if (@object.HasFlag(SemanticsFlag.isHidden))
+                if (@object.HasFlag(SemanticsFlag.IsHidden))
                     continue;
 
-                if (@object.HasFlag(SemanticsFlag.isFocused))
+                if (@object.HasFlag(SemanticsFlag.IsFocused))
                     _inputFocusedObject = @object;
 
                 if (@object.HadPreviousConfig)
@@ -887,7 +885,7 @@ namespace Flutter.Shell.Droid.View
                         // handle hidden children at the beginning and end of the list.
                         foreach (SemanticsObject child in @object.childrenInHitTestOrder)
                         {
-                            if (!child.HasFlag(SemanticsFlag.isHidden))
+                            if (!child.HasFlag(SemanticsFlag.IsHidden))
                             {
                                 visibleChildren += 1;
                             }
@@ -909,16 +907,16 @@ namespace Flutter.Shell.Droid.View
                     SendAccessibilityEvent(@event);
                 }
 
-                if (@object.HasFlag(SemanticsFlag.isLiveRegion))
+                if (@object.HasFlag(SemanticsFlag.IsLiveRegion))
                 {
                     string label = @object.Label ?? "";
                     string previousLabel = @object.Previous?.Label ?? @object.Label;
-                    if (!label.Equals(previousLabel) || !@object.HadFlag(SemanticsFlag.isLiveRegion))
+                    if (!label.Equals(previousLabel) || !@object.HadFlag(SemanticsFlag.IsLiveRegion))
                     {
                         SendAccessibilityEvent(@object.Id, EventTypes.WindowContentChanged);
                     }
                 }
-                else if (@object.HasFlag(SemanticsFlag.isTextField) && @object.DidChangeLabel()
+                else if (@object.HasFlag(SemanticsFlag.IsTextField) && @object.DidChangeLabel()
                     && _inputFocusedObject != null && _inputFocusedObject.Id == @object.Id)
                 {
                     // Text fields should announce when their label changes while focused. We use a live
@@ -927,7 +925,7 @@ namespace Flutter.Shell.Droid.View
                 }
 
                 if (_a11YFocusedObject != null && _a11YFocusedObject.Id == @object.Id
-                    && !@object.HadFlag(SemanticsFlag.isSelected) && @object.HasFlag(SemanticsFlag.isSelected))
+                    && !@object.HadFlag(SemanticsFlag.IsSelected) && @object.HasFlag(SemanticsFlag.IsSelected))
                 {
                     AccessibilityEvent @event =
                         ObtainAccessibilityEvent(@object.Id, EventTypes.ViewSelected);
@@ -936,7 +934,7 @@ namespace Flutter.Shell.Droid.View
                 }
 
                 if (_inputFocusedObject != null && _inputFocusedObject.Id == @object.Id
-                    && @object.HadFlag(SemanticsFlag.isTextField) && @object.HasFlag(SemanticsFlag.isTextField)
+                    && @object.HadFlag(SemanticsFlag.IsTextField) && @object.HasFlag(SemanticsFlag.IsTextField)
                     // If we have a TextField that has InputFocus, we should avoid announcing it if something
                     // else we track has a11y focus. This needs to still work when, e.g., IME has a11y focus
                     // or the "PASTE" popup is used though.
@@ -1412,7 +1410,7 @@ namespace Flutter.Shell.Droid.View
                     float[] transformedPoint = new float[4];
                     foreach (SemanticsObject child in childrenInHitTestOrder)
                     {
-                        if (child.HasFlag(SemanticsFlag.isHidden))
+                        if (child.HasFlag(SemanticsFlag.IsHidden))
                             continue;
 
                         child.EnsureInverseTransform();
@@ -1435,7 +1433,7 @@ namespace Flutter.Shell.Droid.View
                 {
                     // We enforce in the framework that no other useful semantics are merged with these
                     // nodes.
-                    if (HasFlag(SemanticsFlag.scopesRoute))
+                    if (HasFlag(SemanticsFlag.ScopesRoute))
                     {
                         return false;
                     }
@@ -1455,7 +1453,7 @@ namespace Flutter.Shell.Droid.View
 
             public void CollectRoutes(List<SemanticsObject> edges)
             {
-                if (HasFlag(SemanticsFlag.scopesRoute))
+                if (HasFlag(SemanticsFlag.ScopesRoute))
                     edges.Add(this);
 
                 if (childrenInTraversalOrder == null)
@@ -1469,7 +1467,7 @@ namespace Flutter.Shell.Droid.View
             {
                 // Returns the first non-null and non-empty semantic label of a child
                 // with an NamesRoute flag. Otherwise returns null.
-                if (HasFlag(SemanticsFlag.namesRoute))
+                if (HasFlag(SemanticsFlag.NamesRoute))
                 {
                     if (Label != null && !string.IsNullOrWhiteSpace(Label))
                         return Label;

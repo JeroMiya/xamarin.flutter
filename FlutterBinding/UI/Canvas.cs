@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FlutterBinding.Engine.Painting;
+using FlutterBinding.Extensions;
 using FlutterBinding.Flow.Layers;
 using FlutterBinding.Shell;
 using SkiaSharp;
@@ -41,9 +42,9 @@ namespace FlutterBinding.UI
         ///
         /// To end the recording, call [PictureRecorder.endRecording] on the
         /// given recorder.
-        public Canvas(PictureRecorder recorder, Rect cullRect = null)
+        public Canvas(SKPictureRecorder recorder, Rect cullRect = null)
         {
-            if (recorder.isRecording)
+            if (recorder.RecordingCanvas != null)
                 throw new ArgumentException("'recorder' must not already be associated with another Canvas.");
             if (cullRect == null)
                 cullRect = Rect.largest;
@@ -198,7 +199,7 @@ namespace FlutterBinding.UI
             }
             else
             {
-                //assert(_rectIsValid(bounds));
+                //assert(RectIsValid(bounds));
                 _canvas.SaveLayer(bounds.ToSKRect(), paint);
             }
         }
@@ -263,7 +264,7 @@ namespace FlutterBinding.UI
             if (matrix4.Count != 16)
                 throw new ArgumentException("'matrix4' must have 16 entries.");
 
-            var matrix = Matrix.ToSkMatrix(matrix4);
+            var matrix = MatrixExtensions.ToSkMatrix(matrix4);
             _canvas.Concat(ref matrix);
         }
 
@@ -276,15 +277,15 @@ namespace FlutterBinding.UI
         /// in incorrect blending at the clip boundary. See [saveLayer] for a
         /// discussion of how to address that.
         ///
-        /// Use [ClipOp.difference] to subtract the provided rectangle from the
+        /// Use [SKClipOperation.difference] to subtract the provided rectangle from the
         /// current clip.
-        public void ClipRect(Rect rect, ClipOp clipOp = ClipOp.intersect, bool doAntiAlias = true)
+        public void ClipRect(Rect rect, SKClipOperation clipOp = SKClipOperation.Intersect, bool doAntiAlias = true)
         {
-            ////assert(_rectIsValid(rect));
+            ////assert(RectIsValid(rect));
             ////assert(clipOp != null);
             ////assert(doAntiAlias != null);
 
-            _canvas.ClipRect(rect.ToSKRect(), (SKClipOperation)clipOp, doAntiAlias);
+            _canvas.ClipRect(rect.ToSKRect(), (SkiaSharp.SKClipOperation)clipOp, doAntiAlias);
         }
 
         /// Reduces the clip region to the intersection of the current clip and the
@@ -297,7 +298,7 @@ namespace FlutterBinding.UI
         /// discussion of how to address that and some examples of using [clipRRect].
         public void ClipRRect(RRect rrect, bool doAntiAlias = true)
         {
-            ////assert(_rrectIsValid(rrect));
+            ////assert(RrectIsValid(rrect));
             ////assert(doAntiAlias != null);
             _canvas.ClipRoundRect(rrect.ToRoundedRect(), antialias: doAntiAlias);
         }
@@ -334,8 +335,8 @@ namespace FlutterBinding.UI
         /// The `p1` and `p2` arguments are interpreted as offsets from the origin.
         public void DrawLine(Offset p1, Offset p2, SKPaint paint)
         {
-            ////assert(_offsetIsValid(p1));
-            ////assert(_offsetIsValid(p2));
+            ////assert(OffsetIsValid(p1));
+            ////assert(OffsetIsValid(p2));
             ////assert(paint != null);
 
             _canvas.DrawLine(p1.ToPoint(), p2.ToPoint(), paint);
@@ -355,7 +356,7 @@ namespace FlutterBinding.UI
         /// or stroked (or both) is controlled by [Paint.style].
         public void DrawRect(Rect rect, SKPaint paint)
         {
-            //assert(_rectIsValid(rect));
+            //assert(RectIsValid(rect));
             //assert(paint != null);
             _canvas.DrawRect(rect.ToSKRect(), paint);
         }
@@ -364,7 +365,7 @@ namespace FlutterBinding.UI
         /// filled or stroked (or both) is controlled by [Paint.style].
         public void DrawRRect(RRect rrect, SKPaint paint)
         {
-            //assert(_rrectIsValid(rrect));
+            //assert(RrectIsValid(rrect));
             //assert(paint != null);
             _canvas.DrawRoundRect(rrect.ToRoundedRect(), paint);
         }
@@ -376,8 +377,8 @@ namespace FlutterBinding.UI
         /// This shape is almost but not quite entirely unlike an annulus.
         public void DrawDRRect(RRect outer, RRect inner, Paint paint)
         {
-            //assert(_rrectIsValid(outer));
-            //assert(_rrectIsValid(inner));
+            //assert(RrectIsValid(outer));
+            //assert(RrectIsValid(inner));
             //assert(paint != null);
 
             // TODO: Missing SkiaSharp reference
@@ -390,7 +391,7 @@ namespace FlutterBinding.UI
         /// controlled by [Paint.style].
         public void DrawOval(Rect rect, SKPaint paint)
         {
-            //assert(_rectIsValid(rect));
+            //assert(RectIsValid(rect));
             //assert(paint != null);
             _canvas.DrawOval(rect.ToSKRect(), paint);
         }
@@ -401,7 +402,7 @@ namespace FlutterBinding.UI
         /// controlled by [Paint.style].
         public void DrawCircle(Offset c, double radius, SKPaint paint)
         {
-            //assert(_offsetIsValid(c));
+            //assert(OffsetIsValid(c));
             //assert(paint != null);
             _canvas.DrawCircle(c.ToPoint(), (float)radius, paint);
         }
@@ -418,7 +419,7 @@ namespace FlutterBinding.UI
         /// This method is optimized for drawing arcs and should be faster than [Path.arcTo].
         public void DrawArc(Rect rect, double startAngle, double sweepAngle, bool useCenter, Paint paint)
         {
-            //assert(_rectIsValid(rect));
+            //assert(RectIsValid(rect));
             //assert(paint != null);
 
             // TODO: not implemented on SkiaSharp
@@ -441,7 +442,7 @@ namespace FlutterBinding.UI
         public void DrawImage(SKImage image, Offset p, SKPaint paint)
         {
             //assert(image != null); // image is checked on the engine side
-            //assert(_offsetIsValid(p));
+            //assert(OffsetIsValid(p));
             //assert(paint != null);
             _canvas.DrawImage(image, p.ToPoint(), paint);
         }
@@ -458,8 +459,8 @@ namespace FlutterBinding.UI
         public void DrawImageRect(SKImage image, Rect src, Rect dst, SKPaint paint)
         {
             //assert(image != null); // image is checked on the engine side
-            //assert(_rectIsValid(src));
-            //assert(_rectIsValid(dst));
+            //assert(RectIsValid(src));
+            //assert(RectIsValid(dst));
             //assert(paint != null);
             _canvas.DrawImage(image, src.ToSKRect(), dst.ToSKRect(), paint);
         }
@@ -480,8 +481,8 @@ namespace FlutterBinding.UI
         public void DrawImageNine(SKImage image, Rect center, Rect dst, SKPaint paint)
         {
             //assert(image != null); // image is checked on the engine side
-            //assert(_rectIsValid(center));
-            //assert(_rectIsValid(dst));
+            //assert(RectIsValid(center));
+            //assert(RectIsValid(dst));
             //assert(paint != null);
             _canvas.DrawImageNinePatch(image, center.ToSKRectI(), dst.ToSKRect(), paint);
         }
@@ -518,11 +519,11 @@ namespace FlutterBinding.UI
         public void DrawParagraph(Paragraph paragraph, Offset offset)
         {
             //assert(paragraph != null);
-            //assert(_offsetIsValid(offset));
-            paragraph._paint(_canvas, offset.dx, offset.dy);
+            //assert(OffsetIsValid(offset));
+            paragraph.Paint(_canvas, offset.dx, offset.dy);
         }
 
-        /// Draws a sequence of points according to the given [PointMode].
+        /// Draws a sequence of points according to the given [SKPointMode].
         ///
         /// The `points` argument is interpreted as offsets from the origin.
         ///
@@ -530,15 +531,15 @@ namespace FlutterBinding.UI
         ///
         ///  * [drawRawPoints], which takes `points` as a [List<float> ] rather than a
         ///    [List<Offset>].
-        public void DrawPoints(PointMode pointMode, List<Offset> points, SKPaint paint)
+        public void DrawPoints(SKPointMode pointMode, List<Offset> points, SKPaint paint)
         {
             //assert(pointMode != null);
             //assert(points != null);
             //assert(paint != null);
-            _canvas.DrawPoints((SKPointMode)pointMode, points.ToPoints().ToArray(), paint);
+            _canvas.DrawPoints((SkiaSharp.SKPointMode)pointMode, points.ToPoints().ToArray(), paint);
         }
 
-        /// Draws a sequence of points according to the given [PointMode].
+        /// Draws a sequence of points according to the given [SKPointMode].
         ///
         /// The `points` argument is interpreted as a list of pairs of floating point
         /// numbers, where each pair represents an x and y offset from the origin.
@@ -547,7 +548,7 @@ namespace FlutterBinding.UI
         ///
         ///  * [drawPoints], which takes `points` as a [List<Offset>] rather than a
         ///    [List<List<float> >].
-        public void DrawRawPoints(PointMode pointMode, List<double> points, SKPaint paint)
+        public void DrawRawPoints(SKPointMode pointMode, List<double> points, SKPaint paint)
         {
             //assert(pointMode != null);
             //assert(points != null);
@@ -610,7 +611,7 @@ namespace FlutterBinding.UI
                 int index3 = index0 + 3;
                 RSTransform rstTransform = transforms[i];
                 Rect rect = rects[i];
-                //assert(_rectIsValid(rect));
+                //assert(RectIsValid(rect));
                 rstTransformBuffer[index0] = rstTransform.scos;
                 rstTransformBuffer[index1] = rstTransform.ssin;
                 rstTransformBuffer[index2] = rstTransform.tx;
@@ -724,7 +725,7 @@ namespace FlutterBinding.UI
                 color.Value, 
                 (float)elevation, 
                 transparentOccluder,
-                (float)Window.Instance.devicePixelRatio);
+                (float)Window.Instance.DevicePixelRatio);
         }
     }
 }

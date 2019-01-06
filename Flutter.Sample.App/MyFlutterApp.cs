@@ -14,20 +14,20 @@ namespace Flutter.Sample.App
         {
             var window = FlutterBinding.UI.Window.Instance;
 
-            double devicePixelRatio = window.devicePixelRatio;
-            var physicalSize = window.physicalSize;
+            double devicePixelRatio = window.DevicePixelRatio;
+            var physicalSize = window.PhysicalSize;
             var logicalSize = physicalSize / devicePixelRatio;
 
             var paragraphBuilder = new ParagraphBuilder(new ParagraphStyle());
             paragraphBuilder.addText("Hello, world!");
             var paragraph = paragraphBuilder.build();
 
-            paragraph.layout(new ParagraphConstraints(width: logicalSize.width));
+            paragraph.Layout(new ParagraphConstraints(width: logicalSize.width));
 
             var physicalBounds = Offset.zero & physicalSize;
-            var recorder = new PictureRecorder();
+            var recorder = new SKPictureRecorder();
 
-            var canvas = new FlutterBinding.UI.Canvas(recorder, physicalBounds);
+            var canvas = new Canvas(recorder, physicalBounds);
             canvas.Scale((float)devicePixelRatio, (float)devicePixelRatio);
 
             PaintUtils.DrawCheckerboard(canvas, Rect.fromLTWH(0, 0, (float)physicalSize.width, (float)physicalSize.height));
@@ -42,10 +42,10 @@ namespace Flutter.Sample.App
             canvas.DrawCircle(new Offset(logicalSize.width / 2, logicalSize.height / 2), 100, circlePaint);
 
             canvas.DrawParagraph(paragraph, new Offset(
-                (logicalSize.width - paragraph.maxIntrinsicWidth) / 2.0,
-                (logicalSize.height - paragraph.height) / 2.0));
+                (logicalSize.width - Paragraph.MaxIntrinsicWidth) / 2.0,
+                (logicalSize.height - paragraph.Height) / 2.0));
 
-            var picture = recorder.endRecording();
+            var picture = recorder.EndRecording();
 
             var sceneBuilder = new SceneBuilder();
             sceneBuilder.PushClipRect(physicalBounds);
