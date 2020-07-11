@@ -403,316 +403,326 @@ using FlutterSDK.Material.Pickers.Inputdatepicker;
 using FlutterSDK.Material.Textfield;
 using FlutterSDK.Material.Textformfield;
 using FlutterSDK.Material.Popupmenutheme;
-namespace FlutterSDK.Material.Progressindicator{
-internal static class ProgressindicatorDefaultClass{
-public static double _KLinearProgressIndicatorHeight = default(double);
-public static double _KMinCircularProgressIndicatorSize = default(double);
-public static int _KIndeterminateLinearDuration = default(int);
-public static FlutterSDK.Animation.Tween.Animatable<double> _KStrokeHeadTween = default(FlutterSDK.Animation.Tween.Animatable<double>);
-public static FlutterSDK.Animation.Tween.Animatable<double> _KStrokeTailTween = default(FlutterSDK.Animation.Tween.Animatable<double>);
-public static FlutterSDK.Animation.Tween.Animatable<int> _KStepTween = default(FlutterSDK.Animation.Tween.Animatable<int>);
-public static FlutterSDK.Animation.Tween.Animatable<double> _KRotationTween = default(FlutterSDK.Animation.Tween.Animatable<double>);
-}
-
-public interface IProgressIndicator{
-void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
-double Value{get;}
-FlutterBinding.UI.Color BackgroundColor{get;}
-FlutterSDK.Animation.Animation.Animation<Color> ValueColor{get;}
-string SemanticsLabel{get;}
-string SemanticsValue{get;}
-}
-
-
-public class ProgressIndicator : FlutterSDK.Widgets.Framework.StatefulWidget
+namespace FlutterSDK.Material.Progressindicator
 {
-#region constructors
-public ProgressIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),double value = default(double),FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),FlutterSDK.Animation.Animation.Animation<Color> valueColor = default(FlutterSDK.Animation.Animation.Animation<Color>),string semanticsLabel = default(string),string semanticsValue = default(string))
-: base(key:key)
-{
-this.Value = value;
-this.BackgroundColor = backgroundColor;
-this.ValueColor = valueColor;
-this.SemanticsLabel = semanticsLabel;
-this.SemanticsValue = semanticsValue;throw new NotImplementedException(); }
-#endregion
+    internal static class ProgressindicatorDefaultClass
+    {
+        public static double _KLinearProgressIndicatorHeight = default(double);
+        public static double _KMinCircularProgressIndicatorSize = default(double);
+        public static int _KIndeterminateLinearDuration = default(int);
+        public static FlutterSDK.Animation.Tween.Animatable<double> _KStrokeHeadTween = default(FlutterSDK.Animation.Tween.Animatable<double>);
+        public static FlutterSDK.Animation.Tween.Animatable<double> _KStrokeTailTween = default(FlutterSDK.Animation.Tween.Animatable<double>);
+        public static FlutterSDK.Animation.Tween.Animatable<int> _KStepTween = default(FlutterSDK.Animation.Tween.Animatable<int>);
+        public static FlutterSDK.Animation.Tween.Animatable<double> _KRotationTween = default(FlutterSDK.Animation.Tween.Animatable<double>);
+    }
+
+    public interface IProgressIndicator
+    {
+        void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
+        double Value { get; }
+        FlutterBinding.UI.Color BackgroundColor { get; }
+        FlutterSDK.Animation.Animation.Animation<Color> ValueColor { get; }
+        string SemanticsLabel { get; }
+        string SemanticsValue { get; }
+    }
+
+
+    public class ProgressIndicator : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public ProgressIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double value = default(double), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Animation.Animation.Animation<Color> valueColor = default(FlutterSDK.Animation.Animation.Animation<Color>), string semanticsLabel = default(string), string semanticsValue = default(string))
+        : base(key: key)
+        {
+            this.Value = value;
+            this.BackgroundColor = backgroundColor;
+            this.ValueColor = valueColor;
+            this.SemanticsLabel = semanticsLabel;
+            this.SemanticsValue = semanticsValue; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual double Value { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual FlutterSDK.Animation.Animation.Animation<Color> ValueColor { get; set; }
+        public virtual string SemanticsLabel { get; set; }
+        public virtual string SemanticsValue { get; set; }
+        #endregion
 
-#region fields
-public virtual double Value{get;set;}
-public virtual FlutterBinding.UI.Color BackgroundColor{get;set;}
-public virtual FlutterSDK.Animation.Animation.Animation<Color> ValueColor{get;set;}
-public virtual string SemanticsLabel{get;set;}
-public virtual string SemanticsValue{get;set;}
-#endregion
+        #region methods
 
-#region methods
+        private Color _GetBackgroundColor(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-private Color _GetBackgroundColor(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
 
+        private Color _GetValueColor(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-private Color _GetValueColor(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
 
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildSemanticsWrapper(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget)) { throw new NotImplementedException(); }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildSemanticsWrapper(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget)){ throw new NotImplementedException(); }
+        #endregion
+    }
 
-#endregion
-}
 
+    public class _LinearProgressIndicatorPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
+    {
+        #region constructors
+        public _LinearProgressIndicatorPainter(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color valueColor = default(FlutterBinding.UI.Color), double value = default(double), double animationValue = default(double), TextDirection textDirection = default(TextDirection))
+        : base()
+        {
+            this.BackgroundColor = backgroundColor;
+            this.ValueColor = valueColor;
+            this.Value = value;
+            this.AnimationValue = animationValue;
+            this.TextDirection = textDirection; throw new NotImplementedException();
+        }
+        #endregion
 
-public class _LinearProgressIndicatorPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
-{
-#region constructors
-public _LinearProgressIndicatorPainter(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color valueColor = default(FlutterBinding.UI.Color),double value = default(double),double animationValue = default(double),TextDirection textDirection = default(TextDirection))
-: base()
-{
-this.BackgroundColor = backgroundColor;
-this.ValueColor = valueColor;
-this.Value = value;
-this.AnimationValue = animationValue;
-this.TextDirection = textDirection;throw new NotImplementedException(); }
-#endregion
+        #region fields
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual FlutterBinding.UI.Color ValueColor { get; set; }
+        public virtual double Value { get; set; }
+        public virtual double AnimationValue { get; set; }
+        public virtual TextDirection TextDirection { get; set; }
+        public virtual FlutterSDK.Animation.Curves.Curve Line1Head { get; set; }
+        public virtual FlutterSDK.Animation.Curves.Curve Line1Tail { get; set; }
+        public virtual FlutterSDK.Animation.Curves.Curve Line2Head { get; set; }
+        public virtual FlutterSDK.Animation.Curves.Curve Line2Tail { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void Paint(Canvas canvas, Size size) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterBinding.UI.Color BackgroundColor{get;set;}
-public virtual FlutterBinding.UI.Color ValueColor{get;set;}
-public virtual double Value{get;set;}
-public virtual double AnimationValue{get;set;}
-public virtual TextDirection TextDirection{get;set;}
-public virtual FlutterSDK.Animation.Curves.Curve Line1Head{get;set;}
-public virtual FlutterSDK.Animation.Curves.Curve Line1Tail{get;set;}
-public virtual FlutterSDK.Animation.Curves.Curve Line2Head{get;set;}
-public virtual FlutterSDK.Animation.Curves.Curve Line2Tail{get;set;}
-#endregion
 
-#region methods
+        public new bool ShouldRepaint(FlutterSDK.Material.Progressindicator._LinearProgressIndicatorPainter oldPainter) { throw new NotImplementedException(); }
+        public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate) { throw new NotImplementedException(); }
 
-public new void Paint(Canvas canvas,Size size){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new bool ShouldRepaint(FlutterSDK.Material.Progressindicator._LinearProgressIndicatorPainter oldPainter){ throw new NotImplementedException(); }
-public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate){ throw new NotImplementedException(); }
+    public class LinearProgressIndicator : FlutterSDK.Material.Progressindicator.ProgressIndicator
+    {
+        #region constructors
+        public LinearProgressIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double value = default(double), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Animation.Animation.Animation<Color> valueColor = default(FlutterSDK.Animation.Animation.Animation<Color>), string semanticsLabel = default(string), string semanticsValue = default(string))
+        : base(key: key, value: value, backgroundColor: backgroundColor, valueColor: valueColor, semanticsLabel: semanticsLabel, semanticsValue: semanticsValue)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        #endregion
 
+        #region methods
 
-public class LinearProgressIndicator : FlutterSDK.Material.Progressindicator.ProgressIndicator
-{
-#region constructors
-public LinearProgressIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),double value = default(double),FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),FlutterSDK.Animation.Animation.Animation<Color> valueColor = default(FlutterSDK.Animation.Animation.Animation<Color>),string semanticsLabel = default(string),string semanticsValue = default(string))
-: base(key:key,value:value,backgroundColor:backgroundColor,valueColor:valueColor,semanticsLabel:semanticsLabel,semanticsValue:semanticsValue)
-{
-throw new NotImplementedException(); }
-#endregion
+        public new FlutterSDK.Material.Progressindicator._LinearProgressIndicatorState CreateState() { throw new NotImplementedException(); }
 
-#region fields
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public new FlutterSDK.Material.Progressindicator._LinearProgressIndicatorState CreateState(){ throw new NotImplementedException(); }
+    public class _LinearProgressIndicatorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Progressindicator.LinearProgressIndicator>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _LinearProgressIndicatorState()
+        { }
+        #endregion
 
-#endregion
-}
+        #region fields
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
+        #endregion
 
+        #region methods
 
-public class _LinearProgressIndicatorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Progressindicator.LinearProgressIndicator>,ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-#region constructors
-public _LinearProgressIndicatorState()
-{ }
-#endregion
+        public new void InitState() { throw new NotImplementedException(); }
 
-#region fields
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller{get;set;}
-#endregion
 
-#region methods
+        public new void DidUpdateWidget(FlutterSDK.Material.Progressindicator.LinearProgressIndicator oldWidget) { throw new NotImplementedException(); }
 
-public new void InitState(){ throw new NotImplementedException(); }
 
+        public new void Dispose() { throw new NotImplementedException(); }
 
-public new void DidUpdateWidget(FlutterSDK.Material.Progressindicator.LinearProgressIndicator oldWidget){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildIndicator(FlutterSDK.Widgets.Framework.BuildContext context, double animationValue, TextDirection textDirection) { throw new NotImplementedException(); }
 
-public new void Dispose(){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildIndicator(FlutterSDK.Widgets.Framework.BuildContext context,double animationValue,TextDirection textDirection){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+    public class _CircularProgressIndicatorPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
+    {
+        #region constructors
+        public _CircularProgressIndicatorPainter(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color valueColor = default(FlutterBinding.UI.Color), double value = default(double), double headValue = default(double), double tailValue = default(double), int stepValue = default(int), double rotationValue = default(double), double strokeWidth = default(double))
+        : base()
+        {
+            this.BackgroundColor = backgroundColor;
+            this.ValueColor = valueColor;
+            this.Value = value;
+            this.HeadValue = headValue;
+            this.TailValue = tailValue;
+            this.StepValue = stepValue;
+            this.RotationValue = rotationValue;
+            this.StrokeWidth = strokeWidth; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual FlutterBinding.UI.Color ValueColor { get; set; }
+        public virtual double Value { get; set; }
+        public virtual double HeadValue { get; set; }
+        public virtual double TailValue { get; set; }
+        public virtual int StepValue { get; set; }
+        public virtual double RotationValue { get; set; }
+        public virtual double StrokeWidth { get; set; }
+        public virtual double ArcStart { get; set; }
+        public virtual double ArcSweep { get; set; }
+        internal virtual double _TwoPi { get; set; }
+        internal virtual double _Epsilon { get; set; }
+        internal virtual double _Sweep { get; set; }
+        internal virtual double _StartAngle { get; set; }
+        #endregion
 
+        #region methods
 
-public class _CircularProgressIndicatorPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
-{
-#region constructors
-public _CircularProgressIndicatorPainter(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color valueColor = default(FlutterBinding.UI.Color),double value = default(double),double headValue = default(double),double tailValue = default(double),int stepValue = default(int),double rotationValue = default(double),double strokeWidth = default(double))
-: base()
-{
-this.BackgroundColor = backgroundColor;
-this.ValueColor = valueColor;
-this.Value = value;
-this.HeadValue = headValue;
-this.TailValue = tailValue;
-this.StepValue = stepValue;
-this.RotationValue = rotationValue;
-this.StrokeWidth = strokeWidth;throw new NotImplementedException(); }
-#endregion
+        public new void Paint(Canvas canvas, Size size) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterBinding.UI.Color BackgroundColor{get;set;}
-public virtual FlutterBinding.UI.Color ValueColor{get;set;}
-public virtual double Value{get;set;}
-public virtual double HeadValue{get;set;}
-public virtual double TailValue{get;set;}
-public virtual int StepValue{get;set;}
-public virtual double RotationValue{get;set;}
-public virtual double StrokeWidth{get;set;}
-public virtual double ArcStart{get;set;}
-public virtual double ArcSweep{get;set;}
-internal virtual double _TwoPi{get;set;}
-internal virtual double _Epsilon{get;set;}
-internal virtual double _Sweep{get;set;}
-internal virtual double _StartAngle{get;set;}
-#endregion
 
-#region methods
+        public new bool ShouldRepaint(FlutterSDK.Material.Progressindicator._CircularProgressIndicatorPainter oldPainter) { throw new NotImplementedException(); }
+        public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate) { throw new NotImplementedException(); }
 
-public new void Paint(Canvas canvas,Size size){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new bool ShouldRepaint(FlutterSDK.Material.Progressindicator._CircularProgressIndicatorPainter oldPainter){ throw new NotImplementedException(); }
-public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate){ throw new NotImplementedException(); }
+    public class CircularProgressIndicator : FlutterSDK.Material.Progressindicator.ProgressIndicator
+    {
+        #region constructors
+        public CircularProgressIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double value = default(double), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Animation.Animation.Animation<Color> valueColor = default(FlutterSDK.Animation.Animation.Animation<Color>), double strokeWidth = 4.0, string semanticsLabel = default(string), string semanticsValue = default(string))
+        : base(key: key, value: value, backgroundColor: backgroundColor, valueColor: valueColor, semanticsLabel: semanticsLabel, semanticsValue: semanticsValue)
+        {
+            this.StrokeWidth = strokeWidth; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual double StrokeWidth { get; set; }
+        #endregion
 
+        #region methods
 
-public class CircularProgressIndicator : FlutterSDK.Material.Progressindicator.ProgressIndicator
-{
-#region constructors
-public CircularProgressIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),double value = default(double),FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),FlutterSDK.Animation.Animation.Animation<Color> valueColor = default(FlutterSDK.Animation.Animation.Animation<Color>),double strokeWidth = 4.0,string semanticsLabel = default(string),string semanticsValue = default(string))
-: base(key:key,value:value,backgroundColor:backgroundColor,valueColor:valueColor,semanticsLabel:semanticsLabel,semanticsValue:semanticsValue)
-{
-this.StrokeWidth = strokeWidth;throw new NotImplementedException(); }
-#endregion
+        public new FlutterSDK.Material.Progressindicator._CircularProgressIndicatorState CreateState() { throw new NotImplementedException(); }
 
-#region fields
-public virtual double StrokeWidth{get;set;}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public new FlutterSDK.Material.Progressindicator._CircularProgressIndicatorState CreateState(){ throw new NotImplementedException(); }
+    public class _CircularProgressIndicatorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Progressindicator.CircularProgressIndicator>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _CircularProgressIndicatorState()
+        { }
+        #endregion
 
-#endregion
-}
+        #region fields
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
+        #endregion
 
+        #region methods
 
-public class _CircularProgressIndicatorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Progressindicator.CircularProgressIndicator>,ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-#region constructors
-public _CircularProgressIndicatorState()
-{ }
-#endregion
+        public new void InitState() { throw new NotImplementedException(); }
 
-#region fields
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller{get;set;}
-#endregion
 
-#region methods
+        public new void DidUpdateWidget(FlutterSDK.Material.Progressindicator.CircularProgressIndicator oldWidget) { throw new NotImplementedException(); }
 
-public new void InitState(){ throw new NotImplementedException(); }
 
+        public new void Dispose() { throw new NotImplementedException(); }
 
-public new void DidUpdateWidget(FlutterSDK.Material.Progressindicator.CircularProgressIndicator oldWidget){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildIndicator(FlutterSDK.Widgets.Framework.BuildContext context, double headValue, double tailValue, int stepValue, double rotationValue) { throw new NotImplementedException(); }
 
-public new void Dispose(){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildAnimation() { throw new NotImplementedException(); }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildIndicator(FlutterSDK.Widgets.Framework.BuildContext context,double headValue,double tailValue,int stepValue,double rotationValue){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildAnimation(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+    public class _RefreshProgressIndicatorPainter : FlutterSDK.Material.Progressindicator._CircularProgressIndicatorPainter
+    {
+        #region constructors
+        public _RefreshProgressIndicatorPainter(FlutterBinding.UI.Color valueColor = default(FlutterBinding.UI.Color), double value = default(double), double headValue = default(double), double tailValue = default(double), int stepValue = default(int), double rotationValue = default(double), double strokeWidth = default(double), double arrowheadScale = default(double))
+        : base(valueColor: valueColor, value: value, headValue: headValue, tailValue: tailValue, stepValue: stepValue, rotationValue: rotationValue, strokeWidth: strokeWidth)
+        {
+            this.ArrowheadScale = arrowheadScale; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual double ArrowheadScale { get; set; }
+        #endregion
 
+        #region methods
 
-public class _RefreshProgressIndicatorPainter : FlutterSDK.Material.Progressindicator._CircularProgressIndicatorPainter
-{
-#region constructors
-public _RefreshProgressIndicatorPainter(FlutterBinding.UI.Color valueColor = default(FlutterBinding.UI.Color),double value = default(double),double headValue = default(double),double tailValue = default(double),int stepValue = default(int),double rotationValue = default(double),double strokeWidth = default(double),double arrowheadScale = default(double))
-: base(valueColor:valueColor,value:value,headValue:headValue,tailValue:tailValue,stepValue:stepValue,rotationValue:rotationValue,strokeWidth:strokeWidth)
-{
-this.ArrowheadScale = arrowheadScale;throw new NotImplementedException(); }
-#endregion
+        public virtual void PaintArrowhead(Canvas canvas, Size size) { throw new NotImplementedException(); }
 
-#region fields
-public virtual double ArrowheadScale{get;set;}
-#endregion
 
-#region methods
+        public new void Paint(Canvas canvas, Size size) { throw new NotImplementedException(); }
 
-public virtual void PaintArrowhead(Canvas canvas,Size size){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void Paint(Canvas canvas,Size size){ throw new NotImplementedException(); }
+    public class RefreshProgressIndicator : FlutterSDK.Material.Progressindicator.CircularProgressIndicator
+    {
+        #region constructors
+        public RefreshProgressIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double value = default(double), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Animation.Animation.Animation<Color> valueColor = default(FlutterSDK.Animation.Animation.Animation<Color>), double strokeWidth = 2.0, string semanticsLabel = default(string), string semanticsValue = default(string))
+        : base(key: key, value: value, backgroundColor: backgroundColor, valueColor: valueColor, strokeWidth: strokeWidth, semanticsLabel: semanticsLabel, semanticsValue: semanticsValue)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        #endregion
 
+        #region methods
 
-public class RefreshProgressIndicator : FlutterSDK.Material.Progressindicator.CircularProgressIndicator
-{
-#region constructors
-public RefreshProgressIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),double value = default(double),FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),FlutterSDK.Animation.Animation.Animation<Color> valueColor = default(FlutterSDK.Animation.Animation.Animation<Color>),double strokeWidth = 2.0,string semanticsLabel = default(string),string semanticsValue = default(string))
-: base(key:key,value:value,backgroundColor:backgroundColor,valueColor:valueColor,strokeWidth:strokeWidth,semanticsLabel:semanticsLabel,semanticsValue:semanticsValue)
-{
-throw new NotImplementedException(); }
-#endregion
+        public new FlutterSDK.Material.Progressindicator._RefreshProgressIndicatorState CreateState() { throw new NotImplementedException(); }
 
-#region fields
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public new FlutterSDK.Material.Progressindicator._RefreshProgressIndicatorState CreateState(){ throw new NotImplementedException(); }
+    public class _RefreshProgressIndicatorState : FlutterSDK.Material.Progressindicator._CircularProgressIndicatorState
+    {
+        #region constructors
+        public _RefreshProgressIndicatorState()
+        { }
+        #endregion
 
-#endregion
-}
+        #region fields
+        internal virtual double _IndicatorSize { get; set; }
+        #endregion
 
+        #region methods
 
-public class _RefreshProgressIndicatorState : FlutterSDK.Material.Progressindicator._CircularProgressIndicatorState
-{
-#region constructors
-public _RefreshProgressIndicatorState()
-{ }
-#endregion
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual double _IndicatorSize{get;set;}
-#endregion
 
-#region methods
+        protected new FlutterSDK.Widgets.Framework.Widget _BuildIndicator(FlutterSDK.Widgets.Framework.BuildContext context, double headValue, double tailValue, int stepValue, double rotationValue) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-
-protected new FlutterSDK.Widgets.Framework.Widget _BuildIndicator(FlutterSDK.Widgets.Framework.BuildContext context,double headValue,double tailValue,int stepValue,double rotationValue){ throw new NotImplementedException(); }
-
-#endregion
-}
+        #endregion
+    }
 
 }

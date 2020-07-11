@@ -291,191 +291,196 @@ using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
-namespace FlutterSDK.Cupertino.Switch{
-internal static class SwitchDefaultClass{
-public static double _KTrackWidth = default(double);
-public static double _KTrackHeight = default(double);
-public static double _KTrackRadius = default(double);
-public static double _KTrackInnerStart = default(double);
-public static double _KTrackInnerEnd = default(double);
-public static double _KTrackInnerLength = default(double);
-public static double _KSwitchWidth = default(double);
-public static double _KSwitchHeight = default(double);
-public static double _KCupertinoSwitchDisabledOpacity = default(double);
-public static TimeSpan _KReactionDuration = default(TimeSpan);
-public static TimeSpan _KToggleDuration = default(TimeSpan);
-}
-
-public class CupertinoSwitch : FlutterSDK.Widgets.Framework.StatefulWidget
+namespace FlutterSDK.Cupertino.Switch
 {
-#region constructors
-public CupertinoSwitch(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),bool value = default(bool),FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>),FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color trackColor = default(FlutterBinding.UI.Color),FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
-: base(key:key)
-{
-this.Value = value;
-this.OnChanged = onChanged;
-this.ActiveColor = activeColor;
-this.TrackColor = trackColor;
-this.DragStartBehavior = dragStartBehavior;throw new NotImplementedException(); }
-#endregion
+    internal static class SwitchDefaultClass
+    {
+        public static double _KTrackWidth = default(double);
+        public static double _KTrackHeight = default(double);
+        public static double _KTrackRadius = default(double);
+        public static double _KTrackInnerStart = default(double);
+        public static double _KTrackInnerEnd = default(double);
+        public static double _KTrackInnerLength = default(double);
+        public static double _KSwitchWidth = default(double);
+        public static double _KSwitchHeight = default(double);
+        public static double _KCupertinoSwitchDisabledOpacity = default(double);
+        public static TimeSpan _KReactionDuration = default(TimeSpan);
+        public static TimeSpan _KToggleDuration = default(TimeSpan);
+    }
 
-#region fields
-public virtual bool Value{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged{get;set;}
-public virtual FlutterBinding.UI.Color ActiveColor{get;set;}
-public virtual FlutterBinding.UI.Color TrackColor{get;set;}
-public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior{get;set;}
-#endregion
+    public class CupertinoSwitch : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public CupertinoSwitch(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool value = default(bool), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color trackColor = default(FlutterBinding.UI.Color), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
+        : base(key: key)
+        {
+            this.Value = value;
+            this.OnChanged = onChanged;
+            this.ActiveColor = activeColor;
+            this.TrackColor = trackColor;
+            this.DragStartBehavior = dragStartBehavior; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual bool Value { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged { get; set; }
+        public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
+        public virtual FlutterBinding.UI.Color TrackColor { get; set; }
+        public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
+        #endregion
 
-public new FlutterSDK.Cupertino.Switch._CupertinoSwitchState CreateState(){ throw new NotImplementedException(); }
+        #region methods
 
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _CupertinoSwitchState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Switch.CupertinoSwitch>,ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-#region constructors
-public _CupertinoSwitchState()
-{ }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Gestures.Tap.TapGestureRecognizer _Tap{get;set;}
-internal virtual FlutterSDK.Gestures.Monodrag.HorizontalDragGestureRecognizer _Drag{get;set;}
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _PositionController{get;set;}
-public virtual FlutterSDK.Animation.Animations.CurvedAnimation Position{get;set;}
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _ReactionController{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _Reaction{get;set;}
-public virtual bool NeedsPositionAnimation{get;set;}
-public virtual bool IsInteractive{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new void InitState(){ throw new NotImplementedException(); }
+        public new FlutterSDK.Cupertino.Switch._CupertinoSwitchState CreateState() { throw new NotImplementedException(); }
 
 
-public new void DidUpdateWidget(FlutterSDK.Cupertino.Switch.CupertinoSwitch oldWidget){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-private void _ResumePositionAnimation(bool isLinear = true){ throw new NotImplementedException(); }
+    public class _CupertinoSwitchState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Switch.CupertinoSwitch>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _CupertinoSwitchState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Gestures.Tap.TapGestureRecognizer _Tap { get; set; }
+        internal virtual FlutterSDK.Gestures.Monodrag.HorizontalDragGestureRecognizer _Drag { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _PositionController { get; set; }
+        public virtual FlutterSDK.Animation.Animations.CurvedAnimation Position { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _ReactionController { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _Reaction { get; set; }
+        public virtual bool NeedsPositionAnimation { get; set; }
+        public virtual bool IsInteractive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-private void _HandleTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details){ throw new NotImplementedException(); }
+        public new void DidUpdateWidget(FlutterSDK.Cupertino.Switch.CupertinoSwitch oldWidget) { throw new NotImplementedException(); }
 
 
-private void _HandleTap(){ throw new NotImplementedException(); }
+        private void _ResumePositionAnimation(bool isLinear = true) { throw new NotImplementedException(); }
 
 
-private void _HandleTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details){ throw new NotImplementedException(); }
+        private void _HandleTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details) { throw new NotImplementedException(); }
 
 
-private void _HandleTapCancel(){ throw new NotImplementedException(); }
+        private void _HandleTap() { throw new NotImplementedException(); }
 
 
-private void _HandleDragStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details){ throw new NotImplementedException(); }
+        private void _HandleTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details) { throw new NotImplementedException(); }
 
 
-private void _HandleDragUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details){ throw new NotImplementedException(); }
+        private void _HandleTapCancel() { throw new NotImplementedException(); }
 
 
-private void _HandleDragEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details){ throw new NotImplementedException(); }
+        private void _HandleDragStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details) { throw new NotImplementedException(); }
 
 
-private void _EmitVibration(){ throw new NotImplementedException(); }
+        private void _HandleDragUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        private void _HandleDragEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details) { throw new NotImplementedException(); }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
-
-#endregion
-}
+        private void _EmitVibration() { throw new NotImplementedException(); }
 
 
-public class _CupertinoSwitchRenderObjectWidget : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
-{
-#region constructors
-public _CupertinoSwitchRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),bool value = default(bool),FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color trackColor = default(FlutterBinding.UI.Color),FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>),TextDirection textDirection = default(TextDirection),FlutterSDK.Cupertino.Switch._CupertinoSwitchState state = default(FlutterSDK.Cupertino.Switch._CupertinoSwitchState))
-: base(key:key)
-{
-this.Value = value;
-this.ActiveColor = activeColor;
-this.TrackColor = trackColor;
-this.OnChanged = onChanged;
-this.TextDirection = textDirection;
-this.State = state;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual bool Value{get;set;}
-public virtual FlutterBinding.UI.Color ActiveColor{get;set;}
-public virtual FlutterBinding.UI.Color TrackColor{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged{get;set;}
-public virtual FlutterSDK.Cupertino.Switch._CupertinoSwitchState State{get;set;}
-public virtual TextDirection TextDirection{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Cupertino.Switch._RenderCupertinoSwitch CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Cupertino.Switch._RenderCupertinoSwitch renderObject){ throw new NotImplementedException(); }
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Rendering.@object.RenderObject renderObject){ throw new NotImplementedException(); }
+        public new void Dispose() { throw new NotImplementedException(); }
 
-#endregion
-}
-
-
-public class _RenderCupertinoSwitch : FlutterSDK.Rendering.Proxybox.RenderConstrainedBox
-{
-#region constructors
-public _RenderCupertinoSwitch(bool value = default(bool),FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color trackColor = default(FlutterBinding.UI.Color),FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>),TextDirection textDirection = default(TextDirection),FlutterSDK.Cupertino.Switch._CupertinoSwitchState state = default(FlutterSDK.Cupertino.Switch._CupertinoSwitchState))
-: base(additionalConstraints:BoxConstraints.TightFor(width:SwitchDefaultClass._KSwitchWidth, height:SwitchDefaultClass._KSwitchHeight))
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Cupertino.Switch._CupertinoSwitchState _State{get;set;}
-internal virtual bool _Value{get;set;}
-internal virtual FlutterBinding.UI.Color _ActiveColor{get;set;}
-internal virtual FlutterBinding.UI.Color _TrackColor{get;set;}
-internal virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> _OnChanged{get;set;}
-internal virtual TextDirection _TextDirection{get;set;}
-public virtual bool Value{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterBinding.UI.Color ActiveColor{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterBinding.UI.Color TrackColor{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual TextDirection TextDirection{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool IsInteractive{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new bool HitTestSelf(FlutterBinding.UI.Offset position){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event,FlutterSDK.Rendering.Box.BoxHitTestEntry entry){ throw new NotImplementedException(); }
+    public class _CupertinoSwitchRenderObjectWidget : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
+    {
+        #region constructors
+        public _CupertinoSwitchRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool value = default(bool), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color trackColor = default(FlutterBinding.UI.Color), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), TextDirection textDirection = default(TextDirection), FlutterSDK.Cupertino.Switch._CupertinoSwitchState state = default(FlutterSDK.Cupertino.Switch._CupertinoSwitchState))
+        : base(key: key)
+        {
+            this.Value = value;
+            this.ActiveColor = activeColor;
+            this.TrackColor = trackColor;
+            this.OnChanged = onChanged;
+            this.TextDirection = textDirection;
+            this.State = state; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual bool Value { get; set; }
+        public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
+        public virtual FlutterBinding.UI.Color TrackColor { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged { get; set; }
+        public virtual FlutterSDK.Cupertino.Switch._CupertinoSwitchState State { get; set; }
+        public virtual TextDirection TextDirection { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Cupertino.Switch._RenderCupertinoSwitch CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config){ throw new NotImplementedException(); }
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Cupertino.Switch._RenderCupertinoSwitch renderObject) { throw new NotImplementedException(); }
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+    public class _RenderCupertinoSwitch : FlutterSDK.Rendering.Proxybox.RenderConstrainedBox
+    {
+        #region constructors
+        public _RenderCupertinoSwitch(bool value = default(bool), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color trackColor = default(FlutterBinding.UI.Color), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), TextDirection textDirection = default(TextDirection), FlutterSDK.Cupertino.Switch._CupertinoSwitchState state = default(FlutterSDK.Cupertino.Switch._CupertinoSwitchState))
+        : base(additionalConstraints: BoxConstraints.TightFor(width: SwitchDefaultClass._KSwitchWidth, height: SwitchDefaultClass._KSwitchHeight))
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Cupertino.Switch._CupertinoSwitchState _State { get; set; }
+        internal virtual bool _Value { get; set; }
+        internal virtual FlutterBinding.UI.Color _ActiveColor { get; set; }
+        internal virtual FlutterBinding.UI.Color _TrackColor { get; set; }
+        internal virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> _OnChanged { get; set; }
+        internal virtual TextDirection _TextDirection { get; set; }
+        public virtual bool Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Color ActiveColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Color TrackColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsInteractive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new bool HitTestSelf(FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description){ throw new NotImplementedException(); }
+        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Rendering.Box.BoxHitTestEntry entry) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config) { throw new NotImplementedException(); }
+
+
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

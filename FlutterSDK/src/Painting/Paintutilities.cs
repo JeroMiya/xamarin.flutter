@@ -421,11 +421,14 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Painting.Paintutilities{
-internal static class PaintutilitiesDefaultClass{
-internal static void PaintZigZag(Canvas canvas,SKPaint paint,FlutterBinding.UI.Offset start,FlutterBinding.UI.Offset end,int zigs,double width){
-throw new NotImplementedException();
-}
+namespace FlutterSDK.Painting.Paintutilities
+{
+    internal static class PaintutilitiesDefaultClass
+    {
+        internal static void PaintZigZag(Canvas canvas, SKPaint paint, FlutterBinding.UI.Offset start, FlutterBinding.UI.Offset end, int zigs, double width)
+        {
+            throw new NotImplementedException();
+        }
 
-}
+    }
 }

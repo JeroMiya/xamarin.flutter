@@ -410,78 +410,81 @@ using FlutterSDK.Material.Drawer;
 using FlutterSDK.Material.Floatingactionbuttonlocation;
 using FlutterSDK.Material.Snackbar;
 using FlutterSDK.Material.Snackbartheme;
-namespace FlutterSDK.Material.Scrollbar{
-internal static class ScrollbarDefaultClass{
-public static double _KScrollbarThickness = default(double);
-public static TimeSpan _KScrollbarFadeDuration = default(TimeSpan);
-public static TimeSpan _KScrollbarTimeToFade = default(TimeSpan);
-}
-
-public class Scrollbar : FlutterSDK.Widgets.Framework.StatefulWidget
+namespace FlutterSDK.Material.Scrollbar
 {
-#region constructors
-public Scrollbar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController),bool isAlwaysShown = false)
-: base(key:key)
-{
-this.Child = child;
-this.Controller = controller;
-this.IsAlwaysShown = isAlwaysShown;throw new NotImplementedException(); }
-#endregion
+    internal static class ScrollbarDefaultClass
+    {
+        public static double _KScrollbarThickness = default(double);
+        public static TimeSpan _KScrollbarFadeDuration = default(TimeSpan);
+        public static TimeSpan _KScrollbarTimeToFade = default(TimeSpan);
+    }
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller{get;set;}
-public virtual bool IsAlwaysShown{get;set;}
-#endregion
+    public class Scrollbar : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public Scrollbar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool isAlwaysShown = false)
+        : base(key: key)
+        {
+            this.Child = child;
+            this.Controller = controller;
+            this.IsAlwaysShown = isAlwaysShown; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller { get; set; }
+        public virtual bool IsAlwaysShown { get; set; }
+        #endregion
 
-public new FlutterSDK.Material.Scrollbar._ScrollbarState CreateState(){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new FlutterSDK.Material.Scrollbar._ScrollbarState CreateState() { throw new NotImplementedException(); }
 
-
-public class _ScrollbarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Scrollbar.Scrollbar>,ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-#region constructors
-public _ScrollbarState()
-{ }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Widgets.Scrollbar.ScrollbarPainter _MaterialPainter{get;set;}
-internal virtual TextDirection _TextDirection{get;set;}
-internal virtual FlutterBinding.UI.Color _ThemeColor{get;set;}
-internal virtual bool _UseCupertinoScrollbar{get;set;}
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _FadeoutAnimationController{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _FadeoutOpacityAnimation{get;set;}
-internal virtual Timer _FadeoutTimer{get;set;}
-#endregion
-
-#region methods
-
-public new void InitState(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void DidChangeDependencies(){ throw new NotImplementedException(); }
+    public class _ScrollbarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Scrollbar.Scrollbar>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _ScrollbarState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Scrollbar.ScrollbarPainter _MaterialPainter { get; set; }
+        internal virtual TextDirection _TextDirection { get; set; }
+        internal virtual FlutterBinding.UI.Color _ThemeColor { get; set; }
+        internal virtual bool _UseCupertinoScrollbar { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _FadeoutAnimationController { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _FadeoutOpacityAnimation { get; set; }
+        internal virtual Timer _FadeoutTimer { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-public new void DidUpdateWidget(FlutterSDK.Material.Scrollbar.Scrollbar oldWidget){ throw new NotImplementedException(); }
+        public new void DidChangeDependencies() { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Widgets.Scrollbar.ScrollbarPainter _BuildMaterialScrollbarPainter(){ throw new NotImplementedException(); }
+        public new void DidUpdateWidget(FlutterSDK.Material.Scrollbar.Scrollbar oldWidget) { throw new NotImplementedException(); }
 
 
-private bool _HandleScrollNotification(FlutterSDK.Widgets.Scrollnotification.ScrollNotification notification){ throw new NotImplementedException(); }
+        private FlutterSDK.Widgets.Scrollbar.ScrollbarPainter _BuildMaterialScrollbarPainter() { throw new NotImplementedException(); }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+        private bool _HandleScrollNotification(FlutterSDK.Widgets.Scrollnotification.ScrollNotification notification) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new void Dispose() { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

@@ -421,47 +421,51 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Services.Clipboard{
-internal static class ClipboardDefaultClass{
-}
-
-public class ClipboardData
+namespace FlutterSDK.Services.Clipboard
 {
-#region constructors
-public ClipboardData(string text = default(string))
-{
-this.Text = text;throw new NotImplementedException(); }
-#endregion
+    internal static class ClipboardDefaultClass
+    {
+    }
 
-#region fields
-public virtual string Text{get;set;}
-#endregion
+    public class ClipboardData
+    {
+        #region constructors
+        public ClipboardData(string text = default(string))
+        {
+            this.Text = text; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
-#endregion
-}
+        #region fields
+        public virtual string Text { get; set; }
+        #endregion
 
-
-public class Clipboard
-{
-#region constructors
-internal Clipboard()
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual string KTextPlain{get;set;}
-#endregion
-
-#region methods
-
-public virtual Future<object> SetData(FlutterSDK.Services.Clipboard.ClipboardData data){ throw new NotImplementedException(); }
+        #region methods
+        #endregion
+    }
 
 
-public virtual Future<FlutterSDK.Services.Clipboard.ClipboardData> GetData(string format){ throw new NotImplementedException(); }
+    public class Clipboard
+    {
+        #region constructors
+        internal Clipboard()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual string KTextPlain { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual Future<object> SetData(FlutterSDK.Services.Clipboard.ClipboardData data) { throw new NotImplementedException(); }
+
+
+        public virtual Future<FlutterSDK.Services.Clipboard.ClipboardData> GetData(string format) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

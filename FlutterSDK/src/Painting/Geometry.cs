@@ -420,11 +420,14 @@ using FlutterSDK.Material.Inksplash;
 using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
-namespace FlutterSDK.Painting.Geometry{
-internal static class GeometryDefaultClass{
-internal static Offset PositionDependentBox(Size size = default(Size),Size childSize = default(Size),FlutterBinding.UI.Offset target = default(FlutterBinding.UI.Offset),bool preferBelow = default(bool),double verticalOffset = 0.0,double margin = 10.0){
-throw new NotImplementedException();
-}
+namespace FlutterSDK.Painting.Geometry
+{
+    internal static class GeometryDefaultClass
+    {
+        internal static Offset PositionDependentBox(Size size = default(Size), Size childSize = default(Size), FlutterBinding.UI.Offset target = default(FlutterBinding.UI.Offset), bool preferBelow = default(bool), double verticalOffset = 0.0, double margin = 10.0)
+        {
+            throw new NotImplementedException();
+        }
 
-}
+    }
 }

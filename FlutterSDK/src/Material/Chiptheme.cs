@@ -373,101 +373,106 @@ using FlutterSDK.Material.Checkbox;
 using FlutterSDK.Material.Chiptheme;
 using FlutterSDK.Material.Feedback;
 using FlutterSDK.Material.Tooltip;
-namespace FlutterSDK.Material.Chiptheme{
-internal static class ChipthemeDefaultClass{
-}
-
-public class ChipTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
+namespace FlutterSDK.Material.Chiptheme
 {
-#region constructors
-public ChipTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Material.Chiptheme.ChipThemeData data = default(FlutterSDK.Material.Chiptheme.ChipThemeData),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key,child:child)
-{
-this.Data = data;throw new NotImplementedException(); }
-#endregion
+    internal static class ChipthemeDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Material.Chiptheme.ChipThemeData Data{get;set;}
-#endregion
+    public class ChipTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
+    {
+        #region constructors
+        public ChipTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Chiptheme.ChipThemeData data = default(FlutterSDK.Material.Chiptheme.ChipThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            this.Data = data; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Material.Chiptheme.ChipThemeData Data { get; set; }
+        #endregion
 
-public virtual FlutterSDK.Material.Chiptheme.ChipThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
 
-
-public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Widgets.Framework.Widget child){ throw new NotImplementedException(); }
-
-
-public new bool UpdateShouldNotify(FlutterSDK.Material.Chiptheme.ChipTheme oldWidget){ throw new NotImplementedException(); }
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual FlutterSDK.Material.Chiptheme.ChipThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public class ChipThemeData : IDiagnosticable
-{
-#region constructors
-public ChipThemeData(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color deleteIconColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color secondarySelectedColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color selectedShadowColor = default(FlutterBinding.UI.Color),bool showCheckmark = default(bool),FlutterBinding.UI.Color checkmarkColor = default(FlutterBinding.UI.Color),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder),FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Painting.Textstyle.TextStyle secondaryLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),Brightness brightness = default(Brightness),double elevation = default(double),double pressElevation = default(double))
-: base()
-{
-this.BackgroundColor = backgroundColor;
-this.DeleteIconColor = deleteIconColor;
-this.DisabledColor = disabledColor;
-this.SelectedColor = selectedColor;
-this.SecondarySelectedColor = secondarySelectedColor;
-this.ShadowColor = shadowColor;
-this.SelectedShadowColor = selectedShadowColor;
-this.ShowCheckmark = showCheckmark;
-this.CheckmarkColor = checkmarkColor;
-this.LabelPadding = labelPadding;
-this.Padding = padding;
-this.Shape = shape;
-this.LabelStyle = labelStyle;
-this.SecondaryLabelStyle = secondaryLabelStyle;
-this.Brightness = brightness;
-this.Elevation = elevation;
-this.PressElevation = pressElevation;throw new NotImplementedException(); }
-public static ChipThemeData FromDefaults(Brightness brightness = default(Brightness),FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color secondaryColor = default(FlutterBinding.UI.Color),FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
-{
-var instance =new ChipThemeData();throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterBinding.UI.Color BackgroundColor{get;set;}
-public virtual FlutterBinding.UI.Color DeleteIconColor{get;set;}
-public virtual FlutterBinding.UI.Color DisabledColor{get;set;}
-public virtual FlutterBinding.UI.Color SelectedColor{get;set;}
-public virtual FlutterBinding.UI.Color SecondarySelectedColor{get;set;}
-public virtual FlutterBinding.UI.Color ShadowColor{get;set;}
-public virtual FlutterBinding.UI.Color SelectedShadowColor{get;set;}
-public virtual bool ShowCheckmark{get;set;}
-public virtual FlutterBinding.UI.Color CheckmarkColor{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry LabelPadding{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding{get;set;}
-public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape{get;set;}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle LabelStyle{get;set;}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle SecondaryLabelStyle{get;set;}
-public virtual Brightness Brightness{get;set;}
-public virtual double Elevation{get;set;}
-public virtual double PressElevation{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public virtual FlutterSDK.Material.Chiptheme.ChipThemeData CopyWith(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color deleteIconColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color secondarySelectedColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color selectedShadowColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color checkmarkColor = default(FlutterBinding.UI.Color),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder),FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Painting.Textstyle.TextStyle secondaryLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),Brightness brightness = default(Brightness),double elevation = default(double),double pressElevation = default(double)){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Material.Chiptheme.ChipThemeData Lerp(FlutterSDK.Material.Chiptheme.ChipThemeData a,FlutterSDK.Material.Chiptheme.ChipThemeData b,double t){ throw new NotImplementedException(); }
+        public new bool UpdateShouldNotify(FlutterSDK.Material.Chiptheme.ChipTheme oldWidget) { throw new NotImplementedException(); }
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+    public class ChipThemeData : IDiagnosticable
+    {
+        #region constructors
+        public ChipThemeData(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color deleteIconColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondarySelectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedShadowColor = default(FlutterBinding.UI.Color), bool showCheckmark = default(bool), FlutterBinding.UI.Color checkmarkColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle secondaryLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), Brightness brightness = default(Brightness), double elevation = default(double), double pressElevation = default(double))
+        : base()
+        {
+            this.BackgroundColor = backgroundColor;
+            this.DeleteIconColor = deleteIconColor;
+            this.DisabledColor = disabledColor;
+            this.SelectedColor = selectedColor;
+            this.SecondarySelectedColor = secondarySelectedColor;
+            this.ShadowColor = shadowColor;
+            this.SelectedShadowColor = selectedShadowColor;
+            this.ShowCheckmark = showCheckmark;
+            this.CheckmarkColor = checkmarkColor;
+            this.LabelPadding = labelPadding;
+            this.Padding = padding;
+            this.Shape = shape;
+            this.LabelStyle = labelStyle;
+            this.SecondaryLabelStyle = secondaryLabelStyle;
+            this.Brightness = brightness;
+            this.Elevation = elevation;
+            this.PressElevation = pressElevation; throw new NotImplementedException();
+        }
+        public static ChipThemeData FromDefaults(Brightness brightness = default(Brightness), FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondaryColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
+        {
+            var instance = new ChipThemeData(); throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual FlutterBinding.UI.Color DeleteIconColor { get; set; }
+        public virtual FlutterBinding.UI.Color DisabledColor { get; set; }
+        public virtual FlutterBinding.UI.Color SelectedColor { get; set; }
+        public virtual FlutterBinding.UI.Color SecondarySelectedColor { get; set; }
+        public virtual FlutterBinding.UI.Color ShadowColor { get; set; }
+        public virtual FlutterBinding.UI.Color SelectedShadowColor { get; set; }
+        public virtual bool ShowCheckmark { get; set; }
+        public virtual FlutterBinding.UI.Color CheckmarkColor { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry LabelPadding { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle LabelStyle { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle SecondaryLabelStyle { get; set; }
+        public virtual Brightness Brightness { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual double PressElevation { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual FlutterSDK.Material.Chiptheme.ChipThemeData CopyWith(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color deleteIconColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondarySelectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedShadowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color checkmarkColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle secondaryLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), Brightness brightness = default(Brightness), double elevation = default(double), double pressElevation = default(double)) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Material.Chiptheme.ChipThemeData Lerp(FlutterSDK.Material.Chiptheme.ChipThemeData a, FlutterSDK.Material.Chiptheme.ChipThemeData b, double t) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

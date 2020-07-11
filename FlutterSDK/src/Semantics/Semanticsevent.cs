@@ -421,143 +421,152 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Semantics.Semanticsevent{
-internal static class SemanticseventDefaultClass{
-}
-
-public interface ISemanticsEvent{
-Dictionary<string,object> ToMap(int nodeId = default(int));
-Dictionary<string,object> GetDataMap();
-string ToString();
-string Type{get;}
-}
-
-
-public class SemanticsEvent
+namespace FlutterSDK.Semantics.Semanticsevent
 {
-#region constructors
-public SemanticsEvent(string type)
-{
-this.Type = type;throw new NotImplementedException(); }
-#endregion
+    internal static class SemanticseventDefaultClass
+    {
+    }
 
-#region fields
-public virtual string Type{get;set;}
-#endregion
-
-#region methods
-
-public virtual Dictionary<string,object> ToMap(int nodeId = default(int)){ throw new NotImplementedException(); }
+    public interface ISemanticsEvent
+    {
+        Dictionary<string, object> ToMap(int nodeId = default(int));
+        Dictionary<string, object> GetDataMap();
+        string ToString();
+        string Type { get; }
+    }
 
 
-public virtual Dictionary<string,object> GetDataMap(){ throw new NotImplementedException(); }
+    public class SemanticsEvent
+    {
+        #region constructors
+        public SemanticsEvent(string type)
+        {
+            this.Type = type; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual string Type { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual Dictionary<string, object> ToMap(int nodeId = default(int)) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public virtual Dictionary<string, object> GetDataMap() { throw new NotImplementedException(); }
 
 
-public class AnnounceSemanticsEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
-{
-#region constructors
-public AnnounceSemanticsEvent(string message,TextDirection textDirection)
-: base("announce")
-{
-this.Message = message;
-this.TextDirection = textDirection;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual string Message{get;set;}
-public virtual TextDirection TextDirection{get;set;}
-#endregion
-
-#region methods
-
-public new Dictionary<string,object> GetDataMap(){ throw new NotImplementedException(); }
-
-#endregion
-}
+        #endregion
+    }
 
 
-public class TooltipSemanticsEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
-{
-#region constructors
-public TooltipSemanticsEvent(string message)
-: base("tooltip")
-{
-this.Message = message;throw new NotImplementedException(); }
-#endregion
+    public class AnnounceSemanticsEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
+    {
+        #region constructors
+        public AnnounceSemanticsEvent(string message, TextDirection textDirection)
+        : base("announce")
+        {
+            this.Message = message;
+            this.TextDirection = textDirection; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual string Message{get;set;}
-#endregion
+        #region fields
+        public virtual string Message { get; set; }
+        public virtual TextDirection TextDirection { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new Dictionary<string,object> GetDataMap(){ throw new NotImplementedException(); }
+        public new Dictionary<string, object> GetDataMap() { throw new NotImplementedException(); }
 
-#endregion
-}
-
-
-public class LongPressSemanticsEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
-{
-#region constructors
-public LongPressSemanticsEvent()
-: base("longPress")
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public new Dictionary<string,object> GetDataMap(){ throw new NotImplementedException(); }
-
-#endregion
-}
+        #endregion
+    }
 
 
-public class TapSemanticEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
-{
-#region constructors
-public TapSemanticEvent()
-: base("tap")
-{
-throw new NotImplementedException(); }
-#endregion
+    public class TooltipSemanticsEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
+    {
+        #region constructors
+        public TooltipSemanticsEvent(string message)
+        : base("tooltip")
+        {
+            this.Message = message; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-#endregion
+        #region fields
+        public virtual string Message { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new Dictionary<string,object> GetDataMap(){ throw new NotImplementedException(); }
+        public new Dictionary<string, object> GetDataMap() { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class UpdateLiveRegionEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
-{
-#region constructors
-public UpdateLiveRegionEvent()
-: base("updateLiveRegion")
-{
-throw new NotImplementedException(); }
-#endregion
+    public class LongPressSemanticsEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
+    {
+        #region constructors
+        public LongPressSemanticsEvent()
+        : base("longPress")
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-public new Dictionary<string,object> GetDataMap(){ throw new NotImplementedException(); }
+        public new Dictionary<string, object> GetDataMap() { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
+
+
+    public class TapSemanticEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
+    {
+        #region constructors
+        public TapSemanticEvent()
+        : base("tap")
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new Dictionary<string, object> GetDataMap() { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class UpdateLiveRegionEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
+    {
+        #region constructors
+        public UpdateLiveRegionEvent()
+        : base("updateLiveRegion")
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new Dictionary<string, object> GetDataMap() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

@@ -420,82 +420,86 @@ using FlutterSDK.Material.Inksplash;
 using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
-namespace FlutterSDK.Painting.Binding{
-internal static class BindingDefaultClass{
-public static FlutterSDK.Painting.Imagecache.ImageCache ImageCache = default(FlutterSDK.Painting.Imagecache.ImageCache);
-}
-
-public interface IPaintingBinding{}
-
-public class PaintingBinding{
-internal virtual FlutterSDK.Painting.Binding.PaintingBinding _Instance{get;set;}
-public virtual FlutterSDK.Painting.Shaderwarmup.ShaderWarmUp ShaderWarmUp{get;set;}
-internal virtual FlutterSDK.Painting.Imagecache.ImageCache _ImageCache{get;set;}
-internal virtual FlutterSDK.Painting.Binding._SystemFontsNotifier _SystemFonts{get;set;}
-public virtual FlutterSDK.Painting.Binding.PaintingBinding Instance{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Painting.Imagecache.ImageCache ImageCache{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Foundation.Changenotifier.Listenable SystemFonts{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-
-public new void InitInstances(){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Painting.Imagecache.ImageCache CreateImageCache(){ throw new NotImplementedException(); }
-
-
-public virtual Future<SKCodec> InstantiateImageCodec(Uint8List bytes,int cacheWidth = default(int),int cacheHeight = default(int)){ throw new NotImplementedException(); }
-
-
-public new void Evict(string asset){ throw new NotImplementedException(); }
-
-
-public new Future<object> HandleSystemMessage(@Object systemMessage){ throw new NotImplementedException(); }
-
-}
-public static class PaintingBindingMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IPaintingBinding, PaintingBinding> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IPaintingBinding, PaintingBinding>();
-static PaintingBinding GetOrCreate(IPaintingBinding instance)
+namespace FlutterSDK.Painting.Binding
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new PaintingBinding();
-_table.Add(instance, value);
-}
-return (PaintingBinding)value;
-}
-public static FlutterSDK.Painting.Shaderwarmup.ShaderWarmUp ShaderWarmUpProperty(this IPaintingBinding instance) => GetOrCreate(instance).ShaderWarmUp;
-public static FlutterSDK.Painting.Binding.PaintingBinding InstanceProperty(this IPaintingBinding instance) => GetOrCreate(instance).Instance;
-public static FlutterSDK.Painting.Imagecache.ImageCache ImageCacheProperty(this IPaintingBinding instance) => GetOrCreate(instance).ImageCache;
-public static FlutterSDK.Foundation.Changenotifier.Listenable SystemFontsProperty(this IPaintingBinding instance) => GetOrCreate(instance).SystemFonts;
-public static void InitInstances(this IPaintingBinding instance) => GetOrCreate(instance).InitInstances();
-public static FlutterSDK.Painting.Imagecache.ImageCache CreateImageCache(this IPaintingBinding instance) => GetOrCreate(instance).CreateImageCache();
-public static Future<SKCodec> InstantiateImageCodec(this IPaintingBinding instance,Uint8List bytes,int cacheWidth = default(int),int cacheHeight = default(int)) => GetOrCreate(instance).InstantiateImageCodec(bytes, cacheWidth, cacheHeight);
-public static void Evict(this IPaintingBinding instance,string asset) => GetOrCreate(instance).Evict(asset);
-public static Future<object> HandleSystemMessage(this IPaintingBinding instance,@Object systemMessage) => GetOrCreate(instance).HandleSystemMessage(systemMessage);
-}
+    internal static class BindingDefaultClass
+    {
+        public static FlutterSDK.Painting.Imagecache.ImageCache ImageCache = default(FlutterSDK.Painting.Imagecache.ImageCache);
+    }
+
+    public interface IPaintingBinding { }
+
+    public class PaintingBinding
+    {
+        internal virtual FlutterSDK.Painting.Binding.PaintingBinding _Instance { get; set; }
+        public virtual FlutterSDK.Painting.Shaderwarmup.ShaderWarmUp ShaderWarmUp { get; set; }
+        internal virtual FlutterSDK.Painting.Imagecache.ImageCache _ImageCache { get; set; }
+        internal virtual FlutterSDK.Painting.Binding._SystemFontsNotifier _SystemFonts { get; set; }
+        public virtual FlutterSDK.Painting.Binding.PaintingBinding Instance { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Imagecache.ImageCache ImageCache { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Foundation.Changenotifier.Listenable SystemFonts { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+
+        public new void InitInstances() { throw new NotImplementedException(); }
 
 
-public class _SystemFontsNotifier : FlutterSDK.Foundation.Changenotifier.Listenable
-{
-#region constructors
-public _SystemFontsNotifier()
-{ }
-#endregion
-
-#region fields
-internal virtual HashSet<object> _SystemFontsCallbacks{get;set;}
-#endregion
-
-#region methods
-
-public virtual void NotifyListeners(){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Imagecache.ImageCache CreateImageCache() { throw new NotImplementedException(); }
 
 
-public new void AddListener(VoidCallback listener){ throw new NotImplementedException(); }
+        public virtual Future<SKCodec> InstantiateImageCodec(Uint8List bytes, int cacheWidth = default(int), int cacheHeight = default(int)) { throw new NotImplementedException(); }
 
 
-public new void RemoveListener(VoidCallback listener){ throw new NotImplementedException(); }
+        public new void Evict(string asset) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new Future<object> HandleSystemMessage(@Object systemMessage) { throw new NotImplementedException(); }
+
+    }
+    public static class PaintingBindingMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IPaintingBinding, PaintingBinding> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IPaintingBinding, PaintingBinding>();
+        static PaintingBinding GetOrCreate(IPaintingBinding instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new PaintingBinding();
+                _table.Add(instance, value);
+            }
+            return (PaintingBinding)value;
+        }
+        public static FlutterSDK.Painting.Shaderwarmup.ShaderWarmUp ShaderWarmUpProperty(this IPaintingBinding instance) => GetOrCreate(instance).ShaderWarmUp;
+        public static FlutterSDK.Painting.Binding.PaintingBinding InstanceProperty(this IPaintingBinding instance) => GetOrCreate(instance).Instance;
+        public static FlutterSDK.Painting.Imagecache.ImageCache ImageCacheProperty(this IPaintingBinding instance) => GetOrCreate(instance).ImageCache;
+        public static FlutterSDK.Foundation.Changenotifier.Listenable SystemFontsProperty(this IPaintingBinding instance) => GetOrCreate(instance).SystemFonts;
+        public static void InitInstances(this IPaintingBinding instance) => GetOrCreate(instance).InitInstances();
+        public static FlutterSDK.Painting.Imagecache.ImageCache CreateImageCache(this IPaintingBinding instance) => GetOrCreate(instance).CreateImageCache();
+        public static Future<SKCodec> InstantiateImageCodec(this IPaintingBinding instance, Uint8List bytes, int cacheWidth = default(int), int cacheHeight = default(int)) => GetOrCreate(instance).InstantiateImageCodec(bytes, cacheWidth, cacheHeight);
+        public static void Evict(this IPaintingBinding instance, string asset) => GetOrCreate(instance).Evict(asset);
+        public static Future<object> HandleSystemMessage(this IPaintingBinding instance, @Object systemMessage) => GetOrCreate(instance).HandleSystemMessage(systemMessage);
+    }
+
+
+    public class _SystemFontsNotifier : FlutterSDK.Foundation.Changenotifier.Listenable
+    {
+        #region constructors
+        public _SystemFontsNotifier()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual HashSet<object> _SystemFontsCallbacks { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual void NotifyListeners() { throw new NotImplementedException(); }
+
+
+        public new void AddListener(VoidCallback listener) { throw new NotImplementedException(); }
+
+
+        public new void RemoveListener(VoidCallback listener) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

@@ -421,27 +421,30 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Rendering.Sliverlist{
-internal static class SliverlistDefaultClass{
-}
-
-public class RenderSliverList : FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverMultiBoxAdaptor
+namespace FlutterSDK.Rendering.Sliverlist
 {
-#region constructors
-public RenderSliverList(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager childManager = default(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager))
-: base(childManager:childManager)
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class SliverlistDefaultClass
+    {
+    }
 
-#region fields
-#endregion
+    public class RenderSliverList : FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverMultiBoxAdaptor
+    {
+        #region constructors
+        public RenderSliverList(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager childManager = default(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager))
+        : base(childManager: childManager)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        #endregion
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new void PerformLayout() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

@@ -423,87 +423,91 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Scrollcontroller{
-internal static class ScrollcontrollerDefaultClass{
-}
-
-public class ScrollController : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
+namespace FlutterSDK.Widgets.Scrollcontroller
 {
-#region constructors
-public ScrollController(double initialScrollOffset = 0.0,bool keepScrollOffset = true,string debugLabel = default(string))
-: base()
-{
-this.KeepScrollOffset = keepScrollOffset;
-this.DebugLabel = debugLabel;throw new NotImplementedException(); }
-#endregion
+    internal static class ScrollcontrollerDefaultClass
+    {
+    }
 
-#region fields
-internal virtual double _InitialScrollOffset{get;set;}
-public virtual bool KeepScrollOffset{get;set;}
-public virtual string DebugLabel{get;set;}
-internal virtual List<FlutterSDK.Widgets.Scrollposition.ScrollPosition> _Positions{get;set;}
-public virtual double InitialScrollOffset{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual Iterable<FlutterSDK.Widgets.Scrollposition.ScrollPosition> Positions{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool HasClients{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition Position{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double Offset{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class ScrollController : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
+    {
+        #region constructors
+        public ScrollController(double initialScrollOffset = 0.0, bool keepScrollOffset = true, string debugLabel = default(string))
+        : base()
+        {
+            this.KeepScrollOffset = keepScrollOffset;
+            this.DebugLabel = debugLabel; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual double _InitialScrollOffset { get; set; }
+        public virtual bool KeepScrollOffset { get; set; }
+        public virtual string DebugLabel { get; set; }
+        internal virtual List<FlutterSDK.Widgets.Scrollposition.ScrollPosition> _Positions { get; set; }
+        public virtual double InitialScrollOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual Iterable<FlutterSDK.Widgets.Scrollposition.ScrollPosition> Positions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool HasClients { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition Position { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Offset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual Future<object> AnimateTo(double offset,TimeSpan duration = default(TimeSpan),FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual void JumpTo(double value){ throw new NotImplementedException(); }
-
-
-public virtual void Attach(FlutterSDK.Widgets.Scrollposition.ScrollPosition position){ throw new NotImplementedException(); }
-
-
-public virtual void Detach(FlutterSDK.Widgets.Scrollposition.ScrollPosition position){ throw new NotImplementedException(); }
+        public virtual Future<object> AnimateTo(double offset, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)) { throw new NotImplementedException(); }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+        public virtual void JumpTo(double value) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition CreateScrollPosition(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics,FlutterSDK.Widgets.Scrollcontext.ScrollContext context,FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition){ throw new NotImplementedException(); }
+        public virtual void Attach(FlutterSDK.Widgets.Scrollposition.ScrollPosition position) { throw new NotImplementedException(); }
+
+
+        public virtual void Detach(FlutterSDK.Widgets.Scrollposition.ScrollPosition position) { throw new NotImplementedException(); }
+
+
+        public new void Dispose() { throw new NotImplementedException(); }
+
+
+        public virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition CreateScrollPosition(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics, FlutterSDK.Widgets.Scrollcontext.ScrollContext context, FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition) { throw new NotImplementedException(); }
 
 
 
-public virtual void DebugFillDescription(List<string> description){ throw new NotImplementedException(); }
+        public virtual void DebugFillDescription(List<string> description) { throw new NotImplementedException(); }
 
-#endregion
-}
-
-
-public class TrackingScrollController : FlutterSDK.Widgets.Scrollcontroller.ScrollController
-{
-#region constructors
-public TrackingScrollController(double initialScrollOffset = 0.0,bool keepScrollOffset = true,string debugLabel = default(string))
-: base(initialScrollOffset:initialScrollOffset,keepScrollOffset:keepScrollOffset,debugLabel:debugLabel)
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual Dictionary<FlutterSDK.Widgets.Scrollposition.ScrollPosition,object> _PositionToListener{get;set;}
-internal virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition _LastUpdated{get;set;}
-internal virtual double _LastUpdatedOffset{get;set;}
-public virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition MostRecentlyUpdatedPosition{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double InitialScrollOffset{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new void Attach(FlutterSDK.Widgets.Scrollposition.ScrollPosition position){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void Detach(FlutterSDK.Widgets.Scrollposition.ScrollPosition position){ throw new NotImplementedException(); }
+    public class TrackingScrollController : FlutterSDK.Widgets.Scrollcontroller.ScrollController
+    {
+        #region constructors
+        public TrackingScrollController(double initialScrollOffset = 0.0, bool keepScrollOffset = true, string debugLabel = default(string))
+        : base(initialScrollOffset: initialScrollOffset, keepScrollOffset: keepScrollOffset, debugLabel: debugLabel)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual Dictionary<FlutterSDK.Widgets.Scrollposition.ScrollPosition, object> _PositionToListener { get; set; }
+        internal virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition _LastUpdated { get; set; }
+        internal virtual double _LastUpdatedOffset { get; set; }
+        public virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition MostRecentlyUpdatedPosition { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double InitialScrollOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void Attach(FlutterSDK.Widgets.Scrollposition.ScrollPosition position) { throw new NotImplementedException(); }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+        public new void Detach(FlutterSDK.Widgets.Scrollposition.ScrollPosition position) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new void Dispose() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

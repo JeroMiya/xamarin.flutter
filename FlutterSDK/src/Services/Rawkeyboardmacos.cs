@@ -421,64 +421,67 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Services.Rawkeyboardmacos{
-internal static class RawkeyboardmacosDefaultClass{
-}
-
-public class RawKeyEventDataMacOs : FlutterSDK.Services.Rawkeyboard.RawKeyEventData
+namespace FlutterSDK.Services.Rawkeyboardmacos
 {
-#region constructors
-public RawKeyEventDataMacOs(string characters = default(string),string charactersIgnoringModifiers = default(string),int keyCode = 0,int modifiers = 0)
-: base()
-{
-this.Characters = characters;
-this.CharactersIgnoringModifiers = charactersIgnoringModifiers;
-this.KeyCode = keyCode;
-this.Modifiers = modifiers;throw new NotImplementedException(); }
-#endregion
+    internal static class RawkeyboardmacosDefaultClass
+    {
+    }
 
-#region fields
-public virtual string Characters{get;set;}
-public virtual string CharactersIgnoringModifiers{get;set;}
-public virtual int KeyCode{get;set;}
-public virtual int Modifiers{get;set;}
-public virtual int ModifierCapsLock{get;set;}
-public virtual int ModifierShift{get;set;}
-public virtual int ModifierLeftShift{get;set;}
-public virtual int ModifierRightShift{get;set;}
-public virtual int ModifierControl{get;set;}
-public virtual int ModifierLeftControl{get;set;}
-public virtual int ModifierRightControl{get;set;}
-public virtual int ModifierOption{get;set;}
-public virtual int ModifierLeftOption{get;set;}
-public virtual int ModifierRightOption{get;set;}
-public virtual int ModifierCommand{get;set;}
-public virtual int ModifierLeftCommand{get;set;}
-public virtual int ModifierRightCommand{get;set;}
-public virtual int ModifierNumericPad{get;set;}
-public virtual int ModifierHelp{get;set;}
-public virtual int ModifierFunction{get;set;}
-public virtual int DeviceIndependentMask{get;set;}
-public virtual string KeyLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class RawKeyEventDataMacOs : FlutterSDK.Services.Rawkeyboard.RawKeyEventData
+    {
+        #region constructors
+        public RawKeyEventDataMacOs(string characters = default(string), string charactersIgnoringModifiers = default(string), int keyCode = 0, int modifiers = 0)
+        : base()
+        {
+            this.Characters = characters;
+            this.CharactersIgnoringModifiers = charactersIgnoringModifiers;
+            this.KeyCode = keyCode;
+            this.Modifiers = modifiers; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual string Characters { get; set; }
+        public virtual string CharactersIgnoringModifiers { get; set; }
+        public virtual int KeyCode { get; set; }
+        public virtual int Modifiers { get; set; }
+        public virtual int ModifierCapsLock { get; set; }
+        public virtual int ModifierShift { get; set; }
+        public virtual int ModifierLeftShift { get; set; }
+        public virtual int ModifierRightShift { get; set; }
+        public virtual int ModifierControl { get; set; }
+        public virtual int ModifierLeftControl { get; set; }
+        public virtual int ModifierRightControl { get; set; }
+        public virtual int ModifierOption { get; set; }
+        public virtual int ModifierLeftOption { get; set; }
+        public virtual int ModifierRightOption { get; set; }
+        public virtual int ModifierCommand { get; set; }
+        public virtual int ModifierLeftCommand { get; set; }
+        public virtual int ModifierRightCommand { get; set; }
+        public virtual int ModifierNumericPad { get; set; }
+        public virtual int ModifierHelp { get; set; }
+        public virtual int ModifierFunction { get; set; }
+        public virtual int DeviceIndependentMask { get; set; }
+        public virtual string KeyLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-private bool _IsLeftRightModifierPressed(FlutterSDK.Services.Rawkeyboard.KeyboardSide side,int anyMask,int leftMask,int rightMask){ throw new NotImplementedException(); }
+        #region methods
 
-
-public new bool IsModifierPressed(FlutterSDK.Services.Rawkeyboard.ModifierKey key,FlutterSDK.Services.Rawkeyboard.KeyboardSide side = default(FlutterSDK.Services.Rawkeyboard.KeyboardSide)){ throw new NotImplementedException(); }
-
-
-public new FlutterSDK.Services.Rawkeyboard.KeyboardSide GetModifierSide(FlutterSDK.Services.Rawkeyboard.ModifierKey key){ throw new NotImplementedException(); }
-
-
-private bool _IsUnprintableKey(string label){ throw new NotImplementedException(); }
+        private bool _IsLeftRightModifierPressed(FlutterSDK.Services.Rawkeyboard.KeyboardSide side, int anyMask, int leftMask, int rightMask) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public new bool IsModifierPressed(FlutterSDK.Services.Rawkeyboard.ModifierKey key, FlutterSDK.Services.Rawkeyboard.KeyboardSide side = default(FlutterSDK.Services.Rawkeyboard.KeyboardSide)) { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Services.Rawkeyboard.KeyboardSide GetModifierSide(FlutterSDK.Services.Rawkeyboard.ModifierKey key) { throw new NotImplementedException(); }
+
+
+        private bool _IsUnprintableKey(string label) { throw new NotImplementedException(); }
+
+
+        #endregion
+    }
 
 }

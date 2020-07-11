@@ -294,43 +294,48 @@ using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
-namespace FlutterSDK.Foundation._Isolatesio{
-internal static class _IsolatesioDefaultClass{
-internal static Future<R> Compute<Q,R>(FlutterSDK.Foundation.Isolates.ComputeCallback<Q,R> callback,Q message,string debugLabel = default(string)){
-throw new NotImplementedException();
-}
-
-internal static Future<object> _Spawn<Q,R>(FlutterSDK.Foundation._Isolatesio._IsolateConfiguration<Q,FutureOr<R>> configuration){
-throw new NotImplementedException();
-}
-
-}
-
-public class _IsolateConfiguration<Q,R>
+namespace FlutterSDK.Foundation._Isolatesio
 {
-#region constructors
-public _IsolateConfiguration(FlutterSDK.Foundation.Isolates.ComputeCallback<Q,R> callback,Q message,SendPort resultPort,string debugLabel,int flowId)
-{
-this.Callback = callback;
-this.Message = message;
-this.ResultPort = resultPort;
-this.DebugLabel = debugLabel;
-this.FlowId = flowId;throw new NotImplementedException(); }
-#endregion
+    internal static class _IsolatesioDefaultClass
+    {
+        internal static Future<R> Compute<Q, R>(FlutterSDK.Foundation.Isolates.ComputeCallback<Q, R> callback, Q message, string debugLabel = default(string))
+        {
+            throw new NotImplementedException();
+        }
 
-#region fields
-public virtual FlutterSDK.Foundation.Isolates.ComputeCallback<Q,R> Callback{get;set;}
-public virtual Q Message{get;set;}
-public virtual SendPort ResultPort{get;set;}
-public virtual string DebugLabel{get;set;}
-public virtual int FlowId{get;set;}
-#endregion
+        internal static Future<object> _Spawn<Q, R>(FlutterSDK.Foundation._Isolatesio._IsolateConfiguration<Q, FutureOr<R>> configuration)
+        {
+            throw new NotImplementedException();
+        }
 
-#region methods
+    }
 
-public virtual FutureOr<R> Apply(){ throw new NotImplementedException(); }
+    public class _IsolateConfiguration<Q, R>
+    {
+        #region constructors
+        public _IsolateConfiguration(FlutterSDK.Foundation.Isolates.ComputeCallback<Q, R> callback, Q message, SendPort resultPort, string debugLabel, int flowId)
+        {
+            this.Callback = callback;
+            this.Message = message;
+            this.ResultPort = resultPort;
+            this.DebugLabel = debugLabel;
+            this.FlowId = flowId; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual FlutterSDK.Foundation.Isolates.ComputeCallback<Q, R> Callback { get; set; }
+        public virtual Q Message { get; set; }
+        public virtual SendPort ResultPort { get; set; }
+        public virtual string DebugLabel { get; set; }
+        public virtual int FlowId { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual FutureOr<R> Apply() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

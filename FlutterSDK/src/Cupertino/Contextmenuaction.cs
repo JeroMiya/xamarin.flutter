@@ -291,70 +291,73 @@ using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
-namespace FlutterSDK.Cupertino.Contextmenuaction{
-internal static class ContextmenuactionDefaultClass{
-}
-
-public class CupertinoContextMenuAction : FlutterSDK.Widgets.Framework.StatefulWidget
+namespace FlutterSDK.Cupertino.Contextmenuaction
 {
-#region constructors
-public CupertinoContextMenuAction(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),bool isDefaultAction = false,bool isDestructiveAction = false,VoidCallback onPressed = default(VoidCallback),FlutterSDK.Widgets.Icondata.IconData trailingIcon = default(FlutterSDK.Widgets.Icondata.IconData))
-: base(key:key)
-{
-this.Child = child;
-this.IsDefaultAction = isDefaultAction;
-this.IsDestructiveAction = isDestructiveAction;
-this.OnPressed = onPressed;
-this.TrailingIcon = trailingIcon;throw new NotImplementedException(); }
-#endregion
+    internal static class ContextmenuactionDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-public virtual bool IsDefaultAction{get;set;}
-public virtual bool IsDestructiveAction{get;set;}
-public virtual VoidCallback OnPressed{get;set;}
-public virtual FlutterSDK.Widgets.Icondata.IconData TrailingIcon{get;set;}
-#endregion
+    public class CupertinoContextMenuAction : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public CupertinoContextMenuAction(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool isDefaultAction = false, bool isDestructiveAction = false, VoidCallback onPressed = default(VoidCallback), FlutterSDK.Widgets.Icondata.IconData trailingIcon = default(FlutterSDK.Widgets.Icondata.IconData))
+        : base(key: key)
+        {
+            this.Child = child;
+            this.IsDefaultAction = isDefaultAction;
+            this.IsDestructiveAction = isDestructiveAction;
+            this.OnPressed = onPressed;
+            this.TrailingIcon = trailingIcon; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual bool IsDefaultAction { get; set; }
+        public virtual bool IsDestructiveAction { get; set; }
+        public virtual VoidCallback OnPressed { get; set; }
+        public virtual FlutterSDK.Widgets.Icondata.IconData TrailingIcon { get; set; }
+        #endregion
 
-public new FlutterSDK.Cupertino.Contextmenuaction._CupertinoContextMenuActionState CreateState(){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new FlutterSDK.Cupertino.Contextmenuaction._CupertinoContextMenuActionState CreateState() { throw new NotImplementedException(); }
 
-
-public class _CupertinoContextMenuActionState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Contextmenuaction.CupertinoContextMenuAction>
-{
-#region constructors
-public _CupertinoContextMenuActionState()
-{ }
-#endregion
-
-#region fields
-internal virtual FlutterBinding.UI.Color _KBackgroundColor{get;set;}
-internal virtual FlutterBinding.UI.Color _KBackgroundColorPressed{get;set;}
-internal virtual double _KButtonHeight{get;set;}
-internal virtual FlutterSDK.Painting.Textstyle.TextStyle _KActionSheetActionStyle{get;set;}
-internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _GlobalKey{get;set;}
-internal virtual bool _IsPressed{get;set;}
-internal virtual FlutterSDK.Painting.Textstyle.TextStyle _TextStyle{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public virtual void OnTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public virtual void OnTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details){ throw new NotImplementedException(); }
+    public class _CupertinoContextMenuActionState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Contextmenuaction.CupertinoContextMenuAction>
+    {
+        #region constructors
+        public _CupertinoContextMenuActionState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterBinding.UI.Color _KBackgroundColor { get; set; }
+        internal virtual FlutterBinding.UI.Color _KBackgroundColorPressed { get; set; }
+        internal virtual double _KButtonHeight { get; set; }
+        internal virtual FlutterSDK.Painting.Textstyle.TextStyle _KActionSheetActionStyle { get; set; }
+        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _GlobalKey { get; set; }
+        internal virtual bool _IsPressed { get; set; }
+        internal virtual FlutterSDK.Painting.Textstyle.TextStyle _TextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual void OnTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details) { throw new NotImplementedException(); }
 
 
-public virtual void OnTapCancel(){ throw new NotImplementedException(); }
+        public virtual void OnTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public virtual void OnTapCancel() { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

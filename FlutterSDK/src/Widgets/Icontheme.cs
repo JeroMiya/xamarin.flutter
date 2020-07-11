@@ -422,44 +422,47 @@ using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
-namespace FlutterSDK.Widgets.Icontheme{
-internal static class IconthemeDefaultClass{
-}
-
-public class IconTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
+namespace FlutterSDK.Widgets.Icontheme
 {
-#region constructors
-public IconTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Iconthemedata.IconThemeData data = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key,child:child)
-{
-this.Data = data;throw new NotImplementedException(); }
-#endregion
+    internal static class IconthemeDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData Data{get;set;}
-#endregion
+    public class IconTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
+    {
+        #region constructors
+        public IconTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Iconthemedata.IconThemeData data = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            this.Data = data; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData Data { get; set; }
+        #endregion
 
-public virtual FlutterSDK.Widgets.Framework.Widget Merge(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Iconthemedata.IconThemeData data = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget)){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-
-private FlutterSDK.Widgets.Iconthemedata.IconThemeData _GetInheritedIconThemeData(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Icontheme.IconTheme oldWidget){ throw new NotImplementedException(); }
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Widgets.Framework.Widget Merge(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Iconthemedata.IconThemeData data = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget)) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Widgets.Framework.Widget child){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        private FlutterSDK.Widgets.Iconthemedata.IconThemeData _GetInheritedIconThemeData(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Icontheme.IconTheme oldWidget) { throw new NotImplementedException(); }
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

@@ -381,150 +381,157 @@ using FlutterSDK.Material.Inputdecorator;
 using FlutterSDK.Material.Shadows;
 using FlutterSDK.Material.Expandicon;
 using FlutterSDK.Material.Mergeablematerial;
-namespace FlutterSDK.Material.Expansionpanel{
-public delegate void ExpansionPanelCallback(int panelIndex,bool isExpanded);
-public delegate FlutterSDK.Widgets.Framework.Widget ExpansionPanelHeaderBuilder(FlutterSDK.Widgets.Framework.BuildContext context,bool isExpanded);
-internal static class ExpansionpanelDefaultClass{
-public static double _KPanelHeaderCollapsedHeight = default(double);
-public static FlutterSDK.Painting.Edgeinsets.EdgeInsets _KPanelHeaderExpandedDefaultPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets);
-}
-
-public class _SaltedKey<S,V> : FlutterSDK.Foundation.Key.LocalKey
+namespace FlutterSDK.Material.Expansionpanel
 {
-#region constructors
-public _SaltedKey(S salt,V value)
-{
-this.Salt = salt;
-this.Value = value;throw new NotImplementedException(); }
-#endregion
+    public delegate void ExpansionPanelCallback(int panelIndex, bool isExpanded);
+    public delegate FlutterSDK.Widgets.Framework.Widget ExpansionPanelHeaderBuilder(FlutterSDK.Widgets.Framework.BuildContext context, bool isExpanded);
+    internal static class ExpansionpanelDefaultClass
+    {
+        public static double _KPanelHeaderCollapsedHeight = default(double);
+        public static FlutterSDK.Painting.Edgeinsets.EdgeInsets _KPanelHeaderExpandedDefaultPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets);
+    }
 
-#region fields
-public virtual S Salt{get;set;}
-public virtual V Value{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class _SaltedKey<S, V> : FlutterSDK.Foundation.Key.LocalKey
+    {
+        #region constructors
+        public _SaltedKey(S salt, V value)
+        {
+            this.Salt = salt;
+            this.Value = value; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual S Salt { get; set; }
+        public virtual V Value { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        #region methods
 
-
-#endregion
-}
-
-
-public class ExpansionPanel
-{
-#region constructors
-public ExpansionPanel(FlutterSDK.Material.Expansionpanel.ExpansionPanelHeaderBuilder headerBuilder = default(FlutterSDK.Material.Expansionpanel.ExpansionPanelHeaderBuilder),FlutterSDK.Widgets.Framework.Widget body = default(FlutterSDK.Widgets.Framework.Widget),bool isExpanded = false,bool canTapOnHeader = false)
-: base()
-{
-this.HeaderBuilder = headerBuilder;
-this.Body = body;
-this.IsExpanded = isExpanded;
-this.CanTapOnHeader = canTapOnHeader;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Material.Expansionpanel.ExpansionPanelHeaderBuilder HeaderBuilder{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Body{get;set;}
-public virtual bool IsExpanded{get;set;}
-public virtual bool CanTapOnHeader{get;set;}
-#endregion
-
-#region methods
-#endregion
-}
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
-public class ExpansionPanelRadio : FlutterSDK.Material.Expansionpanel.ExpansionPanel
-{
-#region constructors
-public ExpansionPanelRadio(@Object value = default(@Object),FlutterSDK.Material.Expansionpanel.ExpansionPanelHeaderBuilder headerBuilder = default(FlutterSDK.Material.Expansionpanel.ExpansionPanelHeaderBuilder),FlutterSDK.Widgets.Framework.Widget body = default(FlutterSDK.Widgets.Framework.Widget),bool canTapOnHeader = false)
-: base(body:body,headerBuilder:headerBuilder,canTapOnHeader:canTapOnHeader)
-{
-this.Value = value;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual @Object Value{get;set;}
-#endregion
-
-#region methods
-#endregion
-}
+        #endregion
+    }
 
 
-public class ExpansionPanelList : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public ExpansionPanelList(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),List<FlutterSDK.Material.Expansionpanel.ExpansionPanel> children = default(List<FlutterSDK.Material.Expansionpanel.ExpansionPanel>),FlutterSDK.Material.Expansionpanel.ExpansionPanelCallback expansionCallback = default(FlutterSDK.Material.Expansionpanel.ExpansionPanelCallback),TimeSpan animationDuration = default(TimeSpan),FlutterSDK.Painting.Edgeinsets.EdgeInsets expandedHeaderPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets))
-: base(key:key)
-{
-this.Children = children;
-this.ExpansionCallback = expansionCallback;
-this.AnimationDuration = animationDuration;
-this.ExpandedHeaderPadding = expandedHeaderPadding;throw new NotImplementedException(); }
-public static ExpansionPanelList Radio(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),List<FlutterSDK.Material.Expansionpanel.ExpansionPanel> children = default(List<FlutterSDK.Material.Expansionpanel.ExpansionPanel>),FlutterSDK.Material.Expansionpanel.ExpansionPanelCallback expansionCallback = default(FlutterSDK.Material.Expansionpanel.ExpansionPanelCallback),TimeSpan animationDuration = default(TimeSpan),@Object initialOpenPanelValue = default(@Object),FlutterSDK.Painting.Edgeinsets.EdgeInsets expandedHeaderPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets))
-{
-var instance =new ExpansionPanelList(key:key);instance.Children = children;
-instance.ExpansionCallback = expansionCallback;
-instance.AnimationDuration = animationDuration;
-instance.InitialOpenPanelValue = initialOpenPanelValue;
-instance.ExpandedHeaderPadding = expandedHeaderPadding;throw new NotImplementedException(); }
-#endregion
+    public class ExpansionPanel
+    {
+        #region constructors
+        public ExpansionPanel(FlutterSDK.Material.Expansionpanel.ExpansionPanelHeaderBuilder headerBuilder = default(FlutterSDK.Material.Expansionpanel.ExpansionPanelHeaderBuilder), FlutterSDK.Widgets.Framework.Widget body = default(FlutterSDK.Widgets.Framework.Widget), bool isExpanded = false, bool canTapOnHeader = false)
+        : base()
+        {
+            this.HeaderBuilder = headerBuilder;
+            this.Body = body;
+            this.IsExpanded = isExpanded;
+            this.CanTapOnHeader = canTapOnHeader; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual List<FlutterSDK.Material.Expansionpanel.ExpansionPanel> Children{get;set;}
-public virtual FlutterSDK.Material.Expansionpanel.ExpansionPanelCallback ExpansionCallback{get;set;}
-public virtual TimeSpan AnimationDuration{get;set;}
-internal virtual bool _AllowOnlyOnePanelOpen{get;set;}
-public virtual @Object InitialOpenPanelValue{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets ExpandedHeaderPadding{get;set;}
-#endregion
+        #region fields
+        public virtual FlutterSDK.Material.Expansionpanel.ExpansionPanelHeaderBuilder HeaderBuilder { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Body { get; set; }
+        public virtual bool IsExpanded { get; set; }
+        public virtual bool CanTapOnHeader { get; set; }
+        #endregion
 
-#region methods
-
-public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState(){ throw new NotImplementedException(); }
-
-#endregion
-}
+        #region methods
+        #endregion
+    }
 
 
-public class _ExpansionPanelListState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Expansionpanel.ExpansionPanelList>
-{
-#region constructors
-public _ExpansionPanelListState()
-{ }
-#endregion
+    public class ExpansionPanelRadio : FlutterSDK.Material.Expansionpanel.ExpansionPanel
+    {
+        #region constructors
+        public ExpansionPanelRadio(@Object value = default(@Object), FlutterSDK.Material.Expansionpanel.ExpansionPanelHeaderBuilder headerBuilder = default(FlutterSDK.Material.Expansionpanel.ExpansionPanelHeaderBuilder), FlutterSDK.Widgets.Framework.Widget body = default(FlutterSDK.Widgets.Framework.Widget), bool canTapOnHeader = false)
+        : base(body: body, headerBuilder: headerBuilder, canTapOnHeader: canTapOnHeader)
+        {
+            this.Value = value; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-internal virtual FlutterSDK.Material.Expansionpanel.ExpansionPanelRadio _CurrentOpenPanel{get;set;}
-#endregion
+        #region fields
+        public virtual @Object Value { get; set; }
+        #endregion
 
-#region methods
-
-public new void InitState(){ throw new NotImplementedException(); }
-
-
-public new void DidUpdateWidget(FlutterSDK.Material.Expansionpanel.ExpansionPanelList oldWidget){ throw new NotImplementedException(); }
-
-
-private bool _AllIdentifiersUnique(){ throw new NotImplementedException(); }
+        #region methods
+        #endregion
+    }
 
 
-private bool _IsChildExpanded(int index){ throw new NotImplementedException(); }
+    public class ExpansionPanelList : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public ExpansionPanelList(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Material.Expansionpanel.ExpansionPanel> children = default(List<FlutterSDK.Material.Expansionpanel.ExpansionPanel>), FlutterSDK.Material.Expansionpanel.ExpansionPanelCallback expansionCallback = default(FlutterSDK.Material.Expansionpanel.ExpansionPanelCallback), TimeSpan animationDuration = default(TimeSpan), FlutterSDK.Painting.Edgeinsets.EdgeInsets expandedHeaderPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets))
+        : base(key: key)
+        {
+            this.Children = children;
+            this.ExpansionCallback = expansionCallback;
+            this.AnimationDuration = animationDuration;
+            this.ExpandedHeaderPadding = expandedHeaderPadding; throw new NotImplementedException();
+        }
+        public static ExpansionPanelList Radio(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Material.Expansionpanel.ExpansionPanel> children = default(List<FlutterSDK.Material.Expansionpanel.ExpansionPanel>), FlutterSDK.Material.Expansionpanel.ExpansionPanelCallback expansionCallback = default(FlutterSDK.Material.Expansionpanel.ExpansionPanelCallback), TimeSpan animationDuration = default(TimeSpan), @Object initialOpenPanelValue = default(@Object), FlutterSDK.Painting.Edgeinsets.EdgeInsets expandedHeaderPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets))
+        {
+            var instance = new ExpansionPanelList(key: key); instance.Children = children;
+            instance.ExpansionCallback = expansionCallback;
+            instance.AnimationDuration = animationDuration;
+            instance.InitialOpenPanelValue = initialOpenPanelValue;
+            instance.ExpandedHeaderPadding = expandedHeaderPadding; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual List<FlutterSDK.Material.Expansionpanel.ExpansionPanel> Children { get; set; }
+        public virtual FlutterSDK.Material.Expansionpanel.ExpansionPanelCallback ExpansionCallback { get; set; }
+        public virtual TimeSpan AnimationDuration { get; set; }
+        internal virtual bool _AllowOnlyOnePanelOpen { get; set; }
+        public virtual @Object InitialOpenPanelValue { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets ExpandedHeaderPadding { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-private void _HandlePressed(bool isExpanded,int index){ throw new NotImplementedException(); }
+    public class _ExpansionPanelListState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Expansionpanel.ExpansionPanelList>
+    {
+        #region constructors
+        public _ExpansionPanelListState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Material.Expansionpanel.ExpansionPanelRadio _CurrentOpenPanel { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Material.Expansionpanel.ExpansionPanelRadio SearchPanelByValue(List<FlutterSDK.Material.Expansionpanel.ExpansionPanelRadio> panels,@Object value){ throw new NotImplementedException(); }
+        public new void DidUpdateWidget(FlutterSDK.Material.Expansionpanel.ExpansionPanelList oldWidget) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        private bool _AllIdentifiersUnique() { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        private bool _IsChildExpanded(int index) { throw new NotImplementedException(); }
+
+
+        private void _HandlePressed(bool isExpanded, int index) { throw new NotImplementedException(); }
+
+
+        public virtual FlutterSDK.Material.Expansionpanel.ExpansionPanelRadio SearchPanelByValue(List<FlutterSDK.Material.Expansionpanel.ExpansionPanelRadio> panels, @Object value) { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

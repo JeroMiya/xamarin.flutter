@@ -421,122 +421,126 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Widgets.Animatedswitcher{
-public delegate FlutterSDK.Widgets.Framework.Widget AnimatedSwitcherTransitionBuilder(FlutterSDK.Widgets.Framework.Widget child,FlutterSDK.Animation.Animation.Animation<double> animation);
-public delegate FlutterSDK.Widgets.Framework.Widget AnimatedSwitcherLayoutBuilder(FlutterSDK.Widgets.Framework.Widget currentChild,List<FlutterSDK.Widgets.Framework.Widget> previousChildren);
-internal static class AnimatedswitcherDefaultClass{
-}
-
-public class _ChildEntry
+namespace FlutterSDK.Widgets.Animatedswitcher
 {
-#region constructors
-public _ChildEntry(FlutterSDK.Animation.Animationcontroller.AnimationController controller = default(FlutterSDK.Animation.Animationcontroller.AnimationController),FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterSDK.Widgets.Framework.Widget transition = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.Widget widgetChild = default(FlutterSDK.Widgets.Framework.Widget))
-: base()
-{
-this.Controller = controller;
-this.Animation = animation;
-this.Transition = transition;
-this.WidgetChild = widgetChild;throw new NotImplementedException(); }
-#endregion
+    public delegate FlutterSDK.Widgets.Framework.Widget AnimatedSwitcherTransitionBuilder(FlutterSDK.Widgets.Framework.Widget child, FlutterSDK.Animation.Animation.Animation<double> animation);
+    public delegate FlutterSDK.Widgets.Framework.Widget AnimatedSwitcherLayoutBuilder(FlutterSDK.Widgets.Framework.Widget currentChild, List<FlutterSDK.Widgets.Framework.Widget> previousChildren);
+    internal static class AnimatedswitcherDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Animation.Animationcontroller.AnimationController Controller{get;set;}
-public virtual FlutterSDK.Animation.Animation.Animation<double> Animation{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Transition{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget WidgetChild{get;set;}
-#endregion
+    public class _ChildEntry
+    {
+        #region constructors
+        public _ChildEntry(FlutterSDK.Animation.Animationcontroller.AnimationController controller = default(FlutterSDK.Animation.Animationcontroller.AnimationController), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Widgets.Framework.Widget transition = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget widgetChild = default(FlutterSDK.Widgets.Framework.Widget))
+        : base()
+        {
+            this.Controller = controller;
+            this.Animation = animation;
+            this.Transition = transition;
+            this.WidgetChild = widgetChild; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController Controller { get; set; }
+        public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Transition { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget WidgetChild { get; set; }
+        #endregion
 
-#endregion
-}
+        #region methods
 
-
-public class AnimatedSwitcher : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public AnimatedSwitcher(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),TimeSpan duration = default(TimeSpan),TimeSpan reverseDuration = default(TimeSpan),FlutterSDK.Animation.Curves.Curve switchInCurve = default(FlutterSDK.Animation.Curves.Curve),FlutterSDK.Animation.Curves.Curve switchOutCurve = default(FlutterSDK.Animation.Curves.Curve),FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherTransitionBuilder transitionBuilder = default(FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherTransitionBuilder),FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherLayoutBuilder layoutBuilder = default(FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherLayoutBuilder))
-: base(key:key)
-{
-this.Child = child;
-this.Duration = duration;
-this.ReverseDuration = reverseDuration;
-this.SwitchInCurve = switchInCurve;
-this.SwitchOutCurve = switchOutCurve;
-this.TransitionBuilder = transitionBuilder;
-this.LayoutBuilder = layoutBuilder;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-public virtual TimeSpan Duration{get;set;}
-public virtual TimeSpan ReverseDuration{get;set;}
-public virtual FlutterSDK.Animation.Curves.Curve SwitchInCurve{get;set;}
-public virtual FlutterSDK.Animation.Curves.Curve SwitchOutCurve{get;set;}
-public virtual FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherTransitionBuilder TransitionBuilder{get;set;}
-public virtual FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherLayoutBuilder LayoutBuilder{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Animatedswitcher._AnimatedSwitcherState CreateState(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public virtual FlutterSDK.Widgets.Framework.Widget DefaultTransitionBuilder(FlutterSDK.Widgets.Framework.Widget child,FlutterSDK.Animation.Animation.Animation<double> animation){ throw new NotImplementedException(); }
+    public class AnimatedSwitcher : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public AnimatedSwitcher(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), TimeSpan duration = default(TimeSpan), TimeSpan reverseDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve switchInCurve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Animation.Curves.Curve switchOutCurve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherTransitionBuilder transitionBuilder = default(FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherTransitionBuilder), FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherLayoutBuilder layoutBuilder = default(FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherLayoutBuilder))
+        : base(key: key)
+        {
+            this.Child = child;
+            this.Duration = duration;
+            this.ReverseDuration = reverseDuration;
+            this.SwitchInCurve = switchInCurve;
+            this.SwitchOutCurve = switchOutCurve;
+            this.TransitionBuilder = transitionBuilder;
+            this.LayoutBuilder = layoutBuilder; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual TimeSpan Duration { get; set; }
+        public virtual TimeSpan ReverseDuration { get; set; }
+        public virtual FlutterSDK.Animation.Curves.Curve SwitchInCurve { get; set; }
+        public virtual FlutterSDK.Animation.Curves.Curve SwitchOutCurve { get; set; }
+        public virtual FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherTransitionBuilder TransitionBuilder { get; set; }
+        public virtual FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherLayoutBuilder LayoutBuilder { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Animatedswitcher._AnimatedSwitcherState CreateState() { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Widgets.Framework.Widget DefaultLayoutBuilder(FlutterSDK.Widgets.Framework.Widget currentChild,List<FlutterSDK.Widgets.Framework.Widget> previousChildren){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Widgets.Framework.Widget DefaultTransitionBuilder(FlutterSDK.Widgets.Framework.Widget child, FlutterSDK.Animation.Animation.Animation<double> animation) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual FlutterSDK.Widgets.Framework.Widget DefaultLayoutBuilder(FlutterSDK.Widgets.Framework.Widget currentChild, List<FlutterSDK.Widgets.Framework.Widget> previousChildren) { throw new NotImplementedException(); }
 
 
-public class _AnimatedSwitcherState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcher>,ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-#region constructors
-public _AnimatedSwitcherState()
-{ }
-#endregion
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual FlutterSDK.Widgets.Animatedswitcher._ChildEntry _CurrentEntry{get;set;}
-internal virtual HashSet<FlutterSDK.Widgets.Animatedswitcher._ChildEntry> _OutgoingEntries{get;set;}
-internal virtual List<FlutterSDK.Widgets.Framework.Widget> _OutgoingWidgets{get;set;}
-internal virtual int _ChildNumber{get;set;}
-#endregion
-
-#region methods
-
-public new void InitState(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void DidUpdateWidget(FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcher oldWidget){ throw new NotImplementedException(); }
+    public class _AnimatedSwitcherState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcher>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _AnimatedSwitcherState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Animatedswitcher._ChildEntry _CurrentEntry { get; set; }
+        internal virtual HashSet<FlutterSDK.Widgets.Animatedswitcher._ChildEntry> _OutgoingEntries { get; set; }
+        internal virtual List<FlutterSDK.Widgets.Framework.Widget> _OutgoingWidgets { get; set; }
+        internal virtual int _ChildNumber { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-private void _AddEntryForNewChild(bool animate = default(bool)){ throw new NotImplementedException(); }
+        public new void DidUpdateWidget(FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcher oldWidget) { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Widgets.Animatedswitcher._ChildEntry _NewEntry(FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherTransitionBuilder builder = default(FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherTransitionBuilder),FlutterSDK.Animation.Animationcontroller.AnimationController controller = default(FlutterSDK.Animation.Animationcontroller.AnimationController),FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>)){ throw new NotImplementedException(); }
+        private void _AddEntryForNewChild(bool animate = default(bool)) { throw new NotImplementedException(); }
 
 
-private void _MarkChildWidgetCacheAsDirty(){ throw new NotImplementedException(); }
+        private FlutterSDK.Widgets.Animatedswitcher._ChildEntry _NewEntry(FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherTransitionBuilder builder = default(FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherTransitionBuilder), FlutterSDK.Animation.Animationcontroller.AnimationController controller = default(FlutterSDK.Animation.Animationcontroller.AnimationController), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>)) { throw new NotImplementedException(); }
 
 
-private void _UpdateTransitionForEntry(FlutterSDK.Widgets.Animatedswitcher._ChildEntry entry){ throw new NotImplementedException(); }
+        private void _MarkChildWidgetCacheAsDirty() { throw new NotImplementedException(); }
 
 
-private void _RebuildOutgoingWidgetsIfNeeded(){ throw new NotImplementedException(); }
+        private void _UpdateTransitionForEntry(FlutterSDK.Widgets.Animatedswitcher._ChildEntry entry) { throw new NotImplementedException(); }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+        private void _RebuildOutgoingWidgetsIfNeeded() { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new void Dispose() { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

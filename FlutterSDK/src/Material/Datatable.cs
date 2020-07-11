@@ -374,243 +374,252 @@ using FlutterSDK.Material.Chiptheme;
 using FlutterSDK.Material.Feedback;
 using FlutterSDK.Material.Tooltip;
 using FlutterSDK.Material.Dropdown;
-namespace FlutterSDK.Material.Datatable{
-public delegate void DataColumnSortCallback(int columnIndex,bool ascending);
-internal static class DatatableDefaultClass{
-}
-
-public class DataColumn
+namespace FlutterSDK.Material.Datatable
 {
-#region constructors
-public DataColumn(FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget),string tooltip = default(string),bool numeric = false,FlutterSDK.Material.Datatable.DataColumnSortCallback onSort = default(FlutterSDK.Material.Datatable.DataColumnSortCallback))
-: base()
-{
-this.Label = label;
-this.Tooltip = tooltip;
-this.Numeric = numeric;
-this.OnSort = onSort;throw new NotImplementedException(); }
-#endregion
+    public delegate void DataColumnSortCallback(int columnIndex, bool ascending);
+    internal static class DatatableDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Label{get;set;}
-public virtual string Tooltip{get;set;}
-public virtual bool Numeric{get;set;}
-public virtual FlutterSDK.Material.Datatable.DataColumnSortCallback OnSort{get;set;}
-internal virtual bool _DebugInteractive{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class DataColumn
+    {
+        #region constructors
+        public DataColumn(FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget), string tooltip = default(string), bool numeric = false, FlutterSDK.Material.Datatable.DataColumnSortCallback onSort = default(FlutterSDK.Material.Datatable.DataColumnSortCallback))
+        : base()
+        {
+            this.Label = label;
+            this.Tooltip = tooltip;
+            this.Numeric = numeric;
+            this.OnSort = onSort; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
-#endregion
-}
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Label { get; set; }
+        public virtual string Tooltip { get; set; }
+        public virtual bool Numeric { get; set; }
+        public virtual FlutterSDK.Material.Datatable.DataColumnSortCallback OnSort { get; set; }
+        internal virtual bool _DebugInteractive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-
-public class DataRow
-{
-#region constructors
-public DataRow(FlutterSDK.Foundation.Key.LocalKey key = default(FlutterSDK.Foundation.Key.LocalKey),bool selected = false,FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onSelectChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>),List<FlutterSDK.Material.Datatable.DataCell> cells = default(List<FlutterSDK.Material.Datatable.DataCell>))
-: base()
-{
-this.Key = key;
-this.Selected = selected;
-this.OnSelectChanged = onSelectChanged;
-this.Cells = cells;throw new NotImplementedException(); }
-public static DataRow ByIndex(int index = default(int),bool selected = false,FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onSelectChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>),List<FlutterSDK.Material.Datatable.DataCell> cells = default(List<FlutterSDK.Material.Datatable.DataCell>))
-{
-var instance =new DataRow();instance.Selected = selected;
-instance.OnSelectChanged = onSelectChanged;
-instance.Cells = cells;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Foundation.Key.LocalKey Key{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnSelectChanged{get;set;}
-public virtual bool Selected{get;set;}
-public virtual List<FlutterSDK.Material.Datatable.DataCell> Cells{get;set;}
-internal virtual bool _DebugInteractive{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-#endregion
-}
+        #region methods
+        #endregion
+    }
 
 
-public class DataCell
-{
-#region constructors
-public DataCell(FlutterSDK.Widgets.Framework.Widget child,bool placeholder = false,bool showEditIcon = false,VoidCallback onTap = default(VoidCallback))
-: base()
-{
-this.Child = child;
-this.Placeholder = placeholder;
-this.ShowEditIcon = showEditIcon;
-this.OnTap = onTap;throw new NotImplementedException(); }
-#endregion
+    public class DataRow
+    {
+        #region constructors
+        public DataRow(FlutterSDK.Foundation.Key.LocalKey key = default(FlutterSDK.Foundation.Key.LocalKey), bool selected = false, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onSelectChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), List<FlutterSDK.Material.Datatable.DataCell> cells = default(List<FlutterSDK.Material.Datatable.DataCell>))
+        : base()
+        {
+            this.Key = key;
+            this.Selected = selected;
+            this.OnSelectChanged = onSelectChanged;
+            this.Cells = cells; throw new NotImplementedException();
+        }
+        public static DataRow ByIndex(int index = default(int), bool selected = false, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onSelectChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), List<FlutterSDK.Material.Datatable.DataCell> cells = default(List<FlutterSDK.Material.Datatable.DataCell>))
+        {
+            var instance = new DataRow(); instance.Selected = selected;
+            instance.OnSelectChanged = onSelectChanged;
+            instance.Cells = cells; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Material.Datatable.DataCell Empty{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-public virtual bool Placeholder{get;set;}
-public virtual bool ShowEditIcon{get;set;}
-public virtual VoidCallback OnTap{get;set;}
-internal virtual bool _DebugInteractive{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #region fields
+        public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnSelectChanged { get; set; }
+        public virtual bool Selected { get; set; }
+        public virtual List<FlutterSDK.Material.Datatable.DataCell> Cells { get; set; }
+        internal virtual bool _DebugInteractive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#region methods
-#endregion
-}
-
-
-public class DataTable : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public DataTable(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),List<FlutterSDK.Material.Datatable.DataColumn> columns = default(List<FlutterSDK.Material.Datatable.DataColumn>),int sortColumnIndex = default(int),bool sortAscending = true,FlutterSDK.Foundation.Basictypes.ValueSetter<bool> onSelectAll = default(FlutterSDK.Foundation.Basictypes.ValueSetter<bool>),double dataRowHeight = default(double),double headingRowHeight = 56.0,double horizontalMargin = 24.0,double columnSpacing = 56.0,bool showCheckboxColumn = true,double dividerThickness = 1.0,List<FlutterSDK.Material.Datatable.DataRow> rows = default(List<FlutterSDK.Material.Datatable.DataRow>))
-: base(key:key)
-{
-this.Columns = columns;
-this.SortColumnIndex = sortColumnIndex;
-this.SortAscending = sortAscending;
-this.OnSelectAll = onSelectAll;
-this.DataRowHeight = dataRowHeight;
-this.HeadingRowHeight = headingRowHeight;
-this.HorizontalMargin = horizontalMargin;
-this.ColumnSpacing = columnSpacing;
-this.ShowCheckboxColumn = showCheckboxColumn;
-this.DividerThickness = dividerThickness;
-this.Rows = rows;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual List<FlutterSDK.Material.Datatable.DataColumn> Columns{get;set;}
-public virtual int SortColumnIndex{get;set;}
-public virtual bool SortAscending{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueSetter<bool> OnSelectAll{get;set;}
-public virtual double DataRowHeight{get;set;}
-public virtual double HeadingRowHeight{get;set;}
-public virtual double HorizontalMargin{get;set;}
-public virtual double ColumnSpacing{get;set;}
-public virtual bool ShowCheckboxColumn{get;set;}
-public virtual List<FlutterSDK.Material.Datatable.DataRow> Rows{get;set;}
-internal virtual int _OnlyTextColumn{get;set;}
-internal virtual FlutterSDK.Foundation.Key.LocalKey _HeadingRowKey{get;set;}
-internal virtual double _SortArrowPadding{get;set;}
-internal virtual double _HeadingFontSize{get;set;}
-internal virtual TimeSpan _SortArrowAnimationDuration{get;set;}
-internal virtual FlutterBinding.UI.Color _Grey100Opacity{get;set;}
-internal virtual FlutterBinding.UI.Color _Grey300Opacity{get;set;}
-public virtual double DividerThickness{get;set;}
-internal virtual bool _DebugInteractive{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-private int _InitOnlyTextColumn(List<FlutterSDK.Material.Datatable.DataColumn> columns){ throw new NotImplementedException(); }
+        #region methods
+        #endregion
+    }
 
 
-private void _HandleSelectAll(bool @checked){ throw new NotImplementedException(); }
+    public class DataCell
+    {
+        #region constructors
+        public DataCell(FlutterSDK.Widgets.Framework.Widget child, bool placeholder = false, bool showEditIcon = false, VoidCallback onTap = default(VoidCallback))
+        : base()
+        {
+            this.Child = child;
+            this.Placeholder = placeholder;
+            this.ShowEditIcon = showEditIcon;
+            this.OnTap = onTap; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Material.Datatable.DataCell Empty { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual bool Placeholder { get; set; }
+        public virtual bool ShowEditIcon { get; set; }
+        public virtual VoidCallback OnTap { get; set; }
+        internal virtual bool _DebugInteractive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+        #endregion
+    }
 
 
-private FlutterSDK.Widgets.Framework.Widget _BuildCheckbox(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),bool @checked = default(bool),VoidCallback onRowTap = default(VoidCallback),FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onCheckboxChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>)){ throw new NotImplementedException(); }
+    public class DataTable : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public DataTable(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Material.Datatable.DataColumn> columns = default(List<FlutterSDK.Material.Datatable.DataColumn>), int sortColumnIndex = default(int), bool sortAscending = true, FlutterSDK.Foundation.Basictypes.ValueSetter<bool> onSelectAll = default(FlutterSDK.Foundation.Basictypes.ValueSetter<bool>), double dataRowHeight = default(double), double headingRowHeight = 56.0, double horizontalMargin = 24.0, double columnSpacing = 56.0, bool showCheckboxColumn = true, double dividerThickness = 1.0, List<FlutterSDK.Material.Datatable.DataRow> rows = default(List<FlutterSDK.Material.Datatable.DataRow>))
+        : base(key: key)
+        {
+            this.Columns = columns;
+            this.SortColumnIndex = sortColumnIndex;
+            this.SortAscending = sortAscending;
+            this.OnSelectAll = onSelectAll;
+            this.DataRowHeight = dataRowHeight;
+            this.HeadingRowHeight = headingRowHeight;
+            this.HorizontalMargin = horizontalMargin;
+            this.ColumnSpacing = columnSpacing;
+            this.ShowCheckboxColumn = showCheckboxColumn;
+            this.DividerThickness = dividerThickness;
+            this.Rows = rows; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual List<FlutterSDK.Material.Datatable.DataColumn> Columns { get; set; }
+        public virtual int SortColumnIndex { get; set; }
+        public virtual bool SortAscending { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueSetter<bool> OnSelectAll { get; set; }
+        public virtual double DataRowHeight { get; set; }
+        public virtual double HeadingRowHeight { get; set; }
+        public virtual double HorizontalMargin { get; set; }
+        public virtual double ColumnSpacing { get; set; }
+        public virtual bool ShowCheckboxColumn { get; set; }
+        public virtual List<FlutterSDK.Material.Datatable.DataRow> Rows { get; set; }
+        internal virtual int _OnlyTextColumn { get; set; }
+        internal virtual FlutterSDK.Foundation.Key.LocalKey _HeadingRowKey { get; set; }
+        internal virtual double _SortArrowPadding { get; set; }
+        internal virtual double _HeadingFontSize { get; set; }
+        internal virtual TimeSpan _SortArrowAnimationDuration { get; set; }
+        internal virtual FlutterBinding.UI.Color _Grey100Opacity { get; set; }
+        internal virtual FlutterBinding.UI.Color _Grey300Opacity { get; set; }
+        public virtual double DividerThickness { get; set; }
+        internal virtual bool _DebugInteractive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        private int _InitOnlyTextColumn(List<FlutterSDK.Material.Datatable.DataColumn> columns) { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Widgets.Framework.Widget _BuildHeadingCell(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget),string tooltip = default(string),bool numeric = default(bool),VoidCallback onSort = default(VoidCallback),bool sorted = default(bool),bool ascending = default(bool)){ throw new NotImplementedException(); }
+        private void _HandleSelectAll(bool @checked) { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Widgets.Framework.Widget _BuildDataCell(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget),bool numeric = default(bool),bool placeholder = default(bool),bool showEditIcon = default(bool),VoidCallback onTap = default(VoidCallback),VoidCallback onSelectChanged = default(VoidCallback)){ throw new NotImplementedException(); }
+        private FlutterSDK.Widgets.Framework.Widget _BuildCheckbox(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), bool @checked = default(bool), VoidCallback onRowTap = default(VoidCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onCheckboxChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>)) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-#endregion
-}
+        private FlutterSDK.Widgets.Framework.Widget _BuildHeadingCell(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget), string tooltip = default(string), bool numeric = default(bool), VoidCallback onSort = default(VoidCallback), bool sorted = default(bool), bool ascending = default(bool)) { throw new NotImplementedException(); }
 
 
-public class TableRowInkWell : FlutterSDK.Material.Inkwell.InkResponse
-{
-#region constructors
-public TableRowInkWell(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback),FlutterSDK.Gestures.Tap.GestureTapCallback onDoubleTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback),FlutterSDK.Gestures.Longpress.GestureLongPressCallback onLongPress = default(FlutterSDK.Gestures.Longpress.GestureLongPressCallback),FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onHighlightChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>))
-: base(key:key,child:child,onTap:onTap,onDoubleTap:onDoubleTap,onLongPress:onLongPress,onHighlightChanged:onHighlightChanged,containedInkWell:true,highlightShape:BoxShape.Rectangle)
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public new FlutterSDK.Material.Material.RectCallback GetRectCallback(FlutterSDK.Rendering.Box.RenderBox referenceBox){ throw new NotImplementedException(); }
+        private FlutterSDK.Widgets.Framework.Widget _BuildDataCell(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget), bool numeric = default(bool), bool placeholder = default(bool), bool showEditIcon = default(bool), VoidCallback onTap = default(VoidCallback), VoidCallback onSelectChanged = default(VoidCallback)) { throw new NotImplementedException(); }
 
 
-public new bool DebugCheckContext(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#endregion
-}
-
-
-public class _SortArrow : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public _SortArrow(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),bool visible = default(bool),bool down = default(bool),TimeSpan duration = default(TimeSpan))
-: base(key:key)
-{
-this.Visible = visible;
-this.Down = down;
-this.Duration = duration;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual bool Visible{get;set;}
-public virtual bool Down{get;set;}
-public virtual TimeSpan Duration{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Material.Datatable._SortArrowState CreateState(){ throw new NotImplementedException(); }
-
-#endregion
-}
+        #endregion
+    }
 
 
-public class _SortArrowState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Datatable._SortArrow>,ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-#region constructors
-public _SortArrowState()
-{ }
-#endregion
+    public class TableRowInkWell : FlutterSDK.Material.Inkwell.InkResponse
+    {
+        #region constructors
+        public TableRowInkWell(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Tap.GestureTapCallback onDoubleTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Longpress.GestureLongPressCallback onLongPress = default(FlutterSDK.Gestures.Longpress.GestureLongPressCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onHighlightChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>))
+        : base(key: key, child: child, onTap: onTap, onDoubleTap: onDoubleTap, onLongPress: onLongPress, onHighlightChanged: onHighlightChanged, containedInkWell: true, highlightShape: BoxShape.Rectangle)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _OpacityController{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _OpacityAnimation{get;set;}
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _OrientationController{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _OrientationAnimation{get;set;}
-internal virtual double _OrientationOffset{get;set;}
-internal virtual bool _Down{get;set;}
-internal virtual FlutterSDK.Animation.Tween.Animatable<double> _TurnTween{get;set;}
-internal virtual double _ArrowIconBaselineOffset{get;set;}
-internal virtual double _ArrowIconSize{get;set;}
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-public new void InitState(){ throw new NotImplementedException(); }
+        public new FlutterSDK.Material.Material.RectCallback GetRectCallback(FlutterSDK.Rendering.Box.RenderBox referenceBox) { throw new NotImplementedException(); }
 
 
-private void _Rebuild(){ throw new NotImplementedException(); }
+        public new bool DebugCheckContext(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-private void _ResetOrientationAnimation(FlutterSDK.Animation.Animation.AnimationStatus status){ throw new NotImplementedException(); }
+    public class _SortArrow : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public _SortArrow(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool visible = default(bool), bool down = default(bool), TimeSpan duration = default(TimeSpan))
+        : base(key: key)
+        {
+            this.Visible = visible;
+            this.Down = down;
+            this.Duration = duration; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual bool Visible { get; set; }
+        public virtual bool Down { get; set; }
+        public virtual TimeSpan Duration { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Material.Datatable._SortArrowState CreateState() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public new void DidUpdateWidget(FlutterSDK.Material.Datatable._SortArrow oldWidget){ throw new NotImplementedException(); }
+    public class _SortArrowState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Datatable._SortArrow>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _SortArrowState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _OpacityController { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _OpacityAnimation { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _OrientationController { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _OrientationAnimation { get; set; }
+        internal virtual double _OrientationOffset { get; set; }
+        internal virtual bool _Down { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.Animatable<double> _TurnTween { get; set; }
+        internal virtual double _ArrowIconBaselineOffset { get; set; }
+        internal virtual double _ArrowIconSize { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+        private void _Rebuild() { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        private void _ResetOrientationAnimation(FlutterSDK.Animation.Animation.AnimationStatus status) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new void DidUpdateWidget(FlutterSDK.Material.Datatable._SortArrow oldWidget) { throw new NotImplementedException(); }
+
+
+        public new void Dispose() { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

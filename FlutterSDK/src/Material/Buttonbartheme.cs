@@ -364,79 +364,83 @@ using FlutterSDK.Material.Materialstate;
 using FlutterSDK.Material.Themedata;
 using FlutterSDK.Material.Buttonbartheme;
 using FlutterSDK.Material.Raisedbutton;
-namespace FlutterSDK.Material.Buttonbartheme{
-internal static class ButtonbarthemeDefaultClass{
-}
-
-public class ButtonBarThemeData : IDiagnosticable
+namespace FlutterSDK.Material.Buttonbartheme
 {
-#region constructors
-public ButtonBarThemeData(FlutterSDK.Rendering.Flex.MainAxisAlignment alignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment),FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize),FlutterSDK.Material.Buttontheme.ButtonTextTheme buttonTextTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme),double buttonMinWidth = default(double),double buttonHeight = default(double),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry buttonPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),bool buttonAlignedDropdown = default(bool),FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior layoutBehavior = default(FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior),FlutterSDK.Painting.Basictypes.VerticalDirection overflowDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection))
-: base()
-{
-this.Alignment = alignment;
-this.MainAxisSize = mainAxisSize;
-this.ButtonTextTheme = buttonTextTheme;
-this.ButtonMinWidth = buttonMinWidth;
-this.ButtonHeight = buttonHeight;
-this.ButtonPadding = buttonPadding;
-this.ButtonAlignedDropdown = buttonAlignedDropdown;
-this.LayoutBehavior = layoutBehavior;
-this.OverflowDirection = overflowDirection;throw new NotImplementedException(); }
-#endregion
+    internal static class ButtonbarthemeDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Rendering.Flex.MainAxisAlignment Alignment{get;set;}
-public virtual FlutterSDK.Rendering.Flex.MainAxisSize MainAxisSize{get;set;}
-public virtual FlutterSDK.Material.Buttontheme.ButtonTextTheme ButtonTextTheme{get;set;}
-public virtual double ButtonMinWidth{get;set;}
-public virtual double ButtonHeight{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ButtonPadding{get;set;}
-public virtual bool ButtonAlignedDropdown{get;set;}
-public virtual FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior LayoutBehavior{get;set;}
-public virtual FlutterSDK.Painting.Basictypes.VerticalDirection OverflowDirection{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class ButtonBarThemeData : IDiagnosticable
+    {
+        #region constructors
+        public ButtonBarThemeData(FlutterSDK.Rendering.Flex.MainAxisAlignment alignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment), FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize), FlutterSDK.Material.Buttontheme.ButtonTextTheme buttonTextTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme), double buttonMinWidth = default(double), double buttonHeight = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry buttonPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), bool buttonAlignedDropdown = default(bool), FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior layoutBehavior = default(FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior), FlutterSDK.Painting.Basictypes.VerticalDirection overflowDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection))
+        : base()
+        {
+            this.Alignment = alignment;
+            this.MainAxisSize = mainAxisSize;
+            this.ButtonTextTheme = buttonTextTheme;
+            this.ButtonMinWidth = buttonMinWidth;
+            this.ButtonHeight = buttonHeight;
+            this.ButtonPadding = buttonPadding;
+            this.ButtonAlignedDropdown = buttonAlignedDropdown;
+            this.LayoutBehavior = layoutBehavior;
+            this.OverflowDirection = overflowDirection; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Rendering.Flex.MainAxisAlignment Alignment { get; set; }
+        public virtual FlutterSDK.Rendering.Flex.MainAxisSize MainAxisSize { get; set; }
+        public virtual FlutterSDK.Material.Buttontheme.ButtonTextTheme ButtonTextTheme { get; set; }
+        public virtual double ButtonMinWidth { get; set; }
+        public virtual double ButtonHeight { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ButtonPadding { get; set; }
+        public virtual bool ButtonAlignedDropdown { get; set; }
+        public virtual FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior LayoutBehavior { get; set; }
+        public virtual FlutterSDK.Painting.Basictypes.VerticalDirection OverflowDirection { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData CopyWith(FlutterSDK.Rendering.Flex.MainAxisAlignment alignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment),FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize),FlutterSDK.Material.Buttontheme.ButtonTextTheme buttonTextTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme),double buttonMinWidth = default(double),double buttonHeight = default(double),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry buttonPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),bool buttonAlignedDropdown = default(bool),FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior layoutBehavior = default(FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior),FlutterSDK.Painting.Basictypes.VerticalDirection overflowDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection)){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData Lerp(FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData a,FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData b,double t){ throw new NotImplementedException(); }
-
-
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData CopyWith(FlutterSDK.Rendering.Flex.MainAxisAlignment alignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment), FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize), FlutterSDK.Material.Buttontheme.ButtonTextTheme buttonTextTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme), double buttonMinWidth = default(double), double buttonHeight = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry buttonPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), bool buttonAlignedDropdown = default(bool), FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior layoutBehavior = default(FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior), FlutterSDK.Painting.Basictypes.VerticalDirection overflowDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection)) { throw new NotImplementedException(); }
 
 
-public class ButtonBarTheme : FlutterSDK.Widgets.Framework.InheritedWidget
-{
-#region constructors
-public ButtonBarTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData data = default(FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key,child:child)
-{
-this.Data = data;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData Data{get;set;}
-#endregion
-
-#region methods
-
-public virtual FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData Lerp(FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData a, FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData b, double t) { throw new NotImplementedException(); }
 
 
-public new bool UpdateShouldNotify(FlutterSDK.Material.Buttonbartheme.ButtonBarTheme oldWidget){ throw new NotImplementedException(); }
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget){ throw new NotImplementedException(); }
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class ButtonBarTheme : FlutterSDK.Widgets.Framework.InheritedWidget
+    {
+        #region constructors
+        public ButtonBarTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData data = default(FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            this.Data = data; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData Data { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+
+        public new bool UpdateShouldNotify(FlutterSDK.Material.Buttonbartheme.ButtonBarTheme oldWidget) { throw new NotImplementedException(); }
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

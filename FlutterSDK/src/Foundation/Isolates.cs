@@ -293,10 +293,12 @@ using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
-namespace FlutterSDK.Foundation.Isolates{
-public delegate FutureOr<R> ComputeCallback<Q,R>(Q message);
-public delegate Future<R> _ComputeImpl(FlutterSDK.Foundation.Isolates.ComputeCallback<Q,R> callback,Q message,string debugLabel = default(string));
-internal static class IsolatesDefaultClass{
-public static object Compute = default(object);
-}
+namespace FlutterSDK.Foundation.Isolates
+{
+    public delegate FutureOr<R> ComputeCallback<Q, R>(Q message);
+    public delegate Future<R> _ComputeImpl(FlutterSDK.Foundation.Isolates.ComputeCallback<Q, R> callback, Q message, string debugLabel = default(string));
+    internal static class IsolatesDefaultClass
+    {
+        public static object Compute = default(object);
+    }
 }

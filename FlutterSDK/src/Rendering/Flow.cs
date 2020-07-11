@@ -421,169 +421,176 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Rendering.Flow{
-internal static class FlowDefaultClass{
-}
-
-public interface IFlowDelegate{
-Size GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints);
-FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(int i,FlutterSDK.Rendering.Box.BoxConstraints constraints);
-void PaintChildren(FlutterSDK.Rendering.Flow.FlowPaintingContext context);
-bool ShouldRelayout(FlutterSDK.Rendering.Flow.FlowDelegate oldDelegate);
-bool ShouldRepaint(FlutterSDK.Rendering.Flow.FlowDelegate oldDelegate);
-string ToString();
-}
-
-
-public interface IFlowPaintingContext{}
-
-public class FlowPaintingContext{
-public virtual Size Size{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int ChildCount{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-
-public virtual Size GetChildSize(int i){ throw new NotImplementedException(); }
-
-
-public virtual void PaintChild(int i,Matrix4 transform = default(Matrix4),double opacity = 1.0){ throw new NotImplementedException(); }
-
-}
-public static class FlowPaintingContextMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IFlowPaintingContext, FlowPaintingContext> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IFlowPaintingContext, FlowPaintingContext>();
-static FlowPaintingContext GetOrCreate(IFlowPaintingContext instance)
+namespace FlutterSDK.Rendering.Flow
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new FlowPaintingContext();
-_table.Add(instance, value);
-}
-return (FlowPaintingContext)value;
-}
-public static Size SizeProperty(this IFlowPaintingContext instance) => GetOrCreate(instance).Size;
-public static int ChildCountProperty(this IFlowPaintingContext instance) => GetOrCreate(instance).ChildCount;
-public static Size GetChildSize(this IFlowPaintingContext instance,int i) => GetOrCreate(instance).GetChildSize(i);
-public static void PaintChild(this IFlowPaintingContext instance,int i,Matrix4 transform = default(Matrix4),double opacity = 1.0) => GetOrCreate(instance).PaintChild(i, transform, opacity);
-}
+    internal static class FlowDefaultClass
+    {
+    }
+
+    public interface IFlowDelegate
+    {
+        Size GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints);
+        FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(int i, FlutterSDK.Rendering.Box.BoxConstraints constraints);
+        void PaintChildren(FlutterSDK.Rendering.Flow.FlowPaintingContext context);
+        bool ShouldRelayout(FlutterSDK.Rendering.Flow.FlowDelegate oldDelegate);
+        bool ShouldRepaint(FlutterSDK.Rendering.Flow.FlowDelegate oldDelegate);
+        string ToString();
+    }
 
 
-public class FlowDelegate
-{
-#region constructors
-public FlowDelegate(FlutterSDK.Foundation.Changenotifier.Listenable repaint = default(FlutterSDK.Foundation.Changenotifier.Listenable))
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
+    public interface IFlowPaintingContext { }
 
-#region fields
-internal virtual FlutterSDK.Foundation.Changenotifier.Listenable _Repaint{get;set;}
-#endregion
+    public class FlowPaintingContext
+    {
+        public virtual Size Size { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int ChildCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
-#region methods
-
-public virtual Size GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints){ throw new NotImplementedException(); }
+        public virtual Size GetChildSize(int i) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(int i,FlutterSDK.Rendering.Box.BoxConstraints constraints){ throw new NotImplementedException(); }
+        public virtual void PaintChild(int i, Matrix4 transform = default(Matrix4), double opacity = 1.0) { throw new NotImplementedException(); }
+
+    }
+    public static class FlowPaintingContextMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IFlowPaintingContext, FlowPaintingContext> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IFlowPaintingContext, FlowPaintingContext>();
+        static FlowPaintingContext GetOrCreate(IFlowPaintingContext instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new FlowPaintingContext();
+                _table.Add(instance, value);
+            }
+            return (FlowPaintingContext)value;
+        }
+        public static Size SizeProperty(this IFlowPaintingContext instance) => GetOrCreate(instance).Size;
+        public static int ChildCountProperty(this IFlowPaintingContext instance) => GetOrCreate(instance).ChildCount;
+        public static Size GetChildSize(this IFlowPaintingContext instance, int i) => GetOrCreate(instance).GetChildSize(i);
+        public static void PaintChild(this IFlowPaintingContext instance, int i, Matrix4 transform = default(Matrix4), double opacity = 1.0) => GetOrCreate(instance).PaintChild(i, transform, opacity);
+    }
 
 
-public virtual void PaintChildren(FlutterSDK.Rendering.Flow.FlowPaintingContext context){ throw new NotImplementedException(); }
+    public class FlowDelegate
+    {
+        #region constructors
+        public FlowDelegate(FlutterSDK.Foundation.Changenotifier.Listenable repaint = default(FlutterSDK.Foundation.Changenotifier.Listenable))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Foundation.Changenotifier.Listenable _Repaint { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual Size GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
 
 
-public virtual bool ShouldRelayout(FlutterSDK.Rendering.Flow.FlowDelegate oldDelegate){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(int i, FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
 
 
-public virtual bool ShouldRepaint(FlutterSDK.Rendering.Flow.FlowDelegate oldDelegate){ throw new NotImplementedException(); }
+        public virtual void PaintChildren(FlutterSDK.Rendering.Flow.FlowPaintingContext context) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public virtual bool ShouldRelayout(FlutterSDK.Rendering.Flow.FlowDelegate oldDelegate) { throw new NotImplementedException(); }
 
 
-public class FlowParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
-{
-#region constructors
-public FlowParentData()
-{ }
-#endregion
-
-#region fields
-internal virtual Matrix4 _Transform{get;set;}
-#endregion
-
-#region methods
-#endregion
-}
+        public virtual bool ShouldRepaint(FlutterSDK.Rendering.Flow.FlowDelegate oldDelegate) { throw new NotImplementedException(); }
 
 
-public class RenderFlow : FlutterSDK.Rendering.Box.RenderBox,IFlowPaintingContext,IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox,FlutterSDK.Rendering.Flow.FlowParentData>,IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox,FlutterSDK.Rendering.Flow.FlowParentData>
-{
-#region constructors
-public RenderFlow(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>),FlutterSDK.Rendering.Flow.FlowDelegate @delegate = default(FlutterSDK.Rendering.Flow.FlowDelegate))
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Rendering.Flow.FlowDelegate _Delegate{get;set;}
-internal virtual List<FlutterSDK.Rendering.Box.RenderBox> _RandomAccessChildren{get;set;}
-internal virtual List<int> _LastPaintOrder{get;set;}
-internal virtual FlutterSDK.Rendering.@object.PaintingContext _PaintingContext{get;set;}
-internal virtual FlutterBinding.UI.Offset _PaintingOffset{get;set;}
-public virtual FlutterSDK.Rendering.Flow.FlowDelegate @delegate{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool IsRepaintBoundary{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child){ throw new NotImplementedException(); }
-public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner){ throw new NotImplementedException(); }
-public new void Attach(@Object owner){ throw new NotImplementedException(); }
+    public class FlowParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
+    {
+        #region constructors
+        public FlowParentData()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual Matrix4 _Transform { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
 
 
-public new void Detach(){ throw new NotImplementedException(); }
+    public class RenderFlow : FlutterSDK.Rendering.Box.RenderBox, IFlowPaintingContext, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Flow.FlowParentData>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Flow.FlowParentData>
+    {
+        #region constructors
+        public RenderFlow(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Rendering.Flow.FlowDelegate @delegate = default(FlutterSDK.Rendering.Flow.FlowDelegate))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Rendering.Flow.FlowDelegate _Delegate { get; set; }
+        internal virtual List<FlutterSDK.Rendering.Box.RenderBox> _RandomAccessChildren { get; set; }
+        internal virtual List<int> _LastPaintOrder { get; set; }
+        internal virtual FlutterSDK.Rendering.@object.PaintingContext _PaintingContext { get; set; }
+        internal virtual FlutterBinding.UI.Offset _PaintingOffset { get; set; }
+        public virtual FlutterSDK.Rendering.Flow.FlowDelegate @delegate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsRepaintBoundary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
+        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
 
-private Size _GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints){ throw new NotImplementedException(); }
+        public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner) { throw new NotImplementedException(); }
+        public new void Attach(@Object owner) { throw new NotImplementedException(); }
 
 
-public new double ComputeMinIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        public new void Detach() { throw new NotImplementedException(); }
 
 
-public new double ComputeMaxIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        private Size _GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
 
 
-public new double ComputeMinIntrinsicHeight(double width){ throw new NotImplementedException(); }
+        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-public new double ComputeMaxIntrinsicHeight(double width){ throw new NotImplementedException(); }
+        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
+        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-public new Size GetChildSize(int i){ throw new NotImplementedException(); }
+        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-public new void PaintChild(int i,Matrix4 transform = default(Matrix4),double opacity = 1.0){ throw new NotImplementedException(); }
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
 
-private void _PaintWithDelegate(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new Size GetChildSize(int i) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new void PaintChild(int i, Matrix4 transform = default(Matrix4), double opacity = 1.0) { throw new NotImplementedException(); }
 
 
-public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
+        private void _PaintWithDelegate(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
-public new void ApplyPaintTransform(FlutterSDK.Rendering.Box.RenderBox child,Matrix4 transform){ throw new NotImplementedException(); }
-public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child,Matrix4 transform){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
+
+
+        public new void ApplyPaintTransform(FlutterSDK.Rendering.Box.RenderBox child, Matrix4 transform) { throw new NotImplementedException(); }
+        public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

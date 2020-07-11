@@ -309,96 +309,103 @@ using FlutterSDK.Material.Animatedicons.Animatedicons;
 using FlutterSDK.Material.Animatedicons.Animatediconsdata;
 using FlutterSDK.Material.Animatedicons.Animatedicons;
 using FlutterSDK.Material.Animatedicons.Animatediconsdata;
-namespace FlutterSDK.Material.Animatedicons.Animatediconsdata{
-internal static class AnimatediconsdataDefaultClass{
-}
-
-public interface IAnimatedIconData{
-bool MatchTextDirection{get;}
-}
-
-
-public interface IAnimatedIcons{}
-
-public class AnimatedIcons{
-public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Addevent{get;set;}
-public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Arrowmenu{get;set;}
-public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Closemenu{get;set;}
-public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Ellipsissearch{get;set;}
-public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Eventadd{get;set;}
-public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Homemenu{get;set;}
-public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Listview{get;set;}
-public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Menuarrow{get;set;}
-public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Menuclose{get;set;}
-public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Menuhome{get;set;}
-public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Pauseplay{get;set;}
-public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Playpause{get;set;}
-public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Searchellipsis{get;set;}
-public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Viewlist{get;set;}
-}
-public static class AnimatedIconsMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IAnimatedIcons, AnimatedIcons> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IAnimatedIcons, AnimatedIcons>();
-static AnimatedIcons GetOrCreate(IAnimatedIcons instance)
+namespace FlutterSDK.Material.Animatedicons.Animatediconsdata
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new AnimatedIcons();
-_table.Add(instance, value);
-}
-return (AnimatedIcons)value;
-}
-public static FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData AddeventProperty(this IAnimatedIcons instance) => GetOrCreate(instance).Addevent;
-public static FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData ArrowmenuProperty(this IAnimatedIcons instance) => GetOrCreate(instance).Arrowmenu;
-public static FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData ClosemenuProperty(this IAnimatedIcons instance) => GetOrCreate(instance).Closemenu;
-public static FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData EllipsissearchProperty(this IAnimatedIcons instance) => GetOrCreate(instance).Ellipsissearch;
-public static FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData EventaddProperty(this IAnimatedIcons instance) => GetOrCreate(instance).Eventadd;
-public static FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData HomemenuProperty(this IAnimatedIcons instance) => GetOrCreate(instance).Homemenu;
-public static FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData ListviewProperty(this IAnimatedIcons instance) => GetOrCreate(instance).Listview;
-public static FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData MenuarrowProperty(this IAnimatedIcons instance) => GetOrCreate(instance).Menuarrow;
-public static FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData MenucloseProperty(this IAnimatedIcons instance) => GetOrCreate(instance).Menuclose;
-public static FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData MenuhomeProperty(this IAnimatedIcons instance) => GetOrCreate(instance).Menuhome;
-public static FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData PauseplayProperty(this IAnimatedIcons instance) => GetOrCreate(instance).Pauseplay;
-public static FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData PlaypauseProperty(this IAnimatedIcons instance) => GetOrCreate(instance).Playpause;
-public static FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData SearchellipsisProperty(this IAnimatedIcons instance) => GetOrCreate(instance).Searchellipsis;
-public static FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData ViewlistProperty(this IAnimatedIcons instance) => GetOrCreate(instance).Viewlist;
-}
+    internal static class AnimatediconsdataDefaultClass
+    {
+    }
+
+    public interface IAnimatedIconData
+    {
+        bool MatchTextDirection { get; }
+    }
 
 
-public class AnimatedIconData
-{
-#region constructors
-public AnimatedIconData()
-{
-throw new NotImplementedException(); }
-#endregion
+    public interface IAnimatedIcons { }
 
-#region fields
-public virtual bool MatchTextDirection{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class AnimatedIcons
+    {
+        public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Addevent { get; set; }
+        public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Arrowmenu { get; set; }
+        public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Closemenu { get; set; }
+        public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Ellipsissearch { get; set; }
+        public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Eventadd { get; set; }
+        public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Homemenu { get; set; }
+        public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Listview { get; set; }
+        public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Menuarrow { get; set; }
+        public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Menuclose { get; set; }
+        public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Menuhome { get; set; }
+        public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Pauseplay { get; set; }
+        public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Playpause { get; set; }
+        public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Searchellipsis { get; set; }
+        public virtual FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData Viewlist { get; set; }
+    }
+    public static class AnimatedIconsMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IAnimatedIcons, AnimatedIcons> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IAnimatedIcons, AnimatedIcons>();
+        static AnimatedIcons GetOrCreate(IAnimatedIcons instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new AnimatedIcons();
+                _table.Add(instance, value);
+            }
+            return (AnimatedIcons)value;
+        }
+        public static FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData AddeventProperty(this IAnimatedIcons instance) => GetOrCreate(instance).Addevent;
+        public static FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData ArrowmenuProperty(this IAnimatedIcons instance) => GetOrCreate(instance).Arrowmenu;
+        public static FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData ClosemenuProperty(this IAnimatedIcons instance) => GetOrCreate(instance).Closemenu;
+        public static FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData EllipsissearchProperty(this IAnimatedIcons instance) => GetOrCreate(instance).Ellipsissearch;
+        public static FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData EventaddProperty(this IAnimatedIcons instance) => GetOrCreate(instance).Eventadd;
+        public static FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData HomemenuProperty(this IAnimatedIcons instance) => GetOrCreate(instance).Homemenu;
+        public static FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData ListviewProperty(this IAnimatedIcons instance) => GetOrCreate(instance).Listview;
+        public static FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData MenuarrowProperty(this IAnimatedIcons instance) => GetOrCreate(instance).Menuarrow;
+        public static FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData MenucloseProperty(this IAnimatedIcons instance) => GetOrCreate(instance).Menuclose;
+        public static FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData MenuhomeProperty(this IAnimatedIcons instance) => GetOrCreate(instance).Menuhome;
+        public static FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData PauseplayProperty(this IAnimatedIcons instance) => GetOrCreate(instance).Pauseplay;
+        public static FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData PlaypauseProperty(this IAnimatedIcons instance) => GetOrCreate(instance).Playpause;
+        public static FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData SearchellipsisProperty(this IAnimatedIcons instance) => GetOrCreate(instance).Searchellipsis;
+        public static FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData ViewlistProperty(this IAnimatedIcons instance) => GetOrCreate(instance).Viewlist;
+    }
 
-#region methods
-#endregion
-}
+
+    public class AnimatedIconData
+    {
+        #region constructors
+        public AnimatedIconData()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual bool MatchTextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+        #endregion
+    }
 
 
-public class _AnimatedIconData : FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData
-{
-#region constructors
-public _AnimatedIconData(Size size,List<object> paths,bool matchTextDirection = false)
-{
-this.Size = size;
-this.Paths = paths;
-this.MatchTextDirection = matchTextDirection;throw new NotImplementedException(); }
-#endregion
+    public class _AnimatedIconData : FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData
+    {
+        #region constructors
+        public _AnimatedIconData(Size size, List<object> paths, bool matchTextDirection = false)
+        {
+            this.Size = size;
+            this.Paths = paths;
+            this.MatchTextDirection = matchTextDirection; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual Size Size{get;set;}
-public virtual List<object> Paths{get;set;}
-public new bool MatchTextDirection{get;set;}
-#endregion
+        #region fields
+        public virtual Size Size { get; set; }
+        public virtual List<object> Paths { get; set; }
+        public new bool MatchTextDirection { get; set; }
+        #endregion
 
-#region methods
-#endregion
-}
+        #region methods
+        #endregion
+    }
 
 }

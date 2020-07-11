@@ -421,32 +421,35 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Widgets.Disposablebuildcontext{
-internal static class DisposablebuildcontextDefaultClass{
-}
-
-public class DisposableBuildContext<T>
+namespace FlutterSDK.Widgets.Disposablebuildcontext
 {
-#region constructors
-public DisposableBuildContext(T _state)
-: base()
-{
-this._State = _state;throw new NotImplementedException(); }
-#endregion
+    internal static class DisposablebuildcontextDefaultClass
+    {
+    }
 
-#region fields
-internal virtual T _State{get;set;}
-public virtual FlutterSDK.Widgets.Framework.BuildContext Context{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class DisposableBuildContext<T>
+    {
+        #region constructors
+        public DisposableBuildContext(T _state)
+        : base()
+        {
+            this._State = _state; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual T _State { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.BuildContext Context { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-private bool _DebugValidate(){ throw new NotImplementedException(); }
+        #region methods
+
+        private bool _DebugValidate() { throw new NotImplementedException(); }
 
 
-public virtual void Dispose(){ throw new NotImplementedException(); }
+        public virtual void Dispose() { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 }

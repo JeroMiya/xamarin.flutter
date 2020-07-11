@@ -421,180 +421,186 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Painting.Textpainter{
-internal static class TextpainterDefaultClass{
-}
-
-public class PlaceholderDimensions
+namespace FlutterSDK.Painting.Textpainter
 {
-#region constructors
-public PlaceholderDimensions(Size size = default(Size),PlaceholderAlignment alignment = default(PlaceholderAlignment),TextBaseline baseline = default(TextBaseline),double baselineOffset = default(double))
-: base()
-{
-this.Size = size;
-this.Alignment = alignment;
-this.Baseline = baseline;
-this.BaselineOffset = baselineOffset;throw new NotImplementedException(); }
-#endregion
+    internal static class TextpainterDefaultClass
+    {
+    }
 
-#region fields
-public virtual Size Size{get;set;}
-public virtual PlaceholderAlignment Alignment{get;set;}
-public virtual double BaselineOffset{get;set;}
-public virtual TextBaseline Baseline{get;set;}
-#endregion
+    public class PlaceholderDimensions
+    {
+        #region constructors
+        public PlaceholderDimensions(Size size = default(Size), PlaceholderAlignment alignment = default(PlaceholderAlignment), TextBaseline baseline = default(TextBaseline), double baselineOffset = default(double))
+        : base()
+        {
+            this.Size = size;
+            this.Alignment = alignment;
+            this.Baseline = baseline;
+            this.BaselineOffset = baselineOffset; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual Size Size { get; set; }
+        public virtual PlaceholderAlignment Alignment { get; set; }
+        public virtual double BaselineOffset { get; set; }
+        public virtual TextBaseline Baseline { get; set; }
+        #endregion
 
-#endregion
-}
+        #region methods
 
-
-public class _CaretMetrics
-{
-#region constructors
-public _CaretMetrics(FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset),double fullHeight = default(double))
-{
-this.Offset = offset;
-this.FullHeight = fullHeight;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterBinding.UI.Offset Offset{get;set;}
-public virtual double FullHeight{get;set;}
-#endregion
-
-#region methods
-#endregion
-}
+        #endregion
+    }
 
 
-public class TextPainter
-{
-#region constructors
-public TextPainter(FlutterSDK.Painting.Inlinespan.InlineSpan text = default(FlutterSDK.Painting.Inlinespan.InlineSpan),TextAlign textAlign = default(TextAlign),TextDirection textDirection = default(TextDirection),double textScaleFactor = 1.0,int maxLines = default(int),string ellipsis = default(string),Locale locale = default(Locale),FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle),FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis),TextHeightBehavior textHeightBehavior = default(TextHeightBehavior))
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
+    public class _CaretMetrics
+    {
+        #region constructors
+        public _CaretMetrics(FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), double fullHeight = default(double))
+        {
+            this.Offset = offset;
+            this.FullHeight = fullHeight; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-internal virtual FlutterBinding.UI.Paragraph _Paragraph{get;set;}
-internal virtual bool _NeedsLayout{get;set;}
-internal virtual FlutterSDK.Painting.Inlinespan.InlineSpan _Text{get;set;}
-internal virtual TextAlign _TextAlign{get;set;}
-internal virtual TextDirection _TextDirection{get;set;}
-internal virtual double _TextScaleFactor{get;set;}
-internal virtual string _Ellipsis{get;set;}
-internal virtual Locale _Locale{get;set;}
-internal virtual int _MaxLines{get;set;}
-internal virtual FlutterSDK.Painting.Strutstyle.StrutStyle _StrutStyle{get;set;}
-internal virtual FlutterSDK.Painting.Textpainter.TextWidthBasis _TextWidthBasis{get;set;}
-internal virtual TextHeightBehavior _TextHeightBehavior{get;set;}
-internal virtual FlutterBinding.UI.Paragraph _LayoutTemplate{get;set;}
-internal virtual List<TextBox> _InlinePlaceholderBoxes{get;set;}
-internal virtual List<double> _InlinePlaceholderScales{get;set;}
-internal virtual List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions> _PlaceholderDimensions{get;set;}
-internal virtual double _LastMinWidth{get;set;}
-internal virtual double _LastMaxWidth{get;set;}
-internal virtual int _ZwjUtf16{get;set;}
-internal virtual FlutterSDK.Painting.Textpainter._CaretMetrics _CaretMetrics{get;set;}
-internal virtual TextPosition _PreviousCaretPosition{get;set;}
-internal virtual FlutterBinding.UI.Rect _PreviousCaretPrototype{get;set;}
-public virtual FlutterSDK.Painting.Inlinespan.InlineSpan Text{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual TextAlign TextAlign{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual TextDirection TextDirection{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual double TextScaleFactor{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual string Ellipsis{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual Locale Locale{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual int MaxLines{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Painting.Strutstyle.StrutStyle StrutStyle{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Painting.Textpainter.TextWidthBasis TextWidthBasis{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual TextHeightBehavior TextHeightBehavior{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual List<TextBox> InlinePlaceholderBoxes{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual List<double> InlinePlaceholderScales{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double PreferredLineHeight{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double MinIntrinsicWidth{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double MaxIntrinsicWidth{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double Width{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double Height{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual Size Size{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool DidExceedMaxLines{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual FlutterBinding.UI.Offset _EmptyOffset{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #region fields
+        public virtual FlutterBinding.UI.Offset Offset { get; set; }
+        public virtual double FullHeight { get; set; }
+        #endregion
 
-#region methods
-
-public virtual void MarkNeedsLayout(){ throw new NotImplementedException(); }
+        #region methods
+        #endregion
+    }
 
 
-public virtual void SetPlaceholderDimensions(List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions> value){ throw new NotImplementedException(); }
+    public class TextPainter
+    {
+        #region constructors
+        public TextPainter(FlutterSDK.Painting.Inlinespan.InlineSpan text = default(FlutterSDK.Painting.Inlinespan.InlineSpan), TextAlign textAlign = default(TextAlign), TextDirection textDirection = default(TextDirection), double textScaleFactor = 1.0, int maxLines = default(int), string ellipsis = default(string), Locale locale = default(Locale), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), TextHeightBehavior textHeightBehavior = default(TextHeightBehavior))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterBinding.UI.Paragraph _Paragraph { get; set; }
+        internal virtual bool _NeedsLayout { get; set; }
+        internal virtual FlutterSDK.Painting.Inlinespan.InlineSpan _Text { get; set; }
+        internal virtual TextAlign _TextAlign { get; set; }
+        internal virtual TextDirection _TextDirection { get; set; }
+        internal virtual double _TextScaleFactor { get; set; }
+        internal virtual string _Ellipsis { get; set; }
+        internal virtual Locale _Locale { get; set; }
+        internal virtual int _MaxLines { get; set; }
+        internal virtual FlutterSDK.Painting.Strutstyle.StrutStyle _StrutStyle { get; set; }
+        internal virtual FlutterSDK.Painting.Textpainter.TextWidthBasis _TextWidthBasis { get; set; }
+        internal virtual TextHeightBehavior _TextHeightBehavior { get; set; }
+        internal virtual FlutterBinding.UI.Paragraph _LayoutTemplate { get; set; }
+        internal virtual List<TextBox> _InlinePlaceholderBoxes { get; set; }
+        internal virtual List<double> _InlinePlaceholderScales { get; set; }
+        internal virtual List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions> _PlaceholderDimensions { get; set; }
+        internal virtual double _LastMinWidth { get; set; }
+        internal virtual double _LastMaxWidth { get; set; }
+        internal virtual int _ZwjUtf16 { get; set; }
+        internal virtual FlutterSDK.Painting.Textpainter._CaretMetrics _CaretMetrics { get; set; }
+        internal virtual TextPosition _PreviousCaretPosition { get; set; }
+        internal virtual FlutterBinding.UI.Rect _PreviousCaretPrototype { get; set; }
+        public virtual FlutterSDK.Painting.Inlinespan.InlineSpan Text { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextAlign TextAlign { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double TextScaleFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string Ellipsis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual Locale Locale { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int MaxLines { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Strutstyle.StrutStyle StrutStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Textpainter.TextWidthBasis TextWidthBasis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextHeightBehavior TextHeightBehavior { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual List<TextBox> InlinePlaceholderBoxes { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual List<double> InlinePlaceholderScales { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double PreferredLineHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double MinIntrinsicWidth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double MaxIntrinsicWidth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Width { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Height { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual Size Size { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool DidExceedMaxLines { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual FlutterBinding.UI.Offset _EmptyOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual void MarkNeedsLayout() { throw new NotImplementedException(); }
 
 
-private ParagraphStyle _CreateParagraphStyle(TextDirection defaultTextDirection = default(TextDirection)){ throw new NotImplementedException(); }
+        public virtual void SetPlaceholderDimensions(List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions> value) { throw new NotImplementedException(); }
 
 
-private double _ApplyFloatingPointHack(double layoutValue){ throw new NotImplementedException(); }
+        private ParagraphStyle _CreateParagraphStyle(TextDirection defaultTextDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
 
-public virtual double ComputeDistanceToActualBaseline(TextBaseline baseline){ throw new NotImplementedException(); }
+        private double _ApplyFloatingPointHack(double layoutValue) { throw new NotImplementedException(); }
 
 
-public virtual void Layout(double minWidth = 0.0,double maxWidth = default(double)){ throw new NotImplementedException(); }
+        public virtual double ComputeDistanceToActualBaseline(TextBaseline baseline) { throw new NotImplementedException(); }
 
 
-public virtual void Paint(Canvas canvas,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public virtual void Layout(double minWidth = 0.0, double maxWidth = default(double)) { throw new NotImplementedException(); }
 
 
-private bool _IsUtf16Surrogate(int value){ throw new NotImplementedException(); }
+        public virtual void Paint(Canvas canvas, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
-private bool _IsUnicodeDirectionality(int value){ throw new NotImplementedException(); }
+        private bool _IsUtf16Surrogate(int value) { throw new NotImplementedException(); }
 
 
-public virtual int GetOffsetAfter(int offset){ throw new NotImplementedException(); }
+        private bool _IsUnicodeDirectionality(int value) { throw new NotImplementedException(); }
 
 
-public virtual int GetOffsetBefore(int offset){ throw new NotImplementedException(); }
+        public virtual int GetOffsetAfter(int offset) { throw new NotImplementedException(); }
 
 
-private Rect _GetRectFromUpstream(int offset,FlutterBinding.UI.Rect caretPrototype){ throw new NotImplementedException(); }
+        public virtual int GetOffsetBefore(int offset) { throw new NotImplementedException(); }
 
 
-private Rect _GetRectFromDownstream(int offset,FlutterBinding.UI.Rect caretPrototype){ throw new NotImplementedException(); }
+        private Rect _GetRectFromUpstream(int offset, FlutterBinding.UI.Rect caretPrototype) { throw new NotImplementedException(); }
 
 
-public virtual Offset GetOffsetForCaret(TextPosition position,FlutterBinding.UI.Rect caretPrototype){ throw new NotImplementedException(); }
+        private Rect _GetRectFromDownstream(int offset, FlutterBinding.UI.Rect caretPrototype) { throw new NotImplementedException(); }
 
 
-public virtual double GetFullHeightForCaret(TextPosition position,FlutterBinding.UI.Rect caretPrototype){ throw new NotImplementedException(); }
+        public virtual Offset GetOffsetForCaret(TextPosition position, FlutterBinding.UI.Rect caretPrototype) { throw new NotImplementedException(); }
 
 
-private void _ComputeCaretMetrics(TextPosition position,FlutterBinding.UI.Rect caretPrototype){ throw new NotImplementedException(); }
+        public virtual double GetFullHeightForCaret(TextPosition position, FlutterBinding.UI.Rect caretPrototype) { throw new NotImplementedException(); }
 
 
-public virtual List<TextBox> GetBoxesForSelection(FlutterSDK.Services.Textediting.TextSelection selection,BoxHeightStyle boxHeightStyle = default(BoxHeightStyle),BoxWidthStyle boxWidthStyle = default(BoxWidthStyle)){ throw new NotImplementedException(); }
+        private void _ComputeCaretMetrics(TextPosition position, FlutterBinding.UI.Rect caretPrototype) { throw new NotImplementedException(); }
 
 
-public virtual TextPosition GetPositionForOffset(FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public virtual List<TextBox> GetBoxesForSelection(FlutterSDK.Services.Textediting.TextSelection selection, BoxHeightStyle boxHeightStyle = default(BoxHeightStyle), BoxWidthStyle boxWidthStyle = default(BoxWidthStyle)) { throw new NotImplementedException(); }
 
 
-public virtual TextRange GetWordBoundary(TextPosition position){ throw new NotImplementedException(); }
+        public virtual TextPosition GetPositionForOffset(FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
-public virtual TextRange GetLineBoundary(TextPosition position){ throw new NotImplementedException(); }
+        public virtual TextRange GetWordBoundary(TextPosition position) { throw new NotImplementedException(); }
 
 
-public virtual List<LineMetrics> ComputeLineMetrics(){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual TextRange GetLineBoundary(TextPosition position) { throw new NotImplementedException(); }
 
 
-public enum TextWidthBasis{
+        public virtual List<LineMetrics> ComputeLineMetrics() { throw new NotImplementedException(); }
 
-Parent,
-LongestLine,
-}
+        #endregion
+    }
+
+
+    public enum TextWidthBasis
+    {
+
+        Parent,
+        LongestLine,
+    }
 
 }

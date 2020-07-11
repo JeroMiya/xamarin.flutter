@@ -421,218 +421,231 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Services.Rawkeyboard{
-internal static class RawkeyboardDefaultClass{
-}
-
-public interface IRawKeyEventData{
-bool IsModifierPressed(FlutterSDK.Services.Rawkeyboard.ModifierKey key,FlutterSDK.Services.Rawkeyboard.KeyboardSide side = default(FlutterSDK.Services.Rawkeyboard.KeyboardSide));
-FlutterSDK.Services.Rawkeyboard.KeyboardSide GetModifierSide(FlutterSDK.Services.Rawkeyboard.ModifierKey key);
-bool IsControlPressed{get;}
-bool IsShiftPressed{get;}
-bool IsAltPressed{get;}
-bool IsMetaPressed{get;}
-Dictionary<FlutterSDK.Services.Rawkeyboard.ModifierKey,FlutterSDK.Services.Rawkeyboard.KeyboardSide> ModifiersPressed{get;}
-FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey{get;}
-FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey{get;}
-string KeyLabel{get;}
-}
-
-
-public interface IRawKeyEvent{
-bool IsKeyPressed(FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey key);
-void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
-string Character{get;}
-FlutterSDK.Services.Rawkeyboard.RawKeyEventData Data{get;}
-bool IsControlPressed{get;}
-bool IsShiftPressed{get;}
-bool IsAltPressed{get;}
-bool IsMetaPressed{get;}
-FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey{get;}
-FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey{get;}
-}
-
-
-public class RawKeyEventData
+namespace FlutterSDK.Services.Rawkeyboard
 {
-#region constructors
-public RawKeyEventData()
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class RawkeyboardDefaultClass
+    {
+    }
 
-#region fields
-public virtual bool IsControlPressed{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsShiftPressed{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsAltPressed{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsMetaPressed{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual Dictionary<FlutterSDK.Services.Rawkeyboard.ModifierKey,FlutterSDK.Services.Rawkeyboard.KeyboardSide> ModifiersPressed{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string KeyLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public virtual bool IsModifierPressed(FlutterSDK.Services.Rawkeyboard.ModifierKey key,FlutterSDK.Services.Rawkeyboard.KeyboardSide side = default(FlutterSDK.Services.Rawkeyboard.KeyboardSide)){ throw new NotImplementedException(); }
+    public interface IRawKeyEventData
+    {
+        bool IsModifierPressed(FlutterSDK.Services.Rawkeyboard.ModifierKey key, FlutterSDK.Services.Rawkeyboard.KeyboardSide side = default(FlutterSDK.Services.Rawkeyboard.KeyboardSide));
+        FlutterSDK.Services.Rawkeyboard.KeyboardSide GetModifierSide(FlutterSDK.Services.Rawkeyboard.ModifierKey key);
+        bool IsControlPressed { get; }
+        bool IsShiftPressed { get; }
+        bool IsAltPressed { get; }
+        bool IsMetaPressed { get; }
+        Dictionary<FlutterSDK.Services.Rawkeyboard.ModifierKey, FlutterSDK.Services.Rawkeyboard.KeyboardSide> ModifiersPressed { get; }
+        FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey { get; }
+        FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey { get; }
+        string KeyLabel { get; }
+    }
 
 
-public virtual FlutterSDK.Services.Rawkeyboard.KeyboardSide GetModifierSide(FlutterSDK.Services.Rawkeyboard.ModifierKey key){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class RawKeyEvent : IDiagnosticable
-{
-#region constructors
-public RawKeyEvent(FlutterSDK.Services.Rawkeyboard.RawKeyEventData data = default(FlutterSDK.Services.Rawkeyboard.RawKeyEventData),string character = default(string))
-{
-this.Data = data;
-this.Character = character;throw new NotImplementedException(); }
-public static RawKeyEvent FromMessage(Dictionary<string,object> message)
-{
-var instance =new RawKeyEvent();throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual string Character{get;set;}
-public virtual FlutterSDK.Services.Rawkeyboard.RawKeyEventData Data{get;set;}
-public virtual bool IsControlPressed{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsShiftPressed{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsAltPressed{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsMetaPressed{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public virtual bool IsKeyPressed(FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey key){ throw new NotImplementedException(); }
+    public interface IRawKeyEvent
+    {
+        bool IsKeyPressed(FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey key);
+        void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
+        string Character { get; }
+        FlutterSDK.Services.Rawkeyboard.RawKeyEventData Data { get; }
+        bool IsControlPressed { get; }
+        bool IsShiftPressed { get; }
+        bool IsAltPressed { get; }
+        bool IsMetaPressed { get; }
+        FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey { get; }
+        FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey { get; }
+    }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+    public class RawKeyEventData
+    {
+        #region constructors
+        public RawKeyEventData()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual bool IsControlPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsShiftPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsAltPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsMetaPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual Dictionary<FlutterSDK.Services.Rawkeyboard.ModifierKey, FlutterSDK.Services.Rawkeyboard.KeyboardSide> ModifiersPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string KeyLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public class RawKeyDownEvent : FlutterSDK.Services.Rawkeyboard.RawKeyEvent
-{
-#region constructors
-public RawKeyDownEvent(FlutterSDK.Services.Rawkeyboard.RawKeyEventData data = default(FlutterSDK.Services.Rawkeyboard.RawKeyEventData),string character = default(string))
-: base(data:data,character:character)
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-#endregion
-}
-
-
-public class RawKeyUpEvent : FlutterSDK.Services.Rawkeyboard.RawKeyEvent
-{
-#region constructors
-public RawKeyUpEvent(FlutterSDK.Services.Rawkeyboard.RawKeyEventData data = default(FlutterSDK.Services.Rawkeyboard.RawKeyEventData),string character = default(string))
-: base(data:data,character:character)
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-#endregion
-}
+        public virtual bool IsModifierPressed(FlutterSDK.Services.Rawkeyboard.ModifierKey key, FlutterSDK.Services.Rawkeyboard.KeyboardSide side = default(FlutterSDK.Services.Rawkeyboard.KeyboardSide)) { throw new NotImplementedException(); }
 
 
-public class RawKeyboard
-{
-#region constructors
-internal RawKeyboard()
-{
-throw new NotImplementedException(); }
-#endregion
+        public virtual FlutterSDK.Services.Rawkeyboard.KeyboardSide GetModifierSide(FlutterSDK.Services.Rawkeyboard.ModifierKey key) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Services.Rawkeyboard.RawKeyboard Instance{get;set;}
-internal virtual List<object> _Listeners{get;set;}
-internal virtual Dictionary<FlutterSDK.Services.Rawkeyboard._ModifierSidePair,HashSet<FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey>> _ModifierKeyMap{get;set;}
-internal virtual Dictionary<FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey,FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> _AllModifiersExceptFn{get;set;}
-internal virtual Dictionary<FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey,FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> _AllModifiers{get;set;}
-internal virtual Dictionary<FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey,FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> _KeysPressed{get;set;}
-public virtual HashSet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> KeysPressed{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual HashSet<FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey> PhysicalKeysPressed{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public virtual void AddListener(FlutterSDK.Foundation.Basictypes.ValueChanged<RawKeyEvent> listener){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public virtual void RemoveListener(FlutterSDK.Foundation.Basictypes.ValueChanged<RawKeyEvent> listener){ throw new NotImplementedException(); }
+    public class RawKeyEvent : IDiagnosticable
+    {
+        #region constructors
+        public RawKeyEvent(FlutterSDK.Services.Rawkeyboard.RawKeyEventData data = default(FlutterSDK.Services.Rawkeyboard.RawKeyEventData), string character = default(string))
+        {
+            this.Data = data;
+            this.Character = character; throw new NotImplementedException();
+        }
+        public static RawKeyEvent FromMessage(Dictionary<string, object> message)
+        {
+            var instance = new RawKeyEvent(); throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual string Character { get; set; }
+        public virtual FlutterSDK.Services.Rawkeyboard.RawKeyEventData Data { get; set; }
+        public virtual bool IsControlPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsShiftPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsAltPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsMetaPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual bool IsKeyPressed(FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey key) { throw new NotImplementedException(); }
 
 
-private Future<object> _HandleKeyEvent(object message){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-private void _SynchronizeModifiers(FlutterSDK.Services.Rawkeyboard.RawKeyEvent @event){ throw new NotImplementedException(); }
+    public class RawKeyDownEvent : FlutterSDK.Services.Rawkeyboard.RawKeyEvent
+    {
+        #region constructors
+        public RawKeyDownEvent(FlutterSDK.Services.Rawkeyboard.RawKeyEventData data = default(FlutterSDK.Services.Rawkeyboard.RawKeyEventData), string character = default(string))
+        : base(data: data, character: character)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+        #endregion
+    }
 
 
-public virtual void ClearKeysPressed(){ throw new NotImplementedException(); }
+    public class RawKeyUpEvent : FlutterSDK.Services.Rawkeyboard.RawKeyEvent
+    {
+        #region constructors
+        public RawKeyUpEvent(FlutterSDK.Services.Rawkeyboard.RawKeyEventData data = default(FlutterSDK.Services.Rawkeyboard.RawKeyEventData), string character = default(string))
+        : base(data: data, character: character)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        #endregion
 
-
-public class _ModifierSidePair
-{
-#region constructors
-public _ModifierSidePair(FlutterSDK.Services.Rawkeyboard.ModifierKey modifier,FlutterSDK.Services.Rawkeyboard.KeyboardSide side)
-{
-this.Modifier = modifier;
-this.Side = side;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Services.Rawkeyboard.ModifierKey Modifier{get;set;}
-public virtual FlutterSDK.Services.Rawkeyboard.KeyboardSide Side{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
-
-#endregion
-}
+        #region methods
+        #endregion
+    }
 
 
-public enum KeyboardSide{
+    public class RawKeyboard
+    {
+        #region constructors
+        internal RawKeyboard()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-Any,
-Left,
-Right,
-All,
-}
+        #region fields
+        public virtual FlutterSDK.Services.Rawkeyboard.RawKeyboard Instance { get; set; }
+        internal virtual List<object> _Listeners { get; set; }
+        internal virtual Dictionary<FlutterSDK.Services.Rawkeyboard._ModifierSidePair, HashSet<FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey>> _ModifierKeyMap { get; set; }
+        internal virtual Dictionary<FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> _AllModifiersExceptFn { get; set; }
+        internal virtual Dictionary<FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> _AllModifiers { get; set; }
+        internal virtual Dictionary<FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> _KeysPressed { get; set; }
+        public virtual HashSet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> KeysPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual HashSet<FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey> PhysicalKeysPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual void AddListener(FlutterSDK.Foundation.Basictypes.ValueChanged<RawKeyEvent> listener) { throw new NotImplementedException(); }
 
 
-public enum ModifierKey{
+        public virtual void RemoveListener(FlutterSDK.Foundation.Basictypes.ValueChanged<RawKeyEvent> listener) { throw new NotImplementedException(); }
 
-ControlModifier,
-ShiftModifier,
-AltModifier,
-MetaModifier,
-CapsLockModifier,
-NumLockModifier,
-ScrollLockModifier,
-FunctionModifier,
-SymbolModifier,
-}
+
+        private Future<object> _HandleKeyEvent(object message) { throw new NotImplementedException(); }
+
+
+        private void _SynchronizeModifiers(FlutterSDK.Services.Rawkeyboard.RawKeyEvent @event) { throw new NotImplementedException(); }
+
+
+        public virtual void ClearKeysPressed() { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class _ModifierSidePair
+    {
+        #region constructors
+        public _ModifierSidePair(FlutterSDK.Services.Rawkeyboard.ModifierKey modifier, FlutterSDK.Services.Rawkeyboard.KeyboardSide side)
+        {
+            this.Modifier = modifier;
+            this.Side = side; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Services.Rawkeyboard.ModifierKey Modifier { get; set; }
+        public virtual FlutterSDK.Services.Rawkeyboard.KeyboardSide Side { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public enum KeyboardSide
+    {
+
+        Any,
+        Left,
+        Right,
+        All,
+    }
+
+
+    public enum ModifierKey
+    {
+
+        ControlModifier,
+        ShiftModifier,
+        AltModifier,
+        MetaModifier,
+        CapsLockModifier,
+        NumLockModifier,
+        ScrollLockModifier,
+        FunctionModifier,
+        SymbolModifier,
+    }
 
 }

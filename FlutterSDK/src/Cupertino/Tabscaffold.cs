@@ -291,154 +291,159 @@ using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
-namespace FlutterSDK.Cupertino.Tabscaffold{
-internal static class TabscaffoldDefaultClass{
-}
-
-public class CupertinoTabController : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
+namespace FlutterSDK.Cupertino.Tabscaffold
 {
-#region constructors
-public CupertinoTabController(int initialIndex = 0)
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class TabscaffoldDefaultClass
+    {
+    }
 
-#region fields
-internal virtual bool _IsDisposed{get;set;}
-internal virtual int _Index{get;set;}
-public virtual int Index{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
+    public class CupertinoTabController : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
+    {
+        #region constructors
+        public CupertinoTabController(int initialIndex = 0)
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual bool _IsDisposed { get; set; }
+        internal virtual int _Index { get; set; }
+        public virtual int Index { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new void Dispose(){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new void Dispose() { throw new NotImplementedException(); }
 
-
-public class CupertinoTabScaffold : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public CupertinoTabScaffold(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Cupertino.Bottomtabbar.CupertinoTabBar tabBar = default(FlutterSDK.Cupertino.Bottomtabbar.CupertinoTabBar),FlutterSDK.Widgets.Framework.IndexedWidgetBuilder tabBuilder = default(FlutterSDK.Widgets.Framework.IndexedWidgetBuilder),FlutterSDK.Cupertino.Tabscaffold.CupertinoTabController controller = default(FlutterSDK.Cupertino.Tabscaffold.CupertinoTabController),FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),bool resizeToAvoidBottomInset = true)
-: base(key:key)
-{
-this.TabBar = tabBar;
-this.TabBuilder = tabBuilder;
-this.Controller = controller;
-this.BackgroundColor = backgroundColor;
-this.ResizeToAvoidBottomInset = resizeToAvoidBottomInset;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Cupertino.Bottomtabbar.CupertinoTabBar TabBar{get;set;}
-public virtual FlutterSDK.Cupertino.Tabscaffold.CupertinoTabController Controller{get;set;}
-public virtual FlutterSDK.Widgets.Framework.IndexedWidgetBuilder TabBuilder{get;set;}
-public virtual FlutterBinding.UI.Color BackgroundColor{get;set;}
-public virtual bool ResizeToAvoidBottomInset{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Cupertino.Tabscaffold._CupertinoTabScaffoldState CreateState(){ throw new NotImplementedException(); }
-
-#endregion
-}
+        #endregion
+    }
 
 
-public class _CupertinoTabScaffoldState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Tabscaffold.CupertinoTabScaffold>
-{
-#region constructors
-public _CupertinoTabScaffoldState()
-{ }
-#endregion
+    public class CupertinoTabScaffold : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public CupertinoTabScaffold(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Cupertino.Bottomtabbar.CupertinoTabBar tabBar = default(FlutterSDK.Cupertino.Bottomtabbar.CupertinoTabBar), FlutterSDK.Widgets.Framework.IndexedWidgetBuilder tabBuilder = default(FlutterSDK.Widgets.Framework.IndexedWidgetBuilder), FlutterSDK.Cupertino.Tabscaffold.CupertinoTabController controller = default(FlutterSDK.Cupertino.Tabscaffold.CupertinoTabController), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), bool resizeToAvoidBottomInset = true)
+        : base(key: key)
+        {
+            this.TabBar = tabBar;
+            this.TabBuilder = tabBuilder;
+            this.Controller = controller;
+            this.BackgroundColor = backgroundColor;
+            this.ResizeToAvoidBottomInset = resizeToAvoidBottomInset; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-internal virtual FlutterSDK.Cupertino.Tabscaffold.CupertinoTabController _Controller{get;set;}
-#endregion
+        #region fields
+        public virtual FlutterSDK.Cupertino.Bottomtabbar.CupertinoTabBar TabBar { get; set; }
+        public virtual FlutterSDK.Cupertino.Tabscaffold.CupertinoTabController Controller { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.IndexedWidgetBuilder TabBuilder { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual bool ResizeToAvoidBottomInset { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new void InitState(){ throw new NotImplementedException(); }
+        public new FlutterSDK.Cupertino.Tabscaffold._CupertinoTabScaffoldState CreateState() { throw new NotImplementedException(); }
 
-
-private void _UpdateTabController(bool shouldDisposeOldController = false){ throw new NotImplementedException(); }
-
-
-private void _OnCurrentIndexChange(){ throw new NotImplementedException(); }
-
-
-public new void DidUpdateWidget(FlutterSDK.Cupertino.Tabscaffold.CupertinoTabScaffold oldWidget){ throw new NotImplementedException(); }
-
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-
-public new void Dispose(){ throw new NotImplementedException(); }
-
-#endregion
-}
+        #endregion
+    }
 
 
-public class _TabSwitchingView : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public _TabSwitchingView(int currentTabIndex = default(int),int tabCount = default(int),FlutterSDK.Widgets.Framework.IndexedWidgetBuilder tabBuilder = default(FlutterSDK.Widgets.Framework.IndexedWidgetBuilder))
-: base()
-{
-this.CurrentTabIndex = currentTabIndex;
-this.TabCount = tabCount;
-this.TabBuilder = tabBuilder;throw new NotImplementedException(); }
-#endregion
+    public class _CupertinoTabScaffoldState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Tabscaffold.CupertinoTabScaffold>
+    {
+        #region constructors
+        public _CupertinoTabScaffoldState()
+        { }
+        #endregion
 
-#region fields
-public virtual int CurrentTabIndex{get;set;}
-public virtual int TabCount{get;set;}
-public virtual FlutterSDK.Widgets.Framework.IndexedWidgetBuilder TabBuilder{get;set;}
-#endregion
+        #region fields
+        internal virtual FlutterSDK.Cupertino.Tabscaffold.CupertinoTabController _Controller { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new FlutterSDK.Cupertino.Tabscaffold._TabSwitchingViewState CreateState(){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-public class _TabSwitchingViewState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Tabscaffold._TabSwitchingView>
-{
-#region constructors
-public _TabSwitchingViewState()
-{ }
-#endregion
-
-#region fields
-public virtual List<bool> ShouldBuildTab{get;set;}
-public virtual List<FlutterSDK.Widgets.Focusmanager.FocusScopeNode> TabFocusNodes{get;set;}
-public virtual List<FlutterSDK.Widgets.Focusmanager.FocusScopeNode> DiscardedNodes{get;set;}
-#endregion
-
-#region methods
-
-public new void InitState(){ throw new NotImplementedException(); }
+        private void _UpdateTabController(bool shouldDisposeOldController = false) { throw new NotImplementedException(); }
 
 
-public new void DidChangeDependencies(){ throw new NotImplementedException(); }
+        private void _OnCurrentIndexChange() { throw new NotImplementedException(); }
 
 
-public new void DidUpdateWidget(FlutterSDK.Cupertino.Tabscaffold._TabSwitchingView oldWidget){ throw new NotImplementedException(); }
+        public new void DidUpdateWidget(FlutterSDK.Cupertino.Tabscaffold.CupertinoTabScaffold oldWidget) { throw new NotImplementedException(); }
 
 
-private void _FocusActiveTab(){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+        public new void Dispose() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+    public class _TabSwitchingView : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public _TabSwitchingView(int currentTabIndex = default(int), int tabCount = default(int), FlutterSDK.Widgets.Framework.IndexedWidgetBuilder tabBuilder = default(FlutterSDK.Widgets.Framework.IndexedWidgetBuilder))
+        : base()
+        {
+            this.CurrentTabIndex = currentTabIndex;
+            this.TabCount = tabCount;
+            this.TabBuilder = tabBuilder; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual int CurrentTabIndex { get; set; }
+        public virtual int TabCount { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.IndexedWidgetBuilder TabBuilder { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Cupertino.Tabscaffold._TabSwitchingViewState CreateState() { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class _TabSwitchingViewState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Tabscaffold._TabSwitchingView>
+    {
+        #region constructors
+        public _TabSwitchingViewState()
+        { }
+        #endregion
+
+        #region fields
+        public virtual List<bool> ShouldBuildTab { get; set; }
+        public virtual List<FlutterSDK.Widgets.Focusmanager.FocusScopeNode> TabFocusNodes { get; set; }
+        public virtual List<FlutterSDK.Widgets.Focusmanager.FocusScopeNode> DiscardedNodes { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
+
+
+        public new void DidChangeDependencies() { throw new NotImplementedException(); }
+
+
+        public new void DidUpdateWidget(FlutterSDK.Cupertino.Tabscaffold._TabSwitchingView oldWidget) { throw new NotImplementedException(); }
+
+
+        private void _FocusActiveTab() { throw new NotImplementedException(); }
+
+
+        public new void Dispose() { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

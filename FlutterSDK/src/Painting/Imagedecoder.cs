@@ -420,11 +420,14 @@ using FlutterSDK.Material.Inksplash;
 using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
-namespace FlutterSDK.Painting.Imagedecoder{
-internal static class ImagedecoderDefaultClass{
-internal static Future<Image> DecodeImageFromList(Uint8List bytes){
-throw new NotImplementedException();
-}
+namespace FlutterSDK.Painting.Imagedecoder
+{
+    internal static class ImagedecoderDefaultClass
+    {
+        internal static Future<Image> DecodeImageFromList(Uint8List bytes)
+        {
+            throw new NotImplementedException();
+        }
 
-}
+    }
 }

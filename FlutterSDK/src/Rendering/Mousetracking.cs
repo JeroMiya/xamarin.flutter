@@ -421,111 +421,116 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Rendering.Mousetracking{
-public delegate void PointerEnterEventListener(FlutterSDK.Gestures.Events.PointerEnterEvent @event);
-public delegate void PointerExitEventListener(FlutterSDK.Gestures.Events.PointerExitEvent @event);
-public delegate void PointerHoverEventListener(FlutterSDK.Gestures.Events.PointerHoverEvent @event);
-public delegate Iterable<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> MouseDetectorAnnotationFinder(FlutterBinding.UI.Offset offset);
-public delegate void _UpdatedDeviceHandler(FlutterSDK.Rendering.Mousetracking._MouseState mouseState,LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> previousAnnotations);
-internal static class MousetrackingDefaultClass{
-}
-
-public class MouseTrackerAnnotation : IDiagnosticable
+namespace FlutterSDK.Rendering.Mousetracking
 {
-#region constructors
-public MouseTrackerAnnotation(FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener onEnter = default(FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener),FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener onHover = default(FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener),FlutterSDK.Rendering.Mousetracking.PointerExitEventListener onExit = default(FlutterSDK.Rendering.Mousetracking.PointerExitEventListener))
-{
-this.OnEnter = onEnter;
-this.OnHover = onHover;
-this.OnExit = onExit;throw new NotImplementedException(); }
-#endregion
+    public delegate void PointerEnterEventListener(FlutterSDK.Gestures.Events.PointerEnterEvent @event);
+    public delegate void PointerExitEventListener(FlutterSDK.Gestures.Events.PointerExitEvent @event);
+    public delegate void PointerHoverEventListener(FlutterSDK.Gestures.Events.PointerHoverEvent @event);
+    public delegate Iterable<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> MouseDetectorAnnotationFinder(FlutterBinding.UI.Offset offset);
+    public delegate void _UpdatedDeviceHandler(FlutterSDK.Rendering.Mousetracking._MouseState mouseState, LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> previousAnnotations);
+    internal static class MousetrackingDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener OnEnter{get;set;}
-public virtual FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener OnHover{get;set;}
-public virtual FlutterSDK.Rendering.Mousetracking.PointerExitEventListener OnExit{get;set;}
-#endregion
+    public class MouseTrackerAnnotation : IDiagnosticable
+    {
+        #region constructors
+        public MouseTrackerAnnotation(FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener onEnter = default(FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener), FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener onHover = default(FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener), FlutterSDK.Rendering.Mousetracking.PointerExitEventListener onExit = default(FlutterSDK.Rendering.Mousetracking.PointerExitEventListener))
+        {
+            this.OnEnter = onEnter;
+            this.OnHover = onHover;
+            this.OnExit = onExit; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener OnEnter { get; set; }
+        public virtual FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener OnHover { get; set; }
+        public virtual FlutterSDK.Rendering.Mousetracking.PointerExitEventListener OnExit { get; set; }
+        #endregion
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-
-public class _MouseState
-{
-#region constructors
-public _MouseState(FlutterSDK.Gestures.Events.PointerEvent initialEvent = default(FlutterSDK.Gestures.Events.PointerEvent))
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> _Annotations{get;set;}
-internal virtual FlutterSDK.Gestures.Events.PointerEvent _LatestEvent{get;set;}
-public virtual LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> Annotations{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Gestures.Events.PointerEvent LatestEvent{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual int Device{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public virtual LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> ReplaceAnnotations(LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> value){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-#endregion
-}
+    public class _MouseState
+    {
+        #region constructors
+        public _MouseState(FlutterSDK.Gestures.Events.PointerEvent initialEvent = default(FlutterSDK.Gestures.Events.PointerEvent))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> _Annotations { get; set; }
+        internal virtual FlutterSDK.Gestures.Events.PointerEvent _LatestEvent { get; set; }
+        public virtual LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> Annotations { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Gestures.Events.PointerEvent LatestEvent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int Device { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> ReplaceAnnotations(LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> value) { throw new NotImplementedException(); }
 
 
-public class MouseTracker : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
-{
-#region constructors
-public MouseTracker(FlutterSDK.Gestures.Pointerrouter.PointerRouter _router,FlutterSDK.Rendering.Mousetracking.MouseDetectorAnnotationFinder annotationFinder)
-: base()
-{
-this._Router = _router;
-this.AnnotationFinder = annotationFinder;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Rendering.Mousetracking.MouseDetectorAnnotationFinder AnnotationFinder{get;set;}
-internal virtual FlutterSDK.Gestures.Pointerrouter.PointerRouter _Router{get;set;}
-internal virtual Dictionary<int,FlutterSDK.Rendering.Mousetracking._MouseState> _MouseStates{get;set;}
-internal virtual bool _DuringDeviceUpdate{get;set;}
-internal virtual bool _HasScheduledPostFrameCheck{get;set;}
-internal virtual bool _DuringBuildPhase{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool MouseIsConnected{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new void Dispose(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-private bool _ShouldMarkStateDirty(FlutterSDK.Rendering.Mousetracking._MouseState state,FlutterSDK.Gestures.Events.PointerEvent value){ throw new NotImplementedException(); }
+    public class MouseTracker : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
+    {
+        #region constructors
+        public MouseTracker(FlutterSDK.Gestures.Pointerrouter.PointerRouter _router, FlutterSDK.Rendering.Mousetracking.MouseDetectorAnnotationFinder annotationFinder)
+        : base()
+        {
+            this._Router = _router;
+            this.AnnotationFinder = annotationFinder; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Rendering.Mousetracking.MouseDetectorAnnotationFinder AnnotationFinder { get; set; }
+        internal virtual FlutterSDK.Gestures.Pointerrouter.PointerRouter _Router { get; set; }
+        internal virtual Dictionary<int, FlutterSDK.Rendering.Mousetracking._MouseState> _MouseStates { get; set; }
+        internal virtual bool _DuringDeviceUpdate { get; set; }
+        internal virtual bool _HasScheduledPostFrameCheck { get; set; }
+        internal virtual bool _DuringBuildPhase { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool MouseIsConnected { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void Dispose() { throw new NotImplementedException(); }
 
 
-private void _HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event){ throw new NotImplementedException(); }
+        private bool _ShouldMarkStateDirty(FlutterSDK.Rendering.Mousetracking._MouseState state, FlutterSDK.Gestures.Events.PointerEvent value) { throw new NotImplementedException(); }
 
 
-private LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> _FindAnnotations(FlutterSDK.Rendering.Mousetracking._MouseState state){ throw new NotImplementedException(); }
+        private void _HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
 
 
-private void _UpdateAllDevices(){ throw new NotImplementedException(); }
+        private LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> _FindAnnotations(FlutterSDK.Rendering.Mousetracking._MouseState state) { throw new NotImplementedException(); }
 
 
-private void _UpdateDevices(FlutterSDK.Gestures.Events.PointerEvent targetEvent = default(FlutterSDK.Gestures.Events.PointerEvent),FlutterSDK.Rendering.Mousetracking._UpdatedDeviceHandler handleUpdatedDevice = default(FlutterSDK.Rendering.Mousetracking._UpdatedDeviceHandler)){ throw new NotImplementedException(); }
+        private void _UpdateAllDevices() { throw new NotImplementedException(); }
 
 
-private void _DispatchDeviceCallbacks(LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> lastAnnotations = default(LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation>),LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> nextAnnotations = default(LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation>),FlutterSDK.Gestures.Events.PointerEvent previousEvent = default(FlutterSDK.Gestures.Events.PointerEvent),FlutterSDK.Gestures.Events.PointerEvent unhandledEvent = default(FlutterSDK.Gestures.Events.PointerEvent)){ throw new NotImplementedException(); }
+        private void _UpdateDevices(FlutterSDK.Gestures.Events.PointerEvent targetEvent = default(FlutterSDK.Gestures.Events.PointerEvent), FlutterSDK.Rendering.Mousetracking._UpdatedDeviceHandler handleUpdatedDevice = default(FlutterSDK.Rendering.Mousetracking._UpdatedDeviceHandler)) { throw new NotImplementedException(); }
 
 
-public virtual void SchedulePostFrameCheck(){ throw new NotImplementedException(); }
+        private void _DispatchDeviceCallbacks(LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> lastAnnotations = default(LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation>), LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> nextAnnotations = default(LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation>), FlutterSDK.Gestures.Events.PointerEvent previousEvent = default(FlutterSDK.Gestures.Events.PointerEvent), FlutterSDK.Gestures.Events.PointerEvent unhandledEvent = default(FlutterSDK.Gestures.Events.PointerEvent)) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public virtual void SchedulePostFrameCheck() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

@@ -419,85 +419,93 @@ using FlutterSDK.Material.Selectabletext;
 using FlutterSDK.Material.Inksplash;
 using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
-namespace FlutterSDK.Material.Typography{
-internal static class TypographyDefaultClass{
-}
-
-public class Typography : IDiagnosticable
+namespace FlutterSDK.Material.Typography
 {
-#region constructors
-public Typography(FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform),FlutterSDK.Material.Texttheme.TextTheme black = default(FlutterSDK.Material.Texttheme.TextTheme),FlutterSDK.Material.Texttheme.TextTheme white = default(FlutterSDK.Material.Texttheme.TextTheme),FlutterSDK.Material.Texttheme.TextTheme englishLike = default(FlutterSDK.Material.Texttheme.TextTheme),FlutterSDK.Material.Texttheme.TextTheme dense = default(FlutterSDK.Material.Texttheme.TextTheme),FlutterSDK.Material.Texttheme.TextTheme tall = default(FlutterSDK.Material.Texttheme.TextTheme))
-: base()
-{
-throw new NotImplementedException(); }
-public static Typography Material2014(FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform),FlutterSDK.Material.Texttheme.TextTheme black = default(FlutterSDK.Material.Texttheme.TextTheme),FlutterSDK.Material.Texttheme.TextTheme white = default(FlutterSDK.Material.Texttheme.TextTheme),FlutterSDK.Material.Texttheme.TextTheme englishLike = default(FlutterSDK.Material.Texttheme.TextTheme),FlutterSDK.Material.Texttheme.TextTheme dense = default(FlutterSDK.Material.Texttheme.TextTheme),FlutterSDK.Material.Texttheme.TextTheme tall = default(FlutterSDK.Material.Texttheme.TextTheme))
-{
-var instance =new Typography();throw new NotImplementedException(); }
-public static Typography Material2018(FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform),FlutterSDK.Material.Texttheme.TextTheme black = default(FlutterSDK.Material.Texttheme.TextTheme),FlutterSDK.Material.Texttheme.TextTheme white = default(FlutterSDK.Material.Texttheme.TextTheme),FlutterSDK.Material.Texttheme.TextTheme englishLike = default(FlutterSDK.Material.Texttheme.TextTheme),FlutterSDK.Material.Texttheme.TextTheme dense = default(FlutterSDK.Material.Texttheme.TextTheme),FlutterSDK.Material.Texttheme.TextTheme tall = default(FlutterSDK.Material.Texttheme.TextTheme))
-{
-var instance =new Typography();throw new NotImplementedException(); }
-internal static Typography _WithPlatform(FlutterSDK.Foundation.Platform.TargetPlatform platform,FlutterSDK.Material.Texttheme.TextTheme black,FlutterSDK.Material.Texttheme.TextTheme white,FlutterSDK.Material.Texttheme.TextTheme englishLike,FlutterSDK.Material.Texttheme.TextTheme dense,FlutterSDK.Material.Texttheme.TextTheme tall)
-{
-var instance =new Typography();throw new NotImplementedException(); }
-internal Typography(FlutterSDK.Material.Texttheme.TextTheme black,FlutterSDK.Material.Texttheme.TextTheme white,FlutterSDK.Material.Texttheme.TextTheme englishLike,FlutterSDK.Material.Texttheme.TextTheme dense,FlutterSDK.Material.Texttheme.TextTheme tall)
-: base()
-{
-this.Black = black;
-this.White = white;
-this.EnglishLike = englishLike;
-this.Dense = dense;
-this.Tall = tall;throw new NotImplementedException(); }
-#endregion
+    internal static class TypographyDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Material.Texttheme.TextTheme Black{get;set;}
-public virtual FlutterSDK.Material.Texttheme.TextTheme White{get;set;}
-public virtual FlutterSDK.Material.Texttheme.TextTheme EnglishLike{get;set;}
-public virtual FlutterSDK.Material.Texttheme.TextTheme Dense{get;set;}
-public virtual FlutterSDK.Material.Texttheme.TextTheme Tall{get;set;}
-public virtual FlutterSDK.Material.Texttheme.TextTheme BlackMountainView{get;set;}
-public virtual FlutterSDK.Material.Texttheme.TextTheme WhiteMountainView{get;set;}
-public virtual FlutterSDK.Material.Texttheme.TextTheme BlackRedmond{get;set;}
-public virtual FlutterSDK.Material.Texttheme.TextTheme WhiteRedmond{get;set;}
-internal virtual List<string> _HelsinkiFontFallbacks{get;set;}
-public virtual FlutterSDK.Material.Texttheme.TextTheme BlackHelsinki{get;set;}
-public virtual FlutterSDK.Material.Texttheme.TextTheme WhiteHelsinki{get;set;}
-public virtual FlutterSDK.Material.Texttheme.TextTheme BlackCupertino{get;set;}
-public virtual FlutterSDK.Material.Texttheme.TextTheme WhiteCupertino{get;set;}
-public virtual FlutterSDK.Material.Texttheme.TextTheme EnglishLike2014{get;set;}
-public virtual FlutterSDK.Material.Texttheme.TextTheme EnglishLike2018{get;set;}
-public virtual FlutterSDK.Material.Texttheme.TextTheme Dense2014{get;set;}
-public virtual FlutterSDK.Material.Texttheme.TextTheme Dense2018{get;set;}
-public virtual FlutterSDK.Material.Texttheme.TextTheme Tall2014{get;set;}
-public virtual FlutterSDK.Material.Texttheme.TextTheme Tall2018{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class Typography : IDiagnosticable
+    {
+        #region constructors
+        public Typography(FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Material.Texttheme.TextTheme black = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme white = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme englishLike = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme dense = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme tall = default(FlutterSDK.Material.Texttheme.TextTheme))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        public static Typography Material2014(FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Material.Texttheme.TextTheme black = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme white = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme englishLike = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme dense = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme tall = default(FlutterSDK.Material.Texttheme.TextTheme))
+        {
+            var instance = new Typography(); throw new NotImplementedException();
+        }
+        public static Typography Material2018(FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Material.Texttheme.TextTheme black = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme white = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme englishLike = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme dense = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme tall = default(FlutterSDK.Material.Texttheme.TextTheme))
+        {
+            var instance = new Typography(); throw new NotImplementedException();
+        }
+        internal static Typography _WithPlatform(FlutterSDK.Foundation.Platform.TargetPlatform platform, FlutterSDK.Material.Texttheme.TextTheme black, FlutterSDK.Material.Texttheme.TextTheme white, FlutterSDK.Material.Texttheme.TextTheme englishLike, FlutterSDK.Material.Texttheme.TextTheme dense, FlutterSDK.Material.Texttheme.TextTheme tall)
+        {
+            var instance = new Typography(); throw new NotImplementedException();
+        }
+        internal Typography(FlutterSDK.Material.Texttheme.TextTheme black, FlutterSDK.Material.Texttheme.TextTheme white, FlutterSDK.Material.Texttheme.TextTheme englishLike, FlutterSDK.Material.Texttheme.TextTheme dense, FlutterSDK.Material.Texttheme.TextTheme tall)
+        : base()
+        {
+            this.Black = black;
+            this.White = white;
+            this.EnglishLike = englishLike;
+            this.Dense = dense;
+            this.Tall = tall; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Material.Texttheme.TextTheme Black { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme White { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme EnglishLike { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme Dense { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme Tall { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme BlackMountainView { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme WhiteMountainView { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme BlackRedmond { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme WhiteRedmond { get; set; }
+        internal virtual List<string> _HelsinkiFontFallbacks { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme BlackHelsinki { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme WhiteHelsinki { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme BlackCupertino { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme WhiteCupertino { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme EnglishLike2014 { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme EnglishLike2018 { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme Dense2014 { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme Dense2018 { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme Tall2014 { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme Tall2018 { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual FlutterSDK.Material.Texttheme.TextTheme GeometryThemeFor(FlutterSDK.Material.Typography.ScriptCategory category){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual FlutterSDK.Material.Typography.Typography CopyWith(FlutterSDK.Material.Texttheme.TextTheme black = default(FlutterSDK.Material.Texttheme.TextTheme),FlutterSDK.Material.Texttheme.TextTheme white = default(FlutterSDK.Material.Texttheme.TextTheme),FlutterSDK.Material.Texttheme.TextTheme englishLike = default(FlutterSDK.Material.Texttheme.TextTheme),FlutterSDK.Material.Texttheme.TextTheme dense = default(FlutterSDK.Material.Texttheme.TextTheme),FlutterSDK.Material.Texttheme.TextTheme tall = default(FlutterSDK.Material.Texttheme.TextTheme)){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Material.Typography.Typography Lerp(FlutterSDK.Material.Typography.Typography a,FlutterSDK.Material.Typography.Typography b,double t){ throw new NotImplementedException(); }
-
-
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual FlutterSDK.Material.Texttheme.TextTheme GeometryThemeFor(FlutterSDK.Material.Typography.ScriptCategory category) { throw new NotImplementedException(); }
 
 
-public enum ScriptCategory{
+        public virtual FlutterSDK.Material.Typography.Typography CopyWith(FlutterSDK.Material.Texttheme.TextTheme black = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme white = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme englishLike = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme dense = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme tall = default(FlutterSDK.Material.Texttheme.TextTheme)) { throw new NotImplementedException(); }
 
-EnglishLike,
-Dense,
-Tall,
-}
+
+        public virtual FlutterSDK.Material.Typography.Typography Lerp(FlutterSDK.Material.Typography.Typography a, FlutterSDK.Material.Typography.Typography b, double t) { throw new NotImplementedException(); }
+
+
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public enum ScriptCategory
+    {
+
+        EnglishLike,
+        Dense,
+        Tall,
+    }
 
 }

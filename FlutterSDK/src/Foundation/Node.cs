@@ -293,60 +293,64 @@ using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
-namespace FlutterSDK.Foundation.Node{
-internal static class NodeDefaultClass{
-}
-
-public interface IAbstractNode{}
-
-public class AbstractNode{
-internal virtual int _Depth{get;set;}
-internal virtual @Object _Owner{get;set;}
-internal virtual FlutterSDK.Foundation.Node.AbstractNode _Parent{get;set;}
-public virtual int Depth{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual @Object Owner{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool Attached{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Foundation.Node.AbstractNode Parent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-
-public virtual void RedepthChild(FlutterSDK.Foundation.Node.AbstractNode child){ throw new NotImplementedException(); }
-
-
-public virtual void RedepthChildren(){ throw new NotImplementedException(); }
-
-
-public virtual void Attach(@Object owner){ throw new NotImplementedException(); }
-
-
-public virtual void Detach(){ throw new NotImplementedException(); }
-
-
-public virtual void AdoptChild(FlutterSDK.Foundation.Node.AbstractNode child){ throw new NotImplementedException(); }
-
-
-public virtual void DropChild(FlutterSDK.Foundation.Node.AbstractNode child){ throw new NotImplementedException(); }
-
-}
-public static class AbstractNodeMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IAbstractNode, AbstractNode> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IAbstractNode, AbstractNode>();
-static AbstractNode GetOrCreate(IAbstractNode instance)
+namespace FlutterSDK.Foundation.Node
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new AbstractNode();
-_table.Add(instance, value);
-}
-return (AbstractNode)value;
-}
-public static int DepthProperty(this IAbstractNode instance) => GetOrCreate(instance).Depth;
-public static @Object OwnerProperty(this IAbstractNode instance) => GetOrCreate(instance).Owner;
-public static bool AttachedProperty(this IAbstractNode instance) => GetOrCreate(instance).Attached;
-public static FlutterSDK.Foundation.Node.AbstractNode ParentProperty(this IAbstractNode instance) => GetOrCreate(instance).Parent;
-public static void RedepthChild(this IAbstractNode instance,FlutterSDK.Foundation.Node.AbstractNode child) => GetOrCreate(instance).RedepthChild(child);
-public static void RedepthChildren(this IAbstractNode instance) => GetOrCreate(instance).RedepthChildren();
-public static void Attach(this IAbstractNode instance,@Object owner) => GetOrCreate(instance).Attach(owner);
-public static void Detach(this IAbstractNode instance) => GetOrCreate(instance).Detach();
-public static void AdoptChild(this IAbstractNode instance,FlutterSDK.Foundation.Node.AbstractNode child) => GetOrCreate(instance).AdoptChild(child);
-public static void DropChild(this IAbstractNode instance,FlutterSDK.Foundation.Node.AbstractNode child) => GetOrCreate(instance).DropChild(child);
-}
+    internal static class NodeDefaultClass
+    {
+    }
+
+    public interface IAbstractNode { }
+
+    public class AbstractNode
+    {
+        internal virtual int _Depth { get; set; }
+        internal virtual @Object _Owner { get; set; }
+        internal virtual FlutterSDK.Foundation.Node.AbstractNode _Parent { get; set; }
+        public virtual int Depth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual @Object Owner { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool Attached { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Foundation.Node.AbstractNode Parent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+
+        public virtual void RedepthChild(FlutterSDK.Foundation.Node.AbstractNode child) { throw new NotImplementedException(); }
+
+
+        public virtual void RedepthChildren() { throw new NotImplementedException(); }
+
+
+        public virtual void Attach(@Object owner) { throw new NotImplementedException(); }
+
+
+        public virtual void Detach() { throw new NotImplementedException(); }
+
+
+        public virtual void AdoptChild(FlutterSDK.Foundation.Node.AbstractNode child) { throw new NotImplementedException(); }
+
+
+        public virtual void DropChild(FlutterSDK.Foundation.Node.AbstractNode child) { throw new NotImplementedException(); }
+
+    }
+    public static class AbstractNodeMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IAbstractNode, AbstractNode> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IAbstractNode, AbstractNode>();
+        static AbstractNode GetOrCreate(IAbstractNode instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new AbstractNode();
+                _table.Add(instance, value);
+            }
+            return (AbstractNode)value;
+        }
+        public static int DepthProperty(this IAbstractNode instance) => GetOrCreate(instance).Depth;
+        public static @Object OwnerProperty(this IAbstractNode instance) => GetOrCreate(instance).Owner;
+        public static bool AttachedProperty(this IAbstractNode instance) => GetOrCreate(instance).Attached;
+        public static FlutterSDK.Foundation.Node.AbstractNode ParentProperty(this IAbstractNode instance) => GetOrCreate(instance).Parent;
+        public static void RedepthChild(this IAbstractNode instance, FlutterSDK.Foundation.Node.AbstractNode child) => GetOrCreate(instance).RedepthChild(child);
+        public static void RedepthChildren(this IAbstractNode instance) => GetOrCreate(instance).RedepthChildren();
+        public static void Attach(this IAbstractNode instance, @Object owner) => GetOrCreate(instance).Attach(owner);
+        public static void Detach(this IAbstractNode instance) => GetOrCreate(instance).Detach();
+        public static void AdoptChild(this IAbstractNode instance, FlutterSDK.Foundation.Node.AbstractNode child) => GetOrCreate(instance).AdoptChild(child);
+        public static void DropChild(this IAbstractNode instance, FlutterSDK.Foundation.Node.AbstractNode child) => GetOrCreate(instance).DropChild(child);
+    }
 
 }

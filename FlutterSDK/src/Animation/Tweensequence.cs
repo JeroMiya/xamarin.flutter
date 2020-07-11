@@ -55,100 +55,106 @@ using FlutterSDK.Semantics.Semanticsservice;
 using FlutterSDK.Semantics.Semanticsevent;
 using FlutterSDK.Semantics.Semantics;
 using FlutterSDK.Animation.Animations;
-namespace FlutterSDK.Animation.Tweensequence{
-internal static class TweensequenceDefaultClass{
-}
-
-public class TweenSequence<T> : FlutterSDK.Animation.Tween.Animatable<T>
+namespace FlutterSDK.Animation.Tweensequence
 {
-#region constructors
-public TweenSequence(List<FlutterSDK.Animation.Tweensequence.TweenSequenceItem<T>> items)
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class TweensequenceDefaultClass
+    {
+    }
 
-#region fields
-internal virtual List<FlutterSDK.Animation.Tweensequence.TweenSequenceItem<T>> _Items{get;set;}
-internal virtual List<FlutterSDK.Animation.Tweensequence._Interval> _Intervals{get;set;}
-#endregion
+    public class TweenSequence<T> : FlutterSDK.Animation.Tween.Animatable<T>
+    {
+        #region constructors
+        public TweenSequence(List<FlutterSDK.Animation.Tweensequence.TweenSequenceItem<T>> items)
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual List<FlutterSDK.Animation.Tweensequence.TweenSequenceItem<T>> _Items { get; set; }
+        internal virtual List<FlutterSDK.Animation.Tweensequence._Interval> _Intervals { get; set; }
+        #endregion
 
-private T _EvaluateAt(double t,int index){ throw new NotImplementedException(); }
+        #region methods
 
-
-public new T Transform(double t){ throw new NotImplementedException(); }
-
-
-#endregion
-}
-
-
-public class FlippedTweenSequence : FlutterSDK.Animation.Tweensequence.TweenSequence<double>
-{
-#region constructors
-public FlippedTweenSequence(List<FlutterSDK.Animation.Tweensequence.TweenSequenceItem<double>> items)
-: base(items)
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public new double Transform(double t){ throw new NotImplementedException(); }
-
-#endregion
-}
+        private T _EvaluateAt(double t, int index) { throw new NotImplementedException(); }
 
 
-public class TweenSequenceItem<T>
-{
-#region constructors
-public TweenSequenceItem(FlutterSDK.Animation.Tween.Animatable<T> tween = default(FlutterSDK.Animation.Tween.Animatable<T>),double weight = default(double))
-: base()
-{
-this.Tween = tween;
-this.Weight = weight;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Animation.Tween.Animatable<T> Tween{get;set;}
-public virtual double Weight{get;set;}
-#endregion
-
-#region methods
-#endregion
-}
+        public new T Transform(double t) { throw new NotImplementedException(); }
 
 
-public class _Interval
-{
-#region constructors
-public _Interval(double start,double end)
-: base()
-{
-this.Start = start;
-this.End = end;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual double Start{get;set;}
-public virtual double End{get;set;}
-#endregion
-
-#region methods
-
-public virtual bool Contains(double t){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public virtual double Value(double t){ throw new NotImplementedException(); }
+    public class FlippedTweenSequence : FlutterSDK.Animation.Tweensequence.TweenSequence<double>
+    {
+        #region constructors
+        public FlippedTweenSequence(List<FlutterSDK.Animation.Tweensequence.TweenSequenceItem<double>> items)
+        : base(items)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new double Transform(double t) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-#endregion
-}
+    public class TweenSequenceItem<T>
+    {
+        #region constructors
+        public TweenSequenceItem(FlutterSDK.Animation.Tween.Animatable<T> tween = default(FlutterSDK.Animation.Tween.Animatable<T>), double weight = default(double))
+        : base()
+        {
+            this.Tween = tween;
+            this.Weight = weight; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Animation.Tween.Animatable<T> Tween { get; set; }
+        public virtual double Weight { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    public class _Interval
+    {
+        #region constructors
+        public _Interval(double start, double end)
+        : base()
+        {
+            this.Start = start;
+            this.End = end; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual double Start { get; set; }
+        public virtual double End { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual bool Contains(double t) { throw new NotImplementedException(); }
+
+
+        public virtual double Value(double t) { throw new NotImplementedException(); }
+
+
+        #endregion
+    }
 
 }

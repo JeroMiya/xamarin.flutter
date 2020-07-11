@@ -388,121 +388,130 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-namespace FlutterSDK.Material.Materialstate{
-public delegate T MaterialPropertyResolver<T>(HashSet<FlutterSDK.Material.Materialstate.MaterialState> states);
-internal static class MaterialstateDefaultClass{
-}
-
-public interface IMaterialStateColor{
-FlutterSDK.Material.Materialstate.MaterialStateColor ResolveWith<T>(FlutterSDK.Material.Materialstate.MaterialPropertyResolver<Color> callback);
-Color Resolve(HashSet<FlutterSDK.Material.Materialstate.MaterialState> states);
-}
-
-
-public interface IMaterialStateProperty<T>{}
-
-public class MaterialStateProperty<T>{
-
-public virtual T Resolve(HashSet<FlutterSDK.Material.Materialstate.MaterialState> states){ throw new NotImplementedException(); }
-
-
-public virtual T ResolveAs<T>(T value,HashSet<FlutterSDK.Material.Materialstate.MaterialState> states){ throw new NotImplementedException(); }
-
-
-public virtual MaterialStateProperty<T> ResolveWith<T>(FlutterSDK.Material.Materialstate.MaterialPropertyResolver<T> callback){ throw new NotImplementedException(); }
-
-}
-public static class MaterialStatePropertyMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<object, object> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<object, object>();
-static MaterialStateProperty<T> GetOrCreate<T>(IMaterialStateProperty<T> instance)
+namespace FlutterSDK.Material.Materialstate
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new MaterialStateProperty<T>();
-_table.Add(instance, value);
-}
-return (MaterialStateProperty<T>)value;
-}
-public static T Resolve<T>(this IMaterialStateProperty<T> instance,HashSet<FlutterSDK.Material.Materialstate.MaterialState> states) => GetOrCreate(instance).Resolve(states);
-public static T ResolveAs<T><T>(this IMaterialStateProperty<T> instance,T value,HashSet<FlutterSDK.Material.Materialstate.MaterialState> states) => GetOrCreate(instance).ResolveAs<T>(value, states);
-public static MaterialStateProperty<T> ResolveWith<T><T>(this IMaterialStateProperty<T> instance,FlutterSDK.Material.Materialstate.MaterialPropertyResolver<T> callback) => GetOrCreate(instance).ResolveWith<T>(callback);
-}
+    public delegate T MaterialPropertyResolver<T>(HashSet<FlutterSDK.Material.Materialstate.MaterialState> states);
+    internal static class MaterialstateDefaultClass
+    {
+    }
+
+    public interface IMaterialStateColor
+    {
+        FlutterSDK.Material.Materialstate.MaterialStateColor ResolveWith<T>(FlutterSDK.Material.Materialstate.MaterialPropertyResolver<Color> callback);
+        Color Resolve(HashSet<FlutterSDK.Material.Materialstate.MaterialState> states);
+    }
 
 
-public class MaterialStateColor : Color,IMaterialStateProperty<Color>
-{
-#region constructors
-public MaterialStateColor(int defaultValue)
-: base(defaultValue)
-{
-throw new NotImplementedException(); }
-#endregion
+    public interface IMaterialStateProperty<T> { }
 
-#region fields
-#endregion
+    public class MaterialStateProperty<T>
+    {
 
-#region methods
-
-public virtual FlutterSDK.Material.Materialstate.MaterialStateColor ResolveWith<T>(FlutterSDK.Material.Materialstate.MaterialPropertyResolver<Color> callback){ throw new NotImplementedException(); }
+        public virtual T Resolve(HashSet<FlutterSDK.Material.Materialstate.MaterialState> states) { throw new NotImplementedException(); }
 
 
-public new Color Resolve(HashSet<FlutterSDK.Material.Materialstate.MaterialState> states){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual T ResolveAs<T>(T value, HashSet<FlutterSDK.Material.Materialstate.MaterialState> states) { throw new NotImplementedException(); }
 
 
-public class _MaterialStateColor : FlutterSDK.Material.Materialstate.MaterialStateColor
-{
-#region constructors
-public _MaterialStateColor(FlutterSDK.Material.Materialstate.MaterialPropertyResolver<Color> _resolve)
-: base(_resolve(_DefaultStates).Value)
-{
-this._Resolve = _resolve;throw new NotImplementedException(); }
-#endregion
+        public virtual MaterialStateProperty<T> ResolveWith<T>(FlutterSDK.Material.Materialstate.MaterialPropertyResolver<T> callback) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual FlutterSDK.Material.Materialstate.MaterialPropertyResolver<Color> _Resolve{get;set;}
-internal virtual HashSet<FlutterSDK.Material.Materialstate.MaterialState> _DefaultStates{get;set;}
-#endregion
-
-#region methods
-
-public new Color Resolve(HashSet<FlutterSDK.Material.Materialstate.MaterialState> states){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _MaterialStateProperty<T> : IMaterialStateProperty<T>
-{
-#region constructors
-public _MaterialStateProperty(FlutterSDK.Material.Materialstate.MaterialPropertyResolver<T> _resolve)
-{
-this._Resolve = _resolve;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Material.Materialstate.MaterialPropertyResolver<T> _Resolve{get;set;}
-#endregion
-
-#region methods
-
-public new T Resolve(HashSet<FlutterSDK.Material.Materialstate.MaterialState> states){ throw new NotImplementedException(); }
-
-#endregion
-}
+    }
+    public static class MaterialStatePropertyMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<object, object> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<object, object>();
+        static MaterialStateProperty<T> GetOrCreate<T>(IMaterialStateProperty<T> instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new MaterialStateProperty<T>();
+                _table.Add(instance, value);
+            }
+            return (MaterialStateProperty<T>)value;
+        }
+        public static T Resolve<T>(this IMaterialStateProperty<T> instance, HashSet<FlutterSDK.Material.Materialstate.MaterialState> states) => GetOrCreate(instance).Resolve(states);
+        public static T ResolveAs<T><T>(this IMaterialStateProperty<T> instance, T value, HashSet<FlutterSDK.Material.Materialstate.MaterialState> states) => GetOrCreate(instance).ResolveAs<T>(value, states);
+        public static MaterialStateProperty<T> ResolveWith<T><T>(this IMaterialStateProperty<T> instance, FlutterSDK.Material.Materialstate.MaterialPropertyResolver<T> callback) => GetOrCreate(instance).ResolveWith<T>(callback);
+    }
 
 
-public enum MaterialState{
+    public class MaterialStateColor : Color, IMaterialStateProperty<Color>
+    {
+        #region constructors
+        public MaterialStateColor(int defaultValue)
+        : base(defaultValue)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-Hovered,
-Focused,
-Pressed,
-Dragged,
-Selected,
-Disabled,
-Error,
-}
+        #region fields
+        #endregion
+
+        #region methods
+
+        public virtual FlutterSDK.Material.Materialstate.MaterialStateColor ResolveWith<T>(FlutterSDK.Material.Materialstate.MaterialPropertyResolver<Color> callback) { throw new NotImplementedException(); }
+
+
+        public new Color Resolve(HashSet<FlutterSDK.Material.Materialstate.MaterialState> states) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class _MaterialStateColor : FlutterSDK.Material.Materialstate.MaterialStateColor
+    {
+        #region constructors
+        public _MaterialStateColor(FlutterSDK.Material.Materialstate.MaterialPropertyResolver<Color> _resolve)
+        : base(_resolve(_DefaultStates).Value)
+        {
+            this._Resolve = _resolve; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Material.Materialstate.MaterialPropertyResolver<Color> _Resolve { get; set; }
+        internal virtual HashSet<FlutterSDK.Material.Materialstate.MaterialState> _DefaultStates { get; set; }
+        #endregion
+
+        #region methods
+
+        public new Color Resolve(HashSet<FlutterSDK.Material.Materialstate.MaterialState> states) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class _MaterialStateProperty<T> : IMaterialStateProperty<T>
+    {
+        #region constructors
+        public _MaterialStateProperty(FlutterSDK.Material.Materialstate.MaterialPropertyResolver<T> _resolve)
+        {
+            this._Resolve = _resolve; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Material.Materialstate.MaterialPropertyResolver<T> _Resolve { get; set; }
+        #endregion
+
+        #region methods
+
+        public new T Resolve(HashSet<FlutterSDK.Material.Materialstate.MaterialState> states) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public enum MaterialState
+    {
+
+        Hovered,
+        Focused,
+        Pressed,
+        Dragged,
+        Selected,
+        Disabled,
+        Error,
+    }
 
 }

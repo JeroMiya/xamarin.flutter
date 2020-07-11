@@ -377,39 +377,42 @@ using FlutterSDK.Material.Dropdown;
 using FlutterSDK.Material.Datatable;
 using FlutterSDK.Material.Dialogtheme;
 using FlutterSDK.Material.Dividertheme;
-namespace FlutterSDK.Material.Drawerheader{
-internal static class DrawerheaderDefaultClass{
-public static double _KDrawerHeaderHeight = default(double);
-}
-
-public class DrawerHeader : FlutterSDK.Widgets.Framework.StatelessWidget
+namespace FlutterSDK.Material.Drawerheader
 {
-#region constructors
-public DrawerHeader(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),TimeSpan duration = default(TimeSpan),FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key)
-{
-this.Decoration = decoration;
-this.Margin = margin;
-this.Padding = padding;
-this.Duration = duration;
-this.Curve = curve;
-this.Child = child;throw new NotImplementedException(); }
-#endregion
+    internal static class DrawerheaderDefaultClass
+    {
+        public static double _KDrawerHeaderHeight = default(double);
+    }
 
-#region fields
-public virtual FlutterSDK.Painting.Decoration.Decoration Decoration{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin{get;set;}
-public virtual TimeSpan Duration{get;set;}
-public virtual FlutterSDK.Animation.Curves.Curve Curve{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-#endregion
+    public class DrawerHeader : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public DrawerHeader(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.Decoration = decoration;
+            this.Margin = margin;
+            this.Padding = padding;
+            this.Duration = duration;
+            this.Curve = curve;
+            this.Child = child; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
+        public virtual TimeSpan Duration { get; set; }
+        public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        #endregion
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

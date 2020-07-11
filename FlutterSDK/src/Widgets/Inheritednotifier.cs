@@ -422,72 +422,77 @@ using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
-namespace FlutterSDK.Widgets.Inheritednotifier{
-internal static class InheritednotifierDefaultClass{
-}
-
-public interface IInheritedNotifier<T>{
-bool UpdateShouldNotify(FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<T> oldWidget);
-_InheritedNotifierElement<T> CreateElement();
-T Notifier{get;}
-}
-
-
-public class InheritedNotifier<T> : FlutterSDK.Widgets.Framework.InheritedWidget
+namespace FlutterSDK.Widgets.Inheritednotifier
 {
-#region constructors
-public InheritedNotifier(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),T notifier = default(T),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key,child:child)
-{
-this.Notifier = notifier;throw new NotImplementedException(); }
-#endregion
+    internal static class InheritednotifierDefaultClass
+    {
+    }
 
-#region fields
-public virtual T Notifier{get;set;}
-#endregion
-
-#region methods
-
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<T> oldWidget){ throw new NotImplementedException(); }
+    public interface IInheritedNotifier<T>
+    {
+        bool UpdateShouldNotify(FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<T> oldWidget);
+        _InheritedNotifierElement<T> CreateElement();
+        T Notifier { get; }
+    }
 
 
-public new _InheritedNotifierElement<T> CreateElement(){ throw new NotImplementedException(); }
+    public class InheritedNotifier<T> : FlutterSDK.Widgets.Framework.InheritedWidget
+    {
+        #region constructors
+        public InheritedNotifier(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), T notifier = default(T), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            this.Notifier = notifier; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual T Notifier { get; set; }
+        #endregion
 
+        #region methods
 
-public class _InheritedNotifierElement<T> : FlutterSDK.Widgets.Framework.InheritedElement
-{
-#region constructors
-public _InheritedNotifierElement(FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<T> widget)
-: base(widget)
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual bool _Dirty{get;set;}
-public virtual FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<T> Widget{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new void Update(FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<T> newWidget){ throw new NotImplementedException(); }
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<T> oldWidget) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(){ throw new NotImplementedException(); }
+        public new _InheritedNotifierElement<T> CreateElement() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-private void _HandleUpdate(){ throw new NotImplementedException(); }
+    public class _InheritedNotifierElement<T> : FlutterSDK.Widgets.Framework.InheritedElement
+    {
+        #region constructors
+        public _InheritedNotifierElement(FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<T> widget)
+        : base(widget)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual bool _Dirty { get; set; }
+        public virtual FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<T> Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void Update(FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<T> newWidget) { throw new NotImplementedException(); }
 
 
-public new void NotifyClients(FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<T> oldWidget){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build() { throw new NotImplementedException(); }
 
 
-public new void Unmount(){ throw new NotImplementedException(); }
+        private void _HandleUpdate() { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new void NotifyClients(FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<T> oldWidget) { throw new NotImplementedException(); }
+
+
+        public new void Unmount() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

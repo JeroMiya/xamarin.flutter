@@ -421,67 +421,72 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Rendering.Tweens{
-internal static class TweensDefaultClass{
-}
-
-public class FractionalOffsetTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Fractionaloffset.FractionalOffset>
+namespace FlutterSDK.Rendering.Tweens
 {
-#region constructors
-public FractionalOffsetTween(FlutterSDK.Painting.Fractionaloffset.FractionalOffset begin = default(FlutterSDK.Painting.Fractionaloffset.FractionalOffset),FlutterSDK.Painting.Fractionaloffset.FractionalOffset end = default(FlutterSDK.Painting.Fractionaloffset.FractionalOffset))
-: base(begin:begin,end:end)
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class TweensDefaultClass
+    {
+    }
 
-#region fields
-#endregion
+    public class FractionalOffsetTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Fractionaloffset.FractionalOffset>
+    {
+        #region constructors
+        public FractionalOffsetTween(FlutterSDK.Painting.Fractionaloffset.FractionalOffset begin = default(FlutterSDK.Painting.Fractionaloffset.FractionalOffset), FlutterSDK.Painting.Fractionaloffset.FractionalOffset end = default(FlutterSDK.Painting.Fractionaloffset.FractionalOffset))
+        : base(begin: begin, end: end)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        #endregion
 
-public new FlutterSDK.Painting.Fractionaloffset.FractionalOffset Lerp(double t){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new FlutterSDK.Painting.Fractionaloffset.FractionalOffset Lerp(double t) { throw new NotImplementedException(); }
 
-
-public class AlignmentTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Alignment.Alignment>
-{
-#region constructors
-public AlignmentTween(FlutterSDK.Painting.Alignment.Alignment begin = default(FlutterSDK.Painting.Alignment.Alignment),FlutterSDK.Painting.Alignment.Alignment end = default(FlutterSDK.Painting.Alignment.Alignment))
-: base(begin:begin,end:end)
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public new FlutterSDK.Painting.Alignment.Alignment Lerp(double t){ throw new NotImplementedException(); }
-
-#endregion
-}
+        #endregion
+    }
 
 
-public class AlignmentGeometryTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Alignment.AlignmentGeometry>
-{
-#region constructors
-public AlignmentGeometryTween(FlutterSDK.Painting.Alignment.AlignmentGeometry begin = default(FlutterSDK.Painting.Alignment.AlignmentGeometry),FlutterSDK.Painting.Alignment.AlignmentGeometry end = default(FlutterSDK.Painting.Alignment.AlignmentGeometry))
-: base(begin:begin,end:end)
-{
-throw new NotImplementedException(); }
-#endregion
+    public class AlignmentTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Alignment.Alignment>
+    {
+        #region constructors
+        public AlignmentTween(FlutterSDK.Painting.Alignment.Alignment begin = default(FlutterSDK.Painting.Alignment.Alignment), FlutterSDK.Painting.Alignment.Alignment end = default(FlutterSDK.Painting.Alignment.Alignment))
+        : base(begin: begin, end: end)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-public new FlutterSDK.Painting.Alignment.AlignmentGeometry Lerp(double t){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Alignment.Alignment Lerp(double t) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
+
+
+    public class AlignmentGeometryTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Alignment.AlignmentGeometry>
+    {
+        #region constructors
+        public AlignmentGeometryTween(FlutterSDK.Painting.Alignment.AlignmentGeometry begin = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Alignment.AlignmentGeometry end = default(FlutterSDK.Painting.Alignment.AlignmentGeometry))
+        : base(begin: begin, end: end)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Painting.Alignment.AlignmentGeometry Lerp(double t) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

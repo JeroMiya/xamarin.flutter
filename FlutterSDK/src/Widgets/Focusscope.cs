@@ -422,165 +422,170 @@ using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
-namespace FlutterSDK.Widgets.Focusscope{
-internal static class FocusscopeDefaultClass{
-}
-
-public class Focus : FlutterSDK.Widgets.Framework.StatefulWidget
+namespace FlutterSDK.Widgets.Focusscope
 {
-#region constructors
-public Focus(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode),bool autofocus = false,FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onFocusChange = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>),FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback onKey = default(FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback),string debugLabel = default(string),bool canRequestFocus = default(bool),bool skipTraversal = default(bool),bool includeSemantics = true)
-: base(key:key)
-{
-this.Child = child;
-this.FocusNode = focusNode;
-this.Autofocus = autofocus;
-this.OnFocusChange = onFocusChange;
-this.OnKey = onKey;
-this.DebugLabel = debugLabel;
-this.CanRequestFocus = canRequestFocus;
-this.SkipTraversal = skipTraversal;
-this.IncludeSemantics = includeSemantics;throw new NotImplementedException(); }
-#endregion
+    internal static class FocusscopeDefaultClass
+    {
+    }
 
-#region fields
-public virtual string DebugLabel{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-public virtual FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback OnKey{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnFocusChange{get;set;}
-public virtual bool Autofocus{get;set;}
-public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode{get;set;}
-public virtual bool SkipTraversal{get;set;}
-public virtual bool IncludeSemantics{get;set;}
-public virtual bool CanRequestFocus{get;set;}
-#endregion
+    public class Focus : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public Focus(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onFocusChange = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback onKey = default(FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback), string debugLabel = default(string), bool canRequestFocus = default(bool), bool skipTraversal = default(bool), bool includeSemantics = true)
+        : base(key: key)
+        {
+            this.Child = child;
+            this.FocusNode = focusNode;
+            this.Autofocus = autofocus;
+            this.OnFocusChange = onFocusChange;
+            this.OnKey = onKey;
+            this.DebugLabel = debugLabel;
+            this.CanRequestFocus = canRequestFocus;
+            this.SkipTraversal = skipTraversal;
+            this.IncludeSemantics = includeSemantics; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual string DebugLabel { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback OnKey { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnFocusChange { get; set; }
+        public virtual bool Autofocus { get; set; }
+        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+        public virtual bool SkipTraversal { get; set; }
+        public virtual bool IncludeSemantics { get; set; }
+        public virtual bool CanRequestFocus { get; set; }
+        #endregion
 
-public virtual FlutterSDK.Widgets.Focusmanager.FocusNode Of(FlutterSDK.Widgets.Framework.BuildContext context,bool nullOk = false,bool scopeOk = false){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual bool IsAt(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-
-public new FlutterSDK.Widgets.Focusscope._FocusState CreateState(){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode Of(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false, bool scopeOk = false) { throw new NotImplementedException(); }
 
 
-public class _FocusState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Focusscope.Focus>
-{
-#region constructors
-public _FocusState()
-{ }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Widgets.Focusmanager.FocusNode _InternalNode{get;set;}
-internal virtual bool _HasPrimaryFocus{get;set;}
-internal virtual bool _CanRequestFocus{get;set;}
-internal virtual bool _DidAutofocus{get;set;}
-internal virtual FlutterSDK.Widgets.Focusmanager.FocusAttachment _FocusAttachment{get;set;}
-public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new void InitState(){ throw new NotImplementedException(); }
+        public virtual bool IsAt(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-private void _InitNode(){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Widgets.Focusmanager.FocusNode _CreateNode(){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Focusscope._FocusState CreateState() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+    public class _FocusState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Focusscope.Focus>
+    {
+        #region constructors
+        public _FocusState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Focusmanager.FocusNode _InternalNode { get; set; }
+        internal virtual bool _HasPrimaryFocus { get; set; }
+        internal virtual bool _CanRequestFocus { get; set; }
+        internal virtual bool _DidAutofocus { get; set; }
+        internal virtual FlutterSDK.Widgets.Focusmanager.FocusAttachment _FocusAttachment { get; set; }
+        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-public new void DidChangeDependencies(){ throw new NotImplementedException(); }
+        private void _InitNode() { throw new NotImplementedException(); }
 
 
-private void _HandleAutofocus(){ throw new NotImplementedException(); }
+        private FlutterSDK.Widgets.Focusmanager.FocusNode _CreateNode() { throw new NotImplementedException(); }
 
 
-public new void Deactivate(){ throw new NotImplementedException(); }
+        public new void Dispose() { throw new NotImplementedException(); }
 
 
-public new void DidUpdateWidget(FlutterSDK.Widgets.Focusscope.Focus oldWidget){ throw new NotImplementedException(); }
+        public new void DidChangeDependencies() { throw new NotImplementedException(); }
 
 
-private void _HandleFocusChanged(){ throw new NotImplementedException(); }
+        private void _HandleAutofocus() { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public new void Deactivate() { throw new NotImplementedException(); }
 
 
-public class FocusScope : FlutterSDK.Widgets.Focusscope.Focus
-{
-#region constructors
-public FocusScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Focusmanager.FocusScopeNode node = default(FlutterSDK.Widgets.Focusmanager.FocusScopeNode),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),bool autofocus = false,FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onFocusChange = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>),bool canRequestFocus = default(bool),bool skipTraversal = default(bool),FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback onKey = default(FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback),string debugLabel = default(string))
-: base(key:key,child:child,focusNode:node,autofocus:autofocus,onFocusChange:onFocusChange,canRequestFocus:canRequestFocus,skipTraversal:skipTraversal,onKey:onKey,debugLabel:debugLabel)
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public virtual FlutterSDK.Widgets.Focusmanager.FocusScopeNode Of(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new void DidUpdateWidget(FlutterSDK.Widgets.Focusscope.Focus oldWidget) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Focusscope._FocusScopeState CreateState(){ throw new NotImplementedException(); }
-
-#endregion
-}
+        private void _HandleFocusChanged() { throw new NotImplementedException(); }
 
 
-public class _FocusScopeState : FlutterSDK.Widgets.Focusscope._FocusState
-{
-#region constructors
-public _FocusScopeState()
-{ }
-#endregion
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#region fields
-#endregion
-
-#region methods
-
-protected new FlutterSDK.Widgets.Focusmanager.FocusScopeNode _CreateNode(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+    public class FocusScope : FlutterSDK.Widgets.Focusscope.Focus
+    {
+        #region constructors
+        public FocusScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Focusmanager.FocusScopeNode node = default(FlutterSDK.Widgets.Focusmanager.FocusScopeNode), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool autofocus = false, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onFocusChange = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), bool canRequestFocus = default(bool), bool skipTraversal = default(bool), FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback onKey = default(FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback), string debugLabel = default(string))
+        : base(key: key, child: child, focusNode: node, autofocus: autofocus, onFocusChange: onFocusChange, canRequestFocus: canRequestFocus, skipTraversal: skipTraversal, onKey: onKey, debugLabel: debugLabel)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        #endregion
+
+        #region methods
+
+        public virtual FlutterSDK.Widgets.Focusmanager.FocusScopeNode Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public class _FocusMarker : FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<FlutterSDK.Widgets.Focusmanager.FocusNode>
-{
-#region constructors
-public _FocusMarker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Focusmanager.FocusNode node = default(FlutterSDK.Widgets.Focusmanager.FocusNode),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key,notifier:node,child:child)
-{
-throw new NotImplementedException(); }
-#endregion
+        public new FlutterSDK.Widgets.Focusscope._FocusScopeState CreateState() { throw new NotImplementedException(); }
 
-#region fields
-#endregion
+        #endregion
+    }
 
-#region methods
-#endregion
-}
+
+    public class _FocusScopeState : FlutterSDK.Widgets.Focusscope._FocusState
+    {
+        #region constructors
+        public _FocusScopeState()
+        { }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        protected new FlutterSDK.Widgets.Focusmanager.FocusScopeNode _CreateNode() { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class _FocusMarker : FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<FlutterSDK.Widgets.Focusmanager.FocusNode>
+    {
+        #region constructors
+        public _FocusMarker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Focusmanager.FocusNode node = default(FlutterSDK.Widgets.Focusmanager.FocusNode), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, notifier: node, child: child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+        #endregion
+    }
 
 }

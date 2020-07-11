@@ -294,11 +294,14 @@ using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
-namespace FlutterSDK.Foundation._Isolatesweb{
-internal static class _IsolateswebDefaultClass{
-internal static Future<R> Compute<Q,R>(FlutterSDK.Foundation.Isolates.ComputeCallback<Q,R> callback,Q message,string debugLabel = default(string)){
-throw new NotImplementedException();
-}
+namespace FlutterSDK.Foundation._Isolatesweb
+{
+    internal static class _IsolateswebDefaultClass
+    {
+        internal static Future<R> Compute<Q, R>(FlutterSDK.Foundation.Isolates.ComputeCallback<Q, R> callback, Q message, string debugLabel = default(string))
+        {
+            throw new NotImplementedException();
+        }
 
-}
+    }
 }

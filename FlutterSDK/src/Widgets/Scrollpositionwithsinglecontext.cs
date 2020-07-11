@@ -423,74 +423,77 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Scrollpositionwithsinglecontext{
-internal static class ScrollpositionwithsinglecontextDefaultClass{
-}
-
-public class ScrollPositionWithSingleContext : FlutterSDK.Widgets.Scrollposition.ScrollPosition,IScrollActivityDelegate
+namespace FlutterSDK.Widgets.Scrollpositionwithsinglecontext
 {
-#region constructors
-public ScrollPositionWithSingleContext(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics),FlutterSDK.Widgets.Scrollcontext.ScrollContext context = default(FlutterSDK.Widgets.Scrollcontext.ScrollContext),double initialPixels = 0.0,bool keepScrollOffset = true,FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition = default(FlutterSDK.Widgets.Scrollposition.ScrollPosition),string debugLabel = default(string))
-: base(physics:physics,context:context,keepScrollOffset:keepScrollOffset,oldPosition:oldPosition,debugLabel:debugLabel)
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class ScrollpositionwithsinglecontextDefaultClass
+    {
+    }
 
-#region fields
-internal virtual double _HeldPreviousVelocity{get;set;}
-internal virtual FlutterSDK.Rendering.Viewportoffset.ScrollDirection _UserScrollDirection{get;set;}
-internal virtual FlutterSDK.Widgets.Scrollactivity.ScrollDragController _CurrentDrag{get;set;}
-public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Rendering.Viewportoffset.ScrollDirection UserScrollDirection{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class ScrollPositionWithSingleContext : FlutterSDK.Widgets.Scrollposition.ScrollPosition, IScrollActivityDelegate
+    {
+        #region constructors
+        public ScrollPositionWithSingleContext(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Widgets.Scrollcontext.ScrollContext context = default(FlutterSDK.Widgets.Scrollcontext.ScrollContext), double initialPixels = 0.0, bool keepScrollOffset = true, FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition = default(FlutterSDK.Widgets.Scrollposition.ScrollPosition), string debugLabel = default(string))
+        : base(physics: physics, context: context, keepScrollOffset: keepScrollOffset, oldPosition: oldPosition, debugLabel: debugLabel)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual double _HeldPreviousVelocity { get; set; }
+        internal virtual FlutterSDK.Rendering.Viewportoffset.ScrollDirection _UserScrollDirection { get; set; }
+        internal virtual FlutterSDK.Widgets.Scrollactivity.ScrollDragController _CurrentDrag { get; set; }
+        public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Viewportoffset.ScrollDirection UserScrollDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new double SetPixels(double newPixels){ throw new NotImplementedException(); }
+        #region methods
 
-
-public new void Absorb(FlutterSDK.Widgets.Scrollposition.ScrollPosition other){ throw new NotImplementedException(); }
-
-
-public new void ApplyNewDimensions(){ throw new NotImplementedException(); }
-
-
-public new void BeginActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivity newActivity){ throw new NotImplementedException(); }
+        public new double SetPixels(double newPixels) { throw new NotImplementedException(); }
 
 
-public new void ApplyUserOffset(double delta){ throw new NotImplementedException(); }
+        public new void Absorb(FlutterSDK.Widgets.Scrollposition.ScrollPosition other) { throw new NotImplementedException(); }
 
 
-public new void GoIdle(){ throw new NotImplementedException(); }
+        public new void ApplyNewDimensions() { throw new NotImplementedException(); }
 
 
-public new void GoBallistic(double velocity){ throw new NotImplementedException(); }
+        public new void BeginActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivity newActivity) { throw new NotImplementedException(); }
 
 
-public virtual void UpdateUserScrollDirection(FlutterSDK.Rendering.Viewportoffset.ScrollDirection value){ throw new NotImplementedException(); }
+        public new void ApplyUserOffset(double delta) { throw new NotImplementedException(); }
 
 
-public new Future<object> AnimateTo(double to,TimeSpan duration = default(TimeSpan),FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)){ throw new NotImplementedException(); }
+        public new void GoIdle() { throw new NotImplementedException(); }
 
 
-public new void JumpTo(double value){ throw new NotImplementedException(); }
+        public new void GoBallistic(double velocity) { throw new NotImplementedException(); }
 
 
-public new void JumpToWithoutSettling(double value){ throw new NotImplementedException(); }
+        public virtual void UpdateUserScrollDirection(FlutterSDK.Rendering.Viewportoffset.ScrollDirection value) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Scrollactivity.ScrollHoldController Hold(VoidCallback holdCancelCallback){ throw new NotImplementedException(); }
+        public new Future<object> AnimateTo(double to, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Gestures.Drag.Drag Drag(FlutterSDK.Gestures.Dragdetails.DragStartDetails details,VoidCallback dragCancelCallback){ throw new NotImplementedException(); }
+        public new void JumpTo(double value) { throw new NotImplementedException(); }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+        public new void JumpToWithoutSettling(double value) { throw new NotImplementedException(); }
 
 
-public new void DebugFillDescription(List<string> description){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Scrollactivity.ScrollHoldController Hold(VoidCallback holdCancelCallback) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new FlutterSDK.Gestures.Drag.Drag Drag(FlutterSDK.Gestures.Dragdetails.DragStartDetails details, VoidCallback dragCancelCallback) { throw new NotImplementedException(); }
+
+
+        public new void Dispose() { throw new NotImplementedException(); }
+
+
+        public new void DebugFillDescription(List<string> description) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

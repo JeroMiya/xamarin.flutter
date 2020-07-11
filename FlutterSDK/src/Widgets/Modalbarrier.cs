@@ -422,157 +422,165 @@ using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
-namespace FlutterSDK.Widgets.Modalbarrier{
-internal static class ModalbarrierDefaultClass{
-}
-
-public class ModalBarrier : FlutterSDK.Widgets.Framework.StatelessWidget
+namespace FlutterSDK.Widgets.Modalbarrier
 {
-#region constructors
-public ModalBarrier(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),bool dismissible = true,string semanticsLabel = default(string),bool barrierSemanticsDismissible = true)
-: base(key:key)
-{
-this.Color = color;
-this.Dismissible = dismissible;
-this.SemanticsLabel = semanticsLabel;
-this.BarrierSemanticsDismissible = barrierSemanticsDismissible;throw new NotImplementedException(); }
-#endregion
+    internal static class ModalbarrierDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterBinding.UI.Color Color{get;set;}
-public virtual bool Dismissible{get;set;}
-public virtual bool BarrierSemanticsDismissible{get;set;}
-public virtual string SemanticsLabel{get;set;}
-#endregion
+    public class ModalBarrier : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public ModalBarrier(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), bool dismissible = true, string semanticsLabel = default(string), bool barrierSemanticsDismissible = true)
+        : base(key: key)
+        {
+            this.Color = color;
+            this.Dismissible = dismissible;
+            this.SemanticsLabel = semanticsLabel;
+            this.BarrierSemanticsDismissible = barrierSemanticsDismissible; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual bool Dismissible { get; set; }
+        public virtual bool BarrierSemanticsDismissible { get; set; }
+        public virtual string SemanticsLabel { get; set; }
+        #endregion
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-
-public class AnimatedModalBarrier : FlutterSDK.Widgets.Transitions.AnimatedWidget
-{
-#region constructors
-public AnimatedModalBarrier(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Animation.Animation.Animation<Color> color = default(FlutterSDK.Animation.Animation.Animation<Color>),bool dismissible = true,string semanticsLabel = default(string),bool barrierSemanticsDismissible = default(bool))
-: base(key:key,listenable:color)
-{
-this.Dismissible = dismissible;
-this.SemanticsLabel = semanticsLabel;
-this.BarrierSemanticsDismissible = barrierSemanticsDismissible;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual bool Dismissible{get;set;}
-public virtual string SemanticsLabel{get;set;}
-public virtual bool BarrierSemanticsDismissible{get;set;}
-public virtual FlutterSDK.Animation.Animation.Animation<Color> Color{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-#endregion
-}
+        #endregion
+    }
 
 
-public class _AnyTapGestureRecognizer : FlutterSDK.Gestures.Tap.BaseTapGestureRecognizer
-{
-#region constructors
-public _AnyTapGestureRecognizer(@Object debugOwner = default(@Object))
-: base(debugOwner:debugOwner)
-{
-throw new NotImplementedException(); }
-#endregion
+    public class AnimatedModalBarrier : FlutterSDK.Widgets.Transitions.AnimatedWidget
+    {
+        #region constructors
+        public AnimatedModalBarrier(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<Color> color = default(FlutterSDK.Animation.Animation.Animation<Color>), bool dismissible = true, string semanticsLabel = default(string), bool barrierSemanticsDismissible = default(bool))
+        : base(key: key, listenable: color)
+        {
+            this.Dismissible = dismissible;
+            this.SemanticsLabel = semanticsLabel;
+            this.BarrierSemanticsDismissible = barrierSemanticsDismissible; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual VoidCallback OnAnyTapUp{get;set;}
-public virtual string DebugDescription{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #region fields
+        public virtual bool Dismissible { get; set; }
+        public virtual string SemanticsLabel { get; set; }
+        public virtual bool BarrierSemanticsDismissible { get; set; }
+        public virtual FlutterSDK.Animation.Animation.Animation<Color> Color { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#region methods
+        #region methods
 
-public new bool IsPointerAllowed(FlutterSDK.Gestures.Events.PointerDownEvent @event){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-
-public new void HandleTapDown(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent)){ throw new NotImplementedException(); }
-
-
-public new void HandleTapUp(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent),FlutterSDK.Gestures.Events.PointerUpEvent up = default(FlutterSDK.Gestures.Events.PointerUpEvent)){ throw new NotImplementedException(); }
-
-
-public new void HandleTapCancel(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent),FlutterSDK.Gestures.Events.PointerCancelEvent cancel = default(FlutterSDK.Gestures.Events.PointerCancelEvent),string reason = default(string)){ throw new NotImplementedException(); }
-
-#endregion
-}
+        #endregion
+    }
 
 
-public class _ModalBarrierSemanticsDelegate : FlutterSDK.Widgets.Gesturedetector.SemanticsGestureDelegate
-{
-#region constructors
-public _ModalBarrierSemanticsDelegate(VoidCallback onDismiss = default(VoidCallback))
-{
-this.OnDismiss = onDismiss;throw new NotImplementedException(); }
-#endregion
+    public class _AnyTapGestureRecognizer : FlutterSDK.Gestures.Tap.BaseTapGestureRecognizer
+    {
+        #region constructors
+        public _AnyTapGestureRecognizer(@Object debugOwner = default(@Object))
+        : base(debugOwner: debugOwner)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual VoidCallback OnDismiss{get;set;}
-#endregion
+        #region fields
+        public virtual VoidCallback OnAnyTapUp { get; set; }
+        public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#region methods
+        #region methods
 
-public new void AssignSemantics(FlutterSDK.Rendering.Proxybox.RenderSemanticsGestureHandler renderObject){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _AnyTapGestureRecognizerFactory : FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactory<FlutterSDK.Widgets.Modalbarrier._AnyTapGestureRecognizer>
-{
-#region constructors
-public _AnyTapGestureRecognizerFactory(VoidCallback onAnyTapUp = default(VoidCallback))
-{
-this.OnAnyTapUp = onAnyTapUp;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual VoidCallback OnAnyTapUp{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Modalbarrier._AnyTapGestureRecognizer Constructor(){ throw new NotImplementedException(); }
+        public new bool IsPointerAllowed(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
 
 
-public new void Initializer(FlutterSDK.Widgets.Modalbarrier._AnyTapGestureRecognizer instance){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public new void HandleTapDown(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent)) { throw new NotImplementedException(); }
 
 
-public class _ModalBarrierGestureDetector : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public _ModalBarrierGestureDetector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),VoidCallback onDismiss = default(VoidCallback))
-: base(key:key)
-{
-this.Child = child;
-this.OnDismiss = onDismiss;throw new NotImplementedException(); }
-#endregion
+        public new void HandleTapUp(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent), FlutterSDK.Gestures.Events.PointerUpEvent up = default(FlutterSDK.Gestures.Events.PointerUpEvent)) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-public virtual VoidCallback OnDismiss{get;set;}
-#endregion
 
-#region methods
+        public new void HandleTapCancel(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent), FlutterSDK.Gestures.Events.PointerCancelEvent cancel = default(FlutterSDK.Gestures.Events.PointerCancelEvent), string reason = default(string)) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #endregion
+    }
 
-#endregion
-}
+
+    public class _ModalBarrierSemanticsDelegate : FlutterSDK.Widgets.Gesturedetector.SemanticsGestureDelegate
+    {
+        #region constructors
+        public _ModalBarrierSemanticsDelegate(VoidCallback onDismiss = default(VoidCallback))
+        {
+            this.OnDismiss = onDismiss; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual VoidCallback OnDismiss { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void AssignSemantics(FlutterSDK.Rendering.Proxybox.RenderSemanticsGestureHandler renderObject) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class _AnyTapGestureRecognizerFactory : FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactory<FlutterSDK.Widgets.Modalbarrier._AnyTapGestureRecognizer>
+    {
+        #region constructors
+        public _AnyTapGestureRecognizerFactory(VoidCallback onAnyTapUp = default(VoidCallback))
+        {
+            this.OnAnyTapUp = onAnyTapUp; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual VoidCallback OnAnyTapUp { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Modalbarrier._AnyTapGestureRecognizer Constructor() { throw new NotImplementedException(); }
+
+
+        public new void Initializer(FlutterSDK.Widgets.Modalbarrier._AnyTapGestureRecognizer instance) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class _ModalBarrierGestureDetector : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public _ModalBarrierGestureDetector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), VoidCallback onDismiss = default(VoidCallback))
+        : base(key: key)
+        {
+            this.Child = child;
+            this.OnDismiss = onDismiss; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual VoidCallback OnDismiss { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

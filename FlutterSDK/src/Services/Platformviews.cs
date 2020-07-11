@@ -421,310 +421,322 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Services.Platformviews{
-public delegate void PlatformViewCreatedCallback(int id);
-internal static class PlatformviewsDefaultClass{
-public static FlutterSDK.Services.Platformviews.PlatformViewsRegistry PlatformViewsRegistry = default(FlutterSDK.Services.Platformviews.PlatformViewsRegistry);
-}
-
-public interface IPlatformViewController{}
-
-public class PlatformViewController{
-public virtual int ViewId{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-
-public virtual void DispatchPointerEvent(FlutterSDK.Gestures.Events.PointerEvent @event){ throw new NotImplementedException(); }
-
-
-public virtual void Dispose(){ throw new NotImplementedException(); }
-
-
-public virtual void ClearFocus(){ throw new NotImplementedException(); }
-
-}
-public static class PlatformViewControllerMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IPlatformViewController, PlatformViewController> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IPlatformViewController, PlatformViewController>();
-static PlatformViewController GetOrCreate(IPlatformViewController instance)
+namespace FlutterSDK.Services.Platformviews
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new PlatformViewController();
-_table.Add(instance, value);
-}
-return (PlatformViewController)value;
-}
-public static int ViewIdProperty(this IPlatformViewController instance) => GetOrCreate(instance).ViewId;
-public static void DispatchPointerEvent(this IPlatformViewController instance,FlutterSDK.Gestures.Events.PointerEvent @event) => GetOrCreate(instance).DispatchPointerEvent(@event);
-public static void Dispose(this IPlatformViewController instance) => GetOrCreate(instance).Dispose();
-public static void ClearFocus(this IPlatformViewController instance) => GetOrCreate(instance).ClearFocus();
-}
-
-
-public class PlatformViewsRegistry
-{
-#region constructors
-internal static PlatformViewsRegistry _Instance()
-{
-var instance =new PlatformViewsRegistry();throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual int _NextPlatformViewId{get;set;}
-#endregion
-
-#region methods
-
-public virtual int GetNextPlatformViewId(){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class PlatformViewsService
-{
-#region constructors
-internal PlatformViewsService()
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Services.Platformviews.PlatformViewsService _ServiceInstance{get;set;}
-internal virtual Dictionary<int,object> _FocusCallbacks{get;set;}
-internal virtual FlutterSDK.Services.Platformviews.PlatformViewsService _Instance{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-private Future<object> _OnMethodCall(FlutterSDK.Services.Messagecodec.MethodCall call){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Services.Platformviews.AndroidViewController InitAndroidView(int id = default(int),string viewType = default(string),TextDirection layoutDirection = default(TextDirection),object creationParams = default(object),FlutterSDK.Services.Messagecodec.MessageCodec<object> creationParamsCodec = default(FlutterSDK.Services.Messagecodec.MessageCodec<object>),VoidCallback onFocus = default(VoidCallback)){ throw new NotImplementedException(); }
-
-
-public virtual Future<FlutterSDK.Services.Platformviews.UiKitViewController> InitUiKitView(int id = default(int),string viewType = default(string),TextDirection layoutDirection = default(TextDirection),object creationParams = default(object),FlutterSDK.Services.Messagecodec.MessageCodec<object> creationParamsCodec = default(FlutterSDK.Services.Messagecodec.MessageCodec<object>)){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class AndroidPointerProperties
-{
-#region constructors
-public AndroidPointerProperties(int id = default(int),int toolType = default(int))
-: base()
-{
-this.Id = id;
-this.ToolType = toolType;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual int Id{get;set;}
-public virtual int ToolType{get;set;}
-public virtual int KToolTypeUnknown{get;set;}
-public virtual int KToolTypeFinger{get;set;}
-public virtual int KToolTypeStylus{get;set;}
-public virtual int KToolTypeMouse{get;set;}
-public virtual int KToolTypeEraser{get;set;}
-#endregion
-
-#region methods
-
-private List<int> _AsList(){ throw new NotImplementedException(); }
-
-
-#endregion
-}
-
-
-public class AndroidPointerCoords
-{
-#region constructors
-public AndroidPointerCoords(double orientation = default(double),double pressure = default(double),double size = default(double),double toolMajor = default(double),double toolMinor = default(double),double touchMajor = default(double),double touchMinor = default(double),double x = default(double),double y = default(double))
-: base()
-{
-this.Orientation = orientation;
-this.Pressure = pressure;
-this.Size = size;
-this.ToolMajor = toolMajor;
-this.ToolMinor = toolMinor;
-this.TouchMajor = touchMajor;
-this.TouchMinor = touchMinor;
-this.x = x;
-this.y = y;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual double Orientation{get;set;}
-public virtual double Pressure{get;set;}
-public virtual double Size{get;set;}
-public virtual double ToolMajor{get;set;}
-public virtual double ToolMinor{get;set;}
-public virtual double TouchMajor{get;set;}
-public virtual double TouchMinor{get;set;}
-public virtual double x{get;set;}
-public virtual double y{get;set;}
-#endregion
-
-#region methods
-
-private List<double> _AsList(){ throw new NotImplementedException(); }
-
-
-#endregion
-}
-
-
-public class AndroidMotionEvent
-{
-#region constructors
-public AndroidMotionEvent(int downTime = default(int),int eventTime = default(int),int action = default(int),int pointerCount = default(int),List<FlutterSDK.Services.Platformviews.AndroidPointerProperties> pointerProperties = default(List<FlutterSDK.Services.Platformviews.AndroidPointerProperties>),List<FlutterSDK.Services.Platformviews.AndroidPointerCoords> pointerCoords = default(List<FlutterSDK.Services.Platformviews.AndroidPointerCoords>),int metaState = default(int),int buttonState = default(int),double xPrecision = default(double),double yPrecision = default(double),int deviceId = default(int),int edgeFlags = default(int),int source = default(int),int flags = default(int))
-: base()
-{
-this.DownTime = downTime;
-this.EventTime = eventTime;
-this.Action = action;
-this.PointerCount = pointerCount;
-this.PointerProperties = pointerProperties;
-this.PointerCoords = pointerCoords;
-this.MetaState = metaState;
-this.ButtonState = buttonState;
-this.XPrecision = xPrecision;
-this.YPrecision = yPrecision;
-this.DeviceId = deviceId;
-this.EdgeFlags = edgeFlags;
-this.Source = source;
-this.Flags = flags;throw new NotImplementedException(); }
-#endregion
+    public delegate void PlatformViewCreatedCallback(int id);
+    internal static class PlatformviewsDefaultClass
+    {
+        public static FlutterSDK.Services.Platformviews.PlatformViewsRegistry PlatformViewsRegistry = default(FlutterSDK.Services.Platformviews.PlatformViewsRegistry);
+    }
 
-#region fields
-public virtual int DownTime{get;set;}
-public virtual int EventTime{get;set;}
-public virtual int Action{get;set;}
-public virtual int PointerCount{get;set;}
-public virtual List<FlutterSDK.Services.Platformviews.AndroidPointerProperties> PointerProperties{get;set;}
-public virtual List<FlutterSDK.Services.Platformviews.AndroidPointerCoords> PointerCoords{get;set;}
-public virtual int MetaState{get;set;}
-public virtual int ButtonState{get;set;}
-public virtual double XPrecision{get;set;}
-public virtual double YPrecision{get;set;}
-public virtual int DeviceId{get;set;}
-public virtual int EdgeFlags{get;set;}
-public virtual int Source{get;set;}
-public virtual int Flags{get;set;}
-#endregion
+    public interface IPlatformViewController { }
 
-#region methods
+    public class PlatformViewController
+    {
+        public virtual int ViewId { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
-private List<object> _AsList(int viewId){ throw new NotImplementedException(); }
+        public virtual void DispatchPointerEvent(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public virtual void Dispose() { throw new NotImplementedException(); }
 
 
-public class AndroidViewController
-{
-#region constructors
-internal AndroidViewController(int id,string viewType,object creationParams,FlutterSDK.Services.Messagecodec.MessageCodec<object> creationParamsCodec,TextDirection layoutDirection)
-: base()
-{
-this.Id = id;throw new NotImplementedException(); }
-#endregion
+        public virtual void ClearFocus() { throw new NotImplementedException(); }
 
-#region fields
-public virtual int KActionDown{get;set;}
-public virtual int KActionUp{get;set;}
-public virtual int KActionMove{get;set;}
-public virtual int KActionCancel{get;set;}
-public virtual int KActionPointerDown{get;set;}
-public virtual int KActionPointerUp{get;set;}
-public virtual int KAndroidLayoutDirectionLtr{get;set;}
-public virtual int KAndroidLayoutDirectionRtl{get;set;}
-public virtual int Id{get;set;}
-internal virtual string _ViewType{get;set;}
-internal virtual int _TextureId{get;set;}
-internal virtual TextDirection _LayoutDirection{get;set;}
-internal virtual FlutterSDK.Services.Platformviews._AndroidViewState _State{get;set;}
-internal virtual object _CreationParams{get;set;}
-internal virtual FlutterSDK.Services.Messagecodec.MessageCodec<object> _CreationParamsCodec{get;set;}
-internal virtual List<object> _PlatformViewCreatedCallbacks{get;set;}
-public virtual int TextureId{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsCreated{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    }
+    public static class PlatformViewControllerMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IPlatformViewController, PlatformViewController> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IPlatformViewController, PlatformViewController>();
+        static PlatformViewController GetOrCreate(IPlatformViewController instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new PlatformViewController();
+                _table.Add(instance, value);
+            }
+            return (PlatformViewController)value;
+        }
+        public static int ViewIdProperty(this IPlatformViewController instance) => GetOrCreate(instance).ViewId;
+        public static void DispatchPointerEvent(this IPlatformViewController instance, FlutterSDK.Gestures.Events.PointerEvent @event) => GetOrCreate(instance).DispatchPointerEvent(@event);
+        public static void Dispose(this IPlatformViewController instance) => GetOrCreate(instance).Dispose();
+        public static void ClearFocus(this IPlatformViewController instance) => GetOrCreate(instance).ClearFocus();
+    }
+
+
+    public class PlatformViewsRegistry
+    {
+        #region constructors
+        internal static PlatformViewsRegistry _Instance()
+        {
+            var instance = new PlatformViewsRegistry(); throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual int _NextPlatformViewId { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual int GetNextPlatformViewId() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
-#region methods
 
-public virtual void AddOnPlatformViewCreatedListener(FlutterSDK.Services.Platformviews.PlatformViewCreatedCallback listener){ throw new NotImplementedException(); }
+    public class PlatformViewsService
+    {
+        #region constructors
+        internal PlatformViewsService()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Services.Platformviews.PlatformViewsService _ServiceInstance { get; set; }
+        internal virtual Dictionary<int, object> _FocusCallbacks { get; set; }
+        internal virtual FlutterSDK.Services.Platformviews.PlatformViewsService _Instance { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        private Future<object> _OnMethodCall(FlutterSDK.Services.Messagecodec.MethodCall call) { throw new NotImplementedException(); }
+
+
+        public virtual FlutterSDK.Services.Platformviews.AndroidViewController InitAndroidView(int id = default(int), string viewType = default(string), TextDirection layoutDirection = default(TextDirection), object creationParams = default(object), FlutterSDK.Services.Messagecodec.MessageCodec<object> creationParamsCodec = default(FlutterSDK.Services.Messagecodec.MessageCodec<object>), VoidCallback onFocus = default(VoidCallback)) { throw new NotImplementedException(); }
+
+
+        public virtual Future<FlutterSDK.Services.Platformviews.UiKitViewController> InitUiKitView(int id = default(int), string viewType = default(string), TextDirection layoutDirection = default(TextDirection), object creationParams = default(object), FlutterSDK.Services.Messagecodec.MessageCodec<object> creationParamsCodec = default(FlutterSDK.Services.Messagecodec.MessageCodec<object>)) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class AndroidPointerProperties
+    {
+        #region constructors
+        public AndroidPointerProperties(int id = default(int), int toolType = default(int))
+        : base()
+        {
+            this.Id = id;
+            this.ToolType = toolType; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual int Id { get; set; }
+        public virtual int ToolType { get; set; }
+        public virtual int KToolTypeUnknown { get; set; }
+        public virtual int KToolTypeFinger { get; set; }
+        public virtual int KToolTypeStylus { get; set; }
+        public virtual int KToolTypeMouse { get; set; }
+        public virtual int KToolTypeEraser { get; set; }
+        #endregion
+
+        #region methods
+
+        private List<int> _AsList() { throw new NotImplementedException(); }
+
+
+        #endregion
+    }
+
+
+    public class AndroidPointerCoords
+    {
+        #region constructors
+        public AndroidPointerCoords(double orientation = default(double), double pressure = default(double), double size = default(double), double toolMajor = default(double), double toolMinor = default(double), double touchMajor = default(double), double touchMinor = default(double), double x = default(double), double y = default(double))
+        : base()
+        {
+            this.Orientation = orientation;
+            this.Pressure = pressure;
+            this.Size = size;
+            this.ToolMajor = toolMajor;
+            this.ToolMinor = toolMinor;
+            this.TouchMajor = touchMajor;
+            this.TouchMinor = touchMinor;
+            this.x = x;
+            this.y = y; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual double Orientation { get; set; }
+        public virtual double Pressure { get; set; }
+        public virtual double Size { get; set; }
+        public virtual double ToolMajor { get; set; }
+        public virtual double ToolMinor { get; set; }
+        public virtual double TouchMajor { get; set; }
+        public virtual double TouchMinor { get; set; }
+        public virtual double x { get; set; }
+        public virtual double y { get; set; }
+        #endregion
+
+        #region methods
+
+        private List<double> _AsList() { throw new NotImplementedException(); }
+
+
+        #endregion
+    }
+
+
+    public class AndroidMotionEvent
+    {
+        #region constructors
+        public AndroidMotionEvent(int downTime = default(int), int eventTime = default(int), int action = default(int), int pointerCount = default(int), List<FlutterSDK.Services.Platformviews.AndroidPointerProperties> pointerProperties = default(List<FlutterSDK.Services.Platformviews.AndroidPointerProperties>), List<FlutterSDK.Services.Platformviews.AndroidPointerCoords> pointerCoords = default(List<FlutterSDK.Services.Platformviews.AndroidPointerCoords>), int metaState = default(int), int buttonState = default(int), double xPrecision = default(double), double yPrecision = default(double), int deviceId = default(int), int edgeFlags = default(int), int source = default(int), int flags = default(int))
+        : base()
+        {
+            this.DownTime = downTime;
+            this.EventTime = eventTime;
+            this.Action = action;
+            this.PointerCount = pointerCount;
+            this.PointerProperties = pointerProperties;
+            this.PointerCoords = pointerCoords;
+            this.MetaState = metaState;
+            this.ButtonState = buttonState;
+            this.XPrecision = xPrecision;
+            this.YPrecision = yPrecision;
+            this.DeviceId = deviceId;
+            this.EdgeFlags = edgeFlags;
+            this.Source = source;
+            this.Flags = flags; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual int DownTime { get; set; }
+        public virtual int EventTime { get; set; }
+        public virtual int Action { get; set; }
+        public virtual int PointerCount { get; set; }
+        public virtual List<FlutterSDK.Services.Platformviews.AndroidPointerProperties> PointerProperties { get; set; }
+        public virtual List<FlutterSDK.Services.Platformviews.AndroidPointerCoords> PointerCoords { get; set; }
+        public virtual int MetaState { get; set; }
+        public virtual int ButtonState { get; set; }
+        public virtual double XPrecision { get; set; }
+        public virtual double YPrecision { get; set; }
+        public virtual int DeviceId { get; set; }
+        public virtual int EdgeFlags { get; set; }
+        public virtual int Source { get; set; }
+        public virtual int Flags { get; set; }
+        #endregion
 
+        #region methods
 
-public virtual void RemoveOnPlatformViewCreatedListener(FlutterSDK.Services.Platformviews.PlatformViewCreatedCallback listener){ throw new NotImplementedException(); }
+        private List<object> _AsList(int viewId) { throw new NotImplementedException(); }
 
 
-public virtual Future<object> Dispose(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public virtual Future<object> SetSize(Size size){ throw new NotImplementedException(); }
+    public class AndroidViewController
+    {
+        #region constructors
+        internal AndroidViewController(int id, string viewType, object creationParams, FlutterSDK.Services.Messagecodec.MessageCodec<object> creationParamsCodec, TextDirection layoutDirection)
+        : base()
+        {
+            this.Id = id; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual int KActionDown { get; set; }
+        public virtual int KActionUp { get; set; }
+        public virtual int KActionMove { get; set; }
+        public virtual int KActionCancel { get; set; }
+        public virtual int KActionPointerDown { get; set; }
+        public virtual int KActionPointerUp { get; set; }
+        public virtual int KAndroidLayoutDirectionLtr { get; set; }
+        public virtual int KAndroidLayoutDirectionRtl { get; set; }
+        public virtual int Id { get; set; }
+        internal virtual string _ViewType { get; set; }
+        internal virtual int _TextureId { get; set; }
+        internal virtual TextDirection _LayoutDirection { get; set; }
+        internal virtual FlutterSDK.Services.Platformviews._AndroidViewState _State { get; set; }
+        internal virtual object _CreationParams { get; set; }
+        internal virtual FlutterSDK.Services.Messagecodec.MessageCodec<object> _CreationParamsCodec { get; set; }
+        internal virtual List<object> _PlatformViewCreatedCallbacks { get; set; }
+        public virtual int TextureId { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsCreated { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual Future<object> SetLayoutDirection(TextDirection layoutDirection){ throw new NotImplementedException(); }
+        #region methods
 
+        public virtual void AddOnPlatformViewCreatedListener(FlutterSDK.Services.Platformviews.PlatformViewCreatedCallback listener) { throw new NotImplementedException(); }
 
-public virtual Future<object> ClearFocus(){ throw new NotImplementedException(); }
 
+        public virtual void RemoveOnPlatformViewCreatedListener(FlutterSDK.Services.Platformviews.PlatformViewCreatedCallback listener) { throw new NotImplementedException(); }
 
-private int _GetAndroidDirection(TextDirection direction){ throw new NotImplementedException(); }
 
+        public virtual Future<object> Dispose() { throw new NotImplementedException(); }
 
-public virtual Future<object> SendMotionEvent(FlutterSDK.Services.Platformviews.AndroidMotionEvent @event){ throw new NotImplementedException(); }
 
+        public virtual Future<object> SetSize(Size size) { throw new NotImplementedException(); }
 
-public virtual int PointerAction(int pointerId,int action){ throw new NotImplementedException(); }
 
+        public virtual Future<object> SetLayoutDirection(TextDirection layoutDirection) { throw new NotImplementedException(); }
 
-private Future<object> _Create(Size size){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public virtual Future<object> ClearFocus() { throw new NotImplementedException(); }
 
 
-public class UiKitViewController
-{
-#region constructors
-internal UiKitViewController(int id,TextDirection layoutDirection)
-: base()
-{
-this.Id = id;throw new NotImplementedException(); }
-#endregion
+        private int _GetAndroidDirection(TextDirection direction) { throw new NotImplementedException(); }
 
-#region fields
-public virtual int Id{get;set;}
-internal virtual bool _DebugDisposed{get;set;}
-internal virtual TextDirection _LayoutDirection{get;set;}
-#endregion
 
-#region methods
+        public virtual Future<object> SendMotionEvent(FlutterSDK.Services.Platformviews.AndroidMotionEvent @event) { throw new NotImplementedException(); }
 
-public virtual Future<object> SetLayoutDirection(TextDirection layoutDirection){ throw new NotImplementedException(); }
 
+        public virtual int PointerAction(int pointerId, int action) { throw new NotImplementedException(); }
 
-public virtual Future<object> AcceptGesture(){ throw new NotImplementedException(); }
 
+        private Future<object> _Create(Size size) { throw new NotImplementedException(); }
 
-public virtual Future<object> RejectGesture(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public virtual Future<object> Dispose(){ throw new NotImplementedException(); }
+    public class UiKitViewController
+    {
+        #region constructors
+        internal UiKitViewController(int id, TextDirection layoutDirection)
+        : base()
+        {
+            this.Id = id; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual int Id { get; set; }
+        internal virtual bool _DebugDisposed { get; set; }
+        internal virtual TextDirection _LayoutDirection { get; set; }
+        #endregion
 
+        #region methods
 
-public enum _AndroidViewState{
+        public virtual Future<object> SetLayoutDirection(TextDirection layoutDirection) { throw new NotImplementedException(); }
 
-WaitingForSize,
-Creating,
-Created,
-Disposed,
-}
+
+        public virtual Future<object> AcceptGesture() { throw new NotImplementedException(); }
+
+
+        public virtual Future<object> RejectGesture() { throw new NotImplementedException(); }
+
+
+        public virtual Future<object> Dispose() { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public enum _AndroidViewState
+    {
+
+        WaitingForSize,
+        Creating,
+        Created,
+        Disposed,
+    }
 
 }

@@ -383,38 +383,41 @@ using FlutterSDK.Material.Expandicon;
 using FlutterSDK.Material.Mergeablematerial;
 using FlutterSDK.Material.Button;
 using FlutterSDK.Material.Floatingactionbuttontheme;
-namespace FlutterSDK.Material.Flutterlogo{
-internal static class FlutterlogoDefaultClass{
-}
-
-public class FlutterLogo : FlutterSDK.Widgets.Framework.StatelessWidget
+namespace FlutterSDK.Material.Flutterlogo
 {
-#region constructors
-public FlutterLogo(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),double size = default(double),FlutterSDK.Material.Colors.MaterialColor colors = default(FlutterSDK.Material.Colors.MaterialColor),FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color),FlutterSDK.Painting.Flutterlogo.FlutterLogoStyle style = default(FlutterSDK.Painting.Flutterlogo.FlutterLogoStyle),TimeSpan duration = default(TimeSpan),FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
-: base(key:key)
-{
-this.Size = size;
-this.Colors = colors;
-this.TextColor = textColor;
-this.Style = style;
-this.Duration = duration;
-this.Curve = curve;throw new NotImplementedException(); }
-#endregion
+    internal static class FlutterlogoDefaultClass
+    {
+    }
 
-#region fields
-public virtual double Size{get;set;}
-public virtual FlutterSDK.Material.Colors.MaterialColor Colors{get;set;}
-public virtual FlutterBinding.UI.Color TextColor{get;set;}
-public virtual FlutterSDK.Painting.Flutterlogo.FlutterLogoStyle Style{get;set;}
-public virtual TimeSpan Duration{get;set;}
-public virtual FlutterSDK.Animation.Curves.Curve Curve{get;set;}
-#endregion
+    public class FlutterLogo : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public FlutterLogo(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double size = default(double), FlutterSDK.Material.Colors.MaterialColor colors = default(FlutterSDK.Material.Colors.MaterialColor), FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Flutterlogo.FlutterLogoStyle style = default(FlutterSDK.Painting.Flutterlogo.FlutterLogoStyle), TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
+        : base(key: key)
+        {
+            this.Size = size;
+            this.Colors = colors;
+            this.TextColor = textColor;
+            this.Style = style;
+            this.Duration = duration;
+            this.Curve = curve; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual double Size { get; set; }
+        public virtual FlutterSDK.Material.Colors.MaterialColor Colors { get; set; }
+        public virtual FlutterBinding.UI.Color TextColor { get; set; }
+        public virtual FlutterSDK.Painting.Flutterlogo.FlutterLogoStyle Style { get; set; }
+        public virtual TimeSpan Duration { get; set; }
+        public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
+        #endregion
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

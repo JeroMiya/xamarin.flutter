@@ -376,168 +376,176 @@ using FlutterSDK.Material.Tooltip;
 using FlutterSDK.Material.Dropdown;
 using FlutterSDK.Material.Datatable;
 using FlutterSDK.Material.Dialogtheme;
-namespace FlutterSDK.Material.Dialog{
-internal static class DialogDefaultClass{
-public static FlutterSDK.Painting.Edgeinsets.EdgeInsets _DefaultInsetPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets);
-internal static FlutterSDK.Widgets.Framework.Widget _BuildMaterialDialogTransitions(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Animation.Animation.Animation<double> animation,FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation,FlutterSDK.Widgets.Framework.Widget child){
-throw new NotImplementedException();
-}
-
-internal static Future<T> ShowDialog<T>(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext),bool barrierDismissible = true,FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder),bool useRootNavigator = true,FlutterSDK.Widgets.Navigator.RouteSettings routeSettings = default(FlutterSDK.Widgets.Navigator.RouteSettings)){
-throw new NotImplementedException();
-}
-
-}
-
-public class Dialog : FlutterSDK.Widgets.Framework.StatelessWidget
+namespace FlutterSDK.Material.Dialog
 {
-#region constructors
-public Dialog(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),double elevation = default(double),TimeSpan insetAnimationDuration = default(TimeSpan),FlutterSDK.Animation.Curves.Curve insetAnimationCurve = default(FlutterSDK.Animation.Curves.Curve),FlutterSDK.Painting.Edgeinsets.EdgeInsets insetPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets),FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip),FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key)
-{
-this.BackgroundColor = backgroundColor;
-this.Elevation = elevation;
-this.InsetAnimationDuration = insetAnimationDuration;
-this.InsetAnimationCurve = insetAnimationCurve;
-this.InsetPadding = insetPadding;
-this.ClipBehavior = clipBehavior;
-this.Shape = shape;
-this.Child = child;throw new NotImplementedException(); }
-#endregion
+    internal static class DialogDefaultClass
+    {
+        public static FlutterSDK.Painting.Edgeinsets.EdgeInsets _DefaultInsetPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets);
+        internal static FlutterSDK.Widgets.Framework.Widget _BuildMaterialDialogTransitions(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child)
+        {
+            throw new NotImplementedException();
+        }
 
-#region fields
-public virtual FlutterBinding.UI.Color BackgroundColor{get;set;}
-public virtual double Elevation{get;set;}
-public virtual TimeSpan InsetAnimationDuration{get;set;}
-public virtual FlutterSDK.Animation.Curves.Curve InsetAnimationCurve{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets InsetPadding{get;set;}
-public virtual FlutterBinding.UI.Clip ClipBehavior{get;set;}
-public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-internal virtual FlutterSDK.Painting.Roundedrectangleborder.RoundedRectangleBorder _DefaultDialogShape{get;set;}
-internal virtual double _DefaultElevation{get;set;}
-#endregion
+        internal static Future<T> ShowDialog<T>(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), bool barrierDismissible = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), bool useRootNavigator = true, FlutterSDK.Widgets.Navigator.RouteSettings routeSettings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
+        {
+            throw new NotImplementedException();
+        }
 
-#region methods
+    }
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+    public class Dialog : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public Dialog(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), TimeSpan insetAnimationDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve insetAnimationCurve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Painting.Edgeinsets.EdgeInsets insetPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.BackgroundColor = backgroundColor;
+            this.Elevation = elevation;
+            this.InsetAnimationDuration = insetAnimationDuration;
+            this.InsetAnimationCurve = insetAnimationCurve;
+            this.InsetPadding = insetPadding;
+            this.ClipBehavior = clipBehavior;
+            this.Shape = shape;
+            this.Child = child; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual TimeSpan InsetAnimationDuration { get; set; }
+        public virtual FlutterSDK.Animation.Curves.Curve InsetAnimationCurve { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets InsetPadding { get; set; }
+        public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        internal virtual FlutterSDK.Painting.Roundedrectangleborder.RoundedRectangleBorder _DefaultDialogShape { get; set; }
+        internal virtual double _DefaultElevation { get; set; }
+        #endregion
 
+        #region methods
 
-public class AlertDialog : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public AlertDialog(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry titlePadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),FlutterSDK.Painting.Textstyle.TextStyle titleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Widgets.Framework.Widget content = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry actionsPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),FlutterSDK.Painting.Basictypes.VerticalDirection actionsOverflowDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection),double actionsOverflowButtonSpacing = default(double),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry buttonPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),double elevation = default(double),string semanticLabel = default(string),FlutterSDK.Painting.Edgeinsets.EdgeInsets insetPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets),FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip),FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder),bool scrollable = false)
-: base(key:key)
-{
-this.Title = title;
-this.TitlePadding = titlePadding;
-this.TitleTextStyle = titleTextStyle;
-this.Content = content;
-this.ContentPadding = contentPadding;
-this.ContentTextStyle = contentTextStyle;
-this.Actions = actions;
-this.ActionsPadding = actionsPadding;
-this.ActionsOverflowDirection = actionsOverflowDirection;
-this.ActionsOverflowButtonSpacing = actionsOverflowButtonSpacing;
-this.ButtonPadding = buttonPadding;
-this.BackgroundColor = backgroundColor;
-this.Elevation = elevation;
-this.SemanticLabel = semanticLabel;
-this.InsetPadding = insetPadding;
-this.ClipBehavior = clipBehavior;
-this.Shape = shape;
-this.Scrollable = scrollable;throw new NotImplementedException(); }
-#endregion
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Title{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry TitlePadding{get;set;}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle TitleTextStyle{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Content{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ContentPadding{get;set;}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle ContentTextStyle{get;set;}
-public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ActionsPadding{get;set;}
-public virtual FlutterSDK.Painting.Basictypes.VerticalDirection ActionsOverflowDirection{get;set;}
-public virtual double ActionsOverflowButtonSpacing{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ButtonPadding{get;set;}
-public virtual FlutterBinding.UI.Color BackgroundColor{get;set;}
-public virtual double Elevation{get;set;}
-public virtual string SemanticLabel{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets InsetPadding{get;set;}
-public virtual FlutterBinding.UI.Clip ClipBehavior{get;set;}
-public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape{get;set;}
-public virtual bool Scrollable{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-#endregion
-}
+        #endregion
+    }
 
 
-public class SimpleDialogOption : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public SimpleDialogOption(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),VoidCallback onPressed = default(VoidCallback),FlutterSDK.Painting.Edgeinsets.EdgeInsets padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key)
-{
-this.OnPressed = onPressed;
-this.Padding = padding;
-this.Child = child;throw new NotImplementedException(); }
-#endregion
+    public class AlertDialog : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public AlertDialog(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry titlePadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Textstyle.TextStyle titleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Framework.Widget content = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry actionsPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Basictypes.VerticalDirection actionsOverflowDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection), double actionsOverflowButtonSpacing = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry buttonPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), string semanticLabel = default(string), FlutterSDK.Painting.Edgeinsets.EdgeInsets insetPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), bool scrollable = false)
+        : base(key: key)
+        {
+            this.Title = title;
+            this.TitlePadding = titlePadding;
+            this.TitleTextStyle = titleTextStyle;
+            this.Content = content;
+            this.ContentPadding = contentPadding;
+            this.ContentTextStyle = contentTextStyle;
+            this.Actions = actions;
+            this.ActionsPadding = actionsPadding;
+            this.ActionsOverflowDirection = actionsOverflowDirection;
+            this.ActionsOverflowButtonSpacing = actionsOverflowButtonSpacing;
+            this.ButtonPadding = buttonPadding;
+            this.BackgroundColor = backgroundColor;
+            this.Elevation = elevation;
+            this.SemanticLabel = semanticLabel;
+            this.InsetPadding = insetPadding;
+            this.ClipBehavior = clipBehavior;
+            this.Shape = shape;
+            this.Scrollable = scrollable; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual VoidCallback OnPressed{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Padding{get;set;}
-#endregion
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry TitlePadding { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle TitleTextStyle { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Content { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ContentPadding { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle ContentTextStyle { get; set; }
+        public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ActionsPadding { get; set; }
+        public virtual FlutterSDK.Painting.Basictypes.VerticalDirection ActionsOverflowDirection { get; set; }
+        public virtual double ActionsOverflowButtonSpacing { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ButtonPadding { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual string SemanticLabel { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets InsetPadding { get; set; }
+        public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        public virtual bool Scrollable { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class SimpleDialog : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public SimpleDialog(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry titlePadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),double elevation = default(double),string semanticLabel = default(string),FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder))
-: base(key:key)
-{
-this.Title = title;
-this.TitlePadding = titlePadding;
-this.Children = children;
-this.ContentPadding = contentPadding;
-this.BackgroundColor = backgroundColor;
-this.Elevation = elevation;
-this.SemanticLabel = semanticLabel;
-this.Shape = shape;throw new NotImplementedException(); }
-#endregion
+    public class SimpleDialogOption : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public SimpleDialogOption(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback onPressed = default(VoidCallback), FlutterSDK.Painting.Edgeinsets.EdgeInsets padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.OnPressed = onPressed;
+            this.Padding = padding;
+            this.Child = child; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Title{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry TitlePadding{get;set;}
-public virtual List<FlutterSDK.Widgets.Framework.Widget> Children{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ContentPadding{get;set;}
-public virtual FlutterBinding.UI.Color BackgroundColor{get;set;}
-public virtual double Elevation{get;set;}
-public virtual string SemanticLabel{get;set;}
-public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape{get;set;}
-#endregion
+        #region fields
+        public virtual VoidCallback OnPressed { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Padding { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
+
+
+    public class SimpleDialog : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public SimpleDialog(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry titlePadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), string semanticLabel = default(string), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder))
+        : base(key: key)
+        {
+            this.Title = title;
+            this.TitlePadding = titlePadding;
+            this.Children = children;
+            this.ContentPadding = contentPadding;
+            this.BackgroundColor = backgroundColor;
+            this.Elevation = elevation;
+            this.SemanticLabel = semanticLabel;
+            this.Shape = shape; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry TitlePadding { get; set; }
+        public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ContentPadding { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual string SemanticLabel { get; set; }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

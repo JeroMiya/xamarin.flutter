@@ -421,62 +421,66 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Rendering.Performanceoverlay{
-internal static class PerformanceoverlayDefaultClass{
-}
-
-public class RenderPerformanceOverlay : FlutterSDK.Rendering.Box.RenderBox
+namespace FlutterSDK.Rendering.Performanceoverlay
 {
-#region constructors
-public RenderPerformanceOverlay(int optionsMask = 0,int rasterizerThreshold = 0,bool checkerboardRasterCacheImages = false,bool checkerboardOffscreenLayers = false)
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class PerformanceoverlayDefaultClass
+    {
+    }
 
-#region fields
-internal virtual int _OptionsMask{get;set;}
-internal virtual int _RasterizerThreshold{get;set;}
-internal virtual bool _CheckerboardRasterCacheImages{get;set;}
-internal virtual bool _CheckerboardOffscreenLayers{get;set;}
-public virtual int OptionsMask{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual int RasterizerThreshold{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool CheckerboardRasterCacheImages{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool CheckerboardOffscreenLayers{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool SizedByParent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool AlwaysNeedsCompositing{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _IntrinsicHeight{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class RenderPerformanceOverlay : FlutterSDK.Rendering.Box.RenderBox
+    {
+        #region constructors
+        public RenderPerformanceOverlay(int optionsMask = 0, int rasterizerThreshold = 0, bool checkerboardRasterCacheImages = false, bool checkerboardOffscreenLayers = false)
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual int _OptionsMask { get; set; }
+        internal virtual int _RasterizerThreshold { get; set; }
+        internal virtual bool _CheckerboardRasterCacheImages { get; set; }
+        internal virtual bool _CheckerboardOffscreenLayers { get; set; }
+        public virtual int OptionsMask { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int RasterizerThreshold { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool CheckerboardRasterCacheImages { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool CheckerboardOffscreenLayers { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _IntrinsicHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new double ComputeMinIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        #region methods
 
-
-public new double ComputeMaxIntrinsicWidth(double height){ throw new NotImplementedException(); }
-
-
-public new double ComputeMinIntrinsicHeight(double width){ throw new NotImplementedException(); }
-
-
-public new double ComputeMaxIntrinsicHeight(double width){ throw new NotImplementedException(); }
+        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-public new void PerformResize(){ throw new NotImplementedException(); }
+        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-public enum PerformanceOverlayOption{
+        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
-DisplayRasterizerStatistics,
-VisualizeRasterizerStatistics,
-DisplayEngineStatistics,
-VisualizeEngineStatistics,
-}
+
+        public new void PerformResize() { throw new NotImplementedException(); }
+
+
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public enum PerformanceOverlayOption
+    {
+
+        DisplayRasterizerStatistics,
+        VisualizeRasterizerStatistics,
+        DisplayEngineStatistics,
+        VisualizeEngineStatistics,
+    }
 
 }

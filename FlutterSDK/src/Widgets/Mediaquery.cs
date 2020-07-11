@@ -422,127 +422,136 @@ using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
-namespace FlutterSDK.Widgets.Mediaquery{
-internal static class MediaqueryDefaultClass{
-}
-
-public class MediaQueryData
+namespace FlutterSDK.Widgets.Mediaquery
 {
-#region constructors
-public MediaQueryData(Size size = default(Size),double devicePixelRatio = 1.0,double textScaleFactor = 1.0,Brightness platformBrightness = default(Brightness),FlutterSDK.Painting.Edgeinsets.EdgeInsets padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets),FlutterSDK.Painting.Edgeinsets.EdgeInsets viewInsets = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets),FlutterSDK.Painting.Edgeinsets.EdgeInsets systemGestureInsets = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets),FlutterSDK.Painting.Edgeinsets.EdgeInsets viewPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets),double physicalDepth = default(double),bool alwaysUse24HourFormat = false,bool accessibleNavigation = false,bool invertColors = false,bool highContrast = false,bool disableAnimations = false,bool boldText = false)
-: base()
-{
-this.Size = size;
-this.DevicePixelRatio = devicePixelRatio;
-this.TextScaleFactor = textScaleFactor;
-this.PlatformBrightness = platformBrightness;
-this.Padding = padding;
-this.ViewInsets = viewInsets;
-this.SystemGestureInsets = systemGestureInsets;
-this.ViewPadding = viewPadding;
-this.PhysicalDepth = physicalDepth;
-this.AlwaysUse24HourFormat = alwaysUse24HourFormat;
-this.AccessibleNavigation = accessibleNavigation;
-this.InvertColors = invertColors;
-this.HighContrast = highContrast;
-this.DisableAnimations = disableAnimations;
-this.BoldText = boldText;throw new NotImplementedException(); }
-public static MediaQueryData FromWindow(Window window)
-{
-var instance =new MediaQueryData();throw new NotImplementedException(); }
-#endregion
+    internal static class MediaqueryDefaultClass
+    {
+    }
 
-#region fields
-public virtual Size Size{get;set;}
-public virtual double DevicePixelRatio{get;set;}
-public virtual double TextScaleFactor{get;set;}
-public virtual Brightness PlatformBrightness{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets ViewInsets{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Padding{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets ViewPadding{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets SystemGestureInsets{get;set;}
-public virtual double PhysicalDepth{get;set;}
-public virtual bool AlwaysUse24HourFormat{get;set;}
-public virtual bool AccessibleNavigation{get;set;}
-public virtual bool InvertColors{get;set;}
-public virtual bool HighContrast{get;set;}
-public virtual bool DisableAnimations{get;set;}
-public virtual bool BoldText{get;set;}
-public virtual FlutterSDK.Widgets.Mediaquery.Orientation Orientation{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class MediaQueryData
+    {
+        #region constructors
+        public MediaQueryData(Size size = default(Size), double devicePixelRatio = 1.0, double textScaleFactor = 1.0, Brightness platformBrightness = default(Brightness), FlutterSDK.Painting.Edgeinsets.EdgeInsets padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Painting.Edgeinsets.EdgeInsets viewInsets = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Painting.Edgeinsets.EdgeInsets systemGestureInsets = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Painting.Edgeinsets.EdgeInsets viewPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), double physicalDepth = default(double), bool alwaysUse24HourFormat = false, bool accessibleNavigation = false, bool invertColors = false, bool highContrast = false, bool disableAnimations = false, bool boldText = false)
+        : base()
+        {
+            this.Size = size;
+            this.DevicePixelRatio = devicePixelRatio;
+            this.TextScaleFactor = textScaleFactor;
+            this.PlatformBrightness = platformBrightness;
+            this.Padding = padding;
+            this.ViewInsets = viewInsets;
+            this.SystemGestureInsets = systemGestureInsets;
+            this.ViewPadding = viewPadding;
+            this.PhysicalDepth = physicalDepth;
+            this.AlwaysUse24HourFormat = alwaysUse24HourFormat;
+            this.AccessibleNavigation = accessibleNavigation;
+            this.InvertColors = invertColors;
+            this.HighContrast = highContrast;
+            this.DisableAnimations = disableAnimations;
+            this.BoldText = boldText; throw new NotImplementedException();
+        }
+        public static MediaQueryData FromWindow(Window window)
+        {
+            var instance = new MediaQueryData(); throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual Size Size { get; set; }
+        public virtual double DevicePixelRatio { get; set; }
+        public virtual double TextScaleFactor { get; set; }
+        public virtual Brightness PlatformBrightness { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets ViewInsets { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Padding { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets ViewPadding { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets SystemGestureInsets { get; set; }
+        public virtual double PhysicalDepth { get; set; }
+        public virtual bool AlwaysUse24HourFormat { get; set; }
+        public virtual bool AccessibleNavigation { get; set; }
+        public virtual bool InvertColors { get; set; }
+        public virtual bool HighContrast { get; set; }
+        public virtual bool DisableAnimations { get; set; }
+        public virtual bool BoldText { get; set; }
+        public virtual FlutterSDK.Widgets.Mediaquery.Orientation Orientation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual FlutterSDK.Widgets.Mediaquery.MediaQueryData CopyWith(Size size = default(Size),double devicePixelRatio = default(double),double textScaleFactor = default(double),Brightness platformBrightness = default(Brightness),FlutterSDK.Painting.Edgeinsets.EdgeInsets padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets),FlutterSDK.Painting.Edgeinsets.EdgeInsets viewPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets),FlutterSDK.Painting.Edgeinsets.EdgeInsets viewInsets = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets),FlutterSDK.Painting.Edgeinsets.EdgeInsets systemGestureInsets = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets),double physicalDepth = default(double),bool alwaysUse24HourFormat = default(bool),bool highContrast = default(bool),bool disableAnimations = default(bool),bool invertColors = default(bool),bool accessibleNavigation = default(bool),bool boldText = default(bool)){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual FlutterSDK.Widgets.Mediaquery.MediaQueryData RemovePadding(bool removeLeft = false,bool removeTop = false,bool removeRight = false,bool removeBottom = false){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Widgets.Mediaquery.MediaQueryData RemoveViewInsets(bool removeLeft = false,bool removeTop = false,bool removeRight = false,bool removeBottom = false){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Widgets.Mediaquery.MediaQueryData RemoveViewPadding(bool removeLeft = false,bool removeTop = false,bool removeRight = false,bool removeBottom = false){ throw new NotImplementedException(); }
-
-
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Widgets.Mediaquery.MediaQueryData CopyWith(Size size = default(Size), double devicePixelRatio = default(double), double textScaleFactor = default(double), Brightness platformBrightness = default(Brightness), FlutterSDK.Painting.Edgeinsets.EdgeInsets padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Painting.Edgeinsets.EdgeInsets viewPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Painting.Edgeinsets.EdgeInsets viewInsets = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Painting.Edgeinsets.EdgeInsets systemGestureInsets = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), double physicalDepth = default(double), bool alwaysUse24HourFormat = default(bool), bool highContrast = default(bool), bool disableAnimations = default(bool), bool invertColors = default(bool), bool accessibleNavigation = default(bool), bool boldText = default(bool)) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public virtual FlutterSDK.Widgets.Mediaquery.MediaQueryData RemovePadding(bool removeLeft = false, bool removeTop = false, bool removeRight = false, bool removeBottom = false) { throw new NotImplementedException(); }
 
 
-public class MediaQuery : FlutterSDK.Widgets.Framework.InheritedWidget
-{
-#region constructors
-public MediaQuery(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Mediaquery.MediaQueryData data = default(FlutterSDK.Widgets.Mediaquery.MediaQueryData),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key,child:child)
-{
-this.Data = data;throw new NotImplementedException(); }
-public static MediaQuery RemovePadding(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext),bool removeLeft = false,bool removeTop = false,bool removeRight = false,bool removeBottom = false,FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-{
-var instance =new MediaQuery();throw new NotImplementedException(); }
-public static MediaQuery RemoveViewInsets(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext),bool removeLeft = false,bool removeTop = false,bool removeRight = false,bool removeBottom = false,FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-{
-var instance =new MediaQuery();throw new NotImplementedException(); }
-public static MediaQuery RemoveViewPadding(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext),bool removeLeft = false,bool removeTop = false,bool removeRight = false,bool removeBottom = false,FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-{
-var instance =new MediaQuery();throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Mediaquery.MediaQueryData Data{get;set;}
-#endregion
-
-#region methods
-
-public virtual FlutterSDK.Widgets.Mediaquery.MediaQueryData Of(FlutterSDK.Widgets.Framework.BuildContext context,bool nullOk = false){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Widgets.Mediaquery.MediaQueryData RemoveViewInsets(bool removeLeft = false, bool removeTop = false, bool removeRight = false, bool removeBottom = false) { throw new NotImplementedException(); }
 
 
-public virtual double TextScaleFactorOf(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Widgets.Mediaquery.MediaQueryData RemoveViewPadding(bool removeLeft = false, bool removeTop = false, bool removeRight = false, bool removeBottom = false) { throw new NotImplementedException(); }
 
 
-public virtual Brightness PlatformBrightnessOf(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
-public virtual bool BoldTextOverride(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Mediaquery.MediaQuery oldWidget){ throw new NotImplementedException(); }
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget){ throw new NotImplementedException(); }
+    public class MediaQuery : FlutterSDK.Widgets.Framework.InheritedWidget
+    {
+        #region constructors
+        public MediaQuery(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Mediaquery.MediaQueryData data = default(FlutterSDK.Widgets.Mediaquery.MediaQueryData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            this.Data = data; throw new NotImplementedException();
+        }
+        public static MediaQuery RemovePadding(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), bool removeLeft = false, bool removeTop = false, bool removeRight = false, bool removeBottom = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        {
+            var instance = new MediaQuery(); throw new NotImplementedException();
+        }
+        public static MediaQuery RemoveViewInsets(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), bool removeLeft = false, bool removeTop = false, bool removeRight = false, bool removeBottom = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        {
+            var instance = new MediaQuery(); throw new NotImplementedException();
+        }
+        public static MediaQuery RemoveViewPadding(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), bool removeLeft = false, bool removeTop = false, bool removeRight = false, bool removeBottom = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        {
+            var instance = new MediaQuery(); throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Mediaquery.MediaQueryData Data { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual FlutterSDK.Widgets.Mediaquery.MediaQueryData Of(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual double TextScaleFactorOf(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public enum Orientation{
+        public virtual Brightness PlatformBrightnessOf(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-Portrait,
-Landscape,
-}
+
+        public virtual bool BoldTextOverride(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Mediaquery.MediaQuery oldWidget) { throw new NotImplementedException(); }
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public enum Orientation
+    {
+
+        Portrait,
+        Landscape,
+    }
 
 }

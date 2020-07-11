@@ -293,65 +293,67 @@ using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
-namespace FlutterSDK.Foundation.Observerlist{
-internal static class ObserverlistDefaultClass{
-}
-
-public class ObserverList<T> : Iterable<T>
+namespace FlutterSDK.Foundation.Observerlist
 {
-#region constructors
-public ObserverList()
-{ }
-#endregion
+    internal static class ObserverlistDefaultClass
+    {
+    }
 
-#region fields
-internal virtual List<T> _List{get;set;}
-internal virtual bool _IsDirty{get;set;}
-internal virtual HashSet<T> _Set{get;set;}
-public virtual Iterator<T> Iterator{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsEmpty{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsNotEmpty{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class ObserverList<T> : Iterable<T>
+    {
+        #region constructors
+        public ObserverList()
+        { }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual List<T> _List { get; set; }
+        internal virtual bool _IsDirty { get; set; }
+        internal virtual HashSet<T> _Set { get; set; }
+        public virtual Iterator<T> Iterator { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsEmpty { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsNotEmpty { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual void Add(T item){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual bool Remove(T item){ throw new NotImplementedException(); }
-
-
-public new bool Contains(@Object element){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual void Add(T item) { throw new NotImplementedException(); }
 
 
-public class HashedObserverList<T> : Iterable<T>
-{
-#region constructors
-public HashedObserverList()
-{ }
-#endregion
-
-#region fields
-internal virtual LinkedHashMap<T,int> _Map{get;set;}
-public virtual Iterator<T> Iterator{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsEmpty{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsNotEmpty{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public virtual void Add(T item){ throw new NotImplementedException(); }
+        public virtual bool Remove(T item) { throw new NotImplementedException(); }
 
 
-public virtual bool Remove(T item){ throw new NotImplementedException(); }
+        public new bool Contains(@Object element) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public new bool Contains(@Object element){ throw new NotImplementedException(); }
+    public class HashedObserverList<T> : Iterable<T>
+    {
+        #region constructors
+        public HashedObserverList()
+        { }
+        #endregion
 
-#endregion
-}
+        #region fields
+        internal virtual LinkedHashMap<T, int> _Map { get; set; }
+        public virtual Iterator<T> Iterator { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsEmpty { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsNotEmpty { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual void Add(T item) { throw new NotImplementedException(); }
+
+
+        public virtual bool Remove(T item) { throw new NotImplementedException(); }
+
+
+        public new bool Contains(@Object element) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

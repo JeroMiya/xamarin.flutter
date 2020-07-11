@@ -403,71 +403,75 @@ using FlutterSDK.Material.Pickers.Inputdatepicker;
 using FlutterSDK.Material.Textfield;
 using FlutterSDK.Material.Textformfield;
 using FlutterSDK.Material.Popupmenutheme;
-namespace FlutterSDK.Material.Popupmenutheme{
-internal static class PopupmenuthemeDefaultClass{
-}
-
-public class PopupMenuThemeData : IDiagnosticable
+namespace FlutterSDK.Material.Popupmenutheme
 {
-#region constructors
-public PopupMenuThemeData(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder),double elevation = default(double),FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
-{
-this.Color = color;
-this.Shape = shape;
-this.Elevation = elevation;
-this.TextStyle = textStyle;throw new NotImplementedException(); }
-#endregion
+    internal static class PopupmenuthemeDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterBinding.UI.Color Color{get;set;}
-public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape{get;set;}
-public virtual double Elevation{get;set;}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class PopupMenuThemeData : IDiagnosticable
+    {
+        #region constructors
+        public PopupMenuThemeData(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), double elevation = default(double), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
+        {
+            this.Color = color;
+            this.Shape = shape;
+            this.Elevation = elevation;
+            this.TextStyle = textStyle; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder),double elevation = default(double),FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle)){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData Lerp(FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData a,FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData b,double t){ throw new NotImplementedException(); }
-
-
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), double elevation = default(double), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle)) { throw new NotImplementedException(); }
 
 
-public class PopupMenuTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
-{
-#region constructors
-public PopupMenuTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData data = default(FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key,child:child)
-{
-this.Data = data;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData Data{get;set;}
-#endregion
-
-#region methods
-
-public virtual FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData Lerp(FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData a, FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData b, double t) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Widgets.Framework.Widget child){ throw new NotImplementedException(); }
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
-public new bool UpdateShouldNotify(FlutterSDK.Material.Popupmenutheme.PopupMenuTheme oldWidget){ throw new NotImplementedException(); }
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
+
+
+    public class PopupMenuTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
+    {
+        #region constructors
+        public PopupMenuTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData data = default(FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            this.Data = data; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData Data { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
+
+
+        public new bool UpdateShouldNotify(FlutterSDK.Material.Popupmenutheme.PopupMenuTheme oldWidget) { throw new NotImplementedException(); }
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

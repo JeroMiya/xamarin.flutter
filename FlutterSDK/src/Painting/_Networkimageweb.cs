@@ -421,46 +421,49 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Painting._Networkimageweb{
-internal static class _NetworkimagewebDefaultClass{
-}
-
-public class NetworkImage : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider.NetworkImage>,INetworkImage
+namespace FlutterSDK.Painting._Networkimageweb
 {
-#region constructors
-public NetworkImage(string url,double scale = 1.0,Dictionary<string,string> headers = default(Dictionary<string,string>))
-: base()
-{
-this.Url = url;
-this.Scale = scale;
-this.Headers = headers;throw new NotImplementedException(); }
-#endregion
+    internal static class _NetworkimagewebDefaultClass
+    {
+    }
 
-#region fields
-public new string Url{get;set;}
-public new double Scale{get;set;}
-public new Dictionary<string,string> Headers{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class NetworkImage : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider.NetworkImage>, INetworkImage
+    {
+        #region constructors
+        public NetworkImage(string url, double scale = 1.0, Dictionary<string, string> headers = default(Dictionary<string, string>))
+        : base()
+        {
+            this.Url = url;
+            this.Scale = scale;
+            this.Headers = headers; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public new string Url { get; set; }
+        public new double Scale { get; set; }
+        public new Dictionary<string, string> Headers { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new Future<FlutterSDK.Painting._Networkimageweb.NetworkImage> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration){ throw new NotImplementedException(); }
+        #region methods
 
-
-public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider.NetworkImage key,FlutterSDK.Painting.Imageprovider.DecoderCallback decode){ throw new NotImplementedException(); }
-
-
-private FlutterSDK.Foundation.Assertions.InformationCollector _ImageStreamInformationCollector(FlutterSDK.Painting.Imageprovider.NetworkImage key){ throw new NotImplementedException(); }
-
-
-private Future<SKCodec> _LoadAsync(FlutterSDK.Painting._Networkimageweb.NetworkImage key,FlutterSDK.Painting.Imageprovider.DecoderCallback decode,StreamController<FlutterSDK.Painting.Imagestream.ImageChunkEvent> chunkEvents){ throw new NotImplementedException(); }
+        public new Future<FlutterSDK.Painting._Networkimageweb.NetworkImage> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) { throw new NotImplementedException(); }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider.NetworkImage key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        private FlutterSDK.Foundation.Assertions.InformationCollector _ImageStreamInformationCollector(FlutterSDK.Painting.Imageprovider.NetworkImage key) { throw new NotImplementedException(); }
+
+
+        private Future<SKCodec> _LoadAsync(FlutterSDK.Painting._Networkimageweb.NetworkImage key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode, StreamController<FlutterSDK.Painting.Imagestream.ImageChunkEvent> chunkEvents) { throw new NotImplementedException(); }
+
+
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+
+
+        #endregion
+    }
 
 }

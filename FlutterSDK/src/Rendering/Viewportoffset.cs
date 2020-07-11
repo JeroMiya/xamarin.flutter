@@ -421,119 +421,129 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Rendering.Viewportoffset{
-internal static class ViewportoffsetDefaultClass{
-internal static FlutterSDK.Rendering.Viewportoffset.ScrollDirection FlipScrollDirection(FlutterSDK.Rendering.Viewportoffset.ScrollDirection direction){
-throw new NotImplementedException();
-}
-
-}
-
-public interface IViewportOffset{
-bool ApplyViewportDimension(double viewportDimension);
-bool ApplyContentDimensions(double minScrollExtent,double maxScrollExtent);
-void CorrectBy(double correction);
-void JumpTo(double pixels);
-Future<object> AnimateTo(double to,TimeSpan duration = default(TimeSpan),FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve));
-Future<object> MoveTo(double to,TimeSpan duration = default(TimeSpan),FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve),bool clamp = default(bool));
-string ToString();
-void DebugFillDescription(List<string> description);
-double Pixels{get;}
-FlutterSDK.Rendering.Viewportoffset.ScrollDirection UserScrollDirection{get;}
-bool AllowImplicitScrolling{get;}
-}
-
-
-public class ViewportOffset : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
+namespace FlutterSDK.Rendering.Viewportoffset
 {
-#region constructors
-public ViewportOffset()
-{
-throw new NotImplementedException(); }
-public static ViewportOffset Fixed(double value)
-{
-var instance =new ViewportOffset();throw new NotImplementedException(); }
-public static ViewportOffset Zero()
-{
-var instance =new ViewportOffset();throw new NotImplementedException(); }
-#endregion
+    internal static class ViewportoffsetDefaultClass
+    {
+        internal static FlutterSDK.Rendering.Viewportoffset.ScrollDirection FlipScrollDirection(FlutterSDK.Rendering.Viewportoffset.ScrollDirection direction)
+        {
+            throw new NotImplementedException();
+        }
 
-#region fields
-public virtual double Pixels{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Rendering.Viewportoffset.ScrollDirection UserScrollDirection{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool AllowImplicitScrolling{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    }
 
-#region methods
-
-public virtual bool ApplyViewportDimension(double viewportDimension){ throw new NotImplementedException(); }
-
-
-public virtual bool ApplyContentDimensions(double minScrollExtent,double maxScrollExtent){ throw new NotImplementedException(); }
-
-
-public virtual void CorrectBy(double correction){ throw new NotImplementedException(); }
+    public interface IViewportOffset
+    {
+        bool ApplyViewportDimension(double viewportDimension);
+        bool ApplyContentDimensions(double minScrollExtent, double maxScrollExtent);
+        void CorrectBy(double correction);
+        void JumpTo(double pixels);
+        Future<object> AnimateTo(double to, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve));
+        Future<object> MoveTo(double to, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), bool clamp = default(bool));
+        string ToString();
+        void DebugFillDescription(List<string> description);
+        double Pixels { get; }
+        FlutterSDK.Rendering.Viewportoffset.ScrollDirection UserScrollDirection { get; }
+        bool AllowImplicitScrolling { get; }
+    }
 
 
-public virtual void JumpTo(double pixels){ throw new NotImplementedException(); }
+    public class ViewportOffset : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
+    {
+        #region constructors
+        public ViewportOffset()
+        {
+            throw new NotImplementedException();
+        }
+        public static ViewportOffset Fixed(double value)
+        {
+            var instance = new ViewportOffset(); throw new NotImplementedException();
+        }
+        public static ViewportOffset Zero()
+        {
+            var instance = new ViewportOffset(); throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual double Pixels { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Viewportoffset.ScrollDirection UserScrollDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool AllowImplicitScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual bool ApplyViewportDimension(double viewportDimension) { throw new NotImplementedException(); }
 
 
-public virtual Future<object> AnimateTo(double to,TimeSpan duration = default(TimeSpan),FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)){ throw new NotImplementedException(); }
+        public virtual bool ApplyContentDimensions(double minScrollExtent, double maxScrollExtent) { throw new NotImplementedException(); }
 
 
-public virtual Future<object> MoveTo(double to,TimeSpan duration = default(TimeSpan),FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve),bool clamp = default(bool)){ throw new NotImplementedException(); }
+        public virtual void CorrectBy(double correction) { throw new NotImplementedException(); }
+
+
+        public virtual void JumpTo(double pixels) { throw new NotImplementedException(); }
+
+
+        public virtual Future<object> AnimateTo(double to, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)) { throw new NotImplementedException(); }
+
+
+        public virtual Future<object> MoveTo(double to, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), bool clamp = default(bool)) { throw new NotImplementedException(); }
 
 
 
-public virtual void DebugFillDescription(List<string> description){ throw new NotImplementedException(); }
+        public virtual void DebugFillDescription(List<string> description) { throw new NotImplementedException(); }
 
-#endregion
-}
-
-
-public class _FixedViewportOffset : FlutterSDK.Rendering.Viewportoffset.ViewportOffset
-{
-#region constructors
-public _FixedViewportOffset(double _pixels)
-{
-this._Pixels = _pixels;throw new NotImplementedException(); }
-public static _FixedViewportOffset Zero()
-{
-var instance =new _FixedViewportOffset();throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual double _Pixels{get;set;}
-public virtual double Pixels{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Rendering.Viewportoffset.ScrollDirection UserScrollDirection{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool AllowImplicitScrolling{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new bool ApplyViewportDimension(double viewportDimension){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new bool ApplyContentDimensions(double minScrollExtent,double maxScrollExtent){ throw new NotImplementedException(); }
+    public class _FixedViewportOffset : FlutterSDK.Rendering.Viewportoffset.ViewportOffset
+    {
+        #region constructors
+        public _FixedViewportOffset(double _pixels)
+        {
+            this._Pixels = _pixels; throw new NotImplementedException();
+        }
+        public static _FixedViewportOffset Zero()
+        {
+            var instance = new _FixedViewportOffset(); throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual double _Pixels { get; set; }
+        public virtual double Pixels { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Viewportoffset.ScrollDirection UserScrollDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool AllowImplicitScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new bool ApplyViewportDimension(double viewportDimension) { throw new NotImplementedException(); }
 
 
-public new void CorrectBy(double correction){ throw new NotImplementedException(); }
+        public new bool ApplyContentDimensions(double minScrollExtent, double maxScrollExtent) { throw new NotImplementedException(); }
 
 
-public new void JumpTo(double pixels){ throw new NotImplementedException(); }
+        public new void CorrectBy(double correction) { throw new NotImplementedException(); }
 
 
-public new Future<object> AnimateTo(double to,TimeSpan duration = default(TimeSpan),FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public new void JumpTo(double pixels) { throw new NotImplementedException(); }
 
 
-public enum ScrollDirection{
+        public new Future<object> AnimateTo(double to, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)) { throw new NotImplementedException(); }
 
-Idle,
-Forward,
-Reverse,
-}
+        #endregion
+    }
+
+
+    public enum ScrollDirection
+    {
+
+        Idle,
+        Forward,
+        Reverse,
+    }
 
 }

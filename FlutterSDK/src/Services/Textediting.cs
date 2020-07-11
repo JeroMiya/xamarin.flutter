@@ -421,47 +421,52 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Services.Textediting{
-internal static class TexteditingDefaultClass{
-}
-
-public class TextSelection : TextRange
+namespace FlutterSDK.Services.Textediting
 {
-#region constructors
-public TextSelection(int baseOffset = default(int),int extentOffset = default(int),TextAffinity affinity = default(TextAffinity),bool isDirectional = false)
-: base(start:baseOffset<extentOffset?baseOffset:extentOffset,end:baseOffset<extentOffset?extentOffset:baseOffset)
-{
-this.BaseOffset = baseOffset;
-this.ExtentOffset = extentOffset;
-this.Affinity = affinity;
-this.IsDirectional = isDirectional;throw new NotImplementedException(); }
-public static TextSelection Collapsed(int offset = default(int),TextAffinity affinity = default(TextAffinity))
-{
-var instance =new TextSelection(offset);instance.Affinity = affinity;throw new NotImplementedException(); }
-public static TextSelection FromPosition(TextPosition position)
-{
-var instance =new TextSelection(position.Offset);throw new NotImplementedException(); }
-#endregion
+    internal static class TexteditingDefaultClass
+    {
+    }
 
-#region fields
-public virtual int BaseOffset{get;set;}
-public virtual int ExtentOffset{get;set;}
-public virtual TextAffinity Affinity{get;set;}
-public virtual bool IsDirectional{get;set;}
-public virtual TextPosition @base{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual TextPosition Extent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class TextSelection : TextRange
+    {
+        #region constructors
+        public TextSelection(int baseOffset = default(int), int extentOffset = default(int), TextAffinity affinity = default(TextAffinity), bool isDirectional = false)
+        : base(start: baseOffset < extentOffset ? baseOffset : extentOffset, end: baseOffset < extentOffset ? extentOffset : baseOffset)
+        {
+            this.BaseOffset = baseOffset;
+            this.ExtentOffset = extentOffset;
+            this.Affinity = affinity;
+            this.IsDirectional = isDirectional; throw new NotImplementedException();
+        }
+        public static TextSelection Collapsed(int offset = default(int), TextAffinity affinity = default(TextAffinity))
+        {
+            var instance = new TextSelection(offset); instance.Affinity = affinity; throw new NotImplementedException();
+        }
+        public static TextSelection FromPosition(TextPosition position)
+        {
+            var instance = new TextSelection(position.Offset); throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual int BaseOffset { get; set; }
+        public virtual int ExtentOffset { get; set; }
+        public virtual TextAffinity Affinity { get; set; }
+        public virtual bool IsDirectional { get; set; }
+        public virtual TextPosition @base { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextPosition Extent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Services.Textediting.TextSelection CopyWith(int baseOffset = default(int),int extentOffset = default(int),TextAffinity affinity = default(TextAffinity),bool isDirectional = default(bool)){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Services.Textediting.TextSelection CopyWith(int baseOffset = default(int), int extentOffset = default(int), TextAffinity affinity = default(TextAffinity), bool isDirectional = default(bool)) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 }

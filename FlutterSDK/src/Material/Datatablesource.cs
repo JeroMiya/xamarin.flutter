@@ -375,36 +375,39 @@ using FlutterSDK.Material.Feedback;
 using FlutterSDK.Material.Tooltip;
 using FlutterSDK.Material.Dropdown;
 using FlutterSDK.Material.Datatable;
-namespace FlutterSDK.Material.Datatablesource{
-internal static class DatatablesourceDefaultClass{
-}
-
-public interface IDataTableSource{
-FlutterSDK.Material.Datatable.DataRow GetRow(int index);
-int RowCount{get;}
-bool IsRowCountApproximate{get;}
-int SelectedRowCount{get;}
-}
-
-
-public class DataTableSource : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
+namespace FlutterSDK.Material.Datatablesource
 {
-#region constructors
-public DataTableSource()
-{ }
-#endregion
+    internal static class DatatablesourceDefaultClass
+    {
+    }
 
-#region fields
-public virtual int RowCount{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsRowCountApproximate{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int SelectedRowCount{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public interface IDataTableSource
+    {
+        FlutterSDK.Material.Datatable.DataRow GetRow(int index);
+        int RowCount { get; }
+        bool IsRowCountApproximate { get; }
+        int SelectedRowCount { get; }
+    }
 
-#region methods
 
-public virtual FlutterSDK.Material.Datatable.DataRow GetRow(int index){ throw new NotImplementedException(); }
+    public class DataTableSource : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
+    {
+        #region constructors
+        public DataTableSource()
+        { }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual int RowCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsRowCountApproximate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int SelectedRowCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual FlutterSDK.Material.Datatable.DataRow GetRow(int index) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

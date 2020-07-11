@@ -420,182 +420,192 @@ using FlutterSDK.Material.Inksplash;
 using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
-namespace FlutterSDK.Painting.Boxborder{
-internal static class BoxborderDefaultClass{
-}
-
-public interface IBoxBorder{
-FlutterSDK.Painting.Boxborder.BoxBorder Add(FlutterSDK.Painting.Borders.ShapeBorder other,bool reversed = false);
-FlutterSDK.Painting.Boxborder.BoxBorder Lerp(FlutterSDK.Painting.Boxborder.BoxBorder a,FlutterSDK.Painting.Boxborder.BoxBorder b,double t);
-Path GetInnerPath(FlutterBinding.UI.Rect rect,TextDirection textDirection = default(TextDirection));
-Path GetOuterPath(FlutterBinding.UI.Rect rect,TextDirection textDirection = default(TextDirection));
-void Paint(Canvas canvas,FlutterBinding.UI.Rect rect,TextDirection textDirection = default(TextDirection),FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape),FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius));
-FlutterSDK.Painting.Borders.BorderSide Top{get;}
-FlutterSDK.Painting.Borders.BorderSide Bottom{get;}
-bool IsUniform{get;}
-}
-
-
-public class BoxBorder : FlutterSDK.Painting.Borders.ShapeBorder
+namespace FlutterSDK.Painting.Boxborder
 {
-#region constructors
-public BoxBorder()
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class BoxborderDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Painting.Borders.BorderSide Top{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Painting.Borders.BorderSide Bottom{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsUniform{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Painting.Boxborder.BoxBorder Add(FlutterSDK.Painting.Borders.ShapeBorder other,bool reversed = false){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Painting.Boxborder.BoxBorder Lerp(FlutterSDK.Painting.Boxborder.BoxBorder a,FlutterSDK.Painting.Boxborder.BoxBorder b,double t){ throw new NotImplementedException(); }
+    public interface IBoxBorder
+    {
+        FlutterSDK.Painting.Boxborder.BoxBorder Add(FlutterSDK.Painting.Borders.ShapeBorder other, bool reversed = false);
+        FlutterSDK.Painting.Boxborder.BoxBorder Lerp(FlutterSDK.Painting.Boxborder.BoxBorder a, FlutterSDK.Painting.Boxborder.BoxBorder b, double t);
+        Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection));
+        Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection));
+        void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius));
+        FlutterSDK.Painting.Borders.BorderSide Top { get; }
+        FlutterSDK.Painting.Borders.BorderSide Bottom { get; }
+        bool IsUniform { get; }
+    }
 
 
-public new Path GetInnerPath(FlutterBinding.UI.Rect rect,TextDirection textDirection = default(TextDirection)){ throw new NotImplementedException(); }
+    public class BoxBorder : FlutterSDK.Painting.Borders.ShapeBorder
+    {
+        #region constructors
+        public BoxBorder()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Painting.Borders.BorderSide Top { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Borders.BorderSide Bottom { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsUniform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Painting.Boxborder.BoxBorder Add(FlutterSDK.Painting.Borders.ShapeBorder other, bool reversed = false) { throw new NotImplementedException(); }
 
 
-public new Path GetOuterPath(FlutterBinding.UI.Rect rect,TextDirection textDirection = default(TextDirection)){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Boxborder.BoxBorder Lerp(FlutterSDK.Painting.Boxborder.BoxBorder a, FlutterSDK.Painting.Boxborder.BoxBorder b, double t) { throw new NotImplementedException(); }
 
 
-public new void Paint(Canvas canvas,FlutterBinding.UI.Rect rect,TextDirection textDirection = default(TextDirection),FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape),FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius)){ throw new NotImplementedException(); }
+        public new Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
 
-private void _PaintUniformBorderWithRadius(Canvas canvas,FlutterBinding.UI.Rect rect,FlutterSDK.Painting.Borders.BorderSide side,FlutterSDK.Painting.Borderradius.BorderRadius borderRadius){ throw new NotImplementedException(); }
+        public new Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
 
-private void _PaintUniformBorderWithCircle(Canvas canvas,FlutterBinding.UI.Rect rect,FlutterSDK.Painting.Borders.BorderSide side){ throw new NotImplementedException(); }
+        public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius)) { throw new NotImplementedException(); }
 
 
-private void _PaintUniformBorderWithRectangle(Canvas canvas,FlutterBinding.UI.Rect rect,FlutterSDK.Painting.Borders.BorderSide side){ throw new NotImplementedException(); }
-
-#endregion
-}
+        private void _PaintUniformBorderWithRadius(Canvas canvas, FlutterBinding.UI.Rect rect, FlutterSDK.Painting.Borders.BorderSide side, FlutterSDK.Painting.Borderradius.BorderRadius borderRadius) { throw new NotImplementedException(); }
 
 
-public class Border : FlutterSDK.Painting.Boxborder.BoxBorder
-{
-#region constructors
-public Border(FlutterSDK.Painting.Borders.BorderSide top = default(FlutterSDK.Painting.Borders.BorderSide),FlutterSDK.Painting.Borders.BorderSide right = default(FlutterSDK.Painting.Borders.BorderSide),FlutterSDK.Painting.Borders.BorderSide bottom = default(FlutterSDK.Painting.Borders.BorderSide),FlutterSDK.Painting.Borders.BorderSide left = default(FlutterSDK.Painting.Borders.BorderSide))
-: base()
-{
-this.Top = top;
-this.Right = right;
-this.Bottom = bottom;
-this.Left = left;throw new NotImplementedException(); }
-public static Border FromBorderSide(FlutterSDK.Painting.Borders.BorderSide side)
-{
-var instance =new Border();throw new NotImplementedException(); }
-public static Border Symmetric(FlutterSDK.Painting.Borders.BorderSide vertical = default(FlutterSDK.Painting.Borders.BorderSide),FlutterSDK.Painting.Borders.BorderSide horizontal = default(FlutterSDK.Painting.Borders.BorderSide))
-{
-var instance =new Border();throw new NotImplementedException(); }
-public static Border All(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),double width = 1.0,FlutterSDK.Painting.Borders.BorderStyle style = default(FlutterSDK.Painting.Borders.BorderStyle))
-{
-var instance =new Border();throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public new FlutterSDK.Painting.Borders.BorderSide Top{get;set;}
-public virtual FlutterSDK.Painting.Borders.BorderSide Right{get;set;}
-public new FlutterSDK.Painting.Borders.BorderSide Bottom{get;set;}
-public virtual FlutterSDK.Painting.Borders.BorderSide Left{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsUniform{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public virtual FlutterSDK.Painting.Boxborder.Border Merge(FlutterSDK.Painting.Boxborder.Border a,FlutterSDK.Painting.Boxborder.Border b){ throw new NotImplementedException(); }
+        private void _PaintUniformBorderWithCircle(Canvas canvas, FlutterBinding.UI.Rect rect, FlutterSDK.Painting.Borders.BorderSide side) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Painting.Boxborder.Border Add(FlutterSDK.Painting.Borders.ShapeBorder other,bool reversed = false){ throw new NotImplementedException(); }
+        private void _PaintUniformBorderWithRectangle(Canvas canvas, FlutterBinding.UI.Rect rect, FlutterSDK.Painting.Borders.BorderSide side) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public new FlutterSDK.Painting.Boxborder.Border Scale(double t){ throw new NotImplementedException(); }
+    public class Border : FlutterSDK.Painting.Boxborder.BoxBorder
+    {
+        #region constructors
+        public Border(FlutterSDK.Painting.Borders.BorderSide top = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide right = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide bottom = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide left = default(FlutterSDK.Painting.Borders.BorderSide))
+        : base()
+        {
+            this.Top = top;
+            this.Right = right;
+            this.Bottom = bottom;
+            this.Left = left; throw new NotImplementedException();
+        }
+        public static Border FromBorderSide(FlutterSDK.Painting.Borders.BorderSide side)
+        {
+            var instance = new Border(); throw new NotImplementedException();
+        }
+        public static Border Symmetric(FlutterSDK.Painting.Borders.BorderSide vertical = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide horizontal = default(FlutterSDK.Painting.Borders.BorderSide))
+        {
+            var instance = new Border(); throw new NotImplementedException();
+        }
+        public static Border All(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double width = 1.0, FlutterSDK.Painting.Borders.BorderStyle style = default(FlutterSDK.Painting.Borders.BorderStyle))
+        {
+            var instance = new Border(); throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public new FlutterSDK.Painting.Borders.BorderSide Top { get; set; }
+        public virtual FlutterSDK.Painting.Borders.BorderSide Right { get; set; }
+        public new FlutterSDK.Painting.Borders.BorderSide Bottom { get; set; }
+        public virtual FlutterSDK.Painting.Borders.BorderSide Left { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsUniform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual FlutterSDK.Painting.Boxborder.Border Merge(FlutterSDK.Painting.Boxborder.Border a, FlutterSDK.Painting.Boxborder.Border b) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a,double t){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Boxborder.Border Add(FlutterSDK.Painting.Borders.ShapeBorder other, bool reversed = false) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b,double t){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Boxborder.Border Scale(double t) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Painting.Boxborder.Border Lerp(FlutterSDK.Painting.Boxborder.Border a,FlutterSDK.Painting.Boxborder.Border b,double t){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t) { throw new NotImplementedException(); }
 
 
-public new void Paint(Canvas canvas,FlutterBinding.UI.Rect rect,TextDirection textDirection = default(TextDirection),FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape),FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius)){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t) { throw new NotImplementedException(); }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Boxborder.Border Lerp(FlutterSDK.Painting.Boxborder.Border a, FlutterSDK.Painting.Boxborder.Border b, double t) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius)) { throw new NotImplementedException(); }
 
 
-public class BorderDirectional : FlutterSDK.Painting.Boxborder.BoxBorder
-{
-#region constructors
-public BorderDirectional(FlutterSDK.Painting.Borders.BorderSide top = default(FlutterSDK.Painting.Borders.BorderSide),FlutterSDK.Painting.Borders.BorderSide start = default(FlutterSDK.Painting.Borders.BorderSide),FlutterSDK.Painting.Borders.BorderSide end = default(FlutterSDK.Painting.Borders.BorderSide),FlutterSDK.Painting.Borders.BorderSide bottom = default(FlutterSDK.Painting.Borders.BorderSide))
-: base()
-{
-this.Top = top;
-this.Start = start;
-this.End = end;
-this.Bottom = bottom;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public new FlutterSDK.Painting.Borders.BorderSide Top{get;set;}
-public virtual FlutterSDK.Painting.Borders.BorderSide Start{get;set;}
-public virtual FlutterSDK.Painting.Borders.BorderSide End{get;set;}
-public new FlutterSDK.Painting.Borders.BorderSide Bottom{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsUniform{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public virtual FlutterSDK.Painting.Boxborder.BorderDirectional Merge(FlutterSDK.Painting.Boxborder.BorderDirectional a,FlutterSDK.Painting.Boxborder.BorderDirectional b){ throw new NotImplementedException(); }
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Painting.Boxborder.BoxBorder Add(FlutterSDK.Painting.Borders.ShapeBorder other,bool reversed = false){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new FlutterSDK.Painting.Boxborder.BorderDirectional Scale(double t){ throw new NotImplementedException(); }
+    public class BorderDirectional : FlutterSDK.Painting.Boxborder.BoxBorder
+    {
+        #region constructors
+        public BorderDirectional(FlutterSDK.Painting.Borders.BorderSide top = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide start = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide end = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide bottom = default(FlutterSDK.Painting.Borders.BorderSide))
+        : base()
+        {
+            this.Top = top;
+            this.Start = start;
+            this.End = end;
+            this.Bottom = bottom; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public new FlutterSDK.Painting.Borders.BorderSide Top { get; set; }
+        public virtual FlutterSDK.Painting.Borders.BorderSide Start { get; set; }
+        public virtual FlutterSDK.Painting.Borders.BorderSide End { get; set; }
+        public new FlutterSDK.Painting.Borders.BorderSide Bottom { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsUniform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual FlutterSDK.Painting.Boxborder.BorderDirectional Merge(FlutterSDK.Painting.Boxborder.BorderDirectional a, FlutterSDK.Painting.Boxborder.BorderDirectional b) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a,double t){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Boxborder.BoxBorder Add(FlutterSDK.Painting.Borders.ShapeBorder other, bool reversed = false) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b,double t){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Boxborder.BorderDirectional Scale(double t) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Painting.Boxborder.BorderDirectional Lerp(FlutterSDK.Painting.Boxborder.BorderDirectional a,FlutterSDK.Painting.Boxborder.BorderDirectional b,double t){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t) { throw new NotImplementedException(); }
 
 
-public new void Paint(Canvas canvas,FlutterBinding.UI.Rect rect,TextDirection textDirection = default(TextDirection),FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape),FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius)){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t) { throw new NotImplementedException(); }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Boxborder.BorderDirectional Lerp(FlutterSDK.Painting.Boxborder.BorderDirectional a, FlutterSDK.Painting.Boxborder.BorderDirectional b, double t) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius)) { throw new NotImplementedException(); }
 
 
-public enum BoxShape{
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
-Rectangle,
-Circle,
-}
+
+        #endregion
+    }
+
+
+    public enum BoxShape
+    {
+
+        Rectangle,
+        Circle,
+    }
 
 }

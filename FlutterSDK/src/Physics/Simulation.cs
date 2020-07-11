@@ -421,43 +421,47 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Physics.Simulation{
-internal static class SimulationDefaultClass{
-}
-
-public interface ISimulation{
-double x(double time);
-double Dx(double time);
-bool IsDone(double time);
-string ToString();
-FlutterSDK.Physics.Tolerance.Tolerance Tolerance{get;set;}
-}
-
-
-public class Simulation
+namespace FlutterSDK.Physics.Simulation
 {
-#region constructors
-public Simulation(FlutterSDK.Physics.Tolerance.Tolerance tolerance = default(FlutterSDK.Physics.Tolerance.Tolerance))
-{
-this.Tolerance = tolerance;throw new NotImplementedException(); }
-#endregion
+    internal static class SimulationDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Physics.Tolerance.Tolerance Tolerance{get;set;}
-#endregion
-
-#region methods
-
-public virtual double x(double time){ throw new NotImplementedException(); }
-
-
-public virtual double Dx(double time){ throw new NotImplementedException(); }
+    public interface ISimulation
+    {
+        double x(double time);
+        double Dx(double time);
+        bool IsDone(double time);
+        string ToString();
+        FlutterSDK.Physics.Tolerance.Tolerance Tolerance { get; set; }
+    }
 
 
-public virtual bool IsDone(double time){ throw new NotImplementedException(); }
+    public class Simulation
+    {
+        #region constructors
+        public Simulation(FlutterSDK.Physics.Tolerance.Tolerance tolerance = default(FlutterSDK.Physics.Tolerance.Tolerance))
+        {
+            this.Tolerance = tolerance; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Physics.Tolerance.Tolerance Tolerance { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual double x(double time) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public virtual double Dx(double time) { throw new NotImplementedException(); }
+
+
+        public virtual bool IsDone(double time) { throw new NotImplementedException(); }
+
+
+        #endregion
+    }
 
 }

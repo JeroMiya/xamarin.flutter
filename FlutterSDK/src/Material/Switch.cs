@@ -411,273 +411,280 @@ using FlutterSDK.Material.Floatingactionbuttonlocation;
 using FlutterSDK.Material.Snackbar;
 using FlutterSDK.Material.Snackbartheme;
 using FlutterSDK.Material.Textselection;
-namespace FlutterSDK.Material.Switch{
-internal static class SwitchDefaultClass{
-public static double _KTrackHeight = default(double);
-public static double _KTrackWidth = default(double);
-public static double _KTrackRadius = default(double);
-public static double _KThumbRadius = default(double);
-public static double _KSwitchWidth = default(double);
-public static double _KSwitchHeight = default(double);
-public static double _KSwitchHeightCollapsed = default(double);
-}
-
-public class Switch : FlutterSDK.Widgets.Framework.StatefulWidget
+namespace FlutterSDK.Material.Switch
 {
-#region constructors
-public Switch(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),bool value = default(bool),FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>),FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color activeTrackColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color inactiveThumbColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color inactiveTrackColor = default(FlutterBinding.UI.Color),FlutterSDK.Painting.Imageprovider.ImageProvider<object> activeThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>),FlutterSDK.Painting.Imagestream.ImageErrorListener onActiveThumbImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener),FlutterSDK.Painting.Imageprovider.ImageProvider<object> inactiveThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>),FlutterSDK.Painting.Imagestream.ImageErrorListener onInactiveThumbImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener),FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize),FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior),FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color),FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode),bool autofocus = false)
-: base(key:key)
-{
-this.Value = value;
-this.OnChanged = onChanged;
-this.ActiveColor = activeColor;
-this.ActiveTrackColor = activeTrackColor;
-this.InactiveThumbColor = inactiveThumbColor;
-this.InactiveTrackColor = inactiveTrackColor;
-this.ActiveThumbImage = activeThumbImage;
-this.OnActiveThumbImageError = onActiveThumbImageError;
-this.InactiveThumbImage = inactiveThumbImage;
-this.OnInactiveThumbImageError = onInactiveThumbImageError;
-this.MaterialTapTargetSize = materialTapTargetSize;
-this.DragStartBehavior = dragStartBehavior;
-this.FocusColor = focusColor;
-this.HoverColor = hoverColor;
-this.FocusNode = focusNode;
-this.Autofocus = autofocus;throw new NotImplementedException(); }
-public static Switch Adaptive(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),bool value = default(bool),FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>),FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color activeTrackColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color inactiveThumbColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color inactiveTrackColor = default(FlutterBinding.UI.Color),FlutterSDK.Painting.Imageprovider.ImageProvider<object> activeThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>),FlutterSDK.Painting.Imagestream.ImageErrorListener onActiveThumbImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener),FlutterSDK.Painting.Imageprovider.ImageProvider<object> inactiveThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>),FlutterSDK.Painting.Imagestream.ImageErrorListener onInactiveThumbImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener),FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize),FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior),FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color),FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode),bool autofocus = false)
-{
-var instance =new Switch(key:key);instance.Value = value;
-instance.OnChanged = onChanged;
-instance.ActiveColor = activeColor;
-instance.ActiveTrackColor = activeTrackColor;
-instance.InactiveThumbColor = inactiveThumbColor;
-instance.InactiveTrackColor = inactiveTrackColor;
-instance.ActiveThumbImage = activeThumbImage;
-instance.OnActiveThumbImageError = onActiveThumbImageError;
-instance.InactiveThumbImage = inactiveThumbImage;
-instance.OnInactiveThumbImageError = onInactiveThumbImageError;
-instance.MaterialTapTargetSize = materialTapTargetSize;
-instance.DragStartBehavior = dragStartBehavior;
-instance.FocusColor = focusColor;
-instance.HoverColor = hoverColor;
-instance.FocusNode = focusNode;
-instance.Autofocus = autofocus;throw new NotImplementedException(); }
-#endregion
+    internal static class SwitchDefaultClass
+    {
+        public static double _KTrackHeight = default(double);
+        public static double _KTrackWidth = default(double);
+        public static double _KTrackRadius = default(double);
+        public static double _KThumbRadius = default(double);
+        public static double _KSwitchWidth = default(double);
+        public static double _KSwitchHeight = default(double);
+        public static double _KSwitchHeightCollapsed = default(double);
+    }
 
-#region fields
-public virtual bool Value{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged{get;set;}
-public virtual FlutterBinding.UI.Color ActiveColor{get;set;}
-public virtual FlutterBinding.UI.Color ActiveTrackColor{get;set;}
-public virtual FlutterBinding.UI.Color InactiveThumbColor{get;set;}
-public virtual FlutterBinding.UI.Color InactiveTrackColor{get;set;}
-public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> ActiveThumbImage{get;set;}
-public virtual FlutterSDK.Painting.Imagestream.ImageErrorListener OnActiveThumbImageError{get;set;}
-public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> InactiveThumbImage{get;set;}
-public virtual FlutterSDK.Painting.Imagestream.ImageErrorListener OnInactiveThumbImageError{get;set;}
-public virtual FlutterSDK.Material.Themedata.MaterialTapTargetSize MaterialTapTargetSize{get;set;}
-internal virtual FlutterSDK.Material.Switch._SwitchType _SwitchType{get;set;}
-public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior{get;set;}
-public virtual FlutterBinding.UI.Color FocusColor{get;set;}
-public virtual FlutterBinding.UI.Color HoverColor{get;set;}
-public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode{get;set;}
-public virtual bool Autofocus{get;set;}
-#endregion
+    public class Switch : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public Switch(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool value = default(bool), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color activeTrackColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveThumbColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveTrackColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Imageprovider.ImageProvider<object> activeThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imagestream.ImageErrorListener onActiveThumbImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener), FlutterSDK.Painting.Imageprovider.ImageProvider<object> inactiveThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imagestream.ImageErrorListener onInactiveThumbImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false)
+        : base(key: key)
+        {
+            this.Value = value;
+            this.OnChanged = onChanged;
+            this.ActiveColor = activeColor;
+            this.ActiveTrackColor = activeTrackColor;
+            this.InactiveThumbColor = inactiveThumbColor;
+            this.InactiveTrackColor = inactiveTrackColor;
+            this.ActiveThumbImage = activeThumbImage;
+            this.OnActiveThumbImageError = onActiveThumbImageError;
+            this.InactiveThumbImage = inactiveThumbImage;
+            this.OnInactiveThumbImageError = onInactiveThumbImageError;
+            this.MaterialTapTargetSize = materialTapTargetSize;
+            this.DragStartBehavior = dragStartBehavior;
+            this.FocusColor = focusColor;
+            this.HoverColor = hoverColor;
+            this.FocusNode = focusNode;
+            this.Autofocus = autofocus; throw new NotImplementedException();
+        }
+        public static Switch Adaptive(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool value = default(bool), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color activeTrackColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveThumbColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveTrackColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Imageprovider.ImageProvider<object> activeThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imagestream.ImageErrorListener onActiveThumbImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener), FlutterSDK.Painting.Imageprovider.ImageProvider<object> inactiveThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imagestream.ImageErrorListener onInactiveThumbImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false)
+        {
+            var instance = new Switch(key: key); instance.Value = value;
+            instance.OnChanged = onChanged;
+            instance.ActiveColor = activeColor;
+            instance.ActiveTrackColor = activeTrackColor;
+            instance.InactiveThumbColor = inactiveThumbColor;
+            instance.InactiveTrackColor = inactiveTrackColor;
+            instance.ActiveThumbImage = activeThumbImage;
+            instance.OnActiveThumbImageError = onActiveThumbImageError;
+            instance.InactiveThumbImage = inactiveThumbImage;
+            instance.OnInactiveThumbImageError = onInactiveThumbImageError;
+            instance.MaterialTapTargetSize = materialTapTargetSize;
+            instance.DragStartBehavior = dragStartBehavior;
+            instance.FocusColor = focusColor;
+            instance.HoverColor = hoverColor;
+            instance.FocusNode = focusNode;
+            instance.Autofocus = autofocus; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual bool Value { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged { get; set; }
+        public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
+        public virtual FlutterBinding.UI.Color ActiveTrackColor { get; set; }
+        public virtual FlutterBinding.UI.Color InactiveThumbColor { get; set; }
+        public virtual FlutterBinding.UI.Color InactiveTrackColor { get; set; }
+        public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> ActiveThumbImage { get; set; }
+        public virtual FlutterSDK.Painting.Imagestream.ImageErrorListener OnActiveThumbImageError { get; set; }
+        public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> InactiveThumbImage { get; set; }
+        public virtual FlutterSDK.Painting.Imagestream.ImageErrorListener OnInactiveThumbImageError { get; set; }
+        public virtual FlutterSDK.Material.Themedata.MaterialTapTargetSize MaterialTapTargetSize { get; set; }
+        internal virtual FlutterSDK.Material.Switch._SwitchType _SwitchType { get; set; }
+        public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
+        public virtual FlutterBinding.UI.Color FocusColor { get; set; }
+        public virtual FlutterBinding.UI.Color HoverColor { get; set; }
+        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+        public virtual bool Autofocus { get; set; }
+        #endregion
 
-public new FlutterSDK.Material.Switch._SwitchState CreateState(){ throw new NotImplementedException(); }
+        #region methods
 
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _SwitchState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Switch.Switch>,ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-#region constructors
-public _SwitchState()
-{ }
-#endregion
-
-#region fields
-internal virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey,object> _ActionMap{get;set;}
-internal virtual bool _Focused{get;set;}
-internal virtual bool _Hovering{get;set;}
-public virtual bool Enabled{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new void InitState(){ throw new NotImplementedException(); }
+        public new FlutterSDK.Material.Switch._SwitchState CreateState() { throw new NotImplementedException(); }
 
 
-private void _ActionHandler(FlutterSDK.Widgets.Focusmanager.FocusNode node,FlutterSDK.Widgets.Actions.Intent intent){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-private FlutterSDK.Widgets.Actions.Action _CreateAction(){ throw new NotImplementedException(); }
+    public class _SwitchState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Switch.Switch>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _SwitchState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> _ActionMap { get; set; }
+        internal virtual bool _Focused { get; set; }
+        internal virtual bool _Hovering { get; set; }
+        public virtual bool Enabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-private void _HandleFocusHighlightChanged(bool focused){ throw new NotImplementedException(); }
+        private void _ActionHandler(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Widgets.Actions.Intent intent) { throw new NotImplementedException(); }
 
 
-private void _HandleHoverChanged(bool hovering){ throw new NotImplementedException(); }
+        private FlutterSDK.Widgets.Actions.Action _CreateAction() { throw new NotImplementedException(); }
 
 
-public virtual Size GetSwitchSize(FlutterSDK.Material.Themedata.ThemeData theme){ throw new NotImplementedException(); }
+        private void _HandleFocusHighlightChanged(bool focused) { throw new NotImplementedException(); }
 
 
-private void _DidFinishDragging(){ throw new NotImplementedException(); }
+        private void _HandleHoverChanged(bool hovering) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Widgets.Framework.Widget BuildMaterialSwitch(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public virtual Size GetSwitchSize(FlutterSDK.Material.Themedata.ThemeData theme) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Widgets.Framework.Widget BuildCupertinoSwitch(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        private void _DidFinishDragging() { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual FlutterSDK.Widgets.Framework.Widget BuildMaterialSwitch(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public class _SwitchRenderObjectWidget : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
-{
-#region constructors
-public _SwitchRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),bool value = default(bool),FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color),FlutterSDK.Painting.Imageprovider.ImageProvider<object> activeThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>),FlutterSDK.Painting.Imagestream.ImageErrorListener onActiveThumbImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener),FlutterSDK.Painting.Imageprovider.ImageProvider<object> inactiveThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>),FlutterSDK.Painting.Imagestream.ImageErrorListener onInactiveThumbImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener),FlutterBinding.UI.Color activeTrackColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color inactiveTrackColor = default(FlutterBinding.UI.Color),FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration),FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>),FlutterSDK.Rendering.Box.BoxConstraints additionalConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints),FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior),bool hasFocus = default(bool),bool hovering = default(bool),FlutterSDK.Material.Switch._SwitchState state = default(FlutterSDK.Material.Switch._SwitchState))
-: base(key:key)
-{
-this.Value = value;
-this.ActiveColor = activeColor;
-this.InactiveColor = inactiveColor;
-this.HoverColor = hoverColor;
-this.FocusColor = focusColor;
-this.ActiveThumbImage = activeThumbImage;
-this.OnActiveThumbImageError = onActiveThumbImageError;
-this.InactiveThumbImage = inactiveThumbImage;
-this.OnInactiveThumbImageError = onInactiveThumbImageError;
-this.ActiveTrackColor = activeTrackColor;
-this.InactiveTrackColor = inactiveTrackColor;
-this.Configuration = configuration;
-this.OnChanged = onChanged;
-this.AdditionalConstraints = additionalConstraints;
-this.DragStartBehavior = dragStartBehavior;
-this.HasFocus = hasFocus;
-this.Hovering = hovering;
-this.State = state;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual bool Value{get;set;}
-public virtual FlutterBinding.UI.Color ActiveColor{get;set;}
-public virtual FlutterBinding.UI.Color InactiveColor{get;set;}
-public virtual FlutterBinding.UI.Color HoverColor{get;set;}
-public virtual FlutterBinding.UI.Color FocusColor{get;set;}
-public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> ActiveThumbImage{get;set;}
-public virtual FlutterSDK.Painting.Imagestream.ImageErrorListener OnActiveThumbImageError{get;set;}
-public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> InactiveThumbImage{get;set;}
-public virtual FlutterSDK.Painting.Imagestream.ImageErrorListener OnInactiveThumbImageError{get;set;}
-public virtual FlutterBinding.UI.Color ActiveTrackColor{get;set;}
-public virtual FlutterBinding.UI.Color InactiveTrackColor{get;set;}
-public virtual FlutterSDK.Painting.Imageprovider.ImageConfiguration Configuration{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged{get;set;}
-public virtual FlutterSDK.Rendering.Box.BoxConstraints AdditionalConstraints{get;set;}
-public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior{get;set;}
-public virtual bool HasFocus{get;set;}
-public virtual bool Hovering{get;set;}
-public virtual FlutterSDK.Material.Switch._SwitchState State{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Material.Switch._RenderSwitch CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Widgets.Framework.Widget BuildCupertinoSwitch(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Material.Switch._RenderSwitch renderObject){ throw new NotImplementedException(); }
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Rendering.@object.RenderObject renderObject){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#endregion
-}
-
-
-public class _RenderSwitch : FlutterSDK.Material.Toggleable.RenderToggleable
-{
-#region constructors
-public _RenderSwitch(bool value = default(bool),FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color),FlutterSDK.Painting.Imageprovider.ImageProvider<object> activeThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>),FlutterSDK.Painting.Imagestream.ImageErrorListener onActiveThumbImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener),FlutterSDK.Painting.Imageprovider.ImageProvider<object> inactiveThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>),FlutterSDK.Painting.Imagestream.ImageErrorListener onInactiveThumbImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener),FlutterBinding.UI.Color activeTrackColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color inactiveTrackColor = default(FlutterBinding.UI.Color),FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration),FlutterSDK.Rendering.Box.BoxConstraints additionalConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints),TextDirection textDirection = default(TextDirection),FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>),FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior),bool hasFocus = default(bool),bool hovering = default(bool),FlutterSDK.Material.Switch._SwitchState state = default(FlutterSDK.Material.Switch._SwitchState))
-: base(value:value,tristate:false,activeColor:activeColor,inactiveColor:inactiveColor,hoverColor:hoverColor,focusColor:focusColor,onChanged:onChanged,additionalConstraints:additionalConstraints,hasFocus:hasFocus,hovering:hovering,vsync:state)
-{
-this.State = state;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> _ActiveThumbImage{get;set;}
-internal virtual FlutterSDK.Painting.Imagestream.ImageErrorListener _OnActiveThumbImageError{get;set;}
-internal virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> _InactiveThumbImage{get;set;}
-internal virtual FlutterSDK.Painting.Imagestream.ImageErrorListener _OnInactiveThumbImageError{get;set;}
-internal virtual FlutterBinding.UI.Color _ActiveTrackColor{get;set;}
-internal virtual FlutterBinding.UI.Color _InactiveTrackColor{get;set;}
-internal virtual FlutterSDK.Painting.Imageprovider.ImageConfiguration _Configuration{get;set;}
-internal virtual TextDirection _TextDirection{get;set;}
-public virtual FlutterSDK.Material.Switch._SwitchState State{get;set;}
-internal virtual FlutterSDK.Gestures.Monodrag.HorizontalDragGestureRecognizer _Drag{get;set;}
-internal virtual bool _NeedsPositionAnimation{get;set;}
-internal virtual FlutterBinding.UI.Color _CachedThumbColor{get;set;}
-internal virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> _CachedThumbImage{get;set;}
-internal virtual FlutterSDK.Painting.Imagestream.ImageErrorListener _CachedThumbErrorListener{get;set;}
-internal virtual FlutterSDK.Painting.Decoration.BoxPainter _CachedThumbPainter{get;set;}
-internal virtual bool _IsPainting{get;set;}
-public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> ActiveThumbImage{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Painting.Imagestream.ImageErrorListener OnActiveThumbImageError{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> InactiveThumbImage{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Painting.Imagestream.ImageErrorListener OnInactiveThumbImageError{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterBinding.UI.Color ActiveTrackColor{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterBinding.UI.Color InactiveTrackColor{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Painting.Imageprovider.ImageConfiguration Configuration{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual TextDirection TextDirection{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool Value{set {throw new NotImplementedException();}}
-internal virtual double _TrackInnerLength{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new void Detach(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-private void _HandleDragStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details){ throw new NotImplementedException(); }
+    public class _SwitchRenderObjectWidget : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
+    {
+        #region constructors
+        public _SwitchRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool value = default(bool), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Imageprovider.ImageProvider<object> activeThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imagestream.ImageErrorListener onActiveThumbImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener), FlutterSDK.Painting.Imageprovider.ImageProvider<object> inactiveThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imagestream.ImageErrorListener onInactiveThumbImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener), FlutterBinding.UI.Color activeTrackColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveTrackColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Rendering.Box.BoxConstraints additionalConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), bool hasFocus = default(bool), bool hovering = default(bool), FlutterSDK.Material.Switch._SwitchState state = default(FlutterSDK.Material.Switch._SwitchState))
+        : base(key: key)
+        {
+            this.Value = value;
+            this.ActiveColor = activeColor;
+            this.InactiveColor = inactiveColor;
+            this.HoverColor = hoverColor;
+            this.FocusColor = focusColor;
+            this.ActiveThumbImage = activeThumbImage;
+            this.OnActiveThumbImageError = onActiveThumbImageError;
+            this.InactiveThumbImage = inactiveThumbImage;
+            this.OnInactiveThumbImageError = onInactiveThumbImageError;
+            this.ActiveTrackColor = activeTrackColor;
+            this.InactiveTrackColor = inactiveTrackColor;
+            this.Configuration = configuration;
+            this.OnChanged = onChanged;
+            this.AdditionalConstraints = additionalConstraints;
+            this.DragStartBehavior = dragStartBehavior;
+            this.HasFocus = hasFocus;
+            this.Hovering = hovering;
+            this.State = state; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual bool Value { get; set; }
+        public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
+        public virtual FlutterBinding.UI.Color InactiveColor { get; set; }
+        public virtual FlutterBinding.UI.Color HoverColor { get; set; }
+        public virtual FlutterBinding.UI.Color FocusColor { get; set; }
+        public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> ActiveThumbImage { get; set; }
+        public virtual FlutterSDK.Painting.Imagestream.ImageErrorListener OnActiveThumbImageError { get; set; }
+        public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> InactiveThumbImage { get; set; }
+        public virtual FlutterSDK.Painting.Imagestream.ImageErrorListener OnInactiveThumbImageError { get; set; }
+        public virtual FlutterBinding.UI.Color ActiveTrackColor { get; set; }
+        public virtual FlutterBinding.UI.Color InactiveTrackColor { get; set; }
+        public virtual FlutterSDK.Painting.Imageprovider.ImageConfiguration Configuration { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged { get; set; }
+        public virtual FlutterSDK.Rendering.Box.BoxConstraints AdditionalConstraints { get; set; }
+        public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
+        public virtual bool HasFocus { get; set; }
+        public virtual bool Hovering { get; set; }
+        public virtual FlutterSDK.Material.Switch._SwitchState State { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Material.Switch._RenderSwitch CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-private void _HandleDragUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details){ throw new NotImplementedException(); }
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Material.Switch._RenderSwitch renderObject) { throw new NotImplementedException(); }
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-private void _HandleDragEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details){ throw new NotImplementedException(); }
+    public class _RenderSwitch : FlutterSDK.Material.Toggleable.RenderToggleable
+    {
+        #region constructors
+        public _RenderSwitch(bool value = default(bool), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Imageprovider.ImageProvider<object> activeThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imagestream.ImageErrorListener onActiveThumbImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener), FlutterSDK.Painting.Imageprovider.ImageProvider<object> inactiveThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imagestream.ImageErrorListener onInactiveThumbImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener), FlutterBinding.UI.Color activeTrackColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveTrackColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration), FlutterSDK.Rendering.Box.BoxConstraints additionalConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints), TextDirection textDirection = default(TextDirection), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), bool hasFocus = default(bool), bool hovering = default(bool), FlutterSDK.Material.Switch._SwitchState state = default(FlutterSDK.Material.Switch._SwitchState))
+        : base(value: value, tristate: false, activeColor: activeColor, inactiveColor: inactiveColor, hoverColor: hoverColor, focusColor: focusColor, onChanged: onChanged, additionalConstraints: additionalConstraints, hasFocus: hasFocus, hovering: hovering, vsync: state)
+        {
+            this.State = state; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> _ActiveThumbImage { get; set; }
+        internal virtual FlutterSDK.Painting.Imagestream.ImageErrorListener _OnActiveThumbImageError { get; set; }
+        internal virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> _InactiveThumbImage { get; set; }
+        internal virtual FlutterSDK.Painting.Imagestream.ImageErrorListener _OnInactiveThumbImageError { get; set; }
+        internal virtual FlutterBinding.UI.Color _ActiveTrackColor { get; set; }
+        internal virtual FlutterBinding.UI.Color _InactiveTrackColor { get; set; }
+        internal virtual FlutterSDK.Painting.Imageprovider.ImageConfiguration _Configuration { get; set; }
+        internal virtual TextDirection _TextDirection { get; set; }
+        public virtual FlutterSDK.Material.Switch._SwitchState State { get; set; }
+        internal virtual FlutterSDK.Gestures.Monodrag.HorizontalDragGestureRecognizer _Drag { get; set; }
+        internal virtual bool _NeedsPositionAnimation { get; set; }
+        internal virtual FlutterBinding.UI.Color _CachedThumbColor { get; set; }
+        internal virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> _CachedThumbImage { get; set; }
+        internal virtual FlutterSDK.Painting.Imagestream.ImageErrorListener _CachedThumbErrorListener { get; set; }
+        internal virtual FlutterSDK.Painting.Decoration.BoxPainter _CachedThumbPainter { get; set; }
+        internal virtual bool _IsPainting { get; set; }
+        public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> ActiveThumbImage { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Imagestream.ImageErrorListener OnActiveThumbImageError { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> InactiveThumbImage { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Imagestream.ImageErrorListener OnInactiveThumbImageError { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Color ActiveTrackColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Color InactiveTrackColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Imageprovider.ImageConfiguration Configuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool Value { set { throw new NotImplementedException(); } }
+        internal virtual double _TrackInnerLength { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void Detach() { throw new NotImplementedException(); }
 
 
-public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event,FlutterSDK.Rendering.Box.BoxHitTestEntry entry){ throw new NotImplementedException(); }
+        private void _HandleDragStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details) { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Painting.Boxdecoration.BoxDecoration _CreateDefaultThumbDecoration(FlutterBinding.UI.Color color,FlutterSDK.Painting.Imageprovider.ImageProvider<object> image,FlutterSDK.Painting.Imagestream.ImageErrorListener errorListener){ throw new NotImplementedException(); }
+        private void _HandleDragUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details) { throw new NotImplementedException(); }
 
 
-private void _HandleDecorationChanged(){ throw new NotImplementedException(); }
+        private void _HandleDragEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details) { throw new NotImplementedException(); }
 
 
-public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config){ throw new NotImplementedException(); }
+        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Rendering.Box.BoxHitTestEntry entry) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
-
-#endregion
-}
+        private FlutterSDK.Painting.Boxdecoration.BoxDecoration _CreateDefaultThumbDecoration(FlutterBinding.UI.Color color, FlutterSDK.Painting.Imageprovider.ImageProvider<object> image, FlutterSDK.Painting.Imagestream.ImageErrorListener errorListener) { throw new NotImplementedException(); }
 
 
-public enum _SwitchType{
+        private void _HandleDecorationChanged() { throw new NotImplementedException(); }
 
-Material,
-Adaptive,
-}
+
+        public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config) { throw new NotImplementedException(); }
+
+
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public enum _SwitchType
+    {
+
+        Material,
+        Adaptive,
+    }
 
 }

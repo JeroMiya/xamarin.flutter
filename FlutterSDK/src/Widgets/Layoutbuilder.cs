@@ -422,177 +422,186 @@ using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
-namespace FlutterSDK.Widgets.Layoutbuilder{
-public delegate FlutterSDK.Widgets.Framework.Widget LayoutWidgetBuilder(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Rendering.Box.BoxConstraints constraints);
-internal static class LayoutbuilderDefaultClass{
-internal static FlutterSDK.Foundation.Assertions.FlutterErrorDetails _DebugReportException(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode context,object exception,StackTrace stack,FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector)){
-throw new NotImplementedException();
-}
-
-}
-
-public interface IConstrainedLayoutBuilder<ConstraintType>{
-_LayoutBuilderElement<ConstraintType> CreateElement();
-Func<Widget,BuildContext,ConstraintType> Builder{get;}
-}
-
-
-public interface IRenderConstrainedLayoutBuilder<ConstraintType,ChildType>{}
-
-public class RenderConstrainedLayoutBuilder<ConstraintType,ChildType>{
-internal virtual FlutterSDK.Rendering.@object.LayoutCallback<ConstraintType> _Callback{get;set;}
-
-public virtual void UpdateCallback(FlutterSDK.Rendering.@object.LayoutCallback<ConstraintType> value){ throw new NotImplementedException(); }
-
-
-public virtual void LayoutAndBuildChild(){ throw new NotImplementedException(); }
-
-}
-public static class RenderConstrainedLayoutBuilderMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<object, object> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<object, object>();
-static RenderConstrainedLayoutBuilder<ConstraintType,ChildType> GetOrCreate<ConstraintType,ChildType>(IRenderConstrainedLayoutBuilder<ConstraintType,ChildType> instance)
+namespace FlutterSDK.Widgets.Layoutbuilder
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new RenderConstrainedLayoutBuilder<ConstraintType,ChildType>();
-_table.Add(instance, value);
-}
-return (RenderConstrainedLayoutBuilder<ConstraintType,ChildType>)value;
-}
-public static void UpdateCallback<ConstraintType,ChildType>(this IRenderConstrainedLayoutBuilder<ConstraintType,ChildType> instance,FlutterSDK.Rendering.@object.LayoutCallback<ConstraintType> value) => GetOrCreate(instance).UpdateCallback(value);
-public static void LayoutAndBuildChild<ConstraintType,ChildType>(this IRenderConstrainedLayoutBuilder<ConstraintType,ChildType> instance) => GetOrCreate(instance).LayoutAndBuildChild();
-}
+    public delegate FlutterSDK.Widgets.Framework.Widget LayoutWidgetBuilder(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Box.BoxConstraints constraints);
+    internal static class LayoutbuilderDefaultClass
+    {
+        internal static FlutterSDK.Foundation.Assertions.FlutterErrorDetails _DebugReportException(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode context, object exception, StackTrace stack, FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector))
+        {
+            throw new NotImplementedException();
+        }
+
+    }
+
+    public interface IConstrainedLayoutBuilder<ConstraintType>
+    {
+        _LayoutBuilderElement<ConstraintType> CreateElement();
+        Func<Widget, BuildContext, ConstraintType> Builder { get; }
+    }
 
 
-public class ConstrainedLayoutBuilder<ConstraintType> : FlutterSDK.Widgets.Framework.RenderObjectWidget
-{
-#region constructors
-public ConstrainedLayoutBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),Func<Widget,BuildContext,ConstraintType> builder = default(Func<Widget,BuildContext,ConstraintType>))
-: base(key:key)
-{
-this.Builder = builder;throw new NotImplementedException(); }
-#endregion
+    public interface IRenderConstrainedLayoutBuilder<ConstraintType, ChildType> { }
 
-#region fields
-public virtual Func<Widget,BuildContext,ConstraintType> Builder{get;set;}
-#endregion
+    public class RenderConstrainedLayoutBuilder<ConstraintType, ChildType>
+    {
+        internal virtual FlutterSDK.Rendering.@object.LayoutCallback<ConstraintType> _Callback { get; set; }
 
-#region methods
-
-public new _LayoutBuilderElement<ConstraintType> CreateElement(){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual void UpdateCallback(FlutterSDK.Rendering.@object.LayoutCallback<ConstraintType> value) { throw new NotImplementedException(); }
 
 
-public class _LayoutBuilderElement<ConstraintType> : FlutterSDK.Widgets.Framework.RenderObjectElement
-{
-#region constructors
-public _LayoutBuilderElement(FlutterSDK.Widgets.Layoutbuilder.ConstrainedLayoutBuilder<ConstraintType> widget)
-: base(widget)
-{
-throw new NotImplementedException(); }
-#endregion
+        public virtual void LayoutAndBuildChild() { throw new NotImplementedException(); }
 
-#region fields
-internal virtual FlutterSDK.Widgets.Framework.Element _Child{get;set;}
-public virtual FlutterSDK.Widgets.Layoutbuilder.ConstrainedLayoutBuilder<ConstraintType> Widget{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Widgets.Layoutbuilder.RenderConstrainedLayoutBuilder<ConstraintType,FlutterSDK.Rendering.@object.RenderObject> RenderObject{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new void VisitChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor){ throw new NotImplementedException(); }
-
-
-public new void ForgetChild(FlutterSDK.Widgets.Framework.Element child){ throw new NotImplementedException(); }
+    }
+    public static class RenderConstrainedLayoutBuilderMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<object, object> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<object, object>();
+        static RenderConstrainedLayoutBuilder<ConstraintType, ChildType> GetOrCreate<ConstraintType, ChildType>(IRenderConstrainedLayoutBuilder<ConstraintType, ChildType> instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new RenderConstrainedLayoutBuilder<ConstraintType, ChildType>();
+                _table.Add(instance, value);
+            }
+            return (RenderConstrainedLayoutBuilder<ConstraintType, ChildType>)value;
+        }
+        public static void UpdateCallback<ConstraintType, ChildType>(this IRenderConstrainedLayoutBuilder<ConstraintType, ChildType> instance, FlutterSDK.Rendering.@object.LayoutCallback<ConstraintType> value) => GetOrCreate(instance).UpdateCallback(value);
+        public static void LayoutAndBuildChild<ConstraintType, ChildType>(this IRenderConstrainedLayoutBuilder<ConstraintType, ChildType> instance) => GetOrCreate(instance).LayoutAndBuildChild();
+    }
 
 
-public new void Mount(FlutterSDK.Widgets.Framework.Element parent,object newSlot){ throw new NotImplementedException(); }
+    public class ConstrainedLayoutBuilder<ConstraintType> : FlutterSDK.Widgets.Framework.RenderObjectWidget
+    {
+        #region constructors
+        public ConstrainedLayoutBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Func<Widget, BuildContext, ConstraintType> builder = default(Func<Widget, BuildContext, ConstraintType>))
+        : base(key: key)
+        {
+            this.Builder = builder; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual Func<Widget, BuildContext, ConstraintType> Builder { get; set; }
+        #endregion
+
+        #region methods
+
+        public new _LayoutBuilderElement<ConstraintType> CreateElement() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public new void Update(FlutterSDK.Widgets.Layoutbuilder.ConstrainedLayoutBuilder<ConstraintType> newWidget){ throw new NotImplementedException(); }
-public new void Update(FlutterSDK.Widgets.Framework.Widget newWidget){ throw new NotImplementedException(); }
+    public class _LayoutBuilderElement<ConstraintType> : FlutterSDK.Widgets.Framework.RenderObjectElement
+    {
+        #region constructors
+        public _LayoutBuilderElement(FlutterSDK.Widgets.Layoutbuilder.ConstrainedLayoutBuilder<ConstraintType> widget)
+        : base(widget)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Framework.Element _Child { get; set; }
+        public virtual FlutterSDK.Widgets.Layoutbuilder.ConstrainedLayoutBuilder<ConstraintType> Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Widgets.Layoutbuilder.RenderConstrainedLayoutBuilder<ConstraintType, FlutterSDK.Rendering.@object.RenderObject> RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void VisitChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor) { throw new NotImplementedException(); }
 
 
-public new void PerformRebuild(){ throw new NotImplementedException(); }
+        public new void ForgetChild(FlutterSDK.Widgets.Framework.Element child) { throw new NotImplementedException(); }
 
 
-public new void Unmount(){ throw new NotImplementedException(); }
+        public new void Mount(FlutterSDK.Widgets.Framework.Element parent, object newSlot) { throw new NotImplementedException(); }
 
 
-private void _Layout(ConstraintType constraints){ throw new NotImplementedException(); }
+        public new void Update(FlutterSDK.Widgets.Layoutbuilder.ConstrainedLayoutBuilder<ConstraintType> newWidget) { throw new NotImplementedException(); }
+        public new void Update(FlutterSDK.Widgets.Framework.Widget newWidget) { throw new NotImplementedException(); }
 
 
-public new void InsertChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child,object slot){ throw new NotImplementedException(); }
+        public new void PerformRebuild() { throw new NotImplementedException(); }
 
 
-public new void MoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child,object slot){ throw new NotImplementedException(); }
+        public new void Unmount() { throw new NotImplementedException(); }
 
 
-public new void RemoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
-
-#endregion
-}
+        private void _Layout(ConstraintType constraints) { throw new NotImplementedException(); }
 
 
-public class LayoutBuilder : FlutterSDK.Widgets.Layoutbuilder.ConstrainedLayoutBuilder<FlutterSDK.Rendering.Box.BoxConstraints>
-{
-#region constructors
-public LayoutBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Layoutbuilder.LayoutWidgetBuilder builder = default(FlutterSDK.Widgets.Layoutbuilder.LayoutWidgetBuilder))
-: base(key:key,builder:builder)
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Layoutbuilder.LayoutWidgetBuilder Builder{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Layoutbuilder._RenderLayoutBuilder CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public new void InsertChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slot) { throw new NotImplementedException(); }
 
 
-public class _RenderLayoutBuilder : FlutterSDK.Rendering.Box.RenderBox,IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>,IRenderConstrainedLayoutBuilder<FlutterSDK.Rendering.Box.BoxConstraints,FlutterSDK.Rendering.Box.RenderBox>
-{
-#region constructors
-public _RenderLayoutBuilder()
-{ }
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public new double ComputeMinIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        public new void MoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slot) { throw new NotImplementedException(); }
 
 
-public new double ComputeMaxIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        public new void RemoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public new double ComputeMinIntrinsicHeight(double width){ throw new NotImplementedException(); }
+    public class LayoutBuilder : FlutterSDK.Widgets.Layoutbuilder.ConstrainedLayoutBuilder<FlutterSDK.Rendering.Box.BoxConstraints>
+    {
+        #region constructors
+        public LayoutBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Layoutbuilder.LayoutWidgetBuilder builder = default(FlutterSDK.Widgets.Layoutbuilder.LayoutWidgetBuilder))
+        : base(key: key, builder: builder)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Layoutbuilder.LayoutWidgetBuilder Builder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Layoutbuilder._RenderLayoutBuilder CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public new double ComputeMaxIntrinsicHeight(double width){ throw new NotImplementedException(); }
+    public class _RenderLayoutBuilder : FlutterSDK.Rendering.Box.RenderBox, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>, IRenderConstrainedLayoutBuilder<FlutterSDK.Rendering.Box.BoxConstraints, FlutterSDK.Rendering.Box.RenderBox>
+    {
+        #region constructors
+        public _RenderLayoutBuilder()
+        { }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
+        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
+        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-private bool _DebugThrowIfNotCheckingIntrinsics(){ throw new NotImplementedException(); }
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
+
+
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
+
+
+        private bool _DebugThrowIfNotCheckingIntrinsics() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

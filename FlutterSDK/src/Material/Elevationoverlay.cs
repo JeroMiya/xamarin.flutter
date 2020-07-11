@@ -379,29 +379,32 @@ using FlutterSDK.Material.Dialogtheme;
 using FlutterSDK.Material.Dividertheme;
 using FlutterSDK.Material.Inputdecorator;
 using FlutterSDK.Material.Shadows;
-namespace FlutterSDK.Material.Elevationoverlay{
-internal static class ElevationoverlayDefaultClass{
-}
-
-public class ElevationOverlay
+namespace FlutterSDK.Material.Elevationoverlay
 {
-#region constructors
-internal ElevationOverlay()
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class ElevationoverlayDefaultClass
+    {
+    }
 
-#region fields
-#endregion
+    public class ElevationOverlay
+    {
+        #region constructors
+        internal ElevationOverlay()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        #endregion
 
-public virtual Color ApplyOverlay(FlutterSDK.Widgets.Framework.BuildContext context,FlutterBinding.UI.Color color,double elevation){ throw new NotImplementedException(); }
+        #region methods
+
+        public virtual Color ApplyOverlay(FlutterSDK.Widgets.Framework.BuildContext context, FlutterBinding.UI.Color color, double elevation) { throw new NotImplementedException(); }
 
 
-public virtual Color OverlayColor(FlutterSDK.Widgets.Framework.BuildContext context,double elevation){ throw new NotImplementedException(); }
+        public virtual Color OverlayColor(FlutterSDK.Widgets.Framework.BuildContext context, double elevation) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 }

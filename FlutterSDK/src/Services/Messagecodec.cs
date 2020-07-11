@@ -421,133 +421,142 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Services.Messagecodec{
-internal static class MessagecodecDefaultClass{
-}
-
-public interface IMessageCodec<T>{}
-
-public class MessageCodec<T>{
-
-public virtual ByteData EncodeMessage(T message){ throw new NotImplementedException(); }
-
-
-public virtual T DecodeMessage(ByteData message){ throw new NotImplementedException(); }
-
-}
-public static class MessageCodecMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<object, object> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<object, object>();
-static MessageCodec<T> GetOrCreate<T>(IMessageCodec<T> instance)
+namespace FlutterSDK.Services.Messagecodec
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new MessageCodec<T>();
-_table.Add(instance, value);
-}
-return (MessageCodec<T>)value;
-}
-public static ByteData EncodeMessage<T>(this IMessageCodec<T> instance,T message) => GetOrCreate(instance).EncodeMessage(message);
-public static T DecodeMessage<T>(this IMessageCodec<T> instance,ByteData message) => GetOrCreate(instance).DecodeMessage(message);
-}
+    internal static class MessagecodecDefaultClass
+    {
+    }
+
+    public interface IMessageCodec<T> { }
+
+    public class MessageCodec<T>
+    {
+
+        public virtual ByteData EncodeMessage(T message) { throw new NotImplementedException(); }
 
 
-public interface IMethodCodec{}
+        public virtual T DecodeMessage(ByteData message) { throw new NotImplementedException(); }
 
-public class MethodCodec{
-
-public virtual ByteData EncodeMethodCall(FlutterSDK.Services.Messagecodec.MethodCall methodCall){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Services.Messagecodec.MethodCall DecodeMethodCall(ByteData methodCall){ throw new NotImplementedException(); }
-
-
-public virtual object DecodeEnvelope(ByteData envelope){ throw new NotImplementedException(); }
-
-
-public virtual ByteData EncodeSuccessEnvelope(object result){ throw new NotImplementedException(); }
-
-
-public virtual ByteData EncodeErrorEnvelope(string code = default(string),string message = default(string),object details = default(object)){ throw new NotImplementedException(); }
-
-}
-public static class MethodCodecMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IMethodCodec, MethodCodec> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IMethodCodec, MethodCodec>();
-static MethodCodec GetOrCreate(IMethodCodec instance)
-{
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new MethodCodec();
-_table.Add(instance, value);
-}
-return (MethodCodec)value;
-}
-public static ByteData EncodeMethodCall(this IMethodCodec instance,FlutterSDK.Services.Messagecodec.MethodCall methodCall) => GetOrCreate(instance).EncodeMethodCall(methodCall);
-public static FlutterSDK.Services.Messagecodec.MethodCall DecodeMethodCall(this IMethodCodec instance,ByteData methodCall) => GetOrCreate(instance).DecodeMethodCall(methodCall);
-public static object DecodeEnvelope(this IMethodCodec instance,ByteData envelope) => GetOrCreate(instance).DecodeEnvelope(envelope);
-public static ByteData EncodeSuccessEnvelope(this IMethodCodec instance,object result) => GetOrCreate(instance).EncodeSuccessEnvelope(result);
-public static ByteData EncodeErrorEnvelope(this IMethodCodec instance,string code = default(string),string message = default(string),object details = default(object)) => GetOrCreate(instance).EncodeErrorEnvelope(code, message, details);
-}
+    }
+    public static class MessageCodecMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<object, object> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<object, object>();
+        static MessageCodec<T> GetOrCreate<T>(IMessageCodec<T> instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new MessageCodec<T>();
+                _table.Add(instance, value);
+            }
+            return (MessageCodec<T>)value;
+        }
+        public static ByteData EncodeMessage<T>(this IMessageCodec<T> instance, T message) => GetOrCreate(instance).EncodeMessage(message);
+        public static T DecodeMessage<T>(this IMessageCodec<T> instance, ByteData message) => GetOrCreate(instance).DecodeMessage(message);
+    }
 
 
-public class MethodCall
-{
-#region constructors
-public MethodCall(string method,object arguments = default(object))
-: base()
-{
-this.Method = method;
-this.Arguments = arguments;throw new NotImplementedException(); }
-#endregion
+    public interface IMethodCodec { }
 
-#region fields
-public virtual string Method{get;set;}
-public virtual object Arguments{get;set;}
-#endregion
+    public class MethodCodec
+    {
 
-#region methods
-
-#endregion
-}
+        public virtual ByteData EncodeMethodCall(FlutterSDK.Services.Messagecodec.MethodCall methodCall) { throw new NotImplementedException(); }
 
 
-public class PlatformException : IException
-{
-#region constructors
-public PlatformException(string code = default(string),string message = default(string),object details = default(object))
-: base()
-{
-this.Code = code;
-this.Message = message;
-this.Details = details;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual string Code{get;set;}
-public virtual string Message{get;set;}
-public virtual object Details{get;set;}
-#endregion
-
-#region methods
-
-#endregion
-}
+        public virtual FlutterSDK.Services.Messagecodec.MethodCall DecodeMethodCall(ByteData methodCall) { throw new NotImplementedException(); }
 
 
-public class MissingPluginException : IException
-{
-#region constructors
-public MissingPluginException(string message = default(string))
-{
-this.Message = message;throw new NotImplementedException(); }
-#endregion
+        public virtual object DecodeEnvelope(ByteData envelope) { throw new NotImplementedException(); }
 
-#region fields
-public virtual string Message{get;set;}
-#endregion
 
-#region methods
+        public virtual ByteData EncodeSuccessEnvelope(object result) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public virtual ByteData EncodeErrorEnvelope(string code = default(string), string message = default(string), object details = default(object)) { throw new NotImplementedException(); }
+
+    }
+    public static class MethodCodecMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IMethodCodec, MethodCodec> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IMethodCodec, MethodCodec>();
+        static MethodCodec GetOrCreate(IMethodCodec instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new MethodCodec();
+                _table.Add(instance, value);
+            }
+            return (MethodCodec)value;
+        }
+        public static ByteData EncodeMethodCall(this IMethodCodec instance, FlutterSDK.Services.Messagecodec.MethodCall methodCall) => GetOrCreate(instance).EncodeMethodCall(methodCall);
+        public static FlutterSDK.Services.Messagecodec.MethodCall DecodeMethodCall(this IMethodCodec instance, ByteData methodCall) => GetOrCreate(instance).DecodeMethodCall(methodCall);
+        public static object DecodeEnvelope(this IMethodCodec instance, ByteData envelope) => GetOrCreate(instance).DecodeEnvelope(envelope);
+        public static ByteData EncodeSuccessEnvelope(this IMethodCodec instance, object result) => GetOrCreate(instance).EncodeSuccessEnvelope(result);
+        public static ByteData EncodeErrorEnvelope(this IMethodCodec instance, string code = default(string), string message = default(string), object details = default(object)) => GetOrCreate(instance).EncodeErrorEnvelope(code, message, details);
+    }
+
+
+    public class MethodCall
+    {
+        #region constructors
+        public MethodCall(string method, object arguments = default(object))
+        : base()
+        {
+            this.Method = method;
+            this.Arguments = arguments; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual string Method { get; set; }
+        public virtual object Arguments { get; set; }
+        #endregion
+
+        #region methods
+
+        #endregion
+    }
+
+
+    public class PlatformException : IException
+    {
+        #region constructors
+        public PlatformException(string code = default(string), string message = default(string), object details = default(object))
+        : base()
+        {
+            this.Code = code;
+            this.Message = message;
+            this.Details = details; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual string Code { get; set; }
+        public virtual string Message { get; set; }
+        public virtual object Details { get; set; }
+        #endregion
+
+        #region methods
+
+        #endregion
+    }
+
+
+    public class MissingPluginException : IException
+    {
+        #region constructors
+        public MissingPluginException(string message = default(string))
+        {
+            this.Message = message; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual string Message { get; set; }
+        #endregion
+
+        #region methods
+
+        #endregion
+    }
 
 }

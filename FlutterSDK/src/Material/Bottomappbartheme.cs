@@ -357,44 +357,47 @@ using FlutterSDK.Material.Buttontheme;
 using FlutterSDK.Material.Divider;
 using FlutterSDK.Material.Bottomappbartheme;
 using FlutterSDK.Material.Elevationoverlay;
-namespace FlutterSDK.Material.Bottomappbartheme{
-internal static class BottomappbarthemeDefaultClass{
-}
-
-public class BottomAppBarTheme : IDiagnosticable
+namespace FlutterSDK.Material.Bottomappbartheme
 {
-#region constructors
-public BottomAppBarTheme(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),double elevation = default(double),FlutterSDK.Painting.Notchedshapes.NotchedShape shape = default(FlutterSDK.Painting.Notchedshapes.NotchedShape))
-{
-this.Color = color;
-this.Elevation = elevation;
-this.Shape = shape;throw new NotImplementedException(); }
-#endregion
+    internal static class BottomappbarthemeDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterBinding.UI.Color Color{get;set;}
-public virtual double Elevation{get;set;}
-public virtual FlutterSDK.Painting.Notchedshapes.NotchedShape Shape{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class BottomAppBarTheme : IDiagnosticable
+    {
+        #region constructors
+        public BottomAppBarTheme(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Notchedshapes.NotchedShape shape = default(FlutterSDK.Painting.Notchedshapes.NotchedShape))
+        {
+            this.Color = color;
+            this.Elevation = elevation;
+            this.Shape = shape; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual FlutterSDK.Painting.Notchedshapes.NotchedShape Shape { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),double elevation = default(double),FlutterSDK.Painting.Notchedshapes.NotchedShape shape = default(FlutterSDK.Painting.Notchedshapes.NotchedShape)){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme Of(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme Lerp(FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme a,FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme b,double t){ throw new NotImplementedException(); }
-
-
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Notchedshapes.NotchedShape shape = default(FlutterSDK.Painting.Notchedshapes.NotchedShape)) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public virtual FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme Lerp(FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme a, FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme b, double t) { throw new NotImplementedException(); }
+
+
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

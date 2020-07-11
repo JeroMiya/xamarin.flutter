@@ -383,64 +383,67 @@ using FlutterSDK.Material.Expandicon;
 using FlutterSDK.Material.Mergeablematerial;
 using FlutterSDK.Material.Button;
 using FlutterSDK.Material.Floatingactionbuttontheme;
-namespace FlutterSDK.Material.Iconbutton{
-internal static class IconbuttonDefaultClass{
-public static double _KMinButtonSize = default(double);
-}
-
-public class IconButton : FlutterSDK.Widgets.Framework.StatelessWidget
+namespace FlutterSDK.Material.Iconbutton
 {
-#region constructors
-public IconButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),double iconSize = 24.0,FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry),FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color),VoidCallback onPressed = default(VoidCallback),FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode),bool autofocus = false,string tooltip = default(string),bool enableFeedback = true,FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints))
-: base(key:key)
-{
-this.IconSize = iconSize;
-this.VisualDensity = visualDensity;
-this.Padding = padding;
-this.Alignment = alignment;
-this.Icon = icon;
-this.Color = color;
-this.FocusColor = focusColor;
-this.HoverColor = hoverColor;
-this.HighlightColor = highlightColor;
-this.SplashColor = splashColor;
-this.DisabledColor = disabledColor;
-this.OnPressed = onPressed;
-this.FocusNode = focusNode;
-this.Autofocus = autofocus;
-this.Tooltip = tooltip;
-this.EnableFeedback = enableFeedback;
-this.Constraints = constraints;throw new NotImplementedException(); }
-#endregion
+    internal static class IconbuttonDefaultClass
+    {
+        public static double _KMinButtonSize = default(double);
+    }
 
-#region fields
-public virtual double IconSize{get;set;}
-public virtual FlutterSDK.Material.Themedata.VisualDensity VisualDensity{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding{get;set;}
-public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Icon{get;set;}
-public virtual FlutterBinding.UI.Color FocusColor{get;set;}
-public virtual FlutterBinding.UI.Color HoverColor{get;set;}
-public virtual FlutterBinding.UI.Color Color{get;set;}
-public virtual FlutterBinding.UI.Color SplashColor{get;set;}
-public virtual FlutterBinding.UI.Color HighlightColor{get;set;}
-public virtual FlutterBinding.UI.Color DisabledColor{get;set;}
-public virtual VoidCallback OnPressed{get;set;}
-public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode{get;set;}
-public virtual bool Autofocus{get;set;}
-public virtual string Tooltip{get;set;}
-public virtual bool EnableFeedback{get;set;}
-public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints{get;set;}
-#endregion
+    public class IconButton : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public IconButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double iconSize = 24.0, FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), VoidCallback onPressed = default(VoidCallback), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, string tooltip = default(string), bool enableFeedback = true, FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints))
+        : base(key: key)
+        {
+            this.IconSize = iconSize;
+            this.VisualDensity = visualDensity;
+            this.Padding = padding;
+            this.Alignment = alignment;
+            this.Icon = icon;
+            this.Color = color;
+            this.FocusColor = focusColor;
+            this.HoverColor = hoverColor;
+            this.HighlightColor = highlightColor;
+            this.SplashColor = splashColor;
+            this.DisabledColor = disabledColor;
+            this.OnPressed = onPressed;
+            this.FocusNode = focusNode;
+            this.Autofocus = autofocus;
+            this.Tooltip = tooltip;
+            this.EnableFeedback = enableFeedback;
+            this.Constraints = constraints; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual double IconSize { get; set; }
+        public virtual FlutterSDK.Material.Themedata.VisualDensity VisualDensity { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Icon { get; set; }
+        public virtual FlutterBinding.UI.Color FocusColor { get; set; }
+        public virtual FlutterBinding.UI.Color HoverColor { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual FlutterBinding.UI.Color SplashColor { get; set; }
+        public virtual FlutterBinding.UI.Color HighlightColor { get; set; }
+        public virtual FlutterBinding.UI.Color DisabledColor { get; set; }
+        public virtual VoidCallback OnPressed { get; set; }
+        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+        public virtual bool Autofocus { get; set; }
+        public virtual string Tooltip { get; set; }
+        public virtual bool EnableFeedback { get; set; }
+        public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get; set; }
+        #endregion
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 }

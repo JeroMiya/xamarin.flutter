@@ -421,183 +421,190 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Widgets.Animatedlist{
-public delegate FlutterSDK.Widgets.Framework.Widget AnimatedListItemBuilder(FlutterSDK.Widgets.Framework.BuildContext context,int index,FlutterSDK.Animation.Animation.Animation<double> animation);
-public delegate FlutterSDK.Widgets.Framework.Widget AnimatedListRemovedItemBuilder(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Animation.Animation.Animation<double> animation);
-internal static class AnimatedlistDefaultClass{
-public static TimeSpan _KDuration = default(TimeSpan);
-}
-
-public class _ActiveItem : IComparable<FlutterSDK.Widgets.Animatedlist._ActiveItem>
+namespace FlutterSDK.Widgets.Animatedlist
 {
-#region constructors
-public static _ActiveItem Incoming(FlutterSDK.Animation.Animationcontroller.AnimationController controller,int itemIndex)
-{
-var instance =new _ActiveItem();instance.Controller = controller;
-instance.ItemIndex = itemIndex;throw new NotImplementedException(); }
-public static _ActiveItem Outgoing(FlutterSDK.Animation.Animationcontroller.AnimationController controller,int itemIndex,FlutterSDK.Widgets.Animatedlist.AnimatedListRemovedItemBuilder removedItemBuilder)
-{
-var instance =new _ActiveItem();instance.Controller = controller;
-instance.ItemIndex = itemIndex;
-instance.RemovedItemBuilder = removedItemBuilder;throw new NotImplementedException(); }
-public static _ActiveItem Index(int itemIndex)
-{
-var instance =new _ActiveItem();instance.ItemIndex = itemIndex;throw new NotImplementedException(); }
-#endregion
+    public delegate FlutterSDK.Widgets.Framework.Widget AnimatedListItemBuilder(FlutterSDK.Widgets.Framework.BuildContext context, int index, FlutterSDK.Animation.Animation.Animation<double> animation);
+    public delegate FlutterSDK.Widgets.Framework.Widget AnimatedListRemovedItemBuilder(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation);
+    internal static class AnimatedlistDefaultClass
+    {
+        public static TimeSpan _KDuration = default(TimeSpan);
+    }
 
-#region fields
-public virtual FlutterSDK.Animation.Animationcontroller.AnimationController Controller{get;set;}
-public virtual FlutterSDK.Widgets.Animatedlist.AnimatedListRemovedItemBuilder RemovedItemBuilder{get;set;}
-public virtual int ItemIndex{get;set;}
-#endregion
+    public class _ActiveItem : IComparable<FlutterSDK.Widgets.Animatedlist._ActiveItem>
+    {
+        #region constructors
+        public static _ActiveItem Incoming(FlutterSDK.Animation.Animationcontroller.AnimationController controller, int itemIndex)
+        {
+            var instance = new _ActiveItem(); instance.Controller = controller;
+            instance.ItemIndex = itemIndex; throw new NotImplementedException();
+        }
+        public static _ActiveItem Outgoing(FlutterSDK.Animation.Animationcontroller.AnimationController controller, int itemIndex, FlutterSDK.Widgets.Animatedlist.AnimatedListRemovedItemBuilder removedItemBuilder)
+        {
+            var instance = new _ActiveItem(); instance.Controller = controller;
+            instance.ItemIndex = itemIndex;
+            instance.RemovedItemBuilder = removedItemBuilder; throw new NotImplementedException();
+        }
+        public static _ActiveItem Index(int itemIndex)
+        {
+            var instance = new _ActiveItem(); instance.ItemIndex = itemIndex; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController Controller { get; set; }
+        public virtual FlutterSDK.Widgets.Animatedlist.AnimatedListRemovedItemBuilder RemovedItemBuilder { get; set; }
+        public virtual int ItemIndex { get; set; }
+        #endregion
 
-public new int CompareTo(FlutterSDK.Widgets.Animatedlist._ActiveItem other){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new int CompareTo(FlutterSDK.Widgets.Animatedlist._ActiveItem other) { throw new NotImplementedException(); }
 
-
-public class AnimatedList : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public AnimatedList(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Animatedlist.AnimatedListItemBuilder itemBuilder = default(FlutterSDK.Widgets.Animatedlist.AnimatedListItemBuilder),int initialItemCount = 0,FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis),bool reverse = false,FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController),bool primary = default(bool),FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics),bool shrinkWrap = false,FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry))
-: base(key:key)
-{
-this.ItemBuilder = itemBuilder;
-this.InitialItemCount = initialItemCount;
-this.ScrollDirection = scrollDirection;
-this.Reverse = reverse;
-this.Controller = controller;
-this.Primary = primary;
-this.Physics = physics;
-this.ShrinkWrap = shrinkWrap;
-this.Padding = padding;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Animatedlist.AnimatedListItemBuilder ItemBuilder{get;set;}
-public virtual int InitialItemCount{get;set;}
-public virtual FlutterSDK.Painting.Basictypes.Axis ScrollDirection{get;set;}
-public virtual bool Reverse{get;set;}
-public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller{get;set;}
-public virtual bool Primary{get;set;}
-public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics{get;set;}
-public virtual bool ShrinkWrap{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding{get;set;}
-#endregion
-
-#region methods
-
-public virtual FlutterSDK.Widgets.Animatedlist.AnimatedListState Of(FlutterSDK.Widgets.Framework.BuildContext context,bool nullOk = false){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new FlutterSDK.Widgets.Animatedlist.AnimatedListState CreateState(){ throw new NotImplementedException(); }
+    public class AnimatedList : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public AnimatedList(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Animatedlist.AnimatedListItemBuilder itemBuilder = default(FlutterSDK.Widgets.Animatedlist.AnimatedListItemBuilder), int initialItemCount = 0, FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool shrinkWrap = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry))
+        : base(key: key)
+        {
+            this.ItemBuilder = itemBuilder;
+            this.InitialItemCount = initialItemCount;
+            this.ScrollDirection = scrollDirection;
+            this.Reverse = reverse;
+            this.Controller = controller;
+            this.Primary = primary;
+            this.Physics = physics;
+            this.ShrinkWrap = shrinkWrap;
+            this.Padding = padding; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual FlutterSDK.Widgets.Animatedlist.AnimatedListItemBuilder ItemBuilder { get; set; }
+        public virtual int InitialItemCount { get; set; }
+        public virtual FlutterSDK.Painting.Basictypes.Axis ScrollDirection { get; set; }
+        public virtual bool Reverse { get; set; }
+        public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller { get; set; }
+        public virtual bool Primary { get; set; }
+        public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics { get; set; }
+        public virtual bool ShrinkWrap { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        #endregion
 
+        #region methods
 
-public class AnimatedListState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Animatedlist.AnimatedList>,ITickerProviderStateMixin<FlutterSDK.Widgets.Animatedlist.AnimatedList>
-{
-#region constructors
-public AnimatedListState()
-{ }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Animatedlist.SliverAnimatedListState> _SliverAnimatedListKey{get;set;}
-#endregion
-
-#region methods
-
-public virtual void InsertItem(int index,TimeSpan duration = default(TimeSpan)){ throw new NotImplementedException(); }
-
-
-public virtual void RemoveItem(int index,FlutterSDK.Widgets.Animatedlist.AnimatedListRemovedItemBuilder builder,TimeSpan duration = default(TimeSpan)){ throw new NotImplementedException(); }
-
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class SliverAnimatedList : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public SliverAnimatedList(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Animatedlist.AnimatedListItemBuilder itemBuilder = default(FlutterSDK.Widgets.Animatedlist.AnimatedListItemBuilder),int initialItemCount = 0)
-: base(key:key)
-{
-this.ItemBuilder = itemBuilder;
-this.InitialItemCount = initialItemCount;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Animatedlist.AnimatedListItemBuilder ItemBuilder{get;set;}
-public virtual int InitialItemCount{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Animatedlist.SliverAnimatedListState CreateState(){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Widgets.Animatedlist.AnimatedListState Of(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Widgets.Animatedlist.SliverAnimatedListState Of(FlutterSDK.Widgets.Framework.BuildContext context,bool nullOk = false){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Animatedlist.AnimatedListState CreateState() { throw new NotImplementedException(); }
 
-#endregion
-}
-
-
-public class SliverAnimatedListState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Animatedlist.SliverAnimatedList>,ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-#region constructors
-public SliverAnimatedListState()
-{ }
-#endregion
-
-#region fields
-internal virtual List<FlutterSDK.Widgets.Animatedlist._ActiveItem> _IncomingItems{get;set;}
-internal virtual List<FlutterSDK.Widgets.Animatedlist._ActiveItem> _OutgoingItems{get;set;}
-internal virtual int _ItemsCount{get;set;}
-#endregion
-
-#region methods
-
-public new void InitState(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+    public class AnimatedListState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Animatedlist.AnimatedList>, ITickerProviderStateMixin<FlutterSDK.Widgets.Animatedlist.AnimatedList>
+    {
+        #region constructors
+        public AnimatedListState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Animatedlist.SliverAnimatedListState> _SliverAnimatedListKey { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual void InsertItem(int index, TimeSpan duration = default(TimeSpan)) { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Widgets.Animatedlist._ActiveItem _RemoveActiveItemAt(List<FlutterSDK.Widgets.Animatedlist._ActiveItem> items,int itemIndex){ throw new NotImplementedException(); }
+        public virtual void RemoveItem(int index, FlutterSDK.Widgets.Animatedlist.AnimatedListRemovedItemBuilder builder, TimeSpan duration = default(TimeSpan)) { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Widgets.Animatedlist._ActiveItem _ActiveItemAt(List<FlutterSDK.Widgets.Animatedlist._ActiveItem> items,int itemIndex){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-private int _IndexToItemIndex(int index){ throw new NotImplementedException(); }
+    public class SliverAnimatedList : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public SliverAnimatedList(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Animatedlist.AnimatedListItemBuilder itemBuilder = default(FlutterSDK.Widgets.Animatedlist.AnimatedListItemBuilder), int initialItemCount = 0)
+        : base(key: key)
+        {
+            this.ItemBuilder = itemBuilder;
+            this.InitialItemCount = initialItemCount; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Animatedlist.AnimatedListItemBuilder ItemBuilder { get; set; }
+        public virtual int InitialItemCount { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Animatedlist.SliverAnimatedListState CreateState() { throw new NotImplementedException(); }
 
 
-private int _ItemIndexToIndex(int itemIndex){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Widgets.Animatedlist.SliverAnimatedListState Of(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-private FlutterSDK.Widgets.Sliver.SliverChildDelegate _CreateDelegate(){ throw new NotImplementedException(); }
+    public class SliverAnimatedListState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Animatedlist.SliverAnimatedList>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public SliverAnimatedListState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual List<FlutterSDK.Widgets.Animatedlist._ActiveItem> _IncomingItems { get; set; }
+        internal virtual List<FlutterSDK.Widgets.Animatedlist._ActiveItem> _OutgoingItems { get; set; }
+        internal virtual int _ItemsCount { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-public virtual void InsertItem(int index,TimeSpan duration = default(TimeSpan)){ throw new NotImplementedException(); }
+        public new void Dispose() { throw new NotImplementedException(); }
 
 
-public virtual void RemoveItem(int index,FlutterSDK.Widgets.Animatedlist.AnimatedListRemovedItemBuilder builder,TimeSpan duration = default(TimeSpan)){ throw new NotImplementedException(); }
+        private FlutterSDK.Widgets.Animatedlist._ActiveItem _RemoveActiveItemAt(List<FlutterSDK.Widgets.Animatedlist._ActiveItem> items, int itemIndex) { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Widgets.Framework.Widget _ItemBuilder(FlutterSDK.Widgets.Framework.BuildContext context,int itemIndex){ throw new NotImplementedException(); }
+        private FlutterSDK.Widgets.Animatedlist._ActiveItem _ActiveItemAt(List<FlutterSDK.Widgets.Animatedlist._ActiveItem> items, int itemIndex) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        private int _IndexToItemIndex(int index) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        private int _ItemIndexToIndex(int itemIndex) { throw new NotImplementedException(); }
+
+
+        private FlutterSDK.Widgets.Sliver.SliverChildDelegate _CreateDelegate() { throw new NotImplementedException(); }
+
+
+        public virtual void InsertItem(int index, TimeSpan duration = default(TimeSpan)) { throw new NotImplementedException(); }
+
+
+        public virtual void RemoveItem(int index, FlutterSDK.Widgets.Animatedlist.AnimatedListRemovedItemBuilder builder, TimeSpan duration = default(TimeSpan)) { throw new NotImplementedException(); }
+
+
+        private FlutterSDK.Widgets.Framework.Widget _ItemBuilder(FlutterSDK.Widgets.Framework.BuildContext context, int itemIndex) { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

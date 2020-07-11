@@ -421,53 +421,56 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Painting.Imageresolution{
-internal static class ImageresolutionDefaultClass{
-public static string _KAssetManifestFileName = default(string);
-}
-
-public class AssetImage : FlutterSDK.Painting.Imageprovider.AssetBundleImageProvider
+namespace FlutterSDK.Painting.Imageresolution
 {
-#region constructors
-public AssetImage(string assetName,FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle),string package = default(string))
-: base()
-{
-this.AssetName = assetName;
-this.Bundle = bundle;
-this.Package = package;throw new NotImplementedException(); }
-#endregion
+    internal static class ImageresolutionDefaultClass
+    {
+        public static string _KAssetManifestFileName = default(string);
+    }
 
-#region fields
-public virtual string AssetName{get;set;}
-public virtual FlutterSDK.Services.Assetbundle.AssetBundle Bundle{get;set;}
-public virtual string Package{get;set;}
-internal virtual double _NaturalResolution{get;set;}
-internal virtual RegExp _ExtractRatioRegExp{get;set;}
-public virtual string KeyName{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class AssetImage : FlutterSDK.Painting.Imageprovider.AssetBundleImageProvider
+    {
+        #region constructors
+        public AssetImage(string assetName, FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle), string package = default(string))
+        : base()
+        {
+            this.AssetName = assetName;
+            this.Bundle = bundle;
+            this.Package = package; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual string AssetName { get; set; }
+        public virtual FlutterSDK.Services.Assetbundle.AssetBundle Bundle { get; set; }
+        public virtual string Package { get; set; }
+        internal virtual double _NaturalResolution { get; set; }
+        internal virtual RegExp _ExtractRatioRegExp { get; set; }
+        public virtual string KeyName { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new Future<FlutterSDK.Painting.Imageprovider.AssetBundleImageKey> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration){ throw new NotImplementedException(); }
+        #region methods
 
-
-private Future<Dictionary<string,List<string>>> _ManifestParser(string jsonData){ throw new NotImplementedException(); }
-
-
-private string _ChooseVariant(string main,FlutterSDK.Painting.Imageprovider.ImageConfiguration config,List<string> candidates){ throw new NotImplementedException(); }
-
-
-private string _FindNearest(SplayTreeMap<double,string> candidates,double value){ throw new NotImplementedException(); }
-
-
-private double _ParseScale(string key){ throw new NotImplementedException(); }
+        public new Future<FlutterSDK.Painting.Imageprovider.AssetBundleImageKey> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) { throw new NotImplementedException(); }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        private Future<Dictionary<string, List<string>>> _ManifestParser(string jsonData) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        private string _ChooseVariant(string main, FlutterSDK.Painting.Imageprovider.ImageConfiguration config, List<string> candidates) { throw new NotImplementedException(); }
+
+
+        private string _FindNearest(SplayTreeMap<double, string> candidates, double value) { throw new NotImplementedException(); }
+
+
+        private double _ParseScale(string key) { throw new NotImplementedException(); }
+
+
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+
+
+        #endregion
+    }
 
 }

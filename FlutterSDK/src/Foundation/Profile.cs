@@ -294,11 +294,14 @@ using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
-namespace FlutterSDK.Foundation.Profile{
-internal static class ProfileDefaultClass{
-internal static void Profile(VoidCallback function){
-throw new NotImplementedException();
-}
+namespace FlutterSDK.Foundation.Profile
+{
+    internal static class ProfileDefaultClass
+    {
+        internal static void Profile(VoidCallback function)
+        {
+            throw new NotImplementedException();
+        }
 
-}
+    }
 }

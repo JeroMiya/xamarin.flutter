@@ -410,667 +410,684 @@ using FlutterSDK.Material.Drawer;
 using FlutterSDK.Material.Floatingactionbuttonlocation;
 using FlutterSDK.Material.Snackbar;
 using FlutterSDK.Material.Snackbartheme;
-namespace FlutterSDK.Material.Scaffold{
-internal static class ScaffoldDefaultClass{
-public static FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation _KDefaultFloatingActionButtonLocation = default(FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation);
-public static FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator _KDefaultFloatingActionButtonAnimator = default(FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator);
-public static FlutterSDK.Animation.Curves.Curve _StandardBottomSheetCurve = default(FlutterSDK.Animation.Curves.Curve);
-public static double _KBottomSheetDominatesPercentage = default(double);
-public static double _KMinBottomSheetScrimOpacity = default(double);
-public static double _KMaxBottomSheetScrimOpacity = default(double);
-}
-
-public class ScaffoldPrelayoutGeometry
+namespace FlutterSDK.Material.Scaffold
 {
-#region constructors
-public ScaffoldPrelayoutGeometry(Size bottomSheetSize = default(Size),double contentBottom = default(double),double contentTop = default(double),Size floatingActionButtonSize = default(Size),FlutterSDK.Painting.Edgeinsets.EdgeInsets minInsets = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets),Size scaffoldSize = default(Size),Size snackBarSize = default(Size),TextDirection textDirection = default(TextDirection))
-{
-this.BottomSheetSize = bottomSheetSize;
-this.ContentBottom = contentBottom;
-this.ContentTop = contentTop;
-this.FloatingActionButtonSize = floatingActionButtonSize;
-this.MinInsets = minInsets;
-this.ScaffoldSize = scaffoldSize;
-this.SnackBarSize = snackBarSize;
-this.TextDirection = textDirection;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual Size FloatingActionButtonSize{get;set;}
-public virtual Size BottomSheetSize{get;set;}
-public virtual double ContentBottom{get;set;}
-public virtual double ContentTop{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets MinInsets{get;set;}
-public virtual Size ScaffoldSize{get;set;}
-public virtual Size SnackBarSize{get;set;}
-public virtual TextDirection TextDirection{get;set;}
-#endregion
-
-#region methods
-#endregion
-}
-
-
-public class _TransitionSnapshotFabLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
-{
-#region constructors
-public _TransitionSnapshotFabLocation(FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation begin,FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation end,FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator animator,double progress)
-{
-this.Begin = begin;
-this.End = end;
-this.Animator = animator;
-this.Progress = progress;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation Begin{get;set;}
-public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation End{get;set;}
-public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator Animator{get;set;}
-public virtual double Progress{get;set;}
-#endregion
-
-#region methods
-
-public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry){ throw new NotImplementedException(); }
-
-
-#endregion
-}
-
-
-public class ScaffoldGeometry
-{
-#region constructors
-public ScaffoldGeometry(double bottomNavigationBarTop = default(double),FlutterBinding.UI.Rect floatingActionButtonArea = default(FlutterBinding.UI.Rect))
-{
-this.BottomNavigationBarTop = bottomNavigationBarTop;
-this.FloatingActionButtonArea = floatingActionButtonArea;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual double BottomNavigationBarTop{get;set;}
-public virtual FlutterBinding.UI.Rect FloatingActionButtonArea{get;set;}
-#endregion
-
-#region methods
-
-private FlutterSDK.Material.Scaffold.ScaffoldGeometry _ScaleFloatingActionButton(double scaleFactor){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Material.Scaffold.ScaffoldGeometry CopyWith(double bottomNavigationBarTop = default(double),FlutterBinding.UI.Rect floatingActionButtonArea = default(FlutterBinding.UI.Rect)){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _ScaffoldGeometryNotifier : FlutterSDK.Foundation.Changenotifier.ChangeNotifier,IValueListenable<FlutterSDK.Material.Scaffold.ScaffoldGeometry>
-{
-#region constructors
-public _ScaffoldGeometryNotifier(FlutterSDK.Material.Scaffold.ScaffoldGeometry geometry,FlutterSDK.Widgets.Framework.BuildContext context)
-: base()
-{
-this.Geometry = geometry;
-this.Context = context;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Framework.BuildContext Context{get;set;}
-public virtual double FloatingActionButtonScale{get;set;}
-public virtual FlutterSDK.Material.Scaffold.ScaffoldGeometry Geometry{get;set;}
-public virtual FlutterSDK.Material.Scaffold.ScaffoldGeometry Value{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-private void _UpdateWith(double bottomNavigationBarTop = default(double),FlutterBinding.UI.Rect floatingActionButtonArea = default(FlutterBinding.UI.Rect),double floatingActionButtonScale = default(double)){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _BodyBoxConstraints : FlutterSDK.Rendering.Box.BoxConstraints
-{
-#region constructors
-public _BodyBoxConstraints(double minWidth = 0.0,double maxWidth = default(double),double minHeight = 0.0,double maxHeight = default(double),double bottomWidgetsHeight = default(double),double appBarHeight = default(double))
-: base(minWidth:minWidth,maxWidth:maxWidth,minHeight:minHeight,maxHeight:maxHeight)
-{
-this.BottomWidgetsHeight = bottomWidgetsHeight;
-this.AppBarHeight = appBarHeight;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual double BottomWidgetsHeight{get;set;}
-public virtual double AppBarHeight{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _BodyBuilder : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public _BodyBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),bool extendBody = default(bool),bool extendBodyBehindAppBar = default(bool),FlutterSDK.Widgets.Framework.Widget body = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key)
-{
-this.ExtendBody = extendBody;
-this.ExtendBodyBehindAppBar = extendBodyBehindAppBar;
-this.Body = body;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Body{get;set;}
-public virtual bool ExtendBody{get;set;}
-public virtual bool ExtendBodyBehindAppBar{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _ScaffoldLayout : FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate
-{
-#region constructors
-public _ScaffoldLayout(FlutterSDK.Painting.Edgeinsets.EdgeInsets minInsets = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets),TextDirection textDirection = default(TextDirection),FlutterSDK.Material.Scaffold._ScaffoldGeometryNotifier geometryNotifier = default(FlutterSDK.Material.Scaffold._ScaffoldGeometryNotifier),FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation previousFloatingActionButtonLocation = default(FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation),FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation currentFloatingActionButtonLocation = default(FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation),double floatingActionButtonMoveAnimationProgress = default(double),FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator floatingActionButtonMotionAnimator = default(FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator),bool isSnackBarFloating = default(bool),bool extendBody = default(bool),bool extendBodyBehindAppBar = default(bool))
-: base()
-{
-this.MinInsets = minInsets;
-this.TextDirection = textDirection;
-this.GeometryNotifier = geometryNotifier;
-this.PreviousFloatingActionButtonLocation = previousFloatingActionButtonLocation;
-this.CurrentFloatingActionButtonLocation = currentFloatingActionButtonLocation;
-this.FloatingActionButtonMoveAnimationProgress = floatingActionButtonMoveAnimationProgress;
-this.FloatingActionButtonMotionAnimator = floatingActionButtonMotionAnimator;
-this.IsSnackBarFloating = isSnackBarFloating;
-this.ExtendBody = extendBody;
-this.ExtendBodyBehindAppBar = extendBodyBehindAppBar;throw new NotImplementedException(); }
-#endregion
+    internal static class ScaffoldDefaultClass
+    {
+        public static FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation _KDefaultFloatingActionButtonLocation = default(FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation);
+        public static FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator _KDefaultFloatingActionButtonAnimator = default(FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator);
+        public static FlutterSDK.Animation.Curves.Curve _StandardBottomSheetCurve = default(FlutterSDK.Animation.Curves.Curve);
+        public static double _KBottomSheetDominatesPercentage = default(double);
+        public static double _KMinBottomSheetScrimOpacity = default(double);
+        public static double _KMaxBottomSheetScrimOpacity = default(double);
+    }
+
+    public class ScaffoldPrelayoutGeometry
+    {
+        #region constructors
+        public ScaffoldPrelayoutGeometry(Size bottomSheetSize = default(Size), double contentBottom = default(double), double contentTop = default(double), Size floatingActionButtonSize = default(Size), FlutterSDK.Painting.Edgeinsets.EdgeInsets minInsets = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), Size scaffoldSize = default(Size), Size snackBarSize = default(Size), TextDirection textDirection = default(TextDirection))
+        {
+            this.BottomSheetSize = bottomSheetSize;
+            this.ContentBottom = contentBottom;
+            this.ContentTop = contentTop;
+            this.FloatingActionButtonSize = floatingActionButtonSize;
+            this.MinInsets = minInsets;
+            this.ScaffoldSize = scaffoldSize;
+            this.SnackBarSize = snackBarSize;
+            this.TextDirection = textDirection; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual Size FloatingActionButtonSize { get; set; }
+        public virtual Size BottomSheetSize { get; set; }
+        public virtual double ContentBottom { get; set; }
+        public virtual double ContentTop { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets MinInsets { get; set; }
+        public virtual Size ScaffoldSize { get; set; }
+        public virtual Size SnackBarSize { get; set; }
+        public virtual TextDirection TextDirection { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    public class _TransitionSnapshotFabLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
+    {
+        #region constructors
+        public _TransitionSnapshotFabLocation(FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation begin, FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation end, FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator animator, double progress)
+        {
+            this.Begin = begin;
+            this.End = end;
+            this.Animator = animator;
+            this.Progress = progress; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation Begin { get; set; }
+        public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation End { get; set; }
+        public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator Animator { get; set; }
+        public virtual double Progress { get; set; }
+        #endregion
+
+        #region methods
+
+        public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry) { throw new NotImplementedException(); }
+
+
+        #endregion
+    }
+
+
+    public class ScaffoldGeometry
+    {
+        #region constructors
+        public ScaffoldGeometry(double bottomNavigationBarTop = default(double), FlutterBinding.UI.Rect floatingActionButtonArea = default(FlutterBinding.UI.Rect))
+        {
+            this.BottomNavigationBarTop = bottomNavigationBarTop;
+            this.FloatingActionButtonArea = floatingActionButtonArea; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual double BottomNavigationBarTop { get; set; }
+        public virtual FlutterBinding.UI.Rect FloatingActionButtonArea { get; set; }
+        #endregion
+
+        #region methods
+
+        private FlutterSDK.Material.Scaffold.ScaffoldGeometry _ScaleFloatingActionButton(double scaleFactor) { throw new NotImplementedException(); }
+
+
+        public virtual FlutterSDK.Material.Scaffold.ScaffoldGeometry CopyWith(double bottomNavigationBarTop = default(double), FlutterBinding.UI.Rect floatingActionButtonArea = default(FlutterBinding.UI.Rect)) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class _ScaffoldGeometryNotifier : FlutterSDK.Foundation.Changenotifier.ChangeNotifier, IValueListenable<FlutterSDK.Material.Scaffold.ScaffoldGeometry>
+    {
+        #region constructors
+        public _ScaffoldGeometryNotifier(FlutterSDK.Material.Scaffold.ScaffoldGeometry geometry, FlutterSDK.Widgets.Framework.BuildContext context)
+        : base()
+        {
+            this.Geometry = geometry;
+            this.Context = context; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.BuildContext Context { get; set; }
+        public virtual double FloatingActionButtonScale { get; set; }
+        public virtual FlutterSDK.Material.Scaffold.ScaffoldGeometry Geometry { get; set; }
+        public virtual FlutterSDK.Material.Scaffold.ScaffoldGeometry Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        private void _UpdateWith(double bottomNavigationBarTop = default(double), FlutterBinding.UI.Rect floatingActionButtonArea = default(FlutterBinding.UI.Rect), double floatingActionButtonScale = default(double)) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class _BodyBoxConstraints : FlutterSDK.Rendering.Box.BoxConstraints
+    {
+        #region constructors
+        public _BodyBoxConstraints(double minWidth = 0.0, double maxWidth = default(double), double minHeight = 0.0, double maxHeight = default(double), double bottomWidgetsHeight = default(double), double appBarHeight = default(double))
+        : base(minWidth: minWidth, maxWidth: maxWidth, minHeight: minHeight, maxHeight: maxHeight)
+        {
+            this.BottomWidgetsHeight = bottomWidgetsHeight;
+            this.AppBarHeight = appBarHeight; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual double BottomWidgetsHeight { get; set; }
+        public virtual double AppBarHeight { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class _BodyBuilder : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public _BodyBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool extendBody = default(bool), bool extendBodyBehindAppBar = default(bool), FlutterSDK.Widgets.Framework.Widget body = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.ExtendBody = extendBody;
+            this.ExtendBodyBehindAppBar = extendBodyBehindAppBar;
+            this.Body = body; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Body { get; set; }
+        public virtual bool ExtendBody { get; set; }
+        public virtual bool ExtendBodyBehindAppBar { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class _ScaffoldLayout : FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate
+    {
+        #region constructors
+        public _ScaffoldLayout(FlutterSDK.Painting.Edgeinsets.EdgeInsets minInsets = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), TextDirection textDirection = default(TextDirection), FlutterSDK.Material.Scaffold._ScaffoldGeometryNotifier geometryNotifier = default(FlutterSDK.Material.Scaffold._ScaffoldGeometryNotifier), FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation previousFloatingActionButtonLocation = default(FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation), FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation currentFloatingActionButtonLocation = default(FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation), double floatingActionButtonMoveAnimationProgress = default(double), FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator floatingActionButtonMotionAnimator = default(FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator), bool isSnackBarFloating = default(bool), bool extendBody = default(bool), bool extendBodyBehindAppBar = default(bool))
+        : base()
+        {
+            this.MinInsets = minInsets;
+            this.TextDirection = textDirection;
+            this.GeometryNotifier = geometryNotifier;
+            this.PreviousFloatingActionButtonLocation = previousFloatingActionButtonLocation;
+            this.CurrentFloatingActionButtonLocation = currentFloatingActionButtonLocation;
+            this.FloatingActionButtonMoveAnimationProgress = floatingActionButtonMoveAnimationProgress;
+            this.FloatingActionButtonMotionAnimator = floatingActionButtonMotionAnimator;
+            this.IsSnackBarFloating = isSnackBarFloating;
+            this.ExtendBody = extendBody;
+            this.ExtendBodyBehindAppBar = extendBodyBehindAppBar; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual bool ExtendBody{get;set;}
-public virtual bool ExtendBodyBehindAppBar{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets MinInsets{get;set;}
-public virtual TextDirection TextDirection{get;set;}
-public virtual FlutterSDK.Material.Scaffold._ScaffoldGeometryNotifier GeometryNotifier{get;set;}
-public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation PreviousFloatingActionButtonLocation{get;set;}
-public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation CurrentFloatingActionButtonLocation{get;set;}
-public virtual double FloatingActionButtonMoveAnimationProgress{get;set;}
-public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator FloatingActionButtonMotionAnimator{get;set;}
-public virtual bool IsSnackBarFloating{get;set;}
-#endregion
+        #region fields
+        public virtual bool ExtendBody { get; set; }
+        public virtual bool ExtendBodyBehindAppBar { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets MinInsets { get; set; }
+        public virtual TextDirection TextDirection { get; set; }
+        public virtual FlutterSDK.Material.Scaffold._ScaffoldGeometryNotifier GeometryNotifier { get; set; }
+        public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation PreviousFloatingActionButtonLocation { get; set; }
+        public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation CurrentFloatingActionButtonLocation { get; set; }
+        public virtual double FloatingActionButtonMoveAnimationProgress { get; set; }
+        public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator FloatingActionButtonMotionAnimator { get; set; }
+        public virtual bool IsSnackBarFloating { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new void PerformLayout(Size size){ throw new NotImplementedException(); }
+        public new void PerformLayout(Size size) { throw new NotImplementedException(); }
 
 
-public new bool ShouldRelayout(FlutterSDK.Material.Scaffold._ScaffoldLayout oldDelegate){ throw new NotImplementedException(); }
-public new bool ShouldRelayout(FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate oldDelegate){ throw new NotImplementedException(); }
+        public new bool ShouldRelayout(FlutterSDK.Material.Scaffold._ScaffoldLayout oldDelegate) { throw new NotImplementedException(); }
+        public new bool ShouldRelayout(FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate oldDelegate) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _FloatingActionButtonTransition : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public _FloatingActionButtonTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Animation.Animation.Animation<double> fabMoveAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator fabMotionAnimator = default(FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator),FlutterSDK.Material.Scaffold._ScaffoldGeometryNotifier geometryNotifier = default(FlutterSDK.Material.Scaffold._ScaffoldGeometryNotifier),FlutterSDK.Animation.Animationcontroller.AnimationController currentController = default(FlutterSDK.Animation.Animationcontroller.AnimationController))
-: base(key:key)
-{
-this.Child = child;
-this.FabMoveAnimation = fabMoveAnimation;
-this.FabMotionAnimator = fabMotionAnimator;
-this.GeometryNotifier = geometryNotifier;
-this.CurrentController = currentController;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-public virtual FlutterSDK.Animation.Animation.Animation<double> FabMoveAnimation{get;set;}
-public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator FabMotionAnimator{get;set;}
-public virtual FlutterSDK.Material.Scaffold._ScaffoldGeometryNotifier GeometryNotifier{get;set;}
-public virtual FlutterSDK.Animation.Animationcontroller.AnimationController CurrentController{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Material.Scaffold._FloatingActionButtonTransitionState CreateState(){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _FloatingActionButtonTransitionState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Scaffold._FloatingActionButtonTransition>,ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-#region constructors
-public _FloatingActionButtonTransitionState()
-{ }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _PreviousController{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _PreviousScaleAnimation{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _PreviousRotationAnimation{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _CurrentScaleAnimation{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _ExtendedCurrentScaleAnimation{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _CurrentRotationAnimation{get;set;}
-internal virtual FlutterSDK.Widgets.Framework.Widget _PreviousChild{get;set;}
-internal virtual FlutterSDK.Animation.Tween.Animatable<double> _EntranceTurnTween{get;set;}
-#endregion
+    public class _FloatingActionButtonTransition : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public _FloatingActionButtonTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Animation.Animation.Animation<double> fabMoveAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator fabMotionAnimator = default(FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator), FlutterSDK.Material.Scaffold._ScaffoldGeometryNotifier geometryNotifier = default(FlutterSDK.Material.Scaffold._ScaffoldGeometryNotifier), FlutterSDK.Animation.Animationcontroller.AnimationController currentController = default(FlutterSDK.Animation.Animationcontroller.AnimationController))
+        : base(key: key)
+        {
+            this.Child = child;
+            this.FabMoveAnimation = fabMoveAnimation;
+            this.FabMotionAnimator = fabMotionAnimator;
+            this.GeometryNotifier = geometryNotifier;
+            this.CurrentController = currentController; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual FlutterSDK.Animation.Animation.Animation<double> FabMoveAnimation { get; set; }
+        public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator FabMotionAnimator { get; set; }
+        public virtual FlutterSDK.Material.Scaffold._ScaffoldGeometryNotifier GeometryNotifier { get; set; }
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController CurrentController { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Material.Scaffold._FloatingActionButtonTransitionState CreateState() { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class _FloatingActionButtonTransitionState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Scaffold._FloatingActionButtonTransition>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _FloatingActionButtonTransitionState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _PreviousController { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _PreviousScaleAnimation { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _PreviousRotationAnimation { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _CurrentScaleAnimation { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _ExtendedCurrentScaleAnimation { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _CurrentRotationAnimation { get; set; }
+        internal virtual FlutterSDK.Widgets.Framework.Widget _PreviousChild { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.Animatable<double> _EntranceTurnTween { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
+
+
+        public new void Dispose() { throw new NotImplementedException(); }
+
+
+        public new void DidUpdateWidget(FlutterSDK.Material.Scaffold._FloatingActionButtonTransition oldWidget) { throw new NotImplementedException(); }
+
+
+        private void _UpdateAnimations() { throw new NotImplementedException(); }
+
+
+        private void _HandlePreviousAnimationStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status) { throw new NotImplementedException(); }
+
+
+        private bool _IsExtendedFloatingActionButton(FlutterSDK.Widgets.Framework.Widget widget) { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+
+        private void _OnProgressChanged() { throw new NotImplementedException(); }
+
+
+        private void _UpdateGeometryScale(double scale) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class Scaffold : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public Scaffold(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget appBar = default(FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget), FlutterSDK.Widgets.Framework.Widget body = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget floatingActionButton = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation floatingActionButtonLocation = default(FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation), FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator floatingActionButtonAnimator = default(FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator), List<FlutterSDK.Widgets.Framework.Widget> persistentFooterButtons = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Framework.Widget drawer = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget endDrawer = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget bottomNavigationBar = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget bottomSheet = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), bool resizeToAvoidBottomPadding = default(bool), bool resizeToAvoidBottomInset = default(bool), bool primary = true, FlutterSDK.Gestures.Recognizer.DragStartBehavior drawerDragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), bool extendBody = false, bool extendBodyBehindAppBar = false, FlutterBinding.UI.Color drawerScrimColor = default(FlutterBinding.UI.Color), double drawerEdgeDragWidth = default(double), bool drawerEnableOpenDragGesture = true, bool endDrawerEnableOpenDragGesture = true)
+        : base(key: key)
+        {
+            this.AppBar = appBar;
+            this.Body = body;
+            this.FloatingActionButton = floatingActionButton;
+            this.FloatingActionButtonLocation = floatingActionButtonLocation;
+            this.FloatingActionButtonAnimator = floatingActionButtonAnimator;
+            this.PersistentFooterButtons = persistentFooterButtons;
+            this.Drawer = drawer;
+            this.EndDrawer = endDrawer;
+            this.BottomNavigationBar = bottomNavigationBar;
+            this.BottomSheet = bottomSheet;
+            this.BackgroundColor = backgroundColor;
+            this.ResizeToAvoidBottomPadding = resizeToAvoidBottomPadding;
+            this.ResizeToAvoidBottomInset = resizeToAvoidBottomInset;
+            this.Primary = primary;
+            this.DrawerDragStartBehavior = drawerDragStartBehavior;
+            this.ExtendBody = extendBody;
+            this.ExtendBodyBehindAppBar = extendBodyBehindAppBar;
+            this.DrawerScrimColor = drawerScrimColor;
+            this.DrawerEdgeDragWidth = drawerEdgeDragWidth;
+            this.DrawerEnableOpenDragGesture = drawerEnableOpenDragGesture;
+            this.EndDrawerEnableOpenDragGesture = endDrawerEnableOpenDragGesture; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual bool ExtendBody { get; set; }
+        public virtual bool ExtendBodyBehindAppBar { get; set; }
+        public virtual FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget AppBar { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Body { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget FloatingActionButton { get; set; }
+        public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation FloatingActionButtonLocation { get; set; }
+        public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator FloatingActionButtonAnimator { get; set; }
+        public virtual List<FlutterSDK.Widgets.Framework.Widget> PersistentFooterButtons { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Drawer { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget EndDrawer { get; set; }
+        public virtual FlutterBinding.UI.Color DrawerScrimColor { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget BottomNavigationBar { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget BottomSheet { get; set; }
+        public virtual bool ResizeToAvoidBottomPadding { get; set; }
+        public virtual bool ResizeToAvoidBottomInset { get; set; }
+        public virtual bool Primary { get; set; }
+        public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DrawerDragStartBehavior { get; set; }
+        public virtual double DrawerEdgeDragWidth { get; set; }
+        public virtual bool DrawerEnableOpenDragGesture { get; set; }
+        public virtual bool EndDrawerEnableOpenDragGesture { get; set; }
+        public virtual bool ShouldSnackBarIgnoreFABRect { get; set; }
+        #endregion
 
-#region methods
-
-public new void InitState(){ throw new NotImplementedException(); }
+        #region methods
 
+        public virtual FlutterSDK.Material.Scaffold.ScaffoldState Of(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false) { throw new NotImplementedException(); }
 
-public new void Dispose(){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Foundation.Changenotifier.ValueListenable<FlutterSDK.Material.Scaffold.ScaffoldGeometry> GeometryOf(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-public new void DidUpdateWidget(FlutterSDK.Material.Scaffold._FloatingActionButtonTransition oldWidget){ throw new NotImplementedException(); }
-
 
-private void _UpdateAnimations(){ throw new NotImplementedException(); }
-
-
-private void _HandlePreviousAnimationStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status){ throw new NotImplementedException(); }
-
-
-private bool _IsExtendedFloatingActionButton(FlutterSDK.Widgets.Framework.Widget widget){ throw new NotImplementedException(); }
-
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-
-private void _OnProgressChanged(){ throw new NotImplementedException(); }
-
-
-private void _UpdateGeometryScale(double scale){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class Scaffold : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public Scaffold(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget appBar = default(FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget),FlutterSDK.Widgets.Framework.Widget body = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.Widget floatingActionButton = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation floatingActionButtonLocation = default(FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation),FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator floatingActionButtonAnimator = default(FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator),List<FlutterSDK.Widgets.Framework.Widget> persistentFooterButtons = default(List<FlutterSDK.Widgets.Framework.Widget>),FlutterSDK.Widgets.Framework.Widget drawer = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.Widget endDrawer = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.Widget bottomNavigationBar = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.Widget bottomSheet = default(FlutterSDK.Widgets.Framework.Widget),FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),bool resizeToAvoidBottomPadding = default(bool),bool resizeToAvoidBottomInset = default(bool),bool primary = true,FlutterSDK.Gestures.Recognizer.DragStartBehavior drawerDragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior),bool extendBody = false,bool extendBodyBehindAppBar = false,FlutterBinding.UI.Color drawerScrimColor = default(FlutterBinding.UI.Color),double drawerEdgeDragWidth = default(double),bool drawerEnableOpenDragGesture = true,bool endDrawerEnableOpenDragGesture = true)
-: base(key:key)
-{
-this.AppBar = appBar;
-this.Body = body;
-this.FloatingActionButton = floatingActionButton;
-this.FloatingActionButtonLocation = floatingActionButtonLocation;
-this.FloatingActionButtonAnimator = floatingActionButtonAnimator;
-this.PersistentFooterButtons = persistentFooterButtons;
-this.Drawer = drawer;
-this.EndDrawer = endDrawer;
-this.BottomNavigationBar = bottomNavigationBar;
-this.BottomSheet = bottomSheet;
-this.BackgroundColor = backgroundColor;
-this.ResizeToAvoidBottomPadding = resizeToAvoidBottomPadding;
-this.ResizeToAvoidBottomInset = resizeToAvoidBottomInset;
-this.Primary = primary;
-this.DrawerDragStartBehavior = drawerDragStartBehavior;
-this.ExtendBody = extendBody;
-this.ExtendBodyBehindAppBar = extendBodyBehindAppBar;
-this.DrawerScrimColor = drawerScrimColor;
-this.DrawerEdgeDragWidth = drawerEdgeDragWidth;
-this.DrawerEnableOpenDragGesture = drawerEnableOpenDragGesture;
-this.EndDrawerEnableOpenDragGesture = endDrawerEnableOpenDragGesture;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual bool ExtendBody{get;set;}
-public virtual bool ExtendBodyBehindAppBar{get;set;}
-public virtual FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget AppBar{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Body{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget FloatingActionButton{get;set;}
-public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation FloatingActionButtonLocation{get;set;}
-public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator FloatingActionButtonAnimator{get;set;}
-public virtual List<FlutterSDK.Widgets.Framework.Widget> PersistentFooterButtons{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Drawer{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget EndDrawer{get;set;}
-public virtual FlutterBinding.UI.Color DrawerScrimColor{get;set;}
-public virtual FlutterBinding.UI.Color BackgroundColor{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget BottomNavigationBar{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget BottomSheet{get;set;}
-public virtual bool ResizeToAvoidBottomPadding{get;set;}
-public virtual bool ResizeToAvoidBottomInset{get;set;}
-public virtual bool Primary{get;set;}
-public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DrawerDragStartBehavior{get;set;}
-public virtual double DrawerEdgeDragWidth{get;set;}
-public virtual bool DrawerEnableOpenDragGesture{get;set;}
-public virtual bool EndDrawerEnableOpenDragGesture{get;set;}
-public virtual bool ShouldSnackBarIgnoreFABRect{get;set;}
-#endregion
+        public virtual bool HasDrawer(FlutterSDK.Widgets.Framework.BuildContext context, bool registerForUpdates = true) { throw new NotImplementedException(); }
 
-#region methods
 
-public virtual FlutterSDK.Material.Scaffold.ScaffoldState Of(FlutterSDK.Widgets.Framework.BuildContext context,bool nullOk = false){ throw new NotImplementedException(); }
+        public new FlutterSDK.Material.Scaffold.ScaffoldState CreateState() { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public virtual FlutterSDK.Foundation.Changenotifier.ValueListenable<FlutterSDK.Material.Scaffold.ScaffoldGeometry> GeometryOf(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
 
+    public class ScaffoldState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Scaffold.Scaffold>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public ScaffoldState()
+        { }
+        #endregion
 
-public virtual bool HasDrawer(FlutterSDK.Widgets.Framework.BuildContext context,bool registerForUpdates = true){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Material.Drawer.DrawerControllerState> _DrawerKey { get; set; }
+        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Material.Drawer.DrawerControllerState> _EndDrawerKey { get; set; }
+        internal virtual double _AppBarMaxHeight { get; set; }
+        internal virtual bool _DrawerOpened { get; set; }
+        internal virtual bool _EndDrawerOpened { get; set; }
+        internal virtual Queue<FlutterSDK.Material.Scaffold.ScaffoldFeatureController<FlutterSDK.Material.Snackbar.SnackBar, FlutterSDK.Material.Snackbar.SnackBarClosedReason>> _SnackBars { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _SnackBarController { get; set; }
+        internal virtual Timer _SnackBarTimer { get; set; }
+        internal virtual bool _AccessibleNavigation { get; set; }
+        internal virtual List<FlutterSDK.Material.Scaffold._StandardBottomSheet> _DismissedBottomSheets { get; set; }
+        internal virtual FlutterSDK.Material.Scaffold.PersistentBottomSheetController<object> _CurrentBottomSheet { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _FloatingActionButtonMoveController { get; set; }
+        internal virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator _FloatingActionButtonAnimator { get; set; }
+        internal virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation _PreviousFloatingActionButtonLocation { get; set; }
+        internal virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation _FloatingActionButtonLocation { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _FloatingActionButtonVisibilityController { get; set; }
+        internal virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController _PrimaryScrollController { get; set; }
+        internal virtual FlutterSDK.Material.Scaffold._ScaffoldGeometryNotifier _GeometryNotifier { get; set; }
+        internal virtual bool _ShowBodyScrim { get; set; }
+        internal virtual FlutterBinding.UI.Color _BodyScrimColor { get; set; }
+        public virtual bool HasAppBar { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool HasDrawer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool HasEndDrawer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool HasFloatingActionButton { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double AppBarMaxHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsDrawerOpen { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsEndDrawerOpen { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _FloatingActionButtonVisibilityValue { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual bool _ResizeToAvoidBottomInset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public new FlutterSDK.Material.Scaffold.ScaffoldState CreateState(){ throw new NotImplementedException(); }
+        private void _DrawerOpenedCallback(bool isOpened) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        private void _EndDrawerOpenedCallback(bool isOpened) { throw new NotImplementedException(); }
 
-public class ScaffoldState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Scaffold.Scaffold>,ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-#region constructors
-public ScaffoldState()
-{ }
-#endregion
 
-#region fields
-internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Material.Drawer.DrawerControllerState> _DrawerKey{get;set;}
-internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Material.Drawer.DrawerControllerState> _EndDrawerKey{get;set;}
-internal virtual double _AppBarMaxHeight{get;set;}
-internal virtual bool _DrawerOpened{get;set;}
-internal virtual bool _EndDrawerOpened{get;set;}
-internal virtual Queue<FlutterSDK.Material.Scaffold.ScaffoldFeatureController<FlutterSDK.Material.Snackbar.SnackBar,FlutterSDK.Material.Snackbar.SnackBarClosedReason>> _SnackBars{get;set;}
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _SnackBarController{get;set;}
-internal virtual Timer _SnackBarTimer{get;set;}
-internal virtual bool _AccessibleNavigation{get;set;}
-internal virtual List<FlutterSDK.Material.Scaffold._StandardBottomSheet> _DismissedBottomSheets{get;set;}
-internal virtual FlutterSDK.Material.Scaffold.PersistentBottomSheetController<object> _CurrentBottomSheet{get;set;}
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _FloatingActionButtonMoveController{get;set;}
-internal virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator _FloatingActionButtonAnimator{get;set;}
-internal virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation _PreviousFloatingActionButtonLocation{get;set;}
-internal virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation _FloatingActionButtonLocation{get;set;}
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _FloatingActionButtonVisibilityController{get;set;}
-internal virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController _PrimaryScrollController{get;set;}
-internal virtual FlutterSDK.Material.Scaffold._ScaffoldGeometryNotifier _GeometryNotifier{get;set;}
-internal virtual bool _ShowBodyScrim{get;set;}
-internal virtual FlutterBinding.UI.Color _BodyScrimColor{get;set;}
-public virtual bool HasAppBar{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool HasDrawer{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool HasEndDrawer{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool HasFloatingActionButton{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double AppBarMaxHeight{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsDrawerOpen{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsEndDrawerOpen{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _FloatingActionButtonVisibilityValue{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-internal virtual bool _ResizeToAvoidBottomInset{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        public virtual void OpenDrawer() { throw new NotImplementedException(); }
 
-#region methods
 
-private void _DrawerOpenedCallback(bool isOpened){ throw new NotImplementedException(); }
+        public virtual void OpenEndDrawer() { throw new NotImplementedException(); }
 
 
-private void _EndDrawerOpenedCallback(bool isOpened){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Material.Scaffold.ScaffoldFeatureController<FlutterSDK.Material.Snackbar.SnackBar, FlutterSDK.Material.Snackbar.SnackBarClosedReason> ShowSnackBar(FlutterSDK.Material.Snackbar.SnackBar snackbar) { throw new NotImplementedException(); }
 
 
-public virtual void OpenDrawer(){ throw new NotImplementedException(); }
+        private void _HandleSnackBarStatusChange(FlutterSDK.Animation.Animation.AnimationStatus status) { throw new NotImplementedException(); }
 
 
-public virtual void OpenEndDrawer(){ throw new NotImplementedException(); }
+        public virtual void RemoveCurrentSnackBar(FlutterSDK.Material.Snackbar.SnackBarClosedReason reason = default(FlutterSDK.Material.Snackbar.SnackBarClosedReason)) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Material.Scaffold.ScaffoldFeatureController<FlutterSDK.Material.Snackbar.SnackBar,FlutterSDK.Material.Snackbar.SnackBarClosedReason> ShowSnackBar(FlutterSDK.Material.Snackbar.SnackBar snackbar){ throw new NotImplementedException(); }
+        public virtual void HideCurrentSnackBar(FlutterSDK.Material.Snackbar.SnackBarClosedReason reason = default(FlutterSDK.Material.Snackbar.SnackBarClosedReason)) { throw new NotImplementedException(); }
 
 
-private void _HandleSnackBarStatusChange(FlutterSDK.Animation.Animation.AnimationStatus status){ throw new NotImplementedException(); }
+        private void _MaybeBuildPersistentBottomSheet() { throw new NotImplementedException(); }
 
 
-public virtual void RemoveCurrentSnackBar(FlutterSDK.Material.Snackbar.SnackBarClosedReason reason = default(FlutterSDK.Material.Snackbar.SnackBarClosedReason)){ throw new NotImplementedException(); }
+        private void _CloseCurrentBottomSheet() { throw new NotImplementedException(); }
 
 
-public virtual void HideCurrentSnackBar(FlutterSDK.Material.Snackbar.SnackBarClosedReason reason = default(FlutterSDK.Material.Snackbar.SnackBarClosedReason)){ throw new NotImplementedException(); }
+        private PersistentBottomSheetController<T> _BuildBottomSheet<T>(FlutterSDK.Widgets.Framework.WidgetBuilder builder, bool isPersistent, FlutterSDK.Animation.Animationcontroller.AnimationController animationController = default(FlutterSDK.Animation.Animationcontroller.AnimationController), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip)) { throw new NotImplementedException(); }
 
 
-private void _MaybeBuildPersistentBottomSheet(){ throw new NotImplementedException(); }
+        public virtual PersistentBottomSheetController<T> ShowBottomSheet<T>(FlutterSDK.Widgets.Framework.WidgetBuilder builder, FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip)) { throw new NotImplementedException(); }
 
 
-private void _CloseCurrentBottomSheet(){ throw new NotImplementedException(); }
+        private FlutterSDK.Scheduler.Ticker.TickerFuture _ShowFloatingActionButton() { throw new NotImplementedException(); }
 
 
-private PersistentBottomSheetController<T> _BuildBottomSheet<T>(FlutterSDK.Widgets.Framework.WidgetBuilder builder,bool isPersistent,FlutterSDK.Animation.Animationcontroller.AnimationController animationController = default(FlutterSDK.Animation.Animationcontroller.AnimationController),FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),double elevation = default(double),FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder),FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip)){ throw new NotImplementedException(); }
+        private void _MoveFloatingActionButton(FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation newLocation) { throw new NotImplementedException(); }
 
 
-public virtual PersistentBottomSheetController<T> ShowBottomSheet<T>(FlutterSDK.Widgets.Framework.WidgetBuilder builder,FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),double elevation = default(double),FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder),FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip)){ throw new NotImplementedException(); }
+        private void _HandleStatusBarTap() { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Scheduler.Ticker.TickerFuture _ShowFloatingActionButton(){ throw new NotImplementedException(); }
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-private void _MoveFloatingActionButton(FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation newLocation){ throw new NotImplementedException(); }
+        public new void DidUpdateWidget(FlutterSDK.Material.Scaffold.Scaffold oldWidget) { throw new NotImplementedException(); }
 
 
-private void _HandleStatusBarTap(){ throw new NotImplementedException(); }
+        public new void DidChangeDependencies() { throw new NotImplementedException(); }
 
 
-public new void InitState(){ throw new NotImplementedException(); }
+        public new void Dispose() { throw new NotImplementedException(); }
 
 
-public new void DidUpdateWidget(FlutterSDK.Material.Scaffold.Scaffold oldWidget){ throw new NotImplementedException(); }
+        private void _AddIfNonNull(List<FlutterSDK.Widgets.Basic.LayoutId> children, FlutterSDK.Widgets.Framework.Widget child, @Object childId, bool removeLeftPadding = default(bool), bool removeTopPadding = default(bool), bool removeRightPadding = default(bool), bool removeBottomPadding = default(bool), bool removeBottomInset = false, bool maintainBottomViewPadding = false) { throw new NotImplementedException(); }
 
 
-public new void DidChangeDependencies(){ throw new NotImplementedException(); }
+        private void _BuildEndDrawer(List<FlutterSDK.Widgets.Basic.LayoutId> children, TextDirection textDirection) { throw new NotImplementedException(); }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+        private void _BuildDrawer(List<FlutterSDK.Widgets.Basic.LayoutId> children, TextDirection textDirection) { throw new NotImplementedException(); }
 
 
-private void _AddIfNonNull(List<FlutterSDK.Widgets.Basic.LayoutId> children,FlutterSDK.Widgets.Framework.Widget child,@Object childId,bool removeLeftPadding = default(bool),bool removeTopPadding = default(bool),bool removeRightPadding = default(bool),bool removeBottomPadding = default(bool),bool removeBottomInset = false,bool maintainBottomViewPadding = false){ throw new NotImplementedException(); }
+        public virtual void ShowBodyScrim(bool value, double opacity) { throw new NotImplementedException(); }
 
 
-private void _BuildEndDrawer(List<FlutterSDK.Widgets.Basic.LayoutId> children,TextDirection textDirection){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-private void _BuildDrawer(List<FlutterSDK.Widgets.Basic.LayoutId> children,TextDirection textDirection){ throw new NotImplementedException(); }
 
+    public class ScaffoldFeatureController<T, U>
+    {
+        #region constructors
+        internal ScaffoldFeatureController(T _widget, Completer<U> _completer, VoidCallback close, FlutterSDK.Widgets.Framework.StateSetter setState)
+        {
+            this._Widget = _widget;
+            this._Completer = _completer;
+            this.Close = close;
+            this.SetState = setState; throw new NotImplementedException();
+        }
+        #endregion
 
-public virtual void ShowBodyScrim(bool value,double opacity){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual T _Widget { get; set; }
+        internal virtual Completer<U> _Completer { get; set; }
+        public virtual VoidCallback Close { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.StateSetter SetState { get; set; }
+        public virtual Future<U> Closed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
+        #endregion
+    }
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
 
-#endregion
-}
+    public class _BottomSheetSuspendedCurve : FlutterSDK.Animation.Curves.ParametricCurve<double>
+    {
+        #region constructors
+        public _BottomSheetSuspendedCurve(double startingPoint, FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
+        : base()
+        {
+            this.StartingPoint = startingPoint;
+            this.Curve = curve; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual double StartingPoint { get; set; }
+        public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
+        #endregion
 
-public class ScaffoldFeatureController<T,U>
-{
-#region constructors
-internal ScaffoldFeatureController(T _widget,Completer<U> _completer,VoidCallback close,FlutterSDK.Widgets.Framework.StateSetter setState)
-{
-this._Widget = _widget;
-this._Completer = _completer;
-this.Close = close;
-this.SetState = setState;throw new NotImplementedException(); }
-#endregion
+        #region methods
 
-#region fields
-internal virtual T _Widget{get;set;}
-internal virtual Completer<U> _Completer{get;set;}
-public virtual VoidCallback Close{get;set;}
-public virtual FlutterSDK.Widgets.Framework.StateSetter SetState{get;set;}
-public virtual Future<U> Closed{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        public new double Transform(double t) { throw new NotImplementedException(); }
 
-#region methods
-#endregion
-}
 
+        #endregion
+    }
 
-public class _BottomSheetSuspendedCurve : FlutterSDK.Animation.Curves.ParametricCurve<double>
-{
-#region constructors
-public _BottomSheetSuspendedCurve(double startingPoint,FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
-: base()
-{
-this.StartingPoint = startingPoint;
-this.Curve = curve;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual double StartingPoint{get;set;}
-public virtual FlutterSDK.Animation.Curves.Curve Curve{get;set;}
-#endregion
+    public class _StandardBottomSheet : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public _StandardBottomSheet(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animationcontroller.AnimationController animationController = default(FlutterSDK.Animation.Animationcontroller.AnimationController), bool enableDrag = true, VoidCallback onClosing = default(VoidCallback), VoidCallback onDismissed = default(VoidCallback), FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), bool isPersistent = false, FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
+        : base(key: key)
+        {
+            this.AnimationController = animationController;
+            this.EnableDrag = enableDrag;
+            this.OnClosing = onClosing;
+            this.OnDismissed = onDismissed;
+            this.Builder = builder;
+            this.IsPersistent = isPersistent;
+            this.BackgroundColor = backgroundColor;
+            this.Elevation = elevation;
+            this.Shape = shape;
+            this.ClipBehavior = clipBehavior; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController AnimationController { get; set; }
+        public virtual bool EnableDrag { get; set; }
+        public virtual VoidCallback OnClosing { get; set; }
+        public virtual VoidCallback OnDismissed { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder { get; set; }
+        public virtual bool IsPersistent { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+        #endregion
 
-public new double Transform(double t){ throw new NotImplementedException(); }
+        #region methods
 
+        public new FlutterSDK.Material.Scaffold._StandardBottomSheetState CreateState() { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _StandardBottomSheet : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public _StandardBottomSheet(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Animation.Animationcontroller.AnimationController animationController = default(FlutterSDK.Animation.Animationcontroller.AnimationController),bool enableDrag = true,VoidCallback onClosing = default(VoidCallback),VoidCallback onDismissed = default(VoidCallback),FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder),bool isPersistent = false,FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),double elevation = default(double),FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder),FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
-: base(key:key)
-{
-this.AnimationController = animationController;
-this.EnableDrag = enableDrag;
-this.OnClosing = onClosing;
-this.OnDismissed = onDismissed;
-this.Builder = builder;
-this.IsPersistent = isPersistent;
-this.BackgroundColor = backgroundColor;
-this.Elevation = elevation;
-this.Shape = shape;
-this.ClipBehavior = clipBehavior;throw new NotImplementedException(); }
-#endregion
+    public class _StandardBottomSheetState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Scaffold._StandardBottomSheet>
+    {
+        #region constructors
+        public _StandardBottomSheetState()
+        { }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Animation.Animationcontroller.AnimationController AnimationController{get;set;}
-public virtual bool EnableDrag{get;set;}
-public virtual VoidCallback OnClosing{get;set;}
-public virtual VoidCallback OnDismissed{get;set;}
-public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder{get;set;}
-public virtual bool IsPersistent{get;set;}
-public virtual FlutterBinding.UI.Color BackgroundColor{get;set;}
-public virtual double Elevation{get;set;}
-public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape{get;set;}
-public virtual FlutterBinding.UI.Clip ClipBehavior{get;set;}
-#endregion
+        #region fields
+        public virtual FlutterSDK.Animation.Curves.ParametricCurve<double> AnimationCurve { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new FlutterSDK.Material.Scaffold._StandardBottomSheetState CreateState(){ throw new NotImplementedException(); }
+        public new void InitState() { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new void DidUpdateWidget(FlutterSDK.Material.Scaffold._StandardBottomSheet oldWidget) { throw new NotImplementedException(); }
 
-public class _StandardBottomSheetState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Scaffold._StandardBottomSheet>
-{
-#region constructors
-public _StandardBottomSheetState()
-{ }
-#endregion
 
-#region fields
-public virtual FlutterSDK.Animation.Curves.ParametricCurve<double> AnimationCurve{get;set;}
-#endregion
+        public virtual Future<object> Close() { throw new NotImplementedException(); }
 
-#region methods
 
-public new void InitState(){ throw new NotImplementedException(); }
+        private void _HandleDragStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details) { throw new NotImplementedException(); }
 
 
-public new void DidUpdateWidget(FlutterSDK.Material.Scaffold._StandardBottomSheet oldWidget){ throw new NotImplementedException(); }
+        private void _HandleDragEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details, bool isClosing = default(bool)) { throw new NotImplementedException(); }
 
 
-public virtual Future<object> Close(){ throw new NotImplementedException(); }
+        private void _HandleStatusChange(FlutterSDK.Animation.Animation.AnimationStatus status) { throw new NotImplementedException(); }
 
 
-private void _HandleDragStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details){ throw new NotImplementedException(); }
+        public virtual bool ExtentChanged(FlutterSDK.Widgets.Draggablescrollablesheet.DraggableScrollableNotification notification) { throw new NotImplementedException(); }
 
 
-private void _HandleDragEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details,bool isClosing = default(bool)){ throw new NotImplementedException(); }
+        private FlutterSDK.Widgets.Framework.Widget _WrapBottomSheet(FlutterSDK.Widgets.Framework.Widget bottomSheet) { throw new NotImplementedException(); }
 
 
-private void _HandleStatusChange(FlutterSDK.Animation.Animation.AnimationStatus status){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public virtual bool ExtentChanged(FlutterSDK.Widgets.Draggablescrollablesheet.DraggableScrollableNotification notification){ throw new NotImplementedException(); }
 
+    public class PersistentBottomSheetController<T> : FlutterSDK.Material.Scaffold.ScaffoldFeatureController<FlutterSDK.Material.Scaffold._StandardBottomSheet, T>
+    {
+        #region constructors
+        internal PersistentBottomSheetController(FlutterSDK.Material.Scaffold._StandardBottomSheet widget, Completer<T> completer, VoidCallback close, FlutterSDK.Widgets.Framework.StateSetter setState, bool _isLocalHistoryEntry)
+        : base(widget, completer, close, setState)
+        {
+            this._IsLocalHistoryEntry = _isLocalHistoryEntry; throw new NotImplementedException();
+        }
+        #endregion
 
-private FlutterSDK.Widgets.Framework.Widget _WrapBottomSheet(FlutterSDK.Widgets.Framework.Widget bottomSheet){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual bool _IsLocalHistoryEntry { get; set; }
+        #endregion
 
+        #region methods
+        #endregion
+    }
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
 
-#endregion
-}
+    public class _ScaffoldScope : FlutterSDK.Widgets.Framework.InheritedWidget
+    {
+        #region constructors
+        public _ScaffoldScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool hasDrawer = default(bool), FlutterSDK.Material.Scaffold._ScaffoldGeometryNotifier geometryNotifier = default(FlutterSDK.Material.Scaffold._ScaffoldGeometryNotifier), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            this.HasDrawer = hasDrawer;
+            this.GeometryNotifier = geometryNotifier; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual bool HasDrawer { get; set; }
+        public virtual FlutterSDK.Material.Scaffold._ScaffoldGeometryNotifier GeometryNotifier { get; set; }
+        #endregion
 
-public class PersistentBottomSheetController<T> : FlutterSDK.Material.Scaffold.ScaffoldFeatureController<FlutterSDK.Material.Scaffold._StandardBottomSheet,T>
-{
-#region constructors
-internal PersistentBottomSheetController(FlutterSDK.Material.Scaffold._StandardBottomSheet widget,Completer<T> completer,VoidCallback close,FlutterSDK.Widgets.Framework.StateSetter setState,bool _isLocalHistoryEntry)
-: base(widget,completer,close,setState)
-{
-this._IsLocalHistoryEntry = _isLocalHistoryEntry;throw new NotImplementedException(); }
-#endregion
+        #region methods
 
-#region fields
-internal virtual bool _IsLocalHistoryEntry{get;set;}
-#endregion
+        public new bool UpdateShouldNotify(FlutterSDK.Material.Scaffold._ScaffoldScope oldWidget) { throw new NotImplementedException(); }
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
 
-#region methods
-#endregion
-}
+        #endregion
+    }
 
 
-public class _ScaffoldScope : FlutterSDK.Widgets.Framework.InheritedWidget
-{
-#region constructors
-public _ScaffoldScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),bool hasDrawer = default(bool),FlutterSDK.Material.Scaffold._ScaffoldGeometryNotifier geometryNotifier = default(FlutterSDK.Material.Scaffold._ScaffoldGeometryNotifier),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key,child:child)
-{
-this.HasDrawer = hasDrawer;
-this.GeometryNotifier = geometryNotifier;throw new NotImplementedException(); }
-#endregion
+    public enum _ScaffoldSlot
+    {
 
-#region fields
-public virtual bool HasDrawer{get;set;}
-public virtual FlutterSDK.Material.Scaffold._ScaffoldGeometryNotifier GeometryNotifier{get;set;}
-#endregion
-
-#region methods
-
-public new bool UpdateShouldNotify(FlutterSDK.Material.Scaffold._ScaffoldScope oldWidget){ throw new NotImplementedException(); }
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public enum _ScaffoldSlot{
-
-Body,
-AppBar,
-BodyScrim,
-BottomSheet,
-SnackBar,
-PersistentFooter,
-BottomNavigationBar,
-FloatingActionButton,
-Drawer,
-EndDrawer,
-StatusBar,
-}
+        Body,
+        AppBar,
+        BodyScrim,
+        BottomSheet,
+        SnackBar,
+        PersistentFooter,
+        BottomNavigationBar,
+        FloatingActionButton,
+        Drawer,
+        EndDrawer,
+        StatusBar,
+    }
 
 }

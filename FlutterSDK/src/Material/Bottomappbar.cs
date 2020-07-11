@@ -357,89 +357,93 @@ using FlutterSDK.Material.Buttontheme;
 using FlutterSDK.Material.Divider;
 using FlutterSDK.Material.Bottomappbartheme;
 using FlutterSDK.Material.Elevationoverlay;
-namespace FlutterSDK.Material.Bottomappbar{
-internal static class BottomappbarDefaultClass{
-}
-
-public class BottomAppBar : FlutterSDK.Widgets.Framework.StatefulWidget
+namespace FlutterSDK.Material.Bottomappbar
 {
-#region constructors
-public BottomAppBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),double elevation = default(double),FlutterSDK.Painting.Notchedshapes.NotchedShape shape = default(FlutterSDK.Painting.Notchedshapes.NotchedShape),FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip),double notchMargin = 4.0,FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key)
-{
-this.Color = color;
-this.Elevation = elevation;
-this.Shape = shape;
-this.ClipBehavior = clipBehavior;
-this.NotchMargin = notchMargin;
-this.Child = child;throw new NotImplementedException(); }
-#endregion
+    internal static class BottomappbarDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-public virtual FlutterBinding.UI.Color Color{get;set;}
-public virtual double Elevation{get;set;}
-public virtual FlutterSDK.Painting.Notchedshapes.NotchedShape Shape{get;set;}
-public virtual FlutterBinding.UI.Clip ClipBehavior{get;set;}
-public virtual double NotchMargin{get;set;}
-#endregion
+    public class BottomAppBar : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public BottomAppBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Notchedshapes.NotchedShape shape = default(FlutterSDK.Painting.Notchedshapes.NotchedShape), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), double notchMargin = 4.0, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.Color = color;
+            this.Elevation = elevation;
+            this.Shape = shape;
+            this.ClipBehavior = clipBehavior;
+            this.NotchMargin = notchMargin;
+            this.Child = child; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual FlutterSDK.Painting.Notchedshapes.NotchedShape Shape { get; set; }
+        public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+        public virtual double NotchMargin { get; set; }
+        #endregion
 
-public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState(){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() { throw new NotImplementedException(); }
 
-
-public class _BottomAppBarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Bottomappbar.BottomAppBar>
-{
-#region constructors
-public _BottomAppBarState()
-{ }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Foundation.Changenotifier.ValueListenable<FlutterSDK.Material.Scaffold.ScaffoldGeometry> GeometryListenable{get;set;}
-internal virtual double _DefaultElevation{get;set;}
-#endregion
-
-#region methods
-
-public new void DidChangeDependencies(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+    public class _BottomAppBarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Bottomappbar.BottomAppBar>
+    {
+        #region constructors
+        public _BottomAppBarState()
+        { }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual FlutterSDK.Foundation.Changenotifier.ValueListenable<FlutterSDK.Material.Scaffold.ScaffoldGeometry> GeometryListenable { get; set; }
+        internal virtual double _DefaultElevation { get; set; }
+        #endregion
 
+        #region methods
 
-public class _BottomAppBarClipper : FlutterSDK.Rendering.Proxybox.CustomClipper<Path>
-{
-#region constructors
-public _BottomAppBarClipper(FlutterSDK.Foundation.Changenotifier.ValueListenable<FlutterSDK.Material.Scaffold.ScaffoldGeometry> geometry = default(FlutterSDK.Foundation.Changenotifier.ValueListenable<FlutterSDK.Material.Scaffold.ScaffoldGeometry>),FlutterSDK.Painting.Notchedshapes.NotchedShape shape = default(FlutterSDK.Painting.Notchedshapes.NotchedShape),double notchMargin = default(double))
-: base(reclip:geometry)
-{
-this.Geometry = geometry;
-this.Shape = shape;
-this.NotchMargin = notchMargin;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Foundation.Changenotifier.ValueListenable<FlutterSDK.Material.Scaffold.ScaffoldGeometry> Geometry{get;set;}
-public virtual FlutterSDK.Painting.Notchedshapes.NotchedShape Shape{get;set;}
-public virtual double NotchMargin{get;set;}
-#endregion
-
-#region methods
-
-public new Path GetClip(Size size){ throw new NotImplementedException(); }
+        public new void DidChangeDependencies() { throw new NotImplementedException(); }
 
 
-public new bool ShouldReclip(FlutterSDK.Material.Bottomappbar._BottomAppBarClipper oldClipper){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
+
+
+    public class _BottomAppBarClipper : FlutterSDK.Rendering.Proxybox.CustomClipper<Path>
+    {
+        #region constructors
+        public _BottomAppBarClipper(FlutterSDK.Foundation.Changenotifier.ValueListenable<FlutterSDK.Material.Scaffold.ScaffoldGeometry> geometry = default(FlutterSDK.Foundation.Changenotifier.ValueListenable<FlutterSDK.Material.Scaffold.ScaffoldGeometry>), FlutterSDK.Painting.Notchedshapes.NotchedShape shape = default(FlutterSDK.Painting.Notchedshapes.NotchedShape), double notchMargin = default(double))
+        : base(reclip: geometry)
+        {
+            this.Geometry = geometry;
+            this.Shape = shape;
+            this.NotchMargin = notchMargin; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Foundation.Changenotifier.ValueListenable<FlutterSDK.Material.Scaffold.ScaffoldGeometry> Geometry { get; set; }
+        public virtual FlutterSDK.Painting.Notchedshapes.NotchedShape Shape { get; set; }
+        public virtual double NotchMargin { get; set; }
+        #endregion
+
+        #region methods
+
+        public new Path GetClip(Size size) { throw new NotImplementedException(); }
+
+
+        public new bool ShouldReclip(FlutterSDK.Material.Bottomappbar._BottomAppBarClipper oldClipper) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

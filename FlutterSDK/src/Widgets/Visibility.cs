@@ -423,83 +423,87 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Visibility{
-internal static class VisibilityDefaultClass{
-}
-
-public class Visibility : FlutterSDK.Widgets.Framework.StatelessWidget
+namespace FlutterSDK.Widgets.Visibility
 {
-#region constructors
-public Visibility(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.Widget replacement = default(FlutterSDK.Widgets.Framework.Widget),bool visible = true,bool maintainState = false,bool maintainAnimation = false,bool maintainSize = false,bool maintainSemantics = false,bool maintainInteractivity = false)
-: base(key:key)
-{
-this.Child = child;
-this.Replacement = replacement;
-this.Visible = visible;
-this.MaintainState = maintainState;
-this.MaintainAnimation = maintainAnimation;
-this.MaintainSize = maintainSize;
-this.MaintainSemantics = maintainSemantics;
-this.MaintainInteractivity = maintainInteractivity;throw new NotImplementedException(); }
-#endregion
+    internal static class VisibilityDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Replacement{get;set;}
-public virtual bool Visible{get;set;}
-public virtual bool MaintainState{get;set;}
-public virtual bool MaintainAnimation{get;set;}
-public virtual bool MaintainSize{get;set;}
-public virtual bool MaintainSemantics{get;set;}
-public virtual bool MaintainInteractivity{get;set;}
-#endregion
+    public class Visibility : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public Visibility(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget replacement = default(FlutterSDK.Widgets.Framework.Widget), bool visible = true, bool maintainState = false, bool maintainAnimation = false, bool maintainSize = false, bool maintainSemantics = false, bool maintainInteractivity = false)
+        : base(key: key)
+        {
+            this.Child = child;
+            this.Replacement = replacement;
+            this.Visible = visible;
+            this.MaintainState = maintainState;
+            this.MaintainAnimation = maintainAnimation;
+            this.MaintainSize = maintainSize;
+            this.MaintainSemantics = maintainSemantics;
+            this.MaintainInteractivity = maintainInteractivity; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Replacement { get; set; }
+        public virtual bool Visible { get; set; }
+        public virtual bool MaintainState { get; set; }
+        public virtual bool MaintainAnimation { get; set; }
+        public virtual bool MaintainSize { get; set; }
+        public virtual bool MaintainSemantics { get; set; }
+        public virtual bool MaintainInteractivity { get; set; }
+        #endregion
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
 
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class SliverVisibility : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public SliverVisibility(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.Widget replacementSliver = default(FlutterSDK.Widgets.Framework.Widget),bool visible = true,bool maintainState = false,bool maintainAnimation = false,bool maintainSize = false,bool maintainSemantics = false,bool maintainInteractivity = false)
-: base(key:key)
-{
-this.Sliver = sliver;
-this.ReplacementSliver = replacementSliver;
-this.Visible = visible;
-this.MaintainState = maintainState;
-this.MaintainAnimation = maintainAnimation;
-this.MaintainSize = maintainSize;
-this.MaintainSemantics = maintainSemantics;
-this.MaintainInteractivity = maintainInteractivity;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Sliver{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget ReplacementSliver{get;set;}
-public virtual bool Visible{get;set;}
-public virtual bool MaintainState{get;set;}
-public virtual bool MaintainAnimation{get;set;}
-public virtual bool MaintainSize{get;set;}
-public virtual bool MaintainSemantics{get;set;}
-public virtual bool MaintainInteractivity{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
+
+
+    public class SliverVisibility : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public SliverVisibility(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget replacementSliver = default(FlutterSDK.Widgets.Framework.Widget), bool visible = true, bool maintainState = false, bool maintainAnimation = false, bool maintainSize = false, bool maintainSemantics = false, bool maintainInteractivity = false)
+        : base(key: key)
+        {
+            this.Sliver = sliver;
+            this.ReplacementSliver = replacementSliver;
+            this.Visible = visible;
+            this.MaintainState = maintainState;
+            this.MaintainAnimation = maintainAnimation;
+            this.MaintainSize = maintainSize;
+            this.MaintainSemantics = maintainSemantics;
+            this.MaintainInteractivity = maintainInteractivity; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Sliver { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget ReplacementSliver { get; set; }
+        public virtual bool Visible { get; set; }
+        public virtual bool MaintainState { get; set; }
+        public virtual bool MaintainAnimation { get; set; }
+        public virtual bool MaintainSize { get; set; }
+        public virtual bool MaintainSemantics { get; set; }
+        public virtual bool MaintainInteractivity { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

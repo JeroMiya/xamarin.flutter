@@ -420,265 +420,278 @@ using FlutterSDK.Material.Inksplash;
 using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
-namespace FlutterSDK.Painting.Gradient{
-internal static class GradientDefaultClass{
-internal static Color _Sample(List<Color> colors,List<double> stops,double t){
-throw new NotImplementedException();
-}
-
-internal static FlutterSDK.Painting.Gradient._ColorsAndStops _InterpolateColorsAndStops(List<Color> aColors,List<double> aStops,List<Color> bColors,List<double> bStops,double t){
-throw new NotImplementedException();
-}
-
-}
-
-public interface IGradientTransform{
-Matrix4 Transform(FlutterBinding.UI.Rect bounds,TextDirection textDirection = default(TextDirection));
-}
-
-
-public interface IGradient{
-SKShader CreateShader(FlutterBinding.UI.Rect rect,TextDirection textDirection = default(TextDirection));
-FlutterSDK.Painting.Gradient.Gradient Scale(double factor);
-FlutterSDK.Painting.Gradient.Gradient LerpFrom(FlutterSDK.Painting.Gradient.Gradient a,double t);
-FlutterSDK.Painting.Gradient.Gradient LerpTo(FlutterSDK.Painting.Gradient.Gradient b,double t);
-FlutterSDK.Painting.Gradient.Gradient Lerp(FlutterSDK.Painting.Gradient.Gradient a,FlutterSDK.Painting.Gradient.Gradient b,double t);
-List<Color> Colors{get;}
-List<double> Stops{get;}
-FlutterSDK.Painting.Gradient.GradientTransform Transform{get;}
-}
-
-
-public class _ColorsAndStops
+namespace FlutterSDK.Painting.Gradient
 {
-#region constructors
-public _ColorsAndStops(List<Color> colors,List<double> stops)
-{
-this.Colors = colors;
-this.Stops = stops;throw new NotImplementedException(); }
-#endregion
+    internal static class GradientDefaultClass
+    {
+        internal static Color _Sample(List<Color> colors, List<double> stops, double t)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static FlutterSDK.Painting.Gradient._ColorsAndStops _InterpolateColorsAndStops(List<Color> aColors, List<double> aStops, List<Color> bColors, List<double> bStops, double t)
+        {
+            throw new NotImplementedException();
+        }
+
+    }
+
+    public interface IGradientTransform
+    {
+        Matrix4 Transform(FlutterBinding.UI.Rect bounds, TextDirection textDirection = default(TextDirection));
+    }
+
+
+    public interface IGradient
+    {
+        SKShader CreateShader(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection));
+        FlutterSDK.Painting.Gradient.Gradient Scale(double factor);
+        FlutterSDK.Painting.Gradient.Gradient LerpFrom(FlutterSDK.Painting.Gradient.Gradient a, double t);
+        FlutterSDK.Painting.Gradient.Gradient LerpTo(FlutterSDK.Painting.Gradient.Gradient b, double t);
+        FlutterSDK.Painting.Gradient.Gradient Lerp(FlutterSDK.Painting.Gradient.Gradient a, FlutterSDK.Painting.Gradient.Gradient b, double t);
+        List<Color> Colors { get; }
+        List<double> Stops { get; }
+        FlutterSDK.Painting.Gradient.GradientTransform Transform { get; }
+    }
 
-#region fields
-public virtual List<Color> Colors{get;set;}
-public virtual List<double> Stops{get;set;}
-#endregion
 
-#region methods
-#endregion
-}
+    public class _ColorsAndStops
+    {
+        #region constructors
+        public _ColorsAndStops(List<Color> colors, List<double> stops)
+        {
+            this.Colors = colors;
+            this.Stops = stops; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual List<Color> Colors { get; set; }
+        public virtual List<double> Stops { get; set; }
+        #endregion
 
-public class GradientTransform
-{
-#region constructors
-public GradientTransform()
-{
-throw new NotImplementedException(); }
-#endregion
+        #region methods
+        #endregion
+    }
 
-#region fields
-#endregion
 
-#region methods
+    public class GradientTransform
+    {
+        #region constructors
+        public GradientTransform()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-public virtual Matrix4 Transform(FlutterBinding.UI.Rect bounds,TextDirection textDirection = default(TextDirection)){ throw new NotImplementedException(); }
+        #region fields
+        #endregion
 
-#endregion
-}
+        #region methods
 
+        public virtual Matrix4 Transform(FlutterBinding.UI.Rect bounds, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
-public class GradientRotation : FlutterSDK.Painting.Gradient.GradientTransform
-{
-#region constructors
-public GradientRotation(double radians)
-{
-this.Radians = radians;throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-public virtual double Radians{get;set;}
-#endregion
 
-#region methods
+    public class GradientRotation : FlutterSDK.Painting.Gradient.GradientTransform
+    {
+        #region constructors
+        public GradientRotation(double radians)
+        {
+            this.Radians = radians; throw new NotImplementedException();
+        }
+        #endregion
 
-public new Matrix4 Transform(FlutterBinding.UI.Rect bounds,TextDirection textDirection = default(TextDirection)){ throw new NotImplementedException(); }
+        #region fields
+        public virtual double Radians { get; set; }
+        #endregion
 
-#endregion
-}
+        #region methods
 
+        public new Matrix4 Transform(FlutterBinding.UI.Rect bounds, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
-public class Gradient
-{
-#region constructors
-public Gradient(List<Color> colors = default(List<Color>),List<double> stops = default(List<double>),FlutterSDK.Painting.Gradient.GradientTransform transform = default(FlutterSDK.Painting.Gradient.GradientTransform))
-: base()
-{
-this.Colors = colors;
-this.Stops = stops;
-this.Transform = transform;throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-public virtual List<Color> Colors{get;set;}
-public virtual List<double> Stops{get;set;}
-public virtual FlutterSDK.Painting.Gradient.GradientTransform Transform{get;set;}
-#endregion
 
-#region methods
+    public class Gradient
+    {
+        #region constructors
+        public Gradient(List<Color> colors = default(List<Color>), List<double> stops = default(List<double>), FlutterSDK.Painting.Gradient.GradientTransform transform = default(FlutterSDK.Painting.Gradient.GradientTransform))
+        : base()
+        {
+            this.Colors = colors;
+            this.Stops = stops;
+            this.Transform = transform; throw new NotImplementedException();
+        }
+        #endregion
 
-private List<double> _ImpliedStops(){ throw new NotImplementedException(); }
+        #region fields
+        public virtual List<Color> Colors { get; set; }
+        public virtual List<double> Stops { get; set; }
+        public virtual FlutterSDK.Painting.Gradient.GradientTransform Transform { get; set; }
+        #endregion
 
+        #region methods
 
-public virtual SKShader CreateShader(FlutterBinding.UI.Rect rect,TextDirection textDirection = default(TextDirection)){ throw new NotImplementedException(); }
+        private List<double> _ImpliedStops() { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Painting.Gradient.Gradient Scale(double factor){ throw new NotImplementedException(); }
+        public virtual SKShader CreateShader(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Painting.Gradient.Gradient LerpFrom(FlutterSDK.Painting.Gradient.Gradient a,double t){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Gradient.Gradient Scale(double factor) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Painting.Gradient.Gradient LerpTo(FlutterSDK.Painting.Gradient.Gradient b,double t){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Gradient.Gradient LerpFrom(FlutterSDK.Painting.Gradient.Gradient a, double t) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Painting.Gradient.Gradient Lerp(FlutterSDK.Painting.Gradient.Gradient a,FlutterSDK.Painting.Gradient.Gradient b,double t){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Gradient.Gradient LerpTo(FlutterSDK.Painting.Gradient.Gradient b, double t) { throw new NotImplementedException(); }
 
 
-private List<float> _ResolveTransform(FlutterBinding.UI.Rect bounds,TextDirection textDirection){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Gradient.Gradient Lerp(FlutterSDK.Painting.Gradient.Gradient a, FlutterSDK.Painting.Gradient.Gradient b, double t) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        private List<float> _ResolveTransform(FlutterBinding.UI.Rect bounds, TextDirection textDirection) { throw new NotImplementedException(); }
 
-public class LinearGradient : FlutterSDK.Painting.Gradient.Gradient
-{
-#region constructors
-public LinearGradient(FlutterSDK.Painting.Alignment.AlignmentGeometry begin = default(FlutterSDK.Painting.Alignment.AlignmentGeometry),FlutterSDK.Painting.Alignment.AlignmentGeometry end = default(FlutterSDK.Painting.Alignment.AlignmentGeometry),List<Color> colors = default(List<Color>),List<double> stops = default(List<double>),TileMode tileMode = default(TileMode),FlutterSDK.Painting.Gradient.GradientTransform transform = default(FlutterSDK.Painting.Gradient.GradientTransform))
-: base(colors:colors,stops:stops,transform:transform)
-{
-this.Begin = begin;
-this.End = end;
-this.TileMode = tileMode;throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Begin{get;set;}
-public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry End{get;set;}
-public virtual TileMode TileMode{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+    public class LinearGradient : FlutterSDK.Painting.Gradient.Gradient
+    {
+        #region constructors
+        public LinearGradient(FlutterSDK.Painting.Alignment.AlignmentGeometry begin = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Alignment.AlignmentGeometry end = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), List<Color> colors = default(List<Color>), List<double> stops = default(List<double>), TileMode tileMode = default(TileMode), FlutterSDK.Painting.Gradient.GradientTransform transform = default(FlutterSDK.Painting.Gradient.GradientTransform))
+        : base(colors: colors, stops: stops, transform: transform)
+        {
+            this.Begin = begin;
+            this.End = end;
+            this.TileMode = tileMode; throw new NotImplementedException();
+        }
+        #endregion
 
-public new SKShader CreateShader(FlutterBinding.UI.Rect rect,TextDirection textDirection = default(TextDirection)){ throw new NotImplementedException(); }
+        #region fields
+        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Begin { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry End { get; set; }
+        public virtual TileMode TileMode { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public new FlutterSDK.Painting.Gradient.LinearGradient Scale(double factor){ throw new NotImplementedException(); }
+        public new SKShader CreateShader(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Painting.Gradient.Gradient LerpFrom(FlutterSDK.Painting.Gradient.Gradient a,double t){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Gradient.LinearGradient Scale(double factor) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Painting.Gradient.Gradient LerpTo(FlutterSDK.Painting.Gradient.Gradient b,double t){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Gradient.Gradient LerpFrom(FlutterSDK.Painting.Gradient.Gradient a, double t) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Painting.Gradient.LinearGradient Lerp(FlutterSDK.Painting.Gradient.LinearGradient a,FlutterSDK.Painting.Gradient.LinearGradient b,double t){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Gradient.Gradient LerpTo(FlutterSDK.Painting.Gradient.Gradient b, double t) { throw new NotImplementedException(); }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Gradient.LinearGradient Lerp(FlutterSDK.Painting.Gradient.LinearGradient a, FlutterSDK.Painting.Gradient.LinearGradient b, double t) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
-public class RadialGradient : FlutterSDK.Painting.Gradient.Gradient
-{
-#region constructors
-public RadialGradient(FlutterSDK.Painting.Alignment.AlignmentGeometry center = default(FlutterSDK.Painting.Alignment.AlignmentGeometry),double radius = 0.5,List<Color> colors = default(List<Color>),List<double> stops = default(List<double>),TileMode tileMode = default(TileMode),FlutterSDK.Painting.Alignment.AlignmentGeometry focal = default(FlutterSDK.Painting.Alignment.AlignmentGeometry),double focalRadius = 0.0,FlutterSDK.Painting.Gradient.GradientTransform transform = default(FlutterSDK.Painting.Gradient.GradientTransform))
-: base(colors:colors,stops:stops,transform:transform)
-{
-this.Center = center;
-this.Radius = radius;
-this.TileMode = tileMode;
-this.Focal = focal;
-this.FocalRadius = focalRadius;throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Center{get;set;}
-public virtual double Radius{get;set;}
-public virtual TileMode TileMode{get;set;}
-public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Focal{get;set;}
-public virtual double FocalRadius{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+    public class RadialGradient : FlutterSDK.Painting.Gradient.Gradient
+    {
+        #region constructors
+        public RadialGradient(FlutterSDK.Painting.Alignment.AlignmentGeometry center = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), double radius = 0.5, List<Color> colors = default(List<Color>), List<double> stops = default(List<double>), TileMode tileMode = default(TileMode), FlutterSDK.Painting.Alignment.AlignmentGeometry focal = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), double focalRadius = 0.0, FlutterSDK.Painting.Gradient.GradientTransform transform = default(FlutterSDK.Painting.Gradient.GradientTransform))
+        : base(colors: colors, stops: stops, transform: transform)
+        {
+            this.Center = center;
+            this.Radius = radius;
+            this.TileMode = tileMode;
+            this.Focal = focal;
+            this.FocalRadius = focalRadius; throw new NotImplementedException();
+        }
+        #endregion
 
-public new SKShader CreateShader(FlutterBinding.UI.Rect rect,TextDirection textDirection = default(TextDirection)){ throw new NotImplementedException(); }
+        #region fields
+        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Center { get; set; }
+        public virtual double Radius { get; set; }
+        public virtual TileMode TileMode { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Focal { get; set; }
+        public virtual double FocalRadius { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public new FlutterSDK.Painting.Gradient.RadialGradient Scale(double factor){ throw new NotImplementedException(); }
+        public new SKShader CreateShader(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Painting.Gradient.Gradient LerpFrom(FlutterSDK.Painting.Gradient.Gradient a,double t){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Gradient.RadialGradient Scale(double factor) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Painting.Gradient.Gradient LerpTo(FlutterSDK.Painting.Gradient.Gradient b,double t){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Gradient.Gradient LerpFrom(FlutterSDK.Painting.Gradient.Gradient a, double t) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Painting.Gradient.RadialGradient Lerp(FlutterSDK.Painting.Gradient.RadialGradient a,FlutterSDK.Painting.Gradient.RadialGradient b,double t){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Gradient.Gradient LerpTo(FlutterSDK.Painting.Gradient.Gradient b, double t) { throw new NotImplementedException(); }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Gradient.RadialGradient Lerp(FlutterSDK.Painting.Gradient.RadialGradient a, FlutterSDK.Painting.Gradient.RadialGradient b, double t) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
-public class SweepGradient : FlutterSDK.Painting.Gradient.Gradient
-{
-#region constructors
-public SweepGradient(FlutterSDK.Painting.Alignment.AlignmentGeometry center = default(FlutterSDK.Painting.Alignment.AlignmentGeometry),double startAngle = 0.0,double endAngle = default(double),List<Color> colors = default(List<Color>),List<double> stops = default(List<double>),TileMode tileMode = default(TileMode),FlutterSDK.Painting.Gradient.GradientTransform transform = default(FlutterSDK.Painting.Gradient.GradientTransform))
-: base(colors:colors,stops:stops,transform:transform)
-{
-this.Center = center;
-this.StartAngle = startAngle;
-this.EndAngle = endAngle;
-this.TileMode = tileMode;throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Center{get;set;}
-public virtual double StartAngle{get;set;}
-public virtual double EndAngle{get;set;}
-public virtual TileMode TileMode{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+    public class SweepGradient : FlutterSDK.Painting.Gradient.Gradient
+    {
+        #region constructors
+        public SweepGradient(FlutterSDK.Painting.Alignment.AlignmentGeometry center = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), double startAngle = 0.0, double endAngle = default(double), List<Color> colors = default(List<Color>), List<double> stops = default(List<double>), TileMode tileMode = default(TileMode), FlutterSDK.Painting.Gradient.GradientTransform transform = default(FlutterSDK.Painting.Gradient.GradientTransform))
+        : base(colors: colors, stops: stops, transform: transform)
+        {
+            this.Center = center;
+            this.StartAngle = startAngle;
+            this.EndAngle = endAngle;
+            this.TileMode = tileMode; throw new NotImplementedException();
+        }
+        #endregion
 
-public new SKShader CreateShader(FlutterBinding.UI.Rect rect,TextDirection textDirection = default(TextDirection)){ throw new NotImplementedException(); }
+        #region fields
+        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Center { get; set; }
+        public virtual double StartAngle { get; set; }
+        public virtual double EndAngle { get; set; }
+        public virtual TileMode TileMode { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public new FlutterSDK.Painting.Gradient.SweepGradient Scale(double factor){ throw new NotImplementedException(); }
+        public new SKShader CreateShader(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Painting.Gradient.Gradient LerpFrom(FlutterSDK.Painting.Gradient.Gradient a,double t){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Gradient.SweepGradient Scale(double factor) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Painting.Gradient.Gradient LerpTo(FlutterSDK.Painting.Gradient.Gradient b,double t){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Gradient.Gradient LerpFrom(FlutterSDK.Painting.Gradient.Gradient a, double t) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Painting.Gradient.SweepGradient Lerp(FlutterSDK.Painting.Gradient.SweepGradient a,FlutterSDK.Painting.Gradient.SweepGradient b,double t){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Gradient.Gradient LerpTo(FlutterSDK.Painting.Gradient.Gradient b, double t) { throw new NotImplementedException(); }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Gradient.SweepGradient Lerp(FlutterSDK.Painting.Gradient.SweepGradient a, FlutterSDK.Painting.Gradient.SweepGradient b, double t) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+
+
+        #endregion
+    }
 
 }

@@ -294,20 +294,23 @@ using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
-namespace FlutterSDK.Foundation.Platform{
-internal static class PlatformDefaultClass{
-public static FlutterSDK.Foundation.Platform.TargetPlatform DefaultTargetPlatform = default(FlutterSDK.Foundation.Platform.TargetPlatform);
-public static FlutterSDK.Foundation.Platform.TargetPlatform DebugDefaultTargetPlatformOverride = default(FlutterSDK.Foundation.Platform.TargetPlatform);
-}
+namespace FlutterSDK.Foundation.Platform
+{
+    internal static class PlatformDefaultClass
+    {
+        public static FlutterSDK.Foundation.Platform.TargetPlatform DefaultTargetPlatform = default(FlutterSDK.Foundation.Platform.TargetPlatform);
+        public static FlutterSDK.Foundation.Platform.TargetPlatform DebugDefaultTargetPlatformOverride = default(FlutterSDK.Foundation.Platform.TargetPlatform);
+    }
 
-public enum TargetPlatform{
+    public enum TargetPlatform
+    {
 
-Android,
-Fuchsia,
-IOS,
-Linux,
-MacOS,
-Windows,
-}
+        Android,
+        Fuchsia,
+        IOS,
+        Linux,
+        MacOS,
+        Windows,
+    }
 
 }

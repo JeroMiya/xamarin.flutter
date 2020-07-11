@@ -290,106 +290,110 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-namespace FlutterSDK.Cupertino.Button{
-internal static class ButtonDefaultClass{
-public static FlutterSDK.Painting.Edgeinsets.EdgeInsets _KButtonPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets);
-public static FlutterSDK.Painting.Edgeinsets.EdgeInsets _KBackgroundButtonPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets);
-}
-
-public class CupertinoButton : FlutterSDK.Widgets.Framework.StatefulWidget
+namespace FlutterSDK.Cupertino.Button
 {
-#region constructors
-public CupertinoButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color),double minSize = default(double),double pressedOpacity = 0.4,FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius),VoidCallback onPressed = default(VoidCallback))
-: base(key:key)
-{
-this.Child = child;
-this.Padding = padding;
-this.Color = color;
-this.DisabledColor = disabledColor;
-this.MinSize = minSize;
-this.PressedOpacity = pressedOpacity;
-this.BorderRadius = borderRadius;
-this.OnPressed = onPressed;throw new NotImplementedException(); }
-public static CupertinoButton Filled(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color),double minSize = default(double),double pressedOpacity = 0.4,FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius),VoidCallback onPressed = default(VoidCallback))
-{
-var instance =new CupertinoButton(key:key);instance.Child = child;
-instance.Padding = padding;
-instance.DisabledColor = disabledColor;
-instance.MinSize = minSize;
-instance.PressedOpacity = pressedOpacity;
-instance.BorderRadius = borderRadius;
-instance.OnPressed = onPressed;throw new NotImplementedException(); }
-#endregion
+    internal static class ButtonDefaultClass
+    {
+        public static FlutterSDK.Painting.Edgeinsets.EdgeInsets _KButtonPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets);
+        public static FlutterSDK.Painting.Edgeinsets.EdgeInsets _KBackgroundButtonPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets);
+    }
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding{get;set;}
-public virtual FlutterBinding.UI.Color Color{get;set;}
-public virtual FlutterBinding.UI.Color DisabledColor{get;set;}
-public virtual VoidCallback OnPressed{get;set;}
-public virtual double MinSize{get;set;}
-public virtual double PressedOpacity{get;set;}
-public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius{get;set;}
-internal virtual bool _Filled{get;set;}
-public virtual bool Enabled{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class CupertinoButton : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public CupertinoButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), double minSize = default(double), double pressedOpacity = 0.4, FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), VoidCallback onPressed = default(VoidCallback))
+        : base(key: key)
+        {
+            this.Child = child;
+            this.Padding = padding;
+            this.Color = color;
+            this.DisabledColor = disabledColor;
+            this.MinSize = minSize;
+            this.PressedOpacity = pressedOpacity;
+            this.BorderRadius = borderRadius;
+            this.OnPressed = onPressed; throw new NotImplementedException();
+        }
+        public static CupertinoButton Filled(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), double minSize = default(double), double pressedOpacity = 0.4, FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), VoidCallback onPressed = default(VoidCallback))
+        {
+            var instance = new CupertinoButton(key: key); instance.Child = child;
+            instance.Padding = padding;
+            instance.DisabledColor = disabledColor;
+            instance.MinSize = minSize;
+            instance.PressedOpacity = pressedOpacity;
+            instance.BorderRadius = borderRadius;
+            instance.OnPressed = onPressed; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual FlutterBinding.UI.Color DisabledColor { get; set; }
+        public virtual VoidCallback OnPressed { get; set; }
+        public virtual double MinSize { get; set; }
+        public virtual double PressedOpacity { get; set; }
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
+        internal virtual bool _Filled { get; set; }
+        public virtual bool Enabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new FlutterSDK.Cupertino.Button._CupertinoButtonState CreateState(){ throw new NotImplementedException(); }
+        #region methods
 
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _CupertinoButtonState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Button.CupertinoButton>,ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-#region constructors
-public _CupertinoButtonState()
-{ }
-#endregion
-
-#region fields
-public virtual TimeSpan KFadeOutDuration{get;set;}
-public virtual TimeSpan KFadeInDuration{get;set;}
-internal virtual FlutterSDK.Animation.Tween.Tween<double> _OpacityTween{get;set;}
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _AnimationController{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _OpacityAnimation{get;set;}
-internal virtual bool _ButtonHeldDown{get;set;}
-#endregion
-
-#region methods
-
-public new void InitState(){ throw new NotImplementedException(); }
+        public new FlutterSDK.Cupertino.Button._CupertinoButtonState CreateState() { throw new NotImplementedException(); }
 
 
-public new void DidUpdateWidget(FlutterSDK.Cupertino.Button.CupertinoButton old){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-private void _SetTween(){ throw new NotImplementedException(); }
+    public class _CupertinoButtonState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Button.CupertinoButton>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _CupertinoButtonState()
+        { }
+        #endregion
+
+        #region fields
+        public virtual TimeSpan KFadeOutDuration { get; set; }
+        public virtual TimeSpan KFadeInDuration { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.Tween<double> _OpacityTween { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _AnimationController { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _OpacityAnimation { get; set; }
+        internal virtual bool _ButtonHeldDown { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+        public new void DidUpdateWidget(FlutterSDK.Cupertino.Button.CupertinoButton old) { throw new NotImplementedException(); }
 
 
-private void _HandleTapDown(FlutterSDK.Gestures.Tap.TapDownDetails @event){ throw new NotImplementedException(); }
+        private void _SetTween() { throw new NotImplementedException(); }
 
 
-private void _HandleTapUp(FlutterSDK.Gestures.Tap.TapUpDetails @event){ throw new NotImplementedException(); }
+        public new void Dispose() { throw new NotImplementedException(); }
 
 
-private void _HandleTapCancel(){ throw new NotImplementedException(); }
+        private void _HandleTapDown(FlutterSDK.Gestures.Tap.TapDownDetails @event) { throw new NotImplementedException(); }
 
 
-private void _Animate(){ throw new NotImplementedException(); }
+        private void _HandleTapUp(FlutterSDK.Gestures.Tap.TapUpDetails @event) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        private void _HandleTapCancel() { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        private void _Animate() { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

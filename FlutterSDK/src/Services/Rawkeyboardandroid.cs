@@ -421,78 +421,81 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Services.Rawkeyboardandroid{
-internal static class RawkeyboardandroidDefaultClass{
-public static int _KCombiningCharacterMask = default(int);
-}
-
-public class RawKeyEventDataAndroid : FlutterSDK.Services.Rawkeyboard.RawKeyEventData
+namespace FlutterSDK.Services.Rawkeyboardandroid
 {
-#region constructors
-public RawKeyEventDataAndroid(int flags = 0,int codePoint = 0,int plainCodePoint = 0,int keyCode = 0,int scanCode = 0,int metaState = 0,int eventSource = 0,int vendorId = 0,int productId = 0,int deviceId = 0,int repeatCount = 0)
-: base()
-{
-this.Flags = flags;
-this.CodePoint = codePoint;
-this.PlainCodePoint = plainCodePoint;
-this.KeyCode = keyCode;
-this.ScanCode = scanCode;
-this.MetaState = metaState;
-this.EventSource = eventSource;
-this.VendorId = vendorId;
-this.ProductId = productId;
-this.DeviceId = deviceId;
-this.RepeatCount = repeatCount;throw new NotImplementedException(); }
-#endregion
+    internal static class RawkeyboardandroidDefaultClass
+    {
+        public static int _KCombiningCharacterMask = default(int);
+    }
 
-#region fields
-public virtual int Flags{get;set;}
-public virtual int CodePoint{get;set;}
-public virtual int PlainCodePoint{get;set;}
-public virtual int KeyCode{get;set;}
-public virtual int ScanCode{get;set;}
-public virtual int MetaState{get;set;}
-public virtual int EventSource{get;set;}
-public virtual int VendorId{get;set;}
-public virtual int ProductId{get;set;}
-public virtual int DeviceId{get;set;}
-public virtual int RepeatCount{get;set;}
-internal virtual int _SourceJoystick{get;set;}
-public virtual int ModifierNone{get;set;}
-public virtual int ModifierAlt{get;set;}
-public virtual int ModifierLeftAlt{get;set;}
-public virtual int ModifierRightAlt{get;set;}
-public virtual int ModifierShift{get;set;}
-public virtual int ModifierLeftShift{get;set;}
-public virtual int ModifierRightShift{get;set;}
-public virtual int ModifierSym{get;set;}
-public virtual int ModifierFunction{get;set;}
-public virtual int ModifierControl{get;set;}
-public virtual int ModifierLeftControl{get;set;}
-public virtual int ModifierRightControl{get;set;}
-public virtual int ModifierMeta{get;set;}
-public virtual int ModifierLeftMeta{get;set;}
-public virtual int ModifierRightMeta{get;set;}
-public virtual int ModifierCapsLock{get;set;}
-public virtual int ModifierNumLock{get;set;}
-public virtual int ModifierScrollLock{get;set;}
-public virtual string KeyLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class RawKeyEventDataAndroid : FlutterSDK.Services.Rawkeyboard.RawKeyEventData
+    {
+        #region constructors
+        public RawKeyEventDataAndroid(int flags = 0, int codePoint = 0, int plainCodePoint = 0, int keyCode = 0, int scanCode = 0, int metaState = 0, int eventSource = 0, int vendorId = 0, int productId = 0, int deviceId = 0, int repeatCount = 0)
+        : base()
+        {
+            this.Flags = flags;
+            this.CodePoint = codePoint;
+            this.PlainCodePoint = plainCodePoint;
+            this.KeyCode = keyCode;
+            this.ScanCode = scanCode;
+            this.MetaState = metaState;
+            this.EventSource = eventSource;
+            this.VendorId = vendorId;
+            this.ProductId = productId;
+            this.DeviceId = deviceId;
+            this.RepeatCount = repeatCount; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual int Flags { get; set; }
+        public virtual int CodePoint { get; set; }
+        public virtual int PlainCodePoint { get; set; }
+        public virtual int KeyCode { get; set; }
+        public virtual int ScanCode { get; set; }
+        public virtual int MetaState { get; set; }
+        public virtual int EventSource { get; set; }
+        public virtual int VendorId { get; set; }
+        public virtual int ProductId { get; set; }
+        public virtual int DeviceId { get; set; }
+        public virtual int RepeatCount { get; set; }
+        internal virtual int _SourceJoystick { get; set; }
+        public virtual int ModifierNone { get; set; }
+        public virtual int ModifierAlt { get; set; }
+        public virtual int ModifierLeftAlt { get; set; }
+        public virtual int ModifierRightAlt { get; set; }
+        public virtual int ModifierShift { get; set; }
+        public virtual int ModifierLeftShift { get; set; }
+        public virtual int ModifierRightShift { get; set; }
+        public virtual int ModifierSym { get; set; }
+        public virtual int ModifierFunction { get; set; }
+        public virtual int ModifierControl { get; set; }
+        public virtual int ModifierLeftControl { get; set; }
+        public virtual int ModifierRightControl { get; set; }
+        public virtual int ModifierMeta { get; set; }
+        public virtual int ModifierLeftMeta { get; set; }
+        public virtual int ModifierRightMeta { get; set; }
+        public virtual int ModifierCapsLock { get; set; }
+        public virtual int ModifierNumLock { get; set; }
+        public virtual int ModifierScrollLock { get; set; }
+        public virtual string KeyLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-private bool _IsLeftRightModifierPressed(FlutterSDK.Services.Rawkeyboard.KeyboardSide side,int anyMask,int leftMask,int rightMask){ throw new NotImplementedException(); }
+        #region methods
+
+        private bool _IsLeftRightModifierPressed(FlutterSDK.Services.Rawkeyboard.KeyboardSide side, int anyMask, int leftMask, int rightMask) { throw new NotImplementedException(); }
 
 
-public new bool IsModifierPressed(FlutterSDK.Services.Rawkeyboard.ModifierKey key,FlutterSDK.Services.Rawkeyboard.KeyboardSide side = default(FlutterSDK.Services.Rawkeyboard.KeyboardSide)){ throw new NotImplementedException(); }
+        public new bool IsModifierPressed(FlutterSDK.Services.Rawkeyboard.ModifierKey key, FlutterSDK.Services.Rawkeyboard.KeyboardSide side = default(FlutterSDK.Services.Rawkeyboard.KeyboardSide)) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Services.Rawkeyboard.KeyboardSide GetModifierSide(FlutterSDK.Services.Rawkeyboard.ModifierKey key){ throw new NotImplementedException(); }
+        public new FlutterSDK.Services.Rawkeyboard.KeyboardSide GetModifierSide(FlutterSDK.Services.Rawkeyboard.ModifierKey key) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        #endregion
+    }
 
 }

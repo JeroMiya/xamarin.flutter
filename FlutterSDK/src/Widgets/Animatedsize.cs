@@ -421,43 +421,46 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Widgets.Animatedsize{
-internal static class AnimatedsizeDefaultClass{
-}
-
-public class AnimatedSize : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
+namespace FlutterSDK.Widgets.Animatedsize
 {
-#region constructors
-public AnimatedSize(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry),FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve),TimeSpan duration = default(TimeSpan),TimeSpan reverseDuration = default(TimeSpan),FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider))
-: base(key:key,child:child)
-{
-this.Alignment = alignment;
-this.Curve = curve;
-this.Duration = duration;
-this.ReverseDuration = reverseDuration;
-this.Vsync = vsync;throw new NotImplementedException(); }
-#endregion
+    internal static class AnimatedsizeDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment{get;set;}
-public virtual FlutterSDK.Animation.Curves.Curve Curve{get;set;}
-public virtual TimeSpan Duration{get;set;}
-public virtual TimeSpan ReverseDuration{get;set;}
-public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync{get;set;}
-#endregion
+    public class AnimatedSize : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
+    {
+        #region constructors
+        public AnimatedSize(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), TimeSpan reverseDuration = default(TimeSpan), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider))
+        : base(key: key, child: child)
+        {
+            this.Alignment = alignment;
+            this.Curve = curve;
+            this.Duration = duration;
+            this.ReverseDuration = reverseDuration;
+            this.Vsync = vsync; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
+        public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
+        public virtual TimeSpan Duration { get; set; }
+        public virtual TimeSpan ReverseDuration { get; set; }
+        public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get; set; }
+        #endregion
 
-public new FlutterSDK.Rendering.Animatedsize.RenderAnimatedSize CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
+
+        public new FlutterSDK.Rendering.Animatedsize.RenderAnimatedSize CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Rendering.Animatedsize.RenderAnimatedSize renderObject){ throw new NotImplementedException(); }
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Rendering.@object.RenderObject renderObject){ throw new NotImplementedException(); }
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Animatedsize.RenderAnimatedSize renderObject) { throw new NotImplementedException(); }
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 }

@@ -419,79 +419,88 @@ using FlutterSDK.Material.Selectabletext;
 using FlutterSDK.Material.Inksplash;
 using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
-namespace FlutterSDK.Material.Time{
-internal static class TimeDefaultClass{
-internal static FlutterSDK.Material.Time.HourFormat HourFormat(FlutterSDK.Material.Time.TimeOfDayFormat of = default(FlutterSDK.Material.Time.TimeOfDayFormat)){
-throw new NotImplementedException();
-}
-
-}
-
-public class TimeOfDay
+namespace FlutterSDK.Material.Time
 {
-#region constructors
-public TimeOfDay(int hour = default(int),int minute = default(int))
-{
-this.Hour = hour;
-this.Minute = minute;throw new NotImplementedException(); }
-public static TimeOfDay FromDateTime(DateTime time)
-{
-var instance =new TimeOfDay();throw new NotImplementedException(); }
-public static TimeOfDay Now()
-{
-var instance =new TimeOfDay();throw new NotImplementedException(); }
-#endregion
+    internal static class TimeDefaultClass
+    {
+        internal static FlutterSDK.Material.Time.HourFormat HourFormat(FlutterSDK.Material.Time.TimeOfDayFormat of = default(FlutterSDK.Material.Time.TimeOfDayFormat))
+        {
+            throw new NotImplementedException();
+        }
 
-#region fields
-public virtual int HoursPerDay{get;set;}
-public virtual int HoursPerPeriod{get;set;}
-public virtual int MinutesPerHour{get;set;}
-public virtual int Hour{get;set;}
-public virtual int Minute{get;set;}
-public virtual FlutterSDK.Material.Time.DayPeriod Period{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int HourOfPeriod{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int PeriodOffset{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    }
 
-#region methods
+    public class TimeOfDay
+    {
+        #region constructors
+        public TimeOfDay(int hour = default(int), int minute = default(int))
+        {
+            this.Hour = hour;
+            this.Minute = minute; throw new NotImplementedException();
+        }
+        public static TimeOfDay FromDateTime(DateTime time)
+        {
+            var instance = new TimeOfDay(); throw new NotImplementedException();
+        }
+        public static TimeOfDay Now()
+        {
+            var instance = new TimeOfDay(); throw new NotImplementedException();
+        }
+        #endregion
 
-public virtual FlutterSDK.Material.Time.TimeOfDay Replacing(int hour = default(int),int minute = default(int)){ throw new NotImplementedException(); }
+        #region fields
+        public virtual int HoursPerDay { get; set; }
+        public virtual int HoursPerPeriod { get; set; }
+        public virtual int MinutesPerHour { get; set; }
+        public virtual int Hour { get; set; }
+        public virtual int Minute { get; set; }
+        public virtual FlutterSDK.Material.Time.DayPeriod Period { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HourOfPeriod { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int PeriodOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public virtual string Format(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
-
-
-#endregion
-}
-
-
-public enum DayPeriod{
-
-Am,
-Pm,
-}
+        public virtual FlutterSDK.Material.Time.TimeOfDay Replacing(int hour = default(int), int minute = default(int)) { throw new NotImplementedException(); }
 
 
-public enum TimeOfDayFormat{
-
-HH_colon_mm,
-HH_dot_mm,
-FrenchCanadian,
-H_colon_mm,
-H_colon_mm_space_a,
-A_space_h_colon_mm,
-}
+        public virtual string Format(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public enum HourFormat{
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
-HH,
-H,
-h,
-}
+
+        #endregion
+    }
+
+
+    public enum DayPeriod
+    {
+
+        Am,
+        Pm,
+    }
+
+
+    public enum TimeOfDayFormat
+    {
+
+        HH_colon_mm,
+        HH_dot_mm,
+        FrenchCanadian,
+        H_colon_mm,
+        H_colon_mm_space_a,
+        A_space_h_colon_mm,
+    }
+
+
+    public enum HourFormat
+    {
+
+        HH,
+        H,
+        h,
+    }
 
 }

@@ -421,268 +421,282 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Rendering.Sliverpersistentheader{
-internal static class SliverpersistentheaderDefaultClass{
-}
-
-public interface IRenderSliverPersistentHeader{
-void UpdateChild(double shrinkOffset,bool overlapsContent);
-void MarkNeedsLayout();
-void LayoutChild(double scrollOffset,double maxExtent,bool overlapsContent = false);
-double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child);
-bool HitTestChildren(FlutterSDK.Rendering.Sliver.SliverHitTestResult result,double mainAxisPosition = default(double),double crossAxisPosition = default(double));
-void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child,Matrix4 transform);
-void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset);
-void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config);
-void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
-FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration StretchConfiguration{get;set;}
-double MaxExtent{get;}
-double MinExtent{get;}
-double ChildExtent{get;}
-bool ExcludeFromSemanticsScrolling{get;set;}
-}
-
-
-public interface IRenderSliverScrollingPersistentHeader{
-double UpdateGeometry();
-void PerformLayout();
-double ChildMainAxisPosition(FlutterSDK.Rendering.Box.RenderBox child);
-}
-
-
-public interface IRenderSliverPinnedPersistentHeader{
-void PerformLayout();
-double ChildMainAxisPosition(FlutterSDK.Rendering.Box.RenderBox child);
-}
-
-
-public interface IRenderSliverFloatingPersistentHeader{
-void Detach();
-double UpdateGeometry();
-void MaybeStartSnapAnimation(FlutterSDK.Rendering.Viewportoffset.ScrollDirection direction);
-void MaybeStopSnapAnimation(FlutterSDK.Rendering.Viewportoffset.ScrollDirection direction);
-void PerformLayout();
-double ChildMainAxisPosition(FlutterSDK.Rendering.Box.RenderBox child);
-void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
-FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration SnapConfiguration{get;set;}
-}
-
-
-public interface IRenderSliverFloatingPinnedPersistentHeader{
-double UpdateGeometry();
-}
-
-
-public class OverScrollHeaderStretchConfiguration
+namespace FlutterSDK.Rendering.Sliverpersistentheader
 {
-#region constructors
-public OverScrollHeaderStretchConfiguration(double stretchTriggerOffset = 100.0,FlutterSDK.Foundation.Basictypes.AsyncCallback onStretchTrigger = default(FlutterSDK.Foundation.Basictypes.AsyncCallback))
-: base()
-{
-this.StretchTriggerOffset = stretchTriggerOffset;
-this.OnStretchTrigger = onStretchTrigger;throw new NotImplementedException(); }
-#endregion
+    internal static class SliverpersistentheaderDefaultClass
+    {
+    }
+
+    public interface IRenderSliverPersistentHeader
+    {
+        void UpdateChild(double shrinkOffset, bool overlapsContent);
+        void MarkNeedsLayout();
+        void LayoutChild(double scrollOffset, double maxExtent, bool overlapsContent = false);
+        double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child);
+        bool HitTestChildren(FlutterSDK.Rendering.Sliver.SliverHitTestResult result, double mainAxisPosition = default(double), double crossAxisPosition = default(double));
+        void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform);
+        void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset);
+        void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config);
+        void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
+        FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration StretchConfiguration { get; set; }
+        double MaxExtent { get; }
+        double MinExtent { get; }
+        double ChildExtent { get; }
+        bool ExcludeFromSemanticsScrolling { get; set; }
+    }
+
 
-#region fields
-public virtual double StretchTriggerOffset{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.AsyncCallback OnStretchTrigger{get;set;}
-#endregion
+    public interface IRenderSliverScrollingPersistentHeader
+    {
+        double UpdateGeometry();
+        void PerformLayout();
+        double ChildMainAxisPosition(FlutterSDK.Rendering.Box.RenderBox child);
+    }
 
-#region methods
-#endregion
-}
 
+    public interface IRenderSliverPinnedPersistentHeader
+    {
+        void PerformLayout();
+        double ChildMainAxisPosition(FlutterSDK.Rendering.Box.RenderBox child);
+    }
 
-public class RenderSliverPersistentHeader : FlutterSDK.Rendering.Sliver.RenderSliver,IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>,IRenderSliverHelpers
-{
-#region constructors
-public RenderSliverPersistentHeader(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
-{
-this.StretchConfiguration = stretchConfiguration;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-internal virtual double _LastStretchOffset{get;set;}
-internal virtual bool _NeedsUpdateChild{get;set;}
-internal virtual double _LastShrinkOffset{get;set;}
-internal virtual bool _LastOverlapsContent{get;set;}
-public virtual FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration StretchConfiguration{get;set;}
-internal virtual bool _ExcludeFromSemanticsScrolling{get;set;}
-public virtual double MaxExtent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double MinExtent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double ChildExtent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool ExcludeFromSemanticsScrolling{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
+    public interface IRenderSliverFloatingPersistentHeader
+    {
+        void Detach();
+        double UpdateGeometry();
+        void MaybeStartSnapAnimation(FlutterSDK.Rendering.Viewportoffset.ScrollDirection direction);
+        void MaybeStopSnapAnimation(FlutterSDK.Rendering.Viewportoffset.ScrollDirection direction);
+        void PerformLayout();
+        double ChildMainAxisPosition(FlutterSDK.Rendering.Box.RenderBox child);
+        void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
+        FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration SnapConfiguration { get; set; }
+    }
 
-#region methods
 
-public virtual void UpdateChild(double shrinkOffset,bool overlapsContent){ throw new NotImplementedException(); }
+    public interface IRenderSliverFloatingPinnedPersistentHeader
+    {
+        double UpdateGeometry();
+    }
 
 
-public new void MarkNeedsLayout(){ throw new NotImplementedException(); }
+    public class OverScrollHeaderStretchConfiguration
+    {
+        #region constructors
+        public OverScrollHeaderStretchConfiguration(double stretchTriggerOffset = 100.0, FlutterSDK.Foundation.Basictypes.AsyncCallback onStretchTrigger = default(FlutterSDK.Foundation.Basictypes.AsyncCallback))
+        : base()
+        {
+            this.StretchTriggerOffset = stretchTriggerOffset;
+            this.OnStretchTrigger = onStretchTrigger; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual double StretchTriggerOffset { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.AsyncCallback OnStretchTrigger { get; set; }
+        #endregion
 
-public virtual void LayoutChild(double scrollOffset,double maxExtent,bool overlapsContent = false){ throw new NotImplementedException(); }
+        #region methods
+        #endregion
+    }
 
 
-public new double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
+    public class RenderSliverPersistentHeader : FlutterSDK.Rendering.Sliver.RenderSliver, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>, IRenderSliverHelpers
+    {
+        #region constructors
+        public RenderSliverPersistentHeader(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
+        {
+            this.StretchConfiguration = stretchConfiguration; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual double _LastStretchOffset { get; set; }
+        internal virtual bool _NeedsUpdateChild { get; set; }
+        internal virtual double _LastShrinkOffset { get; set; }
+        internal virtual bool _LastOverlapsContent { get; set; }
+        public virtual FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration StretchConfiguration { get; set; }
+        internal virtual bool _ExcludeFromSemanticsScrolling { get; set; }
+        public virtual double MaxExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double MinExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double ChildExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool ExcludeFromSemanticsScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new bool HitTestChildren(FlutterSDK.Rendering.Sliver.SliverHitTestResult result,double mainAxisPosition = default(double),double crossAxisPosition = default(double)){ throw new NotImplementedException(); }
+        #region methods
 
+        public virtual void UpdateChild(double shrinkOffset, bool overlapsContent) { throw new NotImplementedException(); }
 
-public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child,Matrix4 transform){ throw new NotImplementedException(); }
 
+        public new void MarkNeedsLayout() { throw new NotImplementedException(); }
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
 
+        public virtual void LayoutChild(double scrollOffset, double maxExtent, bool overlapsContent = false) { throw new NotImplementedException(); }
 
-public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config){ throw new NotImplementedException(); }
 
+        public new double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new bool HitTestChildren(FlutterSDK.Rendering.Sliver.SliverHitTestResult result, double mainAxisPosition = default(double), double crossAxisPosition = default(double)) { throw new NotImplementedException(); }
 
 
-public class RenderSliverScrollingPersistentHeader : FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverPersistentHeader
-{
-#region constructors
-public RenderSliverScrollingPersistentHeader(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
-: base(child:child,stretchConfiguration:stretchConfiguration)
-{
-throw new NotImplementedException(); }
-#endregion
+        public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual double _ChildPosition{get;set;}
-#endregion
 
-#region methods
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-public virtual double UpdateGeometry(){ throw new NotImplementedException(); }
 
+        public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config) { throw new NotImplementedException(); }
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
 
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-public new double ChildMainAxisPosition(FlutterSDK.Rendering.Box.RenderBox child){ throw new NotImplementedException(); }
-public new double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
+        #endregion
+    }
 
-#endregion
-}
 
+    public class RenderSliverScrollingPersistentHeader : FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverPersistentHeader
+    {
+        #region constructors
+        public RenderSliverScrollingPersistentHeader(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
+        : base(child: child, stretchConfiguration: stretchConfiguration)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-public class RenderSliverPinnedPersistentHeader : FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverPersistentHeader
-{
-#region constructors
-public RenderSliverPinnedPersistentHeader(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
-: base(child:child,stretchConfiguration:stretchConfiguration)
-{
-throw new NotImplementedException(); }
-#endregion
+        #region fields
+        internal virtual double _ChildPosition { get; set; }
+        #endregion
 
-#region fields
-#endregion
+        #region methods
 
-#region methods
+        public virtual double UpdateGeometry() { throw new NotImplementedException(); }
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
 
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
-public new double ChildMainAxisPosition(FlutterSDK.Rendering.Box.RenderBox child){ throw new NotImplementedException(); }
-public new double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new double ChildMainAxisPosition(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
+        public new double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class FloatingHeaderSnapConfiguration
-{
-#region constructors
-public FloatingHeaderSnapConfiguration(FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider),FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve),TimeSpan duration = default(TimeSpan))
-: base()
-{
-this.Vsync = vsync;
-this.Curve = curve;
-this.Duration = duration;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync{get;set;}
-public virtual FlutterSDK.Animation.Curves.Curve Curve{get;set;}
-public virtual TimeSpan Duration{get;set;}
-#endregion
+    public class RenderSliverPinnedPersistentHeader : FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverPersistentHeader
+    {
+        #region constructors
+        public RenderSliverPinnedPersistentHeader(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
+        : base(child: child, stretchConfiguration: stretchConfiguration)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
-#endregion
-}
+        #region fields
+        #endregion
 
+        #region methods
 
-public class RenderSliverFloatingPersistentHeader : FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverPersistentHeader
-{
-#region constructors
-public RenderSliverFloatingPersistentHeader(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration snapConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration),FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
-: base(child:child,stretchConfiguration:stretchConfiguration)
-{
-throw new NotImplementedException(); }
-#endregion
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
-#region fields
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _Animation{get;set;}
-internal virtual double _LastActualScrollOffset{get;set;}
-internal virtual double _EffectiveScrollOffset{get;set;}
-internal virtual double _ChildPosition{get;set;}
-internal virtual FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration _SnapConfiguration{get;set;}
-public virtual FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration SnapConfiguration{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
 
-#region methods
+        public new double ChildMainAxisPosition(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
+        public new double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
-public new void Detach(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public virtual double UpdateGeometry(){ throw new NotImplementedException(); }
+    public class FloatingHeaderSnapConfiguration
+    {
+        #region constructors
+        public FloatingHeaderSnapConfiguration(FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan))
+        : base()
+        {
+            this.Vsync = vsync;
+            this.Curve = curve;
+            this.Duration = duration; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get; set; }
+        public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
+        public virtual TimeSpan Duration { get; set; }
+        #endregion
 
-public virtual void MaybeStartSnapAnimation(FlutterSDK.Rendering.Viewportoffset.ScrollDirection direction){ throw new NotImplementedException(); }
+        #region methods
+        #endregion
+    }
 
 
-public virtual void MaybeStopSnapAnimation(FlutterSDK.Rendering.Viewportoffset.ScrollDirection direction){ throw new NotImplementedException(); }
+    public class RenderSliverFloatingPersistentHeader : FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverPersistentHeader
+    {
+        #region constructors
+        public RenderSliverFloatingPersistentHeader(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration snapConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration), FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
+        : base(child: child, stretchConfiguration: stretchConfiguration)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _Animation { get; set; }
+        internal virtual double _LastActualScrollOffset { get; set; }
+        internal virtual double _EffectiveScrollOffset { get; set; }
+        internal virtual double _ChildPosition { get; set; }
+        internal virtual FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration _SnapConfiguration { get; set; }
+        public virtual FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration SnapConfiguration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
+        #region methods
 
+        public new void Detach() { throw new NotImplementedException(); }
 
-public new double ChildMainAxisPosition(FlutterSDK.Rendering.Box.RenderBox child){ throw new NotImplementedException(); }
-public new double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
 
+        public virtual double UpdateGeometry() { throw new NotImplementedException(); }
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public virtual void MaybeStartSnapAnimation(FlutterSDK.Rendering.Viewportoffset.ScrollDirection direction) { throw new NotImplementedException(); }
 
 
-public class RenderSliverFloatingPinnedPersistentHeader : FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverFloatingPersistentHeader
-{
-#region constructors
-public RenderSliverFloatingPinnedPersistentHeader(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration snapConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration),FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
-: base(child:child,snapConfiguration:snapConfiguration,stretchConfiguration:stretchConfiguration)
-{
-throw new NotImplementedException(); }
-#endregion
+        public virtual void MaybeStopSnapAnimation(FlutterSDK.Rendering.Viewportoffset.ScrollDirection direction) { throw new NotImplementedException(); }
 
-#region fields
-#endregion
 
-#region methods
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
-public new double UpdateGeometry(){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new double ChildMainAxisPosition(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
+        public new double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class RenderSliverFloatingPinnedPersistentHeader : FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverFloatingPersistentHeader
+    {
+        #region constructors
+        public RenderSliverFloatingPinnedPersistentHeader(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration snapConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration), FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
+        : base(child: child, snapConfiguration: snapConfiguration, stretchConfiguration: stretchConfiguration)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new double UpdateGeometry() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

@@ -421,264 +421,272 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Scheduler.Binding{
-public delegate void FrameCallback(TimeSpan timeStamp);
-public delegate T TaskCallback<T>();
-public delegate bool SchedulingStrategy(int priority = default(int),FlutterSDK.Scheduler.Binding.SchedulerBinding scheduler = default(FlutterSDK.Scheduler.Binding.SchedulerBinding));
-internal static class BindingDefaultClass{
-public static double TimeDilation = default(double);
-public static double _TimeDilation = default(double);
-internal static bool DefaultSchedulingStrategy(int priority = default(int),FlutterSDK.Scheduler.Binding.SchedulerBinding scheduler = default(FlutterSDK.Scheduler.Binding.SchedulerBinding)){
-throw new NotImplementedException();
-}
-
-}
-
-public interface ISchedulerBinding{}
-
-public class SchedulerBinding{
-internal virtual List<object> _TimingsCallbacks{get;set;}
-internal virtual FlutterSDK.Scheduler.Binding.SchedulerBinding _Instance{get;set;}
-internal virtual AppLifecycleState _LifecycleState{get;set;}
-public virtual FlutterSDK.Scheduler.Binding.SchedulingStrategy SchedulingStrategy{get;set;}
-internal virtual object _TaskQueue{get;set;}
-internal virtual bool _HasRequestedAnEventLoopCallback{get;set;}
-internal virtual int _NextFrameCallbackId{get;set;}
-internal virtual Dictionary<int,FlutterSDK.Scheduler.Binding._FrameCallbackEntry> _TransientCallbacks{get;set;}
-internal virtual HashSet<int> _RemovedIds{get;set;}
-internal virtual List<object> _PersistentCallbacks{get;set;}
-internal virtual List<object> _PostFrameCallbacks{get;set;}
-internal virtual Completer<object> _NextFrameCompleter{get;set;}
-internal virtual bool _HasScheduledFrame{get;set;}
-internal virtual FlutterSDK.Scheduler.Binding.SchedulerPhase _SchedulerPhase{get;set;}
-internal virtual bool _FramesEnabled{get;set;}
-internal virtual bool _WarmUpFrame{get;set;}
-internal virtual TimeSpan _FirstRawTimeStampInEpoch{get;set;}
-internal virtual TimeSpan _EpochStart{get;set;}
-internal virtual TimeSpan _LastRawTimeStamp{get;set;}
-internal virtual TimeSpan _CurrentFrameTimeStamp{get;set;}
-internal virtual int _DebugFrameNumber{get;set;}
-internal virtual string _DebugBanner{get;set;}
-internal virtual bool _IgnoreNextEngineDrawFrame{get;set;}
-public virtual FlutterSDK.Scheduler.Binding.SchedulerBinding Instance{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual AppLifecycleState LifecycleState{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int TransientCallbackCount{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual Future<object> EndOfFrame{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool HasScheduledFrame{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Scheduler.Binding.SchedulerPhase SchedulerPhase{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool FramesEnabled{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual TimeSpan CurrentFrameTimeStamp{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual TimeSpan CurrentSystemFrameTimeStamp{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-
-public new void InitInstances(){ throw new NotImplementedException(); }
-
-
-public virtual void AddTimingsCallback(TimingsCallback callback){ throw new NotImplementedException(); }
-
-
-public virtual void RemoveTimingsCallback(TimingsCallback callback){ throw new NotImplementedException(); }
-
-
-private void _ExecuteTimingsCallbacks(List<FrameTiming> timings){ throw new NotImplementedException(); }
-
-
-public new void InitServiceExtensions(){ throw new NotImplementedException(); }
-
-
-public virtual void ReadInitialLifecycleStateFromNativeWindow(){ throw new NotImplementedException(); }
-
-
-public virtual void HandleAppLifecycleStateChanged(AppLifecycleState state){ throw new NotImplementedException(); }
-
-
-private Future<string> _HandleLifecycleMessage(string message){ throw new NotImplementedException(); }
-
-
-private AppLifecycleState _ParseAppLifecycleMessage(string message){ throw new NotImplementedException(); }
-
-
-private int _TaskSorter(FlutterSDK.Scheduler.Binding._TaskEntry<object> e1,FlutterSDK.Scheduler.Binding._TaskEntry<object> e2){ throw new NotImplementedException(); }
-
-
-public virtual Future<T> ScheduleTask<T>(FlutterSDK.Scheduler.Binding.TaskCallback<T> task,FlutterSDK.Scheduler.Priority.Priority priority,string debugLabel = default(string),Flow flow = default(Flow)){ throw new NotImplementedException(); }
-
-
-public new void Unlocked(){ throw new NotImplementedException(); }
-
-
-private void _EnsureEventLoopCallback(){ throw new NotImplementedException(); }
-
-
-private void _RunTasks(){ throw new NotImplementedException(); }
-
-
-public virtual bool HandleEventLoopCallback(){ throw new NotImplementedException(); }
-
-
-public virtual int ScheduleFrameCallback(FlutterSDK.Scheduler.Binding.FrameCallback callback,bool rescheduling = false){ throw new NotImplementedException(); }
-
-
-public virtual void CancelFrameCallbackWithId(int id){ throw new NotImplementedException(); }
-
-
-public virtual bool DebugAssertNoTransientCallbacks(string reason){ throw new NotImplementedException(); }
-
-
-public virtual void DebugPrintTransientCallbackRegistrationStack(){ throw new NotImplementedException(); }
-
-
-public virtual void AddPersistentFrameCallback(FlutterSDK.Scheduler.Binding.FrameCallback callback){ throw new NotImplementedException(); }
-
-
-public virtual void AddPostFrameCallback(FlutterSDK.Scheduler.Binding.FrameCallback callback){ throw new NotImplementedException(); }
-
-
-private void _SetFramesEnabledState(bool enabled){ throw new NotImplementedException(); }
-
-
-public virtual void EnsureFrameCallbacksRegistered(){ throw new NotImplementedException(); }
-
-
-public virtual void EnsureVisualUpdate(){ throw new NotImplementedException(); }
-
-
-public virtual void ScheduleFrame(){ throw new NotImplementedException(); }
-
-
-public virtual void ScheduleForcedFrame(){ throw new NotImplementedException(); }
-
-
-public virtual void ScheduleWarmUpFrame(){ throw new NotImplementedException(); }
-
-
-public virtual void ResetEpoch(){ throw new NotImplementedException(); }
-
-
-private TimeSpan _AdjustForEpoch(TimeSpan rawTimeStamp){ throw new NotImplementedException(); }
-
-
-private void _HandleBeginFrame(TimeSpan rawTimeStamp){ throw new NotImplementedException(); }
-
-
-private void _HandleDrawFrame(){ throw new NotImplementedException(); }
-
-
-public virtual void HandleBeginFrame(TimeSpan rawTimeStamp){ throw new NotImplementedException(); }
-
-
-public virtual void HandleDrawFrame(){ throw new NotImplementedException(); }
-
-
-private void _ProfileFramePostEvent(int frameNumber,FrameTiming frameTiming){ throw new NotImplementedException(); }
-
-
-private void _DebugDescribeTimeStamp(TimeSpan timeStamp,StringBuffer buffer){ throw new NotImplementedException(); }
-
-
-private void _InvokeFrameCallback(FlutterSDK.Scheduler.Binding.FrameCallback callback,TimeSpan timeStamp,StackTrace callbackStack = default(StackTrace)){ throw new NotImplementedException(); }
-
-}
-public static class SchedulerBindingMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<ISchedulerBinding, SchedulerBinding> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<ISchedulerBinding, SchedulerBinding>();
-static SchedulerBinding GetOrCreate(ISchedulerBinding instance)
+namespace FlutterSDK.Scheduler.Binding
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new SchedulerBinding();
-_table.Add(instance, value);
-}
-return (SchedulerBinding)value;
-}
-public static FlutterSDK.Scheduler.Binding.SchedulingStrategy SchedulingStrategyProperty(this ISchedulerBinding instance) => GetOrCreate(instance).SchedulingStrategy;
-public static FlutterSDK.Scheduler.Binding.SchedulerBinding InstanceProperty(this ISchedulerBinding instance) => GetOrCreate(instance).Instance;
-public static AppLifecycleState LifecycleStateProperty(this ISchedulerBinding instance) => GetOrCreate(instance).LifecycleState;
-public static int TransientCallbackCountProperty(this ISchedulerBinding instance) => GetOrCreate(instance).TransientCallbackCount;
-public static Future<object> EndOfFrameProperty(this ISchedulerBinding instance) => GetOrCreate(instance).EndOfFrame;
-public static bool HasScheduledFrameProperty(this ISchedulerBinding instance) => GetOrCreate(instance).HasScheduledFrame;
-public static FlutterSDK.Scheduler.Binding.SchedulerPhase SchedulerPhaseProperty(this ISchedulerBinding instance) => GetOrCreate(instance).SchedulerPhase;
-public static bool FramesEnabledProperty(this ISchedulerBinding instance) => GetOrCreate(instance).FramesEnabled;
-public static TimeSpan CurrentFrameTimeStampProperty(this ISchedulerBinding instance) => GetOrCreate(instance).CurrentFrameTimeStamp;
-public static TimeSpan CurrentSystemFrameTimeStampProperty(this ISchedulerBinding instance) => GetOrCreate(instance).CurrentSystemFrameTimeStamp;
-public static void InitInstances(this ISchedulerBinding instance) => GetOrCreate(instance).InitInstances();
-public static void AddTimingsCallback(this ISchedulerBinding instance,TimingsCallback callback) => GetOrCreate(instance).AddTimingsCallback(callback);
-public static void RemoveTimingsCallback(this ISchedulerBinding instance,TimingsCallback callback) => GetOrCreate(instance).RemoveTimingsCallback(callback);
-public static void InitServiceExtensions(this ISchedulerBinding instance) => GetOrCreate(instance).InitServiceExtensions();
-public static void ReadInitialLifecycleStateFromNativeWindow(this ISchedulerBinding instance) => GetOrCreate(instance).ReadInitialLifecycleStateFromNativeWindow();
-public static void HandleAppLifecycleStateChanged(this ISchedulerBinding instance,AppLifecycleState state) => GetOrCreate(instance).HandleAppLifecycleStateChanged(state);
-public static Future<T> ScheduleTask<T>(this ISchedulerBinding instance,FlutterSDK.Scheduler.Binding.TaskCallback<T> task,FlutterSDK.Scheduler.Priority.Priority priority,string debugLabel = default(string),Flow flow = default(Flow)) => GetOrCreate(instance).ScheduleTask<T>(task, priority, debugLabel, flow);
-public static void Unlocked(this ISchedulerBinding instance) => GetOrCreate(instance).Unlocked();
-public static bool HandleEventLoopCallback(this ISchedulerBinding instance) => GetOrCreate(instance).HandleEventLoopCallback();
-public static int ScheduleFrameCallback(this ISchedulerBinding instance,FlutterSDK.Scheduler.Binding.FrameCallback callback,bool rescheduling = false) => GetOrCreate(instance).ScheduleFrameCallback(callback, rescheduling);
-public static void CancelFrameCallbackWithId(this ISchedulerBinding instance,int id) => GetOrCreate(instance).CancelFrameCallbackWithId(id);
-public static bool DebugAssertNoTransientCallbacks(this ISchedulerBinding instance,string reason) => GetOrCreate(instance).DebugAssertNoTransientCallbacks(reason);
-public static void DebugPrintTransientCallbackRegistrationStack(this ISchedulerBinding instance) => GetOrCreate(instance).DebugPrintTransientCallbackRegistrationStack();
-public static void AddPersistentFrameCallback(this ISchedulerBinding instance,FlutterSDK.Scheduler.Binding.FrameCallback callback) => GetOrCreate(instance).AddPersistentFrameCallback(callback);
-public static void AddPostFrameCallback(this ISchedulerBinding instance,FlutterSDK.Scheduler.Binding.FrameCallback callback) => GetOrCreate(instance).AddPostFrameCallback(callback);
-public static void EnsureFrameCallbacksRegistered(this ISchedulerBinding instance) => GetOrCreate(instance).EnsureFrameCallbacksRegistered();
-public static void EnsureVisualUpdate(this ISchedulerBinding instance) => GetOrCreate(instance).EnsureVisualUpdate();
-public static void ScheduleFrame(this ISchedulerBinding instance) => GetOrCreate(instance).ScheduleFrame();
-public static void ScheduleForcedFrame(this ISchedulerBinding instance) => GetOrCreate(instance).ScheduleForcedFrame();
-public static void ScheduleWarmUpFrame(this ISchedulerBinding instance) => GetOrCreate(instance).ScheduleWarmUpFrame();
-public static void ResetEpoch(this ISchedulerBinding instance) => GetOrCreate(instance).ResetEpoch();
-public static void HandleBeginFrame(this ISchedulerBinding instance,TimeSpan rawTimeStamp) => GetOrCreate(instance).HandleBeginFrame(rawTimeStamp);
-public static void HandleDrawFrame(this ISchedulerBinding instance) => GetOrCreate(instance).HandleDrawFrame();
-}
+    public delegate void FrameCallback(TimeSpan timeStamp);
+    public delegate T TaskCallback<T>();
+    public delegate bool SchedulingStrategy(int priority = default(int), FlutterSDK.Scheduler.Binding.SchedulerBinding scheduler = default(FlutterSDK.Scheduler.Binding.SchedulerBinding));
+    internal static class BindingDefaultClass
+    {
+        public static double TimeDilation = default(double);
+        public static double _TimeDilation = default(double);
+        internal static bool DefaultSchedulingStrategy(int priority = default(int), FlutterSDK.Scheduler.Binding.SchedulerBinding scheduler = default(FlutterSDK.Scheduler.Binding.SchedulerBinding))
+        {
+            throw new NotImplementedException();
+        }
+
+    }
+
+    public interface ISchedulerBinding { }
+
+    public class SchedulerBinding
+    {
+        internal virtual List<object> _TimingsCallbacks { get; set; }
+        internal virtual FlutterSDK.Scheduler.Binding.SchedulerBinding _Instance { get; set; }
+        internal virtual AppLifecycleState _LifecycleState { get; set; }
+        public virtual FlutterSDK.Scheduler.Binding.SchedulingStrategy SchedulingStrategy { get; set; }
+        internal virtual object _TaskQueue { get; set; }
+        internal virtual bool _HasRequestedAnEventLoopCallback { get; set; }
+        internal virtual int _NextFrameCallbackId { get; set; }
+        internal virtual Dictionary<int, FlutterSDK.Scheduler.Binding._FrameCallbackEntry> _TransientCallbacks { get; set; }
+        internal virtual HashSet<int> _RemovedIds { get; set; }
+        internal virtual List<object> _PersistentCallbacks { get; set; }
+        internal virtual List<object> _PostFrameCallbacks { get; set; }
+        internal virtual Completer<object> _NextFrameCompleter { get; set; }
+        internal virtual bool _HasScheduledFrame { get; set; }
+        internal virtual FlutterSDK.Scheduler.Binding.SchedulerPhase _SchedulerPhase { get; set; }
+        internal virtual bool _FramesEnabled { get; set; }
+        internal virtual bool _WarmUpFrame { get; set; }
+        internal virtual TimeSpan _FirstRawTimeStampInEpoch { get; set; }
+        internal virtual TimeSpan _EpochStart { get; set; }
+        internal virtual TimeSpan _LastRawTimeStamp { get; set; }
+        internal virtual TimeSpan _CurrentFrameTimeStamp { get; set; }
+        internal virtual int _DebugFrameNumber { get; set; }
+        internal virtual string _DebugBanner { get; set; }
+        internal virtual bool _IgnoreNextEngineDrawFrame { get; set; }
+        public virtual FlutterSDK.Scheduler.Binding.SchedulerBinding Instance { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual AppLifecycleState LifecycleState { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int TransientCallbackCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual Future<object> EndOfFrame { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool HasScheduledFrame { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Scheduler.Binding.SchedulerPhase SchedulerPhase { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool FramesEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TimeSpan CurrentFrameTimeStamp { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TimeSpan CurrentSystemFrameTimeStamp { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+
+        public new void InitInstances() { throw new NotImplementedException(); }
 
 
-public class _TaskEntry<T>
-{
-#region constructors
-public _TaskEntry(FlutterSDK.Scheduler.Binding.TaskCallback<T> task,int priority,string debugLabel,Flow flow)
-{
-this.Task = task;
-this.Priority = priority;
-this.DebugLabel = debugLabel;
-this.Flow = flow;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Scheduler.Binding.TaskCallback<T> Task{get;set;}
-public virtual int Priority{get;set;}
-public virtual string DebugLabel{get;set;}
-public virtual Flow Flow{get;set;}
-public virtual StackTrace DebugStack{get;set;}
-public virtual Completer<T> Completer{get;set;}
-#endregion
-
-#region methods
-
-public virtual void Run(){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual void AddTimingsCallback(TimingsCallback callback) { throw new NotImplementedException(); }
 
 
-public class _FrameCallbackEntry
-{
-#region constructors
-public _FrameCallbackEntry(FlutterSDK.Scheduler.Binding.FrameCallback callback,bool rescheduling = false)
-{
-this.Callback = callback;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Scheduler.Binding.FrameCallback Callback{get;set;}
-public virtual StackTrace DebugCurrentCallbackStack{get;set;}
-public virtual StackTrace DebugStack{get;set;}
-#endregion
-
-#region methods
-#endregion
-}
+        public virtual void RemoveTimingsCallback(TimingsCallback callback) { throw new NotImplementedException(); }
 
 
-public enum SchedulerPhase{
+        private void _ExecuteTimingsCallbacks(List<FrameTiming> timings) { throw new NotImplementedException(); }
 
-Idle,
-TransientCallbacks,
-MidFrameMicrotasks,
-PersistentCallbacks,
-PostFrameCallbacks,
-}
+
+        public new void InitServiceExtensions() { throw new NotImplementedException(); }
+
+
+        public virtual void ReadInitialLifecycleStateFromNativeWindow() { throw new NotImplementedException(); }
+
+
+        public virtual void HandleAppLifecycleStateChanged(AppLifecycleState state) { throw new NotImplementedException(); }
+
+
+        private Future<string> _HandleLifecycleMessage(string message) { throw new NotImplementedException(); }
+
+
+        private AppLifecycleState _ParseAppLifecycleMessage(string message) { throw new NotImplementedException(); }
+
+
+        private int _TaskSorter(FlutterSDK.Scheduler.Binding._TaskEntry<object> e1, FlutterSDK.Scheduler.Binding._TaskEntry<object> e2) { throw new NotImplementedException(); }
+
+
+        public virtual Future<T> ScheduleTask<T>(FlutterSDK.Scheduler.Binding.TaskCallback<T> task, FlutterSDK.Scheduler.Priority.Priority priority, string debugLabel = default(string), Flow flow = default(Flow)) { throw new NotImplementedException(); }
+
+
+        public new void Unlocked() { throw new NotImplementedException(); }
+
+
+        private void _EnsureEventLoopCallback() { throw new NotImplementedException(); }
+
+
+        private void _RunTasks() { throw new NotImplementedException(); }
+
+
+        public virtual bool HandleEventLoopCallback() { throw new NotImplementedException(); }
+
+
+        public virtual int ScheduleFrameCallback(FlutterSDK.Scheduler.Binding.FrameCallback callback, bool rescheduling = false) { throw new NotImplementedException(); }
+
+
+        public virtual void CancelFrameCallbackWithId(int id) { throw new NotImplementedException(); }
+
+
+        public virtual bool DebugAssertNoTransientCallbacks(string reason) { throw new NotImplementedException(); }
+
+
+        public virtual void DebugPrintTransientCallbackRegistrationStack() { throw new NotImplementedException(); }
+
+
+        public virtual void AddPersistentFrameCallback(FlutterSDK.Scheduler.Binding.FrameCallback callback) { throw new NotImplementedException(); }
+
+
+        public virtual void AddPostFrameCallback(FlutterSDK.Scheduler.Binding.FrameCallback callback) { throw new NotImplementedException(); }
+
+
+        private void _SetFramesEnabledState(bool enabled) { throw new NotImplementedException(); }
+
+
+        public virtual void EnsureFrameCallbacksRegistered() { throw new NotImplementedException(); }
+
+
+        public virtual void EnsureVisualUpdate() { throw new NotImplementedException(); }
+
+
+        public virtual void ScheduleFrame() { throw new NotImplementedException(); }
+
+
+        public virtual void ScheduleForcedFrame() { throw new NotImplementedException(); }
+
+
+        public virtual void ScheduleWarmUpFrame() { throw new NotImplementedException(); }
+
+
+        public virtual void ResetEpoch() { throw new NotImplementedException(); }
+
+
+        private TimeSpan _AdjustForEpoch(TimeSpan rawTimeStamp) { throw new NotImplementedException(); }
+
+
+        private void _HandleBeginFrame(TimeSpan rawTimeStamp) { throw new NotImplementedException(); }
+
+
+        private void _HandleDrawFrame() { throw new NotImplementedException(); }
+
+
+        public virtual void HandleBeginFrame(TimeSpan rawTimeStamp) { throw new NotImplementedException(); }
+
+
+        public virtual void HandleDrawFrame() { throw new NotImplementedException(); }
+
+
+        private void _ProfileFramePostEvent(int frameNumber, FrameTiming frameTiming) { throw new NotImplementedException(); }
+
+
+        private void _DebugDescribeTimeStamp(TimeSpan timeStamp, StringBuffer buffer) { throw new NotImplementedException(); }
+
+
+        private void _InvokeFrameCallback(FlutterSDK.Scheduler.Binding.FrameCallback callback, TimeSpan timeStamp, StackTrace callbackStack = default(StackTrace)) { throw new NotImplementedException(); }
+
+    }
+    public static class SchedulerBindingMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<ISchedulerBinding, SchedulerBinding> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<ISchedulerBinding, SchedulerBinding>();
+        static SchedulerBinding GetOrCreate(ISchedulerBinding instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new SchedulerBinding();
+                _table.Add(instance, value);
+            }
+            return (SchedulerBinding)value;
+        }
+        public static FlutterSDK.Scheduler.Binding.SchedulingStrategy SchedulingStrategyProperty(this ISchedulerBinding instance) => GetOrCreate(instance).SchedulingStrategy;
+        public static FlutterSDK.Scheduler.Binding.SchedulerBinding InstanceProperty(this ISchedulerBinding instance) => GetOrCreate(instance).Instance;
+        public static AppLifecycleState LifecycleStateProperty(this ISchedulerBinding instance) => GetOrCreate(instance).LifecycleState;
+        public static int TransientCallbackCountProperty(this ISchedulerBinding instance) => GetOrCreate(instance).TransientCallbackCount;
+        public static Future<object> EndOfFrameProperty(this ISchedulerBinding instance) => GetOrCreate(instance).EndOfFrame;
+        public static bool HasScheduledFrameProperty(this ISchedulerBinding instance) => GetOrCreate(instance).HasScheduledFrame;
+        public static FlutterSDK.Scheduler.Binding.SchedulerPhase SchedulerPhaseProperty(this ISchedulerBinding instance) => GetOrCreate(instance).SchedulerPhase;
+        public static bool FramesEnabledProperty(this ISchedulerBinding instance) => GetOrCreate(instance).FramesEnabled;
+        public static TimeSpan CurrentFrameTimeStampProperty(this ISchedulerBinding instance) => GetOrCreate(instance).CurrentFrameTimeStamp;
+        public static TimeSpan CurrentSystemFrameTimeStampProperty(this ISchedulerBinding instance) => GetOrCreate(instance).CurrentSystemFrameTimeStamp;
+        public static void InitInstances(this ISchedulerBinding instance) => GetOrCreate(instance).InitInstances();
+        public static void AddTimingsCallback(this ISchedulerBinding instance, TimingsCallback callback) => GetOrCreate(instance).AddTimingsCallback(callback);
+        public static void RemoveTimingsCallback(this ISchedulerBinding instance, TimingsCallback callback) => GetOrCreate(instance).RemoveTimingsCallback(callback);
+        public static void InitServiceExtensions(this ISchedulerBinding instance) => GetOrCreate(instance).InitServiceExtensions();
+        public static void ReadInitialLifecycleStateFromNativeWindow(this ISchedulerBinding instance) => GetOrCreate(instance).ReadInitialLifecycleStateFromNativeWindow();
+        public static void HandleAppLifecycleStateChanged(this ISchedulerBinding instance, AppLifecycleState state) => GetOrCreate(instance).HandleAppLifecycleStateChanged(state);
+        public static Future<T> ScheduleTask<T>(this ISchedulerBinding instance, FlutterSDK.Scheduler.Binding.TaskCallback<T> task, FlutterSDK.Scheduler.Priority.Priority priority, string debugLabel = default(string), Flow flow = default(Flow)) => GetOrCreate(instance).ScheduleTask<T>(task, priority, debugLabel, flow);
+        public static void Unlocked(this ISchedulerBinding instance) => GetOrCreate(instance).Unlocked();
+        public static bool HandleEventLoopCallback(this ISchedulerBinding instance) => GetOrCreate(instance).HandleEventLoopCallback();
+        public static int ScheduleFrameCallback(this ISchedulerBinding instance, FlutterSDK.Scheduler.Binding.FrameCallback callback, bool rescheduling = false) => GetOrCreate(instance).ScheduleFrameCallback(callback, rescheduling);
+        public static void CancelFrameCallbackWithId(this ISchedulerBinding instance, int id) => GetOrCreate(instance).CancelFrameCallbackWithId(id);
+        public static bool DebugAssertNoTransientCallbacks(this ISchedulerBinding instance, string reason) => GetOrCreate(instance).DebugAssertNoTransientCallbacks(reason);
+        public static void DebugPrintTransientCallbackRegistrationStack(this ISchedulerBinding instance) => GetOrCreate(instance).DebugPrintTransientCallbackRegistrationStack();
+        public static void AddPersistentFrameCallback(this ISchedulerBinding instance, FlutterSDK.Scheduler.Binding.FrameCallback callback) => GetOrCreate(instance).AddPersistentFrameCallback(callback);
+        public static void AddPostFrameCallback(this ISchedulerBinding instance, FlutterSDK.Scheduler.Binding.FrameCallback callback) => GetOrCreate(instance).AddPostFrameCallback(callback);
+        public static void EnsureFrameCallbacksRegistered(this ISchedulerBinding instance) => GetOrCreate(instance).EnsureFrameCallbacksRegistered();
+        public static void EnsureVisualUpdate(this ISchedulerBinding instance) => GetOrCreate(instance).EnsureVisualUpdate();
+        public static void ScheduleFrame(this ISchedulerBinding instance) => GetOrCreate(instance).ScheduleFrame();
+        public static void ScheduleForcedFrame(this ISchedulerBinding instance) => GetOrCreate(instance).ScheduleForcedFrame();
+        public static void ScheduleWarmUpFrame(this ISchedulerBinding instance) => GetOrCreate(instance).ScheduleWarmUpFrame();
+        public static void ResetEpoch(this ISchedulerBinding instance) => GetOrCreate(instance).ResetEpoch();
+        public static void HandleBeginFrame(this ISchedulerBinding instance, TimeSpan rawTimeStamp) => GetOrCreate(instance).HandleBeginFrame(rawTimeStamp);
+        public static void HandleDrawFrame(this ISchedulerBinding instance) => GetOrCreate(instance).HandleDrawFrame();
+    }
+
+
+    public class _TaskEntry<T>
+    {
+        #region constructors
+        public _TaskEntry(FlutterSDK.Scheduler.Binding.TaskCallback<T> task, int priority, string debugLabel, Flow flow)
+        {
+            this.Task = task;
+            this.Priority = priority;
+            this.DebugLabel = debugLabel;
+            this.Flow = flow; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Scheduler.Binding.TaskCallback<T> Task { get; set; }
+        public virtual int Priority { get; set; }
+        public virtual string DebugLabel { get; set; }
+        public virtual Flow Flow { get; set; }
+        public virtual StackTrace DebugStack { get; set; }
+        public virtual Completer<T> Completer { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual void Run() { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class _FrameCallbackEntry
+    {
+        #region constructors
+        public _FrameCallbackEntry(FlutterSDK.Scheduler.Binding.FrameCallback callback, bool rescheduling = false)
+        {
+            this.Callback = callback; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Scheduler.Binding.FrameCallback Callback { get; set; }
+        public virtual StackTrace DebugCurrentCallbackStack { get; set; }
+        public virtual StackTrace DebugStack { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    public enum SchedulerPhase
+    {
+
+        Idle,
+        TransientCallbacks,
+        MidFrameMicrotasks,
+        PersistentCallbacks,
+        PostFrameCallbacks,
+    }
 
 }

@@ -294,114 +294,121 @@ using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
-namespace FlutterSDK.Gestures.Lsqsolver{
-internal static class LsqsolverDefaultClass{
-}
-
-public class _Vector
+namespace FlutterSDK.Gestures.Lsqsolver
 {
-#region constructors
-public _Vector(int size)
-: base()
-{
-throw new NotImplementedException(); }
-public static _Vector FromVOL(List<double> values,int offset,int length)
-{
-var instance =new _Vector();throw new NotImplementedException(); }
-#endregion
+    internal static class LsqsolverDefaultClass
+    {
+    }
 
-#region fields
-internal virtual int _Offset{get;set;}
-internal virtual int _Length{get;set;}
-internal virtual List<double> _Elements{get;set;}
-#endregion
+    public class _Vector
+    {
+        #region constructors
+        public _Vector(int size)
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        public static _Vector FromVOL(List<double> values, int offset, int length)
+        {
+            var instance = new _Vector(); throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual int _Offset { get; set; }
+        internal virtual int _Length { get; set; }
+        internal virtual List<double> _Elements { get; set; }
+        #endregion
 
-public virtual double IndexOfOperator(int i){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual void InsertAtOperator(int i,double value){ throw new NotImplementedException(); }
-
-
-public virtual double MultiplyOperator(FlutterSDK.Gestures.Lsqsolver._Vector a){ throw new NotImplementedException(); }
-
-
-public virtual double Norm(){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual double IndexOfOperator(int i) { throw new NotImplementedException(); }
 
 
-public class _Matrix
-{
-#region constructors
-public _Matrix(int rows,int cols)
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual int _Columns{get;set;}
-internal virtual List<double> _Elements{get;set;}
-#endregion
-
-#region methods
-
-public virtual double Get(int row,int col){ throw new NotImplementedException(); }
+        public virtual void InsertAtOperator(int i, double value) { throw new NotImplementedException(); }
 
 
-public virtual void Set(int row,int col,double value){ throw new NotImplementedException(); }
+        public virtual double MultiplyOperator(FlutterSDK.Gestures.Lsqsolver._Vector a) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Gestures.Lsqsolver._Vector GetRow(int row){ throw new NotImplementedException(); }
+        public virtual double Norm() { throw new NotImplementedException(); }
 
-#endregion
-}
-
-
-public class PolynomialFit
-{
-#region constructors
-public PolynomialFit(int degree)
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual List<double> Coefficients{get;set;}
-public virtual double Confidence{get;set;}
-#endregion
-
-#region methods
-#endregion
-}
+        #endregion
+    }
 
 
-public class LeastSquaresSolver
-{
-#region constructors
-public LeastSquaresSolver(List<double> x,List<double> y,List<double> w)
-: base()
-{
-this.x = x;
-this.y = y;
-this.w = w;throw new NotImplementedException(); }
-#endregion
+    public class _Matrix
+    {
+        #region constructors
+        public _Matrix(int rows, int cols)
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual List<double> x{get;set;}
-public virtual List<double> y{get;set;}
-public virtual List<double> w{get;set;}
-#endregion
+        #region fields
+        internal virtual int _Columns { get; set; }
+        internal virtual List<double> _Elements { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public virtual FlutterSDK.Gestures.Lsqsolver.PolynomialFit Solve(int degree){ throw new NotImplementedException(); }
+        public virtual double Get(int row, int col) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public virtual void Set(int row, int col, double value) { throw new NotImplementedException(); }
+
+
+        public virtual FlutterSDK.Gestures.Lsqsolver._Vector GetRow(int row) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class PolynomialFit
+    {
+        #region constructors
+        public PolynomialFit(int degree)
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual List<double> Coefficients { get; set; }
+        public virtual double Confidence { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    public class LeastSquaresSolver
+    {
+        #region constructors
+        public LeastSquaresSolver(List<double> x, List<double> y, List<double> w)
+        : base()
+        {
+            this.x = x;
+            this.y = y;
+            this.w = w; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual List<double> x { get; set; }
+        public virtual List<double> y { get; set; }
+        public virtual List<double> w { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual FlutterSDK.Gestures.Lsqsolver.PolynomialFit Solve(int degree) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

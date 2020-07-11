@@ -383,52 +383,55 @@ using FlutterSDK.Material.Expandicon;
 using FlutterSDK.Material.Mergeablematerial;
 using FlutterSDK.Material.Button;
 using FlutterSDK.Material.Floatingactionbuttontheme;
-namespace FlutterSDK.Material.Inkhighlight{
-internal static class InkhighlightDefaultClass{
-public static TimeSpan _KDefaultHighlightFadeDuration = default(TimeSpan);
-}
-
-public class InkHighlight : FlutterSDK.Material.Inkwell.InteractiveInkFeature
+namespace FlutterSDK.Material.Inkhighlight
 {
-#region constructors
-public InkHighlight(FlutterSDK.Material.Material.MaterialInkController controller = default(FlutterSDK.Material.Material.MaterialInkController),FlutterSDK.Rendering.Box.RenderBox referenceBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),TextDirection textDirection = default(TextDirection),FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape),FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius),FlutterSDK.Painting.Borders.ShapeBorder customBorder = default(FlutterSDK.Painting.Borders.ShapeBorder),FlutterSDK.Material.Material.RectCallback rectCallback = default(FlutterSDK.Material.Material.RectCallback),VoidCallback onRemoved = default(VoidCallback),TimeSpan fadeDuration = default(TimeSpan))
-: base(controller:controller,referenceBox:referenceBox,color:color,onRemoved:onRemoved)
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class InkhighlightDefaultClass
+    {
+        public static TimeSpan _KDefaultHighlightFadeDuration = default(TimeSpan);
+    }
 
-#region fields
-internal virtual FlutterSDK.Painting.Boxborder.BoxShape _Shape{get;set;}
-internal virtual FlutterSDK.Painting.Borderradius.BorderRadius _BorderRadius{get;set;}
-internal virtual FlutterSDK.Painting.Borders.ShapeBorder _CustomBorder{get;set;}
-internal virtual FlutterSDK.Material.Material.RectCallback _RectCallback{get;set;}
-internal virtual TextDirection _TextDirection{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<int> _Alpha{get;set;}
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _AlphaController{get;set;}
-internal virtual bool _Active{get;set;}
-public virtual bool Active{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class InkHighlight : FlutterSDK.Material.Inkwell.InteractiveInkFeature
+    {
+        #region constructors
+        public InkHighlight(FlutterSDK.Material.Material.MaterialInkController controller = default(FlutterSDK.Material.Material.MaterialInkController), FlutterSDK.Rendering.Box.RenderBox referenceBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Painting.Borders.ShapeBorder customBorder = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Material.Material.RectCallback rectCallback = default(FlutterSDK.Material.Material.RectCallback), VoidCallback onRemoved = default(VoidCallback), TimeSpan fadeDuration = default(TimeSpan))
+        : base(controller: controller, referenceBox: referenceBox, color: color, onRemoved: onRemoved)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual FlutterSDK.Painting.Boxborder.BoxShape _Shape { get; set; }
+        internal virtual FlutterSDK.Painting.Borderradius.BorderRadius _BorderRadius { get; set; }
+        internal virtual FlutterSDK.Painting.Borders.ShapeBorder _CustomBorder { get; set; }
+        internal virtual FlutterSDK.Material.Material.RectCallback _RectCallback { get; set; }
+        internal virtual TextDirection _TextDirection { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<int> _Alpha { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _AlphaController { get; set; }
+        internal virtual bool _Active { get; set; }
+        public virtual bool Active { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual void Activate(){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual void Deactivate(){ throw new NotImplementedException(); }
-
-
-private void _HandleAlphaStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status){ throw new NotImplementedException(); }
-
-
-public new void Dispose(){ throw new NotImplementedException(); }
-
-
-private void _PaintHighlight(Canvas canvas,FlutterBinding.UI.Rect rect,SKPaint paint){ throw new NotImplementedException(); }
+        public virtual void Activate() { throw new NotImplementedException(); }
 
 
-public new void PaintFeature(Canvas canvas,Matrix4 transform){ throw new NotImplementedException(); }
+        public virtual void Deactivate() { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        private void _HandleAlphaStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status) { throw new NotImplementedException(); }
+
+
+        public new void Dispose() { throw new NotImplementedException(); }
+
+
+        private void _PaintHighlight(Canvas canvas, FlutterBinding.UI.Rect rect, SKPaint paint) { throw new NotImplementedException(); }
+
+
+        public new void PaintFeature(Canvas canvas, Matrix4 transform) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

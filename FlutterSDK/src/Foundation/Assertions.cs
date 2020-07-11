@@ -291,332 +291,355 @@ using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
-namespace FlutterSDK.Foundation.Assertions{
-public delegate void FlutterExceptionHandler(FlutterSDK.Foundation.Assertions.FlutterErrorDetails details);
-public delegate Iterable<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DiagnosticPropertiesTransformer(Iterable<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> properties);
-public delegate Iterable<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> InformationCollector();
-internal static class AssertionsDefaultClass{
-internal static void DebugPrintStack(StackTrace stackTrace = default(StackTrace),string label = default(string),int maxFrames = default(int)){
-throw new NotImplementedException();
-}
-
-}
-
-public interface IStackFilter{
-void Filter(List<FlutterSDK.Foundation.Stackframe.StackFrame> stackFrames,List<string> reasons);
-}
-
-
-internal interface I_ErrorDiagnostic{
-string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration));
-}
-
-
-public class PartialStackFrame
+namespace FlutterSDK.Foundation.Assertions
 {
-#region constructors
-public PartialStackFrame(Pattern package = default(Pattern),string className = default(string),string method = default(string))
-: base()
-{
-this.Package = package;
-this.ClassName = className;
-this.Method = method;throw new NotImplementedException(); }
-#endregion
+    public delegate void FlutterExceptionHandler(FlutterSDK.Foundation.Assertions.FlutterErrorDetails details);
+    public delegate Iterable<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DiagnosticPropertiesTransformer(Iterable<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> properties);
+    public delegate Iterable<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> InformationCollector();
+    internal static class AssertionsDefaultClass
+    {
+        internal static void DebugPrintStack(StackTrace stackTrace = default(StackTrace), string label = default(string), int maxFrames = default(int))
+        {
+            throw new NotImplementedException();
+        }
+
+    }
+
+    public interface IStackFilter
+    {
+        void Filter(List<FlutterSDK.Foundation.Stackframe.StackFrame> stackFrames, List<string> reasons);
+    }
+
+
+    internal interface I_ErrorDiagnostic
+    {
+        string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration));
+    }
+
+
+    public class PartialStackFrame
+    {
+        #region constructors
+        public PartialStackFrame(Pattern package = default(Pattern), string className = default(string), string method = default(string))
+        : base()
+        {
+            this.Package = package;
+            this.ClassName = className;
+            this.Method = method; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Foundation.Assertions.PartialStackFrame AsynchronousSuspension { get; set; }
+        public virtual Pattern Package { get; set; }
+        public virtual string ClassName { get; set; }
+        public virtual string Method { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual bool Matches(FlutterSDK.Foundation.Stackframe.StackFrame stackFrame) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class StackFilter
+    {
+        #region constructors
+        public StackFilter()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public virtual void Filter(List<FlutterSDK.Foundation.Stackframe.StackFrame> stackFrames, List<string> reasons) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class RepetitiveStackFrameFilter : FlutterSDK.Foundation.Assertions.StackFilter
+    {
+        #region constructors
+        public RepetitiveStackFrameFilter(List<FlutterSDK.Foundation.Assertions.PartialStackFrame> frames = default(List<FlutterSDK.Foundation.Assertions.PartialStackFrame>), string replacement = default(string))
+        : base()
+        {
+            this.Frames = frames;
+            this.Replacement = replacement; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual List<FlutterSDK.Foundation.Assertions.PartialStackFrame> Frames { get; set; }
+        public virtual string Replacement { get; set; }
+        public virtual int NumFrames { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual List<string> _Replacements { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void Filter(List<FlutterSDK.Foundation.Stackframe.StackFrame> stackFrames, List<string> reasons) { throw new NotImplementedException(); }
+
+
+        private bool _MatchesFrames(List<FlutterSDK.Foundation.Stackframe.StackFrame> stackFrames) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class _ErrorDiagnostic : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<List<@Object>>
+    {
+        #region constructors
+        public _ErrorDiagnostic(string message, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
+        : base(null, new List<object>() { message }, showName: false, showSeparator: false, defaultValue: null, style: style, level: level)
+        {
+            throw new NotImplementedException();
+        }
+        internal static _ErrorDiagnostic _FromParts(List<@Object> messageParts, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
+        {
+            var instance = new _ErrorDiagnostic(null, messageParts, showName: false, showSeparator: false, defaultValue: null, style: style, level: level); throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration)) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class ErrorDescription : FlutterSDK.Foundation.Assertions._ErrorDiagnostic
+    {
+        #region constructors
+        public ErrorDescription(string message)
+        : base(message, level: DiagnosticLevel.Info)
+        {
+            throw new NotImplementedException();
+        }
+        internal static ErrorDescription _FromParts(List<@Object> messageParts)
+        {
+            var instance = new ErrorDescription(messageParts, level: DiagnosticLevel.Info); throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    public class ErrorSummary : FlutterSDK.Foundation.Assertions._ErrorDiagnostic
+    {
+        #region constructors
+        public ErrorSummary(string message)
+        : base(message, level: DiagnosticLevel.Summary)
+        {
+            throw new NotImplementedException();
+        }
+        internal static ErrorSummary _FromParts(List<@Object> messageParts)
+        {
+            var instance = new ErrorSummary(messageParts, level: DiagnosticLevel.Summary); throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    public class ErrorHint : FlutterSDK.Foundation.Assertions._ErrorDiagnostic
+    {
+        #region constructors
+        public ErrorHint(string message)
+        : base(message, level: DiagnosticLevel.Hint)
+        {
+            throw new NotImplementedException();
+        }
+        internal static ErrorHint _FromParts(List<@Object> messageParts)
+        {
+            var instance = new ErrorHint(messageParts, level: DiagnosticLevel.Hint); throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    public class ErrorSpacer : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<object>
+    {
+        #region constructors
+        public ErrorSpacer()
+        : base("", null, description: "", showName: false)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Foundation.Assertions.PartialStackFrame AsynchronousSuspension{get;set;}
-public virtual Pattern Package{get;set;}
-public virtual string ClassName{get;set;}
-public virtual string Method{get;set;}
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
+        #endregion
+    }
 
-public virtual bool Matches(FlutterSDK.Foundation.Stackframe.StackFrame stackFrame){ throw new NotImplementedException(); }
 
-#endregion
-}
-
-
-public class StackFilter
-{
-#region constructors
-public StackFilter()
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-#endregion
+    public class FlutterErrorDetails : IDiagnosticable
+    {
+        #region constructors
+        public FlutterErrorDetails(object exception = default(object), StackTrace stack = default(StackTrace), string library = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsNode context = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode), FlutterSDK.Foundation.Basictypes.IterableFilter<string> stackFilter = default(FlutterSDK.Foundation.Basictypes.IterableFilter<string>), FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector), bool silent = false)
+        {
+            this.Exception = exception;
+            this.Stack = stack;
+            this.Library = library;
+            this.Context = context;
+            this.StackFilter = stackFilter;
+            this.InformationCollector = informationCollector;
+            this.Silent = silent; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual List<object> PropertiesTransformers { get; set; }
+        public virtual object Exception { get; set; }
+        public virtual StackTrace Stack { get; set; }
+        public virtual string Library { get; set; }
+        public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticsNode Context { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.IterableFilter<string> StackFilter { get; set; }
+        public virtual FlutterSDK.Foundation.Assertions.InformationCollector InformationCollector { get; set; }
+        public virtual bool Silent { get; set; }
+        public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticsNode Summary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual void Filter(List<FlutterSDK.Foundation.Stackframe.StackFrame> stackFrames,List<string> reasons){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class RepetitiveStackFrameFilter : FlutterSDK.Foundation.Assertions.StackFilter
-{
-#region constructors
-public RepetitiveStackFrameFilter(List<FlutterSDK.Foundation.Assertions.PartialStackFrame> frames = default(List<FlutterSDK.Foundation.Assertions.PartialStackFrame>),string replacement = default(string))
-: base()
-{
-this.Frames = frames;
-this.Replacement = replacement;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual List<FlutterSDK.Foundation.Assertions.PartialStackFrame> Frames{get;set;}
-public virtual string Replacement{get;set;}
-public virtual int NumFrames{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual List<string> _Replacements{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new void Filter(List<FlutterSDK.Foundation.Stackframe.StackFrame> stackFrames,List<string> reasons){ throw new NotImplementedException(); }
-
-
-private bool _MatchesFrames(List<FlutterSDK.Foundation.Stackframe.StackFrame> stackFrames){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _ErrorDiagnostic : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<List<@Object>>
-{
-#region constructors
-public _ErrorDiagnostic(string message,FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle),FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
-: base(null,new List<object>(){message},showName:false,showSeparator:false,defaultValue:null,style:style,level:level)
-{
-throw new NotImplementedException(); }
-internal static _ErrorDiagnostic _FromParts(List<@Object> messageParts,FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle),FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
-{
-var instance =new _ErrorDiagnostic(null,messageParts,showName:false,showSeparator:false,defaultValue:null,style:style,level:level);throw new NotImplementedException(); }
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public new string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration)){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class ErrorDescription : FlutterSDK.Foundation.Assertions._ErrorDiagnostic
-{
-#region constructors
-public ErrorDescription(string message)
-: base(message,level:DiagnosticLevel.Info)
-{
-throw new NotImplementedException(); }
-internal static ErrorDescription _FromParts(List<@Object> messageParts)
-{
-var instance =new ErrorDescription(messageParts,level:DiagnosticLevel.Info);throw new NotImplementedException(); }
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-#endregion
-}
+        #region methods
 
-
-public class ErrorSummary : FlutterSDK.Foundation.Assertions._ErrorDiagnostic
-{
-#region constructors
-public ErrorSummary(string message)
-: base(message,level:DiagnosticLevel.Summary)
-{
-throw new NotImplementedException(); }
-internal static ErrorSummary _FromParts(List<@Object> messageParts)
-{
-var instance =new ErrorSummary(messageParts,level:DiagnosticLevel.Summary);throw new NotImplementedException(); }
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-#endregion
-}
-
-
-public class ErrorHint : FlutterSDK.Foundation.Assertions._ErrorDiagnostic
-{
-#region constructors
-public ErrorHint(string message)
-: base(message,level:DiagnosticLevel.Hint)
-{
-throw new NotImplementedException(); }
-internal static ErrorHint _FromParts(List<@Object> messageParts)
-{
-var instance =new ErrorHint(messageParts,level:DiagnosticLevel.Hint);throw new NotImplementedException(); }
-#endregion
+        public virtual string ExceptionAsString() { throw new NotImplementedException(); }
 
-#region fields
-#endregion
 
-#region methods
-#endregion
-}
+        private FlutterSDK.Foundation.Diagnostics.Diagnosticable _ExceptionToDiagnosticable() { throw new NotImplementedException(); }
 
 
-public class ErrorSpacer : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<object>
-{
-#region constructors
-public ErrorSpacer()
-: base("",null,description:"",showName:false)
-{
-throw new NotImplementedException(); }
-#endregion
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#region fields
-#endregion
 
-#region methods
-#endregion
-}
+        public new string ToStringShort() { throw new NotImplementedException(); }
 
 
-public class FlutterErrorDetails : IDiagnosticable
-{
-#region constructors
-public FlutterErrorDetails(object exception = default(object),StackTrace stack = default(StackTrace),string library = default(string),FlutterSDK.Foundation.Diagnostics.DiagnosticsNode context = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode),FlutterSDK.Foundation.Basictypes.IterableFilter<string> stackFilter = default(FlutterSDK.Foundation.Basictypes.IterableFilter<string>),FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector),bool silent = false)
-{
-this.Exception = exception;
-this.Stack = stack;
-this.Library = library;
-this.Context = context;
-this.StackFilter = stackFilter;
-this.InformationCollector = informationCollector;
-this.Silent = silent;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual List<object> PropertiesTransformers{get;set;}
-public virtual object Exception{get;set;}
-public virtual StackTrace Stack{get;set;}
-public virtual string Library{get;set;}
-public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticsNode Context{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.IterableFilter<string> StackFilter{get;set;}
-public virtual FlutterSDK.Foundation.Assertions.InformationCollector InformationCollector{get;set;}
-public virtual bool Silent{get;set;}
-public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticsNode Summary{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        public new FlutterSDK.Foundation.Diagnostics.DiagnosticsNode ToDiagnosticsNode(string name = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle)) { throw new NotImplementedException(); }
 
-#region methods
+        #endregion
+    }
 
-public virtual string ExceptionAsString(){ throw new NotImplementedException(); }
 
+    public class FlutterError : Error, IAssertionError, IDiagnosticableTreeMixin
+    {
+        #region constructors
+        public FlutterError(string message)
+        {
+            throw new NotImplementedException();
+        }
+        public static FlutterError FromParts(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> diagnostics)
+        {
+            var instance = new FlutterError(); instance.Diagnostics = diagnostics; throw new NotImplementedException();
+        }
+        #endregion
 
-private FlutterSDK.Foundation.Diagnostics.Diagnosticable _ExceptionToDiagnosticable(){ throw new NotImplementedException(); }
+        #region fields
+        public virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> Diagnostics { get; set; }
+        public virtual FlutterSDK.Foundation.Assertions.FlutterExceptionHandler OnError { get; set; }
+        internal virtual int _ErrorCount { get; set; }
+        public virtual int WrapWidth { get; set; }
+        internal virtual List<FlutterSDK.Foundation.Assertions.StackFilter> _StackFilters { get; set; }
+        public virtual string Message { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public virtual void ResetErrorCount() { throw new NotImplementedException(); }
 
 
-public new string ToStringShort(){ throw new NotImplementedException(); }
+        public virtual void DumpErrorToConsole(FlutterSDK.Foundation.Assertions.FlutterErrorDetails details, bool forceReport = false) { throw new NotImplementedException(); }
 
 
+        public virtual void AddDefaultStackFilter(FlutterSDK.Foundation.Assertions.StackFilter filter) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Foundation.Diagnostics.DiagnosticsNode ToDiagnosticsNode(string name = default(string),FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle)){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public virtual Iterable<string> DefaultStackFilter(Iterable<string> frames) { throw new NotImplementedException(); }
 
 
-public class FlutterError : Error,IAssertionError,IDiagnosticableTreeMixin
-{
-#region constructors
-public FlutterError(string message)
-{
-throw new NotImplementedException(); }
-public static FlutterError FromParts(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> diagnostics)
-{
-var instance =new FlutterError();instance.Diagnostics = diagnostics;throw new NotImplementedException(); }
-#endregion
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#region fields
-public virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> Diagnostics{get;set;}
-public virtual FlutterSDK.Foundation.Assertions.FlutterExceptionHandler OnError{get;set;}
-internal virtual int _ErrorCount{get;set;}
-public virtual int WrapWidth{get;set;}
-internal virtual List<FlutterSDK.Foundation.Assertions.StackFilter> _StackFilters{get;set;}
-public virtual string Message{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+        public new string ToStringShort() { throw new NotImplementedException(); }
 
-public virtual void ResetErrorCount(){ throw new NotImplementedException(); }
 
 
-public virtual void DumpErrorToConsole(FlutterSDK.Foundation.Assertions.FlutterErrorDetails details,bool forceReport = false){ throw new NotImplementedException(); }
+        public virtual void ReportError(FlutterSDK.Foundation.Assertions.FlutterErrorDetails details) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public virtual void AddDefaultStackFilter(FlutterSDK.Foundation.Assertions.StackFilter filter){ throw new NotImplementedException(); }
 
+    public class DiagnosticsStackTrace : FlutterSDK.Foundation.Diagnostics.DiagnosticsBlock
+    {
+        #region constructors
+        public DiagnosticsStackTrace(string name, StackTrace stack, FlutterSDK.Foundation.Basictypes.IterableFilter<string> stackFilter = default(FlutterSDK.Foundation.Basictypes.IterableFilter<string>), bool showSeparator = true)
+        : base(name: name, value: stack, properties: stack == null ? new List<DiagnosticsNode>() { } : (stackFilter ?? AssertionsDefaultClass.FlutterError.DefaultStackFilter)(stack.ToString().TrimEnd().Split('\n').ToList()).Map(_CreateStackFrame).ToList(), style: DiagnosticsTreeStyle.Flat, showSeparator: showSeparator, allowTruncate: true)
+        {
+            throw new NotImplementedException();
+        }
+        public static DiagnosticsStackTrace SingleFrame(string name, string frame = default(string), bool showSeparator = true)
+        {
+            var instance = new DiagnosticsStackTrace(name: name, properties: new List<DiagnosticsNode>() { _CreateStackFrame(frame) }, style: DiagnosticsTreeStyle.Whitespace, showSeparator: showSeparator); throw new NotImplementedException();
+        }
+        #endregion
 
-public virtual Iterable<string> DefaultStackFilter(Iterable<string> frames){ throw new NotImplementedException(); }
+        #region fields
+        #endregion
 
+        #region methods
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        private FlutterSDK.Foundation.Diagnostics.DiagnosticsNode _CreateStackFrame(string frame) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public new string ToStringShort(){ throw new NotImplementedException(); }
 
+    public class _FlutterErrorDetailsNode : FlutterSDK.Foundation.Diagnostics.DiagnosticableNode<FlutterSDK.Foundation.Assertions.FlutterErrorDetails>
+    {
+        #region constructors
+        public _FlutterErrorDetailsNode(string name = default(string), FlutterSDK.Foundation.Assertions.FlutterErrorDetails value = default(FlutterSDK.Foundation.Assertions.FlutterErrorDetails), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle))
+        : base(name: name, value: value, style: style)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder Builder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual void ReportError(FlutterSDK.Foundation.Assertions.FlutterErrorDetails details){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class DiagnosticsStackTrace : FlutterSDK.Foundation.Diagnostics.DiagnosticsBlock
-{
-#region constructors
-public DiagnosticsStackTrace(string name,StackTrace stack,FlutterSDK.Foundation.Basictypes.IterableFilter<string> stackFilter = default(FlutterSDK.Foundation.Basictypes.IterableFilter<string>),bool showSeparator = true)
-: base(name:name,value:stack,properties:stack==null ?new List<DiagnosticsNode>(){}:(stackFilter??AssertionsDefaultClass.FlutterError.DefaultStackFilter)(stack.ToString().TrimEnd().Split('\n').ToList()).Map(_CreateStackFrame).ToList(),style:DiagnosticsTreeStyle.Flat,showSeparator:showSeparator,allowTruncate:true)
-{
-throw new NotImplementedException(); }
-public static DiagnosticsStackTrace SingleFrame(string name,string frame = default(string),bool showSeparator = true)
-{
-var instance =new DiagnosticsStackTrace(name:name,properties:new List<DiagnosticsNode>(){_CreateStackFrame(frame)},style:DiagnosticsTreeStyle.Whitespace,showSeparator:showSeparator);throw new NotImplementedException(); }
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-private FlutterSDK.Foundation.Diagnostics.DiagnosticsNode _CreateStackFrame(string frame){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _FlutterErrorDetailsNode : FlutterSDK.Foundation.Diagnostics.DiagnosticableNode<FlutterSDK.Foundation.Assertions.FlutterErrorDetails>
-{
-#region constructors
-public _FlutterErrorDetailsNode(string name = default(string),FlutterSDK.Foundation.Assertions.FlutterErrorDetails value = default(FlutterSDK.Foundation.Assertions.FlutterErrorDetails),FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle))
-: base(name:name,value:value,style:style)
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder Builder{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-#endregion
-}
+        #region methods
+        #endregion
+    }
 
 }

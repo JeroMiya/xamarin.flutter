@@ -421,318 +421,328 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Widgets.Binding{
-internal static class BindingDefaultClass{
-internal static void RunApp(FlutterSDK.Widgets.Framework.Widget app){
-throw new NotImplementedException();
-}
-
-internal static void DebugDumpApp(){
-throw new NotImplementedException();
-}
-
-}
-
-public interface IWidgetsBinding{}
-
-public class WidgetsBinding{
-internal virtual FlutterSDK.Widgets.Binding.WidgetsBinding _Instance{get;set;}
-internal virtual FlutterSDK.Widgets.Framework.BuildOwner _BuildOwner{get;set;}
-internal virtual List<FlutterSDK.Widgets.Binding.WidgetsBindingObserver> _Observers{get;set;}
-internal virtual bool _NeedToReportFirstFrame{get;set;}
-internal virtual Completer<object> _FirstFrameCompleter{get;set;}
-public virtual bool DebugBuildingDirtyElements{get;set;}
-internal virtual FlutterSDK.Widgets.Framework.Element _RenderViewElement{get;set;}
-internal virtual bool _ReadyToProduceFrames{get;set;}
-public virtual FlutterSDK.Widgets.Binding.WidgetsBinding Instance{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Widgets.Framework.BuildOwner BuildOwner{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Widgets.Focusmanager.FocusManager FocusManager{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool FirstFrameRasterized{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual Future<object> WaitUntilFirstFrameRasterized{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool DebugDidSendFirstFrameEvent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Widgets.Framework.Element RenderViewElement{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool FramesEnabled{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsRootWidgetAttached{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-
-public new void InitInstances(){ throw new NotImplementedException(); }
-
-
-private void _DebugAddStackFilters(){ throw new NotImplementedException(); }
-
-
-public new void InitServiceExtensions(){ throw new NotImplementedException(); }
-
-
-private Future<object> _ForceRebuild(){ throw new NotImplementedException(); }
-
-
-public virtual void AddObserver(FlutterSDK.Widgets.Binding.WidgetsBindingObserver observer){ throw new NotImplementedException(); }
-
-
-public virtual bool RemoveObserver(FlutterSDK.Widgets.Binding.WidgetsBindingObserver observer){ throw new NotImplementedException(); }
-
-
-public new void HandleMetricsChanged(){ throw new NotImplementedException(); }
-
-
-public new void HandleTextScaleFactorChanged(){ throw new NotImplementedException(); }
-
-
-public new void HandlePlatformBrightnessChanged(){ throw new NotImplementedException(); }
-
-
-public new void HandleAccessibilityFeaturesChanged(){ throw new NotImplementedException(); }
-
-
-public virtual void HandleLocaleChanged(){ throw new NotImplementedException(); }
-
-
-public virtual void DispatchLocalesChanged(List<Locale> locales){ throw new NotImplementedException(); }
-
-
-public virtual void DispatchAccessibilityFeaturesChanged(){ throw new NotImplementedException(); }
-
-
-public virtual Future<object> HandlePopRoute(){ throw new NotImplementedException(); }
-
-
-public virtual Future<object> HandlePushRoute(string route){ throw new NotImplementedException(); }
-
-
-private Future<object> _HandleNavigationInvocation(FlutterSDK.Services.Messagecodec.MethodCall methodCall){ throw new NotImplementedException(); }
-
-
-public new void HandleAppLifecycleStateChanged(AppLifecycleState state){ throw new NotImplementedException(); }
-
-
-public virtual void HandleMemoryPressure(){ throw new NotImplementedException(); }
-
-
-public new Future<object> HandleSystemMessage(@Object systemMessage){ throw new NotImplementedException(); }
-
-
-public virtual void DeferFirstFrameReport(){ throw new NotImplementedException(); }
-
-
-public virtual void AllowFirstFrameReport(){ throw new NotImplementedException(); }
-
-
-private void _HandleBuildScheduled(){ throw new NotImplementedException(); }
-
-
-public new void DrawFrame(){ throw new NotImplementedException(); }
-
-
-public virtual void ScheduleAttachRootWidget(FlutterSDK.Widgets.Framework.Widget rootWidget){ throw new NotImplementedException(); }
-
-
-public virtual void AttachRootWidget(FlutterSDK.Widgets.Framework.Widget rootWidget){ throw new NotImplementedException(); }
-
-
-public new Future<object> PerformReassemble(){ throw new NotImplementedException(); }
-
-}
-public static class WidgetsBindingMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IWidgetsBinding, WidgetsBinding> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IWidgetsBinding, WidgetsBinding>();
-static WidgetsBinding GetOrCreate(IWidgetsBinding instance)
+namespace FlutterSDK.Widgets.Binding
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new WidgetsBinding();
-_table.Add(instance, value);
-}
-return (WidgetsBinding)value;
-}
-public static bool DebugBuildingDirtyElementsProperty(this IWidgetsBinding instance) => GetOrCreate(instance).DebugBuildingDirtyElements;
-public static FlutterSDK.Widgets.Binding.WidgetsBinding InstanceProperty(this IWidgetsBinding instance) => GetOrCreate(instance).Instance;
-public static FlutterSDK.Widgets.Framework.BuildOwner BuildOwnerProperty(this IWidgetsBinding instance) => GetOrCreate(instance).BuildOwner;
-public static FlutterSDK.Widgets.Focusmanager.FocusManager FocusManagerProperty(this IWidgetsBinding instance) => GetOrCreate(instance).FocusManager;
-public static bool FirstFrameRasterizedProperty(this IWidgetsBinding instance) => GetOrCreate(instance).FirstFrameRasterized;
-public static Future<object> WaitUntilFirstFrameRasterizedProperty(this IWidgetsBinding instance) => GetOrCreate(instance).WaitUntilFirstFrameRasterized;
-public static bool DebugDidSendFirstFrameEventProperty(this IWidgetsBinding instance) => GetOrCreate(instance).DebugDidSendFirstFrameEvent;
-public static FlutterSDK.Widgets.Framework.Element RenderViewElementProperty(this IWidgetsBinding instance) => GetOrCreate(instance).RenderViewElement;
-public static bool FramesEnabledProperty(this IWidgetsBinding instance) => GetOrCreate(instance).FramesEnabled;
-public static bool IsRootWidgetAttachedProperty(this IWidgetsBinding instance) => GetOrCreate(instance).IsRootWidgetAttached;
-public static void InitInstances(this IWidgetsBinding instance) => GetOrCreate(instance).InitInstances();
-public static void InitServiceExtensions(this IWidgetsBinding instance) => GetOrCreate(instance).InitServiceExtensions();
-public static void AddObserver(this IWidgetsBinding instance,FlutterSDK.Widgets.Binding.WidgetsBindingObserver observer) => GetOrCreate(instance).AddObserver(observer);
-public static bool RemoveObserver(this IWidgetsBinding instance,FlutterSDK.Widgets.Binding.WidgetsBindingObserver observer) => GetOrCreate(instance).RemoveObserver(observer);
-public static void HandleMetricsChanged(this IWidgetsBinding instance) => GetOrCreate(instance).HandleMetricsChanged();
-public static void HandleTextScaleFactorChanged(this IWidgetsBinding instance) => GetOrCreate(instance).HandleTextScaleFactorChanged();
-public static void HandlePlatformBrightnessChanged(this IWidgetsBinding instance) => GetOrCreate(instance).HandlePlatformBrightnessChanged();
-public static void HandleAccessibilityFeaturesChanged(this IWidgetsBinding instance) => GetOrCreate(instance).HandleAccessibilityFeaturesChanged();
-public static void HandleLocaleChanged(this IWidgetsBinding instance) => GetOrCreate(instance).HandleLocaleChanged();
-public static void DispatchLocalesChanged(this IWidgetsBinding instance,List<Locale> locales) => GetOrCreate(instance).DispatchLocalesChanged(locales);
-public static void DispatchAccessibilityFeaturesChanged(this IWidgetsBinding instance) => GetOrCreate(instance).DispatchAccessibilityFeaturesChanged();
-public static Future<object> HandlePopRoute(this IWidgetsBinding instance) => GetOrCreate(instance).HandlePopRoute();
-public static Future<object> HandlePushRoute(this IWidgetsBinding instance,string route) => GetOrCreate(instance).HandlePushRoute(route);
-public static void HandleAppLifecycleStateChanged(this IWidgetsBinding instance,AppLifecycleState state) => GetOrCreate(instance).HandleAppLifecycleStateChanged(state);
-public static void HandleMemoryPressure(this IWidgetsBinding instance) => GetOrCreate(instance).HandleMemoryPressure();
-public static Future<object> HandleSystemMessage(this IWidgetsBinding instance,@Object systemMessage) => GetOrCreate(instance).HandleSystemMessage(systemMessage);
-public static void DeferFirstFrameReport(this IWidgetsBinding instance) => GetOrCreate(instance).DeferFirstFrameReport();
-public static void AllowFirstFrameReport(this IWidgetsBinding instance) => GetOrCreate(instance).AllowFirstFrameReport();
-public static void DrawFrame(this IWidgetsBinding instance) => GetOrCreate(instance).DrawFrame();
-public static void ScheduleAttachRootWidget(this IWidgetsBinding instance,FlutterSDK.Widgets.Framework.Widget rootWidget) => GetOrCreate(instance).ScheduleAttachRootWidget(rootWidget);
-public static void AttachRootWidget(this IWidgetsBinding instance,FlutterSDK.Widgets.Framework.Widget rootWidget) => GetOrCreate(instance).AttachRootWidget(rootWidget);
-public static Future<object> PerformReassemble(this IWidgetsBinding instance) => GetOrCreate(instance).PerformReassemble();
-}
+    internal static class BindingDefaultClass
+    {
+        internal static void RunApp(FlutterSDK.Widgets.Framework.Widget app)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void DebugDumpApp()
+        {
+            throw new NotImplementedException();
+        }
+
+    }
+
+    public interface IWidgetsBinding { }
+
+    public class WidgetsBinding
+    {
+        internal virtual FlutterSDK.Widgets.Binding.WidgetsBinding _Instance { get; set; }
+        internal virtual FlutterSDK.Widgets.Framework.BuildOwner _BuildOwner { get; set; }
+        internal virtual List<FlutterSDK.Widgets.Binding.WidgetsBindingObserver> _Observers { get; set; }
+        internal virtual bool _NeedToReportFirstFrame { get; set; }
+        internal virtual Completer<object> _FirstFrameCompleter { get; set; }
+        public virtual bool DebugBuildingDirtyElements { get; set; }
+        internal virtual FlutterSDK.Widgets.Framework.Element _RenderViewElement { get; set; }
+        internal virtual bool _ReadyToProduceFrames { get; set; }
+        public virtual FlutterSDK.Widgets.Binding.WidgetsBinding Instance { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Widgets.Framework.BuildOwner BuildOwner { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Widgets.Focusmanager.FocusManager FocusManager { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool FirstFrameRasterized { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual Future<object> WaitUntilFirstFrameRasterized { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool DebugDidSendFirstFrameEvent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Widgets.Framework.Element RenderViewElement { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool FramesEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsRootWidgetAttached { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+
+        public new void InitInstances() { throw new NotImplementedException(); }
 
 
-public interface IWidgetsBindingObserver{}
-
-public class WidgetsBindingObserver{
-
-public virtual Future<bool> DidPopRoute(){ throw new NotImplementedException(); }
+        private void _DebugAddStackFilters() { throw new NotImplementedException(); }
 
 
-public virtual Future<bool> DidPushRoute(string route){ throw new NotImplementedException(); }
+        public new void InitServiceExtensions() { throw new NotImplementedException(); }
 
 
-public virtual void DidChangeMetrics(){ throw new NotImplementedException(); }
+        private Future<object> _ForceRebuild() { throw new NotImplementedException(); }
 
 
-public virtual void DidChangeTextScaleFactor(){ throw new NotImplementedException(); }
+        public virtual void AddObserver(FlutterSDK.Widgets.Binding.WidgetsBindingObserver observer) { throw new NotImplementedException(); }
 
 
-public virtual void DidChangePlatformBrightness(){ throw new NotImplementedException(); }
+        public virtual bool RemoveObserver(FlutterSDK.Widgets.Binding.WidgetsBindingObserver observer) { throw new NotImplementedException(); }
 
 
-public virtual void DidChangeLocales(List<Locale> locale){ throw new NotImplementedException(); }
+        public new void HandleMetricsChanged() { throw new NotImplementedException(); }
 
 
-public virtual void DidChangeAppLifecycleState(AppLifecycleState state){ throw new NotImplementedException(); }
+        public new void HandleTextScaleFactorChanged() { throw new NotImplementedException(); }
 
 
-public virtual void DidHaveMemoryPressure(){ throw new NotImplementedException(); }
+        public new void HandlePlatformBrightnessChanged() { throw new NotImplementedException(); }
 
 
-public virtual void DidChangeAccessibilityFeatures(){ throw new NotImplementedException(); }
-
-}
-public static class WidgetsBindingObserverMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IWidgetsBindingObserver, WidgetsBindingObserver> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IWidgetsBindingObserver, WidgetsBindingObserver>();
-static WidgetsBindingObserver GetOrCreate(IWidgetsBindingObserver instance)
-{
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new WidgetsBindingObserver();
-_table.Add(instance, value);
-}
-return (WidgetsBindingObserver)value;
-}
-public static Future<bool> DidPopRoute(this IWidgetsBindingObserver instance) => GetOrCreate(instance).DidPopRoute();
-public static Future<bool> DidPushRoute(this IWidgetsBindingObserver instance,string route) => GetOrCreate(instance).DidPushRoute(route);
-public static void DidChangeMetrics(this IWidgetsBindingObserver instance) => GetOrCreate(instance).DidChangeMetrics();
-public static void DidChangeTextScaleFactor(this IWidgetsBindingObserver instance) => GetOrCreate(instance).DidChangeTextScaleFactor();
-public static void DidChangePlatformBrightness(this IWidgetsBindingObserver instance) => GetOrCreate(instance).DidChangePlatformBrightness();
-public static void DidChangeLocales(this IWidgetsBindingObserver instance,List<Locale> locale) => GetOrCreate(instance).DidChangeLocales(locale);
-public static void DidChangeAppLifecycleState(this IWidgetsBindingObserver instance,AppLifecycleState state) => GetOrCreate(instance).DidChangeAppLifecycleState(state);
-public static void DidHaveMemoryPressure(this IWidgetsBindingObserver instance) => GetOrCreate(instance).DidHaveMemoryPressure();
-public static void DidChangeAccessibilityFeatures(this IWidgetsBindingObserver instance) => GetOrCreate(instance).DidChangeAccessibilityFeatures();
-}
+        public new void HandleAccessibilityFeaturesChanged() { throw new NotImplementedException(); }
 
 
-public class RenderObjectToWidgetAdapter<T> : FlutterSDK.Widgets.Framework.RenderObjectWidget
-{
-#region constructors
-public RenderObjectToWidgetAdapter(FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Rendering.@object.RenderObjectWithChildMixin<T> container = default(FlutterSDK.Rendering.@object.RenderObjectWithChildMixin<T>),string debugShortDescription = default(string))
-: base(key:new GlobalObjectKey(container))
-{
-this.Child = child;
-this.Container = container;
-this.DebugShortDescription = debugShortDescription;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-public virtual FlutterSDK.Rendering.@object.RenderObjectWithChildMixin<T> Container{get;set;}
-public virtual string DebugShortDescription{get;set;}
-#endregion
-
-#region methods
-
-public new RenderObjectToWidgetElement<T> CreateElement(){ throw new NotImplementedException(); }
+        public virtual void HandleLocaleChanged() { throw new NotImplementedException(); }
 
 
-public new RenderObjectWithChildMixin<T> CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public virtual void DispatchLocalesChanged(List<Locale> locales) { throw new NotImplementedException(); }
 
 
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Rendering.@object.RenderObject renderObject){ throw new NotImplementedException(); }
+        public virtual void DispatchAccessibilityFeaturesChanged() { throw new NotImplementedException(); }
 
 
-public virtual RenderObjectToWidgetElement<T> AttachToRenderTree(FlutterSDK.Widgets.Framework.BuildOwner owner,FlutterSDK.Widgets.Binding.RenderObjectToWidgetElement<T> element = default(FlutterSDK.Widgets.Binding.RenderObjectToWidgetElement<T>)){ throw new NotImplementedException(); }
+        public virtual Future<object> HandlePopRoute() { throw new NotImplementedException(); }
 
 
-public new string ToStringShort(){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual Future<object> HandlePushRoute(string route) { throw new NotImplementedException(); }
 
 
-public class RenderObjectToWidgetElement<T> : FlutterSDK.Widgets.Framework.RootRenderObjectElement
-{
-#region constructors
-public RenderObjectToWidgetElement(FlutterSDK.Widgets.Binding.RenderObjectToWidgetAdapter<T> widget)
-: base(widget)
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Widgets.Framework.Element _Child{get;set;}
-internal virtual @Object _RootChildSlot{get;set;}
-internal virtual FlutterSDK.Widgets.Framework.Widget _NewWidget{get;set;}
-public virtual FlutterSDK.Widgets.Binding.RenderObjectToWidgetAdapter<T> Widget{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Rendering.@object.RenderObjectWithChildMixin<T> RenderObject{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new void VisitChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor){ throw new NotImplementedException(); }
+        private Future<object> _HandleNavigationInvocation(FlutterSDK.Services.Messagecodec.MethodCall methodCall) { throw new NotImplementedException(); }
 
 
-public new void ForgetChild(FlutterSDK.Widgets.Framework.Element child){ throw new NotImplementedException(); }
+        public new void HandleAppLifecycleStateChanged(AppLifecycleState state) { throw new NotImplementedException(); }
 
 
-public new void Mount(FlutterSDK.Widgets.Framework.Element parent,object newSlot){ throw new NotImplementedException(); }
+        public virtual void HandleMemoryPressure() { throw new NotImplementedException(); }
 
 
-public new void Update(FlutterSDK.Widgets.Binding.RenderObjectToWidgetAdapter<T> newWidget){ throw new NotImplementedException(); }
+        public new Future<object> HandleSystemMessage(@Object systemMessage) { throw new NotImplementedException(); }
 
 
-public new void PerformRebuild(){ throw new NotImplementedException(); }
+        public virtual void DeferFirstFrameReport() { throw new NotImplementedException(); }
 
 
-private void _Rebuild(){ throw new NotImplementedException(); }
+        public virtual void AllowFirstFrameReport() { throw new NotImplementedException(); }
 
 
-public new void InsertChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child,object slot){ throw new NotImplementedException(); }
+        private void _HandleBuildScheduled() { throw new NotImplementedException(); }
 
 
-public new void MoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child,object slot){ throw new NotImplementedException(); }
+        public new void DrawFrame() { throw new NotImplementedException(); }
 
 
-public new void RemoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual void ScheduleAttachRootWidget(FlutterSDK.Widgets.Framework.Widget rootWidget) { throw new NotImplementedException(); }
 
 
-public class WidgetsFlutterBinding : FlutterSDK.Foundation.Binding.BindingBase,IGestureBinding,IServicesBinding,ISchedulerBinding,IPaintingBinding,ISemanticsBinding,IRendererBinding,IWidgetsBinding
-{
-#region constructors
-public WidgetsFlutterBinding()
-{ }
-#endregion
+        public virtual void AttachRootWidget(FlutterSDK.Widgets.Framework.Widget rootWidget) { throw new NotImplementedException(); }
 
-#region fields
-#endregion
 
-#region methods
+        public new Future<object> PerformReassemble() { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Widgets.Binding.WidgetsBinding EnsureInitialized(){ throw new NotImplementedException(); }
+    }
+    public static class WidgetsBindingMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IWidgetsBinding, WidgetsBinding> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IWidgetsBinding, WidgetsBinding>();
+        static WidgetsBinding GetOrCreate(IWidgetsBinding instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new WidgetsBinding();
+                _table.Add(instance, value);
+            }
+            return (WidgetsBinding)value;
+        }
+        public static bool DebugBuildingDirtyElementsProperty(this IWidgetsBinding instance) => GetOrCreate(instance).DebugBuildingDirtyElements;
+        public static FlutterSDK.Widgets.Binding.WidgetsBinding InstanceProperty(this IWidgetsBinding instance) => GetOrCreate(instance).Instance;
+        public static FlutterSDK.Widgets.Framework.BuildOwner BuildOwnerProperty(this IWidgetsBinding instance) => GetOrCreate(instance).BuildOwner;
+        public static FlutterSDK.Widgets.Focusmanager.FocusManager FocusManagerProperty(this IWidgetsBinding instance) => GetOrCreate(instance).FocusManager;
+        public static bool FirstFrameRasterizedProperty(this IWidgetsBinding instance) => GetOrCreate(instance).FirstFrameRasterized;
+        public static Future<object> WaitUntilFirstFrameRasterizedProperty(this IWidgetsBinding instance) => GetOrCreate(instance).WaitUntilFirstFrameRasterized;
+        public static bool DebugDidSendFirstFrameEventProperty(this IWidgetsBinding instance) => GetOrCreate(instance).DebugDidSendFirstFrameEvent;
+        public static FlutterSDK.Widgets.Framework.Element RenderViewElementProperty(this IWidgetsBinding instance) => GetOrCreate(instance).RenderViewElement;
+        public static bool FramesEnabledProperty(this IWidgetsBinding instance) => GetOrCreate(instance).FramesEnabled;
+        public static bool IsRootWidgetAttachedProperty(this IWidgetsBinding instance) => GetOrCreate(instance).IsRootWidgetAttached;
+        public static void InitInstances(this IWidgetsBinding instance) => GetOrCreate(instance).InitInstances();
+        public static void InitServiceExtensions(this IWidgetsBinding instance) => GetOrCreate(instance).InitServiceExtensions();
+        public static void AddObserver(this IWidgetsBinding instance, FlutterSDK.Widgets.Binding.WidgetsBindingObserver observer) => GetOrCreate(instance).AddObserver(observer);
+        public static bool RemoveObserver(this IWidgetsBinding instance, FlutterSDK.Widgets.Binding.WidgetsBindingObserver observer) => GetOrCreate(instance).RemoveObserver(observer);
+        public static void HandleMetricsChanged(this IWidgetsBinding instance) => GetOrCreate(instance).HandleMetricsChanged();
+        public static void HandleTextScaleFactorChanged(this IWidgetsBinding instance) => GetOrCreate(instance).HandleTextScaleFactorChanged();
+        public static void HandlePlatformBrightnessChanged(this IWidgetsBinding instance) => GetOrCreate(instance).HandlePlatformBrightnessChanged();
+        public static void HandleAccessibilityFeaturesChanged(this IWidgetsBinding instance) => GetOrCreate(instance).HandleAccessibilityFeaturesChanged();
+        public static void HandleLocaleChanged(this IWidgetsBinding instance) => GetOrCreate(instance).HandleLocaleChanged();
+        public static void DispatchLocalesChanged(this IWidgetsBinding instance, List<Locale> locales) => GetOrCreate(instance).DispatchLocalesChanged(locales);
+        public static void DispatchAccessibilityFeaturesChanged(this IWidgetsBinding instance) => GetOrCreate(instance).DispatchAccessibilityFeaturesChanged();
+        public static Future<object> HandlePopRoute(this IWidgetsBinding instance) => GetOrCreate(instance).HandlePopRoute();
+        public static Future<object> HandlePushRoute(this IWidgetsBinding instance, string route) => GetOrCreate(instance).HandlePushRoute(route);
+        public static void HandleAppLifecycleStateChanged(this IWidgetsBinding instance, AppLifecycleState state) => GetOrCreate(instance).HandleAppLifecycleStateChanged(state);
+        public static void HandleMemoryPressure(this IWidgetsBinding instance) => GetOrCreate(instance).HandleMemoryPressure();
+        public static Future<object> HandleSystemMessage(this IWidgetsBinding instance, @Object systemMessage) => GetOrCreate(instance).HandleSystemMessage(systemMessage);
+        public static void DeferFirstFrameReport(this IWidgetsBinding instance) => GetOrCreate(instance).DeferFirstFrameReport();
+        public static void AllowFirstFrameReport(this IWidgetsBinding instance) => GetOrCreate(instance).AllowFirstFrameReport();
+        public static void DrawFrame(this IWidgetsBinding instance) => GetOrCreate(instance).DrawFrame();
+        public static void ScheduleAttachRootWidget(this IWidgetsBinding instance, FlutterSDK.Widgets.Framework.Widget rootWidget) => GetOrCreate(instance).ScheduleAttachRootWidget(rootWidget);
+        public static void AttachRootWidget(this IWidgetsBinding instance, FlutterSDK.Widgets.Framework.Widget rootWidget) => GetOrCreate(instance).AttachRootWidget(rootWidget);
+        public static Future<object> PerformReassemble(this IWidgetsBinding instance) => GetOrCreate(instance).PerformReassemble();
+    }
 
-#endregion
-}
+
+    public interface IWidgetsBindingObserver { }
+
+    public class WidgetsBindingObserver
+    {
+
+        public virtual Future<bool> DidPopRoute() { throw new NotImplementedException(); }
+
+
+        public virtual Future<bool> DidPushRoute(string route) { throw new NotImplementedException(); }
+
+
+        public virtual void DidChangeMetrics() { throw new NotImplementedException(); }
+
+
+        public virtual void DidChangeTextScaleFactor() { throw new NotImplementedException(); }
+
+
+        public virtual void DidChangePlatformBrightness() { throw new NotImplementedException(); }
+
+
+        public virtual void DidChangeLocales(List<Locale> locale) { throw new NotImplementedException(); }
+
+
+        public virtual void DidChangeAppLifecycleState(AppLifecycleState state) { throw new NotImplementedException(); }
+
+
+        public virtual void DidHaveMemoryPressure() { throw new NotImplementedException(); }
+
+
+        public virtual void DidChangeAccessibilityFeatures() { throw new NotImplementedException(); }
+
+    }
+    public static class WidgetsBindingObserverMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IWidgetsBindingObserver, WidgetsBindingObserver> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IWidgetsBindingObserver, WidgetsBindingObserver>();
+        static WidgetsBindingObserver GetOrCreate(IWidgetsBindingObserver instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new WidgetsBindingObserver();
+                _table.Add(instance, value);
+            }
+            return (WidgetsBindingObserver)value;
+        }
+        public static Future<bool> DidPopRoute(this IWidgetsBindingObserver instance) => GetOrCreate(instance).DidPopRoute();
+        public static Future<bool> DidPushRoute(this IWidgetsBindingObserver instance, string route) => GetOrCreate(instance).DidPushRoute(route);
+        public static void DidChangeMetrics(this IWidgetsBindingObserver instance) => GetOrCreate(instance).DidChangeMetrics();
+        public static void DidChangeTextScaleFactor(this IWidgetsBindingObserver instance) => GetOrCreate(instance).DidChangeTextScaleFactor();
+        public static void DidChangePlatformBrightness(this IWidgetsBindingObserver instance) => GetOrCreate(instance).DidChangePlatformBrightness();
+        public static void DidChangeLocales(this IWidgetsBindingObserver instance, List<Locale> locale) => GetOrCreate(instance).DidChangeLocales(locale);
+        public static void DidChangeAppLifecycleState(this IWidgetsBindingObserver instance, AppLifecycleState state) => GetOrCreate(instance).DidChangeAppLifecycleState(state);
+        public static void DidHaveMemoryPressure(this IWidgetsBindingObserver instance) => GetOrCreate(instance).DidHaveMemoryPressure();
+        public static void DidChangeAccessibilityFeatures(this IWidgetsBindingObserver instance) => GetOrCreate(instance).DidChangeAccessibilityFeatures();
+    }
+
+
+    public class RenderObjectToWidgetAdapter<T> : FlutterSDK.Widgets.Framework.RenderObjectWidget
+    {
+        #region constructors
+        public RenderObjectToWidgetAdapter(FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Rendering.@object.RenderObjectWithChildMixin<T> container = default(FlutterSDK.Rendering.@object.RenderObjectWithChildMixin<T>), string debugShortDescription = default(string))
+        : base(key: new GlobalObjectKey(container))
+        {
+            this.Child = child;
+            this.Container = container;
+            this.DebugShortDescription = debugShortDescription; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual FlutterSDK.Rendering.@object.RenderObjectWithChildMixin<T> Container { get; set; }
+        public virtual string DebugShortDescription { get; set; }
+        #endregion
+
+        #region methods
+
+        public new RenderObjectToWidgetElement<T> CreateElement() { throw new NotImplementedException(); }
+
+
+        public new RenderObjectWithChildMixin<T> CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
+
+
+        public virtual RenderObjectToWidgetElement<T> AttachToRenderTree(FlutterSDK.Widgets.Framework.BuildOwner owner, FlutterSDK.Widgets.Binding.RenderObjectToWidgetElement<T> element = default(FlutterSDK.Widgets.Binding.RenderObjectToWidgetElement<T>)) { throw new NotImplementedException(); }
+
+
+        public new string ToStringShort() { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class RenderObjectToWidgetElement<T> : FlutterSDK.Widgets.Framework.RootRenderObjectElement
+    {
+        #region constructors
+        public RenderObjectToWidgetElement(FlutterSDK.Widgets.Binding.RenderObjectToWidgetAdapter<T> widget)
+        : base(widget)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Framework.Element _Child { get; set; }
+        internal virtual @Object _RootChildSlot { get; set; }
+        internal virtual FlutterSDK.Widgets.Framework.Widget _NewWidget { get; set; }
+        public virtual FlutterSDK.Widgets.Binding.RenderObjectToWidgetAdapter<T> Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.@object.RenderObjectWithChildMixin<T> RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void VisitChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor) { throw new NotImplementedException(); }
+
+
+        public new void ForgetChild(FlutterSDK.Widgets.Framework.Element child) { throw new NotImplementedException(); }
+
+
+        public new void Mount(FlutterSDK.Widgets.Framework.Element parent, object newSlot) { throw new NotImplementedException(); }
+
+
+        public new void Update(FlutterSDK.Widgets.Binding.RenderObjectToWidgetAdapter<T> newWidget) { throw new NotImplementedException(); }
+
+
+        public new void PerformRebuild() { throw new NotImplementedException(); }
+
+
+        private void _Rebuild() { throw new NotImplementedException(); }
+
+
+        public new void InsertChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slot) { throw new NotImplementedException(); }
+
+
+        public new void MoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slot) { throw new NotImplementedException(); }
+
+
+        public new void RemoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class WidgetsFlutterBinding : FlutterSDK.Foundation.Binding.BindingBase, IGestureBinding, IServicesBinding, ISchedulerBinding, IPaintingBinding, ISemanticsBinding, IRendererBinding, IWidgetsBinding
+    {
+        #region constructors
+        public WidgetsFlutterBinding()
+        { }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public virtual FlutterSDK.Widgets.Binding.WidgetsBinding EnsureInitialized() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

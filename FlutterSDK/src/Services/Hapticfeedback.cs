@@ -421,38 +421,41 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Services.Hapticfeedback{
-internal static class HapticfeedbackDefaultClass{
-}
-
-public class HapticFeedback
+namespace FlutterSDK.Services.Hapticfeedback
 {
-#region constructors
-internal HapticFeedback()
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class HapticfeedbackDefaultClass
+    {
+    }
 
-#region fields
-#endregion
+    public class HapticFeedback
+    {
+        #region constructors
+        internal HapticFeedback()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        #endregion
 
-public virtual Future<object> Vibrate(){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual Future<object> LightImpact(){ throw new NotImplementedException(); }
-
-
-public virtual Future<object> MediumImpact(){ throw new NotImplementedException(); }
-
-
-public virtual Future<object> HeavyImpact(){ throw new NotImplementedException(); }
+        public virtual Future<object> Vibrate() { throw new NotImplementedException(); }
 
 
-public virtual Future<object> SelectionClick(){ throw new NotImplementedException(); }
+        public virtual Future<object> LightImpact() { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public virtual Future<object> MediumImpact() { throw new NotImplementedException(); }
+
+
+        public virtual Future<object> HeavyImpact() { throw new NotImplementedException(); }
+
+
+        public virtual Future<object> SelectionClick() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

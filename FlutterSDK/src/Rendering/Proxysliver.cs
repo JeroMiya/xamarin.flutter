@@ -421,172 +421,180 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Rendering.Proxysliver{
-internal static class ProxysliverDefaultClass{
-}
-
-public interface IRenderProxySliver{
-void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child);
-void PerformLayout();
-void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset);
-bool HitTestChildren(FlutterSDK.Rendering.Sliver.SliverHitTestResult result,double mainAxisPosition = default(double),double crossAxisPosition = default(double));
-double ChildMainAxisPosition(FlutterSDK.Rendering.Sliver.RenderSliver child);
-void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child,Matrix4 transform);
-}
-
-
-public class RenderProxySliver : FlutterSDK.Rendering.Sliver.RenderSliver,IRenderObjectWithChildMixin<FlutterSDK.Rendering.Sliver.RenderSliver>
+namespace FlutterSDK.Rendering.Proxysliver
 {
-#region constructors
-public RenderProxySliver(FlutterSDK.Rendering.Sliver.RenderSliver child = default(FlutterSDK.Rendering.Sliver.RenderSliver))
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class ProxysliverDefaultClass
+    {
+    }
 
-#region fields
-#endregion
-
-#region methods
-
-public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
-
-
-public new void PerformLayout(){ throw new NotImplementedException(); }
+    public interface IRenderProxySliver
+    {
+        void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child);
+        void PerformLayout();
+        void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset);
+        bool HitTestChildren(FlutterSDK.Rendering.Sliver.SliverHitTestResult result, double mainAxisPosition = default(double), double crossAxisPosition = default(double));
+        double ChildMainAxisPosition(FlutterSDK.Rendering.Sliver.RenderSliver child);
+        void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform);
+    }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+    public class RenderProxySliver : FlutterSDK.Rendering.Sliver.RenderSliver, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Sliver.RenderSliver>
+    {
+        #region constructors
+        public RenderProxySliver(FlutterSDK.Rendering.Sliver.RenderSliver child = default(FlutterSDK.Rendering.Sliver.RenderSliver))
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
 
-public new bool HitTestChildren(FlutterSDK.Rendering.Sliver.SliverHitTestResult result,double mainAxisPosition = default(double),double crossAxisPosition = default(double)){ throw new NotImplementedException(); }
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
 
-public new double ChildMainAxisPosition(FlutterSDK.Rendering.Sliver.RenderSliver child){ throw new NotImplementedException(); }
-public new double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
-public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child,Matrix4 transform){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public new bool HitTestChildren(FlutterSDK.Rendering.Sliver.SliverHitTestResult result, double mainAxisPosition = default(double), double crossAxisPosition = default(double)) { throw new NotImplementedException(); }
 
 
-public class RenderSliverOpacity : FlutterSDK.Rendering.Proxysliver.RenderProxySliver
-{
-#region constructors
-public RenderSliverOpacity(double opacity = 1.0,bool alwaysIncludeSemantics = false,FlutterSDK.Rendering.Sliver.RenderSliver sliver = default(FlutterSDK.Rendering.Sliver.RenderSliver))
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual int _Alpha{get;set;}
-internal virtual double _Opacity{get;set;}
-internal virtual bool _AlwaysIncludeSemantics{get;set;}
-public virtual bool AlwaysNeedsCompositing{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double Opacity{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool AlwaysIncludeSemantics{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
-
-#region methods
-
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new double ChildMainAxisPosition(FlutterSDK.Rendering.Sliver.RenderSliver child) { throw new NotImplementedException(); }
+        public new double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
 
-public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor){ throw new NotImplementedException(); }
+        public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+    public class RenderSliverOpacity : FlutterSDK.Rendering.Proxysliver.RenderProxySliver
+    {
+        #region constructors
+        public RenderSliverOpacity(double opacity = 1.0, bool alwaysIncludeSemantics = false, FlutterSDK.Rendering.Sliver.RenderSliver sliver = default(FlutterSDK.Rendering.Sliver.RenderSliver))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        internal virtual int _Alpha { get; set; }
+        internal virtual double _Opacity { get; set; }
+        internal virtual bool _AlwaysIncludeSemantics { get; set; }
+        public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Opacity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool AlwaysIncludeSemantics { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public class RenderSliverIgnorePointer : FlutterSDK.Rendering.Proxysliver.RenderProxySliver
-{
-#region constructors
-public RenderSliverIgnorePointer(FlutterSDK.Rendering.Sliver.RenderSliver sliver = default(FlutterSDK.Rendering.Sliver.RenderSliver),bool ignoring = true,bool ignoringSemantics = default(bool))
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual bool _Ignoring{get;set;}
-internal virtual bool _IgnoringSemantics{get;set;}
-public virtual bool Ignoring{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool IgnoringSemantics{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-internal virtual bool _EffectiveIgnoringSemantics{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new bool HitTest(FlutterSDK.Rendering.Sliver.SliverHitTestResult result,double mainAxisPosition = default(double),double crossAxisPosition = default(double)){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
-public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor){ throw new NotImplementedException(); }
+        public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#endregion
-}
-
-
-public class RenderSliverOffstage : FlutterSDK.Rendering.Proxysliver.RenderProxySliver
-{
-#region constructors
-public RenderSliverOffstage(bool offstage = true,FlutterSDK.Rendering.Sliver.RenderSliver sliver = default(FlutterSDK.Rendering.Sliver.RenderSliver))
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual bool _Offstage{get;set;}
-public virtual bool Offstage{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
-
-#region methods
-
-public new void PerformLayout(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new bool HitTest(FlutterSDK.Rendering.Sliver.SliverHitTestResult result,double mainAxisPosition = default(double),double crossAxisPosition = default(double)){ throw new NotImplementedException(); }
+    public class RenderSliverIgnorePointer : FlutterSDK.Rendering.Proxysliver.RenderProxySliver
+    {
+        #region constructors
+        public RenderSliverIgnorePointer(FlutterSDK.Rendering.Sliver.RenderSliver sliver = default(FlutterSDK.Rendering.Sliver.RenderSliver), bool ignoring = true, bool ignoringSemantics = default(bool))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual bool _Ignoring { get; set; }
+        internal virtual bool _IgnoringSemantics { get; set; }
+        public virtual bool Ignoring { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IgnoringSemantics { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual bool _EffectiveIgnoringSemantics { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new bool HitTest(FlutterSDK.Rendering.Sliver.SliverHitTestResult result, double mainAxisPosition = default(double), double crossAxisPosition = default(double)) { throw new NotImplementedException(); }
 
 
-public new bool HitTestChildren(FlutterSDK.Rendering.Sliver.SliverHitTestResult result,double mainAxisPosition = default(double),double crossAxisPosition = default(double)){ throw new NotImplementedException(); }
+        public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor){ throw new NotImplementedException(); }
+    public class RenderSliverOffstage : FlutterSDK.Rendering.Proxysliver.RenderProxySliver
+    {
+        #region constructors
+        public RenderSliverOffstage(bool offstage = true, FlutterSDK.Rendering.Sliver.RenderSliver sliver = default(FlutterSDK.Rendering.Sliver.RenderSliver))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual bool _Offstage { get; set; }
+        public virtual bool Offstage { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new bool HitTest(FlutterSDK.Rendering.Sliver.SliverHitTestResult result, double mainAxisPosition = default(double), double crossAxisPosition = default(double)) { throw new NotImplementedException(); }
 
 
-public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren(){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public new bool HitTestChildren(FlutterSDK.Rendering.Sliver.SliverHitTestResult result, double mainAxisPosition = default(double), double crossAxisPosition = default(double)) { throw new NotImplementedException(); }
 
 
-public class RenderSliverAnimatedOpacity : FlutterSDK.Rendering.Proxysliver.RenderProxySliver,IRenderAnimatedOpacityMixin<FlutterSDK.Rendering.Sliver.RenderSliver>
-{
-#region constructors
-public RenderSliverAnimatedOpacity(FlutterSDK.Animation.Animation.Animation<double> opacity = default(FlutterSDK.Animation.Animation.Animation<double>),bool alwaysIncludeSemantics = false,FlutterSDK.Rendering.Sliver.RenderSliver sliver = default(FlutterSDK.Rendering.Sliver.RenderSliver))
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-#region fields
-#endregion
 
-#region methods
-#endregion
-}
+        public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor) { throw new NotImplementedException(); }
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+
+        public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren() { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class RenderSliverAnimatedOpacity : FlutterSDK.Rendering.Proxysliver.RenderProxySliver, IRenderAnimatedOpacityMixin<FlutterSDK.Rendering.Sliver.RenderSliver>
+    {
+        #region constructors
+        public RenderSliverAnimatedOpacity(FlutterSDK.Animation.Animation.Animation<double> opacity = default(FlutterSDK.Animation.Animation.Animation<double>), bool alwaysIncludeSemantics = false, FlutterSDK.Rendering.Sliver.RenderSliver sliver = default(FlutterSDK.Rendering.Sliver.RenderSliver))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+        #endregion
+    }
 
 }

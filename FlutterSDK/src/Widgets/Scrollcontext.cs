@@ -423,45 +423,49 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Scrollcontext{
-internal static class ScrollcontextDefaultClass{
-}
-
-public interface IScrollContext{}
-
-public class ScrollContext{
-public virtual FlutterSDK.Widgets.Framework.BuildContext NotificationContext{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Widgets.Framework.BuildContext StorageContext{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-
-public virtual void SetIgnorePointer(bool value){ throw new NotImplementedException(); }
-
-
-public virtual void SetCanDrag(bool value){ throw new NotImplementedException(); }
-
-
-public virtual void SetSemanticsActions(HashSet<SemanticsAction> actions){ throw new NotImplementedException(); }
-
-}
-public static class ScrollContextMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IScrollContext, ScrollContext> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IScrollContext, ScrollContext>();
-static ScrollContext GetOrCreate(IScrollContext instance)
+namespace FlutterSDK.Widgets.Scrollcontext
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new ScrollContext();
-_table.Add(instance, value);
-}
-return (ScrollContext)value;
-}
-public static FlutterSDK.Widgets.Framework.BuildContext NotificationContextProperty(this IScrollContext instance) => GetOrCreate(instance).NotificationContext;
-public static FlutterSDK.Widgets.Framework.BuildContext StorageContextProperty(this IScrollContext instance) => GetOrCreate(instance).StorageContext;
-public static FlutterSDK.Scheduler.Ticker.TickerProvider VsyncProperty(this IScrollContext instance) => GetOrCreate(instance).Vsync;
-public static FlutterSDK.Painting.Basictypes.AxisDirection AxisDirectionProperty(this IScrollContext instance) => GetOrCreate(instance).AxisDirection;
-public static void SetIgnorePointer(this IScrollContext instance,bool value) => GetOrCreate(instance).SetIgnorePointer(value);
-public static void SetCanDrag(this IScrollContext instance,bool value) => GetOrCreate(instance).SetCanDrag(value);
-public static void SetSemanticsActions(this IScrollContext instance,HashSet<SemanticsAction> actions) => GetOrCreate(instance).SetSemanticsActions(actions);
-}
+    internal static class ScrollcontextDefaultClass
+    {
+    }
+
+    public interface IScrollContext { }
+
+    public class ScrollContext
+    {
+        public virtual FlutterSDK.Widgets.Framework.BuildContext NotificationContext { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Widgets.Framework.BuildContext StorageContext { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+
+        public virtual void SetIgnorePointer(bool value) { throw new NotImplementedException(); }
+
+
+        public virtual void SetCanDrag(bool value) { throw new NotImplementedException(); }
+
+
+        public virtual void SetSemanticsActions(HashSet<SemanticsAction> actions) { throw new NotImplementedException(); }
+
+    }
+    public static class ScrollContextMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IScrollContext, ScrollContext> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IScrollContext, ScrollContext>();
+        static ScrollContext GetOrCreate(IScrollContext instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new ScrollContext();
+                _table.Add(instance, value);
+            }
+            return (ScrollContext)value;
+        }
+        public static FlutterSDK.Widgets.Framework.BuildContext NotificationContextProperty(this IScrollContext instance) => GetOrCreate(instance).NotificationContext;
+        public static FlutterSDK.Widgets.Framework.BuildContext StorageContextProperty(this IScrollContext instance) => GetOrCreate(instance).StorageContext;
+        public static FlutterSDK.Scheduler.Ticker.TickerProvider VsyncProperty(this IScrollContext instance) => GetOrCreate(instance).Vsync;
+        public static FlutterSDK.Painting.Basictypes.AxisDirection AxisDirectionProperty(this IScrollContext instance) => GetOrCreate(instance).AxisDirection;
+        public static void SetIgnorePointer(this IScrollContext instance, bool value) => GetOrCreate(instance).SetIgnorePointer(value);
+        public static void SetCanDrag(this IScrollContext instance, bool value) => GetOrCreate(instance).SetCanDrag(value);
+        public static void SetSemanticsActions(this IScrollContext instance, HashSet<SemanticsAction> actions) => GetOrCreate(instance).SetSemanticsActions(actions);
+    }
 
 }

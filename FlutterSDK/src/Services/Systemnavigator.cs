@@ -421,26 +421,29 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Services.Systemnavigator{
-internal static class SystemnavigatorDefaultClass{
-}
-
-public class SystemNavigator
+namespace FlutterSDK.Services.Systemnavigator
 {
-#region constructors
-internal SystemNavigator()
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class SystemnavigatorDefaultClass
+    {
+    }
 
-#region fields
-#endregion
+    public class SystemNavigator
+    {
+        #region constructors
+        internal SystemNavigator()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        #endregion
 
-public virtual Future<object> Pop(bool animated = default(bool)){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public virtual Future<object> Pop(bool animated = default(bool)) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

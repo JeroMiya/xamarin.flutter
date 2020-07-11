@@ -421,154 +421,160 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Painting.Inlinespan{
-public delegate bool InlineSpanVisitor(FlutterSDK.Painting.Inlinespan.InlineSpan span);
-internal static class InlinespanDefaultClass{
-}
-
-public interface IInlineSpan{
-void Build(ParagraphBuilder builder,double textScaleFactor = 1.0,List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions> dimensions = default(List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions>));
-bool VisitTextSpan(Func<bool,TextSpan> visitor);
-bool VisitChildren(FlutterSDK.Painting.Inlinespan.InlineSpanVisitor visitor);
-FlutterSDK.Painting.Inlinespan.InlineSpan GetSpanForPosition(TextPosition position);
-FlutterSDK.Painting.Inlinespan.InlineSpan GetSpanForPositionVisitor(TextPosition position,FlutterSDK.Painting.Inlinespan.Accumulator offset);
-string ToPlainText(bool includeSemanticsLabels = true,bool includePlaceholders = true);
-List<FlutterSDK.Painting.Inlinespan.InlineSpanSemanticsInformation> GetSemanticsInformation();
-void ComputeSemanticsInformation(List<FlutterSDK.Painting.Inlinespan.InlineSpanSemanticsInformation> collector);
-void ComputeToPlainText(StringBuffer buffer,bool includeSemanticsLabels = true,bool includePlaceholders = true);
-int CodeUnitAt(int index);
-int CodeUnitAtVisitor(int index,FlutterSDK.Painting.Inlinespan.Accumulator offset);
-void DescribeSemantics(FlutterSDK.Painting.Inlinespan.Accumulator offset,List<int> semanticsOffsets,List<object> semanticsElements);
-bool DebugAssertIsValid();
-FlutterSDK.Painting.Basictypes.RenderComparison CompareTo(FlutterSDK.Painting.Inlinespan.InlineSpan other);
-bool Equals(@Object other);
-void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
-FlutterSDK.Painting.Textstyle.TextStyle Style{get;}
-string Text{get;}
-List<FlutterSDK.Painting.Inlinespan.InlineSpan> Children{get;}
-FlutterSDK.Gestures.Recognizer.GestureRecognizer Recognizer{get;}
-int HashCode{get;}
-}
-
-
-public class Accumulator
+namespace FlutterSDK.Painting.Inlinespan
 {
-#region constructors
-public Accumulator(int _value = 0)
-{
-this._Value = _value;throw new NotImplementedException(); }
-#endregion
+    public delegate bool InlineSpanVisitor(FlutterSDK.Painting.Inlinespan.InlineSpan span);
+    internal static class InlinespanDefaultClass
+    {
+    }
 
-#region fields
-internal virtual int _Value{get;set;}
-public virtual int Value{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public virtual void Increment(int addend){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class InlineSpanSemanticsInformation
-{
-#region constructors
-public InlineSpanSemanticsInformation(string text,bool isPlaceholder = false,string semanticsLabel = default(string),FlutterSDK.Gestures.Recognizer.GestureRecognizer recognizer = default(FlutterSDK.Gestures.Recognizer.GestureRecognizer))
-: base()
-{
-this.Text = text;
-this.IsPlaceholder = isPlaceholder;
-this.SemanticsLabel = semanticsLabel;
-this.Recognizer = recognizer;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Painting.Inlinespan.InlineSpanSemanticsInformation Placeholder{get;set;}
-public virtual string Text{get;set;}
-public virtual string SemanticsLabel{get;set;}
-public virtual FlutterSDK.Gestures.Recognizer.GestureRecognizer Recognizer{get;set;}
-public virtual bool IsPlaceholder{get;set;}
-public virtual bool RequiresOwnNode{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+    public interface IInlineSpan
+    {
+        void Build(ParagraphBuilder builder, double textScaleFactor = 1.0, List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions> dimensions = default(List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions>));
+        bool VisitTextSpan(Func<bool, TextSpan> visitor);
+        bool VisitChildren(FlutterSDK.Painting.Inlinespan.InlineSpanVisitor visitor);
+        FlutterSDK.Painting.Inlinespan.InlineSpan GetSpanForPosition(TextPosition position);
+        FlutterSDK.Painting.Inlinespan.InlineSpan GetSpanForPositionVisitor(TextPosition position, FlutterSDK.Painting.Inlinespan.Accumulator offset);
+        string ToPlainText(bool includeSemanticsLabels = true, bool includePlaceholders = true);
+        List<FlutterSDK.Painting.Inlinespan.InlineSpanSemanticsInformation> GetSemanticsInformation();
+        void ComputeSemanticsInformation(List<FlutterSDK.Painting.Inlinespan.InlineSpanSemanticsInformation> collector);
+        void ComputeToPlainText(StringBuffer buffer, bool includeSemanticsLabels = true, bool includePlaceholders = true);
+        int CodeUnitAt(int index);
+        int CodeUnitAtVisitor(int index, FlutterSDK.Painting.Inlinespan.Accumulator offset);
+        void DescribeSemantics(FlutterSDK.Painting.Inlinespan.Accumulator offset, List<int> semanticsOffsets, List<object> semanticsElements);
+        bool DebugAssertIsValid();
+        FlutterSDK.Painting.Basictypes.RenderComparison CompareTo(FlutterSDK.Painting.Inlinespan.InlineSpan other);
+        bool Equals(@Object other);
+        void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
+        FlutterSDK.Painting.Textstyle.TextStyle Style { get; }
+        string Text { get; }
+        List<FlutterSDK.Painting.Inlinespan.InlineSpan> Children { get; }
+        FlutterSDK.Gestures.Recognizer.GestureRecognizer Recognizer { get; }
+        int HashCode { get; }
+    }
 
 
-#endregion
-}
+    public class Accumulator
+    {
+        #region constructors
+        public Accumulator(int _value = 0)
+        {
+            this._Value = _value; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual int _Value { get; set; }
+        public virtual int Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual void Increment(int addend) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public class InlineSpan : FlutterSDK.Foundation.Diagnostics.DiagnosticableTree
-{
-#region constructors
-public InlineSpan(FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle))
-{
-this.Style = style;throw new NotImplementedException(); }
-#endregion
+    public class InlineSpanSemanticsInformation
+    {
+        #region constructors
+        public InlineSpanSemanticsInformation(string text, bool isPlaceholder = false, string semanticsLabel = default(string), FlutterSDK.Gestures.Recognizer.GestureRecognizer recognizer = default(FlutterSDK.Gestures.Recognizer.GestureRecognizer))
+        : base()
+        {
+            this.Text = text;
+            this.IsPlaceholder = isPlaceholder;
+            this.SemanticsLabel = semanticsLabel;
+            this.Recognizer = recognizer; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Painting.Textstyle.TextStyle Style{get;set;}
-public virtual string Text{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual List<FlutterSDK.Painting.Inlinespan.InlineSpan> Children{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Gestures.Recognizer.GestureRecognizer Recognizer{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #region fields
+        public virtual FlutterSDK.Painting.Inlinespan.InlineSpanSemanticsInformation Placeholder { get; set; }
+        public virtual string Text { get; set; }
+        public virtual string SemanticsLabel { get; set; }
+        public virtual FlutterSDK.Gestures.Recognizer.GestureRecognizer Recognizer { get; set; }
+        public virtual bool IsPlaceholder { get; set; }
+        public virtual bool RequiresOwnNode { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#region methods
+        #region methods
 
-public virtual void Build(ParagraphBuilder builder,double textScaleFactor = 1.0,List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions> dimensions = default(List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions>)){ throw new NotImplementedException(); }
-
-
-public virtual bool VisitTextSpan(Func<bool,TextSpan> visitor){ throw new NotImplementedException(); }
-
-
-public virtual bool VisitChildren(FlutterSDK.Painting.Inlinespan.InlineSpanVisitor visitor){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Painting.Inlinespan.InlineSpan GetSpanForPosition(TextPosition position){ throw new NotImplementedException(); }
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Painting.Inlinespan.InlineSpan GetSpanForPositionVisitor(TextPosition position,FlutterSDK.Painting.Inlinespan.Accumulator offset){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public virtual string ToPlainText(bool includeSemanticsLabels = true,bool includePlaceholders = true){ throw new NotImplementedException(); }
+    public class InlineSpan : FlutterSDK.Foundation.Diagnostics.DiagnosticableTree
+    {
+        #region constructors
+        public InlineSpan(FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle))
+        {
+            this.Style = style; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle Style { get; set; }
+        public virtual string Text { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual List<FlutterSDK.Painting.Inlinespan.InlineSpan> Children { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Gestures.Recognizer.GestureRecognizer Recognizer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual void Build(ParagraphBuilder builder, double textScaleFactor = 1.0, List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions> dimensions = default(List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions>)) { throw new NotImplementedException(); }
 
 
-public virtual List<FlutterSDK.Painting.Inlinespan.InlineSpanSemanticsInformation> GetSemanticsInformation(){ throw new NotImplementedException(); }
+        public virtual bool VisitTextSpan(Func<bool, TextSpan> visitor) { throw new NotImplementedException(); }
 
 
-public virtual void ComputeSemanticsInformation(List<FlutterSDK.Painting.Inlinespan.InlineSpanSemanticsInformation> collector){ throw new NotImplementedException(); }
+        public virtual bool VisitChildren(FlutterSDK.Painting.Inlinespan.InlineSpanVisitor visitor) { throw new NotImplementedException(); }
 
 
-public virtual void ComputeToPlainText(StringBuffer buffer,bool includeSemanticsLabels = true,bool includePlaceholders = true){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Inlinespan.InlineSpan GetSpanForPosition(TextPosition position) { throw new NotImplementedException(); }
 
 
-public virtual int CodeUnitAt(int index){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Inlinespan.InlineSpan GetSpanForPositionVisitor(TextPosition position, FlutterSDK.Painting.Inlinespan.Accumulator offset) { throw new NotImplementedException(); }
 
 
-public virtual int CodeUnitAtVisitor(int index,FlutterSDK.Painting.Inlinespan.Accumulator offset){ throw new NotImplementedException(); }
+        public virtual string ToPlainText(bool includeSemanticsLabels = true, bool includePlaceholders = true) { throw new NotImplementedException(); }
 
 
-public virtual void DescribeSemantics(FlutterSDK.Painting.Inlinespan.Accumulator offset,List<int> semanticsOffsets,List<object> semanticsElements){ throw new NotImplementedException(); }
+        public virtual List<FlutterSDK.Painting.Inlinespan.InlineSpanSemanticsInformation> GetSemanticsInformation() { throw new NotImplementedException(); }
 
 
-public virtual bool DebugAssertIsValid(){ throw new NotImplementedException(); }
+        public virtual void ComputeSemanticsInformation(List<FlutterSDK.Painting.Inlinespan.InlineSpanSemanticsInformation> collector) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Painting.Basictypes.RenderComparison CompareTo(FlutterSDK.Painting.Inlinespan.InlineSpan other){ throw new NotImplementedException(); }
+        public virtual void ComputeToPlainText(StringBuffer buffer, bool includeSemanticsLabels = true, bool includePlaceholders = true) { throw new NotImplementedException(); }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public virtual int CodeUnitAt(int index) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public virtual int CodeUnitAtVisitor(int index, FlutterSDK.Painting.Inlinespan.Accumulator offset) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public virtual void DescribeSemantics(FlutterSDK.Painting.Inlinespan.Accumulator offset, List<int> semanticsOffsets, List<object> semanticsElements) { throw new NotImplementedException(); }
+
+
+        public virtual bool DebugAssertIsValid() { throw new NotImplementedException(); }
+
+
+        public virtual FlutterSDK.Painting.Basictypes.RenderComparison CompareTo(FlutterSDK.Painting.Inlinespan.InlineSpan other) { throw new NotImplementedException(); }
+
+
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

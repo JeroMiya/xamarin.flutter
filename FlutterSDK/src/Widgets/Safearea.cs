@@ -423,77 +423,81 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Safearea{
-internal static class SafeareaDefaultClass{
-}
-
-public class SafeArea : FlutterSDK.Widgets.Framework.StatelessWidget
+namespace FlutterSDK.Widgets.Safearea
 {
-#region constructors
-public SafeArea(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),bool left = true,bool top = true,bool right = true,bool bottom = true,FlutterSDK.Painting.Edgeinsets.EdgeInsets minimum = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets),bool maintainBottomViewPadding = false,FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key)
-{
-this.Left = left;
-this.Top = top;
-this.Right = right;
-this.Bottom = bottom;
-this.Minimum = minimum;
-this.MaintainBottomViewPadding = maintainBottomViewPadding;
-this.Child = child;throw new NotImplementedException(); }
-#endregion
+    internal static class SafeareaDefaultClass
+    {
+    }
 
-#region fields
-public virtual bool Left{get;set;}
-public virtual bool Top{get;set;}
-public virtual bool Right{get;set;}
-public virtual bool Bottom{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Minimum{get;set;}
-public virtual bool MaintainBottomViewPadding{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-#endregion
+    public class SafeArea : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public SafeArea(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool left = true, bool top = true, bool right = true, bool bottom = true, FlutterSDK.Painting.Edgeinsets.EdgeInsets minimum = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), bool maintainBottomViewPadding = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.Left = left;
+            this.Top = top;
+            this.Right = right;
+            this.Bottom = bottom;
+            this.Minimum = minimum;
+            this.MaintainBottomViewPadding = maintainBottomViewPadding;
+            this.Child = child; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual bool Left { get; set; }
+        public virtual bool Top { get; set; }
+        public virtual bool Right { get; set; }
+        public virtual bool Bottom { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Minimum { get; set; }
+        public virtual bool MaintainBottomViewPadding { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        #endregion
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
 
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class SliverSafeArea : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public SliverSafeArea(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),bool left = true,bool top = true,bool right = true,bool bottom = true,FlutterSDK.Painting.Edgeinsets.EdgeInsets minimum = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets),FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key)
-{
-this.Left = left;
-this.Top = top;
-this.Right = right;
-this.Bottom = bottom;
-this.Minimum = minimum;
-this.Sliver = sliver;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual bool Left{get;set;}
-public virtual bool Top{get;set;}
-public virtual bool Right{get;set;}
-public virtual bool Bottom{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Minimum{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Sliver{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
+
+
+    public class SliverSafeArea : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public SliverSafeArea(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool left = true, bool top = true, bool right = true, bool bottom = true, FlutterSDK.Painting.Edgeinsets.EdgeInsets minimum = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.Left = left;
+            this.Top = top;
+            this.Right = right;
+            this.Bottom = bottom;
+            this.Minimum = minimum;
+            this.Sliver = sliver; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual bool Left { get; set; }
+        public virtual bool Top { get; set; }
+        public virtual bool Right { get; set; }
+        public virtual bool Bottom { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Minimum { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Sliver { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

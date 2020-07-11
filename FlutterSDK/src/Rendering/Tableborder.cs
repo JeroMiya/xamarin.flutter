@@ -421,56 +421,61 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Rendering.Tableborder{
-internal static class TableborderDefaultClass{
-}
-
-public class TableBorder
+namespace FlutterSDK.Rendering.Tableborder
 {
-#region constructors
-public TableBorder(FlutterSDK.Painting.Borders.BorderSide top = default(FlutterSDK.Painting.Borders.BorderSide),FlutterSDK.Painting.Borders.BorderSide right = default(FlutterSDK.Painting.Borders.BorderSide),FlutterSDK.Painting.Borders.BorderSide bottom = default(FlutterSDK.Painting.Borders.BorderSide),FlutterSDK.Painting.Borders.BorderSide left = default(FlutterSDK.Painting.Borders.BorderSide),FlutterSDK.Painting.Borders.BorderSide horizontalInside = default(FlutterSDK.Painting.Borders.BorderSide),FlutterSDK.Painting.Borders.BorderSide verticalInside = default(FlutterSDK.Painting.Borders.BorderSide))
-{
-this.Top = top;
-this.Right = right;
-this.Bottom = bottom;
-this.Left = left;
-this.HorizontalInside = horizontalInside;
-this.VerticalInside = verticalInside;throw new NotImplementedException(); }
-public static TableBorder All(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),double width = 1.0,FlutterSDK.Painting.Borders.BorderStyle style = default(FlutterSDK.Painting.Borders.BorderStyle))
-{
-var instance =new TableBorder();throw new NotImplementedException(); }
-public static TableBorder Symmetric(FlutterSDK.Painting.Borders.BorderSide inside = default(FlutterSDK.Painting.Borders.BorderSide),FlutterSDK.Painting.Borders.BorderSide outside = default(FlutterSDK.Painting.Borders.BorderSide))
-{
-var instance =new TableBorder();throw new NotImplementedException(); }
-#endregion
+    internal static class TableborderDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Painting.Borders.BorderSide Top{get;set;}
-public virtual FlutterSDK.Painting.Borders.BorderSide Right{get;set;}
-public virtual FlutterSDK.Painting.Borders.BorderSide Bottom{get;set;}
-public virtual FlutterSDK.Painting.Borders.BorderSide Left{get;set;}
-public virtual FlutterSDK.Painting.Borders.BorderSide HorizontalInside{get;set;}
-public virtual FlutterSDK.Painting.Borders.BorderSide VerticalInside{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Dimensions{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsUniform{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class TableBorder
+    {
+        #region constructors
+        public TableBorder(FlutterSDK.Painting.Borders.BorderSide top = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide right = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide bottom = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide left = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide horizontalInside = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide verticalInside = default(FlutterSDK.Painting.Borders.BorderSide))
+        {
+            this.Top = top;
+            this.Right = right;
+            this.Bottom = bottom;
+            this.Left = left;
+            this.HorizontalInside = horizontalInside;
+            this.VerticalInside = verticalInside; throw new NotImplementedException();
+        }
+        public static TableBorder All(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double width = 1.0, FlutterSDK.Painting.Borders.BorderStyle style = default(FlutterSDK.Painting.Borders.BorderStyle))
+        {
+            var instance = new TableBorder(); throw new NotImplementedException();
+        }
+        public static TableBorder Symmetric(FlutterSDK.Painting.Borders.BorderSide inside = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide outside = default(FlutterSDK.Painting.Borders.BorderSide))
+        {
+            var instance = new TableBorder(); throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Painting.Borders.BorderSide Top { get; set; }
+        public virtual FlutterSDK.Painting.Borders.BorderSide Right { get; set; }
+        public virtual FlutterSDK.Painting.Borders.BorderSide Bottom { get; set; }
+        public virtual FlutterSDK.Painting.Borders.BorderSide Left { get; set; }
+        public virtual FlutterSDK.Painting.Borders.BorderSide HorizontalInside { get; set; }
+        public virtual FlutterSDK.Painting.Borders.BorderSide VerticalInside { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsUniform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual FlutterSDK.Rendering.Tableborder.TableBorder Scale(double t){ throw new NotImplementedException(); }
+        #region methods
+
+        public virtual FlutterSDK.Rendering.Tableborder.TableBorder Scale(double t) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Rendering.Tableborder.TableBorder Lerp(FlutterSDK.Rendering.Tableborder.TableBorder a,FlutterSDK.Rendering.Tableborder.TableBorder b,double t){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Rendering.Tableborder.TableBorder Lerp(FlutterSDK.Rendering.Tableborder.TableBorder a, FlutterSDK.Rendering.Tableborder.TableBorder b, double t) { throw new NotImplementedException(); }
 
 
-public virtual void Paint(Canvas canvas,FlutterBinding.UI.Rect rect,Iterable<double> rows = default(Iterable<double>),Iterable<double> columns = default(Iterable<double>)){ throw new NotImplementedException(); }
+        public virtual void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, Iterable<double> rows = default(Iterable<double>), Iterable<double> columns = default(Iterable<double>)) { throw new NotImplementedException(); }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        #endregion
+    }
 
 }

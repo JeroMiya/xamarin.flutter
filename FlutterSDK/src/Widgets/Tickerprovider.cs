@@ -423,155 +423,164 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Tickerprovider{
-internal static class TickerproviderDefaultClass{
-}
-
-public interface ISingleTickerProviderStateMixin<T>{}
-
-public class SingleTickerProviderStateMixin<T>:ITickerProvider{
-internal virtual FlutterSDK.Scheduler.Ticker.Ticker _Ticker{get;set;}
-
-public new FlutterSDK.Scheduler.Ticker.Ticker CreateTicker(FlutterSDK.Scheduler.Ticker.TickerCallback onTick){ throw new NotImplementedException(); }
-
-
-public new void Dispose(){ throw new NotImplementedException(); }
-
-
-public new void DidChangeDependencies(){ throw new NotImplementedException(); }
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-}
-public static class SingleTickerProviderStateMixinMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<object, object> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<object, object>();
-static SingleTickerProviderStateMixin<T> GetOrCreate<T>(ISingleTickerProviderStateMixin<T> instance)
+namespace FlutterSDK.Widgets.Tickerprovider
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new SingleTickerProviderStateMixin<T>();
-_table.Add(instance, value);
-}
-return (SingleTickerProviderStateMixin<T>)value;
-}
-public static FlutterSDK.Scheduler.Ticker.Ticker CreateTicker<T>(this ISingleTickerProviderStateMixin<T> instance,FlutterSDK.Scheduler.Ticker.TickerCallback onTick) => GetOrCreate(instance).CreateTicker(onTick);
-public static void Dispose<T>(this ISingleTickerProviderStateMixin<T> instance) => GetOrCreate(instance).Dispose();
-public static void DidChangeDependencies<T>(this ISingleTickerProviderStateMixin<T> instance) => GetOrCreate(instance).DidChangeDependencies();
-public static void DebugFillProperties<T>(this ISingleTickerProviderStateMixin<T> instance,FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) => GetOrCreate(instance).DebugFillProperties(properties);
-}
+    internal static class TickerproviderDefaultClass
+    {
+    }
+
+    public interface ISingleTickerProviderStateMixin<T> { }
+
+    public class SingleTickerProviderStateMixin<T> : ITickerProvider
+    {
+        internal virtual FlutterSDK.Scheduler.Ticker.Ticker _Ticker { get; set; }
+
+        public new FlutterSDK.Scheduler.Ticker.Ticker CreateTicker(FlutterSDK.Scheduler.Ticker.TickerCallback onTick) { throw new NotImplementedException(); }
 
 
-public interface ITickerProviderStateMixin<T>{}
-
-public class TickerProviderStateMixin<T>:ITickerProvider{
-internal virtual HashSet<FlutterSDK.Scheduler.Ticker.Ticker> _Tickers{get;set;}
-
-public new FlutterSDK.Scheduler.Ticker.Ticker CreateTicker(FlutterSDK.Scheduler.Ticker.TickerCallback onTick){ throw new NotImplementedException(); }
+        public new void Dispose() { throw new NotImplementedException(); }
 
 
-private void _RemoveTicker(FlutterSDK.Widgets.Tickerprovider._WidgetTicker ticker){ throw new NotImplementedException(); }
+        public new void DidChangeDependencies() { throw new NotImplementedException(); }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+    }
+    public static class SingleTickerProviderStateMixinMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<object, object> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<object, object>();
+        static SingleTickerProviderStateMixin<T> GetOrCreate<T>(ISingleTickerProviderStateMixin<T> instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new SingleTickerProviderStateMixin<T>();
+                _table.Add(instance, value);
+            }
+            return (SingleTickerProviderStateMixin<T>)value;
+        }
+        public static FlutterSDK.Scheduler.Ticker.Ticker CreateTicker<T>(this ISingleTickerProviderStateMixin<T> instance, FlutterSDK.Scheduler.Ticker.TickerCallback onTick) => GetOrCreate(instance).CreateTicker(onTick);
+        public static void Dispose<T>(this ISingleTickerProviderStateMixin<T> instance) => GetOrCreate(instance).Dispose();
+        public static void DidChangeDependencies<T>(this ISingleTickerProviderStateMixin<T> instance) => GetOrCreate(instance).DidChangeDependencies();
+        public static void DebugFillProperties<T>(this ISingleTickerProviderStateMixin<T> instance, FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) => GetOrCreate(instance).DebugFillProperties(properties);
+    }
 
 
-public new void DidChangeDependencies(){ throw new NotImplementedException(); }
+    public interface ITickerProviderStateMixin<T> { }
+
+    public class TickerProviderStateMixin<T> : ITickerProvider
+    {
+        internal virtual HashSet<FlutterSDK.Scheduler.Ticker.Ticker> _Tickers { get; set; }
+
+        public new FlutterSDK.Scheduler.Ticker.Ticker CreateTicker(FlutterSDK.Scheduler.Ticker.TickerCallback onTick) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-}
-public static class TickerProviderStateMixinMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<object, object> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<object, object>();
-static TickerProviderStateMixin<T> GetOrCreate<T>(ITickerProviderStateMixin<T> instance)
-{
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new TickerProviderStateMixin<T>();
-_table.Add(instance, value);
-}
-return (TickerProviderStateMixin<T>)value;
-}
-public static FlutterSDK.Scheduler.Ticker.Ticker CreateTicker<T>(this ITickerProviderStateMixin<T> instance,FlutterSDK.Scheduler.Ticker.TickerCallback onTick) => GetOrCreate(instance).CreateTicker(onTick);
-public static void Dispose<T>(this ITickerProviderStateMixin<T> instance) => GetOrCreate(instance).Dispose();
-public static void DidChangeDependencies<T>(this ITickerProviderStateMixin<T> instance) => GetOrCreate(instance).DidChangeDependencies();
-public static void DebugFillProperties<T>(this ITickerProviderStateMixin<T> instance,FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) => GetOrCreate(instance).DebugFillProperties(properties);
-}
+        private void _RemoveTicker(FlutterSDK.Widgets.Tickerprovider._WidgetTicker ticker) { throw new NotImplementedException(); }
 
 
-public class TickerMode : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public TickerMode(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),bool enabled = default(bool),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key)
-{
-this.Enabled = enabled;
-this.Child = child;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual bool Enabled{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-#endregion
-
-#region methods
-
-public virtual bool Of(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new void Dispose() { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new void DidChangeDependencies() { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#endregion
-}
-
-
-public class _EffectiveTickerMode : FlutterSDK.Widgets.Framework.InheritedWidget
-{
-#region constructors
-public _EffectiveTickerMode(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),bool enabled = default(bool),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key,child:child)
-{
-this.Enabled = enabled;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual bool Enabled{get;set;}
-#endregion
-
-#region methods
-
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Tickerprovider._EffectiveTickerMode oldWidget){ throw new NotImplementedException(); }
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget){ throw new NotImplementedException(); }
+    }
+    public static class TickerProviderStateMixinMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<object, object> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<object, object>();
+        static TickerProviderStateMixin<T> GetOrCreate<T>(ITickerProviderStateMixin<T> instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new TickerProviderStateMixin<T>();
+                _table.Add(instance, value);
+            }
+            return (TickerProviderStateMixin<T>)value;
+        }
+        public static FlutterSDK.Scheduler.Ticker.Ticker CreateTicker<T>(this ITickerProviderStateMixin<T> instance, FlutterSDK.Scheduler.Ticker.TickerCallback onTick) => GetOrCreate(instance).CreateTicker(onTick);
+        public static void Dispose<T>(this ITickerProviderStateMixin<T> instance) => GetOrCreate(instance).Dispose();
+        public static void DidChangeDependencies<T>(this ITickerProviderStateMixin<T> instance) => GetOrCreate(instance).DidChangeDependencies();
+        public static void DebugFillProperties<T>(this ITickerProviderStateMixin<T> instance, FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) => GetOrCreate(instance).DebugFillProperties(properties);
+    }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+    public class TickerMode : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public TickerMode(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool enabled = default(bool), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.Enabled = enabled;
+            this.Child = child; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual bool Enabled { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual bool Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public class _WidgetTicker : FlutterSDK.Scheduler.Ticker.Ticker
-{
-#region constructors
-public _WidgetTicker(FlutterSDK.Scheduler.Ticker.TickerCallback onTick,FlutterSDK.Widgets.Tickerprovider.TickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget> _creator,string debugLabel = default(string))
-: base(onTick,debugLabel:debugLabel)
-{
-this._Creator = _creator;throw new NotImplementedException(); }
-#endregion
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual FlutterSDK.Widgets.Tickerprovider.TickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget> _Creator{get;set;}
-#endregion
 
-#region methods
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-public new void Dispose(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
-#endregion
-}
+
+    public class _EffectiveTickerMode : FlutterSDK.Widgets.Framework.InheritedWidget
+    {
+        #region constructors
+        public _EffectiveTickerMode(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool enabled = default(bool), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            this.Enabled = enabled; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual bool Enabled { get; set; }
+        #endregion
+
+        #region methods
+
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Tickerprovider._EffectiveTickerMode oldWidget) { throw new NotImplementedException(); }
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class _WidgetTicker : FlutterSDK.Scheduler.Ticker.Ticker
+    {
+        #region constructors
+        public _WidgetTicker(FlutterSDK.Scheduler.Ticker.TickerCallback onTick, FlutterSDK.Widgets.Tickerprovider.TickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget> _creator, string debugLabel = default(string))
+        : base(onTick, debugLabel: debugLabel)
+        {
+            this._Creator = _creator; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Tickerprovider.TickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget> _Creator { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void Dispose() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

@@ -400,47 +400,50 @@ using FlutterSDK.Material.Pickers.Dateutils;
 using FlutterSDK.Material.Pickers.Calendardatepicker;
 using FlutterSDK.Material.Pickers.Datepickerheader;
 using FlutterSDK.Material.Pickers.Inputdatepicker;
-namespace FlutterSDK.Material.Pickers.Datepickerheader{
-internal static class DatepickerheaderDefaultClass{
-public static double _DatePickerHeaderLandscapeWidth = default(double);
-public static double _DatePickerHeaderPortraitHeight = default(double);
-public static double _HeaderPaddingLandscape = default(double);
-}
-
-public class DatePickerHeader : FlutterSDK.Widgets.Framework.StatelessWidget
+namespace FlutterSDK.Material.Pickers.Datepickerheader
 {
-#region constructors
-public DatePickerHeader(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),string helpText = default(string),string titleText = default(string),string titleSemanticsLabel = default(string),FlutterSDK.Painting.Textstyle.TextStyle titleStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Widgets.Mediaquery.Orientation orientation = default(FlutterSDK.Widgets.Mediaquery.Orientation),bool isShort = false,FlutterSDK.Widgets.Icondata.IconData icon = default(FlutterSDK.Widgets.Icondata.IconData),string iconTooltip = default(string),VoidCallback onIconPressed = default(VoidCallback))
-: base(key:key)
-{
-this.HelpText = helpText;
-this.TitleText = titleText;
-this.TitleSemanticsLabel = titleSemanticsLabel;
-this.TitleStyle = titleStyle;
-this.Orientation = orientation;
-this.IsShort = isShort;
-this.Icon = icon;
-this.IconTooltip = iconTooltip;
-this.OnIconPressed = onIconPressed;throw new NotImplementedException(); }
-#endregion
+    internal static class DatepickerheaderDefaultClass
+    {
+        public static double _DatePickerHeaderLandscapeWidth = default(double);
+        public static double _DatePickerHeaderPortraitHeight = default(double);
+        public static double _HeaderPaddingLandscape = default(double);
+    }
 
-#region fields
-public virtual string HelpText{get;set;}
-public virtual string TitleText{get;set;}
-public virtual string TitleSemanticsLabel{get;set;}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle TitleStyle{get;set;}
-public virtual FlutterSDK.Widgets.Mediaquery.Orientation Orientation{get;set;}
-public virtual bool IsShort{get;set;}
-public virtual FlutterSDK.Widgets.Icondata.IconData Icon{get;set;}
-public virtual string IconTooltip{get;set;}
-public virtual VoidCallback OnIconPressed{get;set;}
-#endregion
+    public class DatePickerHeader : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public DatePickerHeader(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string helpText = default(string), string titleText = default(string), string titleSemanticsLabel = default(string), FlutterSDK.Painting.Textstyle.TextStyle titleStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Mediaquery.Orientation orientation = default(FlutterSDK.Widgets.Mediaquery.Orientation), bool isShort = false, FlutterSDK.Widgets.Icondata.IconData icon = default(FlutterSDK.Widgets.Icondata.IconData), string iconTooltip = default(string), VoidCallback onIconPressed = default(VoidCallback))
+        : base(key: key)
+        {
+            this.HelpText = helpText;
+            this.TitleText = titleText;
+            this.TitleSemanticsLabel = titleSemanticsLabel;
+            this.TitleStyle = titleStyle;
+            this.Orientation = orientation;
+            this.IsShort = isShort;
+            this.Icon = icon;
+            this.IconTooltip = iconTooltip;
+            this.OnIconPressed = onIconPressed; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual string HelpText { get; set; }
+        public virtual string TitleText { get; set; }
+        public virtual string TitleSemanticsLabel { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle TitleStyle { get; set; }
+        public virtual FlutterSDK.Widgets.Mediaquery.Orientation Orientation { get; set; }
+        public virtual bool IsShort { get; set; }
+        public virtual FlutterSDK.Widgets.Icondata.IconData Icon { get; set; }
+        public virtual string IconTooltip { get; set; }
+        public virtual VoidCallback OnIconPressed { get; set; }
+        #endregion
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

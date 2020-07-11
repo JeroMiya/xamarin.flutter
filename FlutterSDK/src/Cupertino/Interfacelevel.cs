@@ -291,42 +291,46 @@ using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
-namespace FlutterSDK.Cupertino.Interfacelevel{
-internal static class InterfacelevelDefaultClass{
-}
-
-public class CupertinoUserInterfaceLevel : FlutterSDK.Widgets.Framework.InheritedWidget
+namespace FlutterSDK.Cupertino.Interfacelevel
 {
-#region constructors
-public CupertinoUserInterfaceLevel(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Cupertino.Interfacelevel.CupertinoUserInterfaceLevelData data = default(FlutterSDK.Cupertino.Interfacelevel.CupertinoUserInterfaceLevelData),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key,child:child)
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class InterfacelevelDefaultClass
+    {
+    }
 
-#region fields
-internal virtual FlutterSDK.Cupertino.Interfacelevel.CupertinoUserInterfaceLevelData _Data{get;set;}
-#endregion
+    public class CupertinoUserInterfaceLevel : FlutterSDK.Widgets.Framework.InheritedWidget
+    {
+        #region constructors
+        public CupertinoUserInterfaceLevel(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Cupertino.Interfacelevel.CupertinoUserInterfaceLevelData data = default(FlutterSDK.Cupertino.Interfacelevel.CupertinoUserInterfaceLevelData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual FlutterSDK.Cupertino.Interfacelevel.CupertinoUserInterfaceLevelData _Data { get; set; }
+        #endregion
 
-public new bool UpdateShouldNotify(FlutterSDK.Cupertino.Interfacelevel.CupertinoUserInterfaceLevel oldWidget){ throw new NotImplementedException(); }
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual FlutterSDK.Cupertino.Interfacelevel.CupertinoUserInterfaceLevelData Of(FlutterSDK.Widgets.Framework.BuildContext context,bool nullOk = false){ throw new NotImplementedException(); }
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public new bool UpdateShouldNotify(FlutterSDK.Cupertino.Interfacelevel.CupertinoUserInterfaceLevel oldWidget) { throw new NotImplementedException(); }
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
 
 
-public enum CupertinoUserInterfaceLevelData{
+        public virtual FlutterSDK.Cupertino.Interfacelevel.CupertinoUserInterfaceLevelData Of(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false) { throw new NotImplementedException(); }
 
-@Base,
-Elevated,
-}
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public enum CupertinoUserInterfaceLevelData
+    {
+
+        @Base,
+        Elevated,
+    }
 
 }

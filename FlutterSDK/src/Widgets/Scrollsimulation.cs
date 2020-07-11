@@ -423,100 +423,104 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Scrollsimulation{
-internal static class ScrollsimulationDefaultClass{
-}
-
-public class BouncingScrollSimulation : FlutterSDK.Physics.Simulation.Simulation
+namespace FlutterSDK.Widgets.Scrollsimulation
 {
-#region constructors
-public BouncingScrollSimulation(double position = default(double),double velocity = default(double),double leadingExtent = default(double),double trailingExtent = default(double),FlutterSDK.Physics.Springsimulation.SpringDescription spring = default(FlutterSDK.Physics.Springsimulation.SpringDescription),FlutterSDK.Physics.Tolerance.Tolerance tolerance = default(FlutterSDK.Physics.Tolerance.Tolerance))
-: base(tolerance:tolerance)
-{
-this.LeadingExtent = leadingExtent;
-this.TrailingExtent = trailingExtent;
-this.Spring = spring;throw new NotImplementedException(); }
-#endregion
+    internal static class ScrollsimulationDefaultClass
+    {
+    }
 
-#region fields
-public virtual double MaxSpringTransferVelocity{get;set;}
-public virtual double LeadingExtent{get;set;}
-public virtual double TrailingExtent{get;set;}
-public virtual FlutterSDK.Physics.Springsimulation.SpringDescription Spring{get;set;}
-internal virtual FlutterSDK.Physics.Frictionsimulation.FrictionSimulation _FrictionSimulation{get;set;}
-internal virtual FlutterSDK.Physics.Simulation.Simulation _SpringSimulation{get;set;}
-internal virtual double _SpringTime{get;set;}
-internal virtual double _TimeOffset{get;set;}
-#endregion
+    public class BouncingScrollSimulation : FlutterSDK.Physics.Simulation.Simulation
+    {
+        #region constructors
+        public BouncingScrollSimulation(double position = default(double), double velocity = default(double), double leadingExtent = default(double), double trailingExtent = default(double), FlutterSDK.Physics.Springsimulation.SpringDescription spring = default(FlutterSDK.Physics.Springsimulation.SpringDescription), FlutterSDK.Physics.Tolerance.Tolerance tolerance = default(FlutterSDK.Physics.Tolerance.Tolerance))
+        : base(tolerance: tolerance)
+        {
+            this.LeadingExtent = leadingExtent;
+            this.TrailingExtent = trailingExtent;
+            this.Spring = spring; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual double MaxSpringTransferVelocity { get; set; }
+        public virtual double LeadingExtent { get; set; }
+        public virtual double TrailingExtent { get; set; }
+        public virtual FlutterSDK.Physics.Springsimulation.SpringDescription Spring { get; set; }
+        internal virtual FlutterSDK.Physics.Frictionsimulation.FrictionSimulation _FrictionSimulation { get; set; }
+        internal virtual FlutterSDK.Physics.Simulation.Simulation _SpringSimulation { get; set; }
+        internal virtual double _SpringTime { get; set; }
+        internal virtual double _TimeOffset { get; set; }
+        #endregion
 
-private FlutterSDK.Physics.Simulation.Simulation _UnderscrollSimulation(double x,double dx){ throw new NotImplementedException(); }
+        #region methods
 
-
-private FlutterSDK.Physics.Simulation.Simulation _OverscrollSimulation(double x,double dx){ throw new NotImplementedException(); }
-
-
-private FlutterSDK.Physics.Simulation.Simulation _Simulation(double time){ throw new NotImplementedException(); }
-
-
-public new double x(double time){ throw new NotImplementedException(); }
+        private FlutterSDK.Physics.Simulation.Simulation _UnderscrollSimulation(double x, double dx) { throw new NotImplementedException(); }
 
 
-public new double Dx(double time){ throw new NotImplementedException(); }
+        private FlutterSDK.Physics.Simulation.Simulation _OverscrollSimulation(double x, double dx) { throw new NotImplementedException(); }
 
 
-public new bool IsDone(double time){ throw new NotImplementedException(); }
+        private FlutterSDK.Physics.Simulation.Simulation _Simulation(double time) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public new double x(double time) { throw new NotImplementedException(); }
 
 
-public class ClampingScrollSimulation : FlutterSDK.Physics.Simulation.Simulation
-{
-#region constructors
-public ClampingScrollSimulation(double position = default(double),double velocity = default(double),double friction = 0.015,FlutterSDK.Physics.Tolerance.Tolerance tolerance = default(FlutterSDK.Physics.Tolerance.Tolerance))
-: base(tolerance:tolerance)
-{
-this.Position = position;
-this.Velocity = velocity;
-this.Friction = friction;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual double Position{get;set;}
-public virtual double Velocity{get;set;}
-public virtual double Friction{get;set;}
-internal virtual double _Duration{get;set;}
-internal virtual double _Distance{get;set;}
-internal virtual double _KDecelerationRate{get;set;}
-internal virtual double _InitialVelocityPenetration{get;set;}
-#endregion
-
-#region methods
-
-private double _DecelerationForFriction(double friction){ throw new NotImplementedException(); }
+        public new double Dx(double time) { throw new NotImplementedException(); }
 
 
-private double _FlingDuration(double velocity){ throw new NotImplementedException(); }
+        public new bool IsDone(double time) { throw new NotImplementedException(); }
 
 
-private double _FlingDistancePenetration(double t){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-private double _FlingVelocityPenetration(double t){ throw new NotImplementedException(); }
+    public class ClampingScrollSimulation : FlutterSDK.Physics.Simulation.Simulation
+    {
+        #region constructors
+        public ClampingScrollSimulation(double position = default(double), double velocity = default(double), double friction = 0.015, FlutterSDK.Physics.Tolerance.Tolerance tolerance = default(FlutterSDK.Physics.Tolerance.Tolerance))
+        : base(tolerance: tolerance)
+        {
+            this.Position = position;
+            this.Velocity = velocity;
+            this.Friction = friction; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual double Position { get; set; }
+        public virtual double Velocity { get; set; }
+        public virtual double Friction { get; set; }
+        internal virtual double _Duration { get; set; }
+        internal virtual double _Distance { get; set; }
+        internal virtual double _KDecelerationRate { get; set; }
+        internal virtual double _InitialVelocityPenetration { get; set; }
+        #endregion
+
+        #region methods
+
+        private double _DecelerationForFriction(double friction) { throw new NotImplementedException(); }
 
 
-public new double x(double time){ throw new NotImplementedException(); }
+        private double _FlingDuration(double velocity) { throw new NotImplementedException(); }
 
 
-public new double Dx(double time){ throw new NotImplementedException(); }
+        private double _FlingDistancePenetration(double t) { throw new NotImplementedException(); }
 
 
-public new bool IsDone(double time){ throw new NotImplementedException(); }
+        private double _FlingVelocityPenetration(double t) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new double x(double time) { throw new NotImplementedException(); }
+
+
+        public new double Dx(double time) { throw new NotImplementedException(); }
+
+
+        public new bool IsDone(double time) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

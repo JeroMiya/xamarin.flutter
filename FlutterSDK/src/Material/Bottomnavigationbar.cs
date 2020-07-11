@@ -358,297 +358,306 @@ using FlutterSDK.Material.Divider;
 using FlutterSDK.Material.Bottomappbartheme;
 using FlutterSDK.Material.Elevationoverlay;
 using FlutterSDK.Material.Inkwell;
-namespace FlutterSDK.Material.Bottomnavigationbar{
-internal static class BottomnavigationbarDefaultClass{
-}
-
-public class BottomNavigationBar : FlutterSDK.Widgets.Framework.StatefulWidget
+namespace FlutterSDK.Material.Bottomnavigationbar
 {
-#region constructors
-public BottomNavigationBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem> items = default(List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem>),FlutterSDK.Foundation.Basictypes.ValueChanged<int> onTap = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>),int currentIndex = 0,double elevation = 8.0,FlutterSDK.Material.Bottomnavigationbar.BottomNavigationBarType type = default(FlutterSDK.Material.Bottomnavigationbar.BottomNavigationBarType),FlutterBinding.UI.Color fixedColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),double iconSize = 24.0,FlutterBinding.UI.Color selectedItemColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color unselectedItemColor = default(FlutterBinding.UI.Color),FlutterSDK.Widgets.Iconthemedata.IconThemeData selectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData),FlutterSDK.Widgets.Iconthemedata.IconThemeData unselectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData),double selectedFontSize = 14.0,double unselectedFontSize = 12.0,FlutterSDK.Painting.Textstyle.TextStyle selectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Painting.Textstyle.TextStyle unselectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),bool showSelectedLabels = true,bool showUnselectedLabels = default(bool))
-: base(key:key)
-{
-this.Items = items;
-this.OnTap = onTap;
-this.CurrentIndex = currentIndex;
-this.Elevation = elevation;
-this.BackgroundColor = backgroundColor;
-this.IconSize = iconSize;
-this.UnselectedItemColor = unselectedItemColor;
-this.SelectedIconTheme = selectedIconTheme;
-this.UnselectedIconTheme = unselectedIconTheme;
-this.SelectedFontSize = selectedFontSize;
-this.UnselectedFontSize = unselectedFontSize;
-this.SelectedLabelStyle = selectedLabelStyle;
-this.UnselectedLabelStyle = unselectedLabelStyle;
-this.ShowSelectedLabels = showSelectedLabels;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem> Items{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnTap{get;set;}
-public virtual int CurrentIndex{get;set;}
-public virtual double Elevation{get;set;}
-public virtual FlutterSDK.Material.Bottomnavigationbar.BottomNavigationBarType Type{get;set;}
-public virtual FlutterBinding.UI.Color BackgroundColor{get;set;}
-public virtual double IconSize{get;set;}
-public virtual FlutterBinding.UI.Color SelectedItemColor{get;set;}
-public virtual FlutterBinding.UI.Color UnselectedItemColor{get;set;}
-public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData SelectedIconTheme{get;set;}
-public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData UnselectedIconTheme{get;set;}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle SelectedLabelStyle{get;set;}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle UnselectedLabelStyle{get;set;}
-public virtual double SelectedFontSize{get;set;}
-public virtual double UnselectedFontSize{get;set;}
-public virtual bool ShowUnselectedLabels{get;set;}
-public virtual bool ShowSelectedLabels{get;set;}
-public virtual FlutterBinding.UI.Color FixedColor{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-private FlutterSDK.Material.Bottomnavigationbar.BottomNavigationBarType _Type(FlutterSDK.Material.Bottomnavigationbar.BottomNavigationBarType type,List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem> items){ throw new NotImplementedException(); }
-
-
-private bool _DefaultShowUnselected(FlutterSDK.Material.Bottomnavigationbar.BottomNavigationBarType type){ throw new NotImplementedException(); }
-
-
-public new FlutterSDK.Material.Bottomnavigationbar._BottomNavigationBarState CreateState(){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _BottomNavigationTile : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public _BottomNavigationTile(FlutterSDK.Material.Bottomnavigationbar.BottomNavigationBarType type,FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem item,FlutterSDK.Animation.Animation.Animation<double> animation,double iconSize,VoidCallback onTap = default(VoidCallback),FlutterSDK.Animation.Tween.ColorTween colorTween = default(FlutterSDK.Animation.Tween.ColorTween),double flex = default(double),bool selected = false,FlutterSDK.Painting.Textstyle.TextStyle selectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Painting.Textstyle.TextStyle unselectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Widgets.Iconthemedata.IconThemeData selectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData),FlutterSDK.Widgets.Iconthemedata.IconThemeData unselectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData),bool showSelectedLabels = default(bool),bool showUnselectedLabels = default(bool),string indexLabel = default(string))
-: base()
-{
-this.Type = type;
-this.Item = item;
-this.Animation = animation;
-this.IconSize = iconSize;
-this.OnTap = onTap;
-this.ColorTween = colorTween;
-this.Flex = flex;
-this.Selected = selected;
-this.SelectedLabelStyle = selectedLabelStyle;
-this.UnselectedLabelStyle = unselectedLabelStyle;
-this.SelectedIconTheme = selectedIconTheme;
-this.UnselectedIconTheme = unselectedIconTheme;
-this.ShowSelectedLabels = showSelectedLabels;
-this.ShowUnselectedLabels = showUnselectedLabels;
-this.IndexLabel = indexLabel;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Material.Bottomnavigationbar.BottomNavigationBarType Type{get;set;}
-public virtual FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem Item{get;set;}
-public virtual FlutterSDK.Animation.Animation.Animation<double> Animation{get;set;}
-public virtual double IconSize{get;set;}
-public virtual VoidCallback OnTap{get;set;}
-public virtual FlutterSDK.Animation.Tween.ColorTween ColorTween{get;set;}
-public virtual double Flex{get;set;}
-public virtual bool Selected{get;set;}
-public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData SelectedIconTheme{get;set;}
-public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData UnselectedIconTheme{get;set;}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle SelectedLabelStyle{get;set;}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle UnselectedLabelStyle{get;set;}
-public virtual string IndexLabel{get;set;}
-public virtual bool ShowSelectedLabels{get;set;}
-public virtual bool ShowUnselectedLabels{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-#endregion
-}
+    internal static class BottomnavigationbarDefaultClass
+    {
+    }
+
+    public class BottomNavigationBar : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public BottomNavigationBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem> items = default(List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem>), FlutterSDK.Foundation.Basictypes.ValueChanged<int> onTap = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), int currentIndex = 0, double elevation = 8.0, FlutterSDK.Material.Bottomnavigationbar.BottomNavigationBarType type = default(FlutterSDK.Material.Bottomnavigationbar.BottomNavigationBarType), FlutterBinding.UI.Color fixedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double iconSize = 24.0, FlutterBinding.UI.Color selectedItemColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color unselectedItemColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Iconthemedata.IconThemeData selectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData unselectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), double selectedFontSize = 14.0, double unselectedFontSize = 12.0, FlutterSDK.Painting.Textstyle.TextStyle selectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle unselectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), bool showSelectedLabels = true, bool showUnselectedLabels = default(bool))
+        : base(key: key)
+        {
+            this.Items = items;
+            this.OnTap = onTap;
+            this.CurrentIndex = currentIndex;
+            this.Elevation = elevation;
+            this.BackgroundColor = backgroundColor;
+            this.IconSize = iconSize;
+            this.UnselectedItemColor = unselectedItemColor;
+            this.SelectedIconTheme = selectedIconTheme;
+            this.UnselectedIconTheme = unselectedIconTheme;
+            this.SelectedFontSize = selectedFontSize;
+            this.UnselectedFontSize = unselectedFontSize;
+            this.SelectedLabelStyle = selectedLabelStyle;
+            this.UnselectedLabelStyle = unselectedLabelStyle;
+            this.ShowSelectedLabels = showSelectedLabels; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem> Items { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnTap { get; set; }
+        public virtual int CurrentIndex { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual FlutterSDK.Material.Bottomnavigationbar.BottomNavigationBarType Type { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual double IconSize { get; set; }
+        public virtual FlutterBinding.UI.Color SelectedItemColor { get; set; }
+        public virtual FlutterBinding.UI.Color UnselectedItemColor { get; set; }
+        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData SelectedIconTheme { get; set; }
+        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData UnselectedIconTheme { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle SelectedLabelStyle { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle UnselectedLabelStyle { get; set; }
+        public virtual double SelectedFontSize { get; set; }
+        public virtual double UnselectedFontSize { get; set; }
+        public virtual bool ShowUnselectedLabels { get; set; }
+        public virtual bool ShowSelectedLabels { get; set; }
+        public virtual FlutterBinding.UI.Color FixedColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        private FlutterSDK.Material.Bottomnavigationbar.BottomNavigationBarType _Type(FlutterSDK.Material.Bottomnavigationbar.BottomNavigationBarType type, List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem> items) { throw new NotImplementedException(); }
+
+
+        private bool _DefaultShowUnselected(FlutterSDK.Material.Bottomnavigationbar.BottomNavigationBarType type) { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Material.Bottomnavigationbar._BottomNavigationBarState CreateState() { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class _BottomNavigationTile : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public _BottomNavigationTile(FlutterSDK.Material.Bottomnavigationbar.BottomNavigationBarType type, FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem item, FlutterSDK.Animation.Animation.Animation<double> animation, double iconSize, VoidCallback onTap = default(VoidCallback), FlutterSDK.Animation.Tween.ColorTween colorTween = default(FlutterSDK.Animation.Tween.ColorTween), double flex = default(double), bool selected = false, FlutterSDK.Painting.Textstyle.TextStyle selectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle unselectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Iconthemedata.IconThemeData selectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData unselectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), bool showSelectedLabels = default(bool), bool showUnselectedLabels = default(bool), string indexLabel = default(string))
+        : base()
+        {
+            this.Type = type;
+            this.Item = item;
+            this.Animation = animation;
+            this.IconSize = iconSize;
+            this.OnTap = onTap;
+            this.ColorTween = colorTween;
+            this.Flex = flex;
+            this.Selected = selected;
+            this.SelectedLabelStyle = selectedLabelStyle;
+            this.UnselectedLabelStyle = unselectedLabelStyle;
+            this.SelectedIconTheme = selectedIconTheme;
+            this.UnselectedIconTheme = unselectedIconTheme;
+            this.ShowSelectedLabels = showSelectedLabels;
+            this.ShowUnselectedLabels = showUnselectedLabels;
+            this.IndexLabel = indexLabel; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Material.Bottomnavigationbar.BottomNavigationBarType Type { get; set; }
+        public virtual FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem Item { get; set; }
+        public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
+        public virtual double IconSize { get; set; }
+        public virtual VoidCallback OnTap { get; set; }
+        public virtual FlutterSDK.Animation.Tween.ColorTween ColorTween { get; set; }
+        public virtual double Flex { get; set; }
+        public virtual bool Selected { get; set; }
+        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData SelectedIconTheme { get; set; }
+        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData UnselectedIconTheme { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle SelectedLabelStyle { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle UnselectedLabelStyle { get; set; }
+        public virtual string IndexLabel { get; set; }
+        public virtual bool ShowSelectedLabels { get; set; }
+        public virtual bool ShowUnselectedLabels { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public class _TileIcon : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public _TileIcon(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Animation.Tween.ColorTween colorTween = default(FlutterSDK.Animation.Tween.ColorTween),FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>),double iconSize = default(double),bool selected = default(bool),FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem item = default(FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem),FlutterSDK.Widgets.Iconthemedata.IconThemeData selectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData),FlutterSDK.Widgets.Iconthemedata.IconThemeData unselectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData))
-: base(key:key)
-{
-this.ColorTween = colorTween;
-this.Animation = animation;
-this.IconSize = iconSize;
-this.Selected = selected;
-this.Item = item;
-this.SelectedIconTheme = selectedIconTheme;
-this.UnselectedIconTheme = unselectedIconTheme;throw new NotImplementedException(); }
-#endregion
+    public class _TileIcon : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public _TileIcon(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Tween.ColorTween colorTween = default(FlutterSDK.Animation.Tween.ColorTween), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>), double iconSize = default(double), bool selected = default(bool), FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem item = default(FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem), FlutterSDK.Widgets.Iconthemedata.IconThemeData selectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData unselectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData))
+        : base(key: key)
+        {
+            this.ColorTween = colorTween;
+            this.Animation = animation;
+            this.IconSize = iconSize;
+            this.Selected = selected;
+            this.Item = item;
+            this.SelectedIconTheme = selectedIconTheme;
+            this.UnselectedIconTheme = unselectedIconTheme; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Animation.Tween.ColorTween ColorTween{get;set;}
-public virtual FlutterSDK.Animation.Animation.Animation<double> Animation{get;set;}
-public virtual double IconSize{get;set;}
-public virtual bool Selected{get;set;}
-public virtual FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem Item{get;set;}
-public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData SelectedIconTheme{get;set;}
-public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData UnselectedIconTheme{get;set;}
-#endregion
+        #region fields
+        public virtual FlutterSDK.Animation.Tween.ColorTween ColorTween { get; set; }
+        public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
+        public virtual double IconSize { get; set; }
+        public virtual bool Selected { get; set; }
+        public virtual FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem Item { get; set; }
+        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData SelectedIconTheme { get; set; }
+        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData UnselectedIconTheme { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _Label : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public _Label(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Animation.Tween.ColorTween colorTween = default(FlutterSDK.Animation.Tween.ColorTween),FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem item = default(FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem),FlutterSDK.Painting.Textstyle.TextStyle selectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Painting.Textstyle.TextStyle unselectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),bool showSelectedLabels = default(bool),bool showUnselectedLabels = default(bool))
-: base(key:key)
-{
-this.ColorTween = colorTween;
-this.Animation = animation;
-this.Item = item;
-this.SelectedLabelStyle = selectedLabelStyle;
-this.UnselectedLabelStyle = unselectedLabelStyle;
-this.ShowSelectedLabels = showSelectedLabels;
-this.ShowUnselectedLabels = showUnselectedLabels;throw new NotImplementedException(); }
-#endregion
+    public class _Label : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public _Label(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Tween.ColorTween colorTween = default(FlutterSDK.Animation.Tween.ColorTween), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem item = default(FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem), FlutterSDK.Painting.Textstyle.TextStyle selectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle unselectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), bool showSelectedLabels = default(bool), bool showUnselectedLabels = default(bool))
+        : base(key: key)
+        {
+            this.ColorTween = colorTween;
+            this.Animation = animation;
+            this.Item = item;
+            this.SelectedLabelStyle = selectedLabelStyle;
+            this.UnselectedLabelStyle = unselectedLabelStyle;
+            this.ShowSelectedLabels = showSelectedLabels;
+            this.ShowUnselectedLabels = showUnselectedLabels; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Animation.Tween.ColorTween ColorTween{get;set;}
-public virtual FlutterSDK.Animation.Animation.Animation<double> Animation{get;set;}
-public virtual FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem Item{get;set;}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle SelectedLabelStyle{get;set;}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle UnselectedLabelStyle{get;set;}
-public virtual bool ShowSelectedLabels{get;set;}
-public virtual bool ShowUnselectedLabels{get;set;}
-#endregion
+        #region fields
+        public virtual FlutterSDK.Animation.Tween.ColorTween ColorTween { get; set; }
+        public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
+        public virtual FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem Item { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle SelectedLabelStyle { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle UnselectedLabelStyle { get; set; }
+        public virtual bool ShowSelectedLabels { get; set; }
+        public virtual bool ShowUnselectedLabels { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _BottomNavigationBarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Bottomnavigationbar.BottomNavigationBar>,ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-#region constructors
-public _BottomNavigationBarState()
-{ }
-#endregion
+    public class _BottomNavigationBarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Bottomnavigationbar.BottomNavigationBar>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _BottomNavigationBarState()
+        { }
+        #endregion
 
-#region fields
-internal virtual List<FlutterSDK.Animation.Animationcontroller.AnimationController> _Controllers{get;set;}
-internal virtual List<FlutterSDK.Animation.Animations.CurvedAnimation> _Animations{get;set;}
-internal virtual Queue<FlutterSDK.Material.Bottomnavigationbar._Circle> _Circles{get;set;}
-internal virtual FlutterBinding.UI.Color _BackgroundColor{get;set;}
-internal virtual FlutterSDK.Animation.Tween.Animatable<double> _FlexTween{get;set;}
-#endregion
+        #region fields
+        internal virtual List<FlutterSDK.Animation.Animationcontroller.AnimationController> _Controllers { get; set; }
+        internal virtual List<FlutterSDK.Animation.Animations.CurvedAnimation> _Animations { get; set; }
+        internal virtual Queue<FlutterSDK.Material.Bottomnavigationbar._Circle> _Circles { get; set; }
+        internal virtual FlutterBinding.UI.Color _BackgroundColor { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.Animatable<double> _FlexTween { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-private void _ResetState(){ throw new NotImplementedException(); }
+        private void _ResetState() { throw new NotImplementedException(); }
 
 
-public new void InitState(){ throw new NotImplementedException(); }
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-private void _Rebuild(){ throw new NotImplementedException(); }
+        private void _Rebuild() { throw new NotImplementedException(); }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+        public new void Dispose() { throw new NotImplementedException(); }
 
 
-private double _EvaluateFlex(FlutterSDK.Animation.Animation.Animation<double> animation){ throw new NotImplementedException(); }
+        private double _EvaluateFlex(FlutterSDK.Animation.Animation.Animation<double> animation) { throw new NotImplementedException(); }
 
 
-private void _PushCircle(int index){ throw new NotImplementedException(); }
+        private void _PushCircle(int index) { throw new NotImplementedException(); }
 
 
-public new void DidUpdateWidget(FlutterSDK.Material.Bottomnavigationbar.BottomNavigationBar oldWidget){ throw new NotImplementedException(); }
+        public new void DidUpdateWidget(FlutterSDK.Material.Bottomnavigationbar.BottomNavigationBar oldWidget) { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Painting.Textstyle.TextStyle _EffectiveTextStyle(FlutterSDK.Painting.Textstyle.TextStyle textStyle,double fontSize){ throw new NotImplementedException(); }
+        private FlutterSDK.Painting.Textstyle.TextStyle _EffectiveTextStyle(FlutterSDK.Painting.Textstyle.TextStyle textStyle, double fontSize) { throw new NotImplementedException(); }
 
 
-private List<FlutterSDK.Widgets.Framework.Widget> _CreateTiles(){ throw new NotImplementedException(); }
+        private List<FlutterSDK.Widgets.Framework.Widget> _CreateTiles() { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Widgets.Framework.Widget _CreateContainer(List<FlutterSDK.Widgets.Framework.Widget> tiles){ throw new NotImplementedException(); }
+        private FlutterSDK.Widgets.Framework.Widget _CreateContainer(List<FlutterSDK.Widgets.Framework.Widget> tiles) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _Circle
-{
-#region constructors
-public _Circle(FlutterSDK.Material.Bottomnavigationbar._BottomNavigationBarState state = default(FlutterSDK.Material.Bottomnavigationbar._BottomNavigationBarState),int index = default(int),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider))
-: base()
-{
-this.State = state;
-this.Index = index;
-this.Color = color;throw new NotImplementedException(); }
-#endregion
+    public class _Circle
+    {
+        #region constructors
+        public _Circle(FlutterSDK.Material.Bottomnavigationbar._BottomNavigationBarState state = default(FlutterSDK.Material.Bottomnavigationbar._BottomNavigationBarState), int index = default(int), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider))
+        : base()
+        {
+            this.State = state;
+            this.Index = index;
+            this.Color = color; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Material.Bottomnavigationbar._BottomNavigationBarState State{get;set;}
-public virtual int Index{get;set;}
-public virtual FlutterBinding.UI.Color Color{get;set;}
-public virtual FlutterSDK.Animation.Animationcontroller.AnimationController Controller{get;set;}
-public virtual FlutterSDK.Animation.Animations.CurvedAnimation Animation{get;set;}
-public virtual double HorizontalLeadingOffset{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #region fields
+        public virtual FlutterSDK.Material.Bottomnavigationbar._BottomNavigationBarState State { get; set; }
+        public virtual int Index { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController Controller { get; set; }
+        public virtual FlutterSDK.Animation.Animations.CurvedAnimation Animation { get; set; }
+        public virtual double HorizontalLeadingOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#region methods
+        #region methods
 
-public virtual void Dispose(){ throw new NotImplementedException(); }
+        public virtual void Dispose() { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _RadialPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
-{
-#region constructors
-public _RadialPainter(List<FlutterSDK.Material.Bottomnavigationbar._Circle> circles = default(List<FlutterSDK.Material.Bottomnavigationbar._Circle>),TextDirection textDirection = default(TextDirection))
-: base()
-{
-this.Circles = circles;
-this.TextDirection = textDirection;throw new NotImplementedException(); }
-#endregion
+    public class _RadialPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
+    {
+        #region constructors
+        public _RadialPainter(List<FlutterSDK.Material.Bottomnavigationbar._Circle> circles = default(List<FlutterSDK.Material.Bottomnavigationbar._Circle>), TextDirection textDirection = default(TextDirection))
+        : base()
+        {
+            this.Circles = circles;
+            this.TextDirection = textDirection; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual List<FlutterSDK.Material.Bottomnavigationbar._Circle> Circles{get;set;}
-public virtual TextDirection TextDirection{get;set;}
-#endregion
+        #region fields
+        public virtual List<FlutterSDK.Material.Bottomnavigationbar._Circle> Circles { get; set; }
+        public virtual TextDirection TextDirection { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-private double _MaxRadius(FlutterBinding.UI.Offset center,Size size){ throw new NotImplementedException(); }
+        private double _MaxRadius(FlutterBinding.UI.Offset center, Size size) { throw new NotImplementedException(); }
 
 
-public new bool ShouldRepaint(FlutterSDK.Material.Bottomnavigationbar._RadialPainter oldPainter){ throw new NotImplementedException(); }
-public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate){ throw new NotImplementedException(); }
+        public new bool ShouldRepaint(FlutterSDK.Material.Bottomnavigationbar._RadialPainter oldPainter) { throw new NotImplementedException(); }
+        public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate) { throw new NotImplementedException(); }
 
 
-public new void Paint(Canvas canvas,Size size){ throw new NotImplementedException(); }
+        public new void Paint(Canvas canvas, Size size) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public enum BottomNavigationBarType{
+    public enum BottomNavigationBarType
+    {
 
-@Fixed,
-Shifting,
-}
+        @Fixed,
+        Shifting,
+    }
 
 }

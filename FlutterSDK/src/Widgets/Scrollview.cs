@@ -423,217 +423,234 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Scrollview{
-internal static class ScrollviewDefaultClass{
-}
-
-public interface IScrollView{
-FlutterSDK.Painting.Basictypes.AxisDirection GetDirection(FlutterSDK.Widgets.Framework.BuildContext context);
-List<FlutterSDK.Widgets.Framework.Widget> BuildSlivers(FlutterSDK.Widgets.Framework.BuildContext context);
-FlutterSDK.Widgets.Framework.Widget BuildViewport(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset,FlutterSDK.Painting.Basictypes.AxisDirection axisDirection,List<FlutterSDK.Widgets.Framework.Widget> slivers);
-FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context);
-void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
-FlutterSDK.Painting.Basictypes.Axis ScrollDirection{get;}
-bool Reverse{get;}
-FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller{get;}
-bool Primary{get;}
-FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics{get;}
-bool ShrinkWrap{get;}
-FlutterSDK.Foundation.Key.Key Center{get;}
-double Anchor{get;}
-double CacheExtent{get;}
-int SemanticChildCount{get;}
-FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior{get;}
-FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior KeyboardDismissBehavior{get;}
-}
-
-
-public interface IBoxScrollView{
-List<FlutterSDK.Widgets.Framework.Widget> BuildSlivers(FlutterSDK.Widgets.Framework.BuildContext context);
-FlutterSDK.Widgets.Framework.Widget BuildChildLayout(FlutterSDK.Widgets.Framework.BuildContext context);
-void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
-FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding{get;}
-}
-
-
-public class ScrollView : FlutterSDK.Widgets.Framework.StatelessWidget
+namespace FlutterSDK.Widgets.Scrollview
 {
-#region constructors
-public ScrollView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis),bool reverse = false,FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController),bool primary = default(bool),FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics),bool shrinkWrap = false,FlutterSDK.Foundation.Key.Key center = default(FlutterSDK.Foundation.Key.Key),double anchor = 0.0,double cacheExtent = default(double),int semanticChildCount = default(int),FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior),FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior keyboardDismissBehavior = default(FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior))
-: base(key:key)
-{
-this.ScrollDirection = scrollDirection;
-this.Reverse = reverse;
-this.Controller = controller;
-this.ShrinkWrap = shrinkWrap;
-this.Center = center;
-this.Anchor = anchor;
-this.CacheExtent = cacheExtent;
-this.SemanticChildCount = semanticChildCount;
-this.DragStartBehavior = dragStartBehavior;
-this.KeyboardDismissBehavior = keyboardDismissBehavior;throw new NotImplementedException(); }
-#endregion
+    internal static class ScrollviewDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Painting.Basictypes.Axis ScrollDirection{get;set;}
-public virtual bool Reverse{get;set;}
-public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller{get;set;}
-public virtual bool Primary{get;set;}
-public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics{get;set;}
-public virtual bool ShrinkWrap{get;set;}
-public virtual FlutterSDK.Foundation.Key.Key Center{get;set;}
-public virtual double Anchor{get;set;}
-public virtual double CacheExtent{get;set;}
-public virtual int SemanticChildCount{get;set;}
-public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior{get;set;}
-public virtual FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior KeyboardDismissBehavior{get;set;}
-#endregion
-
-#region methods
-
-public virtual FlutterSDK.Painting.Basictypes.AxisDirection GetDirection(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+    public interface IScrollView
+    {
+        FlutterSDK.Painting.Basictypes.AxisDirection GetDirection(FlutterSDK.Widgets.Framework.BuildContext context);
+        List<FlutterSDK.Widgets.Framework.Widget> BuildSlivers(FlutterSDK.Widgets.Framework.BuildContext context);
+        FlutterSDK.Widgets.Framework.Widget BuildViewport(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset, FlutterSDK.Painting.Basictypes.AxisDirection axisDirection, List<FlutterSDK.Widgets.Framework.Widget> slivers);
+        FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context);
+        void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
+        FlutterSDK.Painting.Basictypes.Axis ScrollDirection { get; }
+        bool Reverse { get; }
+        FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller { get; }
+        bool Primary { get; }
+        FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics { get; }
+        bool ShrinkWrap { get; }
+        FlutterSDK.Foundation.Key.Key Center { get; }
+        double Anchor { get; }
+        double CacheExtent { get; }
+        int SemanticChildCount { get; }
+        FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; }
+        FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior KeyboardDismissBehavior { get; }
+    }
 
 
-public virtual List<FlutterSDK.Widgets.Framework.Widget> BuildSlivers(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+    public interface IBoxScrollView
+    {
+        List<FlutterSDK.Widgets.Framework.Widget> BuildSlivers(FlutterSDK.Widgets.Framework.BuildContext context);
+        FlutterSDK.Widgets.Framework.Widget BuildChildLayout(FlutterSDK.Widgets.Framework.BuildContext context);
+        void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
+        FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; }
+    }
 
 
-public virtual FlutterSDK.Widgets.Framework.Widget BuildViewport(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset,FlutterSDK.Painting.Basictypes.AxisDirection axisDirection,List<FlutterSDK.Widgets.Framework.Widget> slivers){ throw new NotImplementedException(); }
+    public class ScrollView : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public ScrollView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool shrinkWrap = false, FlutterSDK.Foundation.Key.Key center = default(FlutterSDK.Foundation.Key.Key), double anchor = 0.0, double cacheExtent = default(double), int semanticChildCount = default(int), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior keyboardDismissBehavior = default(FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior))
+        : base(key: key)
+        {
+            this.ScrollDirection = scrollDirection;
+            this.Reverse = reverse;
+            this.Controller = controller;
+            this.ShrinkWrap = shrinkWrap;
+            this.Center = center;
+            this.Anchor = anchor;
+            this.CacheExtent = cacheExtent;
+            this.SemanticChildCount = semanticChildCount;
+            this.DragStartBehavior = dragStartBehavior;
+            this.KeyboardDismissBehavior = keyboardDismissBehavior; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Painting.Basictypes.Axis ScrollDirection { get; set; }
+        public virtual bool Reverse { get; set; }
+        public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller { get; set; }
+        public virtual bool Primary { get; set; }
+        public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics { get; set; }
+        public virtual bool ShrinkWrap { get; set; }
+        public virtual FlutterSDK.Foundation.Key.Key Center { get; set; }
+        public virtual double Anchor { get; set; }
+        public virtual double CacheExtent { get; set; }
+        public virtual int SemanticChildCount { get; set; }
+        public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
+        public virtual FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior KeyboardDismissBehavior { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual FlutterSDK.Painting.Basictypes.AxisDirection GetDirection(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public virtual List<FlutterSDK.Widgets.Framework.Widget> BuildSlivers(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual FlutterSDK.Widgets.Framework.Widget BuildViewport(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset, FlutterSDK.Painting.Basictypes.AxisDirection axisDirection, List<FlutterSDK.Widgets.Framework.Widget> slivers) { throw new NotImplementedException(); }
 
 
-public class CustomScrollView : FlutterSDK.Widgets.Scrollview.ScrollView
-{
-#region constructors
-public CustomScrollView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis),bool reverse = false,FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController),bool primary = default(bool),FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics),bool shrinkWrap = false,FlutterSDK.Foundation.Key.Key center = default(FlutterSDK.Foundation.Key.Key),double anchor = 0.0,double cacheExtent = default(double),List<FlutterSDK.Widgets.Framework.Widget> slivers = default(List<FlutterSDK.Widgets.Framework.Widget>),int semanticChildCount = default(int),FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
-: base(key:key,scrollDirection:scrollDirection,reverse:reverse,controller:controller,primary:primary,physics:physics,shrinkWrap:shrinkWrap,center:center,anchor:anchor,cacheExtent:cacheExtent,semanticChildCount:semanticChildCount,dragStartBehavior:dragStartBehavior)
-{
-this.Slivers = slivers;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual List<FlutterSDK.Widgets.Framework.Widget> Slivers{get;set;}
-#endregion
-
-#region methods
-
-public new List<FlutterSDK.Widgets.Framework.Widget> BuildSlivers(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public class BoxScrollView : FlutterSDK.Widgets.Scrollview.ScrollView
-{
-#region constructors
-public BoxScrollView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis),bool reverse = false,FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController),bool primary = default(bool),FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics),bool shrinkWrap = false,FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),double cacheExtent = default(double),int semanticChildCount = default(int),FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior),FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior keyboardDismissBehavior = default(FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior))
-: base(key:key,scrollDirection:scrollDirection,reverse:reverse,controller:controller,primary:primary,physics:physics,shrinkWrap:shrinkWrap,cacheExtent:cacheExtent,semanticChildCount:semanticChildCount,dragStartBehavior:dragStartBehavior,keyboardDismissBehavior:keyboardDismissBehavior)
-{
-this.Padding = padding;throw new NotImplementedException(); }
-#endregion
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding{get;set;}
-#endregion
-
-#region methods
-
-public new List<FlutterSDK.Widgets.Framework.Widget> BuildSlivers(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public virtual FlutterSDK.Widgets.Framework.Widget BuildChildLayout(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+    public class CustomScrollView : FlutterSDK.Widgets.Scrollview.ScrollView
+    {
+        #region constructors
+        public CustomScrollView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool shrinkWrap = false, FlutterSDK.Foundation.Key.Key center = default(FlutterSDK.Foundation.Key.Key), double anchor = 0.0, double cacheExtent = default(double), List<FlutterSDK.Widgets.Framework.Widget> slivers = default(List<FlutterSDK.Widgets.Framework.Widget>), int semanticChildCount = default(int), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
+        : base(key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, center: center, anchor: anchor, cacheExtent: cacheExtent, semanticChildCount: semanticChildCount, dragStartBehavior: dragStartBehavior)
+        {
+            this.Slivers = slivers; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual List<FlutterSDK.Widgets.Framework.Widget> Slivers { get; set; }
+        #endregion
+
+        #region methods
+
+        public new List<FlutterSDK.Widgets.Framework.Widget> BuildSlivers(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+    public class BoxScrollView : FlutterSDK.Widgets.Scrollview.ScrollView
+    {
+        #region constructors
+        public BoxScrollView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool shrinkWrap = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), double cacheExtent = default(double), int semanticChildCount = default(int), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior keyboardDismissBehavior = default(FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior))
+        : base(key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, cacheExtent: cacheExtent, semanticChildCount: semanticChildCount, dragStartBehavior: dragStartBehavior, keyboardDismissBehavior: keyboardDismissBehavior)
+        {
+            this.Padding = padding; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        #endregion
 
+        #region methods
 
-public class ListView : FlutterSDK.Widgets.Scrollview.BoxScrollView
-{
-#region constructors
-public ListView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis),bool reverse = false,FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController),bool primary = default(bool),FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics),bool shrinkWrap = false,FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),double itemExtent = default(double),bool addAutomaticKeepAlives = true,bool addRepaintBoundaries = true,bool addSemanticIndexes = true,double cacheExtent = default(double),List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>),int semanticChildCount = default(int),FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior),FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior keyboardDismissBehavior = default(FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior))
-: base(key:key,scrollDirection:scrollDirection,reverse:reverse,controller:controller,primary:primary,physics:physics,shrinkWrap:shrinkWrap,padding:padding,cacheExtent:cacheExtent,semanticChildCount:semanticChildCount??children.Count,dragStartBehavior:dragStartBehavior,keyboardDismissBehavior:keyboardDismissBehavior)
-{
-this.ItemExtent = itemExtent;throw new NotImplementedException(); }
-public static ListView Builder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis),bool reverse = false,FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController),bool primary = default(bool),FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics),bool shrinkWrap = false,FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),double itemExtent = default(double),FlutterSDK.Widgets.Framework.IndexedWidgetBuilder itemBuilder = default(FlutterSDK.Widgets.Framework.IndexedWidgetBuilder),int itemCount = default(int),bool addAutomaticKeepAlives = true,bool addRepaintBoundaries = true,bool addSemanticIndexes = true,double cacheExtent = default(double),int semanticChildCount = default(int),FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
-{
-var instance =new ListView(key:key,scrollDirection:scrollDirection,reverse:reverse,controller:controller,primary:primary,physics:physics,shrinkWrap:shrinkWrap,padding:padding,cacheExtent:cacheExtent,semanticChildCount:semanticChildCount??itemCount,dragStartBehavior:dragStartBehavior);instance.ItemExtent = itemExtent;throw new NotImplementedException(); }
-public static ListView Separated(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis),bool reverse = false,FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController),bool primary = default(bool),FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics),bool shrinkWrap = false,FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),FlutterSDK.Widgets.Framework.IndexedWidgetBuilder itemBuilder = default(FlutterSDK.Widgets.Framework.IndexedWidgetBuilder),FlutterSDK.Widgets.Framework.IndexedWidgetBuilder separatorBuilder = default(FlutterSDK.Widgets.Framework.IndexedWidgetBuilder),int itemCount = default(int),bool addAutomaticKeepAlives = true,bool addRepaintBoundaries = true,bool addSemanticIndexes = true,double cacheExtent = default(double),FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior keyboardDismissBehavior = default(FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior))
-{
-var instance =new ListView(key:key,scrollDirection:scrollDirection,reverse:reverse,controller:controller,primary:primary,physics:physics,shrinkWrap:shrinkWrap,padding:padding,cacheExtent:cacheExtent,semanticChildCount:itemCount,keyboardDismissBehavior:keyboardDismissBehavior);throw new NotImplementedException(); }
-public static ListView Custom(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis),bool reverse = false,FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController),bool primary = default(bool),FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics),bool shrinkWrap = false,FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),double itemExtent = default(double),FlutterSDK.Widgets.Sliver.SliverChildDelegate childrenDelegate = default(FlutterSDK.Widgets.Sliver.SliverChildDelegate),double cacheExtent = default(double),int semanticChildCount = default(int))
-{
-var instance =new ListView(key:key,scrollDirection:scrollDirection,reverse:reverse,controller:controller,primary:primary,physics:physics,shrinkWrap:shrinkWrap,padding:padding,cacheExtent:cacheExtent,semanticChildCount:semanticChildCount);instance.ItemExtent = itemExtent;
-instance.ChildrenDelegate = childrenDelegate;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual double ItemExtent{get;set;}
-public virtual FlutterSDK.Widgets.Sliver.SliverChildDelegate ChildrenDelegate{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget BuildChildLayout(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new List<FlutterSDK.Widgets.Framework.Widget> BuildSlivers(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Widgets.Framework.Widget BuildChildLayout(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-private int _ComputeActualChildCount(int itemCount){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#endregion
-}
-
-
-public class GridView : FlutterSDK.Widgets.Scrollview.BoxScrollView
-{
-#region constructors
-public GridView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis),bool reverse = false,FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController),bool primary = default(bool),FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics),bool shrinkWrap = false,FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),FlutterSDK.Rendering.Slivergrid.SliverGridDelegate gridDelegate = default(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate),bool addAutomaticKeepAlives = true,bool addRepaintBoundaries = true,bool addSemanticIndexes = true,double cacheExtent = default(double),List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>),int semanticChildCount = default(int))
-: base(key:key,scrollDirection:scrollDirection,reverse:reverse,controller:controller,primary:primary,physics:physics,shrinkWrap:shrinkWrap,padding:padding,cacheExtent:cacheExtent,semanticChildCount:semanticChildCount??children.Count)
-{
-this.GridDelegate = gridDelegate;throw new NotImplementedException(); }
-public static GridView Builder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis),bool reverse = false,FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController),bool primary = default(bool),FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics),bool shrinkWrap = false,FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),FlutterSDK.Rendering.Slivergrid.SliverGridDelegate gridDelegate = default(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate),FlutterSDK.Widgets.Framework.IndexedWidgetBuilder itemBuilder = default(FlutterSDK.Widgets.Framework.IndexedWidgetBuilder),int itemCount = default(int),bool addAutomaticKeepAlives = true,bool addRepaintBoundaries = true,bool addSemanticIndexes = true,double cacheExtent = default(double),int semanticChildCount = default(int))
-{
-var instance =new GridView(key:key,scrollDirection:scrollDirection,reverse:reverse,controller:controller,primary:primary,physics:physics,shrinkWrap:shrinkWrap,padding:padding,cacheExtent:cacheExtent,semanticChildCount:semanticChildCount??itemCount);instance.GridDelegate = gridDelegate;throw new NotImplementedException(); }
-public static GridView Custom(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis),bool reverse = false,FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController),bool primary = default(bool),FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics),bool shrinkWrap = false,FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),FlutterSDK.Rendering.Slivergrid.SliverGridDelegate gridDelegate = default(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate),FlutterSDK.Widgets.Sliver.SliverChildDelegate childrenDelegate = default(FlutterSDK.Widgets.Sliver.SliverChildDelegate),double cacheExtent = default(double),int semanticChildCount = default(int),FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
-{
-var instance =new GridView(key:key,scrollDirection:scrollDirection,reverse:reverse,controller:controller,primary:primary,physics:physics,shrinkWrap:shrinkWrap,padding:padding,cacheExtent:cacheExtent,semanticChildCount:semanticChildCount,dragStartBehavior:dragStartBehavior);instance.GridDelegate = gridDelegate;
-instance.ChildrenDelegate = childrenDelegate;throw new NotImplementedException(); }
-public static GridView Count(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis),bool reverse = false,FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController),bool primary = default(bool),FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics),bool shrinkWrap = false,FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),int crossAxisCount = default(int),double mainAxisSpacing = 0.0,double crossAxisSpacing = 0.0,double childAspectRatio = 1.0,bool addAutomaticKeepAlives = true,bool addRepaintBoundaries = true,bool addSemanticIndexes = true,double cacheExtent = default(double),List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>),int semanticChildCount = default(int),FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
-{
-var instance =new GridView(key:key,scrollDirection:scrollDirection,reverse:reverse,controller:controller,primary:primary,physics:physics,shrinkWrap:shrinkWrap,padding:padding,cacheExtent:cacheExtent,semanticChildCount:semanticChildCount??children.Count,dragStartBehavior:dragStartBehavior);throw new NotImplementedException(); }
-public static GridView Extent(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis),bool reverse = false,FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController),bool primary = default(bool),FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics),bool shrinkWrap = false,FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),double maxCrossAxisExtent = default(double),double mainAxisSpacing = 0.0,double crossAxisSpacing = 0.0,double childAspectRatio = 1.0,bool addAutomaticKeepAlives = true,bool addRepaintBoundaries = true,bool addSemanticIndexes = true,List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>),int semanticChildCount = default(int),FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
-{
-var instance =new GridView(key:key,scrollDirection:scrollDirection,reverse:reverse,controller:controller,primary:primary,physics:physics,shrinkWrap:shrinkWrap,padding:padding,semanticChildCount:semanticChildCount??children.Count,dragStartBehavior:dragStartBehavior);throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Rendering.Slivergrid.SliverGridDelegate GridDelegate{get;set;}
-public virtual FlutterSDK.Widgets.Sliver.SliverChildDelegate ChildrenDelegate{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget BuildChildLayout(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-#endregion
-}
+        #endregion
+    }
 
 
-public enum ScrollViewKeyboardDismissBehavior{
+    public class ListView : FlutterSDK.Widgets.Scrollview.BoxScrollView
+    {
+        #region constructors
+        public ListView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool shrinkWrap = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), double itemExtent = default(double), bool addAutomaticKeepAlives = true, bool addRepaintBoundaries = true, bool addSemanticIndexes = true, double cacheExtent = default(double), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), int semanticChildCount = default(int), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior keyboardDismissBehavior = default(FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior))
+        : base(key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, padding: padding, cacheExtent: cacheExtent, semanticChildCount: semanticChildCount ?? children.Count, dragStartBehavior: dragStartBehavior, keyboardDismissBehavior: keyboardDismissBehavior)
+        {
+            this.ItemExtent = itemExtent; throw new NotImplementedException();
+        }
+        public static ListView Builder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool shrinkWrap = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), double itemExtent = default(double), FlutterSDK.Widgets.Framework.IndexedWidgetBuilder itemBuilder = default(FlutterSDK.Widgets.Framework.IndexedWidgetBuilder), int itemCount = default(int), bool addAutomaticKeepAlives = true, bool addRepaintBoundaries = true, bool addSemanticIndexes = true, double cacheExtent = default(double), int semanticChildCount = default(int), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
+        {
+            var instance = new ListView(key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, padding: padding, cacheExtent: cacheExtent, semanticChildCount: semanticChildCount ?? itemCount, dragStartBehavior: dragStartBehavior); instance.ItemExtent = itemExtent; throw new NotImplementedException();
+        }
+        public static ListView Separated(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool shrinkWrap = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.IndexedWidgetBuilder itemBuilder = default(FlutterSDK.Widgets.Framework.IndexedWidgetBuilder), FlutterSDK.Widgets.Framework.IndexedWidgetBuilder separatorBuilder = default(FlutterSDK.Widgets.Framework.IndexedWidgetBuilder), int itemCount = default(int), bool addAutomaticKeepAlives = true, bool addRepaintBoundaries = true, bool addSemanticIndexes = true, double cacheExtent = default(double), FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior keyboardDismissBehavior = default(FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior))
+        {
+            var instance = new ListView(key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, padding: padding, cacheExtent: cacheExtent, semanticChildCount: itemCount, keyboardDismissBehavior: keyboardDismissBehavior); throw new NotImplementedException();
+        }
+        public static ListView Custom(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool shrinkWrap = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), double itemExtent = default(double), FlutterSDK.Widgets.Sliver.SliverChildDelegate childrenDelegate = default(FlutterSDK.Widgets.Sliver.SliverChildDelegate), double cacheExtent = default(double), int semanticChildCount = default(int))
+        {
+            var instance = new ListView(key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, padding: padding, cacheExtent: cacheExtent, semanticChildCount: semanticChildCount); instance.ItemExtent = itemExtent;
+            instance.ChildrenDelegate = childrenDelegate; throw new NotImplementedException();
+        }
+        #endregion
 
-Manual,
-OnDrag,
-}
+        #region fields
+        public virtual double ItemExtent { get; set; }
+        public virtual FlutterSDK.Widgets.Sliver.SliverChildDelegate ChildrenDelegate { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget BuildChildLayout(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+
+        private int _ComputeActualChildCount(int itemCount) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class GridView : FlutterSDK.Widgets.Scrollview.BoxScrollView
+    {
+        #region constructors
+        public GridView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool shrinkWrap = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Rendering.Slivergrid.SliverGridDelegate gridDelegate = default(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate), bool addAutomaticKeepAlives = true, bool addRepaintBoundaries = true, bool addSemanticIndexes = true, double cacheExtent = default(double), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), int semanticChildCount = default(int))
+        : base(key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, padding: padding, cacheExtent: cacheExtent, semanticChildCount: semanticChildCount ?? children.Count)
+        {
+            this.GridDelegate = gridDelegate; throw new NotImplementedException();
+        }
+        public static GridView Builder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool shrinkWrap = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Rendering.Slivergrid.SliverGridDelegate gridDelegate = default(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate), FlutterSDK.Widgets.Framework.IndexedWidgetBuilder itemBuilder = default(FlutterSDK.Widgets.Framework.IndexedWidgetBuilder), int itemCount = default(int), bool addAutomaticKeepAlives = true, bool addRepaintBoundaries = true, bool addSemanticIndexes = true, double cacheExtent = default(double), int semanticChildCount = default(int))
+        {
+            var instance = new GridView(key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, padding: padding, cacheExtent: cacheExtent, semanticChildCount: semanticChildCount ?? itemCount); instance.GridDelegate = gridDelegate; throw new NotImplementedException();
+        }
+        public static GridView Custom(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool shrinkWrap = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Rendering.Slivergrid.SliverGridDelegate gridDelegate = default(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate), FlutterSDK.Widgets.Sliver.SliverChildDelegate childrenDelegate = default(FlutterSDK.Widgets.Sliver.SliverChildDelegate), double cacheExtent = default(double), int semanticChildCount = default(int), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
+        {
+            var instance = new GridView(key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, padding: padding, cacheExtent: cacheExtent, semanticChildCount: semanticChildCount, dragStartBehavior: dragStartBehavior); instance.GridDelegate = gridDelegate;
+            instance.ChildrenDelegate = childrenDelegate; throw new NotImplementedException();
+        }
+        public static GridView Count(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool shrinkWrap = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), int crossAxisCount = default(int), double mainAxisSpacing = 0.0, double crossAxisSpacing = 0.0, double childAspectRatio = 1.0, bool addAutomaticKeepAlives = true, bool addRepaintBoundaries = true, bool addSemanticIndexes = true, double cacheExtent = default(double), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), int semanticChildCount = default(int), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
+        {
+            var instance = new GridView(key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, padding: padding, cacheExtent: cacheExtent, semanticChildCount: semanticChildCount ?? children.Count, dragStartBehavior: dragStartBehavior); throw new NotImplementedException();
+        }
+        public static GridView Extent(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool shrinkWrap = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), double maxCrossAxisExtent = default(double), double mainAxisSpacing = 0.0, double crossAxisSpacing = 0.0, double childAspectRatio = 1.0, bool addAutomaticKeepAlives = true, bool addRepaintBoundaries = true, bool addSemanticIndexes = true, List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), int semanticChildCount = default(int), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
+        {
+            var instance = new GridView(key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, padding: padding, semanticChildCount: semanticChildCount ?? children.Count, dragStartBehavior: dragStartBehavior); throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Rendering.Slivergrid.SliverGridDelegate GridDelegate { get; set; }
+        public virtual FlutterSDK.Widgets.Sliver.SliverChildDelegate ChildrenDelegate { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget BuildChildLayout(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public enum ScrollViewKeyboardDismissBehavior
+    {
+
+        Manual,
+        OnDrag,
+    }
 
 }

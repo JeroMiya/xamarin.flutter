@@ -339,7 +339,9 @@ using FlutterSDK.Material.Animatedicons.Animatedicons;
 using FlutterSDK.Material.Animatedicons.Animatediconsdata;
 using FlutterSDK.Material.Animatedicons.Animatedicons;
 using FlutterSDK.Material.Animatedicons.Animatediconsdata;
-namespace FlutterSDK.Material.Animatedicons{
-internal static class AnimatediconsDefaultClass{
-}
+namespace FlutterSDK.Material.Animatedicons
+{
+    internal static class AnimatediconsDefaultClass
+    {
+    }
 }

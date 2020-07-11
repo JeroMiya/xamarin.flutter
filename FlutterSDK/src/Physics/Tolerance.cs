@@ -421,31 +421,34 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Physics.Tolerance{
-internal static class ToleranceDefaultClass{
-}
-
-public class Tolerance
+namespace FlutterSDK.Physics.Tolerance
 {
-#region constructors
-public Tolerance(double distance = default(double),double time = default(double),double velocity = default(double))
-{
-this.Distance = distance;
-this.Time = time;
-this.Velocity = velocity;throw new NotImplementedException(); }
-#endregion
+    internal static class ToleranceDefaultClass
+    {
+    }
 
-#region fields
-internal virtual double _EpsilonDefault{get;set;}
-public virtual FlutterSDK.Physics.Tolerance.Tolerance DefaultTolerance{get;set;}
-public virtual double Distance{get;set;}
-public virtual double Time{get;set;}
-public virtual double Velocity{get;set;}
-#endregion
+    public class Tolerance
+    {
+        #region constructors
+        public Tolerance(double distance = default(double), double time = default(double), double velocity = default(double))
+        {
+            this.Distance = distance;
+            this.Time = time;
+            this.Velocity = velocity; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual double _EpsilonDefault { get; set; }
+        public virtual FlutterSDK.Physics.Tolerance.Tolerance DefaultTolerance { get; set; }
+        public virtual double Distance { get; set; }
+        public virtual double Time { get; set; }
+        public virtual double Velocity { get; set; }
+        #endregion
 
-#endregion
-}
+        #region methods
+
+        #endregion
+    }
 
 }

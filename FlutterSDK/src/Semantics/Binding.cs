@@ -421,41 +421,45 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Semantics.Binding{
-internal static class BindingDefaultClass{
-}
-
-public interface ISemanticsBinding{}
-
-public class SemanticsBinding{
-internal virtual FlutterSDK.Semantics.Binding.SemanticsBinding _Instance{get;set;}
-internal virtual AccessibilityFeatures _AccessibilityFeatures{get;set;}
-public virtual FlutterSDK.Semantics.Binding.SemanticsBinding Instance{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual AccessibilityFeatures AccessibilityFeatures{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool DisableAnimations{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-
-public new void InitInstances(){ throw new NotImplementedException(); }
-
-
-public virtual void HandleAccessibilityFeaturesChanged(){ throw new NotImplementedException(); }
-
-}
-public static class SemanticsBindingMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<ISemanticsBinding, SemanticsBinding> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<ISemanticsBinding, SemanticsBinding>();
-static SemanticsBinding GetOrCreate(ISemanticsBinding instance)
+namespace FlutterSDK.Semantics.Binding
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new SemanticsBinding();
-_table.Add(instance, value);
-}
-return (SemanticsBinding)value;
-}
-public static FlutterSDK.Semantics.Binding.SemanticsBinding InstanceProperty(this ISemanticsBinding instance) => GetOrCreate(instance).Instance;
-public static AccessibilityFeatures AccessibilityFeaturesProperty(this ISemanticsBinding instance) => GetOrCreate(instance).AccessibilityFeatures;
-public static bool DisableAnimationsProperty(this ISemanticsBinding instance) => GetOrCreate(instance).DisableAnimations;
-public static void InitInstances(this ISemanticsBinding instance) => GetOrCreate(instance).InitInstances();
-public static void HandleAccessibilityFeaturesChanged(this ISemanticsBinding instance) => GetOrCreate(instance).HandleAccessibilityFeaturesChanged();
-}
+    internal static class BindingDefaultClass
+    {
+    }
+
+    public interface ISemanticsBinding { }
+
+    public class SemanticsBinding
+    {
+        internal virtual FlutterSDK.Semantics.Binding.SemanticsBinding _Instance { get; set; }
+        internal virtual AccessibilityFeatures _AccessibilityFeatures { get; set; }
+        public virtual FlutterSDK.Semantics.Binding.SemanticsBinding Instance { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual AccessibilityFeatures AccessibilityFeatures { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool DisableAnimations { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+
+        public new void InitInstances() { throw new NotImplementedException(); }
+
+
+        public virtual void HandleAccessibilityFeaturesChanged() { throw new NotImplementedException(); }
+
+    }
+    public static class SemanticsBindingMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<ISemanticsBinding, SemanticsBinding> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<ISemanticsBinding, SemanticsBinding>();
+        static SemanticsBinding GetOrCreate(ISemanticsBinding instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new SemanticsBinding();
+                _table.Add(instance, value);
+            }
+            return (SemanticsBinding)value;
+        }
+        public static FlutterSDK.Semantics.Binding.SemanticsBinding InstanceProperty(this ISemanticsBinding instance) => GetOrCreate(instance).Instance;
+        public static AccessibilityFeatures AccessibilityFeaturesProperty(this ISemanticsBinding instance) => GetOrCreate(instance).AccessibilityFeatures;
+        public static bool DisableAnimationsProperty(this ISemanticsBinding instance) => GetOrCreate(instance).DisableAnimations;
+        public static void InitInstances(this ISemanticsBinding instance) => GetOrCreate(instance).InitInstances();
+        public static void HandleAccessibilityFeaturesChanged(this ISemanticsBinding instance) => GetOrCreate(instance).HandleAccessibilityFeaturesChanged();
+    }
 
 }

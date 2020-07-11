@@ -421,57 +421,61 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Widgets.Colorfilter{
-internal static class ColorfilterDefaultClass{
-}
-
-public class ColorFiltered : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
+namespace FlutterSDK.Widgets.Colorfilter
 {
-#region constructors
-public ColorFiltered(ColorFilter colorFilter = default(ColorFilter),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key))
-: base(key:key,child:child)
-{
-this.ColorFilter = colorFilter;throw new NotImplementedException(); }
-#endregion
+    internal static class ColorfilterDefaultClass
+    {
+    }
 
-#region fields
-public virtual ColorFilter ColorFilter{get;set;}
-#endregion
+    public class ColorFiltered : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
+    {
+        #region constructors
+        public ColorFiltered(ColorFilter colorFilter = default(ColorFilter), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key))
+        : base(key: key, child: child)
+        {
+            this.ColorFilter = colorFilter; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual ColorFilter ColorFilter { get; set; }
+        #endregion
 
-public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
 
-
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Widgets.Colorfilter._ColorFilterRenderObject renderObject){ throw new NotImplementedException(); }
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Rendering.@object.RenderObject renderObject){ throw new NotImplementedException(); }
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public class _ColorFilterRenderObject : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-#region constructors
-public _ColorFilterRenderObject(ColorFilter _colorFilter)
-{
-this._ColorFilter = _colorFilter;throw new NotImplementedException(); }
-#endregion
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Colorfilter._ColorFilterRenderObject renderObject) { throw new NotImplementedException(); }
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual ColorFilter _ColorFilter{get;set;}
-public virtual ColorFilter ColorFilter{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool AlwaysNeedsCompositing{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        #endregion
+    }
 
-#endregion
-}
+
+    public class _ColorFilterRenderObject : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public _ColorFilterRenderObject(ColorFilter _colorFilter)
+        {
+            this._ColorFilter = _colorFilter; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual ColorFilter _ColorFilter { get; set; }
+        public virtual ColorFilter ColorFilter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

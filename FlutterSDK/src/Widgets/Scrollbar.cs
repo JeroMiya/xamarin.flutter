@@ -423,97 +423,100 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Scrollbar{
-internal static class ScrollbarDefaultClass{
-public static double _KMinThumbExtent = default(double);
-public static double _KMinInteractiveSize = default(double);
-}
-
-public class ScrollbarPainter : FlutterSDK.Foundation.Changenotifier.ChangeNotifier,ICustomPainter
+namespace FlutterSDK.Widgets.Scrollbar
 {
-#region constructors
-public ScrollbarPainter(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),TextDirection textDirection = default(TextDirection),double thickness = default(double),FlutterSDK.Animation.Animation.Animation<double> fadeoutOpacityAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterSDK.Painting.Edgeinsets.EdgeInsets padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets),double mainAxisMargin = 0.0,double crossAxisMargin = 0.0,Radius radius = default(Radius),double minLength = default(double),double minOverscrollLength = default(double))
-: base()
-{
-this.Thickness = thickness;
-this.FadeoutOpacityAnimation = fadeoutOpacityAnimation;
-this.MainAxisMargin = mainAxisMargin;
-this.CrossAxisMargin = crossAxisMargin;
-this.Radius = radius;
-this.MinLength = minLength;throw new NotImplementedException(); }
-#endregion
+    internal static class ScrollbarDefaultClass
+    {
+        public static double _KMinThumbExtent = default(double);
+        public static double _KMinInteractiveSize = default(double);
+    }
 
-#region fields
-internal virtual FlutterBinding.UI.Color _Color{get;set;}
-internal virtual TextDirection _TextDirection{get;set;}
-public virtual double Thickness{get;set;}
-public virtual FlutterSDK.Animation.Animation.Animation<double> FadeoutOpacityAnimation{get;set;}
-public virtual double MainAxisMargin{get;set;}
-public virtual double CrossAxisMargin{get;set;}
-public virtual Radius Radius{get;set;}
-internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets _Padding{get;set;}
-public virtual double MinLength{get;set;}
-public virtual double MinOverscrollLength{get;set;}
-internal virtual FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics _LastMetrics{get;set;}
-internal virtual FlutterSDK.Painting.Basictypes.AxisDirection _LastAxisDirection{get;set;}
-internal virtual FlutterBinding.UI.Rect _ThumbRect{get;set;}
-public virtual FlutterBinding.UI.Color Color{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual TextDirection TextDirection{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Padding{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-internal virtual SKPaint _Paint{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual bool _IsVertical{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual bool _IsReversed{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _BeforeExtent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _AfterExtent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _MainAxisPadding{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _TrackExtent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _TotalContentExtent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Rendering.Custompaint.SemanticsBuilderCallback SemanticsBuilder{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class ScrollbarPainter : FlutterSDK.Foundation.Changenotifier.ChangeNotifier, ICustomPainter
+    {
+        #region constructors
+        public ScrollbarPainter(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), TextDirection textDirection = default(TextDirection), double thickness = default(double), FlutterSDK.Animation.Animation.Animation<double> fadeoutOpacityAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Painting.Edgeinsets.EdgeInsets padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), double mainAxisMargin = 0.0, double crossAxisMargin = 0.0, Radius radius = default(Radius), double minLength = default(double), double minOverscrollLength = default(double))
+        : base()
+        {
+            this.Thickness = thickness;
+            this.FadeoutOpacityAnimation = fadeoutOpacityAnimation;
+            this.MainAxisMargin = mainAxisMargin;
+            this.CrossAxisMargin = crossAxisMargin;
+            this.Radius = radius;
+            this.MinLength = minLength; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual FlutterBinding.UI.Color _Color { get; set; }
+        internal virtual TextDirection _TextDirection { get; set; }
+        public virtual double Thickness { get; set; }
+        public virtual FlutterSDK.Animation.Animation.Animation<double> FadeoutOpacityAnimation { get; set; }
+        public virtual double MainAxisMargin { get; set; }
+        public virtual double CrossAxisMargin { get; set; }
+        public virtual Radius Radius { get; set; }
+        internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets _Padding { get; set; }
+        public virtual double MinLength { get; set; }
+        public virtual double MinOverscrollLength { get; set; }
+        internal virtual FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics _LastMetrics { get; set; }
+        internal virtual FlutterSDK.Painting.Basictypes.AxisDirection _LastAxisDirection { get; set; }
+        internal virtual FlutterBinding.UI.Rect _ThumbRect { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Padding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual SKPaint _Paint { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual bool _IsVertical { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual bool _IsReversed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _BeforeExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _AfterExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _MainAxisPadding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _TrackExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _TotalContentExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Custompaint.SemanticsBuilderCallback SemanticsBuilder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual void Update(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics,FlutterSDK.Painting.Basictypes.AxisDirection axisDirection){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual void UpdateThickness(double nextThickness,Radius nextRadius){ throw new NotImplementedException(); }
-
-
-private void _PaintThumbCrossAxis(Canvas canvas,Size size,double thumbOffset,double thumbExtent,FlutterSDK.Painting.Basictypes.AxisDirection direction){ throw new NotImplementedException(); }
-
-
-private double _ThumbExtent(){ throw new NotImplementedException(); }
-
-
-public new void Dispose(){ throw new NotImplementedException(); }
+        public virtual void Update(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Painting.Basictypes.AxisDirection axisDirection) { throw new NotImplementedException(); }
 
 
-public virtual double GetTrackToScroll(double thumbOffsetLocal){ throw new NotImplementedException(); }
+        public virtual void UpdateThickness(double nextThickness, Radius nextRadius) { throw new NotImplementedException(); }
 
 
-private double _GetScrollToTrack(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics,double thumbExtent){ throw new NotImplementedException(); }
+        private void _PaintThumbCrossAxis(Canvas canvas, Size size, double thumbOffset, double thumbExtent, FlutterSDK.Painting.Basictypes.AxisDirection direction) { throw new NotImplementedException(); }
 
 
-public new void Paint(Canvas canvas,Size size){ throw new NotImplementedException(); }
+        private double _ThumbExtent() { throw new NotImplementedException(); }
 
 
-public virtual bool HitTestInteractive(FlutterBinding.UI.Offset position){ throw new NotImplementedException(); }
+        public new void Dispose() { throw new NotImplementedException(); }
 
 
-public new bool HitTest(FlutterBinding.UI.Offset position){ throw new NotImplementedException(); }
+        public virtual double GetTrackToScroll(double thumbOffsetLocal) { throw new NotImplementedException(); }
 
 
-public new bool ShouldRepaint(FlutterSDK.Widgets.Scrollbar.ScrollbarPainter old){ throw new NotImplementedException(); }
-public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate){ throw new NotImplementedException(); }
+        private double _GetScrollToTrack(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, double thumbExtent) { throw new NotImplementedException(); }
 
 
-public new bool ShouldRebuildSemantics(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate){ throw new NotImplementedException(); }
+        public new void Paint(Canvas canvas, Size size) { throw new NotImplementedException(); }
 
-#endregion
-CustomPainter _CustomPainterInstance = new CustomPainter();
-public void AddListener(VoidCallback listener) => _CustomPainterInstance.AddListener(listener);
-public void RemoveListener(VoidCallback listener) => _CustomPainterInstance.RemoveListener(listener);
-public string ToString() => _CustomPainterInstance.ToString();
-}
+
+        public virtual bool HitTestInteractive(FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
+
+
+        public new bool HitTest(FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
+
+
+        public new bool ShouldRepaint(FlutterSDK.Widgets.Scrollbar.ScrollbarPainter old) { throw new NotImplementedException(); }
+        public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate) { throw new NotImplementedException(); }
+
+
+        public new bool ShouldRebuildSemantics(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate) { throw new NotImplementedException(); }
+
+        #endregion
+        CustomPainter _CustomPainterInstance = new CustomPainter();
+        public void AddListener(VoidCallback listener) => _CustomPainterInstance.AddListener(listener);
+        public void RemoveListener(VoidCallback listener) => _CustomPainterInstance.RemoveListener(listener);
+        public string ToString() => _CustomPainterInstance.ToString();
+    }
 
 }

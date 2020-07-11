@@ -294,99 +294,105 @@ using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
-namespace FlutterSDK.Gestures.Dragdetails{
-public delegate void GestureDragDownCallback(FlutterSDK.Gestures.Dragdetails.DragDownDetails details);
-public delegate void GestureDragStartCallback(FlutterSDK.Gestures.Dragdetails.DragStartDetails details);
-public delegate void GestureDragUpdateCallback(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details);
-internal static class DragdetailsDefaultClass{
-}
-
-public class DragDownDetails
+namespace FlutterSDK.Gestures.Dragdetails
 {
-#region constructors
-public DragDownDetails(FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset),FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset))
-: base()
-{
-this.GlobalPosition = globalPosition;throw new NotImplementedException(); }
-#endregion
+    public delegate void GestureDragDownCallback(FlutterSDK.Gestures.Dragdetails.DragDownDetails details);
+    public delegate void GestureDragStartCallback(FlutterSDK.Gestures.Dragdetails.DragStartDetails details);
+    public delegate void GestureDragUpdateCallback(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details);
+    internal static class DragdetailsDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterBinding.UI.Offset GlobalPosition{get;set;}
-public virtual FlutterBinding.UI.Offset LocalPosition{get;set;}
-#endregion
+    public class DragDownDetails
+    {
+        #region constructors
+        public DragDownDetails(FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset))
+        : base()
+        {
+            this.GlobalPosition = globalPosition; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterBinding.UI.Offset GlobalPosition { get; set; }
+        public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
+        #endregion
 
-#endregion
-}
+        #region methods
 
-
-public class DragStartDetails
-{
-#region constructors
-public DragStartDetails(TimeSpan sourceTimeStamp = default(TimeSpan),FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset),FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset))
-: base()
-{
-this.SourceTimeStamp = sourceTimeStamp;
-this.GlobalPosition = globalPosition;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual TimeSpan SourceTimeStamp{get;set;}
-public virtual FlutterBinding.UI.Offset GlobalPosition{get;set;}
-public virtual FlutterBinding.UI.Offset LocalPosition{get;set;}
-#endregion
-
-#region methods
-
-#endregion
-}
+        #endregion
+    }
 
 
-public class DragUpdateDetails
-{
-#region constructors
-public DragUpdateDetails(TimeSpan sourceTimeStamp = default(TimeSpan),FlutterBinding.UI.Offset delta = default(FlutterBinding.UI.Offset),double primaryDelta = default(double),FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset),FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset))
-: base()
-{
-this.SourceTimeStamp = sourceTimeStamp;
-this.Delta = delta;
-this.PrimaryDelta = primaryDelta;
-this.GlobalPosition = globalPosition;throw new NotImplementedException(); }
-#endregion
+    public class DragStartDetails
+    {
+        #region constructors
+        public DragStartDetails(TimeSpan sourceTimeStamp = default(TimeSpan), FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset))
+        : base()
+        {
+            this.SourceTimeStamp = sourceTimeStamp;
+            this.GlobalPosition = globalPosition; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual TimeSpan SourceTimeStamp{get;set;}
-public virtual FlutterBinding.UI.Offset Delta{get;set;}
-public virtual double PrimaryDelta{get;set;}
-public virtual FlutterBinding.UI.Offset GlobalPosition{get;set;}
-public virtual FlutterBinding.UI.Offset LocalPosition{get;set;}
-#endregion
+        #region fields
+        public virtual TimeSpan SourceTimeStamp { get; set; }
+        public virtual FlutterBinding.UI.Offset GlobalPosition { get; set; }
+        public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class DragEndDetails
-{
-#region constructors
-public DragEndDetails(FlutterSDK.Gestures.Velocitytracker.Velocity velocity = default(FlutterSDK.Gestures.Velocitytracker.Velocity),double primaryVelocity = default(double))
-: base()
-{
-this.Velocity = velocity;
-this.PrimaryVelocity = primaryVelocity;throw new NotImplementedException(); }
-#endregion
+    public class DragUpdateDetails
+    {
+        #region constructors
+        public DragUpdateDetails(TimeSpan sourceTimeStamp = default(TimeSpan), FlutterBinding.UI.Offset delta = default(FlutterBinding.UI.Offset), double primaryDelta = default(double), FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset))
+        : base()
+        {
+            this.SourceTimeStamp = sourceTimeStamp;
+            this.Delta = delta;
+            this.PrimaryDelta = primaryDelta;
+            this.GlobalPosition = globalPosition; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Gestures.Velocitytracker.Velocity Velocity{get;set;}
-public virtual double PrimaryVelocity{get;set;}
-#endregion
+        #region fields
+        public virtual TimeSpan SourceTimeStamp { get; set; }
+        public virtual FlutterBinding.UI.Offset Delta { get; set; }
+        public virtual double PrimaryDelta { get; set; }
+        public virtual FlutterBinding.UI.Offset GlobalPosition { get; set; }
+        public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-#endregion
-}
+        #endregion
+    }
+
+
+    public class DragEndDetails
+    {
+        #region constructors
+        public DragEndDetails(FlutterSDK.Gestures.Velocitytracker.Velocity velocity = default(FlutterSDK.Gestures.Velocitytracker.Velocity), double primaryVelocity = default(double))
+        : base()
+        {
+            this.Velocity = velocity;
+            this.PrimaryVelocity = primaryVelocity; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Gestures.Velocitytracker.Velocity Velocity { get; set; }
+        public virtual double PrimaryVelocity { get; set; }
+        #endregion
+
+        #region methods
+
+        #endregion
+    }
 
 }

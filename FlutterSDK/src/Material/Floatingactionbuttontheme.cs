@@ -383,57 +383,60 @@ using FlutterSDK.Material.Expandicon;
 using FlutterSDK.Material.Mergeablematerial;
 using FlutterSDK.Material.Button;
 using FlutterSDK.Material.Floatingactionbuttontheme;
-namespace FlutterSDK.Material.Floatingactionbuttontheme{
-internal static class FloatingactionbuttonthemeDefaultClass{
-}
-
-public class FloatingActionButtonThemeData : IDiagnosticable
+namespace FlutterSDK.Material.Floatingactionbuttontheme
 {
-#region constructors
-public FloatingActionButtonThemeData(FlutterBinding.UI.Color foregroundColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color),double elevation = default(double),double focusElevation = default(double),double hoverElevation = default(double),double disabledElevation = default(double),double highlightElevation = default(double),FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder))
-{
-this.ForegroundColor = foregroundColor;
-this.BackgroundColor = backgroundColor;
-this.FocusColor = focusColor;
-this.HoverColor = hoverColor;
-this.SplashColor = splashColor;
-this.Elevation = elevation;
-this.FocusElevation = focusElevation;
-this.HoverElevation = hoverElevation;
-this.DisabledElevation = disabledElevation;
-this.HighlightElevation = highlightElevation;
-this.Shape = shape;throw new NotImplementedException(); }
-#endregion
+    internal static class FloatingactionbuttonthemeDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterBinding.UI.Color ForegroundColor{get;set;}
-public virtual FlutterBinding.UI.Color BackgroundColor{get;set;}
-public virtual FlutterBinding.UI.Color FocusColor{get;set;}
-public virtual FlutterBinding.UI.Color HoverColor{get;set;}
-public virtual FlutterBinding.UI.Color SplashColor{get;set;}
-public virtual double Elevation{get;set;}
-public virtual double FocusElevation{get;set;}
-public virtual double HoverElevation{get;set;}
-public virtual double DisabledElevation{get;set;}
-public virtual double HighlightElevation{get;set;}
-public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class FloatingActionButtonThemeData : IDiagnosticable
+    {
+        #region constructors
+        public FloatingActionButtonThemeData(FlutterBinding.UI.Color foregroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), double elevation = default(double), double focusElevation = default(double), double hoverElevation = default(double), double disabledElevation = default(double), double highlightElevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder))
+        {
+            this.ForegroundColor = foregroundColor;
+            this.BackgroundColor = backgroundColor;
+            this.FocusColor = focusColor;
+            this.HoverColor = hoverColor;
+            this.SplashColor = splashColor;
+            this.Elevation = elevation;
+            this.FocusElevation = focusElevation;
+            this.HoverElevation = hoverElevation;
+            this.DisabledElevation = disabledElevation;
+            this.HighlightElevation = highlightElevation;
+            this.Shape = shape; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterBinding.UI.Color ForegroundColor { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual FlutterBinding.UI.Color FocusColor { get; set; }
+        public virtual FlutterBinding.UI.Color HoverColor { get; set; }
+        public virtual FlutterBinding.UI.Color SplashColor { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual double FocusElevation { get; set; }
+        public virtual double HoverElevation { get; set; }
+        public virtual double DisabledElevation { get; set; }
+        public virtual double HighlightElevation { get; set; }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData CopyWith(FlutterBinding.UI.Color foregroundColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color),double elevation = default(double),double focusElevation = default(double),double hoverElevation = default(double),double disabledElevation = default(double),double highlightElevation = default(double),FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder)){ throw new NotImplementedException(); }
+        #region methods
+
+        public virtual FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData CopyWith(FlutterBinding.UI.Color foregroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), double elevation = default(double), double focusElevation = default(double), double hoverElevation = default(double), double disabledElevation = default(double), double highlightElevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder)) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData Lerp(FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData a,FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData b,double t){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData Lerp(FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData a, FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData b, double t) { throw new NotImplementedException(); }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 }

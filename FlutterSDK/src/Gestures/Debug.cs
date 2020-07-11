@@ -294,15 +294,18 @@ using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
-namespace FlutterSDK.Gestures.Debug{
-internal static class DebugDefaultClass{
-public static bool DebugPrintHitTestResults = default(bool);
-public static bool DebugPrintMouseHoverEvents = default(bool);
-public static bool DebugPrintGestureArenaDiagnostics = default(bool);
-public static bool DebugPrintRecognizerCallbacksTrace = default(bool);
-internal static bool DebugAssertAllGesturesVarsUnset(string reason){
-throw new NotImplementedException();
-}
+namespace FlutterSDK.Gestures.Debug
+{
+    internal static class DebugDefaultClass
+    {
+        public static bool DebugPrintHitTestResults = default(bool);
+        public static bool DebugPrintMouseHoverEvents = default(bool);
+        public static bool DebugPrintGestureArenaDiagnostics = default(bool);
+        public static bool DebugPrintRecognizerCallbacksTrace = default(bool);
+        internal static bool DebugAssertAllGesturesVarsUnset(string reason)
+        {
+            throw new NotImplementedException();
+        }
 
-}
+    }
 }

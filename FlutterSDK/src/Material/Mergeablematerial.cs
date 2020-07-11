@@ -388,262 +388,273 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-namespace FlutterSDK.Material.Mergeablematerial{
-internal static class MergeablematerialDefaultClass{
-}
-
-public interface IMergeableMaterialItem{
-FlutterSDK.Foundation.Key.LocalKey Key{get;}
-}
-
-
-public class MergeableMaterialItem
+namespace FlutterSDK.Material.Mergeablematerial
 {
-#region constructors
-public MergeableMaterialItem(FlutterSDK.Foundation.Key.LocalKey key)
-: base()
-{
-this.Key = key;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Foundation.Key.LocalKey Key{get;set;}
-#endregion
-
-#region methods
-#endregion
-}
-
-
-public class MaterialSlice : FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem
-{
-#region constructors
-public MaterialSlice(FlutterSDK.Foundation.Key.LocalKey key = default(FlutterSDK.Foundation.Key.LocalKey),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key)
-{
-this.Child = child;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-#endregion
+    internal static class MergeablematerialDefaultClass
+    {
+    }
+
+    public interface IMergeableMaterialItem
+    {
+        FlutterSDK.Foundation.Key.LocalKey Key { get; }
+    }
+
+
+    public class MergeableMaterialItem
+    {
+        #region constructors
+        public MergeableMaterialItem(FlutterSDK.Foundation.Key.LocalKey key)
+        : base()
+        {
+            this.Key = key; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    public class MaterialSlice : FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem
+    {
+        #region constructors
+        public MaterialSlice(FlutterSDK.Foundation.Key.LocalKey key = default(FlutterSDK.Foundation.Key.LocalKey), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key)
+        {
+            this.Child = child; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        #endregion
+
+        #region methods
+
+        #endregion
+    }
+
 
-#region methods
+    public class MaterialGap : FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem
+    {
+        #region constructors
+        public MaterialGap(FlutterSDK.Foundation.Key.LocalKey key = default(FlutterSDK.Foundation.Key.LocalKey), double size = 16.0)
+        : base(key)
+        {
+            this.Size = size; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual double Size { get; set; }
+        #endregion
 
+        #region methods
 
-public class MaterialGap : FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem
-{
-#region constructors
-public MaterialGap(FlutterSDK.Foundation.Key.LocalKey key = default(FlutterSDK.Foundation.Key.LocalKey),double size = 16.0)
-: base(key)
-{
-this.Size = size;throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-public virtual double Size{get;set;}
-#endregion
 
-#region methods
+    public class MergeableMaterial : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public MergeableMaterial(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis mainAxis = default(FlutterSDK.Painting.Basictypes.Axis), int elevation = 2, bool hasDividers = false, List<FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem> children = default(List<FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem>))
+        : base(key: key)
+        {
+            this.MainAxis = mainAxis;
+            this.Elevation = elevation;
+            this.HasDividers = hasDividers;
+            this.Children = children; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual List<FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem> Children { get; set; }
+        public virtual FlutterSDK.Painting.Basictypes.Axis MainAxis { get; set; }
+        public virtual int Elevation { get; set; }
+        public virtual bool HasDividers { get; set; }
+        #endregion
 
+        #region methods
 
-public class MergeableMaterial : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public MergeableMaterial(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Painting.Basictypes.Axis mainAxis = default(FlutterSDK.Painting.Basictypes.Axis),int elevation = 2,bool hasDividers = false,List<FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem> children = default(List<FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem>))
-: base(key:key)
-{
-this.MainAxis = mainAxis;
-this.Elevation = elevation;
-this.HasDividers = hasDividers;
-this.Children = children;throw new NotImplementedException(); }
-#endregion
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#region fields
-public virtual List<FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem> Children{get;set;}
-public virtual FlutterSDK.Painting.Basictypes.Axis MainAxis{get;set;}
-public virtual int Elevation{get;set;}
-public virtual bool HasDividers{get;set;}
-#endregion
 
-#region methods
+        public new FlutterSDK.Material.Mergeablematerial._MergeableMaterialState CreateState() { throw new NotImplementedException(); }
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new FlutterSDK.Material.Mergeablematerial._MergeableMaterialState CreateState(){ throw new NotImplementedException(); }
+    public class _AnimationTuple
+    {
+        #region constructors
+        public _AnimationTuple(FlutterSDK.Animation.Animationcontroller.AnimationController controller = default(FlutterSDK.Animation.Animationcontroller.AnimationController), FlutterSDK.Animation.Animations.CurvedAnimation startAnimation = default(FlutterSDK.Animation.Animations.CurvedAnimation), FlutterSDK.Animation.Animations.CurvedAnimation endAnimation = default(FlutterSDK.Animation.Animations.CurvedAnimation), FlutterSDK.Animation.Animations.CurvedAnimation gapAnimation = default(FlutterSDK.Animation.Animations.CurvedAnimation), double gapStart = 0.0)
+        {
+            this.Controller = controller;
+            this.StartAnimation = startAnimation;
+            this.EndAnimation = endAnimation;
+            this.GapAnimation = gapAnimation;
+            this.GapStart = gapStart; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController Controller { get; set; }
+        public virtual FlutterSDK.Animation.Animations.CurvedAnimation StartAnimation { get; set; }
+        public virtual FlutterSDK.Animation.Animations.CurvedAnimation EndAnimation { get; set; }
+        public virtual FlutterSDK.Animation.Animations.CurvedAnimation GapAnimation { get; set; }
+        public virtual double GapStart { get; set; }
+        #endregion
 
+        #region methods
+        #endregion
+    }
 
-public class _AnimationTuple
-{
-#region constructors
-public _AnimationTuple(FlutterSDK.Animation.Animationcontroller.AnimationController controller = default(FlutterSDK.Animation.Animationcontroller.AnimationController),FlutterSDK.Animation.Animations.CurvedAnimation startAnimation = default(FlutterSDK.Animation.Animations.CurvedAnimation),FlutterSDK.Animation.Animations.CurvedAnimation endAnimation = default(FlutterSDK.Animation.Animations.CurvedAnimation),FlutterSDK.Animation.Animations.CurvedAnimation gapAnimation = default(FlutterSDK.Animation.Animations.CurvedAnimation),double gapStart = 0.0)
-{
-this.Controller = controller;
-this.StartAnimation = startAnimation;
-this.EndAnimation = endAnimation;
-this.GapAnimation = gapAnimation;
-this.GapStart = gapStart;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual FlutterSDK.Animation.Animationcontroller.AnimationController Controller{get;set;}
-public virtual FlutterSDK.Animation.Animations.CurvedAnimation StartAnimation{get;set;}
-public virtual FlutterSDK.Animation.Animations.CurvedAnimation EndAnimation{get;set;}
-public virtual FlutterSDK.Animation.Animations.CurvedAnimation GapAnimation{get;set;}
-public virtual double GapStart{get;set;}
-#endregion
+    public class _MergeableMaterialState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Mergeablematerial.MergeableMaterial>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _MergeableMaterialState()
+        { }
+        #endregion
 
-#region methods
-#endregion
-}
+        #region fields
+        internal virtual List<FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem> _Children { get; set; }
+        internal virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey, FlutterSDK.Material.Mergeablematerial._AnimationTuple> _AnimationTuples { get; set; }
+        #endregion
 
+        #region methods
 
-public class _MergeableMaterialState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Mergeablematerial.MergeableMaterial>,ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-#region constructors
-public _MergeableMaterialState()
-{ }
-#endregion
+        public new void InitState() { throw new NotImplementedException(); }
 
-#region fields
-internal virtual List<FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem> _Children{get;set;}
-internal virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey,FlutterSDK.Material.Mergeablematerial._AnimationTuple> _AnimationTuples{get;set;}
-#endregion
 
-#region methods
+        private void _InitGap(FlutterSDK.Material.Mergeablematerial.MaterialGap gap) { throw new NotImplementedException(); }
 
-public new void InitState(){ throw new NotImplementedException(); }
 
+        public new void Dispose() { throw new NotImplementedException(); }
 
-private void _InitGap(FlutterSDK.Material.Mergeablematerial.MaterialGap gap){ throw new NotImplementedException(); }
 
+        private void _HandleTick() { throw new NotImplementedException(); }
 
-public new void Dispose(){ throw new NotImplementedException(); }
 
+        private bool _DebugHasConsecutiveGaps(List<FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem> children) { throw new NotImplementedException(); }
 
-private void _HandleTick(){ throw new NotImplementedException(); }
 
+        private bool _DebugGapsAreValid(List<FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem> children) { throw new NotImplementedException(); }
 
-private bool _DebugHasConsecutiveGaps(List<FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem> children){ throw new NotImplementedException(); }
 
+        private void _InsertChild(int index, FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem child) { throw new NotImplementedException(); }
 
-private bool _DebugGapsAreValid(List<FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem> children){ throw new NotImplementedException(); }
 
+        private void _RemoveChild(int index) { throw new NotImplementedException(); }
 
-private void _InsertChild(int index,FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem child){ throw new NotImplementedException(); }
 
+        private bool _IsClosingGap(int index) { throw new NotImplementedException(); }
 
-private void _RemoveChild(int index){ throw new NotImplementedException(); }
 
+        private void _RemoveEmptyGaps() { throw new NotImplementedException(); }
 
-private bool _IsClosingGap(int index){ throw new NotImplementedException(); }
 
+        public new void DidUpdateWidget(FlutterSDK.Material.Mergeablematerial.MergeableMaterial oldWidget) { throw new NotImplementedException(); }
 
-private void _RemoveEmptyGaps(){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Painting.Borderradius.BorderRadius _BorderRadius(int index, bool start, bool end) { throw new NotImplementedException(); }
 
-public new void DidUpdateWidget(FlutterSDK.Material.Mergeablematerial.MergeableMaterial oldWidget){ throw new NotImplementedException(); }
 
+        private double _GetGapSize(int index) { throw new NotImplementedException(); }
 
-private FlutterSDK.Painting.Borderradius.BorderRadius _BorderRadius(int index,bool start,bool end){ throw new NotImplementedException(); }
 
+        private bool _WillNeedDivider(int index) { throw new NotImplementedException(); }
 
-private double _GetGapSize(int index){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-private bool _WillNeedDivider(int index){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+    public class _MergeableMaterialSliceKey : FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>
+    {
+        #region constructors
+        public _MergeableMaterialSliceKey(FlutterSDK.Foundation.Key.LocalKey value)
+        : base()
+        {
+            this.Value = value; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual FlutterSDK.Foundation.Key.LocalKey Value { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public class _MergeableMaterialSliceKey : FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>
-{
-#region constructors
-public _MergeableMaterialSliceKey(FlutterSDK.Foundation.Key.LocalKey value)
-: base()
-{
-this.Value = value;throw new NotImplementedException(); }
-#endregion
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Foundation.Key.LocalKey Value{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+        #endregion
+    }
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
 
+    public class _MergeableMaterialListBody : FlutterSDK.Widgets.Basic.ListBody
+    {
+        #region constructors
+        public _MergeableMaterialListBody(List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Painting.Basictypes.Axis mainAxis = default(FlutterSDK.Painting.Basictypes.Axis), List<FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem> items = default(List<FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem>), List<FlutterSDK.Painting.Boxshadow.BoxShadow> boxShadows = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>))
+        : base(children: children, mainAxis: mainAxis)
+        {
+            this.Items = items;
+            this.BoxShadows = boxShadows; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual List<FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem> Items { get; set; }
+        public virtual List<FlutterSDK.Painting.Boxshadow.BoxShadow> BoxShadows { get; set; }
+        #endregion
 
+        #region methods
 
-public class _MergeableMaterialListBody : FlutterSDK.Widgets.Basic.ListBody
-{
-#region constructors
-public _MergeableMaterialListBody(List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>),FlutterSDK.Painting.Basictypes.Axis mainAxis = default(FlutterSDK.Painting.Basictypes.Axis),List<FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem> items = default(List<FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem>),List<FlutterSDK.Painting.Boxshadow.BoxShadow> boxShadows = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>))
-: base(children:children,mainAxis:mainAxis)
-{
-this.Items = items;
-this.BoxShadows = boxShadows;throw new NotImplementedException(); }
-#endregion
+        private FlutterSDK.Painting.Basictypes.AxisDirection _GetDirection(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#region fields
-public virtual List<FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem> Items{get;set;}
-public virtual List<FlutterSDK.Painting.Boxshadow.BoxShadow> BoxShadows{get;set;}
-#endregion
 
-#region methods
+        public new FlutterSDK.Rendering.Listbody.RenderListBody CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-private FlutterSDK.Painting.Basictypes.AxisDirection _GetDirection(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
 
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Listbody.RenderListBody renderObject) { throw new NotImplementedException(); }
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Rendering.Listbody.RenderListBody CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Rendering.Listbody.RenderListBody renderObject){ throw new NotImplementedException(); }
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Rendering.@object.RenderObject renderObject){ throw new NotImplementedException(); }
+    public class _RenderMergeableMaterialListBody : FlutterSDK.Rendering.Listbody.RenderListBody
+    {
+        #region constructors
+        public _RenderMergeableMaterialListBody(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), List<FlutterSDK.Painting.Boxshadow.BoxShadow> boxShadows = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>))
+        : base(children: children, axisDirection: axisDirection)
+        {
+            this.BoxShadows = boxShadows; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual List<FlutterSDK.Painting.Boxshadow.BoxShadow> BoxShadows { get; set; }
+        #endregion
 
+        #region methods
 
-public class _RenderMergeableMaterialListBody : FlutterSDK.Rendering.Listbody.RenderListBody
-{
-#region constructors
-public _RenderMergeableMaterialListBody(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>),FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection),List<FlutterSDK.Painting.Boxshadow.BoxShadow> boxShadows = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>))
-: base(children:children,axisDirection:axisDirection)
-{
-this.BoxShadows = boxShadows;throw new NotImplementedException(); }
-#endregion
+        private void _PaintShadows(Canvas canvas, FlutterBinding.UI.Rect rect) { throw new NotImplementedException(); }
 
-#region fields
-public virtual List<FlutterSDK.Painting.Boxshadow.BoxShadow> BoxShadows{get;set;}
-#endregion
 
-#region methods
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-private void _PaintShadows(Canvas canvas,FlutterBinding.UI.Rect rect){ throw new NotImplementedException(); }
-
-
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
-
-#endregion
-}
+        #endregion
+    }
 
 }

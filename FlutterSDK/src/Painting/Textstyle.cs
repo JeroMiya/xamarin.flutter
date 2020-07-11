@@ -421,102 +421,105 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Painting.Textstyle{
-internal static class TextstyleDefaultClass{
-public static string _KDefaultDebugLabel = default(string);
-public static string _KColorForegroundWarning = default(string);
-public static string _KColorBackgroundWarning = default(string);
-}
-
-public class TextStyle : IDiagnosticable
+namespace FlutterSDK.Painting.Textstyle
 {
-#region constructors
-public TextStyle(bool inherit = true,FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),double fontSize = default(double),FontWeight fontWeight = default(FontWeight),FontStyle fontStyle = default(FontStyle),double letterSpacing = default(double),double wordSpacing = default(double),TextBaseline textBaseline = default(TextBaseline),double height = default(double),Locale locale = default(Locale),SKPaint foreground = default(SKPaint),SKPaint background = default(SKPaint),List<Shadow> shadows = default(List<Shadow>),List<FontFeature> fontFeatures = default(List<FontFeature>),TextDecoration decoration = default(TextDecoration),FlutterBinding.UI.Color decorationColor = default(FlutterBinding.UI.Color),TextDecorationStyle decorationStyle = default(TextDecorationStyle),double decorationThickness = default(double),string debugLabel = default(string),string fontFamily = default(string),List<string> fontFamilyFallback = default(List<string>),string package = default(string))
-: base()
-{
-this.Inherit = inherit;
-this.Color = color;
-this.BackgroundColor = backgroundColor;
-this.FontSize = fontSize;
-this.FontWeight = fontWeight;
-this.FontStyle = fontStyle;
-this.LetterSpacing = letterSpacing;
-this.WordSpacing = wordSpacing;
-this.TextBaseline = textBaseline;
-this.Height = height;
-this.Locale = locale;
-this.Foreground = foreground;
-this.Background = background;
-this.Shadows = shadows;
-this.FontFeatures = fontFeatures;
-this.Decoration = decoration;
-this.DecorationColor = decorationColor;
-this.DecorationStyle = decorationStyle;
-this.DecorationThickness = decorationThickness;
-this.DebugLabel = debugLabel;throw new NotImplementedException(); }
-#endregion
+    internal static class TextstyleDefaultClass
+    {
+        public static string _KDefaultDebugLabel = default(string);
+        public static string _KColorForegroundWarning = default(string);
+        public static string _KColorBackgroundWarning = default(string);
+    }
 
-#region fields
-public virtual bool Inherit{get;set;}
-public virtual FlutterBinding.UI.Color Color{get;set;}
-public virtual FlutterBinding.UI.Color BackgroundColor{get;set;}
-public virtual string FontFamily{get;set;}
-internal virtual List<string> _FontFamilyFallback{get;set;}
-internal virtual string _Package{get;set;}
-public virtual double FontSize{get;set;}
-internal virtual double _DefaultFontSize{get;set;}
-public virtual FontWeight FontWeight{get;set;}
-public virtual FontStyle FontStyle{get;set;}
-public virtual double LetterSpacing{get;set;}
-public virtual double WordSpacing{get;set;}
-public virtual TextBaseline TextBaseline{get;set;}
-public virtual double Height{get;set;}
-public virtual Locale Locale{get;set;}
-public virtual SKPaint Foreground{get;set;}
-public virtual SKPaint Background{get;set;}
-public virtual TextDecoration Decoration{get;set;}
-public virtual FlutterBinding.UI.Color DecorationColor{get;set;}
-public virtual TextDecorationStyle DecorationStyle{get;set;}
-public virtual double DecorationThickness{get;set;}
-public virtual string DebugLabel{get;set;}
-public virtual List<Shadow> Shadows{get;set;}
-public virtual List<FontFeature> FontFeatures{get;set;}
-public virtual List<string> FontFamilyFallback{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class TextStyle : IDiagnosticable
+    {
+        #region constructors
+        public TextStyle(bool inherit = true, FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double fontSize = default(double), FontWeight fontWeight = default(FontWeight), FontStyle fontStyle = default(FontStyle), double letterSpacing = default(double), double wordSpacing = default(double), TextBaseline textBaseline = default(TextBaseline), double height = default(double), Locale locale = default(Locale), SKPaint foreground = default(SKPaint), SKPaint background = default(SKPaint), List<Shadow> shadows = default(List<Shadow>), List<FontFeature> fontFeatures = default(List<FontFeature>), TextDecoration decoration = default(TextDecoration), FlutterBinding.UI.Color decorationColor = default(FlutterBinding.UI.Color), TextDecorationStyle decorationStyle = default(TextDecorationStyle), double decorationThickness = default(double), string debugLabel = default(string), string fontFamily = default(string), List<string> fontFamilyFallback = default(List<string>), string package = default(string))
+        : base()
+        {
+            this.Inherit = inherit;
+            this.Color = color;
+            this.BackgroundColor = backgroundColor;
+            this.FontSize = fontSize;
+            this.FontWeight = fontWeight;
+            this.FontStyle = fontStyle;
+            this.LetterSpacing = letterSpacing;
+            this.WordSpacing = wordSpacing;
+            this.TextBaseline = textBaseline;
+            this.Height = height;
+            this.Locale = locale;
+            this.Foreground = foreground;
+            this.Background = background;
+            this.Shadows = shadows;
+            this.FontFeatures = fontFeatures;
+            this.Decoration = decoration;
+            this.DecorationColor = decorationColor;
+            this.DecorationStyle = decorationStyle;
+            this.DecorationThickness = decorationThickness;
+            this.DebugLabel = debugLabel; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual bool Inherit { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual string FontFamily { get; set; }
+        internal virtual List<string> _FontFamilyFallback { get; set; }
+        internal virtual string _Package { get; set; }
+        public virtual double FontSize { get; set; }
+        internal virtual double _DefaultFontSize { get; set; }
+        public virtual FontWeight FontWeight { get; set; }
+        public virtual FontStyle FontStyle { get; set; }
+        public virtual double LetterSpacing { get; set; }
+        public virtual double WordSpacing { get; set; }
+        public virtual TextBaseline TextBaseline { get; set; }
+        public virtual double Height { get; set; }
+        public virtual Locale Locale { get; set; }
+        public virtual SKPaint Foreground { get; set; }
+        public virtual SKPaint Background { get; set; }
+        public virtual TextDecoration Decoration { get; set; }
+        public virtual FlutterBinding.UI.Color DecorationColor { get; set; }
+        public virtual TextDecorationStyle DecorationStyle { get; set; }
+        public virtual double DecorationThickness { get; set; }
+        public virtual string DebugLabel { get; set; }
+        public virtual List<Shadow> Shadows { get; set; }
+        public virtual List<FontFeature> FontFeatures { get; set; }
+        public virtual List<string> FontFamilyFallback { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual FlutterSDK.Painting.Textstyle.TextStyle CopyWith(bool inherit = default(bool),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),string fontFamily = default(string),List<string> fontFamilyFallback = default(List<string>),double fontSize = default(double),FontWeight fontWeight = default(FontWeight),FontStyle fontStyle = default(FontStyle),double letterSpacing = default(double),double wordSpacing = default(double),TextBaseline textBaseline = default(TextBaseline),double height = default(double),Locale locale = default(Locale),SKPaint foreground = default(SKPaint),SKPaint background = default(SKPaint),List<Shadow> shadows = default(List<Shadow>),List<FontFeature> fontFeatures = default(List<FontFeature>),TextDecoration decoration = default(TextDecoration),FlutterBinding.UI.Color decorationColor = default(FlutterBinding.UI.Color),TextDecorationStyle decorationStyle = default(TextDecorationStyle),double decorationThickness = default(double),string debugLabel = default(string)){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual FlutterSDK.Painting.Textstyle.TextStyle Apply(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),TextDecoration decoration = default(TextDecoration),FlutterBinding.UI.Color decorationColor = default(FlutterBinding.UI.Color),TextDecorationStyle decorationStyle = default(TextDecorationStyle),double decorationThicknessFactor = 1.0,double decorationThicknessDelta = 0.0,string fontFamily = default(string),List<string> fontFamilyFallback = default(List<string>),double fontSizeFactor = 1.0,double fontSizeDelta = 0.0,int fontWeightDelta = 0,double letterSpacingFactor = 1.0,double letterSpacingDelta = 0.0,double wordSpacingFactor = 1.0,double wordSpacingDelta = 0.0,double heightFactor = 1.0,double heightDelta = 0.0){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Painting.Textstyle.TextStyle Merge(FlutterSDK.Painting.Textstyle.TextStyle other){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Painting.Textstyle.TextStyle Lerp(FlutterSDK.Painting.Textstyle.TextStyle a,FlutterSDK.Painting.Textstyle.TextStyle b,double t){ throw new NotImplementedException(); }
-
-
-public virtual TextStyle GetTextStyle(double textScaleFactor = 1.0){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle CopyWith(bool inherit = default(bool), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), string fontFamily = default(string), List<string> fontFamilyFallback = default(List<string>), double fontSize = default(double), FontWeight fontWeight = default(FontWeight), FontStyle fontStyle = default(FontStyle), double letterSpacing = default(double), double wordSpacing = default(double), TextBaseline textBaseline = default(TextBaseline), double height = default(double), Locale locale = default(Locale), SKPaint foreground = default(SKPaint), SKPaint background = default(SKPaint), List<Shadow> shadows = default(List<Shadow>), List<FontFeature> fontFeatures = default(List<FontFeature>), TextDecoration decoration = default(TextDecoration), FlutterBinding.UI.Color decorationColor = default(FlutterBinding.UI.Color), TextDecorationStyle decorationStyle = default(TextDecorationStyle), double decorationThickness = default(double), string debugLabel = default(string)) { throw new NotImplementedException(); }
 
 
-public virtual ParagraphStyle GetParagraphStyle(TextAlign textAlign = default(TextAlign),TextDirection textDirection = default(TextDirection),double textScaleFactor = 1.0,string ellipsis = default(string),int maxLines = default(int),TextHeightBehavior textHeightBehavior = default(TextHeightBehavior),Locale locale = default(Locale),string fontFamily = default(string),double fontSize = default(double),FontWeight fontWeight = default(FontWeight),FontStyle fontStyle = default(FontStyle),double height = default(double),FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle)){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle Apply(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), TextDecoration decoration = default(TextDecoration), FlutterBinding.UI.Color decorationColor = default(FlutterBinding.UI.Color), TextDecorationStyle decorationStyle = default(TextDecorationStyle), double decorationThicknessFactor = 1.0, double decorationThicknessDelta = 0.0, string fontFamily = default(string), List<string> fontFamilyFallback = default(List<string>), double fontSizeFactor = 1.0, double fontSizeDelta = 0.0, int fontWeightDelta = 0, double letterSpacingFactor = 1.0, double letterSpacingDelta = 0.0, double wordSpacingFactor = 1.0, double wordSpacingDelta = 0.0, double heightFactor = 1.0, double heightDelta = 0.0) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Painting.Basictypes.RenderComparison CompareTo(FlutterSDK.Painting.Textstyle.TextStyle other){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle Merge(FlutterSDK.Painting.Textstyle.TextStyle other) { throw new NotImplementedException(); }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle Lerp(FlutterSDK.Painting.Textstyle.TextStyle a, FlutterSDK.Painting.Textstyle.TextStyle b, double t) { throw new NotImplementedException(); }
 
 
-public new string ToStringShort(){ throw new NotImplementedException(); }
+        public virtual TextStyle GetTextStyle(double textScaleFactor = 1.0) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties,string prefix = default(string)){ throw new NotImplementedException(); }
+        public virtual ParagraphStyle GetParagraphStyle(TextAlign textAlign = default(TextAlign), TextDirection textDirection = default(TextDirection), double textScaleFactor = 1.0, string ellipsis = default(string), int maxLines = default(int), TextHeightBehavior textHeightBehavior = default(TextHeightBehavior), Locale locale = default(Locale), string fontFamily = default(string), double fontSize = default(double), FontWeight fontWeight = default(FontWeight), FontStyle fontStyle = default(FontStyle), double height = default(double), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle)) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public virtual FlutterSDK.Painting.Basictypes.RenderComparison CompareTo(FlutterSDK.Painting.Textstyle.TextStyle other) { throw new NotImplementedException(); }
+
+
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+
+
+        public new string ToStringShort() { throw new NotImplementedException(); }
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties, string prefix = default(string)) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

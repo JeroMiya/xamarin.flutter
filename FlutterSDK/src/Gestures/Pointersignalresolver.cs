@@ -294,40 +294,45 @@ using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
-namespace FlutterSDK.Gestures.Pointersignalresolver{
-public delegate void PointerSignalResolvedCallback(FlutterSDK.Gestures.Events.PointerSignalEvent @event);
-internal static class PointersignalresolverDefaultClass{
-internal static bool _IsSameEvent(FlutterSDK.Gestures.Events.PointerSignalEvent event1,FlutterSDK.Gestures.Events.PointerSignalEvent event2){
-throw new NotImplementedException();
-}
-
-}
-
-public interface IPointerSignalResolver{}
-
-public class PointerSignalResolver{
-internal virtual FlutterSDK.Gestures.Pointersignalresolver.PointerSignalResolvedCallback _FirstRegisteredCallback{get;set;}
-internal virtual FlutterSDK.Gestures.Events.PointerSignalEvent _CurrentEvent{get;set;}
-
-public virtual void Register(FlutterSDK.Gestures.Events.PointerSignalEvent @event,FlutterSDK.Gestures.Pointersignalresolver.PointerSignalResolvedCallback callback){ throw new NotImplementedException(); }
-
-
-public virtual void Resolve(FlutterSDK.Gestures.Events.PointerSignalEvent @event){ throw new NotImplementedException(); }
-
-}
-public static class PointerSignalResolverMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IPointerSignalResolver, PointerSignalResolver> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IPointerSignalResolver, PointerSignalResolver>();
-static PointerSignalResolver GetOrCreate(IPointerSignalResolver instance)
+namespace FlutterSDK.Gestures.Pointersignalresolver
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new PointerSignalResolver();
-_table.Add(instance, value);
-}
-return (PointerSignalResolver)value;
-}
-public static void Register(this IPointerSignalResolver instance,FlutterSDK.Gestures.Events.PointerSignalEvent @event,FlutterSDK.Gestures.Pointersignalresolver.PointerSignalResolvedCallback callback) => GetOrCreate(instance).Register(@event, callback);
-public static void Resolve(this IPointerSignalResolver instance,FlutterSDK.Gestures.Events.PointerSignalEvent @event) => GetOrCreate(instance).Resolve(@event);
-}
+    public delegate void PointerSignalResolvedCallback(FlutterSDK.Gestures.Events.PointerSignalEvent @event);
+    internal static class PointersignalresolverDefaultClass
+    {
+        internal static bool _IsSameEvent(FlutterSDK.Gestures.Events.PointerSignalEvent event1, FlutterSDK.Gestures.Events.PointerSignalEvent event2)
+        {
+            throw new NotImplementedException();
+        }
+
+    }
+
+    public interface IPointerSignalResolver { }
+
+    public class PointerSignalResolver
+    {
+        internal virtual FlutterSDK.Gestures.Pointersignalresolver.PointerSignalResolvedCallback _FirstRegisteredCallback { get; set; }
+        internal virtual FlutterSDK.Gestures.Events.PointerSignalEvent _CurrentEvent { get; set; }
+
+        public virtual void Register(FlutterSDK.Gestures.Events.PointerSignalEvent @event, FlutterSDK.Gestures.Pointersignalresolver.PointerSignalResolvedCallback callback) { throw new NotImplementedException(); }
+
+
+        public virtual void Resolve(FlutterSDK.Gestures.Events.PointerSignalEvent @event) { throw new NotImplementedException(); }
+
+    }
+    public static class PointerSignalResolverMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IPointerSignalResolver, PointerSignalResolver> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IPointerSignalResolver, PointerSignalResolver>();
+        static PointerSignalResolver GetOrCreate(IPointerSignalResolver instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new PointerSignalResolver();
+                _table.Add(instance, value);
+            }
+            return (PointerSignalResolver)value;
+        }
+        public static void Register(this IPointerSignalResolver instance, FlutterSDK.Gestures.Events.PointerSignalEvent @event, FlutterSDK.Gestures.Pointersignalresolver.PointerSignalResolvedCallback callback) => GetOrCreate(instance).Register(@event, callback);
+        public static void Resolve(this IPointerSignalResolver instance, FlutterSDK.Gestures.Events.PointerSignalEvent @event) => GetOrCreate(instance).Resolve(@event);
+    }
 
 }

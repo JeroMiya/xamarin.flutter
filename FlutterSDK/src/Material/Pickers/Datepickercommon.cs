@@ -397,22 +397,26 @@ using FlutterSDK.Material.Datatablesource;
 using FlutterSDK.Material.Inkdecoration;
 using FlutterSDK.Material.Pickers.Datepickercommon;
 using FlutterSDK.Material.Pickers.Dateutils;
-namespace FlutterSDK.Material.Pickers.Datepickercommon{
-public delegate bool SelectableDayPredicate(DateTime day);
-internal static class DatepickercommonDefaultClass{
-}
+namespace FlutterSDK.Material.Pickers.Datepickercommon
+{
+    public delegate bool SelectableDayPredicate(DateTime day);
+    internal static class DatepickercommonDefaultClass
+    {
+    }
 
-public enum DatePickerEntryMode{
+    public enum DatePickerEntryMode
+    {
 
-Calendar,
-Input,
-}
+        Calendar,
+        Input,
+    }
 
 
-public enum DatePickerMode{
+    public enum DatePickerMode
+    {
 
-Day,
-Year,
-}
+        Day,
+        Year,
+    }
 
 }

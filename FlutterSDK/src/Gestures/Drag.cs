@@ -294,37 +294,41 @@ using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
-namespace FlutterSDK.Gestures.Drag{
-internal static class DragDefaultClass{
-}
-
-public interface IDrag{}
-
-public class Drag{
-
-public virtual void Update(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details){ throw new NotImplementedException(); }
-
-
-public virtual void End(FlutterSDK.Gestures.Dragdetails.DragEndDetails details){ throw new NotImplementedException(); }
-
-
-public virtual void Cancel(){ throw new NotImplementedException(); }
-
-}
-public static class DragMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IDrag, Drag> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IDrag, Drag>();
-static Drag GetOrCreate(IDrag instance)
+namespace FlutterSDK.Gestures.Drag
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new Drag();
-_table.Add(instance, value);
-}
-return (Drag)value;
-}
-public static void Update(this IDrag instance,FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details) => GetOrCreate(instance).Update(details);
-public static void End(this IDrag instance,FlutterSDK.Gestures.Dragdetails.DragEndDetails details) => GetOrCreate(instance).End(details);
-public static void Cancel(this IDrag instance) => GetOrCreate(instance).Cancel();
-}
+    internal static class DragDefaultClass
+    {
+    }
+
+    public interface IDrag { }
+
+    public class Drag
+    {
+
+        public virtual void Update(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details) { throw new NotImplementedException(); }
+
+
+        public virtual void End(FlutterSDK.Gestures.Dragdetails.DragEndDetails details) { throw new NotImplementedException(); }
+
+
+        public virtual void Cancel() { throw new NotImplementedException(); }
+
+    }
+    public static class DragMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IDrag, Drag> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IDrag, Drag>();
+        static Drag GetOrCreate(IDrag instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new Drag();
+                _table.Add(instance, value);
+            }
+            return (Drag)value;
+        }
+        public static void Update(this IDrag instance, FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details) => GetOrCreate(instance).Update(details);
+        public static void End(this IDrag instance, FlutterSDK.Gestures.Dragdetails.DragEndDetails details) => GetOrCreate(instance).End(details);
+        public static void Cancel(this IDrag instance) => GetOrCreate(instance).Cancel();
+    }
 
 }

@@ -421,293 +421,307 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Widgets.Actions{
-public delegate FlutterSDK.Widgets.Actions.Action ActionFactory();
-public delegate void OnInvokeCallback(FlutterSDK.Widgets.Focusmanager.FocusNode node,FlutterSDK.Widgets.Actions.Intent tag);
-internal static class ActionsDefaultClass{
-}
-
-public interface IAction{
-void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node,FlutterSDK.Widgets.Actions.Intent intent);
-void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
-FlutterSDK.Foundation.Key.LocalKey IntentKey{get;}
-}
-
-
-public interface IActivateAction{
-FlutterSDK.Foundation.Key.LocalKey Key{get;}
-}
-
-
-public interface ISelectAction{
-FlutterSDK.Foundation.Key.LocalKey Key{get;}
-}
-
-
-public class Intent : IDiagnosticable
+namespace FlutterSDK.Widgets.Actions
 {
-#region constructors
-public Intent(FlutterSDK.Foundation.Key.LocalKey key)
-: base()
-{
-this.Key = key;throw new NotImplementedException(); }
-#endregion
+    public delegate FlutterSDK.Widgets.Actions.Action ActionFactory();
+    public delegate void OnInvokeCallback(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Widgets.Actions.Intent tag);
+    internal static class ActionsDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Widgets.Actions.Intent DoNothing{get;set;}
-public virtual FlutterSDK.Foundation.Key.LocalKey Key{get;set;}
-#endregion
+    public interface IAction
+    {
+        void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Widgets.Actions.Intent intent);
+        void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
+        FlutterSDK.Foundation.Key.LocalKey IntentKey { get; }
+    }
 
-#region methods
 
-public virtual bool IsEnabled(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+    public interface IActivateAction
+    {
+        FlutterSDK.Foundation.Key.LocalKey Key { get; }
+    }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+    public interface ISelectAction
+    {
+        FlutterSDK.Foundation.Key.LocalKey Key { get; }
+    }
 
-#endregion
-}
 
+    public class Intent : IDiagnosticable
+    {
+        #region constructors
+        public Intent(FlutterSDK.Foundation.Key.LocalKey key)
+        : base()
+        {
+            this.Key = key; throw new NotImplementedException();
+        }
+        #endregion
 
-public class Action : IDiagnosticable
-{
-#region constructors
-public Action(FlutterSDK.Foundation.Key.LocalKey intentKey)
-: base()
-{
-this.IntentKey = intentKey;throw new NotImplementedException(); }
-#endregion
+        #region fields
+        public virtual FlutterSDK.Widgets.Actions.Intent DoNothing { get; set; }
+        public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Foundation.Key.LocalKey IntentKey{get;set;}
-#endregion
+        #region methods
 
-#region methods
+        public virtual bool IsEnabled(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-public virtual void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node,FlutterSDK.Widgets.Actions.Intent intent){ throw new NotImplementedException(); }
 
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        #endregion
+    }
 
-#endregion
-}
 
+    public class Action : IDiagnosticable
+    {
+        #region constructors
+        public Action(FlutterSDK.Foundation.Key.LocalKey intentKey)
+        : base()
+        {
+            this.IntentKey = intentKey; throw new NotImplementedException();
+        }
+        #endregion
 
-public class CallbackAction : FlutterSDK.Widgets.Actions.Action
-{
-#region constructors
-public CallbackAction(FlutterSDK.Foundation.Key.LocalKey intentKey,FlutterSDK.Widgets.Actions.OnInvokeCallback onInvoke = default(FlutterSDK.Widgets.Actions.OnInvokeCallback))
-: base(intentKey)
-{
-this.OnInvoke = onInvoke;throw new NotImplementedException(); }
-#endregion
+        #region fields
+        public virtual FlutterSDK.Foundation.Key.LocalKey IntentKey { get; set; }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Widgets.Actions.OnInvokeCallback OnInvoke{get;set;}
-#endregion
+        #region methods
 
-#region methods
+        public virtual void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Widgets.Actions.Intent intent) { throw new NotImplementedException(); }
 
-public new void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node,FlutterSDK.Widgets.Actions.Intent intent){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class ActionDispatcher : IDiagnosticable
-{
-#region constructors
-public ActionDispatcher()
-{
-throw new NotImplementedException(); }
-#endregion
 
-#region fields
-#endregion
+    public class CallbackAction : FlutterSDK.Widgets.Actions.Action
+    {
+        #region constructors
+        public CallbackAction(FlutterSDK.Foundation.Key.LocalKey intentKey, FlutterSDK.Widgets.Actions.OnInvokeCallback onInvoke = default(FlutterSDK.Widgets.Actions.OnInvokeCallback))
+        : base(intentKey)
+        {
+            this.OnInvoke = onInvoke; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Widgets.Actions.OnInvokeCallback OnInvoke { get; set; }
+        #endregion
 
-public virtual bool InvokeAction(FlutterSDK.Widgets.Actions.Action action,FlutterSDK.Widgets.Actions.Intent intent,FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode)){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Widgets.Actions.Intent intent) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class Actions : FlutterSDK.Widgets.Framework.InheritedWidget
-{
-#region constructors
-public Actions(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Actions.ActionDispatcher dispatcher = default(FlutterSDK.Widgets.Actions.ActionDispatcher),Dictionary<FlutterSDK.Foundation.Key.LocalKey,object> actions = default(Dictionary<FlutterSDK.Foundation.Key.LocalKey,object>),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key,child:child)
-{
-this.Dispatcher = dispatcher;
-this.ActionsValue = actions;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual FlutterSDK.Widgets.Actions.ActionDispatcher Dispatcher{get;set;}
-public virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey,object> ActionsValue{get;set;}
-#endregion
+    public class ActionDispatcher : IDiagnosticable
+    {
+        #region constructors
+        public ActionDispatcher()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        #endregion
 
-private FlutterSDK.Widgets.Actions.ActionDispatcher _FindDispatcher(FlutterSDK.Widgets.Framework.Element element){ throw new NotImplementedException(); }
+        #region methods
 
+        public virtual bool InvokeAction(FlutterSDK.Widgets.Actions.Action action, FlutterSDK.Widgets.Actions.Intent intent, FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode)) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Widgets.Actions.ActionDispatcher Of(FlutterSDK.Widgets.Framework.BuildContext context,bool nullOk = false){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public virtual bool Invoke(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Widgets.Actions.Intent intent,FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode),bool nullOk = false){ throw new NotImplementedException(); }
+    public class Actions : FlutterSDK.Widgets.Framework.InheritedWidget
+    {
+        #region constructors
+        public Actions(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Actions.ActionDispatcher dispatcher = default(FlutterSDK.Widgets.Actions.ActionDispatcher), Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> actions = default(Dictionary<FlutterSDK.Foundation.Key.LocalKey, object>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            this.Dispatcher = dispatcher;
+            this.ActionsValue = actions; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual FlutterSDK.Widgets.Actions.ActionDispatcher Dispatcher { get; set; }
+        public virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> ActionsValue { get; set; }
+        #endregion
 
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Actions.Actions oldWidget){ throw new NotImplementedException(); }
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget){ throw new NotImplementedException(); }
+        #region methods
 
+        private FlutterSDK.Widgets.Actions.ActionDispatcher _FindDispatcher(FlutterSDK.Widgets.Framework.Element element) { throw new NotImplementedException(); }
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public virtual FlutterSDK.Widgets.Actions.ActionDispatcher Of(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false) { throw new NotImplementedException(); }
 
 
-public class FocusableActionDetector : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public FocusableActionDetector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),bool enabled = true,FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode),bool autofocus = false,Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet,FlutterSDK.Widgets.Actions.Intent> shortcuts = default(Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet,FlutterSDK.Widgets.Actions.Intent>),Dictionary<FlutterSDK.Foundation.Key.LocalKey,object> actions = default(Dictionary<FlutterSDK.Foundation.Key.LocalKey,object>),FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onShowFocusHighlight = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>),FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onShowHoverHighlight = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>),FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onFocusChange = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key)
-{
-this.Enabled = enabled;
-this.FocusNode = focusNode;
-this.Autofocus = autofocus;
-this.Shortcuts = shortcuts;
-this.Actions = actions;
-this.OnShowFocusHighlight = onShowFocusHighlight;
-this.OnShowHoverHighlight = onShowHoverHighlight;
-this.OnFocusChange = onFocusChange;
-this.Child = child;throw new NotImplementedException(); }
-#endregion
+        public virtual bool Invoke(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Actions.Intent intent, FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool nullOk = false) { throw new NotImplementedException(); }
 
-#region fields
-public virtual bool Enabled{get;set;}
-public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode{get;set;}
-public virtual bool Autofocus{get;set;}
-public virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey,object> Actions{get;set;}
-public virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet,FlutterSDK.Widgets.Actions.Intent> Shortcuts{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnShowFocusHighlight{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnShowHoverHighlight{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnFocusChange{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-#endregion
 
-#region methods
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Actions.Actions oldWidget) { throw new NotImplementedException(); }
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Widgets.Actions._FocusableActionDetectorState CreateState(){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class _FocusableActionDetectorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Actions.FocusableActionDetector>
-{
-#region constructors
-public _FocusableActionDetectorState()
-{ }
-#endregion
 
-#region fields
-internal virtual bool _CanShowHighlight{get;set;}
-internal virtual bool _Hovering{get;set;}
-internal virtual bool _Focused{get;set;}
-#endregion
+    public class FocusableActionDetector : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public FocusableActionDetector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool enabled = true, FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> shortcuts = default(Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent>), Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> actions = default(Dictionary<FlutterSDK.Foundation.Key.LocalKey, object>), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onShowFocusHighlight = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onShowHoverHighlight = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onFocusChange = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.Enabled = enabled;
+            this.FocusNode = focusNode;
+            this.Autofocus = autofocus;
+            this.Shortcuts = shortcuts;
+            this.Actions = actions;
+            this.OnShowFocusHighlight = onShowFocusHighlight;
+            this.OnShowHoverHighlight = onShowHoverHighlight;
+            this.OnFocusChange = onFocusChange;
+            this.Child = child; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual bool Enabled { get; set; }
+        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+        public virtual bool Autofocus { get; set; }
+        public virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> Actions { get; set; }
+        public virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> Shortcuts { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnShowFocusHighlight { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnShowHoverHighlight { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnFocusChange { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        #endregion
 
-public new void InitState(){ throw new NotImplementedException(); }
+        #region methods
 
+        public new FlutterSDK.Widgets.Actions._FocusableActionDetectorState CreateState() { throw new NotImplementedException(); }
 
-public new void Dispose(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-private void _UpdateHighlightMode(FlutterSDK.Widgets.Focusmanager.FocusHighlightMode mode){ throw new NotImplementedException(); }
+    public class _FocusableActionDetectorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Actions.FocusableActionDetector>
+    {
+        #region constructors
+        public _FocusableActionDetectorState()
+        { }
+        #endregion
 
+        #region fields
+        internal virtual bool _CanShowHighlight { get; set; }
+        internal virtual bool _Hovering { get; set; }
+        internal virtual bool _Focused { get; set; }
+        #endregion
 
-private void _HandleFocusHighlightModeChange(FlutterSDK.Widgets.Focusmanager.FocusHighlightMode mode){ throw new NotImplementedException(); }
+        #region methods
 
+        public new void InitState() { throw new NotImplementedException(); }
 
-private void _HandleMouseEnter(FlutterSDK.Gestures.Events.PointerEnterEvent @event){ throw new NotImplementedException(); }
 
+        public new void Dispose() { throw new NotImplementedException(); }
 
-private void _HandleMouseExit(FlutterSDK.Gestures.Events.PointerExitEvent @event){ throw new NotImplementedException(); }
 
+        private void _UpdateHighlightMode(FlutterSDK.Widgets.Focusmanager.FocusHighlightMode mode) { throw new NotImplementedException(); }
 
-private void _HandleFocusChange(bool focused){ throw new NotImplementedException(); }
 
+        private void _HandleFocusHighlightModeChange(FlutterSDK.Widgets.Focusmanager.FocusHighlightMode mode) { throw new NotImplementedException(); }
 
-private void _MayTriggerCallback(VoidCallback task = default(VoidCallback),FlutterSDK.Widgets.Actions.FocusableActionDetector oldWidget = default(FlutterSDK.Widgets.Actions.FocusableActionDetector)){ throw new NotImplementedException(); }
 
+        private void _HandleMouseEnter(FlutterSDK.Gestures.Events.PointerEnterEvent @event) { throw new NotImplementedException(); }
 
-public new void DidUpdateWidget(FlutterSDK.Widgets.Actions.FocusableActionDetector oldWidget){ throw new NotImplementedException(); }
 
+        private void _HandleMouseExit(FlutterSDK.Gestures.Events.PointerExitEvent @event) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
 
-#endregion
-}
+        private void _HandleFocusChange(bool focused) { throw new NotImplementedException(); }
 
 
-public class DoNothingAction : FlutterSDK.Widgets.Actions.Action
-{
-#region constructors
-public DoNothingAction()
-: base(Key)
-{
-throw new NotImplementedException(); }
-#endregion
+        private void _MayTriggerCallback(VoidCallback task = default(VoidCallback), FlutterSDK.Widgets.Actions.FocusableActionDetector oldWidget = default(FlutterSDK.Widgets.Actions.FocusableActionDetector)) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Foundation.Key.LocalKey Key{get;set;}
-#endregion
 
-#region methods
+        public new void DidUpdateWidget(FlutterSDK.Widgets.Actions.FocusableActionDetector oldWidget) { throw new NotImplementedException(); }
 
-public new void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node,FlutterSDK.Widgets.Actions.Intent intent){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class ActivateAction : FlutterSDK.Widgets.Actions.Action
-{
-#region constructors
-public ActivateAction()
-: base(Key)
-{
-throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual FlutterSDK.Foundation.Key.LocalKey Key{get;set;}
-#endregion
+    public class DoNothingAction : FlutterSDK.Widgets.Actions.Action
+    {
+        #region constructors
+        public DoNothingAction()
+        : base(Key)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
-#endregion
-}
+        #region fields
+        public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
+        #endregion
 
+        #region methods
 
-public class SelectAction : FlutterSDK.Widgets.Actions.Action
-{
-#region constructors
-public SelectAction()
-: base(Key)
-{
-throw new NotImplementedException(); }
-#endregion
+        public new void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Widgets.Actions.Intent intent) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Foundation.Key.LocalKey Key{get;set;}
-#endregion
+        #endregion
+    }
 
-#region methods
-#endregion
-}
+
+    public class ActivateAction : FlutterSDK.Widgets.Actions.Action
+    {
+        #region constructors
+        public ActivateAction()
+        : base(Key)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    public class SelectAction : FlutterSDK.Widgets.Actions.Action
+    {
+        #region constructors
+        public SelectAction()
+        : base(Key)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
 
 }

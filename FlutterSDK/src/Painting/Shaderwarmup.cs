@@ -421,60 +421,65 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Painting.Shaderwarmup{
-internal static class ShaderwarmupDefaultClass{
-}
-
-public interface IShaderWarmUp{
-Future<object> WarmUpOnCanvas(Canvas canvas);
-Future<object> Execute();
-Size Size{get;}
-}
-
-
-public class ShaderWarmUp
+namespace FlutterSDK.Painting.Shaderwarmup
 {
-#region constructors
-public ShaderWarmUp()
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class ShaderwarmupDefaultClass
+    {
+    }
 
-#region fields
-public virtual Size Size{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public virtual Future<object> WarmUpOnCanvas(Canvas canvas){ throw new NotImplementedException(); }
+    public interface IShaderWarmUp
+    {
+        Future<object> WarmUpOnCanvas(Canvas canvas);
+        Future<object> Execute();
+        Size Size { get; }
+    }
 
 
-public virtual Future<object> Execute(){ throw new NotImplementedException(); }
+    public class ShaderWarmUp
+    {
+        #region constructors
+        public ShaderWarmUp()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual Size Size { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual Future<object> WarmUpOnCanvas(Canvas canvas) { throw new NotImplementedException(); }
 
 
-public class DefaultShaderWarmUp : FlutterSDK.Painting.Shaderwarmup.ShaderWarmUp
-{
-#region constructors
-public DefaultShaderWarmUp(double drawCallSpacing = 0.0,Size canvasSize = default(Size))
-{
-this.DrawCallSpacing = drawCallSpacing;
-this.CanvasSize = canvasSize;throw new NotImplementedException(); }
-#endregion
+        public virtual Future<object> Execute() { throw new NotImplementedException(); }
 
-#region fields
-public virtual double DrawCallSpacing{get;set;}
-public virtual Size CanvasSize{get;set;}
-public virtual Size Size{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public new Future<object> WarmUpOnCanvas(Canvas canvas){ throw new NotImplementedException(); }
+    public class DefaultShaderWarmUp : FlutterSDK.Painting.Shaderwarmup.ShaderWarmUp
+    {
+        #region constructors
+        public DefaultShaderWarmUp(double drawCallSpacing = 0.0, Size canvasSize = default(Size))
+        {
+            this.DrawCallSpacing = drawCallSpacing;
+            this.CanvasSize = canvasSize; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual double DrawCallSpacing { get; set; }
+        public virtual Size CanvasSize { get; set; }
+        public virtual Size Size { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new Future<object> WarmUpOnCanvas(Canvas canvas) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

@@ -421,160 +421,166 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Rendering.Custompaint{
-public delegate List<FlutterSDK.Rendering.Custompaint.CustomPainterSemantics> SemanticsBuilderCallback(Size size);
-internal static class CustompaintDefaultClass{
-}
-
-public interface ICustomPainter{
-void AddListener(VoidCallback listener);
-void RemoveListener(VoidCallback listener);
-void Paint(Canvas canvas,Size size);
-bool ShouldRebuildSemantics(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate);
-bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate);
-bool HitTest(FlutterBinding.UI.Offset position);
-string ToString();
-FlutterSDK.Rendering.Custompaint.SemanticsBuilderCallback SemanticsBuilder{get;}
-}
-
-
-public class CustomPainter : FlutterSDK.Foundation.Changenotifier.Listenable
+namespace FlutterSDK.Rendering.Custompaint
 {
-#region constructors
-public CustomPainter(FlutterSDK.Foundation.Changenotifier.Listenable repaint = default(FlutterSDK.Foundation.Changenotifier.Listenable))
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
+    public delegate List<FlutterSDK.Rendering.Custompaint.CustomPainterSemantics> SemanticsBuilderCallback(Size size);
+    internal static class CustompaintDefaultClass
+    {
+    }
 
-#region fields
-internal virtual FlutterSDK.Foundation.Changenotifier.Listenable _Repaint{get;set;}
-public virtual FlutterSDK.Rendering.Custompaint.SemanticsBuilderCallback SemanticsBuilder{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new void AddListener(VoidCallback listener){ throw new NotImplementedException(); }
-
-
-public new void RemoveListener(VoidCallback listener){ throw new NotImplementedException(); }
+    public interface ICustomPainter
+    {
+        void AddListener(VoidCallback listener);
+        void RemoveListener(VoidCallback listener);
+        void Paint(Canvas canvas, Size size);
+        bool ShouldRebuildSemantics(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate);
+        bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate);
+        bool HitTest(FlutterBinding.UI.Offset position);
+        string ToString();
+        FlutterSDK.Rendering.Custompaint.SemanticsBuilderCallback SemanticsBuilder { get; }
+    }
 
 
-public virtual void Paint(Canvas canvas,Size size){ throw new NotImplementedException(); }
+    public class CustomPainter : FlutterSDK.Foundation.Changenotifier.Listenable
+    {
+        #region constructors
+        public CustomPainter(FlutterSDK.Foundation.Changenotifier.Listenable repaint = default(FlutterSDK.Foundation.Changenotifier.Listenable))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Foundation.Changenotifier.Listenable _Repaint { get; set; }
+        public virtual FlutterSDK.Rendering.Custompaint.SemanticsBuilderCallback SemanticsBuilder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void AddListener(VoidCallback listener) { throw new NotImplementedException(); }
 
 
-public virtual bool ShouldRebuildSemantics(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate){ throw new NotImplementedException(); }
+        public new void RemoveListener(VoidCallback listener) { throw new NotImplementedException(); }
 
 
-public virtual bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate){ throw new NotImplementedException(); }
+        public virtual void Paint(Canvas canvas, Size size) { throw new NotImplementedException(); }
 
 
-public virtual bool HitTest(FlutterBinding.UI.Offset position){ throw new NotImplementedException(); }
+        public virtual bool ShouldRebuildSemantics(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public virtual bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate) { throw new NotImplementedException(); }
 
 
-public class CustomPainterSemantics
-{
-#region constructors
-public CustomPainterSemantics(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect),FlutterSDK.Semantics.Semantics.SemanticsProperties properties = default(FlutterSDK.Semantics.Semantics.SemanticsProperties),Matrix4 transform = default(Matrix4),HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag> tags = default(HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag>))
-: base()
-{
-this.Key = key;
-this.Rect = rect;
-this.Properties = properties;
-this.Transform = transform;
-this.Tags = tags;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Foundation.Key.Key Key{get;set;}
-public virtual FlutterBinding.UI.Rect Rect{get;set;}
-public virtual Matrix4 Transform{get;set;}
-public virtual FlutterSDK.Semantics.Semantics.SemanticsProperties Properties{get;set;}
-public virtual HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag> Tags{get;set;}
-#endregion
-
-#region methods
-#endregion
-}
+        public virtual bool HitTest(FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
 
 
-public class RenderCustomPaint : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-#region constructors
-public RenderCustomPaint(FlutterSDK.Rendering.Custompaint.CustomPainter painter = default(FlutterSDK.Rendering.Custompaint.CustomPainter),FlutterSDK.Rendering.Custompaint.CustomPainter foregroundPainter = default(FlutterSDK.Rendering.Custompaint.CustomPainter),Size preferredSize = default(Size),bool isComplex = false,bool willChange = false,FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-: base(child)
-{
-this.IsComplex = isComplex;
-this.WillChange = willChange;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Rendering.Custompaint.CustomPainter _Painter{get;set;}
-internal virtual FlutterSDK.Rendering.Custompaint.CustomPainter _ForegroundPainter{get;set;}
-internal virtual Size _PreferredSize{get;set;}
-public virtual bool IsComplex{get;set;}
-public virtual bool WillChange{get;set;}
-internal virtual FlutterSDK.Rendering.Custompaint.SemanticsBuilderCallback _BackgroundSemanticsBuilder{get;set;}
-internal virtual FlutterSDK.Rendering.Custompaint.SemanticsBuilderCallback _ForegroundSemanticsBuilder{get;set;}
-internal virtual List<FlutterSDK.Semantics.Semantics.SemanticsNode> _BackgroundSemanticsNodes{get;set;}
-internal virtual List<FlutterSDK.Semantics.Semantics.SemanticsNode> _ForegroundSemanticsNodes{get;set;}
-public virtual FlutterSDK.Rendering.Custompaint.CustomPainter Painter{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Rendering.Custompaint.CustomPainter ForegroundPainter{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual Size PreferredSize{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
-
-#region methods
-
-private void _DidUpdatePainter(FlutterSDK.Rendering.Custompaint.CustomPainter newPainter,FlutterSDK.Rendering.Custompaint.CustomPainter oldPainter){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner){ throw new NotImplementedException(); }
-public new void Attach(@Object owner){ throw new NotImplementedException(); }
+    public class CustomPainterSemantics
+    {
+        #region constructors
+        public CustomPainterSemantics(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), FlutterSDK.Semantics.Semantics.SemanticsProperties properties = default(FlutterSDK.Semantics.Semantics.SemanticsProperties), Matrix4 transform = default(Matrix4), HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag> tags = default(HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag>))
+        : base()
+        {
+            this.Key = key;
+            this.Rect = rect;
+            this.Properties = properties;
+            this.Transform = transform;
+            this.Tags = tags; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Foundation.Key.Key Key { get; set; }
+        public virtual FlutterBinding.UI.Rect Rect { get; set; }
+        public virtual Matrix4 Transform { get; set; }
+        public virtual FlutterSDK.Semantics.Semantics.SemanticsProperties Properties { get; set; }
+        public virtual HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag> Tags { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
 
 
-public new void Detach(){ throw new NotImplementedException(); }
+    public class RenderCustomPaint : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public RenderCustomPaint(FlutterSDK.Rendering.Custompaint.CustomPainter painter = default(FlutterSDK.Rendering.Custompaint.CustomPainter), FlutterSDK.Rendering.Custompaint.CustomPainter foregroundPainter = default(FlutterSDK.Rendering.Custompaint.CustomPainter), Size preferredSize = default(Size), bool isComplex = false, bool willChange = false, FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+        : base(child)
+        {
+            this.IsComplex = isComplex;
+            this.WillChange = willChange; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Rendering.Custompaint.CustomPainter _Painter { get; set; }
+        internal virtual FlutterSDK.Rendering.Custompaint.CustomPainter _ForegroundPainter { get; set; }
+        internal virtual Size _PreferredSize { get; set; }
+        public virtual bool IsComplex { get; set; }
+        public virtual bool WillChange { get; set; }
+        internal virtual FlutterSDK.Rendering.Custompaint.SemanticsBuilderCallback _BackgroundSemanticsBuilder { get; set; }
+        internal virtual FlutterSDK.Rendering.Custompaint.SemanticsBuilderCallback _ForegroundSemanticsBuilder { get; set; }
+        internal virtual List<FlutterSDK.Semantics.Semantics.SemanticsNode> _BackgroundSemanticsNodes { get; set; }
+        internal virtual List<FlutterSDK.Semantics.Semantics.SemanticsNode> _ForegroundSemanticsNodes { get; set; }
+        public virtual FlutterSDK.Rendering.Custompaint.CustomPainter Painter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Custompaint.CustomPainter ForegroundPainter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual Size PreferredSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        private void _DidUpdatePainter(FlutterSDK.Rendering.Custompaint.CustomPainter newPainter, FlutterSDK.Rendering.Custompaint.CustomPainter oldPainter) { throw new NotImplementedException(); }
 
 
-public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
+        public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner) { throw new NotImplementedException(); }
+        public new void Attach(@Object owner) { throw new NotImplementedException(); }
 
 
-public new bool HitTestSelf(FlutterBinding.UI.Offset position){ throw new NotImplementedException(); }
+        public new void Detach() { throw new NotImplementedException(); }
 
 
-public new void PerformResize(){ throw new NotImplementedException(); }
+        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
 
-private void _PaintWithPainter(Canvas canvas,FlutterBinding.UI.Offset offset,FlutterSDK.Rendering.Custompaint.CustomPainter painter){ throw new NotImplementedException(); }
+        public new bool HitTestSelf(FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new void PerformResize() { throw new NotImplementedException(); }
 
 
-private void _SetRasterCacheHints(FlutterSDK.Rendering.@object.PaintingContext context){ throw new NotImplementedException(); }
+        private void _PaintWithPainter(Canvas canvas, FlutterBinding.UI.Offset offset, FlutterSDK.Rendering.Custompaint.CustomPainter painter) { throw new NotImplementedException(); }
 
 
-public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
-public new void AssembleSemanticsNode(FlutterSDK.Semantics.Semantics.SemanticsNode node,FlutterSDK.Semantics.Semantics.SemanticsConfiguration config,Iterable<FlutterSDK.Semantics.Semantics.SemanticsNode> children){ throw new NotImplementedException(); }
+        private void _SetRasterCacheHints(FlutterSDK.Rendering.@object.PaintingContext context) { throw new NotImplementedException(); }
 
 
-public new void ClearSemantics(){ throw new NotImplementedException(); }
+        public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config) { throw new NotImplementedException(); }
 
 
-private List<FlutterSDK.Semantics.Semantics.SemanticsNode> _UpdateSemanticsChildren(List<FlutterSDK.Semantics.Semantics.SemanticsNode> oldSemantics,List<FlutterSDK.Rendering.Custompaint.CustomPainterSemantics> newChildSemantics){ throw new NotImplementedException(); }
+        public new void AssembleSemanticsNode(FlutterSDK.Semantics.Semantics.SemanticsNode node, FlutterSDK.Semantics.Semantics.SemanticsConfiguration config, Iterable<FlutterSDK.Semantics.Semantics.SemanticsNode> children) { throw new NotImplementedException(); }
 
 
-private bool _CanUpdateSemanticsChild(FlutterSDK.Semantics.Semantics.SemanticsNode oldChild,FlutterSDK.Rendering.Custompaint.CustomPainterSemantics newSemantics){ throw new NotImplementedException(); }
+        public new void ClearSemantics() { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Semantics.Semantics.SemanticsNode _UpdateSemanticsChild(FlutterSDK.Semantics.Semantics.SemanticsNode oldChild,FlutterSDK.Rendering.Custompaint.CustomPainterSemantics newSemantics){ throw new NotImplementedException(); }
+        private List<FlutterSDK.Semantics.Semantics.SemanticsNode> _UpdateSemanticsChildren(List<FlutterSDK.Semantics.Semantics.SemanticsNode> oldSemantics, List<FlutterSDK.Rendering.Custompaint.CustomPainterSemantics> newChildSemantics) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        private bool _CanUpdateSemanticsChild(FlutterSDK.Semantics.Semantics.SemanticsNode oldChild, FlutterSDK.Rendering.Custompaint.CustomPainterSemantics newSemantics) { throw new NotImplementedException(); }
+
+
+        private FlutterSDK.Semantics.Semantics.SemanticsNode _UpdateSemanticsChild(FlutterSDK.Semantics.Semantics.SemanticsNode oldChild, FlutterSDK.Rendering.Custompaint.CustomPainterSemantics newSemantics) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

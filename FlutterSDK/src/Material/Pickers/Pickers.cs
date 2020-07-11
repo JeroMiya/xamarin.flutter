@@ -402,7 +402,9 @@ using FlutterSDK.Material.Pickers.Datepickerheader;
 using FlutterSDK.Material.Pickers.Inputdatepicker;
 using FlutterSDK.Material.Textfield;
 using FlutterSDK.Material.Textformfield;
-namespace FlutterSDK.Material.Pickers.Pickers{
-internal static class PickersDefaultClass{
-}
+namespace FlutterSDK.Material.Pickers.Pickers
+{
+    internal static class PickersDefaultClass
+    {
+    }
 }

@@ -423,65 +423,69 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Scrollconfiguration{
-internal static class ScrollconfigurationDefaultClass{
-public static Color _KDefaultGlowColor = default(Color);
-}
-
-public class ScrollBehavior
+namespace FlutterSDK.Widgets.Scrollconfiguration
 {
-#region constructors
-public ScrollBehavior()
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class ScrollconfigurationDefaultClass
+    {
+        public static Color _KDefaultGlowColor = default(Color);
+    }
 
-#region fields
-#endregion
+    public class ScrollBehavior
+    {
+        #region constructors
+        public ScrollBehavior()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        #endregion
 
-public virtual FlutterSDK.Foundation.Platform.TargetPlatform GetPlatform(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual FlutterSDK.Widgets.Framework.Widget BuildViewportChrome(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Widgets.Framework.Widget child,FlutterSDK.Painting.Basictypes.AxisDirection axisDirection){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics GetScrollPhysics(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-
-public virtual bool ShouldNotify(FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior oldDelegate){ throw new NotImplementedException(); }
-
-
-#endregion
-}
+        public virtual FlutterSDK.Foundation.Platform.TargetPlatform GetPlatform(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public class ScrollConfiguration : FlutterSDK.Widgets.Framework.InheritedWidget
-{
-#region constructors
-public ScrollConfiguration(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior behavior = default(FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key,child:child)
-{
-this.Behavior = behavior;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior Behavior{get;set;}
-#endregion
-
-#region methods
-
-public virtual FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior Of(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Widgets.Framework.Widget BuildViewportChrome(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child, FlutterSDK.Painting.Basictypes.AxisDirection axisDirection) { throw new NotImplementedException(); }
 
 
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Scrollconfiguration.ScrollConfiguration oldWidget){ throw new NotImplementedException(); }
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics GetScrollPhysics(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public virtual bool ShouldNotify(FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior oldDelegate) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        #endregion
+    }
+
+
+    public class ScrollConfiguration : FlutterSDK.Widgets.Framework.InheritedWidget
+    {
+        #region constructors
+        public ScrollConfiguration(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior behavior = default(FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            this.Behavior = behavior; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior Behavior { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Scrollconfiguration.ScrollConfiguration oldWidget) { throw new NotImplementedException(); }
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

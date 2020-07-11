@@ -376,48 +376,51 @@ using FlutterSDK.Material.Tooltip;
 using FlutterSDK.Material.Dropdown;
 using FlutterSDK.Material.Datatable;
 using FlutterSDK.Material.Dialogtheme;
-namespace FlutterSDK.Material.Dialogtheme{
-internal static class DialogthemeDefaultClass{
-}
-
-public class DialogTheme : IDiagnosticable
+namespace FlutterSDK.Material.Dialogtheme
 {
-#region constructors
-public DialogTheme(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),double elevation = default(double),FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder),FlutterSDK.Painting.Textstyle.TextStyle titleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
-{
-this.BackgroundColor = backgroundColor;
-this.Elevation = elevation;
-this.Shape = shape;
-this.TitleTextStyle = titleTextStyle;
-this.ContentTextStyle = contentTextStyle;throw new NotImplementedException(); }
-#endregion
+    internal static class DialogthemeDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterBinding.UI.Color BackgroundColor{get;set;}
-public virtual double Elevation{get;set;}
-public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape{get;set;}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle TitleTextStyle{get;set;}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle ContentTextStyle{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class DialogTheme : IDiagnosticable
+    {
+        #region constructors
+        public DialogTheme(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Painting.Textstyle.TextStyle titleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
+        {
+            this.BackgroundColor = backgroundColor;
+            this.Elevation = elevation;
+            this.Shape = shape;
+            this.TitleTextStyle = titleTextStyle;
+            this.ContentTextStyle = contentTextStyle; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle TitleTextStyle { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle ContentTextStyle { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual FlutterSDK.Material.Dialogtheme.DialogTheme CopyWith(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),double elevation = default(double),FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder),FlutterSDK.Painting.Textstyle.TextStyle titleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle)){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual FlutterSDK.Material.Dialogtheme.DialogTheme Of(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Material.Dialogtheme.DialogTheme Lerp(FlutterSDK.Material.Dialogtheme.DialogTheme a,FlutterSDK.Material.Dialogtheme.DialogTheme b,double t){ throw new NotImplementedException(); }
-
-
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Material.Dialogtheme.DialogTheme CopyWith(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Painting.Textstyle.TextStyle titleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle)) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Material.Dialogtheme.DialogTheme Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public virtual FlutterSDK.Material.Dialogtheme.DialogTheme Lerp(FlutterSDK.Material.Dialogtheme.DialogTheme a, FlutterSDK.Material.Dialogtheme.DialogTheme b, double t) { throw new NotImplementedException(); }
+
+
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

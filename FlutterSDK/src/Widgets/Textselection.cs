@@ -423,479 +423,492 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Textselection{
-public delegate void TextSelectionOverlayChanged(FlutterSDK.Services.Textinput.TextEditingValue value,FlutterBinding.UI.Rect caretRect);
-public delegate void DragSelectionUpdateCallback(FlutterSDK.Gestures.Dragdetails.DragStartDetails startDetails,FlutterSDK.Gestures.Dragdetails.DragUpdateDetails updateDetails);
-internal static class TextselectionDefaultClass{
-public static TimeSpan _KDragSelectionUpdateThrottle = default(TimeSpan);
-}
-
-public interface ITextSelectionControls{}
-
-public class TextSelectionControls{
-
-public virtual FlutterSDK.Widgets.Framework.Widget BuildHandle(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Widgets.Textselection.TextSelectionHandleType type,double textLineHeight){ throw new NotImplementedException(); }
-
-
-public virtual Offset GetHandleAnchor(FlutterSDK.Widgets.Textselection.TextSelectionHandleType type,double textLineHeight){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Widgets.Framework.Widget BuildToolbar(FlutterSDK.Widgets.Framework.BuildContext context,FlutterBinding.UI.Rect globalEditableRegion,double textLineHeight,FlutterBinding.UI.Offset position,List<FlutterSDK.Rendering.Editable.TextSelectionPoint> endpoints,FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate){ throw new NotImplementedException(); }
-
-
-public virtual Size GetHandleSize(double textLineHeight){ throw new NotImplementedException(); }
-
-
-public virtual bool CanCut(FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate){ throw new NotImplementedException(); }
-
-
-public virtual bool CanCopy(FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate){ throw new NotImplementedException(); }
-
-
-public virtual bool CanPaste(FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate){ throw new NotImplementedException(); }
-
-
-public virtual bool CanSelectAll(FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate){ throw new NotImplementedException(); }
-
-
-public virtual void HandleCut(FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate){ throw new NotImplementedException(); }
-
-
-public virtual void HandleCopy(FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate){ throw new NotImplementedException(); }
-
-
-public virtual Future<object> HandlePaste(FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate){ throw new NotImplementedException(); }
-
-
-public virtual void HandleSelectAll(FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate){ throw new NotImplementedException(); }
-
-}
-public static class TextSelectionControlsMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<ITextSelectionControls, TextSelectionControls> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<ITextSelectionControls, TextSelectionControls>();
-static TextSelectionControls GetOrCreate(ITextSelectionControls instance)
+namespace FlutterSDK.Widgets.Textselection
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new TextSelectionControls();
-_table.Add(instance, value);
-}
-return (TextSelectionControls)value;
-}
-public static FlutterSDK.Widgets.Framework.Widget BuildHandle(this ITextSelectionControls instance,FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Widgets.Textselection.TextSelectionHandleType type,double textLineHeight) => GetOrCreate(instance).BuildHandle(context, type, textLineHeight);
-public static Offset GetHandleAnchor(this ITextSelectionControls instance,FlutterSDK.Widgets.Textselection.TextSelectionHandleType type,double textLineHeight) => GetOrCreate(instance).GetHandleAnchor(type, textLineHeight);
-public static FlutterSDK.Widgets.Framework.Widget BuildToolbar(this ITextSelectionControls instance,FlutterSDK.Widgets.Framework.BuildContext context,FlutterBinding.UI.Rect globalEditableRegion,double textLineHeight,FlutterBinding.UI.Offset position,List<FlutterSDK.Rendering.Editable.TextSelectionPoint> endpoints,FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) => GetOrCreate(instance).BuildToolbar(context, globalEditableRegion, textLineHeight, position, endpoints, @delegate);
-public static Size GetHandleSize(this ITextSelectionControls instance,double textLineHeight) => GetOrCreate(instance).GetHandleSize(textLineHeight);
-public static bool CanCut(this ITextSelectionControls instance,FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) => GetOrCreate(instance).CanCut(@delegate);
-public static bool CanCopy(this ITextSelectionControls instance,FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) => GetOrCreate(instance).CanCopy(@delegate);
-public static bool CanPaste(this ITextSelectionControls instance,FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) => GetOrCreate(instance).CanPaste(@delegate);
-public static bool CanSelectAll(this ITextSelectionControls instance,FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) => GetOrCreate(instance).CanSelectAll(@delegate);
-public static void HandleCut(this ITextSelectionControls instance,FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) => GetOrCreate(instance).HandleCut(@delegate);
-public static void HandleCopy(this ITextSelectionControls instance,FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) => GetOrCreate(instance).HandleCopy(@delegate);
-public static Future<object> HandlePaste(this ITextSelectionControls instance,FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) => GetOrCreate(instance).HandlePaste(@delegate);
-public static void HandleSelectAll(this ITextSelectionControls instance,FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) => GetOrCreate(instance).HandleSelectAll(@delegate);
-}
-
-
-public interface ITextSelectionGestureDetectorBuilderDelegate{}
-
-public class TextSelectionGestureDetectorBuilderDelegate{
-public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Editabletext.EditableTextState> EditableTextKey{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool ForcePressEnabled{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool SelectionEnabled{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-}
-public static class TextSelectionGestureDetectorBuilderDelegateMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<ITextSelectionGestureDetectorBuilderDelegate, TextSelectionGestureDetectorBuilderDelegate> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<ITextSelectionGestureDetectorBuilderDelegate, TextSelectionGestureDetectorBuilderDelegate>();
-static TextSelectionGestureDetectorBuilderDelegate GetOrCreate(ITextSelectionGestureDetectorBuilderDelegate instance)
-{
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new TextSelectionGestureDetectorBuilderDelegate();
-_table.Add(instance, value);
-}
-return (TextSelectionGestureDetectorBuilderDelegate)value;
-}
-public static FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Editabletext.EditableTextState> EditableTextKeyProperty(this ITextSelectionGestureDetectorBuilderDelegate instance) => GetOrCreate(instance).EditableTextKey;
-public static bool ForcePressEnabledProperty(this ITextSelectionGestureDetectorBuilderDelegate instance) => GetOrCreate(instance).ForcePressEnabled;
-public static bool SelectionEnabledProperty(this ITextSelectionGestureDetectorBuilderDelegate instance) => GetOrCreate(instance).SelectionEnabled;
-}
-
-
-public class TextSelectionOverlay
-{
-#region constructors
-public TextSelectionOverlay(FlutterSDK.Services.Textinput.TextEditingValue value = default(FlutterSDK.Services.Textinput.TextEditingValue),FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext),FlutterSDK.Widgets.Framework.Widget debugRequiredFor = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Rendering.Layer.LayerLink toolbarLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink),FlutterSDK.Rendering.Layer.LayerLink startHandleLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink),FlutterSDK.Rendering.Layer.LayerLink endHandleLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink),FlutterSDK.Rendering.Editable.RenderEditable renderObject = default(FlutterSDK.Rendering.Editable.RenderEditable),FlutterSDK.Widgets.Textselection.TextSelectionControls selectionControls = default(FlutterSDK.Widgets.Textselection.TextSelectionControls),bool handlesVisible = false,FlutterSDK.Services.Textinput.TextSelectionDelegate selectionDelegate = default(FlutterSDK.Services.Textinput.TextSelectionDelegate),FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior),VoidCallback onSelectionHandleTapped = default(VoidCallback))
-: base()
-{
-this.Context = context;
-this.DebugRequiredFor = debugRequiredFor;
-this.ToolbarLayerLink = toolbarLayerLink;
-this.StartHandleLayerLink = startHandleLayerLink;
-this.EndHandleLayerLink = endHandleLayerLink;
-this.RenderObject = renderObject;
-this.SelectionControls = selectionControls;
-this.SelectionDelegate = selectionDelegate;
-this.DragStartBehavior = dragStartBehavior;
-this.OnSelectionHandleTapped = onSelectionHandleTapped;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Framework.BuildContext Context{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget DebugRequiredFor{get;set;}
-public virtual FlutterSDK.Rendering.Layer.LayerLink ToolbarLayerLink{get;set;}
-public virtual FlutterSDK.Rendering.Layer.LayerLink StartHandleLayerLink{get;set;}
-public virtual FlutterSDK.Rendering.Layer.LayerLink EndHandleLayerLink{get;set;}
-public virtual FlutterSDK.Rendering.Editable.RenderEditable RenderObject{get;set;}
-public virtual FlutterSDK.Widgets.Textselection.TextSelectionControls SelectionControls{get;set;}
-public virtual FlutterSDK.Services.Textinput.TextSelectionDelegate SelectionDelegate{get;set;}
-public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior{get;set;}
-public virtual VoidCallback OnSelectionHandleTapped{get;set;}
-public virtual TimeSpan FadeDuration{get;set;}
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _ToolbarController{get;set;}
-internal virtual FlutterSDK.Services.Textinput.TextEditingValue _Value{get;set;}
-internal virtual List<FlutterSDK.Widgets.Overlay.OverlayEntry> _Handles{get;set;}
-internal virtual FlutterSDK.Widgets.Overlay.OverlayEntry _Toolbar{get;set;}
-internal virtual bool _HandlesVisible{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _ToolbarOpacity{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Services.Textinput.TextEditingValue Value{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual FlutterSDK.Services.Textediting.TextSelection _Selection{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool HandlesVisible{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool HandlesAreVisible{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool ToolbarIsVisible{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public virtual void ShowHandles(){ throw new NotImplementedException(); }
+    public delegate void TextSelectionOverlayChanged(FlutterSDK.Services.Textinput.TextEditingValue value, FlutterBinding.UI.Rect caretRect);
+    public delegate void DragSelectionUpdateCallback(FlutterSDK.Gestures.Dragdetails.DragStartDetails startDetails, FlutterSDK.Gestures.Dragdetails.DragUpdateDetails updateDetails);
+    internal static class TextselectionDefaultClass
+    {
+        public static TimeSpan _KDragSelectionUpdateThrottle = default(TimeSpan);
+    }
 
-
-public virtual void HideHandles(){ throw new NotImplementedException(); }
+    public interface ITextSelectionControls { }
 
+    public class TextSelectionControls
+    {
 
-public virtual void ShowToolbar(){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Widgets.Framework.Widget BuildHandle(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Textselection.TextSelectionHandleType type, double textLineHeight) { throw new NotImplementedException(); }
 
 
-public virtual void Update(FlutterSDK.Services.Textinput.TextEditingValue newValue){ throw new NotImplementedException(); }
+        public virtual Offset GetHandleAnchor(FlutterSDK.Widgets.Textselection.TextSelectionHandleType type, double textLineHeight) { throw new NotImplementedException(); }
 
 
-public virtual void UpdateForScroll(){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Widgets.Framework.Widget BuildToolbar(FlutterSDK.Widgets.Framework.BuildContext context, FlutterBinding.UI.Rect globalEditableRegion, double textLineHeight, FlutterBinding.UI.Offset position, List<FlutterSDK.Rendering.Editable.TextSelectionPoint> endpoints, FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) { throw new NotImplementedException(); }
 
 
-private void _MarkNeedsBuild(TimeSpan duration = default(TimeSpan)){ throw new NotImplementedException(); }
+        public virtual Size GetHandleSize(double textLineHeight) { throw new NotImplementedException(); }
 
 
-public virtual void Hide(){ throw new NotImplementedException(); }
+        public virtual bool CanCut(FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) { throw new NotImplementedException(); }
 
 
-public virtual void HideToolbar(){ throw new NotImplementedException(); }
+        public virtual bool CanCopy(FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) { throw new NotImplementedException(); }
 
+
+        public virtual bool CanPaste(FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) { throw new NotImplementedException(); }
+
+
+        public virtual bool CanSelectAll(FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) { throw new NotImplementedException(); }
+
+
+        public virtual void HandleCut(FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) { throw new NotImplementedException(); }
+
+
+        public virtual void HandleCopy(FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) { throw new NotImplementedException(); }
+
+
+        public virtual Future<object> HandlePaste(FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) { throw new NotImplementedException(); }
+
+
+        public virtual void HandleSelectAll(FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) { throw new NotImplementedException(); }
+
+    }
+    public static class TextSelectionControlsMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<ITextSelectionControls, TextSelectionControls> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<ITextSelectionControls, TextSelectionControls>();
+        static TextSelectionControls GetOrCreate(ITextSelectionControls instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new TextSelectionControls();
+                _table.Add(instance, value);
+            }
+            return (TextSelectionControls)value;
+        }
+        public static FlutterSDK.Widgets.Framework.Widget BuildHandle(this ITextSelectionControls instance, FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Textselection.TextSelectionHandleType type, double textLineHeight) => GetOrCreate(instance).BuildHandle(context, type, textLineHeight);
+        public static Offset GetHandleAnchor(this ITextSelectionControls instance, FlutterSDK.Widgets.Textselection.TextSelectionHandleType type, double textLineHeight) => GetOrCreate(instance).GetHandleAnchor(type, textLineHeight);
+        public static FlutterSDK.Widgets.Framework.Widget BuildToolbar(this ITextSelectionControls instance, FlutterSDK.Widgets.Framework.BuildContext context, FlutterBinding.UI.Rect globalEditableRegion, double textLineHeight, FlutterBinding.UI.Offset position, List<FlutterSDK.Rendering.Editable.TextSelectionPoint> endpoints, FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) => GetOrCreate(instance).BuildToolbar(context, globalEditableRegion, textLineHeight, position, endpoints, @delegate);
+        public static Size GetHandleSize(this ITextSelectionControls instance, double textLineHeight) => GetOrCreate(instance).GetHandleSize(textLineHeight);
+        public static bool CanCut(this ITextSelectionControls instance, FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) => GetOrCreate(instance).CanCut(@delegate);
+        public static bool CanCopy(this ITextSelectionControls instance, FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) => GetOrCreate(instance).CanCopy(@delegate);
+        public static bool CanPaste(this ITextSelectionControls instance, FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) => GetOrCreate(instance).CanPaste(@delegate);
+        public static bool CanSelectAll(this ITextSelectionControls instance, FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) => GetOrCreate(instance).CanSelectAll(@delegate);
+        public static void HandleCut(this ITextSelectionControls instance, FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) => GetOrCreate(instance).HandleCut(@delegate);
+        public static void HandleCopy(this ITextSelectionControls instance, FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) => GetOrCreate(instance).HandleCopy(@delegate);
+        public static Future<object> HandlePaste(this ITextSelectionControls instance, FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) => GetOrCreate(instance).HandlePaste(@delegate);
+        public static void HandleSelectAll(this ITextSelectionControls instance, FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) => GetOrCreate(instance).HandleSelectAll(@delegate);
+    }
 
-public virtual void Dispose(){ throw new NotImplementedException(); }
 
+    public interface ITextSelectionGestureDetectorBuilderDelegate { }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildHandle(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Widgets.Textselection._TextSelectionHandlePosition position){ throw new NotImplementedException(); }
+    public class TextSelectionGestureDetectorBuilderDelegate
+    {
+        public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Editabletext.EditableTextState> EditableTextKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool ForcePressEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool SelectionEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    }
+    public static class TextSelectionGestureDetectorBuilderDelegateMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<ITextSelectionGestureDetectorBuilderDelegate, TextSelectionGestureDetectorBuilderDelegate> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<ITextSelectionGestureDetectorBuilderDelegate, TextSelectionGestureDetectorBuilderDelegate>();
+        static TextSelectionGestureDetectorBuilderDelegate GetOrCreate(ITextSelectionGestureDetectorBuilderDelegate instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new TextSelectionGestureDetectorBuilderDelegate();
+                _table.Add(instance, value);
+            }
+            return (TextSelectionGestureDetectorBuilderDelegate)value;
+        }
+        public static FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Editabletext.EditableTextState> EditableTextKeyProperty(this ITextSelectionGestureDetectorBuilderDelegate instance) => GetOrCreate(instance).EditableTextKey;
+        public static bool ForcePressEnabledProperty(this ITextSelectionGestureDetectorBuilderDelegate instance) => GetOrCreate(instance).ForcePressEnabled;
+        public static bool SelectionEnabledProperty(this ITextSelectionGestureDetectorBuilderDelegate instance) => GetOrCreate(instance).SelectionEnabled;
+    }
 
 
-private FlutterSDK.Widgets.Framework.Widget _BuildToolbar(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+    public class TextSelectionOverlay
+    {
+        #region constructors
+        public TextSelectionOverlay(FlutterSDK.Services.Textinput.TextEditingValue value = default(FlutterSDK.Services.Textinput.TextEditingValue), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Widgets.Framework.Widget debugRequiredFor = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Rendering.Layer.LayerLink toolbarLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterSDK.Rendering.Layer.LayerLink startHandleLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterSDK.Rendering.Layer.LayerLink endHandleLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterSDK.Rendering.Editable.RenderEditable renderObject = default(FlutterSDK.Rendering.Editable.RenderEditable), FlutterSDK.Widgets.Textselection.TextSelectionControls selectionControls = default(FlutterSDK.Widgets.Textselection.TextSelectionControls), bool handlesVisible = false, FlutterSDK.Services.Textinput.TextSelectionDelegate selectionDelegate = default(FlutterSDK.Services.Textinput.TextSelectionDelegate), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), VoidCallback onSelectionHandleTapped = default(VoidCallback))
+        : base()
+        {
+            this.Context = context;
+            this.DebugRequiredFor = debugRequiredFor;
+            this.ToolbarLayerLink = toolbarLayerLink;
+            this.StartHandleLayerLink = startHandleLayerLink;
+            this.EndHandleLayerLink = endHandleLayerLink;
+            this.RenderObject = renderObject;
+            this.SelectionControls = selectionControls;
+            this.SelectionDelegate = selectionDelegate;
+            this.DragStartBehavior = dragStartBehavior;
+            this.OnSelectionHandleTapped = onSelectionHandleTapped; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.BuildContext Context { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget DebugRequiredFor { get; set; }
+        public virtual FlutterSDK.Rendering.Layer.LayerLink ToolbarLayerLink { get; set; }
+        public virtual FlutterSDK.Rendering.Layer.LayerLink StartHandleLayerLink { get; set; }
+        public virtual FlutterSDK.Rendering.Layer.LayerLink EndHandleLayerLink { get; set; }
+        public virtual FlutterSDK.Rendering.Editable.RenderEditable RenderObject { get; set; }
+        public virtual FlutterSDK.Widgets.Textselection.TextSelectionControls SelectionControls { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextSelectionDelegate SelectionDelegate { get; set; }
+        public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
+        public virtual VoidCallback OnSelectionHandleTapped { get; set; }
+        public virtual TimeSpan FadeDuration { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _ToolbarController { get; set; }
+        internal virtual FlutterSDK.Services.Textinput.TextEditingValue _Value { get; set; }
+        internal virtual List<FlutterSDK.Widgets.Overlay.OverlayEntry> _Handles { get; set; }
+        internal virtual FlutterSDK.Widgets.Overlay.OverlayEntry _Toolbar { get; set; }
+        internal virtual bool _HandlesVisible { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _ToolbarOpacity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Services.Textinput.TextEditingValue Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual FlutterSDK.Services.Textediting.TextSelection _Selection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool HandlesVisible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool HandlesAreVisible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool ToolbarIsVisible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-private void _HandleSelectionHandleChanged(FlutterSDK.Services.Textediting.TextSelection newSelection,FlutterSDK.Widgets.Textselection._TextSelectionHandlePosition position){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public virtual void ShowHandles() { throw new NotImplementedException(); }
 
 
-public class _TextSelectionHandleOverlay : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public _TextSelectionHandleOverlay(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Services.Textediting.TextSelection selection = default(FlutterSDK.Services.Textediting.TextSelection),FlutterSDK.Widgets.Textselection._TextSelectionHandlePosition position = default(FlutterSDK.Widgets.Textselection._TextSelectionHandlePosition),FlutterSDK.Rendering.Layer.LayerLink startHandleLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink),FlutterSDK.Rendering.Layer.LayerLink endHandleLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink),FlutterSDK.Rendering.Editable.RenderEditable renderObject = default(FlutterSDK.Rendering.Editable.RenderEditable),FlutterSDK.Foundation.Basictypes.ValueChanged<TextSelection> onSelectionHandleChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<TextSelection>),VoidCallback onSelectionHandleTapped = default(VoidCallback),FlutterSDK.Widgets.Textselection.TextSelectionControls selectionControls = default(FlutterSDK.Widgets.Textselection.TextSelectionControls),FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
-: base(key:key)
-{
-this.Selection = selection;
-this.Position = position;
-this.StartHandleLayerLink = startHandleLayerLink;
-this.EndHandleLayerLink = endHandleLayerLink;
-this.RenderObject = renderObject;
-this.OnSelectionHandleChanged = onSelectionHandleChanged;
-this.OnSelectionHandleTapped = onSelectionHandleTapped;
-this.SelectionControls = selectionControls;
-this.DragStartBehavior = dragStartBehavior;throw new NotImplementedException(); }
-#endregion
+        public virtual void HideHandles() { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Services.Textediting.TextSelection Selection{get;set;}
-public virtual FlutterSDK.Widgets.Textselection._TextSelectionHandlePosition Position{get;set;}
-public virtual FlutterSDK.Rendering.Layer.LayerLink StartHandleLayerLink{get;set;}
-public virtual FlutterSDK.Rendering.Layer.LayerLink EndHandleLayerLink{get;set;}
-public virtual FlutterSDK.Rendering.Editable.RenderEditable RenderObject{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<TextSelection> OnSelectionHandleChanged{get;set;}
-public virtual VoidCallback OnSelectionHandleTapped{get;set;}
-public virtual FlutterSDK.Widgets.Textselection.TextSelectionControls SelectionControls{get;set;}
-public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior{get;set;}
-internal virtual FlutterSDK.Foundation.Changenotifier.ValueListenable<bool> _Visibility{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+        public virtual void ShowToolbar() { throw new NotImplementedException(); }
 
-public new FlutterSDK.Widgets.Textselection._TextSelectionHandleOverlayState CreateState(){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public virtual void Update(FlutterSDK.Services.Textinput.TextEditingValue newValue) { throw new NotImplementedException(); }
 
 
-public class _TextSelectionHandleOverlayState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Textselection._TextSelectionHandleOverlay>,ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-#region constructors
-public _TextSelectionHandleOverlayState()
-{ }
-#endregion
+        public virtual void UpdateForScroll() { throw new NotImplementedException(); }
 
-#region fields
-internal virtual FlutterBinding.UI.Offset _DragPosition{get;set;}
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _Opacity{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+        private void _MarkNeedsBuild(TimeSpan duration = default(TimeSpan)) { throw new NotImplementedException(); }
 
-public new void InitState(){ throw new NotImplementedException(); }
 
+        public virtual void Hide() { throw new NotImplementedException(); }
 
-private void _HandleVisibilityChanged(){ throw new NotImplementedException(); }
 
+        public virtual void HideToolbar() { throw new NotImplementedException(); }
 
-public new void DidUpdateWidget(FlutterSDK.Widgets.Textselection._TextSelectionHandleOverlay oldWidget){ throw new NotImplementedException(); }
 
+        public virtual void Dispose() { throw new NotImplementedException(); }
 
-public new void Dispose(){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildHandle(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Textselection._TextSelectionHandlePosition position) { throw new NotImplementedException(); }
 
-private void _HandleDragStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildToolbar(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-private void _HandleDragUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details){ throw new NotImplementedException(); }
 
+        private void _HandleSelectionHandleChanged(FlutterSDK.Services.Textediting.TextSelection newSelection, FlutterSDK.Widgets.Textselection._TextSelectionHandlePosition position) { throw new NotImplementedException(); }
 
-private void _HandleTap(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+    public class _TextSelectionHandleOverlay : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public _TextSelectionHandleOverlay(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Services.Textediting.TextSelection selection = default(FlutterSDK.Services.Textediting.TextSelection), FlutterSDK.Widgets.Textselection._TextSelectionHandlePosition position = default(FlutterSDK.Widgets.Textselection._TextSelectionHandlePosition), FlutterSDK.Rendering.Layer.LayerLink startHandleLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterSDK.Rendering.Layer.LayerLink endHandleLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterSDK.Rendering.Editable.RenderEditable renderObject = default(FlutterSDK.Rendering.Editable.RenderEditable), FlutterSDK.Foundation.Basictypes.ValueChanged<TextSelection> onSelectionHandleChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<TextSelection>), VoidCallback onSelectionHandleTapped = default(VoidCallback), FlutterSDK.Widgets.Textselection.TextSelectionControls selectionControls = default(FlutterSDK.Widgets.Textselection.TextSelectionControls), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
+        : base(key: key)
+        {
+            this.Selection = selection;
+            this.Position = position;
+            this.StartHandleLayerLink = startHandleLayerLink;
+            this.EndHandleLayerLink = endHandleLayerLink;
+            this.RenderObject = renderObject;
+            this.OnSelectionHandleChanged = onSelectionHandleChanged;
+            this.OnSelectionHandleTapped = onSelectionHandleTapped;
+            this.SelectionControls = selectionControls;
+            this.DragStartBehavior = dragStartBehavior; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual FlutterSDK.Services.Textediting.TextSelection Selection { get; set; }
+        public virtual FlutterSDK.Widgets.Textselection._TextSelectionHandlePosition Position { get; set; }
+        public virtual FlutterSDK.Rendering.Layer.LayerLink StartHandleLayerLink { get; set; }
+        public virtual FlutterSDK.Rendering.Layer.LayerLink EndHandleLayerLink { get; set; }
+        public virtual FlutterSDK.Rendering.Editable.RenderEditable RenderObject { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<TextSelection> OnSelectionHandleChanged { get; set; }
+        public virtual VoidCallback OnSelectionHandleTapped { get; set; }
+        public virtual FlutterSDK.Widgets.Textselection.TextSelectionControls SelectionControls { get; set; }
+        public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
+        internal virtual FlutterSDK.Foundation.Changenotifier.ValueListenable<bool> _Visibility { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-private FlutterSDK.Widgets.Textselection.TextSelectionHandleType _ChooseType(TextDirection textDirection,FlutterSDK.Widgets.Textselection.TextSelectionHandleType ltrType,FlutterSDK.Widgets.Textselection.TextSelectionHandleType rtlType){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new FlutterSDK.Widgets.Textselection._TextSelectionHandleOverlayState CreateState() { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class TextSelectionGestureDetectorBuilder
-{
-#region constructors
-public TextSelectionGestureDetectorBuilder(FlutterSDK.Widgets.Textselection.TextSelectionGestureDetectorBuilderDelegate @delegate = default(FlutterSDK.Widgets.Textselection.TextSelectionGestureDetectorBuilderDelegate))
-: base()
-{
-this.@delegate = @delegate;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual FlutterSDK.Widgets.Textselection.TextSelectionGestureDetectorBuilderDelegate @delegate{get;set;}
-internal virtual bool _ShouldShowSelectionToolbar{get;set;}
-public virtual bool ShouldShowSelectionToolbar{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Widgets.Editabletext.EditableTextState EditableText{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Rendering.Editable.RenderEditable RenderEditable{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class _TextSelectionHandleOverlayState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Textselection._TextSelectionHandleOverlay>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _TextSelectionHandleOverlayState()
+        { }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual FlutterBinding.UI.Offset _DragPosition { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _Opacity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual void OnTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details){ throw new NotImplementedException(); }
+        #region methods
 
+        public new void InitState() { throw new NotImplementedException(); }
 
-public virtual void OnForcePressStart(FlutterSDK.Gestures.Forcepress.ForcePressDetails details){ throw new NotImplementedException(); }
 
+        private void _HandleVisibilityChanged() { throw new NotImplementedException(); }
 
-public virtual void OnForcePressEnd(FlutterSDK.Gestures.Forcepress.ForcePressDetails details){ throw new NotImplementedException(); }
 
+        public new void DidUpdateWidget(FlutterSDK.Widgets.Textselection._TextSelectionHandleOverlay oldWidget) { throw new NotImplementedException(); }
 
-public virtual void OnSingleTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details){ throw new NotImplementedException(); }
 
+        public new void Dispose() { throw new NotImplementedException(); }
 
-public virtual void OnSingleTapCancel(){ throw new NotImplementedException(); }
 
+        private void _HandleDragStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details) { throw new NotImplementedException(); }
 
-public virtual void OnSingleLongTapStart(FlutterSDK.Gestures.Longpress.LongPressStartDetails details){ throw new NotImplementedException(); }
 
+        private void _HandleDragUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details) { throw new NotImplementedException(); }
 
-public virtual void OnSingleLongTapMoveUpdate(FlutterSDK.Gestures.Longpress.LongPressMoveUpdateDetails details){ throw new NotImplementedException(); }
 
+        private void _HandleTap() { throw new NotImplementedException(); }
 
-public virtual void OnSingleLongTapEnd(FlutterSDK.Gestures.Longpress.LongPressEndDetails details){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-public virtual void OnDoubleTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Textselection.TextSelectionHandleType _ChooseType(TextDirection textDirection, FlutterSDK.Widgets.Textselection.TextSelectionHandleType ltrType, FlutterSDK.Widgets.Textselection.TextSelectionHandleType rtlType) { throw new NotImplementedException(); }
 
-public virtual void OnDragSelectionStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public virtual void OnDragSelectionUpdate(FlutterSDK.Gestures.Dragdetails.DragStartDetails startDetails,FlutterSDK.Gestures.Dragdetails.DragUpdateDetails updateDetails){ throw new NotImplementedException(); }
+    public class TextSelectionGestureDetectorBuilder
+    {
+        #region constructors
+        public TextSelectionGestureDetectorBuilder(FlutterSDK.Widgets.Textselection.TextSelectionGestureDetectorBuilderDelegate @delegate = default(FlutterSDK.Widgets.Textselection.TextSelectionGestureDetectorBuilderDelegate))
+        : base()
+        {
+            this.@delegate = @delegate; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual FlutterSDK.Widgets.Textselection.TextSelectionGestureDetectorBuilderDelegate @delegate { get; set; }
+        internal virtual bool _ShouldShowSelectionToolbar { get; set; }
+        public virtual bool ShouldShowSelectionToolbar { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Widgets.Editabletext.EditableTextState EditableText { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Editable.RenderEditable RenderEditable { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual void OnDragSelectionEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details){ throw new NotImplementedException(); }
+        #region methods
 
+        public virtual void OnTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Widgets.Framework.Widget BuildGestureDetector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget)){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public virtual void OnForcePressStart(FlutterSDK.Gestures.Forcepress.ForcePressDetails details) { throw new NotImplementedException(); }
 
 
-public class TextSelectionGestureDetector : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public TextSelectionGestureDetector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Gestures.Tap.GestureTapDownCallback onTapDown = default(FlutterSDK.Gestures.Tap.GestureTapDownCallback),FlutterSDK.Gestures.Forcepress.GestureForcePressStartCallback onForcePressStart = default(FlutterSDK.Gestures.Forcepress.GestureForcePressStartCallback),FlutterSDK.Gestures.Forcepress.GestureForcePressEndCallback onForcePressEnd = default(FlutterSDK.Gestures.Forcepress.GestureForcePressEndCallback),FlutterSDK.Gestures.Tap.GestureTapUpCallback onSingleTapUp = default(FlutterSDK.Gestures.Tap.GestureTapUpCallback),FlutterSDK.Gestures.Tap.GestureTapCancelCallback onSingleTapCancel = default(FlutterSDK.Gestures.Tap.GestureTapCancelCallback),FlutterSDK.Gestures.Longpress.GestureLongPressStartCallback onSingleLongTapStart = default(FlutterSDK.Gestures.Longpress.GestureLongPressStartCallback),FlutterSDK.Gestures.Longpress.GestureLongPressMoveUpdateCallback onSingleLongTapMoveUpdate = default(FlutterSDK.Gestures.Longpress.GestureLongPressMoveUpdateCallback),FlutterSDK.Gestures.Longpress.GestureLongPressEndCallback onSingleLongTapEnd = default(FlutterSDK.Gestures.Longpress.GestureLongPressEndCallback),FlutterSDK.Gestures.Tap.GestureTapDownCallback onDoubleTapDown = default(FlutterSDK.Gestures.Tap.GestureTapDownCallback),FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback onDragSelectionStart = default(FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback),FlutterSDK.Widgets.Textselection.DragSelectionUpdateCallback onDragSelectionUpdate = default(FlutterSDK.Widgets.Textselection.DragSelectionUpdateCallback),FlutterSDK.Gestures.Monodrag.GestureDragEndCallback onDragSelectionEnd = default(FlutterSDK.Gestures.Monodrag.GestureDragEndCallback),FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key)
-{
-this.OnTapDown = onTapDown;
-this.OnForcePressStart = onForcePressStart;
-this.OnForcePressEnd = onForcePressEnd;
-this.OnSingleTapUp = onSingleTapUp;
-this.OnSingleTapCancel = onSingleTapCancel;
-this.OnSingleLongTapStart = onSingleLongTapStart;
-this.OnSingleLongTapMoveUpdate = onSingleLongTapMoveUpdate;
-this.OnSingleLongTapEnd = onSingleLongTapEnd;
-this.OnDoubleTapDown = onDoubleTapDown;
-this.OnDragSelectionStart = onDragSelectionStart;
-this.OnDragSelectionUpdate = onDragSelectionUpdate;
-this.OnDragSelectionEnd = onDragSelectionEnd;
-this.Behavior = behavior;
-this.Child = child;throw new NotImplementedException(); }
-#endregion
+        public virtual void OnForcePressEnd(FlutterSDK.Gestures.Forcepress.ForcePressDetails details) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Gestures.Tap.GestureTapDownCallback OnTapDown{get;set;}
-public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressStartCallback OnForcePressStart{get;set;}
-public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressEndCallback OnForcePressEnd{get;set;}
-public virtual FlutterSDK.Gestures.Tap.GestureTapUpCallback OnSingleTapUp{get;set;}
-public virtual FlutterSDK.Gestures.Tap.GestureTapCancelCallback OnSingleTapCancel{get;set;}
-public virtual FlutterSDK.Gestures.Longpress.GestureLongPressStartCallback OnSingleLongTapStart{get;set;}
-public virtual FlutterSDK.Gestures.Longpress.GestureLongPressMoveUpdateCallback OnSingleLongTapMoveUpdate{get;set;}
-public virtual FlutterSDK.Gestures.Longpress.GestureLongPressEndCallback OnSingleLongTapEnd{get;set;}
-public virtual FlutterSDK.Gestures.Tap.GestureTapDownCallback OnDoubleTapDown{get;set;}
-public virtual FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback OnDragSelectionStart{get;set;}
-public virtual FlutterSDK.Widgets.Textselection.DragSelectionUpdateCallback OnDragSelectionUpdate{get;set;}
-public virtual FlutterSDK.Gestures.Monodrag.GestureDragEndCallback OnDragSelectionEnd{get;set;}
-public virtual FlutterSDK.Rendering.Proxybox.HitTestBehavior Behavior{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-#endregion
 
-#region methods
+        public virtual void OnSingleTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState(){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public virtual void OnSingleTapCancel() { throw new NotImplementedException(); }
 
 
-public class _TextSelectionGestureDetectorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Textselection.TextSelectionGestureDetector>
-{
-#region constructors
-public _TextSelectionGestureDetectorState()
-{ }
-#endregion
+        public virtual void OnSingleLongTapStart(FlutterSDK.Gestures.Longpress.LongPressStartDetails details) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual Timer _DoubleTapTimer{get;set;}
-internal virtual FlutterBinding.UI.Offset _LastTapOffset{get;set;}
-internal virtual bool _IsDoubleTap{get;set;}
-internal virtual FlutterSDK.Gestures.Dragdetails.DragStartDetails _LastDragStartDetails{get;set;}
-internal virtual FlutterSDK.Gestures.Dragdetails.DragUpdateDetails _LastDragUpdateDetails{get;set;}
-internal virtual Timer _DragUpdateThrottleTimer{get;set;}
-#endregion
 
-#region methods
+        public virtual void OnSingleLongTapMoveUpdate(FlutterSDK.Gestures.Longpress.LongPressMoveUpdateDetails details) { throw new NotImplementedException(); }
 
-public new void Dispose(){ throw new NotImplementedException(); }
 
+        public virtual void OnSingleLongTapEnd(FlutterSDK.Gestures.Longpress.LongPressEndDetails details) { throw new NotImplementedException(); }
 
-private void _HandleTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details){ throw new NotImplementedException(); }
 
+        public virtual void OnDoubleTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details) { throw new NotImplementedException(); }
 
-private void _HandleTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details){ throw new NotImplementedException(); }
 
+        public virtual void OnDragSelectionStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details) { throw new NotImplementedException(); }
 
-private void _HandleTapCancel(){ throw new NotImplementedException(); }
 
+        public virtual void OnDragSelectionUpdate(FlutterSDK.Gestures.Dragdetails.DragStartDetails startDetails, FlutterSDK.Gestures.Dragdetails.DragUpdateDetails updateDetails) { throw new NotImplementedException(); }
 
-private void _HandleDragStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details){ throw new NotImplementedException(); }
 
+        public virtual void OnDragSelectionEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details) { throw new NotImplementedException(); }
 
-private void _HandleDragUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Widgets.Framework.Widget BuildGestureDetector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget)) { throw new NotImplementedException(); }
 
-private void _HandleDragUpdateThrottled(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-private void _HandleDragEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details){ throw new NotImplementedException(); }
+    public class TextSelectionGestureDetector : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public TextSelectionGestureDetector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Gestures.Tap.GestureTapDownCallback onTapDown = default(FlutterSDK.Gestures.Tap.GestureTapDownCallback), FlutterSDK.Gestures.Forcepress.GestureForcePressStartCallback onForcePressStart = default(FlutterSDK.Gestures.Forcepress.GestureForcePressStartCallback), FlutterSDK.Gestures.Forcepress.GestureForcePressEndCallback onForcePressEnd = default(FlutterSDK.Gestures.Forcepress.GestureForcePressEndCallback), FlutterSDK.Gestures.Tap.GestureTapUpCallback onSingleTapUp = default(FlutterSDK.Gestures.Tap.GestureTapUpCallback), FlutterSDK.Gestures.Tap.GestureTapCancelCallback onSingleTapCancel = default(FlutterSDK.Gestures.Tap.GestureTapCancelCallback), FlutterSDK.Gestures.Longpress.GestureLongPressStartCallback onSingleLongTapStart = default(FlutterSDK.Gestures.Longpress.GestureLongPressStartCallback), FlutterSDK.Gestures.Longpress.GestureLongPressMoveUpdateCallback onSingleLongTapMoveUpdate = default(FlutterSDK.Gestures.Longpress.GestureLongPressMoveUpdateCallback), FlutterSDK.Gestures.Longpress.GestureLongPressEndCallback onSingleLongTapEnd = default(FlutterSDK.Gestures.Longpress.GestureLongPressEndCallback), FlutterSDK.Gestures.Tap.GestureTapDownCallback onDoubleTapDown = default(FlutterSDK.Gestures.Tap.GestureTapDownCallback), FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback onDragSelectionStart = default(FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback), FlutterSDK.Widgets.Textselection.DragSelectionUpdateCallback onDragSelectionUpdate = default(FlutterSDK.Widgets.Textselection.DragSelectionUpdateCallback), FlutterSDK.Gestures.Monodrag.GestureDragEndCallback onDragSelectionEnd = default(FlutterSDK.Gestures.Monodrag.GestureDragEndCallback), FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.OnTapDown = onTapDown;
+            this.OnForcePressStart = onForcePressStart;
+            this.OnForcePressEnd = onForcePressEnd;
+            this.OnSingleTapUp = onSingleTapUp;
+            this.OnSingleTapCancel = onSingleTapCancel;
+            this.OnSingleLongTapStart = onSingleLongTapStart;
+            this.OnSingleLongTapMoveUpdate = onSingleLongTapMoveUpdate;
+            this.OnSingleLongTapEnd = onSingleLongTapEnd;
+            this.OnDoubleTapDown = onDoubleTapDown;
+            this.OnDragSelectionStart = onDragSelectionStart;
+            this.OnDragSelectionUpdate = onDragSelectionUpdate;
+            this.OnDragSelectionEnd = onDragSelectionEnd;
+            this.Behavior = behavior;
+            this.Child = child; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual FlutterSDK.Gestures.Tap.GestureTapDownCallback OnTapDown { get; set; }
+        public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressStartCallback OnForcePressStart { get; set; }
+        public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressEndCallback OnForcePressEnd { get; set; }
+        public virtual FlutterSDK.Gestures.Tap.GestureTapUpCallback OnSingleTapUp { get; set; }
+        public virtual FlutterSDK.Gestures.Tap.GestureTapCancelCallback OnSingleTapCancel { get; set; }
+        public virtual FlutterSDK.Gestures.Longpress.GestureLongPressStartCallback OnSingleLongTapStart { get; set; }
+        public virtual FlutterSDK.Gestures.Longpress.GestureLongPressMoveUpdateCallback OnSingleLongTapMoveUpdate { get; set; }
+        public virtual FlutterSDK.Gestures.Longpress.GestureLongPressEndCallback OnSingleLongTapEnd { get; set; }
+        public virtual FlutterSDK.Gestures.Tap.GestureTapDownCallback OnDoubleTapDown { get; set; }
+        public virtual FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback OnDragSelectionStart { get; set; }
+        public virtual FlutterSDK.Widgets.Textselection.DragSelectionUpdateCallback OnDragSelectionUpdate { get; set; }
+        public virtual FlutterSDK.Gestures.Monodrag.GestureDragEndCallback OnDragSelectionEnd { get; set; }
+        public virtual FlutterSDK.Rendering.Proxybox.HitTestBehavior Behavior { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        #endregion
 
-private void _ForcePressStarted(FlutterSDK.Gestures.Forcepress.ForcePressDetails details){ throw new NotImplementedException(); }
+        #region methods
 
+        public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() { throw new NotImplementedException(); }
 
-private void _ForcePressEnded(FlutterSDK.Gestures.Forcepress.ForcePressDetails details){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-private void _HandleLongPressStart(FlutterSDK.Gestures.Longpress.LongPressStartDetails details){ throw new NotImplementedException(); }
+    public class _TextSelectionGestureDetectorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Textselection.TextSelectionGestureDetector>
+    {
+        #region constructors
+        public _TextSelectionGestureDetectorState()
+        { }
+        #endregion
 
+        #region fields
+        internal virtual Timer _DoubleTapTimer { get; set; }
+        internal virtual FlutterBinding.UI.Offset _LastTapOffset { get; set; }
+        internal virtual bool _IsDoubleTap { get; set; }
+        internal virtual FlutterSDK.Gestures.Dragdetails.DragStartDetails _LastDragStartDetails { get; set; }
+        internal virtual FlutterSDK.Gestures.Dragdetails.DragUpdateDetails _LastDragUpdateDetails { get; set; }
+        internal virtual Timer _DragUpdateThrottleTimer { get; set; }
+        #endregion
 
-private void _HandleLongPressMoveUpdate(FlutterSDK.Gestures.Longpress.LongPressMoveUpdateDetails details){ throw new NotImplementedException(); }
+        #region methods
 
+        public new void Dispose() { throw new NotImplementedException(); }
 
-private void _HandleLongPressEnd(FlutterSDK.Gestures.Longpress.LongPressEndDetails details){ throw new NotImplementedException(); }
 
+        private void _HandleTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details) { throw new NotImplementedException(); }
 
-private void _DoubleTapTimeout(){ throw new NotImplementedException(); }
 
+        private void _HandleTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details) { throw new NotImplementedException(); }
 
-private bool _IsWithinDoubleTapTolerance(FlutterBinding.UI.Offset secondTapOffset){ throw new NotImplementedException(); }
 
+        private void _HandleTapCancel() { throw new NotImplementedException(); }
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
 
-#endregion
-}
+        private void _HandleDragStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details) { throw new NotImplementedException(); }
 
 
-public class _TransparentTapGestureRecognizer : FlutterSDK.Gestures.Tap.TapGestureRecognizer
-{
-#region constructors
-public _TransparentTapGestureRecognizer(@Object debugOwner = default(@Object))
-: base(debugOwner:debugOwner)
-{
-throw new NotImplementedException(); }
-#endregion
+        private void _HandleDragUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details) { throw new NotImplementedException(); }
 
-#region fields
-#endregion
 
-#region methods
+        private void _HandleDragUpdateThrottled() { throw new NotImplementedException(); }
 
-public new void RejectGesture(int pointer){ throw new NotImplementedException(); }
 
-#endregion
-}
+        private void _HandleDragEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details) { throw new NotImplementedException(); }
 
 
-public enum TextSelectionHandleType{
+        private void _ForcePressStarted(FlutterSDK.Gestures.Forcepress.ForcePressDetails details) { throw new NotImplementedException(); }
 
-Left,
-Right,
-Collapsed,
-}
 
+        private void _ForcePressEnded(FlutterSDK.Gestures.Forcepress.ForcePressDetails details) { throw new NotImplementedException(); }
 
-public enum _TextSelectionHandlePosition{
 
-Start,
-End,
-}
+        private void _HandleLongPressStart(FlutterSDK.Gestures.Longpress.LongPressStartDetails details) { throw new NotImplementedException(); }
+
+
+        private void _HandleLongPressMoveUpdate(FlutterSDK.Gestures.Longpress.LongPressMoveUpdateDetails details) { throw new NotImplementedException(); }
+
+
+        private void _HandleLongPressEnd(FlutterSDK.Gestures.Longpress.LongPressEndDetails details) { throw new NotImplementedException(); }
+
+
+        private void _DoubleTapTimeout() { throw new NotImplementedException(); }
+
+
+        private bool _IsWithinDoubleTapTolerance(FlutterBinding.UI.Offset secondTapOffset) { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class _TransparentTapGestureRecognizer : FlutterSDK.Gestures.Tap.TapGestureRecognizer
+    {
+        #region constructors
+        public _TransparentTapGestureRecognizer(@Object debugOwner = default(@Object))
+        : base(debugOwner: debugOwner)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new void RejectGesture(int pointer) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public enum TextSelectionHandleType
+    {
+
+        Left,
+        Right,
+        Collapsed,
+    }
+
+
+    public enum _TextSelectionHandlePosition
+    {
+
+        Start,
+        End,
+    }
 
 }

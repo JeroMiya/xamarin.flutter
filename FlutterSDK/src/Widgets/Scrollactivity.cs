@@ -423,349 +423,363 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Scrollactivity{
-internal static class ScrollactivityDefaultClass{
-}
-
-public interface IScrollActivity{
-void UpdateDelegate(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate value);
-void ResetActivity();
-void DispatchScrollStartNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics,FlutterSDK.Widgets.Framework.BuildContext context);
-void DispatchScrollUpdateNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics,FlutterSDK.Widgets.Framework.BuildContext context,double scrollDelta);
-void DispatchOverscrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics,FlutterSDK.Widgets.Framework.BuildContext context,double overscroll);
-void DispatchScrollEndNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics,FlutterSDK.Widgets.Framework.BuildContext context);
-void ApplyNewDimensions();
-void Dispose();
-string ToString();
-FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate{get;}
-bool ShouldIgnorePointer{get;}
-bool IsScrolling{get;}
-double Velocity{get;}
-}
-
-
-public interface IScrollActivityDelegate{}
-
-public class ScrollActivityDelegate{
-public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-
-public virtual double SetPixels(double pixels){ throw new NotImplementedException(); }
-
-
-public virtual void ApplyUserOffset(double delta){ throw new NotImplementedException(); }
-
-
-public virtual void GoIdle(){ throw new NotImplementedException(); }
-
-
-public virtual void GoBallistic(double velocity){ throw new NotImplementedException(); }
-
-}
-public static class ScrollActivityDelegateMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IScrollActivityDelegate, ScrollActivityDelegate> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IScrollActivityDelegate, ScrollActivityDelegate>();
-static ScrollActivityDelegate GetOrCreate(IScrollActivityDelegate instance)
+namespace FlutterSDK.Widgets.Scrollactivity
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new ScrollActivityDelegate();
-_table.Add(instance, value);
-}
-return (ScrollActivityDelegate)value;
-}
-public static FlutterSDK.Painting.Basictypes.AxisDirection AxisDirectionProperty(this IScrollActivityDelegate instance) => GetOrCreate(instance).AxisDirection;
-public static double SetPixels(this IScrollActivityDelegate instance,double pixels) => GetOrCreate(instance).SetPixels(pixels);
-public static void ApplyUserOffset(this IScrollActivityDelegate instance,double delta) => GetOrCreate(instance).ApplyUserOffset(delta);
-public static void GoIdle(this IScrollActivityDelegate instance) => GetOrCreate(instance).GoIdle();
-public static void GoBallistic(this IScrollActivityDelegate instance,double velocity) => GetOrCreate(instance).GoBallistic(velocity);
-}
+    internal static class ScrollactivityDefaultClass
+    {
+    }
+
+    public interface IScrollActivity
+    {
+        void UpdateDelegate(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate value);
+        void ResetActivity();
+        void DispatchScrollStartNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context);
+        void DispatchScrollUpdateNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context, double scrollDelta);
+        void DispatchOverscrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context, double overscroll);
+        void DispatchScrollEndNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context);
+        void ApplyNewDimensions();
+        void Dispose();
+        string ToString();
+        FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate { get; }
+        bool ShouldIgnorePointer { get; }
+        bool IsScrolling { get; }
+        double Velocity { get; }
+    }
 
 
-public interface IScrollHoldController{}
+    public interface IScrollActivityDelegate { }
 
-public class ScrollHoldController{
+    public class ScrollActivityDelegate
+    {
+        public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
-public virtual void Cancel(){ throw new NotImplementedException(); }
+        public virtual double SetPixels(double pixels) { throw new NotImplementedException(); }
 
-}
-public static class ScrollHoldControllerMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IScrollHoldController, ScrollHoldController> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IScrollHoldController, ScrollHoldController>();
-static ScrollHoldController GetOrCreate(IScrollHoldController instance)
-{
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new ScrollHoldController();
-_table.Add(instance, value);
-}
-return (ScrollHoldController)value;
-}
-public static void Cancel(this IScrollHoldController instance) => GetOrCreate(instance).Cancel();
-}
 
+        public virtual void ApplyUserOffset(double delta) { throw new NotImplementedException(); }
 
-public class ScrollActivity
-{
-#region constructors
-public ScrollActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate _delegate)
-{
-this._Delegate = _delegate;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-internal virtual FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate _Delegate{get;set;}
-public virtual FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool ShouldIgnorePointer{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsScrolling{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double Velocity{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        public virtual void GoIdle() { throw new NotImplementedException(); }
 
-#region methods
 
-public virtual void UpdateDelegate(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate value){ throw new NotImplementedException(); }
+        public virtual void GoBallistic(double velocity) { throw new NotImplementedException(); }
 
+    }
+    public static class ScrollActivityDelegateMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IScrollActivityDelegate, ScrollActivityDelegate> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IScrollActivityDelegate, ScrollActivityDelegate>();
+        static ScrollActivityDelegate GetOrCreate(IScrollActivityDelegate instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new ScrollActivityDelegate();
+                _table.Add(instance, value);
+            }
+            return (ScrollActivityDelegate)value;
+        }
+        public static FlutterSDK.Painting.Basictypes.AxisDirection AxisDirectionProperty(this IScrollActivityDelegate instance) => GetOrCreate(instance).AxisDirection;
+        public static double SetPixels(this IScrollActivityDelegate instance, double pixels) => GetOrCreate(instance).SetPixels(pixels);
+        public static void ApplyUserOffset(this IScrollActivityDelegate instance, double delta) => GetOrCreate(instance).ApplyUserOffset(delta);
+        public static void GoIdle(this IScrollActivityDelegate instance) => GetOrCreate(instance).GoIdle();
+        public static void GoBallistic(this IScrollActivityDelegate instance, double velocity) => GetOrCreate(instance).GoBallistic(velocity);
+    }
 
-public virtual void ResetActivity(){ throw new NotImplementedException(); }
 
+    public interface IScrollHoldController { }
 
-public virtual void DispatchScrollStartNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics,FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+    public class ScrollHoldController
+    {
 
+        public virtual void Cancel() { throw new NotImplementedException(); }
 
-public virtual void DispatchScrollUpdateNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics,FlutterSDK.Widgets.Framework.BuildContext context,double scrollDelta){ throw new NotImplementedException(); }
+    }
+    public static class ScrollHoldControllerMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IScrollHoldController, ScrollHoldController> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IScrollHoldController, ScrollHoldController>();
+        static ScrollHoldController GetOrCreate(IScrollHoldController instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new ScrollHoldController();
+                _table.Add(instance, value);
+            }
+            return (ScrollHoldController)value;
+        }
+        public static void Cancel(this IScrollHoldController instance) => GetOrCreate(instance).Cancel();
+    }
 
 
-public virtual void DispatchOverscrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics,FlutterSDK.Widgets.Framework.BuildContext context,double overscroll){ throw new NotImplementedException(); }
+    public class ScrollActivity
+    {
+        #region constructors
+        public ScrollActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate _delegate)
+        {
+            this._Delegate = _delegate; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate _Delegate { get; set; }
+        public virtual FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool ShouldIgnorePointer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Velocity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual void DispatchScrollEndNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics,FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
 
+        public virtual void UpdateDelegate(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate value) { throw new NotImplementedException(); }
 
-public virtual void ApplyNewDimensions(){ throw new NotImplementedException(); }
 
+        public virtual void ResetActivity() { throw new NotImplementedException(); }
 
-public virtual void Dispose(){ throw new NotImplementedException(); }
 
+        public virtual void DispatchScrollStartNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public virtual void DispatchScrollUpdateNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context, double scrollDelta) { throw new NotImplementedException(); }
 
-public class IdleScrollActivity : FlutterSDK.Widgets.Scrollactivity.ScrollActivity
-{
-#region constructors
-public IdleScrollActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate)
-: base(@delegate)
-{
-throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual bool ShouldIgnorePointer{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsScrolling{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double Velocity{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        public virtual void DispatchOverscrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context, double overscroll) { throw new NotImplementedException(); }
 
-#region methods
 
-public new void ApplyNewDimensions(){ throw new NotImplementedException(); }
+        public virtual void DispatchScrollEndNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public virtual void ApplyNewDimensions() { throw new NotImplementedException(); }
 
-public class HoldScrollActivity : FlutterSDK.Widgets.Scrollactivity.ScrollActivity,IScrollHoldController
-{
-#region constructors
-public HoldScrollActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate = default(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate),VoidCallback onHoldCanceled = default(VoidCallback))
-: base(@delegate)
-{
-this.OnHoldCanceled = onHoldCanceled;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual VoidCallback OnHoldCanceled{get;set;}
-public virtual bool ShouldIgnorePointer{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsScrolling{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double Velocity{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        public virtual void Dispose() { throw new NotImplementedException(); }
 
-#region methods
 
-public new void Cancel(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+    public class IdleScrollActivity : FlutterSDK.Widgets.Scrollactivity.ScrollActivity
+    {
+        #region constructors
+        public IdleScrollActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate)
+        : base(@delegate)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual bool ShouldIgnorePointer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Velocity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public class ScrollDragController : IDrag
-{
-#region constructors
-public ScrollDragController(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate = default(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate),FlutterSDK.Gestures.Dragdetails.DragStartDetails details = default(FlutterSDK.Gestures.Dragdetails.DragStartDetails),VoidCallback onDragCanceled = default(VoidCallback),double carriedVelocity = default(double),double motionStartDistanceThreshold = default(double))
-: base()
-{
-this.OnDragCanceled = onDragCanceled;
-this.CarriedVelocity = carriedVelocity;
-this.MotionStartDistanceThreshold = motionStartDistanceThreshold;throw new NotImplementedException(); }
-#endregion
+        public new void ApplyNewDimensions() { throw new NotImplementedException(); }
 
-#region fields
-internal virtual FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate _Delegate{get;set;}
-public virtual VoidCallback OnDragCanceled{get;set;}
-public virtual double CarriedVelocity{get;set;}
-public virtual double MotionStartDistanceThreshold{get;set;}
-internal virtual TimeSpan _LastNonStationaryTimestamp{get;set;}
-internal virtual bool _RetainMomentum{get;set;}
-internal virtual double _OffsetSinceLastStop{get;set;}
-public virtual TimeSpan MomentumRetainStationaryDurationThreshold{get;set;}
-public virtual TimeSpan MotionStoppedDurationThreshold{get;set;}
-internal virtual double _BigThresholdBreakDistance{get;set;}
-internal virtual object _LastDetails{get;set;}
-public virtual FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual bool _Reversed{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual object LastDetails{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public virtual void UpdateDelegate(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate value){ throw new NotImplementedException(); }
+    public class HoldScrollActivity : FlutterSDK.Widgets.Scrollactivity.ScrollActivity, IScrollHoldController
+    {
+        #region constructors
+        public HoldScrollActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate = default(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate), VoidCallback onHoldCanceled = default(VoidCallback))
+        : base(@delegate)
+        {
+            this.OnHoldCanceled = onHoldCanceled; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual VoidCallback OnHoldCanceled { get; set; }
+        public virtual bool ShouldIgnorePointer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Velocity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-private void _MaybeLoseMomentum(double offset,TimeSpan timestamp){ throw new NotImplementedException(); }
+        #region methods
 
+        public new void Cancel() { throw new NotImplementedException(); }
 
-private double _AdjustForScrollStartThreshold(double offset,TimeSpan timestamp){ throw new NotImplementedException(); }
 
+        public new void Dispose() { throw new NotImplementedException(); }
 
-public new void Update(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void End(FlutterSDK.Gestures.Dragdetails.DragEndDetails details){ throw new NotImplementedException(); }
+    public class ScrollDragController : IDrag
+    {
+        #region constructors
+        public ScrollDragController(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate = default(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate), FlutterSDK.Gestures.Dragdetails.DragStartDetails details = default(FlutterSDK.Gestures.Dragdetails.DragStartDetails), VoidCallback onDragCanceled = default(VoidCallback), double carriedVelocity = default(double), double motionStartDistanceThreshold = default(double))
+        : base()
+        {
+            this.OnDragCanceled = onDragCanceled;
+            this.CarriedVelocity = carriedVelocity;
+            this.MotionStartDistanceThreshold = motionStartDistanceThreshold; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate _Delegate { get; set; }
+        public virtual VoidCallback OnDragCanceled { get; set; }
+        public virtual double CarriedVelocity { get; set; }
+        public virtual double MotionStartDistanceThreshold { get; set; }
+        internal virtual TimeSpan _LastNonStationaryTimestamp { get; set; }
+        internal virtual bool _RetainMomentum { get; set; }
+        internal virtual double _OffsetSinceLastStop { get; set; }
+        public virtual TimeSpan MomentumRetainStationaryDurationThreshold { get; set; }
+        public virtual TimeSpan MotionStoppedDurationThreshold { get; set; }
+        internal virtual double _BigThresholdBreakDistance { get; set; }
+        internal virtual object _LastDetails { get; set; }
+        public virtual FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual bool _Reversed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual object LastDetails { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new void Cancel(){ throw new NotImplementedException(); }
+        #region methods
 
+        public virtual void UpdateDelegate(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate value) { throw new NotImplementedException(); }
 
-public virtual void Dispose(){ throw new NotImplementedException(); }
 
+        private void _MaybeLoseMomentum(double offset, TimeSpan timestamp) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        private double _AdjustForScrollStartThreshold(double offset, TimeSpan timestamp) { throw new NotImplementedException(); }
 
-public class DragScrollActivity : FlutterSDK.Widgets.Scrollactivity.ScrollActivity
-{
-#region constructors
-public DragScrollActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate,FlutterSDK.Widgets.Scrollactivity.ScrollDragController controller)
-: base(@delegate)
-{
-throw new NotImplementedException(); }
-#endregion
 
-#region fields
-internal virtual FlutterSDK.Widgets.Scrollactivity.ScrollDragController _Controller{get;set;}
-public virtual bool ShouldIgnorePointer{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsScrolling{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double Velocity{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        public new void Update(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details) { throw new NotImplementedException(); }
 
-#region methods
 
-public new void DispatchScrollStartNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics,FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new void End(FlutterSDK.Gestures.Dragdetails.DragEndDetails details) { throw new NotImplementedException(); }
 
 
-public new void DispatchScrollUpdateNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics,FlutterSDK.Widgets.Framework.BuildContext context,double scrollDelta){ throw new NotImplementedException(); }
+        public new void Cancel() { throw new NotImplementedException(); }
 
 
-public new void DispatchOverscrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics,FlutterSDK.Widgets.Framework.BuildContext context,double overscroll){ throw new NotImplementedException(); }
+        public virtual void Dispose() { throw new NotImplementedException(); }
 
 
-public new void DispatchScrollEndNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics,FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+    public class DragScrollActivity : FlutterSDK.Widgets.Scrollactivity.ScrollActivity
+    {
+        #region constructors
+        public DragScrollActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate, FlutterSDK.Widgets.Scrollactivity.ScrollDragController controller)
+        : base(@delegate)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual FlutterSDK.Widgets.Scrollactivity.ScrollDragController _Controller { get; set; }
+        public virtual bool ShouldIgnorePointer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Velocity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#endregion
-}
+        #region methods
 
+        public new void DispatchScrollStartNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-public class BallisticScrollActivity : FlutterSDK.Widgets.Scrollactivity.ScrollActivity
-{
-#region constructors
-public BallisticScrollActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate,FlutterSDK.Physics.Simulation.Simulation simulation,FlutterSDK.Scheduler.Ticker.TickerProvider vsync)
-: base(@delegate)
-{
-throw new NotImplementedException(); }
-#endregion
 
-#region fields
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller{get;set;}
-public virtual double Velocity{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool ShouldIgnorePointer{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsScrolling{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        public new void DispatchScrollUpdateNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context, double scrollDelta) { throw new NotImplementedException(); }
 
-#region methods
 
-public new void ResetActivity(){ throw new NotImplementedException(); }
+        public new void DispatchOverscrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context, double overscroll) { throw new NotImplementedException(); }
 
 
-public new void ApplyNewDimensions(){ throw new NotImplementedException(); }
+        public new void DispatchScrollEndNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-private void _Tick(){ throw new NotImplementedException(); }
+        public new void Dispose() { throw new NotImplementedException(); }
 
 
-public virtual bool ApplyMoveTo(double value){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-private void _End(){ throw new NotImplementedException(); }
+    public class BallisticScrollActivity : FlutterSDK.Widgets.Scrollactivity.ScrollActivity
+    {
+        #region constructors
+        public BallisticScrollActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate, FlutterSDK.Physics.Simulation.Simulation simulation, FlutterSDK.Scheduler.Ticker.TickerProvider vsync)
+        : base(@delegate)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
+        public virtual double Velocity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool ShouldIgnorePointer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new void DispatchOverscrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics,FlutterSDK.Widgets.Framework.BuildContext context,double overscroll){ throw new NotImplementedException(); }
+        #region methods
 
+        public new void ResetActivity() { throw new NotImplementedException(); }
 
-public new void Dispose(){ throw new NotImplementedException(); }
 
+        public new void ApplyNewDimensions() { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        private void _Tick() { throw new NotImplementedException(); }
 
-public class DrivenScrollActivity : FlutterSDK.Widgets.Scrollactivity.ScrollActivity
-{
-#region constructors
-public DrivenScrollActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate,double from = default(double),double to = default(double),TimeSpan duration = default(TimeSpan),FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve),FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider))
-: base(@delegate)
-{
-throw new NotImplementedException(); }
-#endregion
 
-#region fields
-internal virtual Completer<object> _Completer{get;set;}
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller{get;set;}
-public virtual Future<object> Done{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double Velocity{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool ShouldIgnorePointer{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsScrolling{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        public virtual bool ApplyMoveTo(double value) { throw new NotImplementedException(); }
 
-#region methods
 
-private void _Tick(){ throw new NotImplementedException(); }
+        private void _End() { throw new NotImplementedException(); }
 
 
-private void _End(){ throw new NotImplementedException(); }
+        public new void DispatchOverscrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context, double overscroll) { throw new NotImplementedException(); }
 
 
-public new void DispatchOverscrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics,FlutterSDK.Widgets.Framework.BuildContext context,double overscroll){ throw new NotImplementedException(); }
+        public new void Dispose() { throw new NotImplementedException(); }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-#endregion
-}
+    public class DrivenScrollActivity : FlutterSDK.Widgets.Scrollactivity.ScrollActivity
+    {
+        #region constructors
+        public DrivenScrollActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate, double from = default(double), double to = default(double), TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider))
+        : base(@delegate)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual Completer<object> _Completer { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
+        public virtual Future<object> Done { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Velocity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool ShouldIgnorePointer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        private void _Tick() { throw new NotImplementedException(); }
+
+
+        private void _End() { throw new NotImplementedException(); }
+
+
+        public new void DispatchOverscrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context, double overscroll) { throw new NotImplementedException(); }
+
+
+        public new void Dispose() { throw new NotImplementedException(); }
+
+
+        #endregion
+    }
 
 }

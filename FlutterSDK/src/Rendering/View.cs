@@ -421,100 +421,104 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Rendering.View{
-internal static class ViewDefaultClass{
-}
-
-public class ViewConfiguration
+namespace FlutterSDK.Rendering.View
 {
-#region constructors
-public ViewConfiguration(Size size = default(Size),double devicePixelRatio = 1.0)
-{
-this.Size = size;
-this.DevicePixelRatio = devicePixelRatio;throw new NotImplementedException(); }
-#endregion
+    internal static class ViewDefaultClass
+    {
+    }
 
-#region fields
-public virtual Size Size{get;set;}
-public virtual double DevicePixelRatio{get;set;}
-#endregion
+    public class ViewConfiguration
+    {
+        #region constructors
+        public ViewConfiguration(Size size = default(Size), double devicePixelRatio = 1.0)
+        {
+            this.Size = size;
+            this.DevicePixelRatio = devicePixelRatio; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual Size Size { get; set; }
+        public virtual double DevicePixelRatio { get; set; }
+        #endregion
 
-public virtual Matrix4 ToMatrix(){ throw new NotImplementedException(); }
+        #region methods
 
-
-#endregion
-}
-
-
-public class RenderView : FlutterSDK.Rendering.@object.RenderObject,IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>
-{
-#region constructors
-public RenderView(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Rendering.View.ViewConfiguration configuration = default(FlutterSDK.Rendering.View.ViewConfiguration),Window window = default(Window))
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual Size _Size{get;set;}
-internal virtual FlutterSDK.Rendering.View.ViewConfiguration _Configuration{get;set;}
-internal virtual Window _Window{get;set;}
-public virtual bool AutomaticSystemUiAdjustment{get;set;}
-internal virtual Matrix4 _RootTransform{get;set;}
-public virtual Size Size{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Rendering.View.ViewConfiguration Configuration{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool IsRepaintBoundary{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterBinding.UI.Rect PaintBounds{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterBinding.UI.Rect SemanticBounds{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public virtual void ScheduleInitialFrame(){ throw new NotImplementedException(); }
+        public virtual Matrix4 ToMatrix() { throw new NotImplementedException(); }
 
 
-public virtual void PrepareInitialFrame(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-private FlutterSDK.Rendering.Layer.TransformLayer _UpdateMatricesAndCreateNewRootLayer(){ throw new NotImplementedException(); }
+    public class RenderView : FlutterSDK.Rendering.@object.RenderObject, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>
+    {
+        #region constructors
+        public RenderView(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.View.ViewConfiguration configuration = default(FlutterSDK.Rendering.View.ViewConfiguration), Window window = default(Window))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual Size _Size { get; set; }
+        internal virtual FlutterSDK.Rendering.View.ViewConfiguration _Configuration { get; set; }
+        internal virtual Window _Window { get; set; }
+        public virtual bool AutomaticSystemUiAdjustment { get; set; }
+        internal virtual Matrix4 _RootTransform { get; set; }
+        public virtual Size Size { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.View.ViewConfiguration Configuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsRepaintBoundary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Rect PaintBounds { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Rect SemanticBounds { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual void ScheduleInitialFrame() { throw new NotImplementedException(); }
 
 
-public new void DebugAssertDoesMeetConstraints(){ throw new NotImplementedException(); }
+        public virtual void PrepareInitialFrame() { throw new NotImplementedException(); }
 
 
-public new void PerformResize(){ throw new NotImplementedException(); }
+        private FlutterSDK.Rendering.Layer.TransformLayer _UpdateMatricesAndCreateNewRootLayer() { throw new NotImplementedException(); }
 
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
+        public new void DebugAssertDoesMeetConstraints() { throw new NotImplementedException(); }
 
 
-public new void Rotate(int oldAngle = default(int),int newAngle = default(int),TimeSpan time = default(TimeSpan)){ throw new NotImplementedException(); }
+        public new void PerformResize() { throw new NotImplementedException(); }
 
 
-public virtual bool HitTest(FlutterSDK.Gestures.Hittest.HitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
 
-public virtual Iterable<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> HitTestMouseTrackers(FlutterBinding.UI.Offset position){ throw new NotImplementedException(); }
+        public new void Rotate(int oldAngle = default(int), int newAngle = default(int), TimeSpan time = default(TimeSpan)) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public virtual bool HitTest(FlutterSDK.Gestures.Hittest.HitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
 
-public new void ApplyPaintTransform(FlutterSDK.Rendering.Box.RenderBox child,Matrix4 transform){ throw new NotImplementedException(); }
-public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child,Matrix4 transform){ throw new NotImplementedException(); }
+        public virtual Iterable<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> HitTestMouseTrackers(FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
 
 
-public virtual void CompositeFrame(){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
-private void _UpdateSystemChrome(){ throw new NotImplementedException(); }
+        public new void ApplyPaintTransform(FlutterSDK.Rendering.Box.RenderBox child, Matrix4 transform) { throw new NotImplementedException(); }
+        public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public virtual void CompositeFrame() { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        private void _UpdateSystemChrome() { throw new NotImplementedException(); }
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

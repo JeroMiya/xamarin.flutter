@@ -416,73 +416,78 @@ using FlutterSDK.Material.Tabbartheme;
 using FlutterSDK.Material.Tabcontroller;
 using FlutterSDK.Material.Tabindicator;
 using FlutterSDK.Material.Selectabletext;
-namespace FlutterSDK.Material.Textformfield{
-internal static class TextformfieldDefaultClass{
-}
-
-public class TextFormField : FlutterSDK.Widgets.Form.FormField<string>
+namespace FlutterSDK.Material.Textformfield
 {
-#region constructors
-public TextFormField(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Editabletext.TextEditingController controller = default(FlutterSDK.Widgets.Editabletext.TextEditingController),string initialValue = default(string),FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode),FlutterSDK.Material.Inputdecorator.InputDecoration decoration = default(FlutterSDK.Material.Inputdecorator.InputDecoration),FlutterSDK.Services.Textinput.TextInputType keyboardType = default(FlutterSDK.Services.Textinput.TextInputType),FlutterSDK.Services.Textinput.TextCapitalization textCapitalization = default(FlutterSDK.Services.Textinput.TextCapitalization),FlutterSDK.Services.Textinput.TextInputAction textInputAction = default(FlutterSDK.Services.Textinput.TextInputAction),FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle),TextDirection textDirection = default(TextDirection),TextAlign textAlign = default(TextAlign),FlutterSDK.Painting.Alignment.TextAlignVertical textAlignVertical = default(FlutterSDK.Painting.Alignment.TextAlignVertical),bool autofocus = false,bool readOnly = false,FlutterSDK.Widgets.Editabletext.ToolbarOptions toolbarOptions = default(FlutterSDK.Widgets.Editabletext.ToolbarOptions),bool showCursor = default(bool),bool obscureText = false,bool autocorrect = true,FlutterSDK.Services.Textinput.SmartDashesType smartDashesType = default(FlutterSDK.Services.Textinput.SmartDashesType),FlutterSDK.Services.Textinput.SmartQuotesType smartQuotesType = default(FlutterSDK.Services.Textinput.SmartQuotesType),bool enableSuggestions = true,bool autovalidate = false,bool maxLengthEnforced = true,int maxLines = 1,int minLines = default(int),bool expands = false,int maxLength = default(int),FlutterSDK.Foundation.Basictypes.ValueChanged<string> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<string>),FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback),VoidCallback onEditingComplete = default(VoidCallback),FlutterSDK.Foundation.Basictypes.ValueChanged<string> onFieldSubmitted = default(FlutterSDK.Foundation.Basictypes.ValueChanged<string>),FlutterSDK.Widgets.Form.FormFieldSetter<string> onSaved = default(FlutterSDK.Widgets.Form.FormFieldSetter<string>),FlutterSDK.Widgets.Form.FormFieldValidator<string> validator = default(FlutterSDK.Widgets.Form.FormFieldValidator<string>),List<FlutterSDK.Services.Textformatter.TextInputFormatter> inputFormatters = default(List<FlutterSDK.Services.Textformatter.TextInputFormatter>),bool enabled = true,double cursorWidth = 2.0,Radius cursorRadius = default(Radius),FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color),Brightness keyboardAppearance = default(Brightness),FlutterSDK.Painting.Edgeinsets.EdgeInsets scrollPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets),bool enableInteractiveSelection = true,FlutterSDK.Material.Textfield.InputCounterWidgetBuilder buildCounter = default(FlutterSDK.Material.Textfield.InputCounterWidgetBuilder),FlutterSDK.Widgets.Scrollphysics.ScrollPhysics scrollPhysics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
-: base(key:key,initialValue:controller!=null ?controller.Text:(initialValue??""),onSaved:onSaved,validator:validator,autovalidate:autovalidate,enabled:enabled,builder:(FormFieldState<string> field) => {
-_TextFormFieldState   state=field as _TextFormFieldState;
-InputDecoration   effectiveDecoration=(decoration??new InputDecoration()).ApplyDefaults(ThemeDefaultClass.Theme.Of(field.Context).InputDecorationTheme);
-void OnChangedHandler (string value) => {
-if (onChanged!=null ){
-onChanged(value);
-}
+    internal static class TextformfieldDefaultClass
+    {
+    }
 
-field.DidChange(value);
-}
- 
-return new TextField(controller:state._EffectiveController, focusNode:focusNode, decoration:effectiveDecoration.CopyWith(errorText:field.ErrorText), keyboardType:keyboardType, textInputAction:textInputAction, style:style, strutStyle:strutStyle, textAlign:textAlign, textAlignVertical:textAlignVertical, textDirection:textDirection, textCapitalization:textCapitalization, autofocus:autofocus, toolbarOptions:toolbarOptions, readOnly:readOnly, showCursor:showCursor, obscureText:obscureText, autocorrect:autocorrect, smartDashesType:smartDashesType??(obscureText?SmartDashesType.Disabled:SmartDashesType.Enabled), smartQuotesType:smartQuotesType??(obscureText?SmartQuotesType.Disabled:SmartQuotesType.Enabled), enableSuggestions:enableSuggestions, maxLengthEnforced:maxLengthEnforced, maxLines:maxLines, minLines:minLines, expands:expands, maxLength:maxLength, onChanged:OnChangedHandler, onTap:onTap, onEditingComplete:onEditingComplete, onSubmitted:onFieldSubmitted, inputFormatters:inputFormatters, enabled:enabled, cursorWidth:cursorWidth, cursorRadius:cursorRadius, cursorColor:cursorColor, scrollPadding:scrollPadding, scrollPhysics:scrollPhysics, keyboardAppearance:keyboardAppearance, enableInteractiveSelection:enableInteractiveSelection, buildCounter:buildCounter);
-})
-{
-this.Controller = controller;throw new NotImplementedException(); }
-#endregion
+    public class TextFormField : FlutterSDK.Widgets.Form.FormField<string>
+    {
+        #region constructors
+        public TextFormField(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Editabletext.TextEditingController controller = default(FlutterSDK.Widgets.Editabletext.TextEditingController), string initialValue = default(string), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), FlutterSDK.Material.Inputdecorator.InputDecoration decoration = default(FlutterSDK.Material.Inputdecorator.InputDecoration), FlutterSDK.Services.Textinput.TextInputType keyboardType = default(FlutterSDK.Services.Textinput.TextInputType), FlutterSDK.Services.Textinput.TextCapitalization textCapitalization = default(FlutterSDK.Services.Textinput.TextCapitalization), FlutterSDK.Services.Textinput.TextInputAction textInputAction = default(FlutterSDK.Services.Textinput.TextInputAction), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), TextDirection textDirection = default(TextDirection), TextAlign textAlign = default(TextAlign), FlutterSDK.Painting.Alignment.TextAlignVertical textAlignVertical = default(FlutterSDK.Painting.Alignment.TextAlignVertical), bool autofocus = false, bool readOnly = false, FlutterSDK.Widgets.Editabletext.ToolbarOptions toolbarOptions = default(FlutterSDK.Widgets.Editabletext.ToolbarOptions), bool showCursor = default(bool), bool obscureText = false, bool autocorrect = true, FlutterSDK.Services.Textinput.SmartDashesType smartDashesType = default(FlutterSDK.Services.Textinput.SmartDashesType), FlutterSDK.Services.Textinput.SmartQuotesType smartQuotesType = default(FlutterSDK.Services.Textinput.SmartQuotesType), bool enableSuggestions = true, bool autovalidate = false, bool maxLengthEnforced = true, int maxLines = 1, int minLines = default(int), bool expands = false, int maxLength = default(int), FlutterSDK.Foundation.Basictypes.ValueChanged<string> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<string>), FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), VoidCallback onEditingComplete = default(VoidCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<string> onFieldSubmitted = default(FlutterSDK.Foundation.Basictypes.ValueChanged<string>), FlutterSDK.Widgets.Form.FormFieldSetter<string> onSaved = default(FlutterSDK.Widgets.Form.FormFieldSetter<string>), FlutterSDK.Widgets.Form.FormFieldValidator<string> validator = default(FlutterSDK.Widgets.Form.FormFieldValidator<string>), List<FlutterSDK.Services.Textformatter.TextInputFormatter> inputFormatters = default(List<FlutterSDK.Services.Textformatter.TextInputFormatter>), bool enabled = true, double cursorWidth = 2.0, Radius cursorRadius = default(Radius), FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color), Brightness keyboardAppearance = default(Brightness), FlutterSDK.Painting.Edgeinsets.EdgeInsets scrollPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), bool enableInteractiveSelection = true, FlutterSDK.Material.Textfield.InputCounterWidgetBuilder buildCounter = default(FlutterSDK.Material.Textfield.InputCounterWidgetBuilder), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics scrollPhysics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
+        : base(key: key, initialValue: controller != null ? controller.Text : (initialValue ?? ""), onSaved: onSaved, validator: validator, autovalidate: autovalidate, enabled: enabled, builder: (FormFieldState<string> field) =>
+        {
+            _TextFormFieldState state = field as _TextFormFieldState;
+            InputDecoration effectiveDecoration = (decoration ?? new InputDecoration()).ApplyDefaults(ThemeDefaultClass.Theme.Of(field.Context).InputDecorationTheme);
+            void OnChangedHandler(string value) => {
+                if (onChanged != null)
+                {
+                    onChanged(value);
+                }
 
-#region fields
-public virtual FlutterSDK.Widgets.Editabletext.TextEditingController Controller{get;set;}
-#endregion
+                field.DidChange(value);
+            }
 
-#region methods
+            return new TextField(controller: state._EffectiveController, focusNode: focusNode, decoration: effectiveDecoration.CopyWith(errorText: field.ErrorText), keyboardType: keyboardType, textInputAction: textInputAction, style: style, strutStyle: strutStyle, textAlign: textAlign, textAlignVertical: textAlignVertical, textDirection: textDirection, textCapitalization: textCapitalization, autofocus: autofocus, toolbarOptions: toolbarOptions, readOnly: readOnly, showCursor: showCursor, obscureText: obscureText, autocorrect: autocorrect, smartDashesType: smartDashesType ?? (obscureText ? SmartDashesType.Disabled : SmartDashesType.Enabled), smartQuotesType: smartQuotesType ?? (obscureText ? SmartQuotesType.Disabled : SmartQuotesType.Enabled), enableSuggestions: enableSuggestions, maxLengthEnforced: maxLengthEnforced, maxLines: maxLines, minLines: minLines, expands: expands, maxLength: maxLength, onChanged: OnChangedHandler, onTap: onTap, onEditingComplete: onEditingComplete, onSubmitted: onFieldSubmitted, inputFormatters: inputFormatters, enabled: enabled, cursorWidth: cursorWidth, cursorRadius: cursorRadius, cursorColor: cursorColor, scrollPadding: scrollPadding, scrollPhysics: scrollPhysics, keyboardAppearance: keyboardAppearance, enableInteractiveSelection: enableInteractiveSelection, buildCounter: buildCounter);
+        })
+        {
+            this.Controller = controller; throw new NotImplementedException();
+        }
+        #endregion
 
-public new FlutterSDK.Material.Textformfield._TextFormFieldState CreateState(){ throw new NotImplementedException(); }
+        #region fields
+        public virtual FlutterSDK.Widgets.Editabletext.TextEditingController Controller { get; set; }
+        #endregion
 
-#endregion
-}
+        #region methods
 
+        public new FlutterSDK.Material.Textformfield._TextFormFieldState CreateState() { throw new NotImplementedException(); }
 
-public class _TextFormFieldState : FlutterSDK.Widgets.Form.FormFieldState<string>
-{
-#region constructors
-public _TextFormFieldState()
-{ }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Widgets.Editabletext.TextEditingController _Controller{get;set;}
-internal virtual FlutterSDK.Widgets.Editabletext.TextEditingController _EffectiveController{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Material.Textformfield.TextFormField Widget{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new void InitState(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void DidUpdateWidget(FlutterSDK.Material.Textformfield.TextFormField oldWidget){ throw new NotImplementedException(); }
+    public class _TextFormFieldState : FlutterSDK.Widgets.Form.FormFieldState<string>
+    {
+        #region constructors
+        public _TextFormFieldState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Editabletext.TextEditingController _Controller { get; set; }
+        internal virtual FlutterSDK.Widgets.Editabletext.TextEditingController _EffectiveController { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Material.Textformfield.TextFormField Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+        public new void DidUpdateWidget(FlutterSDK.Material.Textformfield.TextFormField oldWidget) { throw new NotImplementedException(); }
 
 
-public new void Reset(){ throw new NotImplementedException(); }
+        public new void Dispose() { throw new NotImplementedException(); }
 
 
-private void _HandleControllerChanged(){ throw new NotImplementedException(); }
+        public new void Reset() { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        private void _HandleControllerChanged() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

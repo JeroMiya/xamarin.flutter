@@ -373,18 +373,20 @@ using FlutterSDK.Material.Checkbox;
 using FlutterSDK.Material.Chiptheme;
 using FlutterSDK.Material.Feedback;
 using FlutterSDK.Material.Tooltip;
-namespace FlutterSDK.Material.Constants{
-internal static class ConstantsDefaultClass{
-public static double KMinInteractiveDimension = default(double);
-public static double KToolbarHeight = default(double);
-public static double KBottomNavigationBarHeight = default(double);
-public static double KTextTabBarHeight = default(double);
-public static TimeSpan KThemeChangeDuration = default(TimeSpan);
-public static double KRadialReactionRadius = default(double);
-public static TimeSpan KRadialReactionDuration = default(TimeSpan);
-public static int KRadialReactionAlpha = default(int);
-public static TimeSpan KTabScrollDuration = default(TimeSpan);
-public static FlutterSDK.Painting.Edgeinsets.EdgeInsets KTabLabelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets);
-public static FlutterSDK.Painting.Edgeinsets.EdgeInsets KMaterialListPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets);
-}
+namespace FlutterSDK.Material.Constants
+{
+    internal static class ConstantsDefaultClass
+    {
+        public static double KMinInteractiveDimension = default(double);
+        public static double KToolbarHeight = default(double);
+        public static double KBottomNavigationBarHeight = default(double);
+        public static double KTextTabBarHeight = default(double);
+        public static TimeSpan KThemeChangeDuration = default(TimeSpan);
+        public static double KRadialReactionRadius = default(double);
+        public static TimeSpan KRadialReactionDuration = default(TimeSpan);
+        public static int KRadialReactionAlpha = default(int);
+        public static TimeSpan KTabScrollDuration = default(TimeSpan);
+        public static FlutterSDK.Painting.Edgeinsets.EdgeInsets KTabLabelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets);
+        public static FlutterSDK.Painting.Edgeinsets.EdgeInsets KMaterialListPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets);
+    }
 }

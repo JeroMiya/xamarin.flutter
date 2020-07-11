@@ -292,23 +292,29 @@ using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
-namespace FlutterSDK.Foundation.Collections{
-internal static class CollectionsDefaultClass{
-internal static bool SetEquals<T>(HashSet<T> a,HashSet<T> b){
-throw new NotImplementedException();
-}
+namespace FlutterSDK.Foundation.Collections
+{
+    internal static class CollectionsDefaultClass
+    {
+        internal static bool SetEquals<T>(HashSet<T> a, HashSet<T> b)
+        {
+            throw new NotImplementedException();
+        }
 
-internal static bool ListEquals<T>(List<T> a,List<T> b){
-throw new NotImplementedException();
-}
+        internal static bool ListEquals<T>(List<T> a, List<T> b)
+        {
+            throw new NotImplementedException();
+        }
 
-internal static bool MapEquals<T,U>(Dictionary<T,U> a,Dictionary<T,U> b){
-throw new NotImplementedException();
-}
+        internal static bool MapEquals<T, U>(Dictionary<T, U> a, Dictionary<T, U> b)
+        {
+            throw new NotImplementedException();
+        }
 
-internal static int BinarySearch<T>(List<T> sortedList,T value){
-throw new NotImplementedException();
-}
+        internal static int BinarySearch<T>(List<T> sortedList, T value)
+        {
+            throw new NotImplementedException();
+        }
 
-}
+    }
 }

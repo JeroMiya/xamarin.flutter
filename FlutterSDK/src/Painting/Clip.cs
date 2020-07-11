@@ -420,42 +420,46 @@ using FlutterSDK.Material.Inksplash;
 using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
-namespace FlutterSDK.Painting.Clip{
-internal static class ClipDefaultClass{
-}
-
-public interface IClipContext{}
-
-public class ClipContext{
-public virtual Canvas Canvas{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-
-private void _ClipAndPaint(Action<bool> canvasClipCall,FlutterBinding.UI.Clip clipBehavior,FlutterBinding.UI.Rect bounds,Action painter){ throw new NotImplementedException(); }
-
-
-public virtual void ClipPathAndPaint(Path path,FlutterBinding.UI.Clip clipBehavior,FlutterBinding.UI.Rect bounds,Action painter){ throw new NotImplementedException(); }
-
-
-public virtual void ClipRRectAndPaint(FlutterBinding.UI.RRect rrect,FlutterBinding.UI.Clip clipBehavior,FlutterBinding.UI.Rect bounds,Action painter){ throw new NotImplementedException(); }
-
-
-public virtual void ClipRectAndPaint(FlutterBinding.UI.Rect rect,FlutterBinding.UI.Clip clipBehavior,FlutterBinding.UI.Rect bounds,Action painter){ throw new NotImplementedException(); }
-
-}
-public static class ClipContextMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IClipContext, ClipContext> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IClipContext, ClipContext>();
-static ClipContext GetOrCreate(IClipContext instance)
+namespace FlutterSDK.Painting.Clip
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new ClipContext();
-_table.Add(instance, value);
-}
-return (ClipContext)value;
-}
-public static Canvas CanvasProperty(this IClipContext instance) => GetOrCreate(instance).Canvas;
-public static void ClipPathAndPaint(this IClipContext instance,Path path,FlutterBinding.UI.Clip clipBehavior,FlutterBinding.UI.Rect bounds,Action painter) => GetOrCreate(instance).ClipPathAndPaint(path, clipBehavior, bounds, painter);
-public static void ClipRRectAndPaint(this IClipContext instance,FlutterBinding.UI.RRect rrect,FlutterBinding.UI.Clip clipBehavior,FlutterBinding.UI.Rect bounds,Action painter) => GetOrCreate(instance).ClipRRectAndPaint(rrect, clipBehavior, bounds, painter);
-public static void ClipRectAndPaint(this IClipContext instance,FlutterBinding.UI.Rect rect,FlutterBinding.UI.Clip clipBehavior,FlutterBinding.UI.Rect bounds,Action painter) => GetOrCreate(instance).ClipRectAndPaint(rect, clipBehavior, bounds, painter);
-}
+    internal static class ClipDefaultClass
+    {
+    }
+
+    public interface IClipContext { }
+
+    public class ClipContext
+    {
+        public virtual Canvas Canvas { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+
+        private void _ClipAndPaint(Action<bool> canvasClipCall, FlutterBinding.UI.Clip clipBehavior, FlutterBinding.UI.Rect bounds, Action painter) { throw new NotImplementedException(); }
+
+
+        public virtual void ClipPathAndPaint(Path path, FlutterBinding.UI.Clip clipBehavior, FlutterBinding.UI.Rect bounds, Action painter) { throw new NotImplementedException(); }
+
+
+        public virtual void ClipRRectAndPaint(FlutterBinding.UI.RRect rrect, FlutterBinding.UI.Clip clipBehavior, FlutterBinding.UI.Rect bounds, Action painter) { throw new NotImplementedException(); }
+
+
+        public virtual void ClipRectAndPaint(FlutterBinding.UI.Rect rect, FlutterBinding.UI.Clip clipBehavior, FlutterBinding.UI.Rect bounds, Action painter) { throw new NotImplementedException(); }
+
+    }
+    public static class ClipContextMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IClipContext, ClipContext> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IClipContext, ClipContext>();
+        static ClipContext GetOrCreate(IClipContext instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new ClipContext();
+                _table.Add(instance, value);
+            }
+            return (ClipContext)value;
+        }
+        public static Canvas CanvasProperty(this IClipContext instance) => GetOrCreate(instance).Canvas;
+        public static void ClipPathAndPaint(this IClipContext instance, Path path, FlutterBinding.UI.Clip clipBehavior, FlutterBinding.UI.Rect bounds, Action painter) => GetOrCreate(instance).ClipPathAndPaint(path, clipBehavior, bounds, painter);
+        public static void ClipRRectAndPaint(this IClipContext instance, FlutterBinding.UI.RRect rrect, FlutterBinding.UI.Clip clipBehavior, FlutterBinding.UI.Rect bounds, Action painter) => GetOrCreate(instance).ClipRRectAndPaint(rrect, clipBehavior, bounds, painter);
+        public static void ClipRectAndPaint(this IClipContext instance, FlutterBinding.UI.Rect rect, FlutterBinding.UI.Clip clipBehavior, FlutterBinding.UI.Rect bounds, Action painter) => GetOrCreate(instance).ClipRectAndPaint(rect, clipBehavior, bounds, painter);
+    }
 
 }

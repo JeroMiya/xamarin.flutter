@@ -291,214 +291,219 @@ using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
-namespace FlutterSDK.Cupertino.Segmentedcontrol{
-public delegate FlutterSDK.Rendering.Box.RenderBox _NextChild(FlutterSDK.Rendering.Box.RenderBox child);
-internal static class SegmentedcontrolDefaultClass{
-public static FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry _KHorizontalItemPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry);
-public static double _KMinSegmentedControlHeight = default(double);
-public static TimeSpan _KFadeDuration = default(TimeSpan);
-}
-
-public class CupertinoSegmentedControl<T> : FlutterSDK.Widgets.Framework.StatefulWidget
+namespace FlutterSDK.Cupertino.Segmentedcontrol
 {
-#region constructors
-public CupertinoSegmentedControl(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),Dictionary<T,FlutterSDK.Widgets.Framework.Widget> children = default(Dictionary<T,FlutterSDK.Widgets.Framework.Widget>),FlutterSDK.Foundation.Basictypes.ValueChanged<T> onValueChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<T>),T groupValue = default(T),FlutterBinding.UI.Color unselectedColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color borderColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color pressedColor = default(FlutterBinding.UI.Color),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry))
-: base(key:key)
-{
-this.Children = children;
-this.OnValueChanged = onValueChanged;
-this.GroupValue = groupValue;
-this.UnselectedColor = unselectedColor;
-this.SelectedColor = selectedColor;
-this.BorderColor = borderColor;
-this.PressedColor = pressedColor;
-this.Padding = padding;throw new NotImplementedException(); }
-#endregion
+    public delegate FlutterSDK.Rendering.Box.RenderBox _NextChild(FlutterSDK.Rendering.Box.RenderBox child);
+    internal static class SegmentedcontrolDefaultClass
+    {
+        public static FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry _KHorizontalItemPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry);
+        public static double _KMinSegmentedControlHeight = default(double);
+        public static TimeSpan _KFadeDuration = default(TimeSpan);
+    }
 
-#region fields
-public virtual Dictionary<T,FlutterSDK.Widgets.Framework.Widget> Children{get;set;}
-public virtual T GroupValue{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<T> OnValueChanged{get;set;}
-public virtual FlutterBinding.UI.Color UnselectedColor{get;set;}
-public virtual FlutterBinding.UI.Color SelectedColor{get;set;}
-public virtual FlutterBinding.UI.Color BorderColor{get;set;}
-public virtual FlutterBinding.UI.Color PressedColor{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding{get;set;}
-#endregion
+    public class CupertinoSegmentedControl<T> : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public CupertinoSegmentedControl(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Dictionary<T, FlutterSDK.Widgets.Framework.Widget> children = default(Dictionary<T, FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Foundation.Basictypes.ValueChanged<T> onValueChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<T>), T groupValue = default(T), FlutterBinding.UI.Color unselectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color borderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color pressedColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry))
+        : base(key: key)
+        {
+            this.Children = children;
+            this.OnValueChanged = onValueChanged;
+            this.GroupValue = groupValue;
+            this.UnselectedColor = unselectedColor;
+            this.SelectedColor = selectedColor;
+            this.BorderColor = borderColor;
+            this.PressedColor = pressedColor;
+            this.Padding = padding; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual Dictionary<T, FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
+        public virtual T GroupValue { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<T> OnValueChanged { get; set; }
+        public virtual FlutterBinding.UI.Color UnselectedColor { get; set; }
+        public virtual FlutterBinding.UI.Color SelectedColor { get; set; }
+        public virtual FlutterBinding.UI.Color BorderColor { get; set; }
+        public virtual FlutterBinding.UI.Color PressedColor { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        #endregion
 
-public new _SegmentedControlState<T> CreateState(){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new _SegmentedControlState<T> CreateState() { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class _SegmentedControlState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Segmentedcontrol.CupertinoSegmentedControl<T>>,ITickerProviderStateMixin<FlutterSDK.Cupertino.Segmentedcontrol.CupertinoSegmentedControl<T>>
-{
-#region constructors
-public _SegmentedControlState()
-{ }
-#endregion
 
-#region fields
-internal virtual T _PressedKey{get;set;}
-internal virtual List<FlutterSDK.Animation.Animationcontroller.AnimationController> _SelectionControllers{get;set;}
-internal virtual List<FlutterSDK.Animation.Tween.ColorTween> _ChildTweens{get;set;}
-internal virtual FlutterSDK.Animation.Tween.ColorTween _ForwardBackgroundColorTween{get;set;}
-internal virtual FlutterSDK.Animation.Tween.ColorTween _ReverseBackgroundColorTween{get;set;}
-internal virtual FlutterSDK.Animation.Tween.ColorTween _TextColorTween{get;set;}
-internal virtual FlutterBinding.UI.Color _SelectedColor{get;set;}
-internal virtual FlutterBinding.UI.Color _UnselectedColor{get;set;}
-internal virtual FlutterBinding.UI.Color _BorderColor{get;set;}
-internal virtual FlutterBinding.UI.Color _PressedColor{get;set;}
-#endregion
+    public class _SegmentedControlState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Segmentedcontrol.CupertinoSegmentedControl<T>>, ITickerProviderStateMixin<FlutterSDK.Cupertino.Segmentedcontrol.CupertinoSegmentedControl<T>>
+    {
+        #region constructors
+        public _SegmentedControlState()
+        { }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual T _PressedKey { get; set; }
+        internal virtual List<FlutterSDK.Animation.Animationcontroller.AnimationController> _SelectionControllers { get; set; }
+        internal virtual List<FlutterSDK.Animation.Tween.ColorTween> _ChildTweens { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.ColorTween _ForwardBackgroundColorTween { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.ColorTween _ReverseBackgroundColorTween { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.ColorTween _TextColorTween { get; set; }
+        internal virtual FlutterBinding.UI.Color _SelectedColor { get; set; }
+        internal virtual FlutterBinding.UI.Color _UnselectedColor { get; set; }
+        internal virtual FlutterBinding.UI.Color _BorderColor { get; set; }
+        internal virtual FlutterBinding.UI.Color _PressedColor { get; set; }
+        #endregion
 
-public virtual FlutterSDK.Animation.Animationcontroller.AnimationController CreateAnimationController(){ throw new NotImplementedException(); }
+        #region methods
 
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController CreateAnimationController() { throw new NotImplementedException(); }
 
-private bool _UpdateColors(){ throw new NotImplementedException(); }
 
+        private bool _UpdateColors() { throw new NotImplementedException(); }
 
-private void _UpdateAnimationControllers(){ throw new NotImplementedException(); }
 
+        private void _UpdateAnimationControllers() { throw new NotImplementedException(); }
 
-public new void DidChangeDependencies(){ throw new NotImplementedException(); }
 
+        public new void DidChangeDependencies() { throw new NotImplementedException(); }
 
-public new void DidUpdateWidget(FlutterSDK.Cupertino.Segmentedcontrol.CupertinoSegmentedControl<T> oldWidget){ throw new NotImplementedException(); }
 
+        public new void DidUpdateWidget(FlutterSDK.Cupertino.Segmentedcontrol.CupertinoSegmentedControl<T> oldWidget) { throw new NotImplementedException(); }
 
-public new void Dispose(){ throw new NotImplementedException(); }
 
+        public new void Dispose() { throw new NotImplementedException(); }
 
-private void _OnTapDown(T currentKey){ throw new NotImplementedException(); }
 
+        private void _OnTapDown(T currentKey) { throw new NotImplementedException(); }
 
-private void _OnTapCancel(){ throw new NotImplementedException(); }
 
+        private void _OnTapCancel() { throw new NotImplementedException(); }
 
-private void _OnTap(T currentKey){ throw new NotImplementedException(); }
 
+        private void _OnTap(T currentKey) { throw new NotImplementedException(); }
 
-public virtual Color GetTextColor(int index,T currentKey){ throw new NotImplementedException(); }
 
+        public virtual Color GetTextColor(int index, T currentKey) { throw new NotImplementedException(); }
 
-public virtual Color GetBackgroundColor(int index,T currentKey){ throw new NotImplementedException(); }
 
+        public virtual Color GetBackgroundColor(int index, T currentKey) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class _SegmentedControlRenderWidget<T> : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
-{
-#region constructors
-public _SegmentedControlRenderWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>),int selectedIndex = default(int),int pressedIndex = default(int),List<Color> backgroundColors = default(List<Color>),FlutterBinding.UI.Color borderColor = default(FlutterBinding.UI.Color))
-: base(key:key,children:children)
-{
-this.SelectedIndex = selectedIndex;
-this.PressedIndex = pressedIndex;
-this.BackgroundColors = backgroundColors;
-this.BorderColor = borderColor;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual int SelectedIndex{get;set;}
-public virtual int PressedIndex{get;set;}
-public virtual List<Color> BackgroundColors{get;set;}
-public virtual FlutterBinding.UI.Color BorderColor{get;set;}
-#endregion
+    public class _SegmentedControlRenderWidget<T> : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
+    {
+        #region constructors
+        public _SegmentedControlRenderWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), int selectedIndex = default(int), int pressedIndex = default(int), List<Color> backgroundColors = default(List<Color>), FlutterBinding.UI.Color borderColor = default(FlutterBinding.UI.Color))
+        : base(key: key, children: children)
+        {
+            this.SelectedIndex = selectedIndex;
+            this.PressedIndex = pressedIndex;
+            this.BackgroundColors = backgroundColors;
+            this.BorderColor = borderColor; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual int SelectedIndex { get; set; }
+        public virtual int PressedIndex { get; set; }
+        public virtual List<Color> BackgroundColors { get; set; }
+        public virtual FlutterBinding.UI.Color BorderColor { get; set; }
+        #endregion
 
-public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
 
+        public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Cupertino.Segmentedcontrol._RenderSegmentedControl<T> renderObject){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Cupertino.Segmentedcontrol._RenderSegmentedControl<T> renderObject) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class _SegmentedControlContainerBoxParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
-{
-#region constructors
-public _SegmentedControlContainerBoxParentData()
-{ }
-#endregion
 
-#region fields
-public virtual FlutterBinding.UI.RRect SurroundingRect{get;set;}
-#endregion
+    public class _SegmentedControlContainerBoxParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
+    {
+        #region constructors
+        public _SegmentedControlContainerBoxParentData()
+        { }
+        #endregion
 
-#region methods
-#endregion
-}
+        #region fields
+        public virtual FlutterBinding.UI.RRect SurroundingRect { get; set; }
+        #endregion
 
+        #region methods
+        #endregion
+    }
 
-public class _RenderSegmentedControl<T> : FlutterSDK.Rendering.Box.RenderBox,IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox,FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>>,IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox,FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>>
-{
-#region constructors
-public _RenderSegmentedControl(int selectedIndex = default(int),int pressedIndex = default(int),TextDirection textDirection = default(TextDirection),List<Color> backgroundColors = default(List<Color>),FlutterBinding.UI.Color borderColor = default(FlutterBinding.UI.Color))
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
 
-#region fields
-internal virtual int _SelectedIndex{get;set;}
-internal virtual int _PressedIndex{get;set;}
-internal virtual TextDirection _TextDirection{get;set;}
-internal virtual List<Color> _BackgroundColors{get;set;}
-internal virtual FlutterBinding.UI.Color _BorderColor{get;set;}
-public virtual int SelectedIndex{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual int PressedIndex{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual TextDirection TextDirection{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual List<Color> BackgroundColors{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterBinding.UI.Color BorderColor{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
+    public class _RenderSegmentedControl<T> : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>>
+    {
+        #region constructors
+        public _RenderSegmentedControl(int selectedIndex = default(int), int pressedIndex = default(int), TextDirection textDirection = default(TextDirection), List<Color> backgroundColors = default(List<Color>), FlutterBinding.UI.Color borderColor = default(FlutterBinding.UI.Color))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual int _SelectedIndex { get; set; }
+        internal virtual int _PressedIndex { get; set; }
+        internal virtual TextDirection _TextDirection { get; set; }
+        internal virtual List<Color> _BackgroundColors { get; set; }
+        internal virtual FlutterBinding.UI.Color _BorderColor { get; set; }
+        public virtual int SelectedIndex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int PressedIndex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual List<Color> BackgroundColors { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Color BorderColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new double ComputeMinIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        #region methods
 
+        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
-public new double ComputeMaxIntrinsicWidth(double height){ throw new NotImplementedException(); }
 
+        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
-public new double ComputeMinIntrinsicHeight(double width){ throw new NotImplementedException(); }
 
+        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
-public new double ComputeMaxIntrinsicHeight(double width){ throw new NotImplementedException(); }
 
+        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
-public new double ComputeDistanceToActualBaseline(TextBaseline baseline){ throw new NotImplementedException(); }
 
+        public new double ComputeDistanceToActualBaseline(TextBaseline baseline) { throw new NotImplementedException(); }
 
-public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child){ throw new NotImplementedException(); }
-public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
 
+        public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
+        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
-private void _LayoutRects(FlutterSDK.Cupertino.Segmentedcontrol._NextChild nextChild,FlutterSDK.Rendering.Box.RenderBox leftChild,FlutterSDK.Rendering.Box.RenderBox rightChild){ throw new NotImplementedException(); }
 
+        private void _LayoutRects(FlutterSDK.Cupertino.Segmentedcontrol._NextChild nextChild, FlutterSDK.Rendering.Box.RenderBox leftChild, FlutterSDK.Rendering.Box.RenderBox rightChild) { throw new NotImplementedException(); }
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
 
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
 
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-private void _PaintChild(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset,FlutterSDK.Rendering.Box.RenderBox child,int childIndex){ throw new NotImplementedException(); }
 
+        private void _PaintChild(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset, FlutterSDK.Rendering.Box.RenderBox child, int childIndex) { throw new NotImplementedException(); }
 
-public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

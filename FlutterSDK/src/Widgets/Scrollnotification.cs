@@ -423,181 +423,193 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Scrollnotification{
-public delegate bool ScrollNotificationPredicate(FlutterSDK.Widgets.Scrollnotification.ScrollNotification notification);
-internal static class ScrollnotificationDefaultClass{
-internal static bool DefaultScrollNotificationPredicate(FlutterSDK.Widgets.Scrollnotification.ScrollNotification notification){
-throw new NotImplementedException();
-}
-
-}
-
-public interface IScrollNotification{
-void DebugFillDescription(List<string> description);
-FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics Metrics{get;}
-FlutterSDK.Widgets.Framework.BuildContext Context{get;}
-}
-
-
-public interface IViewportNotificationMixin{}
-
-public class ViewportNotificationMixin{
-internal virtual int _Depth{get;set;}
-public virtual int Depth{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-
-public new bool VisitAncestor(FlutterSDK.Widgets.Framework.Element element){ throw new NotImplementedException(); }
-
-
-public new void DebugFillDescription(List<string> description){ throw new NotImplementedException(); }
-
-}
-public static class ViewportNotificationMixinMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IViewportNotificationMixin, ViewportNotificationMixin> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IViewportNotificationMixin, ViewportNotificationMixin>();
-static ViewportNotificationMixin GetOrCreate(IViewportNotificationMixin instance)
+namespace FlutterSDK.Widgets.Scrollnotification
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new ViewportNotificationMixin();
-_table.Add(instance, value);
-}
-return (ViewportNotificationMixin)value;
-}
-public static int DepthProperty(this IViewportNotificationMixin instance) => GetOrCreate(instance).Depth;
-public static bool VisitAncestor(this IViewportNotificationMixin instance,FlutterSDK.Widgets.Framework.Element element) => GetOrCreate(instance).VisitAncestor(element);
-public static void DebugFillDescription(this IViewportNotificationMixin instance,List<string> description) => GetOrCreate(instance).DebugFillDescription(description);
-}
+    public delegate bool ScrollNotificationPredicate(FlutterSDK.Widgets.Scrollnotification.ScrollNotification notification);
+    internal static class ScrollnotificationDefaultClass
+    {
+        internal static bool DefaultScrollNotificationPredicate(FlutterSDK.Widgets.Scrollnotification.ScrollNotification notification)
+        {
+            throw new NotImplementedException();
+        }
+
+    }
+
+    public interface IScrollNotification
+    {
+        void DebugFillDescription(List<string> description);
+        FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics Metrics { get; }
+        FlutterSDK.Widgets.Framework.BuildContext Context { get; }
+    }
 
 
-public class ScrollNotification : FlutterSDK.Widgets.Notificationlistener.LayoutChangedNotification,IViewportNotificationMixin
-{
-#region constructors
-public ScrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics),FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext))
-{
-this.Metrics = metrics;
-this.Context = context;throw new NotImplementedException(); }
-#endregion
+    public interface IViewportNotificationMixin { }
 
-#region fields
-public virtual FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics Metrics{get;set;}
-public virtual FlutterSDK.Widgets.Framework.BuildContext Context{get;set;}
-#endregion
+    public class ViewportNotificationMixin
+    {
+        internal virtual int _Depth { get; set; }
+        public virtual int Depth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
-#region methods
-
-public new void DebugFillDescription(List<string> description){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public new bool VisitAncestor(FlutterSDK.Widgets.Framework.Element element) { throw new NotImplementedException(); }
 
 
-public class ScrollStartNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
-{
-#region constructors
-public ScrollStartNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics),FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext),FlutterSDK.Gestures.Dragdetails.DragStartDetails dragDetails = default(FlutterSDK.Gestures.Dragdetails.DragStartDetails))
-: base(metrics:metrics,context:context)
-{
-this.DragDetails = dragDetails;throw new NotImplementedException(); }
-#endregion
+        public new void DebugFillDescription(List<string> description) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Gestures.Dragdetails.DragStartDetails DragDetails{get;set;}
-#endregion
-
-#region methods
-
-public new void DebugFillDescription(List<string> description){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class ScrollUpdateNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
-{
-#region constructors
-public ScrollUpdateNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics),FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext),FlutterSDK.Gestures.Dragdetails.DragUpdateDetails dragDetails = default(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails),double scrollDelta = default(double))
-: base(metrics:metrics,context:context)
-{
-this.DragDetails = dragDetails;
-this.ScrollDelta = scrollDelta;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Gestures.Dragdetails.DragUpdateDetails DragDetails{get;set;}
-public virtual double ScrollDelta{get;set;}
-#endregion
-
-#region methods
-
-public new void DebugFillDescription(List<string> description){ throw new NotImplementedException(); }
-
-#endregion
-}
+    }
+    public static class ViewportNotificationMixinMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IViewportNotificationMixin, ViewportNotificationMixin> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IViewportNotificationMixin, ViewportNotificationMixin>();
+        static ViewportNotificationMixin GetOrCreate(IViewportNotificationMixin instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new ViewportNotificationMixin();
+                _table.Add(instance, value);
+            }
+            return (ViewportNotificationMixin)value;
+        }
+        public static int DepthProperty(this IViewportNotificationMixin instance) => GetOrCreate(instance).Depth;
+        public static bool VisitAncestor(this IViewportNotificationMixin instance, FlutterSDK.Widgets.Framework.Element element) => GetOrCreate(instance).VisitAncestor(element);
+        public static void DebugFillDescription(this IViewportNotificationMixin instance, List<string> description) => GetOrCreate(instance).DebugFillDescription(description);
+    }
 
 
-public class OverscrollNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
-{
-#region constructors
-public OverscrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics),FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext),FlutterSDK.Gestures.Dragdetails.DragUpdateDetails dragDetails = default(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails),double overscroll = default(double),double velocity = 0.0)
-: base(metrics:metrics,context:context)
-{
-this.DragDetails = dragDetails;
-this.Overscroll = overscroll;
-this.Velocity = velocity;throw new NotImplementedException(); }
-#endregion
+    public class ScrollNotification : FlutterSDK.Widgets.Notificationlistener.LayoutChangedNotification, IViewportNotificationMixin
+    {
+        #region constructors
+        public ScrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext))
+        {
+            this.Metrics = metrics;
+            this.Context = context; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Gestures.Dragdetails.DragUpdateDetails DragDetails{get;set;}
-public virtual double Overscroll{get;set;}
-public virtual double Velocity{get;set;}
-#endregion
+        #region fields
+        public virtual FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics Metrics { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.BuildContext Context { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new void DebugFillDescription(List<string> description){ throw new NotImplementedException(); }
+        public new void DebugFillDescription(List<string> description) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class ScrollEndNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
-{
-#region constructors
-public ScrollEndNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics),FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext),FlutterSDK.Gestures.Dragdetails.DragEndDetails dragDetails = default(FlutterSDK.Gestures.Dragdetails.DragEndDetails))
-: base(metrics:metrics,context:context)
-{
-this.DragDetails = dragDetails;throw new NotImplementedException(); }
-#endregion
+    public class ScrollStartNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
+    {
+        #region constructors
+        public ScrollStartNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Gestures.Dragdetails.DragStartDetails dragDetails = default(FlutterSDK.Gestures.Dragdetails.DragStartDetails))
+        : base(metrics: metrics, context: context)
+        {
+            this.DragDetails = dragDetails; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Gestures.Dragdetails.DragEndDetails DragDetails{get;set;}
-#endregion
+        #region fields
+        public virtual FlutterSDK.Gestures.Dragdetails.DragStartDetails DragDetails { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new void DebugFillDescription(List<string> description){ throw new NotImplementedException(); }
+        public new void DebugFillDescription(List<string> description) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class UserScrollNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
-{
-#region constructors
-public UserScrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics),FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext),FlutterSDK.Rendering.Viewportoffset.ScrollDirection direction = default(FlutterSDK.Rendering.Viewportoffset.ScrollDirection))
-: base(metrics:metrics,context:context)
-{
-this.Direction = direction;throw new NotImplementedException(); }
-#endregion
+    public class ScrollUpdateNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
+    {
+        #region constructors
+        public ScrollUpdateNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Gestures.Dragdetails.DragUpdateDetails dragDetails = default(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails), double scrollDelta = default(double))
+        : base(metrics: metrics, context: context)
+        {
+            this.DragDetails = dragDetails;
+            this.ScrollDelta = scrollDelta; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Rendering.Viewportoffset.ScrollDirection Direction{get;set;}
-#endregion
+        #region fields
+        public virtual FlutterSDK.Gestures.Dragdetails.DragUpdateDetails DragDetails { get; set; }
+        public virtual double ScrollDelta { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new void DebugFillDescription(List<string> description){ throw new NotImplementedException(); }
+        public new void DebugFillDescription(List<string> description) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
+
+
+    public class OverscrollNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
+    {
+        #region constructors
+        public OverscrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Gestures.Dragdetails.DragUpdateDetails dragDetails = default(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails), double overscroll = default(double), double velocity = 0.0)
+        : base(metrics: metrics, context: context)
+        {
+            this.DragDetails = dragDetails;
+            this.Overscroll = overscroll;
+            this.Velocity = velocity; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Gestures.Dragdetails.DragUpdateDetails DragDetails { get; set; }
+        public virtual double Overscroll { get; set; }
+        public virtual double Velocity { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void DebugFillDescription(List<string> description) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class ScrollEndNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
+    {
+        #region constructors
+        public ScrollEndNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Gestures.Dragdetails.DragEndDetails dragDetails = default(FlutterSDK.Gestures.Dragdetails.DragEndDetails))
+        : base(metrics: metrics, context: context)
+        {
+            this.DragDetails = dragDetails; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Gestures.Dragdetails.DragEndDetails DragDetails { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void DebugFillDescription(List<string> description) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class UserScrollNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
+    {
+        #region constructors
+        public UserScrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Rendering.Viewportoffset.ScrollDirection direction = default(FlutterSDK.Rendering.Viewportoffset.ScrollDirection))
+        : base(metrics: metrics, context: context)
+        {
+            this.Direction = direction; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Rendering.Viewportoffset.ScrollDirection Direction { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void DebugFillDescription(List<string> description) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

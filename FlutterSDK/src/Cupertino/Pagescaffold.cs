@@ -291,79 +291,84 @@ using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
-namespace FlutterSDK.Cupertino.Pagescaffold{
-internal static class PagescaffoldDefaultClass{
-}
-
-public interface IObstructingPreferredSizeWidget{}
-
-public class ObstructingPreferredSizeWidget:IPreferredSizeWidget{
-
-public virtual bool ShouldFullyObstruct(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-public virtual Size PreferredSize{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-}
-public static class ObstructingPreferredSizeWidgetMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IObstructingPreferredSizeWidget, ObstructingPreferredSizeWidget> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IObstructingPreferredSizeWidget, ObstructingPreferredSizeWidget>();
-static ObstructingPreferredSizeWidget GetOrCreate(IObstructingPreferredSizeWidget instance)
+namespace FlutterSDK.Cupertino.Pagescaffold
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new ObstructingPreferredSizeWidget();
-_table.Add(instance, value);
-}
-return (ObstructingPreferredSizeWidget)value;
-}
-public static bool ShouldFullyObstruct(this IObstructingPreferredSizeWidget instance,FlutterSDK.Widgets.Framework.BuildContext context) => GetOrCreate(instance).ShouldFullyObstruct(context);
-}
+    internal static class PagescaffoldDefaultClass
+    {
+    }
+
+    public interface IObstructingPreferredSizeWidget { }
+
+    public class ObstructingPreferredSizeWidget : IPreferredSizeWidget
+    {
+
+        public virtual bool ShouldFullyObstruct(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        public virtual Size PreferredSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    }
+    public static class ObstructingPreferredSizeWidgetMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IObstructingPreferredSizeWidget, ObstructingPreferredSizeWidget> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IObstructingPreferredSizeWidget, ObstructingPreferredSizeWidget>();
+        static ObstructingPreferredSizeWidget GetOrCreate(IObstructingPreferredSizeWidget instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new ObstructingPreferredSizeWidget();
+                _table.Add(instance, value);
+            }
+            return (ObstructingPreferredSizeWidget)value;
+        }
+        public static bool ShouldFullyObstruct(this IObstructingPreferredSizeWidget instance, FlutterSDK.Widgets.Framework.BuildContext context) => GetOrCreate(instance).ShouldFullyObstruct(context);
+    }
 
 
-public class CupertinoPageScaffold : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public CupertinoPageScaffold(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Cupertino.Pagescaffold.ObstructingPreferredSizeWidget navigationBar = default(FlutterSDK.Cupertino.Pagescaffold.ObstructingPreferredSizeWidget),FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),bool resizeToAvoidBottomInset = true,FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key)
-{
-this.NavigationBar = navigationBar;
-this.BackgroundColor = backgroundColor;
-this.ResizeToAvoidBottomInset = resizeToAvoidBottomInset;
-this.Child = child;throw new NotImplementedException(); }
-#endregion
+    public class CupertinoPageScaffold : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public CupertinoPageScaffold(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Cupertino.Pagescaffold.ObstructingPreferredSizeWidget navigationBar = default(FlutterSDK.Cupertino.Pagescaffold.ObstructingPreferredSizeWidget), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), bool resizeToAvoidBottomInset = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.NavigationBar = navigationBar;
+            this.BackgroundColor = backgroundColor;
+            this.ResizeToAvoidBottomInset = resizeToAvoidBottomInset;
+            this.Child = child; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Cupertino.Pagescaffold.ObstructingPreferredSizeWidget NavigationBar{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-public virtual FlutterBinding.UI.Color BackgroundColor{get;set;}
-public virtual bool ResizeToAvoidBottomInset{get;set;}
-#endregion
+        #region fields
+        public virtual FlutterSDK.Cupertino.Pagescaffold.ObstructingPreferredSizeWidget NavigationBar { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual bool ResizeToAvoidBottomInset { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new FlutterSDK.Cupertino.Pagescaffold._CupertinoPageScaffoldState CreateState(){ throw new NotImplementedException(); }
+        public new FlutterSDK.Cupertino.Pagescaffold._CupertinoPageScaffoldState CreateState() { throw new NotImplementedException(); }
 
-#endregion
-}
-
-
-public class _CupertinoPageScaffoldState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Pagescaffold.CupertinoPageScaffold>
-{
-#region constructors
-public _CupertinoPageScaffoldState()
-{ }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController _PrimaryScrollController{get;set;}
-#endregion
-
-#region methods
-
-private void _HandleStatusBarTap(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+    public class _CupertinoPageScaffoldState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Pagescaffold.CupertinoPageScaffold>
+    {
+        #region constructors
+        public _CupertinoPageScaffoldState()
+        { }
+        #endregion
 
-#endregion
-}
+        #region fields
+        internal virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController _PrimaryScrollController { get; set; }
+        #endregion
+
+        #region methods
+
+        private void _HandleStatusBarTap() { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

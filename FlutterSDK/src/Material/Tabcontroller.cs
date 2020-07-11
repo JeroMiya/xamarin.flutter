@@ -415,130 +415,136 @@ using FlutterSDK.Material.Switch;
 using FlutterSDK.Material.Tabbartheme;
 using FlutterSDK.Material.Tabcontroller;
 using FlutterSDK.Material.Tabindicator;
-namespace FlutterSDK.Material.Tabcontroller{
-internal static class TabcontrollerDefaultClass{
-}
-
-public class TabController : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
+namespace FlutterSDK.Material.Tabcontroller
 {
-#region constructors
-public TabController(int initialIndex = 0,int length = default(int),FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider))
-: base()
-{
-this.Length = length;throw new NotImplementedException(); }
-internal TabController(int index = default(int),int previousIndex = default(int),FlutterSDK.Animation.Animationcontroller.AnimationController animationController = default(FlutterSDK.Animation.Animationcontroller.AnimationController),int length = default(int))
-: base()
-{
-this.Length = length;throw new NotImplementedException(); }
-#endregion
+    internal static class TabcontrollerDefaultClass
+    {
+    }
 
-#region fields
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _AnimationController{get;set;}
-public virtual int Length{get;set;}
-internal virtual int _Index{get;set;}
-internal virtual int _PreviousIndex{get;set;}
-internal virtual int _IndexIsChangingCount{get;set;}
-public virtual FlutterSDK.Animation.Animation.Animation<double> Animation{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int Index{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual int PreviousIndex{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IndexIsChanging{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double Offset{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
+    public class TabController : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
+    {
+        #region constructors
+        public TabController(int initialIndex = 0, int length = default(int), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider))
+        : base()
+        {
+            this.Length = length; throw new NotImplementedException();
+        }
+        internal TabController(int index = default(int), int previousIndex = default(int), FlutterSDK.Animation.Animationcontroller.AnimationController animationController = default(FlutterSDK.Animation.Animationcontroller.AnimationController), int length = default(int))
+        : base()
+        {
+            this.Length = length; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _AnimationController { get; set; }
+        public virtual int Length { get; set; }
+        internal virtual int _Index { get; set; }
+        internal virtual int _PreviousIndex { get; set; }
+        internal virtual int _IndexIsChangingCount { get; set; }
+        public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int Index { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int PreviousIndex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IndexIsChanging { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Offset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-private FlutterSDK.Material.Tabcontroller.TabController _CopyWith(int index = default(int),int length = default(int),int previousIndex = default(int)){ throw new NotImplementedException(); }
+        #region methods
 
-
-private void _ChangeIndex(int value,TimeSpan duration = default(TimeSpan),FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)){ throw new NotImplementedException(); }
-
-
-public virtual void AnimateTo(int value,TimeSpan duration = default(TimeSpan),FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)){ throw new NotImplementedException(); }
-
-
-public new void Dispose(){ throw new NotImplementedException(); }
-
-#endregion
-}
+        private FlutterSDK.Material.Tabcontroller.TabController _CopyWith(int index = default(int), int length = default(int), int previousIndex = default(int)) { throw new NotImplementedException(); }
 
 
-public class _TabControllerScope : FlutterSDK.Widgets.Framework.InheritedWidget
-{
-#region constructors
-public _TabControllerScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Material.Tabcontroller.TabController controller = default(FlutterSDK.Material.Tabcontroller.TabController),bool enabled = default(bool),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key,child:child)
-{
-this.Controller = controller;
-this.Enabled = enabled;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Material.Tabcontroller.TabController Controller{get;set;}
-public virtual bool Enabled{get;set;}
-#endregion
-
-#region methods
-
-public new bool UpdateShouldNotify(FlutterSDK.Material.Tabcontroller._TabControllerScope old){ throw new NotImplementedException(); }
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget){ throw new NotImplementedException(); }
-
-#endregion
-}
+        private void _ChangeIndex(int value, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)) { throw new NotImplementedException(); }
 
 
-public class DefaultTabController : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public DefaultTabController(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),int length = default(int),int initialIndex = 0,FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key)
-{
-this.Length = length;
-this.InitialIndex = initialIndex;
-this.Child = child;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual int Length{get;set;}
-public virtual int InitialIndex{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-#endregion
-
-#region methods
-
-public virtual FlutterSDK.Material.Tabcontroller.TabController Of(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public virtual void AnimateTo(int value, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Material.Tabcontroller._DefaultTabControllerState CreateState(){ throw new NotImplementedException(); }
+        public new void Dispose() { throw new NotImplementedException(); }
 
-#endregion
-}
-
-
-public class _DefaultTabControllerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Tabcontroller.DefaultTabController>,ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-#region constructors
-public _DefaultTabControllerState()
-{ }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Material.Tabcontroller.TabController _Controller{get;set;}
-#endregion
-
-#region methods
-
-public new void InitState(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+    public class _TabControllerScope : FlutterSDK.Widgets.Framework.InheritedWidget
+    {
+        #region constructors
+        public _TabControllerScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Tabcontroller.TabController controller = default(FlutterSDK.Material.Tabcontroller.TabController), bool enabled = default(bool), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            this.Controller = controller;
+            this.Enabled = enabled; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Material.Tabcontroller.TabController Controller { get; set; }
+        public virtual bool Enabled { get; set; }
+        #endregion
+
+        #region methods
+
+        public new bool UpdateShouldNotify(FlutterSDK.Material.Tabcontroller._TabControllerScope old) { throw new NotImplementedException(); }
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+    public class DefaultTabController : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public DefaultTabController(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), int length = default(int), int initialIndex = 0, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.Length = length;
+            this.InitialIndex = initialIndex;
+            this.Child = child; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual int Length { get; set; }
+        public virtual int InitialIndex { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual FlutterSDK.Material.Tabcontroller.TabController Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public new void DidUpdateWidget(FlutterSDK.Material.Tabcontroller.DefaultTabController oldWidget){ throw new NotImplementedException(); }
+        public new FlutterSDK.Material.Tabcontroller._DefaultTabControllerState CreateState() { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
+
+
+    public class _DefaultTabControllerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Tabcontroller.DefaultTabController>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _DefaultTabControllerState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Material.Tabcontroller.TabController _Controller { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
+
+
+        public new void Dispose() { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+
+        public new void DidUpdateWidget(FlutterSDK.Material.Tabcontroller.DefaultTabController oldWidget) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

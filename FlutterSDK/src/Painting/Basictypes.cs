@@ -420,59 +420,70 @@ using FlutterSDK.Material.Inksplash;
 using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
-namespace FlutterSDK.Painting.Basictypes{
-internal static class BasictypesDefaultClass{
-internal static FlutterSDK.Painting.Basictypes.Axis FlipAxis(FlutterSDK.Painting.Basictypes.Axis direction){
-throw new NotImplementedException();
-}
+namespace FlutterSDK.Painting.Basictypes
+{
+    internal static class BasictypesDefaultClass
+    {
+        internal static FlutterSDK.Painting.Basictypes.Axis FlipAxis(FlutterSDK.Painting.Basictypes.Axis direction)
+        {
+            throw new NotImplementedException();
+        }
 
-internal static FlutterSDK.Painting.Basictypes.Axis AxisDirectionToAxis(FlutterSDK.Painting.Basictypes.AxisDirection axisDirection){
-throw new NotImplementedException();
-}
+        internal static FlutterSDK.Painting.Basictypes.Axis AxisDirectionToAxis(FlutterSDK.Painting.Basictypes.AxisDirection axisDirection)
+        {
+            throw new NotImplementedException();
+        }
 
-internal static FlutterSDK.Painting.Basictypes.AxisDirection TextDirectionToAxisDirection(TextDirection textDirection){
-throw new NotImplementedException();
-}
+        internal static FlutterSDK.Painting.Basictypes.AxisDirection TextDirectionToAxisDirection(TextDirection textDirection)
+        {
+            throw new NotImplementedException();
+        }
 
-internal static FlutterSDK.Painting.Basictypes.AxisDirection FlipAxisDirection(FlutterSDK.Painting.Basictypes.AxisDirection axisDirection){
-throw new NotImplementedException();
-}
+        internal static FlutterSDK.Painting.Basictypes.AxisDirection FlipAxisDirection(FlutterSDK.Painting.Basictypes.AxisDirection axisDirection)
+        {
+            throw new NotImplementedException();
+        }
 
-internal static bool AxisDirectionIsReversed(FlutterSDK.Painting.Basictypes.AxisDirection axisDirection){
-throw new NotImplementedException();
-}
+        internal static bool AxisDirectionIsReversed(FlutterSDK.Painting.Basictypes.AxisDirection axisDirection)
+        {
+            throw new NotImplementedException();
+        }
 
-}
+    }
 
-public enum RenderComparison{
+    public enum RenderComparison
+    {
 
-Identical,
-Metadata,
-Paint,
-Layout,
-}
-
-
-public enum Axis{
-
-Horizontal,
-Vertical,
-}
-
-
-public enum VerticalDirection{
-
-Up,
-Down,
-}
+        Identical,
+        Metadata,
+        Paint,
+        Layout,
+    }
 
 
-public enum AxisDirection{
+    public enum Axis
+    {
 
-Up,
-Right,
-Down,
-Left,
-}
+        Horizontal,
+        Vertical,
+    }
+
+
+    public enum VerticalDirection
+    {
+
+        Up,
+        Down,
+    }
+
+
+    public enum AxisDirection
+    {
+
+        Up,
+        Right,
+        Down,
+        Left,
+    }
 
 }

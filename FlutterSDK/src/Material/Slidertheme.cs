@@ -411,759 +411,796 @@ using FlutterSDK.Material.Floatingactionbuttonlocation;
 using FlutterSDK.Material.Snackbar;
 using FlutterSDK.Material.Snackbartheme;
 using FlutterSDK.Material.Textselection;
-namespace FlutterSDK.Material.Slidertheme{
-public delegate string RangeSemanticFormatterCallback(FlutterSDK.Material.Slidertheme.RangeValues values);
-public delegate FlutterSDK.Material.Slidertheme.Thumb RangeThumbSelector(TextDirection textDirection,FlutterSDK.Material.Slidertheme.RangeValues values,double tapValue,Size thumbSize,Size trackSize,double dx);
-internal static class SliderthemeDefaultClass{
-}
-
-public interface ISliderComponentShape{
-Size GetPreferredSize(bool isEnabled,bool isDiscrete);
-void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset center,FlutterSDK.Animation.Animation.Animation<double> activationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),bool isDiscrete = default(bool),FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter),FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),TextDirection textDirection = default(TextDirection),double value = default(double));
-FlutterSDK.Material.Slidertheme.SliderComponentShape NoThumb{get;}
-FlutterSDK.Material.Slidertheme.SliderComponentShape NoOverlay{get;}
-}
-
-
-public interface ISliderTickMarkShape{
-Size GetPreferredSize(FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),bool isEnabled = default(bool));
-void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset center,FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterBinding.UI.Offset thumbCenter = default(FlutterBinding.UI.Offset),bool isEnabled = default(bool),TextDirection textDirection = default(TextDirection));
-FlutterSDK.Material.Slidertheme.SliderTickMarkShape NoTickMark{get;}
-}
-
-
-public interface ISliderTrackShape{
-Rect GetPreferredRect(FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),bool isEnabled = default(bool),bool isDiscrete = default(bool));
-void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset,FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterBinding.UI.Offset thumbCenter = default(FlutterBinding.UI.Offset),bool isEnabled = default(bool),bool isDiscrete = default(bool),TextDirection textDirection = default(TextDirection));
-}
-
-
-public interface IRangeSliderThumbShape{
-Size GetPreferredSize(bool isEnabled,bool isDiscrete);
-void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset center,FlutterSDK.Animation.Animation.Animation<double> activationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),bool isDiscrete = default(bool),bool isEnabled = default(bool),bool isOnTop = default(bool),TextDirection textDirection = default(TextDirection),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),FlutterSDK.Material.Slidertheme.Thumb thumb = default(FlutterSDK.Material.Slidertheme.Thumb));
-}
-
-
-public interface IRangeSliderValueIndicatorShape{
-Size GetPreferredSize(bool isEnabled,bool isDiscrete,FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter));
-double GetHorizontalShift(FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterBinding.UI.Offset center = default(FlutterBinding.UI.Offset),FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter),FlutterSDK.Animation.Animation.Animation<double> activationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>));
-void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset center,FlutterSDK.Animation.Animation.Animation<double> activationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),bool isDiscrete = default(bool),bool isOnTop = default(bool),FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter),FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),TextDirection textDirection = default(TextDirection),double value = default(double),FlutterSDK.Material.Slidertheme.Thumb thumb = default(FlutterSDK.Material.Slidertheme.Thumb));
-}
-
-
-public interface IRangeSliderTickMarkShape{
-Size GetPreferredSize(FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),bool isEnabled = default(bool));
-void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset center,FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterBinding.UI.Offset startThumbCenter = default(FlutterBinding.UI.Offset),FlutterBinding.UI.Offset endThumbCenter = default(FlutterBinding.UI.Offset),bool isEnabled = default(bool),TextDirection textDirection = default(TextDirection));
-}
-
-
-public interface IRangeSliderTrackShape{
-Rect GetPreferredRect(FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),bool isEnabled = default(bool),bool isDiscrete = default(bool));
-void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset,FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterBinding.UI.Offset startThumbCenter = default(FlutterBinding.UI.Offset),FlutterBinding.UI.Offset endThumbCenter = default(FlutterBinding.UI.Offset),bool isEnabled = default(bool),bool isDiscrete = default(bool),TextDirection textDirection = default(TextDirection));
-}
-
-
-public interface IBaseSliderTrackShape{}
-
-public class BaseSliderTrackShape{
-
-public virtual Rect GetPreferredRect(FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),bool isEnabled = false,bool isDiscrete = false){ throw new NotImplementedException(); }
-
-}
-public static class BaseSliderTrackShapeMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IBaseSliderTrackShape, BaseSliderTrackShape> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IBaseSliderTrackShape, BaseSliderTrackShape>();
-static BaseSliderTrackShape GetOrCreate(IBaseSliderTrackShape instance)
+namespace FlutterSDK.Material.Slidertheme
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new BaseSliderTrackShape();
-_table.Add(instance, value);
-}
-return (BaseSliderTrackShape)value;
-}
-public static Rect GetPreferredRect(this IBaseSliderTrackShape instance,FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),bool isEnabled = false,bool isDiscrete = false) => GetOrCreate(instance).GetPreferredRect(parentBox, offset, sliderTheme, isEnabled, isDiscrete);
-}
-
-
-public class SliderTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
-{
-#region constructors
-public SliderTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Material.Slidertheme.SliderThemeData data = default(FlutterSDK.Material.Slidertheme.SliderThemeData),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key,child:child)
-{
-this.Data = data;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Material.Slidertheme.SliderThemeData Data{get;set;}
-#endregion
-
-#region methods
-
-public virtual FlutterSDK.Material.Slidertheme.SliderThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-
-public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Widgets.Framework.Widget child){ throw new NotImplementedException(); }
-
-
-public new bool UpdateShouldNotify(FlutterSDK.Material.Slidertheme.SliderTheme oldWidget){ throw new NotImplementedException(); }
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class SliderThemeData : IDiagnosticable
-{
-#region constructors
-public SliderThemeData(double trackHeight = default(double),FlutterBinding.UI.Color activeTrackColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color inactiveTrackColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color disabledActiveTrackColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color disabledInactiveTrackColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color activeTickMarkColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color inactiveTickMarkColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color disabledActiveTickMarkColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color disabledInactiveTickMarkColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color thumbColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color overlappingShapeStrokeColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color disabledThumbColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color overlayColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color valueIndicatorColor = default(FlutterBinding.UI.Color),FlutterSDK.Material.Slidertheme.SliderComponentShape overlayShape = default(FlutterSDK.Material.Slidertheme.SliderComponentShape),FlutterSDK.Material.Slidertheme.SliderTickMarkShape tickMarkShape = default(FlutterSDK.Material.Slidertheme.SliderTickMarkShape),FlutterSDK.Material.Slidertheme.SliderComponentShape thumbShape = default(FlutterSDK.Material.Slidertheme.SliderComponentShape),FlutterSDK.Material.Slidertheme.SliderTrackShape trackShape = default(FlutterSDK.Material.Slidertheme.SliderTrackShape),FlutterSDK.Material.Slidertheme.SliderComponentShape valueIndicatorShape = default(FlutterSDK.Material.Slidertheme.SliderComponentShape),FlutterSDK.Material.Slidertheme.RangeSliderTickMarkShape rangeTickMarkShape = default(FlutterSDK.Material.Slidertheme.RangeSliderTickMarkShape),FlutterSDK.Material.Slidertheme.RangeSliderThumbShape rangeThumbShape = default(FlutterSDK.Material.Slidertheme.RangeSliderThumbShape),FlutterSDK.Material.Slidertheme.RangeSliderTrackShape rangeTrackShape = default(FlutterSDK.Material.Slidertheme.RangeSliderTrackShape),FlutterSDK.Material.Slidertheme.RangeSliderValueIndicatorShape rangeValueIndicatorShape = default(FlutterSDK.Material.Slidertheme.RangeSliderValueIndicatorShape),FlutterSDK.Material.Slidertheme.ShowValueIndicator showValueIndicator = default(FlutterSDK.Material.Slidertheme.ShowValueIndicator),FlutterSDK.Painting.Textstyle.TextStyle valueIndicatorTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),double minThumbSeparation = default(double),FlutterSDK.Material.Slidertheme.RangeThumbSelector thumbSelector = default(FlutterSDK.Material.Slidertheme.RangeThumbSelector))
-{
-this.TrackHeight = trackHeight;
-this.ActiveTrackColor = activeTrackColor;
-this.InactiveTrackColor = inactiveTrackColor;
-this.DisabledActiveTrackColor = disabledActiveTrackColor;
-this.DisabledInactiveTrackColor = disabledInactiveTrackColor;
-this.ActiveTickMarkColor = activeTickMarkColor;
-this.InactiveTickMarkColor = inactiveTickMarkColor;
-this.DisabledActiveTickMarkColor = disabledActiveTickMarkColor;
-this.DisabledInactiveTickMarkColor = disabledInactiveTickMarkColor;
-this.ThumbColor = thumbColor;
-this.OverlappingShapeStrokeColor = overlappingShapeStrokeColor;
-this.DisabledThumbColor = disabledThumbColor;
-this.OverlayColor = overlayColor;
-this.ValueIndicatorColor = valueIndicatorColor;
-this.OverlayShape = overlayShape;
-this.TickMarkShape = tickMarkShape;
-this.ThumbShape = thumbShape;
-this.TrackShape = trackShape;
-this.ValueIndicatorShape = valueIndicatorShape;
-this.RangeTickMarkShape = rangeTickMarkShape;
-this.RangeThumbShape = rangeThumbShape;
-this.RangeTrackShape = rangeTrackShape;
-this.RangeValueIndicatorShape = rangeValueIndicatorShape;
-this.ShowValueIndicator = showValueIndicator;
-this.ValueIndicatorTextStyle = valueIndicatorTextStyle;
-this.MinThumbSeparation = minThumbSeparation;
-this.ThumbSelector = thumbSelector;throw new NotImplementedException(); }
-public static SliderThemeData FromPrimaryColors(FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color primaryColorDark = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color primaryColorLight = default(FlutterBinding.UI.Color),FlutterSDK.Painting.Textstyle.TextStyle valueIndicatorTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
-{
-var instance =new SliderThemeData();throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual double TrackHeight{get;set;}
-public virtual FlutterBinding.UI.Color ActiveTrackColor{get;set;}
-public virtual FlutterBinding.UI.Color InactiveTrackColor{get;set;}
-public virtual FlutterBinding.UI.Color DisabledActiveTrackColor{get;set;}
-public virtual FlutterBinding.UI.Color DisabledInactiveTrackColor{get;set;}
-public virtual FlutterBinding.UI.Color ActiveTickMarkColor{get;set;}
-public virtual FlutterBinding.UI.Color InactiveTickMarkColor{get;set;}
-public virtual FlutterBinding.UI.Color DisabledActiveTickMarkColor{get;set;}
-public virtual FlutterBinding.UI.Color DisabledInactiveTickMarkColor{get;set;}
-public virtual FlutterBinding.UI.Color ThumbColor{get;set;}
-public virtual FlutterBinding.UI.Color OverlappingShapeStrokeColor{get;set;}
-public virtual FlutterBinding.UI.Color DisabledThumbColor{get;set;}
-public virtual FlutterBinding.UI.Color OverlayColor{get;set;}
-public virtual FlutterBinding.UI.Color ValueIndicatorColor{get;set;}
-public virtual FlutterSDK.Material.Slidertheme.SliderComponentShape OverlayShape{get;set;}
-public virtual FlutterSDK.Material.Slidertheme.SliderTickMarkShape TickMarkShape{get;set;}
-public virtual FlutterSDK.Material.Slidertheme.SliderComponentShape ThumbShape{get;set;}
-public virtual FlutterSDK.Material.Slidertheme.SliderTrackShape TrackShape{get;set;}
-public virtual FlutterSDK.Material.Slidertheme.SliderComponentShape ValueIndicatorShape{get;set;}
-public virtual FlutterSDK.Material.Slidertheme.RangeSliderTickMarkShape RangeTickMarkShape{get;set;}
-public virtual FlutterSDK.Material.Slidertheme.RangeSliderThumbShape RangeThumbShape{get;set;}
-public virtual FlutterSDK.Material.Slidertheme.RangeSliderTrackShape RangeTrackShape{get;set;}
-public virtual FlutterSDK.Material.Slidertheme.RangeSliderValueIndicatorShape RangeValueIndicatorShape{get;set;}
-public virtual FlutterSDK.Material.Slidertheme.ShowValueIndicator ShowValueIndicator{get;set;}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle ValueIndicatorTextStyle{get;set;}
-public virtual double MinThumbSeparation{get;set;}
-public virtual FlutterSDK.Material.Slidertheme.RangeThumbSelector ThumbSelector{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public delegate string RangeSemanticFormatterCallback(FlutterSDK.Material.Slidertheme.RangeValues values);
+    public delegate FlutterSDK.Material.Slidertheme.Thumb RangeThumbSelector(TextDirection textDirection, FlutterSDK.Material.Slidertheme.RangeValues values, double tapValue, Size thumbSize, Size trackSize, double dx);
+    internal static class SliderthemeDefaultClass
+    {
+    }
 
-#region methods
+    public interface ISliderComponentShape
+    {
+        Size GetPreferredSize(bool isEnabled, bool isDiscrete);
+        void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset center, FlutterSDK.Animation.Animation.Animation<double> activationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), bool isDiscrete = default(bool), FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter), FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), TextDirection textDirection = default(TextDirection), double value = default(double));
+        FlutterSDK.Material.Slidertheme.SliderComponentShape NoThumb { get; }
+        FlutterSDK.Material.Slidertheme.SliderComponentShape NoOverlay { get; }
+    }
 
-public virtual FlutterSDK.Material.Slidertheme.SliderThemeData CopyWith(double trackHeight = default(double),FlutterBinding.UI.Color activeTrackColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color inactiveTrackColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color disabledActiveTrackColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color disabledInactiveTrackColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color activeTickMarkColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color inactiveTickMarkColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color disabledActiveTickMarkColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color disabledInactiveTickMarkColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color thumbColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color overlappingShapeStrokeColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color disabledThumbColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color overlayColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color valueIndicatorColor = default(FlutterBinding.UI.Color),FlutterSDK.Material.Slidertheme.SliderComponentShape overlayShape = default(FlutterSDK.Material.Slidertheme.SliderComponentShape),FlutterSDK.Material.Slidertheme.SliderTickMarkShape tickMarkShape = default(FlutterSDK.Material.Slidertheme.SliderTickMarkShape),FlutterSDK.Material.Slidertheme.SliderComponentShape thumbShape = default(FlutterSDK.Material.Slidertheme.SliderComponentShape),FlutterSDK.Material.Slidertheme.SliderTrackShape trackShape = default(FlutterSDK.Material.Slidertheme.SliderTrackShape),FlutterSDK.Material.Slidertheme.SliderComponentShape valueIndicatorShape = default(FlutterSDK.Material.Slidertheme.SliderComponentShape),FlutterSDK.Material.Slidertheme.RangeSliderTickMarkShape rangeTickMarkShape = default(FlutterSDK.Material.Slidertheme.RangeSliderTickMarkShape),FlutterSDK.Material.Slidertheme.RangeSliderThumbShape rangeThumbShape = default(FlutterSDK.Material.Slidertheme.RangeSliderThumbShape),FlutterSDK.Material.Slidertheme.RangeSliderTrackShape rangeTrackShape = default(FlutterSDK.Material.Slidertheme.RangeSliderTrackShape),FlutterSDK.Material.Slidertheme.RangeSliderValueIndicatorShape rangeValueIndicatorShape = default(FlutterSDK.Material.Slidertheme.RangeSliderValueIndicatorShape),FlutterSDK.Material.Slidertheme.ShowValueIndicator showValueIndicator = default(FlutterSDK.Material.Slidertheme.ShowValueIndicator),FlutterSDK.Painting.Textstyle.TextStyle valueIndicatorTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),double minThumbSeparation = default(double),FlutterSDK.Material.Slidertheme.RangeThumbSelector thumbSelector = default(FlutterSDK.Material.Slidertheme.RangeThumbSelector)){ throw new NotImplementedException(); }
 
+    public interface ISliderTickMarkShape
+    {
+        Size GetPreferredSize(FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), bool isEnabled = default(bool));
+        void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset center, FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterBinding.UI.Offset thumbCenter = default(FlutterBinding.UI.Offset), bool isEnabled = default(bool), TextDirection textDirection = default(TextDirection));
+        FlutterSDK.Material.Slidertheme.SliderTickMarkShape NoTickMark { get; }
+    }
+
+
+    public interface ISliderTrackShape
+    {
+        Rect GetPreferredRect(FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), bool isEnabled = default(bool), bool isDiscrete = default(bool));
+        void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset, FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterBinding.UI.Offset thumbCenter = default(FlutterBinding.UI.Offset), bool isEnabled = default(bool), bool isDiscrete = default(bool), TextDirection textDirection = default(TextDirection));
+    }
+
+
+    public interface IRangeSliderThumbShape
+    {
+        Size GetPreferredSize(bool isEnabled, bool isDiscrete);
+        void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset center, FlutterSDK.Animation.Animation.Animation<double> activationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), bool isDiscrete = default(bool), bool isEnabled = default(bool), bool isOnTop = default(bool), TextDirection textDirection = default(TextDirection), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Material.Slidertheme.Thumb thumb = default(FlutterSDK.Material.Slidertheme.Thumb));
+    }
+
+
+    public interface IRangeSliderValueIndicatorShape
+    {
+        Size GetPreferredSize(bool isEnabled, bool isDiscrete, FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter));
+        double GetHorizontalShift(FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterBinding.UI.Offset center = default(FlutterBinding.UI.Offset), FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter), FlutterSDK.Animation.Animation.Animation<double> activationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>));
+        void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset center, FlutterSDK.Animation.Animation.Animation<double> activationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), bool isDiscrete = default(bool), bool isOnTop = default(bool), FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter), FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), TextDirection textDirection = default(TextDirection), double value = default(double), FlutterSDK.Material.Slidertheme.Thumb thumb = default(FlutterSDK.Material.Slidertheme.Thumb));
+    }
+
+
+    public interface IRangeSliderTickMarkShape
+    {
+        Size GetPreferredSize(FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), bool isEnabled = default(bool));
+        void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset center, FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterBinding.UI.Offset startThumbCenter = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset endThumbCenter = default(FlutterBinding.UI.Offset), bool isEnabled = default(bool), TextDirection textDirection = default(TextDirection));
+    }
+
+
+    public interface IRangeSliderTrackShape
+    {
+        Rect GetPreferredRect(FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), bool isEnabled = default(bool), bool isDiscrete = default(bool));
+        void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset, FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterBinding.UI.Offset startThumbCenter = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset endThumbCenter = default(FlutterBinding.UI.Offset), bool isEnabled = default(bool), bool isDiscrete = default(bool), TextDirection textDirection = default(TextDirection));
+    }
+
+
+    public interface IBaseSliderTrackShape { }
+
+    public class BaseSliderTrackShape
+    {
+
+        public virtual Rect GetPreferredRect(FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), bool isEnabled = false, bool isDiscrete = false) { throw new NotImplementedException(); }
+
+    }
+    public static class BaseSliderTrackShapeMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IBaseSliderTrackShape, BaseSliderTrackShape> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IBaseSliderTrackShape, BaseSliderTrackShape>();
+        static BaseSliderTrackShape GetOrCreate(IBaseSliderTrackShape instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new BaseSliderTrackShape();
+                _table.Add(instance, value);
+            }
+            return (BaseSliderTrackShape)value;
+        }
+        public static Rect GetPreferredRect(this IBaseSliderTrackShape instance, FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), bool isEnabled = false, bool isDiscrete = false) => GetOrCreate(instance).GetPreferredRect(parentBox, offset, sliderTheme, isEnabled, isDiscrete);
+    }
+
+
+    public class SliderTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
+    {
+        #region constructors
+        public SliderTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Slidertheme.SliderThemeData data = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            this.Data = data; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Material.Slidertheme.SliderThemeData Data { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual FlutterSDK.Material.Slidertheme.SliderThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
 
-public virtual FlutterSDK.Material.Slidertheme.SliderThemeData Lerp(FlutterSDK.Material.Slidertheme.SliderThemeData a,FlutterSDK.Material.Slidertheme.SliderThemeData b,double t){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
+
+
+        public new bool UpdateShouldNotify(FlutterSDK.Material.Slidertheme.SliderTheme oldWidget) { throw new NotImplementedException(); }
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class SliderThemeData : IDiagnosticable
+    {
+        #region constructors
+        public SliderThemeData(double trackHeight = default(double), FlutterBinding.UI.Color activeTrackColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveTrackColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledActiveTrackColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledInactiveTrackColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color activeTickMarkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveTickMarkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledActiveTickMarkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledInactiveTickMarkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color thumbColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color overlappingShapeStrokeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledThumbColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color overlayColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color valueIndicatorColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Slidertheme.SliderComponentShape overlayShape = default(FlutterSDK.Material.Slidertheme.SliderComponentShape), FlutterSDK.Material.Slidertheme.SliderTickMarkShape tickMarkShape = default(FlutterSDK.Material.Slidertheme.SliderTickMarkShape), FlutterSDK.Material.Slidertheme.SliderComponentShape thumbShape = default(FlutterSDK.Material.Slidertheme.SliderComponentShape), FlutterSDK.Material.Slidertheme.SliderTrackShape trackShape = default(FlutterSDK.Material.Slidertheme.SliderTrackShape), FlutterSDK.Material.Slidertheme.SliderComponentShape valueIndicatorShape = default(FlutterSDK.Material.Slidertheme.SliderComponentShape), FlutterSDK.Material.Slidertheme.RangeSliderTickMarkShape rangeTickMarkShape = default(FlutterSDK.Material.Slidertheme.RangeSliderTickMarkShape), FlutterSDK.Material.Slidertheme.RangeSliderThumbShape rangeThumbShape = default(FlutterSDK.Material.Slidertheme.RangeSliderThumbShape), FlutterSDK.Material.Slidertheme.RangeSliderTrackShape rangeTrackShape = default(FlutterSDK.Material.Slidertheme.RangeSliderTrackShape), FlutterSDK.Material.Slidertheme.RangeSliderValueIndicatorShape rangeValueIndicatorShape = default(FlutterSDK.Material.Slidertheme.RangeSliderValueIndicatorShape), FlutterSDK.Material.Slidertheme.ShowValueIndicator showValueIndicator = default(FlutterSDK.Material.Slidertheme.ShowValueIndicator), FlutterSDK.Painting.Textstyle.TextStyle valueIndicatorTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), double minThumbSeparation = default(double), FlutterSDK.Material.Slidertheme.RangeThumbSelector thumbSelector = default(FlutterSDK.Material.Slidertheme.RangeThumbSelector))
+        {
+            this.TrackHeight = trackHeight;
+            this.ActiveTrackColor = activeTrackColor;
+            this.InactiveTrackColor = inactiveTrackColor;
+            this.DisabledActiveTrackColor = disabledActiveTrackColor;
+            this.DisabledInactiveTrackColor = disabledInactiveTrackColor;
+            this.ActiveTickMarkColor = activeTickMarkColor;
+            this.InactiveTickMarkColor = inactiveTickMarkColor;
+            this.DisabledActiveTickMarkColor = disabledActiveTickMarkColor;
+            this.DisabledInactiveTickMarkColor = disabledInactiveTickMarkColor;
+            this.ThumbColor = thumbColor;
+            this.OverlappingShapeStrokeColor = overlappingShapeStrokeColor;
+            this.DisabledThumbColor = disabledThumbColor;
+            this.OverlayColor = overlayColor;
+            this.ValueIndicatorColor = valueIndicatorColor;
+            this.OverlayShape = overlayShape;
+            this.TickMarkShape = tickMarkShape;
+            this.ThumbShape = thumbShape;
+            this.TrackShape = trackShape;
+            this.ValueIndicatorShape = valueIndicatorShape;
+            this.RangeTickMarkShape = rangeTickMarkShape;
+            this.RangeThumbShape = rangeThumbShape;
+            this.RangeTrackShape = rangeTrackShape;
+            this.RangeValueIndicatorShape = rangeValueIndicatorShape;
+            this.ShowValueIndicator = showValueIndicator;
+            this.ValueIndicatorTextStyle = valueIndicatorTextStyle;
+            this.MinThumbSeparation = minThumbSeparation;
+            this.ThumbSelector = thumbSelector; throw new NotImplementedException();
+        }
+        public static SliderThemeData FromPrimaryColors(FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryColorDark = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryColorLight = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle valueIndicatorTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
+        {
+            var instance = new SliderThemeData(); throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual double TrackHeight { get; set; }
+        public virtual FlutterBinding.UI.Color ActiveTrackColor { get; set; }
+        public virtual FlutterBinding.UI.Color InactiveTrackColor { get; set; }
+        public virtual FlutterBinding.UI.Color DisabledActiveTrackColor { get; set; }
+        public virtual FlutterBinding.UI.Color DisabledInactiveTrackColor { get; set; }
+        public virtual FlutterBinding.UI.Color ActiveTickMarkColor { get; set; }
+        public virtual FlutterBinding.UI.Color InactiveTickMarkColor { get; set; }
+        public virtual FlutterBinding.UI.Color DisabledActiveTickMarkColor { get; set; }
+        public virtual FlutterBinding.UI.Color DisabledInactiveTickMarkColor { get; set; }
+        public virtual FlutterBinding.UI.Color ThumbColor { get; set; }
+        public virtual FlutterBinding.UI.Color OverlappingShapeStrokeColor { get; set; }
+        public virtual FlutterBinding.UI.Color DisabledThumbColor { get; set; }
+        public virtual FlutterBinding.UI.Color OverlayColor { get; set; }
+        public virtual FlutterBinding.UI.Color ValueIndicatorColor { get; set; }
+        public virtual FlutterSDK.Material.Slidertheme.SliderComponentShape OverlayShape { get; set; }
+        public virtual FlutterSDK.Material.Slidertheme.SliderTickMarkShape TickMarkShape { get; set; }
+        public virtual FlutterSDK.Material.Slidertheme.SliderComponentShape ThumbShape { get; set; }
+        public virtual FlutterSDK.Material.Slidertheme.SliderTrackShape TrackShape { get; set; }
+        public virtual FlutterSDK.Material.Slidertheme.SliderComponentShape ValueIndicatorShape { get; set; }
+        public virtual FlutterSDK.Material.Slidertheme.RangeSliderTickMarkShape RangeTickMarkShape { get; set; }
+        public virtual FlutterSDK.Material.Slidertheme.RangeSliderThumbShape RangeThumbShape { get; set; }
+        public virtual FlutterSDK.Material.Slidertheme.RangeSliderTrackShape RangeTrackShape { get; set; }
+        public virtual FlutterSDK.Material.Slidertheme.RangeSliderValueIndicatorShape RangeValueIndicatorShape { get; set; }
+        public virtual FlutterSDK.Material.Slidertheme.ShowValueIndicator ShowValueIndicator { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle ValueIndicatorTextStyle { get; set; }
+        public virtual double MinThumbSeparation { get; set; }
+        public virtual FlutterSDK.Material.Slidertheme.RangeThumbSelector ThumbSelector { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual FlutterSDK.Material.Slidertheme.SliderThemeData CopyWith(double trackHeight = default(double), FlutterBinding.UI.Color activeTrackColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveTrackColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledActiveTrackColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledInactiveTrackColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color activeTickMarkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveTickMarkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledActiveTickMarkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledInactiveTickMarkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color thumbColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color overlappingShapeStrokeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledThumbColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color overlayColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color valueIndicatorColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Slidertheme.SliderComponentShape overlayShape = default(FlutterSDK.Material.Slidertheme.SliderComponentShape), FlutterSDK.Material.Slidertheme.SliderTickMarkShape tickMarkShape = default(FlutterSDK.Material.Slidertheme.SliderTickMarkShape), FlutterSDK.Material.Slidertheme.SliderComponentShape thumbShape = default(FlutterSDK.Material.Slidertheme.SliderComponentShape), FlutterSDK.Material.Slidertheme.SliderTrackShape trackShape = default(FlutterSDK.Material.Slidertheme.SliderTrackShape), FlutterSDK.Material.Slidertheme.SliderComponentShape valueIndicatorShape = default(FlutterSDK.Material.Slidertheme.SliderComponentShape), FlutterSDK.Material.Slidertheme.RangeSliderTickMarkShape rangeTickMarkShape = default(FlutterSDK.Material.Slidertheme.RangeSliderTickMarkShape), FlutterSDK.Material.Slidertheme.RangeSliderThumbShape rangeThumbShape = default(FlutterSDK.Material.Slidertheme.RangeSliderThumbShape), FlutterSDK.Material.Slidertheme.RangeSliderTrackShape rangeTrackShape = default(FlutterSDK.Material.Slidertheme.RangeSliderTrackShape), FlutterSDK.Material.Slidertheme.RangeSliderValueIndicatorShape rangeValueIndicatorShape = default(FlutterSDK.Material.Slidertheme.RangeSliderValueIndicatorShape), FlutterSDK.Material.Slidertheme.ShowValueIndicator showValueIndicator = default(FlutterSDK.Material.Slidertheme.ShowValueIndicator), FlutterSDK.Painting.Textstyle.TextStyle valueIndicatorTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), double minThumbSeparation = default(double), FlutterSDK.Material.Slidertheme.RangeThumbSelector thumbSelector = default(FlutterSDK.Material.Slidertheme.RangeThumbSelector)) { throw new NotImplementedException(); }
+
+
+        public virtual FlutterSDK.Material.Slidertheme.SliderThemeData Lerp(FlutterSDK.Material.Slidertheme.SliderThemeData a, FlutterSDK.Material.Slidertheme.SliderThemeData b, double t) { throw new NotImplementedException(); }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class SliderComponentShape
-{
-#region constructors
-public SliderComponentShape()
-{
-throw new NotImplementedException(); }
-#endregion
+    public class SliderComponentShape
+    {
+        #region constructors
+        public SliderComponentShape()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Material.Slidertheme.SliderComponentShape NoThumb{get;set;}
-public virtual FlutterSDK.Material.Slidertheme.SliderComponentShape NoOverlay{get;set;}
-#endregion
+        #region fields
+        public virtual FlutterSDK.Material.Slidertheme.SliderComponentShape NoThumb { get; set; }
+        public virtual FlutterSDK.Material.Slidertheme.SliderComponentShape NoOverlay { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public virtual Size GetPreferredSize(bool isEnabled,bool isDiscrete){ throw new NotImplementedException(); }
+        public virtual Size GetPreferredSize(bool isEnabled, bool isDiscrete) { throw new NotImplementedException(); }
 
 
-public virtual void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset center,FlutterSDK.Animation.Animation.Animation<double> activationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),bool isDiscrete = default(bool),FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter),FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),TextDirection textDirection = default(TextDirection),double value = default(double)){ throw new NotImplementedException(); }
+        public virtual void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset center, FlutterSDK.Animation.Animation.Animation<double> activationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), bool isDiscrete = default(bool), FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter), FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), TextDirection textDirection = default(TextDirection), double value = default(double)) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class SliderTickMarkShape
-{
-#region constructors
-public SliderTickMarkShape()
-{
-throw new NotImplementedException(); }
-#endregion
+    public class SliderTickMarkShape
+    {
+        #region constructors
+        public SliderTickMarkShape()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Material.Slidertheme.SliderTickMarkShape NoTickMark{get;set;}
-#endregion
+        #region fields
+        public virtual FlutterSDK.Material.Slidertheme.SliderTickMarkShape NoTickMark { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public virtual Size GetPreferredSize(FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),bool isEnabled = default(bool)){ throw new NotImplementedException(); }
+        public virtual Size GetPreferredSize(FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), bool isEnabled = default(bool)) { throw new NotImplementedException(); }
 
 
-public virtual void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset center,FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterBinding.UI.Offset thumbCenter = default(FlutterBinding.UI.Offset),bool isEnabled = default(bool),TextDirection textDirection = default(TextDirection)){ throw new NotImplementedException(); }
+        public virtual void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset center, FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterBinding.UI.Offset thumbCenter = default(FlutterBinding.UI.Offset), bool isEnabled = default(bool), TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class SliderTrackShape
-{
-#region constructors
-public SliderTrackShape()
-{
-throw new NotImplementedException(); }
-#endregion
+    public class SliderTrackShape
+    {
+        #region constructors
+        public SliderTrackShape()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-public virtual Rect GetPreferredRect(FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),bool isEnabled = default(bool),bool isDiscrete = default(bool)){ throw new NotImplementedException(); }
+        public virtual Rect GetPreferredRect(FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), bool isEnabled = default(bool), bool isDiscrete = default(bool)) { throw new NotImplementedException(); }
 
 
-public virtual void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset,FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterBinding.UI.Offset thumbCenter = default(FlutterBinding.UI.Offset),bool isEnabled = default(bool),bool isDiscrete = default(bool),TextDirection textDirection = default(TextDirection)){ throw new NotImplementedException(); }
+        public virtual void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset, FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterBinding.UI.Offset thumbCenter = default(FlutterBinding.UI.Offset), bool isEnabled = default(bool), bool isDiscrete = default(bool), TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class RangeSliderThumbShape
-{
-#region constructors
-public RangeSliderThumbShape()
-{
-throw new NotImplementedException(); }
-#endregion
+    public class RangeSliderThumbShape
+    {
+        #region constructors
+        public RangeSliderThumbShape()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-public virtual Size GetPreferredSize(bool isEnabled,bool isDiscrete){ throw new NotImplementedException(); }
+        public virtual Size GetPreferredSize(bool isEnabled, bool isDiscrete) { throw new NotImplementedException(); }
 
 
-public virtual void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset center,FlutterSDK.Animation.Animation.Animation<double> activationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),bool isDiscrete = default(bool),bool isEnabled = default(bool),bool isOnTop = default(bool),TextDirection textDirection = default(TextDirection),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),FlutterSDK.Material.Slidertheme.Thumb thumb = default(FlutterSDK.Material.Slidertheme.Thumb)){ throw new NotImplementedException(); }
+        public virtual void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset center, FlutterSDK.Animation.Animation.Animation<double> activationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), bool isDiscrete = default(bool), bool isEnabled = default(bool), bool isOnTop = default(bool), TextDirection textDirection = default(TextDirection), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Material.Slidertheme.Thumb thumb = default(FlutterSDK.Material.Slidertheme.Thumb)) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class RangeSliderValueIndicatorShape
-{
-#region constructors
-public RangeSliderValueIndicatorShape()
-{
-throw new NotImplementedException(); }
-#endregion
+    public class RangeSliderValueIndicatorShape
+    {
+        #region constructors
+        public RangeSliderValueIndicatorShape()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-public virtual Size GetPreferredSize(bool isEnabled,bool isDiscrete,FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter)){ throw new NotImplementedException(); }
+        public virtual Size GetPreferredSize(bool isEnabled, bool isDiscrete, FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter)) { throw new NotImplementedException(); }
 
 
-public virtual double GetHorizontalShift(FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterBinding.UI.Offset center = default(FlutterBinding.UI.Offset),FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter),FlutterSDK.Animation.Animation.Animation<double> activationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>)){ throw new NotImplementedException(); }
+        public virtual double GetHorizontalShift(FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterBinding.UI.Offset center = default(FlutterBinding.UI.Offset), FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter), FlutterSDK.Animation.Animation.Animation<double> activationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>)) { throw new NotImplementedException(); }
 
 
-public virtual void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset center,FlutterSDK.Animation.Animation.Animation<double> activationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),bool isDiscrete = default(bool),bool isOnTop = default(bool),FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter),FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),TextDirection textDirection = default(TextDirection),double value = default(double),FlutterSDK.Material.Slidertheme.Thumb thumb = default(FlutterSDK.Material.Slidertheme.Thumb)){ throw new NotImplementedException(); }
+        public virtual void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset center, FlutterSDK.Animation.Animation.Animation<double> activationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), bool isDiscrete = default(bool), bool isOnTop = default(bool), FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter), FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), TextDirection textDirection = default(TextDirection), double value = default(double), FlutterSDK.Material.Slidertheme.Thumb thumb = default(FlutterSDK.Material.Slidertheme.Thumb)) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class RangeSliderTickMarkShape
-{
-#region constructors
-public RangeSliderTickMarkShape()
-{
-throw new NotImplementedException(); }
-#endregion
+    public class RangeSliderTickMarkShape
+    {
+        #region constructors
+        public RangeSliderTickMarkShape()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-public virtual Size GetPreferredSize(FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),bool isEnabled = default(bool)){ throw new NotImplementedException(); }
+        public virtual Size GetPreferredSize(FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), bool isEnabled = default(bool)) { throw new NotImplementedException(); }
 
 
-public virtual void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset center,FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterBinding.UI.Offset startThumbCenter = default(FlutterBinding.UI.Offset),FlutterBinding.UI.Offset endThumbCenter = default(FlutterBinding.UI.Offset),bool isEnabled = default(bool),TextDirection textDirection = default(TextDirection)){ throw new NotImplementedException(); }
+        public virtual void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset center, FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterBinding.UI.Offset startThumbCenter = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset endThumbCenter = default(FlutterBinding.UI.Offset), bool isEnabled = default(bool), TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class RangeSliderTrackShape
-{
-#region constructors
-public RangeSliderTrackShape()
-{
-throw new NotImplementedException(); }
-#endregion
+    public class RangeSliderTrackShape
+    {
+        #region constructors
+        public RangeSliderTrackShape()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-public virtual Rect GetPreferredRect(FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),bool isEnabled = default(bool),bool isDiscrete = default(bool)){ throw new NotImplementedException(); }
+        public virtual Rect GetPreferredRect(FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), bool isEnabled = default(bool), bool isDiscrete = default(bool)) { throw new NotImplementedException(); }
 
 
-public virtual void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset,FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterBinding.UI.Offset startThumbCenter = default(FlutterBinding.UI.Offset),FlutterBinding.UI.Offset endThumbCenter = default(FlutterBinding.UI.Offset),bool isEnabled = default(bool),bool isDiscrete = default(bool),TextDirection textDirection = default(TextDirection)){ throw new NotImplementedException(); }
+        public virtual void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset, FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterBinding.UI.Offset startThumbCenter = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset endThumbCenter = default(FlutterBinding.UI.Offset), bool isEnabled = default(bool), bool isDiscrete = default(bool), TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class RectangularSliderTrackShape : FlutterSDK.Material.Slidertheme.SliderTrackShape,IBaseSliderTrackShape
-{
-#region constructors
-public RectangularSliderTrackShape(double disabledThumbGapWidth = 2.0)
-{
-this.DisabledThumbGapWidth = disabledThumbGapWidth;throw new NotImplementedException(); }
-#endregion
+    public class RectangularSliderTrackShape : FlutterSDK.Material.Slidertheme.SliderTrackShape, IBaseSliderTrackShape
+    {
+        #region constructors
+        public RectangularSliderTrackShape(double disabledThumbGapWidth = 2.0)
+        {
+            this.DisabledThumbGapWidth = disabledThumbGapWidth; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual double DisabledThumbGapWidth{get;set;}
-#endregion
+        #region fields
+        public virtual double DisabledThumbGapWidth { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset,FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),TextDirection textDirection = default(TextDirection),FlutterBinding.UI.Offset thumbCenter = default(FlutterBinding.UI.Offset),bool isDiscrete = false,bool isEnabled = false){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset, FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), TextDirection textDirection = default(TextDirection), FlutterBinding.UI.Offset thumbCenter = default(FlutterBinding.UI.Offset), bool isDiscrete = false, bool isEnabled = false) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class RoundedRectSliderTrackShape : FlutterSDK.Material.Slidertheme.SliderTrackShape,IBaseSliderTrackShape
-{
-#region constructors
-public RoundedRectSliderTrackShape()
-{
-throw new NotImplementedException(); }
-#endregion
+    public class RoundedRectSliderTrackShape : FlutterSDK.Material.Slidertheme.SliderTrackShape, IBaseSliderTrackShape
+    {
+        #region constructors
+        public RoundedRectSliderTrackShape()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset,FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),TextDirection textDirection = default(TextDirection),FlutterBinding.UI.Offset thumbCenter = default(FlutterBinding.UI.Offset),bool isDiscrete = false,bool isEnabled = false){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset, FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), TextDirection textDirection = default(TextDirection), FlutterBinding.UI.Offset thumbCenter = default(FlutterBinding.UI.Offset), bool isDiscrete = false, bool isEnabled = false) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class RectangularRangeSliderTrackShape : FlutterSDK.Material.Slidertheme.RangeSliderTrackShape
-{
-#region constructors
-public RectangularRangeSliderTrackShape()
-{
-throw new NotImplementedException(); }
-#endregion
+    public class RectangularRangeSliderTrackShape : FlutterSDK.Material.Slidertheme.RangeSliderTrackShape
+    {
+        #region constructors
+        public RectangularRangeSliderTrackShape()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-public new Rect GetPreferredRect(FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),bool isEnabled = false,bool isDiscrete = false){ throw new NotImplementedException(); }
+        public new Rect GetPreferredRect(FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), bool isEnabled = false, bool isDiscrete = false) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset,FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterBinding.UI.Offset startThumbCenter = default(FlutterBinding.UI.Offset),FlutterBinding.UI.Offset endThumbCenter = default(FlutterBinding.UI.Offset),bool isEnabled = false,bool isDiscrete = false,TextDirection textDirection = default(TextDirection)){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset, FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterBinding.UI.Offset startThumbCenter = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset endThumbCenter = default(FlutterBinding.UI.Offset), bool isEnabled = false, bool isDiscrete = false, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class RoundedRectRangeSliderTrackShape : FlutterSDK.Material.Slidertheme.RangeSliderTrackShape
-{
-#region constructors
-public RoundedRectRangeSliderTrackShape()
-{
-throw new NotImplementedException(); }
-#endregion
+    public class RoundedRectRangeSliderTrackShape : FlutterSDK.Material.Slidertheme.RangeSliderTrackShape
+    {
+        #region constructors
+        public RoundedRectRangeSliderTrackShape()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-public new Rect GetPreferredRect(FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),bool isEnabled = false,bool isDiscrete = false){ throw new NotImplementedException(); }
+        public new Rect GetPreferredRect(FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), bool isEnabled = false, bool isDiscrete = false) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset,FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterBinding.UI.Offset startThumbCenter = default(FlutterBinding.UI.Offset),FlutterBinding.UI.Offset endThumbCenter = default(FlutterBinding.UI.Offset),bool isEnabled = false,bool isDiscrete = false,TextDirection textDirection = default(TextDirection)){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset, FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterBinding.UI.Offset startThumbCenter = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset endThumbCenter = default(FlutterBinding.UI.Offset), bool isEnabled = false, bool isDiscrete = false, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class RoundSliderTickMarkShape : FlutterSDK.Material.Slidertheme.SliderTickMarkShape
-{
-#region constructors
-public RoundSliderTickMarkShape(double tickMarkRadius = default(double))
-{
-this.TickMarkRadius = tickMarkRadius;throw new NotImplementedException(); }
-#endregion
+    public class RoundSliderTickMarkShape : FlutterSDK.Material.Slidertheme.SliderTickMarkShape
+    {
+        #region constructors
+        public RoundSliderTickMarkShape(double tickMarkRadius = default(double))
+        {
+            this.TickMarkRadius = tickMarkRadius; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual double TickMarkRadius{get;set;}
-#endregion
+        #region fields
+        public virtual double TickMarkRadius { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new Size GetPreferredSize(FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),bool isEnabled = false){ throw new NotImplementedException(); }
+        public new Size GetPreferredSize(FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), bool isEnabled = false) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset center,FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),TextDirection textDirection = default(TextDirection),FlutterBinding.UI.Offset thumbCenter = default(FlutterBinding.UI.Offset),bool isEnabled = false){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset center, FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), TextDirection textDirection = default(TextDirection), FlutterBinding.UI.Offset thumbCenter = default(FlutterBinding.UI.Offset), bool isEnabled = false) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class RoundRangeSliderTickMarkShape : FlutterSDK.Material.Slidertheme.RangeSliderTickMarkShape
-{
-#region constructors
-public RoundRangeSliderTickMarkShape(double tickMarkRadius = default(double))
-{
-this.TickMarkRadius = tickMarkRadius;throw new NotImplementedException(); }
-#endregion
+    public class RoundRangeSliderTickMarkShape : FlutterSDK.Material.Slidertheme.RangeSliderTickMarkShape
+    {
+        #region constructors
+        public RoundRangeSliderTickMarkShape(double tickMarkRadius = default(double))
+        {
+            this.TickMarkRadius = tickMarkRadius; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual double TickMarkRadius{get;set;}
-#endregion
+        #region fields
+        public virtual double TickMarkRadius { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new Size GetPreferredSize(FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),bool isEnabled = false){ throw new NotImplementedException(); }
+        public new Size GetPreferredSize(FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), bool isEnabled = false) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset center,FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterBinding.UI.Offset startThumbCenter = default(FlutterBinding.UI.Offset),FlutterBinding.UI.Offset endThumbCenter = default(FlutterBinding.UI.Offset),bool isEnabled = false,TextDirection textDirection = default(TextDirection)){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset center, FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterBinding.UI.Offset startThumbCenter = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset endThumbCenter = default(FlutterBinding.UI.Offset), bool isEnabled = false, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _EmptySliderTickMarkShape : FlutterSDK.Material.Slidertheme.SliderTickMarkShape
-{
-#region constructors
-public _EmptySliderTickMarkShape()
-{ }
-#endregion
+    public class _EmptySliderTickMarkShape : FlutterSDK.Material.Slidertheme.SliderTickMarkShape
+    {
+        #region constructors
+        public _EmptySliderTickMarkShape()
+        { }
+        #endregion
 
-#region fields
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-public new Size GetPreferredSize(FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),bool isEnabled = default(bool)){ throw new NotImplementedException(); }
+        public new Size GetPreferredSize(FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), bool isEnabled = default(bool)) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset center,FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterBinding.UI.Offset thumbCenter = default(FlutterBinding.UI.Offset),bool isEnabled = default(bool),TextDirection textDirection = default(TextDirection)){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset center, FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterBinding.UI.Offset thumbCenter = default(FlutterBinding.UI.Offset), bool isEnabled = default(bool), TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _EmptySliderComponentShape : FlutterSDK.Material.Slidertheme.SliderComponentShape
-{
-#region constructors
-public _EmptySliderComponentShape()
-{ }
-#endregion
+    public class _EmptySliderComponentShape : FlutterSDK.Material.Slidertheme.SliderComponentShape
+    {
+        #region constructors
+        public _EmptySliderComponentShape()
+        { }
+        #endregion
 
-#region fields
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-public new Size GetPreferredSize(bool isEnabled,bool isDiscrete){ throw new NotImplementedException(); }
+        public new Size GetPreferredSize(bool isEnabled, bool isDiscrete) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset center,FlutterSDK.Animation.Animation.Animation<double> activationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),bool isDiscrete = default(bool),FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter),FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),TextDirection textDirection = default(TextDirection),double value = default(double)){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset center, FlutterSDK.Animation.Animation.Animation<double> activationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), bool isDiscrete = default(bool), FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter), FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), TextDirection textDirection = default(TextDirection), double value = default(double)) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class RoundSliderThumbShape : FlutterSDK.Material.Slidertheme.SliderComponentShape
-{
-#region constructors
-public RoundSliderThumbShape(double enabledThumbRadius = 10.0,double disabledThumbRadius = default(double))
-{
-this.EnabledThumbRadius = enabledThumbRadius;
-this.DisabledThumbRadius = disabledThumbRadius;throw new NotImplementedException(); }
-#endregion
+    public class RoundSliderThumbShape : FlutterSDK.Material.Slidertheme.SliderComponentShape
+    {
+        #region constructors
+        public RoundSliderThumbShape(double enabledThumbRadius = 10.0, double disabledThumbRadius = default(double))
+        {
+            this.EnabledThumbRadius = enabledThumbRadius;
+            this.DisabledThumbRadius = disabledThumbRadius; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual double EnabledThumbRadius{get;set;}
-public virtual double DisabledThumbRadius{get;set;}
-internal virtual double _DisabledThumbRadius{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #region fields
+        public virtual double EnabledThumbRadius { get; set; }
+        public virtual double DisabledThumbRadius { get; set; }
+        internal virtual double _DisabledThumbRadius { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#region methods
+        #region methods
 
-public new Size GetPreferredSize(bool isEnabled,bool isDiscrete){ throw new NotImplementedException(); }
+        public new Size GetPreferredSize(bool isEnabled, bool isDiscrete) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset center,FlutterSDK.Animation.Animation.Animation<double> activationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),bool isDiscrete = default(bool),FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter),FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),TextDirection textDirection = default(TextDirection),double value = default(double)){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset center, FlutterSDK.Animation.Animation.Animation<double> activationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), bool isDiscrete = default(bool), FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter), FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), TextDirection textDirection = default(TextDirection), double value = default(double)) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class RoundRangeSliderThumbShape : FlutterSDK.Material.Slidertheme.RangeSliderThumbShape
-{
-#region constructors
-public RoundRangeSliderThumbShape(double enabledThumbRadius = 10.0,double disabledThumbRadius = default(double))
-: base()
-{
-this.EnabledThumbRadius = enabledThumbRadius;
-this.DisabledThumbRadius = disabledThumbRadius;throw new NotImplementedException(); }
-#endregion
+    public class RoundRangeSliderThumbShape : FlutterSDK.Material.Slidertheme.RangeSliderThumbShape
+    {
+        #region constructors
+        public RoundRangeSliderThumbShape(double enabledThumbRadius = 10.0, double disabledThumbRadius = default(double))
+        : base()
+        {
+            this.EnabledThumbRadius = enabledThumbRadius;
+            this.DisabledThumbRadius = disabledThumbRadius; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual double EnabledThumbRadius{get;set;}
-public virtual double DisabledThumbRadius{get;set;}
-internal virtual double _DisabledThumbRadius{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #region fields
+        public virtual double EnabledThumbRadius { get; set; }
+        public virtual double DisabledThumbRadius { get; set; }
+        internal virtual double _DisabledThumbRadius { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#region methods
+        #region methods
 
-public new Size GetPreferredSize(bool isEnabled,bool isDiscrete){ throw new NotImplementedException(); }
+        public new Size GetPreferredSize(bool isEnabled, bool isDiscrete) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset center,FlutterSDK.Animation.Animation.Animation<double> activationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),bool isDiscrete = false,bool isEnabled = false,bool isOnTop = default(bool),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),TextDirection textDirection = default(TextDirection),FlutterSDK.Material.Slidertheme.Thumb thumb = default(FlutterSDK.Material.Slidertheme.Thumb)){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset center, FlutterSDK.Animation.Animation.Animation<double> activationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), bool isDiscrete = false, bool isEnabled = false, bool isOnTop = default(bool), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), TextDirection textDirection = default(TextDirection), FlutterSDK.Material.Slidertheme.Thumb thumb = default(FlutterSDK.Material.Slidertheme.Thumb)) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class RoundSliderOverlayShape : FlutterSDK.Material.Slidertheme.SliderComponentShape
-{
-#region constructors
-public RoundSliderOverlayShape(double overlayRadius = 24.0)
-{
-this.OverlayRadius = overlayRadius;throw new NotImplementedException(); }
-#endregion
+    public class RoundSliderOverlayShape : FlutterSDK.Material.Slidertheme.SliderComponentShape
+    {
+        #region constructors
+        public RoundSliderOverlayShape(double overlayRadius = 24.0)
+        {
+            this.OverlayRadius = overlayRadius; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual double OverlayRadius{get;set;}
-#endregion
+        #region fields
+        public virtual double OverlayRadius { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new Size GetPreferredSize(bool isEnabled,bool isDiscrete){ throw new NotImplementedException(); }
+        public new Size GetPreferredSize(bool isEnabled, bool isDiscrete) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset center,FlutterSDK.Animation.Animation.Animation<double> activationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),bool isDiscrete = false,FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter),FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),TextDirection textDirection = default(TextDirection),double value = default(double)){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset center, FlutterSDK.Animation.Animation.Animation<double> activationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), bool isDiscrete = false, FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter), FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), TextDirection textDirection = default(TextDirection), double value = default(double)) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class PaddleSliderValueIndicatorShape : FlutterSDK.Material.Slidertheme.SliderComponentShape
-{
-#region constructors
-public PaddleSliderValueIndicatorShape()
-{
-throw new NotImplementedException(); }
-#endregion
+    public class PaddleSliderValueIndicatorShape : FlutterSDK.Material.Slidertheme.SliderComponentShape
+    {
+        #region constructors
+        public PaddleSliderValueIndicatorShape()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-internal virtual FlutterSDK.Material.Slidertheme._PaddleSliderTrackShapePathPainter _PathPainter{get;set;}
-#endregion
+        #region fields
+        internal virtual FlutterSDK.Material.Slidertheme._PaddleSliderTrackShapePathPainter _PathPainter { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new Size GetPreferredSize(bool isEnabled,bool isDiscrete,FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter)){ throw new NotImplementedException(); }
+        public new Size GetPreferredSize(bool isEnabled, bool isDiscrete, FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter)) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset center,FlutterSDK.Animation.Animation.Animation<double> activationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),bool isDiscrete = default(bool),FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter),FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),TextDirection textDirection = default(TextDirection),double value = default(double)){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset center, FlutterSDK.Animation.Animation.Animation<double> activationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), bool isDiscrete = default(bool), FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter), FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), TextDirection textDirection = default(TextDirection), double value = default(double)) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class PaddleRangeSliderValueIndicatorShape : FlutterSDK.Material.Slidertheme.RangeSliderValueIndicatorShape
-{
-#region constructors
-public PaddleRangeSliderValueIndicatorShape()
-{
-throw new NotImplementedException(); }
-#endregion
+    public class PaddleRangeSliderValueIndicatorShape : FlutterSDK.Material.Slidertheme.RangeSliderValueIndicatorShape
+    {
+        #region constructors
+        public PaddleRangeSliderValueIndicatorShape()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-internal virtual FlutterSDK.Material.Slidertheme._PaddleSliderTrackShapePathPainter _PathPainter{get;set;}
-#endregion
+        #region fields
+        internal virtual FlutterSDK.Material.Slidertheme._PaddleSliderTrackShapePathPainter _PathPainter { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new Size GetPreferredSize(bool isEnabled,bool isDiscrete,FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter)){ throw new NotImplementedException(); }
+        public new Size GetPreferredSize(bool isEnabled, bool isDiscrete, FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter)) { throw new NotImplementedException(); }
 
 
-public new double GetHorizontalShift(FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterBinding.UI.Offset center = default(FlutterBinding.UI.Offset),FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter),FlutterSDK.Animation.Animation.Animation<double> activationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>)){ throw new NotImplementedException(); }
+        public new double GetHorizontalShift(FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterBinding.UI.Offset center = default(FlutterBinding.UI.Offset), FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter), FlutterSDK.Animation.Animation.Animation<double> activationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>)) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset center,FlutterSDK.Animation.Animation.Animation<double> activationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),bool isDiscrete = default(bool),bool isOnTop = false,FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter),FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),TextDirection textDirection = default(TextDirection),FlutterSDK.Material.Slidertheme.Thumb thumb = default(FlutterSDK.Material.Slidertheme.Thumb),double value = default(double)){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset center, FlutterSDK.Animation.Animation.Animation<double> activationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), bool isDiscrete = default(bool), bool isOnTop = false, FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter), FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), TextDirection textDirection = default(TextDirection), FlutterSDK.Material.Slidertheme.Thumb thumb = default(FlutterSDK.Material.Slidertheme.Thumb), double value = default(double)) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _PaddleSliderTrackShapePathPainter
-{
-#region constructors
-public _PaddleSliderTrackShapePathPainter()
-{
-throw new NotImplementedException(); }
-#endregion
+    public class _PaddleSliderTrackShapePathPainter
+    {
+        #region constructors
+        public _PaddleSliderTrackShapePathPainter()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-internal virtual double _TopLobeRadius{get;set;}
-internal virtual double _LabelTextDesignSize{get;set;}
-internal virtual double _BottomLobeRadius{get;set;}
-internal virtual double _LabelPadding{get;set;}
-internal virtual double _DistanceBetweenTopBottomCenters{get;set;}
-internal virtual double _MiddleNeckWidth{get;set;}
-internal virtual double _BottomNeckRadius{get;set;}
-internal virtual double _NeckTriangleBase{get;set;}
-internal virtual double _RightBottomNeckCenterX{get;set;}
-internal virtual double _RightBottomNeckAngleStart{get;set;}
-internal virtual FlutterBinding.UI.Offset _TopLobeCenter{get;set;}
-internal virtual double _TopNeckRadius{get;set;}
-internal virtual double _NeckTriangleHypotenuse{get;set;}
-internal virtual double _TwoSeventyDegrees{get;set;}
-internal virtual double _NinetyDegrees{get;set;}
-internal virtual double _ThirtyDegrees{get;set;}
-internal virtual double _PreferredHeight{get;set;}
-internal virtual bool _DebuggingLabelLocation{get;set;}
-#endregion
+        #region fields
+        internal virtual double _TopLobeRadius { get; set; }
+        internal virtual double _LabelTextDesignSize { get; set; }
+        internal virtual double _BottomLobeRadius { get; set; }
+        internal virtual double _LabelPadding { get; set; }
+        internal virtual double _DistanceBetweenTopBottomCenters { get; set; }
+        internal virtual double _MiddleNeckWidth { get; set; }
+        internal virtual double _BottomNeckRadius { get; set; }
+        internal virtual double _NeckTriangleBase { get; set; }
+        internal virtual double _RightBottomNeckCenterX { get; set; }
+        internal virtual double _RightBottomNeckAngleStart { get; set; }
+        internal virtual FlutterBinding.UI.Offset _TopLobeCenter { get; set; }
+        internal virtual double _TopNeckRadius { get; set; }
+        internal virtual double _NeckTriangleHypotenuse { get; set; }
+        internal virtual double _TwoSeventyDegrees { get; set; }
+        internal virtual double _NinetyDegrees { get; set; }
+        internal virtual double _ThirtyDegrees { get; set; }
+        internal virtual double _PreferredHeight { get; set; }
+        internal virtual bool _DebuggingLabelLocation { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public virtual Size GetPreferredSize(bool isEnabled,bool isDiscrete,FlutterSDK.Painting.Textpainter.TextPainter labelPainter){ throw new NotImplementedException(); }
+        public virtual Size GetPreferredSize(bool isEnabled, bool isDiscrete, FlutterSDK.Painting.Textpainter.TextPainter labelPainter) { throw new NotImplementedException(); }
 
 
-private void _AddArc(Path path,FlutterBinding.UI.Offset center,double radius,double startAngle,double endAngle){ throw new NotImplementedException(); }
+        private void _AddArc(Path path, FlutterBinding.UI.Offset center, double radius, double startAngle, double endAngle) { throw new NotImplementedException(); }
 
 
-public virtual double GetHorizontalShift(FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterBinding.UI.Offset center = default(FlutterBinding.UI.Offset),FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter),double scale = default(double)){ throw new NotImplementedException(); }
+        public virtual double GetHorizontalShift(FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterBinding.UI.Offset center = default(FlutterBinding.UI.Offset), FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter), double scale = default(double)) { throw new NotImplementedException(); }
 
 
-private double _GetIdealOffset(FlutterSDK.Rendering.Box.RenderBox parentBox,double halfWidthNeeded,double scale,FlutterBinding.UI.Offset center){ throw new NotImplementedException(); }
+        private double _GetIdealOffset(FlutterSDK.Rendering.Box.RenderBox parentBox, double halfWidthNeeded, double scale, FlutterBinding.UI.Offset center) { throw new NotImplementedException(); }
 
 
-public virtual void DrawValueIndicator(FlutterSDK.Rendering.Box.RenderBox parentBox,Canvas canvas,FlutterBinding.UI.Offset center,SKPaint paint,double scale,FlutterSDK.Painting.Textpainter.TextPainter labelPainter,FlutterBinding.UI.Color strokePaintColor){ throw new NotImplementedException(); }
+        public virtual void DrawValueIndicator(FlutterSDK.Rendering.Box.RenderBox parentBox, Canvas canvas, FlutterBinding.UI.Offset center, SKPaint paint, double scale, FlutterSDK.Painting.Textpainter.TextPainter labelPainter, FlutterBinding.UI.Color strokePaintColor) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class RangeValues
-{
-#region constructors
-public RangeValues(double start,double end)
-{
-this.Start = start;
-this.End = end;throw new NotImplementedException(); }
-#endregion
+    public class RangeValues
+    {
+        #region constructors
+        public RangeValues(double start, double end)
+        {
+            this.Start = start;
+            this.End = end; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual double Start{get;set;}
-public virtual double End{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #region fields
+        public virtual double Start { get; set; }
+        public virtual double End { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#region methods
+        #region methods
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class RangeLabels
-{
-#region constructors
-public RangeLabels(string start,string end)
-{
-this.Start = start;
-this.End = end;throw new NotImplementedException(); }
-#endregion
+    public class RangeLabels
+    {
+        #region constructors
+        public RangeLabels(string start, string end)
+        {
+            this.Start = start;
+            this.End = end; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual string Start{get;set;}
-public virtual string End{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #region fields
+        public virtual string Start { get; set; }
+        public virtual string End { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#region methods
+        #region methods
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        #endregion
+    }
 
 
-public enum ShowValueIndicator{
+    public enum ShowValueIndicator
+    {
 
-OnlyForDiscrete,
-OnlyForContinuous,
-Always,
-Never,
-}
+        OnlyForDiscrete,
+        OnlyForContinuous,
+        Always,
+        Never,
+    }
 
 
-public enum Thumb{
+    public enum Thumb
+    {
 
-Start,
-End,
-}
+        Start,
+        End,
+    }
 
 }

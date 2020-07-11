@@ -360,47 +360,50 @@ using FlutterSDK.Material.Elevationoverlay;
 using FlutterSDK.Material.Inkwell;
 using FlutterSDK.Material.Bottomsheettheme;
 using FlutterSDK.Material.Curves;
-namespace FlutterSDK.Material.Bottomsheettheme{
-internal static class BottomsheetthemeDefaultClass{
-}
-
-public class BottomSheetThemeData : IDiagnosticable
+namespace FlutterSDK.Material.Bottomsheettheme
 {
-#region constructors
-public BottomSheetThemeData(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),double elevation = default(double),FlutterBinding.UI.Color modalBackgroundColor = default(FlutterBinding.UI.Color),double modalElevation = default(double),FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder),FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
-{
-this.BackgroundColor = backgroundColor;
-this.Elevation = elevation;
-this.ModalBackgroundColor = modalBackgroundColor;
-this.ModalElevation = modalElevation;
-this.Shape = shape;
-this.ClipBehavior = clipBehavior;throw new NotImplementedException(); }
-#endregion
+    internal static class BottomsheetthemeDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterBinding.UI.Color BackgroundColor{get;set;}
-public virtual double Elevation{get;set;}
-public virtual FlutterBinding.UI.Color ModalBackgroundColor{get;set;}
-public virtual double ModalElevation{get;set;}
-public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape{get;set;}
-public virtual FlutterBinding.UI.Clip ClipBehavior{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class BottomSheetThemeData : IDiagnosticable
+    {
+        #region constructors
+        public BottomSheetThemeData(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterBinding.UI.Color modalBackgroundColor = default(FlutterBinding.UI.Color), double modalElevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
+        {
+            this.BackgroundColor = backgroundColor;
+            this.Elevation = elevation;
+            this.ModalBackgroundColor = modalBackgroundColor;
+            this.ModalElevation = modalElevation;
+            this.Shape = shape;
+            this.ClipBehavior = clipBehavior; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual FlutterBinding.UI.Color ModalBackgroundColor { get; set; }
+        public virtual double ModalElevation { get; set; }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData CopyWith(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),double elevation = default(double),FlutterBinding.UI.Color modalBackgroundColor = default(FlutterBinding.UI.Color),double modalElevation = default(double),FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder),FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip)){ throw new NotImplementedException(); }
+        #region methods
+
+        public virtual FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData CopyWith(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterBinding.UI.Color modalBackgroundColor = default(FlutterBinding.UI.Color), double modalElevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip)) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData Lerp(FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData a,FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData b,double t){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData Lerp(FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData a, FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData b, double t) { throw new NotImplementedException(); }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 }

@@ -15,9 +15,13 @@ In the AST folder is `analyzer.dart`, which uses the Dart Analyzer to create a S
 
 4. Make sure there is a DART_SDK environment  variable pointing to `dart_sdk` directory. Optionally add its bin directory to PATH (if not already).
 
-5. In a terminal window or command prompt (except for git bash, which does not work at this time), run `dart analyzer.dart`.
+5. (optional) Install the `dotnet-format` global tool (see instructions here: https://github.com/dotnet/format)
+
+6. In a terminal window or command prompt (except for git bash, which does not work at this time), navigate to the AST directory and run the `run.bat` script. If you want to skip the dotnet-format tool, run `dart analyzer.dart` directly.
 
 This will run through the Flutter SDK and create an equivalent *.cs files.
+
+Note: On Windows, the dotnet-format tool outputs unix line endings for some reason. You may see Visual Studio warn about making line endings consistent when you open the files in Visual Studio.
 
 ## Semantic Model
 

@@ -290,61 +290,64 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-namespace FlutterSDK.Cupertino.Bottomtabbar{
-internal static class BottomtabbarDefaultClass{
-public static double _KTabBarHeight = default(double);
-public static Color _KDefaultTabBarBorderColor = default(Color);
-public static Color _KDefaultTabBarInactiveColor = default(Color);
-}
-
-public class CupertinoTabBar : FlutterSDK.Widgets.Framework.StatelessWidget,IPreferredSizeWidget
+namespace FlutterSDK.Cupertino.Bottomtabbar
 {
-#region constructors
-public CupertinoTabBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem> items = default(List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem>),FlutterSDK.Foundation.Basictypes.ValueChanged<int> onTap = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>),int currentIndex = 0,FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color),double iconSize = 30.0,FlutterSDK.Painting.Boxborder.Border border = default(FlutterSDK.Painting.Boxborder.Border))
-: base(key:key)
-{
-this.Items = items;
-this.OnTap = onTap;
-this.CurrentIndex = currentIndex;
-this.BackgroundColor = backgroundColor;
-this.ActiveColor = activeColor;
-this.InactiveColor = inactiveColor;
-this.IconSize = iconSize;
-this.Border = border;throw new NotImplementedException(); }
-#endregion
+    internal static class BottomtabbarDefaultClass
+    {
+        public static double _KTabBarHeight = default(double);
+        public static Color _KDefaultTabBarBorderColor = default(Color);
+        public static Color _KDefaultTabBarInactiveColor = default(Color);
+    }
 
-#region fields
-public virtual List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem> Items{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnTap{get;set;}
-public virtual int CurrentIndex{get;set;}
-public virtual FlutterBinding.UI.Color BackgroundColor{get;set;}
-public virtual FlutterBinding.UI.Color ActiveColor{get;set;}
-public virtual FlutterBinding.UI.Color InactiveColor{get;set;}
-public virtual double IconSize{get;set;}
-public virtual FlutterSDK.Painting.Boxborder.Border Border{get;set;}
-public virtual Size PreferredSize{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class CupertinoTabBar : FlutterSDK.Widgets.Framework.StatelessWidget, IPreferredSizeWidget
+    {
+        #region constructors
+        public CupertinoTabBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem> items = default(List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem>), FlutterSDK.Foundation.Basictypes.ValueChanged<int> onTap = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), int currentIndex = 0, FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), double iconSize = 30.0, FlutterSDK.Painting.Boxborder.Border border = default(FlutterSDK.Painting.Boxborder.Border))
+        : base(key: key)
+        {
+            this.Items = items;
+            this.OnTap = onTap;
+            this.CurrentIndex = currentIndex;
+            this.BackgroundColor = backgroundColor;
+            this.ActiveColor = activeColor;
+            this.InactiveColor = inactiveColor;
+            this.IconSize = iconSize;
+            this.Border = border; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem> Items { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnTap { get; set; }
+        public virtual int CurrentIndex { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
+        public virtual FlutterBinding.UI.Color InactiveColor { get; set; }
+        public virtual double IconSize { get; set; }
+        public virtual FlutterSDK.Painting.Boxborder.Border Border { get; set; }
+        public virtual Size PreferredSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual bool Opaque(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
 
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-
-private List<FlutterSDK.Widgets.Framework.Widget> _BuildTabItems(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-
-private List<FlutterSDK.Widgets.Framework.Widget> _BuildSingleTabItem(FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem item,bool active){ throw new NotImplementedException(); }
-
-
-private FlutterSDK.Widgets.Framework.Widget _WrapActiveItem(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Widgets.Framework.Widget item,bool active = default(bool)){ throw new NotImplementedException(); }
+        public virtual bool Opaque(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Cupertino.Bottomtabbar.CupertinoTabBar CopyWith(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem> items = default(List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem>),FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color),double iconSize = default(double),FlutterSDK.Painting.Boxborder.Border border = default(FlutterSDK.Painting.Boxborder.Border),int currentIndex = default(int),FlutterSDK.Foundation.Basictypes.ValueChanged<int> onTap = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>)){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        private List<FlutterSDK.Widgets.Framework.Widget> _BuildTabItems(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+
+        private List<FlutterSDK.Widgets.Framework.Widget> _BuildSingleTabItem(FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem item, bool active) { throw new NotImplementedException(); }
+
+
+        private FlutterSDK.Widgets.Framework.Widget _WrapActiveItem(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget item, bool active = default(bool)) { throw new NotImplementedException(); }
+
+
+        public virtual FlutterSDK.Cupertino.Bottomtabbar.CupertinoTabBar CopyWith(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem> items = default(List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem>), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), double iconSize = default(double), FlutterSDK.Painting.Boxborder.Border border = default(FlutterSDK.Painting.Boxborder.Border), int currentIndex = default(int), FlutterSDK.Foundation.Basictypes.ValueChanged<int> onTap = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>)) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

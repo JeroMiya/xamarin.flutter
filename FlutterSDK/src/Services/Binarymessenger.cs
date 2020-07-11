@@ -421,45 +421,49 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Services.Binarymessenger{
-public delegate Future<ByteData> MessageHandler(ByteData message);
-internal static class BinarymessengerDefaultClass{
-public static FlutterSDK.Services.Binarymessenger.BinaryMessenger DefaultBinaryMessenger = default(FlutterSDK.Services.Binarymessenger.BinaryMessenger);
-}
-
-public interface IBinaryMessenger{
-Future<object> HandlePlatformMessage(string channel,ByteData data,PlatformMessageResponseCallback callback);
-Future<ByteData> Send(string channel,ByteData message);
-void SetMessageHandler(string channel,Func<Future<ByteData>,ByteData> handler);
-void SetMockMessageHandler(string channel,Func<Future<ByteData>,ByteData> handler);
-}
-
-
-public class BinaryMessenger
+namespace FlutterSDK.Services.Binarymessenger
 {
-#region constructors
-public BinaryMessenger()
-{
-throw new NotImplementedException(); }
-#endregion
+    public delegate Future<ByteData> MessageHandler(ByteData message);
+    internal static class BinarymessengerDefaultClass
+    {
+        public static FlutterSDK.Services.Binarymessenger.BinaryMessenger DefaultBinaryMessenger = default(FlutterSDK.Services.Binarymessenger.BinaryMessenger);
+    }
 
-#region fields
-#endregion
-
-#region methods
-
-public virtual Future<object> HandlePlatformMessage(string channel,ByteData data,PlatformMessageResponseCallback callback){ throw new NotImplementedException(); }
-
-
-public virtual Future<ByteData> Send(string channel,ByteData message){ throw new NotImplementedException(); }
+    public interface IBinaryMessenger
+    {
+        Future<object> HandlePlatformMessage(string channel, ByteData data, PlatformMessageResponseCallback callback);
+        Future<ByteData> Send(string channel, ByteData message);
+        void SetMessageHandler(string channel, Func<Future<ByteData>, ByteData> handler);
+        void SetMockMessageHandler(string channel, Func<Future<ByteData>, ByteData> handler);
+    }
 
 
-public virtual void SetMessageHandler(string channel,Func<Future<ByteData>,ByteData> handler){ throw new NotImplementedException(); }
+    public class BinaryMessenger
+    {
+        #region constructors
+        public BinaryMessenger()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public virtual Future<object> HandlePlatformMessage(string channel, ByteData data, PlatformMessageResponseCallback callback) { throw new NotImplementedException(); }
 
 
-public virtual void SetMockMessageHandler(string channel,Func<Future<ByteData>,ByteData> handler){ throw new NotImplementedException(); }
+        public virtual Future<ByteData> Send(string channel, ByteData message) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public virtual void SetMessageHandler(string channel, Func<Future<ByteData>, ByteData> handler) { throw new NotImplementedException(); }
+
+
+        public virtual void SetMockMessageHandler(string channel, Func<Future<ByteData>, ByteData> handler) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

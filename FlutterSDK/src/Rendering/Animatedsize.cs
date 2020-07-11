@@ -421,71 +421,75 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Rendering.Animatedsize{
-internal static class AnimatedsizeDefaultClass{
-}
-
-public class RenderAnimatedSize : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
+namespace FlutterSDK.Rendering.Animatedsize
 {
-#region constructors
-public RenderAnimatedSize(FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider),TimeSpan duration = default(TimeSpan),TimeSpan reverseDuration = default(TimeSpan),FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve),FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry),TextDirection textDirection = default(TextDirection),FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-: base(child:child,alignment:alignment,textDirection:textDirection)
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class AnimatedsizeDefaultClass
+    {
+    }
 
-#region fields
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller{get;set;}
-internal virtual FlutterSDK.Animation.Animations.CurvedAnimation _Animation{get;set;}
-internal virtual FlutterSDK.Animation.Tween.SizeTween _SizeTween{get;set;}
-internal virtual bool _HasVisualOverflow{get;set;}
-internal virtual double _LastValue{get;set;}
-internal virtual FlutterSDK.Rendering.Animatedsize.RenderAnimatedSizeState _State{get;set;}
-internal virtual FlutterSDK.Scheduler.Ticker.TickerProvider _Vsync{get;set;}
-public virtual FlutterSDK.Rendering.Animatedsize.RenderAnimatedSizeState State{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual TimeSpan Duration{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual TimeSpan ReverseDuration{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Animation.Curves.Curve Curve{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool IsAnimating{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-internal virtual Size _AnimatedSize{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class RenderAnimatedSize : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
+    {
+        #region constructors
+        public RenderAnimatedSize(FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), TimeSpan duration = default(TimeSpan), TimeSpan reverseDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+        : base(child: child, alignment: alignment, textDirection: textDirection)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
+        internal virtual FlutterSDK.Animation.Animations.CurvedAnimation _Animation { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.SizeTween _SizeTween { get; set; }
+        internal virtual bool _HasVisualOverflow { get; set; }
+        internal virtual double _LastValue { get; set; }
+        internal virtual FlutterSDK.Rendering.Animatedsize.RenderAnimatedSizeState _State { get; set; }
+        internal virtual FlutterSDK.Scheduler.Ticker.TickerProvider _Vsync { get; set; }
+        public virtual FlutterSDK.Rendering.Animatedsize.RenderAnimatedSizeState State { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TimeSpan Duration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TimeSpan ReverseDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Animation.Curves.Curve Curve { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsAnimating { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Size _AnimatedSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new void Detach(){ throw new NotImplementedException(); }
+        #region methods
 
-
-public new void PerformLayout(){ throw new NotImplementedException(); }
-
-
-private void _RestartAnimation(){ throw new NotImplementedException(); }
-
-
-private void _LayoutStart(){ throw new NotImplementedException(); }
+        public new void Detach() { throw new NotImplementedException(); }
 
 
-private void _LayoutStable(){ throw new NotImplementedException(); }
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
 
-private void _LayoutChanged(){ throw new NotImplementedException(); }
+        private void _RestartAnimation() { throw new NotImplementedException(); }
 
 
-private void _LayoutUnstable(){ throw new NotImplementedException(); }
+        private void _LayoutStart() { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
-
-#endregion
-}
+        private void _LayoutStable() { throw new NotImplementedException(); }
 
 
-public enum RenderAnimatedSizeState{
+        private void _LayoutChanged() { throw new NotImplementedException(); }
 
-Start,
-Stable,
-Changed,
-Unstable,
-}
+
+        private void _LayoutUnstable() { throw new NotImplementedException(); }
+
+
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public enum RenderAnimatedSizeState
+    {
+
+        Start,
+        Stable,
+        Changed,
+        Unstable,
+    }
 
 }

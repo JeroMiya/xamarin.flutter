@@ -382,112 +382,118 @@ using FlutterSDK.Material.Shadows;
 using FlutterSDK.Material.Expandicon;
 using FlutterSDK.Material.Mergeablematerial;
 using FlutterSDK.Material.Button;
-namespace FlutterSDK.Material.Flexiblespacebar{
-internal static class FlexiblespacebarDefaultClass{
-}
-
-public class FlexibleSpaceBar : FlutterSDK.Widgets.Framework.StatefulWidget
+namespace FlutterSDK.Material.Flexiblespacebar
 {
-#region constructors
-public FlexibleSpaceBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.Widget background = default(FlutterSDK.Widgets.Framework.Widget),bool centerTitle = default(bool),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry titlePadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),FlutterSDK.Material.Flexiblespacebar.CollapseMode collapseMode = default(FlutterSDK.Material.Flexiblespacebar.CollapseMode),List<FlutterSDK.Material.Flexiblespacebar.StretchMode> stretchModes = default(List<FlutterSDK.Material.Flexiblespacebar.StretchMode>))
-: base(key:key)
-{
-this.Title = title;
-this.Background = background;
-this.CenterTitle = centerTitle;
-this.TitlePadding = titlePadding;
-this.CollapseMode = collapseMode;
-this.StretchModes = stretchModes;throw new NotImplementedException(); }
-#endregion
+    internal static class FlexiblespacebarDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Title{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Background{get;set;}
-public virtual bool CenterTitle{get;set;}
-public virtual FlutterSDK.Material.Flexiblespacebar.CollapseMode CollapseMode{get;set;}
-public virtual List<FlutterSDK.Material.Flexiblespacebar.StretchMode> StretchModes{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry TitlePadding{get;set;}
-#endregion
+    public class FlexibleSpaceBar : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public FlexibleSpaceBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget background = default(FlutterSDK.Widgets.Framework.Widget), bool centerTitle = default(bool), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry titlePadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Flexiblespacebar.CollapseMode collapseMode = default(FlutterSDK.Material.Flexiblespacebar.CollapseMode), List<FlutterSDK.Material.Flexiblespacebar.StretchMode> stretchModes = default(List<FlutterSDK.Material.Flexiblespacebar.StretchMode>))
+        : base(key: key)
+        {
+            this.Title = title;
+            this.Background = background;
+            this.CenterTitle = centerTitle;
+            this.TitlePadding = titlePadding;
+            this.CollapseMode = collapseMode;
+            this.StretchModes = stretchModes; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Background { get; set; }
+        public virtual bool CenterTitle { get; set; }
+        public virtual FlutterSDK.Material.Flexiblespacebar.CollapseMode CollapseMode { get; set; }
+        public virtual List<FlutterSDK.Material.Flexiblespacebar.StretchMode> StretchModes { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry TitlePadding { get; set; }
+        #endregion
 
-public virtual FlutterSDK.Widgets.Framework.Widget CreateSettings(double toolbarOpacity = default(double),double minExtent = default(double),double maxExtent = default(double),double currentExtent = default(double),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget)){ throw new NotImplementedException(); }
+        #region methods
 
-
-public new FlutterSDK.Material.Flexiblespacebar._FlexibleSpaceBarState CreateState(){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _FlexibleSpaceBarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Flexiblespacebar.FlexibleSpaceBar>
-{
-#region constructors
-public _FlexibleSpaceBarState()
-{ }
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-private bool _GetEffectiveCenterTitle(FlutterSDK.Material.Themedata.ThemeData theme){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Widgets.Framework.Widget CreateSettings(double toolbarOpacity = default(double), double minExtent = default(double), double maxExtent = default(double), double currentExtent = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget)) { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Painting.Alignment.Alignment _GetTitleAlignment(bool effectiveCenterTitle){ throw new NotImplementedException(); }
+        public new FlutterSDK.Material.Flexiblespacebar._FlexibleSpaceBarState CreateState() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-private double _GetCollapsePadding(double t,FlutterSDK.Material.Flexiblespacebar.FlexibleSpaceBarSettings settings){ throw new NotImplementedException(); }
+    public class _FlexibleSpaceBarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Flexiblespacebar.FlexibleSpaceBar>
+    {
+        #region constructors
+        public _FlexibleSpaceBarState()
+        { }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        private bool _GetEffectiveCenterTitle(FlutterSDK.Material.Themedata.ThemeData theme) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-#endregion
-}
+        private FlutterSDK.Painting.Alignment.Alignment _GetTitleAlignment(bool effectiveCenterTitle) { throw new NotImplementedException(); }
 
 
-public class FlexibleSpaceBarSettings : FlutterSDK.Widgets.Framework.InheritedWidget
-{
-#region constructors
-public FlexibleSpaceBarSettings(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),double toolbarOpacity = default(double),double minExtent = default(double),double maxExtent = default(double),double currentExtent = default(double),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key,child:child)
-{
-this.ToolbarOpacity = toolbarOpacity;
-this.MinExtent = minExtent;
-this.MaxExtent = maxExtent;
-this.CurrentExtent = currentExtent;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual double ToolbarOpacity{get;set;}
-public virtual double MinExtent{get;set;}
-public virtual double MaxExtent{get;set;}
-public virtual double CurrentExtent{get;set;}
-#endregion
-
-#region methods
-
-public new bool UpdateShouldNotify(FlutterSDK.Material.Flexiblespacebar.FlexibleSpaceBarSettings oldWidget){ throw new NotImplementedException(); }
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget){ throw new NotImplementedException(); }
-
-#endregion
-}
+        private double _GetCollapsePadding(double t, FlutterSDK.Material.Flexiblespacebar.FlexibleSpaceBarSettings settings) { throw new NotImplementedException(); }
 
 
-public enum CollapseMode{
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-Parallax,
-Pin,
-None,
-}
+        #endregion
+    }
 
 
-public enum StretchMode{
+    public class FlexibleSpaceBarSettings : FlutterSDK.Widgets.Framework.InheritedWidget
+    {
+        #region constructors
+        public FlexibleSpaceBarSettings(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double toolbarOpacity = default(double), double minExtent = default(double), double maxExtent = default(double), double currentExtent = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            this.ToolbarOpacity = toolbarOpacity;
+            this.MinExtent = minExtent;
+            this.MaxExtent = maxExtent;
+            this.CurrentExtent = currentExtent; throw new NotImplementedException();
+        }
+        #endregion
 
-ZoomBackground,
-BlurBackground,
-FadeTitle,
-}
+        #region fields
+        public virtual double ToolbarOpacity { get; set; }
+        public virtual double MinExtent { get; set; }
+        public virtual double MaxExtent { get; set; }
+        public virtual double CurrentExtent { get; set; }
+        #endregion
+
+        #region methods
+
+        public new bool UpdateShouldNotify(FlutterSDK.Material.Flexiblespacebar.FlexibleSpaceBarSettings oldWidget) { throw new NotImplementedException(); }
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public enum CollapseMode
+    {
+
+        Parallax,
+        Pin,
+        None,
+    }
+
+
+    public enum StretchMode
+    {
+
+        ZoomBackground,
+        BlurBackground,
+        FadeTitle,
+    }
 
 }

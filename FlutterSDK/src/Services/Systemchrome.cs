@@ -421,120 +421,128 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Services.Systemchrome{
-internal static class SystemchromeDefaultClass{
-internal static List<string> _Stringify(List<object> list){
-throw new NotImplementedException();
-}
-
-}
-
-public class ApplicationSwitcherDescription
+namespace FlutterSDK.Services.Systemchrome
 {
-#region constructors
-public ApplicationSwitcherDescription(string label = default(string),int primaryColor = default(int))
-{
-this.Label = label;
-this.PrimaryColor = primaryColor;throw new NotImplementedException(); }
-#endregion
+    internal static class SystemchromeDefaultClass
+    {
+        internal static List<string> _Stringify(List<object> list)
+        {
+            throw new NotImplementedException();
+        }
 
-#region fields
-public virtual string Label{get;set;}
-public virtual int PrimaryColor{get;set;}
-#endregion
+    }
 
-#region methods
-#endregion
-}
+    public class ApplicationSwitcherDescription
+    {
+        #region constructors
+        public ApplicationSwitcherDescription(string label = default(string), int primaryColor = default(int))
+        {
+            this.Label = label;
+            this.PrimaryColor = primaryColor; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual string Label { get; set; }
+        public virtual int PrimaryColor { get; set; }
+        #endregion
 
-public class SystemUiOverlayStyle
-{
-#region constructors
-public SystemUiOverlayStyle(FlutterBinding.UI.Color systemNavigationBarColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color systemNavigationBarDividerColor = default(FlutterBinding.UI.Color),Brightness systemNavigationBarIconBrightness = default(Brightness),FlutterBinding.UI.Color statusBarColor = default(FlutterBinding.UI.Color),Brightness statusBarBrightness = default(Brightness),Brightness statusBarIconBrightness = default(Brightness))
-{
-this.SystemNavigationBarColor = systemNavigationBarColor;
-this.SystemNavigationBarDividerColor = systemNavigationBarDividerColor;
-this.SystemNavigationBarIconBrightness = systemNavigationBarIconBrightness;
-this.StatusBarColor = statusBarColor;
-this.StatusBarBrightness = statusBarBrightness;
-this.StatusBarIconBrightness = statusBarIconBrightness;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterBinding.UI.Color SystemNavigationBarColor{get;set;}
-public virtual FlutterBinding.UI.Color SystemNavigationBarDividerColor{get;set;}
-public virtual Brightness SystemNavigationBarIconBrightness{get;set;}
-public virtual FlutterBinding.UI.Color StatusBarColor{get;set;}
-public virtual Brightness StatusBarBrightness{get;set;}
-public virtual Brightness StatusBarIconBrightness{get;set;}
-public virtual FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle Light{get;set;}
-public virtual FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle Dark{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-private Dictionary<string,object> _ToMap(){ throw new NotImplementedException(); }
+        #region methods
+        #endregion
+    }
 
 
+    public class SystemUiOverlayStyle
+    {
+        #region constructors
+        public SystemUiOverlayStyle(FlutterBinding.UI.Color systemNavigationBarColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color systemNavigationBarDividerColor = default(FlutterBinding.UI.Color), Brightness systemNavigationBarIconBrightness = default(Brightness), FlutterBinding.UI.Color statusBarColor = default(FlutterBinding.UI.Color), Brightness statusBarBrightness = default(Brightness), Brightness statusBarIconBrightness = default(Brightness))
+        {
+            this.SystemNavigationBarColor = systemNavigationBarColor;
+            this.SystemNavigationBarDividerColor = systemNavigationBarDividerColor;
+            this.SystemNavigationBarIconBrightness = systemNavigationBarIconBrightness;
+            this.StatusBarColor = statusBarColor;
+            this.StatusBarBrightness = statusBarBrightness;
+            this.StatusBarIconBrightness = statusBarIconBrightness; throw new NotImplementedException();
+        }
+        #endregion
 
-public virtual FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle CopyWith(FlutterBinding.UI.Color systemNavigationBarColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color systemNavigationBarDividerColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color statusBarColor = default(FlutterBinding.UI.Color),Brightness statusBarBrightness = default(Brightness),Brightness statusBarIconBrightness = default(Brightness),Brightness systemNavigationBarIconBrightness = default(Brightness)){ throw new NotImplementedException(); }
+        #region fields
+        public virtual FlutterBinding.UI.Color SystemNavigationBarColor { get; set; }
+        public virtual FlutterBinding.UI.Color SystemNavigationBarDividerColor { get; set; }
+        public virtual Brightness SystemNavigationBarIconBrightness { get; set; }
+        public virtual FlutterBinding.UI.Color StatusBarColor { get; set; }
+        public virtual Brightness StatusBarBrightness { get; set; }
+        public virtual Brightness StatusBarIconBrightness { get; set; }
+        public virtual FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle Light { get; set; }
+        public virtual FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle Dark { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class SystemChrome
-{
-#region constructors
-internal SystemChrome()
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle _PendingStyle{get;set;}
-internal virtual FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle _LatestStyle{get;set;}
-public virtual FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle LatestStyle{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public virtual Future<object> SetPreferredOrientations(List<FlutterSDK.Services.Systemchrome.DeviceOrientation> orientations){ throw new NotImplementedException(); }
-
-
-public virtual Future<object> SetApplicationSwitcherDescription(FlutterSDK.Services.Systemchrome.ApplicationSwitcherDescription description){ throw new NotImplementedException(); }
-
-
-public virtual Future<object> SetEnabledSystemUIOverlays(List<FlutterSDK.Services.Systemchrome.SystemUiOverlay> overlays){ throw new NotImplementedException(); }
+        private Dictionary<string, object> _ToMap() { throw new NotImplementedException(); }
 
 
-public virtual Future<object> RestoreSystemUIOverlays(){ throw new NotImplementedException(); }
+
+        public virtual FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle CopyWith(FlutterBinding.UI.Color systemNavigationBarColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color systemNavigationBarDividerColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color statusBarColor = default(FlutterBinding.UI.Color), Brightness statusBarBrightness = default(Brightness), Brightness statusBarIconBrightness = default(Brightness), Brightness systemNavigationBarIconBrightness = default(Brightness)) { throw new NotImplementedException(); }
 
 
-public virtual void SetSystemUIOverlayStyle(FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle style){ throw new NotImplementedException(); }
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
-#endregion
-}
-
-
-public enum DeviceOrientation{
-
-PortraitUp,
-LandscapeLeft,
-PortraitDown,
-LandscapeRight,
-}
+        #endregion
+    }
 
 
-public enum SystemUiOverlay{
+    public class SystemChrome
+    {
+        #region constructors
+        internal SystemChrome()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-Top,
-Bottom,
-}
+        #region fields
+        internal virtual FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle _PendingStyle { get; set; }
+        internal virtual FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle _LatestStyle { get; set; }
+        public virtual FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle LatestStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual Future<object> SetPreferredOrientations(List<FlutterSDK.Services.Systemchrome.DeviceOrientation> orientations) { throw new NotImplementedException(); }
+
+
+        public virtual Future<object> SetApplicationSwitcherDescription(FlutterSDK.Services.Systemchrome.ApplicationSwitcherDescription description) { throw new NotImplementedException(); }
+
+
+        public virtual Future<object> SetEnabledSystemUIOverlays(List<FlutterSDK.Services.Systemchrome.SystemUiOverlay> overlays) { throw new NotImplementedException(); }
+
+
+        public virtual Future<object> RestoreSystemUIOverlays() { throw new NotImplementedException(); }
+
+
+        public virtual void SetSystemUIOverlayStyle(FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle style) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public enum DeviceOrientation
+    {
+
+        PortraitUp,
+        LandscapeLeft,
+        PortraitDown,
+        LandscapeRight,
+    }
+
+
+    public enum SystemUiOverlay
+    {
+
+        Top,
+        Bottom,
+    }
 
 }

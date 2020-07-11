@@ -411,201 +411,208 @@ using FlutterSDK.Material.Floatingactionbuttonlocation;
 using FlutterSDK.Material.Snackbar;
 using FlutterSDK.Material.Snackbartheme;
 using FlutterSDK.Material.Textselection;
-namespace FlutterSDK.Material.Stepper{
-internal static class StepperDefaultClass{
-public static FlutterSDK.Painting.Textstyle.TextStyle _KStepStyle = default(FlutterSDK.Painting.Textstyle.TextStyle);
-public static Color _KErrorLight = default(Color);
-public static Color _KErrorDark = default(Color);
-public static Color _KCircleActiveLight = default(Color);
-public static Color _KCircleActiveDark = default(Color);
-public static Color _KDisabledLight = default(Color);
-public static Color _KDisabledDark = default(Color);
-public static double _KStepSize = default(double);
-public static double _KTriangleHeight = default(double);
-}
-
-public class Step
+namespace FlutterSDK.Material.Stepper
 {
-#region constructors
-public Step(FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.Widget content = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Material.Stepper.StepState state = default(FlutterSDK.Material.Stepper.StepState),bool isActive = false)
-: base()
-{
-this.Title = title;
-this.Subtitle = subtitle;
-this.Content = content;
-this.State = state;
-this.IsActive = isActive;throw new NotImplementedException(); }
-#endregion
+    internal static class StepperDefaultClass
+    {
+        public static FlutterSDK.Painting.Textstyle.TextStyle _KStepStyle = default(FlutterSDK.Painting.Textstyle.TextStyle);
+        public static Color _KErrorLight = default(Color);
+        public static Color _KErrorDark = default(Color);
+        public static Color _KCircleActiveLight = default(Color);
+        public static Color _KCircleActiveDark = default(Color);
+        public static Color _KDisabledLight = default(Color);
+        public static Color _KDisabledDark = default(Color);
+        public static double _KStepSize = default(double);
+        public static double _KTriangleHeight = default(double);
+    }
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Title{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Subtitle{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Content{get;set;}
-public virtual FlutterSDK.Material.Stepper.StepState State{get;set;}
-public virtual bool IsActive{get;set;}
-#endregion
+    public class Step
+    {
+        #region constructors
+        public Step(FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget content = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Material.Stepper.StepState state = default(FlutterSDK.Material.Stepper.StepState), bool isActive = false)
+        : base()
+        {
+            this.Title = title;
+            this.Subtitle = subtitle;
+            this.Content = content;
+            this.State = state;
+            this.IsActive = isActive; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
-#endregion
-}
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Subtitle { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Content { get; set; }
+        public virtual FlutterSDK.Material.Stepper.StepState State { get; set; }
+        public virtual bool IsActive { get; set; }
+        #endregion
 
+        #region methods
+        #endregion
+    }
 
-public class Stepper : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public Stepper(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),List<FlutterSDK.Material.Stepper.Step> steps = default(List<FlutterSDK.Material.Stepper.Step>),FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics),FlutterSDK.Material.Stepper.StepperType type = default(FlutterSDK.Material.Stepper.StepperType),int currentStep = 0,FlutterSDK.Foundation.Basictypes.ValueChanged<int> onStepTapped = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>),VoidCallback onStepContinue = default(VoidCallback),VoidCallback onStepCancel = default(VoidCallback),FlutterSDK.Widgets.Framework.ControlsWidgetBuilder controlsBuilder = default(FlutterSDK.Widgets.Framework.ControlsWidgetBuilder))
-: base(key:key)
-{
-this.Steps = steps;
-this.Physics = physics;
-this.Type = type;
-this.CurrentStep = currentStep;
-this.OnStepTapped = onStepTapped;
-this.OnStepContinue = onStepContinue;
-this.OnStepCancel = onStepCancel;
-this.ControlsBuilder = controlsBuilder;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual List<FlutterSDK.Material.Stepper.Step> Steps{get;set;}
-public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics{get;set;}
-public virtual FlutterSDK.Material.Stepper.StepperType Type{get;set;}
-public virtual int CurrentStep{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnStepTapped{get;set;}
-public virtual VoidCallback OnStepContinue{get;set;}
-public virtual VoidCallback OnStepCancel{get;set;}
-public virtual FlutterSDK.Widgets.Framework.ControlsWidgetBuilder ControlsBuilder{get;set;}
-#endregion
+    public class Stepper : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public Stepper(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Material.Stepper.Step> steps = default(List<FlutterSDK.Material.Stepper.Step>), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Material.Stepper.StepperType type = default(FlutterSDK.Material.Stepper.StepperType), int currentStep = 0, FlutterSDK.Foundation.Basictypes.ValueChanged<int> onStepTapped = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), VoidCallback onStepContinue = default(VoidCallback), VoidCallback onStepCancel = default(VoidCallback), FlutterSDK.Widgets.Framework.ControlsWidgetBuilder controlsBuilder = default(FlutterSDK.Widgets.Framework.ControlsWidgetBuilder))
+        : base(key: key)
+        {
+            this.Steps = steps;
+            this.Physics = physics;
+            this.Type = type;
+            this.CurrentStep = currentStep;
+            this.OnStepTapped = onStepTapped;
+            this.OnStepContinue = onStepContinue;
+            this.OnStepCancel = onStepCancel;
+            this.ControlsBuilder = controlsBuilder; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual List<FlutterSDK.Material.Stepper.Step> Steps { get; set; }
+        public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics { get; set; }
+        public virtual FlutterSDK.Material.Stepper.StepperType Type { get; set; }
+        public virtual int CurrentStep { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnStepTapped { get; set; }
+        public virtual VoidCallback OnStepContinue { get; set; }
+        public virtual VoidCallback OnStepCancel { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.ControlsWidgetBuilder ControlsBuilder { get; set; }
+        #endregion
 
-public new FlutterSDK.Material.Stepper._StepperState CreateState(){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new FlutterSDK.Material.Stepper._StepperState CreateState() { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class _StepperState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Stepper.Stepper>,ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-#region constructors
-public _StepperState()
-{ }
-#endregion
 
-#region fields
-internal virtual List<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>> _Keys{get;set;}
-internal virtual Dictionary<int,FlutterSDK.Material.Stepper.StepState> _OldStates{get;set;}
-#endregion
+    public class _StepperState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Stepper.Stepper>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _StepperState()
+        { }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual List<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>> _Keys { get; set; }
+        internal virtual Dictionary<int, FlutterSDK.Material.Stepper.StepState> _OldStates { get; set; }
+        #endregion
 
-public new void InitState(){ throw new NotImplementedException(); }
+        #region methods
 
+        public new void InitState() { throw new NotImplementedException(); }
 
-public new void DidUpdateWidget(FlutterSDK.Material.Stepper.Stepper oldWidget){ throw new NotImplementedException(); }
 
+        public new void DidUpdateWidget(FlutterSDK.Material.Stepper.Stepper oldWidget) { throw new NotImplementedException(); }
 
-private bool _IsFirst(int index){ throw new NotImplementedException(); }
 
+        private bool _IsFirst(int index) { throw new NotImplementedException(); }
 
-private bool _IsLast(int index){ throw new NotImplementedException(); }
 
+        private bool _IsLast(int index) { throw new NotImplementedException(); }
 
-private bool _IsCurrent(int index){ throw new NotImplementedException(); }
 
+        private bool _IsCurrent(int index) { throw new NotImplementedException(); }
 
-private bool _IsDark(){ throw new NotImplementedException(); }
 
+        private bool _IsDark() { throw new NotImplementedException(); }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildLine(bool visible){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildLine(bool visible) { throw new NotImplementedException(); }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildCircleChild(int index,bool oldState){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildCircleChild(int index, bool oldState) { throw new NotImplementedException(); }
 
-private Color _CircleColor(int index){ throw new NotImplementedException(); }
 
+        private Color _CircleColor(int index) { throw new NotImplementedException(); }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildCircle(int index,bool oldState){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildCircle(int index, bool oldState) { throw new NotImplementedException(); }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildTriangle(int index,bool oldState){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildTriangle(int index, bool oldState) { throw new NotImplementedException(); }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildIcon(int index){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildIcon(int index) { throw new NotImplementedException(); }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildVerticalControls(){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildVerticalControls() { throw new NotImplementedException(); }
 
-private FlutterSDK.Painting.Textstyle.TextStyle _TitleStyle(int index){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Painting.Textstyle.TextStyle _TitleStyle(int index) { throw new NotImplementedException(); }
 
-private FlutterSDK.Painting.Textstyle.TextStyle _SubtitleStyle(int index){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Painting.Textstyle.TextStyle _SubtitleStyle(int index) { throw new NotImplementedException(); }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildHeaderText(int index){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildHeaderText(int index) { throw new NotImplementedException(); }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildVerticalHeader(int index){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildVerticalHeader(int index) { throw new NotImplementedException(); }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildVerticalBody(int index){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildVerticalBody(int index) { throw new NotImplementedException(); }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildVertical(){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildVertical() { throw new NotImplementedException(); }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildHorizontal(){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildHorizontal() { throw new NotImplementedException(); }
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class _TrianglePainter : FlutterSDK.Rendering.Custompaint.CustomPainter
-{
-#region constructors
-public _TrianglePainter(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color))
-{
-this.Color = color;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual FlutterBinding.UI.Color Color{get;set;}
-#endregion
+    public class _TrianglePainter : FlutterSDK.Rendering.Custompaint.CustomPainter
+    {
+        #region constructors
+        public _TrianglePainter(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color))
+        {
+            this.Color = color; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        #endregion
 
-public new bool HitTest(FlutterBinding.UI.Offset point){ throw new NotImplementedException(); }
+        #region methods
 
+        public new bool HitTest(FlutterBinding.UI.Offset point) { throw new NotImplementedException(); }
 
-public new bool ShouldRepaint(FlutterSDK.Material.Stepper._TrianglePainter oldPainter){ throw new NotImplementedException(); }
-public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate){ throw new NotImplementedException(); }
 
+        public new bool ShouldRepaint(FlutterSDK.Material.Stepper._TrianglePainter oldPainter) { throw new NotImplementedException(); }
+        public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate) { throw new NotImplementedException(); }
 
-public new void Paint(Canvas canvas,Size size){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new void Paint(Canvas canvas, Size size) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public enum StepState{
 
-Indexed,
-Editing,
-Complete,
-Disabled,
-Error,
-}
+    public enum StepState
+    {
 
+        Indexed,
+        Editing,
+        Complete,
+        Disabled,
+        Error,
+    }
 
-public enum StepperType{
 
-Vertical,
-Horizontal,
-}
+    public enum StepperType
+    {
+
+        Vertical,
+        Horizontal,
+    }
 
 }

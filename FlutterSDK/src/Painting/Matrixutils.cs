@@ -421,87 +421,92 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Painting.Matrixutils{
-internal static class MatrixutilsDefaultClass{
-internal static List<string> DebugDescribeTransform(Matrix4 transform){
-throw new NotImplementedException();
-}
-
-}
-
-public class MatrixUtils
+namespace FlutterSDK.Painting.Matrixutils
 {
-#region constructors
-internal MatrixUtils()
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class MatrixutilsDefaultClass
+    {
+        internal static List<string> DebugDescribeTransform(Matrix4 transform)
+        {
+            throw new NotImplementedException();
+        }
 
-#region fields
-internal virtual List<float> _MinMax{get;set;}
-#endregion
+    }
 
-#region methods
+    public class MatrixUtils
+    {
+        #region constructors
+        internal MatrixUtils()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-public virtual Offset GetAsTranslation(Matrix4 transform){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual List<float> _MinMax { get; set; }
+        #endregion
 
+        #region methods
 
-public virtual double GetAsScale(Matrix4 transform){ throw new NotImplementedException(); }
-
-
-public virtual bool MatrixEquals(Matrix4 a,Matrix4 b){ throw new NotImplementedException(); }
-
-
-public virtual bool IsIdentity(Matrix4 a){ throw new NotImplementedException(); }
-
-
-public virtual Offset TransformPoint(Matrix4 transform,FlutterBinding.UI.Offset point){ throw new NotImplementedException(); }
-
-
-private Rect _SafeTransformRect(Matrix4 transform,FlutterBinding.UI.Rect rect){ throw new NotImplementedException(); }
+        public virtual Offset GetAsTranslation(Matrix4 transform) { throw new NotImplementedException(); }
 
 
-private void _Accumulate(List<float> m,double x,double y,bool first,bool isAffine){ throw new NotImplementedException(); }
+        public virtual double GetAsScale(Matrix4 transform) { throw new NotImplementedException(); }
 
 
-public virtual Rect TransformRect(Matrix4 transform,FlutterBinding.UI.Rect rect){ throw new NotImplementedException(); }
+        public virtual bool MatrixEquals(Matrix4 a, Matrix4 b) { throw new NotImplementedException(); }
 
 
-private double _Min4(double a,double b,double c,double d){ throw new NotImplementedException(); }
+        public virtual bool IsIdentity(Matrix4 a) { throw new NotImplementedException(); }
 
 
-private double _Max4(double a,double b,double c,double d){ throw new NotImplementedException(); }
+        public virtual Offset TransformPoint(Matrix4 transform, FlutterBinding.UI.Offset point) { throw new NotImplementedException(); }
 
 
-public virtual Rect InverseTransformRect(Matrix4 transform,FlutterBinding.UI.Rect rect){ throw new NotImplementedException(); }
+        private Rect _SafeTransformRect(Matrix4 transform, FlutterBinding.UI.Rect rect) { throw new NotImplementedException(); }
 
 
-public virtual Matrix4 CreateCylindricalProjectionTransform(double radius = default(double),double angle = default(double),double perspective = 0.001,FlutterSDK.Painting.Basictypes.Axis orientation = default(FlutterSDK.Painting.Basictypes.Axis)){ throw new NotImplementedException(); }
+        private void _Accumulate(List<float> m, double x, double y, bool first, bool isAffine) { throw new NotImplementedException(); }
 
 
-public virtual Matrix4 ForceToPoint(FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual Rect TransformRect(Matrix4 transform, FlutterBinding.UI.Rect rect) { throw new NotImplementedException(); }
 
 
-public class TransformProperty : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<object>
-{
-#region constructors
-public TransformProperty(string name,Matrix4 value,bool showName = true,@Object defaultValue = default(@Object),FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
-: base(name,value,showName:showName,defaultValue:defaultValue,level:level)
-{
-throw new NotImplementedException(); }
-#endregion
+        private double _Min4(double a, double b, double c, double d) { throw new NotImplementedException(); }
 
-#region fields
-#endregion
 
-#region methods
+        private double _Max4(double a, double b, double c, double d) { throw new NotImplementedException(); }
 
-public new string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration)){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public virtual Rect InverseTransformRect(Matrix4 transform, FlutterBinding.UI.Rect rect) { throw new NotImplementedException(); }
+
+
+        public virtual Matrix4 CreateCylindricalProjectionTransform(double radius = default(double), double angle = default(double), double perspective = 0.001, FlutterSDK.Painting.Basictypes.Axis orientation = default(FlutterSDK.Painting.Basictypes.Axis)) { throw new NotImplementedException(); }
+
+
+        public virtual Matrix4 ForceToPoint(FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class TransformProperty : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<object>
+    {
+        #region constructors
+        public TransformProperty(string name, Matrix4 value, bool showName = true, @Object defaultValue = default(@Object), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
+        : base(name, value, showName: showName, defaultValue: defaultValue, level: level)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration)) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

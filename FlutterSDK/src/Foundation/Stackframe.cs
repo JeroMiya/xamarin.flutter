@@ -294,69 +294,72 @@ using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
-namespace FlutterSDK.Foundation.Stackframe{
-internal static class StackframeDefaultClass{
-}
-
-public class StackFrame
+namespace FlutterSDK.Foundation.Stackframe
 {
-#region constructors
-public StackFrame(int number = default(int),int column = default(int),int line = default(int),string packageScheme = default(string),string package = default(string),string packagePath = default(string),string className = default(string),string method = default(string),bool isConstructor = false,string source = default(string))
-: base()
-{
-this.Number = number;
-this.Column = column;
-this.Line = line;
-this.PackageScheme = packageScheme;
-this.Package = package;
-this.PackagePath = packagePath;
-this.ClassName = className;
-this.Method = method;
-this.IsConstructor = isConstructor;
-this.Source = source;throw new NotImplementedException(); }
-#endregion
+    internal static class StackframeDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Foundation.Stackframe.StackFrame AsynchronousSuspension{get;set;}
-public virtual FlutterSDK.Foundation.Stackframe.StackFrame StackOverFlowElision{get;set;}
-internal virtual RegExp _WebNonDebugFramePattern{get;set;}
-public virtual string Source{get;set;}
-public virtual int Number{get;set;}
-public virtual string PackageScheme{get;set;}
-public virtual string Package{get;set;}
-public virtual string PackagePath{get;set;}
-public virtual int Line{get;set;}
-public virtual int Column{get;set;}
-public virtual string ClassName{get;set;}
-public virtual string Method{get;set;}
-public virtual bool IsConstructor{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class StackFrame
+    {
+        #region constructors
+        public StackFrame(int number = default(int), int column = default(int), int line = default(int), string packageScheme = default(string), string package = default(string), string packagePath = default(string), string className = default(string), string method = default(string), bool isConstructor = false, string source = default(string))
+        : base()
+        {
+            this.Number = number;
+            this.Column = column;
+            this.Line = line;
+            this.PackageScheme = packageScheme;
+            this.Package = package;
+            this.PackagePath = packagePath;
+            this.ClassName = className;
+            this.Method = method;
+            this.IsConstructor = isConstructor;
+            this.Source = source; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Foundation.Stackframe.StackFrame AsynchronousSuspension { get; set; }
+        public virtual FlutterSDK.Foundation.Stackframe.StackFrame StackOverFlowElision { get; set; }
+        internal virtual RegExp _WebNonDebugFramePattern { get; set; }
+        public virtual string Source { get; set; }
+        public virtual int Number { get; set; }
+        public virtual string PackageScheme { get; set; }
+        public virtual string Package { get; set; }
+        public virtual string PackagePath { get; set; }
+        public virtual int Line { get; set; }
+        public virtual int Column { get; set; }
+        public virtual string ClassName { get; set; }
+        public virtual string Method { get; set; }
+        public virtual bool IsConstructor { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual List<FlutterSDK.Foundation.Stackframe.StackFrame> FromStackTrace(StackTrace stack){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual List<FlutterSDK.Foundation.Stackframe.StackFrame> FromStackString(string stack){ throw new NotImplementedException(); }
-
-
-private FlutterSDK.Foundation.Stackframe.StackFrame _ParseWebFrame(string line){ throw new NotImplementedException(); }
-
-
-private FlutterSDK.Foundation.Stackframe.StackFrame _ParseWebDebugFrame(string line){ throw new NotImplementedException(); }
+        public virtual List<FlutterSDK.Foundation.Stackframe.StackFrame> FromStackTrace(StackTrace stack) { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Foundation.Stackframe.StackFrame _ParseWebNonDebugFrame(string line){ throw new NotImplementedException(); }
+        public virtual List<FlutterSDK.Foundation.Stackframe.StackFrame> FromStackString(string stack) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Foundation.Stackframe.StackFrame FromStackTraceLine(string line){ throw new NotImplementedException(); }
+        private FlutterSDK.Foundation.Stackframe.StackFrame _ParseWebFrame(string line) { throw new NotImplementedException(); }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        private FlutterSDK.Foundation.Stackframe.StackFrame _ParseWebDebugFrame(string line) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        private FlutterSDK.Foundation.Stackframe.StackFrame _ParseWebNonDebugFrame(string line) { throw new NotImplementedException(); }
+
+
+        public virtual FlutterSDK.Foundation.Stackframe.StackFrame FromStackTraceLine(string line) { throw new NotImplementedException(); }
+
+
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+
+
+        #endregion
+    }
 
 }

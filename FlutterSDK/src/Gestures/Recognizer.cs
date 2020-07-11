@@ -294,271 +294,284 @@ using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
-namespace FlutterSDK.Gestures.Recognizer{
-public delegate T RecognizerCallback<T>();
-internal static class RecognizerDefaultClass{
-}
-
-public interface IGestureRecognizer{
-void AddPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event);
-void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event);
-void HandleNonAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event);
-bool IsPointerAllowed(FlutterSDK.Gestures.Events.PointerDownEvent @event);
-PointerDeviceKind GetKindForPointer(int pointer);
-void Dispose();
-T InvokeCallback<T>(string name,FlutterSDK.Gestures.Recognizer.RecognizerCallback<T> callback,Func<String> debugReport = default(Func<String>));
-void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
-@Object DebugOwner{get;}
-string DebugDescription{get;}
-}
-
-
-public interface IOneSequenceGestureRecognizer{
-void HandleNonAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event);
-void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event);
-void AcceptGesture(int pointer);
-void RejectGesture(int pointer);
-void DidStopTrackingLastPointer(int pointer);
-void Resolve(FlutterSDK.Gestures.Arena.GestureDisposition disposition);
-void ResolvePointer(int pointer,FlutterSDK.Gestures.Arena.GestureDisposition disposition);
-void Dispose();
-void StartTrackingPointer(int pointer,Matrix4 transform = default(Matrix4));
-void StopTrackingPointer(int pointer);
-void StopTrackingIfPointerNoLongerDown(FlutterSDK.Gestures.Events.PointerEvent @event);
-FlutterSDK.Gestures.Team.GestureArenaTeam Team{get;set;}
-}
-
-
-public interface IPrimaryPointerGestureRecognizer{
-void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event);
-void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event);
-void HandlePrimaryPointer(FlutterSDK.Gestures.Events.PointerEvent @event);
-void DidExceedDeadline();
-void DidExceedDeadlineWithEvent(FlutterSDK.Gestures.Events.PointerDownEvent @event);
-void AcceptGesture(int pointer);
-void RejectGesture(int pointer);
-void DidStopTrackingLastPointer(int pointer);
-void Dispose();
-void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
-TimeSpan Deadline{get;}
-double PreAcceptSlopTolerance{get;}
-double PostAcceptSlopTolerance{get;}
-FlutterSDK.Gestures.Recognizer.GestureRecognizerState State{get;set;}
-int PrimaryPointer{get;set;}
-FlutterSDK.Gestures.Recognizer.OffsetPair InitialPosition{get;set;}
-}
-
-
-public class GestureRecognizer : FlutterSDK.Gestures.Arena.GestureArenaMember,IDiagnosticableTreeMixin
+namespace FlutterSDK.Gestures.Recognizer
 {
-#region constructors
-public GestureRecognizer(@Object debugOwner = default(@Object),PointerDeviceKind kind = default(PointerDeviceKind))
-: base()
-{
-this.DebugOwner = debugOwner;throw new NotImplementedException(); }
-#endregion
+    public delegate T RecognizerCallback<T>();
+    internal static class RecognizerDefaultClass
+    {
+    }
 
-#region fields
-public virtual @Object DebugOwner{get;set;}
-internal virtual PointerDeviceKind _KindFilter{get;set;}
-internal virtual Dictionary<int,PointerDeviceKind> _PointerToKind{get;set;}
-public virtual string DebugDescription{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public interface IGestureRecognizer
+    {
+        void AddPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event);
+        void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event);
+        void HandleNonAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event);
+        bool IsPointerAllowed(FlutterSDK.Gestures.Events.PointerDownEvent @event);
+        PointerDeviceKind GetKindForPointer(int pointer);
+        void Dispose();
+        T InvokeCallback<T>(string name, FlutterSDK.Gestures.Recognizer.RecognizerCallback<T> callback, Func<String> debugReport = default(Func<String>));
+        void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
+        @Object DebugOwner { get; }
+        string DebugDescription { get; }
+    }
+
+
+    public interface IOneSequenceGestureRecognizer
+    {
+        void HandleNonAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event);
+        void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event);
+        void AcceptGesture(int pointer);
+        void RejectGesture(int pointer);
+        void DidStopTrackingLastPointer(int pointer);
+        void Resolve(FlutterSDK.Gestures.Arena.GestureDisposition disposition);
+        void ResolvePointer(int pointer, FlutterSDK.Gestures.Arena.GestureDisposition disposition);
+        void Dispose();
+        void StartTrackingPointer(int pointer, Matrix4 transform = default(Matrix4));
+        void StopTrackingPointer(int pointer);
+        void StopTrackingIfPointerNoLongerDown(FlutterSDK.Gestures.Events.PointerEvent @event);
+        FlutterSDK.Gestures.Team.GestureArenaTeam Team { get; set; }
+    }
 
-#region methods
 
-public virtual void AddPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event){ throw new NotImplementedException(); }
+    public interface IPrimaryPointerGestureRecognizer
+    {
+        void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event);
+        void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event);
+        void HandlePrimaryPointer(FlutterSDK.Gestures.Events.PointerEvent @event);
+        void DidExceedDeadline();
+        void DidExceedDeadlineWithEvent(FlutterSDK.Gestures.Events.PointerDownEvent @event);
+        void AcceptGesture(int pointer);
+        void RejectGesture(int pointer);
+        void DidStopTrackingLastPointer(int pointer);
+        void Dispose();
+        void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
+        TimeSpan Deadline { get; }
+        double PreAcceptSlopTolerance { get; }
+        double PostAcceptSlopTolerance { get; }
+        FlutterSDK.Gestures.Recognizer.GestureRecognizerState State { get; set; }
+        int PrimaryPointer { get; set; }
+        FlutterSDK.Gestures.Recognizer.OffsetPair InitialPosition { get; set; }
+    }
 
 
-public virtual void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event){ throw new NotImplementedException(); }
+    public class GestureRecognizer : FlutterSDK.Gestures.Arena.GestureArenaMember, IDiagnosticableTreeMixin
+    {
+        #region constructors
+        public GestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
+        : base()
+        {
+            this.DebugOwner = debugOwner; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual @Object DebugOwner { get; set; }
+        internal virtual PointerDeviceKind _KindFilter { get; set; }
+        internal virtual Dictionary<int, PointerDeviceKind> _PointerToKind { get; set; }
+        public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual void HandleNonAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event){ throw new NotImplementedException(); }
+        #region methods
 
+        public virtual void AddPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
 
-public virtual bool IsPointerAllowed(FlutterSDK.Gestures.Events.PointerDownEvent @event){ throw new NotImplementedException(); }
 
+        public virtual void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
 
-public virtual PointerDeviceKind GetKindForPointer(int pointer){ throw new NotImplementedException(); }
 
+        public virtual void HandleNonAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
 
-public virtual void Dispose(){ throw new NotImplementedException(); }
 
+        public virtual bool IsPointerAllowed(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
 
-public virtual T InvokeCallback<T>(string name,FlutterSDK.Gestures.Recognizer.RecognizerCallback<T> callback,Func<String> debugReport = default(Func<String>)){ throw new NotImplementedException(); }
 
+        public virtual PointerDeviceKind GetKindForPointer(int pointer) { throw new NotImplementedException(); }
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public virtual void Dispose() { throw new NotImplementedException(); }
 
 
-public class OneSequenceGestureRecognizer : FlutterSDK.Gestures.Recognizer.GestureRecognizer
-{
-#region constructors
-public OneSequenceGestureRecognizer(@Object debugOwner = default(@Object),PointerDeviceKind kind = default(PointerDeviceKind))
-: base(debugOwner:debugOwner,kind:kind)
-{
-throw new NotImplementedException(); }
-#endregion
+        public virtual T InvokeCallback<T>(string name, FlutterSDK.Gestures.Recognizer.RecognizerCallback<T> callback, Func<String> debugReport = default(Func<String>)) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual Dictionary<int,FlutterSDK.Gestures.Arena.GestureArenaEntry> _Entries{get;set;}
-internal virtual HashSet<int> _TrackedPointers{get;set;}
-internal virtual FlutterSDK.Gestures.Team.GestureArenaTeam _Team{get;set;}
-public virtual FlutterSDK.Gestures.Team.GestureArenaTeam Team{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
 
-#region methods
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-public new void HandleNonAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public virtual void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event){ throw new NotImplementedException(); }
+    public class OneSequenceGestureRecognizer : FlutterSDK.Gestures.Recognizer.GestureRecognizer
+    {
+        #region constructors
+        public OneSequenceGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
+        : base(debugOwner: debugOwner, kind: kind)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual Dictionary<int, FlutterSDK.Gestures.Arena.GestureArenaEntry> _Entries { get; set; }
+        internal virtual HashSet<int> _TrackedPointers { get; set; }
+        internal virtual FlutterSDK.Gestures.Team.GestureArenaTeam _Team { get; set; }
+        public virtual FlutterSDK.Gestures.Team.GestureArenaTeam Team { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new void AcceptGesture(int pointer){ throw new NotImplementedException(); }
+        #region methods
 
+        public new void HandleNonAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
 
-public new void RejectGesture(int pointer){ throw new NotImplementedException(); }
 
+        public virtual void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
 
-public virtual void DidStopTrackingLastPointer(int pointer){ throw new NotImplementedException(); }
 
+        public new void AcceptGesture(int pointer) { throw new NotImplementedException(); }
 
-public virtual void Resolve(FlutterSDK.Gestures.Arena.GestureDisposition disposition){ throw new NotImplementedException(); }
 
+        public new void RejectGesture(int pointer) { throw new NotImplementedException(); }
 
-public virtual void ResolvePointer(int pointer,FlutterSDK.Gestures.Arena.GestureDisposition disposition){ throw new NotImplementedException(); }
 
+        public virtual void DidStopTrackingLastPointer(int pointer) { throw new NotImplementedException(); }
 
-public new void Dispose(){ throw new NotImplementedException(); }
 
+        public virtual void Resolve(FlutterSDK.Gestures.Arena.GestureDisposition disposition) { throw new NotImplementedException(); }
 
-private FlutterSDK.Gestures.Arena.GestureArenaEntry _AddPointerToArena(int pointer){ throw new NotImplementedException(); }
 
+        public virtual void ResolvePointer(int pointer, FlutterSDK.Gestures.Arena.GestureDisposition disposition) { throw new NotImplementedException(); }
 
-public virtual void StartTrackingPointer(int pointer,Matrix4 transform = default(Matrix4)){ throw new NotImplementedException(); }
 
+        public new void Dispose() { throw new NotImplementedException(); }
 
-public virtual void StopTrackingPointer(int pointer){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Gestures.Arena.GestureArenaEntry _AddPointerToArena(int pointer) { throw new NotImplementedException(); }
 
-public virtual void StopTrackingIfPointerNoLongerDown(FlutterSDK.Gestures.Events.PointerEvent @event){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public virtual void StartTrackingPointer(int pointer, Matrix4 transform = default(Matrix4)) { throw new NotImplementedException(); }
 
 
-public class PrimaryPointerGestureRecognizer : FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer
-{
-#region constructors
-public PrimaryPointerGestureRecognizer(TimeSpan deadline = default(TimeSpan),double preAcceptSlopTolerance = default(double),double postAcceptSlopTolerance = default(double),@Object debugOwner = default(@Object),PointerDeviceKind kind = default(PointerDeviceKind))
-: base(debugOwner:debugOwner,kind:kind)
-{
-this.Deadline = deadline;
-this.PreAcceptSlopTolerance = preAcceptSlopTolerance;
-this.PostAcceptSlopTolerance = postAcceptSlopTolerance;throw new NotImplementedException(); }
-#endregion
+        public virtual void StopTrackingPointer(int pointer) { throw new NotImplementedException(); }
 
-#region fields
-public virtual TimeSpan Deadline{get;set;}
-public virtual double PreAcceptSlopTolerance{get;set;}
-public virtual double PostAcceptSlopTolerance{get;set;}
-public virtual FlutterSDK.Gestures.Recognizer.GestureRecognizerState State{get;set;}
-public virtual int PrimaryPointer{get;set;}
-public virtual FlutterSDK.Gestures.Recognizer.OffsetPair InitialPosition{get;set;}
-internal virtual bool _GestureAccepted{get;set;}
-internal virtual Timer _Timer{get;set;}
-#endregion
 
-#region methods
+        public virtual void StopTrackingIfPointerNoLongerDown(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
 
-public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event){ throw new NotImplementedException(); }
+    public class PrimaryPointerGestureRecognizer : FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer
+    {
+        #region constructors
+        public PrimaryPointerGestureRecognizer(TimeSpan deadline = default(TimeSpan), double preAcceptSlopTolerance = default(double), double postAcceptSlopTolerance = default(double), @Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
+        : base(debugOwner: debugOwner, kind: kind)
+        {
+            this.Deadline = deadline;
+            this.PreAcceptSlopTolerance = preAcceptSlopTolerance;
+            this.PostAcceptSlopTolerance = postAcceptSlopTolerance; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual TimeSpan Deadline { get; set; }
+        public virtual double PreAcceptSlopTolerance { get; set; }
+        public virtual double PostAcceptSlopTolerance { get; set; }
+        public virtual FlutterSDK.Gestures.Recognizer.GestureRecognizerState State { get; set; }
+        public virtual int PrimaryPointer { get; set; }
+        public virtual FlutterSDK.Gestures.Recognizer.OffsetPair InitialPosition { get; set; }
+        internal virtual bool _GestureAccepted { get; set; }
+        internal virtual Timer _Timer { get; set; }
+        #endregion
 
-public virtual void HandlePrimaryPointer(FlutterSDK.Gestures.Events.PointerEvent @event){ throw new NotImplementedException(); }
+        #region methods
 
+        public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
 
-public virtual void DidExceedDeadline(){ throw new NotImplementedException(); }
 
+        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
 
-public virtual void DidExceedDeadlineWithEvent(FlutterSDK.Gestures.Events.PointerDownEvent @event){ throw new NotImplementedException(); }
 
+        public virtual void HandlePrimaryPointer(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
 
-public new void AcceptGesture(int pointer){ throw new NotImplementedException(); }
 
+        public virtual void DidExceedDeadline() { throw new NotImplementedException(); }
 
-public new void RejectGesture(int pointer){ throw new NotImplementedException(); }
 
+        public virtual void DidExceedDeadlineWithEvent(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
 
-public new void DidStopTrackingLastPointer(int pointer){ throw new NotImplementedException(); }
 
+        public new void AcceptGesture(int pointer) { throw new NotImplementedException(); }
 
-public new void Dispose(){ throw new NotImplementedException(); }
 
+        public new void RejectGesture(int pointer) { throw new NotImplementedException(); }
 
-private void _StopTimer(){ throw new NotImplementedException(); }
 
+        public new void DidStopTrackingLastPointer(int pointer) { throw new NotImplementedException(); }
 
-private double _GetGlobalDistance(FlutterSDK.Gestures.Events.PointerEvent @event){ throw new NotImplementedException(); }
 
+        public new void Dispose() { throw new NotImplementedException(); }
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
 
-#endregion
-}
+        private void _StopTimer() { throw new NotImplementedException(); }
 
 
-public class OffsetPair
-{
-#region constructors
-public OffsetPair(FlutterBinding.UI.Offset local = default(FlutterBinding.UI.Offset),FlutterBinding.UI.Offset global = default(FlutterBinding.UI.Offset))
-{
-this.Local = local;
-this.Global = global;throw new NotImplementedException(); }
-public static OffsetPair FromEventPosition(FlutterSDK.Gestures.Events.PointerEvent @event)
-{
-var instance =new OffsetPair();throw new NotImplementedException(); }
-public static OffsetPair FromEventDelta(FlutterSDK.Gestures.Events.PointerEvent @event)
-{
-var instance =new OffsetPair();throw new NotImplementedException(); }
-#endregion
+        private double _GetGlobalDistance(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Gestures.Recognizer.OffsetPair Zero{get;set;}
-public virtual FlutterBinding.UI.Offset Local{get;set;}
-public virtual FlutterBinding.UI.Offset Global{get;set;}
-#endregion
 
-#region methods
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Gestures.Recognizer.OffsetPair AddOperator(FlutterSDK.Gestures.Recognizer.OffsetPair other){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public virtual FlutterSDK.Gestures.Recognizer.OffsetPair SubtractOperator(FlutterSDK.Gestures.Recognizer.OffsetPair other){ throw new NotImplementedException(); }
+    public class OffsetPair
+    {
+        #region constructors
+        public OffsetPair(FlutterBinding.UI.Offset local = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset global = default(FlutterBinding.UI.Offset))
+        {
+            this.Local = local;
+            this.Global = global; throw new NotImplementedException();
+        }
+        public static OffsetPair FromEventPosition(FlutterSDK.Gestures.Events.PointerEvent @event)
+        {
+            var instance = new OffsetPair(); throw new NotImplementedException();
+        }
+        public static OffsetPair FromEventDelta(FlutterSDK.Gestures.Events.PointerEvent @event)
+        {
+            var instance = new OffsetPair(); throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual FlutterSDK.Gestures.Recognizer.OffsetPair Zero { get; set; }
+        public virtual FlutterBinding.UI.Offset Local { get; set; }
+        public virtual FlutterBinding.UI.Offset Global { get; set; }
+        #endregion
 
-#endregion
-}
+        #region methods
 
+        public virtual FlutterSDK.Gestures.Recognizer.OffsetPair AddOperator(FlutterSDK.Gestures.Recognizer.OffsetPair other) { throw new NotImplementedException(); }
 
-public enum DragStartBehavior{
 
-Down,
-Start,
-}
+        public virtual FlutterSDK.Gestures.Recognizer.OffsetPair SubtractOperator(FlutterSDK.Gestures.Recognizer.OffsetPair other) { throw new NotImplementedException(); }
 
 
-public enum GestureRecognizerState{
+        #endregion
+    }
 
-Ready,
-Possible,
-Defunct,
-}
+
+    public enum DragStartBehavior
+    {
+
+        Down,
+        Start,
+    }
+
+
+    public enum GestureRecognizerState
+    {
+
+        Ready,
+        Possible,
+        Defunct,
+    }
 
 }

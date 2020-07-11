@@ -421,152 +421,160 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Scheduler.Ticker{
-public delegate void TickerCallback(TimeSpan elapsed);
-internal static class TickerDefaultClass{
-}
-
-public interface ITickerProvider{
-FlutterSDK.Scheduler.Ticker.Ticker CreateTicker(FlutterSDK.Scheduler.Ticker.TickerCallback onTick);
-}
-
-
-public class TickerProvider
+namespace FlutterSDK.Scheduler.Ticker
 {
-#region constructors
-public TickerProvider()
-{
-throw new NotImplementedException(); }
-#endregion
+    public delegate void TickerCallback(TimeSpan elapsed);
+    internal static class TickerDefaultClass
+    {
+    }
 
-#region fields
-#endregion
-
-#region methods
-
-public virtual FlutterSDK.Scheduler.Ticker.Ticker CreateTicker(FlutterSDK.Scheduler.Ticker.TickerCallback onTick){ throw new NotImplementedException(); }
-
-#endregion
-}
+    public interface ITickerProvider
+    {
+        FlutterSDK.Scheduler.Ticker.Ticker CreateTicker(FlutterSDK.Scheduler.Ticker.TickerCallback onTick);
+    }
 
 
-public class Ticker
-{
-#region constructors
-public Ticker(FlutterSDK.Scheduler.Ticker.TickerCallback _onTick,string debugLabel = default(string))
-{
-this._OnTick = _onTick;
-this.DebugLabel = debugLabel;throw new NotImplementedException(); }
-#endregion
+    public class TickerProvider
+    {
+        #region constructors
+        public TickerProvider()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-internal virtual FlutterSDK.Scheduler.Ticker.TickerFuture _Future{get;set;}
-internal virtual bool _Muted{get;set;}
-internal virtual TimeSpan _StartTime{get;set;}
-internal virtual FlutterSDK.Scheduler.Ticker.TickerCallback _OnTick{get;set;}
-internal virtual int _AnimationId{get;set;}
-public virtual string DebugLabel{get;set;}
-internal virtual StackTrace _DebugCreationStack{get;set;}
-public virtual bool Muted{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool IsTicking{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsActive{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool Scheduled{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool ShouldScheduleTick{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-public virtual FlutterSDK.Scheduler.Ticker.TickerFuture Start(){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Scheduler.Ticker.Ticker CreateTicker(FlutterSDK.Scheduler.Ticker.TickerCallback onTick) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticsNode DescribeForError(string name){ throw new NotImplementedException(); }
+    public class Ticker
+    {
+        #region constructors
+        public Ticker(FlutterSDK.Scheduler.Ticker.TickerCallback _onTick, string debugLabel = default(string))
+        {
+            this._OnTick = _onTick;
+            this.DebugLabel = debugLabel; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Scheduler.Ticker.TickerFuture _Future { get; set; }
+        internal virtual bool _Muted { get; set; }
+        internal virtual TimeSpan _StartTime { get; set; }
+        internal virtual FlutterSDK.Scheduler.Ticker.TickerCallback _OnTick { get; set; }
+        internal virtual int _AnimationId { get; set; }
+        public virtual string DebugLabel { get; set; }
+        internal virtual StackTrace _DebugCreationStack { get; set; }
+        public virtual bool Muted { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsTicking { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsActive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool Scheduled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool ShouldScheduleTick { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual FlutterSDK.Scheduler.Ticker.TickerFuture Start() { throw new NotImplementedException(); }
 
 
-public virtual void Stop(bool canceled = false){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticsNode DescribeForError(string name) { throw new NotImplementedException(); }
 
 
-private void _Tick(TimeSpan timeStamp){ throw new NotImplementedException(); }
+        public virtual void Stop(bool canceled = false) { throw new NotImplementedException(); }
 
 
-public virtual void ScheduleTick(bool rescheduling = false){ throw new NotImplementedException(); }
+        private void _Tick(TimeSpan timeStamp) { throw new NotImplementedException(); }
 
 
-public virtual void UnscheduleTick(){ throw new NotImplementedException(); }
+        public virtual void ScheduleTick(bool rescheduling = false) { throw new NotImplementedException(); }
 
 
-public virtual void AbsorbTicker(FlutterSDK.Scheduler.Ticker.Ticker originalTicker){ throw new NotImplementedException(); }
+        public virtual void UnscheduleTick() { throw new NotImplementedException(); }
 
 
-public virtual void Dispose(){ throw new NotImplementedException(); }
+        public virtual void AbsorbTicker(FlutterSDK.Scheduler.Ticker.Ticker originalTicker) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public virtual void Dispose() { throw new NotImplementedException(); }
 
 
-public class TickerFuture : IFuture<object>
-{
-#region constructors
-internal TickerFuture()
-{
-throw new NotImplementedException(); }
-public static TickerFuture Complete()
-{
-var instance =new TickerFuture();throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual Completer<object> _PrimaryCompleter{get;set;}
-internal virtual Completer<object> _SecondaryCompleter{get;set;}
-internal virtual bool _Completed{get;set;}
-public virtual Future<object> OrCancel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-private void _Complete(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-private void _Cancel(FlutterSDK.Scheduler.Ticker.Ticker ticker){ throw new NotImplementedException(); }
+    public class TickerFuture : IFuture<object>
+    {
+        #region constructors
+        internal TickerFuture()
+        {
+            throw new NotImplementedException();
+        }
+        public static TickerFuture Complete()
+        {
+            var instance = new TickerFuture(); throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual Completer<object> _PrimaryCompleter { get; set; }
+        internal virtual Completer<object> _SecondaryCompleter { get; set; }
+        internal virtual bool _Completed { get; set; }
+        public virtual Future<object> OrCancel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        private void _Complete() { throw new NotImplementedException(); }
 
 
-public virtual void WhenCompleteOrCancel(VoidCallback callback){ throw new NotImplementedException(); }
+        private void _Cancel(FlutterSDK.Scheduler.Ticker.Ticker ticker) { throw new NotImplementedException(); }
 
 
-public new Stream<object> AsStream(){ throw new NotImplementedException(); }
+        public virtual void WhenCompleteOrCancel(VoidCallback callback) { throw new NotImplementedException(); }
 
 
-public new Future<object> CatchError(Function onError,Func<bool,object> test = default(Func<bool,object>)){ throw new NotImplementedException(); }
+        public new Stream<object> AsStream() { throw new NotImplementedException(); }
 
 
-public new Future<R> Then<R>(Func<FutureOr<R>> onValue,Function onError = default(Function)){ throw new NotImplementedException(); }
+        public new Future<object> CatchError(Function onError, Func<bool, object> test = default(Func<bool, object>)) { throw new NotImplementedException(); }
 
 
-public new Future<object> Timeout(TimeSpan timeLimit,Func<dynamic> onTimeout = default(Func<dynamic>)){ throw new NotImplementedException(); }
+        public new Future<R> Then<R>(Func<FutureOr<R>> onValue, Function onError = default(Function)) { throw new NotImplementedException(); }
 
 
-public new Future<object> WhenComplete(Func<dynamic> action){ throw new NotImplementedException(); }
+        public new Future<object> Timeout(TimeSpan timeLimit, Func<dynamic> onTimeout = default(Func<dynamic>)) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public new Future<object> WhenComplete(Func<dynamic> action) { throw new NotImplementedException(); }
 
 
-public class TickerCanceled : IException
-{
-#region constructors
-public TickerCanceled(FlutterSDK.Scheduler.Ticker.Ticker ticker = default(FlutterSDK.Scheduler.Ticker.Ticker))
-{
-this.Ticker = ticker;throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-public virtual FlutterSDK.Scheduler.Ticker.Ticker Ticker{get;set;}
-#endregion
 
-#region methods
+    public class TickerCanceled : IException
+    {
+        #region constructors
+        public TickerCanceled(FlutterSDK.Scheduler.Ticker.Ticker ticker = default(FlutterSDK.Scheduler.Ticker.Ticker))
+        {
+            this.Ticker = ticker; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual FlutterSDK.Scheduler.Ticker.Ticker Ticker { get; set; }
+        #endregion
+
+        #region methods
+
+        #endregion
+    }
 
 }

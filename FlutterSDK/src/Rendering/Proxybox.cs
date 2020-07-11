@@ -421,1691 +421,1744 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Rendering.Proxybox{
-public delegate SKShader ShaderCallback(FlutterBinding.UI.Rect bounds);
-public delegate void PointerDownEventListener(FlutterSDK.Gestures.Events.PointerDownEvent @event);
-public delegate void PointerMoveEventListener(FlutterSDK.Gestures.Events.PointerMoveEvent @event);
-public delegate void PointerUpEventListener(FlutterSDK.Gestures.Events.PointerUpEvent @event);
-public delegate void PointerCancelEventListener(FlutterSDK.Gestures.Events.PointerCancelEvent @event);
-public delegate void PointerSignalEventListener(FlutterSDK.Gestures.Events.PointerSignalEvent @event);
-internal static class ProxyboxDefaultClass{
-}
+namespace FlutterSDK.Rendering.Proxybox
+{
+    public delegate SKShader ShaderCallback(FlutterBinding.UI.Rect bounds);
+    public delegate void PointerDownEventListener(FlutterSDK.Gestures.Events.PointerDownEvent @event);
+    public delegate void PointerMoveEventListener(FlutterSDK.Gestures.Events.PointerMoveEvent @event);
+    public delegate void PointerUpEventListener(FlutterSDK.Gestures.Events.PointerUpEvent @event);
+    public delegate void PointerCancelEventListener(FlutterSDK.Gestures.Events.PointerCancelEvent @event);
+    public delegate void PointerSignalEventListener(FlutterSDK.Gestures.Events.PointerSignalEvent @event);
+    internal static class ProxyboxDefaultClass
+    {
+    }
 
-public interface IRenderProxyBoxWithHitTestBehavior{
-bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset));
-bool HitTestSelf(FlutterBinding.UI.Offset position);
-void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
-FlutterSDK.Rendering.Proxybox.HitTestBehavior Behavior{get;set;}
-}
+    public interface IRenderProxyBoxWithHitTestBehavior
+    {
+        bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset));
+        bool HitTestSelf(FlutterBinding.UI.Offset position);
+        void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
+        FlutterSDK.Rendering.Proxybox.HitTestBehavior Behavior { get; set; }
+    }
 
 
-public interface ICustomClipper<T>{
-T GetClip(Size size);
-Rect GetApproximateClipRect(Size size);
-bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> oldClipper);
-string ToString();
-}
+    public interface ICustomClipper<T>
+    {
+        T GetClip(Size size);
+        Rect GetApproximateClipRect(Size size);
+        bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> oldClipper);
+        string ToString();
+    }
 
 
-internal interface I_RenderCustomClip<T>{
-void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner);
-void Detach();
-void PerformLayout();
-Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child);
-void DebugPaintSize(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset);
-FlutterSDK.Rendering.Proxybox.CustomClipper<T> Clipper{get;set;}
-FlutterBinding.UI.Clip ClipBehavior{get;set;}
-}
+    internal interface I_RenderCustomClip<T>
+    {
+        void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner);
+        void Detach();
+        void PerformLayout();
+        Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child);
+        void DebugPaintSize(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset);
+        FlutterSDK.Rendering.Proxybox.CustomClipper<T> Clipper { get; set; }
+        FlutterBinding.UI.Clip ClipBehavior { get; set; }
+    }
 
 
-internal interface I_RenderPhysicalModelBase<T>{
-void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config);
-void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description);
-double Elevation{get;set;}
-FlutterBinding.UI.Color ShadowColor{get;set;}
-FlutterBinding.UI.Color Color{get;set;}
-bool AlwaysNeedsCompositing{get;}
-}
+    internal interface I_RenderPhysicalModelBase<T>
+    {
+        void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config);
+        void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description);
+        double Elevation { get; set; }
+        FlutterBinding.UI.Color ShadowColor { get; set; }
+        FlutterBinding.UI.Color Color { get; set; }
+        bool AlwaysNeedsCompositing { get; }
+    }
 
 
-public interface IRenderProxyBoxMixin<T>{}
+    public interface IRenderProxyBoxMixin<T> { }
 
-public class RenderProxyBoxMixin<T>{
+    public class RenderProxyBoxMixin<T>
+    {
 
-public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
+        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
 
-public new double ComputeMinIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-public new double ComputeMaxIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-public new double ComputeMinIntrinsicHeight(double width){ throw new NotImplementedException(); }
+        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-public new double ComputeMaxIntrinsicHeight(double width){ throw new NotImplementedException(); }
+        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-public new double ComputeDistanceToActualBaseline(TextBaseline baseline){ throw new NotImplementedException(); }
+        public new double ComputeDistanceToActualBaseline(TextBaseline baseline) { throw new NotImplementedException(); }
 
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
 
-public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
+        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
 
-public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child,Matrix4 transform){ throw new NotImplementedException(); }
+        public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-}
-public static class RenderProxyBoxMixinMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<object, object> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<object, object>();
-static RenderProxyBoxMixin<T> GetOrCreate<T>(IRenderProxyBoxMixin<T> instance)
-{
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new RenderProxyBoxMixin<T>();
-_table.Add(instance, value);
-}
-return (RenderProxyBoxMixin<T>)value;
-}
-public static void SetupParentData<T>(this IRenderProxyBoxMixin<T> instance,FlutterSDK.Rendering.@object.RenderObject child) => GetOrCreate(instance).SetupParentData(child);
-public static double ComputeMinIntrinsicWidth<T>(this IRenderProxyBoxMixin<T> instance,double height) => GetOrCreate(instance).ComputeMinIntrinsicWidth(height);
-public static double ComputeMaxIntrinsicWidth<T>(this IRenderProxyBoxMixin<T> instance,double height) => GetOrCreate(instance).ComputeMaxIntrinsicWidth(height);
-public static double ComputeMinIntrinsicHeight<T>(this IRenderProxyBoxMixin<T> instance,double width) => GetOrCreate(instance).ComputeMinIntrinsicHeight(width);
-public static double ComputeMaxIntrinsicHeight<T>(this IRenderProxyBoxMixin<T> instance,double width) => GetOrCreate(instance).ComputeMaxIntrinsicHeight(width);
-public static double ComputeDistanceToActualBaseline<T>(this IRenderProxyBoxMixin<T> instance,TextBaseline baseline) => GetOrCreate(instance).ComputeDistanceToActualBaseline(baseline);
-public static void PerformLayout<T>(this IRenderProxyBoxMixin<T> instance) => GetOrCreate(instance).PerformLayout();
-public static bool HitTestChildren<T>(this IRenderProxyBoxMixin<T> instance,FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) => GetOrCreate(instance).HitTestChildren(result, position);
-public static void ApplyPaintTransform<T>(this IRenderProxyBoxMixin<T> instance,FlutterSDK.Rendering.@object.RenderObject child,Matrix4 transform) => GetOrCreate(instance).ApplyPaintTransform(child, transform);
-public static void Paint<T>(this IRenderProxyBoxMixin<T> instance,FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset) => GetOrCreate(instance).Paint(context, offset);
-}
+    }
+    public static class RenderProxyBoxMixinMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<object, object> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<object, object>();
+        static RenderProxyBoxMixin<T> GetOrCreate<T>(IRenderProxyBoxMixin<T> instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new RenderProxyBoxMixin<T>();
+                _table.Add(instance, value);
+            }
+            return (RenderProxyBoxMixin<T>)value;
+        }
+        public static void SetupParentData<T>(this IRenderProxyBoxMixin<T> instance, FlutterSDK.Rendering.@object.RenderObject child) => GetOrCreate(instance).SetupParentData(child);
+        public static double ComputeMinIntrinsicWidth<T>(this IRenderProxyBoxMixin<T> instance, double height) => GetOrCreate(instance).ComputeMinIntrinsicWidth(height);
+        public static double ComputeMaxIntrinsicWidth<T>(this IRenderProxyBoxMixin<T> instance, double height) => GetOrCreate(instance).ComputeMaxIntrinsicWidth(height);
+        public static double ComputeMinIntrinsicHeight<T>(this IRenderProxyBoxMixin<T> instance, double width) => GetOrCreate(instance).ComputeMinIntrinsicHeight(width);
+        public static double ComputeMaxIntrinsicHeight<T>(this IRenderProxyBoxMixin<T> instance, double width) => GetOrCreate(instance).ComputeMaxIntrinsicHeight(width);
+        public static double ComputeDistanceToActualBaseline<T>(this IRenderProxyBoxMixin<T> instance, TextBaseline baseline) => GetOrCreate(instance).ComputeDistanceToActualBaseline(baseline);
+        public static void PerformLayout<T>(this IRenderProxyBoxMixin<T> instance) => GetOrCreate(instance).PerformLayout();
+        public static bool HitTestChildren<T>(this IRenderProxyBoxMixin<T> instance, FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) => GetOrCreate(instance).HitTestChildren(result, position);
+        public static void ApplyPaintTransform<T>(this IRenderProxyBoxMixin<T> instance, FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform) => GetOrCreate(instance).ApplyPaintTransform(child, transform);
+        public static void Paint<T>(this IRenderProxyBoxMixin<T> instance, FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) => GetOrCreate(instance).Paint(context, offset);
+    }
 
 
-public interface IRenderAnimatedOpacityMixin<T>{}
+    public interface IRenderAnimatedOpacityMixin<T> { }
 
-public class RenderAnimatedOpacityMixin<T>{
-internal virtual int _Alpha{get;set;}
-internal virtual bool _CurrentlyNeedsCompositing{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _Opacity{get;set;}
-internal virtual bool _AlwaysIncludeSemantics{get;set;}
-public virtual bool AlwaysNeedsCompositing{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Animation.Animation.Animation<double> Opacity{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool AlwaysIncludeSemantics{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
+    public class RenderAnimatedOpacityMixin<T>
+    {
+        internal virtual int _Alpha { get; set; }
+        internal virtual bool _CurrentlyNeedsCompositing { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _Opacity { get; set; }
+        internal virtual bool _AlwaysIncludeSemantics { get; set; }
+        public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Animation.Animation.Animation<double> Opacity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool AlwaysIncludeSemantics { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
-public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner){ throw new NotImplementedException(); }
-public new void Attach(@Object owner){ throw new NotImplementedException(); }
+        public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner) { throw new NotImplementedException(); }
+        public new void Attach(@Object owner) { throw new NotImplementedException(); }
 
 
-public new void Detach(){ throw new NotImplementedException(); }
+        public new void Detach() { throw new NotImplementedException(); }
 
 
-private void _UpdateOpacity(){ throw new NotImplementedException(); }
+        private void _UpdateOpacity() { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
-public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor){ throw new NotImplementedException(); }
+        public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-}
-public static class RenderAnimatedOpacityMixinMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<object, object> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<object, object>();
-static RenderAnimatedOpacityMixin<T> GetOrCreate<T>(IRenderAnimatedOpacityMixin<T> instance)
-{
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new RenderAnimatedOpacityMixin<T>();
-_table.Add(instance, value);
-}
-return (RenderAnimatedOpacityMixin<T>)value;
-}
-public static bool AlwaysNeedsCompositingProperty<T>(this IRenderAnimatedOpacityMixin<T> instance) => GetOrCreate(instance).AlwaysNeedsCompositing;
-public static FlutterSDK.Animation.Animation.Animation<double> OpacityProperty<T>(this IRenderAnimatedOpacityMixin<T> instance) => GetOrCreate(instance).Opacity;
-public static bool AlwaysIncludeSemanticsProperty<T>(this IRenderAnimatedOpacityMixin<T> instance) => GetOrCreate(instance).AlwaysIncludeSemantics;
-public static void Attach<T>(this IRenderAnimatedOpacityMixin<T> instance,FlutterSDK.Rendering.@object.PipelineOwner owner) => GetOrCreate(instance).Attach(owner);
-public static void Detach<T>(this IRenderAnimatedOpacityMixin<T> instance) => GetOrCreate(instance).Detach();
-public static void Paint<T>(this IRenderAnimatedOpacityMixin<T> instance,FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset) => GetOrCreate(instance).Paint(context, offset);
-public static void VisitChildrenForSemantics<T>(this IRenderAnimatedOpacityMixin<T> instance,FlutterSDK.Rendering.@object.RenderObjectVisitor visitor) => GetOrCreate(instance).VisitChildrenForSemantics(visitor);
-public static void DebugFillProperties<T>(this IRenderAnimatedOpacityMixin<T> instance,FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) => GetOrCreate(instance).DebugFillProperties(properties);
-}
-
-
-public class RenderProxyBox : FlutterSDK.Rendering.Box.RenderBox,IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>,IRenderProxyBoxMixin<FlutterSDK.Rendering.Box.RenderBox>
-{
-#region constructors
-public RenderProxyBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-{
-throw new NotImplementedException(); }
-#endregion
+    }
+    public static class RenderAnimatedOpacityMixinMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<object, object> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<object, object>();
+        static RenderAnimatedOpacityMixin<T> GetOrCreate<T>(IRenderAnimatedOpacityMixin<T> instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new RenderAnimatedOpacityMixin<T>();
+                _table.Add(instance, value);
+            }
+            return (RenderAnimatedOpacityMixin<T>)value;
+        }
+        public static bool AlwaysNeedsCompositingProperty<T>(this IRenderAnimatedOpacityMixin<T> instance) => GetOrCreate(instance).AlwaysNeedsCompositing;
+        public static FlutterSDK.Animation.Animation.Animation<double> OpacityProperty<T>(this IRenderAnimatedOpacityMixin<T> instance) => GetOrCreate(instance).Opacity;
+        public static bool AlwaysIncludeSemanticsProperty<T>(this IRenderAnimatedOpacityMixin<T> instance) => GetOrCreate(instance).AlwaysIncludeSemantics;
+        public static void Attach<T>(this IRenderAnimatedOpacityMixin<T> instance, FlutterSDK.Rendering.@object.PipelineOwner owner) => GetOrCreate(instance).Attach(owner);
+        public static void Detach<T>(this IRenderAnimatedOpacityMixin<T> instance) => GetOrCreate(instance).Detach();
+        public static void Paint<T>(this IRenderAnimatedOpacityMixin<T> instance, FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) => GetOrCreate(instance).Paint(context, offset);
+        public static void VisitChildrenForSemantics<T>(this IRenderAnimatedOpacityMixin<T> instance, FlutterSDK.Rendering.@object.RenderObjectVisitor visitor) => GetOrCreate(instance).VisitChildrenForSemantics(visitor);
+        public static void DebugFillProperties<T>(this IRenderAnimatedOpacityMixin<T> instance, FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) => GetOrCreate(instance).DebugFillProperties(properties);
+    }
 
-#region fields
-#endregion
 
-#region methods
-#endregion
-}
+    public class RenderProxyBox : FlutterSDK.Rendering.Box.RenderBox, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>, IRenderProxyBoxMixin<FlutterSDK.Rendering.Box.RenderBox>
+    {
+        #region constructors
+        public RenderProxyBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        #endregion
 
-public class RenderProxyBoxWithHitTestBehavior : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-#region constructors
-public RenderProxyBoxWithHitTestBehavior(FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior),FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-: base(child)
-{
-this.Behavior = behavior;throw new NotImplementedException(); }
-#endregion
+        #region methods
+        #endregion
+    }
 
-#region fields
-public virtual FlutterSDK.Rendering.Proxybox.HitTestBehavior Behavior{get;set;}
-#endregion
 
-#region methods
+    public class RenderProxyBoxWithHitTestBehavior : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public RenderProxyBoxWithHitTestBehavior(FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+        : base(child)
+        {
+            this.Behavior = behavior; throw new NotImplementedException();
+        }
+        #endregion
 
-public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
+        #region fields
+        public virtual FlutterSDK.Rendering.Proxybox.HitTestBehavior Behavior { get; set; }
+        #endregion
 
+        #region methods
 
-public new bool HitTestSelf(FlutterBinding.UI.Offset position){ throw new NotImplementedException(); }
+        public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new bool HitTestSelf(FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-public class RenderConstrainedBox : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-#region constructors
-public RenderConstrainedBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Rendering.Box.BoxConstraints additionalConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints))
-: base(child)
-{
-throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-internal virtual FlutterSDK.Rendering.Box.BoxConstraints _AdditionalConstraints{get;set;}
-public virtual FlutterSDK.Rendering.Box.BoxConstraints AdditionalConstraints{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
 
-#region methods
+    public class RenderConstrainedBox : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public RenderConstrainedBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Box.BoxConstraints additionalConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints))
+        : base(child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-public new double ComputeMinIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual FlutterSDK.Rendering.Box.BoxConstraints _AdditionalConstraints { get; set; }
+        public virtual FlutterSDK.Rendering.Box.BoxConstraints AdditionalConstraints { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public new double ComputeMaxIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-public new double ComputeMinIntrinsicHeight(double width){ throw new NotImplementedException(); }
+        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-public new double ComputeMaxIntrinsicHeight(double width){ throw new NotImplementedException(); }
+        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
+        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-public new void DebugPaintSize(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void DebugPaintSize(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-public class RenderLimitedBox : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-#region constructors
-public RenderLimitedBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),double maxWidth = default(double),double maxHeight = default(double))
-: base(child)
-{
-throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-internal virtual double _MaxWidth{get;set;}
-internal virtual double _MaxHeight{get;set;}
-public virtual double MaxWidth{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual double MaxHeight{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
 
-#region methods
+    public class RenderLimitedBox : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public RenderLimitedBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), double maxWidth = default(double), double maxHeight = default(double))
+        : base(child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-private FlutterSDK.Rendering.Box.BoxConstraints _LimitConstraints(FlutterSDK.Rendering.Box.BoxConstraints constraints){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual double _MaxWidth { get; set; }
+        internal virtual double _MaxHeight { get; set; }
+        public virtual double MaxWidth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double MaxHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
+        private FlutterSDK.Rendering.Box.BoxConstraints _LimitConstraints(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-public class RenderAspectRatio : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-#region constructors
-public RenderAspectRatio(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),double aspectRatio = default(double))
-: base(child)
-{
-throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-internal virtual double _AspectRatio{get;set;}
-public virtual double AspectRatio{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
 
-#region methods
+    public class RenderAspectRatio : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public RenderAspectRatio(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), double aspectRatio = default(double))
+        : base(child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-public new double ComputeMinIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual double _AspectRatio { get; set; }
+        public virtual double AspectRatio { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public new double ComputeMaxIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-public new double ComputeMinIntrinsicHeight(double width){ throw new NotImplementedException(); }
+        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-public new double ComputeMaxIntrinsicHeight(double width){ throw new NotImplementedException(); }
+        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-private Size _ApplyAspectRatio(FlutterSDK.Rendering.Box.BoxConstraints constraints){ throw new NotImplementedException(); }
+        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
+        private Size _ApplyAspectRatio(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-public class RenderIntrinsicWidth : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-#region constructors
-public RenderIntrinsicWidth(double stepWidth = default(double),double stepHeight = default(double),FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-: base(child)
-{
-throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-internal virtual double _StepWidth{get;set;}
-internal virtual double _StepHeight{get;set;}
-public virtual double StepWidth{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual double StepHeight{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
 
-#region methods
+    public class RenderIntrinsicWidth : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public RenderIntrinsicWidth(double stepWidth = default(double), double stepHeight = default(double), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+        : base(child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-private double _ApplyStep(double input,double step){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual double _StepWidth { get; set; }
+        internal virtual double _StepHeight { get; set; }
+        public virtual double StepWidth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double StepHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public new double ComputeMinIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        private double _ApplyStep(double input, double step) { throw new NotImplementedException(); }
 
 
-public new double ComputeMaxIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-public new double ComputeMinIntrinsicHeight(double width){ throw new NotImplementedException(); }
+        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-public new double ComputeMaxIntrinsicHeight(double width){ throw new NotImplementedException(); }
+        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
+        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-public class RenderIntrinsicHeight : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-#region constructors
-public RenderIntrinsicHeight(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-: base(child)
-{
-throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-#endregion
 
-#region methods
+    public class RenderIntrinsicHeight : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public RenderIntrinsicHeight(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+        : base(child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-public new double ComputeMinIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        #region fields
+        #endregion
 
+        #region methods
 
-public new double ComputeMaxIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-public new double ComputeMinIntrinsicHeight(double width){ throw new NotImplementedException(); }
+        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
+        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
-public class RenderOpacity : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-#region constructors
-public RenderOpacity(double opacity = 1.0,bool alwaysIncludeSemantics = false,FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-: base(child)
-{
-throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-internal virtual int _Alpha{get;set;}
-internal virtual double _Opacity{get;set;}
-internal virtual bool _AlwaysIncludeSemantics{get;set;}
-public virtual bool AlwaysNeedsCompositing{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double Opacity{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool AlwaysIncludeSemantics{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
 
-#region methods
+    public class RenderOpacity : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public RenderOpacity(double opacity = 1.0, bool alwaysIncludeSemantics = false, FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+        : base(child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual int _Alpha { get; set; }
+        internal virtual double _Opacity { get; set; }
+        internal virtual bool _AlwaysIncludeSemantics { get; set; }
+        public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Opacity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool AlwaysIncludeSemantics { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-public class RenderAnimatedOpacity : FlutterSDK.Rendering.Proxybox.RenderProxyBox,IRenderProxyBoxMixin<FlutterSDK.Rendering.Box.RenderBox>,IRenderAnimatedOpacityMixin<FlutterSDK.Rendering.Box.RenderBox>
-{
-#region constructors
-public RenderAnimatedOpacity(FlutterSDK.Animation.Animation.Animation<double> opacity = default(FlutterSDK.Animation.Animation.Animation<double>),bool alwaysIncludeSemantics = false,FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-: base(child)
-{
-throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-#endregion
 
-#region methods
-#endregion
-}
+    public class RenderAnimatedOpacity : FlutterSDK.Rendering.Proxybox.RenderProxyBox, IRenderProxyBoxMixin<FlutterSDK.Rendering.Box.RenderBox>, IRenderAnimatedOpacityMixin<FlutterSDK.Rendering.Box.RenderBox>
+    {
+        #region constructors
+        public RenderAnimatedOpacity(FlutterSDK.Animation.Animation.Animation<double> opacity = default(FlutterSDK.Animation.Animation.Animation<double>), bool alwaysIncludeSemantics = false, FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+        : base(child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        #endregion
 
-public class RenderShaderMask : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-#region constructors
-public RenderShaderMask(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Rendering.Proxybox.ShaderCallback shaderCallback = default(FlutterSDK.Rendering.Proxybox.ShaderCallback),FlutterBinding.UI.BlendMode blendMode = default(FlutterBinding.UI.BlendMode))
-: base(child)
-{
-throw new NotImplementedException(); }
-#endregion
+        #region methods
+        #endregion
+    }
 
-#region fields
-internal virtual FlutterSDK.Rendering.Proxybox.ShaderCallback _ShaderCallback{get;set;}
-internal virtual FlutterBinding.UI.BlendMode _BlendMode{get;set;}
-public virtual FlutterSDK.Rendering.Layer.ShaderMaskLayer Layer{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Rendering.Proxybox.ShaderCallback ShaderCallback{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterBinding.UI.BlendMode BlendMode{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool AlwaysNeedsCompositing{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+    public class RenderShaderMask : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public RenderShaderMask(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Proxybox.ShaderCallback shaderCallback = default(FlutterSDK.Rendering.Proxybox.ShaderCallback), FlutterBinding.UI.BlendMode blendMode = default(FlutterBinding.UI.BlendMode))
+        : base(child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual FlutterSDK.Rendering.Proxybox.ShaderCallback _ShaderCallback { get; set; }
+        internal virtual FlutterBinding.UI.BlendMode _BlendMode { get; set; }
+        public virtual FlutterSDK.Rendering.Layer.ShaderMaskLayer Layer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Proxybox.ShaderCallback ShaderCallback { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.BlendMode BlendMode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#endregion
-}
+        #region methods
 
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-public class RenderBackdropFilter : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-#region constructors
-public RenderBackdropFilter(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),ImageFilter filter = default(ImageFilter))
-: base(child)
-{
-throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-internal virtual ImageFilter _Filter{get;set;}
-public virtual FlutterSDK.Rendering.Layer.BackdropFilterLayer Layer{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual ImageFilter Filter{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool AlwaysNeedsCompositing{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+    public class RenderBackdropFilter : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public RenderBackdropFilter(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), ImageFilter filter = default(ImageFilter))
+        : base(child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual ImageFilter _Filter { get; set; }
+        public virtual FlutterSDK.Rendering.Layer.BackdropFilterLayer Layer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual ImageFilter Filter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#endregion
-}
+        #region methods
 
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-public class CustomClipper<T>
-{
-#region constructors
-public CustomClipper(FlutterSDK.Foundation.Changenotifier.Listenable reclip = default(FlutterSDK.Foundation.Changenotifier.Listenable))
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-internal virtual FlutterSDK.Foundation.Changenotifier.Listenable _Reclip{get;set;}
-#endregion
 
-#region methods
+    public class CustomClipper<T>
+    {
+        #region constructors
+        public CustomClipper(FlutterSDK.Foundation.Changenotifier.Listenable reclip = default(FlutterSDK.Foundation.Changenotifier.Listenable))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-public virtual T GetClip(Size size){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual FlutterSDK.Foundation.Changenotifier.Listenable _Reclip { get; set; }
+        #endregion
 
+        #region methods
 
-public virtual Rect GetApproximateClipRect(Size size){ throw new NotImplementedException(); }
+        public virtual T GetClip(Size size) { throw new NotImplementedException(); }
 
 
-public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> oldClipper){ throw new NotImplementedException(); }
+        public virtual Rect GetApproximateClipRect(Size size) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> oldClipper) { throw new NotImplementedException(); }
 
 
-public class ShapeBorderClipper : FlutterSDK.Rendering.Proxybox.CustomClipper<Path>
-{
-#region constructors
-public ShapeBorderClipper(FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder),TextDirection textDirection = default(TextDirection))
-: base()
-{
-this.Shape = shape;
-this.TextDirection = textDirection;throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape{get;set;}
-public virtual TextDirection TextDirection{get;set;}
-#endregion
 
-#region methods
+    public class ShapeBorderClipper : FlutterSDK.Rendering.Proxybox.CustomClipper<Path>
+    {
+        #region constructors
+        public ShapeBorderClipper(FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), TextDirection textDirection = default(TextDirection))
+        : base()
+        {
+            this.Shape = shape;
+            this.TextDirection = textDirection; throw new NotImplementedException();
+        }
+        #endregion
 
-public new Path GetClip(Size size){ throw new NotImplementedException(); }
+        #region fields
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        public virtual TextDirection TextDirection { get; set; }
+        #endregion
 
+        #region methods
 
-public new bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<Path> oldClipper){ throw new NotImplementedException(); }
+        public new Path GetClip(Size size) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<Path> oldClipper) { throw new NotImplementedException(); }
 
-public class _RenderCustomClip<T> : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-#region constructors
-public _RenderCustomClip(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Rendering.Proxybox.CustomClipper<T> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<T>),FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
-: base(child)
-{
-throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-internal virtual FlutterSDK.Rendering.Proxybox.CustomClipper<T> _Clipper{get;set;}
-internal virtual T _Clip{get;set;}
-internal virtual FlutterBinding.UI.Clip _ClipBehavior{get;set;}
-internal virtual SKPaint _DebugPaint{get;set;}
-internal virtual FlutterSDK.Painting.Textpainter.TextPainter _DebugText{get;set;}
-public virtual FlutterSDK.Rendering.Proxybox.CustomClipper<T> Clipper{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-internal virtual T _DefaultClip{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterBinding.UI.Clip ClipBehavior{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
 
-#region methods
+    public class _RenderCustomClip<T> : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public _RenderCustomClip(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Proxybox.CustomClipper<T> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<T>), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
+        : base(child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner){ throw new NotImplementedException(); }
-public new void Attach(@Object owner){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual FlutterSDK.Rendering.Proxybox.CustomClipper<T> _Clipper { get; set; }
+        internal virtual T _Clip { get; set; }
+        internal virtual FlutterBinding.UI.Clip _ClipBehavior { get; set; }
+        internal virtual SKPaint _DebugPaint { get; set; }
+        internal virtual FlutterSDK.Painting.Textpainter.TextPainter _DebugText { get; set; }
+        public virtual FlutterSDK.Rendering.Proxybox.CustomClipper<T> Clipper { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual T _DefaultClip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Clip ClipBehavior { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public new void Detach(){ throw new NotImplementedException(); }
+        public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner) { throw new NotImplementedException(); }
+        public new void Attach(@Object owner) { throw new NotImplementedException(); }
 
 
-private void _MarkNeedsClip(){ throw new NotImplementedException(); }
+        public new void Detach() { throw new NotImplementedException(); }
 
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
+        private void _MarkNeedsClip() { throw new NotImplementedException(); }
 
 
-private void _UpdateClip(){ throw new NotImplementedException(); }
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
 
-public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
+        private void _UpdateClip() { throw new NotImplementedException(); }
 
 
-public new void DebugPaintSize(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new void DebugPaintSize(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-public class RenderClipRect : FlutterSDK.Rendering.Proxybox._RenderCustomClip<Rect>
-{
-#region constructors
-public RenderClipRect(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Rendering.Proxybox.CustomClipper<Rect> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<Rect>),FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
-: base(child:child,clipper:clipper,clipBehavior:clipBehavior)
-{
-throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-internal virtual FlutterBinding.UI.Rect _DefaultClip{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+    public class RenderClipRect : FlutterSDK.Rendering.Proxybox._RenderCustomClip<Rect>
+    {
+        #region constructors
+        public RenderClipRect(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Proxybox.CustomClipper<Rect> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<Rect>), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
+        : base(child: child, clipper: clipper, clipBehavior: clipBehavior)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual FlutterBinding.UI.Rect _DefaultClip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
 
-public new void DebugPaintSize(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new void DebugPaintSize(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-public class RenderClipRRect : FlutterSDK.Rendering.Proxybox._RenderCustomClip<RRect>
-{
-#region constructors
-public RenderClipRRect(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius),FlutterSDK.Rendering.Proxybox.CustomClipper<RRect> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<RRect>),FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
-: base(child:child,clipper:clipper,clipBehavior:clipBehavior)
-{
-throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-internal virtual FlutterSDK.Painting.Borderradius.BorderRadius _BorderRadius{get;set;}
-public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-internal virtual FlutterBinding.UI.RRect _DefaultClip{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+    public class RenderClipRRect : FlutterSDK.Rendering.Proxybox._RenderCustomClip<RRect>
+    {
+        #region constructors
+        public RenderClipRRect(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Rendering.Proxybox.CustomClipper<RRect> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<RRect>), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
+        : base(child: child, clipper: clipper, clipBehavior: clipBehavior)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual FlutterSDK.Painting.Borderradius.BorderRadius _BorderRadius { get; set; }
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual FlutterBinding.UI.RRect _DefaultClip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
 
-public new void DebugPaintSize(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new void DebugPaintSize(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-public class RenderClipOval : FlutterSDK.Rendering.Proxybox._RenderCustomClip<Rect>
-{
-#region constructors
-public RenderClipOval(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Rendering.Proxybox.CustomClipper<Rect> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<Rect>),FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
-: base(child:child,clipper:clipper,clipBehavior:clipBehavior)
-{
-throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-internal virtual FlutterBinding.UI.Rect _CachedRect{get;set;}
-internal virtual Path _CachedPath{get;set;}
-internal virtual FlutterBinding.UI.Rect _DefaultClip{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+    public class RenderClipOval : FlutterSDK.Rendering.Proxybox._RenderCustomClip<Rect>
+    {
+        #region constructors
+        public RenderClipOval(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Proxybox.CustomClipper<Rect> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<Rect>), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
+        : base(child: child, clipper: clipper, clipBehavior: clipBehavior)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-private Path _GetClipPath(FlutterBinding.UI.Rect rect){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual FlutterBinding.UI.Rect _CachedRect { get; set; }
+        internal virtual Path _CachedPath { get; set; }
+        internal virtual FlutterBinding.UI.Rect _DefaultClip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
+        private Path _GetClipPath(FlutterBinding.UI.Rect rect) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
 
-public new void DebugPaintSize(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new void DebugPaintSize(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-public class RenderClipPath : FlutterSDK.Rendering.Proxybox._RenderCustomClip<Path>
-{
-#region constructors
-public RenderClipPath(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Rendering.Proxybox.CustomClipper<Path> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<Path>),FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
-: base(child:child,clipper:clipper,clipBehavior:clipBehavior)
-{
-throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-internal virtual Path _DefaultClip{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+    public class RenderClipPath : FlutterSDK.Rendering.Proxybox._RenderCustomClip<Path>
+    {
+        #region constructors
+        public RenderClipPath(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Proxybox.CustomClipper<Path> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<Path>), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
+        : base(child: child, clipper: clipper, clipBehavior: clipBehavior)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual Path _DefaultClip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
 
-public new void DebugPaintSize(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new void DebugPaintSize(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-public class _RenderPhysicalModelBase<T> : FlutterSDK.Rendering.Proxybox._RenderCustomClip<T>
-{
-#region constructors
-public _RenderPhysicalModelBase(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),double elevation = default(double),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip),FlutterSDK.Rendering.Proxybox.CustomClipper<T> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<T>))
-: base(child:child,clipBehavior:clipBehavior,clipper:clipper)
-{
-throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-internal virtual double _Elevation{get;set;}
-internal virtual FlutterBinding.UI.Color _ShadowColor{get;set;}
-internal virtual FlutterBinding.UI.Color _Color{get;set;}
-public virtual double Elevation{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterBinding.UI.Color ShadowColor{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterBinding.UI.Color Color{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool AlwaysNeedsCompositing{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+    public class _RenderPhysicalModelBase<T> : FlutterSDK.Rendering.Proxybox._RenderCustomClip<T>
+    {
+        #region constructors
+        public _RenderPhysicalModelBase(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), double elevation = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Rendering.Proxybox.CustomClipper<T> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<T>))
+        : base(child: child, clipBehavior: clipBehavior, clipper: clipper)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual double _Elevation { get; set; }
+        internal virtual FlutterBinding.UI.Color _ShadowColor { get; set; }
+        internal virtual FlutterBinding.UI.Color _Color { get; set; }
+        public virtual double Elevation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Color ShadowColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Color Color { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description){ throw new NotImplementedException(); }
+        public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description) { throw new NotImplementedException(); }
 
-public class RenderPhysicalModel : FlutterSDK.Rendering.Proxybox._RenderPhysicalModelBase<RRect>
-{
-#region constructors
-public RenderPhysicalModel(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape),FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip),FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius),double elevation = 0.0,FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color))
-: base(clipBehavior:clipBehavior,child:child,elevation:elevation,color:color,shadowColor:shadowColor)
-{
-throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-internal virtual FlutterSDK.Painting.Boxborder.BoxShape _Shape{get;set;}
-internal virtual FlutterSDK.Painting.Borderradius.BorderRadius _BorderRadius{get;set;}
-public virtual FlutterSDK.Rendering.Layer.PhysicalModelLayer Layer{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Painting.Boxborder.BoxShape Shape{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-internal virtual FlutterBinding.UI.RRect _DefaultClip{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+    public class RenderPhysicalModel : FlutterSDK.Rendering.Proxybox._RenderPhysicalModelBase<RRect>
+    {
+        #region constructors
+        public RenderPhysicalModel(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), double elevation = 0.0, FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color))
+        : base(clipBehavior: clipBehavior, child: child, elevation: elevation, color: color, shadowColor: shadowColor)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual FlutterSDK.Painting.Boxborder.BoxShape _Shape { get; set; }
+        internal virtual FlutterSDK.Painting.Borderradius.BorderRadius _BorderRadius { get; set; }
+        public virtual FlutterSDK.Rendering.Layer.PhysicalModelLayer Layer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Boxborder.BoxShape Shape { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual FlutterBinding.UI.RRect _DefaultClip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description) { throw new NotImplementedException(); }
 
-public class RenderPhysicalShape : FlutterSDK.Rendering.Proxybox._RenderPhysicalModelBase<Path>
-{
-#region constructors
-public RenderPhysicalShape(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Rendering.Proxybox.CustomClipper<Path> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<Path>),FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip),double elevation = 0.0,FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color))
-: base(child:child,elevation:elevation,color:color,shadowColor:shadowColor,clipper:clipper,clipBehavior:clipBehavior)
-{
-throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-public virtual FlutterSDK.Rendering.Layer.PhysicalModelLayer Layer{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual Path _DefaultClip{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+    public class RenderPhysicalShape : FlutterSDK.Rendering.Proxybox._RenderPhysicalModelBase<Path>
+    {
+        #region constructors
+        public RenderPhysicalShape(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Proxybox.CustomClipper<Path> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<Path>), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), double elevation = 0.0, FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color))
+        : base(child: child, elevation: elevation, color: color, shadowColor: shadowColor, clipper: clipper, clipBehavior: clipBehavior)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
+        #region fields
+        public virtual FlutterSDK.Rendering.Layer.PhysicalModelLayer Layer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Path _DefaultClip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description) { throw new NotImplementedException(); }
 
-public class RenderDecoratedBox : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-#region constructors
-public RenderDecoratedBox(FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration),FlutterSDK.Rendering.Proxybox.DecorationPosition position = default(FlutterSDK.Rendering.Proxybox.DecorationPosition),FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration),FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-: base(child)
-{
-throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-internal virtual FlutterSDK.Painting.Decoration.BoxPainter _Painter{get;set;}
-internal virtual FlutterSDK.Painting.Decoration.Decoration _Decoration{get;set;}
-internal virtual FlutterSDK.Rendering.Proxybox.DecorationPosition _Position{get;set;}
-internal virtual FlutterSDK.Painting.Imageprovider.ImageConfiguration _Configuration{get;set;}
-public virtual FlutterSDK.Painting.Decoration.Decoration Decoration{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Rendering.Proxybox.DecorationPosition Position{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Painting.Imageprovider.ImageConfiguration Configuration{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
 
-#region methods
+    public class RenderDecoratedBox : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public RenderDecoratedBox(FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Rendering.Proxybox.DecorationPosition position = default(FlutterSDK.Rendering.Proxybox.DecorationPosition), FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+        : base(child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-public new void Detach(){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual FlutterSDK.Painting.Decoration.BoxPainter _Painter { get; set; }
+        internal virtual FlutterSDK.Painting.Decoration.Decoration _Decoration { get; set; }
+        internal virtual FlutterSDK.Rendering.Proxybox.DecorationPosition _Position { get; set; }
+        internal virtual FlutterSDK.Painting.Imageprovider.ImageConfiguration _Configuration { get; set; }
+        public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Proxybox.DecorationPosition Position { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Imageprovider.ImageConfiguration Configuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public new bool HitTestSelf(FlutterBinding.UI.Offset position){ throw new NotImplementedException(); }
+        public new void Detach() { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new bool HitTestSelf(FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-public class RenderTransform : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-#region constructors
-public RenderTransform(Matrix4 transform = default(Matrix4),FlutterBinding.UI.Offset origin = default(FlutterBinding.UI.Offset),FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry),TextDirection textDirection = default(TextDirection),bool transformHitTests = true,FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-: base(child)
-{
-this.TransformHitTests = transformHitTests;throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-internal virtual FlutterBinding.UI.Offset _Origin{get;set;}
-internal virtual FlutterSDK.Painting.Alignment.AlignmentGeometry _Alignment{get;set;}
-internal virtual TextDirection _TextDirection{get;set;}
-public virtual bool TransformHitTests{get;set;}
-internal virtual Matrix4 _Transform{get;set;}
-public virtual FlutterBinding.UI.Offset Origin{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual TextDirection TextDirection{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual object Transform{set {throw new NotImplementedException();}}
-internal virtual object _EffectiveTransform{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+    public class RenderTransform : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public RenderTransform(Matrix4 transform = default(Matrix4), FlutterBinding.UI.Offset origin = default(FlutterBinding.UI.Offset), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection), bool transformHitTests = true, FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+        : base(child)
+        {
+            this.TransformHitTests = transformHitTests; throw new NotImplementedException();
+        }
+        #endregion
 
-public virtual void SetIdentity(){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual FlutterBinding.UI.Offset _Origin { get; set; }
+        internal virtual FlutterSDK.Painting.Alignment.AlignmentGeometry _Alignment { get; set; }
+        internal virtual TextDirection _TextDirection { get; set; }
+        public virtual bool TransformHitTests { get; set; }
+        internal virtual Matrix4 _Transform { get; set; }
+        public virtual FlutterBinding.UI.Offset Origin { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual object Transform { set { throw new NotImplementedException(); } }
+        internal virtual object _EffectiveTransform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public virtual void RotateX(double radians){ throw new NotImplementedException(); }
+        public virtual void SetIdentity() { throw new NotImplementedException(); }
 
 
-public virtual void RotateY(double radians){ throw new NotImplementedException(); }
+        public virtual void RotateX(double radians) { throw new NotImplementedException(); }
 
 
-public virtual void RotateZ(double radians){ throw new NotImplementedException(); }
+        public virtual void RotateY(double radians) { throw new NotImplementedException(); }
 
 
-public virtual void Translate(double x,double y = 0.0,double z = 0.0){ throw new NotImplementedException(); }
+        public virtual void RotateZ(double radians) { throw new NotImplementedException(); }
 
 
-public virtual void Scale(double x,double y = default(double),double z = default(double)){ throw new NotImplementedException(); }
+        public virtual void Translate(double x, double y = 0.0, double z = 0.0) { throw new NotImplementedException(); }
 
 
-public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
+        public virtual void Scale(double x, double y = default(double), double z = default(double)) { throw new NotImplementedException(); }
 
 
-public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
+        public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
 
-public new void ApplyPaintTransform(FlutterSDK.Rendering.Box.RenderBox child,Matrix4 transform){ throw new NotImplementedException(); }
-public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child,Matrix4 transform){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void ApplyPaintTransform(FlutterSDK.Rendering.Box.RenderBox child, Matrix4 transform) { throw new NotImplementedException(); }
+        public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-public class RenderFittedBox : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-#region constructors
-public RenderFittedBox(FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit),FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry),TextDirection textDirection = default(TextDirection),FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-: base(child)
-{
-throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-internal virtual FlutterSDK.Painting.Alignment.Alignment _ResolvedAlignment{get;set;}
-internal virtual FlutterSDK.Painting.Boxfit.BoxFit _Fit{get;set;}
-internal virtual FlutterSDK.Painting.Alignment.AlignmentGeometry _Alignment{get;set;}
-internal virtual TextDirection _TextDirection{get;set;}
-internal virtual bool _HasVisualOverflow{get;set;}
-internal virtual Matrix4 _Transform{get;set;}
-public virtual FlutterSDK.Painting.Boxfit.BoxFit Fit{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual TextDirection TextDirection{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
 
-#region methods
+    public class RenderFittedBox : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public RenderFittedBox(FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+        : base(child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-private void _Resolve(){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual FlutterSDK.Painting.Alignment.Alignment _ResolvedAlignment { get; set; }
+        internal virtual FlutterSDK.Painting.Boxfit.BoxFit _Fit { get; set; }
+        internal virtual FlutterSDK.Painting.Alignment.AlignmentGeometry _Alignment { get; set; }
+        internal virtual TextDirection _TextDirection { get; set; }
+        internal virtual bool _HasVisualOverflow { get; set; }
+        internal virtual Matrix4 _Transform { get; set; }
+        public virtual FlutterSDK.Painting.Boxfit.BoxFit Fit { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-private void _MarkNeedResolution(){ throw new NotImplementedException(); }
+        private void _Resolve() { throw new NotImplementedException(); }
 
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
+        private void _MarkNeedResolution() { throw new NotImplementedException(); }
 
 
-private void _ClearPaintData(){ throw new NotImplementedException(); }
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
 
-private void _UpdatePaintData(){ throw new NotImplementedException(); }
+        private void _ClearPaintData() { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Rendering.Layer.TransformLayer _PaintChildWithTransform(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        private void _UpdatePaintData() { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        private FlutterSDK.Rendering.Layer.TransformLayer _PaintChildWithTransform(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
-public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
-public new void ApplyPaintTransform(FlutterSDK.Rendering.Box.RenderBox child,Matrix4 transform){ throw new NotImplementedException(); }
-public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child,Matrix4 transform){ throw new NotImplementedException(); }
+        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void ApplyPaintTransform(FlutterSDK.Rendering.Box.RenderBox child, Matrix4 transform) { throw new NotImplementedException(); }
+        public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-public class RenderFractionalTranslation : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-#region constructors
-public RenderFractionalTranslation(FlutterBinding.UI.Offset translation = default(FlutterBinding.UI.Offset),bool transformHitTests = true,FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-: base(child)
-{
-this.TransformHitTests = transformHitTests;throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-internal virtual FlutterBinding.UI.Offset _Translation{get;set;}
-public virtual bool TransformHitTests{get;set;}
-public virtual FlutterBinding.UI.Offset Translation{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
 
-#region methods
+    public class RenderFractionalTranslation : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public RenderFractionalTranslation(FlutterBinding.UI.Offset translation = default(FlutterBinding.UI.Offset), bool transformHitTests = true, FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+        : base(child)
+        {
+            this.TransformHitTests = transformHitTests; throw new NotImplementedException();
+        }
+        #endregion
 
-public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual FlutterBinding.UI.Offset _Translation { get; set; }
+        public virtual bool TransformHitTests { get; set; }
+        public virtual FlutterBinding.UI.Offset Translation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
+        public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
 
-public new void ApplyPaintTransform(FlutterSDK.Rendering.Box.RenderBox child,Matrix4 transform){ throw new NotImplementedException(); }
-public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child,Matrix4 transform){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void ApplyPaintTransform(FlutterSDK.Rendering.Box.RenderBox child, Matrix4 transform) { throw new NotImplementedException(); }
+        public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-public class RenderPointerListener : FlutterSDK.Rendering.Proxybox.RenderProxyBoxWithHitTestBehavior
-{
-#region constructors
-public RenderPointerListener(FlutterSDK.Rendering.Proxybox.PointerDownEventListener onPointerDown = default(FlutterSDK.Rendering.Proxybox.PointerDownEventListener),FlutterSDK.Rendering.Proxybox.PointerMoveEventListener onPointerMove = default(FlutterSDK.Rendering.Proxybox.PointerMoveEventListener),FlutterSDK.Rendering.Proxybox.PointerUpEventListener onPointerUp = default(FlutterSDK.Rendering.Proxybox.PointerUpEventListener),FlutterSDK.Rendering.Proxybox.PointerCancelEventListener onPointerCancel = default(FlutterSDK.Rendering.Proxybox.PointerCancelEventListener),FlutterSDK.Rendering.Proxybox.PointerSignalEventListener onPointerSignal = default(FlutterSDK.Rendering.Proxybox.PointerSignalEventListener),FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior),FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-: base(behavior:behavior,child:child)
-{
-this.OnPointerDown = onPointerDown;
-this.OnPointerMove = onPointerMove;
-this.OnPointerUp = onPointerUp;
-this.OnPointerCancel = onPointerCancel;
-this.OnPointerSignal = onPointerSignal;throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-public virtual FlutterSDK.Rendering.Proxybox.PointerDownEventListener OnPointerDown{get;set;}
-public virtual FlutterSDK.Rendering.Proxybox.PointerMoveEventListener OnPointerMove{get;set;}
-public virtual FlutterSDK.Rendering.Proxybox.PointerUpEventListener OnPointerUp{get;set;}
-public virtual FlutterSDK.Rendering.Proxybox.PointerCancelEventListener OnPointerCancel{get;set;}
-public virtual FlutterSDK.Rendering.Proxybox.PointerSignalEventListener OnPointerSignal{get;set;}
-#endregion
 
-#region methods
+    public class RenderPointerListener : FlutterSDK.Rendering.Proxybox.RenderProxyBoxWithHitTestBehavior
+    {
+        #region constructors
+        public RenderPointerListener(FlutterSDK.Rendering.Proxybox.PointerDownEventListener onPointerDown = default(FlutterSDK.Rendering.Proxybox.PointerDownEventListener), FlutterSDK.Rendering.Proxybox.PointerMoveEventListener onPointerMove = default(FlutterSDK.Rendering.Proxybox.PointerMoveEventListener), FlutterSDK.Rendering.Proxybox.PointerUpEventListener onPointerUp = default(FlutterSDK.Rendering.Proxybox.PointerUpEventListener), FlutterSDK.Rendering.Proxybox.PointerCancelEventListener onPointerCancel = default(FlutterSDK.Rendering.Proxybox.PointerCancelEventListener), FlutterSDK.Rendering.Proxybox.PointerSignalEventListener onPointerSignal = default(FlutterSDK.Rendering.Proxybox.PointerSignalEventListener), FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+        : base(behavior: behavior, child: child)
+        {
+            this.OnPointerDown = onPointerDown;
+            this.OnPointerMove = onPointerMove;
+            this.OnPointerUp = onPointerUp;
+            this.OnPointerCancel = onPointerCancel;
+            this.OnPointerSignal = onPointerSignal; throw new NotImplementedException();
+        }
+        #endregion
 
-public new void PerformResize(){ throw new NotImplementedException(); }
+        #region fields
+        public virtual FlutterSDK.Rendering.Proxybox.PointerDownEventListener OnPointerDown { get; set; }
+        public virtual FlutterSDK.Rendering.Proxybox.PointerMoveEventListener OnPointerMove { get; set; }
+        public virtual FlutterSDK.Rendering.Proxybox.PointerUpEventListener OnPointerUp { get; set; }
+        public virtual FlutterSDK.Rendering.Proxybox.PointerCancelEventListener OnPointerCancel { get; set; }
+        public virtual FlutterSDK.Rendering.Proxybox.PointerSignalEventListener OnPointerSignal { get; set; }
+        #endregion
 
+        #region methods
 
-public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event,FlutterSDK.Gestures.Hittest.HitTestEntry entry){ throw new NotImplementedException(); }
+        public new void PerformResize() { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Hittest.HitTestEntry entry) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-public class RenderMouseRegion : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-#region constructors
-public RenderMouseRegion(FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener onEnter = default(FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener),FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener onHover = default(FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener),FlutterSDK.Rendering.Mousetracking.PointerExitEventListener onExit = default(FlutterSDK.Rendering.Mousetracking.PointerExitEventListener),bool opaque = true,FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-: base(child)
-{
-throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-internal virtual bool _Opaque{get;set;}
-internal virtual FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener _OnEnter{get;set;}
-internal virtual FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener _OnHover{get;set;}
-internal virtual FlutterSDK.Rendering.Mousetracking.PointerExitEventListener _OnExit{get;set;}
-internal virtual FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation _HoverAnnotation{get;set;}
-internal virtual bool _AnnotationIsActive{get;set;}
-public virtual bool Opaque{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener OnEnter{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener OnHover{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Rendering.Mousetracking.PointerExitEventListener OnExit{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation HoverAnnotation{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool NeedsCompositing{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+    public class RenderMouseRegion : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public RenderMouseRegion(FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener onEnter = default(FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener), FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener onHover = default(FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener), FlutterSDK.Rendering.Mousetracking.PointerExitEventListener onExit = default(FlutterSDK.Rendering.Mousetracking.PointerExitEventListener), bool opaque = true, FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+        : base(child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-private void _HandleEnter(FlutterSDK.Gestures.Events.PointerEnterEvent @event){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual bool _Opaque { get; set; }
+        internal virtual FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener _OnEnter { get; set; }
+        internal virtual FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener _OnHover { get; set; }
+        internal virtual FlutterSDK.Rendering.Mousetracking.PointerExitEventListener _OnExit { get; set; }
+        internal virtual FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation _HoverAnnotation { get; set; }
+        internal virtual bool _AnnotationIsActive { get; set; }
+        public virtual bool Opaque { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener OnEnter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener OnHover { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Mousetracking.PointerExitEventListener OnExit { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation HoverAnnotation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool NeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-private void _HandleHover(FlutterSDK.Gestures.Events.PointerHoverEvent @event){ throw new NotImplementedException(); }
+        private void _HandleEnter(FlutterSDK.Gestures.Events.PointerEnterEvent @event) { throw new NotImplementedException(); }
 
 
-private void _HandleExit(FlutterSDK.Gestures.Events.PointerExitEvent @event){ throw new NotImplementedException(); }
+        private void _HandleHover(FlutterSDK.Gestures.Events.PointerHoverEvent @event) { throw new NotImplementedException(); }
 
 
-private void _MarkPropertyUpdated(bool mustRepaint = default(bool)){ throw new NotImplementedException(); }
+        private void _HandleExit(FlutterSDK.Gestures.Events.PointerExitEvent @event) { throw new NotImplementedException(); }
 
 
-private void _SetAnnotationIsActive(bool value){ throw new NotImplementedException(); }
+        private void _MarkPropertyUpdated(bool mustRepaint = default(bool)) { throw new NotImplementedException(); }
 
 
-private void _HandleUpdatedMouseIsConnected(){ throw new NotImplementedException(); }
+        private void _SetAnnotationIsActive(bool value) { throw new NotImplementedException(); }
 
 
-public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner){ throw new NotImplementedException(); }
-public new void Attach(@Object owner){ throw new NotImplementedException(); }
+        private void _HandleUpdatedMouseIsConnected() { throw new NotImplementedException(); }
 
 
-public new void Detach(){ throw new NotImplementedException(); }
+        public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner) { throw new NotImplementedException(); }
+        public new void Attach(@Object owner) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new void Detach() { throw new NotImplementedException(); }
 
 
-public new void PerformResize(){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void PerformResize() { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-public class RenderRepaintBoundary : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-#region constructors
-public RenderRepaintBoundary(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-: base(child)
-{
-throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-internal virtual int _DebugSymmetricPaintCount{get;set;}
-internal virtual int _DebugAsymmetricPaintCount{get;set;}
-public virtual bool IsRepaintBoundary{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int DebugSymmetricPaintCount{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int DebugAsymmetricPaintCount{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+    public class RenderRepaintBoundary : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public RenderRepaintBoundary(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+        : base(child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-public virtual Future<SKImage> ToImage(double pixelRatio = 1.0){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual int _DebugSymmetricPaintCount { get; set; }
+        internal virtual int _DebugAsymmetricPaintCount { get; set; }
+        public virtual bool IsRepaintBoundary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int DebugSymmetricPaintCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int DebugAsymmetricPaintCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public virtual void DebugResetMetrics(){ throw new NotImplementedException(); }
+        public virtual Future<SKImage> ToImage(double pixelRatio = 1.0) { throw new NotImplementedException(); }
 
 
-public new void DebugRegisterRepaintBoundaryPaint(bool includedParent = true,bool includedChild = false){ throw new NotImplementedException(); }
+        public virtual void DebugResetMetrics() { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void DebugRegisterRepaintBoundaryPaint(bool includedParent = true, bool includedChild = false) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-public class RenderIgnorePointer : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-#region constructors
-public RenderIgnorePointer(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),bool ignoring = true,bool ignoringSemantics = default(bool))
-: base(child)
-{
-throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-internal virtual bool _Ignoring{get;set;}
-internal virtual bool _IgnoringSemantics{get;set;}
-public virtual bool Ignoring{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool IgnoringSemantics{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-internal virtual bool _EffectiveIgnoringSemantics{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+    public class RenderIgnorePointer : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public RenderIgnorePointer(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), bool ignoring = true, bool ignoringSemantics = default(bool))
+        : base(child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual bool _Ignoring { get; set; }
+        internal virtual bool _IgnoringSemantics { get; set; }
+        public virtual bool Ignoring { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IgnoringSemantics { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual bool _EffectiveIgnoringSemantics { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor){ throw new NotImplementedException(); }
+        public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-public class RenderOffstage : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-#region constructors
-public RenderOffstage(bool offstage = true,FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-: base(child)
-{
-throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-internal virtual bool _Offstage{get;set;}
-public virtual bool Offstage{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool SizedByParent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+    public class RenderOffstage : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public RenderOffstage(bool offstage = true, FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+        : base(child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-public new double ComputeMinIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual bool _Offstage { get; set; }
+        public virtual bool Offstage { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public new double ComputeMaxIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-public new double ComputeMinIntrinsicHeight(double width){ throw new NotImplementedException(); }
+        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-public new double ComputeMaxIntrinsicHeight(double width){ throw new NotImplementedException(); }
+        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-public new double ComputeDistanceToActualBaseline(TextBaseline baseline){ throw new NotImplementedException(); }
+        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-public new void PerformResize(){ throw new NotImplementedException(); }
+        public new double ComputeDistanceToActualBaseline(TextBaseline baseline) { throw new NotImplementedException(); }
 
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
+        public new void PerformResize() { throw new NotImplementedException(); }
 
 
-public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
 
-public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor) { throw new NotImplementedException(); }
 
 
-public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren(){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren() { throw new NotImplementedException(); }
 
-public class RenderAbsorbPointer : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-#region constructors
-public RenderAbsorbPointer(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),bool absorbing = true,bool ignoringSemantics = default(bool))
-: base(child)
-{
-throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-internal virtual bool _Absorbing{get;set;}
-internal virtual bool _IgnoringSemantics{get;set;}
-public virtual bool Absorbing{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool IgnoringSemantics{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-internal virtual bool _EffectiveIgnoringSemantics{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+    public class RenderAbsorbPointer : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public RenderAbsorbPointer(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), bool absorbing = true, bool ignoringSemantics = default(bool))
+        : base(child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual bool _Absorbing { get; set; }
+        internal virtual bool _IgnoringSemantics { get; set; }
+        public virtual bool Absorbing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IgnoringSemantics { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual bool _EffectiveIgnoringSemantics { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor){ throw new NotImplementedException(); }
+        public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-public class RenderMetaData : FlutterSDK.Rendering.Proxybox.RenderProxyBoxWithHitTestBehavior
-{
-#region constructors
-public RenderMetaData(object metaData = default(object),FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior),FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-: base(behavior:behavior,child:child)
-{
-this.MetaData = metaData;throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-public virtual object MetaData{get;set;}
-#endregion
 
-#region methods
+    public class RenderMetaData : FlutterSDK.Rendering.Proxybox.RenderProxyBoxWithHitTestBehavior
+    {
+        #region constructors
+        public RenderMetaData(object metaData = default(object), FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+        : base(behavior: behavior, child: child)
+        {
+            this.MetaData = metaData; throw new NotImplementedException();
+        }
+        #endregion
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        #region fields
+        public virtual object MetaData { get; set; }
+        #endregion
 
-#endregion
-}
+        #region methods
 
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-public class RenderSemanticsGestureHandler : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-#region constructors
-public RenderSemanticsGestureHandler(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback),FlutterSDK.Gestures.Longpress.GestureLongPressCallback onLongPress = default(FlutterSDK.Gestures.Longpress.GestureLongPressCallback),FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback onHorizontalDragUpdate = default(FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback),FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback onVerticalDragUpdate = default(FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback),double scrollFactor = 0.8)
-: base(child)
-{
-this.ScrollFactor = scrollFactor;throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-internal virtual HashSet<SemanticsAction> _ValidActions{get;set;}
-internal virtual FlutterSDK.Gestures.Tap.GestureTapCallback _OnTap{get;set;}
-internal virtual FlutterSDK.Gestures.Longpress.GestureLongPressCallback _OnLongPress{get;set;}
-internal virtual FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback _OnHorizontalDragUpdate{get;set;}
-internal virtual FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback _OnVerticalDragUpdate{get;set;}
-public virtual double ScrollFactor{get;set;}
-public virtual HashSet<SemanticsAction> ValidActions{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Gestures.Tap.GestureTapCallback OnTap{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Gestures.Longpress.GestureLongPressCallback OnLongPress{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback OnHorizontalDragUpdate{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback OnVerticalDragUpdate{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
 
-#region methods
+    public class RenderSemanticsGestureHandler : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public RenderSemanticsGestureHandler(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Longpress.GestureLongPressCallback onLongPress = default(FlutterSDK.Gestures.Longpress.GestureLongPressCallback), FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback onHorizontalDragUpdate = default(FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback), FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback onVerticalDragUpdate = default(FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback), double scrollFactor = 0.8)
+        : base(child)
+        {
+            this.ScrollFactor = scrollFactor; throw new NotImplementedException();
+        }
+        #endregion
 
-public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual HashSet<SemanticsAction> _ValidActions { get; set; }
+        internal virtual FlutterSDK.Gestures.Tap.GestureTapCallback _OnTap { get; set; }
+        internal virtual FlutterSDK.Gestures.Longpress.GestureLongPressCallback _OnLongPress { get; set; }
+        internal virtual FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback _OnHorizontalDragUpdate { get; set; }
+        internal virtual FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback _OnVerticalDragUpdate { get; set; }
+        public virtual double ScrollFactor { get; set; }
+        public virtual HashSet<SemanticsAction> ValidActions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Gestures.Tap.GestureTapCallback OnTap { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Gestures.Longpress.GestureLongPressCallback OnLongPress { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback OnHorizontalDragUpdate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback OnVerticalDragUpdate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-private bool _IsValidAction(SemanticsAction action){ throw new NotImplementedException(); }
+        public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config) { throw new NotImplementedException(); }
 
 
-private void _PerformSemanticScrollLeft(){ throw new NotImplementedException(); }
+        private bool _IsValidAction(SemanticsAction action) { throw new NotImplementedException(); }
 
 
-private void _PerformSemanticScrollRight(){ throw new NotImplementedException(); }
+        private void _PerformSemanticScrollLeft() { throw new NotImplementedException(); }
 
 
-private void _PerformSemanticScrollUp(){ throw new NotImplementedException(); }
+        private void _PerformSemanticScrollRight() { throw new NotImplementedException(); }
 
 
-private void _PerformSemanticScrollDown(){ throw new NotImplementedException(); }
+        private void _PerformSemanticScrollUp() { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        private void _PerformSemanticScrollDown() { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-public class RenderSemanticsAnnotations : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-#region constructors
-public RenderSemanticsAnnotations(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),bool container = false,bool explicitChildNodes = default(bool),bool excludeSemantics = false,bool enabled = default(bool),bool @checked = default(bool),bool toggled = default(bool),bool selected = default(bool),bool button = default(bool),bool link = default(bool),bool header = default(bool),bool textField = default(bool),bool readOnly = default(bool),bool focusable = default(bool),bool focused = default(bool),bool inMutuallyExclusiveGroup = default(bool),bool obscured = default(bool),bool multiline = default(bool),bool scopesRoute = default(bool),bool namesRoute = default(bool),bool hidden = default(bool),bool image = default(bool),bool liveRegion = default(bool),int maxValueLength = default(int),int currentValueLength = default(int),string label = default(string),string value = default(string),string increasedValue = default(string),string decreasedValue = default(string),string hint = default(string),FlutterSDK.Semantics.Semantics.SemanticsHintOverrides hintOverrides = default(FlutterSDK.Semantics.Semantics.SemanticsHintOverrides),TextDirection textDirection = default(TextDirection),FlutterSDK.Semantics.Semantics.SemanticsSortKey sortKey = default(FlutterSDK.Semantics.Semantics.SemanticsSortKey),VoidCallback onTap = default(VoidCallback),VoidCallback onDismiss = default(VoidCallback),VoidCallback onLongPress = default(VoidCallback),VoidCallback onScrollLeft = default(VoidCallback),VoidCallback onScrollRight = default(VoidCallback),VoidCallback onScrollUp = default(VoidCallback),VoidCallback onScrollDown = default(VoidCallback),VoidCallback onIncrease = default(VoidCallback),VoidCallback onDecrease = default(VoidCallback),VoidCallback onCopy = default(VoidCallback),VoidCallback onCut = default(VoidCallback),VoidCallback onPaste = default(VoidCallback),FlutterSDK.Semantics.Semantics.MoveCursorHandler onMoveCursorForwardByCharacter = default(FlutterSDK.Semantics.Semantics.MoveCursorHandler),FlutterSDK.Semantics.Semantics.MoveCursorHandler onMoveCursorBackwardByCharacter = default(FlutterSDK.Semantics.Semantics.MoveCursorHandler),FlutterSDK.Semantics.Semantics.MoveCursorHandler onMoveCursorForwardByWord = default(FlutterSDK.Semantics.Semantics.MoveCursorHandler),FlutterSDK.Semantics.Semantics.MoveCursorHandler onMoveCursorBackwardByWord = default(FlutterSDK.Semantics.Semantics.MoveCursorHandler),FlutterSDK.Semantics.Semantics.SetSelectionHandler onSetSelection = default(FlutterSDK.Semantics.Semantics.SetSelectionHandler),VoidCallback onDidGainAccessibilityFocus = default(VoidCallback),VoidCallback onDidLoseAccessibilityFocus = default(VoidCallback),Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction,object> customSemanticsActions = default(Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction,object>))
-: base(child)
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual bool _Container{get;set;}
-internal virtual bool _ExplicitChildNodes{get;set;}
-internal virtual bool _ExcludeSemantics{get;set;}
-internal virtual bool _Checked{get;set;}
-internal virtual bool _Enabled{get;set;}
-internal virtual bool _Selected{get;set;}
-internal virtual bool _Button{get;set;}
-internal virtual bool _Link{get;set;}
-internal virtual bool _Header{get;set;}
-internal virtual bool _TextField{get;set;}
-internal virtual bool _ReadOnly{get;set;}
-internal virtual bool _Focusable{get;set;}
-internal virtual bool _Focused{get;set;}
-internal virtual bool _InMutuallyExclusiveGroup{get;set;}
-internal virtual bool _Obscured{get;set;}
-internal virtual bool _Multiline{get;set;}
-internal virtual bool _ScopesRoute{get;set;}
-internal virtual bool _NamesRoute{get;set;}
-internal virtual bool _Hidden{get;set;}
-internal virtual bool _Image{get;set;}
-internal virtual bool _LiveRegion{get;set;}
-internal virtual int _MaxValueLength{get;set;}
-internal virtual int _CurrentValueLength{get;set;}
-internal virtual bool _Toggled{get;set;}
-internal virtual string _Label{get;set;}
-internal virtual string _Value{get;set;}
-internal virtual string _IncreasedValue{get;set;}
-internal virtual string _DecreasedValue{get;set;}
-internal virtual string _Hint{get;set;}
-internal virtual FlutterSDK.Semantics.Semantics.SemanticsHintOverrides _HintOverrides{get;set;}
-internal virtual TextDirection _TextDirection{get;set;}
-internal virtual FlutterSDK.Semantics.Semantics.SemanticsSortKey _SortKey{get;set;}
-internal virtual VoidCallback _OnTap{get;set;}
-internal virtual VoidCallback _OnDismiss{get;set;}
-internal virtual VoidCallback _OnLongPress{get;set;}
-internal virtual VoidCallback _OnScrollLeft{get;set;}
-internal virtual VoidCallback _OnScrollRight{get;set;}
-internal virtual VoidCallback _OnScrollUp{get;set;}
-internal virtual VoidCallback _OnScrollDown{get;set;}
-internal virtual VoidCallback _OnIncrease{get;set;}
-internal virtual VoidCallback _OnDecrease{get;set;}
-internal virtual VoidCallback _OnCopy{get;set;}
-internal virtual VoidCallback _OnCut{get;set;}
-internal virtual VoidCallback _OnPaste{get;set;}
-internal virtual FlutterSDK.Semantics.Semantics.MoveCursorHandler _OnMoveCursorForwardByCharacter{get;set;}
-internal virtual FlutterSDK.Semantics.Semantics.MoveCursorHandler _OnMoveCursorBackwardByCharacter{get;set;}
-internal virtual FlutterSDK.Semantics.Semantics.MoveCursorHandler _OnMoveCursorForwardByWord{get;set;}
-internal virtual FlutterSDK.Semantics.Semantics.MoveCursorHandler _OnMoveCursorBackwardByWord{get;set;}
-internal virtual FlutterSDK.Semantics.Semantics.SetSelectionHandler _OnSetSelection{get;set;}
-internal virtual VoidCallback _OnDidGainAccessibilityFocus{get;set;}
-internal virtual VoidCallback _OnDidLoseAccessibilityFocus{get;set;}
-internal virtual Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction,object> _CustomSemanticsActions{get;set;}
-public virtual bool Container{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool ExplicitChildNodes{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool ExcludeSemantics{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool @checked{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool Enabled{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool Selected{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool Button{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool Link{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool Header{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool TextField{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool ReadOnly{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool Focusable{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool Focused{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool InMutuallyExclusiveGroup{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool Obscured{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool Multiline{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool ScopesRoute{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool NamesRoute{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool Hidden{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool Image{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool LiveRegion{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual int MaxValueLength{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual int CurrentValueLength{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool Toggled{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual string Label{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual string Value{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual string IncreasedValue{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual string DecreasedValue{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual string Hint{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Semantics.Semantics.SemanticsHintOverrides HintOverrides{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual TextDirection TextDirection{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Semantics.Semantics.SemanticsSortKey SortKey{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual VoidCallback OnTap{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual VoidCallback OnDismiss{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual VoidCallback OnLongPress{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual VoidCallback OnScrollLeft{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual VoidCallback OnScrollRight{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual VoidCallback OnScrollUp{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual VoidCallback OnScrollDown{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual VoidCallback OnIncrease{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual VoidCallback OnDecrease{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual VoidCallback OnCopy{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual VoidCallback OnCut{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual VoidCallback OnPaste{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Semantics.Semantics.MoveCursorHandler OnMoveCursorForwardByCharacter{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Semantics.Semantics.MoveCursorHandler OnMoveCursorBackwardByCharacter{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Semantics.Semantics.MoveCursorHandler OnMoveCursorForwardByWord{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Semantics.Semantics.MoveCursorHandler OnMoveCursorBackwardByWord{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Semantics.Semantics.SetSelectionHandler OnSetSelection{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual VoidCallback OnDidGainAccessibilityFocus{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual VoidCallback OnDidLoseAccessibilityFocus{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction,object> CustomSemanticsActions{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor){ throw new NotImplementedException(); }
+    public class RenderSemanticsAnnotations : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public RenderSemanticsAnnotations(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), bool container = false, bool explicitChildNodes = default(bool), bool excludeSemantics = false, bool enabled = default(bool), bool @checked = default(bool), bool toggled = default(bool), bool selected = default(bool), bool button = default(bool), bool link = default(bool), bool header = default(bool), bool textField = default(bool), bool readOnly = default(bool), bool focusable = default(bool), bool focused = default(bool), bool inMutuallyExclusiveGroup = default(bool), bool obscured = default(bool), bool multiline = default(bool), bool scopesRoute = default(bool), bool namesRoute = default(bool), bool hidden = default(bool), bool image = default(bool), bool liveRegion = default(bool), int maxValueLength = default(int), int currentValueLength = default(int), string label = default(string), string value = default(string), string increasedValue = default(string), string decreasedValue = default(string), string hint = default(string), FlutterSDK.Semantics.Semantics.SemanticsHintOverrides hintOverrides = default(FlutterSDK.Semantics.Semantics.SemanticsHintOverrides), TextDirection textDirection = default(TextDirection), FlutterSDK.Semantics.Semantics.SemanticsSortKey sortKey = default(FlutterSDK.Semantics.Semantics.SemanticsSortKey), VoidCallback onTap = default(VoidCallback), VoidCallback onDismiss = default(VoidCallback), VoidCallback onLongPress = default(VoidCallback), VoidCallback onScrollLeft = default(VoidCallback), VoidCallback onScrollRight = default(VoidCallback), VoidCallback onScrollUp = default(VoidCallback), VoidCallback onScrollDown = default(VoidCallback), VoidCallback onIncrease = default(VoidCallback), VoidCallback onDecrease = default(VoidCallback), VoidCallback onCopy = default(VoidCallback), VoidCallback onCut = default(VoidCallback), VoidCallback onPaste = default(VoidCallback), FlutterSDK.Semantics.Semantics.MoveCursorHandler onMoveCursorForwardByCharacter = default(FlutterSDK.Semantics.Semantics.MoveCursorHandler), FlutterSDK.Semantics.Semantics.MoveCursorHandler onMoveCursorBackwardByCharacter = default(FlutterSDK.Semantics.Semantics.MoveCursorHandler), FlutterSDK.Semantics.Semantics.MoveCursorHandler onMoveCursorForwardByWord = default(FlutterSDK.Semantics.Semantics.MoveCursorHandler), FlutterSDK.Semantics.Semantics.MoveCursorHandler onMoveCursorBackwardByWord = default(FlutterSDK.Semantics.Semantics.MoveCursorHandler), FlutterSDK.Semantics.Semantics.SetSelectionHandler onSetSelection = default(FlutterSDK.Semantics.Semantics.SetSelectionHandler), VoidCallback onDidGainAccessibilityFocus = default(VoidCallback), VoidCallback onDidLoseAccessibilityFocus = default(VoidCallback), Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction, object> customSemanticsActions = default(Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction, object>))
+        : base(child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual bool _Container { get; set; }
+        internal virtual bool _ExplicitChildNodes { get; set; }
+        internal virtual bool _ExcludeSemantics { get; set; }
+        internal virtual bool _Checked { get; set; }
+        internal virtual bool _Enabled { get; set; }
+        internal virtual bool _Selected { get; set; }
+        internal virtual bool _Button { get; set; }
+        internal virtual bool _Link { get; set; }
+        internal virtual bool _Header { get; set; }
+        internal virtual bool _TextField { get; set; }
+        internal virtual bool _ReadOnly { get; set; }
+        internal virtual bool _Focusable { get; set; }
+        internal virtual bool _Focused { get; set; }
+        internal virtual bool _InMutuallyExclusiveGroup { get; set; }
+        internal virtual bool _Obscured { get; set; }
+        internal virtual bool _Multiline { get; set; }
+        internal virtual bool _ScopesRoute { get; set; }
+        internal virtual bool _NamesRoute { get; set; }
+        internal virtual bool _Hidden { get; set; }
+        internal virtual bool _Image { get; set; }
+        internal virtual bool _LiveRegion { get; set; }
+        internal virtual int _MaxValueLength { get; set; }
+        internal virtual int _CurrentValueLength { get; set; }
+        internal virtual bool _Toggled { get; set; }
+        internal virtual string _Label { get; set; }
+        internal virtual string _Value { get; set; }
+        internal virtual string _IncreasedValue { get; set; }
+        internal virtual string _DecreasedValue { get; set; }
+        internal virtual string _Hint { get; set; }
+        internal virtual FlutterSDK.Semantics.Semantics.SemanticsHintOverrides _HintOverrides { get; set; }
+        internal virtual TextDirection _TextDirection { get; set; }
+        internal virtual FlutterSDK.Semantics.Semantics.SemanticsSortKey _SortKey { get; set; }
+        internal virtual VoidCallback _OnTap { get; set; }
+        internal virtual VoidCallback _OnDismiss { get; set; }
+        internal virtual VoidCallback _OnLongPress { get; set; }
+        internal virtual VoidCallback _OnScrollLeft { get; set; }
+        internal virtual VoidCallback _OnScrollRight { get; set; }
+        internal virtual VoidCallback _OnScrollUp { get; set; }
+        internal virtual VoidCallback _OnScrollDown { get; set; }
+        internal virtual VoidCallback _OnIncrease { get; set; }
+        internal virtual VoidCallback _OnDecrease { get; set; }
+        internal virtual VoidCallback _OnCopy { get; set; }
+        internal virtual VoidCallback _OnCut { get; set; }
+        internal virtual VoidCallback _OnPaste { get; set; }
+        internal virtual FlutterSDK.Semantics.Semantics.MoveCursorHandler _OnMoveCursorForwardByCharacter { get; set; }
+        internal virtual FlutterSDK.Semantics.Semantics.MoveCursorHandler _OnMoveCursorBackwardByCharacter { get; set; }
+        internal virtual FlutterSDK.Semantics.Semantics.MoveCursorHandler _OnMoveCursorForwardByWord { get; set; }
+        internal virtual FlutterSDK.Semantics.Semantics.MoveCursorHandler _OnMoveCursorBackwardByWord { get; set; }
+        internal virtual FlutterSDK.Semantics.Semantics.SetSelectionHandler _OnSetSelection { get; set; }
+        internal virtual VoidCallback _OnDidGainAccessibilityFocus { get; set; }
+        internal virtual VoidCallback _OnDidLoseAccessibilityFocus { get; set; }
+        internal virtual Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction, object> _CustomSemanticsActions { get; set; }
+        public virtual bool Container { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool ExplicitChildNodes { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool ExcludeSemantics { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool @checked { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool Enabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool Selected { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool Button { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool Link { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool Header { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool TextField { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool ReadOnly { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool Focusable { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool Focused { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool InMutuallyExclusiveGroup { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool Obscured { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool Multiline { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool ScopesRoute { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool NamesRoute { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool Hidden { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool Image { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool LiveRegion { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int MaxValueLength { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int CurrentValueLength { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool Toggled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string Label { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string IncreasedValue { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string DecreasedValue { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string Hint { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Semantics.Semantics.SemanticsHintOverrides HintOverrides { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Semantics.Semantics.SemanticsSortKey SortKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual VoidCallback OnTap { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual VoidCallback OnDismiss { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual VoidCallback OnLongPress { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual VoidCallback OnScrollLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual VoidCallback OnScrollRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual VoidCallback OnScrollUp { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual VoidCallback OnScrollDown { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual VoidCallback OnIncrease { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual VoidCallback OnDecrease { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual VoidCallback OnCopy { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual VoidCallback OnCut { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual VoidCallback OnPaste { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Semantics.Semantics.MoveCursorHandler OnMoveCursorForwardByCharacter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Semantics.Semantics.MoveCursorHandler OnMoveCursorBackwardByCharacter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Semantics.Semantics.MoveCursorHandler OnMoveCursorForwardByWord { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Semantics.Semantics.MoveCursorHandler OnMoveCursorBackwardByWord { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Semantics.Semantics.SetSelectionHandler OnSetSelection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual VoidCallback OnDidGainAccessibilityFocus { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual VoidCallback OnDidLoseAccessibilityFocus { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction, object> CustomSemanticsActions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config){ throw new NotImplementedException(); }
+        #region methods
 
+        public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor) { throw new NotImplementedException(); }
 
-private void _PerformTap(){ throw new NotImplementedException(); }
 
+        public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config) { throw new NotImplementedException(); }
 
-private void _PerformLongPress(){ throw new NotImplementedException(); }
 
+        private void _PerformTap() { throw new NotImplementedException(); }
 
-private void _PerformDismiss(){ throw new NotImplementedException(); }
 
+        private void _PerformLongPress() { throw new NotImplementedException(); }
 
-private void _PerformScrollLeft(){ throw new NotImplementedException(); }
 
+        private void _PerformDismiss() { throw new NotImplementedException(); }
 
-private void _PerformScrollRight(){ throw new NotImplementedException(); }
 
+        private void _PerformScrollLeft() { throw new NotImplementedException(); }
 
-private void _PerformScrollUp(){ throw new NotImplementedException(); }
 
+        private void _PerformScrollRight() { throw new NotImplementedException(); }
 
-private void _PerformScrollDown(){ throw new NotImplementedException(); }
 
+        private void _PerformScrollUp() { throw new NotImplementedException(); }
 
-private void _PerformIncrease(){ throw new NotImplementedException(); }
 
+        private void _PerformScrollDown() { throw new NotImplementedException(); }
 
-private void _PerformDecrease(){ throw new NotImplementedException(); }
 
+        private void _PerformIncrease() { throw new NotImplementedException(); }
 
-private void _PerformCopy(){ throw new NotImplementedException(); }
 
+        private void _PerformDecrease() { throw new NotImplementedException(); }
 
-private void _PerformCut(){ throw new NotImplementedException(); }
 
+        private void _PerformCopy() { throw new NotImplementedException(); }
 
-private void _PerformPaste(){ throw new NotImplementedException(); }
 
+        private void _PerformCut() { throw new NotImplementedException(); }
 
-private void _PerformMoveCursorForwardByCharacter(bool extendSelection){ throw new NotImplementedException(); }
 
+        private void _PerformPaste() { throw new NotImplementedException(); }
 
-private void _PerformMoveCursorBackwardByCharacter(bool extendSelection){ throw new NotImplementedException(); }
 
+        private void _PerformMoveCursorForwardByCharacter(bool extendSelection) { throw new NotImplementedException(); }
 
-private void _PerformMoveCursorForwardByWord(bool extendSelection){ throw new NotImplementedException(); }
 
+        private void _PerformMoveCursorBackwardByCharacter(bool extendSelection) { throw new NotImplementedException(); }
 
-private void _PerformMoveCursorBackwardByWord(bool extendSelection){ throw new NotImplementedException(); }
 
+        private void _PerformMoveCursorForwardByWord(bool extendSelection) { throw new NotImplementedException(); }
 
-private void _PerformSetSelection(FlutterSDK.Services.Textediting.TextSelection selection){ throw new NotImplementedException(); }
 
+        private void _PerformMoveCursorBackwardByWord(bool extendSelection) { throw new NotImplementedException(); }
 
-private void _PerformDidGainAccessibilityFocus(){ throw new NotImplementedException(); }
 
+        private void _PerformSetSelection(FlutterSDK.Services.Textediting.TextSelection selection) { throw new NotImplementedException(); }
 
-private void _PerformDidLoseAccessibilityFocus(){ throw new NotImplementedException(); }
 
-#endregion
-}
+        private void _PerformDidGainAccessibilityFocus() { throw new NotImplementedException(); }
 
 
-public class RenderBlockSemantics : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-#region constructors
-public RenderBlockSemantics(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),bool blocking = true)
-: base(child)
-{
-throw new NotImplementedException(); }
-#endregion
+        private void _PerformDidLoseAccessibilityFocus() { throw new NotImplementedException(); }
 
-#region fields
-internal virtual bool _Blocking{get;set;}
-public virtual bool Blocking{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config){ throw new NotImplementedException(); }
+    public class RenderBlockSemantics : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public RenderBlockSemantics(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), bool blocking = true)
+        : base(child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual bool _Blocking { get; set; }
+        public virtual bool Blocking { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config) { throw new NotImplementedException(); }
 
 
-public class RenderMergeSemantics : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-#region constructors
-public RenderMergeSemantics(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-: base(child)
-{
-throw new NotImplementedException(); }
-#endregion
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#region fields
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config){ throw new NotImplementedException(); }
+    public class RenderMergeSemantics : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public RenderMergeSemantics(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+        : base(child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        #endregion
 
+        #region methods
 
-public class RenderExcludeSemantics : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-#region constructors
-public RenderExcludeSemantics(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),bool excluding = true)
-: base(child)
-{
-throw new NotImplementedException(); }
-#endregion
+        public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual bool _Excluding{get;set;}
-public virtual bool Excluding{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor){ throw new NotImplementedException(); }
+    public class RenderExcludeSemantics : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public RenderExcludeSemantics(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), bool excluding = true)
+        : base(child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual bool _Excluding { get; set; }
+        public virtual bool Excluding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor) { throw new NotImplementedException(); }
 
 
-public class RenderIndexedSemantics : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-#region constructors
-public RenderIndexedSemantics(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),int index = default(int))
-: base(child)
-{
-throw new NotImplementedException(); }
-#endregion
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual int _Index{get;set;}
-public virtual int Index{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config){ throw new NotImplementedException(); }
+    public class RenderIndexedSemantics : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public RenderIndexedSemantics(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), int index = default(int))
+        : base(child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual int _Index { get; set; }
+        public virtual int Index { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config) { throw new NotImplementedException(); }
 
 
-public class RenderLeaderLayer : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-#region constructors
-public RenderLeaderLayer(FlutterSDK.Rendering.Layer.LayerLink link = default(FlutterSDK.Rendering.Layer.LayerLink),FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-: base(child)
-{
-throw new NotImplementedException(); }
-#endregion
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual FlutterSDK.Rendering.Layer.LayerLink _Link{get;set;}
-public virtual FlutterSDK.Rendering.Layer.LayerLink Link{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool AlwaysNeedsCompositing{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+    public class RenderLeaderLayer : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public RenderLeaderLayer(FlutterSDK.Rendering.Layer.LayerLink link = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+        : base(child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual FlutterSDK.Rendering.Layer.LayerLink _Link { get; set; }
+        public virtual FlutterSDK.Rendering.Layer.LayerLink Link { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
-public class RenderFollowerLayer : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-#region constructors
-public RenderFollowerLayer(FlutterSDK.Rendering.Layer.LayerLink link = default(FlutterSDK.Rendering.Layer.LayerLink),bool showWhenUnlinked = true,FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset),FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-: base(child)
-{
-throw new NotImplementedException(); }
-#endregion
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual FlutterSDK.Rendering.Layer.LayerLink _Link{get;set;}
-internal virtual bool _ShowWhenUnlinked{get;set;}
-internal virtual FlutterBinding.UI.Offset _Offset{get;set;}
-public virtual FlutterSDK.Rendering.Layer.LayerLink Link{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool ShowWhenUnlinked{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterBinding.UI.Offset Offset{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool AlwaysNeedsCompositing{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Rendering.Layer.FollowerLayer Layer{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public new void Detach(){ throw new NotImplementedException(); }
+    public class RenderFollowerLayer : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public RenderFollowerLayer(FlutterSDK.Rendering.Layer.LayerLink link = default(FlutterSDK.Rendering.Layer.LayerLink), bool showWhenUnlinked = true, FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+        : base(child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual FlutterSDK.Rendering.Layer.LayerLink _Link { get; set; }
+        internal virtual bool _ShowWhenUnlinked { get; set; }
+        internal virtual FlutterBinding.UI.Offset _Offset { get; set; }
+        public virtual FlutterSDK.Rendering.Layer.LayerLink Link { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool ShowWhenUnlinked { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Offset Offset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Layer.FollowerLayer Layer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual Matrix4 GetCurrentTransform(){ throw new NotImplementedException(); }
+        #region methods
 
+        public new void Detach() { throw new NotImplementedException(); }
 
-public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
 
+        public virtual Matrix4 GetCurrentTransform() { throw new NotImplementedException(); }
 
-public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
 
+        public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
 
+        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
-public new void ApplyPaintTransform(FlutterSDK.Rendering.Box.RenderBox child,Matrix4 transform){ throw new NotImplementedException(); }
-public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child,Matrix4 transform){ throw new NotImplementedException(); }
 
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new void ApplyPaintTransform(FlutterSDK.Rendering.Box.RenderBox child, Matrix4 transform) { throw new NotImplementedException(); }
+        public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform) { throw new NotImplementedException(); }
 
 
-public class RenderAnnotatedRegion<T> : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-#region constructors
-public RenderAnnotatedRegion(T value = default(T),bool sized = default(bool),FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-: base(child)
-{
-throw new NotImplementedException(); }
-#endregion
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class RenderAnnotatedRegion<T> : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public RenderAnnotatedRegion(T value = default(T), bool sized = default(bool), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+        : base(child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-internal virtual T _Value{get;set;}
-internal virtual bool _Sized{get;set;}
-public new bool AlwaysNeedsCompositing{get;set;}
-public virtual T Value{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool Sized{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
+        #region fields
+        internal virtual T _Value { get; set; }
+        internal virtual bool _Sized { get; set; }
+        public new bool AlwaysNeedsCompositing { get; set; }
+        public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool Sized { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#region methods
+        #region methods
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public enum HitTestBehavior{
+    public enum HitTestBehavior
+    {
 
-DeferToChild,
-Opaque,
-Translucent,
-}
+        DeferToChild,
+        Opaque,
+        Translucent,
+    }
 
 
-public enum DecorationPosition{
+    public enum DecorationPosition
+    {
 
-Background,
-Foreground,
-}
+        Background,
+        Foreground,
+    }
 
 }

@@ -421,53 +421,57 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Painting.Placeholderspan{
-internal static class PlaceholderspanDefaultClass{
-}
-
-public interface IPlaceholderSpan{
-void ComputeToPlainText(StringBuffer buffer,bool includeSemanticsLabels = true,bool includePlaceholders = true);
-void ComputeSemanticsInformation(List<FlutterSDK.Painting.Inlinespan.InlineSpanSemanticsInformation> collector);
-bool VisitTextSpan(Func<bool,TextSpan> visitor);
-void DescribeSemantics(FlutterSDK.Painting.Inlinespan.Accumulator offset,List<int> semanticsOffsets,List<object> semanticsElements);
-void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
-PlaceholderAlignment Alignment{get;}
-TextBaseline Baseline{get;}
-}
-
-
-public class PlaceholderSpan : FlutterSDK.Painting.Inlinespan.InlineSpan
+namespace FlutterSDK.Painting.Placeholderspan
 {
-#region constructors
-public PlaceholderSpan(PlaceholderAlignment alignment = default(PlaceholderAlignment),TextBaseline baseline = default(TextBaseline),FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle))
-: base(style:style)
-{
-this.Alignment = alignment;
-this.Baseline = baseline;throw new NotImplementedException(); }
-#endregion
+    internal static class PlaceholderspanDefaultClass
+    {
+    }
 
-#region fields
-public virtual PlaceholderAlignment Alignment{get;set;}
-public virtual TextBaseline Baseline{get;set;}
-#endregion
-
-#region methods
-
-public new void ComputeToPlainText(StringBuffer buffer,bool includeSemanticsLabels = true,bool includePlaceholders = true){ throw new NotImplementedException(); }
+    public interface IPlaceholderSpan
+    {
+        void ComputeToPlainText(StringBuffer buffer, bool includeSemanticsLabels = true, bool includePlaceholders = true);
+        void ComputeSemanticsInformation(List<FlutterSDK.Painting.Inlinespan.InlineSpanSemanticsInformation> collector);
+        bool VisitTextSpan(Func<bool, TextSpan> visitor);
+        void DescribeSemantics(FlutterSDK.Painting.Inlinespan.Accumulator offset, List<int> semanticsOffsets, List<object> semanticsElements);
+        void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
+        PlaceholderAlignment Alignment { get; }
+        TextBaseline Baseline { get; }
+    }
 
 
-public new void ComputeSemanticsInformation(List<FlutterSDK.Painting.Inlinespan.InlineSpanSemanticsInformation> collector){ throw new NotImplementedException(); }
+    public class PlaceholderSpan : FlutterSDK.Painting.Inlinespan.InlineSpan
+    {
+        #region constructors
+        public PlaceholderSpan(PlaceholderAlignment alignment = default(PlaceholderAlignment), TextBaseline baseline = default(TextBaseline), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle))
+        : base(style: style)
+        {
+            this.Alignment = alignment;
+            this.Baseline = baseline; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual PlaceholderAlignment Alignment { get; set; }
+        public virtual TextBaseline Baseline { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void ComputeToPlainText(StringBuffer buffer, bool includeSemanticsLabels = true, bool includePlaceholders = true) { throw new NotImplementedException(); }
 
 
-public new bool VisitTextSpan(Func<bool,TextSpan> visitor){ throw new NotImplementedException(); }
+        public new void ComputeSemanticsInformation(List<FlutterSDK.Painting.Inlinespan.InlineSpanSemanticsInformation> collector) { throw new NotImplementedException(); }
 
 
-public new void DescribeSemantics(FlutterSDK.Painting.Inlinespan.Accumulator offset,List<int> semanticsOffsets,List<object> semanticsElements){ throw new NotImplementedException(); }
+        public new bool VisitTextSpan(Func<bool, TextSpan> visitor) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void DescribeSemantics(FlutterSDK.Painting.Inlinespan.Accumulator offset, List<int> semanticsOffsets, List<object> semanticsElements) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

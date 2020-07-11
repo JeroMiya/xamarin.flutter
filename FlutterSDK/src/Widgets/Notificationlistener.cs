@@ -423,83 +423,88 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Notificationlistener{
-public delegate bool NotificationListenerCallback<T>(T notification);
-internal static class NotificationlistenerDefaultClass{
-}
-
-public interface INotification{
-bool VisitAncestor(FlutterSDK.Widgets.Framework.Element element);
-void Dispatch(FlutterSDK.Widgets.Framework.BuildContext target);
-string ToString();
-void DebugFillDescription(List<string> description);
-}
-
-
-public class Notification
+namespace FlutterSDK.Widgets.Notificationlistener
 {
-#region constructors
-public Notification()
-{
-throw new NotImplementedException(); }
-#endregion
+    public delegate bool NotificationListenerCallback<T>(T notification);
+    internal static class NotificationlistenerDefaultClass
+    {
+    }
 
-#region fields
-#endregion
-
-#region methods
-
-public virtual bool VisitAncestor(FlutterSDK.Widgets.Framework.Element element){ throw new NotImplementedException(); }
-
-
-public virtual void Dispatch(FlutterSDK.Widgets.Framework.BuildContext target){ throw new NotImplementedException(); }
+    public interface INotification
+    {
+        bool VisitAncestor(FlutterSDK.Widgets.Framework.Element element);
+        void Dispatch(FlutterSDK.Widgets.Framework.BuildContext target);
+        string ToString();
+        void DebugFillDescription(List<string> description);
+    }
 
 
+    public class Notification
+    {
+        #region constructors
+        public Notification()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-public virtual void DebugFillDescription(List<string> description){ throw new NotImplementedException(); }
+        #region fields
+        #endregion
 
-#endregion
-}
+        #region methods
 
-
-public class NotificationListener<T> : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public NotificationListener(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Notificationlistener.NotificationListenerCallback<T> onNotification = default(FlutterSDK.Widgets.Notificationlistener.NotificationListenerCallback<T>))
-: base(key:key)
-{
-this.Child = child;
-this.OnNotification = onNotification;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-public virtual FlutterSDK.Widgets.Notificationlistener.NotificationListenerCallback<T> OnNotification{get;set;}
-#endregion
-
-#region methods
-
-private bool _Dispatch(FlutterSDK.Widgets.Notificationlistener.Notification notification,FlutterSDK.Widgets.Framework.Element element){ throw new NotImplementedException(); }
+        public virtual bool VisitAncestor(FlutterSDK.Widgets.Framework.Element element) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual void Dispatch(FlutterSDK.Widgets.Framework.BuildContext target) { throw new NotImplementedException(); }
 
 
-public class LayoutChangedNotification : FlutterSDK.Widgets.Notificationlistener.Notification
-{
-#region constructors
-public LayoutChangedNotification()
-{ }
-#endregion
 
-#region fields
-#endregion
+        public virtual void DebugFillDescription(List<string> description) { throw new NotImplementedException(); }
 
-#region methods
-#endregion
-}
+        #endregion
+    }
+
+
+    public class NotificationListener<T> : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public NotificationListener(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Notificationlistener.NotificationListenerCallback<T> onNotification = default(FlutterSDK.Widgets.Notificationlistener.NotificationListenerCallback<T>))
+        : base(key: key)
+        {
+            this.Child = child;
+            this.OnNotification = onNotification; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual FlutterSDK.Widgets.Notificationlistener.NotificationListenerCallback<T> OnNotification { get; set; }
+        #endregion
+
+        #region methods
+
+        private bool _Dispatch(FlutterSDK.Widgets.Notificationlistener.Notification notification, FlutterSDK.Widgets.Framework.Element element) { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class LayoutChangedNotification : FlutterSDK.Widgets.Notificationlistener.Notification
+    {
+        #region constructors
+        public LayoutChangedNotification()
+        { }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+        #endregion
+    }
 
 }

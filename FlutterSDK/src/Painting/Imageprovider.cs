@@ -421,382 +421,399 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Painting.Imageprovider{
-public delegate void _KeyAndErrorHandlerCallback<T>(T key,FlutterSDK.Painting.Imagestream.ImageErrorListener handleError);
-public delegate Future<object> _AsyncKeyErrorHandler<T>(T key,object exception,StackTrace stack);
-public delegate Future<SKCodec> DecoderCallback(Uint8List bytes,int cacheWidth = default(int),int cacheHeight = default(int));
-internal static class ImageproviderDefaultClass{
-}
-
-public interface IImageProvider<T>{
-FlutterSDK.Painting.Imagestream.ImageStream Resolve(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration);
-FlutterSDK.Painting.Imagestream.ImageStream CreateStream(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration);
-Future<FlutterSDK.Painting.Imagecache.ImageCacheStatus> ObtainCacheStatus(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration),FlutterSDK.Painting.Imagestream.ImageErrorListener handleError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener));
-void ResolveStreamForKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration,FlutterSDK.Painting.Imagestream.ImageStream stream,T key,FlutterSDK.Painting.Imagestream.ImageErrorListener handleError);
-Future<bool> Evict(FlutterSDK.Painting.Imagecache.ImageCache cache = default(FlutterSDK.Painting.Imagecache.ImageCache),FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration));
-Future<T> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration);
-FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(T key,FlutterSDK.Painting.Imageprovider.DecoderCallback decode);
-string ToString();
-}
-
-
-public interface IAssetBundleImageProvider{
-FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider.AssetBundleImageKey key,FlutterSDK.Painting.Imageprovider.DecoderCallback decode);
-}
-
-
-public interface INetworkImage{
-FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider.NetworkImage key,FlutterSDK.Painting.Imageprovider.DecoderCallback decode);
-string Url{get;}
-double Scale{get;}
-Dictionary<string,string> Headers{get;}
-}
-
-
-public class ImageConfiguration
+namespace FlutterSDK.Painting.Imageprovider
 {
-#region constructors
-public ImageConfiguration(FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle),double devicePixelRatio = default(double),Locale locale = default(Locale),TextDirection textDirection = default(TextDirection),Size size = default(Size),FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform))
-{
-this.Bundle = bundle;
-this.DevicePixelRatio = devicePixelRatio;
-this.Locale = locale;
-this.TextDirection = textDirection;
-this.Size = size;
-this.Platform = platform;throw new NotImplementedException(); }
-#endregion
+    public delegate void _KeyAndErrorHandlerCallback<T>(T key, FlutterSDK.Painting.Imagestream.ImageErrorListener handleError);
+    public delegate Future<object> _AsyncKeyErrorHandler<T>(T key, object exception, StackTrace stack);
+    public delegate Future<SKCodec> DecoderCallback(Uint8List bytes, int cacheWidth = default(int), int cacheHeight = default(int));
+    internal static class ImageproviderDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Services.Assetbundle.AssetBundle Bundle{get;set;}
-public virtual double DevicePixelRatio{get;set;}
-public virtual Locale Locale{get;set;}
-public virtual TextDirection TextDirection{get;set;}
-public virtual Size Size{get;set;}
-public virtual FlutterSDK.Foundation.Platform.TargetPlatform Platform{get;set;}
-public virtual FlutterSDK.Painting.Imageprovider.ImageConfiguration Empty{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public interface IImageProvider<T>
+    {
+        FlutterSDK.Painting.Imagestream.ImageStream Resolve(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration);
+        FlutterSDK.Painting.Imagestream.ImageStream CreateStream(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration);
+        Future<FlutterSDK.Painting.Imagecache.ImageCacheStatus> ObtainCacheStatus(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration), FlutterSDK.Painting.Imagestream.ImageErrorListener handleError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener));
+        void ResolveStreamForKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration, FlutterSDK.Painting.Imagestream.ImageStream stream, T key, FlutterSDK.Painting.Imagestream.ImageErrorListener handleError);
+        Future<bool> Evict(FlutterSDK.Painting.Imagecache.ImageCache cache = default(FlutterSDK.Painting.Imagecache.ImageCache), FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration));
+        Future<T> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration);
+        FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(T key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode);
+        string ToString();
+    }
 
-#region methods
 
-public virtual FlutterSDK.Painting.Imageprovider.ImageConfiguration CopyWith(FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle),double devicePixelRatio = default(double),Locale locale = default(Locale),TextDirection textDirection = default(TextDirection),Size size = default(Size),FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform)){ throw new NotImplementedException(); }
+    public interface IAssetBundleImageProvider
+    {
+        FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider.AssetBundleImageKey key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode);
+    }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+    public interface INetworkImage
+    {
+        FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider.NetworkImage key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode);
+        string Url { get; }
+        double Scale { get; }
+        Dictionary<string, string> Headers { get; }
+    }
 
 
-#endregion
-}
+    public class ImageConfiguration
+    {
+        #region constructors
+        public ImageConfiguration(FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle), double devicePixelRatio = default(double), Locale locale = default(Locale), TextDirection textDirection = default(TextDirection), Size size = default(Size), FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform))
+        {
+            this.Bundle = bundle;
+            this.DevicePixelRatio = devicePixelRatio;
+            this.Locale = locale;
+            this.TextDirection = textDirection;
+            this.Size = size;
+            this.Platform = platform; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual FlutterSDK.Services.Assetbundle.AssetBundle Bundle { get; set; }
+        public virtual double DevicePixelRatio { get; set; }
+        public virtual Locale Locale { get; set; }
+        public virtual TextDirection TextDirection { get; set; }
+        public virtual Size Size { get; set; }
+        public virtual FlutterSDK.Foundation.Platform.TargetPlatform Platform { get; set; }
+        public virtual FlutterSDK.Painting.Imageprovider.ImageConfiguration Empty { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public class ImageProvider<T>
-{
-#region constructors
-public ImageProvider()
-{
-throw new NotImplementedException(); }
-#endregion
+        #region methods
 
-#region fields
-#endregion
+        public virtual FlutterSDK.Painting.Imageprovider.ImageConfiguration CopyWith(FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle), double devicePixelRatio = default(double), Locale locale = default(Locale), TextDirection textDirection = default(TextDirection), Size size = default(Size), FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform)) { throw new NotImplementedException(); }
 
-#region methods
 
-public virtual FlutterSDK.Painting.Imagestream.ImageStream Resolve(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration){ throw new NotImplementedException(); }
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Painting.Imagestream.ImageStream CreateStream(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public virtual Future<FlutterSDK.Painting.Imagecache.ImageCacheStatus> ObtainCacheStatus(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration),FlutterSDK.Painting.Imagestream.ImageErrorListener handleError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener)){ throw new NotImplementedException(); }
+    public class ImageProvider<T>
+    {
+        #region constructors
+        public ImageProvider()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        #endregion
 
-private void _CreateErrorHandlerAndKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration,FlutterSDK.Painting.Imageprovider._KeyAndErrorHandlerCallback<T> successCallback,FlutterSDK.Painting.Imageprovider._AsyncKeyErrorHandler<T> errorCallback){ throw new NotImplementedException(); }
+        #region methods
 
+        public virtual FlutterSDK.Painting.Imagestream.ImageStream Resolve(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) { throw new NotImplementedException(); }
 
-public virtual void ResolveStreamForKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration,FlutterSDK.Painting.Imagestream.ImageStream stream,T key,FlutterSDK.Painting.Imagestream.ImageErrorListener handleError){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Imagestream.ImageStream CreateStream(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) { throw new NotImplementedException(); }
 
-public virtual Future<bool> Evict(FlutterSDK.Painting.Imagecache.ImageCache cache = default(FlutterSDK.Painting.Imagecache.ImageCache),FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration)){ throw new NotImplementedException(); }
 
+        public virtual Future<FlutterSDK.Painting.Imagecache.ImageCacheStatus> ObtainCacheStatus(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration), FlutterSDK.Painting.Imagestream.ImageErrorListener handleError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener)) { throw new NotImplementedException(); }
 
-public virtual Future<T> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration){ throw new NotImplementedException(); }
 
+        private void _CreateErrorHandlerAndKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration, FlutterSDK.Painting.Imageprovider._KeyAndErrorHandlerCallback<T> successCallback, FlutterSDK.Painting.Imageprovider._AsyncKeyErrorHandler<T> errorCallback) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(T key,FlutterSDK.Painting.Imageprovider.DecoderCallback decode){ throw new NotImplementedException(); }
 
+        public virtual void ResolveStreamForKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration, FlutterSDK.Painting.Imagestream.ImageStream stream, T key, FlutterSDK.Painting.Imagestream.ImageErrorListener handleError) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public virtual Future<bool> Evict(FlutterSDK.Painting.Imagecache.ImageCache cache = default(FlutterSDK.Painting.Imagecache.ImageCache), FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration)) { throw new NotImplementedException(); }
 
-public class AssetBundleImageKey
-{
-#region constructors
-public AssetBundleImageKey(FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle),string name = default(string),double scale = default(double))
-: base()
-{
-this.Bundle = bundle;
-this.Name = name;
-this.Scale = scale;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual FlutterSDK.Services.Assetbundle.AssetBundle Bundle{get;set;}
-public virtual string Name{get;set;}
-public virtual double Scale{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        public virtual Future<T> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) { throw new NotImplementedException(); }
 
-#region methods
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(T key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class AssetBundleImageProvider : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider.AssetBundleImageKey>
-{
-#region constructors
-public AssetBundleImageProvider()
-{
-throw new NotImplementedException(); }
-#endregion
+    public class AssetBundleImageKey
+    {
+        #region constructors
+        public AssetBundleImageKey(FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle), string name = default(string), double scale = default(double))
+        : base()
+        {
+            this.Bundle = bundle;
+            this.Name = name;
+            this.Scale = scale; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-#endregion
+        #region fields
+        public virtual FlutterSDK.Services.Assetbundle.AssetBundle Bundle { get; set; }
+        public virtual string Name { get; set; }
+        public virtual double Scale { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#region methods
+        #region methods
 
-public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider.AssetBundleImageKey key,FlutterSDK.Painting.Imageprovider.DecoderCallback decode){ throw new NotImplementedException(); }
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
-private Future<SKCodec> _LoadAsync(FlutterSDK.Painting.Imageprovider.AssetBundleImageKey key,FlutterSDK.Painting.Imageprovider.DecoderCallback decode){ throw new NotImplementedException(); }
+        #endregion
+    }
 
-#endregion
-}
 
+    public class AssetBundleImageProvider : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider.AssetBundleImageKey>
+    {
+        #region constructors
+        public AssetBundleImageProvider()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-public class _SizeAwareCacheKey
-{
-#region constructors
-public _SizeAwareCacheKey(@Object providerCacheKey,int width,int height)
-{
-this.ProviderCacheKey = providerCacheKey;
-this.Width = width;
-this.Height = height;throw new NotImplementedException(); }
-#endregion
+        #region fields
+        #endregion
 
-#region fields
-public virtual @Object ProviderCacheKey{get;set;}
-public virtual int Width{get;set;}
-public virtual int Height{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #region methods
 
-#region methods
+        public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider.AssetBundleImageKey key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode) { throw new NotImplementedException(); }
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
 
-#endregion
-}
+        private Future<SKCodec> _LoadAsync(FlutterSDK.Painting.Imageprovider.AssetBundleImageKey key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class ResizeImage : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider._SizeAwareCacheKey>
-{
-#region constructors
-public ResizeImage(FlutterSDK.Painting.Imageprovider.ImageProvider<object> imageProvider,int width = default(int),int height = default(int))
-: base()
-{
-this.ImageProvider = imageProvider;
-this.Width = width;
-this.Height = height;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> ImageProvider{get;set;}
-public virtual int Width{get;set;}
-public virtual int Height{get;set;}
-#endregion
+    public class _SizeAwareCacheKey
+    {
+        #region constructors
+        public _SizeAwareCacheKey(@Object providerCacheKey, int width, int height)
+        {
+            this.ProviderCacheKey = providerCacheKey;
+            this.Width = width;
+            this.Height = height; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual @Object ProviderCacheKey { get; set; }
+        public virtual int Width { get; set; }
+        public virtual int Height { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> ResizeIfNeeded(int cacheWidth,int cacheHeight,FlutterSDK.Painting.Imageprovider.ImageProvider<object> provider){ throw new NotImplementedException(); }
+        #region methods
 
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider._SizeAwareCacheKey key,FlutterSDK.Painting.Imageprovider.DecoderCallback decode){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new Future<FlutterSDK.Painting.Imageprovider._SizeAwareCacheKey> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration){ throw new NotImplementedException(); }
+    public class ResizeImage : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider._SizeAwareCacheKey>
+    {
+        #region constructors
+        public ResizeImage(FlutterSDK.Painting.Imageprovider.ImageProvider<object> imageProvider, int width = default(int), int height = default(int))
+        : base()
+        {
+            this.ImageProvider = imageProvider;
+            this.Width = width;
+            this.Height = height; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> ImageProvider { get; set; }
+        public virtual int Width { get; set; }
+        public virtual int Height { get; set; }
+        #endregion
 
+        #region methods
 
-public class NetworkImage : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider.NetworkImage>
-{
-#region constructors
-public NetworkImage(string url,double scale = default(double),Dictionary<string,string> headers = default(Dictionary<string,string>))
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
+        public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> ResizeIfNeeded(int cacheWidth, int cacheHeight, FlutterSDK.Painting.Imageprovider.ImageProvider<object> provider) { throw new NotImplementedException(); }
 
-#region fields
-public virtual string Url{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double Scale{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual Dictionary<string,string> Headers{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+        public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider._SizeAwareCacheKey key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider.NetworkImage key,FlutterSDK.Painting.Imageprovider.DecoderCallback decode){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new Future<FlutterSDK.Painting.Imageprovider._SizeAwareCacheKey> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class FileImage : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider.FileImage>
-{
-#region constructors
-public FileImage(File file,double scale = 1.0)
-: base()
-{
-this.File = file;
-this.Scale = scale;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual File File{get;set;}
-public virtual double Scale{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class NetworkImage : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider.NetworkImage>
+    {
+        #region constructors
+        public NetworkImage(string url, double scale = default(double), Dictionary<string, string> headers = default(Dictionary<string, string>))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual string Url { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Scale { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual Dictionary<string, string> Headers { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new Future<FlutterSDK.Painting.Imageprovider.FileImage> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration){ throw new NotImplementedException(); }
+        #region methods
 
+        public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider.NetworkImage key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider.FileImage key,FlutterSDK.Painting.Imageprovider.DecoderCallback decode){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-private Future<SKCodec> _LoadAsync(FlutterSDK.Painting.Imageprovider.FileImage key,FlutterSDK.Painting.Imageprovider.DecoderCallback decode){ throw new NotImplementedException(); }
+    public class FileImage : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider.FileImage>
+    {
+        #region constructors
+        public FileImage(File file, double scale = 1.0)
+        : base()
+        {
+            this.File = file;
+            this.Scale = scale; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual File File { get; set; }
+        public virtual double Scale { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        #region methods
 
+        public new Future<FlutterSDK.Painting.Imageprovider.FileImage> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider.FileImage key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode) { throw new NotImplementedException(); }
 
-public class MemoryImage : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider.MemoryImage>
-{
-#region constructors
-public MemoryImage(Uint8List bytes,double scale = 1.0)
-: base()
-{
-this.Bytes = bytes;
-this.Scale = scale;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual Uint8List Bytes{get;set;}
-public virtual double Scale{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        private Future<SKCodec> _LoadAsync(FlutterSDK.Painting.Imageprovider.FileImage key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode) { throw new NotImplementedException(); }
 
-#region methods
 
-public new Future<FlutterSDK.Painting.Imageprovider.MemoryImage> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration){ throw new NotImplementedException(); }
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider.MemoryImage key,FlutterSDK.Painting.Imageprovider.DecoderCallback decode){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-private Future<SKCodec> _LoadAsync(FlutterSDK.Painting.Imageprovider.MemoryImage key,FlutterSDK.Painting.Imageprovider.DecoderCallback decode){ throw new NotImplementedException(); }
+    public class MemoryImage : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider.MemoryImage>
+    {
+        #region constructors
+        public MemoryImage(Uint8List bytes, double scale = 1.0)
+        : base()
+        {
+            this.Bytes = bytes;
+            this.Scale = scale; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual Uint8List Bytes { get; set; }
+        public virtual double Scale { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        #region methods
 
+        public new Future<FlutterSDK.Painting.Imageprovider.MemoryImage> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider.MemoryImage key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode) { throw new NotImplementedException(); }
 
-public class ExactAssetImage : FlutterSDK.Painting.Imageprovider.AssetBundleImageProvider
-{
-#region constructors
-public ExactAssetImage(string assetName,double scale = 1.0,FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle),string package = default(string))
-: base()
-{
-this.AssetName = assetName;
-this.Scale = scale;
-this.Bundle = bundle;
-this.Package = package;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual string AssetName{get;set;}
-public virtual double Scale{get;set;}
-public virtual FlutterSDK.Services.Assetbundle.AssetBundle Bundle{get;set;}
-public virtual string Package{get;set;}
-public virtual string KeyName{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        private Future<SKCodec> _LoadAsync(FlutterSDK.Painting.Imageprovider.MemoryImage key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode) { throw new NotImplementedException(); }
 
-#region methods
 
-public new Future<FlutterSDK.Painting.Imageprovider.AssetBundleImageKey> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration){ throw new NotImplementedException(); }
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-#endregion
-}
+    public class ExactAssetImage : FlutterSDK.Painting.Imageprovider.AssetBundleImageProvider
+    {
+        #region constructors
+        public ExactAssetImage(string assetName, double scale = 1.0, FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle), string package = default(string))
+        : base()
+        {
+            this.AssetName = assetName;
+            this.Scale = scale;
+            this.Bundle = bundle;
+            this.Package = package; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual string AssetName { get; set; }
+        public virtual double Scale { get; set; }
+        public virtual FlutterSDK.Services.Assetbundle.AssetBundle Bundle { get; set; }
+        public virtual string Package { get; set; }
+        public virtual string KeyName { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public class _ErrorImageCompleter : FlutterSDK.Painting.Imagestream.ImageStreamCompleter
-{
-#region constructors
-public _ErrorImageCompleter()
-{
-throw new NotImplementedException(); }
-#endregion
+        #region methods
 
-#region fields
-#endregion
+        public new Future<FlutterSDK.Painting.Imageprovider.AssetBundleImageKey> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) { throw new NotImplementedException(); }
 
-#region methods
 
-public virtual void SetError(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode context = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode),object exception = default(object),StackTrace stack = default(StackTrace),FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector),bool silent = false){ throw new NotImplementedException(); }
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        #endregion
+    }
 
-public class NetworkImageLoadException : IException
-{
-#region constructors
-public NetworkImageLoadException(int statusCode = default(int),Uri uri = default(Uri))
-: base()
-{
-this.StatusCode = statusCode;
-this.Uri = uri;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual int StatusCode{get;set;}
-internal virtual string _Message{get;set;}
-public virtual Uri Uri{get;set;}
-#endregion
+    public class _ErrorImageCompleter : FlutterSDK.Painting.Imagestream.ImageStreamCompleter
+    {
+        #region constructors
+        public _ErrorImageCompleter()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        #endregion
 
-#endregion
-}
+        #region methods
+
+        public virtual void SetError(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode context = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode), object exception = default(object), StackTrace stack = default(StackTrace), FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector), bool silent = false) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class NetworkImageLoadException : IException
+    {
+        #region constructors
+        public NetworkImageLoadException(int statusCode = default(int), Uri uri = default(Uri))
+        : base()
+        {
+            this.StatusCode = statusCode;
+            this.Uri = uri; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual int StatusCode { get; set; }
+        internal virtual string _Message { get; set; }
+        public virtual Uri Uri { get; set; }
+        #endregion
+
+        #region methods
+
+        #endregion
+    }
 
 }

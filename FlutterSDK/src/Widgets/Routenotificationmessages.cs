@@ -423,29 +423,32 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Routenotificationmessages{
-internal static class RoutenotificationmessagesDefaultClass{
-}
-
-public class RouteNotificationMessages
+namespace FlutterSDK.Widgets.Routenotificationmessages
 {
-#region constructors
-internal RouteNotificationMessages()
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class RoutenotificationmessagesDefaultClass
+    {
+    }
 
-#region fields
-#endregion
+    public class RouteNotificationMessages
+    {
+        #region constructors
+        internal RouteNotificationMessages()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        #endregion
 
-public virtual void MaybeNotifyRouteChange(string routeName,string previousRouteName){ throw new NotImplementedException(); }
+        #region methods
+
+        public virtual void MaybeNotifyRouteChange(string routeName, string previousRouteName) { throw new NotImplementedException(); }
 
 
-private void _NotifyRouteChange(string routeName,string previousRouteName){ throw new NotImplementedException(); }
+        private void _NotifyRouteChange(string routeName, string previousRouteName) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 }

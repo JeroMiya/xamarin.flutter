@@ -392,40 +392,43 @@ using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
-namespace FlutterSDK.Material.Page{
-internal static class PageDefaultClass{
-}
-
-public class MaterialPageRoute<T> : FlutterSDK.Widgets.Pages.PageRoute<T>
+namespace FlutterSDK.Material.Page
 {
-#region constructors
-public MaterialPageRoute(FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder),FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings),bool maintainState = true,bool fullscreenDialog = false)
-: base(settings:settings,fullscreenDialog:fullscreenDialog)
-{
-this.Builder = builder;
-this.MaintainState = maintainState;throw new NotImplementedException(); }
-#endregion
+    internal static class PageDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder{get;set;}
-public new bool MaintainState{get;set;}
-public virtual TimeSpan TransitionDuration{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterBinding.UI.Color BarrierColor{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string BarrierLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string DebugLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class MaterialPageRoute<T> : FlutterSDK.Widgets.Pages.PageRoute<T>
+    {
+        #region constructors
+        public MaterialPageRoute(FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings), bool maintainState = true, bool fullscreenDialog = false)
+        : base(settings: settings, fullscreenDialog: fullscreenDialog)
+        {
+            this.Builder = builder;
+            this.MaintainState = maintainState; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder { get; set; }
+        public new bool MaintainState { get; set; }
+        public virtual TimeSpan TransitionDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Color BarrierColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string BarrierLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string DebugLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new bool CanTransitionTo(FlutterSDK.Widgets.Routes.TransitionRoute<object> nextRoute){ throw new NotImplementedException(); }
+        #region methods
+
+        public new bool CanTransitionTo(FlutterSDK.Widgets.Routes.TransitionRoute<object> nextRoute) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget BuildPage(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Animation.Animation.Animation<double> animation,FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget BuildPage(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget BuildTransitions(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Animation.Animation.Animation<double> animation,FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation,FlutterSDK.Widgets.Framework.Widget child){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget BuildTransitions(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 }

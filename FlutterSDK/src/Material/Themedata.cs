@@ -419,322 +419,336 @@ using FlutterSDK.Material.Selectabletext;
 using FlutterSDK.Material.Inksplash;
 using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
-namespace FlutterSDK.Material.Themedata{
-internal static class ThemedataDefaultClass{
-public static Color _KLightThemeHighlightColor = default(Color);
-public static Color _KLightThemeSplashColor = default(Color);
-public static Color _KDarkThemeHighlightColor = default(Color);
-public static Color _KDarkThemeSplashColor = default(Color);
-}
-
-public class ThemeData : IDiagnosticable
+namespace FlutterSDK.Material.Themedata
 {
-#region constructors
-public ThemeData(Brightness brightness = default(Brightness),FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity),FlutterSDK.Material.Colors.MaterialColor primarySwatch = default(FlutterSDK.Material.Colors.MaterialColor),FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color),Brightness primaryColorBrightness = default(Brightness),FlutterBinding.UI.Color primaryColorLight = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color primaryColorDark = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color accentColor = default(FlutterBinding.UI.Color),Brightness accentColorBrightness = default(Brightness),FlutterBinding.UI.Color canvasColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color scaffoldBackgroundColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color bottomAppBarColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color cardColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color dividerColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color),FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory splashFactory = default(FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory),FlutterBinding.UI.Color selectedRowColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color unselectedWidgetColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color buttonColor = default(FlutterBinding.UI.Color),FlutterSDK.Material.Buttontheme.ButtonThemeData buttonTheme = default(FlutterSDK.Material.Buttontheme.ButtonThemeData),FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData toggleButtonsTheme = default(FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData),FlutterBinding.UI.Color secondaryHeaderColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color textSelectionColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color textSelectionHandleColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color dialogBackgroundColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color indicatorColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color hintColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color errorColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color toggleableActiveColor = default(FlutterBinding.UI.Color),string fontFamily = default(string),FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme),FlutterSDK.Material.Texttheme.TextTheme primaryTextTheme = default(FlutterSDK.Material.Texttheme.TextTheme),FlutterSDK.Material.Texttheme.TextTheme accentTextTheme = default(FlutterSDK.Material.Texttheme.TextTheme),FlutterSDK.Material.Inputdecorator.InputDecorationTheme inputDecorationTheme = default(FlutterSDK.Material.Inputdecorator.InputDecorationTheme),FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData),FlutterSDK.Widgets.Iconthemedata.IconThemeData primaryIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData),FlutterSDK.Widgets.Iconthemedata.IconThemeData accentIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),FlutterSDK.Material.Tabbartheme.TabBarTheme tabBarTheme = default(FlutterSDK.Material.Tabbartheme.TabBarTheme),FlutterSDK.Material.Tooltiptheme.TooltipThemeData tooltipTheme = default(FlutterSDK.Material.Tooltiptheme.TooltipThemeData),FlutterSDK.Material.Cardtheme.CardTheme cardTheme = default(FlutterSDK.Material.Cardtheme.CardTheme),FlutterSDK.Material.Chiptheme.ChipThemeData chipTheme = default(FlutterSDK.Material.Chiptheme.ChipThemeData),FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform),FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize),bool applyElevationOverlayColor = default(bool),FlutterSDK.Material.Pagetransitionstheme.PageTransitionsTheme pageTransitionsTheme = default(FlutterSDK.Material.Pagetransitionstheme.PageTransitionsTheme),FlutterSDK.Material.Appbartheme.AppBarTheme appBarTheme = default(FlutterSDK.Material.Appbartheme.AppBarTheme),FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme bottomAppBarTheme = default(FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme),FlutterSDK.Material.Colorscheme.ColorScheme colorScheme = default(FlutterSDK.Material.Colorscheme.ColorScheme),FlutterSDK.Material.Dialogtheme.DialogTheme dialogTheme = default(FlutterSDK.Material.Dialogtheme.DialogTheme),FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData floatingActionButtonTheme = default(FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData),FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData navigationRailTheme = default(FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData),FlutterSDK.Material.Typography.Typography typography = default(FlutterSDK.Material.Typography.Typography),FlutterSDK.Cupertino.Theme.CupertinoThemeData cupertinoOverrideTheme = default(FlutterSDK.Cupertino.Theme.CupertinoThemeData),FlutterSDK.Material.Snackbartheme.SnackBarThemeData snackBarTheme = default(FlutterSDK.Material.Snackbartheme.SnackBarThemeData),FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData bottomSheetTheme = default(FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData),FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData popupMenuTheme = default(FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData),FlutterSDK.Material.Bannertheme.MaterialBannerThemeData bannerTheme = default(FlutterSDK.Material.Bannertheme.MaterialBannerThemeData),FlutterSDK.Material.Dividertheme.DividerThemeData dividerTheme = default(FlutterSDK.Material.Dividertheme.DividerThemeData),FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData buttonBarTheme = default(FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData))
-{
-throw new NotImplementedException(); }
-public static ThemeData Raw(Brightness brightness = default(Brightness),FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity),FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color),Brightness primaryColorBrightness = default(Brightness),FlutterBinding.UI.Color primaryColorLight = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color primaryColorDark = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color canvasColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color accentColor = default(FlutterBinding.UI.Color),Brightness accentColorBrightness = default(Brightness),FlutterBinding.UI.Color scaffoldBackgroundColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color bottomAppBarColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color cardColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color dividerColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color),FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory splashFactory = default(FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory),FlutterBinding.UI.Color selectedRowColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color unselectedWidgetColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color),FlutterSDK.Material.Buttontheme.ButtonThemeData buttonTheme = default(FlutterSDK.Material.Buttontheme.ButtonThemeData),FlutterBinding.UI.Color buttonColor = default(FlutterBinding.UI.Color),FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData toggleButtonsTheme = default(FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData),FlutterBinding.UI.Color secondaryHeaderColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color textSelectionColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color textSelectionHandleColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color dialogBackgroundColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color indicatorColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color hintColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color errorColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color toggleableActiveColor = default(FlutterBinding.UI.Color),FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme),FlutterSDK.Material.Texttheme.TextTheme primaryTextTheme = default(FlutterSDK.Material.Texttheme.TextTheme),FlutterSDK.Material.Texttheme.TextTheme accentTextTheme = default(FlutterSDK.Material.Texttheme.TextTheme),FlutterSDK.Material.Inputdecorator.InputDecorationTheme inputDecorationTheme = default(FlutterSDK.Material.Inputdecorator.InputDecorationTheme),FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData),FlutterSDK.Widgets.Iconthemedata.IconThemeData primaryIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData),FlutterSDK.Widgets.Iconthemedata.IconThemeData accentIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),FlutterSDK.Material.Tabbartheme.TabBarTheme tabBarTheme = default(FlutterSDK.Material.Tabbartheme.TabBarTheme),FlutterSDK.Material.Tooltiptheme.TooltipThemeData tooltipTheme = default(FlutterSDK.Material.Tooltiptheme.TooltipThemeData),FlutterSDK.Material.Cardtheme.CardTheme cardTheme = default(FlutterSDK.Material.Cardtheme.CardTheme),FlutterSDK.Material.Chiptheme.ChipThemeData chipTheme = default(FlutterSDK.Material.Chiptheme.ChipThemeData),FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform),FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize),bool applyElevationOverlayColor = default(bool),FlutterSDK.Material.Pagetransitionstheme.PageTransitionsTheme pageTransitionsTheme = default(FlutterSDK.Material.Pagetransitionstheme.PageTransitionsTheme),FlutterSDK.Material.Appbartheme.AppBarTheme appBarTheme = default(FlutterSDK.Material.Appbartheme.AppBarTheme),FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme bottomAppBarTheme = default(FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme),FlutterSDK.Material.Colorscheme.ColorScheme colorScheme = default(FlutterSDK.Material.Colorscheme.ColorScheme),FlutterSDK.Material.Dialogtheme.DialogTheme dialogTheme = default(FlutterSDK.Material.Dialogtheme.DialogTheme),FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData floatingActionButtonTheme = default(FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData),FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData navigationRailTheme = default(FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData),FlutterSDK.Material.Typography.Typography typography = default(FlutterSDK.Material.Typography.Typography),FlutterSDK.Cupertino.Theme.CupertinoThemeData cupertinoOverrideTheme = default(FlutterSDK.Cupertino.Theme.CupertinoThemeData),FlutterSDK.Material.Snackbartheme.SnackBarThemeData snackBarTheme = default(FlutterSDK.Material.Snackbartheme.SnackBarThemeData),FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData bottomSheetTheme = default(FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData),FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData popupMenuTheme = default(FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData),FlutterSDK.Material.Bannertheme.MaterialBannerThemeData bannerTheme = default(FlutterSDK.Material.Bannertheme.MaterialBannerThemeData),FlutterSDK.Material.Dividertheme.DividerThemeData dividerTheme = default(FlutterSDK.Material.Dividertheme.DividerThemeData),FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData buttonBarTheme = default(FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData))
-{
-var instance =new ThemeData();instance.Brightness = brightness;
-instance.VisualDensity = visualDensity;
-instance.PrimaryColor = primaryColor;
-instance.PrimaryColorBrightness = primaryColorBrightness;
-instance.PrimaryColorLight = primaryColorLight;
-instance.PrimaryColorDark = primaryColorDark;
-instance.CanvasColor = canvasColor;
-instance.AccentColor = accentColor;
-instance.AccentColorBrightness = accentColorBrightness;
-instance.ScaffoldBackgroundColor = scaffoldBackgroundColor;
-instance.BottomAppBarColor = bottomAppBarColor;
-instance.CardColor = cardColor;
-instance.DividerColor = dividerColor;
-instance.FocusColor = focusColor;
-instance.HoverColor = hoverColor;
-instance.HighlightColor = highlightColor;
-instance.SplashColor = splashColor;
-instance.SplashFactory = splashFactory;
-instance.SelectedRowColor = selectedRowColor;
-instance.UnselectedWidgetColor = unselectedWidgetColor;
-instance.DisabledColor = disabledColor;
-instance.ButtonTheme = buttonTheme;
-instance.ButtonColor = buttonColor;
-instance.ToggleButtonsTheme = toggleButtonsTheme;
-instance.SecondaryHeaderColor = secondaryHeaderColor;
-instance.TextSelectionColor = textSelectionColor;
-instance.CursorColor = cursorColor;
-instance.TextSelectionHandleColor = textSelectionHandleColor;
-instance.BackgroundColor = backgroundColor;
-instance.DialogBackgroundColor = dialogBackgroundColor;
-instance.IndicatorColor = indicatorColor;
-instance.HintColor = hintColor;
-instance.ErrorColor = errorColor;
-instance.ToggleableActiveColor = toggleableActiveColor;
-instance.TextTheme = textTheme;
-instance.PrimaryTextTheme = primaryTextTheme;
-instance.AccentTextTheme = accentTextTheme;
-instance.InputDecorationTheme = inputDecorationTheme;
-instance.IconTheme = iconTheme;
-instance.PrimaryIconTheme = primaryIconTheme;
-instance.AccentIconTheme = accentIconTheme;
-instance.SliderTheme = sliderTheme;
-instance.TabBarTheme = tabBarTheme;
-instance.TooltipTheme = tooltipTheme;
-instance.CardTheme = cardTheme;
-instance.ChipTheme = chipTheme;
-instance.Platform = platform;
-instance.MaterialTapTargetSize = materialTapTargetSize;
-instance.ApplyElevationOverlayColor = applyElevationOverlayColor;
-instance.PageTransitionsTheme = pageTransitionsTheme;
-instance.AppBarTheme = appBarTheme;
-instance.BottomAppBarTheme = bottomAppBarTheme;
-instance.ColorScheme = colorScheme;
-instance.DialogTheme = dialogTheme;
-instance.FloatingActionButtonTheme = floatingActionButtonTheme;
-instance.NavigationRailTheme = navigationRailTheme;
-instance.Typography = typography;
-instance.CupertinoOverrideTheme = cupertinoOverrideTheme;
-instance.SnackBarTheme = snackBarTheme;
-instance.BottomSheetTheme = bottomSheetTheme;
-instance.PopupMenuTheme = popupMenuTheme;
-instance.BannerTheme = bannerTheme;
-instance.DividerTheme = dividerTheme;
-instance.ButtonBarTheme = buttonBarTheme;throw new NotImplementedException(); }
-public static ThemeData From(FlutterSDK.Material.Colorscheme.ColorScheme colorScheme = default(FlutterSDK.Material.Colorscheme.ColorScheme),FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme))
-{
-var instance =new ThemeData();throw new NotImplementedException(); }
-public static ThemeData Light()
-{
-var instance =new ThemeData();throw new NotImplementedException(); }
-public static ThemeData Dark()
-{
-var instance =new ThemeData();throw new NotImplementedException(); }
-public static ThemeData Fallback()
-{
-var instance =new ThemeData();throw new NotImplementedException(); }
-#endregion
+    internal static class ThemedataDefaultClass
+    {
+        public static Color _KLightThemeHighlightColor = default(Color);
+        public static Color _KLightThemeSplashColor = default(Color);
+        public static Color _KDarkThemeHighlightColor = default(Color);
+        public static Color _KDarkThemeSplashColor = default(Color);
+    }
 
-#region fields
-public virtual Brightness Brightness{get;set;}
-public virtual FlutterSDK.Material.Themedata.VisualDensity VisualDensity{get;set;}
-public virtual FlutterBinding.UI.Color PrimaryColor{get;set;}
-public virtual Brightness PrimaryColorBrightness{get;set;}
-public virtual FlutterBinding.UI.Color PrimaryColorLight{get;set;}
-public virtual FlutterBinding.UI.Color PrimaryColorDark{get;set;}
-public virtual FlutterBinding.UI.Color CanvasColor{get;set;}
-public virtual FlutterBinding.UI.Color AccentColor{get;set;}
-public virtual Brightness AccentColorBrightness{get;set;}
-public virtual FlutterBinding.UI.Color ScaffoldBackgroundColor{get;set;}
-public virtual FlutterBinding.UI.Color BottomAppBarColor{get;set;}
-public virtual FlutterBinding.UI.Color CardColor{get;set;}
-public virtual FlutterBinding.UI.Color DividerColor{get;set;}
-public virtual FlutterBinding.UI.Color FocusColor{get;set;}
-public virtual FlutterBinding.UI.Color HoverColor{get;set;}
-public virtual FlutterBinding.UI.Color HighlightColor{get;set;}
-public virtual FlutterBinding.UI.Color SplashColor{get;set;}
-public virtual FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory SplashFactory{get;set;}
-public virtual FlutterBinding.UI.Color SelectedRowColor{get;set;}
-public virtual FlutterBinding.UI.Color UnselectedWidgetColor{get;set;}
-public virtual FlutterBinding.UI.Color DisabledColor{get;set;}
-public virtual FlutterSDK.Material.Buttontheme.ButtonThemeData ButtonTheme{get;set;}
-public virtual FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData ToggleButtonsTheme{get;set;}
-public virtual FlutterBinding.UI.Color ButtonColor{get;set;}
-public virtual FlutterBinding.UI.Color SecondaryHeaderColor{get;set;}
-public virtual FlutterBinding.UI.Color TextSelectionColor{get;set;}
-public virtual FlutterBinding.UI.Color CursorColor{get;set;}
-public virtual FlutterBinding.UI.Color TextSelectionHandleColor{get;set;}
-public virtual FlutterBinding.UI.Color BackgroundColor{get;set;}
-public virtual FlutterBinding.UI.Color DialogBackgroundColor{get;set;}
-public virtual FlutterBinding.UI.Color IndicatorColor{get;set;}
-public virtual FlutterBinding.UI.Color HintColor{get;set;}
-public virtual FlutterBinding.UI.Color ErrorColor{get;set;}
-public virtual FlutterBinding.UI.Color ToggleableActiveColor{get;set;}
-public virtual FlutterSDK.Material.Texttheme.TextTheme TextTheme{get;set;}
-public virtual FlutterSDK.Material.Texttheme.TextTheme PrimaryTextTheme{get;set;}
-public virtual FlutterSDK.Material.Texttheme.TextTheme AccentTextTheme{get;set;}
-public virtual FlutterSDK.Material.Inputdecorator.InputDecorationTheme InputDecorationTheme{get;set;}
-public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData IconTheme{get;set;}
-public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData PrimaryIconTheme{get;set;}
-public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData AccentIconTheme{get;set;}
-public virtual FlutterSDK.Material.Slidertheme.SliderThemeData SliderTheme{get;set;}
-public virtual FlutterSDK.Material.Tabbartheme.TabBarTheme TabBarTheme{get;set;}
-public virtual FlutterSDK.Material.Tooltiptheme.TooltipThemeData TooltipTheme{get;set;}
-public virtual FlutterSDK.Material.Cardtheme.CardTheme CardTheme{get;set;}
-public virtual FlutterSDK.Material.Chiptheme.ChipThemeData ChipTheme{get;set;}
-public virtual FlutterSDK.Foundation.Platform.TargetPlatform Platform{get;set;}
-public virtual FlutterSDK.Material.Themedata.MaterialTapTargetSize MaterialTapTargetSize{get;set;}
-public virtual bool ApplyElevationOverlayColor{get;set;}
-public virtual FlutterSDK.Material.Pagetransitionstheme.PageTransitionsTheme PageTransitionsTheme{get;set;}
-public virtual FlutterSDK.Material.Appbartheme.AppBarTheme AppBarTheme{get;set;}
-public virtual FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme BottomAppBarTheme{get;set;}
-public virtual FlutterSDK.Material.Colorscheme.ColorScheme ColorScheme{get;set;}
-public virtual FlutterSDK.Material.Snackbartheme.SnackBarThemeData SnackBarTheme{get;set;}
-public virtual FlutterSDK.Material.Dialogtheme.DialogTheme DialogTheme{get;set;}
-public virtual FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData FloatingActionButtonTheme{get;set;}
-public virtual FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData NavigationRailTheme{get;set;}
-public virtual FlutterSDK.Material.Typography.Typography Typography{get;set;}
-public virtual FlutterSDK.Cupertino.Theme.CupertinoThemeData CupertinoOverrideTheme{get;set;}
-public virtual FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData BottomSheetTheme{get;set;}
-public virtual FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData PopupMenuTheme{get;set;}
-public virtual FlutterSDK.Material.Bannertheme.MaterialBannerThemeData BannerTheme{get;set;}
-public virtual FlutterSDK.Material.Dividertheme.DividerThemeData DividerTheme{get;set;}
-public virtual FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData ButtonBarTheme{get;set;}
-internal virtual int _LocalizedThemeDataCacheSize{get;set;}
-internal virtual FlutterSDK.Material.Themedata._FifoCache<FlutterSDK.Material.Themedata._IdentityThemeDataCacheKey,FlutterSDK.Material.Themedata.ThemeData> _LocalizedThemeDataCache{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class ThemeData : IDiagnosticable
+    {
+        #region constructors
+        public ThemeData(Brightness brightness = default(Brightness), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Material.Colors.MaterialColor primarySwatch = default(FlutterSDK.Material.Colors.MaterialColor), FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color), Brightness primaryColorBrightness = default(Brightness), FlutterBinding.UI.Color primaryColorLight = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryColorDark = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color accentColor = default(FlutterBinding.UI.Color), Brightness accentColorBrightness = default(Brightness), FlutterBinding.UI.Color canvasColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color scaffoldBackgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color bottomAppBarColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color cardColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color dividerColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory splashFactory = default(FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory), FlutterBinding.UI.Color selectedRowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color unselectedWidgetColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color buttonColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Buttontheme.ButtonThemeData buttonTheme = default(FlutterSDK.Material.Buttontheme.ButtonThemeData), FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData toggleButtonsTheme = default(FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData), FlutterBinding.UI.Color secondaryHeaderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color textSelectionColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color textSelectionHandleColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color dialogBackgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color indicatorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hintColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color errorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color toggleableActiveColor = default(FlutterBinding.UI.Color), string fontFamily = default(string), FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme primaryTextTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme accentTextTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Inputdecorator.InputDecorationTheme inputDecorationTheme = default(FlutterSDK.Material.Inputdecorator.InputDecorationTheme), FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData primaryIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData accentIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Material.Tabbartheme.TabBarTheme tabBarTheme = default(FlutterSDK.Material.Tabbartheme.TabBarTheme), FlutterSDK.Material.Tooltiptheme.TooltipThemeData tooltipTheme = default(FlutterSDK.Material.Tooltiptheme.TooltipThemeData), FlutterSDK.Material.Cardtheme.CardTheme cardTheme = default(FlutterSDK.Material.Cardtheme.CardTheme), FlutterSDK.Material.Chiptheme.ChipThemeData chipTheme = default(FlutterSDK.Material.Chiptheme.ChipThemeData), FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), bool applyElevationOverlayColor = default(bool), FlutterSDK.Material.Pagetransitionstheme.PageTransitionsTheme pageTransitionsTheme = default(FlutterSDK.Material.Pagetransitionstheme.PageTransitionsTheme), FlutterSDK.Material.Appbartheme.AppBarTheme appBarTheme = default(FlutterSDK.Material.Appbartheme.AppBarTheme), FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme bottomAppBarTheme = default(FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme), FlutterSDK.Material.Colorscheme.ColorScheme colorScheme = default(FlutterSDK.Material.Colorscheme.ColorScheme), FlutterSDK.Material.Dialogtheme.DialogTheme dialogTheme = default(FlutterSDK.Material.Dialogtheme.DialogTheme), FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData floatingActionButtonTheme = default(FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData), FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData navigationRailTheme = default(FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData), FlutterSDK.Material.Typography.Typography typography = default(FlutterSDK.Material.Typography.Typography), FlutterSDK.Cupertino.Theme.CupertinoThemeData cupertinoOverrideTheme = default(FlutterSDK.Cupertino.Theme.CupertinoThemeData), FlutterSDK.Material.Snackbartheme.SnackBarThemeData snackBarTheme = default(FlutterSDK.Material.Snackbartheme.SnackBarThemeData), FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData bottomSheetTheme = default(FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData), FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData popupMenuTheme = default(FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData), FlutterSDK.Material.Bannertheme.MaterialBannerThemeData bannerTheme = default(FlutterSDK.Material.Bannertheme.MaterialBannerThemeData), FlutterSDK.Material.Dividertheme.DividerThemeData dividerTheme = default(FlutterSDK.Material.Dividertheme.DividerThemeData), FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData buttonBarTheme = default(FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData))
+        {
+            throw new NotImplementedException();
+        }
+        public static ThemeData Raw(Brightness brightness = default(Brightness), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color), Brightness primaryColorBrightness = default(Brightness), FlutterBinding.UI.Color primaryColorLight = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryColorDark = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color canvasColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color accentColor = default(FlutterBinding.UI.Color), Brightness accentColorBrightness = default(Brightness), FlutterBinding.UI.Color scaffoldBackgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color bottomAppBarColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color cardColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color dividerColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory splashFactory = default(FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory), FlutterBinding.UI.Color selectedRowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color unselectedWidgetColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Buttontheme.ButtonThemeData buttonTheme = default(FlutterSDK.Material.Buttontheme.ButtonThemeData), FlutterBinding.UI.Color buttonColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData toggleButtonsTheme = default(FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData), FlutterBinding.UI.Color secondaryHeaderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color textSelectionColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color textSelectionHandleColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color dialogBackgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color indicatorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hintColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color errorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color toggleableActiveColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme primaryTextTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme accentTextTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Inputdecorator.InputDecorationTheme inputDecorationTheme = default(FlutterSDK.Material.Inputdecorator.InputDecorationTheme), FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData primaryIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData accentIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Material.Tabbartheme.TabBarTheme tabBarTheme = default(FlutterSDK.Material.Tabbartheme.TabBarTheme), FlutterSDK.Material.Tooltiptheme.TooltipThemeData tooltipTheme = default(FlutterSDK.Material.Tooltiptheme.TooltipThemeData), FlutterSDK.Material.Cardtheme.CardTheme cardTheme = default(FlutterSDK.Material.Cardtheme.CardTheme), FlutterSDK.Material.Chiptheme.ChipThemeData chipTheme = default(FlutterSDK.Material.Chiptheme.ChipThemeData), FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), bool applyElevationOverlayColor = default(bool), FlutterSDK.Material.Pagetransitionstheme.PageTransitionsTheme pageTransitionsTheme = default(FlutterSDK.Material.Pagetransitionstheme.PageTransitionsTheme), FlutterSDK.Material.Appbartheme.AppBarTheme appBarTheme = default(FlutterSDK.Material.Appbartheme.AppBarTheme), FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme bottomAppBarTheme = default(FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme), FlutterSDK.Material.Colorscheme.ColorScheme colorScheme = default(FlutterSDK.Material.Colorscheme.ColorScheme), FlutterSDK.Material.Dialogtheme.DialogTheme dialogTheme = default(FlutterSDK.Material.Dialogtheme.DialogTheme), FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData floatingActionButtonTheme = default(FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData), FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData navigationRailTheme = default(FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData), FlutterSDK.Material.Typography.Typography typography = default(FlutterSDK.Material.Typography.Typography), FlutterSDK.Cupertino.Theme.CupertinoThemeData cupertinoOverrideTheme = default(FlutterSDK.Cupertino.Theme.CupertinoThemeData), FlutterSDK.Material.Snackbartheme.SnackBarThemeData snackBarTheme = default(FlutterSDK.Material.Snackbartheme.SnackBarThemeData), FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData bottomSheetTheme = default(FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData), FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData popupMenuTheme = default(FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData), FlutterSDK.Material.Bannertheme.MaterialBannerThemeData bannerTheme = default(FlutterSDK.Material.Bannertheme.MaterialBannerThemeData), FlutterSDK.Material.Dividertheme.DividerThemeData dividerTheme = default(FlutterSDK.Material.Dividertheme.DividerThemeData), FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData buttonBarTheme = default(FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData))
+        {
+            var instance = new ThemeData(); instance.Brightness = brightness;
+            instance.VisualDensity = visualDensity;
+            instance.PrimaryColor = primaryColor;
+            instance.PrimaryColorBrightness = primaryColorBrightness;
+            instance.PrimaryColorLight = primaryColorLight;
+            instance.PrimaryColorDark = primaryColorDark;
+            instance.CanvasColor = canvasColor;
+            instance.AccentColor = accentColor;
+            instance.AccentColorBrightness = accentColorBrightness;
+            instance.ScaffoldBackgroundColor = scaffoldBackgroundColor;
+            instance.BottomAppBarColor = bottomAppBarColor;
+            instance.CardColor = cardColor;
+            instance.DividerColor = dividerColor;
+            instance.FocusColor = focusColor;
+            instance.HoverColor = hoverColor;
+            instance.HighlightColor = highlightColor;
+            instance.SplashColor = splashColor;
+            instance.SplashFactory = splashFactory;
+            instance.SelectedRowColor = selectedRowColor;
+            instance.UnselectedWidgetColor = unselectedWidgetColor;
+            instance.DisabledColor = disabledColor;
+            instance.ButtonTheme = buttonTheme;
+            instance.ButtonColor = buttonColor;
+            instance.ToggleButtonsTheme = toggleButtonsTheme;
+            instance.SecondaryHeaderColor = secondaryHeaderColor;
+            instance.TextSelectionColor = textSelectionColor;
+            instance.CursorColor = cursorColor;
+            instance.TextSelectionHandleColor = textSelectionHandleColor;
+            instance.BackgroundColor = backgroundColor;
+            instance.DialogBackgroundColor = dialogBackgroundColor;
+            instance.IndicatorColor = indicatorColor;
+            instance.HintColor = hintColor;
+            instance.ErrorColor = errorColor;
+            instance.ToggleableActiveColor = toggleableActiveColor;
+            instance.TextTheme = textTheme;
+            instance.PrimaryTextTheme = primaryTextTheme;
+            instance.AccentTextTheme = accentTextTheme;
+            instance.InputDecorationTheme = inputDecorationTheme;
+            instance.IconTheme = iconTheme;
+            instance.PrimaryIconTheme = primaryIconTheme;
+            instance.AccentIconTheme = accentIconTheme;
+            instance.SliderTheme = sliderTheme;
+            instance.TabBarTheme = tabBarTheme;
+            instance.TooltipTheme = tooltipTheme;
+            instance.CardTheme = cardTheme;
+            instance.ChipTheme = chipTheme;
+            instance.Platform = platform;
+            instance.MaterialTapTargetSize = materialTapTargetSize;
+            instance.ApplyElevationOverlayColor = applyElevationOverlayColor;
+            instance.PageTransitionsTheme = pageTransitionsTheme;
+            instance.AppBarTheme = appBarTheme;
+            instance.BottomAppBarTheme = bottomAppBarTheme;
+            instance.ColorScheme = colorScheme;
+            instance.DialogTheme = dialogTheme;
+            instance.FloatingActionButtonTheme = floatingActionButtonTheme;
+            instance.NavigationRailTheme = navigationRailTheme;
+            instance.Typography = typography;
+            instance.CupertinoOverrideTheme = cupertinoOverrideTheme;
+            instance.SnackBarTheme = snackBarTheme;
+            instance.BottomSheetTheme = bottomSheetTheme;
+            instance.PopupMenuTheme = popupMenuTheme;
+            instance.BannerTheme = bannerTheme;
+            instance.DividerTheme = dividerTheme;
+            instance.ButtonBarTheme = buttonBarTheme; throw new NotImplementedException();
+        }
+        public static ThemeData From(FlutterSDK.Material.Colorscheme.ColorScheme colorScheme = default(FlutterSDK.Material.Colorscheme.ColorScheme), FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme))
+        {
+            var instance = new ThemeData(); throw new NotImplementedException();
+        }
+        public static ThemeData Light()
+        {
+            var instance = new ThemeData(); throw new NotImplementedException();
+        }
+        public static ThemeData Dark()
+        {
+            var instance = new ThemeData(); throw new NotImplementedException();
+        }
+        public static ThemeData Fallback()
+        {
+            var instance = new ThemeData(); throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual Brightness Brightness { get; set; }
+        public virtual FlutterSDK.Material.Themedata.VisualDensity VisualDensity { get; set; }
+        public virtual FlutterBinding.UI.Color PrimaryColor { get; set; }
+        public virtual Brightness PrimaryColorBrightness { get; set; }
+        public virtual FlutterBinding.UI.Color PrimaryColorLight { get; set; }
+        public virtual FlutterBinding.UI.Color PrimaryColorDark { get; set; }
+        public virtual FlutterBinding.UI.Color CanvasColor { get; set; }
+        public virtual FlutterBinding.UI.Color AccentColor { get; set; }
+        public virtual Brightness AccentColorBrightness { get; set; }
+        public virtual FlutterBinding.UI.Color ScaffoldBackgroundColor { get; set; }
+        public virtual FlutterBinding.UI.Color BottomAppBarColor { get; set; }
+        public virtual FlutterBinding.UI.Color CardColor { get; set; }
+        public virtual FlutterBinding.UI.Color DividerColor { get; set; }
+        public virtual FlutterBinding.UI.Color FocusColor { get; set; }
+        public virtual FlutterBinding.UI.Color HoverColor { get; set; }
+        public virtual FlutterBinding.UI.Color HighlightColor { get; set; }
+        public virtual FlutterBinding.UI.Color SplashColor { get; set; }
+        public virtual FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory SplashFactory { get; set; }
+        public virtual FlutterBinding.UI.Color SelectedRowColor { get; set; }
+        public virtual FlutterBinding.UI.Color UnselectedWidgetColor { get; set; }
+        public virtual FlutterBinding.UI.Color DisabledColor { get; set; }
+        public virtual FlutterSDK.Material.Buttontheme.ButtonThemeData ButtonTheme { get; set; }
+        public virtual FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData ToggleButtonsTheme { get; set; }
+        public virtual FlutterBinding.UI.Color ButtonColor { get; set; }
+        public virtual FlutterBinding.UI.Color SecondaryHeaderColor { get; set; }
+        public virtual FlutterBinding.UI.Color TextSelectionColor { get; set; }
+        public virtual FlutterBinding.UI.Color CursorColor { get; set; }
+        public virtual FlutterBinding.UI.Color TextSelectionHandleColor { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual FlutterBinding.UI.Color DialogBackgroundColor { get; set; }
+        public virtual FlutterBinding.UI.Color IndicatorColor { get; set; }
+        public virtual FlutterBinding.UI.Color HintColor { get; set; }
+        public virtual FlutterBinding.UI.Color ErrorColor { get; set; }
+        public virtual FlutterBinding.UI.Color ToggleableActiveColor { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme TextTheme { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme PrimaryTextTheme { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme AccentTextTheme { get; set; }
+        public virtual FlutterSDK.Material.Inputdecorator.InputDecorationTheme InputDecorationTheme { get; set; }
+        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData IconTheme { get; set; }
+        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData PrimaryIconTheme { get; set; }
+        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData AccentIconTheme { get; set; }
+        public virtual FlutterSDK.Material.Slidertheme.SliderThemeData SliderTheme { get; set; }
+        public virtual FlutterSDK.Material.Tabbartheme.TabBarTheme TabBarTheme { get; set; }
+        public virtual FlutterSDK.Material.Tooltiptheme.TooltipThemeData TooltipTheme { get; set; }
+        public virtual FlutterSDK.Material.Cardtheme.CardTheme CardTheme { get; set; }
+        public virtual FlutterSDK.Material.Chiptheme.ChipThemeData ChipTheme { get; set; }
+        public virtual FlutterSDK.Foundation.Platform.TargetPlatform Platform { get; set; }
+        public virtual FlutterSDK.Material.Themedata.MaterialTapTargetSize MaterialTapTargetSize { get; set; }
+        public virtual bool ApplyElevationOverlayColor { get; set; }
+        public virtual FlutterSDK.Material.Pagetransitionstheme.PageTransitionsTheme PageTransitionsTheme { get; set; }
+        public virtual FlutterSDK.Material.Appbartheme.AppBarTheme AppBarTheme { get; set; }
+        public virtual FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme BottomAppBarTheme { get; set; }
+        public virtual FlutterSDK.Material.Colorscheme.ColorScheme ColorScheme { get; set; }
+        public virtual FlutterSDK.Material.Snackbartheme.SnackBarThemeData SnackBarTheme { get; set; }
+        public virtual FlutterSDK.Material.Dialogtheme.DialogTheme DialogTheme { get; set; }
+        public virtual FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData FloatingActionButtonTheme { get; set; }
+        public virtual FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData NavigationRailTheme { get; set; }
+        public virtual FlutterSDK.Material.Typography.Typography Typography { get; set; }
+        public virtual FlutterSDK.Cupertino.Theme.CupertinoThemeData CupertinoOverrideTheme { get; set; }
+        public virtual FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData BottomSheetTheme { get; set; }
+        public virtual FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData PopupMenuTheme { get; set; }
+        public virtual FlutterSDK.Material.Bannertheme.MaterialBannerThemeData BannerTheme { get; set; }
+        public virtual FlutterSDK.Material.Dividertheme.DividerThemeData DividerTheme { get; set; }
+        public virtual FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData ButtonBarTheme { get; set; }
+        internal virtual int _LocalizedThemeDataCacheSize { get; set; }
+        internal virtual FlutterSDK.Material.Themedata._FifoCache<FlutterSDK.Material.Themedata._IdentityThemeDataCacheKey, FlutterSDK.Material.Themedata.ThemeData> _LocalizedThemeDataCache { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual FlutterSDK.Material.Themedata.ThemeData CopyWith(Brightness brightness = default(Brightness),FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity),FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color),Brightness primaryColorBrightness = default(Brightness),FlutterBinding.UI.Color primaryColorLight = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color primaryColorDark = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color accentColor = default(FlutterBinding.UI.Color),Brightness accentColorBrightness = default(Brightness),FlutterBinding.UI.Color canvasColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color scaffoldBackgroundColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color bottomAppBarColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color cardColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color dividerColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color),FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory splashFactory = default(FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory),FlutterBinding.UI.Color selectedRowColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color unselectedWidgetColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color),FlutterSDK.Material.Buttontheme.ButtonThemeData buttonTheme = default(FlutterSDK.Material.Buttontheme.ButtonThemeData),FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData toggleButtonsTheme = default(FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData),FlutterBinding.UI.Color buttonColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color secondaryHeaderColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color textSelectionColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color textSelectionHandleColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color dialogBackgroundColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color indicatorColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color hintColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color errorColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color toggleableActiveColor = default(FlutterBinding.UI.Color),FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme),FlutterSDK.Material.Texttheme.TextTheme primaryTextTheme = default(FlutterSDK.Material.Texttheme.TextTheme),FlutterSDK.Material.Texttheme.TextTheme accentTextTheme = default(FlutterSDK.Material.Texttheme.TextTheme),FlutterSDK.Material.Inputdecorator.InputDecorationTheme inputDecorationTheme = default(FlutterSDK.Material.Inputdecorator.InputDecorationTheme),FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData),FlutterSDK.Widgets.Iconthemedata.IconThemeData primaryIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData),FlutterSDK.Widgets.Iconthemedata.IconThemeData accentIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),FlutterSDK.Material.Tabbartheme.TabBarTheme tabBarTheme = default(FlutterSDK.Material.Tabbartheme.TabBarTheme),FlutterSDK.Material.Tooltiptheme.TooltipThemeData tooltipTheme = default(FlutterSDK.Material.Tooltiptheme.TooltipThemeData),FlutterSDK.Material.Cardtheme.CardTheme cardTheme = default(FlutterSDK.Material.Cardtheme.CardTheme),FlutterSDK.Material.Chiptheme.ChipThemeData chipTheme = default(FlutterSDK.Material.Chiptheme.ChipThemeData),FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform),FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize),bool applyElevationOverlayColor = default(bool),FlutterSDK.Material.Pagetransitionstheme.PageTransitionsTheme pageTransitionsTheme = default(FlutterSDK.Material.Pagetransitionstheme.PageTransitionsTheme),FlutterSDK.Material.Appbartheme.AppBarTheme appBarTheme = default(FlutterSDK.Material.Appbartheme.AppBarTheme),FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme bottomAppBarTheme = default(FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme),FlutterSDK.Material.Colorscheme.ColorScheme colorScheme = default(FlutterSDK.Material.Colorscheme.ColorScheme),FlutterSDK.Material.Dialogtheme.DialogTheme dialogTheme = default(FlutterSDK.Material.Dialogtheme.DialogTheme),FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData floatingActionButtonTheme = default(FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData),FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData navigationRailTheme = default(FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData),FlutterSDK.Material.Typography.Typography typography = default(FlutterSDK.Material.Typography.Typography),FlutterSDK.Cupertino.Theme.CupertinoThemeData cupertinoOverrideTheme = default(FlutterSDK.Cupertino.Theme.CupertinoThemeData),FlutterSDK.Material.Snackbartheme.SnackBarThemeData snackBarTheme = default(FlutterSDK.Material.Snackbartheme.SnackBarThemeData),FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData bottomSheetTheme = default(FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData),FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData popupMenuTheme = default(FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData),FlutterSDK.Material.Bannertheme.MaterialBannerThemeData bannerTheme = default(FlutterSDK.Material.Bannertheme.MaterialBannerThemeData),FlutterSDK.Material.Dividertheme.DividerThemeData dividerTheme = default(FlutterSDK.Material.Dividertheme.DividerThemeData),FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData buttonBarTheme = default(FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData)){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual FlutterSDK.Material.Themedata.ThemeData Localize(FlutterSDK.Material.Themedata.ThemeData baseTheme,FlutterSDK.Material.Texttheme.TextTheme localTextGeometry){ throw new NotImplementedException(); }
-
-
-public virtual Brightness EstimateBrightnessForColor(FlutterBinding.UI.Color color){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Material.Themedata.ThemeData Lerp(FlutterSDK.Material.Themedata.ThemeData a,FlutterSDK.Material.Themedata.ThemeData b,double t){ throw new NotImplementedException(); }
-
-
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual FlutterSDK.Material.Themedata.ThemeData CopyWith(Brightness brightness = default(Brightness), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color), Brightness primaryColorBrightness = default(Brightness), FlutterBinding.UI.Color primaryColorLight = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryColorDark = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color accentColor = default(FlutterBinding.UI.Color), Brightness accentColorBrightness = default(Brightness), FlutterBinding.UI.Color canvasColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color scaffoldBackgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color bottomAppBarColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color cardColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color dividerColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory splashFactory = default(FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory), FlutterBinding.UI.Color selectedRowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color unselectedWidgetColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Buttontheme.ButtonThemeData buttonTheme = default(FlutterSDK.Material.Buttontheme.ButtonThemeData), FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData toggleButtonsTheme = default(FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData), FlutterBinding.UI.Color buttonColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondaryHeaderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color textSelectionColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color textSelectionHandleColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color dialogBackgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color indicatorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hintColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color errorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color toggleableActiveColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme primaryTextTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme accentTextTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Inputdecorator.InputDecorationTheme inputDecorationTheme = default(FlutterSDK.Material.Inputdecorator.InputDecorationTheme), FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData primaryIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData accentIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Material.Tabbartheme.TabBarTheme tabBarTheme = default(FlutterSDK.Material.Tabbartheme.TabBarTheme), FlutterSDK.Material.Tooltiptheme.TooltipThemeData tooltipTheme = default(FlutterSDK.Material.Tooltiptheme.TooltipThemeData), FlutterSDK.Material.Cardtheme.CardTheme cardTheme = default(FlutterSDK.Material.Cardtheme.CardTheme), FlutterSDK.Material.Chiptheme.ChipThemeData chipTheme = default(FlutterSDK.Material.Chiptheme.ChipThemeData), FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), bool applyElevationOverlayColor = default(bool), FlutterSDK.Material.Pagetransitionstheme.PageTransitionsTheme pageTransitionsTheme = default(FlutterSDK.Material.Pagetransitionstheme.PageTransitionsTheme), FlutterSDK.Material.Appbartheme.AppBarTheme appBarTheme = default(FlutterSDK.Material.Appbartheme.AppBarTheme), FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme bottomAppBarTheme = default(FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme), FlutterSDK.Material.Colorscheme.ColorScheme colorScheme = default(FlutterSDK.Material.Colorscheme.ColorScheme), FlutterSDK.Material.Dialogtheme.DialogTheme dialogTheme = default(FlutterSDK.Material.Dialogtheme.DialogTheme), FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData floatingActionButtonTheme = default(FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData), FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData navigationRailTheme = default(FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData), FlutterSDK.Material.Typography.Typography typography = default(FlutterSDK.Material.Typography.Typography), FlutterSDK.Cupertino.Theme.CupertinoThemeData cupertinoOverrideTheme = default(FlutterSDK.Cupertino.Theme.CupertinoThemeData), FlutterSDK.Material.Snackbartheme.SnackBarThemeData snackBarTheme = default(FlutterSDK.Material.Snackbartheme.SnackBarThemeData), FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData bottomSheetTheme = default(FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData), FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData popupMenuTheme = default(FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData), FlutterSDK.Material.Bannertheme.MaterialBannerThemeData bannerTheme = default(FlutterSDK.Material.Bannertheme.MaterialBannerThemeData), FlutterSDK.Material.Dividertheme.DividerThemeData dividerTheme = default(FlutterSDK.Material.Dividertheme.DividerThemeData), FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData buttonBarTheme = default(FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData)) { throw new NotImplementedException(); }
 
 
-public class MaterialBasedCupertinoThemeData : FlutterSDK.Cupertino.Theme.CupertinoThemeData
-{
-#region constructors
-public MaterialBasedCupertinoThemeData(FlutterSDK.Material.Themedata.ThemeData materialTheme = default(FlutterSDK.Material.Themedata.ThemeData))
-: base()
-{
-throw new NotImplementedException(); }
-internal MaterialBasedCupertinoThemeData(FlutterSDK.Material.Themedata.ThemeData _materialTheme,FlutterSDK.Cupertino.Theme.CupertinoThemeData _cupertinoOverrideTheme)
-: base(_cupertinoOverrideTheme.Brightness,_cupertinoOverrideTheme.PrimaryColor,_cupertinoOverrideTheme.PrimaryContrastingColor,_cupertinoOverrideTheme.TextTheme,_cupertinoOverrideTheme.BarBackgroundColor,_cupertinoOverrideTheme.ScaffoldBackgroundColor)
-{
-this._MaterialTheme = _materialTheme;
-this._CupertinoOverrideTheme = _cupertinoOverrideTheme;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Material.Themedata.ThemeData _MaterialTheme{get;set;}
-internal virtual FlutterSDK.Cupertino.Theme.CupertinoThemeData _CupertinoOverrideTheme{get;set;}
-public virtual Brightness Brightness{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterBinding.UI.Color PrimaryColor{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterBinding.UI.Color PrimaryContrastingColor{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterBinding.UI.Color ScaffoldBackgroundColor{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Material.Themedata.MaterialBasedCupertinoThemeData CopyWith(Brightness brightness = default(Brightness),FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color primaryContrastingColor = default(FlutterBinding.UI.Color),FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData textTheme = default(FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData),FlutterBinding.UI.Color barBackgroundColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color scaffoldBackgroundColor = default(FlutterBinding.UI.Color)){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Material.Themedata.ThemeData Localize(FlutterSDK.Material.Themedata.ThemeData baseTheme, FlutterSDK.Material.Texttheme.TextTheme localTextGeometry) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Cupertino.Theme.CupertinoThemeData ResolveFrom(FlutterSDK.Widgets.Framework.BuildContext context,bool nullOk = false){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual Brightness EstimateBrightnessForColor(FlutterBinding.UI.Color color) { throw new NotImplementedException(); }
 
 
-public class _IdentityThemeDataCacheKey
-{
-#region constructors
-public _IdentityThemeDataCacheKey(FlutterSDK.Material.Themedata.ThemeData baseTheme,FlutterSDK.Material.Texttheme.TextTheme localTextGeometry)
-{
-this.BaseTheme = baseTheme;
-this.LocalTextGeometry = localTextGeometry;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Material.Themedata.ThemeData BaseTheme{get;set;}
-public virtual FlutterSDK.Material.Texttheme.TextTheme LocalTextGeometry{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual FlutterSDK.Material.Themedata.ThemeData Lerp(FlutterSDK.Material.Themedata.ThemeData a, FlutterSDK.Material.Themedata.ThemeData b, double t) { throw new NotImplementedException(); }
 
 
-public class _FifoCache<K,V>
-{
-#region constructors
-public _FifoCache(int _maximumSize)
-: base()
-{
-this._MaximumSize = _maximumSize;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual Dictionary<K,V> _Cache{get;set;}
-internal virtual int _MaximumSize{get;set;}
-#endregion
-
-#region methods
-
-public virtual V PutIfAbsent(K key,Func<V> loader){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
-public class VisualDensity : IDiagnosticable
-{
-#region constructors
-public VisualDensity(double horizontal = 0.0,double vertical = 0.0)
-: base()
-{
-this.Horizontal = horizontal;
-this.Vertical = vertical;throw new NotImplementedException(); }
-#endregion
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#region fields
-public virtual double MinimumDensity{get;set;}
-public virtual double MaximumDensity{get;set;}
-public virtual FlutterSDK.Material.Themedata.VisualDensity Standard{get;set;}
-public virtual FlutterSDK.Material.Themedata.VisualDensity Comfortable{get;set;}
-public virtual FlutterSDK.Material.Themedata.VisualDensity Compact{get;set;}
-public virtual double Horizontal{get;set;}
-public virtual double Vertical{get;set;}
-public virtual FlutterSDK.Material.Themedata.VisualDensity AdaptivePlatformDensity{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterBinding.UI.Offset BaseSizeAdjustment{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public virtual FlutterSDK.Material.Themedata.VisualDensity CopyWith(double horizontal = default(double),double vertical = default(double)){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public virtual FlutterSDK.Material.Themedata.VisualDensity Lerp(FlutterSDK.Material.Themedata.VisualDensity a,FlutterSDK.Material.Themedata.VisualDensity b,double t){ throw new NotImplementedException(); }
+    public class MaterialBasedCupertinoThemeData : FlutterSDK.Cupertino.Theme.CupertinoThemeData
+    {
+        #region constructors
+        public MaterialBasedCupertinoThemeData(FlutterSDK.Material.Themedata.ThemeData materialTheme = default(FlutterSDK.Material.Themedata.ThemeData))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        internal MaterialBasedCupertinoThemeData(FlutterSDK.Material.Themedata.ThemeData _materialTheme, FlutterSDK.Cupertino.Theme.CupertinoThemeData _cupertinoOverrideTheme)
+        : base(_cupertinoOverrideTheme.Brightness, _cupertinoOverrideTheme.PrimaryColor, _cupertinoOverrideTheme.PrimaryContrastingColor, _cupertinoOverrideTheme.TextTheme, _cupertinoOverrideTheme.BarBackgroundColor, _cupertinoOverrideTheme.ScaffoldBackgroundColor)
+        {
+            this._MaterialTheme = _materialTheme;
+            this._CupertinoOverrideTheme = _cupertinoOverrideTheme; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Material.Themedata.ThemeData _MaterialTheme { get; set; }
+        internal virtual FlutterSDK.Cupertino.Theme.CupertinoThemeData _CupertinoOverrideTheme { get; set; }
+        public virtual Brightness Brightness { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Color PrimaryColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Color PrimaryContrastingColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Color ScaffoldBackgroundColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Material.Themedata.MaterialBasedCupertinoThemeData CopyWith(Brightness brightness = default(Brightness), FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryContrastingColor = default(FlutterBinding.UI.Color), FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData textTheme = default(FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData), FlutterBinding.UI.Color barBackgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color scaffoldBackgroundColor = default(FlutterBinding.UI.Color)) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Rendering.Box.BoxConstraints EffectiveConstraints(FlutterSDK.Rendering.Box.BoxConstraints constraints){ throw new NotImplementedException(); }
+        public new FlutterSDK.Cupertino.Theme.CupertinoThemeData ResolveFrom(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+    public class _IdentityThemeDataCacheKey
+    {
+        #region constructors
+        public _IdentityThemeDataCacheKey(FlutterSDK.Material.Themedata.ThemeData baseTheme, FlutterSDK.Material.Texttheme.TextTheme localTextGeometry)
+        {
+            this.BaseTheme = baseTheme;
+            this.LocalTextGeometry = localTextGeometry; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Material.Themedata.ThemeData BaseTheme { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme LocalTextGeometry { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+    public class _FifoCache<K, V>
+    {
+        #region constructors
+        public _FifoCache(int _maximumSize)
+        : base()
+        {
+            this._MaximumSize = _maximumSize; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual Dictionary<K, V> _Cache { get; set; }
+        internal virtual int _MaximumSize { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual V PutIfAbsent(K key, Func<V> loader) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public new string ToStringShort(){ throw new NotImplementedException(); }
+    public class VisualDensity : IDiagnosticable
+    {
+        #region constructors
+        public VisualDensity(double horizontal = 0.0, double vertical = 0.0)
+        : base()
+        {
+            this.Horizontal = horizontal;
+            this.Vertical = vertical; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual double MinimumDensity { get; set; }
+        public virtual double MaximumDensity { get; set; }
+        public virtual FlutterSDK.Material.Themedata.VisualDensity Standard { get; set; }
+        public virtual FlutterSDK.Material.Themedata.VisualDensity Comfortable { get; set; }
+        public virtual FlutterSDK.Material.Themedata.VisualDensity Compact { get; set; }
+        public virtual double Horizontal { get; set; }
+        public virtual double Vertical { get; set; }
+        public virtual FlutterSDK.Material.Themedata.VisualDensity AdaptivePlatformDensity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Offset BaseSizeAdjustment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual FlutterSDK.Material.Themedata.VisualDensity CopyWith(double horizontal = default(double), double vertical = default(double)) { throw new NotImplementedException(); }
 
 
-public enum MaterialTapTargetSize{
+        public virtual FlutterSDK.Material.Themedata.VisualDensity Lerp(FlutterSDK.Material.Themedata.VisualDensity a, FlutterSDK.Material.Themedata.VisualDensity b, double t) { throw new NotImplementedException(); }
 
-Padded,
-ShrinkWrap,
-}
+
+        public virtual FlutterSDK.Rendering.Box.BoxConstraints EffectiveConstraints(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
+
+
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+
+        public new string ToStringShort() { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public enum MaterialTapTargetSize
+    {
+
+        Padded,
+        ShrinkWrap,
+    }
 
 }

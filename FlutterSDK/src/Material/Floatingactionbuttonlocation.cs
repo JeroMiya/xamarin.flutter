@@ -383,325 +383,347 @@ using FlutterSDK.Material.Expandicon;
 using FlutterSDK.Material.Mergeablematerial;
 using FlutterSDK.Material.Button;
 using FlutterSDK.Material.Floatingactionbuttontheme;
-namespace FlutterSDK.Material.Floatingactionbuttonlocation{
-internal static class FloatingactionbuttonlocationDefaultClass{
-public static double KFloatingActionButtonMargin = default(double);
-public static TimeSpan KFloatingActionButtonSegue = default(TimeSpan);
-public static double KFloatingActionButtonTurnInterval = default(double);
-internal static double _LeftOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry,double offset = 0.0){
-throw new NotImplementedException();
-}
-
-internal static double _RightOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry,double offset = 0.0){
-throw new NotImplementedException();
-}
-
-internal static double _EndOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry,double offset = 0.0){
-throw new NotImplementedException();
-}
-
-internal static double _StartOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry,double offset = 0.0){
-throw new NotImplementedException();
-}
-
-internal static double _StraddleAppBar(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry){
-throw new NotImplementedException();
-}
-
-}
-
-public interface IFloatingActionButtonLocation{
-Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry);
-string ToString();
-FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation EndFloat{get;}
-FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation CenterFloat{get;}
-FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation EndDocked{get;}
-FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation CenterDocked{get;}
-FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation StartTop{get;}
-FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation MiniStartTop{get;}
-FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation EndTop{get;}
-}
-
-
-internal interface I_DockedFloatingActionButtonLocation{
-double GetDockedY(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry);
-}
-
-
-public interface IFloatingActionButtonAnimator{
-Offset GetOffset(FlutterBinding.UI.Offset begin = default(FlutterBinding.UI.Offset),FlutterBinding.UI.Offset end = default(FlutterBinding.UI.Offset),double progress = default(double));
-FlutterSDK.Animation.Animation.Animation<double> GetScaleAnimation(FlutterSDK.Animation.Animation.Animation<double> parent = default(FlutterSDK.Animation.Animation.Animation<double>));
-FlutterSDK.Animation.Animation.Animation<double> GetRotationAnimation(FlutterSDK.Animation.Animation.Animation<double> parent = default(FlutterSDK.Animation.Animation.Animation<double>));
-double GetAnimationRestart(double previousValue);
-string ToString();
-FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator Scaling{get;}
-}
-
-
-public class FloatingActionButtonLocation
+namespace FlutterSDK.Material.Floatingactionbuttonlocation
 {
-#region constructors
-public FloatingActionButtonLocation()
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class FloatingactionbuttonlocationDefaultClass
+    {
+        public static double KFloatingActionButtonMargin = default(double);
+        public static TimeSpan KFloatingActionButtonSegue = default(TimeSpan);
+        public static double KFloatingActionButtonTurnInterval = default(double);
+        internal static double _LeftOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry, double offset = 0.0)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static double _RightOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry, double offset = 0.0)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static double _EndOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry, double offset = 0.0)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static double _StartOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry, double offset = 0.0)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static double _StraddleAppBar(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry)
+        {
+            throw new NotImplementedException();
+        }
+
+    }
+
+    public interface IFloatingActionButtonLocation
+    {
+        Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry);
+        string ToString();
+        FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation EndFloat { get; }
+        FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation CenterFloat { get; }
+        FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation EndDocked { get; }
+        FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation CenterDocked { get; }
+        FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation StartTop { get; }
+        FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation MiniStartTop { get; }
+        FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation EndTop { get; }
+    }
+
+
+    internal interface I_DockedFloatingActionButtonLocation
+    {
+        double GetDockedY(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry);
+    }
+
+
+    public interface IFloatingActionButtonAnimator
+    {
+        Offset GetOffset(FlutterBinding.UI.Offset begin = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset end = default(FlutterBinding.UI.Offset), double progress = default(double));
+        FlutterSDK.Animation.Animation.Animation<double> GetScaleAnimation(FlutterSDK.Animation.Animation.Animation<double> parent = default(FlutterSDK.Animation.Animation.Animation<double>));
+        FlutterSDK.Animation.Animation.Animation<double> GetRotationAnimation(FlutterSDK.Animation.Animation.Animation<double> parent = default(FlutterSDK.Animation.Animation.Animation<double>));
+        double GetAnimationRestart(double previousValue);
+        string ToString();
+        FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator Scaling { get; }
+    }
+
+
+    public class FloatingActionButtonLocation
+    {
+        #region constructors
+        public FloatingActionButtonLocation()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation EndFloat{get;set;}
-public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation CenterFloat{get;set;}
-public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation EndDocked{get;set;}
-public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation CenterDocked{get;set;}
-public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation StartTop{get;set;}
-public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation MiniStartTop{get;set;}
-public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation EndTop{get;set;}
-#endregion
+        #region fields
+        public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation EndFloat { get; set; }
+        public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation CenterFloat { get; set; }
+        public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation EndDocked { get; set; }
+        public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation CenterDocked { get; set; }
+        public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation StartTop { get; set; }
+        public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation MiniStartTop { get; set; }
+        public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation EndTop { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public virtual Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry){ throw new NotImplementedException(); }
+        public virtual Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _CenterFloatFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
-{
-#region constructors
-public _CenterFloatFloatingActionButtonLocation()
-{
-throw new NotImplementedException(); }
-#endregion
+    public class _CenterFloatFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
+    {
+        #region constructors
+        public _CenterFloatFloatingActionButtonLocation()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry){ throw new NotImplementedException(); }
+        public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _EndFloatFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
-{
-#region constructors
-public _EndFloatFloatingActionButtonLocation()
-{
-throw new NotImplementedException(); }
-#endregion
+    public class _EndFloatFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
+    {
+        #region constructors
+        public _EndFloatFloatingActionButtonLocation()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry){ throw new NotImplementedException(); }
+        public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _DockedFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
-{
-#region constructors
-public _DockedFloatingActionButtonLocation()
-{
-throw new NotImplementedException(); }
-#endregion
+    public class _DockedFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
+    {
+        #region constructors
+        public _DockedFloatingActionButtonLocation()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-public virtual double GetDockedY(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry){ throw new NotImplementedException(); }
+        public virtual double GetDockedY(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _EndDockedFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation._DockedFloatingActionButtonLocation
-{
-#region constructors
-public _EndDockedFloatingActionButtonLocation()
-{
-throw new NotImplementedException(); }
-#endregion
+    public class _EndDockedFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation._DockedFloatingActionButtonLocation
+    {
+        #region constructors
+        public _EndDockedFloatingActionButtonLocation()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry){ throw new NotImplementedException(); }
+        public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _CenterDockedFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation._DockedFloatingActionButtonLocation
-{
-#region constructors
-public _CenterDockedFloatingActionButtonLocation()
-{
-throw new NotImplementedException(); }
-#endregion
+    public class _CenterDockedFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation._DockedFloatingActionButtonLocation
+    {
+        #region constructors
+        public _CenterDockedFloatingActionButtonLocation()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry){ throw new NotImplementedException(); }
+        public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _StartTopFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
-{
-#region constructors
-public _StartTopFloatingActionButtonLocation()
-{
-throw new NotImplementedException(); }
-#endregion
+    public class _StartTopFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
+    {
+        #region constructors
+        public _StartTopFloatingActionButtonLocation()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry){ throw new NotImplementedException(); }
+        public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _MiniStartTopFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
-{
-#region constructors
-public _MiniStartTopFloatingActionButtonLocation()
-{
-throw new NotImplementedException(); }
-#endregion
+    public class _MiniStartTopFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
+    {
+        #region constructors
+        public _MiniStartTopFloatingActionButtonLocation()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry){ throw new NotImplementedException(); }
+        public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _EndTopFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
-{
-#region constructors
-public _EndTopFloatingActionButtonLocation()
-{
-throw new NotImplementedException(); }
-#endregion
+    public class _EndTopFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
+    {
+        #region constructors
+        public _EndTopFloatingActionButtonLocation()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry){ throw new NotImplementedException(); }
+        public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class FloatingActionButtonAnimator
-{
-#region constructors
-public FloatingActionButtonAnimator()
-{
-throw new NotImplementedException(); }
-#endregion
+    public class FloatingActionButtonAnimator
+    {
+        #region constructors
+        public FloatingActionButtonAnimator()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator Scaling{get;set;}
-#endregion
+        #region fields
+        public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator Scaling { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public virtual Offset GetOffset(FlutterBinding.UI.Offset begin = default(FlutterBinding.UI.Offset),FlutterBinding.UI.Offset end = default(FlutterBinding.UI.Offset),double progress = default(double)){ throw new NotImplementedException(); }
+        public virtual Offset GetOffset(FlutterBinding.UI.Offset begin = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset end = default(FlutterBinding.UI.Offset), double progress = default(double)) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Animation.Animation.Animation<double> GetScaleAnimation(FlutterSDK.Animation.Animation.Animation<double> parent = default(FlutterSDK.Animation.Animation.Animation<double>)){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Animation.Animation.Animation<double> GetScaleAnimation(FlutterSDK.Animation.Animation.Animation<double> parent = default(FlutterSDK.Animation.Animation.Animation<double>)) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Animation.Animation.Animation<double> GetRotationAnimation(FlutterSDK.Animation.Animation.Animation<double> parent = default(FlutterSDK.Animation.Animation.Animation<double>)){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Animation.Animation.Animation<double> GetRotationAnimation(FlutterSDK.Animation.Animation.Animation<double> parent = default(FlutterSDK.Animation.Animation.Animation<double>)) { throw new NotImplementedException(); }
 
 
-public virtual double GetAnimationRestart(double previousValue){ throw new NotImplementedException(); }
+        public virtual double GetAnimationRestart(double previousValue) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _ScalingFabMotionAnimator : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator
-{
-#region constructors
-public _ScalingFabMotionAnimator()
-{
-throw new NotImplementedException(); }
-#endregion
+    public class _ScalingFabMotionAnimator : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator
+    {
+        #region constructors
+        public _ScalingFabMotionAnimator()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-internal virtual FlutterSDK.Animation.Tween.Animatable<double> _RotationTween{get;set;}
-internal virtual FlutterSDK.Animation.Tween.Animatable<double> _ThresholdCenterTween{get;set;}
-#endregion
+        #region fields
+        internal virtual FlutterSDK.Animation.Tween.Animatable<double> _RotationTween { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.Animatable<double> _ThresholdCenterTween { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new Offset GetOffset(FlutterBinding.UI.Offset begin = default(FlutterBinding.UI.Offset),FlutterBinding.UI.Offset end = default(FlutterBinding.UI.Offset),double progress = default(double)){ throw new NotImplementedException(); }
+        public new Offset GetOffset(FlutterBinding.UI.Offset begin = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset end = default(FlutterBinding.UI.Offset), double progress = default(double)) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Animation.Animation.Animation<double> GetScaleAnimation(FlutterSDK.Animation.Animation.Animation<double> parent = default(FlutterSDK.Animation.Animation.Animation<double>)){ throw new NotImplementedException(); }
+        public new FlutterSDK.Animation.Animation.Animation<double> GetScaleAnimation(FlutterSDK.Animation.Animation.Animation<double> parent = default(FlutterSDK.Animation.Animation.Animation<double>)) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Animation.Animation.Animation<double> GetRotationAnimation(FlutterSDK.Animation.Animation.Animation<double> parent = default(FlutterSDK.Animation.Animation.Animation<double>)){ throw new NotImplementedException(); }
+        public new FlutterSDK.Animation.Animation.Animation<double> GetRotationAnimation(FlutterSDK.Animation.Animation.Animation<double> parent = default(FlutterSDK.Animation.Animation.Animation<double>)) { throw new NotImplementedException(); }
 
 
-public new double GetAnimationRestart(double previousValue){ throw new NotImplementedException(); }
+        public new double GetAnimationRestart(double previousValue) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _AnimationSwap<T> : FlutterSDK.Animation.Animations.CompoundAnimation<T>
-{
-#region constructors
-public _AnimationSwap(FlutterSDK.Animation.Animation.Animation<T> first,FlutterSDK.Animation.Animation.Animation<T> next,FlutterSDK.Animation.Animation.Animation<double> parent,double swapThreshold)
-: base(first:first,next:next)
-{
-this.Parent = parent;
-this.SwapThreshold = swapThreshold;throw new NotImplementedException(); }
-#endregion
+    public class _AnimationSwap<T> : FlutterSDK.Animation.Animations.CompoundAnimation<T>
+    {
+        #region constructors
+        public _AnimationSwap(FlutterSDK.Animation.Animation.Animation<T> first, FlutterSDK.Animation.Animation.Animation<T> next, FlutterSDK.Animation.Animation.Animation<double> parent, double swapThreshold)
+        : base(first: first, next: next)
+        {
+            this.Parent = parent;
+            this.SwapThreshold = swapThreshold; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Animation.Animation.Animation<double> Parent{get;set;}
-public virtual double SwapThreshold{get;set;}
-public virtual T Value{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #region fields
+        public virtual FlutterSDK.Animation.Animation.Animation<double> Parent { get; set; }
+        public virtual double SwapThreshold { get; set; }
+        public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#region methods
-#endregion
-}
+        #region methods
+        #endregion
+    }
 
 }

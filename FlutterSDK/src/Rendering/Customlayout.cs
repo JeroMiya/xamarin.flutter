@@ -421,134 +421,139 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Rendering.Customlayout{
-internal static class CustomlayoutDefaultClass{
-}
-
-public interface IMultiChildLayoutDelegate{
-bool HasChild(@Object childId);
-Size LayoutChild(@Object childId,FlutterSDK.Rendering.Box.BoxConstraints constraints);
-void PositionChild(@Object childId,FlutterBinding.UI.Offset offset);
-Size GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints);
-void PerformLayout(Size size);
-bool ShouldRelayout(FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate oldDelegate);
-string ToString();
-}
-
-
-public class MultiChildLayoutParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
+namespace FlutterSDK.Rendering.Customlayout
 {
-#region constructors
-public MultiChildLayoutParentData()
-{ }
-#endregion
+    internal static class CustomlayoutDefaultClass
+    {
+    }
 
-#region fields
-public virtual @Object Id{get;set;}
-#endregion
-
-#region methods
-
-#endregion
-}
-
-
-public class MultiChildLayoutDelegate
-{
-#region constructors
-public MultiChildLayoutDelegate(FlutterSDK.Foundation.Changenotifier.Listenable relayout = default(FlutterSDK.Foundation.Changenotifier.Listenable))
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Foundation.Changenotifier.Listenable _Relayout{get;set;}
-internal virtual Dictionary<@Object,FlutterSDK.Rendering.Box.RenderBox> _IdToChild{get;set;}
-internal virtual HashSet<FlutterSDK.Rendering.Box.RenderBox> _DebugChildrenNeedingLayout{get;set;}
-#endregion
-
-#region methods
-
-public virtual bool HasChild(@Object childId){ throw new NotImplementedException(); }
+    public interface IMultiChildLayoutDelegate
+    {
+        bool HasChild(@Object childId);
+        Size LayoutChild(@Object childId, FlutterSDK.Rendering.Box.BoxConstraints constraints);
+        void PositionChild(@Object childId, FlutterBinding.UI.Offset offset);
+        Size GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints);
+        void PerformLayout(Size size);
+        bool ShouldRelayout(FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate oldDelegate);
+        string ToString();
+    }
 
 
-public virtual Size LayoutChild(@Object childId,FlutterSDK.Rendering.Box.BoxConstraints constraints){ throw new NotImplementedException(); }
+    public class MultiChildLayoutParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
+    {
+        #region constructors
+        public MultiChildLayoutParentData()
+        { }
+        #endregion
+
+        #region fields
+        public virtual @Object Id { get; set; }
+        #endregion
+
+        #region methods
+
+        #endregion
+    }
 
 
-public virtual void PositionChild(@Object childId,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+    public class MultiChildLayoutDelegate
+    {
+        #region constructors
+        public MultiChildLayoutDelegate(FlutterSDK.Foundation.Changenotifier.Listenable relayout = default(FlutterSDK.Foundation.Changenotifier.Listenable))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Foundation.Changenotifier.Listenable _Relayout { get; set; }
+        internal virtual Dictionary<@Object, FlutterSDK.Rendering.Box.RenderBox> _IdToChild { get; set; }
+        internal virtual HashSet<FlutterSDK.Rendering.Box.RenderBox> _DebugChildrenNeedingLayout { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual bool HasChild(@Object childId) { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Foundation.Diagnostics.DiagnosticsNode _DebugDescribeChild(FlutterSDK.Rendering.Box.RenderBox child){ throw new NotImplementedException(); }
+        public virtual Size LayoutChild(@Object childId, FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
 
 
-private void _CallPerformLayout(Size size,FlutterSDK.Rendering.Box.RenderBox firstChild){ throw new NotImplementedException(); }
+        public virtual void PositionChild(@Object childId, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
-public virtual Size GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints){ throw new NotImplementedException(); }
+        private FlutterSDK.Foundation.Diagnostics.DiagnosticsNode _DebugDescribeChild(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
 
 
-public virtual void PerformLayout(Size size){ throw new NotImplementedException(); }
+        private void _CallPerformLayout(Size size, FlutterSDK.Rendering.Box.RenderBox firstChild) { throw new NotImplementedException(); }
 
 
-public virtual bool ShouldRelayout(FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate oldDelegate){ throw new NotImplementedException(); }
+        public virtual Size GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public virtual void PerformLayout(Size size) { throw new NotImplementedException(); }
 
 
-public class RenderCustomMultiChildLayoutBox : FlutterSDK.Rendering.Box.RenderBox,IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox,FlutterSDK.Rendering.Customlayout.MultiChildLayoutParentData>,IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox,FlutterSDK.Rendering.Customlayout.MultiChildLayoutParentData>
-{
-#region constructors
-public RenderCustomMultiChildLayoutBox(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>),FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate @delegate = default(FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate))
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate _Delegate{get;set;}
-public virtual FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate @delegate{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
-
-#region methods
-
-public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child){ throw new NotImplementedException(); }
-public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
+        public virtual bool ShouldRelayout(FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate oldDelegate) { throw new NotImplementedException(); }
 
 
-public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner){ throw new NotImplementedException(); }
-public new void Attach(@Object owner){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void Detach(){ throw new NotImplementedException(); }
+    public class RenderCustomMultiChildLayoutBox : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Customlayout.MultiChildLayoutParentData>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Customlayout.MultiChildLayoutParentData>
+    {
+        #region constructors
+        public RenderCustomMultiChildLayoutBox(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate @delegate = default(FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate _Delegate { get; set; }
+        public virtual FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate @delegate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
+        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
 
-private Size _GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints){ throw new NotImplementedException(); }
+        public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner) { throw new NotImplementedException(); }
+        public new void Attach(@Object owner) { throw new NotImplementedException(); }
 
 
-public new double ComputeMinIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        public new void Detach() { throw new NotImplementedException(); }
 
 
-public new double ComputeMaxIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        private Size _GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
 
 
-public new double ComputeMinIntrinsicHeight(double width){ throw new NotImplementedException(); }
+        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-public new double ComputeMaxIntrinsicHeight(double width){ throw new NotImplementedException(); }
+        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
+        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
+
+
+        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

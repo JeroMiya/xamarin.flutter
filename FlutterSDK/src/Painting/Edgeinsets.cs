@@ -420,317 +420,329 @@ using FlutterSDK.Material.Inksplash;
 using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
-namespace FlutterSDK.Painting.Edgeinsets{
-internal static class EdgeinsetsDefaultClass{
-}
-
-public interface IEdgeInsetsGeometry{
-double Along(FlutterSDK.Painting.Basictypes.Axis axis);
-Size InflateSize(Size size);
-Size DeflateSize(Size size);
-FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Subtract(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry other);
-FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Add(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry other);
-FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Clamp(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry min,FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry max);
-FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Unary();
-FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry MultiplyOperator(double other);
-FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry DivideOperator(double other);
-FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry DivideIntegerResultOperator(double other);
-FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ModuloOperator(double other);
-FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Lerp(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry a,FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry b,double t);
-FlutterSDK.Painting.Edgeinsets.EdgeInsets Resolve(TextDirection direction);
-string ToString();
-bool Equals(@Object other);
-FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Infinity{get;}
-bool IsNonNegative{get;}
-double Horizontal{get;}
-double Vertical{get;}
-Size CollapsedSize{get;}
-FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Flipped{get;}
-int HashCode{get;}
-}
-
-
-public class EdgeInsetsGeometry
+namespace FlutterSDK.Painting.Edgeinsets
 {
-#region constructors
-public EdgeInsetsGeometry()
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class EdgeinsetsDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Infinity{get;set;}
-internal virtual double _Bottom{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _End{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _Left{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _Right{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _Start{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _Top{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsNonNegative{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double Horizontal{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double Vertical{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual Size CollapsedSize{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Flipped{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public interface IEdgeInsetsGeometry
+    {
+        double Along(FlutterSDK.Painting.Basictypes.Axis axis);
+        Size InflateSize(Size size);
+        Size DeflateSize(Size size);
+        FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Subtract(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry other);
+        FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Add(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry other);
+        FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Clamp(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry min, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry max);
+        FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Unary();
+        FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry MultiplyOperator(double other);
+        FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry DivideOperator(double other);
+        FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry DivideIntegerResultOperator(double other);
+        FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ModuloOperator(double other);
+        FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Lerp(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry a, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry b, double t);
+        FlutterSDK.Painting.Edgeinsets.EdgeInsets Resolve(TextDirection direction);
+        string ToString();
+        bool Equals(@Object other);
+        FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Infinity { get; }
+        bool IsNonNegative { get; }
+        double Horizontal { get; }
+        double Vertical { get; }
+        Size CollapsedSize { get; }
+        FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Flipped { get; }
+        int HashCode { get; }
+    }
 
-#region methods
 
-public virtual double Along(FlutterSDK.Painting.Basictypes.Axis axis){ throw new NotImplementedException(); }
+    public class EdgeInsetsGeometry
+    {
+        #region constructors
+        public EdgeInsetsGeometry()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Infinity { get; set; }
+        internal virtual double _Bottom { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _End { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _Left { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _Right { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _Start { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _Top { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsNonNegative { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Horizontal { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Vertical { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual Size CollapsedSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Flipped { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual double Along(FlutterSDK.Painting.Basictypes.Axis axis) { throw new NotImplementedException(); }
 
-public virtual Size InflateSize(Size size){ throw new NotImplementedException(); }
 
+        public virtual Size InflateSize(Size size) { throw new NotImplementedException(); }
 
-public virtual Size DeflateSize(Size size){ throw new NotImplementedException(); }
 
+        public virtual Size DeflateSize(Size size) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Subtract(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry other){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Subtract(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry other) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Add(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry other){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Add(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry other) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Clamp(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry min,FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry max){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Clamp(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry min, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry max) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Unary(){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Unary() { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry MultiplyOperator(double other){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry MultiplyOperator(double other) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry DivideOperator(double other){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry DivideOperator(double other) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry DivideIntegerResultOperator(double other){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry DivideIntegerResultOperator(double other) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ModuloOperator(double other){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ModuloOperator(double other) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Lerp(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry a,FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry b,double t){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Lerp(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry a, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry b, double t) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Resolve(TextDirection direction){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Resolve(TextDirection direction) { throw new NotImplementedException(); }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class EdgeInsets : FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry
-{
-#region constructors
-public static EdgeInsets FromLTRB(double left,double top,double right,double bottom)
-{
-var instance =new EdgeInsets();instance.Left = left;
-instance.Top = top;
-instance.Right = right;
-instance.Bottom = bottom;throw new NotImplementedException(); }
-public static EdgeInsets All(double value)
-{
-var instance =new EdgeInsets();throw new NotImplementedException(); }
-public static EdgeInsets Only(double left = 0.0,double top = 0.0,double right = 0.0,double bottom = 0.0)
-{
-var instance =new EdgeInsets();instance.Left = left;
-instance.Top = top;
-instance.Right = right;
-instance.Bottom = bottom;throw new NotImplementedException(); }
-public static EdgeInsets Symmetric(double vertical = 0.0,double horizontal = 0.0)
-{
-var instance =new EdgeInsets();throw new NotImplementedException(); }
-public static EdgeInsets FromWindowPadding(WindowPadding padding,double devicePixelRatio)
-{
-var instance =new EdgeInsets();throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Zero{get;set;}
-public virtual double Left{get;set;}
-public virtual double Top{get;set;}
-public virtual double Right{get;set;}
-public virtual double Bottom{get;set;}
-internal virtual double _Left{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _Top{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _Right{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _Bottom{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _Start{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _End{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterBinding.UI.Offset TopLeft{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterBinding.UI.Offset TopRight{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterBinding.UI.Offset BottomLeft{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterBinding.UI.Offset BottomRight{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Flipped{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class EdgeInsets : FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry
+    {
+        #region constructors
+        public static EdgeInsets FromLTRB(double left, double top, double right, double bottom)
+        {
+            var instance = new EdgeInsets(); instance.Left = left;
+            instance.Top = top;
+            instance.Right = right;
+            instance.Bottom = bottom; throw new NotImplementedException();
+        }
+        public static EdgeInsets All(double value)
+        {
+            var instance = new EdgeInsets(); throw new NotImplementedException();
+        }
+        public static EdgeInsets Only(double left = 0.0, double top = 0.0, double right = 0.0, double bottom = 0.0)
+        {
+            var instance = new EdgeInsets(); instance.Left = left;
+            instance.Top = top;
+            instance.Right = right;
+            instance.Bottom = bottom; throw new NotImplementedException();
+        }
+        public static EdgeInsets Symmetric(double vertical = 0.0, double horizontal = 0.0)
+        {
+            var instance = new EdgeInsets(); throw new NotImplementedException();
+        }
+        public static EdgeInsets FromWindowPadding(WindowPadding padding, double devicePixelRatio)
+        {
+            var instance = new EdgeInsets(); throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Zero { get; set; }
+        public virtual double Left { get; set; }
+        public virtual double Top { get; set; }
+        public virtual double Right { get; set; }
+        public virtual double Bottom { get; set; }
+        internal virtual double _Left { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _Top { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _Right { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _Bottom { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _Start { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _End { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Offset TopLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Offset TopRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Offset BottomLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Offset BottomRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Flipped { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual Rect InflateRect(FlutterBinding.UI.Rect rect){ throw new NotImplementedException(); }
+        #region methods
 
+        public virtual Rect InflateRect(FlutterBinding.UI.Rect rect) { throw new NotImplementedException(); }
 
-public virtual Rect DeflateRect(FlutterBinding.UI.Rect rect){ throw new NotImplementedException(); }
 
+        public virtual Rect DeflateRect(FlutterBinding.UI.Rect rect) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Subtract(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Subtract(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Add(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Add(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Clamp(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry min,FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry max){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Clamp(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry min, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry max) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Unary(FlutterSDK.Painting.Edgeinsets.EdgeInsets other){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Unary(FlutterSDK.Painting.Edgeinsets.EdgeInsets other) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets AddOperator(FlutterSDK.Painting.Edgeinsets.EdgeInsets other){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets AddOperator(FlutterSDK.Painting.Edgeinsets.EdgeInsets other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Edgeinsets.EdgeInsets Unary(){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Edgeinsets.EdgeInsets Unary() { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Edgeinsets.EdgeInsets MultiplyOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Edgeinsets.EdgeInsets MultiplyOperator(double other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Edgeinsets.EdgeInsets DivideOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Edgeinsets.EdgeInsets DivideOperator(double other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Edgeinsets.EdgeInsets DivideIntegerResultOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Edgeinsets.EdgeInsets DivideIntegerResultOperator(double other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Edgeinsets.EdgeInsets ModuloOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Edgeinsets.EdgeInsets ModuloOperator(double other) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Lerp(FlutterSDK.Painting.Edgeinsets.EdgeInsets a,FlutterSDK.Painting.Edgeinsets.EdgeInsets b,double t){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Lerp(FlutterSDK.Painting.Edgeinsets.EdgeInsets a, FlutterSDK.Painting.Edgeinsets.EdgeInsets b, double t) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Edgeinsets.EdgeInsets Resolve(TextDirection direction){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Edgeinsets.EdgeInsets Resolve(TextDirection direction) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets CopyWith(double left = default(double),double top = default(double),double right = default(double),double bottom = default(double)){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets CopyWith(double left = default(double), double top = default(double), double right = default(double), double bottom = default(double)) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class EdgeInsetsDirectional : FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry
-{
-#region constructors
-public static EdgeInsetsDirectional FromSTEB(double start,double top,double end,double bottom)
-{
-var instance =new EdgeInsetsDirectional();instance.Start = start;
-instance.Top = top;
-instance.End = end;
-instance.Bottom = bottom;throw new NotImplementedException(); }
-public static EdgeInsetsDirectional Only(double start = 0.0,double top = 0.0,double end = 0.0,double bottom = 0.0)
-{
-var instance =new EdgeInsetsDirectional();instance.Start = start;
-instance.Top = top;
-instance.End = end;
-instance.Bottom = bottom;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Zero{get;set;}
-public virtual double Start{get;set;}
-public virtual double Top{get;set;}
-public virtual double End{get;set;}
-public virtual double Bottom{get;set;}
-internal virtual double _Start{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _Top{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _End{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _Bottom{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _Left{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _Right{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsNonNegative{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Flipped{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class EdgeInsetsDirectional : FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry
+    {
+        #region constructors
+        public static EdgeInsetsDirectional FromSTEB(double start, double top, double end, double bottom)
+        {
+            var instance = new EdgeInsetsDirectional(); instance.Start = start;
+            instance.Top = top;
+            instance.End = end;
+            instance.Bottom = bottom; throw new NotImplementedException();
+        }
+        public static EdgeInsetsDirectional Only(double start = 0.0, double top = 0.0, double end = 0.0, double bottom = 0.0)
+        {
+            var instance = new EdgeInsetsDirectional(); instance.Start = start;
+            instance.Top = top;
+            instance.End = end;
+            instance.Bottom = bottom; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Zero { get; set; }
+        public virtual double Start { get; set; }
+        public virtual double Top { get; set; }
+        public virtual double End { get; set; }
+        public virtual double Bottom { get; set; }
+        internal virtual double _Start { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _Top { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _End { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _Bottom { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _Left { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _Right { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsNonNegative { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Flipped { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Subtract(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry other){ throw new NotImplementedException(); }
+        #region methods
 
+        public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Subtract(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Add(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Add(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry other) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Unary(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional other){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Unary(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional other) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional AddOperator(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional other){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional AddOperator(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Unary(){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Unary() { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional MultiplyOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional MultiplyOperator(double other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional DivideOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional DivideOperator(double other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional DivideIntegerResultOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional DivideIntegerResultOperator(double other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional ModuloOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional ModuloOperator(double other) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Lerp(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional a,FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional b,double t){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Lerp(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional a, FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional b, double t) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Edgeinsets.EdgeInsets Resolve(TextDirection direction){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new FlutterSDK.Painting.Edgeinsets.EdgeInsets Resolve(TextDirection direction) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class _MixedEdgeInsets : FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry
-{
-#region constructors
-public static _MixedEdgeInsets FromLRSETB(double _left,double _right,double _start,double _end,double _top,double _bottom)
-{
-var instance =new _MixedEdgeInsets();instance._Left = _left;
-instance._Right = _right;
-instance._Start = _start;
-instance._End = _end;
-instance._Top = _top;
-instance._Bottom = _bottom;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-internal new double _Left{get;set;}
-internal new double _Right{get;set;}
-internal new double _Start{get;set;}
-internal new double _End{get;set;}
-internal new double _Top{get;set;}
-internal new double _Bottom{get;set;}
-public virtual bool IsNonNegative{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class _MixedEdgeInsets : FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry
+    {
+        #region constructors
+        public static _MixedEdgeInsets FromLRSETB(double _left, double _right, double _start, double _end, double _top, double _bottom)
+        {
+            var instance = new _MixedEdgeInsets(); instance._Left = _left;
+            instance._Right = _right;
+            instance._Start = _start;
+            instance._End = _end;
+            instance._Top = _top;
+            instance._Bottom = _bottom; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal new double _Left { get; set; }
+        internal new double _Right { get; set; }
+        internal new double _Start { get; set; }
+        internal new double _End { get; set; }
+        internal new double _Top { get; set; }
+        internal new double _Bottom { get; set; }
+        public virtual bool IsNonNegative { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new FlutterSDK.Painting.Edgeinsets._MixedEdgeInsets Unary(){ throw new NotImplementedException(); }
+        #region methods
 
+        public new FlutterSDK.Painting.Edgeinsets._MixedEdgeInsets Unary() { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Edgeinsets._MixedEdgeInsets MultiplyOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Edgeinsets._MixedEdgeInsets MultiplyOperator(double other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Edgeinsets._MixedEdgeInsets DivideOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Edgeinsets._MixedEdgeInsets DivideOperator(double other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Edgeinsets._MixedEdgeInsets DivideIntegerResultOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Edgeinsets._MixedEdgeInsets DivideIntegerResultOperator(double other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Edgeinsets._MixedEdgeInsets ModuloOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Edgeinsets._MixedEdgeInsets ModuloOperator(double other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Edgeinsets.EdgeInsets Resolve(TextDirection direction){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new FlutterSDK.Painting.Edgeinsets.EdgeInsets Resolve(TextDirection direction) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

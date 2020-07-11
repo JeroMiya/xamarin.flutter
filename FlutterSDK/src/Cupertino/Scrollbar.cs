@@ -291,143 +291,148 @@ using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
-namespace FlutterSDK.Cupertino.Scrollbar{
-internal static class ScrollbarDefaultClass{
-public static double _KScrollbarMinLength = default(double);
-public static double _KScrollbarMinOverscrollLength = default(double);
-public static TimeSpan _KScrollbarTimeToFade = default(TimeSpan);
-public static TimeSpan _KScrollbarFadeDuration = default(TimeSpan);
-public static TimeSpan _KScrollbarResizeDuration = default(TimeSpan);
-public static Color _KScrollbarColor = default(Color);
-public static double _KScrollbarThickness = default(double);
-public static double _KScrollbarThicknessDragging = default(double);
-public static Radius _KScrollbarRadius = default(Radius);
-public static Radius _KScrollbarRadiusDragging = default(Radius);
-public static double _KScrollbarMainAxisMargin = default(double);
-public static double _KScrollbarCrossAxisMargin = default(double);
-internal static bool _HitTestInteractive(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> customPaintKey,FlutterBinding.UI.Offset offset){
-throw new NotImplementedException();
-}
-
-}
-
-public class CupertinoScrollbar : FlutterSDK.Widgets.Framework.StatefulWidget
+namespace FlutterSDK.Cupertino.Scrollbar
 {
-#region constructors
-public CupertinoScrollbar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController),bool isAlwaysShown = false,FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key)
-{
-this.Controller = controller;
-this.IsAlwaysShown = isAlwaysShown;
-this.Child = child;throw new NotImplementedException(); }
-#endregion
+    internal static class ScrollbarDefaultClass
+    {
+        public static double _KScrollbarMinLength = default(double);
+        public static double _KScrollbarMinOverscrollLength = default(double);
+        public static TimeSpan _KScrollbarTimeToFade = default(TimeSpan);
+        public static TimeSpan _KScrollbarFadeDuration = default(TimeSpan);
+        public static TimeSpan _KScrollbarResizeDuration = default(TimeSpan);
+        public static Color _KScrollbarColor = default(Color);
+        public static double _KScrollbarThickness = default(double);
+        public static double _KScrollbarThicknessDragging = default(double);
+        public static Radius _KScrollbarRadius = default(Radius);
+        public static Radius _KScrollbarRadiusDragging = default(Radius);
+        public static double _KScrollbarMainAxisMargin = default(double);
+        public static double _KScrollbarCrossAxisMargin = default(double);
+        internal static bool _HitTestInteractive(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> customPaintKey, FlutterBinding.UI.Offset offset)
+        {
+            throw new NotImplementedException();
+        }
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller{get;set;}
-public virtual bool IsAlwaysShown{get;set;}
-#endregion
+    }
 
-#region methods
+    public class CupertinoScrollbar : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public CupertinoScrollbar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool isAlwaysShown = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.Controller = controller;
+            this.IsAlwaysShown = isAlwaysShown;
+            this.Child = child; throw new NotImplementedException();
+        }
+        #endregion
 
-public new FlutterSDK.Cupertino.Scrollbar._CupertinoScrollbarState CreateState(){ throw new NotImplementedException(); }
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller { get; set; }
+        public virtual bool IsAlwaysShown { get; set; }
+        #endregion
 
-#endregion
-}
+        #region methods
 
+        public new FlutterSDK.Cupertino.Scrollbar._CupertinoScrollbarState CreateState() { throw new NotImplementedException(); }
 
-public class _CupertinoScrollbarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Scrollbar.CupertinoScrollbar>,ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-#region constructors
-public _CupertinoScrollbarState()
-{ }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _CustomPaintKey{get;set;}
-internal virtual FlutterSDK.Widgets.Scrollbar.ScrollbarPainter _Painter{get;set;}
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _FadeoutAnimationController{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _FadeoutOpacityAnimation{get;set;}
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _ThicknessAnimationController{get;set;}
-internal virtual Timer _FadeoutTimer{get;set;}
-internal virtual double _DragScrollbarPositionY{get;set;}
-internal virtual FlutterSDK.Gestures.Drag.Drag _Drag{get;set;}
-internal virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController _CurrentController{get;set;}
-internal virtual double _PressStartY{get;set;}
-internal virtual double _Thickness{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual Radius _Radius{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController _Controller{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual Dictionary<Type,FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactory<FlutterSDK.Gestures.Recognizer.GestureRecognizer>> _Gestures{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new void InitState(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void DidChangeDependencies(){ throw new NotImplementedException(); }
+    public class _CupertinoScrollbarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Scrollbar.CupertinoScrollbar>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _CupertinoScrollbarState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _CustomPaintKey { get; set; }
+        internal virtual FlutterSDK.Widgets.Scrollbar.ScrollbarPainter _Painter { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _FadeoutAnimationController { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _FadeoutOpacityAnimation { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _ThicknessAnimationController { get; set; }
+        internal virtual Timer _FadeoutTimer { get; set; }
+        internal virtual double _DragScrollbarPositionY { get; set; }
+        internal virtual FlutterSDK.Gestures.Drag.Drag _Drag { get; set; }
+        internal virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController _CurrentController { get; set; }
+        internal virtual double _PressStartY { get; set; }
+        internal virtual double _Thickness { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _Radius { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController _Controller { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Dictionary<Type, FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactory<FlutterSDK.Gestures.Recognizer.GestureRecognizer>> _Gestures { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-public new void DidUpdateWidget(FlutterSDK.Cupertino.Scrollbar.CupertinoScrollbar oldWidget){ throw new NotImplementedException(); }
+        public new void DidChangeDependencies() { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Widgets.Scrollbar.ScrollbarPainter _BuildCupertinoScrollbarPainter(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new void DidUpdateWidget(FlutterSDK.Cupertino.Scrollbar.CupertinoScrollbar oldWidget) { throw new NotImplementedException(); }
 
 
-private void _DragScrollbar(double primaryDelta){ throw new NotImplementedException(); }
+        private FlutterSDK.Widgets.Scrollbar.ScrollbarPainter _BuildCupertinoScrollbarPainter(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-private void _StartFadeoutTimer(){ throw new NotImplementedException(); }
+        private void _DragScrollbar(double primaryDelta) { throw new NotImplementedException(); }
 
 
-private bool _CheckVertical(){ throw new NotImplementedException(); }
+        private void _StartFadeoutTimer() { throw new NotImplementedException(); }
 
 
-private void _HandleLongPressStart(FlutterSDK.Gestures.Longpress.LongPressStartDetails details){ throw new NotImplementedException(); }
+        private bool _CheckVertical() { throw new NotImplementedException(); }
 
 
-private void _HandleLongPress(){ throw new NotImplementedException(); }
+        private void _HandleLongPressStart(FlutterSDK.Gestures.Longpress.LongPressStartDetails details) { throw new NotImplementedException(); }
 
 
-private void _HandleLongPressMoveUpdate(FlutterSDK.Gestures.Longpress.LongPressMoveUpdateDetails details){ throw new NotImplementedException(); }
+        private void _HandleLongPress() { throw new NotImplementedException(); }
 
 
-private void _HandleLongPressEnd(FlutterSDK.Gestures.Longpress.LongPressEndDetails details){ throw new NotImplementedException(); }
+        private void _HandleLongPressMoveUpdate(FlutterSDK.Gestures.Longpress.LongPressMoveUpdateDetails details) { throw new NotImplementedException(); }
 
 
-private void _HandleDragScrollEnd(double trackVelocityY){ throw new NotImplementedException(); }
+        private void _HandleLongPressEnd(FlutterSDK.Gestures.Longpress.LongPressEndDetails details) { throw new NotImplementedException(); }
 
 
-private bool _HandleScrollNotification(FlutterSDK.Widgets.Scrollnotification.ScrollNotification notification){ throw new NotImplementedException(); }
+        private void _HandleDragScrollEnd(double trackVelocityY) { throw new NotImplementedException(); }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+        private bool _HandleScrollNotification(FlutterSDK.Widgets.Scrollnotification.ScrollNotification notification) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public new void Dispose() { throw new NotImplementedException(); }
 
 
-public class _ThumbPressGestureRecognizer : FlutterSDK.Gestures.Longpress.LongPressGestureRecognizer
-{
-#region constructors
-public _ThumbPressGestureRecognizer(double postAcceptSlopTolerance = default(double),PointerDeviceKind kind = default(PointerDeviceKind),@Object debugOwner = default(@Object),FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> customPaintKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>))
-: base(postAcceptSlopTolerance:postAcceptSlopTolerance,kind:kind,debugOwner:debugOwner,duration:new TimeSpan(milliseconds:100))
-{
-throw new NotImplementedException(); }
-#endregion
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _CustomPaintKey{get;set;}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public new bool IsPointerAllowed(FlutterSDK.Gestures.Events.PointerDownEvent @event){ throw new NotImplementedException(); }
+    public class _ThumbPressGestureRecognizer : FlutterSDK.Gestures.Longpress.LongPressGestureRecognizer
+    {
+        #region constructors
+        public _ThumbPressGestureRecognizer(double postAcceptSlopTolerance = default(double), PointerDeviceKind kind = default(PointerDeviceKind), @Object debugOwner = default(@Object), FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> customPaintKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>))
+        : base(postAcceptSlopTolerance: postAcceptSlopTolerance, kind: kind, debugOwner: debugOwner, duration: new TimeSpan(milliseconds: 100))
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _CustomPaintKey { get; set; }
+        #endregion
+
+        #region methods
+
+        public new bool IsPointerAllowed(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

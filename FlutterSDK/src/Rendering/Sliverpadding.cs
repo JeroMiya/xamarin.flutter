@@ -421,109 +421,113 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Rendering.Sliverpadding{
-internal static class SliverpaddingDefaultClass{
-}
-
-public interface IRenderSliverEdgeInsetsPadding{
-void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child);
-void PerformLayout();
-bool HitTestChildren(FlutterSDK.Rendering.Sliver.SliverHitTestResult result,double mainAxisPosition = default(double),double crossAxisPosition = default(double));
-double ChildMainAxisPosition(FlutterSDK.Rendering.Sliver.RenderSliver child);
-double ChildCrossAxisPosition(FlutterSDK.Rendering.Sliver.RenderSliver child);
-double ChildScrollOffset(FlutterSDK.Rendering.@object.RenderObject child);
-void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child,Matrix4 transform);
-void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset);
-void DebugPaint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset);
-FlutterSDK.Painting.Edgeinsets.EdgeInsets ResolvedPadding{get;}
-double BeforePadding{get;}
-double AfterPadding{get;}
-double MainAxisPadding{get;}
-double CrossAxisPadding{get;}
-}
-
-
-public class RenderSliverEdgeInsetsPadding : FlutterSDK.Rendering.Sliver.RenderSliver,IRenderObjectWithChildMixin<FlutterSDK.Rendering.Sliver.RenderSliver>
+namespace FlutterSDK.Rendering.Sliverpadding
 {
-#region constructors
-public RenderSliverEdgeInsetsPadding()
-{ }
-#endregion
+    internal static class SliverpaddingDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets ResolvedPadding{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double BeforePadding{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double AfterPadding{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double MainAxisPadding{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double CrossAxisPadding{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
-
-
-public new void PerformLayout(){ throw new NotImplementedException(); }
-
-
-public new bool HitTestChildren(FlutterSDK.Rendering.Sliver.SliverHitTestResult result,double mainAxisPosition = default(double),double crossAxisPosition = default(double)){ throw new NotImplementedException(); }
-
-
-public new double ChildMainAxisPosition(FlutterSDK.Rendering.Sliver.RenderSliver child){ throw new NotImplementedException(); }
-public new double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
+    public interface IRenderSliverEdgeInsetsPadding
+    {
+        void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child);
+        void PerformLayout();
+        bool HitTestChildren(FlutterSDK.Rendering.Sliver.SliverHitTestResult result, double mainAxisPosition = default(double), double crossAxisPosition = default(double));
+        double ChildMainAxisPosition(FlutterSDK.Rendering.Sliver.RenderSliver child);
+        double ChildCrossAxisPosition(FlutterSDK.Rendering.Sliver.RenderSliver child);
+        double ChildScrollOffset(FlutterSDK.Rendering.@object.RenderObject child);
+        void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform);
+        void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset);
+        void DebugPaint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset);
+        FlutterSDK.Painting.Edgeinsets.EdgeInsets ResolvedPadding { get; }
+        double BeforePadding { get; }
+        double AfterPadding { get; }
+        double MainAxisPadding { get; }
+        double CrossAxisPadding { get; }
+    }
 
 
-public new double ChildCrossAxisPosition(FlutterSDK.Rendering.Sliver.RenderSliver child){ throw new NotImplementedException(); }
-public new double ChildCrossAxisPosition(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
+    public class RenderSliverEdgeInsetsPadding : FlutterSDK.Rendering.Sliver.RenderSliver, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Sliver.RenderSliver>
+    {
+        #region constructors
+        public RenderSliverEdgeInsetsPadding()
+        { }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets ResolvedPadding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double BeforePadding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double AfterPadding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double MainAxisPadding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double CrossAxisPadding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
 
-public new double ChildScrollOffset(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
 
-public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child,Matrix4 transform){ throw new NotImplementedException(); }
+        public new bool HitTestChildren(FlutterSDK.Rendering.Sliver.SliverHitTestResult result, double mainAxisPosition = default(double), double crossAxisPosition = default(double)) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new double ChildMainAxisPosition(FlutterSDK.Rendering.Sliver.RenderSliver child) { throw new NotImplementedException(); }
+        public new double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
 
-public new void DebugPaint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public new double ChildCrossAxisPosition(FlutterSDK.Rendering.Sliver.RenderSliver child) { throw new NotImplementedException(); }
+        public new double ChildCrossAxisPosition(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
 
-public class RenderSliverPadding : FlutterSDK.Rendering.Sliverpadding.RenderSliverEdgeInsetsPadding
-{
-#region constructors
-public RenderSliverPadding(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),TextDirection textDirection = default(TextDirection),FlutterSDK.Rendering.Sliver.RenderSliver child = default(FlutterSDK.Rendering.Sliver.RenderSliver))
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets _ResolvedPadding{get;set;}
-internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry _Padding{get;set;}
-internal virtual TextDirection _TextDirection{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets ResolvedPadding{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual TextDirection TextDirection{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
-
-#region methods
-
-private void _Resolve(){ throw new NotImplementedException(); }
+        public new double ChildScrollOffset(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
 
-private void _MarkNeedsResolution(){ throw new NotImplementedException(); }
+        public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform) { throw new NotImplementedException(); }
 
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void DebugPaint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
+
+
+    public class RenderSliverPadding : FlutterSDK.Rendering.Sliverpadding.RenderSliverEdgeInsetsPadding
+    {
+        #region constructors
+        public RenderSliverPadding(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Sliver.RenderSliver child = default(FlutterSDK.Rendering.Sliver.RenderSliver))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets _ResolvedPadding { get; set; }
+        internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry _Padding { get; set; }
+        internal virtual TextDirection _TextDirection { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets ResolvedPadding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        private void _Resolve() { throw new NotImplementedException(); }
+
+
+        private void _MarkNeedsResolution() { throw new NotImplementedException(); }
+
+
+        public new void PerformLayout() { throw new NotImplementedException(); }
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

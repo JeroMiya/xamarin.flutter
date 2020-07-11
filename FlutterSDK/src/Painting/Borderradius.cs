@@ -420,285 +420,300 @@ using FlutterSDK.Material.Inksplash;
 using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
-namespace FlutterSDK.Painting.Borderradius{
-internal static class BorderradiusDefaultClass{
-}
-
-public interface IBorderRadiusGeometry{
-FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Subtract(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry other);
-FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Add(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry other);
-FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Unary();
-FlutterSDK.Painting.Borderradius.BorderRadiusGeometry MultiplyOperator(double other);
-FlutterSDK.Painting.Borderradius.BorderRadiusGeometry DivideOperator(double other);
-FlutterSDK.Painting.Borderradius.BorderRadiusGeometry DivideIntegerResultOperator(double other);
-FlutterSDK.Painting.Borderradius.BorderRadiusGeometry ModuloOperator(double other);
-FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Lerp(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry a,FlutterSDK.Painting.Borderradius.BorderRadiusGeometry b,double t);
-FlutterSDK.Painting.Borderradius.BorderRadius Resolve(TextDirection direction);
-string ToString();
-bool Equals(@Object other);
-int HashCode{get;}
-}
-
-
-public class BorderRadiusGeometry
+namespace FlutterSDK.Painting.Borderradius
 {
-#region constructors
-public BorderRadiusGeometry()
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class BorderradiusDefaultClass
+    {
+    }
 
-#region fields
-internal virtual Radius _TopLeft{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual Radius _TopRight{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual Radius _BottomLeft{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual Radius _BottomRight{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual Radius _TopStart{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual Radius _TopEnd{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual Radius _BottomStart{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual Radius _BottomEnd{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public interface IBorderRadiusGeometry
+    {
+        FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Subtract(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry other);
+        FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Add(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry other);
+        FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Unary();
+        FlutterSDK.Painting.Borderradius.BorderRadiusGeometry MultiplyOperator(double other);
+        FlutterSDK.Painting.Borderradius.BorderRadiusGeometry DivideOperator(double other);
+        FlutterSDK.Painting.Borderradius.BorderRadiusGeometry DivideIntegerResultOperator(double other);
+        FlutterSDK.Painting.Borderradius.BorderRadiusGeometry ModuloOperator(double other);
+        FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Lerp(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry a, FlutterSDK.Painting.Borderradius.BorderRadiusGeometry b, double t);
+        FlutterSDK.Painting.Borderradius.BorderRadius Resolve(TextDirection direction);
+        string ToString();
+        bool Equals(@Object other);
+        int HashCode { get; }
+    }
+
+
+    public class BorderRadiusGeometry
+    {
+        #region constructors
+        public BorderRadiusGeometry()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual Radius _TopLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _TopRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _BottomLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _BottomRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _TopStart { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _TopEnd { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _BottomStart { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _BottomEnd { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Subtract(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry other){ throw new NotImplementedException(); }
+        #region methods
 
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Subtract(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry other) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Add(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry other){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Add(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry other) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Unary(){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Unary() { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry MultiplyOperator(double other){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry MultiplyOperator(double other) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry DivideOperator(double other){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry DivideOperator(double other) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry DivideIntegerResultOperator(double other){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry DivideIntegerResultOperator(double other) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry ModuloOperator(double other){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry ModuloOperator(double other) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Lerp(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry a,FlutterSDK.Painting.Borderradius.BorderRadiusGeometry b,double t){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Lerp(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry a, FlutterSDK.Painting.Borderradius.BorderRadiusGeometry b, double t) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Borderradius.BorderRadius Resolve(TextDirection direction){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadius Resolve(TextDirection direction) { throw new NotImplementedException(); }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class BorderRadius : FlutterSDK.Painting.Borderradius.BorderRadiusGeometry
-{
-#region constructors
-public static BorderRadius All(Radius radius)
-{
-var instance =new BorderRadius();throw new NotImplementedException(); }
-public static BorderRadius Circular(double radius)
-{
-var instance =new BorderRadius();throw new NotImplementedException(); }
-public static BorderRadius Vertical(Radius top = default(Radius),Radius bottom = default(Radius))
-{
-var instance =new BorderRadius();throw new NotImplementedException(); }
-public static BorderRadius Horizontal(Radius left = default(Radius),Radius right = default(Radius))
-{
-var instance =new BorderRadius();throw new NotImplementedException(); }
-public static BorderRadius Only(Radius topLeft = default(Radius),Radius topRight = default(Radius),Radius bottomLeft = default(Radius),Radius bottomRight = default(Radius))
-{
-var instance =new BorderRadius();instance.TopLeft = topLeft;
-instance.TopRight = topRight;
-instance.BottomLeft = bottomLeft;
-instance.BottomRight = bottomRight;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual FlutterSDK.Painting.Borderradius.BorderRadius Zero{get;set;}
-public virtual Radius TopLeft{get;set;}
-public virtual Radius TopRight{get;set;}
-public virtual Radius BottomLeft{get;set;}
-public virtual Radius BottomRight{get;set;}
-internal virtual Radius _TopLeft{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual Radius _TopRight{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual Radius _BottomLeft{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual Radius _BottomRight{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual Radius _TopStart{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual Radius _TopEnd{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual Radius _BottomStart{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual Radius _BottomEnd{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class BorderRadius : FlutterSDK.Painting.Borderradius.BorderRadiusGeometry
+    {
+        #region constructors
+        public static BorderRadius All(Radius radius)
+        {
+            var instance = new BorderRadius(); throw new NotImplementedException();
+        }
+        public static BorderRadius Circular(double radius)
+        {
+            var instance = new BorderRadius(); throw new NotImplementedException();
+        }
+        public static BorderRadius Vertical(Radius top = default(Radius), Radius bottom = default(Radius))
+        {
+            var instance = new BorderRadius(); throw new NotImplementedException();
+        }
+        public static BorderRadius Horizontal(Radius left = default(Radius), Radius right = default(Radius))
+        {
+            var instance = new BorderRadius(); throw new NotImplementedException();
+        }
+        public static BorderRadius Only(Radius topLeft = default(Radius), Radius topRight = default(Radius), Radius bottomLeft = default(Radius), Radius bottomRight = default(Radius))
+        {
+            var instance = new BorderRadius(); instance.TopLeft = topLeft;
+            instance.TopRight = topRight;
+            instance.BottomLeft = bottomLeft;
+            instance.BottomRight = bottomRight; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadius Zero { get; set; }
+        public virtual Radius TopLeft { get; set; }
+        public virtual Radius TopRight { get; set; }
+        public virtual Radius BottomLeft { get; set; }
+        public virtual Radius BottomRight { get; set; }
+        internal virtual Radius _TopLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _TopRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _BottomLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _BottomRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _TopStart { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _TopEnd { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _BottomStart { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _BottomEnd { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual RRect ToRRect(FlutterBinding.UI.Rect rect){ throw new NotImplementedException(); }
+        #region methods
 
+        public virtual RRect ToRRect(FlutterBinding.UI.Rect rect) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Subtract(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Subtract(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Add(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Add(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry other) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Borderradius.BorderRadius Unary(FlutterSDK.Painting.Borderradius.BorderRadius other){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadius Unary(FlutterSDK.Painting.Borderradius.BorderRadius other) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Borderradius.BorderRadius AddOperator(FlutterSDK.Painting.Borderradius.BorderRadius other){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadius AddOperator(FlutterSDK.Painting.Borderradius.BorderRadius other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Borderradius.BorderRadius Unary(){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Borderradius.BorderRadius Unary() { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Borderradius.BorderRadius MultiplyOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Borderradius.BorderRadius MultiplyOperator(double other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Borderradius.BorderRadius DivideOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Borderradius.BorderRadius DivideOperator(double other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Borderradius.BorderRadius DivideIntegerResultOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Borderradius.BorderRadius DivideIntegerResultOperator(double other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Borderradius.BorderRadius ModuloOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Borderradius.BorderRadius ModuloOperator(double other) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Borderradius.BorderRadius Lerp(FlutterSDK.Painting.Borderradius.BorderRadius a,FlutterSDK.Painting.Borderradius.BorderRadius b,double t){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadius Lerp(FlutterSDK.Painting.Borderradius.BorderRadius a, FlutterSDK.Painting.Borderradius.BorderRadius b, double t) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Borderradius.BorderRadius Resolve(TextDirection direction){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new FlutterSDK.Painting.Borderradius.BorderRadius Resolve(TextDirection direction) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class BorderRadiusDirectional : FlutterSDK.Painting.Borderradius.BorderRadiusGeometry
-{
-#region constructors
-public static BorderRadiusDirectional All(Radius radius)
-{
-var instance =new BorderRadiusDirectional();throw new NotImplementedException(); }
-public static BorderRadiusDirectional Circular(double radius)
-{
-var instance =new BorderRadiusDirectional();throw new NotImplementedException(); }
-public static BorderRadiusDirectional Vertical(Radius top = default(Radius),Radius bottom = default(Radius))
-{
-var instance =new BorderRadiusDirectional();throw new NotImplementedException(); }
-public static BorderRadiusDirectional Horizontal(Radius start = default(Radius),Radius end = default(Radius))
-{
-var instance =new BorderRadiusDirectional();throw new NotImplementedException(); }
-public static BorderRadiusDirectional Only(Radius topStart = default(Radius),Radius topEnd = default(Radius),Radius bottomStart = default(Radius),Radius bottomEnd = default(Radius))
-{
-var instance =new BorderRadiusDirectional();instance.TopStart = topStart;
-instance.TopEnd = topEnd;
-instance.BottomStart = bottomStart;
-instance.BottomEnd = bottomEnd;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual FlutterSDK.Painting.Borderradius.BorderRadiusDirectional Zero{get;set;}
-public virtual Radius TopStart{get;set;}
-public virtual Radius TopEnd{get;set;}
-public virtual Radius BottomStart{get;set;}
-public virtual Radius BottomEnd{get;set;}
-internal virtual Radius _TopStart{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual Radius _TopEnd{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual Radius _BottomStart{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual Radius _BottomEnd{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual Radius _TopLeft{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual Radius _TopRight{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual Radius _BottomLeft{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual Radius _BottomRight{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class BorderRadiusDirectional : FlutterSDK.Painting.Borderradius.BorderRadiusGeometry
+    {
+        #region constructors
+        public static BorderRadiusDirectional All(Radius radius)
+        {
+            var instance = new BorderRadiusDirectional(); throw new NotImplementedException();
+        }
+        public static BorderRadiusDirectional Circular(double radius)
+        {
+            var instance = new BorderRadiusDirectional(); throw new NotImplementedException();
+        }
+        public static BorderRadiusDirectional Vertical(Radius top = default(Radius), Radius bottom = default(Radius))
+        {
+            var instance = new BorderRadiusDirectional(); throw new NotImplementedException();
+        }
+        public static BorderRadiusDirectional Horizontal(Radius start = default(Radius), Radius end = default(Radius))
+        {
+            var instance = new BorderRadiusDirectional(); throw new NotImplementedException();
+        }
+        public static BorderRadiusDirectional Only(Radius topStart = default(Radius), Radius topEnd = default(Radius), Radius bottomStart = default(Radius), Radius bottomEnd = default(Radius))
+        {
+            var instance = new BorderRadiusDirectional(); instance.TopStart = topStart;
+            instance.TopEnd = topEnd;
+            instance.BottomStart = bottomStart;
+            instance.BottomEnd = bottomEnd; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadiusDirectional Zero { get; set; }
+        public virtual Radius TopStart { get; set; }
+        public virtual Radius TopEnd { get; set; }
+        public virtual Radius BottomStart { get; set; }
+        public virtual Radius BottomEnd { get; set; }
+        internal virtual Radius _TopStart { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _TopEnd { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _BottomStart { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _BottomEnd { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _TopLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _TopRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _BottomLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _BottomRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Subtract(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry other){ throw new NotImplementedException(); }
+        #region methods
 
+        public new FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Subtract(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Add(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Add(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry other) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Borderradius.BorderRadiusDirectional Unary(FlutterSDK.Painting.Borderradius.BorderRadiusDirectional other){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadiusDirectional Unary(FlutterSDK.Painting.Borderradius.BorderRadiusDirectional other) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Borderradius.BorderRadiusDirectional AddOperator(FlutterSDK.Painting.Borderradius.BorderRadiusDirectional other){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadiusDirectional AddOperator(FlutterSDK.Painting.Borderradius.BorderRadiusDirectional other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Borderradius.BorderRadiusDirectional Unary(){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Borderradius.BorderRadiusDirectional Unary() { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Borderradius.BorderRadiusDirectional MultiplyOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Borderradius.BorderRadiusDirectional MultiplyOperator(double other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Borderradius.BorderRadiusDirectional DivideOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Borderradius.BorderRadiusDirectional DivideOperator(double other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Borderradius.BorderRadiusDirectional DivideIntegerResultOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Borderradius.BorderRadiusDirectional DivideIntegerResultOperator(double other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Borderradius.BorderRadiusDirectional ModuloOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Borderradius.BorderRadiusDirectional ModuloOperator(double other) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Borderradius.BorderRadiusDirectional Lerp(FlutterSDK.Painting.Borderradius.BorderRadiusDirectional a,FlutterSDK.Painting.Borderradius.BorderRadiusDirectional b,double t){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadiusDirectional Lerp(FlutterSDK.Painting.Borderradius.BorderRadiusDirectional a, FlutterSDK.Painting.Borderradius.BorderRadiusDirectional b, double t) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Borderradius.BorderRadius Resolve(TextDirection direction){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new FlutterSDK.Painting.Borderradius.BorderRadius Resolve(TextDirection direction) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class _MixedBorderRadius : FlutterSDK.Painting.Borderradius.BorderRadiusGeometry
-{
-#region constructors
-public _MixedBorderRadius(Radius _topLeft,Radius _topRight,Radius _bottomLeft,Radius _bottomRight,Radius _topStart,Radius _topEnd,Radius _bottomStart,Radius _bottomEnd)
-{
-this._TopLeft = _topLeft;
-this._TopRight = _topRight;
-this._BottomLeft = _bottomLeft;
-this._BottomRight = _bottomRight;
-this._TopStart = _topStart;
-this._TopEnd = _topEnd;
-this._BottomStart = _bottomStart;
-this._BottomEnd = _bottomEnd;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-internal new Radius _TopLeft{get;set;}
-internal new Radius _TopRight{get;set;}
-internal new Radius _BottomLeft{get;set;}
-internal new Radius _BottomRight{get;set;}
-internal new Radius _TopStart{get;set;}
-internal new Radius _TopEnd{get;set;}
-internal new Radius _BottomStart{get;set;}
-internal new Radius _BottomEnd{get;set;}
-#endregion
+    public class _MixedBorderRadius : FlutterSDK.Painting.Borderradius.BorderRadiusGeometry
+    {
+        #region constructors
+        public _MixedBorderRadius(Radius _topLeft, Radius _topRight, Radius _bottomLeft, Radius _bottomRight, Radius _topStart, Radius _topEnd, Radius _bottomStart, Radius _bottomEnd)
+        {
+            this._TopLeft = _topLeft;
+            this._TopRight = _topRight;
+            this._BottomLeft = _bottomLeft;
+            this._BottomRight = _bottomRight;
+            this._TopStart = _topStart;
+            this._TopEnd = _topEnd;
+            this._BottomStart = _bottomStart;
+            this._BottomEnd = _bottomEnd; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal new Radius _TopLeft { get; set; }
+        internal new Radius _TopRight { get; set; }
+        internal new Radius _BottomLeft { get; set; }
+        internal new Radius _BottomRight { get; set; }
+        internal new Radius _TopStart { get; set; }
+        internal new Radius _TopEnd { get; set; }
+        internal new Radius _BottomStart { get; set; }
+        internal new Radius _BottomEnd { get; set; }
+        #endregion
 
-public new FlutterSDK.Painting.Borderradius._MixedBorderRadius Unary(){ throw new NotImplementedException(); }
+        #region methods
 
+        public new FlutterSDK.Painting.Borderradius._MixedBorderRadius Unary() { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Borderradius._MixedBorderRadius MultiplyOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Borderradius._MixedBorderRadius MultiplyOperator(double other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Borderradius._MixedBorderRadius DivideOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Borderradius._MixedBorderRadius DivideOperator(double other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Borderradius._MixedBorderRadius DivideIntegerResultOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Borderradius._MixedBorderRadius DivideIntegerResultOperator(double other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Borderradius._MixedBorderRadius ModuloOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Borderradius._MixedBorderRadius ModuloOperator(double other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Borderradius.BorderRadius Resolve(TextDirection direction){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new FlutterSDK.Painting.Borderradius.BorderRadius Resolve(TextDirection direction) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

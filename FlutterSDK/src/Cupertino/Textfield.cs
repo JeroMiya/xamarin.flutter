@@ -291,228 +291,233 @@ using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
-namespace FlutterSDK.Cupertino.Textfield{
-internal static class TextfieldDefaultClass{
-public static FlutterSDK.Painting.Borders.BorderSide _KDefaultRoundedBorderSide = default(FlutterSDK.Painting.Borders.BorderSide);
-public static FlutterSDK.Painting.Boxborder.Border _KDefaultRoundedBorder = default(FlutterSDK.Painting.Boxborder.Border);
-public static FlutterSDK.Painting.Boxdecoration.BoxDecoration _KDefaultRoundedBorderDecoration = default(FlutterSDK.Painting.Boxdecoration.BoxDecoration);
-public static Color _KDisabledBackground = default(Color);
-public static FlutterSDK.Cupertino.Colors.CupertinoDynamicColor _KClearButtonColor = default(FlutterSDK.Cupertino.Colors.CupertinoDynamicColor);
-public static int _IOSHorizontalCursorOffsetPixels = default(int);
-}
-
-public class _CupertinoTextFieldSelectionGestureDetectorBuilder : FlutterSDK.Widgets.Textselection.TextSelectionGestureDetectorBuilder
+namespace FlutterSDK.Cupertino.Textfield
 {
-#region constructors
-public _CupertinoTextFieldSelectionGestureDetectorBuilder(FlutterSDK.Cupertino.Textfield._CupertinoTextFieldState state = default(FlutterSDK.Cupertino.Textfield._CupertinoTextFieldState))
-: base(@delegate:state)
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class TextfieldDefaultClass
+    {
+        public static FlutterSDK.Painting.Borders.BorderSide _KDefaultRoundedBorderSide = default(FlutterSDK.Painting.Borders.BorderSide);
+        public static FlutterSDK.Painting.Boxborder.Border _KDefaultRoundedBorder = default(FlutterSDK.Painting.Boxborder.Border);
+        public static FlutterSDK.Painting.Boxdecoration.BoxDecoration _KDefaultRoundedBorderDecoration = default(FlutterSDK.Painting.Boxdecoration.BoxDecoration);
+        public static Color _KDisabledBackground = default(Color);
+        public static FlutterSDK.Cupertino.Colors.CupertinoDynamicColor _KClearButtonColor = default(FlutterSDK.Cupertino.Colors.CupertinoDynamicColor);
+        public static int _IOSHorizontalCursorOffsetPixels = default(int);
+    }
 
-#region fields
-internal virtual FlutterSDK.Cupertino.Textfield._CupertinoTextFieldState _State{get;set;}
-#endregion
+    public class _CupertinoTextFieldSelectionGestureDetectorBuilder : FlutterSDK.Widgets.Textselection.TextSelectionGestureDetectorBuilder
+    {
+        #region constructors
+        public _CupertinoTextFieldSelectionGestureDetectorBuilder(FlutterSDK.Cupertino.Textfield._CupertinoTextFieldState state = default(FlutterSDK.Cupertino.Textfield._CupertinoTextFieldState))
+        : base(@delegate: state)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual FlutterSDK.Cupertino.Textfield._CupertinoTextFieldState _State { get; set; }
+        #endregion
 
-public new void OnSingleTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details){ throw new NotImplementedException(); }
+        #region methods
 
-
-public new void OnDragSelectionEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class CupertinoTextField : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public CupertinoTextField(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Editabletext.TextEditingController controller = default(FlutterSDK.Widgets.Editabletext.TextEditingController),FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode),FlutterSDK.Painting.Boxdecoration.BoxDecoration decoration = default(FlutterSDK.Painting.Boxdecoration.BoxDecoration),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),string placeholder = default(string),FlutterSDK.Painting.Textstyle.TextStyle placeholderStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Widgets.Framework.Widget prefix = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Cupertino.Textfield.OverlayVisibilityMode prefixMode = default(FlutterSDK.Cupertino.Textfield.OverlayVisibilityMode),FlutterSDK.Widgets.Framework.Widget suffix = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Cupertino.Textfield.OverlayVisibilityMode suffixMode = default(FlutterSDK.Cupertino.Textfield.OverlayVisibilityMode),FlutterSDK.Cupertino.Textfield.OverlayVisibilityMode clearButtonMode = default(FlutterSDK.Cupertino.Textfield.OverlayVisibilityMode),FlutterSDK.Services.Textinput.TextInputType keyboardType = default(FlutterSDK.Services.Textinput.TextInputType),FlutterSDK.Services.Textinput.TextInputAction textInputAction = default(FlutterSDK.Services.Textinput.TextInputAction),FlutterSDK.Services.Textinput.TextCapitalization textCapitalization = default(FlutterSDK.Services.Textinput.TextCapitalization),FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle),TextAlign textAlign = default(TextAlign),FlutterSDK.Painting.Alignment.TextAlignVertical textAlignVertical = default(FlutterSDK.Painting.Alignment.TextAlignVertical),bool readOnly = false,FlutterSDK.Widgets.Editabletext.ToolbarOptions toolbarOptions = default(FlutterSDK.Widgets.Editabletext.ToolbarOptions),bool showCursor = default(bool),bool autofocus = false,bool obscureText = false,bool autocorrect = true,FlutterSDK.Services.Textinput.SmartDashesType smartDashesType = default(FlutterSDK.Services.Textinput.SmartDashesType),FlutterSDK.Services.Textinput.SmartQuotesType smartQuotesType = default(FlutterSDK.Services.Textinput.SmartQuotesType),bool enableSuggestions = true,int maxLines = 1,int minLines = default(int),bool expands = false,int maxLength = default(int),bool maxLengthEnforced = true,FlutterSDK.Foundation.Basictypes.ValueChanged<string> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<string>),VoidCallback onEditingComplete = default(VoidCallback),FlutterSDK.Foundation.Basictypes.ValueChanged<string> onSubmitted = default(FlutterSDK.Foundation.Basictypes.ValueChanged<string>),List<FlutterSDK.Services.Textformatter.TextInputFormatter> inputFormatters = default(List<FlutterSDK.Services.Textformatter.TextInputFormatter>),bool enabled = default(bool),double cursorWidth = 2.0,Radius cursorRadius = default(Radius),FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color),BoxHeightStyle selectionHeightStyle = default(BoxHeightStyle),BoxWidthStyle selectionWidthStyle = default(BoxWidthStyle),Brightness keyboardAppearance = default(Brightness),FlutterSDK.Painting.Edgeinsets.EdgeInsets scrollPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets),FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior),bool enableInteractiveSelection = true,FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback),FlutterSDK.Widgets.Scrollcontroller.ScrollController scrollController = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController),FlutterSDK.Widgets.Scrollphysics.ScrollPhysics scrollPhysics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
-: base(key:key)
-{
-this.Controller = controller;
-this.FocusNode = focusNode;
-this.Decoration = decoration;
-this.Padding = padding;
-this.Placeholder = placeholder;
-this.PlaceholderStyle = placeholderStyle;
-this.Prefix = prefix;
-this.PrefixMode = prefixMode;
-this.Suffix = suffix;
-this.SuffixMode = suffixMode;
-this.ClearButtonMode = clearButtonMode;
-this.TextInputAction = textInputAction;
-this.TextCapitalization = textCapitalization;
-this.Style = style;
-this.StrutStyle = strutStyle;
-this.TextAlign = textAlign;
-this.TextAlignVertical = textAlignVertical;
-this.ReadOnly = readOnly;
-this.ShowCursor = showCursor;
-this.Autofocus = autofocus;
-this.ObscureText = obscureText;
-this.Autocorrect = autocorrect;
-this.EnableSuggestions = enableSuggestions;
-this.MaxLines = maxLines;
-this.MinLines = minLines;
-this.Expands = expands;
-this.MaxLength = maxLength;
-this.MaxLengthEnforced = maxLengthEnforced;
-this.OnChanged = onChanged;
-this.OnEditingComplete = onEditingComplete;
-this.OnSubmitted = onSubmitted;
-this.InputFormatters = inputFormatters;
-this.Enabled = enabled;
-this.CursorWidth = cursorWidth;
-this.CursorRadius = cursorRadius;
-this.CursorColor = cursorColor;
-this.SelectionHeightStyle = selectionHeightStyle;
-this.SelectionWidthStyle = selectionWidthStyle;
-this.KeyboardAppearance = keyboardAppearance;
-this.ScrollPadding = scrollPadding;
-this.DragStartBehavior = dragStartBehavior;
-this.EnableInteractiveSelection = enableInteractiveSelection;
-this.OnTap = onTap;
-this.ScrollController = scrollController;
-this.ScrollPhysics = scrollPhysics;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Editabletext.TextEditingController Controller{get;set;}
-public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode{get;set;}
-public virtual FlutterSDK.Painting.Boxdecoration.BoxDecoration Decoration{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding{get;set;}
-public virtual string Placeholder{get;set;}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle PlaceholderStyle{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Prefix{get;set;}
-public virtual FlutterSDK.Cupertino.Textfield.OverlayVisibilityMode PrefixMode{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Suffix{get;set;}
-public virtual FlutterSDK.Cupertino.Textfield.OverlayVisibilityMode SuffixMode{get;set;}
-public virtual FlutterSDK.Cupertino.Textfield.OverlayVisibilityMode ClearButtonMode{get;set;}
-public virtual FlutterSDK.Services.Textinput.TextInputType KeyboardType{get;set;}
-public virtual FlutterSDK.Services.Textinput.TextInputAction TextInputAction{get;set;}
-public virtual FlutterSDK.Services.Textinput.TextCapitalization TextCapitalization{get;set;}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle Style{get;set;}
-public virtual FlutterSDK.Painting.Strutstyle.StrutStyle StrutStyle{get;set;}
-public virtual TextAlign TextAlign{get;set;}
-public virtual FlutterSDK.Widgets.Editabletext.ToolbarOptions ToolbarOptions{get;set;}
-public virtual FlutterSDK.Painting.Alignment.TextAlignVertical TextAlignVertical{get;set;}
-public virtual bool ReadOnly{get;set;}
-public virtual bool ShowCursor{get;set;}
-public virtual bool Autofocus{get;set;}
-public virtual bool ObscureText{get;set;}
-public virtual bool Autocorrect{get;set;}
-public virtual FlutterSDK.Services.Textinput.SmartDashesType SmartDashesType{get;set;}
-public virtual FlutterSDK.Services.Textinput.SmartQuotesType SmartQuotesType{get;set;}
-public virtual bool EnableSuggestions{get;set;}
-public virtual int MaxLines{get;set;}
-public virtual int MinLines{get;set;}
-public virtual bool Expands{get;set;}
-public virtual int MaxLength{get;set;}
-public virtual bool MaxLengthEnforced{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<string> OnChanged{get;set;}
-public virtual VoidCallback OnEditingComplete{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<string> OnSubmitted{get;set;}
-public virtual List<FlutterSDK.Services.Textformatter.TextInputFormatter> InputFormatters{get;set;}
-public virtual bool Enabled{get;set;}
-public virtual double CursorWidth{get;set;}
-public virtual Radius CursorRadius{get;set;}
-public virtual FlutterBinding.UI.Color CursorColor{get;set;}
-public virtual BoxHeightStyle SelectionHeightStyle{get;set;}
-public virtual BoxWidthStyle SelectionWidthStyle{get;set;}
-public virtual Brightness KeyboardAppearance{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets ScrollPadding{get;set;}
-public virtual bool EnableInteractiveSelection{get;set;}
-public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior{get;set;}
-public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController ScrollController{get;set;}
-public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ScrollPhysics{get;set;}
-public virtual FlutterSDK.Gestures.Tap.GestureTapCallback OnTap{get;set;}
-public virtual bool SelectionEnabled{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Cupertino.Textfield._CupertinoTextFieldState CreateState(){ throw new NotImplementedException(); }
+        public new void OnSingleTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void OnDragSelectionEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details) { throw new NotImplementedException(); }
 
-#endregion
-}
-
-
-public class _CupertinoTextFieldState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Textfield.CupertinoTextField>,ITextSelectionGestureDetectorBuilderDelegate,IAutomaticKeepAliveClientMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-#region constructors
-public _CupertinoTextFieldState()
-{ }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _ClearGlobalKey{get;set;}
-internal virtual FlutterSDK.Widgets.Editabletext.TextEditingController _Controller{get;set;}
-internal virtual FlutterSDK.Widgets.Focusmanager.FocusNode _FocusNode{get;set;}
-internal virtual bool _ShowSelectionHandles{get;set;}
-internal virtual FlutterSDK.Cupertino.Textfield._CupertinoTextFieldSelectionGestureDetectorBuilder _SelectionGestureDetectorBuilder{get;set;}
-public new FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Editabletext.EditableTextState> EditableTextKey{get;set;}
-internal virtual FlutterSDK.Widgets.Editabletext.TextEditingController _EffectiveController{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual FlutterSDK.Widgets.Focusmanager.FocusNode _EffectiveFocusNode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool ForcePressEnabled{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool SelectionEnabled{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual FlutterSDK.Widgets.Editabletext.EditableTextState _EditableText{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool WantKeepAlive{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual bool _HasDecoration{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual FlutterSDK.Painting.Alignment.TextAlignVertical _TextAlignVertical{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new void InitState(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void DidUpdateWidget(FlutterSDK.Cupertino.Textfield.CupertinoTextField oldWidget){ throw new NotImplementedException(); }
+    public class CupertinoTextField : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public CupertinoTextField(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Editabletext.TextEditingController controller = default(FlutterSDK.Widgets.Editabletext.TextEditingController), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), FlutterSDK.Painting.Boxdecoration.BoxDecoration decoration = default(FlutterSDK.Painting.Boxdecoration.BoxDecoration), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), string placeholder = default(string), FlutterSDK.Painting.Textstyle.TextStyle placeholderStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Framework.Widget prefix = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Cupertino.Textfield.OverlayVisibilityMode prefixMode = default(FlutterSDK.Cupertino.Textfield.OverlayVisibilityMode), FlutterSDK.Widgets.Framework.Widget suffix = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Cupertino.Textfield.OverlayVisibilityMode suffixMode = default(FlutterSDK.Cupertino.Textfield.OverlayVisibilityMode), FlutterSDK.Cupertino.Textfield.OverlayVisibilityMode clearButtonMode = default(FlutterSDK.Cupertino.Textfield.OverlayVisibilityMode), FlutterSDK.Services.Textinput.TextInputType keyboardType = default(FlutterSDK.Services.Textinput.TextInputType), FlutterSDK.Services.Textinput.TextInputAction textInputAction = default(FlutterSDK.Services.Textinput.TextInputAction), FlutterSDK.Services.Textinput.TextCapitalization textCapitalization = default(FlutterSDK.Services.Textinput.TextCapitalization), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), TextAlign textAlign = default(TextAlign), FlutterSDK.Painting.Alignment.TextAlignVertical textAlignVertical = default(FlutterSDK.Painting.Alignment.TextAlignVertical), bool readOnly = false, FlutterSDK.Widgets.Editabletext.ToolbarOptions toolbarOptions = default(FlutterSDK.Widgets.Editabletext.ToolbarOptions), bool showCursor = default(bool), bool autofocus = false, bool obscureText = false, bool autocorrect = true, FlutterSDK.Services.Textinput.SmartDashesType smartDashesType = default(FlutterSDK.Services.Textinput.SmartDashesType), FlutterSDK.Services.Textinput.SmartQuotesType smartQuotesType = default(FlutterSDK.Services.Textinput.SmartQuotesType), bool enableSuggestions = true, int maxLines = 1, int minLines = default(int), bool expands = false, int maxLength = default(int), bool maxLengthEnforced = true, FlutterSDK.Foundation.Basictypes.ValueChanged<string> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<string>), VoidCallback onEditingComplete = default(VoidCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<string> onSubmitted = default(FlutterSDK.Foundation.Basictypes.ValueChanged<string>), List<FlutterSDK.Services.Textformatter.TextInputFormatter> inputFormatters = default(List<FlutterSDK.Services.Textformatter.TextInputFormatter>), bool enabled = default(bool), double cursorWidth = 2.0, Radius cursorRadius = default(Radius), FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color), BoxHeightStyle selectionHeightStyle = default(BoxHeightStyle), BoxWidthStyle selectionWidthStyle = default(BoxWidthStyle), Brightness keyboardAppearance = default(Brightness), FlutterSDK.Painting.Edgeinsets.EdgeInsets scrollPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), bool enableInteractiveSelection = true, FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Widgets.Scrollcontroller.ScrollController scrollController = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics scrollPhysics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
+        : base(key: key)
+        {
+            this.Controller = controller;
+            this.FocusNode = focusNode;
+            this.Decoration = decoration;
+            this.Padding = padding;
+            this.Placeholder = placeholder;
+            this.PlaceholderStyle = placeholderStyle;
+            this.Prefix = prefix;
+            this.PrefixMode = prefixMode;
+            this.Suffix = suffix;
+            this.SuffixMode = suffixMode;
+            this.ClearButtonMode = clearButtonMode;
+            this.TextInputAction = textInputAction;
+            this.TextCapitalization = textCapitalization;
+            this.Style = style;
+            this.StrutStyle = strutStyle;
+            this.TextAlign = textAlign;
+            this.TextAlignVertical = textAlignVertical;
+            this.ReadOnly = readOnly;
+            this.ShowCursor = showCursor;
+            this.Autofocus = autofocus;
+            this.ObscureText = obscureText;
+            this.Autocorrect = autocorrect;
+            this.EnableSuggestions = enableSuggestions;
+            this.MaxLines = maxLines;
+            this.MinLines = minLines;
+            this.Expands = expands;
+            this.MaxLength = maxLength;
+            this.MaxLengthEnforced = maxLengthEnforced;
+            this.OnChanged = onChanged;
+            this.OnEditingComplete = onEditingComplete;
+            this.OnSubmitted = onSubmitted;
+            this.InputFormatters = inputFormatters;
+            this.Enabled = enabled;
+            this.CursorWidth = cursorWidth;
+            this.CursorRadius = cursorRadius;
+            this.CursorColor = cursorColor;
+            this.SelectionHeightStyle = selectionHeightStyle;
+            this.SelectionWidthStyle = selectionWidthStyle;
+            this.KeyboardAppearance = keyboardAppearance;
+            this.ScrollPadding = scrollPadding;
+            this.DragStartBehavior = dragStartBehavior;
+            this.EnableInteractiveSelection = enableInteractiveSelection;
+            this.OnTap = onTap;
+            this.ScrollController = scrollController;
+            this.ScrollPhysics = scrollPhysics; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Editabletext.TextEditingController Controller { get; set; }
+        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+        public virtual FlutterSDK.Painting.Boxdecoration.BoxDecoration Decoration { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        public virtual string Placeholder { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle PlaceholderStyle { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Prefix { get; set; }
+        public virtual FlutterSDK.Cupertino.Textfield.OverlayVisibilityMode PrefixMode { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Suffix { get; set; }
+        public virtual FlutterSDK.Cupertino.Textfield.OverlayVisibilityMode SuffixMode { get; set; }
+        public virtual FlutterSDK.Cupertino.Textfield.OverlayVisibilityMode ClearButtonMode { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextInputType KeyboardType { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextInputAction TextInputAction { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextCapitalization TextCapitalization { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle Style { get; set; }
+        public virtual FlutterSDK.Painting.Strutstyle.StrutStyle StrutStyle { get; set; }
+        public virtual TextAlign TextAlign { get; set; }
+        public virtual FlutterSDK.Widgets.Editabletext.ToolbarOptions ToolbarOptions { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.TextAlignVertical TextAlignVertical { get; set; }
+        public virtual bool ReadOnly { get; set; }
+        public virtual bool ShowCursor { get; set; }
+        public virtual bool Autofocus { get; set; }
+        public virtual bool ObscureText { get; set; }
+        public virtual bool Autocorrect { get; set; }
+        public virtual FlutterSDK.Services.Textinput.SmartDashesType SmartDashesType { get; set; }
+        public virtual FlutterSDK.Services.Textinput.SmartQuotesType SmartQuotesType { get; set; }
+        public virtual bool EnableSuggestions { get; set; }
+        public virtual int MaxLines { get; set; }
+        public virtual int MinLines { get; set; }
+        public virtual bool Expands { get; set; }
+        public virtual int MaxLength { get; set; }
+        public virtual bool MaxLengthEnforced { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<string> OnChanged { get; set; }
+        public virtual VoidCallback OnEditingComplete { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<string> OnSubmitted { get; set; }
+        public virtual List<FlutterSDK.Services.Textformatter.TextInputFormatter> InputFormatters { get; set; }
+        public virtual bool Enabled { get; set; }
+        public virtual double CursorWidth { get; set; }
+        public virtual Radius CursorRadius { get; set; }
+        public virtual FlutterBinding.UI.Color CursorColor { get; set; }
+        public virtual BoxHeightStyle SelectionHeightStyle { get; set; }
+        public virtual BoxWidthStyle SelectionWidthStyle { get; set; }
+        public virtual Brightness KeyboardAppearance { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets ScrollPadding { get; set; }
+        public virtual bool EnableInteractiveSelection { get; set; }
+        public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
+        public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController ScrollController { get; set; }
+        public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ScrollPhysics { get; set; }
+        public virtual FlutterSDK.Gestures.Tap.GestureTapCallback OnTap { get; set; }
+        public virtual bool SelectionEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Cupertino.Textfield._CupertinoTextFieldState CreateState() { throw new NotImplementedException(); }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-private void _RequestKeyboard(){ throw new NotImplementedException(); }
+    public class _CupertinoTextFieldState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Textfield.CupertinoTextField>, ITextSelectionGestureDetectorBuilderDelegate, IAutomaticKeepAliveClientMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _CupertinoTextFieldState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _ClearGlobalKey { get; set; }
+        internal virtual FlutterSDK.Widgets.Editabletext.TextEditingController _Controller { get; set; }
+        internal virtual FlutterSDK.Widgets.Focusmanager.FocusNode _FocusNode { get; set; }
+        internal virtual bool _ShowSelectionHandles { get; set; }
+        internal virtual FlutterSDK.Cupertino.Textfield._CupertinoTextFieldSelectionGestureDetectorBuilder _SelectionGestureDetectorBuilder { get; set; }
+        public new FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Editabletext.EditableTextState> EditableTextKey { get; set; }
+        internal virtual FlutterSDK.Widgets.Editabletext.TextEditingController _EffectiveController { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual FlutterSDK.Widgets.Focusmanager.FocusNode _EffectiveFocusNode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool ForcePressEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool SelectionEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual FlutterSDK.Widgets.Editabletext.EditableTextState _EditableText { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool WantKeepAlive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual bool _HasDecoration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual FlutterSDK.Painting.Alignment.TextAlignVertical _TextAlignVertical { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-private bool _ShouldShowSelectionHandles(FlutterSDK.Rendering.Editable.SelectionChangedCause cause){ throw new NotImplementedException(); }
+        public new void DidUpdateWidget(FlutterSDK.Cupertino.Textfield.CupertinoTextField oldWidget) { throw new NotImplementedException(); }
 
 
-private void _HandleSelectionChanged(FlutterSDK.Services.Textediting.TextSelection selection,FlutterSDK.Rendering.Editable.SelectionChangedCause cause){ throw new NotImplementedException(); }
+        public new void Dispose() { throw new NotImplementedException(); }
 
 
-private bool _ShouldShowAttachment(FlutterSDK.Cupertino.Textfield.OverlayVisibilityMode attachment = default(FlutterSDK.Cupertino.Textfield.OverlayVisibilityMode),bool hasText = default(bool)){ throw new NotImplementedException(); }
+        private void _RequestKeyboard() { throw new NotImplementedException(); }
 
 
-private bool _ShowPrefixWidget(FlutterSDK.Services.Textinput.TextEditingValue text){ throw new NotImplementedException(); }
+        private bool _ShouldShowSelectionHandles(FlutterSDK.Rendering.Editable.SelectionChangedCause cause) { throw new NotImplementedException(); }
 
 
-private bool _ShowSuffixWidget(FlutterSDK.Services.Textinput.TextEditingValue text){ throw new NotImplementedException(); }
+        private void _HandleSelectionChanged(FlutterSDK.Services.Textediting.TextSelection selection, FlutterSDK.Rendering.Editable.SelectionChangedCause cause) { throw new NotImplementedException(); }
 
 
-private bool _ShowClearButton(FlutterSDK.Services.Textinput.TextEditingValue text){ throw new NotImplementedException(); }
+        private bool _ShouldShowAttachment(FlutterSDK.Cupertino.Textfield.OverlayVisibilityMode attachment = default(FlutterSDK.Cupertino.Textfield.OverlayVisibilityMode), bool hasText = default(bool)) { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Widgets.Framework.Widget _AddTextDependentAttachments(FlutterSDK.Widgets.Framework.Widget editableText,FlutterSDK.Painting.Textstyle.TextStyle textStyle,FlutterSDK.Painting.Textstyle.TextStyle placeholderStyle){ throw new NotImplementedException(); }
+        private bool _ShowPrefixWidget(FlutterSDK.Services.Textinput.TextEditingValue text) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-#endregion
-}
+        private bool _ShowSuffixWidget(FlutterSDK.Services.Textinput.TextEditingValue text) { throw new NotImplementedException(); }
 
 
-public enum OverlayVisibilityMode{
+        private bool _ShowClearButton(FlutterSDK.Services.Textinput.TextEditingValue text) { throw new NotImplementedException(); }
 
-Never,
-Editing,
-NotEditing,
-Always,
-}
+
+        private FlutterSDK.Widgets.Framework.Widget _AddTextDependentAttachments(FlutterSDK.Widgets.Framework.Widget editableText, FlutterSDK.Painting.Textstyle.TextStyle textStyle, FlutterSDK.Painting.Textstyle.TextStyle placeholderStyle) { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public enum OverlayVisibilityMode
+    {
+
+        Never,
+        Editing,
+        NotEditing,
+        Always,
+    }
 
 }

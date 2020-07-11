@@ -421,35 +421,38 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Scheduler.Priority{
-internal static class PriorityDefaultClass{
-}
-
-public class Priority
+namespace FlutterSDK.Scheduler.Priority
 {
-#region constructors
-internal Priority(int _value)
-{
-this._Value = _value;throw new NotImplementedException(); }
-#endregion
+    internal static class PriorityDefaultClass
+    {
+    }
 
-#region fields
-internal virtual int _Value{get;set;}
-public virtual FlutterSDK.Scheduler.Priority.Priority Idle{get;set;}
-public virtual FlutterSDK.Scheduler.Priority.Priority Animation{get;set;}
-public virtual FlutterSDK.Scheduler.Priority.Priority Touch{get;set;}
-public virtual int KMaxOffset{get;set;}
-public virtual int Value{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class Priority
+    {
+        #region constructors
+        internal Priority(int _value)
+        {
+            this._Value = _value; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual int _Value { get; set; }
+        public virtual FlutterSDK.Scheduler.Priority.Priority Idle { get; set; }
+        public virtual FlutterSDK.Scheduler.Priority.Priority Animation { get; set; }
+        public virtual FlutterSDK.Scheduler.Priority.Priority Touch { get; set; }
+        public virtual int KMaxOffset { get; set; }
+        public virtual int Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual FlutterSDK.Scheduler.Priority.Priority AddOperator(int offset){ throw new NotImplementedException(); }
+        #region methods
+
+        public virtual FlutterSDK.Scheduler.Priority.Priority AddOperator(int offset) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Scheduler.Priority.Priority SubtractOperator(int offset){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Scheduler.Priority.Priority SubtractOperator(int offset) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 }

@@ -421,14 +421,17 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Scheduler.Debug{
-internal static class DebugDefaultClass{
-public static bool DebugPrintBeginFrameBanner = default(bool);
-public static bool DebugPrintEndFrameBanner = default(bool);
-public static bool DebugPrintScheduleFrameStacks = default(bool);
-internal static bool DebugAssertAllSchedulerVarsUnset(string reason){
-throw new NotImplementedException();
-}
+namespace FlutterSDK.Scheduler.Debug
+{
+    internal static class DebugDefaultClass
+    {
+        public static bool DebugPrintBeginFrameBanner = default(bool);
+        public static bool DebugPrintEndFrameBanner = default(bool);
+        public static bool DebugPrintScheduleFrameStacks = default(bool);
+        internal static bool DebugAssertAllSchedulerVarsUnset(string reason)
+        {
+            throw new NotImplementedException();
+        }
 
-}
+    }
 }

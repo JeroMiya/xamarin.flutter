@@ -421,21 +421,23 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Services.Keyboardmaps{
-internal static class KeyboardmapsDefaultClass{
-public static Dictionary<int,FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> KAndroidToLogicalKey = default(Dictionary<int,FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey>);
-public static Dictionary<int,FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey> KAndroidToPhysicalKey = default(Dictionary<int,FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey>);
-public static Dictionary<int,FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> KAndroidNumPadMap = default(Dictionary<int,FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey>);
-public static Dictionary<int,FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> KFuchsiaToLogicalKey = default(Dictionary<int,FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey>);
-public static Dictionary<int,FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey> KFuchsiaToPhysicalKey = default(Dictionary<int,FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey>);
-public static Dictionary<int,FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey> KMacOsToPhysicalKey = default(Dictionary<int,FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey>);
-public static Dictionary<int,FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> KMacOsNumPadMap = default(Dictionary<int,FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey>);
-public static Dictionary<int,FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> KMacOsFunctionKeyMap = default(Dictionary<int,FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey>);
-public static Dictionary<int,FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> KGlfwToLogicalKey = default(Dictionary<int,FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey>);
-public static Dictionary<int,FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> KGlfwNumpadMap = default(Dictionary<int,FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey>);
-public static Dictionary<int,FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey> KLinuxToPhysicalKey = default(Dictionary<int,FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey>);
-public static Dictionary<string,FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> KWebToLogicalKey = default(Dictionary<string,FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey>);
-public static Dictionary<string,FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey> KWebToPhysicalKey = default(Dictionary<string,FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey>);
-public static Dictionary<string,FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> KWebNumPadMap = default(Dictionary<string,FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey>);
-}
+namespace FlutterSDK.Services.Keyboardmaps
+{
+    internal static class KeyboardmapsDefaultClass
+    {
+        public static Dictionary<int, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> KAndroidToLogicalKey = default(Dictionary<int, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey>);
+        public static Dictionary<int, FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey> KAndroidToPhysicalKey = default(Dictionary<int, FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey>);
+        public static Dictionary<int, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> KAndroidNumPadMap = default(Dictionary<int, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey>);
+        public static Dictionary<int, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> KFuchsiaToLogicalKey = default(Dictionary<int, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey>);
+        public static Dictionary<int, FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey> KFuchsiaToPhysicalKey = default(Dictionary<int, FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey>);
+        public static Dictionary<int, FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey> KMacOsToPhysicalKey = default(Dictionary<int, FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey>);
+        public static Dictionary<int, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> KMacOsNumPadMap = default(Dictionary<int, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey>);
+        public static Dictionary<int, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> KMacOsFunctionKeyMap = default(Dictionary<int, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey>);
+        public static Dictionary<int, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> KGlfwToLogicalKey = default(Dictionary<int, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey>);
+        public static Dictionary<int, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> KGlfwNumpadMap = default(Dictionary<int, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey>);
+        public static Dictionary<int, FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey> KLinuxToPhysicalKey = default(Dictionary<int, FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey>);
+        public static Dictionary<string, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> KWebToLogicalKey = default(Dictionary<string, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey>);
+        public static Dictionary<string, FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey> KWebToPhysicalKey = default(Dictionary<string, FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey>);
+        public static Dictionary<string, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> KWebNumPadMap = default(Dictionary<string, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey>);
+    }
 }

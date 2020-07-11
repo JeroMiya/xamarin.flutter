@@ -411,314 +411,321 @@ using FlutterSDK.Material.Floatingactionbuttonlocation;
 using FlutterSDK.Material.Snackbar;
 using FlutterSDK.Material.Snackbartheme;
 using FlutterSDK.Material.Textselection;
-namespace FlutterSDK.Material.Slider{
-public delegate string SemanticFormatterCallback(double value);
-internal static class SliderDefaultClass{
-}
-
-public class Slider : FlutterSDK.Widgets.Framework.StatefulWidget
+namespace FlutterSDK.Material.Slider
 {
-#region constructors
-public Slider(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),double value = default(double),FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>),FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>),FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>),double min = 0.0,double max = 1.0,int divisions = default(int),string label = default(string),FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color),FlutterSDK.Material.Slider.SemanticFormatterCallback semanticFormatterCallback = default(FlutterSDK.Material.Slider.SemanticFormatterCallback))
-: base(key:key)
-{
-this.Value = value;
-this.OnChanged = onChanged;
-this.OnChangeStart = onChangeStart;
-this.OnChangeEnd = onChangeEnd;
-this.Min = min;
-this.Max = max;
-this.Divisions = divisions;
-this.Label = label;
-this.ActiveColor = activeColor;
-this.InactiveColor = inactiveColor;
-this.SemanticFormatterCallback = semanticFormatterCallback;throw new NotImplementedException(); }
-public static Slider Adaptive(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),double value = default(double),FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>),FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>),FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>),double min = 0.0,double max = 1.0,int divisions = default(int),string label = default(string),FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color),FlutterSDK.Material.Slider.SemanticFormatterCallback semanticFormatterCallback = default(FlutterSDK.Material.Slider.SemanticFormatterCallback))
-{
-var instance =new Slider(key:key);instance.Value = value;
-instance.OnChanged = onChanged;
-instance.OnChangeStart = onChangeStart;
-instance.OnChangeEnd = onChangeEnd;
-instance.Min = min;
-instance.Max = max;
-instance.Divisions = divisions;
-instance.Label = label;
-instance.ActiveColor = activeColor;
-instance.InactiveColor = inactiveColor;
-instance.SemanticFormatterCallback = semanticFormatterCallback;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual double Value{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChanged{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChangeStart{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChangeEnd{get;set;}
-public virtual double Min{get;set;}
-public virtual double Max{get;set;}
-public virtual int Divisions{get;set;}
-public virtual string Label{get;set;}
-public virtual FlutterBinding.UI.Color ActiveColor{get;set;}
-public virtual FlutterBinding.UI.Color InactiveColor{get;set;}
-public virtual FlutterSDK.Material.Slider.SemanticFormatterCallback SemanticFormatterCallback{get;set;}
-internal virtual FlutterSDK.Material.Slider._SliderType _SliderType{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Material.Slider._SliderState CreateState(){ throw new NotImplementedException(); }
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _SliderState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Slider.Slider>,ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-#region constructors
-public _SliderState()
-{ }
-#endregion
-
-#region fields
-public virtual TimeSpan EnableAnimationDuration{get;set;}
-public virtual TimeSpan ValueIndicatorAnimationDuration{get;set;}
-public virtual FlutterSDK.Animation.Animationcontroller.AnimationController OverlayController{get;set;}
-public virtual FlutterSDK.Animation.Animationcontroller.AnimationController ValueIndicatorController{get;set;}
-public virtual FlutterSDK.Animation.Animationcontroller.AnimationController EnableController{get;set;}
-public virtual FlutterSDK.Animation.Animationcontroller.AnimationController PositionController{get;set;}
-public virtual Timer InteractionTimer{get;set;}
-internal virtual double _DefaultTrackHeight{get;set;}
-internal virtual FlutterSDK.Material.Slidertheme.SliderTrackShape _DefaultTrackShape{get;set;}
-internal virtual FlutterSDK.Material.Slidertheme.SliderTickMarkShape _DefaultTickMarkShape{get;set;}
-internal virtual FlutterSDK.Material.Slidertheme.SliderComponentShape _DefaultOverlayShape{get;set;}
-internal virtual FlutterSDK.Material.Slidertheme.SliderComponentShape _DefaultThumbShape{get;set;}
-internal virtual FlutterSDK.Material.Slidertheme.SliderComponentShape _DefaultValueIndicatorShape{get;set;}
-internal virtual FlutterSDK.Material.Slidertheme.ShowValueIndicator _DefaultShowValueIndicator{get;set;}
-#endregion
-
-#region methods
-
-public new void InitState(){ throw new NotImplementedException(); }
-
-
-public new void Dispose(){ throw new NotImplementedException(); }
-
-
-private void _HandleChanged(double value){ throw new NotImplementedException(); }
-
-
-private void _HandleDragStart(double value){ throw new NotImplementedException(); }
-
-
-private void _HandleDragEnd(double value){ throw new NotImplementedException(); }
-
-
-private double _Lerp(double value){ throw new NotImplementedException(); }
-
-
-private double _Unlerp(double value){ throw new NotImplementedException(); }
-
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-
-private FlutterSDK.Widgets.Framework.Widget _BuildMaterialSlider(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-
-private FlutterSDK.Widgets.Framework.Widget _BuildCupertinoSlider(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _SliderRenderObjectWidget : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
-{
-#region constructors
-public _SliderRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),double value = default(double),int divisions = default(int),string label = default(string),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),FlutterSDK.Widgets.Mediaquery.MediaQueryData mediaQueryData = default(FlutterSDK.Widgets.Mediaquery.MediaQueryData),FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>),FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>),FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>),FlutterSDK.Material.Slider._SliderState state = default(FlutterSDK.Material.Slider._SliderState),FlutterSDK.Material.Slider.SemanticFormatterCallback semanticFormatterCallback = default(FlutterSDK.Material.Slider.SemanticFormatterCallback))
-: base(key:key)
-{
-this.Value = value;
-this.Divisions = divisions;
-this.Label = label;
-this.SliderTheme = sliderTheme;
-this.MediaQueryData = mediaQueryData;
-this.OnChanged = onChanged;
-this.OnChangeStart = onChangeStart;
-this.OnChangeEnd = onChangeEnd;
-this.State = state;
-this.SemanticFormatterCallback = semanticFormatterCallback;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual double Value{get;set;}
-public virtual int Divisions{get;set;}
-public virtual string Label{get;set;}
-public virtual FlutterSDK.Material.Slidertheme.SliderThemeData SliderTheme{get;set;}
-public virtual FlutterSDK.Widgets.Mediaquery.MediaQueryData MediaQueryData{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChanged{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChangeStart{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChangeEnd{get;set;}
-public virtual FlutterSDK.Material.Slider.SemanticFormatterCallback SemanticFormatterCallback{get;set;}
-public virtual FlutterSDK.Material.Slider._SliderState State{get;set;}
-#endregion
+    public delegate string SemanticFormatterCallback(double value);
+    internal static class SliderDefaultClass
+    {
+    }
+
+    public class Slider : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public Slider(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double value = default(double), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), double min = 0.0, double max = 1.0, int divisions = default(int), string label = default(string), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Slider.SemanticFormatterCallback semanticFormatterCallback = default(FlutterSDK.Material.Slider.SemanticFormatterCallback))
+        : base(key: key)
+        {
+            this.Value = value;
+            this.OnChanged = onChanged;
+            this.OnChangeStart = onChangeStart;
+            this.OnChangeEnd = onChangeEnd;
+            this.Min = min;
+            this.Max = max;
+            this.Divisions = divisions;
+            this.Label = label;
+            this.ActiveColor = activeColor;
+            this.InactiveColor = inactiveColor;
+            this.SemanticFormatterCallback = semanticFormatterCallback; throw new NotImplementedException();
+        }
+        public static Slider Adaptive(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double value = default(double), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), double min = 0.0, double max = 1.0, int divisions = default(int), string label = default(string), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Slider.SemanticFormatterCallback semanticFormatterCallback = default(FlutterSDK.Material.Slider.SemanticFormatterCallback))
+        {
+            var instance = new Slider(key: key); instance.Value = value;
+            instance.OnChanged = onChanged;
+            instance.OnChangeStart = onChangeStart;
+            instance.OnChangeEnd = onChangeEnd;
+            instance.Min = min;
+            instance.Max = max;
+            instance.Divisions = divisions;
+            instance.Label = label;
+            instance.ActiveColor = activeColor;
+            instance.InactiveColor = inactiveColor;
+            instance.SemanticFormatterCallback = semanticFormatterCallback; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual double Value { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChanged { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChangeStart { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChangeEnd { get; set; }
+        public virtual double Min { get; set; }
+        public virtual double Max { get; set; }
+        public virtual int Divisions { get; set; }
+        public virtual string Label { get; set; }
+        public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
+        public virtual FlutterBinding.UI.Color InactiveColor { get; set; }
+        public virtual FlutterSDK.Material.Slider.SemanticFormatterCallback SemanticFormatterCallback { get; set; }
+        internal virtual FlutterSDK.Material.Slider._SliderType _SliderType { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Material.Slider._SliderState CreateState() { throw new NotImplementedException(); }
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class _SliderState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Slider.Slider>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _SliderState()
+        { }
+        #endregion
+
+        #region fields
+        public virtual TimeSpan EnableAnimationDuration { get; set; }
+        public virtual TimeSpan ValueIndicatorAnimationDuration { get; set; }
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController OverlayController { get; set; }
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController ValueIndicatorController { get; set; }
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController EnableController { get; set; }
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController PositionController { get; set; }
+        public virtual Timer InteractionTimer { get; set; }
+        internal virtual double _DefaultTrackHeight { get; set; }
+        internal virtual FlutterSDK.Material.Slidertheme.SliderTrackShape _DefaultTrackShape { get; set; }
+        internal virtual FlutterSDK.Material.Slidertheme.SliderTickMarkShape _DefaultTickMarkShape { get; set; }
+        internal virtual FlutterSDK.Material.Slidertheme.SliderComponentShape _DefaultOverlayShape { get; set; }
+        internal virtual FlutterSDK.Material.Slidertheme.SliderComponentShape _DefaultThumbShape { get; set; }
+        internal virtual FlutterSDK.Material.Slidertheme.SliderComponentShape _DefaultValueIndicatorShape { get; set; }
+        internal virtual FlutterSDK.Material.Slidertheme.ShowValueIndicator _DefaultShowValueIndicator { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
+
+
+        public new void Dispose() { throw new NotImplementedException(); }
+
+
+        private void _HandleChanged(double value) { throw new NotImplementedException(); }
+
+
+        private void _HandleDragStart(double value) { throw new NotImplementedException(); }
+
+
+        private void _HandleDragEnd(double value) { throw new NotImplementedException(); }
+
+
+        private double _Lerp(double value) { throw new NotImplementedException(); }
+
+
+        private double _Unlerp(double value) { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+
+        private FlutterSDK.Widgets.Framework.Widget _BuildMaterialSlider(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+
+        private FlutterSDK.Widgets.Framework.Widget _BuildCupertinoSlider(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class _SliderRenderObjectWidget : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
+    {
+        #region constructors
+        public _SliderRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double value = default(double), int divisions = default(int), string label = default(string), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Widgets.Mediaquery.MediaQueryData mediaQueryData = default(FlutterSDK.Widgets.Mediaquery.MediaQueryData), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Material.Slider._SliderState state = default(FlutterSDK.Material.Slider._SliderState), FlutterSDK.Material.Slider.SemanticFormatterCallback semanticFormatterCallback = default(FlutterSDK.Material.Slider.SemanticFormatterCallback))
+        : base(key: key)
+        {
+            this.Value = value;
+            this.Divisions = divisions;
+            this.Label = label;
+            this.SliderTheme = sliderTheme;
+            this.MediaQueryData = mediaQueryData;
+            this.OnChanged = onChanged;
+            this.OnChangeStart = onChangeStart;
+            this.OnChangeEnd = onChangeEnd;
+            this.State = state;
+            this.SemanticFormatterCallback = semanticFormatterCallback; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual double Value { get; set; }
+        public virtual int Divisions { get; set; }
+        public virtual string Label { get; set; }
+        public virtual FlutterSDK.Material.Slidertheme.SliderThemeData SliderTheme { get; set; }
+        public virtual FlutterSDK.Widgets.Mediaquery.MediaQueryData MediaQueryData { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChanged { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChangeStart { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChangeEnd { get; set; }
+        public virtual FlutterSDK.Material.Slider.SemanticFormatterCallback SemanticFormatterCallback { get; set; }
+        public virtual FlutterSDK.Material.Slider._SliderState State { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new FlutterSDK.Material.Slider._RenderSlider CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new FlutterSDK.Material.Slider._RenderSlider CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Material.Slider._RenderSlider renderObject){ throw new NotImplementedException(); }
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Rendering.@object.RenderObject renderObject){ throw new NotImplementedException(); }
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Material.Slider._RenderSlider renderObject) { throw new NotImplementedException(); }
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _RenderSlider : FlutterSDK.Rendering.Box.RenderBox,IRelayoutWhenSystemFontsChangeMixin
-{
-#region constructors
-public _RenderSlider(double value = default(double),int divisions = default(int),string label = default(string),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),FlutterSDK.Widgets.Mediaquery.MediaQueryData mediaQueryData = default(FlutterSDK.Widgets.Mediaquery.MediaQueryData),FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform),FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>),FlutterSDK.Material.Slider.SemanticFormatterCallback semanticFormatterCallback = default(FlutterSDK.Material.Slider.SemanticFormatterCallback),FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>),FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>),FlutterSDK.Material.Slider._SliderState state = default(FlutterSDK.Material.Slider._SliderState),TextDirection textDirection = default(TextDirection))
-: base()
-{
-this.OnChangeStart = onChangeStart;
-this.OnChangeEnd = onChangeEnd;throw new NotImplementedException(); }
-#endregion
+    public class _RenderSlider : FlutterSDK.Rendering.Box.RenderBox, IRelayoutWhenSystemFontsChangeMixin
+    {
+        #region constructors
+        public _RenderSlider(double value = default(double), int divisions = default(int), string label = default(string), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Widgets.Mediaquery.MediaQueryData mediaQueryData = default(FlutterSDK.Widgets.Mediaquery.MediaQueryData), FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Material.Slider.SemanticFormatterCallback semanticFormatterCallback = default(FlutterSDK.Material.Slider.SemanticFormatterCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Material.Slider._SliderState state = default(FlutterSDK.Material.Slider._SliderState), TextDirection textDirection = default(TextDirection))
+        : base()
+        {
+            this.OnChangeStart = onChangeStart;
+            this.OnChangeEnd = onChangeEnd; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-internal virtual TimeSpan _PositionAnimationDuration{get;set;}
-internal virtual TimeSpan _MinimumInteractionTime{get;set;}
-internal virtual double _MinPreferredTrackWidth{get;set;}
-internal virtual FlutterSDK.Material.Slider._SliderState _State{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _OverlayAnimation{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _ValueIndicatorAnimation{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _EnableAnimation{get;set;}
-internal virtual FlutterSDK.Painting.Textpainter.TextPainter _LabelPainter{get;set;}
-internal virtual FlutterSDK.Gestures.Monodrag.HorizontalDragGestureRecognizer _Drag{get;set;}
-internal virtual FlutterSDK.Gestures.Tap.TapGestureRecognizer _Tap{get;set;}
-internal virtual bool _Active{get;set;}
-internal virtual double _CurrentDragValue{get;set;}
-internal virtual double _Value{get;set;}
-internal virtual FlutterSDK.Foundation.Platform.TargetPlatform _Platform{get;set;}
-internal virtual FlutterSDK.Material.Slider.SemanticFormatterCallback _SemanticFormatterCallback{get;set;}
-internal virtual int _Divisions{get;set;}
-internal virtual string _Label{get;set;}
-internal virtual FlutterSDK.Material.Slidertheme.SliderThemeData _SliderTheme{get;set;}
-internal virtual FlutterSDK.Material.Themedata.ThemeData _Theme{get;set;}
-internal virtual FlutterSDK.Widgets.Mediaquery.MediaQueryData _MediaQueryData{get;set;}
-internal virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> _OnChanged{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChangeStart{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChangeEnd{get;set;}
-internal virtual TextDirection _TextDirection{get;set;}
-internal virtual double _MaxSliderPartWidth{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _MaxSliderPartHeight{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual List<Size> _SliderPartSizes{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _MinPreferredTrackHeight{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual FlutterBinding.UI.Rect _TrackRect{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsInteractive{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsDiscrete{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double Value{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Foundation.Platform.TargetPlatform Platform{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Material.Slider.SemanticFormatterCallback SemanticFormatterCallback{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual int Divisions{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual string Label{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Material.Slidertheme.SliderThemeData SliderTheme{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Material.Themedata.ThemeData Theme{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Widgets.Mediaquery.MediaQueryData MediaQueryData{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChanged{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual TextDirection TextDirection{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool ShowValueIndicator{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _AdjustmentUnit{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool SizedByParent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _SemanticActionUnit{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #region fields
+        internal virtual TimeSpan _PositionAnimationDuration { get; set; }
+        internal virtual TimeSpan _MinimumInteractionTime { get; set; }
+        internal virtual double _MinPreferredTrackWidth { get; set; }
+        internal virtual FlutterSDK.Material.Slider._SliderState _State { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _OverlayAnimation { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _ValueIndicatorAnimation { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _EnableAnimation { get; set; }
+        internal virtual FlutterSDK.Painting.Textpainter.TextPainter _LabelPainter { get; set; }
+        internal virtual FlutterSDK.Gestures.Monodrag.HorizontalDragGestureRecognizer _Drag { get; set; }
+        internal virtual FlutterSDK.Gestures.Tap.TapGestureRecognizer _Tap { get; set; }
+        internal virtual bool _Active { get; set; }
+        internal virtual double _CurrentDragValue { get; set; }
+        internal virtual double _Value { get; set; }
+        internal virtual FlutterSDK.Foundation.Platform.TargetPlatform _Platform { get; set; }
+        internal virtual FlutterSDK.Material.Slider.SemanticFormatterCallback _SemanticFormatterCallback { get; set; }
+        internal virtual int _Divisions { get; set; }
+        internal virtual string _Label { get; set; }
+        internal virtual FlutterSDK.Material.Slidertheme.SliderThemeData _SliderTheme { get; set; }
+        internal virtual FlutterSDK.Material.Themedata.ThemeData _Theme { get; set; }
+        internal virtual FlutterSDK.Widgets.Mediaquery.MediaQueryData _MediaQueryData { get; set; }
+        internal virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> _OnChanged { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChangeStart { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChangeEnd { get; set; }
+        internal virtual TextDirection _TextDirection { get; set; }
+        internal virtual double _MaxSliderPartWidth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _MaxSliderPartHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual List<Size> _SliderPartSizes { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _MinPreferredTrackHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual FlutterBinding.UI.Rect _TrackRect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsInteractive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsDiscrete { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Foundation.Platform.TargetPlatform Platform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Material.Slider.SemanticFormatterCallback SemanticFormatterCallback { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int Divisions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string Label { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Material.Slidertheme.SliderThemeData SliderTheme { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Material.Themedata.ThemeData Theme { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Widgets.Mediaquery.MediaQueryData MediaQueryData { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChanged { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool ShowValueIndicator { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _AdjustmentUnit { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _SemanticActionUnit { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#region methods
+        #region methods
 
-private void _UpdateLabelPainter(){ throw new NotImplementedException(); }
+        private void _UpdateLabelPainter() { throw new NotImplementedException(); }
 
 
-public new void SystemFontsDidChange(){ throw new NotImplementedException(); }
+        public new void SystemFontsDidChange() { throw new NotImplementedException(); }
 
 
-public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner){ throw new NotImplementedException(); }
-public new void Attach(@Object owner){ throw new NotImplementedException(); }
+        public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner) { throw new NotImplementedException(); }
+        public new void Attach(@Object owner) { throw new NotImplementedException(); }
 
 
-public new void Detach(){ throw new NotImplementedException(); }
+        public new void Detach() { throw new NotImplementedException(); }
 
 
-private double _GetValueFromVisualPosition(double visualPosition){ throw new NotImplementedException(); }
+        private double _GetValueFromVisualPosition(double visualPosition) { throw new NotImplementedException(); }
 
 
-private double _GetValueFromGlobalPosition(FlutterBinding.UI.Offset globalPosition){ throw new NotImplementedException(); }
+        private double _GetValueFromGlobalPosition(FlutterBinding.UI.Offset globalPosition) { throw new NotImplementedException(); }
 
 
-private double _Discretize(double value){ throw new NotImplementedException(); }
+        private double _Discretize(double value) { throw new NotImplementedException(); }
 
 
-private void _StartInteraction(FlutterBinding.UI.Offset globalPosition){ throw new NotImplementedException(); }
+        private void _StartInteraction(FlutterBinding.UI.Offset globalPosition) { throw new NotImplementedException(); }
 
 
-private void _EndInteraction(){ throw new NotImplementedException(); }
+        private void _EndInteraction() { throw new NotImplementedException(); }
 
 
-private void _HandleDragStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details){ throw new NotImplementedException(); }
+        private void _HandleDragStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details) { throw new NotImplementedException(); }
 
 
-private void _HandleDragUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details){ throw new NotImplementedException(); }
+        private void _HandleDragUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details) { throw new NotImplementedException(); }
 
 
-private void _HandleDragEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details){ throw new NotImplementedException(); }
+        private void _HandleDragEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details) { throw new NotImplementedException(); }
 
 
-private void _HandleTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details){ throw new NotImplementedException(); }
+        private void _HandleTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details) { throw new NotImplementedException(); }
 
 
-private void _HandleTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details){ throw new NotImplementedException(); }
+        private void _HandleTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details) { throw new NotImplementedException(); }
 
 
-public new bool HitTestSelf(FlutterBinding.UI.Offset position){ throw new NotImplementedException(); }
+        public new bool HitTestSelf(FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
 
 
-public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event,FlutterSDK.Rendering.Box.BoxHitTestEntry entry){ throw new NotImplementedException(); }
+        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Rendering.Box.BoxHitTestEntry entry) { throw new NotImplementedException(); }
 
 
-public new double ComputeMinIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-public new double ComputeMaxIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-public new double ComputeMinIntrinsicHeight(double width){ throw new NotImplementedException(); }
+        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-public new double ComputeMaxIntrinsicHeight(double width){ throw new NotImplementedException(); }
+        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-public new void PerformResize(){ throw new NotImplementedException(); }
+        public new void PerformResize() { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
-public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config){ throw new NotImplementedException(); }
+        public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config) { throw new NotImplementedException(); }
 
 
-private void _IncreaseAction(){ throw new NotImplementedException(); }
+        private void _IncreaseAction() { throw new NotImplementedException(); }
 
 
-private void _DecreaseAction(){ throw new NotImplementedException(); }
+        private void _DecreaseAction() { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public enum _SliderType{
+    public enum _SliderType
+    {
 
-Material,
-Adaptive,
-}
+        Material,
+        Adaptive,
+    }
 
 }

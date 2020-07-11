@@ -420,42 +420,45 @@ using FlutterSDK.Material.Inksplash;
 using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
-namespace FlutterSDK.Painting.Boxshadow{
-internal static class BoxshadowDefaultClass{
-}
-
-public class BoxShadow : Shadow
+namespace FlutterSDK.Painting.Boxshadow
 {
-#region constructors
-public BoxShadow(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset),double blurRadius = 0.0,double spreadRadius = 0.0)
-: base(color:color,offset:offset,blurRadius:blurRadius)
-{
-this.SpreadRadius = spreadRadius;throw new NotImplementedException(); }
-#endregion
+    internal static class BoxshadowDefaultClass
+    {
+    }
 
-#region fields
-public virtual double SpreadRadius{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class BoxShadow : Shadow
+    {
+        #region constructors
+        public BoxShadow(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), double blurRadius = 0.0, double spreadRadius = 0.0)
+        : base(color: color, offset: offset, blurRadius: blurRadius)
+        {
+            this.SpreadRadius = spreadRadius; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual double SpreadRadius { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new Paint ToPaint(){ throw new NotImplementedException(); }
+        #region methods
 
-
-public new FlutterSDK.Painting.Boxshadow.BoxShadow Scale(double factor){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Painting.Boxshadow.BoxShadow Lerp(FlutterSDK.Painting.Boxshadow.BoxShadow a,FlutterSDK.Painting.Boxshadow.BoxShadow b,double t){ throw new NotImplementedException(); }
-
-
-public virtual List<FlutterSDK.Painting.Boxshadow.BoxShadow> LerpList(List<FlutterSDK.Painting.Boxshadow.BoxShadow> a,List<FlutterSDK.Painting.Boxshadow.BoxShadow> b,double t){ throw new NotImplementedException(); }
+        public new Paint ToPaint() { throw new NotImplementedException(); }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Boxshadow.BoxShadow Scale(double factor) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public virtual FlutterSDK.Painting.Boxshadow.BoxShadow Lerp(FlutterSDK.Painting.Boxshadow.BoxShadow a, FlutterSDK.Painting.Boxshadow.BoxShadow b, double t) { throw new NotImplementedException(); }
+
+
+        public virtual List<FlutterSDK.Painting.Boxshadow.BoxShadow> LerpList(List<FlutterSDK.Painting.Boxshadow.BoxShadow> a, List<FlutterSDK.Painting.Boxshadow.BoxShadow> b, double t) { throw new NotImplementedException(); }
+
+
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+
+
+        #endregion
+    }
 
 }

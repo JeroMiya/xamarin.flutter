@@ -294,171 +294,178 @@ using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
-namespace FlutterSDK.Gestures.Tap{
-public delegate void GestureTapDownCallback(FlutterSDK.Gestures.Tap.TapDownDetails details);
-public delegate void GestureTapUpCallback(FlutterSDK.Gestures.Tap.TapUpDetails details);
-public delegate void GestureTapCallback();
-public delegate void GestureTapCancelCallback();
-internal static class TapDefaultClass{
-}
-
-public interface IBaseTapGestureRecognizer{
-void HandleTapDown(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent));
-void HandleTapUp(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent),FlutterSDK.Gestures.Events.PointerUpEvent up = default(FlutterSDK.Gestures.Events.PointerUpEvent));
-void HandleTapCancel(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent),FlutterSDK.Gestures.Events.PointerCancelEvent cancel = default(FlutterSDK.Gestures.Events.PointerCancelEvent),string reason = default(string));
-void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event);
-void StartTrackingPointer(int pointer,Matrix4 transform = default(Matrix4));
-void HandlePrimaryPointer(FlutterSDK.Gestures.Events.PointerEvent @event);
-void Resolve(FlutterSDK.Gestures.Arena.GestureDisposition disposition);
-void DidExceedDeadline();
-void AcceptGesture(int pointer);
-void RejectGesture(int pointer);
-void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
-string DebugDescription{get;}
-}
-
-
-public class TapDownDetails
+namespace FlutterSDK.Gestures.Tap
 {
-#region constructors
-public TapDownDetails(FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset),FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset),PointerDeviceKind kind = default(PointerDeviceKind))
-: base()
-{
-this.GlobalPosition = globalPosition;
-this.Kind = kind;throw new NotImplementedException(); }
-#endregion
+    public delegate void GestureTapDownCallback(FlutterSDK.Gestures.Tap.TapDownDetails details);
+    public delegate void GestureTapUpCallback(FlutterSDK.Gestures.Tap.TapUpDetails details);
+    public delegate void GestureTapCallback();
+    public delegate void GestureTapCancelCallback();
+    internal static class TapDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterBinding.UI.Offset GlobalPosition{get;set;}
-public virtual PointerDeviceKind Kind{get;set;}
-public virtual FlutterBinding.UI.Offset LocalPosition{get;set;}
-#endregion
-
-#region methods
-#endregion
-}
-
-
-public class TapUpDetails
-{
-#region constructors
-public TapUpDetails(FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset),FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset))
-: base()
-{
-this.GlobalPosition = globalPosition;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterBinding.UI.Offset GlobalPosition{get;set;}
-public virtual FlutterBinding.UI.Offset LocalPosition{get;set;}
-#endregion
-
-#region methods
-#endregion
-}
+    public interface IBaseTapGestureRecognizer
+    {
+        void HandleTapDown(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent));
+        void HandleTapUp(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent), FlutterSDK.Gestures.Events.PointerUpEvent up = default(FlutterSDK.Gestures.Events.PointerUpEvent));
+        void HandleTapCancel(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent), FlutterSDK.Gestures.Events.PointerCancelEvent cancel = default(FlutterSDK.Gestures.Events.PointerCancelEvent), string reason = default(string));
+        void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event);
+        void StartTrackingPointer(int pointer, Matrix4 transform = default(Matrix4));
+        void HandlePrimaryPointer(FlutterSDK.Gestures.Events.PointerEvent @event);
+        void Resolve(FlutterSDK.Gestures.Arena.GestureDisposition disposition);
+        void DidExceedDeadline();
+        void AcceptGesture(int pointer);
+        void RejectGesture(int pointer);
+        void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
+        string DebugDescription { get; }
+    }
 
 
-public class BaseTapGestureRecognizer : FlutterSDK.Gestures.Recognizer.PrimaryPointerGestureRecognizer
-{
-#region constructors
-public BaseTapGestureRecognizer(@Object debugOwner = default(@Object))
-: base(deadline:ConstantsDefaultClass.KPressTimeout,debugOwner:debugOwner)
-{
-throw new NotImplementedException(); }
-#endregion
+    public class TapDownDetails
+    {
+        #region constructors
+        public TapDownDetails(FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), PointerDeviceKind kind = default(PointerDeviceKind))
+        : base()
+        {
+            this.GlobalPosition = globalPosition;
+            this.Kind = kind; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-internal virtual bool _SentTapDown{get;set;}
-internal virtual bool _WonArenaForPrimaryPointer{get;set;}
-internal virtual FlutterSDK.Gestures.Events.PointerDownEvent _Down{get;set;}
-internal virtual FlutterSDK.Gestures.Events.PointerUpEvent _Up{get;set;}
-public virtual string DebugDescription{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #region fields
+        public virtual FlutterBinding.UI.Offset GlobalPosition { get; set; }
+        public virtual PointerDeviceKind Kind { get; set; }
+        public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
+        #endregion
 
-#region methods
-
-public virtual void HandleTapDown(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent)){ throw new NotImplementedException(); }
-
-
-public virtual void HandleTapUp(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent),FlutterSDK.Gestures.Events.PointerUpEvent up = default(FlutterSDK.Gestures.Events.PointerUpEvent)){ throw new NotImplementedException(); }
+        #region methods
+        #endregion
+    }
 
 
-public virtual void HandleTapCancel(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent),FlutterSDK.Gestures.Events.PointerCancelEvent cancel = default(FlutterSDK.Gestures.Events.PointerCancelEvent),string reason = default(string)){ throw new NotImplementedException(); }
+    public class TapUpDetails
+    {
+        #region constructors
+        public TapUpDetails(FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset))
+        : base()
+        {
+            this.GlobalPosition = globalPosition; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterBinding.UI.Offset GlobalPosition { get; set; }
+        public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
 
 
-public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event){ throw new NotImplementedException(); }
+    public class BaseTapGestureRecognizer : FlutterSDK.Gestures.Recognizer.PrimaryPointerGestureRecognizer
+    {
+        #region constructors
+        public BaseTapGestureRecognizer(@Object debugOwner = default(@Object))
+        : base(deadline: ConstantsDefaultClass.KPressTimeout, debugOwner: debugOwner)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual bool _SentTapDown { get; set; }
+        internal virtual bool _WonArenaForPrimaryPointer { get; set; }
+        internal virtual FlutterSDK.Gestures.Events.PointerDownEvent _Down { get; set; }
+        internal virtual FlutterSDK.Gestures.Events.PointerUpEvent _Up { get; set; }
+        public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual void HandleTapDown(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent)) { throw new NotImplementedException(); }
 
 
-public new void StartTrackingPointer(int pointer,Matrix4 transform = default(Matrix4)){ throw new NotImplementedException(); }
+        public virtual void HandleTapUp(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent), FlutterSDK.Gestures.Events.PointerUpEvent up = default(FlutterSDK.Gestures.Events.PointerUpEvent)) { throw new NotImplementedException(); }
 
 
-public new void HandlePrimaryPointer(FlutterSDK.Gestures.Events.PointerEvent @event){ throw new NotImplementedException(); }
+        public virtual void HandleTapCancel(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent), FlutterSDK.Gestures.Events.PointerCancelEvent cancel = default(FlutterSDK.Gestures.Events.PointerCancelEvent), string reason = default(string)) { throw new NotImplementedException(); }
 
 
-public new void Resolve(FlutterSDK.Gestures.Arena.GestureDisposition disposition){ throw new NotImplementedException(); }
+        public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
 
 
-public new void DidExceedDeadline(){ throw new NotImplementedException(); }
+        public new void StartTrackingPointer(int pointer, Matrix4 transform = default(Matrix4)) { throw new NotImplementedException(); }
 
 
-public new void AcceptGesture(int pointer){ throw new NotImplementedException(); }
+        public new void HandlePrimaryPointer(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
 
 
-public new void RejectGesture(int pointer){ throw new NotImplementedException(); }
+        public new void Resolve(FlutterSDK.Gestures.Arena.GestureDisposition disposition) { throw new NotImplementedException(); }
 
 
-private void _CheckDown(){ throw new NotImplementedException(); }
+        public new void DidExceedDeadline() { throw new NotImplementedException(); }
 
 
-private void _CheckUp(){ throw new NotImplementedException(); }
+        public new void AcceptGesture(int pointer) { throw new NotImplementedException(); }
 
 
-private void _CheckCancel(FlutterSDK.Gestures.Events.PointerCancelEvent @event,string note){ throw new NotImplementedException(); }
+        public new void RejectGesture(int pointer) { throw new NotImplementedException(); }
 
 
-private void _Reset(){ throw new NotImplementedException(); }
+        private void _CheckDown() { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-#endregion
-}
+        private void _CheckUp() { throw new NotImplementedException(); }
 
 
-public class TapGestureRecognizer : FlutterSDK.Gestures.Tap.BaseTapGestureRecognizer
-{
-#region constructors
-public TapGestureRecognizer(@Object debugOwner = default(@Object))
-: base(debugOwner:debugOwner)
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Gestures.Tap.GestureTapDownCallback OnTapDown{get;set;}
-public virtual FlutterSDK.Gestures.Tap.GestureTapUpCallback OnTapUp{get;set;}
-public virtual FlutterSDK.Gestures.Tap.GestureTapCallback OnTap{get;set;}
-public virtual FlutterSDK.Gestures.Tap.GestureTapCancelCallback OnTapCancel{get;set;}
-public virtual FlutterSDK.Gestures.Tap.GestureTapDownCallback OnSecondaryTapDown{get;set;}
-public virtual FlutterSDK.Gestures.Tap.GestureTapUpCallback OnSecondaryTapUp{get;set;}
-public virtual FlutterSDK.Gestures.Tap.GestureTapCancelCallback OnSecondaryTapCancel{get;set;}
-public virtual string DebugDescription{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new bool IsPointerAllowed(FlutterSDK.Gestures.Events.PointerDownEvent @event){ throw new NotImplementedException(); }
+        private void _CheckCancel(FlutterSDK.Gestures.Events.PointerCancelEvent @event, string note) { throw new NotImplementedException(); }
 
 
-public new void HandleTapDown(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent)){ throw new NotImplementedException(); }
+        private void _Reset() { throw new NotImplementedException(); }
 
 
-public new void HandleTapUp(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent),FlutterSDK.Gestures.Events.PointerUpEvent up = default(FlutterSDK.Gestures.Events.PointerUpEvent)){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public new void HandleTapCancel(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent),FlutterSDK.Gestures.Events.PointerCancelEvent cancel = default(FlutterSDK.Gestures.Events.PointerCancelEvent),string reason = default(string)){ throw new NotImplementedException(); }
+    public class TapGestureRecognizer : FlutterSDK.Gestures.Tap.BaseTapGestureRecognizer
+    {
+        #region constructors
+        public TapGestureRecognizer(@Object debugOwner = default(@Object))
+        : base(debugOwner: debugOwner)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual FlutterSDK.Gestures.Tap.GestureTapDownCallback OnTapDown { get; set; }
+        public virtual FlutterSDK.Gestures.Tap.GestureTapUpCallback OnTapUp { get; set; }
+        public virtual FlutterSDK.Gestures.Tap.GestureTapCallback OnTap { get; set; }
+        public virtual FlutterSDK.Gestures.Tap.GestureTapCancelCallback OnTapCancel { get; set; }
+        public virtual FlutterSDK.Gestures.Tap.GestureTapDownCallback OnSecondaryTapDown { get; set; }
+        public virtual FlutterSDK.Gestures.Tap.GestureTapUpCallback OnSecondaryTapUp { get; set; }
+        public virtual FlutterSDK.Gestures.Tap.GestureTapCancelCallback OnSecondaryTapCancel { get; set; }
+        public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new bool IsPointerAllowed(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
+
+
+        public new void HandleTapDown(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent)) { throw new NotImplementedException(); }
+
+
+        public new void HandleTapUp(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent), FlutterSDK.Gestures.Events.PointerUpEvent up = default(FlutterSDK.Gestures.Events.PointerUpEvent)) { throw new NotImplementedException(); }
+
+
+        public new void HandleTapCancel(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent), FlutterSDK.Gestures.Events.PointerCancelEvent cancel = default(FlutterSDK.Gestures.Events.PointerCancelEvent), string reason = default(string)) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

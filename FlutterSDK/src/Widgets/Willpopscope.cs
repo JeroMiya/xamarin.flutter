@@ -423,58 +423,61 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Willpopscope{
-internal static class WillpopscopeDefaultClass{
-}
-
-public class WillPopScope : FlutterSDK.Widgets.Framework.StatefulWidget
+namespace FlutterSDK.Widgets.Willpopscope
 {
-#region constructors
-public WillPopScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Navigator.WillPopCallback onWillPop = default(FlutterSDK.Widgets.Navigator.WillPopCallback))
-: base(key:key)
-{
-this.Child = child;
-this.OnWillPop = onWillPop;throw new NotImplementedException(); }
-#endregion
+    internal static class WillpopscopeDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-public virtual FlutterSDK.Widgets.Navigator.WillPopCallback OnWillPop{get;set;}
-#endregion
+    public class WillPopScope : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public WillPopScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Navigator.WillPopCallback onWillPop = default(FlutterSDK.Widgets.Navigator.WillPopCallback))
+        : base(key: key)
+        {
+            this.Child = child;
+            this.OnWillPop = onWillPop; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual FlutterSDK.Widgets.Navigator.WillPopCallback OnWillPop { get; set; }
+        #endregion
 
-public new FlutterSDK.Widgets.Willpopscope._WillPopScopeState CreateState(){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new FlutterSDK.Widgets.Willpopscope._WillPopScopeState CreateState() { throw new NotImplementedException(); }
 
-
-public class _WillPopScopeState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Willpopscope.WillPopScope>
-{
-#region constructors
-public _WillPopScopeState()
-{ }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Widgets.Routes.ModalRoute<object> _Route{get;set;}
-#endregion
-
-#region methods
-
-public new void DidChangeDependencies(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void DidUpdateWidget(FlutterSDK.Widgets.Willpopscope.WillPopScope oldWidget){ throw new NotImplementedException(); }
+    public class _WillPopScopeState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Willpopscope.WillPopScope>
+    {
+        #region constructors
+        public _WillPopScopeState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Routes.ModalRoute<object> _Route { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void DidChangeDependencies() { throw new NotImplementedException(); }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+        public new void DidUpdateWidget(FlutterSDK.Widgets.Willpopscope.WillPopScope oldWidget) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new void Dispose() { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

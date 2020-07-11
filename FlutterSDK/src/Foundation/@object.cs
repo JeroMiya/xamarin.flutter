@@ -293,11 +293,14 @@ using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
-namespace FlutterSDK.Foundation.@object{
-internal static class ObjectDefaultClass{
-internal static string ObjectRuntimeType(@Object @object,string optimizedValue){
-throw new NotImplementedException();
-}
+namespace FlutterSDK.Foundation.@object
+{
+    internal static class ObjectDefaultClass
+    {
+        internal static string ObjectRuntimeType(@Object @object, string optimizedValue)
+        {
+            throw new NotImplementedException();
+        }
 
-}
+    }
 }

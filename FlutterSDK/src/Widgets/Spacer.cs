@@ -423,28 +423,31 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Spacer{
-internal static class SpacerDefaultClass{
-}
-
-public class Spacer : FlutterSDK.Widgets.Framework.StatelessWidget
+namespace FlutterSDK.Widgets.Spacer
 {
-#region constructors
-public Spacer(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),int flex = 1)
-: base(key:key)
-{
-this.Flex = flex;throw new NotImplementedException(); }
-#endregion
+    internal static class SpacerDefaultClass
+    {
+    }
 
-#region fields
-public virtual int Flex{get;set;}
-#endregion
+    public class Spacer : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public Spacer(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), int flex = 1)
+        : base(key: key)
+        {
+            this.Flex = flex; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual int Flex { get; set; }
+        #endregion
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

@@ -293,103 +293,111 @@ using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
-namespace FlutterSDK.Foundation.Licenses{
-public delegate Stream<FlutterSDK.Foundation.Licenses.LicenseEntry> LicenseEntryCollector();
-internal static class LicensesDefaultClass{
-}
-
-public interface ILicenseEntry{
-Iterable<string> Packages{get;}
-Iterable<FlutterSDK.Foundation.Licenses.LicenseParagraph> Paragraphs{get;}
-}
-
-
-public class LicenseParagraph
+namespace FlutterSDK.Foundation.Licenses
 {
-#region constructors
-public LicenseParagraph(string text,int indent)
-{
-this.Text = text;
-this.Indent = indent;throw new NotImplementedException(); }
-#endregion
+    public delegate Stream<FlutterSDK.Foundation.Licenses.LicenseEntry> LicenseEntryCollector();
+    internal static class LicensesDefaultClass
+    {
+    }
 
-#region fields
-public virtual string Text{get;set;}
-public virtual int Indent{get;set;}
-public virtual int CenteredIndent{get;set;}
-#endregion
-
-#region methods
-#endregion
-}
+    public interface ILicenseEntry
+    {
+        Iterable<string> Packages { get; }
+        Iterable<FlutterSDK.Foundation.Licenses.LicenseParagraph> Paragraphs { get; }
+    }
 
 
-public class LicenseEntry
-{
-#region constructors
-public LicenseEntry()
-{
-throw new NotImplementedException(); }
-#endregion
+    public class LicenseParagraph
+    {
+        #region constructors
+        public LicenseParagraph(string text, int indent)
+        {
+            this.Text = text;
+            this.Indent = indent; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual Iterable<string> Packages{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual Iterable<FlutterSDK.Foundation.Licenses.LicenseParagraph> Paragraphs{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #region fields
+        public virtual string Text { get; set; }
+        public virtual int Indent { get; set; }
+        public virtual int CenteredIndent { get; set; }
+        #endregion
 
-#region methods
-#endregion
-}
-
-
-public class LicenseEntryWithLineBreaks : FlutterSDK.Foundation.Licenses.LicenseEntry
-{
-#region constructors
-public LicenseEntryWithLineBreaks(List<string> packages,string text)
-{
-this.Packages = packages;
-this.Text = text;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public new List<string> Packages{get;set;}
-public virtual string Text{get;set;}
-public virtual Iterable<FlutterSDK.Foundation.Licenses.LicenseParagraph> Paragraphs{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-#endregion
-}
+        #region methods
+        #endregion
+    }
 
 
-public class LicenseRegistry
-{
-#region constructors
-internal LicenseRegistry()
-{
-throw new NotImplementedException(); }
-#endregion
+    public class LicenseEntry
+    {
+        #region constructors
+        public LicenseEntry()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-internal virtual List<object> _Collectors{get;set;}
-public virtual Stream<FlutterSDK.Foundation.Licenses.LicenseEntry> Licenses{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #region fields
+        public virtual Iterable<string> Packages { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual Iterable<FlutterSDK.Foundation.Licenses.LicenseParagraph> Paragraphs { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#region methods
-
-public virtual void AddLicense(FlutterSDK.Foundation.Licenses.LicenseEntryCollector collector){ throw new NotImplementedException(); }
-
-
-public virtual void Reset(){ throw new NotImplementedException(); }
-
-#endregion
-}
+        #region methods
+        #endregion
+    }
 
 
-public enum _LicenseEntryWithLineBreaksParserState{
+    public class LicenseEntryWithLineBreaks : FlutterSDK.Foundation.Licenses.LicenseEntry
+    {
+        #region constructors
+        public LicenseEntryWithLineBreaks(List<string> packages, string text)
+        {
+            this.Packages = packages;
+            this.Text = text; throw new NotImplementedException();
+        }
+        #endregion
 
-BeforeParagraph,
-InParagraph,
-}
+        #region fields
+        public new List<string> Packages { get; set; }
+        public virtual string Text { get; set; }
+        public virtual Iterable<FlutterSDK.Foundation.Licenses.LicenseParagraph> Paragraphs { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    public class LicenseRegistry
+    {
+        #region constructors
+        internal LicenseRegistry()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual List<object> _Collectors { get; set; }
+        public virtual Stream<FlutterSDK.Foundation.Licenses.LicenseEntry> Licenses { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual void AddLicense(FlutterSDK.Foundation.Licenses.LicenseEntryCollector collector) { throw new NotImplementedException(); }
+
+
+        public virtual void Reset() { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public enum _LicenseEntryWithLineBreaksParserState
+    {
+
+        BeforeParagraph,
+        InParagraph,
+    }
 
 }

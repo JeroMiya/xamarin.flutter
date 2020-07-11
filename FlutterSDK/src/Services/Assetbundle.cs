@@ -421,131 +421,138 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Services.Assetbundle{
-internal static class AssetbundleDefaultClass{
-public static FlutterSDK.Services.Assetbundle.AssetBundle RootBundle = default(FlutterSDK.Services.Assetbundle.AssetBundle);
-internal static FlutterSDK.Services.Assetbundle.AssetBundle _InitRootBundle(){
-throw new NotImplementedException();
-}
-
-}
-
-public interface ICachingAssetBundle{
-Future<string> LoadString(string key,bool cache = true);
-Future<T> LoadStructuredData<T>(string key,Func<Future<T>,string> parser);
-void Evict(string key);
-}
-
-
-public interface IAssetBundle{}
-
-public class AssetBundle{
-
-public virtual Future<ByteData> Load(string key){ throw new NotImplementedException(); }
-
-
-public virtual Future<string> LoadString(string key,bool cache = true){ throw new NotImplementedException(); }
-
-
-private string _Utf8decode(ByteData data){ throw new NotImplementedException(); }
-
-
-public virtual Future<T> LoadStructuredData<T>(string key,Func<Future<T>,string> parser){ throw new NotImplementedException(); }
-
-
-public virtual void Evict(string key){ throw new NotImplementedException(); }
-
-
-}
-public static class AssetBundleMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IAssetBundle, AssetBundle> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IAssetBundle, AssetBundle>();
-static AssetBundle GetOrCreate(IAssetBundle instance)
+namespace FlutterSDK.Services.Assetbundle
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new AssetBundle();
-_table.Add(instance, value);
-}
-return (AssetBundle)value;
-}
-public static Future<ByteData> Load(this IAssetBundle instance,string key) => GetOrCreate(instance).Load(key);
-public static Future<string> LoadString(this IAssetBundle instance,string key,bool cache = true) => GetOrCreate(instance).LoadString(key, cache);
-public static Future<T> LoadStructuredData<T>(this IAssetBundle instance,string key,Func<Future<T>,string> parser) => GetOrCreate(instance).LoadStructuredData<T>(key, parser);
-public static void Evict(this IAssetBundle instance,string key) => GetOrCreate(instance).Evict(key);
-public static string ToString(this IAssetBundle instance) => GetOrCreate(instance).ToString();
-}
+    internal static class AssetbundleDefaultClass
+    {
+        public static FlutterSDK.Services.Assetbundle.AssetBundle RootBundle = default(FlutterSDK.Services.Assetbundle.AssetBundle);
+        internal static FlutterSDK.Services.Assetbundle.AssetBundle _InitRootBundle()
+        {
+            throw new NotImplementedException();
+        }
+
+    }
+
+    public interface ICachingAssetBundle
+    {
+        Future<string> LoadString(string key, bool cache = true);
+        Future<T> LoadStructuredData<T>(string key, Func<Future<T>, string> parser);
+        void Evict(string key);
+    }
 
 
-public class NetworkAssetBundle : FlutterSDK.Services.Assetbundle.AssetBundle
-{
-#region constructors
-public NetworkAssetBundle(Uri baseUrl)
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
+    public interface IAssetBundle { }
 
-#region fields
-internal virtual Uri _BaseUrl{get;set;}
-internal virtual HttpClient _HttpClient{get;set;}
-#endregion
+    public class AssetBundle
+    {
 
-#region methods
-
-private Uri _UrlFromKey(string key){ throw new NotImplementedException(); }
+        public virtual Future<ByteData> Load(string key) { throw new NotImplementedException(); }
 
 
-public new Future<ByteData> Load(string key){ throw new NotImplementedException(); }
+        public virtual Future<string> LoadString(string key, bool cache = true) { throw new NotImplementedException(); }
 
 
-public new Future<T> LoadStructuredData<T>(string key,Func<Future<T>,string> parser){ throw new NotImplementedException(); }
+        private string _Utf8decode(ByteData data) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public virtual Future<T> LoadStructuredData<T>(string key, Func<Future<T>, string> parser) { throw new NotImplementedException(); }
 
 
-public class CachingAssetBundle : FlutterSDK.Services.Assetbundle.AssetBundle
-{
-#region constructors
-public CachingAssetBundle()
-{ }
-#endregion
-
-#region fields
-internal virtual Dictionary<string,Future<string>> _StringCache{get;set;}
-internal virtual Dictionary<string,Future<object>> _StructuredDataCache{get;set;}
-#endregion
-
-#region methods
-
-public new Future<string> LoadString(string key,bool cache = true){ throw new NotImplementedException(); }
+        public virtual void Evict(string key) { throw new NotImplementedException(); }
 
 
-public new Future<T> LoadStructuredData<T>(string key,Func<Future<T>,string> parser){ throw new NotImplementedException(); }
+    }
+    public static class AssetBundleMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IAssetBundle, AssetBundle> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IAssetBundle, AssetBundle>();
+        static AssetBundle GetOrCreate(IAssetBundle instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new AssetBundle();
+                _table.Add(instance, value);
+            }
+            return (AssetBundle)value;
+        }
+        public static Future<ByteData> Load(this IAssetBundle instance, string key) => GetOrCreate(instance).Load(key);
+        public static Future<string> LoadString(this IAssetBundle instance, string key, bool cache = true) => GetOrCreate(instance).LoadString(key, cache);
+        public static Future<T> LoadStructuredData<T>(this IAssetBundle instance, string key, Func<Future<T>, string> parser) => GetOrCreate(instance).LoadStructuredData<T>(key, parser);
+        public static void Evict(this IAssetBundle instance, string key) => GetOrCreate(instance).Evict(key);
+        public static string ToString(this IAssetBundle instance) => GetOrCreate(instance).ToString();
+    }
 
 
-public new void Evict(string key){ throw new NotImplementedException(); }
+    public class NetworkAssetBundle : FlutterSDK.Services.Assetbundle.AssetBundle
+    {
+        #region constructors
+        public NetworkAssetBundle(Uri baseUrl)
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        internal virtual Uri _BaseUrl { get; set; }
+        internal virtual HttpClient _HttpClient { get; set; }
+        #endregion
+
+        #region methods
+
+        private Uri _UrlFromKey(string key) { throw new NotImplementedException(); }
 
 
-public class PlatformAssetBundle : FlutterSDK.Services.Assetbundle.CachingAssetBundle
-{
-#region constructors
-public PlatformAssetBundle()
-{ }
-#endregion
+        public new Future<ByteData> Load(string key) { throw new NotImplementedException(); }
 
-#region fields
-#endregion
 
-#region methods
+        public new Future<T> LoadStructuredData<T>(string key, Func<Future<T>, string> parser) { throw new NotImplementedException(); }
 
-public new Future<ByteData> Load(string key){ throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
+
+
+    public class CachingAssetBundle : FlutterSDK.Services.Assetbundle.AssetBundle
+    {
+        #region constructors
+        public CachingAssetBundle()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual Dictionary<string, Future<string>> _StringCache { get; set; }
+        internal virtual Dictionary<string, Future<object>> _StructuredDataCache { get; set; }
+        #endregion
+
+        #region methods
+
+        public new Future<string> LoadString(string key, bool cache = true) { throw new NotImplementedException(); }
+
+
+        public new Future<T> LoadStructuredData<T>(string key, Func<Future<T>, string> parser) { throw new NotImplementedException(); }
+
+
+        public new void Evict(string key) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class PlatformAssetBundle : FlutterSDK.Services.Assetbundle.CachingAssetBundle
+    {
+        #region constructors
+        public PlatformAssetBundle()
+        { }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new Future<ByteData> Load(string key) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

@@ -294,129 +294,140 @@ using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
-namespace FlutterSDK.Gestures.Hittest{
-internal static class HittestDefaultClass{
-}
-
-public interface IHitTestable{}
-
-public class HitTestable{
-
-public virtual void HitTest(FlutterSDK.Gestures.Hittest.HitTestResult result,FlutterBinding.UI.Offset position){ throw new NotImplementedException(); }
-
-}
-public static class HitTestableMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IHitTestable, HitTestable> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IHitTestable, HitTestable>();
-static HitTestable GetOrCreate(IHitTestable instance)
+namespace FlutterSDK.Gestures.Hittest
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new HitTestable();
-_table.Add(instance, value);
-}
-return (HitTestable)value;
-}
-public static void HitTest(this IHitTestable instance,FlutterSDK.Gestures.Hittest.HitTestResult result,FlutterBinding.UI.Offset position) => GetOrCreate(instance).HitTest(result, position);
-}
+    internal static class HittestDefaultClass
+    {
+    }
+
+    public interface IHitTestable { }
+
+    public class HitTestable
+    {
+
+        public virtual void HitTest(FlutterSDK.Gestures.Hittest.HitTestResult result, FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
+
+    }
+    public static class HitTestableMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IHitTestable, HitTestable> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IHitTestable, HitTestable>();
+        static HitTestable GetOrCreate(IHitTestable instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new HitTestable();
+                _table.Add(instance, value);
+            }
+            return (HitTestable)value;
+        }
+        public static void HitTest(this IHitTestable instance, FlutterSDK.Gestures.Hittest.HitTestResult result, FlutterBinding.UI.Offset position) => GetOrCreate(instance).HitTest(result, position);
+    }
 
 
-public interface IHitTestDispatcher{}
+    public interface IHitTestDispatcher { }
 
-public class HitTestDispatcher{
+    public class HitTestDispatcher
+    {
 
-public virtual void DispatchEvent(FlutterSDK.Gestures.Events.PointerEvent @event,FlutterSDK.Gestures.Hittest.HitTestResult result){ throw new NotImplementedException(); }
+        public virtual void DispatchEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Hittest.HitTestResult result) { throw new NotImplementedException(); }
 
-}
-public static class HitTestDispatcherMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IHitTestDispatcher, HitTestDispatcher> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IHitTestDispatcher, HitTestDispatcher>();
-static HitTestDispatcher GetOrCreate(IHitTestDispatcher instance)
-{
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new HitTestDispatcher();
-_table.Add(instance, value);
-}
-return (HitTestDispatcher)value;
-}
-public static void DispatchEvent(this IHitTestDispatcher instance,FlutterSDK.Gestures.Events.PointerEvent @event,FlutterSDK.Gestures.Hittest.HitTestResult result) => GetOrCreate(instance).DispatchEvent(@event, result);
-}
-
-
-public interface IHitTestTarget{}
-
-public class HitTestTarget{
-
-public virtual void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event,FlutterSDK.Gestures.Hittest.HitTestEntry entry){ throw new NotImplementedException(); }
-
-}
-public static class HitTestTargetMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IHitTestTarget, HitTestTarget> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IHitTestTarget, HitTestTarget>();
-static HitTestTarget GetOrCreate(IHitTestTarget instance)
-{
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new HitTestTarget();
-_table.Add(instance, value);
-}
-return (HitTestTarget)value;
-}
-public static void HandleEvent(this IHitTestTarget instance,FlutterSDK.Gestures.Events.PointerEvent @event,FlutterSDK.Gestures.Hittest.HitTestEntry entry) => GetOrCreate(instance).HandleEvent(@event, entry);
-}
+    }
+    public static class HitTestDispatcherMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IHitTestDispatcher, HitTestDispatcher> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IHitTestDispatcher, HitTestDispatcher>();
+        static HitTestDispatcher GetOrCreate(IHitTestDispatcher instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new HitTestDispatcher();
+                _table.Add(instance, value);
+            }
+            return (HitTestDispatcher)value;
+        }
+        public static void DispatchEvent(this IHitTestDispatcher instance, FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Hittest.HitTestResult result) => GetOrCreate(instance).DispatchEvent(@event, result);
+    }
 
 
-public class HitTestEntry
-{
-#region constructors
-public HitTestEntry(FlutterSDK.Gestures.Hittest.HitTestTarget target)
-{
-this.Target = target;throw new NotImplementedException(); }
-#endregion
+    public interface IHitTestTarget { }
 
-#region fields
-public virtual FlutterSDK.Gestures.Hittest.HitTestTarget Target{get;set;}
-internal virtual Matrix4 _Transform{get;set;}
-public virtual object Transform{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class HitTestTarget
+    {
 
-#region methods
+        public virtual void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Hittest.HitTestEntry entry) { throw new NotImplementedException(); }
 
-#endregion
-}
-
-
-public class HitTestResult
-{
-#region constructors
-public HitTestResult()
-: base()
-{
-throw new NotImplementedException(); }
-public static HitTestResult Wrap(FlutterSDK.Gestures.Hittest.HitTestResult result)
-{
-var instance =new HitTestResult();throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual List<FlutterSDK.Gestures.Hittest.HitTestEntry> _Path{get;set;}
-internal virtual Queue<object> _Transforms{get;set;}
-public virtual Iterable<FlutterSDK.Gestures.Hittest.HitTestEntry> Path{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public virtual void Add(FlutterSDK.Gestures.Hittest.HitTestEntry entry){ throw new NotImplementedException(); }
+    }
+    public static class HitTestTargetMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IHitTestTarget, HitTestTarget> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IHitTestTarget, HitTestTarget>();
+        static HitTestTarget GetOrCreate(IHitTestTarget instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new HitTestTarget();
+                _table.Add(instance, value);
+            }
+            return (HitTestTarget)value;
+        }
+        public static void HandleEvent(this IHitTestTarget instance, FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Hittest.HitTestEntry entry) => GetOrCreate(instance).HandleEvent(@event, entry);
+    }
 
 
-public virtual void PushTransform(Matrix4 transform){ throw new NotImplementedException(); }
+    public class HitTestEntry
+    {
+        #region constructors
+        public HitTestEntry(FlutterSDK.Gestures.Hittest.HitTestTarget target)
+        {
+            this.Target = target; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Gestures.Hittest.HitTestTarget Target { get; set; }
+        internal virtual Matrix4 _Transform { get; set; }
+        public virtual object Transform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        #endregion
+    }
 
 
-public virtual void PopTransform(){ throw new NotImplementedException(); }
+    public class HitTestResult
+    {
+        #region constructors
+        public HitTestResult()
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        public static HitTestResult Wrap(FlutterSDK.Gestures.Hittest.HitTestResult result)
+        {
+            var instance = new HitTestResult(); throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual List<FlutterSDK.Gestures.Hittest.HitTestEntry> _Path { get; set; }
+        internal virtual Queue<object> _Transforms { get; set; }
+        public virtual Iterable<FlutterSDK.Gestures.Hittest.HitTestEntry> Path { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual void Add(FlutterSDK.Gestures.Hittest.HitTestEntry entry) { throw new NotImplementedException(); }
 
 
-private bool _DebugVectorMoreOrLessEquals(Vector4 a,Vector4 b,double epsilon = default(double)){ throw new NotImplementedException(); }
+        public virtual void PushTransform(Matrix4 transform) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public virtual void PopTransform() { throw new NotImplementedException(); }
+
+
+        private bool _DebugVectorMoreOrLessEquals(Vector4 a, Vector4 b, double epsilon = default(double)) { throw new NotImplementedException(); }
+
+
+        #endregion
+    }
 
 }

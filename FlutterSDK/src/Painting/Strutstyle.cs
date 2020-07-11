@@ -421,62 +421,66 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Painting.Strutstyle{
-internal static class StrutstyleDefaultClass{
-}
-
-public class StrutStyle : IDiagnosticable
+namespace FlutterSDK.Painting.Strutstyle
 {
-#region constructors
-public StrutStyle(string fontFamily = default(string),List<string> fontFamilyFallback = default(List<string>),double fontSize = default(double),double height = default(double),double leading = default(double),FontWeight fontWeight = default(FontWeight),FontStyle fontStyle = default(FontStyle),bool forceStrutHeight = default(bool),string debugLabel = default(string),string package = default(string))
-: base()
-{
-this.FontSize = fontSize;
-this.Height = height;
-this.Leading = leading;
-this.FontWeight = fontWeight;
-this.FontStyle = fontStyle;
-this.ForceStrutHeight = forceStrutHeight;
-this.DebugLabel = debugLabel;throw new NotImplementedException(); }
-public static StrutStyle FromTextStyle(FlutterSDK.Painting.Textstyle.TextStyle textStyle,string fontFamily = default(string),List<string> fontFamilyFallback = default(List<string>),double fontSize = default(double),double height = default(double),double leading = default(double),FontWeight fontWeight = default(FontWeight),FontStyle fontStyle = default(FontStyle),bool forceStrutHeight = default(bool),string debugLabel = default(string),string package = default(string))
-{
-var instance =new StrutStyle();instance.Leading = leading;
-instance.ForceStrutHeight = forceStrutHeight;throw new NotImplementedException(); }
-#endregion
+    internal static class StrutstyleDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Painting.Strutstyle.StrutStyle Disabled{get;set;}
-public virtual string FontFamily{get;set;}
-internal virtual List<string> _FontFamilyFallback{get;set;}
-internal virtual string _Package{get;set;}
-public virtual double FontSize{get;set;}
-public virtual double Height{get;set;}
-public virtual FontWeight FontWeight{get;set;}
-public virtual FontStyle FontStyle{get;set;}
-public virtual double Leading{get;set;}
-public virtual bool ForceStrutHeight{get;set;}
-public virtual string DebugLabel{get;set;}
-public virtual List<string> FontFamilyFallback{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class StrutStyle : IDiagnosticable
+    {
+        #region constructors
+        public StrutStyle(string fontFamily = default(string), List<string> fontFamilyFallback = default(List<string>), double fontSize = default(double), double height = default(double), double leading = default(double), FontWeight fontWeight = default(FontWeight), FontStyle fontStyle = default(FontStyle), bool forceStrutHeight = default(bool), string debugLabel = default(string), string package = default(string))
+        : base()
+        {
+            this.FontSize = fontSize;
+            this.Height = height;
+            this.Leading = leading;
+            this.FontWeight = fontWeight;
+            this.FontStyle = fontStyle;
+            this.ForceStrutHeight = forceStrutHeight;
+            this.DebugLabel = debugLabel; throw new NotImplementedException();
+        }
+        public static StrutStyle FromTextStyle(FlutterSDK.Painting.Textstyle.TextStyle textStyle, string fontFamily = default(string), List<string> fontFamilyFallback = default(List<string>), double fontSize = default(double), double height = default(double), double leading = default(double), FontWeight fontWeight = default(FontWeight), FontStyle fontStyle = default(FontStyle), bool forceStrutHeight = default(bool), string debugLabel = default(string), string package = default(string))
+        {
+            var instance = new StrutStyle(); instance.Leading = leading;
+            instance.ForceStrutHeight = forceStrutHeight; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Painting.Strutstyle.StrutStyle Disabled { get; set; }
+        public virtual string FontFamily { get; set; }
+        internal virtual List<string> _FontFamilyFallback { get; set; }
+        internal virtual string _Package { get; set; }
+        public virtual double FontSize { get; set; }
+        public virtual double Height { get; set; }
+        public virtual FontWeight FontWeight { get; set; }
+        public virtual FontStyle FontStyle { get; set; }
+        public virtual double Leading { get; set; }
+        public virtual bool ForceStrutHeight { get; set; }
+        public virtual string DebugLabel { get; set; }
+        public virtual List<string> FontFamilyFallback { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual FlutterSDK.Painting.Basictypes.RenderComparison CompareTo(FlutterSDK.Painting.Strutstyle.StrutStyle other){ throw new NotImplementedException(); }
+        #region methods
+
+        public virtual FlutterSDK.Painting.Basictypes.RenderComparison CompareTo(FlutterSDK.Painting.Strutstyle.StrutStyle other) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Painting.Strutstyle.StrutStyle InheritFromTextStyle(FlutterSDK.Painting.Textstyle.TextStyle other){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Strutstyle.StrutStyle InheritFromTextStyle(FlutterSDK.Painting.Textstyle.TextStyle other) { throw new NotImplementedException(); }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
-public new string ToStringShort(){ throw new NotImplementedException(); }
+        public new string ToStringShort() { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties,string prefix = default(string)){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties, string prefix = default(string)) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 }

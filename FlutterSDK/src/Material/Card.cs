@@ -368,45 +368,48 @@ using FlutterSDK.Material.Colorscheme;
 using FlutterSDK.Material.Materialbutton;
 using FlutterSDK.Material.Outlinebutton;
 using FlutterSDK.Material.Cardtheme;
-namespace FlutterSDK.Material.Card{
-internal static class CardDefaultClass{
-}
-
-public class Card : FlutterSDK.Widgets.Framework.StatelessWidget
+namespace FlutterSDK.Material.Card
 {
-#region constructors
-public Card(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color),double elevation = default(double),FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder),bool borderOnForeground = true,FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),bool semanticContainer = true)
-: base(key:key)
-{
-this.Color = color;
-this.ShadowColor = shadowColor;
-this.Elevation = elevation;
-this.Shape = shape;
-this.BorderOnForeground = borderOnForeground;
-this.Margin = margin;
-this.ClipBehavior = clipBehavior;
-this.Child = child;
-this.SemanticContainer = semanticContainer;throw new NotImplementedException(); }
-#endregion
+    internal static class CardDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterBinding.UI.Color Color{get;set;}
-public virtual FlutterBinding.UI.Color ShadowColor{get;set;}
-public virtual double Elevation{get;set;}
-public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape{get;set;}
-public virtual bool BorderOnForeground{get;set;}
-public virtual FlutterBinding.UI.Clip ClipBehavior{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin{get;set;}
-public virtual bool SemanticContainer{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-internal virtual double _DefaultElevation{get;set;}
-#endregion
+    public class Card : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public Card(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), bool borderOnForeground = true, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool semanticContainer = true)
+        : base(key: key)
+        {
+            this.Color = color;
+            this.ShadowColor = shadowColor;
+            this.Elevation = elevation;
+            this.Shape = shape;
+            this.BorderOnForeground = borderOnForeground;
+            this.Margin = margin;
+            this.ClipBehavior = clipBehavior;
+            this.Child = child;
+            this.SemanticContainer = semanticContainer; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual FlutterBinding.UI.Color ShadowColor { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        public virtual bool BorderOnForeground { get; set; }
+        public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
+        public virtual bool SemanticContainer { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        internal virtual double _DefaultElevation { get; set; }
+        #endregion
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

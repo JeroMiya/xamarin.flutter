@@ -421,187 +421,195 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Services.Messagecodecs{
-internal static class MessagecodecsDefaultClass{
-}
-
-public class BinaryCodec : IMessageCodec<ByteData>
+namespace FlutterSDK.Services.Messagecodecs
 {
-#region constructors
-public BinaryCodec()
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class MessagecodecsDefaultClass
+    {
+    }
 
-#region fields
-#endregion
+    public class BinaryCodec : IMessageCodec<ByteData>
+    {
+        #region constructors
+        public BinaryCodec()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        #endregion
 
-public new ByteData DecodeMessage(ByteData message){ throw new NotImplementedException(); }
+        #region methods
 
+        public new ByteData DecodeMessage(ByteData message) { throw new NotImplementedException(); }
 
-public new ByteData EncodeMessage(ByteData message){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new ByteData EncodeMessage(ByteData message) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class StringCodec : IMessageCodec<string>
-{
-#region constructors
-public StringCodec()
-{
-throw new NotImplementedException(); }
-#endregion
 
-#region fields
-#endregion
+    public class StringCodec : IMessageCodec<string>
+    {
+        #region constructors
+        public StringCodec()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        #endregion
 
-public new string DecodeMessage(ByteData message){ throw new NotImplementedException(); }
+        #region methods
 
+        public new string DecodeMessage(ByteData message) { throw new NotImplementedException(); }
 
-public new ByteData EncodeMessage(string message){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new ByteData EncodeMessage(string message) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class JSONMessageCodec : IMessageCodec<object>
-{
-#region constructors
-public JSONMessageCodec()
-{
-throw new NotImplementedException(); }
-#endregion
 
-#region fields
-#endregion
+    public class JSONMessageCodec : IMessageCodec<object>
+    {
+        #region constructors
+        public JSONMessageCodec()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        #endregion
 
-public new ByteData EncodeMessage(object message){ throw new NotImplementedException(); }
+        #region methods
 
+        public new ByteData EncodeMessage(object message) { throw new NotImplementedException(); }
 
-public new object DecodeMessage(ByteData message){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new object DecodeMessage(ByteData message) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class JSONMethodCodec : IMethodCodec
-{
-#region constructors
-public JSONMethodCodec()
-{
-throw new NotImplementedException(); }
-#endregion
 
-#region fields
-#endregion
+    public class JSONMethodCodec : IMethodCodec
+    {
+        #region constructors
+        public JSONMethodCodec()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        #endregion
 
-public new ByteData EncodeMethodCall(FlutterSDK.Services.Messagecodec.MethodCall call){ throw new NotImplementedException(); }
+        #region methods
 
+        public new ByteData EncodeMethodCall(FlutterSDK.Services.Messagecodec.MethodCall call) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Services.Messagecodec.MethodCall DecodeMethodCall(ByteData methodCall){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Services.Messagecodec.MethodCall DecodeMethodCall(ByteData methodCall) { throw new NotImplementedException(); }
 
-public new object DecodeEnvelope(ByteData envelope){ throw new NotImplementedException(); }
 
+        public new object DecodeEnvelope(ByteData envelope) { throw new NotImplementedException(); }
 
-public new ByteData EncodeSuccessEnvelope(object result){ throw new NotImplementedException(); }
 
+        public new ByteData EncodeSuccessEnvelope(object result) { throw new NotImplementedException(); }
 
-public new ByteData EncodeErrorEnvelope(string code = default(string),string message = default(string),object details = default(object)){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new ByteData EncodeErrorEnvelope(string code = default(string), string message = default(string), object details = default(object)) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class StandardMessageCodec : IMessageCodec<object>
-{
-#region constructors
-public StandardMessageCodec()
-{
-throw new NotImplementedException(); }
-#endregion
 
-#region fields
-internal virtual int _ValueNull{get;set;}
-internal virtual int _ValueTrue{get;set;}
-internal virtual int _ValueFalse{get;set;}
-internal virtual int _ValueInt32{get;set;}
-internal virtual int _ValueInt64{get;set;}
-internal virtual int _ValueLargeInt{get;set;}
-internal virtual int _ValueFloat64{get;set;}
-internal virtual int _ValueString{get;set;}
-internal virtual int _ValueUint8List{get;set;}
-internal virtual int _ValueInt32List{get;set;}
-internal virtual int _ValueInt64List{get;set;}
-internal virtual int _ValueFloat64List{get;set;}
-internal virtual int _ValueList{get;set;}
-internal virtual int _ValueMap{get;set;}
-#endregion
+    public class StandardMessageCodec : IMessageCodec<object>
+    {
+        #region constructors
+        public StandardMessageCodec()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual int _ValueNull { get; set; }
+        internal virtual int _ValueTrue { get; set; }
+        internal virtual int _ValueFalse { get; set; }
+        internal virtual int _ValueInt32 { get; set; }
+        internal virtual int _ValueInt64 { get; set; }
+        internal virtual int _ValueLargeInt { get; set; }
+        internal virtual int _ValueFloat64 { get; set; }
+        internal virtual int _ValueString { get; set; }
+        internal virtual int _ValueUint8List { get; set; }
+        internal virtual int _ValueInt32List { get; set; }
+        internal virtual int _ValueInt64List { get; set; }
+        internal virtual int _ValueFloat64List { get; set; }
+        internal virtual int _ValueList { get; set; }
+        internal virtual int _ValueMap { get; set; }
+        #endregion
 
-public new ByteData EncodeMessage(object message){ throw new NotImplementedException(); }
+        #region methods
 
+        public new ByteData EncodeMessage(object message) { throw new NotImplementedException(); }
 
-public new object DecodeMessage(ByteData message){ throw new NotImplementedException(); }
 
+        public new object DecodeMessage(ByteData message) { throw new NotImplementedException(); }
 
-public virtual void WriteValue(FlutterSDK.Foundation.Serialization.WriteBuffer buffer,object value){ throw new NotImplementedException(); }
 
+        public virtual void WriteValue(FlutterSDK.Foundation.Serialization.WriteBuffer buffer, object value) { throw new NotImplementedException(); }
 
-public virtual object ReadValue(FlutterSDK.Foundation.Serialization.ReadBuffer buffer){ throw new NotImplementedException(); }
 
+        public virtual object ReadValue(FlutterSDK.Foundation.Serialization.ReadBuffer buffer) { throw new NotImplementedException(); }
 
-public virtual object ReadValueOfType(int type,FlutterSDK.Foundation.Serialization.ReadBuffer buffer){ throw new NotImplementedException(); }
 
+        public virtual object ReadValueOfType(int type, FlutterSDK.Foundation.Serialization.ReadBuffer buffer) { throw new NotImplementedException(); }
 
-public virtual void WriteSize(FlutterSDK.Foundation.Serialization.WriteBuffer buffer,int value){ throw new NotImplementedException(); }
 
+        public virtual void WriteSize(FlutterSDK.Foundation.Serialization.WriteBuffer buffer, int value) { throw new NotImplementedException(); }
 
-public virtual int ReadSize(FlutterSDK.Foundation.Serialization.ReadBuffer buffer){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public virtual int ReadSize(FlutterSDK.Foundation.Serialization.ReadBuffer buffer) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class StandardMethodCodec : IMethodCodec
-{
-#region constructors
-public StandardMethodCodec(FlutterSDK.Services.Messagecodecs.StandardMessageCodec messageCodec = default(FlutterSDK.Services.Messagecodecs.StandardMessageCodec))
-{
-this.MessageCodec = messageCodec;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual FlutterSDK.Services.Messagecodecs.StandardMessageCodec MessageCodec{get;set;}
-#endregion
+    public class StandardMethodCodec : IMethodCodec
+    {
+        #region constructors
+        public StandardMethodCodec(FlutterSDK.Services.Messagecodecs.StandardMessageCodec messageCodec = default(FlutterSDK.Services.Messagecodecs.StandardMessageCodec))
+        {
+            this.MessageCodec = messageCodec; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Services.Messagecodecs.StandardMessageCodec MessageCodec { get; set; }
+        #endregion
 
-public new ByteData EncodeMethodCall(FlutterSDK.Services.Messagecodec.MethodCall call){ throw new NotImplementedException(); }
+        #region methods
 
+        public new ByteData EncodeMethodCall(FlutterSDK.Services.Messagecodec.MethodCall call) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Services.Messagecodec.MethodCall DecodeMethodCall(ByteData methodCall){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Services.Messagecodec.MethodCall DecodeMethodCall(ByteData methodCall) { throw new NotImplementedException(); }
 
-public new ByteData EncodeSuccessEnvelope(object result){ throw new NotImplementedException(); }
 
+        public new ByteData EncodeSuccessEnvelope(object result) { throw new NotImplementedException(); }
 
-public new ByteData EncodeErrorEnvelope(string code = default(string),string message = default(string),object details = default(object)){ throw new NotImplementedException(); }
 
+        public new ByteData EncodeErrorEnvelope(string code = default(string), string message = default(string), object details = default(object)) { throw new NotImplementedException(); }
 
-public new object DecodeEnvelope(ByteData envelope){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new object DecodeEnvelope(ByteData envelope) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

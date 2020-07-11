@@ -294,8 +294,10 @@ using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
-namespace FlutterSDK.Foundation._Platformweb{
-internal static class _PlatformwebDefaultClass{
-public static FlutterSDK.Foundation.Platform.TargetPlatform DefaultTargetPlatform = default(FlutterSDK.Foundation.Platform.TargetPlatform);
-}
+namespace FlutterSDK.Foundation._Platformweb
+{
+    internal static class _PlatformwebDefaultClass
+    {
+        public static FlutterSDK.Foundation.Platform.TargetPlatform DefaultTargetPlatform = default(FlutterSDK.Foundation.Platform.TargetPlatform);
+    }
 }

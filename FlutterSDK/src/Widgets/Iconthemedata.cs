@@ -422,52 +422,56 @@ using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
-namespace FlutterSDK.Widgets.Iconthemedata{
-internal static class IconthemedataDefaultClass{
-}
-
-public class IconThemeData : IDiagnosticable
+namespace FlutterSDK.Widgets.Iconthemedata
 {
-#region constructors
-public IconThemeData(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),double opacity = default(double),double size = default(double))
-: base()
-{
-this.Color = color;
-this.Size = size;throw new NotImplementedException(); }
-public static IconThemeData Fallback()
-{
-var instance =new IconThemeData();throw new NotImplementedException(); }
-#endregion
+    internal static class IconthemedataDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterBinding.UI.Color Color{get;set;}
-internal virtual double _Opacity{get;set;}
-public virtual double Size{get;set;}
-public virtual bool IsConcrete{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double Opacity{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class IconThemeData : IDiagnosticable
+    {
+        #region constructors
+        public IconThemeData(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double opacity = default(double), double size = default(double))
+        : base()
+        {
+            this.Color = color;
+            this.Size = size; throw new NotImplementedException();
+        }
+        public static IconThemeData Fallback()
+        {
+            var instance = new IconThemeData(); throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        internal virtual double _Opacity { get; set; }
+        public virtual double Size { get; set; }
+        public virtual bool IsConcrete { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Opacity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),double opacity = default(double),double size = default(double)){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData Merge(FlutterSDK.Widgets.Iconthemedata.IconThemeData other){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData Resolve(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData Lerp(FlutterSDK.Widgets.Iconthemedata.IconThemeData a,FlutterSDK.Widgets.Iconthemedata.IconThemeData b,double t){ throw new NotImplementedException(); }
-
-
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double opacity = default(double), double size = default(double)) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData Merge(FlutterSDK.Widgets.Iconthemedata.IconThemeData other) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData Resolve(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+
+        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData Lerp(FlutterSDK.Widgets.Iconthemedata.IconThemeData a, FlutterSDK.Widgets.Iconthemedata.IconThemeData b, double t) { throw new NotImplementedException(); }
+
+
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

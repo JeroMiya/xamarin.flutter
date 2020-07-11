@@ -294,42 +294,49 @@ using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
-namespace FlutterSDK.Foundation.Print{
-public delegate void DebugPrintCallback(string message,int wrapWidth = default(int));
-internal static class PrintDefaultClass{
-public static object DebugPrint = default(object);
-public static int _DebugPrintedCharacters = default(int);
-public static int _KDebugPrintCapacity = default(int);
-public static TimeSpan _KDebugPrintPauseTime = default(TimeSpan);
-public static Queue<string> _DebugPrintBuffer = default(Queue<string>);
-public static Stopwatch _DebugPrintStopwatch = default(Stopwatch);
-public static Completer<object> _DebugPrintCompleter = default(Completer<object>);
-public static bool _DebugPrintScheduled = default(bool);
-public static Future<object> DebugPrintDone = default(Future<object>);
-public static RegExp _IndentPattern = default(RegExp);
-internal static void DebugPrintSynchronously(string message,int wrapWidth = default(int)){
-throw new NotImplementedException();
-}
+namespace FlutterSDK.Foundation.Print
+{
+    public delegate void DebugPrintCallback(string message, int wrapWidth = default(int));
+    internal static class PrintDefaultClass
+    {
+        public static object DebugPrint = default(object);
+        public static int _DebugPrintedCharacters = default(int);
+        public static int _KDebugPrintCapacity = default(int);
+        public static TimeSpan _KDebugPrintPauseTime = default(TimeSpan);
+        public static Queue<string> _DebugPrintBuffer = default(Queue<string>);
+        public static Stopwatch _DebugPrintStopwatch = default(Stopwatch);
+        public static Completer<object> _DebugPrintCompleter = default(Completer<object>);
+        public static bool _DebugPrintScheduled = default(bool);
+        public static Future<object> DebugPrintDone = default(Future<object>);
+        public static RegExp _IndentPattern = default(RegExp);
+        internal static void DebugPrintSynchronously(string message, int wrapWidth = default(int))
+        {
+            throw new NotImplementedException();
+        }
 
-internal static void DebugPrintThrottled(string message,int wrapWidth = default(int)){
-throw new NotImplementedException();
-}
+        internal static void DebugPrintThrottled(string message, int wrapWidth = default(int))
+        {
+            throw new NotImplementedException();
+        }
 
-internal static void _DebugPrintTask(){
-throw new NotImplementedException();
-}
+        internal static void _DebugPrintTask()
+        {
+            throw new NotImplementedException();
+        }
 
-internal static Iterable<string> DebugWordWrap(string message,int width,string wrapIndent = default(string)){
-throw new NotImplementedException();
-}
+        internal static Iterable<string> DebugWordWrap(string message, int width, string wrapIndent = default(string))
+        {
+            throw new NotImplementedException();
+        }
 
-}
+    }
 
-public enum _WordWrapParseMode{
+    public enum _WordWrapParseMode
+    {
 
-InSpace,
-InWord,
-AtBreak,
-}
+        InSpace,
+        InWord,
+        AtBreak,
+    }
 
 }

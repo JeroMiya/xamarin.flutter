@@ -423,34 +423,38 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Uniquewidget{
-internal static class UniquewidgetDefaultClass{
-}
-
-public interface IUniqueWidget<T>{
-T CreateState();
-T CurrentState{get;}
-}
-
-
-public class UniqueWidget<T> : FlutterSDK.Widgets.Framework.StatefulWidget
+namespace FlutterSDK.Widgets.Uniquewidget
 {
-#region constructors
-public UniqueWidget(FlutterSDK.Widgets.Framework.GlobalKey<T> key = default(FlutterSDK.Widgets.Framework.GlobalKey<T>))
-: base(key:key)
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class UniquewidgetDefaultClass
+    {
+    }
 
-#region fields
-public virtual T CurrentState{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public interface IUniqueWidget<T>
+    {
+        T CreateState();
+        T CurrentState { get; }
+    }
 
-#region methods
 
-public new T CreateState(){ throw new NotImplementedException(); }
+    public class UniqueWidget<T> : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public UniqueWidget(FlutterSDK.Widgets.Framework.GlobalKey<T> key = default(FlutterSDK.Widgets.Framework.GlobalKey<T>))
+        : base(key: key)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual T CurrentState { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new T CreateState() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

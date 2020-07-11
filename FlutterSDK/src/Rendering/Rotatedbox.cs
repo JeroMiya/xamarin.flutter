@@ -421,57 +421,60 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Rendering.Rotatedbox{
-internal static class RotatedboxDefaultClass{
-public static double _KQuarterTurnsInRadians = default(double);
-}
-
-public class RenderRotatedBox : FlutterSDK.Rendering.Box.RenderBox,IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>
+namespace FlutterSDK.Rendering.Rotatedbox
 {
-#region constructors
-public RenderRotatedBox(int quarterTurns = default(int),FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class RotatedboxDefaultClass
+    {
+        public static double _KQuarterTurnsInRadians = default(double);
+    }
 
-#region fields
-internal virtual int _QuarterTurns{get;set;}
-internal virtual Matrix4 _PaintTransform{get;set;}
-public virtual int QuarterTurns{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-internal virtual bool _IsVertical{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class RenderRotatedBox : FlutterSDK.Rendering.Box.RenderBox, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>
+    {
+        #region constructors
+        public RenderRotatedBox(int quarterTurns = default(int), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual int _QuarterTurns { get; set; }
+        internal virtual Matrix4 _PaintTransform { get; set; }
+        public virtual int QuarterTurns { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual bool _IsVertical { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new double ComputeMinIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        #region methods
 
-
-public new double ComputeMaxIntrinsicWidth(double height){ throw new NotImplementedException(); }
-
-
-public new double ComputeMinIntrinsicHeight(double width){ throw new NotImplementedException(); }
-
-
-public new double ComputeMaxIntrinsicHeight(double width){ throw new NotImplementedException(); }
-
-
-public new void PerformLayout(){ throw new NotImplementedException(); }
+        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
+        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-private void _PaintChild(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-public new void ApplyPaintTransform(FlutterSDK.Rendering.Box.RenderBox child,Matrix4 transform){ throw new NotImplementedException(); }
-public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child,Matrix4 transform){ throw new NotImplementedException(); }
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
+
+
+        private void _PaintChild(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
+
+
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
+
+
+        public new void ApplyPaintTransform(FlutterSDK.Rendering.Box.RenderBox child, Matrix4 transform) { throw new NotImplementedException(); }
+        public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

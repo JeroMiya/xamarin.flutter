@@ -421,8 +421,10 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Semantics.Debug{
-internal static class DebugDefaultClass{
-public static bool DebugSemanticsDisableAnimations = default(bool);
-}
+namespace FlutterSDK.Semantics.Debug
+{
+    internal static class DebugDefaultClass
+    {
+        public static bool DebugSemanticsDisableAnimations = default(bool);
+    }
 }
