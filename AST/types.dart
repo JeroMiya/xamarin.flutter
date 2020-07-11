@@ -68,16 +68,16 @@ class Types {
 
   static String addNamespace(DartType type, String typeName) {
     var formattedName = Naming.getFormattedTypeName(typeName);
-    var library = type.element.library;
+    var library = type?.element?.library;
 
-    if (library != null && library.displayName == 'dart.ui'){
-      switch(typeName){
+    if (library != null && library.displayName == 'dart.ui') {
+      switch (typeName) {
         case "Image":
         case "Paint":
         case "Picture":
         case "Vertices":
-         return "SK" + typeName;
-        case "TextStyle": 
+          return "SK" + typeName;
+        case "TextStyle":
         case "PointMode":
         case "RRect":
         case "Paragraph":
@@ -91,12 +91,14 @@ class Types {
       }
     }
 
-    if (library != null && library.displayName == 'dart.ui' && typeName == 'Image')
-    return 'SKImage';
+    if (library != null &&
+        library.displayName == 'dart.ui' &&
+        typeName == 'Image') return 'SKImage';
 
-    if (library != null && library.displayName == 'dart.ui' && typeName == 'TextStyle')
-    return 'FlutterBinding.UI.TextStyle';
-    
+    if (library != null &&
+        library.displayName == 'dart.ui' &&
+        typeName == 'TextStyle') return 'FlutterBinding.UI.TextStyle';
+
     if (!(type is TypeParameterType) &&
         library != null &&
         !Config.ignoredImports.contains(library.identifier) &&
@@ -177,7 +179,7 @@ class Types {
         }
       }
 
-     // if (returnType == 'FutureOr') returnType.toString();
+      // if (returnType == 'FutureOr') returnType.toString();
 
       if (parameterTypes.isNotEmpty && parameterTypes != 'void')
         return 'Func<$returnTypeName,$parameterTypes>';
@@ -186,10 +188,8 @@ class Types {
     }
   }
 
-  static String getParameterType(
-      ParameterElement parameter,
-      FunctionTypedElement method,
-      FunctionTypedElement overridenMethod) {
+  static String getParameterType(ParameterElement parameter,
+      FunctionTypedElement method, FunctionTypedElement overridenMethod) {
     // Type
 
     //if (parameterType == 'object' && !parameter.toString().contains('dynamic'))
@@ -215,7 +215,7 @@ class Types {
       parameterType = getTypeFromComputedNodeEntities(
           parameter, computedParameter.childEntities, false);
     }
-     
+
     return parameterType;
   }
 
