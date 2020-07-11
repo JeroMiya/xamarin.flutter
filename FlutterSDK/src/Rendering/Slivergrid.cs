@@ -421,256 +421,267 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Rendering.Slivergrid{
-internal static class SlivergridDefaultClass{
-}
-
-public interface ISliverGridLayout{
-int GetMinChildIndexForScrollOffset(double scrollOffset);
-int GetMaxChildIndexForScrollOffset(double scrollOffset);
-FlutterSDK.Rendering.Slivergrid.SliverGridGeometry GetGeometryForChildIndex(int index);
-double ComputeMaxScrollOffset(int childCount);
-}
-
-
-public interface ISliverGridDelegate{
-FlutterSDK.Rendering.Slivergrid.SliverGridLayout GetLayout(FlutterSDK.Rendering.Sliver.SliverConstraints constraints);
-bool ShouldRelayout(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate oldDelegate);
-}
-
-
-public class SliverGridGeometry
+namespace FlutterSDK.Rendering.Slivergrid
 {
-#region constructors
-public SliverGridGeometry(double scrollOffset = default(double),double crossAxisOffset = default(double),double mainAxisExtent = default(double),double crossAxisExtent = default(double))
-{
-this.ScrollOffset = scrollOffset;
-this.CrossAxisOffset = crossAxisOffset;
-this.MainAxisExtent = mainAxisExtent;
-this.CrossAxisExtent = crossAxisExtent;throw new NotImplementedException(); }
-#endregion
+    internal static class SlivergridDefaultClass
+    {
+    }
 
-#region fields
-public virtual double ScrollOffset{get;set;}
-public virtual double CrossAxisOffset{get;set;}
-public virtual double MainAxisExtent{get;set;}
-public virtual double CrossAxisExtent{get;set;}
-public virtual double TrailingScrollOffset{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public interface ISliverGridLayout
+    {
+        int GetMinChildIndexForScrollOffset(double scrollOffset);
+        int GetMaxChildIndexForScrollOffset(double scrollOffset);
+        FlutterSDK.Rendering.Slivergrid.SliverGridGeometry GetGeometryForChildIndex(int index);
+        double ComputeMaxScrollOffset(int childCount);
+    }
 
-#region methods
 
-public virtual FlutterSDK.Rendering.Box.BoxConstraints GetBoxConstraints(FlutterSDK.Rendering.Sliver.SliverConstraints constraints){ throw new NotImplementedException(); }
+    public interface ISliverGridDelegate
+    {
+        FlutterSDK.Rendering.Slivergrid.SliverGridLayout GetLayout(FlutterSDK.Rendering.Sliver.SliverConstraints constraints);
+        bool ShouldRelayout(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate oldDelegate);
+    }
 
 
-#endregion
-}
+    public class SliverGridGeometry
+    {
+        #region constructors
+        public SliverGridGeometry(double scrollOffset = default(double), double crossAxisOffset = default(double), double mainAxisExtent = default(double), double crossAxisExtent = default(double))
+        {
+            this.ScrollOffset = scrollOffset;
+            this.CrossAxisOffset = crossAxisOffset;
+            this.MainAxisExtent = mainAxisExtent;
+            this.CrossAxisExtent = crossAxisExtent; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual double ScrollOffset { get; set; }
+        public virtual double CrossAxisOffset { get; set; }
+        public virtual double MainAxisExtent { get; set; }
+        public virtual double CrossAxisExtent { get; set; }
+        public virtual double TrailingScrollOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public class SliverGridLayout
-{
-#region constructors
-public SliverGridLayout()
-{
-throw new NotImplementedException(); }
-#endregion
+        #region methods
 
-#region fields
-#endregion
+        public virtual FlutterSDK.Rendering.Box.BoxConstraints GetBoxConstraints(FlutterSDK.Rendering.Sliver.SliverConstraints constraints) { throw new NotImplementedException(); }
 
-#region methods
 
-public virtual int GetMinChildIndexForScrollOffset(double scrollOffset){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public virtual int GetMaxChildIndexForScrollOffset(double scrollOffset){ throw new NotImplementedException(); }
+    public class SliverGridLayout
+    {
+        #region constructors
+        public SliverGridLayout()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        #endregion
 
-public virtual FlutterSDK.Rendering.Slivergrid.SliverGridGeometry GetGeometryForChildIndex(int index){ throw new NotImplementedException(); }
+        #region methods
 
+        public virtual int GetMinChildIndexForScrollOffset(double scrollOffset) { throw new NotImplementedException(); }
 
-public virtual double ComputeMaxScrollOffset(int childCount){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public virtual int GetMaxChildIndexForScrollOffset(double scrollOffset) { throw new NotImplementedException(); }
 
 
-public class SliverGridRegularTileLayout : FlutterSDK.Rendering.Slivergrid.SliverGridLayout
-{
-#region constructors
-public SliverGridRegularTileLayout(int crossAxisCount = default(int),double mainAxisStride = default(double),double crossAxisStride = default(double),double childMainAxisExtent = default(double),double childCrossAxisExtent = default(double),bool reverseCrossAxis = default(bool))
-: base()
-{
-this.CrossAxisCount = crossAxisCount;
-this.MainAxisStride = mainAxisStride;
-this.CrossAxisStride = crossAxisStride;
-this.ChildMainAxisExtent = childMainAxisExtent;
-this.ChildCrossAxisExtent = childCrossAxisExtent;
-this.ReverseCrossAxis = reverseCrossAxis;throw new NotImplementedException(); }
-#endregion
+        public virtual FlutterSDK.Rendering.Slivergrid.SliverGridGeometry GetGeometryForChildIndex(int index) { throw new NotImplementedException(); }
 
-#region fields
-public virtual int CrossAxisCount{get;set;}
-public virtual double MainAxisStride{get;set;}
-public virtual double CrossAxisStride{get;set;}
-public virtual double ChildMainAxisExtent{get;set;}
-public virtual double ChildCrossAxisExtent{get;set;}
-public virtual bool ReverseCrossAxis{get;set;}
-#endregion
 
-#region methods
+        public virtual double ComputeMaxScrollOffset(int childCount) { throw new NotImplementedException(); }
 
-public new int GetMinChildIndexForScrollOffset(double scrollOffset){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new int GetMaxChildIndexForScrollOffset(double scrollOffset){ throw new NotImplementedException(); }
+    public class SliverGridRegularTileLayout : FlutterSDK.Rendering.Slivergrid.SliverGridLayout
+    {
+        #region constructors
+        public SliverGridRegularTileLayout(int crossAxisCount = default(int), double mainAxisStride = default(double), double crossAxisStride = default(double), double childMainAxisExtent = default(double), double childCrossAxisExtent = default(double), bool reverseCrossAxis = default(bool))
+        : base()
+        {
+            this.CrossAxisCount = crossAxisCount;
+            this.MainAxisStride = mainAxisStride;
+            this.CrossAxisStride = crossAxisStride;
+            this.ChildMainAxisExtent = childMainAxisExtent;
+            this.ChildCrossAxisExtent = childCrossAxisExtent;
+            this.ReverseCrossAxis = reverseCrossAxis; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual int CrossAxisCount { get; set; }
+        public virtual double MainAxisStride { get; set; }
+        public virtual double CrossAxisStride { get; set; }
+        public virtual double ChildMainAxisExtent { get; set; }
+        public virtual double ChildCrossAxisExtent { get; set; }
+        public virtual bool ReverseCrossAxis { get; set; }
+        #endregion
 
-private double _GetOffsetFromStartInCrossAxis(double crossAxisStart){ throw new NotImplementedException(); }
+        #region methods
 
+        public new int GetMinChildIndexForScrollOffset(double scrollOffset) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Rendering.Slivergrid.SliverGridGeometry GetGeometryForChildIndex(int index){ throw new NotImplementedException(); }
 
+        public new int GetMaxChildIndexForScrollOffset(double scrollOffset) { throw new NotImplementedException(); }
 
-public new double ComputeMaxScrollOffset(int childCount){ throw new NotImplementedException(); }
 
-#endregion
-}
+        private double _GetOffsetFromStartInCrossAxis(double crossAxisStart) { throw new NotImplementedException(); }
 
 
-public class SliverGridDelegate
-{
-#region constructors
-public SliverGridDelegate()
-{
-throw new NotImplementedException(); }
-#endregion
+        public new FlutterSDK.Rendering.Slivergrid.SliverGridGeometry GetGeometryForChildIndex(int index) { throw new NotImplementedException(); }
 
-#region fields
-#endregion
 
-#region methods
+        public new double ComputeMaxScrollOffset(int childCount) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Rendering.Slivergrid.SliverGridLayout GetLayout(FlutterSDK.Rendering.Sliver.SliverConstraints constraints){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public virtual bool ShouldRelayout(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate oldDelegate){ throw new NotImplementedException(); }
+    public class SliverGridDelegate
+    {
+        #region constructors
+        public SliverGridDelegate()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        #endregion
 
+        #region methods
 
-public class SliverGridDelegateWithFixedCrossAxisCount : FlutterSDK.Rendering.Slivergrid.SliverGridDelegate
-{
-#region constructors
-public SliverGridDelegateWithFixedCrossAxisCount(int crossAxisCount = default(int),double mainAxisSpacing = 0.0,double crossAxisSpacing = 0.0,double childAspectRatio = 1.0)
-: base()
-{
-this.CrossAxisCount = crossAxisCount;
-this.MainAxisSpacing = mainAxisSpacing;
-this.CrossAxisSpacing = crossAxisSpacing;
-this.ChildAspectRatio = childAspectRatio;throw new NotImplementedException(); }
-#endregion
+        public virtual FlutterSDK.Rendering.Slivergrid.SliverGridLayout GetLayout(FlutterSDK.Rendering.Sliver.SliverConstraints constraints) { throw new NotImplementedException(); }
 
-#region fields
-public virtual int CrossAxisCount{get;set;}
-public virtual double MainAxisSpacing{get;set;}
-public virtual double CrossAxisSpacing{get;set;}
-public virtual double ChildAspectRatio{get;set;}
-#endregion
 
-#region methods
+        public virtual bool ShouldRelayout(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate oldDelegate) { throw new NotImplementedException(); }
 
-private bool _DebugAssertIsValid(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new FlutterSDK.Rendering.Slivergrid.SliverGridLayout GetLayout(FlutterSDK.Rendering.Sliver.SliverConstraints constraints){ throw new NotImplementedException(); }
+    public class SliverGridDelegateWithFixedCrossAxisCount : FlutterSDK.Rendering.Slivergrid.SliverGridDelegate
+    {
+        #region constructors
+        public SliverGridDelegateWithFixedCrossAxisCount(int crossAxisCount = default(int), double mainAxisSpacing = 0.0, double crossAxisSpacing = 0.0, double childAspectRatio = 1.0)
+        : base()
+        {
+            this.CrossAxisCount = crossAxisCount;
+            this.MainAxisSpacing = mainAxisSpacing;
+            this.CrossAxisSpacing = crossAxisSpacing;
+            this.ChildAspectRatio = childAspectRatio; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual int CrossAxisCount { get; set; }
+        public virtual double MainAxisSpacing { get; set; }
+        public virtual double CrossAxisSpacing { get; set; }
+        public virtual double ChildAspectRatio { get; set; }
+        #endregion
 
-public new bool ShouldRelayout(FlutterSDK.Rendering.Slivergrid.SliverGridDelegateWithFixedCrossAxisCount oldDelegate){ throw new NotImplementedException(); }
-public new bool ShouldRelayout(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate oldDelegate){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        private bool _DebugAssertIsValid() { throw new NotImplementedException(); }
 
 
-public class SliverGridDelegateWithMaxCrossAxisExtent : FlutterSDK.Rendering.Slivergrid.SliverGridDelegate
-{
-#region constructors
-public SliverGridDelegateWithMaxCrossAxisExtent(double maxCrossAxisExtent = default(double),double mainAxisSpacing = 0.0,double crossAxisSpacing = 0.0,double childAspectRatio = 1.0)
-: base()
-{
-this.MaxCrossAxisExtent = maxCrossAxisExtent;
-this.MainAxisSpacing = mainAxisSpacing;
-this.CrossAxisSpacing = crossAxisSpacing;
-this.ChildAspectRatio = childAspectRatio;throw new NotImplementedException(); }
-#endregion
+        public new FlutterSDK.Rendering.Slivergrid.SliverGridLayout GetLayout(FlutterSDK.Rendering.Sliver.SliverConstraints constraints) { throw new NotImplementedException(); }
 
-#region fields
-public virtual double MaxCrossAxisExtent{get;set;}
-public virtual double MainAxisSpacing{get;set;}
-public virtual double CrossAxisSpacing{get;set;}
-public virtual double ChildAspectRatio{get;set;}
-#endregion
 
-#region methods
+        public new bool ShouldRelayout(FlutterSDK.Rendering.Slivergrid.SliverGridDelegateWithFixedCrossAxisCount oldDelegate) { throw new NotImplementedException(); }
+        public new bool ShouldRelayout(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate oldDelegate) { throw new NotImplementedException(); }
 
-private bool _DebugAssertIsValid(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new FlutterSDK.Rendering.Slivergrid.SliverGridLayout GetLayout(FlutterSDK.Rendering.Sliver.SliverConstraints constraints){ throw new NotImplementedException(); }
+    public class SliverGridDelegateWithMaxCrossAxisExtent : FlutterSDK.Rendering.Slivergrid.SliverGridDelegate
+    {
+        #region constructors
+        public SliverGridDelegateWithMaxCrossAxisExtent(double maxCrossAxisExtent = default(double), double mainAxisSpacing = 0.0, double crossAxisSpacing = 0.0, double childAspectRatio = 1.0)
+        : base()
+        {
+            this.MaxCrossAxisExtent = maxCrossAxisExtent;
+            this.MainAxisSpacing = mainAxisSpacing;
+            this.CrossAxisSpacing = crossAxisSpacing;
+            this.ChildAspectRatio = childAspectRatio; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual double MaxCrossAxisExtent { get; set; }
+        public virtual double MainAxisSpacing { get; set; }
+        public virtual double CrossAxisSpacing { get; set; }
+        public virtual double ChildAspectRatio { get; set; }
+        #endregion
 
-public new bool ShouldRelayout(FlutterSDK.Rendering.Slivergrid.SliverGridDelegateWithMaxCrossAxisExtent oldDelegate){ throw new NotImplementedException(); }
-public new bool ShouldRelayout(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate oldDelegate){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        private bool _DebugAssertIsValid() { throw new NotImplementedException(); }
 
 
-public class SliverGridParentData : FlutterSDK.Rendering.Slivermultiboxadaptor.SliverMultiBoxAdaptorParentData
-{
-#region constructors
-public SliverGridParentData()
-{ }
-#endregion
+        public new FlutterSDK.Rendering.Slivergrid.SliverGridLayout GetLayout(FlutterSDK.Rendering.Sliver.SliverConstraints constraints) { throw new NotImplementedException(); }
 
-#region fields
-public virtual double CrossAxisOffset{get;set;}
-#endregion
 
-#region methods
+        public new bool ShouldRelayout(FlutterSDK.Rendering.Slivergrid.SliverGridDelegateWithMaxCrossAxisExtent oldDelegate) { throw new NotImplementedException(); }
+        public new bool ShouldRelayout(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate oldDelegate) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class RenderSliverGrid : FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverMultiBoxAdaptor
-{
-#region constructors
-public RenderSliverGrid(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager childManager = default(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager),FlutterSDK.Rendering.Slivergrid.SliverGridDelegate gridDelegate = default(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate))
-: base(childManager:childManager)
-{
-throw new NotImplementedException(); }
-#endregion
+    public class SliverGridParentData : FlutterSDK.Rendering.Slivermultiboxadaptor.SliverMultiBoxAdaptorParentData
+    {
+        #region constructors
+        public SliverGridParentData()
+        { }
+        #endregion
 
-#region fields
-internal virtual FlutterSDK.Rendering.Slivergrid.SliverGridDelegate _GridDelegate{get;set;}
-public virtual FlutterSDK.Rendering.Slivergrid.SliverGridDelegate GridDelegate{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
+        #region fields
+        public virtual double CrossAxisOffset { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new double ChildCrossAxisPosition(FlutterSDK.Rendering.Box.RenderBox child){ throw new NotImplementedException(); }
-public new double ChildCrossAxisPosition(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
+    public class RenderSliverGrid : FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverMultiBoxAdaptor
+    {
+        #region constructors
+        public RenderSliverGrid(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager childManager = default(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager), FlutterSDK.Rendering.Slivergrid.SliverGridDelegate gridDelegate = default(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate))
+        : base(childManager: childManager)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual FlutterSDK.Rendering.Slivergrid.SliverGridDelegate _GridDelegate { get; set; }
+        public virtual FlutterSDK.Rendering.Slivergrid.SliverGridDelegate GridDelegate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
+
+
+        public new double ChildCrossAxisPosition(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
+        public new double ChildCrossAxisPosition(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
+
+
+        public new void PerformLayout() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

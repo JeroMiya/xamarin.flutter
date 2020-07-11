@@ -421,37 +421,40 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Physics.Gravitysimulation{
-internal static class GravitysimulationDefaultClass{
-}
-
-public class GravitySimulation : FlutterSDK.Physics.Simulation.Simulation
+namespace FlutterSDK.Physics.Gravitysimulation
 {
-#region constructors
-public GravitySimulation(double acceleration,double distance,double endDistance,double velocity)
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class GravitysimulationDefaultClass
+    {
+    }
 
-#region fields
-internal virtual double _X{get;set;}
-internal virtual double _V{get;set;}
-internal virtual double _A{get;set;}
-internal virtual double _End{get;set;}
-#endregion
+    public class GravitySimulation : FlutterSDK.Physics.Simulation.Simulation
+    {
+        #region constructors
+        public GravitySimulation(double acceleration, double distance, double endDistance, double velocity)
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual double _X { get; set; }
+        internal virtual double _V { get; set; }
+        internal virtual double _A { get; set; }
+        internal virtual double _End { get; set; }
+        #endregion
 
-public new double x(double time){ throw new NotImplementedException(); }
+        #region methods
+
+        public new double x(double time) { throw new NotImplementedException(); }
 
 
-public new double Dx(double time){ throw new NotImplementedException(); }
+        public new double Dx(double time) { throw new NotImplementedException(); }
 
 
-public new bool IsDone(double time){ throw new NotImplementedException(); }
+        public new bool IsDone(double time) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 }

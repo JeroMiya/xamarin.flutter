@@ -419,257 +419,263 @@ using FlutterSDK.Material.Selectabletext;
 using FlutterSDK.Material.Inksplash;
 using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
-namespace FlutterSDK.Material.Togglebuttons{
-internal static class TogglebuttonsDefaultClass{
-}
-
-public class ToggleButtons : FlutterSDK.Widgets.Framework.StatelessWidget
+namespace FlutterSDK.Material.Togglebuttons
 {
-#region constructors
-public ToggleButtons(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>),List<bool> isSelected = default(List<bool>),Action<int> onPressed = default(Action<int>),FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color fillColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color),List<FlutterSDK.Widgets.Focusmanager.FocusNode> focusNodes = default(List<FlutterSDK.Widgets.Focusmanager.FocusNode>),bool renderBorder = true,FlutterBinding.UI.Color borderColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color selectedBorderColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color disabledBorderColor = default(FlutterBinding.UI.Color),FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius),double borderWidth = default(double))
-: base(key:key)
-{
-this.Children = children;
-this.IsSelected = isSelected;
-this.OnPressed = onPressed;
-this.TextStyle = textStyle;
-this.Constraints = constraints;
-this.Color = color;
-this.SelectedColor = selectedColor;
-this.DisabledColor = disabledColor;
-this.FillColor = fillColor;
-this.FocusColor = focusColor;
-this.HighlightColor = highlightColor;
-this.HoverColor = hoverColor;
-this.SplashColor = splashColor;
-this.FocusNodes = focusNodes;
-this.RenderBorder = renderBorder;
-this.BorderColor = borderColor;
-this.SelectedBorderColor = selectedBorderColor;
-this.DisabledBorderColor = disabledBorderColor;
-this.BorderRadius = borderRadius;
-this.BorderWidth = borderWidth;throw new NotImplementedException(); }
-#endregion
+    internal static class TogglebuttonsDefaultClass
+    {
+    }
 
-#region fields
-internal virtual double _DefaultBorderWidth{get;set;}
-public virtual List<FlutterSDK.Widgets.Framework.Widget> Children{get;set;}
-public virtual List<bool> IsSelected{get;set;}
-public virtual Action<int> OnPressed{get;set;}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle{get;set;}
-public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints{get;set;}
-public virtual FlutterBinding.UI.Color Color{get;set;}
-public virtual FlutterBinding.UI.Color SelectedColor{get;set;}
-public virtual FlutterBinding.UI.Color DisabledColor{get;set;}
-public virtual FlutterBinding.UI.Color FillColor{get;set;}
-public virtual FlutterBinding.UI.Color FocusColor{get;set;}
-public virtual FlutterBinding.UI.Color HighlightColor{get;set;}
-public virtual FlutterBinding.UI.Color SplashColor{get;set;}
-public virtual FlutterBinding.UI.Color HoverColor{get;set;}
-public virtual List<FlutterSDK.Widgets.Focusmanager.FocusNode> FocusNodes{get;set;}
-public virtual bool RenderBorder{get;set;}
-public virtual FlutterBinding.UI.Color BorderColor{get;set;}
-public virtual FlutterBinding.UI.Color SelectedBorderColor{get;set;}
-public virtual FlutterBinding.UI.Color DisabledBorderColor{get;set;}
-public virtual double BorderWidth{get;set;}
-public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius{get;set;}
-#endregion
+    public class ToggleButtons : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public ToggleButtons(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), List<bool> isSelected = default(List<bool>), Action<int> onPressed = default(Action<int>), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color fillColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), List<FlutterSDK.Widgets.Focusmanager.FocusNode> focusNodes = default(List<FlutterSDK.Widgets.Focusmanager.FocusNode>), bool renderBorder = true, FlutterBinding.UI.Color borderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedBorderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledBorderColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), double borderWidth = default(double))
+        : base(key: key)
+        {
+            this.Children = children;
+            this.IsSelected = isSelected;
+            this.OnPressed = onPressed;
+            this.TextStyle = textStyle;
+            this.Constraints = constraints;
+            this.Color = color;
+            this.SelectedColor = selectedColor;
+            this.DisabledColor = disabledColor;
+            this.FillColor = fillColor;
+            this.FocusColor = focusColor;
+            this.HighlightColor = highlightColor;
+            this.HoverColor = hoverColor;
+            this.SplashColor = splashColor;
+            this.FocusNodes = focusNodes;
+            this.RenderBorder = renderBorder;
+            this.BorderColor = borderColor;
+            this.SelectedBorderColor = selectedBorderColor;
+            this.DisabledBorderColor = disabledBorderColor;
+            this.BorderRadius = borderRadius;
+            this.BorderWidth = borderWidth; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual double _DefaultBorderWidth { get; set; }
+        public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
+        public virtual List<bool> IsSelected { get; set; }
+        public virtual Action<int> OnPressed { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
+        public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual FlutterBinding.UI.Color SelectedColor { get; set; }
+        public virtual FlutterBinding.UI.Color DisabledColor { get; set; }
+        public virtual FlutterBinding.UI.Color FillColor { get; set; }
+        public virtual FlutterBinding.UI.Color FocusColor { get; set; }
+        public virtual FlutterBinding.UI.Color HighlightColor { get; set; }
+        public virtual FlutterBinding.UI.Color SplashColor { get; set; }
+        public virtual FlutterBinding.UI.Color HoverColor { get; set; }
+        public virtual List<FlutterSDK.Widgets.Focusmanager.FocusNode> FocusNodes { get; set; }
+        public virtual bool RenderBorder { get; set; }
+        public virtual FlutterBinding.UI.Color BorderColor { get; set; }
+        public virtual FlutterBinding.UI.Color SelectedBorderColor { get; set; }
+        public virtual FlutterBinding.UI.Color DisabledBorderColor { get; set; }
+        public virtual double BorderWidth { get; set; }
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
+        #endregion
 
-private bool _IsFirstIndex(int index,int length,TextDirection textDirection){ throw new NotImplementedException(); }
+        #region methods
 
-
-private bool _IsLastIndex(int index,int length,TextDirection textDirection){ throw new NotImplementedException(); }
-
-
-private FlutterSDK.Painting.Borderradius.BorderRadius _GetEdgeBorderRadius(int index,int length,TextDirection textDirection,FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData toggleButtonsTheme){ throw new NotImplementedException(); }
-
-
-private FlutterSDK.Painting.Borderradius.BorderRadius _GetClipBorderRadius(int index,int length,TextDirection textDirection,FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData toggleButtonsTheme){ throw new NotImplementedException(); }
+        private bool _IsFirstIndex(int index, int length, TextDirection textDirection) { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Painting.Borders.BorderSide _GetLeadingBorderSide(int index,FlutterSDK.Material.Themedata.ThemeData theme,FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData toggleButtonsTheme){ throw new NotImplementedException(); }
+        private bool _IsLastIndex(int index, int length, TextDirection textDirection) { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Painting.Borders.BorderSide _GetHorizontalBorderSide(int index,FlutterSDK.Material.Themedata.ThemeData theme,FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData toggleButtonsTheme){ throw new NotImplementedException(); }
+        private FlutterSDK.Painting.Borderradius.BorderRadius _GetEdgeBorderRadius(int index, int length, TextDirection textDirection, FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData toggleButtonsTheme) { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Painting.Borders.BorderSide _GetTrailingBorderSide(int index,FlutterSDK.Material.Themedata.ThemeData theme,FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData toggleButtonsTheme){ throw new NotImplementedException(); }
+        private FlutterSDK.Painting.Borderradius.BorderRadius _GetClipBorderRadius(int index, int length, TextDirection textDirection, FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData toggleButtonsTheme) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        private FlutterSDK.Painting.Borders.BorderSide _GetLeadingBorderSide(int index, FlutterSDK.Material.Themedata.ThemeData theme, FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData toggleButtonsTheme) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-#endregion
-}
+        private FlutterSDK.Painting.Borders.BorderSide _GetHorizontalBorderSide(int index, FlutterSDK.Material.Themedata.ThemeData theme, FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData toggleButtonsTheme) { throw new NotImplementedException(); }
 
 
-public class _ToggleButton : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public _ToggleButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),bool selected = false,FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color fillColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color),FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode),VoidCallback onPressed = default(VoidCallback),FlutterSDK.Painting.Borders.BorderSide leadingBorderSide = default(FlutterSDK.Painting.Borders.BorderSide),FlutterSDK.Painting.Borders.BorderSide horizontalBorderSide = default(FlutterSDK.Painting.Borders.BorderSide),FlutterSDK.Painting.Borders.BorderSide trailingBorderSide = default(FlutterSDK.Painting.Borders.BorderSide),FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius),FlutterSDK.Painting.Borderradius.BorderRadius clipRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius),bool isFirstButton = default(bool),bool isLastButton = default(bool),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key)
-{
-this.Selected = selected;
-this.TextStyle = textStyle;
-this.Constraints = constraints;
-this.Color = color;
-this.SelectedColor = selectedColor;
-this.DisabledColor = disabledColor;
-this.FillColor = fillColor;
-this.FocusColor = focusColor;
-this.HighlightColor = highlightColor;
-this.HoverColor = hoverColor;
-this.SplashColor = splashColor;
-this.FocusNode = focusNode;
-this.OnPressed = onPressed;
-this.LeadingBorderSide = leadingBorderSide;
-this.HorizontalBorderSide = horizontalBorderSide;
-this.TrailingBorderSide = trailingBorderSide;
-this.BorderRadius = borderRadius;
-this.ClipRadius = clipRadius;
-this.IsFirstButton = isFirstButton;
-this.IsLastButton = isLastButton;
-this.Child = child;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual bool Selected{get;set;}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle{get;set;}
-public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints{get;set;}
-public virtual FlutterBinding.UI.Color Color{get;set;}
-public virtual FlutterBinding.UI.Color SelectedColor{get;set;}
-public virtual FlutterBinding.UI.Color DisabledColor{get;set;}
-public virtual FlutterBinding.UI.Color FillColor{get;set;}
-public virtual FlutterBinding.UI.Color FocusColor{get;set;}
-public virtual FlutterBinding.UI.Color HoverColor{get;set;}
-public virtual FlutterBinding.UI.Color HighlightColor{get;set;}
-public virtual FlutterBinding.UI.Color SplashColor{get;set;}
-public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode{get;set;}
-public virtual VoidCallback OnPressed{get;set;}
-public virtual FlutterSDK.Painting.Borders.BorderSide LeadingBorderSide{get;set;}
-public virtual FlutterSDK.Painting.Borders.BorderSide HorizontalBorderSide{get;set;}
-public virtual FlutterSDK.Painting.Borders.BorderSide TrailingBorderSide{get;set;}
-public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius{get;set;}
-public virtual FlutterSDK.Painting.Borderradius.BorderRadius ClipRadius{get;set;}
-public virtual bool IsFirstButton{get;set;}
-public virtual bool IsLastButton{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        private FlutterSDK.Painting.Borders.BorderSide _GetTrailingBorderSide(int index, FlutterSDK.Material.Themedata.ThemeData theme, FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData toggleButtonsTheme) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public class _SelectToggleButton : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
-{
-#region constructors
-public _SelectToggleButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Painting.Borders.BorderSide leadingBorderSide = default(FlutterSDK.Painting.Borders.BorderSide),FlutterSDK.Painting.Borders.BorderSide horizontalBorderSide = default(FlutterSDK.Painting.Borders.BorderSide),FlutterSDK.Painting.Borders.BorderSide trailingBorderSide = default(FlutterSDK.Painting.Borders.BorderSide),FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius),bool isFirstButton = default(bool),bool isLastButton = default(bool))
-: base(key:key,child:child)
-{
-this.LeadingBorderSide = leadingBorderSide;
-this.HorizontalBorderSide = horizontalBorderSide;
-this.TrailingBorderSide = trailingBorderSide;
-this.BorderRadius = borderRadius;
-this.IsFirstButton = isFirstButton;
-this.IsLastButton = isLastButton;throw new NotImplementedException(); }
-#endregion
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Painting.Borders.BorderSide LeadingBorderSide{get;set;}
-public virtual FlutterSDK.Painting.Borders.BorderSide HorizontalBorderSide{get;set;}
-public virtual FlutterSDK.Painting.Borders.BorderSide TrailingBorderSide{get;set;}
-public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius{get;set;}
-public virtual bool IsFirstButton{get;set;}
-public virtual bool IsLastButton{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Material.Togglebuttons._SelectToggleButtonRenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Material.Togglebuttons._SelectToggleButtonRenderObject renderObject){ throw new NotImplementedException(); }
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Rendering.@object.RenderObject renderObject){ throw new NotImplementedException(); }
+    public class _ToggleButton : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public _ToggleButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool selected = false, FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color fillColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), VoidCallback onPressed = default(VoidCallback), FlutterSDK.Painting.Borders.BorderSide leadingBorderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide horizontalBorderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide trailingBorderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Painting.Borderradius.BorderRadius clipRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), bool isFirstButton = default(bool), bool isLastButton = default(bool), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.Selected = selected;
+            this.TextStyle = textStyle;
+            this.Constraints = constraints;
+            this.Color = color;
+            this.SelectedColor = selectedColor;
+            this.DisabledColor = disabledColor;
+            this.FillColor = fillColor;
+            this.FocusColor = focusColor;
+            this.HighlightColor = highlightColor;
+            this.HoverColor = hoverColor;
+            this.SplashColor = splashColor;
+            this.FocusNode = focusNode;
+            this.OnPressed = onPressed;
+            this.LeadingBorderSide = leadingBorderSide;
+            this.HorizontalBorderSide = horizontalBorderSide;
+            this.TrailingBorderSide = trailingBorderSide;
+            this.BorderRadius = borderRadius;
+            this.ClipRadius = clipRadius;
+            this.IsFirstButton = isFirstButton;
+            this.IsLastButton = isLastButton;
+            this.Child = child; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual bool Selected { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
+        public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual FlutterBinding.UI.Color SelectedColor { get; set; }
+        public virtual FlutterBinding.UI.Color DisabledColor { get; set; }
+        public virtual FlutterBinding.UI.Color FillColor { get; set; }
+        public virtual FlutterBinding.UI.Color FocusColor { get; set; }
+        public virtual FlutterBinding.UI.Color HoverColor { get; set; }
+        public virtual FlutterBinding.UI.Color HighlightColor { get; set; }
+        public virtual FlutterBinding.UI.Color SplashColor { get; set; }
+        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+        public virtual VoidCallback OnPressed { get; set; }
+        public virtual FlutterSDK.Painting.Borders.BorderSide LeadingBorderSide { get; set; }
+        public virtual FlutterSDK.Painting.Borders.BorderSide HorizontalBorderSide { get; set; }
+        public virtual FlutterSDK.Painting.Borders.BorderSide TrailingBorderSide { get; set; }
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadius ClipRadius { get; set; }
+        public virtual bool IsFirstButton { get; set; }
+        public virtual bool IsLastButton { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        #endregion
 
+        #region methods
 
-public class _SelectToggleButtonRenderObject : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
-{
-#region constructors
-public _SelectToggleButtonRenderObject(FlutterSDK.Painting.Borders.BorderSide _leadingBorderSide,FlutterSDK.Painting.Borders.BorderSide _horizontalBorderSide,FlutterSDK.Painting.Borders.BorderSide _trailingBorderSide,FlutterSDK.Painting.Borderradius.BorderRadius _borderRadius,bool _isFirstButton,bool _isLastButton,TextDirection _textDirection,FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-: base(child)
-{
-this._LeadingBorderSide = _leadingBorderSide;
-this._HorizontalBorderSide = _horizontalBorderSide;
-this._TrailingBorderSide = _trailingBorderSide;
-this._BorderRadius = _borderRadius;
-this._IsFirstButton = _isFirstButton;
-this._IsLastButton = _isLastButton;
-this._TextDirection = _textDirection;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Painting.Borders.BorderSide _LeadingBorderSide{get;set;}
-internal virtual FlutterSDK.Painting.Borders.BorderSide _HorizontalBorderSide{get;set;}
-internal virtual FlutterSDK.Painting.Borders.BorderSide _TrailingBorderSide{get;set;}
-internal virtual FlutterSDK.Painting.Borderradius.BorderRadius _BorderRadius{get;set;}
-internal virtual bool _IsFirstButton{get;set;}
-internal virtual bool _IsLastButton{get;set;}
-internal virtual TextDirection _TextDirection{get;set;}
-public virtual FlutterSDK.Painting.Borders.BorderSide LeadingBorderSide{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Painting.Borders.BorderSide HorizontalBorderSide{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Painting.Borders.BorderSide TrailingBorderSide{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool IsFirstButton{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool IsLastButton{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual TextDirection TextDirection{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
-
-#region methods
-
-private double _MaxHeight(FlutterSDK.Rendering.Box.RenderBox box,double width){ throw new NotImplementedException(); }
-
-
-private double _MinWidth(FlutterSDK.Rendering.Box.RenderBox box,double height){ throw new NotImplementedException(); }
-
-
-private double _MaxWidth(FlutterSDK.Rendering.Box.RenderBox box,double height){ throw new NotImplementedException(); }
-
-
-public new double ComputeDistanceToActualBaseline(TextBaseline baseline){ throw new NotImplementedException(); }
-
-
-public new double ComputeMaxIntrinsicHeight(double width){ throw new NotImplementedException(); }
-
-
-public new double ComputeMinIntrinsicHeight(double width){ throw new NotImplementedException(); }
-
-
-public new double ComputeMaxIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public new double ComputeMinIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
+    public class _SelectToggleButton : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
+    {
+        #region constructors
+        public _SelectToggleButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Borders.BorderSide leadingBorderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide horizontalBorderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide trailingBorderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), bool isFirstButton = default(bool), bool isLastButton = default(bool))
+        : base(key: key, child: child)
+        {
+            this.LeadingBorderSide = leadingBorderSide;
+            this.HorizontalBorderSide = horizontalBorderSide;
+            this.TrailingBorderSide = trailingBorderSide;
+            this.BorderRadius = borderRadius;
+            this.IsFirstButton = isFirstButton;
+            this.IsLastButton = isLastButton; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Painting.Borders.BorderSide LeadingBorderSide { get; set; }
+        public virtual FlutterSDK.Painting.Borders.BorderSide HorizontalBorderSide { get; set; }
+        public virtual FlutterSDK.Painting.Borders.BorderSide TrailingBorderSide { get; set; }
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
+        public virtual bool IsFirstButton { get; set; }
+        public virtual bool IsLastButton { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Material.Togglebuttons._SelectToggleButtonRenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Material.Togglebuttons._SelectToggleButtonRenderObject renderObject) { throw new NotImplementedException(); }
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
+
+
+    public class _SelectToggleButtonRenderObject : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
+    {
+        #region constructors
+        public _SelectToggleButtonRenderObject(FlutterSDK.Painting.Borders.BorderSide _leadingBorderSide, FlutterSDK.Painting.Borders.BorderSide _horizontalBorderSide, FlutterSDK.Painting.Borders.BorderSide _trailingBorderSide, FlutterSDK.Painting.Borderradius.BorderRadius _borderRadius, bool _isFirstButton, bool _isLastButton, TextDirection _textDirection, FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+        : base(child)
+        {
+            this._LeadingBorderSide = _leadingBorderSide;
+            this._HorizontalBorderSide = _horizontalBorderSide;
+            this._TrailingBorderSide = _trailingBorderSide;
+            this._BorderRadius = _borderRadius;
+            this._IsFirstButton = _isFirstButton;
+            this._IsLastButton = _isLastButton;
+            this._TextDirection = _textDirection; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Painting.Borders.BorderSide _LeadingBorderSide { get; set; }
+        internal virtual FlutterSDK.Painting.Borders.BorderSide _HorizontalBorderSide { get; set; }
+        internal virtual FlutterSDK.Painting.Borders.BorderSide _TrailingBorderSide { get; set; }
+        internal virtual FlutterSDK.Painting.Borderradius.BorderRadius _BorderRadius { get; set; }
+        internal virtual bool _IsFirstButton { get; set; }
+        internal virtual bool _IsLastButton { get; set; }
+        internal virtual TextDirection _TextDirection { get; set; }
+        public virtual FlutterSDK.Painting.Borders.BorderSide LeadingBorderSide { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Borders.BorderSide HorizontalBorderSide { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Borders.BorderSide TrailingBorderSide { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsFirstButton { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsLastButton { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        private double _MaxHeight(FlutterSDK.Rendering.Box.RenderBox box, double width) { throw new NotImplementedException(); }
+
+
+        private double _MinWidth(FlutterSDK.Rendering.Box.RenderBox box, double height) { throw new NotImplementedException(); }
+
+
+        private double _MaxWidth(FlutterSDK.Rendering.Box.RenderBox box, double height) { throw new NotImplementedException(); }
+
+
+        public new double ComputeDistanceToActualBaseline(TextBaseline baseline) { throw new NotImplementedException(); }
+
+
+        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
+
+
+        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
+
+
+        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
+
+
+        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
+
+
+        public new void PerformLayout() { throw new NotImplementedException(); }
+
+
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

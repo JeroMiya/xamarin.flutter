@@ -420,108 +420,114 @@ using FlutterSDK.Material.Inksplash;
 using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
-namespace FlutterSDK.Painting.Flutterlogo{
-internal static class FlutterlogoDefaultClass{
-}
-
-public class FlutterLogoDecoration : FlutterSDK.Painting.Decoration.Decoration
+namespace FlutterSDK.Painting.Flutterlogo
 {
-#region constructors
-public FlutterLogoDecoration(FlutterBinding.UI.Color lightColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color darkColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color),FlutterSDK.Painting.Flutterlogo.FlutterLogoStyle style = default(FlutterSDK.Painting.Flutterlogo.FlutterLogoStyle),FlutterSDK.Painting.Edgeinsets.EdgeInsets margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets))
-: base()
-{
-this.LightColor = lightColor;
-this.DarkColor = darkColor;
-this.TextColor = textColor;
-this.Style = style;
-this.Margin = margin;throw new NotImplementedException(); }
-internal FlutterLogoDecoration(FlutterBinding.UI.Color lightColor,FlutterBinding.UI.Color darkColor,FlutterBinding.UI.Color textColor,FlutterSDK.Painting.Flutterlogo.FlutterLogoStyle style,FlutterSDK.Painting.Edgeinsets.EdgeInsets margin,double _position,double _opacity)
-{
-this.LightColor = lightColor;
-this.DarkColor = darkColor;
-this.TextColor = textColor;
-this.Style = style;
-this.Margin = margin;
-this._Position = _position;
-this._Opacity = _opacity;throw new NotImplementedException(); }
-#endregion
+    internal static class FlutterlogoDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterBinding.UI.Color LightColor{get;set;}
-public virtual FlutterBinding.UI.Color DarkColor{get;set;}
-public virtual FlutterBinding.UI.Color TextColor{get;set;}
-public virtual FlutterSDK.Painting.Flutterlogo.FlutterLogoStyle Style{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Margin{get;set;}
-internal virtual double _Position{get;set;}
-internal virtual double _Opacity{get;set;}
-internal virtual bool _InTransition{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsComplex{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class FlutterLogoDecoration : FlutterSDK.Painting.Decoration.Decoration
+    {
+        #region constructors
+        public FlutterLogoDecoration(FlutterBinding.UI.Color lightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Flutterlogo.FlutterLogoStyle style = default(FlutterSDK.Painting.Flutterlogo.FlutterLogoStyle), FlutterSDK.Painting.Edgeinsets.EdgeInsets margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets))
+        : base()
+        {
+            this.LightColor = lightColor;
+            this.DarkColor = darkColor;
+            this.TextColor = textColor;
+            this.Style = style;
+            this.Margin = margin; throw new NotImplementedException();
+        }
+        internal FlutterLogoDecoration(FlutterBinding.UI.Color lightColor, FlutterBinding.UI.Color darkColor, FlutterBinding.UI.Color textColor, FlutterSDK.Painting.Flutterlogo.FlutterLogoStyle style, FlutterSDK.Painting.Edgeinsets.EdgeInsets margin, double _position, double _opacity)
+        {
+            this.LightColor = lightColor;
+            this.DarkColor = darkColor;
+            this.TextColor = textColor;
+            this.Style = style;
+            this.Margin = margin;
+            this._Position = _position;
+            this._Opacity = _opacity; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterBinding.UI.Color LightColor { get; set; }
+        public virtual FlutterBinding.UI.Color DarkColor { get; set; }
+        public virtual FlutterBinding.UI.Color TextColor { get; set; }
+        public virtual FlutterSDK.Painting.Flutterlogo.FlutterLogoStyle Style { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Margin { get; set; }
+        internal virtual double _Position { get; set; }
+        internal virtual double _Opacity { get; set; }
+        internal virtual bool _InTransition { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsComplex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new bool DebugAssertIsValid(){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual FlutterSDK.Painting.Flutterlogo.FlutterLogoDecoration Lerp(FlutterSDK.Painting.Flutterlogo.FlutterLogoDecoration a,FlutterSDK.Painting.Flutterlogo.FlutterLogoDecoration b,double t){ throw new NotImplementedException(); }
-
-
-public new FlutterSDK.Painting.Flutterlogo.FlutterLogoDecoration LerpFrom(FlutterSDK.Painting.Decoration.Decoration a,double t){ throw new NotImplementedException(); }
-
-
-public new FlutterSDK.Painting.Flutterlogo.FlutterLogoDecoration LerpTo(FlutterSDK.Painting.Decoration.Decoration b,double t){ throw new NotImplementedException(); }
-
-
-public new bool HitTest(Size size,FlutterBinding.UI.Offset position,TextDirection textDirection = default(TextDirection)){ throw new NotImplementedException(); }
+        public new bool DebugAssertIsValid() { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Painting.Decoration.BoxPainter CreateBoxPainter(VoidCallback onChanged = default(VoidCallback)){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Flutterlogo.FlutterLogoDecoration Lerp(FlutterSDK.Painting.Flutterlogo.FlutterLogoDecoration a, FlutterSDK.Painting.Flutterlogo.FlutterLogoDecoration b, double t) { throw new NotImplementedException(); }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Flutterlogo.FlutterLogoDecoration LerpFrom(FlutterSDK.Painting.Decoration.Decoration a, double t) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public new FlutterSDK.Painting.Flutterlogo.FlutterLogoDecoration LerpTo(FlutterSDK.Painting.Decoration.Decoration b, double t) { throw new NotImplementedException(); }
 
 
-public class _FlutterLogoPainter : FlutterSDK.Painting.Decoration.BoxPainter
-{
-#region constructors
-public _FlutterLogoPainter(FlutterSDK.Painting.Flutterlogo.FlutterLogoDecoration _config)
-: base(null)
-{
-this._Config = _config;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Painting.Flutterlogo.FlutterLogoDecoration _Config{get;set;}
-internal virtual FlutterSDK.Painting.Textpainter.TextPainter _TextPainter{get;set;}
-internal virtual FlutterBinding.UI.Rect _TextBoundingRect{get;set;}
-#endregion
-
-#region methods
-
-private void _PrepareText(){ throw new NotImplementedException(); }
+        public new bool HitTest(Size size, FlutterBinding.UI.Offset position, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
 
-private void _PaintLogo(Canvas canvas,FlutterBinding.UI.Rect rect){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Decoration.BoxPainter CreateBoxPainter(VoidCallback onChanged = default(VoidCallback)) { throw new NotImplementedException(); }
 
 
-public new void Paint(Canvas canvas,FlutterBinding.UI.Offset offset,FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
-public enum FlutterLogoStyle{
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-MarkOnly,
-Horizontal,
-Stacked,
-}
+        #endregion
+    }
+
+
+    public class _FlutterLogoPainter : FlutterSDK.Painting.Decoration.BoxPainter
+    {
+        #region constructors
+        public _FlutterLogoPainter(FlutterSDK.Painting.Flutterlogo.FlutterLogoDecoration _config)
+        : base(null)
+        {
+            this._Config = _config; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Painting.Flutterlogo.FlutterLogoDecoration _Config { get; set; }
+        internal virtual FlutterSDK.Painting.Textpainter.TextPainter _TextPainter { get; set; }
+        internal virtual FlutterBinding.UI.Rect _TextBoundingRect { get; set; }
+        #endregion
+
+        #region methods
+
+        private void _PrepareText() { throw new NotImplementedException(); }
+
+
+        private void _PaintLogo(Canvas canvas, FlutterBinding.UI.Rect rect) { throw new NotImplementedException(); }
+
+
+        public new void Paint(Canvas canvas, FlutterBinding.UI.Offset offset, FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public enum FlutterLogoStyle
+    {
+
+        MarkOnly,
+        Horizontal,
+        Stacked,
+    }
 
 }

@@ -294,34 +294,37 @@ using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
-namespace FlutterSDK.Gestures.Eager{
-internal static class EagerDefaultClass{
-}
-
-public class EagerGestureRecognizer : FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer
+namespace FlutterSDK.Gestures.Eager
 {
-#region constructors
-public EagerGestureRecognizer(PointerDeviceKind kind = default(PointerDeviceKind))
-: base(kind:kind)
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class EagerDefaultClass
+    {
+    }
 
-#region fields
-public virtual string DebugDescription{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class EagerGestureRecognizer : FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer
+    {
+        #region constructors
+        public EagerGestureRecognizer(PointerDeviceKind kind = default(PointerDeviceKind))
+        : base(kind: kind)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event){ throw new NotImplementedException(); }
+        #region methods
+
+        public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
 
 
-public new void DidStopTrackingLastPointer(int pointer){ throw new NotImplementedException(); }
+        public new void DidStopTrackingLastPointer(int pointer) { throw new NotImplementedException(); }
 
 
-public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event){ throw new NotImplementedException(); }
+        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 }

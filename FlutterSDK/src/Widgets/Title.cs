@@ -423,35 +423,38 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Title{
-internal static class TitleDefaultClass{
-}
-
-public class Title : FlutterSDK.Widgets.Framework.StatelessWidget
+namespace FlutterSDK.Widgets.Title
 {
-#region constructors
-public Title(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),string title = default(string),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key)
-{
-this.TitleValue = title;
-this.Color = color;
-this.Child = child;throw new NotImplementedException(); }
-#endregion
+    internal static class TitleDefaultClass
+    {
+    }
 
-#region fields
-public virtual string TitleValue{get;set;}
-public virtual FlutterBinding.UI.Color Color{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-#endregion
+    public class Title : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public Title(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string title = default(string), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.TitleValue = title;
+            this.Color = color;
+            this.Child = child; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual string TitleValue { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        #endregion
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 }

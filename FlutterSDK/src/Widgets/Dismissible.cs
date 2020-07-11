@@ -421,171 +421,177 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Widgets.Dismissible{
-public delegate void DismissDirectionCallback(FlutterSDK.Widgets.Dismissible.DismissDirection direction);
-public delegate Future<bool> ConfirmDismissCallback(FlutterSDK.Widgets.Dismissible.DismissDirection direction);
-internal static class DismissibleDefaultClass{
-public static FlutterSDK.Animation.Curves.Curve _KResizeTimeCurve = default(FlutterSDK.Animation.Curves.Curve);
-public static double _KMinFlingVelocity = default(double);
-public static double _KMinFlingVelocityDelta = default(double);
-public static double _KFlingVelocityScale = default(double);
-public static double _KDismissThreshold = default(double);
-}
-
-public class Dismissible : FlutterSDK.Widgets.Framework.StatefulWidget
+namespace FlutterSDK.Widgets.Dismissible
 {
-#region constructors
-public Dismissible(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.Widget background = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.Widget secondaryBackground = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Dismissible.ConfirmDismissCallback confirmDismiss = default(FlutterSDK.Widgets.Dismissible.ConfirmDismissCallback),VoidCallback onResize = default(VoidCallback),FlutterSDK.Widgets.Dismissible.DismissDirectionCallback onDismissed = default(FlutterSDK.Widgets.Dismissible.DismissDirectionCallback),FlutterSDK.Widgets.Dismissible.DismissDirection direction = default(FlutterSDK.Widgets.Dismissible.DismissDirection),TimeSpan resizeDuration = default(TimeSpan),Dictionary<FlutterSDK.Widgets.Dismissible.DismissDirection,double> dismissThresholds = default(Dictionary<FlutterSDK.Widgets.Dismissible.DismissDirection,double>),TimeSpan movementDuration = default(TimeSpan),double crossAxisEndOffset = 0.0,FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
-: base(key:key)
-{
-this.Child = child;
-this.Background = background;
-this.SecondaryBackground = secondaryBackground;
-this.ConfirmDismiss = confirmDismiss;
-this.OnResize = onResize;
-this.OnDismissed = onDismissed;
-this.Direction = direction;
-this.ResizeDuration = resizeDuration;
-this.DismissThresholds = dismissThresholds;
-this.MovementDuration = movementDuration;
-this.CrossAxisEndOffset = crossAxisEndOffset;
-this.DragStartBehavior = dragStartBehavior;throw new NotImplementedException(); }
-#endregion
+    public delegate void DismissDirectionCallback(FlutterSDK.Widgets.Dismissible.DismissDirection direction);
+    public delegate Future<bool> ConfirmDismissCallback(FlutterSDK.Widgets.Dismissible.DismissDirection direction);
+    internal static class DismissibleDefaultClass
+    {
+        public static FlutterSDK.Animation.Curves.Curve _KResizeTimeCurve = default(FlutterSDK.Animation.Curves.Curve);
+        public static double _KMinFlingVelocity = default(double);
+        public static double _KMinFlingVelocityDelta = default(double);
+        public static double _KFlingVelocityScale = default(double);
+        public static double _KDismissThreshold = default(double);
+    }
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Background{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget SecondaryBackground{get;set;}
-public virtual FlutterSDK.Widgets.Dismissible.ConfirmDismissCallback ConfirmDismiss{get;set;}
-public virtual VoidCallback OnResize{get;set;}
-public virtual FlutterSDK.Widgets.Dismissible.DismissDirectionCallback OnDismissed{get;set;}
-public virtual FlutterSDK.Widgets.Dismissible.DismissDirection Direction{get;set;}
-public virtual TimeSpan ResizeDuration{get;set;}
-public virtual Dictionary<FlutterSDK.Widgets.Dismissible.DismissDirection,double> DismissThresholds{get;set;}
-public virtual TimeSpan MovementDuration{get;set;}
-public virtual double CrossAxisEndOffset{get;set;}
-public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior{get;set;}
-#endregion
+    public class Dismissible : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public Dismissible(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget background = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget secondaryBackground = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Dismissible.ConfirmDismissCallback confirmDismiss = default(FlutterSDK.Widgets.Dismissible.ConfirmDismissCallback), VoidCallback onResize = default(VoidCallback), FlutterSDK.Widgets.Dismissible.DismissDirectionCallback onDismissed = default(FlutterSDK.Widgets.Dismissible.DismissDirectionCallback), FlutterSDK.Widgets.Dismissible.DismissDirection direction = default(FlutterSDK.Widgets.Dismissible.DismissDirection), TimeSpan resizeDuration = default(TimeSpan), Dictionary<FlutterSDK.Widgets.Dismissible.DismissDirection, double> dismissThresholds = default(Dictionary<FlutterSDK.Widgets.Dismissible.DismissDirection, double>), TimeSpan movementDuration = default(TimeSpan), double crossAxisEndOffset = 0.0, FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
+        : base(key: key)
+        {
+            this.Child = child;
+            this.Background = background;
+            this.SecondaryBackground = secondaryBackground;
+            this.ConfirmDismiss = confirmDismiss;
+            this.OnResize = onResize;
+            this.OnDismissed = onDismissed;
+            this.Direction = direction;
+            this.ResizeDuration = resizeDuration;
+            this.DismissThresholds = dismissThresholds;
+            this.MovementDuration = movementDuration;
+            this.CrossAxisEndOffset = crossAxisEndOffset;
+            this.DragStartBehavior = dragStartBehavior; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Background { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget SecondaryBackground { get; set; }
+        public virtual FlutterSDK.Widgets.Dismissible.ConfirmDismissCallback ConfirmDismiss { get; set; }
+        public virtual VoidCallback OnResize { get; set; }
+        public virtual FlutterSDK.Widgets.Dismissible.DismissDirectionCallback OnDismissed { get; set; }
+        public virtual FlutterSDK.Widgets.Dismissible.DismissDirection Direction { get; set; }
+        public virtual TimeSpan ResizeDuration { get; set; }
+        public virtual Dictionary<FlutterSDK.Widgets.Dismissible.DismissDirection, double> DismissThresholds { get; set; }
+        public virtual TimeSpan MovementDuration { get; set; }
+        public virtual double CrossAxisEndOffset { get; set; }
+        public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
+        #endregion
 
-public new FlutterSDK.Widgets.Dismissible._DismissibleState CreateState(){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new FlutterSDK.Widgets.Dismissible._DismissibleState CreateState() { throw new NotImplementedException(); }
 
-
-public class _DismissibleClipper : FlutterSDK.Rendering.Proxybox.CustomClipper<Rect>
-{
-#region constructors
-public _DismissibleClipper(FlutterSDK.Painting.Basictypes.Axis axis = default(FlutterSDK.Painting.Basictypes.Axis),FlutterSDK.Animation.Animation.Animation<Offset> moveAnimation = default(FlutterSDK.Animation.Animation.Animation<Offset>))
-: base(reclip:moveAnimation)
-{
-this.Axis = axis;
-this.MoveAnimation = moveAnimation;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Painting.Basictypes.Axis Axis{get;set;}
-public virtual FlutterSDK.Animation.Animation.Animation<Offset> MoveAnimation{get;set;}
-#endregion
-
-#region methods
-
-public new Rect GetClip(Size size){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new Rect GetApproximateClipRect(Size size){ throw new NotImplementedException(); }
+    public class _DismissibleClipper : FlutterSDK.Rendering.Proxybox.CustomClipper<Rect>
+    {
+        #region constructors
+        public _DismissibleClipper(FlutterSDK.Painting.Basictypes.Axis axis = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Animation.Animation.Animation<Offset> moveAnimation = default(FlutterSDK.Animation.Animation.Animation<Offset>))
+        : base(reclip: moveAnimation)
+        {
+            this.Axis = axis;
+            this.MoveAnimation = moveAnimation; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Painting.Basictypes.Axis Axis { get; set; }
+        public virtual FlutterSDK.Animation.Animation.Animation<Offset> MoveAnimation { get; set; }
+        #endregion
+
+        #region methods
+
+        public new Rect GetClip(Size size) { throw new NotImplementedException(); }
 
 
-public new bool ShouldReclip(FlutterSDK.Widgets.Dismissible._DismissibleClipper oldClipper){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public new Rect GetApproximateClipRect(Size size) { throw new NotImplementedException(); }
 
 
-public class _DismissibleState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Dismissible.Dismissible>,ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>,IAutomaticKeepAliveClientMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-#region constructors
-public _DismissibleState()
-{ }
-#endregion
+        public new bool ShouldReclip(FlutterSDK.Widgets.Dismissible._DismissibleClipper oldClipper) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _MoveController{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<Offset> _MoveAnimation{get;set;}
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _ResizeController{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _ResizeAnimation{get;set;}
-internal virtual double _DragExtent{get;set;}
-internal virtual bool _DragUnderway{get;set;}
-internal virtual Size _SizePriorToCollapse{get;set;}
-public virtual bool WantKeepAlive{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual bool _DirectionIsXAxis{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual FlutterSDK.Widgets.Dismissible.DismissDirection _DismissDirection{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual bool _IsActive{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _OverallDragAxisExtent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new void InitState(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+    public class _DismissibleState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Dismissible.Dismissible>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>, IAutomaticKeepAliveClientMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _DismissibleState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _MoveController { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<Offset> _MoveAnimation { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _ResizeController { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _ResizeAnimation { get; set; }
+        internal virtual double _DragExtent { get; set; }
+        internal virtual bool _DragUnderway { get; set; }
+        internal virtual Size _SizePriorToCollapse { get; set; }
+        public virtual bool WantKeepAlive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual bool _DirectionIsXAxis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual FlutterSDK.Widgets.Dismissible.DismissDirection _DismissDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual bool _IsActive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _OverallDragAxisExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Widgets.Dismissible.DismissDirection _ExtentToDirection(double extent){ throw new NotImplementedException(); }
+        public new void Dispose() { throw new NotImplementedException(); }
 
 
-private void _HandleDragStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details){ throw new NotImplementedException(); }
+        private FlutterSDK.Widgets.Dismissible.DismissDirection _ExtentToDirection(double extent) { throw new NotImplementedException(); }
 
 
-private void _HandleDragUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details){ throw new NotImplementedException(); }
+        private void _HandleDragStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details) { throw new NotImplementedException(); }
 
 
-private void _UpdateMoveAnimation(){ throw new NotImplementedException(); }
+        private void _HandleDragUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details) { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Widgets.Dismissible._FlingGestureKind _DescribeFlingGesture(FlutterSDK.Gestures.Velocitytracker.Velocity velocity){ throw new NotImplementedException(); }
+        private void _UpdateMoveAnimation() { throw new NotImplementedException(); }
 
 
-private Future<object> _HandleDragEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details){ throw new NotImplementedException(); }
+        private FlutterSDK.Widgets.Dismissible._FlingGestureKind _DescribeFlingGesture(FlutterSDK.Gestures.Velocitytracker.Velocity velocity) { throw new NotImplementedException(); }
 
 
-private Future<object> _HandleDismissStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status){ throw new NotImplementedException(); }
+        private Future<object> _HandleDragEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details) { throw new NotImplementedException(); }
 
 
-private Future<bool> _ConfirmStartResizeAnimation(){ throw new NotImplementedException(); }
+        private Future<object> _HandleDismissStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status) { throw new NotImplementedException(); }
 
 
-private void _StartResizeAnimation(){ throw new NotImplementedException(); }
+        private Future<bool> _ConfirmStartResizeAnimation() { throw new NotImplementedException(); }
 
 
-private void _HandleResizeProgressChanged(){ throw new NotImplementedException(); }
+        private void _StartResizeAnimation() { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-#endregion
-}
+        private void _HandleResizeProgressChanged() { throw new NotImplementedException(); }
 
 
-public enum DismissDirection{
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-Vertical,
-Horizontal,
-EndToStart,
-StartToEnd,
-Up,
-Down,
-}
+        #endregion
+    }
 
 
-public enum _FlingGestureKind{
+    public enum DismissDirection
+    {
 
-None,
-Forward,
-Reverse,
-}
+        Vertical,
+        Horizontal,
+        EndToStart,
+        StartToEnd,
+        Up,
+        Down,
+    }
+
+
+    public enum _FlingGestureKind
+    {
+
+        None,
+        Forward,
+        Reverse,
+    }
 
 }

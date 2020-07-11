@@ -420,66 +420,71 @@ using FlutterSDK.Material.Inksplash;
 using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
-namespace FlutterSDK.Painting.Fractionaloffset{
-internal static class FractionaloffsetDefaultClass{
-}
-
-public class FractionalOffset : FlutterSDK.Painting.Alignment.Alignment
+namespace FlutterSDK.Painting.Fractionaloffset
 {
-#region constructors
-public FractionalOffset(double dx,double dy)
-: base(dx*2.0-1.0,dy*2.0-1.0)
-{
-throw new NotImplementedException(); }
-public static FractionalOffset FromOffsetAndSize(FlutterBinding.UI.Offset offset,Size size)
-{
-var instance =new FractionalOffset();throw new NotImplementedException(); }
-public static FractionalOffset FromOffsetAndRect(FlutterBinding.UI.Offset offset,FlutterBinding.UI.Rect rect)
-{
-var instance =new FractionalOffset();throw new NotImplementedException(); }
-#endregion
+    internal static class FractionaloffsetDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset TopLeft{get;set;}
-public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset TopCenter{get;set;}
-public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset TopRight{get;set;}
-public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset CenterLeft{get;set;}
-public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset Center{get;set;}
-public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset CenterRight{get;set;}
-public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset BottomLeft{get;set;}
-public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset BottomCenter{get;set;}
-public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset BottomRight{get;set;}
-public virtual double Dx{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double Dy{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class FractionalOffset : FlutterSDK.Painting.Alignment.Alignment
+    {
+        #region constructors
+        public FractionalOffset(double dx, double dy)
+        : base(dx * 2.0 - 1.0, dy * 2.0 - 1.0)
+        {
+            throw new NotImplementedException();
+        }
+        public static FractionalOffset FromOffsetAndSize(FlutterBinding.UI.Offset offset, Size size)
+        {
+            var instance = new FractionalOffset(); throw new NotImplementedException();
+        }
+        public static FractionalOffset FromOffsetAndRect(FlutterBinding.UI.Offset offset, FlutterBinding.UI.Rect rect)
+        {
+            var instance = new FractionalOffset(); throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset TopLeft { get; set; }
+        public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset TopCenter { get; set; }
+        public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset TopRight { get; set; }
+        public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset CenterLeft { get; set; }
+        public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset Center { get; set; }
+        public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset CenterRight { get; set; }
+        public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset BottomLeft { get; set; }
+        public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset BottomCenter { get; set; }
+        public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset BottomRight { get; set; }
+        public virtual double Dx { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Dy { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new FlutterSDK.Painting.Alignment.Alignment Unary(FlutterSDK.Painting.Alignment.Alignment other){ throw new NotImplementedException(); }
+        #region methods
 
-
-public new FlutterSDK.Painting.Alignment.Alignment AddOperator(FlutterSDK.Painting.Alignment.Alignment other){ throw new NotImplementedException(); }
-
-
-public new FlutterSDK.Painting.Fractionaloffset.FractionalOffset Unary(){ throw new NotImplementedException(); }
-
-
-public new FlutterSDK.Painting.Fractionaloffset.FractionalOffset MultiplyOperator(double other){ throw new NotImplementedException(); }
-
-
-public new FlutterSDK.Painting.Fractionaloffset.FractionalOffset DivideOperator(double other){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Alignment.Alignment Unary(FlutterSDK.Painting.Alignment.Alignment other) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Painting.Fractionaloffset.FractionalOffset DivideIntegerResultOperator(double other){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Alignment.Alignment AddOperator(FlutterSDK.Painting.Alignment.Alignment other) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Painting.Fractionaloffset.FractionalOffset ModuloOperator(double other){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Fractionaloffset.FractionalOffset Unary() { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset Lerp(FlutterSDK.Painting.Fractionaloffset.FractionalOffset a,FlutterSDK.Painting.Fractionaloffset.FractionalOffset b,double t){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Fractionaloffset.FractionalOffset MultiplyOperator(double other) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public new FlutterSDK.Painting.Fractionaloffset.FractionalOffset DivideOperator(double other) { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Painting.Fractionaloffset.FractionalOffset DivideIntegerResultOperator(double other) { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Painting.Fractionaloffset.FractionalOffset ModuloOperator(double other) { throw new NotImplementedException(); }
+
+
+        public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset Lerp(FlutterSDK.Painting.Fractionaloffset.FractionalOffset a, FlutterSDK.Painting.Fractionaloffset.FractionalOffset b, double t) { throw new NotImplementedException(); }
+
+
+        #endregion
+    }
 
 }

@@ -423,557 +423,576 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Routes{
-public delegate FlutterSDK.Widgets.Framework.Widget RoutePageBuilder(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Animation.Animation.Animation<double> animation,FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation);
-public delegate FlutterSDK.Widgets.Framework.Widget RouteTransitionsBuilder(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Animation.Animation.Animation<double> animation,FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation,FlutterSDK.Widgets.Framework.Widget child);
-internal static class RoutesDefaultClass{
-public static Color _KTransparent = default(Color);
-internal static Future<T> ShowGeneralDialog<T>(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext),FlutterSDK.Widgets.Routes.RoutePageBuilder pageBuilder = default(FlutterSDK.Widgets.Routes.RoutePageBuilder),bool barrierDismissible = default(bool),string barrierLabel = default(string),FlutterBinding.UI.Color barrierColor = default(FlutterBinding.UI.Color),TimeSpan transitionDuration = default(TimeSpan),FlutterSDK.Widgets.Routes.RouteTransitionsBuilder transitionBuilder = default(FlutterSDK.Widgets.Routes.RouteTransitionsBuilder),bool useRootNavigator = true,FlutterSDK.Widgets.Navigator.RouteSettings routeSettings = default(FlutterSDK.Widgets.Navigator.RouteSettings)){
-throw new NotImplementedException();
-}
-
-}
-
-public interface IOverlayRoute<T>{
-Iterable<FlutterSDK.Widgets.Overlay.OverlayEntry> CreateOverlayEntries();
-void Install();
-bool DidPop(T result);
-void Dispose();
-List<FlutterSDK.Widgets.Overlay.OverlayEntry> OverlayEntries{get;}
-bool FinishedWhenPopped{get;}
-}
-
-
-public interface ITransitionRoute<T>{
-FlutterSDK.Animation.Animationcontroller.AnimationController CreateAnimationController();
-FlutterSDK.Animation.Animation.Animation<double> CreateAnimation();
-void Install();
-FlutterSDK.Scheduler.Ticker.TickerFuture DidPush();
-void DidAdd();
-void DidReplace(FlutterSDK.Widgets.Navigator.Route<object> oldRoute);
-bool DidPop(T result);
-void DidPopNext(FlutterSDK.Widgets.Navigator.Route<object> nextRoute);
-void DidChangeNext(FlutterSDK.Widgets.Navigator.Route<object> nextRoute);
-bool CanTransitionTo(FlutterSDK.Widgets.Routes.TransitionRoute<object> nextRoute);
-bool CanTransitionFrom(FlutterSDK.Widgets.Routes.TransitionRoute<object> previousRoute);
-void Dispose();
-string ToString();
-Future<T> Completed{get;}
-TimeSpan TransitionDuration{get;}
-TimeSpan ReverseTransitionDuration{get;}
-bool Opaque{get;}
-bool FinishedWhenPopped{get;}
-FlutterSDK.Animation.Animation.Animation<double> Animation{get;}
-FlutterSDK.Animation.Animationcontroller.AnimationController Controller{get;}
-FlutterSDK.Animation.Animation.Animation<double> SecondaryAnimation{get;}
-string DebugLabel{get;}
-}
-
-
-public interface IModalRoute<T>{
-ModalRoute<T> Of<T>(FlutterSDK.Widgets.Framework.BuildContext context);
-void SetState(VoidCallback fn);
-FlutterSDK.Widgets.Navigator.RoutePredicate WithName(string name);
-FlutterSDK.Widgets.Framework.Widget BuildPage(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Animation.Animation.Animation<double> animation,FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation);
-FlutterSDK.Widgets.Framework.Widget BuildTransitions(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Animation.Animation.Animation<double> animation,FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation,FlutterSDK.Widgets.Framework.Widget child);
-void Install();
-FlutterSDK.Scheduler.Ticker.TickerFuture DidPush();
-void DidAdd();
-Future<FlutterSDK.Widgets.Navigator.RoutePopDisposition> WillPop();
-void AddScopedWillPopCallback(FlutterSDK.Widgets.Navigator.WillPopCallback callback);
-void RemoveScopedWillPopCallback(FlutterSDK.Widgets.Navigator.WillPopCallback callback);
-void DidChangePrevious(FlutterSDK.Widgets.Navigator.Route<object> previousRoute);
-void ChangedInternalState();
-void ChangedExternalState();
-Iterable<FlutterSDK.Widgets.Overlay.OverlayEntry> CreateOverlayEntries();
-string ToString();
-bool BarrierDismissible{get;}
-bool SemanticsDismissible{get;}
-FlutterBinding.UI.Color BarrierColor{get;}
-string BarrierLabel{get;}
-FlutterSDK.Animation.Curves.Curve BarrierCurve{get;}
-bool MaintainState{get;}
-bool Offstage{get;set;}
-FlutterSDK.Widgets.Framework.BuildContext SubtreeContext{get;}
-FlutterSDK.Animation.Animation.Animation<double> Animation{get;}
-FlutterSDK.Animation.Animation.Animation<double> SecondaryAnimation{get;}
-bool HasScopedWillPopCallback{get;}
-bool CanPop{get;}
-}
-
-
-public interface IPopupRoute<T>{
-bool Opaque{get;}
-bool MaintainState{get;}
-}
-
-
-public interface ILocalHistoryRoute<T>{}
-
-public class LocalHistoryRoute<T>{
-internal virtual List<FlutterSDK.Widgets.Routes.LocalHistoryEntry> _LocalHistory{get;set;}
-public virtual bool WillHandlePopInternally{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-
-public virtual void AddLocalHistoryEntry(FlutterSDK.Widgets.Routes.LocalHistoryEntry entry){ throw new NotImplementedException(); }
-
-
-public virtual void RemoveLocalHistoryEntry(FlutterSDK.Widgets.Routes.LocalHistoryEntry entry){ throw new NotImplementedException(); }
-
-
-public new Future<FlutterSDK.Widgets.Navigator.RoutePopDisposition> WillPop(){ throw new NotImplementedException(); }
-
-
-public new bool DidPop(T result){ throw new NotImplementedException(); }
-
-}
-public static class LocalHistoryRouteMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<object, object> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<object, object>();
-static LocalHistoryRoute<T> GetOrCreate<T>(ILocalHistoryRoute<T> instance)
+namespace FlutterSDK.Widgets.Routes
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new LocalHistoryRoute<T>();
-_table.Add(instance, value);
-}
-return (LocalHistoryRoute<T>)value;
-}
-public static bool WillHandlePopInternallyProperty<T>(this ILocalHistoryRoute<T> instance) => GetOrCreate(instance).WillHandlePopInternally;
-public static void AddLocalHistoryEntry<T>(this ILocalHistoryRoute<T> instance,FlutterSDK.Widgets.Routes.LocalHistoryEntry entry) => GetOrCreate(instance).AddLocalHistoryEntry(entry);
-public static void RemoveLocalHistoryEntry<T>(this ILocalHistoryRoute<T> instance,FlutterSDK.Widgets.Routes.LocalHistoryEntry entry) => GetOrCreate(instance).RemoveLocalHistoryEntry(entry);
-public static Future<FlutterSDK.Widgets.Navigator.RoutePopDisposition> WillPop<T>(this ILocalHistoryRoute<T> instance) => GetOrCreate(instance).WillPop();
-public static bool DidPop<T>(this ILocalHistoryRoute<T> instance,T result) => GetOrCreate(instance).DidPop(result);
-}
+    public delegate FlutterSDK.Widgets.Framework.Widget RoutePageBuilder(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation);
+    public delegate FlutterSDK.Widgets.Framework.Widget RouteTransitionsBuilder(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child);
+    internal static class RoutesDefaultClass
+    {
+        public static Color _KTransparent = default(Color);
+        internal static Future<T> ShowGeneralDialog<T>(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Widgets.Routes.RoutePageBuilder pageBuilder = default(FlutterSDK.Widgets.Routes.RoutePageBuilder), bool barrierDismissible = default(bool), string barrierLabel = default(string), FlutterBinding.UI.Color barrierColor = default(FlutterBinding.UI.Color), TimeSpan transitionDuration = default(TimeSpan), FlutterSDK.Widgets.Routes.RouteTransitionsBuilder transitionBuilder = default(FlutterSDK.Widgets.Routes.RouteTransitionsBuilder), bool useRootNavigator = true, FlutterSDK.Widgets.Navigator.RouteSettings routeSettings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
+        {
+            throw new NotImplementedException();
+        }
+
+    }
+
+    public interface IOverlayRoute<T>
+    {
+        Iterable<FlutterSDK.Widgets.Overlay.OverlayEntry> CreateOverlayEntries();
+        void Install();
+        bool DidPop(T result);
+        void Dispose();
+        List<FlutterSDK.Widgets.Overlay.OverlayEntry> OverlayEntries { get; }
+        bool FinishedWhenPopped { get; }
+    }
+
+
+    public interface ITransitionRoute<T>
+    {
+        FlutterSDK.Animation.Animationcontroller.AnimationController CreateAnimationController();
+        FlutterSDK.Animation.Animation.Animation<double> CreateAnimation();
+        void Install();
+        FlutterSDK.Scheduler.Ticker.TickerFuture DidPush();
+        void DidAdd();
+        void DidReplace(FlutterSDK.Widgets.Navigator.Route<object> oldRoute);
+        bool DidPop(T result);
+        void DidPopNext(FlutterSDK.Widgets.Navigator.Route<object> nextRoute);
+        void DidChangeNext(FlutterSDK.Widgets.Navigator.Route<object> nextRoute);
+        bool CanTransitionTo(FlutterSDK.Widgets.Routes.TransitionRoute<object> nextRoute);
+        bool CanTransitionFrom(FlutterSDK.Widgets.Routes.TransitionRoute<object> previousRoute);
+        void Dispose();
+        string ToString();
+        Future<T> Completed { get; }
+        TimeSpan TransitionDuration { get; }
+        TimeSpan ReverseTransitionDuration { get; }
+        bool Opaque { get; }
+        bool FinishedWhenPopped { get; }
+        FlutterSDK.Animation.Animation.Animation<double> Animation { get; }
+        FlutterSDK.Animation.Animationcontroller.AnimationController Controller { get; }
+        FlutterSDK.Animation.Animation.Animation<double> SecondaryAnimation { get; }
+        string DebugLabel { get; }
+    }
+
+
+    public interface IModalRoute<T>
+    {
+        ModalRoute<T> Of<T>(FlutterSDK.Widgets.Framework.BuildContext context);
+        void SetState(VoidCallback fn);
+        FlutterSDK.Widgets.Navigator.RoutePredicate WithName(string name);
+        FlutterSDK.Widgets.Framework.Widget BuildPage(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation);
+        FlutterSDK.Widgets.Framework.Widget BuildTransitions(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child);
+        void Install();
+        FlutterSDK.Scheduler.Ticker.TickerFuture DidPush();
+        void DidAdd();
+        Future<FlutterSDK.Widgets.Navigator.RoutePopDisposition> WillPop();
+        void AddScopedWillPopCallback(FlutterSDK.Widgets.Navigator.WillPopCallback callback);
+        void RemoveScopedWillPopCallback(FlutterSDK.Widgets.Navigator.WillPopCallback callback);
+        void DidChangePrevious(FlutterSDK.Widgets.Navigator.Route<object> previousRoute);
+        void ChangedInternalState();
+        void ChangedExternalState();
+        Iterable<FlutterSDK.Widgets.Overlay.OverlayEntry> CreateOverlayEntries();
+        string ToString();
+        bool BarrierDismissible { get; }
+        bool SemanticsDismissible { get; }
+        FlutterBinding.UI.Color BarrierColor { get; }
+        string BarrierLabel { get; }
+        FlutterSDK.Animation.Curves.Curve BarrierCurve { get; }
+        bool MaintainState { get; }
+        bool Offstage { get; set; }
+        FlutterSDK.Widgets.Framework.BuildContext SubtreeContext { get; }
+        FlutterSDK.Animation.Animation.Animation<double> Animation { get; }
+        FlutterSDK.Animation.Animation.Animation<double> SecondaryAnimation { get; }
+        bool HasScopedWillPopCallback { get; }
+        bool CanPop { get; }
+    }
+
+
+    public interface IPopupRoute<T>
+    {
+        bool Opaque { get; }
+        bool MaintainState { get; }
+    }
+
+
+    public interface ILocalHistoryRoute<T> { }
+
+    public class LocalHistoryRoute<T>
+    {
+        internal virtual List<FlutterSDK.Widgets.Routes.LocalHistoryEntry> _LocalHistory { get; set; }
+        public virtual bool WillHandlePopInternally { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+
+        public virtual void AddLocalHistoryEntry(FlutterSDK.Widgets.Routes.LocalHistoryEntry entry) { throw new NotImplementedException(); }
+
+
+        public virtual void RemoveLocalHistoryEntry(FlutterSDK.Widgets.Routes.LocalHistoryEntry entry) { throw new NotImplementedException(); }
 
 
-public interface IRouteAware{}
+        public new Future<FlutterSDK.Widgets.Navigator.RoutePopDisposition> WillPop() { throw new NotImplementedException(); }
 
-public class RouteAware{
 
-public virtual void DidPopNext(){ throw new NotImplementedException(); }
+        public new bool DidPop(T result) { throw new NotImplementedException(); }
 
+    }
+    public static class LocalHistoryRouteMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<object, object> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<object, object>();
+        static LocalHistoryRoute<T> GetOrCreate<T>(ILocalHistoryRoute<T> instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new LocalHistoryRoute<T>();
+                _table.Add(instance, value);
+            }
+            return (LocalHistoryRoute<T>)value;
+        }
+        public static bool WillHandlePopInternallyProperty<T>(this ILocalHistoryRoute<T> instance) => GetOrCreate(instance).WillHandlePopInternally;
+        public static void AddLocalHistoryEntry<T>(this ILocalHistoryRoute<T> instance, FlutterSDK.Widgets.Routes.LocalHistoryEntry entry) => GetOrCreate(instance).AddLocalHistoryEntry(entry);
+        public static void RemoveLocalHistoryEntry<T>(this ILocalHistoryRoute<T> instance, FlutterSDK.Widgets.Routes.LocalHistoryEntry entry) => GetOrCreate(instance).RemoveLocalHistoryEntry(entry);
+        public static Future<FlutterSDK.Widgets.Navigator.RoutePopDisposition> WillPop<T>(this ILocalHistoryRoute<T> instance) => GetOrCreate(instance).WillPop();
+        public static bool DidPop<T>(this ILocalHistoryRoute<T> instance, T result) => GetOrCreate(instance).DidPop(result);
+    }
 
-public virtual void DidPush(){ throw new NotImplementedException(); }
 
+    public interface IRouteAware { }
 
-public virtual void DidPop(){ throw new NotImplementedException(); }
+    public class RouteAware
+    {
 
+        public virtual void DidPopNext() { throw new NotImplementedException(); }
 
-public virtual void DidPushNext(){ throw new NotImplementedException(); }
 
-}
-public static class RouteAwareMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IRouteAware, RouteAware> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IRouteAware, RouteAware>();
-static RouteAware GetOrCreate(IRouteAware instance)
-{
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new RouteAware();
-_table.Add(instance, value);
-}
-return (RouteAware)value;
-}
-public static void DidPopNext(this IRouteAware instance) => GetOrCreate(instance).DidPopNext();
-public static void DidPush(this IRouteAware instance) => GetOrCreate(instance).DidPush();
-public static void DidPop(this IRouteAware instance) => GetOrCreate(instance).DidPop();
-public static void DidPushNext(this IRouteAware instance) => GetOrCreate(instance).DidPushNext();
-}
+        public virtual void DidPush() { throw new NotImplementedException(); }
 
 
-public class OverlayRoute<T> : FlutterSDK.Widgets.Navigator.Route<T>
-{
-#region constructors
-public OverlayRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
-: base(settings:settings)
-{
-throw new NotImplementedException(); }
-#endregion
+        public virtual void DidPop() { throw new NotImplementedException(); }
 
-#region fields
-internal virtual List<FlutterSDK.Widgets.Overlay.OverlayEntry> _OverlayEntries{get;set;}
-public virtual List<FlutterSDK.Widgets.Overlay.OverlayEntry> OverlayEntries{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool FinishedWhenPopped{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+        public virtual void DidPushNext() { throw new NotImplementedException(); }
 
-public virtual Iterable<FlutterSDK.Widgets.Overlay.OverlayEntry> CreateOverlayEntries(){ throw new NotImplementedException(); }
+    }
+    public static class RouteAwareMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IRouteAware, RouteAware> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IRouteAware, RouteAware>();
+        static RouteAware GetOrCreate(IRouteAware instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new RouteAware();
+                _table.Add(instance, value);
+            }
+            return (RouteAware)value;
+        }
+        public static void DidPopNext(this IRouteAware instance) => GetOrCreate(instance).DidPopNext();
+        public static void DidPush(this IRouteAware instance) => GetOrCreate(instance).DidPush();
+        public static void DidPop(this IRouteAware instance) => GetOrCreate(instance).DidPop();
+        public static void DidPushNext(this IRouteAware instance) => GetOrCreate(instance).DidPushNext();
+    }
 
 
-public new void Install(){ throw new NotImplementedException(); }
+    public class OverlayRoute<T> : FlutterSDK.Widgets.Navigator.Route<T>
+    {
+        #region constructors
+        public OverlayRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
+        : base(settings: settings)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual List<FlutterSDK.Widgets.Overlay.OverlayEntry> _OverlayEntries { get; set; }
+        public virtual List<FlutterSDK.Widgets.Overlay.OverlayEntry> OverlayEntries { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool FinishedWhenPopped { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new bool DidPop(T result){ throw new NotImplementedException(); }
+        #region methods
 
+        public virtual Iterable<FlutterSDK.Widgets.Overlay.OverlayEntry> CreateOverlayEntries() { throw new NotImplementedException(); }
 
-public new void Dispose(){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new void Install() { throw new NotImplementedException(); }
 
 
-public class TransitionRoute<T> : FlutterSDK.Widgets.Routes.OverlayRoute<T>
-{
-#region constructors
-public TransitionRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
-: base(settings:settings)
-{
-throw new NotImplementedException(); }
-#endregion
+        public new bool DidPop(T result) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual Completer<T> _TransitionCompleter{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _Animation{get;set;}
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller{get;set;}
-internal virtual FlutterSDK.Animation.Animations.ProxyAnimation _SecondaryAnimation{get;set;}
-internal virtual T _Result{get;set;}
-internal virtual VoidCallback _TrainHoppingListenerRemover{get;set;}
-public virtual Future<T> Completed{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual TimeSpan TransitionDuration{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual TimeSpan ReverseTransitionDuration{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool Opaque{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool FinishedWhenPopped{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Animation.Animation.Animation<double> Animation{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Animation.Animationcontroller.AnimationController Controller{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Animation.Animation.Animation<double> SecondaryAnimation{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string DebugLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+        public new void Dispose() { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Animation.Animationcontroller.AnimationController CreateAnimationController(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public virtual FlutterSDK.Animation.Animation.Animation<double> CreateAnimation(){ throw new NotImplementedException(); }
+    public class TransitionRoute<T> : FlutterSDK.Widgets.Routes.OverlayRoute<T>
+    {
+        #region constructors
+        public TransitionRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
+        : base(settings: settings)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual Completer<T> _TransitionCompleter { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _Animation { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
+        internal virtual FlutterSDK.Animation.Animations.ProxyAnimation _SecondaryAnimation { get; set; }
+        internal virtual T _Result { get; set; }
+        internal virtual VoidCallback _TrainHoppingListenerRemover { get; set; }
+        public virtual Future<T> Completed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TimeSpan TransitionDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TimeSpan ReverseTransitionDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool Opaque { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool FinishedWhenPopped { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController Controller { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Animation.Animation.Animation<double> SecondaryAnimation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string DebugLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-private void _HandleStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status){ throw new NotImplementedException(); }
+        #region methods
 
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController CreateAnimationController() { throw new NotImplementedException(); }
 
-public new void Install(){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Animation.Animation.Animation<double> CreateAnimation() { throw new NotImplementedException(); }
 
-public new FlutterSDK.Scheduler.Ticker.TickerFuture DidPush(){ throw new NotImplementedException(); }
 
+        private void _HandleStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status) { throw new NotImplementedException(); }
 
-public new void DidAdd(){ throw new NotImplementedException(); }
 
+        public new void Install() { throw new NotImplementedException(); }
 
-public new void DidReplace(FlutterSDK.Widgets.Navigator.Route<object> oldRoute){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Scheduler.Ticker.TickerFuture DidPush() { throw new NotImplementedException(); }
 
-private void _DidPushOrReplace(){ throw new NotImplementedException(); }
 
+        public new void DidAdd() { throw new NotImplementedException(); }
 
-public new bool DidPop(T result){ throw new NotImplementedException(); }
 
+        public new void DidReplace(FlutterSDK.Widgets.Navigator.Route<object> oldRoute) { throw new NotImplementedException(); }
 
-public new void DidPopNext(FlutterSDK.Widgets.Navigator.Route<object> nextRoute){ throw new NotImplementedException(); }
 
+        private void _DidPushOrReplace() { throw new NotImplementedException(); }
 
-public new void DidChangeNext(FlutterSDK.Widgets.Navigator.Route<object> nextRoute){ throw new NotImplementedException(); }
 
+        public new bool DidPop(T result) { throw new NotImplementedException(); }
 
-private void _UpdateSecondaryAnimation(FlutterSDK.Widgets.Navigator.Route<object> nextRoute){ throw new NotImplementedException(); }
 
+        public new void DidPopNext(FlutterSDK.Widgets.Navigator.Route<object> nextRoute) { throw new NotImplementedException(); }
 
-private void _SetSecondaryAnimation(FlutterSDK.Animation.Animation.Animation<double> animation,Future<object> disposed = default(Future<object>)){ throw new NotImplementedException(); }
 
+        public new void DidChangeNext(FlutterSDK.Widgets.Navigator.Route<object> nextRoute) { throw new NotImplementedException(); }
 
-public virtual bool CanTransitionTo(FlutterSDK.Widgets.Routes.TransitionRoute<object> nextRoute){ throw new NotImplementedException(); }
 
+        private void _UpdateSecondaryAnimation(FlutterSDK.Widgets.Navigator.Route<object> nextRoute) { throw new NotImplementedException(); }
 
-public virtual bool CanTransitionFrom(FlutterSDK.Widgets.Routes.TransitionRoute<object> previousRoute){ throw new NotImplementedException(); }
 
+        private void _SetSecondaryAnimation(FlutterSDK.Animation.Animation.Animation<double> animation, Future<object> disposed = default(Future<object>)) { throw new NotImplementedException(); }
 
-public new void Dispose(){ throw new NotImplementedException(); }
 
+        public virtual bool CanTransitionTo(FlutterSDK.Widgets.Routes.TransitionRoute<object> nextRoute) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public virtual bool CanTransitionFrom(FlutterSDK.Widgets.Routes.TransitionRoute<object> previousRoute) { throw new NotImplementedException(); }
 
-public class LocalHistoryEntry
-{
-#region constructors
-public LocalHistoryEntry(VoidCallback onRemove = default(VoidCallback))
-{
-this.OnRemove = onRemove;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual VoidCallback OnRemove{get;set;}
-internal virtual FlutterSDK.Widgets.Routes.LocalHistoryRoute<object> _Owner{get;set;}
-#endregion
+        public new void Dispose() { throw new NotImplementedException(); }
 
-#region methods
 
-public virtual void Remove(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-private void _NotifyRemoved(){ throw new NotImplementedException(); }
+    public class LocalHistoryEntry
+    {
+        #region constructors
+        public LocalHistoryEntry(VoidCallback onRemove = default(VoidCallback))
+        {
+            this.OnRemove = onRemove; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual VoidCallback OnRemove { get; set; }
+        internal virtual FlutterSDK.Widgets.Routes.LocalHistoryRoute<object> _Owner { get; set; }
+        #endregion
 
+        #region methods
 
-public class _ModalScopeStatus : FlutterSDK.Widgets.Framework.InheritedWidget
-{
-#region constructors
-public _ModalScopeStatus(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),bool isCurrent = default(bool),bool canPop = default(bool),FlutterSDK.Widgets.Navigator.Route<object> route = default(FlutterSDK.Widgets.Navigator.Route<object>),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key,child:child)
-{
-this.IsCurrent = isCurrent;
-this.CanPop = canPop;
-this.Route = route;throw new NotImplementedException(); }
-#endregion
+        public virtual void Remove() { throw new NotImplementedException(); }
 
-#region fields
-public virtual bool IsCurrent{get;set;}
-public virtual bool CanPop{get;set;}
-public virtual FlutterSDK.Widgets.Navigator.Route<object> Route{get;set;}
-#endregion
 
-#region methods
+        private void _NotifyRemoved() { throw new NotImplementedException(); }
 
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Routes._ModalScopeStatus old){ throw new NotImplementedException(); }
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description){ throw new NotImplementedException(); }
+    public class _ModalScopeStatus : FlutterSDK.Widgets.Framework.InheritedWidget
+    {
+        #region constructors
+        public _ModalScopeStatus(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool isCurrent = default(bool), bool canPop = default(bool), FlutterSDK.Widgets.Navigator.Route<object> route = default(FlutterSDK.Widgets.Navigator.Route<object>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            this.IsCurrent = isCurrent;
+            this.CanPop = canPop;
+            this.Route = route; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual bool IsCurrent { get; set; }
+        public virtual bool CanPop { get; set; }
+        public virtual FlutterSDK.Widgets.Navigator.Route<object> Route { get; set; }
+        #endregion
 
+        #region methods
 
-public class _ModalScope<T> : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public _ModalScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Routes.ModalRoute<T> route = default(FlutterSDK.Widgets.Routes.ModalRoute<T>))
-: base(key:key)
-{
-this.Route = route;throw new NotImplementedException(); }
-#endregion
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Routes._ModalScopeStatus old) { throw new NotImplementedException(); }
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Widgets.Routes.ModalRoute<T> Route{get;set;}
-#endregion
 
-#region methods
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description) { throw new NotImplementedException(); }
 
-public new _ModalScopeState<T> CreateState(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
-#endregion
-}
 
+    public class _ModalScope<T> : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public _ModalScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Routes.ModalRoute<T> route = default(FlutterSDK.Widgets.Routes.ModalRoute<T>))
+        : base(key: key)
+        {
+            this.Route = route; throw new NotImplementedException();
+        }
+        #endregion
 
-public class _ModalScopeState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Routes._ModalScope<T>>
-{
-#region constructors
-public _ModalScopeState()
-{ }
-#endregion
+        #region fields
+        public virtual FlutterSDK.Widgets.Routes.ModalRoute<T> Route { get; set; }
+        #endregion
 
-#region fields
-internal virtual FlutterSDK.Widgets.Framework.Widget _Page{get;set;}
-internal virtual FlutterSDK.Foundation.Changenotifier.Listenable _Listenable{get;set;}
-public virtual FlutterSDK.Widgets.Focusmanager.FocusScopeNode FocusScopeNode{get;set;}
-internal virtual bool _ShouldIgnoreFocusRequest{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #region methods
 
-#region methods
+        public new _ModalScopeState<T> CreateState() { throw new NotImplementedException(); }
 
-public new void InitState(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void DidUpdateWidget(FlutterSDK.Widgets.Routes._ModalScope<T> oldWidget){ throw new NotImplementedException(); }
+    public class _ModalScopeState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Routes._ModalScope<T>>
+    {
+        #region constructors
+        public _ModalScopeState()
+        { }
+        #endregion
 
+        #region fields
+        internal virtual FlutterSDK.Widgets.Framework.Widget _Page { get; set; }
+        internal virtual FlutterSDK.Foundation.Changenotifier.Listenable _Listenable { get; set; }
+        public virtual FlutterSDK.Widgets.Focusmanager.FocusScopeNode FocusScopeNode { get; set; }
+        internal virtual bool _ShouldIgnoreFocusRequest { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new void DidChangeDependencies(){ throw new NotImplementedException(); }
+        #region methods
 
+        public new void InitState() { throw new NotImplementedException(); }
 
-private void _ForceRebuildPage(){ throw new NotImplementedException(); }
 
+        public new void DidUpdateWidget(FlutterSDK.Widgets.Routes._ModalScope<T> oldWidget) { throw new NotImplementedException(); }
 
-public new void Dispose(){ throw new NotImplementedException(); }
 
+        public new void DidChangeDependencies() { throw new NotImplementedException(); }
 
-private void _RouteSetState(VoidCallback fn){ throw new NotImplementedException(); }
 
+        private void _ForceRebuildPage() { throw new NotImplementedException(); }
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new void Dispose() { throw new NotImplementedException(); }
 
 
-public class ModalRoute<T> : FlutterSDK.Widgets.Routes.TransitionRoute<T>,ILocalHistoryRoute<T>
-{
-#region constructors
-public ModalRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings),ImageFilter filter = default(ImageFilter))
-: base(settings:settings)
-{
-throw new NotImplementedException(); }
-#endregion
+        private void _RouteSetState(VoidCallback fn) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual ImageFilter _Filter{get;set;}
-internal virtual bool _Offstage{get;set;}
-internal virtual FlutterSDK.Animation.Animations.ProxyAnimation _AnimationProxy{get;set;}
-internal virtual FlutterSDK.Animation.Animations.ProxyAnimation _SecondaryAnimationProxy{get;set;}
-internal virtual List<object> _WillPopCallbacks{get;set;}
-internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Routes._ModalScopeState<T>> _ScopeKey{get;set;}
-internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _SubtreeKey{get;set;}
-internal virtual FlutterSDK.Widgets.Pagestorage.PageStorageBucket _StorageBucket{get;set;}
-internal virtual FlutterSDK.Widgets.Overlay.OverlayEntry _ModalBarrier{get;set;}
-internal virtual FlutterSDK.Widgets.Framework.Widget _ModalScopeCache{get;set;}
-public virtual bool BarrierDismissible{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool SemanticsDismissible{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterBinding.UI.Color BarrierColor{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string BarrierLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Animation.Curves.Curve BarrierCurve{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool MaintainState{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool Offstage{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Widgets.Framework.BuildContext SubtreeContext{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Animation.Animation.Animation<double> Animation{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Animation.Animation.Animation<double> SecondaryAnimation{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool HasScopedWillPopCallback{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool CanPop{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-public virtual ModalRoute<T> Of<T>(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public virtual void SetState(VoidCallback fn){ throw new NotImplementedException(); }
+    public class ModalRoute<T> : FlutterSDK.Widgets.Routes.TransitionRoute<T>, ILocalHistoryRoute<T>
+    {
+        #region constructors
+        public ModalRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings), ImageFilter filter = default(ImageFilter))
+        : base(settings: settings)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual ImageFilter _Filter { get; set; }
+        internal virtual bool _Offstage { get; set; }
+        internal virtual FlutterSDK.Animation.Animations.ProxyAnimation _AnimationProxy { get; set; }
+        internal virtual FlutterSDK.Animation.Animations.ProxyAnimation _SecondaryAnimationProxy { get; set; }
+        internal virtual List<object> _WillPopCallbacks { get; set; }
+        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Routes._ModalScopeState<T>> _ScopeKey { get; set; }
+        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _SubtreeKey { get; set; }
+        internal virtual FlutterSDK.Widgets.Pagestorage.PageStorageBucket _StorageBucket { get; set; }
+        internal virtual FlutterSDK.Widgets.Overlay.OverlayEntry _ModalBarrier { get; set; }
+        internal virtual FlutterSDK.Widgets.Framework.Widget _ModalScopeCache { get; set; }
+        public virtual bool BarrierDismissible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool SemanticsDismissible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Color BarrierColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string BarrierLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Animation.Curves.Curve BarrierCurve { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool MaintainState { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool Offstage { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Widgets.Framework.BuildContext SubtreeContext { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Animation.Animation.Animation<double> SecondaryAnimation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool HasScopedWillPopCallback { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool CanPop { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual FlutterSDK.Widgets.Navigator.RoutePredicate WithName(string name){ throw new NotImplementedException(); }
+        #region methods
 
+        public virtual ModalRoute<T> Of<T>(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Widgets.Framework.Widget BuildPage(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Animation.Animation.Animation<double> animation,FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation){ throw new NotImplementedException(); }
 
+        public virtual void SetState(VoidCallback fn) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Widgets.Framework.Widget BuildTransitions(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Animation.Animation.Animation<double> animation,FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation,FlutterSDK.Widgets.Framework.Widget child){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Widgets.Navigator.RoutePredicate WithName(string name) { throw new NotImplementedException(); }
 
-public new void Install(){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Widgets.Framework.Widget BuildPage(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Scheduler.Ticker.TickerFuture DidPush(){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Widgets.Framework.Widget BuildTransitions(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
 
-public new void DidAdd(){ throw new NotImplementedException(); }
 
+        public new void Install() { throw new NotImplementedException(); }
 
-public new Future<FlutterSDK.Widgets.Navigator.RoutePopDisposition> WillPop(){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Scheduler.Ticker.TickerFuture DidPush() { throw new NotImplementedException(); }
 
-public virtual void AddScopedWillPopCallback(FlutterSDK.Widgets.Navigator.WillPopCallback callback){ throw new NotImplementedException(); }
 
+        public new void DidAdd() { throw new NotImplementedException(); }
 
-public virtual void RemoveScopedWillPopCallback(FlutterSDK.Widgets.Navigator.WillPopCallback callback){ throw new NotImplementedException(); }
 
+        public new Future<FlutterSDK.Widgets.Navigator.RoutePopDisposition> WillPop() { throw new NotImplementedException(); }
 
-public new void DidChangePrevious(FlutterSDK.Widgets.Navigator.Route<object> previousRoute){ throw new NotImplementedException(); }
 
+        public virtual void AddScopedWillPopCallback(FlutterSDK.Widgets.Navigator.WillPopCallback callback) { throw new NotImplementedException(); }
 
-public new void ChangedInternalState(){ throw new NotImplementedException(); }
 
+        public virtual void RemoveScopedWillPopCallback(FlutterSDK.Widgets.Navigator.WillPopCallback callback) { throw new NotImplementedException(); }
 
-public new void ChangedExternalState(){ throw new NotImplementedException(); }
 
+        public new void DidChangePrevious(FlutterSDK.Widgets.Navigator.Route<object> previousRoute) { throw new NotImplementedException(); }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildModalBarrier(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
 
+        public new void ChangedInternalState() { throw new NotImplementedException(); }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildModalScope(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
 
+        public new void ChangedExternalState() { throw new NotImplementedException(); }
 
-public new Iterable<FlutterSDK.Widgets.Overlay.OverlayEntry> CreateOverlayEntries(){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildModalBarrier(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildModalScope(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-public class PopupRoute<T> : FlutterSDK.Widgets.Routes.ModalRoute<T>
-{
-#region constructors
-public PopupRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings),ImageFilter filter = default(ImageFilter))
-: base(filter:filter,settings:settings)
-{
-throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual bool Opaque{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool MaintainState{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        public new Iterable<FlutterSDK.Widgets.Overlay.OverlayEntry> CreateOverlayEntries() { throw new NotImplementedException(); }
 
-#region methods
-#endregion
-}
 
+        #endregion
+    }
 
-public class RouteObserver<R> : FlutterSDK.Widgets.Navigator.NavigatorObserver
-{
-#region constructors
-public RouteObserver()
-{ }
-#endregion
 
-#region fields
-internal virtual Dictionary<R,HashSet<FlutterSDK.Widgets.Routes.RouteAware>> _Listeners{get;set;}
-#endregion
+    public class PopupRoute<T> : FlutterSDK.Widgets.Routes.ModalRoute<T>
+    {
+        #region constructors
+        public PopupRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings), ImageFilter filter = default(ImageFilter))
+        : base(filter: filter, settings: settings)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual bool Opaque { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool MaintainState { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual void Subscribe(FlutterSDK.Widgets.Routes.RouteAware routeAware,R route){ throw new NotImplementedException(); }
+        #region methods
+        #endregion
+    }
 
 
-public virtual void Unsubscribe(FlutterSDK.Widgets.Routes.RouteAware routeAware){ throw new NotImplementedException(); }
+    public class RouteObserver<R> : FlutterSDK.Widgets.Navigator.NavigatorObserver
+    {
+        #region constructors
+        public RouteObserver()
+        { }
+        #endregion
 
+        #region fields
+        internal virtual Dictionary<R, HashSet<FlutterSDK.Widgets.Routes.RouteAware>> _Listeners { get; set; }
+        #endregion
 
-public new void DidPop(FlutterSDK.Widgets.Navigator.Route<object> route,FlutterSDK.Widgets.Navigator.Route<object> previousRoute){ throw new NotImplementedException(); }
+        #region methods
 
+        public virtual void Subscribe(FlutterSDK.Widgets.Routes.RouteAware routeAware, R route) { throw new NotImplementedException(); }
 
-public new void DidPush(FlutterSDK.Widgets.Navigator.Route<object> route,FlutterSDK.Widgets.Navigator.Route<object> previousRoute){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public virtual void Unsubscribe(FlutterSDK.Widgets.Routes.RouteAware routeAware) { throw new NotImplementedException(); }
 
 
-public class _DialogRoute<T> : FlutterSDK.Widgets.Routes.PopupRoute<T>
-{
-#region constructors
-public _DialogRoute(FlutterSDK.Widgets.Routes.RoutePageBuilder pageBuilder = default(FlutterSDK.Widgets.Routes.RoutePageBuilder),bool barrierDismissible = true,string barrierLabel = default(string),FlutterBinding.UI.Color barrierColor = default(FlutterBinding.UI.Color),TimeSpan transitionDuration = default(TimeSpan),FlutterSDK.Widgets.Routes.RouteTransitionsBuilder transitionBuilder = default(FlutterSDK.Widgets.Routes.RouteTransitionsBuilder),FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
-: base(settings:settings)
-{
-throw new NotImplementedException(); }
-#endregion
+        public new void DidPop(FlutterSDK.Widgets.Navigator.Route<object> route, FlutterSDK.Widgets.Navigator.Route<object> previousRoute) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual FlutterSDK.Widgets.Routes.RoutePageBuilder _PageBuilder{get;set;}
-internal virtual bool _BarrierDismissible{get;set;}
-internal virtual string _BarrierLabel{get;set;}
-internal virtual FlutterBinding.UI.Color _BarrierColor{get;set;}
-internal virtual TimeSpan _TransitionDuration{get;set;}
-internal virtual FlutterSDK.Widgets.Routes.RouteTransitionsBuilder _TransitionBuilder{get;set;}
-public virtual bool BarrierDismissible{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string BarrierLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterBinding.UI.Color BarrierColor{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual TimeSpan TransitionDuration{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+        public new void DidPush(FlutterSDK.Widgets.Navigator.Route<object> route, FlutterSDK.Widgets.Navigator.Route<object> previousRoute) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Widgets.Framework.Widget BuildPage(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Animation.Animation.Animation<double> animation,FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new FlutterSDK.Widgets.Framework.Widget BuildTransitions(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Animation.Animation.Animation<double> animation,FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation,FlutterSDK.Widgets.Framework.Widget child){ throw new NotImplementedException(); }
+    public class _DialogRoute<T> : FlutterSDK.Widgets.Routes.PopupRoute<T>
+    {
+        #region constructors
+        public _DialogRoute(FlutterSDK.Widgets.Routes.RoutePageBuilder pageBuilder = default(FlutterSDK.Widgets.Routes.RoutePageBuilder), bool barrierDismissible = true, string barrierLabel = default(string), FlutterBinding.UI.Color barrierColor = default(FlutterBinding.UI.Color), TimeSpan transitionDuration = default(TimeSpan), FlutterSDK.Widgets.Routes.RouteTransitionsBuilder transitionBuilder = default(FlutterSDK.Widgets.Routes.RouteTransitionsBuilder), FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
+        : base(settings: settings)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        internal virtual FlutterSDK.Widgets.Routes.RoutePageBuilder _PageBuilder { get; set; }
+        internal virtual bool _BarrierDismissible { get; set; }
+        internal virtual string _BarrierLabel { get; set; }
+        internal virtual FlutterBinding.UI.Color _BarrierColor { get; set; }
+        internal virtual TimeSpan _TransitionDuration { get; set; }
+        internal virtual FlutterSDK.Widgets.Routes.RouteTransitionsBuilder _TransitionBuilder { get; set; }
+        public virtual bool BarrierDismissible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string BarrierLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Color BarrierColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TimeSpan TransitionDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget BuildPage(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation) { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Widgets.Framework.Widget BuildTransitions(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

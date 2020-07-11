@@ -351,397 +351,406 @@ using FlutterSDK.Material.Iconbutton;
 using FlutterSDK.Material.Material;
 using FlutterSDK.Material.Tabs;
 using FlutterSDK.Material.Texttheme;
-namespace FlutterSDK.Material.Appbar{
-internal static class AppbarDefaultClass{
-public static double _KLeadingWidth = default(double);
-}
-
-public class _ToolbarContainerLayout : FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate
+namespace FlutterSDK.Material.Appbar
 {
-#region constructors
-public _ToolbarContainerLayout()
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-#endregion
+    internal static class AppbarDefaultClass
+    {
+        public static double _KLeadingWidth = default(double);
+    }
+
+    public class _ToolbarContainerLayout : FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate
+    {
+        #region constructors
+        public _ToolbarContainerLayout()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
+
+
+        public new Size GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
 
-#region methods
 
-public new FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(FlutterSDK.Rendering.Box.BoxConstraints constraints){ throw new NotImplementedException(); }
+        public new Offset GetPositionForChild(Size size, Size childSize) { throw new NotImplementedException(); }
+
+
+        public new bool ShouldRelayout(FlutterSDK.Material.Appbar._ToolbarContainerLayout oldDelegate) { throw new NotImplementedException(); }
+        public new bool ShouldRelayout(FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate oldDelegate) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class AppBar : FlutterSDK.Widgets.Framework.StatefulWidget, IPreferredSizeWidget
+    {
+        #region constructors
+        public AppBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), bool automaticallyImplyLeading = true, FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Framework.Widget flexibleSpace = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget bottom = default(FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness), FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData actionsIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme), bool primary = true, bool centerTitle = default(bool), bool excludeHeaderSemantics = false, double titleSpacing = default(double), double toolbarOpacity = 1.0, double bottomOpacity = 1.0)
+        : base(key: key)
+        {
+            this.Leading = leading;
+            this.AutomaticallyImplyLeading = automaticallyImplyLeading;
+            this.Title = title;
+            this.Actions = actions;
+            this.FlexibleSpace = flexibleSpace;
+            this.Bottom = bottom;
+            this.Elevation = elevation;
+            this.Shape = shape;
+            this.BackgroundColor = backgroundColor;
+            this.Brightness = brightness;
+            this.IconTheme = iconTheme;
+            this.ActionsIconTheme = actionsIconTheme;
+            this.TextTheme = textTheme;
+            this.Primary = primary;
+            this.CenterTitle = centerTitle;
+            this.ExcludeHeaderSemantics = excludeHeaderSemantics;
+            this.TitleSpacing = titleSpacing;
+            this.ToolbarOpacity = toolbarOpacity;
+            this.BottomOpacity = bottomOpacity; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
+        public virtual bool AutomaticallyImplyLeading { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+        public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget FlexibleSpace { get; set; }
+        public virtual FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget Bottom { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual Brightness Brightness { get; set; }
+        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData IconTheme { get; set; }
+        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData ActionsIconTheme { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme TextTheme { get; set; }
+        public virtual bool Primary { get; set; }
+        public virtual bool CenterTitle { get; set; }
+        public virtual bool ExcludeHeaderSemantics { get; set; }
+        public virtual double TitleSpacing { get; set; }
+        public virtual double ToolbarOpacity { get; set; }
+        public virtual double BottomOpacity { get; set; }
+        public new Size PreferredSize { get; set; }
+        #endregion
 
-public new Size GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints){ throw new NotImplementedException(); }
+        #region methods
 
+        private bool _GetEffectiveCenterTitle(FlutterSDK.Material.Themedata.ThemeData theme) { throw new NotImplementedException(); }
 
-public new Offset GetPositionForChild(Size size,Size childSize){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Material.Appbar._AppBarState CreateState() { throw new NotImplementedException(); }
 
-public new bool ShouldRelayout(FlutterSDK.Material.Appbar._ToolbarContainerLayout oldDelegate){ throw new NotImplementedException(); }
-public new bool ShouldRelayout(FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate oldDelegate){ throw new NotImplementedException(); }
+        #endregion
+    }
 
-#endregion
-}
-
 
-public class AppBar : FlutterSDK.Widgets.Framework.StatefulWidget,IPreferredSizeWidget
-{
-#region constructors
-public AppBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget),bool automaticallyImplyLeading = true,FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget),List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>),FlutterSDK.Widgets.Framework.Widget flexibleSpace = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget bottom = default(FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget),double elevation = default(double),FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder),FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),Brightness brightness = default(Brightness),FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData),FlutterSDK.Widgets.Iconthemedata.IconThemeData actionsIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData),FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme),bool primary = true,bool centerTitle = default(bool),bool excludeHeaderSemantics = false,double titleSpacing = default(double),double toolbarOpacity = 1.0,double bottomOpacity = 1.0)
-: base(key:key)
-{
-this.Leading = leading;
-this.AutomaticallyImplyLeading = automaticallyImplyLeading;
-this.Title = title;
-this.Actions = actions;
-this.FlexibleSpace = flexibleSpace;
-this.Bottom = bottom;
-this.Elevation = elevation;
-this.Shape = shape;
-this.BackgroundColor = backgroundColor;
-this.Brightness = brightness;
-this.IconTheme = iconTheme;
-this.ActionsIconTheme = actionsIconTheme;
-this.TextTheme = textTheme;
-this.Primary = primary;
-this.CenterTitle = centerTitle;
-this.ExcludeHeaderSemantics = excludeHeaderSemantics;
-this.TitleSpacing = titleSpacing;
-this.ToolbarOpacity = toolbarOpacity;
-this.BottomOpacity = bottomOpacity;throw new NotImplementedException(); }
-#endregion
+    public class _AppBarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Appbar.AppBar>
+    {
+        #region constructors
+        public _AppBarState()
+        { }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Leading{get;set;}
-public virtual bool AutomaticallyImplyLeading{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Title{get;set;}
-public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget FlexibleSpace{get;set;}
-public virtual FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget Bottom{get;set;}
-public virtual double Elevation{get;set;}
-public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape{get;set;}
-public virtual FlutterBinding.UI.Color BackgroundColor{get;set;}
-public virtual Brightness Brightness{get;set;}
-public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData IconTheme{get;set;}
-public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData ActionsIconTheme{get;set;}
-public virtual FlutterSDK.Material.Texttheme.TextTheme TextTheme{get;set;}
-public virtual bool Primary{get;set;}
-public virtual bool CenterTitle{get;set;}
-public virtual bool ExcludeHeaderSemantics{get;set;}
-public virtual double TitleSpacing{get;set;}
-public virtual double ToolbarOpacity{get;set;}
-public virtual double BottomOpacity{get;set;}
-public new Size PreferredSize{get;set;}
-#endregion
+        #region fields
+        internal virtual double _DefaultElevation { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-private bool _GetEffectiveCenterTitle(FlutterSDK.Material.Themedata.ThemeData theme){ throw new NotImplementedException(); }
+        private void _HandleDrawerButton() { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Material.Appbar._AppBarState CreateState(){ throw new NotImplementedException(); }
+        private void _HandleDrawerButtonEnd() { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-public class _AppBarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Appbar.AppBar>
-{
-#region constructors
-public _AppBarState()
-{ }
-#endregion
+        #endregion
+    }
 
-#region fields
-internal virtual double _DefaultElevation{get;set;}
-#endregion
 
-#region methods
+    public class _FloatingAppBar : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public _FloatingAppBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.Child = child; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Material.Appbar._FloatingAppBarState CreateState() { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class _FloatingAppBarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Appbar._FloatingAppBar>
+    {
+        #region constructors
+        public _FloatingAppBarState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition _Position { get; set; }
+        #endregion
 
-private void _HandleDrawerButton(){ throw new NotImplementedException(); }
+        #region methods
 
-
-private void _HandleDrawerButtonEnd(){ throw new NotImplementedException(); }
-
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _FloatingAppBar : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public _FloatingAppBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key)
-{
-this.Child = child;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Material.Appbar._FloatingAppBarState CreateState(){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _FloatingAppBarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Appbar._FloatingAppBar>
-{
-#region constructors
-public _FloatingAppBarState()
-{ }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition _Position{get;set;}
-#endregion
-
-#region methods
-
-public new void DidChangeDependencies(){ throw new NotImplementedException(); }
-
-
-public new void Dispose(){ throw new NotImplementedException(); }
-
-
-private FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverFloatingPersistentHeader _HeaderRenderer(){ throw new NotImplementedException(); }
-
-
-private void _IsScrollingListener(){ throw new NotImplementedException(); }
-
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _SliverAppBarDelegate : FlutterSDK.Widgets.Sliverpersistentheader.SliverPersistentHeaderDelegate
-{
-#region constructors
-public _SliverAppBarDelegate(FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget),bool automaticallyImplyLeading = default(bool),FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget),List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>),FlutterSDK.Widgets.Framework.Widget flexibleSpace = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget bottom = default(FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget),double elevation = default(double),bool forceElevated = default(bool),FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),Brightness brightness = default(Brightness),FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData),FlutterSDK.Widgets.Iconthemedata.IconThemeData actionsIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData),FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme),bool primary = default(bool),bool centerTitle = default(bool),bool excludeHeaderSemantics = default(bool),double titleSpacing = default(double),double expandedHeight = default(double),double collapsedHeight = default(double),double topPadding = default(double),bool floating = default(bool),bool pinned = default(bool),FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration snapConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration),FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration),FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder))
-: base()
-{
-this.Leading = leading;
-this.AutomaticallyImplyLeading = automaticallyImplyLeading;
-this.Title = title;
-this.Actions = actions;
-this.FlexibleSpace = flexibleSpace;
-this.Bottom = bottom;
-this.Elevation = elevation;
-this.ForceElevated = forceElevated;
-this.BackgroundColor = backgroundColor;
-this.Brightness = brightness;
-this.IconTheme = iconTheme;
-this.ActionsIconTheme = actionsIconTheme;
-this.TextTheme = textTheme;
-this.Primary = primary;
-this.CenterTitle = centerTitle;
-this.ExcludeHeaderSemantics = excludeHeaderSemantics;
-this.TitleSpacing = titleSpacing;
-this.ExpandedHeight = expandedHeight;
-this.CollapsedHeight = collapsedHeight;
-this.TopPadding = topPadding;
-this.Floating = floating;
-this.Pinned = pinned;
-this.SnapConfiguration = snapConfiguration;
-this.StretchConfiguration = stretchConfiguration;
-this.Shape = shape;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Leading{get;set;}
-public virtual bool AutomaticallyImplyLeading{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Title{get;set;}
-public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget FlexibleSpace{get;set;}
-public virtual FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget Bottom{get;set;}
-public virtual double Elevation{get;set;}
-public virtual bool ForceElevated{get;set;}
-public virtual FlutterBinding.UI.Color BackgroundColor{get;set;}
-public virtual Brightness Brightness{get;set;}
-public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData IconTheme{get;set;}
-public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData ActionsIconTheme{get;set;}
-public virtual FlutterSDK.Material.Texttheme.TextTheme TextTheme{get;set;}
-public virtual bool Primary{get;set;}
-public virtual bool CenterTitle{get;set;}
-public virtual bool ExcludeHeaderSemantics{get;set;}
-public virtual double TitleSpacing{get;set;}
-public virtual double ExpandedHeight{get;set;}
-public virtual double CollapsedHeight{get;set;}
-public virtual double TopPadding{get;set;}
-public virtual bool Floating{get;set;}
-public virtual bool Pinned{get;set;}
-public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape{get;set;}
-internal virtual double _BottomHeight{get;set;}
-public new FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration SnapConfiguration{get;set;}
-public new FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration StretchConfiguration{get;set;}
-public virtual double MinExtent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double MaxExtent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context,double shrinkOffset,bool overlapsContent){ throw new NotImplementedException(); }
-
-
-public new bool ShouldRebuild(FlutterSDK.Material.Appbar._SliverAppBarDelegate oldDelegate){ throw new NotImplementedException(); }
-public new bool ShouldRebuild(FlutterSDK.Widgets.Sliverpersistentheader.SliverPersistentHeaderDelegate oldDelegate){ throw new NotImplementedException(); }
-
-
-#endregion
-}
-
-
-public class SliverAppBar : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public SliverAppBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget),bool automaticallyImplyLeading = true,FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget),List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>),FlutterSDK.Widgets.Framework.Widget flexibleSpace = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget bottom = default(FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget),double elevation = default(double),bool forceElevated = false,FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),Brightness brightness = default(Brightness),FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData),FlutterSDK.Widgets.Iconthemedata.IconThemeData actionsIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData),FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme),bool primary = true,bool centerTitle = default(bool),bool excludeHeaderSemantics = false,double titleSpacing = default(double),double expandedHeight = default(double),bool floating = false,bool pinned = false,bool snap = false,bool stretch = false,double stretchTriggerOffset = 100.0,FlutterSDK.Foundation.Basictypes.AsyncCallback onStretchTrigger = default(FlutterSDK.Foundation.Basictypes.AsyncCallback),FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder))
-: base(key:key)
-{
-this.Leading = leading;
-this.AutomaticallyImplyLeading = automaticallyImplyLeading;
-this.Title = title;
-this.Actions = actions;
-this.FlexibleSpace = flexibleSpace;
-this.Bottom = bottom;
-this.Elevation = elevation;
-this.ForceElevated = forceElevated;
-this.BackgroundColor = backgroundColor;
-this.Brightness = brightness;
-this.IconTheme = iconTheme;
-this.ActionsIconTheme = actionsIconTheme;
-this.TextTheme = textTheme;
-this.Primary = primary;
-this.CenterTitle = centerTitle;
-this.ExcludeHeaderSemantics = excludeHeaderSemantics;
-this.TitleSpacing = titleSpacing;
-this.ExpandedHeight = expandedHeight;
-this.Floating = floating;
-this.Pinned = pinned;
-this.Snap = snap;
-this.Stretch = stretch;
-this.StretchTriggerOffset = stretchTriggerOffset;
-this.OnStretchTrigger = onStretchTrigger;
-this.Shape = shape;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Leading{get;set;}
-public virtual bool AutomaticallyImplyLeading{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Title{get;set;}
-public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget FlexibleSpace{get;set;}
-public virtual FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget Bottom{get;set;}
-public virtual double Elevation{get;set;}
-public virtual bool ForceElevated{get;set;}
-public virtual FlutterBinding.UI.Color BackgroundColor{get;set;}
-public virtual Brightness Brightness{get;set;}
-public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData IconTheme{get;set;}
-public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData ActionsIconTheme{get;set;}
-public virtual FlutterSDK.Material.Texttheme.TextTheme TextTheme{get;set;}
-public virtual bool Primary{get;set;}
-public virtual bool CenterTitle{get;set;}
-public virtual bool ExcludeHeaderSemantics{get;set;}
-public virtual double TitleSpacing{get;set;}
-public virtual double ExpandedHeight{get;set;}
-public virtual bool Floating{get;set;}
-public virtual bool Pinned{get;set;}
-public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape{get;set;}
-public virtual bool Snap{get;set;}
-public virtual bool Stretch{get;set;}
-public virtual double StretchTriggerOffset{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.AsyncCallback OnStretchTrigger{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Material.Appbar._SliverAppBarState CreateState(){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _SliverAppBarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Appbar.SliverAppBar>,ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-#region constructors
-public _SliverAppBarState()
-{ }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration _SnapConfiguration{get;set;}
-internal virtual FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration _StretchConfiguration{get;set;}
-#endregion
-
-#region methods
-
-private void _UpdateSnapConfiguration(){ throw new NotImplementedException(); }
-
-
-private void _UpdateStretchConfiguration(){ throw new NotImplementedException(); }
-
-
-public new void InitState(){ throw new NotImplementedException(); }
-
-
-public new void DidUpdateWidget(FlutterSDK.Material.Appbar.SliverAppBar oldWidget){ throw new NotImplementedException(); }
-
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _AppBarTitleBox : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
-{
-#region constructors
-public _AppBarTitleBox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key,child:child)
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public new FlutterSDK.Material.Appbar._RenderAppBarTitleBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Material.Appbar._RenderAppBarTitleBox renderObject){ throw new NotImplementedException(); }
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Rendering.@object.RenderObject renderObject){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _RenderAppBarTitleBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
-{
-#region constructors
-public _RenderAppBarTitleBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),TextDirection textDirection = default(TextDirection))
-: base(child:child,alignment:AlignmentDefaultClass.Alignment.Center,textDirection:textDirection)
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public new void PerformLayout(){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public new void DidChangeDependencies() { throw new NotImplementedException(); }
+
+
+        public new void Dispose() { throw new NotImplementedException(); }
+
+
+        private FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverFloatingPersistentHeader _HeaderRenderer() { throw new NotImplementedException(); }
+
+
+        private void _IsScrollingListener() { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class _SliverAppBarDelegate : FlutterSDK.Widgets.Sliverpersistentheader.SliverPersistentHeaderDelegate
+    {
+        #region constructors
+        public _SliverAppBarDelegate(FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), bool automaticallyImplyLeading = default(bool), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Framework.Widget flexibleSpace = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget bottom = default(FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget), double elevation = default(double), bool forceElevated = default(bool), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness), FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData actionsIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme), bool primary = default(bool), bool centerTitle = default(bool), bool excludeHeaderSemantics = default(bool), double titleSpacing = default(double), double expandedHeight = default(double), double collapsedHeight = default(double), double topPadding = default(double), bool floating = default(bool), bool pinned = default(bool), FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration snapConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration), FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder))
+        : base()
+        {
+            this.Leading = leading;
+            this.AutomaticallyImplyLeading = automaticallyImplyLeading;
+            this.Title = title;
+            this.Actions = actions;
+            this.FlexibleSpace = flexibleSpace;
+            this.Bottom = bottom;
+            this.Elevation = elevation;
+            this.ForceElevated = forceElevated;
+            this.BackgroundColor = backgroundColor;
+            this.Brightness = brightness;
+            this.IconTheme = iconTheme;
+            this.ActionsIconTheme = actionsIconTheme;
+            this.TextTheme = textTheme;
+            this.Primary = primary;
+            this.CenterTitle = centerTitle;
+            this.ExcludeHeaderSemantics = excludeHeaderSemantics;
+            this.TitleSpacing = titleSpacing;
+            this.ExpandedHeight = expandedHeight;
+            this.CollapsedHeight = collapsedHeight;
+            this.TopPadding = topPadding;
+            this.Floating = floating;
+            this.Pinned = pinned;
+            this.SnapConfiguration = snapConfiguration;
+            this.StretchConfiguration = stretchConfiguration;
+            this.Shape = shape; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
+        public virtual bool AutomaticallyImplyLeading { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+        public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget FlexibleSpace { get; set; }
+        public virtual FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget Bottom { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual bool ForceElevated { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual Brightness Brightness { get; set; }
+        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData IconTheme { get; set; }
+        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData ActionsIconTheme { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme TextTheme { get; set; }
+        public virtual bool Primary { get; set; }
+        public virtual bool CenterTitle { get; set; }
+        public virtual bool ExcludeHeaderSemantics { get; set; }
+        public virtual double TitleSpacing { get; set; }
+        public virtual double ExpandedHeight { get; set; }
+        public virtual double CollapsedHeight { get; set; }
+        public virtual double TopPadding { get; set; }
+        public virtual bool Floating { get; set; }
+        public virtual bool Pinned { get; set; }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        internal virtual double _BottomHeight { get; set; }
+        public new FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration SnapConfiguration { get; set; }
+        public new FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration StretchConfiguration { get; set; }
+        public virtual double MinExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double MaxExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context, double shrinkOffset, bool overlapsContent) { throw new NotImplementedException(); }
+
+
+        public new bool ShouldRebuild(FlutterSDK.Material.Appbar._SliverAppBarDelegate oldDelegate) { throw new NotImplementedException(); }
+        public new bool ShouldRebuild(FlutterSDK.Widgets.Sliverpersistentheader.SliverPersistentHeaderDelegate oldDelegate) { throw new NotImplementedException(); }
+
+
+        #endregion
+    }
+
+
+    public class SliverAppBar : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public SliverAppBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), bool automaticallyImplyLeading = true, FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Framework.Widget flexibleSpace = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget bottom = default(FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget), double elevation = default(double), bool forceElevated = false, FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness), FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData actionsIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme), bool primary = true, bool centerTitle = default(bool), bool excludeHeaderSemantics = false, double titleSpacing = default(double), double expandedHeight = default(double), bool floating = false, bool pinned = false, bool snap = false, bool stretch = false, double stretchTriggerOffset = 100.0, FlutterSDK.Foundation.Basictypes.AsyncCallback onStretchTrigger = default(FlutterSDK.Foundation.Basictypes.AsyncCallback), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder))
+        : base(key: key)
+        {
+            this.Leading = leading;
+            this.AutomaticallyImplyLeading = automaticallyImplyLeading;
+            this.Title = title;
+            this.Actions = actions;
+            this.FlexibleSpace = flexibleSpace;
+            this.Bottom = bottom;
+            this.Elevation = elevation;
+            this.ForceElevated = forceElevated;
+            this.BackgroundColor = backgroundColor;
+            this.Brightness = brightness;
+            this.IconTheme = iconTheme;
+            this.ActionsIconTheme = actionsIconTheme;
+            this.TextTheme = textTheme;
+            this.Primary = primary;
+            this.CenterTitle = centerTitle;
+            this.ExcludeHeaderSemantics = excludeHeaderSemantics;
+            this.TitleSpacing = titleSpacing;
+            this.ExpandedHeight = expandedHeight;
+            this.Floating = floating;
+            this.Pinned = pinned;
+            this.Snap = snap;
+            this.Stretch = stretch;
+            this.StretchTriggerOffset = stretchTriggerOffset;
+            this.OnStretchTrigger = onStretchTrigger;
+            this.Shape = shape; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
+        public virtual bool AutomaticallyImplyLeading { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+        public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget FlexibleSpace { get; set; }
+        public virtual FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget Bottom { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual bool ForceElevated { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual Brightness Brightness { get; set; }
+        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData IconTheme { get; set; }
+        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData ActionsIconTheme { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme TextTheme { get; set; }
+        public virtual bool Primary { get; set; }
+        public virtual bool CenterTitle { get; set; }
+        public virtual bool ExcludeHeaderSemantics { get; set; }
+        public virtual double TitleSpacing { get; set; }
+        public virtual double ExpandedHeight { get; set; }
+        public virtual bool Floating { get; set; }
+        public virtual bool Pinned { get; set; }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        public virtual bool Snap { get; set; }
+        public virtual bool Stretch { get; set; }
+        public virtual double StretchTriggerOffset { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.AsyncCallback OnStretchTrigger { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Material.Appbar._SliverAppBarState CreateState() { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class _SliverAppBarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Appbar.SliverAppBar>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _SliverAppBarState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration _SnapConfiguration { get; set; }
+        internal virtual FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration _StretchConfiguration { get; set; }
+        #endregion
+
+        #region methods
+
+        private void _UpdateSnapConfiguration() { throw new NotImplementedException(); }
+
+
+        private void _UpdateStretchConfiguration() { throw new NotImplementedException(); }
+
+
+        public new void InitState() { throw new NotImplementedException(); }
+
+
+        public new void DidUpdateWidget(FlutterSDK.Material.Appbar.SliverAppBar oldWidget) { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class _AppBarTitleBox : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
+    {
+        #region constructors
+        public _AppBarTitleBox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Material.Appbar._RenderAppBarTitleBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Material.Appbar._RenderAppBarTitleBox renderObject) { throw new NotImplementedException(); }
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class _RenderAppBarTitleBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
+    {
+        #region constructors
+        public _RenderAppBarTitleBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), TextDirection textDirection = default(TextDirection))
+        : base(child: child, alignment: AlignmentDefaultClass.Alignment.Center, textDirection: textDirection)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new void PerformLayout() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

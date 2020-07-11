@@ -421,56 +421,59 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Services.Rawkeyboardfuchsia{
-internal static class RawkeyboardfuchsiaDefaultClass{
-}
-
-public class RawKeyEventDataFuchsia : FlutterSDK.Services.Rawkeyboard.RawKeyEventData
+namespace FlutterSDK.Services.Rawkeyboardfuchsia
 {
-#region constructors
-public RawKeyEventDataFuchsia(int hidUsage = 0,int codePoint = 0,int modifiers = 0)
-: base()
-{
-this.HidUsage = hidUsage;
-this.CodePoint = codePoint;
-this.Modifiers = modifiers;throw new NotImplementedException(); }
-#endregion
+    internal static class RawkeyboardfuchsiaDefaultClass
+    {
+    }
 
-#region fields
-public virtual int HidUsage{get;set;}
-public virtual int CodePoint{get;set;}
-public virtual int Modifiers{get;set;}
-public virtual int ModifierNone{get;set;}
-public virtual int ModifierCapsLock{get;set;}
-public virtual int ModifierLeftShift{get;set;}
-public virtual int ModifierRightShift{get;set;}
-public virtual int ModifierShift{get;set;}
-public virtual int ModifierLeftControl{get;set;}
-public virtual int ModifierRightControl{get;set;}
-public virtual int ModifierControl{get;set;}
-public virtual int ModifierLeftAlt{get;set;}
-public virtual int ModifierRightAlt{get;set;}
-public virtual int ModifierAlt{get;set;}
-public virtual int ModifierLeftMeta{get;set;}
-public virtual int ModifierRightMeta{get;set;}
-public virtual int ModifierMeta{get;set;}
-public virtual string KeyLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class RawKeyEventDataFuchsia : FlutterSDK.Services.Rawkeyboard.RawKeyEventData
+    {
+        #region constructors
+        public RawKeyEventDataFuchsia(int hidUsage = 0, int codePoint = 0, int modifiers = 0)
+        : base()
+        {
+            this.HidUsage = hidUsage;
+            this.CodePoint = codePoint;
+            this.Modifiers = modifiers; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual int HidUsage { get; set; }
+        public virtual int CodePoint { get; set; }
+        public virtual int Modifiers { get; set; }
+        public virtual int ModifierNone { get; set; }
+        public virtual int ModifierCapsLock { get; set; }
+        public virtual int ModifierLeftShift { get; set; }
+        public virtual int ModifierRightShift { get; set; }
+        public virtual int ModifierShift { get; set; }
+        public virtual int ModifierLeftControl { get; set; }
+        public virtual int ModifierRightControl { get; set; }
+        public virtual int ModifierControl { get; set; }
+        public virtual int ModifierLeftAlt { get; set; }
+        public virtual int ModifierRightAlt { get; set; }
+        public virtual int ModifierAlt { get; set; }
+        public virtual int ModifierLeftMeta { get; set; }
+        public virtual int ModifierRightMeta { get; set; }
+        public virtual int ModifierMeta { get; set; }
+        public virtual string KeyLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-private bool _IsLeftRightModifierPressed(FlutterSDK.Services.Rawkeyboard.KeyboardSide side,int anyMask,int leftMask,int rightMask){ throw new NotImplementedException(); }
+        #region methods
+
+        private bool _IsLeftRightModifierPressed(FlutterSDK.Services.Rawkeyboard.KeyboardSide side, int anyMask, int leftMask, int rightMask) { throw new NotImplementedException(); }
 
 
-public new bool IsModifierPressed(FlutterSDK.Services.Rawkeyboard.ModifierKey key,FlutterSDK.Services.Rawkeyboard.KeyboardSide side = default(FlutterSDK.Services.Rawkeyboard.KeyboardSide)){ throw new NotImplementedException(); }
+        public new bool IsModifierPressed(FlutterSDK.Services.Rawkeyboard.ModifierKey key, FlutterSDK.Services.Rawkeyboard.KeyboardSide side = default(FlutterSDK.Services.Rawkeyboard.KeyboardSide)) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Services.Rawkeyboard.KeyboardSide GetModifierSide(FlutterSDK.Services.Rawkeyboard.ModifierKey key){ throw new NotImplementedException(); }
+        public new FlutterSDK.Services.Rawkeyboard.KeyboardSide GetModifierSide(FlutterSDK.Services.Rawkeyboard.ModifierKey key) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        #endregion
+    }
 
 }

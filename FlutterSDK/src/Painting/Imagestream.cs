@@ -421,239 +421,248 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Painting.Imagestream{
-public delegate void ImageListener(FlutterSDK.Painting.Imagestream.ImageInfo image,bool synchronousCall);
-public delegate void ImageChunkListener(FlutterSDK.Painting.Imagestream.ImageChunkEvent @event);
-public delegate void ImageErrorListener(object exception,StackTrace stackTrace);
-internal static class ImagestreamDefaultClass{
-}
-
-public interface IImageStreamCompleter{
-void AddListener(FlutterSDK.Painting.Imagestream.ImageStreamListener listener);
-void RemoveListener(FlutterSDK.Painting.Imagestream.ImageStreamListener listener);
-void AddOnLastListenerRemovedCallback(VoidCallback callback);
-void RemoveOnLastListenerRemovedCallback(VoidCallback callback);
-void SetImage(FlutterSDK.Painting.Imagestream.ImageInfo image);
-void ReportError(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode context = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode),object exception = default(object),StackTrace stack = default(StackTrace),FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector),bool silent = false);
-void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description);
-bool HasListeners{get;}
-}
-
-
-public class ImageInfo
+namespace FlutterSDK.Painting.Imagestream
 {
-#region constructors
-public ImageInfo(SKImage image = default(SKImage),double scale = 1.0)
-: base()
-{
-this.Image = image;
-this.Scale = scale;throw new NotImplementedException(); }
-#endregion
+    public delegate void ImageListener(FlutterSDK.Painting.Imagestream.ImageInfo image, bool synchronousCall);
+    public delegate void ImageChunkListener(FlutterSDK.Painting.Imagestream.ImageChunkEvent @event);
+    public delegate void ImageErrorListener(object exception, StackTrace stackTrace);
+    internal static class ImagestreamDefaultClass
+    {
+    }
+
+    public interface IImageStreamCompleter
+    {
+        void AddListener(FlutterSDK.Painting.Imagestream.ImageStreamListener listener);
+        void RemoveListener(FlutterSDK.Painting.Imagestream.ImageStreamListener listener);
+        void AddOnLastListenerRemovedCallback(VoidCallback callback);
+        void RemoveOnLastListenerRemovedCallback(VoidCallback callback);
+        void SetImage(FlutterSDK.Painting.Imagestream.ImageInfo image);
+        void ReportError(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode context = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode), object exception = default(object), StackTrace stack = default(StackTrace), FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector), bool silent = false);
+        void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description);
+        bool HasListeners { get; }
+    }
+
+
+    public class ImageInfo
+    {
+        #region constructors
+        public ImageInfo(SKImage image = default(SKImage), double scale = 1.0)
+        : base()
+        {
+            this.Image = image;
+            this.Scale = scale; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual SKImage Image{get;set;}
-public virtual double Scale{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #region fields
+        public virtual SKImage Image { get; set; }
+        public virtual double Scale { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#region methods
+        #region methods
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class ImageStreamListener
+    {
+        #region constructors
+        public ImageStreamListener(FlutterSDK.Painting.Imagestream.ImageListener onImage, FlutterSDK.Painting.Imagestream.ImageChunkListener onChunk = default(FlutterSDK.Painting.Imagestream.ImageChunkListener), FlutterSDK.Painting.Imagestream.ImageErrorListener onError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener))
+        : base()
+        {
+            this.OnImage = onImage;
+            this.OnChunk = onChunk;
+            this.OnError = onError; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual FlutterSDK.Painting.Imagestream.ImageListener OnImage { get; set; }
+        public virtual FlutterSDK.Painting.Imagestream.ImageChunkListener OnChunk { get; set; }
+        public virtual FlutterSDK.Painting.Imagestream.ImageErrorListener OnError { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public class ImageStreamListener
-{
-#region constructors
-public ImageStreamListener(FlutterSDK.Painting.Imagestream.ImageListener onImage,FlutterSDK.Painting.Imagestream.ImageChunkListener onChunk = default(FlutterSDK.Painting.Imagestream.ImageChunkListener),FlutterSDK.Painting.Imagestream.ImageErrorListener onError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener))
-: base()
-{
-this.OnImage = onImage;
-this.OnChunk = onChunk;
-this.OnError = onError;throw new NotImplementedException(); }
-#endregion
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Painting.Imagestream.ImageListener OnImage{get;set;}
-public virtual FlutterSDK.Painting.Imagestream.ImageChunkListener OnChunk{get;set;}
-public virtual FlutterSDK.Painting.Imagestream.ImageErrorListener OnError{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+    public class ImageChunkEvent : IDiagnosticable
+    {
+        #region constructors
+        public ImageChunkEvent(int cumulativeBytesLoaded = default(int), int expectedTotalBytes = default(int))
+        : base()
+        {
+            this.CumulativeBytesLoaded = cumulativeBytesLoaded;
+            this.ExpectedTotalBytes = expectedTotalBytes; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual int CumulativeBytesLoaded { get; set; }
+        public virtual int ExpectedTotalBytes { get; set; }
+        #endregion
 
+        #region methods
 
-public class ImageChunkEvent : IDiagnosticable
-{
-#region constructors
-public ImageChunkEvent(int cumulativeBytesLoaded = default(int),int expectedTotalBytes = default(int))
-: base()
-{
-this.CumulativeBytesLoaded = cumulativeBytesLoaded;
-this.ExpectedTotalBytes = expectedTotalBytes;throw new NotImplementedException(); }
-#endregion
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#region fields
-public virtual int CumulativeBytesLoaded{get;set;}
-public virtual int ExpectedTotalBytes{get;set;}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+    public class ImageStream : IDiagnosticable
+    {
+        #region constructors
+        public ImageStream()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        internal virtual FlutterSDK.Painting.Imagestream.ImageStreamCompleter _Completer { get; set; }
+        internal virtual List<FlutterSDK.Painting.Imagestream.ImageStreamListener> _Listeners { get; set; }
+        public virtual FlutterSDK.Painting.Imagestream.ImageStreamCompleter Completer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual @Object Key { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public class ImageStream : IDiagnosticable
-{
-#region constructors
-public ImageStream()
-{
-throw new NotImplementedException(); }
-#endregion
+        public virtual void SetCompleter(FlutterSDK.Painting.Imagestream.ImageStreamCompleter value) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual FlutterSDK.Painting.Imagestream.ImageStreamCompleter _Completer{get;set;}
-internal virtual List<FlutterSDK.Painting.Imagestream.ImageStreamListener> _Listeners{get;set;}
-public virtual FlutterSDK.Painting.Imagestream.ImageStreamCompleter Completer{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual @Object Key{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+        public virtual void AddListener(FlutterSDK.Painting.Imagestream.ImageStreamListener listener) { throw new NotImplementedException(); }
 
-public virtual void SetCompleter(FlutterSDK.Painting.Imagestream.ImageStreamCompleter value){ throw new NotImplementedException(); }
 
+        public virtual void RemoveListener(FlutterSDK.Painting.Imagestream.ImageStreamListener listener) { throw new NotImplementedException(); }
 
-public virtual void AddListener(FlutterSDK.Painting.Imagestream.ImageStreamListener listener){ throw new NotImplementedException(); }
 
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-public virtual void RemoveListener(FlutterSDK.Painting.Imagestream.ImageStreamListener listener){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+    public class ImageStreamCompleter : IDiagnosticable
+    {
+        #region constructors
+        public ImageStreamCompleter()
+        { }
+        #endregion
 
-#endregion
-}
+        #region fields
+        internal virtual List<FlutterSDK.Painting.Imagestream.ImageStreamListener> _Listeners { get; set; }
+        internal virtual FlutterSDK.Painting.Imagestream.ImageInfo _CurrentImage { get; set; }
+        internal virtual FlutterSDK.Foundation.Assertions.FlutterErrorDetails _CurrentError { get; set; }
+        internal virtual List<object> _OnLastListenerRemovedCallbacks { get; set; }
+        public virtual bool HasListeners { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public class ImageStreamCompleter : IDiagnosticable
-{
-#region constructors
-public ImageStreamCompleter()
-{ }
-#endregion
+        public virtual void AddListener(FlutterSDK.Painting.Imagestream.ImageStreamListener listener) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual List<FlutterSDK.Painting.Imagestream.ImageStreamListener> _Listeners{get;set;}
-internal virtual FlutterSDK.Painting.Imagestream.ImageInfo _CurrentImage{get;set;}
-internal virtual FlutterSDK.Foundation.Assertions.FlutterErrorDetails _CurrentError{get;set;}
-internal virtual List<object> _OnLastListenerRemovedCallbacks{get;set;}
-public virtual bool HasListeners{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+        public virtual void RemoveListener(FlutterSDK.Painting.Imagestream.ImageStreamListener listener) { throw new NotImplementedException(); }
 
-public virtual void AddListener(FlutterSDK.Painting.Imagestream.ImageStreamListener listener){ throw new NotImplementedException(); }
 
+        public virtual void AddOnLastListenerRemovedCallback(VoidCallback callback) { throw new NotImplementedException(); }
 
-public virtual void RemoveListener(FlutterSDK.Painting.Imagestream.ImageStreamListener listener){ throw new NotImplementedException(); }
 
+        public virtual void RemoveOnLastListenerRemovedCallback(VoidCallback callback) { throw new NotImplementedException(); }
 
-public virtual void AddOnLastListenerRemovedCallback(VoidCallback callback){ throw new NotImplementedException(); }
 
+        public virtual void SetImage(FlutterSDK.Painting.Imagestream.ImageInfo image) { throw new NotImplementedException(); }
 
-public virtual void RemoveOnLastListenerRemovedCallback(VoidCallback callback){ throw new NotImplementedException(); }
 
+        public virtual void ReportError(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode context = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode), object exception = default(object), StackTrace stack = default(StackTrace), FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector), bool silent = false) { throw new NotImplementedException(); }
 
-public virtual void SetImage(FlutterSDK.Painting.Imagestream.ImageInfo image){ throw new NotImplementedException(); }
 
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description) { throw new NotImplementedException(); }
 
-public virtual void ReportError(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode context = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode),object exception = default(object),StackTrace stack = default(StackTrace),FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector),bool silent = false){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description){ throw new NotImplementedException(); }
+    public class OneFrameImageStreamCompleter : FlutterSDK.Painting.Imagestream.ImageStreamCompleter
+    {
+        #region constructors
+        public OneFrameImageStreamCompleter(Future<FlutterSDK.Painting.Imagestream.ImageInfo> image, FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        #endregion
 
+        #region methods
+        #endregion
+    }
 
-public class OneFrameImageStreamCompleter : FlutterSDK.Painting.Imagestream.ImageStreamCompleter
-{
-#region constructors
-public OneFrameImageStreamCompleter(Future<FlutterSDK.Painting.Imagestream.ImageInfo> image,FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector))
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
 
-#region fields
-#endregion
+    public class MultiFrameImageStreamCompleter : FlutterSDK.Painting.Imagestream.ImageStreamCompleter
+    {
+        #region constructors
+        public MultiFrameImageStreamCompleter(Future<SKCodec> codec = default(Future<SKCodec>), double scale = default(double), Stream<FlutterSDK.Painting.Imagestream.ImageChunkEvent> chunkEvents = default(Stream<FlutterSDK.Painting.Imagestream.ImageChunkEvent>), FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
-#endregion
-}
+        #region fields
+        internal virtual SKCodec _Codec { get; set; }
+        internal virtual double _Scale { get; set; }
+        internal virtual FlutterSDK.Foundation.Assertions.InformationCollector _InformationCollector { get; set; }
+        internal virtual SKCodecFrameInfo _NextFrame { get; set; }
+        internal virtual TimeSpan _ShownTimestamp { get; set; }
+        internal virtual TimeSpan _FrameDuration { get; set; }
+        internal virtual int _FramesEmitted { get; set; }
+        internal virtual Timer _Timer { get; set; }
+        internal virtual bool _FrameCallbackScheduled { get; set; }
+        #endregion
 
+        #region methods
 
-public class MultiFrameImageStreamCompleter : FlutterSDK.Painting.Imagestream.ImageStreamCompleter
-{
-#region constructors
-public MultiFrameImageStreamCompleter(Future<SKCodec> codec = default(Future<SKCodec>),double scale = default(double),Stream<FlutterSDK.Painting.Imagestream.ImageChunkEvent> chunkEvents = default(Stream<FlutterSDK.Painting.Imagestream.ImageChunkEvent>),FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector))
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
+        private void _HandleCodecReady(SKCodec codec) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual SKCodec _Codec{get;set;}
-internal virtual double _Scale{get;set;}
-internal virtual FlutterSDK.Foundation.Assertions.InformationCollector _InformationCollector{get;set;}
-internal virtual SKCodecFrameInfo _NextFrame{get;set;}
-internal virtual TimeSpan _ShownTimestamp{get;set;}
-internal virtual TimeSpan _FrameDuration{get;set;}
-internal virtual int _FramesEmitted{get;set;}
-internal virtual Timer _Timer{get;set;}
-internal virtual bool _FrameCallbackScheduled{get;set;}
-#endregion
 
-#region methods
+        private void _HandleAppFrame(TimeSpan timestamp) { throw new NotImplementedException(); }
 
-private void _HandleCodecReady(SKCodec codec){ throw new NotImplementedException(); }
 
+        private bool _IsFirstFrame() { throw new NotImplementedException(); }
 
-private void _HandleAppFrame(TimeSpan timestamp){ throw new NotImplementedException(); }
 
+        private bool _HasFrameDurationPassed(TimeSpan timestamp) { throw new NotImplementedException(); }
 
-private bool _IsFirstFrame(){ throw new NotImplementedException(); }
 
+        private Future<object> _DecodeNextFrameAndSchedule() { throw new NotImplementedException(); }
 
-private bool _HasFrameDurationPassed(TimeSpan timestamp){ throw new NotImplementedException(); }
 
+        private void _ScheduleAppFrame() { throw new NotImplementedException(); }
 
-private Future<object> _DecodeNextFrameAndSchedule(){ throw new NotImplementedException(); }
 
+        private void _EmitFrame(FlutterSDK.Painting.Imagestream.ImageInfo imageInfo) { throw new NotImplementedException(); }
 
-private void _ScheduleAppFrame(){ throw new NotImplementedException(); }
 
+        public new void AddListener(FlutterSDK.Painting.Imagestream.ImageStreamListener listener) { throw new NotImplementedException(); }
 
-private void _EmitFrame(FlutterSDK.Painting.Imagestream.ImageInfo imageInfo){ throw new NotImplementedException(); }
 
+        public new void RemoveListener(FlutterSDK.Painting.Imagestream.ImageStreamListener listener) { throw new NotImplementedException(); }
 
-public new void AddListener(FlutterSDK.Painting.Imagestream.ImageStreamListener listener){ throw new NotImplementedException(); }
-
-
-public new void RemoveListener(FlutterSDK.Painting.Imagestream.ImageStreamListener listener){ throw new NotImplementedException(); }
-
-#endregion
-}
+        #endregion
+    }
 
 }

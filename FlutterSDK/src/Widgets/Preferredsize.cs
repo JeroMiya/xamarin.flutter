@@ -423,70 +423,75 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Preferredsize{
-internal static class PreferredsizeDefaultClass{
-}
-
-public interface IPreferredSizeWidget{}
-
-public class PreferredSizeWidget:IWidget{
-public virtual Size PreferredSize{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Foundation.Key.Key Key{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-
-public virtual FlutterSDK.Widgets.Framework.Element CreateElement(){ throw new NotImplementedException(); }
-
-
-public new string ToStringShort(){ throw new NotImplementedException(); }
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
-
-
-public virtual bool CanUpdate(FlutterSDK.Widgets.Framework.Widget oldWidget,FlutterSDK.Widgets.Framework.Widget newWidget){ throw new NotImplementedException(); }
-
-
-private int _DebugConcreteSubtype(FlutterSDK.Widgets.Framework.Widget widget){ throw new NotImplementedException(); }
-
-}
-public static class PreferredSizeWidgetMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IPreferredSizeWidget, PreferredSizeWidget> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IPreferredSizeWidget, PreferredSizeWidget>();
-static PreferredSizeWidget GetOrCreate(IPreferredSizeWidget instance)
+namespace FlutterSDK.Widgets.Preferredsize
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new PreferredSizeWidget();
-_table.Add(instance, value);
-}
-return (PreferredSizeWidget)value;
-}
-public static Size PreferredSizeProperty(this IPreferredSizeWidget instance) => GetOrCreate(instance).PreferredSize;
-}
+    internal static class PreferredsizeDefaultClass
+    {
+    }
+
+    public interface IPreferredSizeWidget { }
+
+    public class PreferredSizeWidget : IWidget
+    {
+        public virtual Size PreferredSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Foundation.Key.Key Key { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+
+        public virtual FlutterSDK.Widgets.Framework.Element CreateElement() { throw new NotImplementedException(); }
 
 
-public class PreferredSize : FlutterSDK.Widgets.Framework.StatelessWidget,IPreferredSizeWidget
-{
-#region constructors
-public PreferredSize(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),Size preferredSize = default(Size))
-: base(key:key)
-{
-this.Child = child;
-this.PreferredSizeValue = preferredSize;throw new NotImplementedException(); }
-#endregion
+        public new string ToStringShort() { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-public new Size PreferredSizeValue{get;set;}
-#endregion
 
-#region methods
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+
+
+        public virtual bool CanUpdate(FlutterSDK.Widgets.Framework.Widget oldWidget, FlutterSDK.Widgets.Framework.Widget newWidget) { throw new NotImplementedException(); }
+
+
+        private int _DebugConcreteSubtype(FlutterSDK.Widgets.Framework.Widget widget) { throw new NotImplementedException(); }
+
+    }
+    public static class PreferredSizeWidgetMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IPreferredSizeWidget, PreferredSizeWidget> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IPreferredSizeWidget, PreferredSizeWidget>();
+        static PreferredSizeWidget GetOrCreate(IPreferredSizeWidget instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new PreferredSizeWidget();
+                _table.Add(instance, value);
+            }
+            return (PreferredSizeWidget)value;
+        }
+        public static Size PreferredSizeProperty(this IPreferredSizeWidget instance) => GetOrCreate(instance).PreferredSize;
+    }
+
+
+    public class PreferredSize : FlutterSDK.Widgets.Framework.StatelessWidget, IPreferredSizeWidget
+    {
+        #region constructors
+        public PreferredSize(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), Size preferredSize = default(Size))
+        : base(key: key)
+        {
+            this.Child = child;
+            this.PreferredSizeValue = preferredSize; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public new Size PreferredSizeValue { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

@@ -291,33 +291,36 @@ using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
-namespace FlutterSDK.Cupertino.Iconthemedata{
-internal static class IconthemedataDefaultClass{
-}
-
-public class CupertinoIconThemeData : FlutterSDK.Widgets.Iconthemedata.IconThemeData,IDiagnosticable
+namespace FlutterSDK.Cupertino.Iconthemedata
 {
-#region constructors
-public CupertinoIconThemeData(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),double opacity = default(double),double size = default(double))
-: base(color:color,opacity:opacity,size:size)
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class IconthemedataDefaultClass
+    {
+    }
 
-#region fields
-#endregion
+    public class CupertinoIconThemeData : FlutterSDK.Widgets.Iconthemedata.IconThemeData, IDiagnosticable
+    {
+        #region constructors
+        public CupertinoIconThemeData(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double opacity = default(double), double size = default(double))
+        : base(color: color, opacity: opacity, size: size)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        #endregion
 
-public new FlutterSDK.Widgets.Iconthemedata.IconThemeData Resolve(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
+
+        public new FlutterSDK.Widgets.Iconthemedata.IconThemeData Resolve(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Cupertino.Iconthemedata.CupertinoIconThemeData CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),double opacity = default(double),double size = default(double)){ throw new NotImplementedException(); }
+        public new FlutterSDK.Cupertino.Iconthemedata.CupertinoIconThemeData CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double opacity = default(double), double size = default(double)) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 }

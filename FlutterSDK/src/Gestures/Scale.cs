@@ -294,189 +294,198 @@ using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
-namespace FlutterSDK.Gestures.Scale{
-public delegate void GestureScaleStartCallback(FlutterSDK.Gestures.Scale.ScaleStartDetails details);
-public delegate void GestureScaleUpdateCallback(FlutterSDK.Gestures.Scale.ScaleUpdateDetails details);
-public delegate void GestureScaleEndCallback(FlutterSDK.Gestures.Scale.ScaleEndDetails details);
-internal static class ScaleDefaultClass{
-internal static bool _IsFlingGesture(FlutterSDK.Gestures.Velocitytracker.Velocity velocity){
-throw new NotImplementedException();
-}
-
-}
-
-public class ScaleStartDetails
+namespace FlutterSDK.Gestures.Scale
 {
-#region constructors
-public ScaleStartDetails(FlutterBinding.UI.Offset focalPoint = default(FlutterBinding.UI.Offset),FlutterBinding.UI.Offset localFocalPoint = default(FlutterBinding.UI.Offset))
-: base()
-{
-this.FocalPoint = focalPoint;throw new NotImplementedException(); }
-#endregion
+    public delegate void GestureScaleStartCallback(FlutterSDK.Gestures.Scale.ScaleStartDetails details);
+    public delegate void GestureScaleUpdateCallback(FlutterSDK.Gestures.Scale.ScaleUpdateDetails details);
+    public delegate void GestureScaleEndCallback(FlutterSDK.Gestures.Scale.ScaleEndDetails details);
+    internal static class ScaleDefaultClass
+    {
+        internal static bool _IsFlingGesture(FlutterSDK.Gestures.Velocitytracker.Velocity velocity)
+        {
+            throw new NotImplementedException();
+        }
 
-#region fields
-public virtual FlutterBinding.UI.Offset FocalPoint{get;set;}
-public virtual FlutterBinding.UI.Offset LocalFocalPoint{get;set;}
-#endregion
+    }
 
-#region methods
+    public class ScaleStartDetails
+    {
+        #region constructors
+        public ScaleStartDetails(FlutterBinding.UI.Offset focalPoint = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localFocalPoint = default(FlutterBinding.UI.Offset))
+        : base()
+        {
+            this.FocalPoint = focalPoint; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual FlutterBinding.UI.Offset FocalPoint { get; set; }
+        public virtual FlutterBinding.UI.Offset LocalFocalPoint { get; set; }
+        #endregion
 
+        #region methods
 
-public class ScaleUpdateDetails
-{
-#region constructors
-public ScaleUpdateDetails(FlutterBinding.UI.Offset focalPoint = default(FlutterBinding.UI.Offset),FlutterBinding.UI.Offset localFocalPoint = default(FlutterBinding.UI.Offset),double scale = 1.0,double horizontalScale = 1.0,double verticalScale = 1.0,double rotation = 0.0)
-: base()
-{
-this.FocalPoint = focalPoint;
-this.Scale = scale;
-this.HorizontalScale = horizontalScale;
-this.VerticalScale = verticalScale;
-this.Rotation = rotation;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterBinding.UI.Offset FocalPoint{get;set;}
-public virtual FlutterBinding.UI.Offset LocalFocalPoint{get;set;}
-public virtual double Scale{get;set;}
-public virtual double HorizontalScale{get;set;}
-public virtual double VerticalScale{get;set;}
-public virtual double Rotation{get;set;}
-#endregion
-
-#region methods
-
-#endregion
-}
+        #endregion
+    }
 
 
-public class ScaleEndDetails
-{
-#region constructors
-public ScaleEndDetails(FlutterSDK.Gestures.Velocitytracker.Velocity velocity = default(FlutterSDK.Gestures.Velocitytracker.Velocity))
-: base()
-{
-this.Velocity = velocity;throw new NotImplementedException(); }
-#endregion
+    public class ScaleUpdateDetails
+    {
+        #region constructors
+        public ScaleUpdateDetails(FlutterBinding.UI.Offset focalPoint = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localFocalPoint = default(FlutterBinding.UI.Offset), double scale = 1.0, double horizontalScale = 1.0, double verticalScale = 1.0, double rotation = 0.0)
+        : base()
+        {
+            this.FocalPoint = focalPoint;
+            this.Scale = scale;
+            this.HorizontalScale = horizontalScale;
+            this.VerticalScale = verticalScale;
+            this.Rotation = rotation; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Gestures.Velocitytracker.Velocity Velocity{get;set;}
-#endregion
+        #region fields
+        public virtual FlutterBinding.UI.Offset FocalPoint { get; set; }
+        public virtual FlutterBinding.UI.Offset LocalFocalPoint { get; set; }
+        public virtual double Scale { get; set; }
+        public virtual double HorizontalScale { get; set; }
+        public virtual double VerticalScale { get; set; }
+        public virtual double Rotation { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-#endregion
-}
-
-
-public class _LineBetweenPointers
-{
-#region constructors
-public _LineBetweenPointers(FlutterBinding.UI.Offset pointerStartLocation = default(FlutterBinding.UI.Offset),int pointerStartId = 0,FlutterBinding.UI.Offset pointerEndLocation = default(FlutterBinding.UI.Offset),int pointerEndId = 1)
-: base()
-{
-this.PointerStartLocation = pointerStartLocation;
-this.PointerStartId = pointerStartId;
-this.PointerEndLocation = pointerEndLocation;
-this.PointerEndId = pointerEndId;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterBinding.UI.Offset PointerStartLocation{get;set;}
-public virtual int PointerStartId{get;set;}
-public virtual FlutterBinding.UI.Offset PointerEndLocation{get;set;}
-public virtual int PointerEndId{get;set;}
-#endregion
-
-#region methods
-#endregion
-}
+        #endregion
+    }
 
 
-public class ScaleGestureRecognizer : FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer
-{
-#region constructors
-public ScaleGestureRecognizer(@Object debugOwner = default(@Object),PointerDeviceKind kind = default(PointerDeviceKind))
-: base(debugOwner:debugOwner,kind:kind)
-{
-throw new NotImplementedException(); }
-#endregion
+    public class ScaleEndDetails
+    {
+        #region constructors
+        public ScaleEndDetails(FlutterSDK.Gestures.Velocitytracker.Velocity velocity = default(FlutterSDK.Gestures.Velocitytracker.Velocity))
+        : base()
+        {
+            this.Velocity = velocity; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Gestures.Scale.GestureScaleStartCallback OnStart{get;set;}
-public virtual FlutterSDK.Gestures.Scale.GestureScaleUpdateCallback OnUpdate{get;set;}
-public virtual FlutterSDK.Gestures.Scale.GestureScaleEndCallback OnEnd{get;set;}
-internal virtual FlutterSDK.Gestures.Scale._ScaleState _State{get;set;}
-internal virtual Matrix4 _LastTransform{get;set;}
-internal virtual FlutterBinding.UI.Offset _InitialFocalPoint{get;set;}
-internal virtual FlutterBinding.UI.Offset _CurrentFocalPoint{get;set;}
-internal virtual double _InitialSpan{get;set;}
-internal virtual double _CurrentSpan{get;set;}
-internal virtual double _InitialHorizontalSpan{get;set;}
-internal virtual double _CurrentHorizontalSpan{get;set;}
-internal virtual double _InitialVerticalSpan{get;set;}
-internal virtual double _CurrentVerticalSpan{get;set;}
-internal virtual FlutterSDK.Gestures.Scale._LineBetweenPointers _InitialLine{get;set;}
-internal virtual FlutterSDK.Gestures.Scale._LineBetweenPointers _CurrentLine{get;set;}
-internal virtual Dictionary<int,Offset> _PointerLocations{get;set;}
-internal virtual List<int> _PointerQueue{get;set;}
-internal virtual Dictionary<int,FlutterSDK.Gestures.Velocitytracker.VelocityTracker> _VelocityTrackers{get;set;}
-internal virtual double _ScaleFactor{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _HorizontalScaleFactor{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _VerticalScaleFactor{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string DebugDescription{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #region fields
+        public virtual FlutterSDK.Gestures.Velocitytracker.Velocity Velocity { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-private double _ComputeRotationFactor(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerEvent @event){ throw new NotImplementedException(); }
+    public class _LineBetweenPointers
+    {
+        #region constructors
+        public _LineBetweenPointers(FlutterBinding.UI.Offset pointerStartLocation = default(FlutterBinding.UI.Offset), int pointerStartId = 0, FlutterBinding.UI.Offset pointerEndLocation = default(FlutterBinding.UI.Offset), int pointerEndId = 1)
+        : base()
+        {
+            this.PointerStartLocation = pointerStartLocation;
+            this.PointerStartId = pointerStartId;
+            this.PointerEndLocation = pointerEndLocation;
+            this.PointerEndId = pointerEndId; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterBinding.UI.Offset PointerStartLocation { get; set; }
+        public virtual int PointerStartId { get; set; }
+        public virtual FlutterBinding.UI.Offset PointerEndLocation { get; set; }
+        public virtual int PointerEndId { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
 
 
-public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event){ throw new NotImplementedException(); }
+    public class ScaleGestureRecognizer : FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer
+    {
+        #region constructors
+        public ScaleGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
+        : base(debugOwner: debugOwner, kind: kind)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Gestures.Scale.GestureScaleStartCallback OnStart { get; set; }
+        public virtual FlutterSDK.Gestures.Scale.GestureScaleUpdateCallback OnUpdate { get; set; }
+        public virtual FlutterSDK.Gestures.Scale.GestureScaleEndCallback OnEnd { get; set; }
+        internal virtual FlutterSDK.Gestures.Scale._ScaleState _State { get; set; }
+        internal virtual Matrix4 _LastTransform { get; set; }
+        internal virtual FlutterBinding.UI.Offset _InitialFocalPoint { get; set; }
+        internal virtual FlutterBinding.UI.Offset _CurrentFocalPoint { get; set; }
+        internal virtual double _InitialSpan { get; set; }
+        internal virtual double _CurrentSpan { get; set; }
+        internal virtual double _InitialHorizontalSpan { get; set; }
+        internal virtual double _CurrentHorizontalSpan { get; set; }
+        internal virtual double _InitialVerticalSpan { get; set; }
+        internal virtual double _CurrentVerticalSpan { get; set; }
+        internal virtual FlutterSDK.Gestures.Scale._LineBetweenPointers _InitialLine { get; set; }
+        internal virtual FlutterSDK.Gestures.Scale._LineBetweenPointers _CurrentLine { get; set; }
+        internal virtual Dictionary<int, Offset> _PointerLocations { get; set; }
+        internal virtual List<int> _PointerQueue { get; set; }
+        internal virtual Dictionary<int, FlutterSDK.Gestures.Velocitytracker.VelocityTracker> _VelocityTrackers { get; set; }
+        internal virtual double _ScaleFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _HorizontalScaleFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _VerticalScaleFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        private double _ComputeRotationFactor() { throw new NotImplementedException(); }
 
 
-private void _Update(){ throw new NotImplementedException(); }
+        public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
 
 
-private void _UpdateLines(){ throw new NotImplementedException(); }
+        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
 
 
-private bool _Reconfigure(int pointer){ throw new NotImplementedException(); }
+        private void _Update() { throw new NotImplementedException(); }
 
 
-private void _AdvanceStateMachine(bool shouldStartIfAccepted){ throw new NotImplementedException(); }
+        private void _UpdateLines() { throw new NotImplementedException(); }
 
 
-private void _DispatchOnStartCallbackIfNeeded(){ throw new NotImplementedException(); }
+        private bool _Reconfigure(int pointer) { throw new NotImplementedException(); }
 
 
-public new void AcceptGesture(int pointer){ throw new NotImplementedException(); }
+        private void _AdvanceStateMachine(bool shouldStartIfAccepted) { throw new NotImplementedException(); }
 
 
-public new void RejectGesture(int pointer){ throw new NotImplementedException(); }
+        private void _DispatchOnStartCallbackIfNeeded() { throw new NotImplementedException(); }
 
 
-public new void DidStopTrackingLastPointer(int pointer){ throw new NotImplementedException(); }
+        public new void AcceptGesture(int pointer) { throw new NotImplementedException(); }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public new void RejectGesture(int pointer) { throw new NotImplementedException(); }
 
 
-public enum _ScaleState{
+        public new void DidStopTrackingLastPointer(int pointer) { throw new NotImplementedException(); }
 
-Ready,
-Possible,
-Accepted,
-Started,
-}
+
+        public new void Dispose() { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public enum _ScaleState
+    {
+
+        Ready,
+        Possible,
+        Accepted,
+        Started,
+    }
 
 }

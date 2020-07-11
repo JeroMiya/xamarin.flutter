@@ -422,647 +422,676 @@ using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
-namespace FlutterSDK.Widgets.Focustraversal{
-internal static class FocustraversalDefaultClass{
-internal static FlutterSDK.Widgets.Framework.BuildContext _GetAncestor(FlutterSDK.Widgets.Framework.BuildContext context,int count = 1){
-throw new NotImplementedException();
-}
-
-internal static void _FocusAndEnsureVisible(FlutterSDK.Widgets.Focusmanager.FocusNode node,FlutterSDK.Widgets.Scrollposition.ScrollPositionAlignmentPolicy alignmentPolicy = default(FlutterSDK.Widgets.Scrollposition.ScrollPositionAlignmentPolicy)){
-throw new NotImplementedException();
-}
-
-}
-
-public interface IFocusTraversalPolicy{
-FlutterSDK.Widgets.Focusmanager.FocusNode FindFirstFocus(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode);
-FlutterSDK.Widgets.Focusmanager.FocusNode FindFirstFocusInDirection(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode,FlutterSDK.Widgets.Focustraversal.TraversalDirection direction);
-void InvalidateScopeData(FlutterSDK.Widgets.Focusmanager.FocusScopeNode node);
-void ChangedScope(FlutterSDK.Widgets.Focusmanager.FocusNode node = default(FlutterSDK.Widgets.Focusmanager.FocusNode),FlutterSDK.Widgets.Focusmanager.FocusScopeNode oldScope = default(FlutterSDK.Widgets.Focusmanager.FocusScopeNode));
-bool Next(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode);
-bool Previous(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode);
-bool InDirection(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode,FlutterSDK.Widgets.Focustraversal.TraversalDirection direction);
-Iterable<FlutterSDK.Widgets.Focusmanager.FocusNode> SortDescendants(Iterable<FlutterSDK.Widgets.Focusmanager.FocusNode> descendants);
-}
-
-
-public interface IFocusOrder{
-int CompareTo(FlutterSDK.Widgets.Focustraversal.FocusOrder other);
-int DoCompare(FlutterSDK.Widgets.Focustraversal.FocusOrder other);
-}
-
-
-public interface IDirectionalFocusTraversalPolicyMixin{}
-
-public class DirectionalFocusTraversalPolicyMixin{
-internal virtual Dictionary<FlutterSDK.Widgets.Focusmanager.FocusScopeNode,FlutterSDK.Widgets.Focustraversal._DirectionalPolicyData> _PolicyData{get;set;}
-
-public new void InvalidateScopeData(FlutterSDK.Widgets.Focusmanager.FocusScopeNode node){ throw new NotImplementedException(); }
-
-
-public new void ChangedScope(FlutterSDK.Widgets.Focusmanager.FocusNode node = default(FlutterSDK.Widgets.Focusmanager.FocusNode),FlutterSDK.Widgets.Focusmanager.FocusScopeNode oldScope = default(FlutterSDK.Widgets.Focusmanager.FocusScopeNode)){ throw new NotImplementedException(); }
-
-
-public new FlutterSDK.Widgets.Focusmanager.FocusNode FindFirstFocusInDirection(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode,FlutterSDK.Widgets.Focustraversal.TraversalDirection direction){ throw new NotImplementedException(); }
-
-
-private FlutterSDK.Widgets.Focusmanager.FocusNode _SortAndFindInitial(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode,bool vertical = default(bool),bool first = default(bool)){ throw new NotImplementedException(); }
-
-
-private Iterable<FlutterSDK.Widgets.Focusmanager.FocusNode> _SortAndFilterHorizontally(FlutterSDK.Widgets.Focustraversal.TraversalDirection direction,FlutterBinding.UI.Rect target,FlutterSDK.Widgets.Focusmanager.FocusNode nearestScope){ throw new NotImplementedException(); }
-
-
-private Iterable<FlutterSDK.Widgets.Focusmanager.FocusNode> _SortAndFilterVertically(FlutterSDK.Widgets.Focustraversal.TraversalDirection direction,FlutterBinding.UI.Rect target,Iterable<FlutterSDK.Widgets.Focusmanager.FocusNode> nodes){ throw new NotImplementedException(); }
-
-
-private bool _PopPolicyDataIfNeeded(FlutterSDK.Widgets.Focustraversal.TraversalDirection direction,FlutterSDK.Widgets.Focusmanager.FocusScopeNode nearestScope,FlutterSDK.Widgets.Focusmanager.FocusNode focusedChild){ throw new NotImplementedException(); }
-
-
-private void _PushPolicyData(FlutterSDK.Widgets.Focustraversal.TraversalDirection direction,FlutterSDK.Widgets.Focusmanager.FocusScopeNode nearestScope,FlutterSDK.Widgets.Focusmanager.FocusNode focusedChild){ throw new NotImplementedException(); }
-
-
-public new bool InDirection(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode,FlutterSDK.Widgets.Focustraversal.TraversalDirection direction){ throw new NotImplementedException(); }
-
-}
-public static class DirectionalFocusTraversalPolicyMixinMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IDirectionalFocusTraversalPolicyMixin, DirectionalFocusTraversalPolicyMixin> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IDirectionalFocusTraversalPolicyMixin, DirectionalFocusTraversalPolicyMixin>();
-static DirectionalFocusTraversalPolicyMixin GetOrCreate(IDirectionalFocusTraversalPolicyMixin instance)
+namespace FlutterSDK.Widgets.Focustraversal
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new DirectionalFocusTraversalPolicyMixin();
-_table.Add(instance, value);
-}
-return (DirectionalFocusTraversalPolicyMixin)value;
-}
-public static void InvalidateScopeData(this IDirectionalFocusTraversalPolicyMixin instance,FlutterSDK.Widgets.Focusmanager.FocusScopeNode node) => GetOrCreate(instance).InvalidateScopeData(node);
-public static void ChangedScope(this IDirectionalFocusTraversalPolicyMixin instance,FlutterSDK.Widgets.Focusmanager.FocusNode node = default(FlutterSDK.Widgets.Focusmanager.FocusNode),FlutterSDK.Widgets.Focusmanager.FocusScopeNode oldScope = default(FlutterSDK.Widgets.Focusmanager.FocusScopeNode)) => GetOrCreate(instance).ChangedScope(node, oldScope);
-public static FlutterSDK.Widgets.Focusmanager.FocusNode FindFirstFocusInDirection(this IDirectionalFocusTraversalPolicyMixin instance,FlutterSDK.Widgets.Focusmanager.FocusNode currentNode,FlutterSDK.Widgets.Focustraversal.TraversalDirection direction) => GetOrCreate(instance).FindFirstFocusInDirection(currentNode, direction);
-public static bool InDirection(this IDirectionalFocusTraversalPolicyMixin instance,FlutterSDK.Widgets.Focusmanager.FocusNode currentNode,FlutterSDK.Widgets.Focustraversal.TraversalDirection direction) => GetOrCreate(instance).InDirection(currentNode, direction);
-}
+    internal static class FocustraversalDefaultClass
+    {
+        internal static FlutterSDK.Widgets.Framework.BuildContext _GetAncestor(FlutterSDK.Widgets.Framework.BuildContext context, int count = 1)
+        {
+            throw new NotImplementedException();
+        }
 
+        internal static void _FocusAndEnsureVisible(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Widgets.Scrollposition.ScrollPositionAlignmentPolicy alignmentPolicy = default(FlutterSDK.Widgets.Scrollposition.ScrollPositionAlignmentPolicy))
+        {
+            throw new NotImplementedException();
+        }
 
-public class _FocusTraversalGroupInfo
-{
-#region constructors
-public _FocusTraversalGroupInfo(FlutterSDK.Widgets.Focustraversal._FocusTraversalGroupMarker marker,FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy defaultPolicy = default(FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy),List<FlutterSDK.Widgets.Focusmanager.FocusNode> members = default(List<FlutterSDK.Widgets.Focusmanager.FocusNode>))
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
+    }
 
-#region fields
-public virtual FlutterSDK.Widgets.Focusmanager.FocusNode GroupNode{get;set;}
-public virtual FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy Policy{get;set;}
-public virtual List<FlutterSDK.Widgets.Focusmanager.FocusNode> Members{get;set;}
-#endregion
+    public interface IFocusTraversalPolicy
+    {
+        FlutterSDK.Widgets.Focusmanager.FocusNode FindFirstFocus(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode);
+        FlutterSDK.Widgets.Focusmanager.FocusNode FindFirstFocusInDirection(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode, FlutterSDK.Widgets.Focustraversal.TraversalDirection direction);
+        void InvalidateScopeData(FlutterSDK.Widgets.Focusmanager.FocusScopeNode node);
+        void ChangedScope(FlutterSDK.Widgets.Focusmanager.FocusNode node = default(FlutterSDK.Widgets.Focusmanager.FocusNode), FlutterSDK.Widgets.Focusmanager.FocusScopeNode oldScope = default(FlutterSDK.Widgets.Focusmanager.FocusScopeNode));
+        bool Next(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode);
+        bool Previous(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode);
+        bool InDirection(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode, FlutterSDK.Widgets.Focustraversal.TraversalDirection direction);
+        Iterable<FlutterSDK.Widgets.Focusmanager.FocusNode> SortDescendants(Iterable<FlutterSDK.Widgets.Focusmanager.FocusNode> descendants);
+    }
 
-#region methods
-#endregion
-}
 
+    public interface IFocusOrder
+    {
+        int CompareTo(FlutterSDK.Widgets.Focustraversal.FocusOrder other);
+        int DoCompare(FlutterSDK.Widgets.Focustraversal.FocusOrder other);
+    }
 
-public class FocusTraversalPolicy : IDiagnosticable
-{
-#region constructors
-public FocusTraversalPolicy()
-{
-throw new NotImplementedException(); }
-#endregion
 
-#region fields
-#endregion
+    public interface IDirectionalFocusTraversalPolicyMixin { }
 
-#region methods
+    public class DirectionalFocusTraversalPolicyMixin
+    {
+        internal virtual Dictionary<FlutterSDK.Widgets.Focusmanager.FocusScopeNode, FlutterSDK.Widgets.Focustraversal._DirectionalPolicyData> _PolicyData { get; set; }
 
-public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FindFirstFocus(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode){ throw new NotImplementedException(); }
+        public new void InvalidateScopeData(FlutterSDK.Widgets.Focusmanager.FocusScopeNode node) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FindFirstFocusInDirection(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode,FlutterSDK.Widgets.Focustraversal.TraversalDirection direction){ throw new NotImplementedException(); }
+        public new void ChangedScope(FlutterSDK.Widgets.Focusmanager.FocusNode node = default(FlutterSDK.Widgets.Focusmanager.FocusNode), FlutterSDK.Widgets.Focusmanager.FocusScopeNode oldScope = default(FlutterSDK.Widgets.Focusmanager.FocusScopeNode)) { throw new NotImplementedException(); }
 
 
-public virtual void InvalidateScopeData(FlutterSDK.Widgets.Focusmanager.FocusScopeNode node){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Focusmanager.FocusNode FindFirstFocusInDirection(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode, FlutterSDK.Widgets.Focustraversal.TraversalDirection direction) { throw new NotImplementedException(); }
 
 
-public virtual void ChangedScope(FlutterSDK.Widgets.Focusmanager.FocusNode node = default(FlutterSDK.Widgets.Focusmanager.FocusNode),FlutterSDK.Widgets.Focusmanager.FocusScopeNode oldScope = default(FlutterSDK.Widgets.Focusmanager.FocusScopeNode)){ throw new NotImplementedException(); }
+        private FlutterSDK.Widgets.Focusmanager.FocusNode _SortAndFindInitial(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode, bool vertical = default(bool), bool first = default(bool)) { throw new NotImplementedException(); }
 
 
-public virtual bool Next(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode){ throw new NotImplementedException(); }
+        private Iterable<FlutterSDK.Widgets.Focusmanager.FocusNode> _SortAndFilterHorizontally(FlutterSDK.Widgets.Focustraversal.TraversalDirection direction, FlutterBinding.UI.Rect target, FlutterSDK.Widgets.Focusmanager.FocusNode nearestScope) { throw new NotImplementedException(); }
 
 
-public virtual bool Previous(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode){ throw new NotImplementedException(); }
+        private Iterable<FlutterSDK.Widgets.Focusmanager.FocusNode> _SortAndFilterVertically(FlutterSDK.Widgets.Focustraversal.TraversalDirection direction, FlutterBinding.UI.Rect target, Iterable<FlutterSDK.Widgets.Focusmanager.FocusNode> nodes) { throw new NotImplementedException(); }
 
 
-public virtual bool InDirection(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode,FlutterSDK.Widgets.Focustraversal.TraversalDirection direction){ throw new NotImplementedException(); }
+        private bool _PopPolicyDataIfNeeded(FlutterSDK.Widgets.Focustraversal.TraversalDirection direction, FlutterSDK.Widgets.Focusmanager.FocusScopeNode nearestScope, FlutterSDK.Widgets.Focusmanager.FocusNode focusedChild) { throw new NotImplementedException(); }
 
 
-public virtual Iterable<FlutterSDK.Widgets.Focusmanager.FocusNode> SortDescendants(Iterable<FlutterSDK.Widgets.Focusmanager.FocusNode> descendants){ throw new NotImplementedException(); }
+        private void _PushPolicyData(FlutterSDK.Widgets.Focustraversal.TraversalDirection direction, FlutterSDK.Widgets.Focusmanager.FocusScopeNode nearestScope, FlutterSDK.Widgets.Focusmanager.FocusNode focusedChild) { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Widgets.Focustraversal._FocusTraversalGroupMarker _GetMarker(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new bool InDirection(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode, FlutterSDK.Widgets.Focustraversal.TraversalDirection direction) { throw new NotImplementedException(); }
 
+    }
+    public static class DirectionalFocusTraversalPolicyMixinMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IDirectionalFocusTraversalPolicyMixin, DirectionalFocusTraversalPolicyMixin> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IDirectionalFocusTraversalPolicyMixin, DirectionalFocusTraversalPolicyMixin>();
+        static DirectionalFocusTraversalPolicyMixin GetOrCreate(IDirectionalFocusTraversalPolicyMixin instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new DirectionalFocusTraversalPolicyMixin();
+                _table.Add(instance, value);
+            }
+            return (DirectionalFocusTraversalPolicyMixin)value;
+        }
+        public static void InvalidateScopeData(this IDirectionalFocusTraversalPolicyMixin instance, FlutterSDK.Widgets.Focusmanager.FocusScopeNode node) => GetOrCreate(instance).InvalidateScopeData(node);
+        public static void ChangedScope(this IDirectionalFocusTraversalPolicyMixin instance, FlutterSDK.Widgets.Focusmanager.FocusNode node = default(FlutterSDK.Widgets.Focusmanager.FocusNode), FlutterSDK.Widgets.Focusmanager.FocusScopeNode oldScope = default(FlutterSDK.Widgets.Focusmanager.FocusScopeNode)) => GetOrCreate(instance).ChangedScope(node, oldScope);
+        public static FlutterSDK.Widgets.Focusmanager.FocusNode FindFirstFocusInDirection(this IDirectionalFocusTraversalPolicyMixin instance, FlutterSDK.Widgets.Focusmanager.FocusNode currentNode, FlutterSDK.Widgets.Focustraversal.TraversalDirection direction) => GetOrCreate(instance).FindFirstFocusInDirection(currentNode, direction);
+        public static bool InDirection(this IDirectionalFocusTraversalPolicyMixin instance, FlutterSDK.Widgets.Focusmanager.FocusNode currentNode, FlutterSDK.Widgets.Focustraversal.TraversalDirection direction) => GetOrCreate(instance).InDirection(currentNode, direction);
+    }
 
-private List<FlutterSDK.Widgets.Focusmanager.FocusNode> _SortAllDescendants(FlutterSDK.Widgets.Focusmanager.FocusScopeNode scope){ throw new NotImplementedException(); }
 
+    public class _FocusTraversalGroupInfo
+    {
+        #region constructors
+        public _FocusTraversalGroupInfo(FlutterSDK.Widgets.Focustraversal._FocusTraversalGroupMarker marker, FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy defaultPolicy = default(FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy), List<FlutterSDK.Widgets.Focusmanager.FocusNode> members = default(List<FlutterSDK.Widgets.Focusmanager.FocusNode>))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-private bool _MoveFocus(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode,bool forward = default(bool)){ throw new NotImplementedException(); }
+        #region fields
+        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode GroupNode { get; set; }
+        public virtual FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy Policy { get; set; }
+        public virtual List<FlutterSDK.Widgets.Focusmanager.FocusNode> Members { get; set; }
+        #endregion
 
-#endregion
-}
+        #region methods
+        #endregion
+    }
 
 
-public class _DirectionalPolicyDataEntry
-{
-#region constructors
-public _DirectionalPolicyDataEntry(FlutterSDK.Widgets.Focustraversal.TraversalDirection direction = default(FlutterSDK.Widgets.Focustraversal.TraversalDirection),FlutterSDK.Widgets.Focusmanager.FocusNode node = default(FlutterSDK.Widgets.Focusmanager.FocusNode))
-: base()
-{
-this.Direction = direction;
-this.Node = node;throw new NotImplementedException(); }
-#endregion
+    public class FocusTraversalPolicy : IDiagnosticable
+    {
+        #region constructors
+        public FocusTraversalPolicy()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Widgets.Focustraversal.TraversalDirection Direction{get;set;}
-public virtual FlutterSDK.Widgets.Focusmanager.FocusNode Node{get;set;}
-#endregion
+        #region fields
+        #endregion
 
-#region methods
-#endregion
-}
+        #region methods
 
+        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FindFirstFocus(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode) { throw new NotImplementedException(); }
 
-public class _DirectionalPolicyData
-{
-#region constructors
-public _DirectionalPolicyData(List<FlutterSDK.Widgets.Focustraversal._DirectionalPolicyDataEntry> history = default(List<FlutterSDK.Widgets.Focustraversal._DirectionalPolicyDataEntry>))
-: base()
-{
-this.History = history;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual List<FlutterSDK.Widgets.Focustraversal._DirectionalPolicyDataEntry> History{get;set;}
-#endregion
+        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FindFirstFocusInDirection(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode, FlutterSDK.Widgets.Focustraversal.TraversalDirection direction) { throw new NotImplementedException(); }
 
-#region methods
-#endregion
-}
 
+        public virtual void InvalidateScopeData(FlutterSDK.Widgets.Focusmanager.FocusScopeNode node) { throw new NotImplementedException(); }
 
-public class WidgetOrderTraversalPolicy : FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy,IDirectionalFocusTraversalPolicyMixin
-{
-#region constructors
-public WidgetOrderTraversalPolicy()
-{ }
-#endregion
 
-#region fields
-#endregion
+        public virtual void ChangedScope(FlutterSDK.Widgets.Focusmanager.FocusNode node = default(FlutterSDK.Widgets.Focusmanager.FocusNode), FlutterSDK.Widgets.Focusmanager.FocusScopeNode oldScope = default(FlutterSDK.Widgets.Focusmanager.FocusScopeNode)) { throw new NotImplementedException(); }
 
-#region methods
 
-public new Iterable<FlutterSDK.Widgets.Focusmanager.FocusNode> SortDescendants(Iterable<FlutterSDK.Widgets.Focusmanager.FocusNode> descendants){ throw new NotImplementedException(); }
+        public virtual bool Next(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public virtual bool Previous(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode) { throw new NotImplementedException(); }
 
-public class _ReadingOrderSortData : IDiagnosticable
-{
-#region constructors
-public _ReadingOrderSortData(FlutterSDK.Widgets.Focusmanager.FocusNode node)
-: base()
-{
-this.Node = node;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual TextDirection Directionality{get;set;}
-public virtual FlutterBinding.UI.Rect Rect{get;set;}
-public virtual FlutterSDK.Widgets.Focusmanager.FocusNode Node{get;set;}
-internal virtual List<FlutterSDK.Widgets.Basic.Directionality> _DirectionalAncestors{get;set;}
-public virtual Iterable<FlutterSDK.Widgets.Basic.Directionality> DirectionalAncestors{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        public virtual bool InDirection(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode, FlutterSDK.Widgets.Focustraversal.TraversalDirection direction) { throw new NotImplementedException(); }
 
-#region methods
 
-private TextDirection _FindDirectionality(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public virtual Iterable<FlutterSDK.Widgets.Focusmanager.FocusNode> SortDescendants(Iterable<FlutterSDK.Widgets.Focusmanager.FocusNode> descendants) { throw new NotImplementedException(); }
 
 
-public virtual TextDirection CommonDirectionalityOf(List<FlutterSDK.Widgets.Focustraversal._ReadingOrderSortData> list){ throw new NotImplementedException(); }
+        private FlutterSDK.Widgets.Focustraversal._FocusTraversalGroupMarker _GetMarker(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public virtual void SortWithDirectionality(List<FlutterSDK.Widgets.Focustraversal._ReadingOrderSortData> list,TextDirection directionality){ throw new NotImplementedException(); }
+        private List<FlutterSDK.Widgets.Focusmanager.FocusNode> _SortAllDescendants(FlutterSDK.Widgets.Focusmanager.FocusScopeNode scope) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        private bool _MoveFocus(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode, bool forward = default(bool)) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _ReadingOrderDirectionalGroupData : IDiagnosticable
-{
-#region constructors
-public _ReadingOrderDirectionalGroupData(List<FlutterSDK.Widgets.Focustraversal._ReadingOrderSortData> members)
-{
-this.Members = members;throw new NotImplementedException(); }
-#endregion
+    public class _DirectionalPolicyDataEntry
+    {
+        #region constructors
+        public _DirectionalPolicyDataEntry(FlutterSDK.Widgets.Focustraversal.TraversalDirection direction = default(FlutterSDK.Widgets.Focustraversal.TraversalDirection), FlutterSDK.Widgets.Focusmanager.FocusNode node = default(FlutterSDK.Widgets.Focusmanager.FocusNode))
+        : base()
+        {
+            this.Direction = direction;
+            this.Node = node; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual List<FlutterSDK.Widgets.Focustraversal._ReadingOrderSortData> Members{get;set;}
-internal virtual FlutterBinding.UI.Rect _Rect{get;set;}
-internal virtual List<FlutterSDK.Widgets.Basic.Directionality> _MemberAncestors{get;set;}
-public virtual TextDirection Directionality{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterBinding.UI.Rect Rect{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual List<FlutterSDK.Widgets.Basic.Directionality> MemberAncestors{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #region fields
+        public virtual FlutterSDK.Widgets.Focustraversal.TraversalDirection Direction { get; set; }
+        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode Node { get; set; }
+        #endregion
 
-#region methods
+        #region methods
+        #endregion
+    }
 
-public virtual void SortWithDirectionality(List<FlutterSDK.Widgets.Focustraversal._ReadingOrderDirectionalGroupData> list,TextDirection directionality){ throw new NotImplementedException(); }
 
+    public class _DirectionalPolicyData
+    {
+        #region constructors
+        public _DirectionalPolicyData(List<FlutterSDK.Widgets.Focustraversal._DirectionalPolicyDataEntry> history = default(List<FlutterSDK.Widgets.Focustraversal._DirectionalPolicyDataEntry>))
+        : base()
+        {
+            this.History = history; throw new NotImplementedException();
+        }
+        #endregion
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        #region fields
+        public virtual List<FlutterSDK.Widgets.Focustraversal._DirectionalPolicyDataEntry> History { get; set; }
+        #endregion
 
-#endregion
-}
+        #region methods
+        #endregion
+    }
 
 
-public class ReadingOrderTraversalPolicy : FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy,IDirectionalFocusTraversalPolicyMixin
-{
-#region constructors
-public ReadingOrderTraversalPolicy()
-{ }
-#endregion
+    public class WidgetOrderTraversalPolicy : FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy, IDirectionalFocusTraversalPolicyMixin
+    {
+        #region constructors
+        public WidgetOrderTraversalPolicy()
+        { }
+        #endregion
 
-#region fields
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-private List<FlutterSDK.Widgets.Focustraversal._ReadingOrderDirectionalGroupData> _CollectDirectionalityGroups(Iterable<FlutterSDK.Widgets.Focustraversal._ReadingOrderSortData> candidates){ throw new NotImplementedException(); }
+        public new Iterable<FlutterSDK.Widgets.Focusmanager.FocusNode> SortDescendants(Iterable<FlutterSDK.Widgets.Focusmanager.FocusNode> descendants) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-private FlutterSDK.Widgets.Focustraversal._ReadingOrderSortData _PickNext(List<FlutterSDK.Widgets.Focustraversal._ReadingOrderSortData> candidates){ throw new NotImplementedException(); }
 
+    public class _ReadingOrderSortData : IDiagnosticable
+    {
+        #region constructors
+        public _ReadingOrderSortData(FlutterSDK.Widgets.Focusmanager.FocusNode node)
+        : base()
+        {
+            this.Node = node; throw new NotImplementedException();
+        }
+        #endregion
 
-public new Iterable<FlutterSDK.Widgets.Focusmanager.FocusNode> SortDescendants(Iterable<FlutterSDK.Widgets.Focusmanager.FocusNode> descendants){ throw new NotImplementedException(); }
+        #region fields
+        public virtual TextDirection Directionality { get; set; }
+        public virtual FlutterBinding.UI.Rect Rect { get; set; }
+        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode Node { get; set; }
+        internal virtual List<FlutterSDK.Widgets.Basic.Directionality> _DirectionalAncestors { get; set; }
+        public virtual Iterable<FlutterSDK.Widgets.Basic.Directionality> DirectionalAncestors { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#endregion
-}
+        #region methods
 
+        private TextDirection _FindDirectionality(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-public class FocusOrder : IComparable<FlutterSDK.Widgets.Focustraversal.FocusOrder>,IDiagnosticable
-{
-#region constructors
-public FocusOrder()
-{
-throw new NotImplementedException(); }
-#endregion
 
-#region fields
-#endregion
+        public virtual TextDirection CommonDirectionalityOf(List<FlutterSDK.Widgets.Focustraversal._ReadingOrderSortData> list) { throw new NotImplementedException(); }
 
-#region methods
 
-public new int CompareTo(FlutterSDK.Widgets.Focustraversal.FocusOrder other){ throw new NotImplementedException(); }
+        public virtual void SortWithDirectionality(List<FlutterSDK.Widgets.Focustraversal._ReadingOrderSortData> list, TextDirection directionality) { throw new NotImplementedException(); }
 
 
-public virtual int DoCompare(FlutterSDK.Widgets.Focustraversal.FocusOrder other){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class NumericFocusOrder : FlutterSDK.Widgets.Focustraversal.FocusOrder
-{
-#region constructors
-public NumericFocusOrder(double order)
-: base()
-{
-this.Order = order;throw new NotImplementedException(); }
-#endregion
+    public class _ReadingOrderDirectionalGroupData : IDiagnosticable
+    {
+        #region constructors
+        public _ReadingOrderDirectionalGroupData(List<FlutterSDK.Widgets.Focustraversal._ReadingOrderSortData> members)
+        {
+            this.Members = members; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual double Order{get;set;}
-#endregion
+        #region fields
+        public virtual List<FlutterSDK.Widgets.Focustraversal._ReadingOrderSortData> Members { get; set; }
+        internal virtual FlutterBinding.UI.Rect _Rect { get; set; }
+        internal virtual List<FlutterSDK.Widgets.Basic.Directionality> _MemberAncestors { get; set; }
+        public virtual TextDirection Directionality { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Rect Rect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual List<FlutterSDK.Widgets.Basic.Directionality> MemberAncestors { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#region methods
+        #region methods
 
-public new int DoCompare(FlutterSDK.Widgets.Focustraversal.NumericFocusOrder other){ throw new NotImplementedException(); }
-public new int DoCompare(FlutterSDK.Widgets.Focustraversal.FocusOrder other){ throw new NotImplementedException(); }
+        public virtual void SortWithDirectionality(List<FlutterSDK.Widgets.Focustraversal._ReadingOrderDirectionalGroupData> list, TextDirection directionality) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class LexicalFocusOrder : FlutterSDK.Widgets.Focustraversal.FocusOrder
-{
-#region constructors
-public LexicalFocusOrder(string order)
-: base()
-{
-this.Order = order;throw new NotImplementedException(); }
-#endregion
+    public class ReadingOrderTraversalPolicy : FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy, IDirectionalFocusTraversalPolicyMixin
+    {
+        #region constructors
+        public ReadingOrderTraversalPolicy()
+        { }
+        #endregion
 
-#region fields
-public virtual string Order{get;set;}
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-public new int DoCompare(FlutterSDK.Widgets.Focustraversal.LexicalFocusOrder other){ throw new NotImplementedException(); }
-public new int DoCompare(FlutterSDK.Widgets.Focustraversal.FocusOrder other){ throw new NotImplementedException(); }
+        private List<FlutterSDK.Widgets.Focustraversal._ReadingOrderDirectionalGroupData> _CollectDirectionalityGroups(Iterable<FlutterSDK.Widgets.Focustraversal._ReadingOrderSortData> candidates) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        private FlutterSDK.Widgets.Focustraversal._ReadingOrderSortData _PickNext(List<FlutterSDK.Widgets.Focustraversal._ReadingOrderSortData> candidates) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new Iterable<FlutterSDK.Widgets.Focusmanager.FocusNode> SortDescendants(Iterable<FlutterSDK.Widgets.Focusmanager.FocusNode> descendants) { throw new NotImplementedException(); }
 
-public class _OrderedFocusInfo
-{
-#region constructors
-public _OrderedFocusInfo(FlutterSDK.Widgets.Focusmanager.FocusNode node = default(FlutterSDK.Widgets.Focusmanager.FocusNode),FlutterSDK.Widgets.Focustraversal.FocusOrder order = default(FlutterSDK.Widgets.Focustraversal.FocusOrder))
-: base()
-{
-this.Node = node;
-this.Order = order;throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-public virtual FlutterSDK.Widgets.Focusmanager.FocusNode Node{get;set;}
-public virtual FlutterSDK.Widgets.Focustraversal.FocusOrder Order{get;set;}
-#endregion
 
-#region methods
-#endregion
-}
+    public class FocusOrder : IComparable<FlutterSDK.Widgets.Focustraversal.FocusOrder>, IDiagnosticable
+    {
+        #region constructors
+        public FocusOrder()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        #endregion
 
-public class OrderedTraversalPolicy : FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy,IDirectionalFocusTraversalPolicyMixin
-{
-#region constructors
-public OrderedTraversalPolicy(FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy secondary = default(FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy))
-{
-this.Secondary = secondary;throw new NotImplementedException(); }
-#endregion
+        #region methods
 
-#region fields
-public virtual FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy Secondary{get;set;}
-#endregion
+        public new int CompareTo(FlutterSDK.Widgets.Focustraversal.FocusOrder other) { throw new NotImplementedException(); }
 
-#region methods
 
-public new Iterable<FlutterSDK.Widgets.Focusmanager.FocusNode> SortDescendants(Iterable<FlutterSDK.Widgets.Focusmanager.FocusNode> descendants){ throw new NotImplementedException(); }
+        public virtual int DoCompare(FlutterSDK.Widgets.Focustraversal.FocusOrder other) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class FocusTraversalOrder : FlutterSDK.Widgets.Framework.InheritedWidget
-{
-#region constructors
-public FocusTraversalOrder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Focustraversal.FocusOrder order = default(FlutterSDK.Widgets.Focustraversal.FocusOrder),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key,child:child)
-{
-this.Order = order;throw new NotImplementedException(); }
-#endregion
+    public class NumericFocusOrder : FlutterSDK.Widgets.Focustraversal.FocusOrder
+    {
+        #region constructors
+        public NumericFocusOrder(double order)
+        : base()
+        {
+            this.Order = order; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Widgets.Focustraversal.FocusOrder Order{get;set;}
-#endregion
+        #region fields
+        public virtual double Order { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public virtual FlutterSDK.Widgets.Focustraversal.FocusOrder Of(FlutterSDK.Widgets.Framework.BuildContext context,bool nullOk = false){ throw new NotImplementedException(); }
+        public new int DoCompare(FlutterSDK.Widgets.Focustraversal.NumericFocusOrder other) { throw new NotImplementedException(); }
+        public new int DoCompare(FlutterSDK.Widgets.Focustraversal.FocusOrder other) { throw new NotImplementedException(); }
 
 
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
 
-#endregion
-}
+    public class LexicalFocusOrder : FlutterSDK.Widgets.Focustraversal.FocusOrder
+    {
+        #region constructors
+        public LexicalFocusOrder(string order)
+        : base()
+        {
+            this.Order = order; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual string Order { get; set; }
+        #endregion
 
-public class FocusTraversalGroup : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public FocusTraversalGroup(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy policy = default(FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key)
-{
-this.Child = child;throw new NotImplementedException(); }
-#endregion
+        #region methods
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-public virtual FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy Policy{get;set;}
-#endregion
+        public new int DoCompare(FlutterSDK.Widgets.Focustraversal.LexicalFocusOrder other) { throw new NotImplementedException(); }
+        public new int DoCompare(FlutterSDK.Widgets.Focustraversal.FocusOrder other) { throw new NotImplementedException(); }
 
-#region methods
 
-public virtual FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy Of(FlutterSDK.Widgets.Framework.BuildContext context,bool nullOk = false){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public new FlutterSDK.Widgets.Focustraversal._FocusTraversalGroupState CreateState(){ throw new NotImplementedException(); }
 
+    public class _OrderedFocusInfo
+    {
+        #region constructors
+        public _OrderedFocusInfo(FlutterSDK.Widgets.Focusmanager.FocusNode node = default(FlutterSDK.Widgets.Focusmanager.FocusNode), FlutterSDK.Widgets.Focustraversal.FocusOrder order = default(FlutterSDK.Widgets.Focustraversal.FocusOrder))
+        : base()
+        {
+            this.Node = node;
+            this.Order = order; throw new NotImplementedException();
+        }
+        #endregion
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        #region fields
+        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode Node { get; set; }
+        public virtual FlutterSDK.Widgets.Focustraversal.FocusOrder Order { get; set; }
+        #endregion
 
-#endregion
-}
+        #region methods
+        #endregion
+    }
 
 
-public class _FocusTraversalGroupState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Focustraversal.FocusTraversalGroup>
-{
-#region constructors
-public _FocusTraversalGroupState()
-{ }
-#endregion
+    public class OrderedTraversalPolicy : FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy, IDirectionalFocusTraversalPolicyMixin
+    {
+        #region constructors
+        public OrderedTraversalPolicy(FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy secondary = default(FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy))
+        {
+            this.Secondary = secondary; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode{get;set;}
-#endregion
+        #region fields
+        public virtual FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy Secondary { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new void InitState(){ throw new NotImplementedException(); }
+        public new Iterable<FlutterSDK.Widgets.Focusmanager.FocusNode> SortDescendants(Iterable<FlutterSDK.Widgets.Focusmanager.FocusNode> descendants) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public new void Dispose(){ throw new NotImplementedException(); }
 
+    public class FocusTraversalOrder : FlutterSDK.Widgets.Framework.InheritedWidget
+    {
+        #region constructors
+        public FocusTraversalOrder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Focustraversal.FocusOrder order = default(FlutterSDK.Widgets.Focustraversal.FocusOrder), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            this.Order = order; throw new NotImplementedException();
+        }
+        #endregion
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region fields
+        public virtual FlutterSDK.Widgets.Focustraversal.FocusOrder Order { get; set; }
+        #endregion
 
-#endregion
-}
+        #region methods
 
+        public virtual FlutterSDK.Widgets.Focustraversal.FocusOrder Of(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false) { throw new NotImplementedException(); }
 
-public class _FocusTraversalGroupMarker : FlutterSDK.Widgets.Framework.InheritedWidget
-{
-#region constructors
-public _FocusTraversalGroupMarker(FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy policy = default(FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy),FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(child:child)
-{
-this.Policy = policy;
-this.FocusNode = focusNode;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy Policy{get;set;}
-public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode{get;set;}
-#endregion
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
 
-#region methods
 
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _RequestFocusActionBase : FlutterSDK.Widgets.Actions.Action
-{
-#region constructors
-public _RequestFocusActionBase(FlutterSDK.Foundation.Key.LocalKey name)
-: base(name)
-{
-throw new NotImplementedException(); }
-#endregion
+    public class FocusTraversalGroup : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public FocusTraversalGroup(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy policy = default(FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.Child = child; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-internal virtual FlutterSDK.Widgets.Focusmanager.FocusNode _PreviousFocus{get;set;}
-#endregion
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy Policy { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node,FlutterSDK.Widgets.Actions.Intent intent){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy Of(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Focustraversal._FocusTraversalGroupState CreateState() { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-public class RequestFocusAction : FlutterSDK.Widgets.Focustraversal._RequestFocusActionBase
-{
-#region constructors
-public RequestFocusAction()
-: base(Key)
-{
-throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-public virtual FlutterSDK.Foundation.Key.LocalKey Key{get;set;}
-#endregion
 
-#region methods
+    public class _FocusTraversalGroupState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Focustraversal.FocusTraversalGroup>
+    {
+        #region constructors
+        public _FocusTraversalGroupState()
+        { }
+        #endregion
 
-public new void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node,FlutterSDK.Widgets.Actions.Intent intent){ throw new NotImplementedException(); }
+        #region fields
+        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+        #endregion
 
-#endregion
-}
+        #region methods
 
+        public new void InitState() { throw new NotImplementedException(); }
 
-public class NextFocusAction : FlutterSDK.Widgets.Focustraversal._RequestFocusActionBase
-{
-#region constructors
-public NextFocusAction()
-: base(Key)
-{
-throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual FlutterSDK.Foundation.Key.LocalKey Key{get;set;}
-#endregion
+        public new void Dispose() { throw new NotImplementedException(); }
 
-#region methods
 
-public new void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node,FlutterSDK.Widgets.Actions.Intent intent){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class PreviousFocusAction : FlutterSDK.Widgets.Focustraversal._RequestFocusActionBase
-{
-#region constructors
-public PreviousFocusAction()
-: base(Key)
-{
-throw new NotImplementedException(); }
-#endregion
+    public class _FocusTraversalGroupMarker : FlutterSDK.Widgets.Framework.InheritedWidget
+    {
+        #region constructors
+        public _FocusTraversalGroupMarker(FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy policy = default(FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(child: child)
+        {
+            this.Policy = policy;
+            this.FocusNode = focusNode; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Foundation.Key.LocalKey Key{get;set;}
-#endregion
+        #region fields
+        public virtual FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy Policy { get; set; }
+        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node,FlutterSDK.Widgets.Actions.Intent intent){ throw new NotImplementedException(); }
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class DirectionalFocusIntent : FlutterSDK.Widgets.Actions.Intent
-{
-#region constructors
-public DirectionalFocusIntent(FlutterSDK.Widgets.Focustraversal.TraversalDirection direction,bool ignoreTextFields = true)
-: base(FocustraversalDefaultClass.DirectionalFocusAction.Key)
-{
-this.Direction = direction;
-this.IgnoreTextFields = ignoreTextFields;throw new NotImplementedException(); }
-#endregion
+    public class _RequestFocusActionBase : FlutterSDK.Widgets.Actions.Action
+    {
+        #region constructors
+        public _RequestFocusActionBase(FlutterSDK.Foundation.Key.LocalKey name)
+        : base(name)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Widgets.Focustraversal.TraversalDirection Direction{get;set;}
-public virtual bool IgnoreTextFields{get;set;}
-#endregion
+        #region fields
+        internal virtual FlutterSDK.Widgets.Focusmanager.FocusNode _PreviousFocus { get; set; }
+        #endregion
 
-#region methods
-#endregion
-}
+        #region methods
 
+        public new void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Widgets.Actions.Intent intent) { throw new NotImplementedException(); }
 
-public class DirectionalFocusAction : FlutterSDK.Widgets.Focustraversal._RequestFocusActionBase
-{
-#region constructors
-public DirectionalFocusAction()
-: base(Key)
-{
-throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual FlutterSDK.Foundation.Key.LocalKey Key{get;set;}
-#endregion
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#region methods
+        #endregion
+    }
 
-public new void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node,FlutterSDK.Widgets.Focustraversal.DirectionalFocusIntent intent){ throw new NotImplementedException(); }
-public new void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node,FlutterSDK.Widgets.Actions.Intent intent){ throw new NotImplementedException(); }
 
-#endregion
-}
+    public class RequestFocusAction : FlutterSDK.Widgets.Focustraversal._RequestFocusActionBase
+    {
+        #region constructors
+        public RequestFocusAction()
+        : base(Key)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
+        #endregion
 
-public enum TraversalDirection{
+        #region methods
 
-Up,
-Right,
-Down,
-Left,
-}
+        public new void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Widgets.Actions.Intent intent) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class NextFocusAction : FlutterSDK.Widgets.Focustraversal._RequestFocusActionBase
+    {
+        #region constructors
+        public NextFocusAction()
+        : base(Key)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Widgets.Actions.Intent intent) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class PreviousFocusAction : FlutterSDK.Widgets.Focustraversal._RequestFocusActionBase
+    {
+        #region constructors
+        public PreviousFocusAction()
+        : base(Key)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Widgets.Actions.Intent intent) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class DirectionalFocusIntent : FlutterSDK.Widgets.Actions.Intent
+    {
+        #region constructors
+        public DirectionalFocusIntent(FlutterSDK.Widgets.Focustraversal.TraversalDirection direction, bool ignoreTextFields = true)
+        : base(FocustraversalDefaultClass.DirectionalFocusAction.Key)
+        {
+            this.Direction = direction;
+            this.IgnoreTextFields = ignoreTextFields; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Focustraversal.TraversalDirection Direction { get; set; }
+        public virtual bool IgnoreTextFields { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    public class DirectionalFocusAction : FlutterSDK.Widgets.Focustraversal._RequestFocusActionBase
+    {
+        #region constructors
+        public DirectionalFocusAction()
+        : base(Key)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Widgets.Focustraversal.DirectionalFocusIntent intent) { throw new NotImplementedException(); }
+        public new void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Widgets.Actions.Intent intent) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public enum TraversalDirection
+    {
+
+        Up,
+        Right,
+        Down,
+        Left,
+    }
 
 }

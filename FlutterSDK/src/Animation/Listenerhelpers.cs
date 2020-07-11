@@ -54,152 +54,162 @@ using FlutterSDK.Semantics.Debug;
 using FlutterSDK.Semantics.Semanticsservice;
 using FlutterSDK.Semantics.Semanticsevent;
 using FlutterSDK.Semantics.Semantics;
-namespace FlutterSDK.Animation.Listenerhelpers{
-internal static class ListenerhelpersDefaultClass{
-}
-
-public interface IAnimationLazyListenerMixin{}
-
-public class AnimationLazyListenerMixin{
-internal virtual int _ListenerCounter{get;set;}
-public virtual bool IsListening{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-
-public virtual void DidRegisterListener(){ throw new NotImplementedException(); }
-
-
-public virtual void DidUnregisterListener(){ throw new NotImplementedException(); }
-
-
-public virtual void DidStartListening(){ throw new NotImplementedException(); }
-
-
-public virtual void DidStopListening(){ throw new NotImplementedException(); }
-
-}
-public static class AnimationLazyListenerMixinMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IAnimationLazyListenerMixin, AnimationLazyListenerMixin> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IAnimationLazyListenerMixin, AnimationLazyListenerMixin>();
-static AnimationLazyListenerMixin GetOrCreate(IAnimationLazyListenerMixin instance)
+namespace FlutterSDK.Animation.Listenerhelpers
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new AnimationLazyListenerMixin();
-_table.Add(instance, value);
-}
-return (AnimationLazyListenerMixin)value;
-}
-public static bool IsListeningProperty(this IAnimationLazyListenerMixin instance) => GetOrCreate(instance).IsListening;
-public static void DidRegisterListener(this IAnimationLazyListenerMixin instance) => GetOrCreate(instance).DidRegisterListener();
-public static void DidUnregisterListener(this IAnimationLazyListenerMixin instance) => GetOrCreate(instance).DidUnregisterListener();
-public static void DidStartListening(this IAnimationLazyListenerMixin instance) => GetOrCreate(instance).DidStartListening();
-public static void DidStopListening(this IAnimationLazyListenerMixin instance) => GetOrCreate(instance).DidStopListening();
-}
+    internal static class ListenerhelpersDefaultClass
+    {
+    }
+
+    public interface IAnimationLazyListenerMixin { }
+
+    public class AnimationLazyListenerMixin
+    {
+        internal virtual int _ListenerCounter { get; set; }
+        public virtual bool IsListening { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+
+        public virtual void DidRegisterListener() { throw new NotImplementedException(); }
 
 
-public interface IAnimationEagerListenerMixin{}
-
-public class AnimationEagerListenerMixin{
-
-public virtual void DidRegisterListener(){ throw new NotImplementedException(); }
+        public virtual void DidUnregisterListener() { throw new NotImplementedException(); }
 
 
-public virtual void DidUnregisterListener(){ throw new NotImplementedException(); }
+        public virtual void DidStartListening() { throw new NotImplementedException(); }
 
 
-public virtual void Dispose(){ throw new NotImplementedException(); }
+        public virtual void DidStopListening() { throw new NotImplementedException(); }
 
-}
-public static class AnimationEagerListenerMixinMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IAnimationEagerListenerMixin, AnimationEagerListenerMixin> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IAnimationEagerListenerMixin, AnimationEagerListenerMixin>();
-static AnimationEagerListenerMixin GetOrCreate(IAnimationEagerListenerMixin instance)
-{
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new AnimationEagerListenerMixin();
-_table.Add(instance, value);
-}
-return (AnimationEagerListenerMixin)value;
-}
-public static void DidRegisterListener(this IAnimationEagerListenerMixin instance) => GetOrCreate(instance).DidRegisterListener();
-public static void DidUnregisterListener(this IAnimationEagerListenerMixin instance) => GetOrCreate(instance).DidUnregisterListener();
-public static void Dispose(this IAnimationEagerListenerMixin instance) => GetOrCreate(instance).Dispose();
-}
-
-
-public interface IAnimationLocalListenersMixin{}
-
-public class AnimationLocalListenersMixin{
-internal virtual FlutterSDK.Foundation.Observerlist.ObserverList<object> _Listeners{get;set;}
-
-public virtual void DidRegisterListener(){ throw new NotImplementedException(); }
+    }
+    public static class AnimationLazyListenerMixinMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IAnimationLazyListenerMixin, AnimationLazyListenerMixin> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IAnimationLazyListenerMixin, AnimationLazyListenerMixin>();
+        static AnimationLazyListenerMixin GetOrCreate(IAnimationLazyListenerMixin instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new AnimationLazyListenerMixin();
+                _table.Add(instance, value);
+            }
+            return (AnimationLazyListenerMixin)value;
+        }
+        public static bool IsListeningProperty(this IAnimationLazyListenerMixin instance) => GetOrCreate(instance).IsListening;
+        public static void DidRegisterListener(this IAnimationLazyListenerMixin instance) => GetOrCreate(instance).DidRegisterListener();
+        public static void DidUnregisterListener(this IAnimationLazyListenerMixin instance) => GetOrCreate(instance).DidUnregisterListener();
+        public static void DidStartListening(this IAnimationLazyListenerMixin instance) => GetOrCreate(instance).DidStartListening();
+        public static void DidStopListening(this IAnimationLazyListenerMixin instance) => GetOrCreate(instance).DidStopListening();
+    }
 
 
-public virtual void DidUnregisterListener(){ throw new NotImplementedException(); }
+    public interface IAnimationEagerListenerMixin { }
+
+    public class AnimationEagerListenerMixin
+    {
+
+        public virtual void DidRegisterListener() { throw new NotImplementedException(); }
 
 
-public virtual void AddListener(VoidCallback listener){ throw new NotImplementedException(); }
+        public virtual void DidUnregisterListener() { throw new NotImplementedException(); }
 
 
-public virtual void RemoveListener(VoidCallback listener){ throw new NotImplementedException(); }
+        public virtual void Dispose() { throw new NotImplementedException(); }
+
+    }
+    public static class AnimationEagerListenerMixinMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IAnimationEagerListenerMixin, AnimationEagerListenerMixin> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IAnimationEagerListenerMixin, AnimationEagerListenerMixin>();
+        static AnimationEagerListenerMixin GetOrCreate(IAnimationEagerListenerMixin instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new AnimationEagerListenerMixin();
+                _table.Add(instance, value);
+            }
+            return (AnimationEagerListenerMixin)value;
+        }
+        public static void DidRegisterListener(this IAnimationEagerListenerMixin instance) => GetOrCreate(instance).DidRegisterListener();
+        public static void DidUnregisterListener(this IAnimationEagerListenerMixin instance) => GetOrCreate(instance).DidUnregisterListener();
+        public static void Dispose(this IAnimationEagerListenerMixin instance) => GetOrCreate(instance).Dispose();
+    }
 
 
-public virtual void NotifyListeners(){ throw new NotImplementedException(); }
+    public interface IAnimationLocalListenersMixin { }
 
-}
-public static class AnimationLocalListenersMixinMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IAnimationLocalListenersMixin, AnimationLocalListenersMixin> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IAnimationLocalListenersMixin, AnimationLocalListenersMixin>();
-static AnimationLocalListenersMixin GetOrCreate(IAnimationLocalListenersMixin instance)
-{
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new AnimationLocalListenersMixin();
-_table.Add(instance, value);
-}
-return (AnimationLocalListenersMixin)value;
-}
-public static void DidRegisterListener(this IAnimationLocalListenersMixin instance) => GetOrCreate(instance).DidRegisterListener();
-public static void DidUnregisterListener(this IAnimationLocalListenersMixin instance) => GetOrCreate(instance).DidUnregisterListener();
-public static void AddListener(this IAnimationLocalListenersMixin instance,VoidCallback listener) => GetOrCreate(instance).AddListener(listener);
-public static void RemoveListener(this IAnimationLocalListenersMixin instance,VoidCallback listener) => GetOrCreate(instance).RemoveListener(listener);
-public static void NotifyListeners(this IAnimationLocalListenersMixin instance) => GetOrCreate(instance).NotifyListeners();
-}
+    public class AnimationLocalListenersMixin
+    {
+        internal virtual FlutterSDK.Foundation.Observerlist.ObserverList<object> _Listeners { get; set; }
+
+        public virtual void DidRegisterListener() { throw new NotImplementedException(); }
 
 
-public interface IAnimationLocalStatusListenersMixin{}
-
-public class AnimationLocalStatusListenersMixin{
-internal virtual FlutterSDK.Foundation.Observerlist.ObserverList<object> _StatusListeners{get;set;}
-
-public virtual void DidRegisterListener(){ throw new NotImplementedException(); }
+        public virtual void DidUnregisterListener() { throw new NotImplementedException(); }
 
 
-public virtual void DidUnregisterListener(){ throw new NotImplementedException(); }
+        public virtual void AddListener(VoidCallback listener) { throw new NotImplementedException(); }
 
 
-public virtual void AddStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener){ throw new NotImplementedException(); }
+        public virtual void RemoveListener(VoidCallback listener) { throw new NotImplementedException(); }
 
 
-public virtual void RemoveStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener){ throw new NotImplementedException(); }
+        public virtual void NotifyListeners() { throw new NotImplementedException(); }
+
+    }
+    public static class AnimationLocalListenersMixinMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IAnimationLocalListenersMixin, AnimationLocalListenersMixin> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IAnimationLocalListenersMixin, AnimationLocalListenersMixin>();
+        static AnimationLocalListenersMixin GetOrCreate(IAnimationLocalListenersMixin instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new AnimationLocalListenersMixin();
+                _table.Add(instance, value);
+            }
+            return (AnimationLocalListenersMixin)value;
+        }
+        public static void DidRegisterListener(this IAnimationLocalListenersMixin instance) => GetOrCreate(instance).DidRegisterListener();
+        public static void DidUnregisterListener(this IAnimationLocalListenersMixin instance) => GetOrCreate(instance).DidUnregisterListener();
+        public static void AddListener(this IAnimationLocalListenersMixin instance, VoidCallback listener) => GetOrCreate(instance).AddListener(listener);
+        public static void RemoveListener(this IAnimationLocalListenersMixin instance, VoidCallback listener) => GetOrCreate(instance).RemoveListener(listener);
+        public static void NotifyListeners(this IAnimationLocalListenersMixin instance) => GetOrCreate(instance).NotifyListeners();
+    }
 
 
-public virtual void NotifyStatusListeners(FlutterSDK.Animation.Animation.AnimationStatus status){ throw new NotImplementedException(); }
+    public interface IAnimationLocalStatusListenersMixin { }
 
-}
-public static class AnimationLocalStatusListenersMixinMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IAnimationLocalStatusListenersMixin, AnimationLocalStatusListenersMixin> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IAnimationLocalStatusListenersMixin, AnimationLocalStatusListenersMixin>();
-static AnimationLocalStatusListenersMixin GetOrCreate(IAnimationLocalStatusListenersMixin instance)
-{
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new AnimationLocalStatusListenersMixin();
-_table.Add(instance, value);
-}
-return (AnimationLocalStatusListenersMixin)value;
-}
-public static void DidRegisterListener(this IAnimationLocalStatusListenersMixin instance) => GetOrCreate(instance).DidRegisterListener();
-public static void DidUnregisterListener(this IAnimationLocalStatusListenersMixin instance) => GetOrCreate(instance).DidUnregisterListener();
-public static void AddStatusListener(this IAnimationLocalStatusListenersMixin instance,FlutterSDK.Animation.Animation.AnimationStatusListener listener) => GetOrCreate(instance).AddStatusListener(listener);
-public static void RemoveStatusListener(this IAnimationLocalStatusListenersMixin instance,FlutterSDK.Animation.Animation.AnimationStatusListener listener) => GetOrCreate(instance).RemoveStatusListener(listener);
-public static void NotifyStatusListeners(this IAnimationLocalStatusListenersMixin instance,FlutterSDK.Animation.Animation.AnimationStatus status) => GetOrCreate(instance).NotifyStatusListeners(status);
-}
+    public class AnimationLocalStatusListenersMixin
+    {
+        internal virtual FlutterSDK.Foundation.Observerlist.ObserverList<object> _StatusListeners { get; set; }
+
+        public virtual void DidRegisterListener() { throw new NotImplementedException(); }
+
+
+        public virtual void DidUnregisterListener() { throw new NotImplementedException(); }
+
+
+        public virtual void AddStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener) { throw new NotImplementedException(); }
+
+
+        public virtual void RemoveStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener) { throw new NotImplementedException(); }
+
+
+        public virtual void NotifyStatusListeners(FlutterSDK.Animation.Animation.AnimationStatus status) { throw new NotImplementedException(); }
+
+    }
+    public static class AnimationLocalStatusListenersMixinMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IAnimationLocalStatusListenersMixin, AnimationLocalStatusListenersMixin> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IAnimationLocalStatusListenersMixin, AnimationLocalStatusListenersMixin>();
+        static AnimationLocalStatusListenersMixin GetOrCreate(IAnimationLocalStatusListenersMixin instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new AnimationLocalStatusListenersMixin();
+                _table.Add(instance, value);
+            }
+            return (AnimationLocalStatusListenersMixin)value;
+        }
+        public static void DidRegisterListener(this IAnimationLocalStatusListenersMixin instance) => GetOrCreate(instance).DidRegisterListener();
+        public static void DidUnregisterListener(this IAnimationLocalStatusListenersMixin instance) => GetOrCreate(instance).DidUnregisterListener();
+        public static void AddStatusListener(this IAnimationLocalStatusListenersMixin instance, FlutterSDK.Animation.Animation.AnimationStatusListener listener) => GetOrCreate(instance).AddStatusListener(listener);
+        public static void RemoveStatusListener(this IAnimationLocalStatusListenersMixin instance, FlutterSDK.Animation.Animation.AnimationStatusListener listener) => GetOrCreate(instance).RemoveStatusListener(listener);
+        public static void NotifyStatusListeners(this IAnimationLocalStatusListenersMixin instance, FlutterSDK.Animation.Animation.AnimationStatus status) => GetOrCreate(instance).NotifyStatusListeners(status);
+    }
 
 }

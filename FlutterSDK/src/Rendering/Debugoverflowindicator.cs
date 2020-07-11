@@ -421,86 +421,92 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Rendering.Debugoverflowindicator{
-internal static class DebugoverflowindicatorDefaultClass{
-}
-
-public interface IDebugOverflowIndicatorMixin{}
-
-public class DebugOverflowIndicatorMixin{
-internal virtual FlutterBinding.UI.Color _Black{get;set;}
-internal virtual FlutterBinding.UI.Color _Yellow{get;set;}
-internal virtual double _IndicatorFraction{get;set;}
-internal virtual double _IndicatorFontSizePixels{get;set;}
-internal virtual double _IndicatorLabelPaddingPixels{get;set;}
-internal virtual FlutterSDK.Painting.Textstyle.TextStyle _IndicatorTextStyle{get;set;}
-internal virtual SKPaint _IndicatorPaint{get;set;}
-internal virtual SKPaint _LabelBackgroundPaint{get;set;}
-internal virtual List<FlutterSDK.Painting.Textpainter.TextPainter> _IndicatorLabel{get;set;}
-internal virtual bool _OverflowReportNeeded{get;set;}
-
-private string _FormatPixels(double value){ throw new NotImplementedException(); }
-
-
-private List<FlutterSDK.Rendering.Debugoverflowindicator._OverflowRegionData> _CalculateOverflowRegions(FlutterSDK.Rendering.Stack.RelativeRect overflow,FlutterBinding.UI.Rect containerRect){ throw new NotImplementedException(); }
-
-
-private void _ReportOverflow(FlutterSDK.Rendering.Stack.RelativeRect overflow,List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> overflowHints){ throw new NotImplementedException(); }
-
-
-public virtual void PaintOverflowIndicator(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset,FlutterBinding.UI.Rect containerRect,FlutterBinding.UI.Rect childRect,List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> overflowHints = default(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode>)){ throw new NotImplementedException(); }
-
-
-public new void Reassemble(){ throw new NotImplementedException(); }
-
-}
-public static class DebugOverflowIndicatorMixinMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IDebugOverflowIndicatorMixin, DebugOverflowIndicatorMixin> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IDebugOverflowIndicatorMixin, DebugOverflowIndicatorMixin>();
-static DebugOverflowIndicatorMixin GetOrCreate(IDebugOverflowIndicatorMixin instance)
+namespace FlutterSDK.Rendering.Debugoverflowindicator
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new DebugOverflowIndicatorMixin();
-_table.Add(instance, value);
-}
-return (DebugOverflowIndicatorMixin)value;
-}
-public static void PaintOverflowIndicator(this IDebugOverflowIndicatorMixin instance,FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset,FlutterBinding.UI.Rect containerRect,FlutterBinding.UI.Rect childRect,List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> overflowHints = default(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode>)) => GetOrCreate(instance).PaintOverflowIndicator(context, offset, containerRect, childRect, overflowHints);
-public static void Reassemble(this IDebugOverflowIndicatorMixin instance) => GetOrCreate(instance).Reassemble();
-}
+    internal static class DebugoverflowindicatorDefaultClass
+    {
+    }
+
+    public interface IDebugOverflowIndicatorMixin { }
+
+    public class DebugOverflowIndicatorMixin
+    {
+        internal virtual FlutterBinding.UI.Color _Black { get; set; }
+        internal virtual FlutterBinding.UI.Color _Yellow { get; set; }
+        internal virtual double _IndicatorFraction { get; set; }
+        internal virtual double _IndicatorFontSizePixels { get; set; }
+        internal virtual double _IndicatorLabelPaddingPixels { get; set; }
+        internal virtual FlutterSDK.Painting.Textstyle.TextStyle _IndicatorTextStyle { get; set; }
+        internal virtual SKPaint _IndicatorPaint { get; set; }
+        internal virtual SKPaint _LabelBackgroundPaint { get; set; }
+        internal virtual List<FlutterSDK.Painting.Textpainter.TextPainter> _IndicatorLabel { get; set; }
+        internal virtual bool _OverflowReportNeeded { get; set; }
+
+        private string _FormatPixels(double value) { throw new NotImplementedException(); }
 
 
-public class _OverflowRegionData
-{
-#region constructors
-public _OverflowRegionData(FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect),string label = default(string),FlutterBinding.UI.Offset labelOffset = default(FlutterBinding.UI.Offset),double rotation = 0.0,FlutterSDK.Rendering.Debugoverflowindicator._OverflowSide side = default(FlutterSDK.Rendering.Debugoverflowindicator._OverflowSide))
-{
-this.Rect = rect;
-this.Label = label;
-this.LabelOffset = labelOffset;
-this.Rotation = rotation;
-this.Side = side;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterBinding.UI.Rect Rect{get;set;}
-public virtual string Label{get;set;}
-public virtual FlutterBinding.UI.Offset LabelOffset{get;set;}
-public virtual double Rotation{get;set;}
-public virtual FlutterSDK.Rendering.Debugoverflowindicator._OverflowSide Side{get;set;}
-#endregion
-
-#region methods
-#endregion
-}
+        private List<FlutterSDK.Rendering.Debugoverflowindicator._OverflowRegionData> _CalculateOverflowRegions(FlutterSDK.Rendering.Stack.RelativeRect overflow, FlutterBinding.UI.Rect containerRect) { throw new NotImplementedException(); }
 
 
-public enum _OverflowSide{
+        private void _ReportOverflow(FlutterSDK.Rendering.Stack.RelativeRect overflow, List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> overflowHints) { throw new NotImplementedException(); }
 
-Left,
-Top,
-Bottom,
-Right,
-}
+
+        public virtual void PaintOverflowIndicator(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset, FlutterBinding.UI.Rect containerRect, FlutterBinding.UI.Rect childRect, List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> overflowHints = default(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode>)) { throw new NotImplementedException(); }
+
+
+        public new void Reassemble() { throw new NotImplementedException(); }
+
+    }
+    public static class DebugOverflowIndicatorMixinMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IDebugOverflowIndicatorMixin, DebugOverflowIndicatorMixin> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IDebugOverflowIndicatorMixin, DebugOverflowIndicatorMixin>();
+        static DebugOverflowIndicatorMixin GetOrCreate(IDebugOverflowIndicatorMixin instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new DebugOverflowIndicatorMixin();
+                _table.Add(instance, value);
+            }
+            return (DebugOverflowIndicatorMixin)value;
+        }
+        public static void PaintOverflowIndicator(this IDebugOverflowIndicatorMixin instance, FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset, FlutterBinding.UI.Rect containerRect, FlutterBinding.UI.Rect childRect, List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> overflowHints = default(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode>)) => GetOrCreate(instance).PaintOverflowIndicator(context, offset, containerRect, childRect, overflowHints);
+        public static void Reassemble(this IDebugOverflowIndicatorMixin instance) => GetOrCreate(instance).Reassemble();
+    }
+
+
+    public class _OverflowRegionData
+    {
+        #region constructors
+        public _OverflowRegionData(FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), string label = default(string), FlutterBinding.UI.Offset labelOffset = default(FlutterBinding.UI.Offset), double rotation = 0.0, FlutterSDK.Rendering.Debugoverflowindicator._OverflowSide side = default(FlutterSDK.Rendering.Debugoverflowindicator._OverflowSide))
+        {
+            this.Rect = rect;
+            this.Label = label;
+            this.LabelOffset = labelOffset;
+            this.Rotation = rotation;
+            this.Side = side; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterBinding.UI.Rect Rect { get; set; }
+        public virtual string Label { get; set; }
+        public virtual FlutterBinding.UI.Offset LabelOffset { get; set; }
+        public virtual double Rotation { get; set; }
+        public virtual FlutterSDK.Rendering.Debugoverflowindicator._OverflowSide Side { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    public enum _OverflowSide
+    {
+
+        Left,
+        Top,
+        Bottom,
+        Right,
+    }
 
 }

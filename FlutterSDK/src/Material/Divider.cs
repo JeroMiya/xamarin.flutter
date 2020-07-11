@@ -377,68 +377,72 @@ using FlutterSDK.Material.Dropdown;
 using FlutterSDK.Material.Datatable;
 using FlutterSDK.Material.Dialogtheme;
 using FlutterSDK.Material.Dividertheme;
-namespace FlutterSDK.Material.Divider{
-internal static class DividerDefaultClass{
-}
-
-public class Divider : FlutterSDK.Widgets.Framework.StatelessWidget
+namespace FlutterSDK.Material.Divider
 {
-#region constructors
-public Divider(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),double height = default(double),double thickness = default(double),double indent = default(double),double endIndent = default(double),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color))
-: base(key:key)
-{
-this.Height = height;
-this.Thickness = thickness;
-this.Indent = indent;
-this.EndIndent = endIndent;
-this.Color = color;throw new NotImplementedException(); }
-#endregion
+    internal static class DividerDefaultClass
+    {
+    }
 
-#region fields
-public virtual double Height{get;set;}
-public virtual double Thickness{get;set;}
-public virtual double Indent{get;set;}
-public virtual double EndIndent{get;set;}
-public virtual FlutterBinding.UI.Color Color{get;set;}
-#endregion
+    public class Divider : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public Divider(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double height = default(double), double thickness = default(double), double indent = default(double), double endIndent = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color))
+        : base(key: key)
+        {
+            this.Height = height;
+            this.Thickness = thickness;
+            this.Indent = indent;
+            this.EndIndent = endIndent;
+            this.Color = color; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual double Height { get; set; }
+        public virtual double Thickness { get; set; }
+        public virtual double Indent { get; set; }
+        public virtual double EndIndent { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        #endregion
 
-public virtual FlutterSDK.Painting.Borders.BorderSide CreateBorderSide(FlutterSDK.Widgets.Framework.BuildContext context,FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),double width = default(double)){ throw new NotImplementedException(); }
+        #region methods
+
+        public virtual FlutterSDK.Painting.Borders.BorderSide CreateBorderSide(FlutterSDK.Widgets.Framework.BuildContext context, FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double width = default(double)) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class VerticalDivider : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public VerticalDivider(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),double width = default(double),double thickness = default(double),double indent = default(double),double endIndent = default(double),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color))
-: base(key:key)
-{
-this.Width = width;
-this.Thickness = thickness;
-this.Indent = indent;
-this.EndIndent = endIndent;
-this.Color = color;throw new NotImplementedException(); }
-#endregion
+    public class VerticalDivider : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public VerticalDivider(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double width = default(double), double thickness = default(double), double indent = default(double), double endIndent = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color))
+        : base(key: key)
+        {
+            this.Width = width;
+            this.Thickness = thickness;
+            this.Indent = indent;
+            this.EndIndent = endIndent;
+            this.Color = color; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual double Width{get;set;}
-public virtual double Thickness{get;set;}
-public virtual double Indent{get;set;}
-public virtual double EndIndent{get;set;}
-public virtual FlutterBinding.UI.Color Color{get;set;}
-#endregion
+        #region fields
+        public virtual double Width { get; set; }
+        public virtual double Thickness { get; set; }
+        public virtual double Indent { get; set; }
+        public virtual double EndIndent { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 }

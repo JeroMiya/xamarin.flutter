@@ -377,73 +377,77 @@ using FlutterSDK.Material.Dropdown;
 using FlutterSDK.Material.Datatable;
 using FlutterSDK.Material.Dialogtheme;
 using FlutterSDK.Material.Dividertheme;
-namespace FlutterSDK.Material.Dividertheme{
-internal static class DividerthemeDefaultClass{
-}
-
-public class DividerThemeData : IDiagnosticable
+namespace FlutterSDK.Material.Dividertheme
 {
-#region constructors
-public DividerThemeData(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),double space = default(double),double thickness = default(double),double indent = default(double),double endIndent = default(double))
-{
-this.Color = color;
-this.Space = space;
-this.Thickness = thickness;
-this.Indent = indent;
-this.EndIndent = endIndent;throw new NotImplementedException(); }
-#endregion
+    internal static class DividerthemeDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterBinding.UI.Color Color{get;set;}
-public virtual double Space{get;set;}
-public virtual double Thickness{get;set;}
-public virtual double Indent{get;set;}
-public virtual double EndIndent{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class DividerThemeData : IDiagnosticable
+    {
+        #region constructors
+        public DividerThemeData(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double space = default(double), double thickness = default(double), double indent = default(double), double endIndent = default(double))
+        {
+            this.Color = color;
+            this.Space = space;
+            this.Thickness = thickness;
+            this.Indent = indent;
+            this.EndIndent = endIndent; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual double Space { get; set; }
+        public virtual double Thickness { get; set; }
+        public virtual double Indent { get; set; }
+        public virtual double EndIndent { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual FlutterSDK.Material.Dividertheme.DividerThemeData CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),double space = default(double),double thickness = default(double),double indent = default(double),double endIndent = default(double)){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual FlutterSDK.Material.Dividertheme.DividerThemeData Lerp(FlutterSDK.Material.Dividertheme.DividerThemeData a,FlutterSDK.Material.Dividertheme.DividerThemeData b,double t){ throw new NotImplementedException(); }
-
-
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual FlutterSDK.Material.Dividertheme.DividerThemeData CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double space = default(double), double thickness = default(double), double indent = default(double), double endIndent = default(double)) { throw new NotImplementedException(); }
 
 
-public class DividerTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
-{
-#region constructors
-public DividerTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Material.Dividertheme.DividerThemeData data = default(FlutterSDK.Material.Dividertheme.DividerThemeData),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key,child:child)
-{
-this.Data = data;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Material.Dividertheme.DividerThemeData Data{get;set;}
-#endregion
-
-#region methods
-
-public virtual FlutterSDK.Material.Dividertheme.DividerThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Material.Dividertheme.DividerThemeData Lerp(FlutterSDK.Material.Dividertheme.DividerThemeData a, FlutterSDK.Material.Dividertheme.DividerThemeData b, double t) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Widgets.Framework.Widget child){ throw new NotImplementedException(); }
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
-public new bool UpdateShouldNotify(FlutterSDK.Material.Dividertheme.DividerTheme oldWidget){ throw new NotImplementedException(); }
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
+
+
+    public class DividerTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
+    {
+        #region constructors
+        public DividerTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Dividertheme.DividerThemeData data = default(FlutterSDK.Material.Dividertheme.DividerThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            this.Data = data; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Material.Dividertheme.DividerThemeData Data { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual FlutterSDK.Material.Dividertheme.DividerThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
+
+
+        public new bool UpdateShouldNotify(FlutterSDK.Material.Dividertheme.DividerTheme oldWidget) { throw new NotImplementedException(); }
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

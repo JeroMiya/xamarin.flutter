@@ -420,172 +420,180 @@ using FlutterSDK.Material.Inksplash;
 using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
-namespace FlutterSDK.Painting.Borders{
-internal static class BordersDefaultClass{
-internal static void PaintBorder(Canvas canvas,FlutterBinding.UI.Rect rect,FlutterSDK.Painting.Borders.BorderSide top = default(FlutterSDK.Painting.Borders.BorderSide),FlutterSDK.Painting.Borders.BorderSide right = default(FlutterSDK.Painting.Borders.BorderSide),FlutterSDK.Painting.Borders.BorderSide bottom = default(FlutterSDK.Painting.Borders.BorderSide),FlutterSDK.Painting.Borders.BorderSide left = default(FlutterSDK.Painting.Borders.BorderSide)){
-throw new NotImplementedException();
-}
-
-}
-
-public interface IShapeBorder{
-FlutterSDK.Painting.Borders.ShapeBorder Add(FlutterSDK.Painting.Borders.ShapeBorder other,bool reversed = false);
-FlutterSDK.Painting.Borders.ShapeBorder AddOperator(FlutterSDK.Painting.Borders.ShapeBorder other);
-FlutterSDK.Painting.Borders.ShapeBorder Scale(double t);
-FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a,double t);
-FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b,double t);
-FlutterSDK.Painting.Borders.ShapeBorder Lerp(FlutterSDK.Painting.Borders.ShapeBorder a,FlutterSDK.Painting.Borders.ShapeBorder b,double t);
-Path GetOuterPath(FlutterBinding.UI.Rect rect,TextDirection textDirection = default(TextDirection));
-Path GetInnerPath(FlutterBinding.UI.Rect rect,TextDirection textDirection = default(TextDirection));
-void Paint(Canvas canvas,FlutterBinding.UI.Rect rect,TextDirection textDirection = default(TextDirection));
-string ToString();
-FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions{get;}
-}
-
-
-public class BorderSide
+namespace FlutterSDK.Painting.Borders
 {
-#region constructors
-public BorderSide(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),double width = 1.0,FlutterSDK.Painting.Borders.BorderStyle style = default(FlutterSDK.Painting.Borders.BorderStyle))
-: base()
-{
-this.Color = color;
-this.Width = width;
-this.Style = style;throw new NotImplementedException(); }
-#endregion
+    internal static class BordersDefaultClass
+    {
+        internal static void PaintBorder(Canvas canvas, FlutterBinding.UI.Rect rect, FlutterSDK.Painting.Borders.BorderSide top = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide right = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide bottom = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide left = default(FlutterSDK.Painting.Borders.BorderSide))
+        {
+            throw new NotImplementedException();
+        }
 
-#region fields
-public virtual FlutterBinding.UI.Color Color{get;set;}
-public virtual double Width{get;set;}
-public virtual FlutterSDK.Painting.Borders.BorderStyle Style{get;set;}
-public virtual FlutterSDK.Painting.Borders.BorderSide None{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    }
 
-#region methods
+    public interface IShapeBorder
+    {
+        FlutterSDK.Painting.Borders.ShapeBorder Add(FlutterSDK.Painting.Borders.ShapeBorder other, bool reversed = false);
+        FlutterSDK.Painting.Borders.ShapeBorder AddOperator(FlutterSDK.Painting.Borders.ShapeBorder other);
+        FlutterSDK.Painting.Borders.ShapeBorder Scale(double t);
+        FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t);
+        FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t);
+        FlutterSDK.Painting.Borders.ShapeBorder Lerp(FlutterSDK.Painting.Borders.ShapeBorder a, FlutterSDK.Painting.Borders.ShapeBorder b, double t);
+        Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection));
+        Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection));
+        void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection));
+        string ToString();
+        FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get; }
+    }
 
-public virtual FlutterSDK.Painting.Borders.BorderSide Merge(FlutterSDK.Painting.Borders.BorderSide a,FlutterSDK.Painting.Borders.BorderSide b){ throw new NotImplementedException(); }
 
+    public class BorderSide
+    {
+        #region constructors
+        public BorderSide(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double width = 1.0, FlutterSDK.Painting.Borders.BorderStyle style = default(FlutterSDK.Painting.Borders.BorderStyle))
+        : base()
+        {
+            this.Color = color;
+            this.Width = width;
+            this.Style = style; throw new NotImplementedException();
+        }
+        #endregion
 
-public virtual FlutterSDK.Painting.Borders.BorderSide CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),double width = default(double),FlutterSDK.Painting.Borders.BorderStyle style = default(FlutterSDK.Painting.Borders.BorderStyle)){ throw new NotImplementedException(); }
+        #region fields
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual double Width { get; set; }
+        public virtual FlutterSDK.Painting.Borders.BorderStyle Style { get; set; }
+        public virtual FlutterSDK.Painting.Borders.BorderSide None { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public virtual FlutterSDK.Painting.Borders.BorderSide Scale(double t){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Borders.BorderSide Merge(FlutterSDK.Painting.Borders.BorderSide a, FlutterSDK.Painting.Borders.BorderSide b) { throw new NotImplementedException(); }
 
 
-public virtual Paint ToPaint(){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Borders.BorderSide CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double width = default(double), FlutterSDK.Painting.Borders.BorderStyle style = default(FlutterSDK.Painting.Borders.BorderStyle)) { throw new NotImplementedException(); }
 
 
-public virtual bool CanMerge(FlutterSDK.Painting.Borders.BorderSide a,FlutterSDK.Painting.Borders.BorderSide b){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Borders.BorderSide Scale(double t) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Painting.Borders.BorderSide Lerp(FlutterSDK.Painting.Borders.BorderSide a,FlutterSDK.Painting.Borders.BorderSide b,double t){ throw new NotImplementedException(); }
+        public virtual Paint ToPaint() { throw new NotImplementedException(); }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public virtual bool CanMerge(FlutterSDK.Painting.Borders.BorderSide a, FlutterSDK.Painting.Borders.BorderSide b) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public virtual FlutterSDK.Painting.Borders.BorderSide Lerp(FlutterSDK.Painting.Borders.BorderSide a, FlutterSDK.Painting.Borders.BorderSide b, double t) { throw new NotImplementedException(); }
 
 
-public class ShapeBorder
-{
-#region constructors
-public ShapeBorder()
-{
-throw new NotImplementedException(); }
-#endregion
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+        #endregion
+    }
 
-public virtual FlutterSDK.Painting.Borders.ShapeBorder Add(FlutterSDK.Painting.Borders.ShapeBorder other,bool reversed = false){ throw new NotImplementedException(); }
 
+    public class ShapeBorder
+    {
+        #region constructors
+        public ShapeBorder()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-public virtual FlutterSDK.Painting.Borders.ShapeBorder AddOperator(FlutterSDK.Painting.Borders.ShapeBorder other){ throw new NotImplementedException(); }
+        #region fields
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public virtual FlutterSDK.Painting.Borders.ShapeBorder Scale(double t){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Add(FlutterSDK.Painting.Borders.ShapeBorder other, bool reversed = false) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a,double t){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder AddOperator(FlutterSDK.Painting.Borders.ShapeBorder other) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b,double t){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Scale(double t) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Painting.Borders.ShapeBorder Lerp(FlutterSDK.Painting.Borders.ShapeBorder a,FlutterSDK.Painting.Borders.ShapeBorder b,double t){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t) { throw new NotImplementedException(); }
 
 
-public virtual Path GetOuterPath(FlutterBinding.UI.Rect rect,TextDirection textDirection = default(TextDirection)){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t) { throw new NotImplementedException(); }
 
 
-public virtual Path GetInnerPath(FlutterBinding.UI.Rect rect,TextDirection textDirection = default(TextDirection)){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Lerp(FlutterSDK.Painting.Borders.ShapeBorder a, FlutterSDK.Painting.Borders.ShapeBorder b, double t) { throw new NotImplementedException(); }
 
 
-public virtual void Paint(Canvas canvas,FlutterBinding.UI.Rect rect,TextDirection textDirection = default(TextDirection)){ throw new NotImplementedException(); }
+        public virtual Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public virtual Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
 
-public class _CompoundBorder : FlutterSDK.Painting.Borders.ShapeBorder
-{
-#region constructors
-public _CompoundBorder(List<FlutterSDK.Painting.Borders.ShapeBorder> borders)
-: base()
-{
-this.Borders = borders;throw new NotImplementedException(); }
-#endregion
+        public virtual void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
-#region fields
-public virtual List<FlutterSDK.Painting.Borders.ShapeBorder> Borders{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+        #endregion
+    }
 
-public new FlutterSDK.Painting.Borders.ShapeBorder Add(FlutterSDK.Painting.Borders.ShapeBorder other,bool reversed = false){ throw new NotImplementedException(); }
 
+    public class _CompoundBorder : FlutterSDK.Painting.Borders.ShapeBorder
+    {
+        #region constructors
+        public _CompoundBorder(List<FlutterSDK.Painting.Borders.ShapeBorder> borders)
+        : base()
+        {
+            this.Borders = borders; throw new NotImplementedException();
+        }
+        #endregion
 
-public new FlutterSDK.Painting.Borders.ShapeBorder Scale(double t){ throw new NotImplementedException(); }
+        #region fields
+        public virtual List<FlutterSDK.Painting.Borders.ShapeBorder> Borders { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a,double t){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Borders.ShapeBorder Add(FlutterSDK.Painting.Borders.ShapeBorder other, bool reversed = false) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b,double t){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Borders.ShapeBorder Scale(double t) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Painting.Borders._CompoundBorder Lerp(FlutterSDK.Painting.Borders.ShapeBorder a,FlutterSDK.Painting.Borders.ShapeBorder b,double t){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t) { throw new NotImplementedException(); }
 
 
-public new Path GetInnerPath(FlutterBinding.UI.Rect rect,TextDirection textDirection = default(TextDirection)){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t) { throw new NotImplementedException(); }
 
 
-public new Path GetOuterPath(FlutterBinding.UI.Rect rect,TextDirection textDirection = default(TextDirection)){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Borders._CompoundBorder Lerp(FlutterSDK.Painting.Borders.ShapeBorder a, FlutterSDK.Painting.Borders.ShapeBorder b, double t) { throw new NotImplementedException(); }
 
 
-public new void Paint(Canvas canvas,FlutterBinding.UI.Rect rect,TextDirection textDirection = default(TextDirection)){ throw new NotImplementedException(); }
+        public new Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public new Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
 
-public enum BorderStyle{
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
-None,
-Solid,
-}
+
+        #endregion
+    }
+
+
+    public enum BorderStyle
+    {
+
+        None,
+        Solid,
+    }
 
 }

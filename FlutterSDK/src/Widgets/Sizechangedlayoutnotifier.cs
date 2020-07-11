@@ -423,64 +423,68 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Sizechangedlayoutnotifier{
-internal static class SizechangedlayoutnotifierDefaultClass{
-}
-
-public class SizeChangedLayoutNotification : FlutterSDK.Widgets.Notificationlistener.LayoutChangedNotification
+namespace FlutterSDK.Widgets.Sizechangedlayoutnotifier
 {
-#region constructors
-public SizeChangedLayoutNotification()
-{ }
-#endregion
+    internal static class SizechangedlayoutnotifierDefaultClass
+    {
+    }
 
-#region fields
-#endregion
+    public class SizeChangedLayoutNotification : FlutterSDK.Widgets.Notificationlistener.LayoutChangedNotification
+    {
+        #region constructors
+        public SizeChangedLayoutNotification()
+        { }
+        #endregion
 
-#region methods
-#endregion
-}
+        #region fields
+        #endregion
 
-
-public class SizeChangedLayoutNotifier : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
-{
-#region constructors
-public SizeChangedLayoutNotifier(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key,child:child)
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Sizechangedlayoutnotifier._RenderSizeChangedWithCallback CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-#endregion
-}
+        #region methods
+        #endregion
+    }
 
 
-public class _RenderSizeChangedWithCallback : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-#region constructors
-public _RenderSizeChangedWithCallback(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),VoidCallback onLayoutChangedCallback = default(VoidCallback))
-: base(child)
-{
-this.OnLayoutChangedCallback = onLayoutChangedCallback;throw new NotImplementedException(); }
-#endregion
+    public class SizeChangedLayoutNotifier : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
+    {
+        #region constructors
+        public SizeChangedLayoutNotifier(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual VoidCallback OnLayoutChangedCallback{get;set;}
-internal virtual Size _OldSize{get;set;}
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Sizechangedlayoutnotifier._RenderSizeChangedWithCallback CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
+
+
+    public class _RenderSizeChangedWithCallback : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public _RenderSizeChangedWithCallback(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), VoidCallback onLayoutChangedCallback = default(VoidCallback))
+        : base(child)
+        {
+            this.OnLayoutChangedCallback = onLayoutChangedCallback; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual VoidCallback OnLayoutChangedCallback { get; set; }
+        internal virtual Size _OldSize { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void PerformLayout() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

@@ -421,15 +421,19 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Physics.Utils{
-internal static class UtilsDefaultClass{
-internal static bool NearEqual(double a,double b,double epsilon){
-throw new NotImplementedException();
-}
+namespace FlutterSDK.Physics.Utils
+{
+    internal static class UtilsDefaultClass
+    {
+        internal static bool NearEqual(double a, double b, double epsilon)
+        {
+            throw new NotImplementedException();
+        }
 
-internal static bool NearZero(double a,double epsilon){
-throw new NotImplementedException();
-}
+        internal static bool NearZero(double a, double epsilon)
+        {
+            throw new NotImplementedException();
+        }
 
-}
+    }
 }

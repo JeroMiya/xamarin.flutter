@@ -368,51 +368,54 @@ using FlutterSDK.Material.Colorscheme;
 using FlutterSDK.Material.Materialbutton;
 using FlutterSDK.Material.Outlinebutton;
 using FlutterSDK.Material.Cardtheme;
-namespace FlutterSDK.Material.Cardtheme{
-internal static class CardthemeDefaultClass{
-}
-
-public class CardTheme : IDiagnosticable
+namespace FlutterSDK.Material.Cardtheme
 {
-#region constructors
-public CardTheme(FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color),double elevation = default(double),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder))
-: base()
-{
-this.ClipBehavior = clipBehavior;
-this.Color = color;
-this.ShadowColor = shadowColor;
-this.Elevation = elevation;
-this.Margin = margin;
-this.Shape = shape;throw new NotImplementedException(); }
-#endregion
+    internal static class CardthemeDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterBinding.UI.Clip ClipBehavior{get;set;}
-public virtual FlutterBinding.UI.Color Color{get;set;}
-public virtual FlutterBinding.UI.Color ShadowColor{get;set;}
-public virtual double Elevation{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin{get;set;}
-public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class CardTheme : IDiagnosticable
+    {
+        #region constructors
+        public CardTheme(FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder))
+        : base()
+        {
+            this.ClipBehavior = clipBehavior;
+            this.Color = color;
+            this.ShadowColor = shadowColor;
+            this.Elevation = elevation;
+            this.Margin = margin;
+            this.Shape = shape; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual FlutterBinding.UI.Color ShadowColor { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual FlutterSDK.Material.Cardtheme.CardTheme CopyWith(FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color),double elevation = default(double),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder)){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual FlutterSDK.Material.Cardtheme.CardTheme Of(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Material.Cardtheme.CardTheme Lerp(FlutterSDK.Material.Cardtheme.CardTheme a,FlutterSDK.Material.Cardtheme.CardTheme b,double t){ throw new NotImplementedException(); }
-
-
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Material.Cardtheme.CardTheme CopyWith(FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder)) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Material.Cardtheme.CardTheme Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public virtual FlutterSDK.Material.Cardtheme.CardTheme Lerp(FlutterSDK.Material.Cardtheme.CardTheme a, FlutterSDK.Material.Cardtheme.CardTheme b, double t) { throw new NotImplementedException(); }
+
+
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

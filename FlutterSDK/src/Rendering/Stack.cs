@@ -421,213 +421,222 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Rendering.Stack{
-internal static class StackDefaultClass{
-}
-
-public class RelativeRect
+namespace FlutterSDK.Rendering.Stack
 {
-#region constructors
-public static RelativeRect FromLTRB(double left,double top,double right,double bottom)
-{
-var instance =new RelativeRect();instance.Left = left;
-instance.Top = top;
-instance.Right = right;
-instance.Bottom = bottom;throw new NotImplementedException(); }
-public static RelativeRect FromSize(FlutterBinding.UI.Rect rect,Size container)
-{
-var instance =new RelativeRect();throw new NotImplementedException(); }
-public static RelativeRect FromRect(FlutterBinding.UI.Rect rect,FlutterBinding.UI.Rect container)
-{
-var instance =new RelativeRect();throw new NotImplementedException(); }
-#endregion
+    internal static class StackDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Rendering.Stack.RelativeRect Fill{get;set;}
-public virtual double Left{get;set;}
-public virtual double Top{get;set;}
-public virtual double Right{get;set;}
-public virtual double Bottom{get;set;}
-public virtual bool HasInsets{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class RelativeRect
+    {
+        #region constructors
+        public static RelativeRect FromLTRB(double left, double top, double right, double bottom)
+        {
+            var instance = new RelativeRect(); instance.Left = left;
+            instance.Top = top;
+            instance.Right = right;
+            instance.Bottom = bottom; throw new NotImplementedException();
+        }
+        public static RelativeRect FromSize(FlutterBinding.UI.Rect rect, Size container)
+        {
+            var instance = new RelativeRect(); throw new NotImplementedException();
+        }
+        public static RelativeRect FromRect(FlutterBinding.UI.Rect rect, FlutterBinding.UI.Rect container)
+        {
+            var instance = new RelativeRect(); throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Rendering.Stack.RelativeRect Fill { get; set; }
+        public virtual double Left { get; set; }
+        public virtual double Top { get; set; }
+        public virtual double Right { get; set; }
+        public virtual double Bottom { get; set; }
+        public virtual bool HasInsets { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual FlutterSDK.Rendering.Stack.RelativeRect Shift(FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        #region methods
 
+        public virtual FlutterSDK.Rendering.Stack.RelativeRect Shift(FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Rendering.Stack.RelativeRect Inflate(double delta){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Rendering.Stack.RelativeRect Inflate(double delta) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Rendering.Stack.RelativeRect Deflate(double delta){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Rendering.Stack.RelativeRect Deflate(double delta) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Rendering.Stack.RelativeRect Intersect(FlutterSDK.Rendering.Stack.RelativeRect other){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Rendering.Stack.RelativeRect Intersect(FlutterSDK.Rendering.Stack.RelativeRect other) { throw new NotImplementedException(); }
 
-public virtual Rect ToRect(FlutterBinding.UI.Rect container){ throw new NotImplementedException(); }
 
+        public virtual Rect ToRect(FlutterBinding.UI.Rect container) { throw new NotImplementedException(); }
 
-public virtual Size ToSize(Size container){ throw new NotImplementedException(); }
 
+        public virtual Size ToSize(Size container) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Rendering.Stack.RelativeRect Lerp(FlutterSDK.Rendering.Stack.RelativeRect a,FlutterSDK.Rendering.Stack.RelativeRect b,double t){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Rendering.Stack.RelativeRect Lerp(FlutterSDK.Rendering.Stack.RelativeRect a, FlutterSDK.Rendering.Stack.RelativeRect b, double t) { throw new NotImplementedException(); }
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
 
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        #endregion
+    }
 
-public class StackParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
-{
-#region constructors
-public StackParentData()
-{ }
-#endregion
 
-#region fields
-public virtual double Top{get;set;}
-public virtual double Right{get;set;}
-public virtual double Bottom{get;set;}
-public virtual double Left{get;set;}
-public virtual double Width{get;set;}
-public virtual double Height{get;set;}
-public virtual FlutterSDK.Rendering.Stack.RelativeRect Rect{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool IsPositioned{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class StackParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
+    {
+        #region constructors
+        public StackParentData()
+        { }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual double Top { get; set; }
+        public virtual double Right { get; set; }
+        public virtual double Bottom { get; set; }
+        public virtual double Left { get; set; }
+        public virtual double Width { get; set; }
+        public virtual double Height { get; set; }
+        public virtual FlutterSDK.Rendering.Stack.RelativeRect Rect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsPositioned { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#endregion
-}
+        #region methods
 
+        #endregion
+    }
 
-public class RenderStack : FlutterSDK.Rendering.Box.RenderBox,IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox,FlutterSDK.Rendering.Stack.StackParentData>,IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox,FlutterSDK.Rendering.Stack.StackParentData>
-{
-#region constructors
-public RenderStack(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>),FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry),TextDirection textDirection = default(TextDirection),FlutterSDK.Rendering.Stack.StackFit fit = default(FlutterSDK.Rendering.Stack.StackFit),FlutterSDK.Rendering.Stack.Overflow overflow = default(FlutterSDK.Rendering.Stack.Overflow))
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
 
-#region fields
-internal virtual bool _HasVisualOverflow{get;set;}
-internal virtual FlutterSDK.Painting.Alignment.Alignment _ResolvedAlignment{get;set;}
-internal virtual FlutterSDK.Painting.Alignment.AlignmentGeometry _Alignment{get;set;}
-internal virtual TextDirection _TextDirection{get;set;}
-internal virtual FlutterSDK.Rendering.Stack.StackFit _Fit{get;set;}
-internal virtual FlutterSDK.Rendering.Stack.Overflow _Overflow{get;set;}
-public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual TextDirection TextDirection{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Rendering.Stack.StackFit Fit{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Rendering.Stack.Overflow Overflow{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
+    public class RenderStack : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Stack.StackParentData>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Stack.StackParentData>
+    {
+        #region constructors
+        public RenderStack(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Stack.StackFit fit = default(FlutterSDK.Rendering.Stack.StackFit), FlutterSDK.Rendering.Stack.Overflow overflow = default(FlutterSDK.Rendering.Stack.Overflow))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual bool _HasVisualOverflow { get; set; }
+        internal virtual FlutterSDK.Painting.Alignment.Alignment _ResolvedAlignment { get; set; }
+        internal virtual FlutterSDK.Painting.Alignment.AlignmentGeometry _Alignment { get; set; }
+        internal virtual TextDirection _TextDirection { get; set; }
+        internal virtual FlutterSDK.Rendering.Stack.StackFit _Fit { get; set; }
+        internal virtual FlutterSDK.Rendering.Stack.Overflow _Overflow { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Stack.StackFit Fit { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Stack.Overflow Overflow { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child){ throw new NotImplementedException(); }
-public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
+        #region methods
 
+        public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
+        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
-private void _Resolve(){ throw new NotImplementedException(); }
 
+        private void _Resolve() { throw new NotImplementedException(); }
 
-private void _MarkNeedResolution(){ throw new NotImplementedException(); }
 
+        private void _MarkNeedResolution() { throw new NotImplementedException(); }
 
-public virtual double GetIntrinsicDimension(FlutterSDK.Rendering.Box.RenderBox firstChild,Func<double,RenderBox> mainChildSizeGetter){ throw new NotImplementedException(); }
 
+        public virtual double GetIntrinsicDimension(FlutterSDK.Rendering.Box.RenderBox firstChild, Func<double, RenderBox> mainChildSizeGetter) { throw new NotImplementedException(); }
 
-public new double ComputeMinIntrinsicWidth(double height){ throw new NotImplementedException(); }
 
+        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
-public new double ComputeMaxIntrinsicWidth(double height){ throw new NotImplementedException(); }
 
+        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
-public new double ComputeMinIntrinsicHeight(double width){ throw new NotImplementedException(); }
 
+        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
-public new double ComputeMaxIntrinsicHeight(double width){ throw new NotImplementedException(); }
 
+        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
-public new double ComputeDistanceToActualBaseline(TextBaseline baseline){ throw new NotImplementedException(); }
 
+        public new double ComputeDistanceToActualBaseline(TextBaseline baseline) { throw new NotImplementedException(); }
 
-public virtual bool LayoutPositionedChild(FlutterSDK.Rendering.Box.RenderBox child,FlutterSDK.Rendering.Stack.StackParentData childParentData,Size size,FlutterSDK.Painting.Alignment.Alignment alignment){ throw new NotImplementedException(); }
 
+        public virtual bool LayoutPositionedChild(FlutterSDK.Rendering.Box.RenderBox child, FlutterSDK.Rendering.Stack.StackParentData childParentData, Size size, FlutterSDK.Painting.Alignment.Alignment alignment) { throw new NotImplementedException(); }
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
 
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
-public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
 
+        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
-public virtual void PaintStack(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
 
+        public virtual void PaintStack(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
 
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
 
+        public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class RenderIndexedStack : FlutterSDK.Rendering.Stack.RenderStack
-{
-#region constructors
-public RenderIndexedStack(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>),FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry),TextDirection textDirection = default(TextDirection),int index = 0)
-: base(children:children,alignment:alignment,textDirection:textDirection)
-{
-throw new NotImplementedException(); }
-#endregion
 
-#region fields
-internal virtual int _Index{get;set;}
-public virtual int Index{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
+    public class RenderIndexedStack : FlutterSDK.Rendering.Stack.RenderStack
+    {
+        #region constructors
+        public RenderIndexedStack(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection), int index = 0)
+        : base(children: children, alignment: alignment, textDirection: textDirection)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual int _Index { get; set; }
+        public virtual int Index { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor){ throw new NotImplementedException(); }
+        #region methods
 
+        public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor) { throw new NotImplementedException(); }
 
-private FlutterSDK.Rendering.Box.RenderBox _ChildAtIndex(){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Rendering.Box.RenderBox _ChildAtIndex() { throw new NotImplementedException(); }
 
-public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
 
+        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
-public new void PaintStack(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
 
+        public new void PaintStack(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public enum StackFit{
 
-Loose,
-Expand,
-Passthrough,
-}
+    public enum StackFit
+    {
 
+        Loose,
+        Expand,
+        Passthrough,
+    }
 
-public enum Overflow{
 
-Visible,
-Clip,
-}
+    public enum Overflow
+    {
+
+        Visible,
+        Clip,
+    }
 
 }

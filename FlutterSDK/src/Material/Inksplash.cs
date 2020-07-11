@@ -383,86 +383,93 @@ using FlutterSDK.Material.Expandicon;
 using FlutterSDK.Material.Mergeablematerial;
 using FlutterSDK.Material.Button;
 using FlutterSDK.Material.Floatingactionbuttontheme;
-namespace FlutterSDK.Material.Inksplash{
-internal static class InksplashDefaultClass{
-public static TimeSpan _KUnconfirmedSplashDuration = default(TimeSpan);
-public static TimeSpan _KSplashFadeDuration = default(TimeSpan);
-public static double _KSplashInitialSize = default(double);
-public static double _KSplashConfirmedVelocity = default(double);
-internal static FlutterSDK.Material.Material.RectCallback _GetClipCallback(FlutterSDK.Rendering.Box.RenderBox referenceBox,bool containedInkWell,FlutterSDK.Material.Material.RectCallback rectCallback){
-throw new NotImplementedException();
-}
-
-internal static double _GetTargetRadius(FlutterSDK.Rendering.Box.RenderBox referenceBox,bool containedInkWell,FlutterSDK.Material.Material.RectCallback rectCallback,FlutterBinding.UI.Offset position){
-throw new NotImplementedException();
-}
-
-internal static double _GetSplashRadiusForPositionInSize(Size bounds,FlutterBinding.UI.Offset position){
-throw new NotImplementedException();
-}
-
-}
-
-public class _InkSplashFactory : FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory
+namespace FlutterSDK.Material.Inksplash
 {
-#region constructors
-public _InkSplashFactory()
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class InksplashDefaultClass
+    {
+        public static TimeSpan _KUnconfirmedSplashDuration = default(TimeSpan);
+        public static TimeSpan _KSplashFadeDuration = default(TimeSpan);
+        public static double _KSplashInitialSize = default(double);
+        public static double _KSplashConfirmedVelocity = default(double);
+        internal static FlutterSDK.Material.Material.RectCallback _GetClipCallback(FlutterSDK.Rendering.Box.RenderBox referenceBox, bool containedInkWell, FlutterSDK.Material.Material.RectCallback rectCallback)
+        {
+            throw new NotImplementedException();
+        }
 
-#region fields
-#endregion
+        internal static double _GetTargetRadius(FlutterSDK.Rendering.Box.RenderBox referenceBox, bool containedInkWell, FlutterSDK.Material.Material.RectCallback rectCallback, FlutterBinding.UI.Offset position)
+        {
+            throw new NotImplementedException();
+        }
 
-#region methods
+        internal static double _GetSplashRadiusForPositionInSize(Size bounds, FlutterBinding.UI.Offset position)
+        {
+            throw new NotImplementedException();
+        }
 
-public new FlutterSDK.Material.Inkwell.InteractiveInkFeature Create(FlutterSDK.Material.Material.MaterialInkController controller = default(FlutterSDK.Material.Material.MaterialInkController),FlutterSDK.Rendering.Box.RenderBox referenceBox = default(FlutterSDK.Rendering.Box.RenderBox),FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),TextDirection textDirection = default(TextDirection),bool containedInkWell = false,FlutterSDK.Material.Material.RectCallback rectCallback = default(FlutterSDK.Material.Material.RectCallback),FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius),FlutterSDK.Painting.Borders.ShapeBorder customBorder = default(FlutterSDK.Painting.Borders.ShapeBorder),double radius = default(double),VoidCallback onRemoved = default(VoidCallback)){ throw new NotImplementedException(); }
+    }
 
-#endregion
-}
+    public class _InkSplashFactory : FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory
+    {
+        #region constructors
+        public _InkSplashFactory()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        #endregion
 
-public class InkSplash : FlutterSDK.Material.Inkwell.InteractiveInkFeature
-{
-#region constructors
-public InkSplash(FlutterSDK.Material.Material.MaterialInkController controller = default(FlutterSDK.Material.Material.MaterialInkController),FlutterSDK.Rendering.Box.RenderBox referenceBox = default(FlutterSDK.Rendering.Box.RenderBox),TextDirection textDirection = default(TextDirection),FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),bool containedInkWell = false,FlutterSDK.Material.Material.RectCallback rectCallback = default(FlutterSDK.Material.Material.RectCallback),FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius),FlutterSDK.Painting.Borders.ShapeBorder customBorder = default(FlutterSDK.Painting.Borders.ShapeBorder),double radius = default(double),VoidCallback onRemoved = default(VoidCallback))
-: base(controller:controller,referenceBox:referenceBox,color:color,onRemoved:onRemoved)
-{
-throw new NotImplementedException(); }
-#endregion
+        #region methods
 
-#region fields
-internal virtual FlutterBinding.UI.Offset _Position{get;set;}
-internal virtual FlutterSDK.Painting.Borderradius.BorderRadius _BorderRadius{get;set;}
-internal virtual FlutterSDK.Painting.Borders.ShapeBorder _CustomBorder{get;set;}
-internal virtual double _TargetRadius{get;set;}
-internal virtual FlutterSDK.Material.Material.RectCallback _ClipCallback{get;set;}
-internal virtual bool _RepositionToReferenceBox{get;set;}
-internal virtual TextDirection _TextDirection{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _Radius{get;set;}
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _RadiusController{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<int> _Alpha{get;set;}
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _AlphaController{get;set;}
-public virtual FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory SplashFactory{get;set;}
-#endregion
+        public new FlutterSDK.Material.Inkwell.InteractiveInkFeature Create(FlutterSDK.Material.Material.MaterialInkController controller = default(FlutterSDK.Material.Material.MaterialInkController), FlutterSDK.Rendering.Box.RenderBox referenceBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), TextDirection textDirection = default(TextDirection), bool containedInkWell = false, FlutterSDK.Material.Material.RectCallback rectCallback = default(FlutterSDK.Material.Material.RectCallback), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Painting.Borders.ShapeBorder customBorder = default(FlutterSDK.Painting.Borders.ShapeBorder), double radius = default(double), VoidCallback onRemoved = default(VoidCallback)) { throw new NotImplementedException(); }
 
-#region methods
-
-public new void Confirm(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void Cancel(){ throw new NotImplementedException(); }
+    public class InkSplash : FlutterSDK.Material.Inkwell.InteractiveInkFeature
+    {
+        #region constructors
+        public InkSplash(FlutterSDK.Material.Material.MaterialInkController controller = default(FlutterSDK.Material.Material.MaterialInkController), FlutterSDK.Rendering.Box.RenderBox referenceBox = default(FlutterSDK.Rendering.Box.RenderBox), TextDirection textDirection = default(TextDirection), FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), bool containedInkWell = false, FlutterSDK.Material.Material.RectCallback rectCallback = default(FlutterSDK.Material.Material.RectCallback), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Painting.Borders.ShapeBorder customBorder = default(FlutterSDK.Painting.Borders.ShapeBorder), double radius = default(double), VoidCallback onRemoved = default(VoidCallback))
+        : base(controller: controller, referenceBox: referenceBox, color: color, onRemoved: onRemoved)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterBinding.UI.Offset _Position { get; set; }
+        internal virtual FlutterSDK.Painting.Borderradius.BorderRadius _BorderRadius { get; set; }
+        internal virtual FlutterSDK.Painting.Borders.ShapeBorder _CustomBorder { get; set; }
+        internal virtual double _TargetRadius { get; set; }
+        internal virtual FlutterSDK.Material.Material.RectCallback _ClipCallback { get; set; }
+        internal virtual bool _RepositionToReferenceBox { get; set; }
+        internal virtual TextDirection _TextDirection { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _Radius { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _RadiusController { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<int> _Alpha { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _AlphaController { get; set; }
+        public virtual FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory SplashFactory { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void Confirm() { throw new NotImplementedException(); }
 
 
-private void _HandleAlphaStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status){ throw new NotImplementedException(); }
+        public new void Cancel() { throw new NotImplementedException(); }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+        private void _HandleAlphaStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status) { throw new NotImplementedException(); }
 
 
-public new void PaintFeature(Canvas canvas,Matrix4 transform){ throw new NotImplementedException(); }
+        public new void Dispose() { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new void PaintFeature(Canvas canvas, Matrix4 transform) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

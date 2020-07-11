@@ -420,181 +420,187 @@ using FlutterSDK.Material.Inksplash;
 using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
-namespace FlutterSDK.Material.Useraccountsdrawerheader{
-internal static class UseraccountsdrawerheaderDefaultClass{
-public static double _KAccountDetailsHeight = default(double);
-}
-
-public class _AccountPictures : FlutterSDK.Widgets.Framework.StatelessWidget
+namespace FlutterSDK.Material.Useraccountsdrawerheader
 {
-#region constructors
-public _AccountPictures(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget currentAccountPicture = default(FlutterSDK.Widgets.Framework.Widget),List<FlutterSDK.Widgets.Framework.Widget> otherAccountsPictures = default(List<FlutterSDK.Widgets.Framework.Widget>))
-: base(key:key)
-{
-this.CurrentAccountPicture = currentAccountPicture;
-this.OtherAccountsPictures = otherAccountsPictures;throw new NotImplementedException(); }
-#endregion
+    internal static class UseraccountsdrawerheaderDefaultClass
+    {
+        public static double _KAccountDetailsHeight = default(double);
+    }
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget CurrentAccountPicture{get;set;}
-public virtual List<FlutterSDK.Widgets.Framework.Widget> OtherAccountsPictures{get;set;}
-#endregion
+    public class _AccountPictures : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public _AccountPictures(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget currentAccountPicture = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Widgets.Framework.Widget> otherAccountsPictures = default(List<FlutterSDK.Widgets.Framework.Widget>))
+        : base(key: key)
+        {
+            this.CurrentAccountPicture = currentAccountPicture;
+            this.OtherAccountsPictures = otherAccountsPictures; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget CurrentAccountPicture { get; set; }
+        public virtual List<FlutterSDK.Widgets.Framework.Widget> OtherAccountsPictures { get; set; }
+        #endregion
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-
-public class _AccountDetails : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public _AccountDetails(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget accountName = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.Widget accountEmail = default(FlutterSDK.Widgets.Framework.Widget),VoidCallback onTap = default(VoidCallback),bool isOpen = default(bool),FlutterBinding.UI.Color arrowColor = default(FlutterBinding.UI.Color))
-: base(key:key)
-{
-this.AccountName = accountName;
-this.AccountEmail = accountEmail;
-this.OnTap = onTap;
-this.IsOpen = isOpen;
-this.ArrowColor = arrowColor;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget AccountName{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget AccountEmail{get;set;}
-public virtual VoidCallback OnTap{get;set;}
-public virtual bool IsOpen{get;set;}
-public virtual FlutterBinding.UI.Color ArrowColor{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Material.Useraccountsdrawerheader._AccountDetailsState CreateState(){ throw new NotImplementedException(); }
-
-#endregion
-}
+        #endregion
+    }
 
 
-public class _AccountDetailsState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Useraccountsdrawerheader._AccountDetails>,ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-#region constructors
-public _AccountDetailsState()
-{ }
-#endregion
+    public class _AccountDetails : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public _AccountDetails(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget accountName = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget accountEmail = default(FlutterSDK.Widgets.Framework.Widget), VoidCallback onTap = default(VoidCallback), bool isOpen = default(bool), FlutterBinding.UI.Color arrowColor = default(FlutterBinding.UI.Color))
+        : base(key: key)
+        {
+            this.AccountName = accountName;
+            this.AccountEmail = accountEmail;
+            this.OnTap = onTap;
+            this.IsOpen = isOpen;
+            this.ArrowColor = arrowColor; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _Animation{get;set;}
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller{get;set;}
-#endregion
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget AccountName { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget AccountEmail { get; set; }
+        public virtual VoidCallback OnTap { get; set; }
+        public virtual bool IsOpen { get; set; }
+        public virtual FlutterBinding.UI.Color ArrowColor { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new void InitState(){ throw new NotImplementedException(); }
+        public new FlutterSDK.Material.Useraccountsdrawerheader._AccountDetailsState CreateState() { throw new NotImplementedException(); }
 
-
-public new void Dispose(){ throw new NotImplementedException(); }
-
-
-public new void DidUpdateWidget(FlutterSDK.Material.Useraccountsdrawerheader._AccountDetails oldWidget){ throw new NotImplementedException(); }
-
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _AccountDetailsLayout : FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate
-{
-#region constructors
-public _AccountDetailsLayout(TextDirection textDirection = default(TextDirection))
-{
-this.TextDirection = textDirection;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual string AccountName{get;set;}
-public virtual string AccountEmail{get;set;}
-public virtual string DropdownIcon{get;set;}
-public virtual TextDirection TextDirection{get;set;}
-#endregion
-
-#region methods
-
-public new void PerformLayout(Size size){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new bool ShouldRelayout(FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate oldDelegate){ throw new NotImplementedException(); }
+    public class _AccountDetailsState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Useraccountsdrawerheader._AccountDetails>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _AccountDetailsState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _Animation { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-private Offset _OffsetForIcon(Size size,Size iconSize){ throw new NotImplementedException(); }
+        public new void Dispose() { throw new NotImplementedException(); }
 
 
-private Offset _OffsetForBottomLine(Size size,Size iconSize,Size bottomLineSize){ throw new NotImplementedException(); }
+        public new void DidUpdateWidget(FlutterSDK.Material.Useraccountsdrawerheader._AccountDetails oldWidget) { throw new NotImplementedException(); }
 
 
-private Offset _OffsetForName(Size size,Size nameSize,FlutterBinding.UI.Offset bottomLineOffset){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#endregion
-}
-
-
-public class UserAccountsDrawerHeader : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public UserAccountsDrawerHeader(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),FlutterSDK.Widgets.Framework.Widget currentAccountPicture = default(FlutterSDK.Widgets.Framework.Widget),List<FlutterSDK.Widgets.Framework.Widget> otherAccountsPictures = default(List<FlutterSDK.Widgets.Framework.Widget>),FlutterSDK.Widgets.Framework.Widget accountName = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.Widget accountEmail = default(FlutterSDK.Widgets.Framework.Widget),VoidCallback onDetailsPressed = default(VoidCallback),FlutterBinding.UI.Color arrowColor = default(FlutterBinding.UI.Color))
-: base(key:key)
-{
-this.Decoration = decoration;
-this.Margin = margin;
-this.CurrentAccountPicture = currentAccountPicture;
-this.OtherAccountsPictures = otherAccountsPictures;
-this.AccountName = accountName;
-this.AccountEmail = accountEmail;
-this.OnDetailsPressed = onDetailsPressed;
-this.ArrowColor = arrowColor;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Painting.Decoration.Decoration Decoration{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget CurrentAccountPicture{get;set;}
-public virtual List<FlutterSDK.Widgets.Framework.Widget> OtherAccountsPictures{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget AccountName{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget AccountEmail{get;set;}
-public virtual VoidCallback OnDetailsPressed{get;set;}
-public virtual FlutterBinding.UI.Color ArrowColor{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Material.Useraccountsdrawerheader._UserAccountsDrawerHeaderState CreateState(){ throw new NotImplementedException(); }
-
-#endregion
-}
+        #endregion
+    }
 
 
-public class _UserAccountsDrawerHeaderState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Useraccountsdrawerheader.UserAccountsDrawerHeader>
-{
-#region constructors
-public _UserAccountsDrawerHeaderState()
-{ }
-#endregion
+    public class _AccountDetailsLayout : FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate
+    {
+        #region constructors
+        public _AccountDetailsLayout(TextDirection textDirection = default(TextDirection))
+        {
+            this.TextDirection = textDirection; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-internal virtual bool _IsOpen{get;set;}
-#endregion
+        #region fields
+        public virtual string AccountName { get; set; }
+        public virtual string AccountEmail { get; set; }
+        public virtual string DropdownIcon { get; set; }
+        public virtual TextDirection TextDirection { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-private void _HandleDetailsPressed(){ throw new NotImplementedException(); }
+        public new void PerformLayout(Size size) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new bool ShouldRelayout(FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate oldDelegate) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        private Offset _OffsetForIcon(Size size, Size iconSize) { throw new NotImplementedException(); }
+
+
+        private Offset _OffsetForBottomLine(Size size, Size iconSize, Size bottomLineSize) { throw new NotImplementedException(); }
+
+
+        private Offset _OffsetForName(Size size, Size nameSize, FlutterBinding.UI.Offset bottomLineOffset) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class UserAccountsDrawerHeader : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public UserAccountsDrawerHeader(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget currentAccountPicture = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Widgets.Framework.Widget> otherAccountsPictures = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Framework.Widget accountName = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget accountEmail = default(FlutterSDK.Widgets.Framework.Widget), VoidCallback onDetailsPressed = default(VoidCallback), FlutterBinding.UI.Color arrowColor = default(FlutterBinding.UI.Color))
+        : base(key: key)
+        {
+            this.Decoration = decoration;
+            this.Margin = margin;
+            this.CurrentAccountPicture = currentAccountPicture;
+            this.OtherAccountsPictures = otherAccountsPictures;
+            this.AccountName = accountName;
+            this.AccountEmail = accountEmail;
+            this.OnDetailsPressed = onDetailsPressed;
+            this.ArrowColor = arrowColor; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget CurrentAccountPicture { get; set; }
+        public virtual List<FlutterSDK.Widgets.Framework.Widget> OtherAccountsPictures { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget AccountName { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget AccountEmail { get; set; }
+        public virtual VoidCallback OnDetailsPressed { get; set; }
+        public virtual FlutterBinding.UI.Color ArrowColor { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Material.Useraccountsdrawerheader._UserAccountsDrawerHeaderState CreateState() { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class _UserAccountsDrawerHeaderState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Useraccountsdrawerheader.UserAccountsDrawerHeader>
+    {
+        #region constructors
+        public _UserAccountsDrawerHeaderState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual bool _IsOpen { get; set; }
+        #endregion
+
+        #region methods
+
+        private void _HandleDetailsPressed() { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

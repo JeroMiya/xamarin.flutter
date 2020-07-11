@@ -423,36 +423,39 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Scrollawareimageprovider{
-internal static class ScrollawareimageproviderDefaultClass{
-}
-
-public class ScrollAwareImageProvider<T> : FlutterSDK.Painting.Imageprovider.ImageProvider<T>
+namespace FlutterSDK.Widgets.Scrollawareimageprovider
 {
-#region constructors
-public ScrollAwareImageProvider(FlutterSDK.Widgets.Disposablebuildcontext.DisposableBuildContext<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> context = default(FlutterSDK.Widgets.Disposablebuildcontext.DisposableBuildContext<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>),FlutterSDK.Painting.Imageprovider.ImageProvider<T> imageProvider = default(FlutterSDK.Painting.Imageprovider.ImageProvider<T>))
-: base()
-{
-this.Context = context;
-this.ImageProvider = imageProvider;throw new NotImplementedException(); }
-#endregion
+    internal static class ScrollawareimageproviderDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Widgets.Disposablebuildcontext.DisposableBuildContext<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> Context{get;set;}
-public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<T> ImageProvider{get;set;}
-#endregion
+    public class ScrollAwareImageProvider<T> : FlutterSDK.Painting.Imageprovider.ImageProvider<T>
+    {
+        #region constructors
+        public ScrollAwareImageProvider(FlutterSDK.Widgets.Disposablebuildcontext.DisposableBuildContext<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> context = default(FlutterSDK.Widgets.Disposablebuildcontext.DisposableBuildContext<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>), FlutterSDK.Painting.Imageprovider.ImageProvider<T> imageProvider = default(FlutterSDK.Painting.Imageprovider.ImageProvider<T>))
+        : base()
+        {
+            this.Context = context;
+            this.ImageProvider = imageProvider; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Widgets.Disposablebuildcontext.DisposableBuildContext<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> Context { get; set; }
+        public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<T> ImageProvider { get; set; }
+        #endregion
 
-public new void ResolveStreamForKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration,FlutterSDK.Painting.Imagestream.ImageStream stream,T key,FlutterSDK.Painting.Imagestream.ImageErrorListener handleError){ throw new NotImplementedException(); }
+        #region methods
+
+        public new void ResolveStreamForKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration, FlutterSDK.Painting.Imagestream.ImageStream stream, T key, FlutterSDK.Painting.Imagestream.ImageErrorListener handleError) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(T key,FlutterSDK.Painting.Imageprovider.DecoderCallback decode){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(T key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode) { throw new NotImplementedException(); }
 
 
-public new Future<T> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration){ throw new NotImplementedException(); }
+        public new Future<T> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 }

@@ -421,129 +421,138 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Services.Textformatter{
-public delegate FlutterSDK.Services.Textinput.TextEditingValue TextInputFormatFunction(FlutterSDK.Services.Textinput.TextEditingValue oldValue,FlutterSDK.Services.Textinput.TextEditingValue newValue);
-internal static class TextformatterDefaultClass{
-internal static FlutterSDK.Services.Textinput.TextEditingValue _SelectionAwareTextManipulation(FlutterSDK.Services.Textinput.TextEditingValue value,Func<String,string> substringManipulation){
-throw new NotImplementedException();
-}
-
-}
-
-public interface ITextInputFormatter{}
-
-public class TextInputFormatter{
-
-public virtual FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(FlutterSDK.Services.Textinput.TextEditingValue oldValue,FlutterSDK.Services.Textinput.TextEditingValue newValue){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Services.Textformatter.TextInputFormatter WithFunction(FlutterSDK.Services.Textformatter.TextInputFormatFunction formatFunction){ throw new NotImplementedException(); }
-
-}
-public static class TextInputFormatterMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<ITextInputFormatter, TextInputFormatter> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<ITextInputFormatter, TextInputFormatter>();
-static TextInputFormatter GetOrCreate(ITextInputFormatter instance)
+namespace FlutterSDK.Services.Textformatter
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new TextInputFormatter();
-_table.Add(instance, value);
-}
-return (TextInputFormatter)value;
-}
-public static FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(this ITextInputFormatter instance,FlutterSDK.Services.Textinput.TextEditingValue oldValue,FlutterSDK.Services.Textinput.TextEditingValue newValue) => GetOrCreate(instance).FormatEditUpdate(oldValue, newValue);
-public static FlutterSDK.Services.Textformatter.TextInputFormatter WithFunction(this ITextInputFormatter instance,FlutterSDK.Services.Textformatter.TextInputFormatFunction formatFunction) => GetOrCreate(instance).WithFunction(formatFunction);
-}
+    public delegate FlutterSDK.Services.Textinput.TextEditingValue TextInputFormatFunction(FlutterSDK.Services.Textinput.TextEditingValue oldValue, FlutterSDK.Services.Textinput.TextEditingValue newValue);
+    internal static class TextformatterDefaultClass
+    {
+        internal static FlutterSDK.Services.Textinput.TextEditingValue _SelectionAwareTextManipulation(FlutterSDK.Services.Textinput.TextEditingValue value, Func<String, string> substringManipulation)
+        {
+            throw new NotImplementedException();
+        }
+
+    }
+
+    public interface ITextInputFormatter { }
+
+    public class TextInputFormatter
+    {
+
+        public virtual FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(FlutterSDK.Services.Textinput.TextEditingValue oldValue, FlutterSDK.Services.Textinput.TextEditingValue newValue) { throw new NotImplementedException(); }
 
 
-public class _SimpleTextInputFormatter : FlutterSDK.Services.Textformatter.TextInputFormatter
-{
-#region constructors
-public _SimpleTextInputFormatter(FlutterSDK.Services.Textformatter.TextInputFormatFunction formatFunction)
-: base()
-{
-this.FormatFunction = formatFunction;throw new NotImplementedException(); }
-#endregion
+        public virtual FlutterSDK.Services.Textformatter.TextInputFormatter WithFunction(FlutterSDK.Services.Textformatter.TextInputFormatFunction formatFunction) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Services.Textformatter.TextInputFormatFunction FormatFunction{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(FlutterSDK.Services.Textinput.TextEditingValue oldValue,FlutterSDK.Services.Textinput.TextEditingValue newValue){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class BlacklistingTextInputFormatter : FlutterSDK.Services.Textformatter.TextInputFormatter
-{
-#region constructors
-public BlacklistingTextInputFormatter(Pattern blacklistedPattern,string replacementString = default(string))
-: base()
-{
-this.BlacklistedPattern = blacklistedPattern;
-this.ReplacementString = replacementString;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual Pattern BlacklistedPattern{get;set;}
-public virtual string ReplacementString{get;set;}
-public virtual FlutterSDK.Services.Textformatter.BlacklistingTextInputFormatter SingleLineFormatter{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(FlutterSDK.Services.Textinput.TextEditingValue oldValue,FlutterSDK.Services.Textinput.TextEditingValue newValue){ throw new NotImplementedException(); }
-
-#endregion
-}
+    }
+    public static class TextInputFormatterMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<ITextInputFormatter, TextInputFormatter> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<ITextInputFormatter, TextInputFormatter>();
+        static TextInputFormatter GetOrCreate(ITextInputFormatter instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new TextInputFormatter();
+                _table.Add(instance, value);
+            }
+            return (TextInputFormatter)value;
+        }
+        public static FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(this ITextInputFormatter instance, FlutterSDK.Services.Textinput.TextEditingValue oldValue, FlutterSDK.Services.Textinput.TextEditingValue newValue) => GetOrCreate(instance).FormatEditUpdate(oldValue, newValue);
+        public static FlutterSDK.Services.Textformatter.TextInputFormatter WithFunction(this ITextInputFormatter instance, FlutterSDK.Services.Textformatter.TextInputFormatFunction formatFunction) => GetOrCreate(instance).WithFunction(formatFunction);
+    }
 
 
-public class LengthLimitingTextInputFormatter : FlutterSDK.Services.Textformatter.TextInputFormatter
-{
-#region constructors
-public LengthLimitingTextInputFormatter(int maxLength)
-: base()
-{
-this.MaxLength = maxLength;throw new NotImplementedException(); }
-#endregion
+    public class _SimpleTextInputFormatter : FlutterSDK.Services.Textformatter.TextInputFormatter
+    {
+        #region constructors
+        public _SimpleTextInputFormatter(FlutterSDK.Services.Textformatter.TextInputFormatFunction formatFunction)
+        : base()
+        {
+            this.FormatFunction = formatFunction; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual int MaxLength{get;set;}
-#endregion
+        #region fields
+        public virtual FlutterSDK.Services.Textformatter.TextInputFormatFunction FormatFunction { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public virtual FlutterSDK.Services.Textinput.TextEditingValue Truncate(FlutterSDK.Services.Textinput.TextEditingValue value,int maxLength){ throw new NotImplementedException(); }
+        public new FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(FlutterSDK.Services.Textinput.TextEditingValue oldValue, FlutterSDK.Services.Textinput.TextEditingValue newValue) { throw new NotImplementedException(); }
 
-
-public new FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(FlutterSDK.Services.Textinput.TextEditingValue oldValue,FlutterSDK.Services.Textinput.TextEditingValue newValue){ throw new NotImplementedException(); }
-
-#endregion
-}
+        #endregion
+    }
 
 
-public class WhitelistingTextInputFormatter : FlutterSDK.Services.Textformatter.TextInputFormatter
-{
-#region constructors
-public WhitelistingTextInputFormatter(Pattern whitelistedPattern)
-: base()
-{
-this.WhitelistedPattern = whitelistedPattern;throw new NotImplementedException(); }
-#endregion
+    public class BlacklistingTextInputFormatter : FlutterSDK.Services.Textformatter.TextInputFormatter
+    {
+        #region constructors
+        public BlacklistingTextInputFormatter(Pattern blacklistedPattern, string replacementString = default(string))
+        : base()
+        {
+            this.BlacklistedPattern = blacklistedPattern;
+            this.ReplacementString = replacementString; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual Pattern WhitelistedPattern{get;set;}
-public virtual FlutterSDK.Services.Textformatter.WhitelistingTextInputFormatter DigitsOnly{get;set;}
-#endregion
+        #region fields
+        public virtual Pattern BlacklistedPattern { get; set; }
+        public virtual string ReplacementString { get; set; }
+        public virtual FlutterSDK.Services.Textformatter.BlacklistingTextInputFormatter SingleLineFormatter { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(FlutterSDK.Services.Textinput.TextEditingValue oldValue,FlutterSDK.Services.Textinput.TextEditingValue newValue){ throw new NotImplementedException(); }
+        public new FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(FlutterSDK.Services.Textinput.TextEditingValue oldValue, FlutterSDK.Services.Textinput.TextEditingValue newValue) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
+
+
+    public class LengthLimitingTextInputFormatter : FlutterSDK.Services.Textformatter.TextInputFormatter
+    {
+        #region constructors
+        public LengthLimitingTextInputFormatter(int maxLength)
+        : base()
+        {
+            this.MaxLength = maxLength; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual int MaxLength { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual FlutterSDK.Services.Textinput.TextEditingValue Truncate(FlutterSDK.Services.Textinput.TextEditingValue value, int maxLength) { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(FlutterSDK.Services.Textinput.TextEditingValue oldValue, FlutterSDK.Services.Textinput.TextEditingValue newValue) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class WhitelistingTextInputFormatter : FlutterSDK.Services.Textformatter.TextInputFormatter
+    {
+        #region constructors
+        public WhitelistingTextInputFormatter(Pattern whitelistedPattern)
+        : base()
+        {
+            this.WhitelistedPattern = whitelistedPattern; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual Pattern WhitelistedPattern { get; set; }
+        public virtual FlutterSDK.Services.Textformatter.WhitelistingTextInputFormatter DigitsOnly { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(FlutterSDK.Services.Textinput.TextEditingValue oldValue, FlutterSDK.Services.Textinput.TextEditingValue newValue) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

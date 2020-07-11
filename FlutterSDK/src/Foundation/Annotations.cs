@@ -291,61 +291,66 @@ using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
-namespace FlutterSDK.Foundation.Annotations{
-internal static class AnnotationsDefaultClass{
-}
-
-public class Category
+namespace FlutterSDK.Foundation.Annotations
 {
-#region constructors
-public Category(List<string> sections)
-: base()
-{
-this.Sections = sections;throw new NotImplementedException(); }
-#endregion
+    internal static class AnnotationsDefaultClass
+    {
+    }
 
-#region fields
-public virtual List<string> Sections{get;set;}
-#endregion
+    public class Category
+    {
+        #region constructors
+        public Category(List<string> sections)
+        : base()
+        {
+            this.Sections = sections; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
-#endregion
-}
+        #region fields
+        public virtual List<string> Sections { get; set; }
+        #endregion
 
-
-public class DocumentationIcon
-{
-#region constructors
-public DocumentationIcon(string url)
-: base()
-{
-this.Url = url;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual string Url{get;set;}
-#endregion
-
-#region methods
-#endregion
-}
+        #region methods
+        #endregion
+    }
 
 
-public class Summary
-{
-#region constructors
-public Summary(string text)
-: base()
-{
-this.Text = text;throw new NotImplementedException(); }
-#endregion
+    public class DocumentationIcon
+    {
+        #region constructors
+        public DocumentationIcon(string url)
+        : base()
+        {
+            this.Url = url; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual string Text{get;set;}
-#endregion
+        #region fields
+        public virtual string Url { get; set; }
+        #endregion
 
-#region methods
-#endregion
-}
+        #region methods
+        #endregion
+    }
+
+
+    public class Summary
+    {
+        #region constructors
+        public Summary(string text)
+        : base()
+        {
+            this.Text = text; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual string Text { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
 
 }

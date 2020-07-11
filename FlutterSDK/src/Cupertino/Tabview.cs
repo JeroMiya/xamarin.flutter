@@ -291,75 +291,78 @@ using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
-namespace FlutterSDK.Cupertino.Tabview{
-internal static class TabviewDefaultClass{
-}
-
-public class CupertinoTabView : FlutterSDK.Widgets.Framework.StatefulWidget
+namespace FlutterSDK.Cupertino.Tabview
 {
-#region constructors
-public CupertinoTabView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder),FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> navigatorKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState>),string defaultTitle = default(string),Dictionary<string,object> routes = default(Dictionary<string,object>),FlutterSDK.Widgets.Navigator.RouteFactory onGenerateRoute = default(FlutterSDK.Widgets.Navigator.RouteFactory),FlutterSDK.Widgets.Navigator.RouteFactory onUnknownRoute = default(FlutterSDK.Widgets.Navigator.RouteFactory),List<FlutterSDK.Widgets.Navigator.NavigatorObserver> navigatorObservers = default(List<FlutterSDK.Widgets.Navigator.NavigatorObserver>))
-: base(key:key)
-{
-this.Builder = builder;
-this.NavigatorKey = navigatorKey;
-this.DefaultTitle = defaultTitle;
-this.Routes = routes;
-this.OnGenerateRoute = onGenerateRoute;
-this.OnUnknownRoute = onUnknownRoute;
-this.NavigatorObservers = navigatorObservers;throw new NotImplementedException(); }
-#endregion
+    internal static class TabviewDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder{get;set;}
-public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> NavigatorKey{get;set;}
-public virtual string DefaultTitle{get;set;}
-public virtual Dictionary<string,object> Routes{get;set;}
-public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnGenerateRoute{get;set;}
-public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnUnknownRoute{get;set;}
-public virtual List<FlutterSDK.Widgets.Navigator.NavigatorObserver> NavigatorObservers{get;set;}
-#endregion
+    public class CupertinoTabView : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public CupertinoTabView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> navigatorKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState>), string defaultTitle = default(string), Dictionary<string, object> routes = default(Dictionary<string, object>), FlutterSDK.Widgets.Navigator.RouteFactory onGenerateRoute = default(FlutterSDK.Widgets.Navigator.RouteFactory), FlutterSDK.Widgets.Navigator.RouteFactory onUnknownRoute = default(FlutterSDK.Widgets.Navigator.RouteFactory), List<FlutterSDK.Widgets.Navigator.NavigatorObserver> navigatorObservers = default(List<FlutterSDK.Widgets.Navigator.NavigatorObserver>))
+        : base(key: key)
+        {
+            this.Builder = builder;
+            this.NavigatorKey = navigatorKey;
+            this.DefaultTitle = defaultTitle;
+            this.Routes = routes;
+            this.OnGenerateRoute = onGenerateRoute;
+            this.OnUnknownRoute = onUnknownRoute;
+            this.NavigatorObservers = navigatorObservers; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> NavigatorKey { get; set; }
+        public virtual string DefaultTitle { get; set; }
+        public virtual Dictionary<string, object> Routes { get; set; }
+        public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnGenerateRoute { get; set; }
+        public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnUnknownRoute { get; set; }
+        public virtual List<FlutterSDK.Widgets.Navigator.NavigatorObserver> NavigatorObservers { get; set; }
+        #endregion
 
-public new FlutterSDK.Cupertino.Tabview._CupertinoTabViewState CreateState(){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new FlutterSDK.Cupertino.Tabview._CupertinoTabViewState CreateState() { throw new NotImplementedException(); }
 
-
-public class _CupertinoTabViewState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Tabview.CupertinoTabView>
-{
-#region constructors
-public _CupertinoTabViewState()
-{ }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Widgets.Heroes.HeroController _HeroController{get;set;}
-internal virtual List<FlutterSDK.Widgets.Navigator.NavigatorObserver> _NavigatorObservers{get;set;}
-#endregion
-
-#region methods
-
-public new void InitState(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void DidUpdateWidget(FlutterSDK.Cupertino.Tabview.CupertinoTabView oldWidget){ throw new NotImplementedException(); }
+    public class _CupertinoTabViewState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Tabview.CupertinoTabView>
+    {
+        #region constructors
+        public _CupertinoTabViewState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Heroes.HeroController _HeroController { get; set; }
+        internal virtual List<FlutterSDK.Widgets.Navigator.NavigatorObserver> _NavigatorObservers { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-private void _UpdateObservers(){ throw new NotImplementedException(); }
+        public new void DidUpdateWidget(FlutterSDK.Cupertino.Tabview.CupertinoTabView oldWidget) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        private void _UpdateObservers() { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Widgets.Navigator.Route<object> _OnGenerateRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Widgets.Navigator.Route<object> _OnUnknownRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings){ throw new NotImplementedException(); }
+        private FlutterSDK.Widgets.Navigator.Route<object> _OnGenerateRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        private FlutterSDK.Widgets.Navigator.Route<object> _OnUnknownRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

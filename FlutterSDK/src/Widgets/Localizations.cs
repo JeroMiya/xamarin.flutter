@@ -422,241 +422,254 @@ using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
-namespace FlutterSDK.Widgets.Localizations{
-internal static class LocalizationsDefaultClass{
-internal static Future<Dictionary<Type,object>> _LoadAll(Locale locale,Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> allDelegates){
-throw new NotImplementedException();
-}
-
-}
-
-public interface ILocalizationsDelegate<T>{
-bool IsSupported(Locale locale);
-Future<T> Load(Locale locale);
-bool ShouldReload(FlutterSDK.Widgets.Localizations.LocalizationsDelegate<T> old);
-string ToString();
-Type Type{get;}
-}
-
-
-public interface IWidgetsLocalizations{}
-
-public class WidgetsLocalizations{
-public virtual TextDirection TextDirection{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-
-public virtual FlutterSDK.Widgets.Localizations.WidgetsLocalizations Of(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-}
-public static class WidgetsLocalizationsMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IWidgetsLocalizations, WidgetsLocalizations> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IWidgetsLocalizations, WidgetsLocalizations>();
-static WidgetsLocalizations GetOrCreate(IWidgetsLocalizations instance)
+namespace FlutterSDK.Widgets.Localizations
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new WidgetsLocalizations();
-_table.Add(instance, value);
-}
-return (WidgetsLocalizations)value;
-}
-public static TextDirection TextDirectionProperty(this IWidgetsLocalizations instance) => GetOrCreate(instance).TextDirection;
-public static FlutterSDK.Widgets.Localizations.WidgetsLocalizations Of(this IWidgetsLocalizations instance,FlutterSDK.Widgets.Framework.BuildContext context) => GetOrCreate(instance).Of(context);
-}
+    internal static class LocalizationsDefaultClass
+    {
+        internal static Future<Dictionary<Type, object>> _LoadAll(Locale locale, Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> allDelegates)
+        {
+            throw new NotImplementedException();
+        }
+
+    }
 
+    public interface ILocalizationsDelegate<T>
+    {
+        bool IsSupported(Locale locale);
+        Future<T> Load(Locale locale);
+        bool ShouldReload(FlutterSDK.Widgets.Localizations.LocalizationsDelegate<T> old);
+        string ToString();
+        Type Type { get; }
+    }
 
-public class _Pending
-{
-#region constructors
-public _Pending(FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object> @delegate,Future<object> futureValue)
-{
-this.@delegate = @delegate;
-this.FutureValue = futureValue;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object> @delegate{get;set;}
-public virtual Future<object> FutureValue{get;set;}
-#endregion
+    public interface IWidgetsLocalizations { }
 
-#region methods
-#endregion
-}
+    public class WidgetsLocalizations
+    {
+        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
+        public virtual FlutterSDK.Widgets.Localizations.WidgetsLocalizations Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-public class LocalizationsDelegate<T>
-{
-#region constructors
-public LocalizationsDelegate()
-{
-throw new NotImplementedException(); }
-#endregion
+    }
+    public static class WidgetsLocalizationsMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IWidgetsLocalizations, WidgetsLocalizations> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IWidgetsLocalizations, WidgetsLocalizations>();
+        static WidgetsLocalizations GetOrCreate(IWidgetsLocalizations instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new WidgetsLocalizations();
+                _table.Add(instance, value);
+            }
+            return (WidgetsLocalizations)value;
+        }
+        public static TextDirection TextDirectionProperty(this IWidgetsLocalizations instance) => GetOrCreate(instance).TextDirection;
+        public static FlutterSDK.Widgets.Localizations.WidgetsLocalizations Of(this IWidgetsLocalizations instance, FlutterSDK.Widgets.Framework.BuildContext context) => GetOrCreate(instance).Of(context);
+    }
 
-#region fields
-public virtual Type Type{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+    public class _Pending
+    {
+        #region constructors
+        public _Pending(FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object> @delegate, Future<object> futureValue)
+        {
+            this.@delegate = @delegate;
+            this.FutureValue = futureValue; throw new NotImplementedException();
+        }
+        #endregion
 
-public virtual bool IsSupported(Locale locale){ throw new NotImplementedException(); }
+        #region fields
+        public virtual FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object> @delegate { get; set; }
+        public virtual Future<object> FutureValue { get; set; }
+        #endregion
 
+        #region methods
+        #endregion
+    }
 
-public virtual Future<T> Load(Locale locale){ throw new NotImplementedException(); }
 
+    public class LocalizationsDelegate<T>
+    {
+        #region constructors
+        public LocalizationsDelegate()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-public virtual bool ShouldReload(FlutterSDK.Widgets.Localizations.LocalizationsDelegate<T> old){ throw new NotImplementedException(); }
+        #region fields
+        public virtual Type Type { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-#endregion
-}
+        public virtual bool IsSupported(Locale locale) { throw new NotImplementedException(); }
 
 
-public class _WidgetsLocalizationsDelegate : FlutterSDK.Widgets.Localizations.LocalizationsDelegate<FlutterSDK.Widgets.Localizations.WidgetsLocalizations>
-{
-#region constructors
-public _WidgetsLocalizationsDelegate()
-{
-throw new NotImplementedException(); }
-#endregion
+        public virtual Future<T> Load(Locale locale) { throw new NotImplementedException(); }
 
-#region fields
-#endregion
 
-#region methods
+        public virtual bool ShouldReload(FlutterSDK.Widgets.Localizations.LocalizationsDelegate<T> old) { throw new NotImplementedException(); }
 
-public new bool IsSupported(Locale locale){ throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public new Future<FlutterSDK.Widgets.Localizations.WidgetsLocalizations> Load(Locale locale){ throw new NotImplementedException(); }
 
+    public class _WidgetsLocalizationsDelegate : FlutterSDK.Widgets.Localizations.LocalizationsDelegate<FlutterSDK.Widgets.Localizations.WidgetsLocalizations>
+    {
+        #region constructors
+        public _WidgetsLocalizationsDelegate()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-public new bool ShouldReload(FlutterSDK.Widgets.Localizations._WidgetsLocalizationsDelegate old){ throw new NotImplementedException(); }
+        #region fields
+        #endregion
 
+        #region methods
 
-#endregion
-}
+        public new bool IsSupported(Locale locale) { throw new NotImplementedException(); }
 
 
-public class DefaultWidgetsLocalizations : IWidgetsLocalizations
-{
-#region constructors
-public DefaultWidgetsLocalizations()
-{
-throw new NotImplementedException(); }
-#endregion
+        public new Future<FlutterSDK.Widgets.Localizations.WidgetsLocalizations> Load(Locale locale) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Widgets.Localizations.LocalizationsDelegate<FlutterSDK.Widgets.Localizations.WidgetsLocalizations> @delegate{get;set;}
-public virtual TextDirection TextDirection{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+        public new bool ShouldReload(FlutterSDK.Widgets.Localizations._WidgetsLocalizationsDelegate old) { throw new NotImplementedException(); }
 
-public virtual Future<FlutterSDK.Widgets.Localizations.WidgetsLocalizations> Load(Locale locale){ throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _LocalizationsScope : FlutterSDK.Widgets.Framework.InheritedWidget
-{
-#region constructors
-public _LocalizationsScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),Locale locale = default(Locale),FlutterSDK.Widgets.Localizations._LocalizationsState localizationsState = default(FlutterSDK.Widgets.Localizations._LocalizationsState),Dictionary<Type,object> typeToResources = default(Dictionary<Type,object>),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key,child:child)
-{
-this.Locale = locale;
-this.LocalizationsState = localizationsState;
-this.TypeToResources = typeToResources;throw new NotImplementedException(); }
-#endregion
+    public class DefaultWidgetsLocalizations : IWidgetsLocalizations
+    {
+        #region constructors
+        public DefaultWidgetsLocalizations()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual Locale Locale{get;set;}
-public virtual FlutterSDK.Widgets.Localizations._LocalizationsState LocalizationsState{get;set;}
-public virtual Dictionary<Type,object> TypeToResources{get;set;}
-#endregion
+        #region fields
+        public virtual FlutterSDK.Widgets.Localizations.LocalizationsDelegate<FlutterSDK.Widgets.Localizations.WidgetsLocalizations> @delegate { get; set; }
+        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#region methods
+        #region methods
 
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Localizations._LocalizationsScope old){ throw new NotImplementedException(); }
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget){ throw new NotImplementedException(); }
+        public virtual Future<FlutterSDK.Widgets.Localizations.WidgetsLocalizations> Load(Locale locale) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class Localizations : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public Localizations(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),Locale locale = default(Locale),List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> delegates = default(List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>>),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key)
-{
-this.Locale = locale;
-this.Delegates = delegates;
-this.Child = child;throw new NotImplementedException(); }
-public static Localizations Override(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext),Locale locale = default(Locale),List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> delegates = default(List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>>),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-{
-var instance =new Localizations();throw new NotImplementedException(); }
-#endregion
+    public class _LocalizationsScope : FlutterSDK.Widgets.Framework.InheritedWidget
+    {
+        #region constructors
+        public _LocalizationsScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Locale locale = default(Locale), FlutterSDK.Widgets.Localizations._LocalizationsState localizationsState = default(FlutterSDK.Widgets.Localizations._LocalizationsState), Dictionary<Type, object> typeToResources = default(Dictionary<Type, object>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            this.Locale = locale;
+            this.LocalizationsState = localizationsState;
+            this.TypeToResources = typeToResources; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual Locale Locale{get;set;}
-public virtual List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> Delegates{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-#endregion
+        #region fields
+        public virtual Locale Locale { get; set; }
+        public virtual FlutterSDK.Widgets.Localizations._LocalizationsState LocalizationsState { get; set; }
+        public virtual Dictionary<Type, object> TypeToResources { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public virtual Locale LocaleOf(FlutterSDK.Widgets.Framework.BuildContext context,bool nullOk = false){ throw new NotImplementedException(); }
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Localizations._LocalizationsScope old) { throw new NotImplementedException(); }
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-private List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> _DelegatesOf(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
 
+    public class Localizations : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public Localizations(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Locale locale = default(Locale), List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> delegates = default(List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.Locale = locale;
+            this.Delegates = delegates;
+            this.Child = child; throw new NotImplementedException();
+        }
+        public static Localizations Override(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), Locale locale = default(Locale), List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> delegates = default(List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        {
+            var instance = new Localizations(); throw new NotImplementedException();
+        }
+        #endregion
 
-public virtual T Of<T>(FlutterSDK.Widgets.Framework.BuildContext context,Type type){ throw new NotImplementedException(); }
+        #region fields
+        public virtual Locale Locale { get; set; }
+        public virtual List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> Delegates { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        #endregion
 
+        #region methods
 
-public new FlutterSDK.Widgets.Localizations._LocalizationsState CreateState(){ throw new NotImplementedException(); }
+        public virtual Locale LocaleOf(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        private List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> _DelegatesOf(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public virtual T Of<T>(FlutterSDK.Widgets.Framework.BuildContext context, Type type) { throw new NotImplementedException(); }
 
-public class _LocalizationsState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Localizations.Localizations>
-{
-#region constructors
-public _LocalizationsState()
-{ }
-#endregion
 
-#region fields
-internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _LocalizedResourcesScopeKey{get;set;}
-internal virtual Dictionary<Type,object> _TypeToResources{get;set;}
-internal virtual Locale _Locale{get;set;}
-public virtual Locale Locale{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual TextDirection _TextDirection{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        public new FlutterSDK.Widgets.Localizations._LocalizationsState CreateState() { throw new NotImplementedException(); }
 
-#region methods
 
-public new void InitState(){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-private bool _AnyDelegatesShouldReload(FlutterSDK.Widgets.Localizations.Localizations old){ throw new NotImplementedException(); }
 
+    public class _LocalizationsState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Localizations.Localizations>
+    {
+        #region constructors
+        public _LocalizationsState()
+        { }
+        #endregion
 
-public new void DidUpdateWidget(FlutterSDK.Widgets.Localizations.Localizations old){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _LocalizedResourcesScopeKey { get; set; }
+        internal virtual Dictionary<Type, object> _TypeToResources { get; set; }
+        internal virtual Locale _Locale { get; set; }
+        public virtual Locale Locale { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual TextDirection _TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public virtual void Load(Locale locale){ throw new NotImplementedException(); }
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-public virtual T ResourcesFor<T>(Type type){ throw new NotImplementedException(); }
+        private bool _AnyDelegatesShouldReload(FlutterSDK.Widgets.Localizations.Localizations old) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new void DidUpdateWidget(FlutterSDK.Widgets.Localizations.Localizations old) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public virtual void Load(Locale locale) { throw new NotImplementedException(); }
+
+
+        public virtual T ResourcesFor<T>(Type type) { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

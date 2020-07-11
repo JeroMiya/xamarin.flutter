@@ -423,59 +423,62 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Sliverlayoutbuilder{
-public delegate FlutterSDK.Widgets.Framework.Widget SliverLayoutWidgetBuilder(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Rendering.Sliver.SliverConstraints constraints);
-internal static class SliverlayoutbuilderDefaultClass{
-}
-
-public class SliverLayoutBuilder : FlutterSDK.Widgets.Layoutbuilder.ConstrainedLayoutBuilder<FlutterSDK.Rendering.Sliver.SliverConstraints>
+namespace FlutterSDK.Widgets.Sliverlayoutbuilder
 {
-#region constructors
-public SliverLayoutBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Sliverlayoutbuilder.SliverLayoutWidgetBuilder builder = default(FlutterSDK.Widgets.Sliverlayoutbuilder.SliverLayoutWidgetBuilder))
-: base(key:key,builder:builder)
-{
-throw new NotImplementedException(); }
-#endregion
+    public delegate FlutterSDK.Widgets.Framework.Widget SliverLayoutWidgetBuilder(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Sliver.SliverConstraints constraints);
+    internal static class SliverlayoutbuilderDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Widgets.Sliverlayoutbuilder.SliverLayoutWidgetBuilder Builder{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class SliverLayoutBuilder : FlutterSDK.Widgets.Layoutbuilder.ConstrainedLayoutBuilder<FlutterSDK.Rendering.Sliver.SliverConstraints>
+    {
+        #region constructors
+        public SliverLayoutBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Sliverlayoutbuilder.SliverLayoutWidgetBuilder builder = default(FlutterSDK.Widgets.Sliverlayoutbuilder.SliverLayoutWidgetBuilder))
+        : base(key: key, builder: builder)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Widgets.Sliverlayoutbuilder.SliverLayoutWidgetBuilder Builder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new FlutterSDK.Widgets.Sliverlayoutbuilder._RenderSliverLayoutBuilder CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new FlutterSDK.Widgets.Sliverlayoutbuilder._RenderSliverLayoutBuilder CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-
-public class _RenderSliverLayoutBuilder : FlutterSDK.Rendering.Sliver.RenderSliver,IRenderObjectWithChildMixin<FlutterSDK.Rendering.Sliver.RenderSliver>,IRenderConstrainedLayoutBuilder<FlutterSDK.Rendering.Sliver.SliverConstraints,FlutterSDK.Rendering.Sliver.RenderSliver>
-{
-#region constructors
-public _RenderSliverLayoutBuilder()
-{ }
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public new double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
+    public class _RenderSliverLayoutBuilder : FlutterSDK.Rendering.Sliver.RenderSliver, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Sliver.RenderSliver>, IRenderConstrainedLayoutBuilder<FlutterSDK.Rendering.Sliver.SliverConstraints, FlutterSDK.Rendering.Sliver.RenderSliver>
+    {
+        #region constructors
+        public _RenderSliverLayoutBuilder()
+        { }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
 
-public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child,Matrix4 transform){ throw new NotImplementedException(); }
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform) { throw new NotImplementedException(); }
 
 
-public new bool HitTestChildren(FlutterSDK.Rendering.Sliver.SliverHitTestResult result,double mainAxisPosition = default(double),double crossAxisPosition = default(double)){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new bool HitTestChildren(FlutterSDK.Rendering.Sliver.SliverHitTestResult result, double mainAxisPosition = default(double), double crossAxisPosition = default(double)) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

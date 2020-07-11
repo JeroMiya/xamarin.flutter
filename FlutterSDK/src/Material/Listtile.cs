@@ -385,331 +385,341 @@ using FlutterSDK.Material.Button;
 using FlutterSDK.Material.Floatingactionbuttontheme;
 using FlutterSDK.Material.Inkhighlight;
 using FlutterSDK.Material.Inputborder;
-namespace FlutterSDK.Material.Listtile{
-internal static class ListtileDefaultClass{
-}
-
-public class ListTileTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
+namespace FlutterSDK.Material.Listtile
 {
-#region constructors
-public ListTileTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),bool dense = false,FlutterSDK.Material.Listtile.ListTileStyle style = default(FlutterSDK.Material.Listtile.ListTileStyle),FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color iconColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key,child:child)
-{
-this.Dense = dense;
-this.Style = style;
-this.SelectedColor = selectedColor;
-this.IconColor = iconColor;
-this.TextColor = textColor;
-this.ContentPadding = contentPadding;throw new NotImplementedException(); }
-#endregion
+    internal static class ListtileDefaultClass
+    {
+    }
 
-#region fields
-public virtual bool Dense{get;set;}
-public virtual FlutterSDK.Material.Listtile.ListTileStyle Style{get;set;}
-public virtual FlutterBinding.UI.Color SelectedColor{get;set;}
-public virtual FlutterBinding.UI.Color IconColor{get;set;}
-public virtual FlutterBinding.UI.Color TextColor{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ContentPadding{get;set;}
-#endregion
+    public class ListTileTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
+    {
+        #region constructors
+        public ListTileTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool dense = false, FlutterSDK.Material.Listtile.ListTileStyle style = default(FlutterSDK.Material.Listtile.ListTileStyle), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color iconColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            this.Dense = dense;
+            this.Style = style;
+            this.SelectedColor = selectedColor;
+            this.IconColor = iconColor;
+            this.TextColor = textColor;
+            this.ContentPadding = contentPadding; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual bool Dense { get; set; }
+        public virtual FlutterSDK.Material.Listtile.ListTileStyle Style { get; set; }
+        public virtual FlutterBinding.UI.Color SelectedColor { get; set; }
+        public virtual FlutterBinding.UI.Color IconColor { get; set; }
+        public virtual FlutterBinding.UI.Color TextColor { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ContentPadding { get; set; }
+        #endregion
 
-public virtual FlutterSDK.Widgets.Framework.Widget Merge(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),bool dense = default(bool),FlutterSDK.Material.Listtile.ListTileStyle style = default(FlutterSDK.Material.Listtile.ListTileStyle),FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color iconColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget)){ throw new NotImplementedException(); }
+        #region methods
+
+        public virtual FlutterSDK.Widgets.Framework.Widget Merge(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool dense = default(bool), FlutterSDK.Material.Listtile.ListTileStyle style = default(FlutterSDK.Material.Listtile.ListTileStyle), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color iconColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget)) { throw new NotImplementedException(); }
+
+
+        public virtual FlutterSDK.Material.Listtile.ListTileTheme Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
+
+
+        public new bool UpdateShouldNotify(FlutterSDK.Material.Listtile.ListTileTheme oldWidget) { throw new NotImplementedException(); }
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
 
-
-public virtual FlutterSDK.Material.Listtile.ListTileTheme Of(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Widgets.Framework.Widget child){ throw new NotImplementedException(); }
+    public class ListTile : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public ListTile(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget trailing = default(FlutterSDK.Widgets.Framework.Widget), bool isThreeLine = false, bool dense = default(bool), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), bool enabled = true, FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Longpress.GestureLongPressCallback onLongPress = default(FlutterSDK.Gestures.Longpress.GestureLongPressCallback), bool selected = false)
+        : base(key: key)
+        {
+            this.Leading = leading;
+            this.Title = title;
+            this.Subtitle = subtitle;
+            this.Trailing = trailing;
+            this.IsThreeLine = isThreeLine;
+            this.Dense = dense;
+            this.ContentPadding = contentPadding;
+            this.Enabled = enabled;
+            this.OnTap = onTap;
+            this.OnLongPress = onLongPress;
+            this.Selected = selected; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Subtitle { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Trailing { get; set; }
+        public virtual bool IsThreeLine { get; set; }
+        public virtual bool Dense { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ContentPadding { get; set; }
+        public virtual bool Enabled { get; set; }
+        public virtual FlutterSDK.Gestures.Tap.GestureTapCallback OnTap { get; set; }
+        public virtual FlutterSDK.Gestures.Longpress.GestureLongPressCallback OnLongPress { get; set; }
+        public virtual bool Selected { get; set; }
+        #endregion
 
-public new bool UpdateShouldNotify(FlutterSDK.Material.Listtile.ListTileTheme oldWidget){ throw new NotImplementedException(); }
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public virtual Iterable<FlutterSDK.Widgets.Framework.Widget> DivideTiles(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), Iterable<FlutterSDK.Widgets.Framework.Widget> tiles = default(Iterable<FlutterSDK.Widgets.Framework.Widget>), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color)) { throw new NotImplementedException(); }
 
 
-public class ListTile : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public ListTile(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.Widget trailing = default(FlutterSDK.Widgets.Framework.Widget),bool isThreeLine = false,bool dense = default(bool),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),bool enabled = true,FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback),FlutterSDK.Gestures.Longpress.GestureLongPressCallback onLongPress = default(FlutterSDK.Gestures.Longpress.GestureLongPressCallback),bool selected = false)
-: base(key:key)
-{
-this.Leading = leading;
-this.Title = title;
-this.Subtitle = subtitle;
-this.Trailing = trailing;
-this.IsThreeLine = isThreeLine;
-this.Dense = dense;
-this.ContentPadding = contentPadding;
-this.Enabled = enabled;
-this.OnTap = onTap;
-this.OnLongPress = onLongPress;
-this.Selected = selected;throw new NotImplementedException(); }
-#endregion
+        private Color _IconColor(FlutterSDK.Material.Themedata.ThemeData theme, FlutterSDK.Material.Listtile.ListTileTheme tileTheme) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Leading{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Title{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Subtitle{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Trailing{get;set;}
-public virtual bool IsThreeLine{get;set;}
-public virtual bool Dense{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ContentPadding{get;set;}
-public virtual bool Enabled{get;set;}
-public virtual FlutterSDK.Gestures.Tap.GestureTapCallback OnTap{get;set;}
-public virtual FlutterSDK.Gestures.Longpress.GestureLongPressCallback OnLongPress{get;set;}
-public virtual bool Selected{get;set;}
-#endregion
 
-#region methods
+        private Color _TextColor(FlutterSDK.Material.Themedata.ThemeData theme, FlutterSDK.Material.Listtile.ListTileTheme tileTheme, FlutterBinding.UI.Color defaultColor) { throw new NotImplementedException(); }
 
-public virtual Iterable<FlutterSDK.Widgets.Framework.Widget> DivideTiles(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext),Iterable<FlutterSDK.Widgets.Framework.Widget> tiles = default(Iterable<FlutterSDK.Widgets.Framework.Widget>),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color)){ throw new NotImplementedException(); }
 
+        private bool _IsDenseLayout(FlutterSDK.Material.Listtile.ListTileTheme tileTheme) { throw new NotImplementedException(); }
 
-private Color _IconColor(FlutterSDK.Material.Themedata.ThemeData theme,FlutterSDK.Material.Listtile.ListTileTheme tileTheme){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Painting.Textstyle.TextStyle _TitleTextStyle(FlutterSDK.Material.Themedata.ThemeData theme, FlutterSDK.Material.Listtile.ListTileTheme tileTheme) { throw new NotImplementedException(); }
 
-private Color _TextColor(FlutterSDK.Material.Themedata.ThemeData theme,FlutterSDK.Material.Listtile.ListTileTheme tileTheme,FlutterBinding.UI.Color defaultColor){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Painting.Textstyle.TextStyle _SubtitleTextStyle(FlutterSDK.Material.Themedata.ThemeData theme, FlutterSDK.Material.Listtile.ListTileTheme tileTheme) { throw new NotImplementedException(); }
 
-private bool _IsDenseLayout(FlutterSDK.Material.Listtile.ListTileTheme tileTheme){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-private FlutterSDK.Painting.Textstyle.TextStyle _TitleTextStyle(FlutterSDK.Material.Themedata.ThemeData theme,FlutterSDK.Material.Listtile.ListTileTheme tileTheme){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-private FlutterSDK.Painting.Textstyle.TextStyle _SubtitleTextStyle(FlutterSDK.Material.Themedata.ThemeData theme,FlutterSDK.Material.Listtile.ListTileTheme tileTheme){ throw new NotImplementedException(); }
+    public class _ListTile : FlutterSDK.Widgets.Framework.RenderObjectWidget
+    {
+        #region constructors
+        public _ListTile(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget trailing = default(FlutterSDK.Widgets.Framework.Widget), bool isThreeLine = default(bool), bool isDense = default(bool), TextDirection textDirection = default(TextDirection), TextBaseline titleBaselineType = default(TextBaseline), TextBaseline subtitleBaselineType = default(TextBaseline))
+        : base(key: key)
+        {
+            this.Leading = leading;
+            this.Title = title;
+            this.Subtitle = subtitle;
+            this.Trailing = trailing;
+            this.IsThreeLine = isThreeLine;
+            this.IsDense = isDense;
+            this.TextDirection = textDirection;
+            this.TitleBaselineType = titleBaselineType;
+            this.SubtitleBaselineType = subtitleBaselineType; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Subtitle { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Trailing { get; set; }
+        public virtual bool IsThreeLine { get; set; }
+        public virtual bool IsDense { get; set; }
+        public virtual TextDirection TextDirection { get; set; }
+        public virtual TextBaseline TitleBaselineType { get; set; }
+        public virtual TextBaseline SubtitleBaselineType { get; set; }
+        #endregion
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new FlutterSDK.Material.Listtile._ListTileElement CreateElement() { throw new NotImplementedException(); }
 
 
-public class _ListTile : FlutterSDK.Widgets.Framework.RenderObjectWidget
-{
-#region constructors
-public _ListTile(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.Widget trailing = default(FlutterSDK.Widgets.Framework.Widget),bool isThreeLine = default(bool),bool isDense = default(bool),TextDirection textDirection = default(TextDirection),TextBaseline titleBaselineType = default(TextBaseline),TextBaseline subtitleBaselineType = default(TextBaseline))
-: base(key:key)
-{
-this.Leading = leading;
-this.Title = title;
-this.Subtitle = subtitle;
-this.Trailing = trailing;
-this.IsThreeLine = isThreeLine;
-this.IsDense = isDense;
-this.TextDirection = textDirection;
-this.TitleBaselineType = titleBaselineType;
-this.SubtitleBaselineType = subtitleBaselineType;throw new NotImplementedException(); }
-#endregion
+        public new FlutterSDK.Material.Listtile._RenderListTile CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Leading{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Title{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Subtitle{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Trailing{get;set;}
-public virtual bool IsThreeLine{get;set;}
-public virtual bool IsDense{get;set;}
-public virtual TextDirection TextDirection{get;set;}
-public virtual TextBaseline TitleBaselineType{get;set;}
-public virtual TextBaseline SubtitleBaselineType{get;set;}
-#endregion
 
-#region methods
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Material.Listtile._RenderListTile renderObject) { throw new NotImplementedException(); }
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Material.Listtile._ListTileElement CreateElement(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new FlutterSDK.Material.Listtile._RenderListTile CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+    public class _ListTileElement : FlutterSDK.Widgets.Framework.RenderObjectElement
+    {
+        #region constructors
+        public _ListTileElement(FlutterSDK.Material.Listtile._ListTile widget)
+        : base(widget)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual Dictionary<FlutterSDK.Material.Listtile._ListTileSlot, FlutterSDK.Widgets.Framework.Element> SlotToChild { get; set; }
+        public virtual Dictionary<FlutterSDK.Widgets.Framework.Element, FlutterSDK.Material.Listtile._ListTileSlot> ChildToSlot { get; set; }
+        public virtual FlutterSDK.Material.Listtile._ListTile Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Material.Listtile._RenderListTile RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Material.Listtile._RenderListTile renderObject){ throw new NotImplementedException(); }
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Rendering.@object.RenderObject renderObject){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new void VisitChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor) { throw new NotImplementedException(); }
 
 
-public class _ListTileElement : FlutterSDK.Widgets.Framework.RenderObjectElement
-{
-#region constructors
-public _ListTileElement(FlutterSDK.Material.Listtile._ListTile widget)
-: base(widget)
-{
-throw new NotImplementedException(); }
-#endregion
+        public new void ForgetChild(FlutterSDK.Widgets.Framework.Element child) { throw new NotImplementedException(); }
 
-#region fields
-public virtual Dictionary<FlutterSDK.Material.Listtile._ListTileSlot,FlutterSDK.Widgets.Framework.Element> SlotToChild{get;set;}
-public virtual Dictionary<FlutterSDK.Widgets.Framework.Element,FlutterSDK.Material.Listtile._ListTileSlot> ChildToSlot{get;set;}
-public virtual FlutterSDK.Material.Listtile._ListTile Widget{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Material.Listtile._RenderListTile RenderObject{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+        private void _MountChild(FlutterSDK.Widgets.Framework.Widget widget, FlutterSDK.Material.Listtile._ListTileSlot slot) { throw new NotImplementedException(); }
 
-public new void VisitChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor){ throw new NotImplementedException(); }
 
+        public new void Mount(FlutterSDK.Widgets.Framework.Element parent, object newSlot) { throw new NotImplementedException(); }
 
-public new void ForgetChild(FlutterSDK.Widgets.Framework.Element child){ throw new NotImplementedException(); }
 
+        private void _UpdateChild(FlutterSDK.Widgets.Framework.Widget widget, FlutterSDK.Material.Listtile._ListTileSlot slot) { throw new NotImplementedException(); }
 
-private void _MountChild(FlutterSDK.Widgets.Framework.Widget widget,FlutterSDK.Material.Listtile._ListTileSlot slot){ throw new NotImplementedException(); }
 
+        public new void Update(FlutterSDK.Material.Listtile._ListTile newWidget) { throw new NotImplementedException(); }
+        public new void Update(FlutterSDK.Widgets.Framework.Widget newWidget) { throw new NotImplementedException(); }
 
-public new void Mount(FlutterSDK.Widgets.Framework.Element parent,object newSlot){ throw new NotImplementedException(); }
 
+        private void _UpdateRenderObject(FlutterSDK.Rendering.Box.RenderBox child, FlutterSDK.Material.Listtile._ListTileSlot slot) { throw new NotImplementedException(); }
 
-private void _UpdateChild(FlutterSDK.Widgets.Framework.Widget widget,FlutterSDK.Material.Listtile._ListTileSlot slot){ throw new NotImplementedException(); }
 
+        public new void InsertChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slotValue) { throw new NotImplementedException(); }
 
-public new void Update(FlutterSDK.Material.Listtile._ListTile newWidget){ throw new NotImplementedException(); }
-public new void Update(FlutterSDK.Widgets.Framework.Widget newWidget){ throw new NotImplementedException(); }
 
+        public new void RemoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
-private void _UpdateRenderObject(FlutterSDK.Rendering.Box.RenderBox child,FlutterSDK.Material.Listtile._ListTileSlot slot){ throw new NotImplementedException(); }
 
+        public new void MoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slotValue) { throw new NotImplementedException(); }
 
-public new void InsertChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child,object slotValue){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void RemoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
+    public class _RenderListTile : FlutterSDK.Rendering.Box.RenderBox
+    {
+        #region constructors
+        public _RenderListTile(bool isDense = default(bool), bool isThreeLine = default(bool), TextDirection textDirection = default(TextDirection), TextBaseline titleBaselineType = default(TextBaseline), TextBaseline subtitleBaselineType = default(TextBaseline))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual double _MinLeadingWidth { get; set; }
+        internal virtual double _HorizontalTitleGap { get; set; }
+        internal virtual double _MinVerticalPadding { get; set; }
+        public virtual Dictionary<FlutterSDK.Material.Listtile._ListTileSlot, FlutterSDK.Rendering.Box.RenderBox> SlotToChild { get; set; }
+        public virtual Dictionary<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Material.Listtile._ListTileSlot> ChildToSlot { get; set; }
+        internal virtual FlutterSDK.Rendering.Box.RenderBox _Leading { get; set; }
+        internal virtual FlutterSDK.Rendering.Box.RenderBox _Title { get; set; }
+        internal virtual FlutterSDK.Rendering.Box.RenderBox _Subtitle { get; set; }
+        internal virtual FlutterSDK.Rendering.Box.RenderBox _Trailing { get; set; }
+        internal virtual bool _IsDense { get; set; }
+        internal virtual bool _IsThreeLine { get; set; }
+        internal virtual TextDirection _TextDirection { get; set; }
+        internal virtual TextBaseline _TitleBaselineType { get; set; }
+        internal virtual TextBaseline _SubtitleBaselineType { get; set; }
+        public virtual FlutterSDK.Rendering.Box.RenderBox Leading { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Box.RenderBox Title { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Box.RenderBox Subtitle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Box.RenderBox Trailing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Iterable<FlutterSDK.Rendering.Box.RenderBox> _Children { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsDense { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsThreeLine { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextBaseline TitleBaselineType { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextBaseline SubtitleBaselineType { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _DefaultTileHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new void MoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child,object slotValue){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        private FlutterSDK.Rendering.Box.RenderBox _UpdateChild(FlutterSDK.Rendering.Box.RenderBox oldChild, FlutterSDK.Rendering.Box.RenderBox newChild, FlutterSDK.Material.Listtile._ListTileSlot slot) { throw new NotImplementedException(); }
 
 
-public class _RenderListTile : FlutterSDK.Rendering.Box.RenderBox
-{
-#region constructors
-public _RenderListTile(bool isDense = default(bool),bool isThreeLine = default(bool),TextDirection textDirection = default(TextDirection),TextBaseline titleBaselineType = default(TextBaseline),TextBaseline subtitleBaselineType = default(TextBaseline))
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
+        public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner) { throw new NotImplementedException(); }
+        public new void Attach(@Object owner) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual double _MinLeadingWidth{get;set;}
-internal virtual double _HorizontalTitleGap{get;set;}
-internal virtual double _MinVerticalPadding{get;set;}
-public virtual Dictionary<FlutterSDK.Material.Listtile._ListTileSlot,FlutterSDK.Rendering.Box.RenderBox> SlotToChild{get;set;}
-public virtual Dictionary<FlutterSDK.Rendering.Box.RenderBox,FlutterSDK.Material.Listtile._ListTileSlot> ChildToSlot{get;set;}
-internal virtual FlutterSDK.Rendering.Box.RenderBox _Leading{get;set;}
-internal virtual FlutterSDK.Rendering.Box.RenderBox _Title{get;set;}
-internal virtual FlutterSDK.Rendering.Box.RenderBox _Subtitle{get;set;}
-internal virtual FlutterSDK.Rendering.Box.RenderBox _Trailing{get;set;}
-internal virtual bool _IsDense{get;set;}
-internal virtual bool _IsThreeLine{get;set;}
-internal virtual TextDirection _TextDirection{get;set;}
-internal virtual TextBaseline _TitleBaselineType{get;set;}
-internal virtual TextBaseline _SubtitleBaselineType{get;set;}
-public virtual FlutterSDK.Rendering.Box.RenderBox Leading{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Rendering.Box.RenderBox Title{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Rendering.Box.RenderBox Subtitle{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Rendering.Box.RenderBox Trailing{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-internal virtual Iterable<FlutterSDK.Rendering.Box.RenderBox> _Children{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsDense{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool IsThreeLine{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual TextDirection TextDirection{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual TextBaseline TitleBaselineType{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual TextBaseline SubtitleBaselineType{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool SizedByParent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _DefaultTileHeight{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+        public new void Detach() { throw new NotImplementedException(); }
 
-private FlutterSDK.Rendering.Box.RenderBox _UpdateChild(FlutterSDK.Rendering.Box.RenderBox oldChild,FlutterSDK.Rendering.Box.RenderBox newChild,FlutterSDK.Material.Listtile._ListTileSlot slot){ throw new NotImplementedException(); }
 
+        public new void RedepthChildren() { throw new NotImplementedException(); }
 
-public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner){ throw new NotImplementedException(); }
-public new void Attach(@Object owner){ throw new NotImplementedException(); }
 
+        public new void VisitChildren(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor) { throw new NotImplementedException(); }
 
-public new void Detach(){ throw new NotImplementedException(); }
 
+        public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren() { throw new NotImplementedException(); }
 
-public new void RedepthChildren(){ throw new NotImplementedException(); }
 
+        private double _MinWidth(FlutterSDK.Rendering.Box.RenderBox box, double height) { throw new NotImplementedException(); }
 
-public new void VisitChildren(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor){ throw new NotImplementedException(); }
 
+        private double _MaxWidth(FlutterSDK.Rendering.Box.RenderBox box, double height) { throw new NotImplementedException(); }
 
-public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren(){ throw new NotImplementedException(); }
 
+        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
-private double _MinWidth(FlutterSDK.Rendering.Box.RenderBox box,double height){ throw new NotImplementedException(); }
 
+        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
-private double _MaxWidth(FlutterSDK.Rendering.Box.RenderBox box,double height){ throw new NotImplementedException(); }
 
+        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
-public new double ComputeMinIntrinsicWidth(double height){ throw new NotImplementedException(); }
 
+        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
-public new double ComputeMaxIntrinsicWidth(double height){ throw new NotImplementedException(); }
 
+        public new double ComputeDistanceToActualBaseline(TextBaseline baseline) { throw new NotImplementedException(); }
 
-public new double ComputeMinIntrinsicHeight(double width){ throw new NotImplementedException(); }
 
+        private double _BoxBaseline(FlutterSDK.Rendering.Box.RenderBox box, TextBaseline baseline) { throw new NotImplementedException(); }
 
-public new double ComputeMaxIntrinsicHeight(double width){ throw new NotImplementedException(); }
 
+        private Size _LayoutBox(FlutterSDK.Rendering.Box.RenderBox box, FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
 
-public new double ComputeDistanceToActualBaseline(TextBaseline baseline){ throw new NotImplementedException(); }
 
+        private void _PositionBox(FlutterSDK.Rendering.Box.RenderBox box, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-private double _BoxBaseline(FlutterSDK.Rendering.Box.RenderBox box,TextBaseline baseline){ throw new NotImplementedException(); }
 
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
-private Size _LayoutBox(FlutterSDK.Rendering.Box.RenderBox box,FlutterSDK.Rendering.Box.BoxConstraints constraints){ throw new NotImplementedException(); }
 
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-private void _PositionBox(FlutterSDK.Rendering.Box.RenderBox box,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
 
+        public new bool HitTestSelf(FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
 
+        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new bool HitTestSelf(FlutterBinding.UI.Offset position){ throw new NotImplementedException(); }
+    public enum ListTileStyle
+    {
 
+        List,
+        Drawer,
+    }
 
-public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
 
-#endregion
-}
+    public enum ListTileControlAffinity
+    {
 
+        Leading,
+        Trailing,
+        Platform,
+    }
 
-public enum ListTileStyle{
 
-List,
-Drawer,
-}
+    public enum _ListTileSlot
+    {
 
-
-public enum ListTileControlAffinity{
-
-Leading,
-Trailing,
-Platform,
-}
-
-
-public enum _ListTileSlot{
-
-Leading,
-Title,
-Subtitle,
-Trailing,
-}
+        Leading,
+        Title,
+        Subtitle,
+        Trailing,
+    }
 
 }

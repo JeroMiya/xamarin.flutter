@@ -421,72 +421,78 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Painting.Notchedshapes{
-internal static class NotchedshapesDefaultClass{
-}
-
-public interface INotchedShape{
-Path GetOuterPath(FlutterBinding.UI.Rect host,FlutterBinding.UI.Rect guest);
-}
-
-
-public class NotchedShape
+namespace FlutterSDK.Painting.Notchedshapes
 {
-#region constructors
-public NotchedShape()
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class NotchedshapesDefaultClass
+    {
+    }
 
-#region fields
-#endregion
-
-#region methods
-
-public virtual Path GetOuterPath(FlutterBinding.UI.Rect host,FlutterBinding.UI.Rect guest){ throw new NotImplementedException(); }
-
-#endregion
-}
+    public interface INotchedShape
+    {
+        Path GetOuterPath(FlutterBinding.UI.Rect host, FlutterBinding.UI.Rect guest);
+    }
 
 
-public class CircularNotchedRectangle : FlutterSDK.Painting.Notchedshapes.NotchedShape
-{
-#region constructors
-public CircularNotchedRectangle()
-{
-throw new NotImplementedException(); }
-#endregion
+    public class NotchedShape
+    {
+        #region constructors
+        public NotchedShape()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-public new Path GetOuterPath(FlutterBinding.UI.Rect host,FlutterBinding.UI.Rect guest){ throw new NotImplementedException(); }
+        public virtual Path GetOuterPath(FlutterBinding.UI.Rect host, FlutterBinding.UI.Rect guest) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class AutomaticNotchedShape : FlutterSDK.Painting.Notchedshapes.NotchedShape
-{
-#region constructors
-public AutomaticNotchedShape(FlutterSDK.Painting.Borders.ShapeBorder host,FlutterSDK.Painting.Borders.ShapeBorder guest = default(FlutterSDK.Painting.Borders.ShapeBorder))
-{
-this.Host = host;
-this.Guest = guest;throw new NotImplementedException(); }
-#endregion
+    public class CircularNotchedRectangle : FlutterSDK.Painting.Notchedshapes.NotchedShape
+    {
+        #region constructors
+        public CircularNotchedRectangle()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Painting.Borders.ShapeBorder Host{get;set;}
-public virtual FlutterSDK.Painting.Borders.ShapeBorder Guest{get;set;}
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-public new Path GetOuterPath(FlutterBinding.UI.Rect hostRect,FlutterBinding.UI.Rect guestRect){ throw new NotImplementedException(); }
+        public new Path GetOuterPath(FlutterBinding.UI.Rect host, FlutterBinding.UI.Rect guest) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
+
+
+    public class AutomaticNotchedShape : FlutterSDK.Painting.Notchedshapes.NotchedShape
+    {
+        #region constructors
+        public AutomaticNotchedShape(FlutterSDK.Painting.Borders.ShapeBorder host, FlutterSDK.Painting.Borders.ShapeBorder guest = default(FlutterSDK.Painting.Borders.ShapeBorder))
+        {
+            this.Host = host;
+            this.Guest = guest; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Host { get; set; }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Guest { get; set; }
+        #endregion
+
+        #region methods
+
+        public new Path GetOuterPath(FlutterBinding.UI.Rect hostRect, FlutterBinding.UI.Rect guestRect) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

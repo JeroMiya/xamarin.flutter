@@ -375,19 +375,24 @@ using FlutterSDK.Material.Feedback;
 using FlutterSDK.Material.Tooltip;
 using FlutterSDK.Material.Dropdown;
 using FlutterSDK.Material.Datatable;
-namespace FlutterSDK.Material.Debug{
-internal static class DebugDefaultClass{
-internal static bool DebugCheckHasMaterial(FlutterSDK.Widgets.Framework.BuildContext context){
-throw new NotImplementedException();
-}
+namespace FlutterSDK.Material.Debug
+{
+    internal static class DebugDefaultClass
+    {
+        internal static bool DebugCheckHasMaterial(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            throw new NotImplementedException();
+        }
 
-internal static bool DebugCheckHasMaterialLocalizations(FlutterSDK.Widgets.Framework.BuildContext context){
-throw new NotImplementedException();
-}
+        internal static bool DebugCheckHasMaterialLocalizations(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            throw new NotImplementedException();
+        }
 
-internal static bool DebugCheckHasScaffold(FlutterSDK.Widgets.Framework.BuildContext context){
-throw new NotImplementedException();
-}
+        internal static bool DebugCheckHasScaffold(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            throw new NotImplementedException();
+        }
 
-}
+    }
 }

@@ -294,91 +294,96 @@ using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
-namespace FlutterSDK.Gestures.Forcepress{
-public delegate void GestureForcePressStartCallback(FlutterSDK.Gestures.Forcepress.ForcePressDetails details);
-public delegate void GestureForcePressPeakCallback(FlutterSDK.Gestures.Forcepress.ForcePressDetails details);
-public delegate void GestureForcePressUpdateCallback(FlutterSDK.Gestures.Forcepress.ForcePressDetails details);
-public delegate void GestureForcePressEndCallback(FlutterSDK.Gestures.Forcepress.ForcePressDetails details);
-public delegate double GestureForceInterpolation(double pressureMin,double pressureMax,double pressure);
-internal static class ForcepressDefaultClass{
-}
-
-public class ForcePressDetails
+namespace FlutterSDK.Gestures.Forcepress
 {
-#region constructors
-public ForcePressDetails(FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset),FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset),double pressure = default(double))
-: base()
-{
-this.GlobalPosition = globalPosition;
-this.Pressure = pressure;throw new NotImplementedException(); }
-#endregion
+    public delegate void GestureForcePressStartCallback(FlutterSDK.Gestures.Forcepress.ForcePressDetails details);
+    public delegate void GestureForcePressPeakCallback(FlutterSDK.Gestures.Forcepress.ForcePressDetails details);
+    public delegate void GestureForcePressUpdateCallback(FlutterSDK.Gestures.Forcepress.ForcePressDetails details);
+    public delegate void GestureForcePressEndCallback(FlutterSDK.Gestures.Forcepress.ForcePressDetails details);
+    public delegate double GestureForceInterpolation(double pressureMin, double pressureMax, double pressure);
+    internal static class ForcepressDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterBinding.UI.Offset GlobalPosition{get;set;}
-public virtual FlutterBinding.UI.Offset LocalPosition{get;set;}
-public virtual double Pressure{get;set;}
-#endregion
+    public class ForcePressDetails
+    {
+        #region constructors
+        public ForcePressDetails(FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), double pressure = default(double))
+        : base()
+        {
+            this.GlobalPosition = globalPosition;
+            this.Pressure = pressure; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
-#endregion
-}
+        #region fields
+        public virtual FlutterBinding.UI.Offset GlobalPosition { get; set; }
+        public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
+        public virtual double Pressure { get; set; }
+        #endregion
 
-
-public class ForcePressGestureRecognizer : FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer
-{
-#region constructors
-public ForcePressGestureRecognizer(double startPressure = 0.4,double peakPressure = 0.85,FlutterSDK.Gestures.Forcepress.GestureForceInterpolation interpolation = default(FlutterSDK.Gestures.Forcepress.GestureForceInterpolation),@Object debugOwner = default(@Object),PointerDeviceKind kind = default(PointerDeviceKind))
-: base(debugOwner:debugOwner,kind:kind)
-{
-this.StartPressure = startPressure;
-this.PeakPressure = peakPressure;
-this.Interpolation = interpolation;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressStartCallback OnStart{get;set;}
-public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressUpdateCallback OnUpdate{get;set;}
-public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressPeakCallback OnPeak{get;set;}
-public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressEndCallback OnEnd{get;set;}
-public virtual double StartPressure{get;set;}
-public virtual double PeakPressure{get;set;}
-public virtual FlutterSDK.Gestures.Forcepress.GestureForceInterpolation Interpolation{get;set;}
-internal virtual FlutterSDK.Gestures.Recognizer.OffsetPair _LastPosition{get;set;}
-internal virtual double _LastPressure{get;set;}
-internal virtual FlutterSDK.Gestures.Forcepress._ForceState _State{get;set;}
-public virtual string DebugDescription{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerEvent @event){ throw new NotImplementedException(); }
+        #region methods
+        #endregion
+    }
 
 
-public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event){ throw new NotImplementedException(); }
+    public class ForcePressGestureRecognizer : FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer
+    {
+        #region constructors
+        public ForcePressGestureRecognizer(double startPressure = 0.4, double peakPressure = 0.85, FlutterSDK.Gestures.Forcepress.GestureForceInterpolation interpolation = default(FlutterSDK.Gestures.Forcepress.GestureForceInterpolation), @Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
+        : base(debugOwner: debugOwner, kind: kind)
+        {
+            this.StartPressure = startPressure;
+            this.PeakPressure = peakPressure;
+            this.Interpolation = interpolation; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressStartCallback OnStart { get; set; }
+        public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressUpdateCallback OnUpdate { get; set; }
+        public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressPeakCallback OnPeak { get; set; }
+        public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressEndCallback OnEnd { get; set; }
+        public virtual double StartPressure { get; set; }
+        public virtual double PeakPressure { get; set; }
+        public virtual FlutterSDK.Gestures.Forcepress.GestureForceInterpolation Interpolation { get; set; }
+        internal virtual FlutterSDK.Gestures.Recognizer.OffsetPair _LastPosition { get; set; }
+        internal virtual double _LastPressure { get; set; }
+        internal virtual FlutterSDK.Gestures.Forcepress._ForceState _State { get; set; }
+        public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
 
 
-public new void AcceptGesture(int pointer){ throw new NotImplementedException(); }
+        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
 
 
-public new void DidStopTrackingLastPointer(int pointer){ throw new NotImplementedException(); }
+        public new void AcceptGesture(int pointer) { throw new NotImplementedException(); }
 
 
-public new void RejectGesture(int pointer){ throw new NotImplementedException(); }
+        public new void DidStopTrackingLastPointer(int pointer) { throw new NotImplementedException(); }
 
 
-private double _InverseLerp(double min,double max,double t){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public new void RejectGesture(int pointer) { throw new NotImplementedException(); }
 
 
-public enum _ForceState{
+        private double _InverseLerp(double min, double max, double t) { throw new NotImplementedException(); }
 
-Ready,
-Possible,
-Accepted,
-Started,
-Peaked,
-}
+        #endregion
+    }
+
+
+    public enum _ForceState
+    {
+
+        Ready,
+        Possible,
+        Accepted,
+        Started,
+        Peaked,
+    }
 
 }

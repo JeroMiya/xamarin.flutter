@@ -292,12 +292,14 @@ using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
-namespace FlutterSDK.Foundation.Constants{
-internal static class ConstantsDefaultClass{
-public static bool KReleaseMode = default(bool);
-public static bool KProfileMode = default(bool);
-public static bool KDebugMode = default(bool);
-public static double PrecisionErrorTolerance = default(double);
-public static bool KIsWeb = default(bool);
-}
+namespace FlutterSDK.Foundation.Constants
+{
+    internal static class ConstantsDefaultClass
+    {
+        public static bool KReleaseMode = default(bool);
+        public static bool KProfileMode = default(bool);
+        public static bool KDebugMode = default(bool);
+        public static double PrecisionErrorTolerance = default(double);
+        public static bool KIsWeb = default(bool);
+    }
 }

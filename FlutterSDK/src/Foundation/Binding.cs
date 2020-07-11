@@ -291,92 +291,97 @@ using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
-namespace FlutterSDK.Foundation.Binding{
-public delegate Future<Dictionary<string,object>> ServiceExtensionCallback(Dictionary<string,string> parameters);
-internal static class BindingDefaultClass{
-internal static Future<object> _ExitApplication(){
-throw new NotImplementedException();
-}
-
-}
-
-public interface IBindingBase{
-void InitInstances();
-void InitServiceExtensions();
-Future<object> LockEvents(Func<Future> callback);
-void Unlocked();
-Future<object> ReassembleApplication();
-Future<object> PerformReassemble();
-void RegisterSignalServiceExtension(string name = default(string),FlutterSDK.Foundation.Basictypes.AsyncCallback callback = default(FlutterSDK.Foundation.Basictypes.AsyncCallback));
-void RegisterBoolServiceExtension(string name = default(string),FlutterSDK.Foundation.Basictypes.AsyncValueGetter<bool> getter = default(FlutterSDK.Foundation.Basictypes.AsyncValueGetter<bool>),FlutterSDK.Foundation.Basictypes.AsyncValueSetter<bool> setter = default(FlutterSDK.Foundation.Basictypes.AsyncValueSetter<bool>));
-void RegisterNumericServiceExtension(string name = default(string),FlutterSDK.Foundation.Basictypes.AsyncValueGetter<double> getter = default(FlutterSDK.Foundation.Basictypes.AsyncValueGetter<double>),FlutterSDK.Foundation.Basictypes.AsyncValueSetter<double> setter = default(FlutterSDK.Foundation.Basictypes.AsyncValueSetter<double>));
-void PostEvent(string eventKind,Dictionary<string,object> eventData);
-void RegisterStringServiceExtension(string name = default(string),FlutterSDK.Foundation.Basictypes.AsyncValueGetter<string> getter = default(FlutterSDK.Foundation.Basictypes.AsyncValueGetter<string>),FlutterSDK.Foundation.Basictypes.AsyncValueSetter<string> setter = default(FlutterSDK.Foundation.Basictypes.AsyncValueSetter<string>));
-void RegisterServiceExtension(string name = default(string),FlutterSDK.Foundation.Binding.ServiceExtensionCallback callback = default(FlutterSDK.Foundation.Binding.ServiceExtensionCallback));
-string ToString();
-Window Window{get;}
-bool Locked{get;}
-}
-
-
-public class BindingBase
+namespace FlutterSDK.Foundation.Binding
 {
-#region constructors
-public BindingBase()
-{
-throw new NotImplementedException(); }
-#endregion
+    public delegate Future<Dictionary<string, object>> ServiceExtensionCallback(Dictionary<string, string> parameters);
+    internal static class BindingDefaultClass
+    {
+        internal static Future<object> _ExitApplication()
+        {
+            throw new NotImplementedException();
+        }
 
-#region fields
-internal virtual bool _DebugInitialized{get;set;}
-internal virtual bool _DebugServiceExtensionsRegistered{get;set;}
-internal virtual int _LockCount{get;set;}
-public virtual Window Window{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool Locked{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    }
 
-#region methods
-
-public virtual void InitInstances(){ throw new NotImplementedException(); }
-
-
-public virtual void InitServiceExtensions(){ throw new NotImplementedException(); }
-
-
-public virtual Future<object> LockEvents(Func<Future> callback){ throw new NotImplementedException(); }
-
-
-public virtual void Unlocked(){ throw new NotImplementedException(); }
-
-
-public virtual Future<object> ReassembleApplication(){ throw new NotImplementedException(); }
-
-
-public virtual Future<object> PerformReassemble(){ throw new NotImplementedException(); }
+    public interface IBindingBase
+    {
+        void InitInstances();
+        void InitServiceExtensions();
+        Future<object> LockEvents(Func<Future> callback);
+        void Unlocked();
+        Future<object> ReassembleApplication();
+        Future<object> PerformReassemble();
+        void RegisterSignalServiceExtension(string name = default(string), FlutterSDK.Foundation.Basictypes.AsyncCallback callback = default(FlutterSDK.Foundation.Basictypes.AsyncCallback));
+        void RegisterBoolServiceExtension(string name = default(string), FlutterSDK.Foundation.Basictypes.AsyncValueGetter<bool> getter = default(FlutterSDK.Foundation.Basictypes.AsyncValueGetter<bool>), FlutterSDK.Foundation.Basictypes.AsyncValueSetter<bool> setter = default(FlutterSDK.Foundation.Basictypes.AsyncValueSetter<bool>));
+        void RegisterNumericServiceExtension(string name = default(string), FlutterSDK.Foundation.Basictypes.AsyncValueGetter<double> getter = default(FlutterSDK.Foundation.Basictypes.AsyncValueGetter<double>), FlutterSDK.Foundation.Basictypes.AsyncValueSetter<double> setter = default(FlutterSDK.Foundation.Basictypes.AsyncValueSetter<double>));
+        void PostEvent(string eventKind, Dictionary<string, object> eventData);
+        void RegisterStringServiceExtension(string name = default(string), FlutterSDK.Foundation.Basictypes.AsyncValueGetter<string> getter = default(FlutterSDK.Foundation.Basictypes.AsyncValueGetter<string>), FlutterSDK.Foundation.Basictypes.AsyncValueSetter<string> setter = default(FlutterSDK.Foundation.Basictypes.AsyncValueSetter<string>));
+        void RegisterServiceExtension(string name = default(string), FlutterSDK.Foundation.Binding.ServiceExtensionCallback callback = default(FlutterSDK.Foundation.Binding.ServiceExtensionCallback));
+        string ToString();
+        Window Window { get; }
+        bool Locked { get; }
+    }
 
 
-public virtual void RegisterSignalServiceExtension(string name = default(string),FlutterSDK.Foundation.Basictypes.AsyncCallback callback = default(FlutterSDK.Foundation.Basictypes.AsyncCallback)){ throw new NotImplementedException(); }
+    public class BindingBase
+    {
+        #region constructors
+        public BindingBase()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual bool _DebugInitialized { get; set; }
+        internal virtual bool _DebugServiceExtensionsRegistered { get; set; }
+        internal virtual int _LockCount { get; set; }
+        public virtual Window Window { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool Locked { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual void InitInstances() { throw new NotImplementedException(); }
 
 
-public virtual void RegisterBoolServiceExtension(string name = default(string),FlutterSDK.Foundation.Basictypes.AsyncValueGetter<bool> getter = default(FlutterSDK.Foundation.Basictypes.AsyncValueGetter<bool>),FlutterSDK.Foundation.Basictypes.AsyncValueSetter<bool> setter = default(FlutterSDK.Foundation.Basictypes.AsyncValueSetter<bool>)){ throw new NotImplementedException(); }
+        public virtual void InitServiceExtensions() { throw new NotImplementedException(); }
 
 
-public virtual void RegisterNumericServiceExtension(string name = default(string),FlutterSDK.Foundation.Basictypes.AsyncValueGetter<double> getter = default(FlutterSDK.Foundation.Basictypes.AsyncValueGetter<double>),FlutterSDK.Foundation.Basictypes.AsyncValueSetter<double> setter = default(FlutterSDK.Foundation.Basictypes.AsyncValueSetter<double>)){ throw new NotImplementedException(); }
+        public virtual Future<object> LockEvents(Func<Future> callback) { throw new NotImplementedException(); }
 
 
-private void _PostExtensionStateChangedEvent(string name,object value){ throw new NotImplementedException(); }
+        public virtual void Unlocked() { throw new NotImplementedException(); }
 
 
-public virtual void PostEvent(string eventKind,Dictionary<string,object> eventData){ throw new NotImplementedException(); }
+        public virtual Future<object> ReassembleApplication() { throw new NotImplementedException(); }
 
 
-public virtual void RegisterStringServiceExtension(string name = default(string),FlutterSDK.Foundation.Basictypes.AsyncValueGetter<string> getter = default(FlutterSDK.Foundation.Basictypes.AsyncValueGetter<string>),FlutterSDK.Foundation.Basictypes.AsyncValueSetter<string> setter = default(FlutterSDK.Foundation.Basictypes.AsyncValueSetter<string>)){ throw new NotImplementedException(); }
+        public virtual Future<object> PerformReassemble() { throw new NotImplementedException(); }
 
 
-public virtual void RegisterServiceExtension(string name = default(string),FlutterSDK.Foundation.Binding.ServiceExtensionCallback callback = default(FlutterSDK.Foundation.Binding.ServiceExtensionCallback)){ throw new NotImplementedException(); }
+        public virtual void RegisterSignalServiceExtension(string name = default(string), FlutterSDK.Foundation.Basictypes.AsyncCallback callback = default(FlutterSDK.Foundation.Basictypes.AsyncCallback)) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public virtual void RegisterBoolServiceExtension(string name = default(string), FlutterSDK.Foundation.Basictypes.AsyncValueGetter<bool> getter = default(FlutterSDK.Foundation.Basictypes.AsyncValueGetter<bool>), FlutterSDK.Foundation.Basictypes.AsyncValueSetter<bool> setter = default(FlutterSDK.Foundation.Basictypes.AsyncValueSetter<bool>)) { throw new NotImplementedException(); }
+
+
+        public virtual void RegisterNumericServiceExtension(string name = default(string), FlutterSDK.Foundation.Basictypes.AsyncValueGetter<double> getter = default(FlutterSDK.Foundation.Basictypes.AsyncValueGetter<double>), FlutterSDK.Foundation.Basictypes.AsyncValueSetter<double> setter = default(FlutterSDK.Foundation.Basictypes.AsyncValueSetter<double>)) { throw new NotImplementedException(); }
+
+
+        private void _PostExtensionStateChangedEvent(string name, object value) { throw new NotImplementedException(); }
+
+
+        public virtual void PostEvent(string eventKind, Dictionary<string, object> eventData) { throw new NotImplementedException(); }
+
+
+        public virtual void RegisterStringServiceExtension(string name = default(string), FlutterSDK.Foundation.Basictypes.AsyncValueGetter<string> getter = default(FlutterSDK.Foundation.Basictypes.AsyncValueGetter<string>), FlutterSDK.Foundation.Basictypes.AsyncValueSetter<string> setter = default(FlutterSDK.Foundation.Basictypes.AsyncValueSetter<string>)) { throw new NotImplementedException(); }
+
+
+        public virtual void RegisterServiceExtension(string name = default(string), FlutterSDK.Foundation.Binding.ServiceExtensionCallback callback = default(FlutterSDK.Foundation.Binding.ServiceExtensionCallback)) { throw new NotImplementedException(); }
+
+
+        #endregion
+    }
 
 }

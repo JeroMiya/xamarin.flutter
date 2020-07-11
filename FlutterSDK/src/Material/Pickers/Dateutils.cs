@@ -400,31 +400,39 @@ using FlutterSDK.Material.Pickers.Dateutils;
 using FlutterSDK.Material.Pickers.Calendardatepicker;
 using FlutterSDK.Material.Pickers.Datepickerheader;
 using FlutterSDK.Material.Pickers.Inputdatepicker;
-namespace FlutterSDK.Material.Pickers.Dateutils{
-internal static class DateutilsDefaultClass{
-internal static DateTime DateOnly(DateTime date){
-throw new NotImplementedException();
-}
+namespace FlutterSDK.Material.Pickers.Dateutils
+{
+    internal static class DateutilsDefaultClass
+    {
+        internal static DateTime DateOnly(DateTime date)
+        {
+            throw new NotImplementedException();
+        }
 
-internal static bool IsSameDay(DateTime dateA,DateTime dateB){
-throw new NotImplementedException();
-}
+        internal static bool IsSameDay(DateTime dateA, DateTime dateB)
+        {
+            throw new NotImplementedException();
+        }
 
-internal static int MonthDelta(DateTime startDate,DateTime endDate){
-throw new NotImplementedException();
-}
+        internal static int MonthDelta(DateTime startDate, DateTime endDate)
+        {
+            throw new NotImplementedException();
+        }
 
-internal static DateTime AddMonthsToMonthDate(DateTime monthDate,int monthsToAdd){
-throw new NotImplementedException();
-}
+        internal static DateTime AddMonthsToMonthDate(DateTime monthDate, int monthsToAdd)
+        {
+            throw new NotImplementedException();
+        }
 
-internal static int FirstDayOffset(int year,int month,FlutterSDK.Material.Materiallocalizations.MaterialLocalizations localizations){
-throw new NotImplementedException();
-}
+        internal static int FirstDayOffset(int year, int month, FlutterSDK.Material.Materiallocalizations.MaterialLocalizations localizations)
+        {
+            throw new NotImplementedException();
+        }
 
-internal static int GetDaysInMonth(int year,int month){
-throw new NotImplementedException();
-}
+        internal static int GetDaysInMonth(int year, int month)
+        {
+            throw new NotImplementedException();
+        }
 
-}
+    }
 }

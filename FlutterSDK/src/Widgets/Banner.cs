@@ -421,135 +421,141 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Widgets.Banner{
-internal static class BannerDefaultClass{
-public static double _KOffset = default(double);
-public static double _KHeight = default(double);
-public static double _KBottomOffset = default(double);
-public static Rect _KRect = default(Rect);
-public static Color _KColor = default(Color);
-public static FlutterSDK.Painting.Textstyle.TextStyle _KTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle);
-}
-
-public class BannerPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
+namespace FlutterSDK.Widgets.Banner
 {
-#region constructors
-public BannerPainter(string message = default(string),TextDirection textDirection = default(TextDirection),FlutterSDK.Widgets.Banner.BannerLocation location = default(FlutterSDK.Widgets.Banner.BannerLocation),TextDirection layoutDirection = default(TextDirection),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
-: base(repaint:BindingDefaultClass.PaintingBinding.Instance.SystemFonts)
-{
-this.Message = message;
-this.TextDirection = textDirection;
-this.Location = location;
-this.LayoutDirection = layoutDirection;
-this.Color = color;
-this.TextStyle = textStyle;throw new NotImplementedException(); }
-#endregion
+    internal static class BannerDefaultClass
+    {
+        public static double _KOffset = default(double);
+        public static double _KHeight = default(double);
+        public static double _KBottomOffset = default(double);
+        public static Rect _KRect = default(Rect);
+        public static Color _KColor = default(Color);
+        public static FlutterSDK.Painting.Textstyle.TextStyle _KTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle);
+    }
 
-#region fields
-public virtual string Message{get;set;}
-public virtual TextDirection TextDirection{get;set;}
-public virtual FlutterSDK.Widgets.Banner.BannerLocation Location{get;set;}
-public virtual TextDirection LayoutDirection{get;set;}
-public virtual FlutterBinding.UI.Color Color{get;set;}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle{get;set;}
-internal virtual FlutterSDK.Painting.Boxshadow.BoxShadow _Shadow{get;set;}
-internal virtual bool _Prepared{get;set;}
-internal virtual FlutterSDK.Painting.Textpainter.TextPainter _TextPainter{get;set;}
-internal virtual SKPaint _PaintShadow{get;set;}
-internal virtual SKPaint _PaintBanner{get;set;}
-internal virtual double _Rotation{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class BannerPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
+    {
+        #region constructors
+        public BannerPainter(string message = default(string), TextDirection textDirection = default(TextDirection), FlutterSDK.Widgets.Banner.BannerLocation location = default(FlutterSDK.Widgets.Banner.BannerLocation), TextDirection layoutDirection = default(TextDirection), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
+        : base(repaint: BindingDefaultClass.PaintingBinding.Instance.SystemFonts)
+        {
+            this.Message = message;
+            this.TextDirection = textDirection;
+            this.Location = location;
+            this.LayoutDirection = layoutDirection;
+            this.Color = color;
+            this.TextStyle = textStyle; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual string Message { get; set; }
+        public virtual TextDirection TextDirection { get; set; }
+        public virtual FlutterSDK.Widgets.Banner.BannerLocation Location { get; set; }
+        public virtual TextDirection LayoutDirection { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
+        internal virtual FlutterSDK.Painting.Boxshadow.BoxShadow _Shadow { get; set; }
+        internal virtual bool _Prepared { get; set; }
+        internal virtual FlutterSDK.Painting.Textpainter.TextPainter _TextPainter { get; set; }
+        internal virtual SKPaint _PaintShadow { get; set; }
+        internal virtual SKPaint _PaintBanner { get; set; }
+        internal virtual double _Rotation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-private void _Prepare(){ throw new NotImplementedException(); }
+        #region methods
 
-
-public new void Paint(Canvas canvas,Size size){ throw new NotImplementedException(); }
-
-
-public new bool ShouldRepaint(FlutterSDK.Widgets.Banner.BannerPainter oldDelegate){ throw new NotImplementedException(); }
-public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate){ throw new NotImplementedException(); }
-
-
-public new bool HitTest(FlutterBinding.UI.Offset position){ throw new NotImplementedException(); }
-
-
-private double _TranslationX(double width){ throw new NotImplementedException(); }
-
-
-private double _TranslationY(double height){ throw new NotImplementedException(); }
-
-#endregion
-}
+        private void _Prepare() { throw new NotImplementedException(); }
 
 
-public class Banner : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public Banner(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),string message = default(string),TextDirection textDirection = default(TextDirection),FlutterSDK.Widgets.Banner.BannerLocation location = default(FlutterSDK.Widgets.Banner.BannerLocation),TextDirection layoutDirection = default(TextDirection),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
-: base(key:key)
-{
-this.Child = child;
-this.Message = message;
-this.TextDirection = textDirection;
-this.Location = location;
-this.LayoutDirection = layoutDirection;
-this.Color = color;
-this.TextStyle = textStyle;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-public virtual string Message{get;set;}
-public virtual TextDirection TextDirection{get;set;}
-public virtual FlutterSDK.Widgets.Banner.BannerLocation Location{get;set;}
-public virtual TextDirection LayoutDirection{get;set;}
-public virtual FlutterBinding.UI.Color Color{get;set;}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new void Paint(Canvas canvas, Size size) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public new bool ShouldRepaint(FlutterSDK.Widgets.Banner.BannerPainter oldDelegate) { throw new NotImplementedException(); }
+        public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate) { throw new NotImplementedException(); }
 
 
-public class CheckedModeBanner : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public CheckedModeBanner(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key)
-{
-this.Child = child;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new bool HitTest(FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-#endregion
-}
+        private double _TranslationX(double width) { throw new NotImplementedException(); }
 
 
-public enum BannerLocation{
+        private double _TranslationY(double height) { throw new NotImplementedException(); }
 
-TopStart,
-TopEnd,
-BottomStart,
-BottomEnd,
-}
+        #endregion
+    }
+
+
+    public class Banner : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public Banner(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), string message = default(string), TextDirection textDirection = default(TextDirection), FlutterSDK.Widgets.Banner.BannerLocation location = default(FlutterSDK.Widgets.Banner.BannerLocation), TextDirection layoutDirection = default(TextDirection), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
+        : base(key: key)
+        {
+            this.Child = child;
+            this.Message = message;
+            this.TextDirection = textDirection;
+            this.Location = location;
+            this.LayoutDirection = layoutDirection;
+            this.Color = color;
+            this.TextStyle = textStyle; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual string Message { get; set; }
+        public virtual TextDirection TextDirection { get; set; }
+        public virtual FlutterSDK.Widgets.Banner.BannerLocation Location { get; set; }
+        public virtual TextDirection LayoutDirection { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class CheckedModeBanner : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public CheckedModeBanner(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.Child = child; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public enum BannerLocation
+    {
+
+        TopStart,
+        TopEnd,
+        BottomStart,
+        BottomEnd,
+    }
 
 }

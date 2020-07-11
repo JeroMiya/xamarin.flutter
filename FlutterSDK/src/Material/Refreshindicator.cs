@@ -405,121 +405,125 @@ using FlutterSDK.Material.Textformfield;
 using FlutterSDK.Material.Popupmenutheme;
 using FlutterSDK.Material.Radio;
 using FlutterSDK.Material.Slidertheme;
-namespace FlutterSDK.Material.Refreshindicator{
-public delegate Future<object> RefreshCallback();
-internal static class RefreshindicatorDefaultClass{
-public static double _KDragContainerExtentPercentage = default(double);
-public static double _KDragSizeFactorLimit = default(double);
-public static TimeSpan _KIndicatorSnapDuration = default(TimeSpan);
-public static TimeSpan _KIndicatorScaleDuration = default(TimeSpan);
-}
-
-public class RefreshIndicator : FlutterSDK.Widgets.Framework.StatefulWidget
+namespace FlutterSDK.Material.Refreshindicator
 {
-#region constructors
-public RefreshIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),double displacement = 40.0,FlutterSDK.Material.Refreshindicator.RefreshCallback onRefresh = default(FlutterSDK.Material.Refreshindicator.RefreshCallback),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),FlutterSDK.Widgets.Scrollnotification.ScrollNotificationPredicate notificationPredicate = default(FlutterSDK.Widgets.Scrollnotification.ScrollNotificationPredicate),string semanticsLabel = default(string),string semanticsValue = default(string),double strokeWidth = 2.0)
-: base(key:key)
-{
-this.Child = child;
-this.Displacement = displacement;
-this.OnRefresh = onRefresh;
-this.Color = color;
-this.BackgroundColor = backgroundColor;
-this.NotificationPredicate = notificationPredicate;
-this.SemanticsLabel = semanticsLabel;
-this.SemanticsValue = semanticsValue;
-this.StrokeWidth = strokeWidth;throw new NotImplementedException(); }
-#endregion
+    public delegate Future<object> RefreshCallback();
+    internal static class RefreshindicatorDefaultClass
+    {
+        public static double _KDragContainerExtentPercentage = default(double);
+        public static double _KDragSizeFactorLimit = default(double);
+        public static TimeSpan _KIndicatorSnapDuration = default(TimeSpan);
+        public static TimeSpan _KIndicatorScaleDuration = default(TimeSpan);
+    }
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-public virtual double Displacement{get;set;}
-public virtual FlutterSDK.Material.Refreshindicator.RefreshCallback OnRefresh{get;set;}
-public virtual FlutterBinding.UI.Color Color{get;set;}
-public virtual FlutterBinding.UI.Color BackgroundColor{get;set;}
-public virtual FlutterSDK.Widgets.Scrollnotification.ScrollNotificationPredicate NotificationPredicate{get;set;}
-public virtual string SemanticsLabel{get;set;}
-public virtual string SemanticsValue{get;set;}
-public virtual double StrokeWidth{get;set;}
-#endregion
+    public class RefreshIndicator : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public RefreshIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), double displacement = 40.0, FlutterSDK.Material.Refreshindicator.RefreshCallback onRefresh = default(FlutterSDK.Material.Refreshindicator.RefreshCallback), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Scrollnotification.ScrollNotificationPredicate notificationPredicate = default(FlutterSDK.Widgets.Scrollnotification.ScrollNotificationPredicate), string semanticsLabel = default(string), string semanticsValue = default(string), double strokeWidth = 2.0)
+        : base(key: key)
+        {
+            this.Child = child;
+            this.Displacement = displacement;
+            this.OnRefresh = onRefresh;
+            this.Color = color;
+            this.BackgroundColor = backgroundColor;
+            this.NotificationPredicate = notificationPredicate;
+            this.SemanticsLabel = semanticsLabel;
+            this.SemanticsValue = semanticsValue;
+            this.StrokeWidth = strokeWidth; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual double Displacement { get; set; }
+        public virtual FlutterSDK.Material.Refreshindicator.RefreshCallback OnRefresh { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual FlutterSDK.Widgets.Scrollnotification.ScrollNotificationPredicate NotificationPredicate { get; set; }
+        public virtual string SemanticsLabel { get; set; }
+        public virtual string SemanticsValue { get; set; }
+        public virtual double StrokeWidth { get; set; }
+        #endregion
 
-public new FlutterSDK.Material.Refreshindicator.RefreshIndicatorState CreateState(){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new FlutterSDK.Material.Refreshindicator.RefreshIndicatorState CreateState() { throw new NotImplementedException(); }
 
-
-public class RefreshIndicatorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Refreshindicator.RefreshIndicator>,ITickerProviderStateMixin<FlutterSDK.Material.Refreshindicator.RefreshIndicator>
-{
-#region constructors
-public RefreshIndicatorState()
-{ }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _PositionController{get;set;}
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _ScaleController{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _PositionFactor{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _ScaleFactor{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _Value{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<Color> _ValueColor{get;set;}
-internal virtual FlutterSDK.Material.Refreshindicator._RefreshIndicatorMode _Mode{get;set;}
-internal virtual Future<object> _PendingRefreshFuture{get;set;}
-internal virtual bool _IsIndicatorAtTop{get;set;}
-internal virtual double _DragOffset{get;set;}
-internal virtual FlutterSDK.Animation.Tween.Animatable<double> _ThreeQuarterTween{get;set;}
-internal virtual FlutterSDK.Animation.Tween.Animatable<double> _KDragSizeFactorLimitTween{get;set;}
-internal virtual FlutterSDK.Animation.Tween.Animatable<double> _OneToZeroTween{get;set;}
-#endregion
-
-#region methods
-
-public new void InitState(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void DidChangeDependencies(){ throw new NotImplementedException(); }
+    public class RefreshIndicatorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Refreshindicator.RefreshIndicator>, ITickerProviderStateMixin<FlutterSDK.Material.Refreshindicator.RefreshIndicator>
+    {
+        #region constructors
+        public RefreshIndicatorState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _PositionController { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _ScaleController { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _PositionFactor { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _ScaleFactor { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _Value { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<Color> _ValueColor { get; set; }
+        internal virtual FlutterSDK.Material.Refreshindicator._RefreshIndicatorMode _Mode { get; set; }
+        internal virtual Future<object> _PendingRefreshFuture { get; set; }
+        internal virtual bool _IsIndicatorAtTop { get; set; }
+        internal virtual double _DragOffset { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.Animatable<double> _ThreeQuarterTween { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.Animatable<double> _KDragSizeFactorLimitTween { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.Animatable<double> _OneToZeroTween { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+        public new void DidChangeDependencies() { throw new NotImplementedException(); }
 
 
-private bool _HandleScrollNotification(FlutterSDK.Widgets.Scrollnotification.ScrollNotification notification){ throw new NotImplementedException(); }
+        public new void Dispose() { throw new NotImplementedException(); }
 
 
-private bool _HandleGlowNotification(FlutterSDK.Widgets.Overscrollindicator.OverscrollIndicatorNotification notification){ throw new NotImplementedException(); }
+        private bool _HandleScrollNotification(FlutterSDK.Widgets.Scrollnotification.ScrollNotification notification) { throw new NotImplementedException(); }
 
 
-private bool _Start(FlutterSDK.Painting.Basictypes.AxisDirection direction){ throw new NotImplementedException(); }
+        private bool _HandleGlowNotification(FlutterSDK.Widgets.Overscrollindicator.OverscrollIndicatorNotification notification) { throw new NotImplementedException(); }
 
 
-private void _CheckDragOffset(double containerExtent){ throw new NotImplementedException(); }
+        private bool _Start(FlutterSDK.Painting.Basictypes.AxisDirection direction) { throw new NotImplementedException(); }
 
 
-private Future<object> _Dismiss(FlutterSDK.Material.Refreshindicator._RefreshIndicatorMode newMode){ throw new NotImplementedException(); }
+        private void _CheckDragOffset(double containerExtent) { throw new NotImplementedException(); }
 
 
-private void _Show(){ throw new NotImplementedException(); }
+        private Future<object> _Dismiss(FlutterSDK.Material.Refreshindicator._RefreshIndicatorMode newMode) { throw new NotImplementedException(); }
 
 
-public virtual Future<object> Show(bool atTop = true){ throw new NotImplementedException(); }
+        private void _Show() { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual Future<object> Show(bool atTop = true) { throw new NotImplementedException(); }
 
 
-public enum _RefreshIndicatorMode{
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-Drag,
-Armed,
-Snap,
-Refresh,
-Done,
-Canceled,
-}
+        #endregion
+    }
+
+
+    public enum _RefreshIndicatorMode
+    {
+
+        Drag,
+        Armed,
+        Snap,
+        Refresh,
+        Done,
+        Canceled,
+    }
 
 }

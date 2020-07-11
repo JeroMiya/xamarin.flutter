@@ -405,330 +405,335 @@ using FlutterSDK.Material.Textformfield;
 using FlutterSDK.Material.Popupmenutheme;
 using FlutterSDK.Material.Radio;
 using FlutterSDK.Material.Slidertheme;
-namespace FlutterSDK.Material.Rangeslider{
-internal static class RangesliderDefaultClass{
-}
-
-public class RangeSlider : FlutterSDK.Widgets.Framework.StatefulWidget
+namespace FlutterSDK.Material.Rangeslider
 {
-#region constructors
-public RangeSlider(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Material.Slidertheme.RangeValues values = default(FlutterSDK.Material.Slidertheme.RangeValues),FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>),FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>),FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>),double min = 0.0,double max = 1.0,int divisions = default(int),FlutterSDK.Material.Slidertheme.RangeLabels labels = default(FlutterSDK.Material.Slidertheme.RangeLabels),FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color),FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback semanticFormatterCallback = default(FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback))
-: base(key:key)
-{
-this.Values = values;
-this.OnChanged = onChanged;
-this.OnChangeStart = onChangeStart;
-this.OnChangeEnd = onChangeEnd;
-this.Min = min;
-this.Max = max;
-this.Divisions = divisions;
-this.Labels = labels;
-this.ActiveColor = activeColor;
-this.InactiveColor = inactiveColor;
-this.SemanticFormatterCallback = semanticFormatterCallback;throw new NotImplementedException(); }
-#endregion
+    internal static class RangesliderDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Material.Slidertheme.RangeValues Values{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChanged{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChangeStart{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChangeEnd{get;set;}
-public virtual double Min{get;set;}
-public virtual double Max{get;set;}
-public virtual int Divisions{get;set;}
-public virtual FlutterSDK.Material.Slidertheme.RangeLabels Labels{get;set;}
-public virtual FlutterBinding.UI.Color ActiveColor{get;set;}
-public virtual FlutterBinding.UI.Color InactiveColor{get;set;}
-public virtual FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback SemanticFormatterCallback{get;set;}
-internal virtual double _MinTouchTargetWidth{get;set;}
-#endregion
+    public class RangeSlider : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public RangeSlider(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Slidertheme.RangeValues values = default(FlutterSDK.Material.Slidertheme.RangeValues), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), double min = 0.0, double max = 1.0, int divisions = default(int), FlutterSDK.Material.Slidertheme.RangeLabels labels = default(FlutterSDK.Material.Slidertheme.RangeLabels), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback semanticFormatterCallback = default(FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback))
+        : base(key: key)
+        {
+            this.Values = values;
+            this.OnChanged = onChanged;
+            this.OnChangeStart = onChangeStart;
+            this.OnChangeEnd = onChangeEnd;
+            this.Min = min;
+            this.Max = max;
+            this.Divisions = divisions;
+            this.Labels = labels;
+            this.ActiveColor = activeColor;
+            this.InactiveColor = inactiveColor;
+            this.SemanticFormatterCallback = semanticFormatterCallback; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Material.Slidertheme.RangeValues Values { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChanged { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChangeStart { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChangeEnd { get; set; }
+        public virtual double Min { get; set; }
+        public virtual double Max { get; set; }
+        public virtual int Divisions { get; set; }
+        public virtual FlutterSDK.Material.Slidertheme.RangeLabels Labels { get; set; }
+        public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
+        public virtual FlutterBinding.UI.Color InactiveColor { get; set; }
+        public virtual FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback SemanticFormatterCallback { get; set; }
+        internal virtual double _MinTouchTargetWidth { get; set; }
+        #endregion
 
-public new FlutterSDK.Material.Rangeslider._RangeSliderState CreateState(){ throw new NotImplementedException(); }
+        #region methods
 
+        public new FlutterSDK.Material.Rangeslider._RangeSliderState CreateState() { throw new NotImplementedException(); }
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public class _RangeSliderState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Rangeslider.RangeSlider>,ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-#region constructors
-public _RangeSliderState()
-{ }
-#endregion
+    public class _RangeSliderState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Rangeslider.RangeSlider>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _RangeSliderState()
+        { }
+        #endregion
 
-#region fields
-public virtual TimeSpan EnableAnimationDuration{get;set;}
-public virtual TimeSpan ValueIndicatorAnimationDuration{get;set;}
-public virtual FlutterSDK.Animation.Animationcontroller.AnimationController OverlayController{get;set;}
-public virtual FlutterSDK.Animation.Animationcontroller.AnimationController ValueIndicatorController{get;set;}
-public virtual FlutterSDK.Animation.Animationcontroller.AnimationController EnableController{get;set;}
-public virtual FlutterSDK.Animation.Animationcontroller.AnimationController StartPositionController{get;set;}
-public virtual FlutterSDK.Animation.Animationcontroller.AnimationController EndPositionController{get;set;}
-public virtual Timer InteractionTimer{get;set;}
-internal virtual FlutterSDK.Material.Slidertheme.RangeThumbSelector _DefaultRangeThumbSelector{get;set;}
-internal virtual double _DefaultTrackHeight{get;set;}
-internal virtual FlutterSDK.Material.Slidertheme.RangeSliderTrackShape _DefaultTrackShape{get;set;}
-internal virtual FlutterSDK.Material.Slidertheme.RangeSliderTickMarkShape _DefaultTickMarkShape{get;set;}
-internal virtual FlutterSDK.Material.Slidertheme.SliderComponentShape _DefaultOverlayShape{get;set;}
-internal virtual FlutterSDK.Material.Slidertheme.RangeSliderThumbShape _DefaultThumbShape{get;set;}
-internal virtual FlutterSDK.Material.Slidertheme.RangeSliderValueIndicatorShape _DefaultValueIndicatorShape{get;set;}
-internal virtual FlutterSDK.Material.Slidertheme.ShowValueIndicator _DefaultShowValueIndicator{get;set;}
-internal virtual double _DefaultMinThumbSeparation{get;set;}
-#endregion
+        #region fields
+        public virtual TimeSpan EnableAnimationDuration { get; set; }
+        public virtual TimeSpan ValueIndicatorAnimationDuration { get; set; }
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController OverlayController { get; set; }
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController ValueIndicatorController { get; set; }
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController EnableController { get; set; }
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController StartPositionController { get; set; }
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController EndPositionController { get; set; }
+        public virtual Timer InteractionTimer { get; set; }
+        internal virtual FlutterSDK.Material.Slidertheme.RangeThumbSelector _DefaultRangeThumbSelector { get; set; }
+        internal virtual double _DefaultTrackHeight { get; set; }
+        internal virtual FlutterSDK.Material.Slidertheme.RangeSliderTrackShape _DefaultTrackShape { get; set; }
+        internal virtual FlutterSDK.Material.Slidertheme.RangeSliderTickMarkShape _DefaultTickMarkShape { get; set; }
+        internal virtual FlutterSDK.Material.Slidertheme.SliderComponentShape _DefaultOverlayShape { get; set; }
+        internal virtual FlutterSDK.Material.Slidertheme.RangeSliderThumbShape _DefaultThumbShape { get; set; }
+        internal virtual FlutterSDK.Material.Slidertheme.RangeSliderValueIndicatorShape _DefaultValueIndicatorShape { get; set; }
+        internal virtual FlutterSDK.Material.Slidertheme.ShowValueIndicator _DefaultShowValueIndicator { get; set; }
+        internal virtual double _DefaultMinThumbSeparation { get; set; }
+        #endregion
 
-#region methods
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
+
+
+        public new void DidUpdateWidget(FlutterSDK.Material.Rangeslider.RangeSlider oldWidget) { throw new NotImplementedException(); }
+
+
+        public new void Dispose() { throw new NotImplementedException(); }
+
+
+        private void _HandleChanged(FlutterSDK.Material.Slidertheme.RangeValues values) { throw new NotImplementedException(); }
+
+
+        private void _HandleDragStart(FlutterSDK.Material.Slidertheme.RangeValues values) { throw new NotImplementedException(); }
+
+
+        private void _HandleDragEnd(FlutterSDK.Material.Slidertheme.RangeValues values) { throw new NotImplementedException(); }
+
+
+        private double _Lerp(double value) { throw new NotImplementedException(); }
+
+
+        private FlutterSDK.Material.Slidertheme.RangeValues _LerpRangeValues(FlutterSDK.Material.Slidertheme.RangeValues values) { throw new NotImplementedException(); }
+
+
+        private double _Unlerp(double value) { throw new NotImplementedException(); }
+
+
+        private FlutterSDK.Material.Slidertheme.RangeValues _UnlerpRangeValues(FlutterSDK.Material.Slidertheme.RangeValues values) { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class _RangeSliderRenderObjectWidget : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
+    {
+        #region constructors
+        public _RangeSliderRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Slidertheme.RangeValues values = default(FlutterSDK.Material.Slidertheme.RangeValues), int divisions = default(int), FlutterSDK.Material.Slidertheme.RangeLabels labels = default(FlutterSDK.Material.Slidertheme.RangeLabels), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), double textScaleFactor = default(double), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), FlutterSDK.Material.Rangeslider._RangeSliderState state = default(FlutterSDK.Material.Rangeslider._RangeSliderState), FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback semanticFormatterCallback = default(FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback))
+        : base(key: key)
+        {
+            this.Values = values;
+            this.Divisions = divisions;
+            this.Labels = labels;
+            this.SliderTheme = sliderTheme;
+            this.TextScaleFactor = textScaleFactor;
+            this.OnChanged = onChanged;
+            this.OnChangeStart = onChangeStart;
+            this.OnChangeEnd = onChangeEnd;
+            this.State = state;
+            this.SemanticFormatterCallback = semanticFormatterCallback; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Material.Slidertheme.RangeValues Values { get; set; }
+        public virtual int Divisions { get; set; }
+        public virtual FlutterSDK.Material.Slidertheme.RangeLabels Labels { get; set; }
+        public virtual FlutterSDK.Material.Slidertheme.SliderThemeData SliderTheme { get; set; }
+        public virtual double TextScaleFactor { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChanged { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChangeStart { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChangeEnd { get; set; }
+        public virtual FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback SemanticFormatterCallback { get; set; }
+        public virtual FlutterSDK.Material.Rangeslider._RangeSliderState State { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Material.Rangeslider._RenderRangeSlider CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Material.Rangeslider._RenderRangeSlider renderObject) { throw new NotImplementedException(); }
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
 
-public new void InitState(){ throw new NotImplementedException(); }
-
-
-public new void DidUpdateWidget(FlutterSDK.Material.Rangeslider.RangeSlider oldWidget){ throw new NotImplementedException(); }
-
-
-public new void Dispose(){ throw new NotImplementedException(); }
-
-
-private void _HandleChanged(FlutterSDK.Material.Slidertheme.RangeValues values){ throw new NotImplementedException(); }
-
-
-private void _HandleDragStart(FlutterSDK.Material.Slidertheme.RangeValues values){ throw new NotImplementedException(); }
-
-
-private void _HandleDragEnd(FlutterSDK.Material.Slidertheme.RangeValues values){ throw new NotImplementedException(); }
-
-
-private double _Lerp(double value){ throw new NotImplementedException(); }
-
-
-private FlutterSDK.Material.Slidertheme.RangeValues _LerpRangeValues(FlutterSDK.Material.Slidertheme.RangeValues values){ throw new NotImplementedException(); }
-
-
-private double _Unlerp(double value){ throw new NotImplementedException(); }
-
-
-private FlutterSDK.Material.Slidertheme.RangeValues _UnlerpRangeValues(FlutterSDK.Material.Slidertheme.RangeValues values){ throw new NotImplementedException(); }
-
+    public class _RenderRangeSlider : FlutterSDK.Rendering.Box.RenderBox, IRelayoutWhenSystemFontsChangeMixin
+    {
+        #region constructors
+        public _RenderRangeSlider(FlutterSDK.Material.Slidertheme.RangeValues values = default(FlutterSDK.Material.Slidertheme.RangeValues), int divisions = default(int), FlutterSDK.Material.Slidertheme.RangeLabels labels = default(FlutterSDK.Material.Slidertheme.RangeLabels), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Material.Themedata.ThemeData theme = default(FlutterSDK.Material.Themedata.ThemeData), double textScaleFactor = default(double), FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback semanticFormatterCallback = default(FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), FlutterSDK.Material.Rangeslider._RangeSliderState state = default(FlutterSDK.Material.Rangeslider._RangeSliderState), TextDirection textDirection = default(TextDirection))
+        : base()
+        {
+            this.OnChangeStart = onChangeStart;
+            this.OnChangeEnd = onChangeEnd; throw new NotImplementedException();
+        }
+        #endregion
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _RangeSliderRenderObjectWidget : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
-{
-#region constructors
-public _RangeSliderRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Material.Slidertheme.RangeValues values = default(FlutterSDK.Material.Slidertheme.RangeValues),int divisions = default(int),FlutterSDK.Material.Slidertheme.RangeLabels labels = default(FlutterSDK.Material.Slidertheme.RangeLabels),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),double textScaleFactor = default(double),FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>),FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>),FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>),FlutterSDK.Material.Rangeslider._RangeSliderState state = default(FlutterSDK.Material.Rangeslider._RangeSliderState),FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback semanticFormatterCallback = default(FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback))
-: base(key:key)
-{
-this.Values = values;
-this.Divisions = divisions;
-this.Labels = labels;
-this.SliderTheme = sliderTheme;
-this.TextScaleFactor = textScaleFactor;
-this.OnChanged = onChanged;
-this.OnChangeStart = onChangeStart;
-this.OnChangeEnd = onChangeEnd;
-this.State = state;
-this.SemanticFormatterCallback = semanticFormatterCallback;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Material.Slidertheme.RangeValues Values{get;set;}
-public virtual int Divisions{get;set;}
-public virtual FlutterSDK.Material.Slidertheme.RangeLabels Labels{get;set;}
-public virtual FlutterSDK.Material.Slidertheme.SliderThemeData SliderTheme{get;set;}
-public virtual double TextScaleFactor{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChanged{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChangeStart{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChangeEnd{get;set;}
-public virtual FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback SemanticFormatterCallback{get;set;}
-public virtual FlutterSDK.Material.Rangeslider._RangeSliderState State{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Material.Rangeslider._RenderRangeSlider CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Material.Rangeslider._RenderRangeSlider renderObject){ throw new NotImplementedException(); }
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Rendering.@object.RenderObject renderObject){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _RenderRangeSlider : FlutterSDK.Rendering.Box.RenderBox,IRelayoutWhenSystemFontsChangeMixin
-{
-#region constructors
-public _RenderRangeSlider(FlutterSDK.Material.Slidertheme.RangeValues values = default(FlutterSDK.Material.Slidertheme.RangeValues),int divisions = default(int),FlutterSDK.Material.Slidertheme.RangeLabels labels = default(FlutterSDK.Material.Slidertheme.RangeLabels),FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData),FlutterSDK.Material.Themedata.ThemeData theme = default(FlutterSDK.Material.Themedata.ThemeData),double textScaleFactor = default(double),FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform),FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>),FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback semanticFormatterCallback = default(FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback),FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>),FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>),FlutterSDK.Material.Rangeslider._RangeSliderState state = default(FlutterSDK.Material.Rangeslider._RangeSliderState),TextDirection textDirection = default(TextDirection))
-: base()
-{
-this.OnChangeStart = onChangeStart;
-this.OnChangeEnd = onChangeEnd;throw new NotImplementedException(); }
-#endregion
+        #region fields
+        internal virtual FlutterSDK.Material.Slidertheme.Thumb _LastThumbSelection { get; set; }
+        internal virtual TimeSpan _PositionAnimationDuration { get; set; }
+        internal virtual double _MinPreferredTrackWidth { get; set; }
+        internal virtual TimeSpan _MinimumInteractionTime { get; set; }
+        internal virtual FlutterSDK.Material.Rangeslider._RangeSliderState _State { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _OverlayAnimation { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _ValueIndicatorAnimation { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _EnableAnimation { get; set; }
+        internal virtual FlutterSDK.Painting.Textpainter.TextPainter _StartLabelPainter { get; set; }
+        internal virtual FlutterSDK.Painting.Textpainter.TextPainter _EndLabelPainter { get; set; }
+        internal virtual FlutterSDK.Gestures.Monodrag.HorizontalDragGestureRecognizer _Drag { get; set; }
+        internal virtual FlutterSDK.Gestures.Tap.TapGestureRecognizer _Tap { get; set; }
+        internal virtual bool _Active { get; set; }
+        internal virtual FlutterSDK.Material.Slidertheme.RangeValues _NewValues { get; set; }
+        internal virtual FlutterSDK.Material.Slidertheme.RangeValues _Values { get; set; }
+        internal virtual FlutterSDK.Foundation.Platform.TargetPlatform _Platform { get; set; }
+        internal virtual FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback _SemanticFormatterCallback { get; set; }
+        internal virtual int _Divisions { get; set; }
+        internal virtual FlutterSDK.Material.Slidertheme.RangeLabels _Labels { get; set; }
+        internal virtual FlutterSDK.Material.Slidertheme.SliderThemeData _SliderTheme { get; set; }
+        internal virtual FlutterSDK.Material.Themedata.ThemeData _Theme { get; set; }
+        internal virtual double _TextScaleFactor { get; set; }
+        internal virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> _OnChanged { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChangeStart { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChangeEnd { get; set; }
+        internal virtual TextDirection _TextDirection { get; set; }
+        internal virtual FlutterSDK.Semantics.Semantics.CustomSemanticsAction _DecreaseStart { get; set; }
+        internal virtual FlutterSDK.Semantics.Semantics.CustomSemanticsAction _IncreaseStart { get; set; }
+        internal virtual FlutterSDK.Semantics.Semantics.CustomSemanticsAction _DecreaseEnd { get; set; }
+        internal virtual FlutterSDK.Semantics.Semantics.CustomSemanticsAction _IncreaseEnd { get; set; }
+        internal virtual double _MaxSliderPartWidth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _MaxSliderPartHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual List<Size> _SliderPartSizes { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _MinPreferredTrackHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual FlutterBinding.UI.Rect _TrackRect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsDiscrete { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Material.Slidertheme.RangeValues Values { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Foundation.Platform.TargetPlatform Platform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback SemanticFormatterCallback { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int Divisions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Material.Slidertheme.RangeLabels Labels { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Material.Slidertheme.SliderThemeData SliderTheme { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Material.Themedata.ThemeData Theme { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double TextScaleFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChanged { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool ShowValueIndicator { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Size _ThumbSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _AdjustmentUnit { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _SemanticActionUnit { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#region fields
-internal virtual FlutterSDK.Material.Slidertheme.Thumb _LastThumbSelection{get;set;}
-internal virtual TimeSpan _PositionAnimationDuration{get;set;}
-internal virtual double _MinPreferredTrackWidth{get;set;}
-internal virtual TimeSpan _MinimumInteractionTime{get;set;}
-internal virtual FlutterSDK.Material.Rangeslider._RangeSliderState _State{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _OverlayAnimation{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _ValueIndicatorAnimation{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _EnableAnimation{get;set;}
-internal virtual FlutterSDK.Painting.Textpainter.TextPainter _StartLabelPainter{get;set;}
-internal virtual FlutterSDK.Painting.Textpainter.TextPainter _EndLabelPainter{get;set;}
-internal virtual FlutterSDK.Gestures.Monodrag.HorizontalDragGestureRecognizer _Drag{get;set;}
-internal virtual FlutterSDK.Gestures.Tap.TapGestureRecognizer _Tap{get;set;}
-internal virtual bool _Active{get;set;}
-internal virtual FlutterSDK.Material.Slidertheme.RangeValues _NewValues{get;set;}
-internal virtual FlutterSDK.Material.Slidertheme.RangeValues _Values{get;set;}
-internal virtual FlutterSDK.Foundation.Platform.TargetPlatform _Platform{get;set;}
-internal virtual FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback _SemanticFormatterCallback{get;set;}
-internal virtual int _Divisions{get;set;}
-internal virtual FlutterSDK.Material.Slidertheme.RangeLabels _Labels{get;set;}
-internal virtual FlutterSDK.Material.Slidertheme.SliderThemeData _SliderTheme{get;set;}
-internal virtual FlutterSDK.Material.Themedata.ThemeData _Theme{get;set;}
-internal virtual double _TextScaleFactor{get;set;}
-internal virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> _OnChanged{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChangeStart{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChangeEnd{get;set;}
-internal virtual TextDirection _TextDirection{get;set;}
-internal virtual FlutterSDK.Semantics.Semantics.CustomSemanticsAction _DecreaseStart{get;set;}
-internal virtual FlutterSDK.Semantics.Semantics.CustomSemanticsAction _IncreaseStart{get;set;}
-internal virtual FlutterSDK.Semantics.Semantics.CustomSemanticsAction _DecreaseEnd{get;set;}
-internal virtual FlutterSDK.Semantics.Semantics.CustomSemanticsAction _IncreaseEnd{get;set;}
-internal virtual double _MaxSliderPartWidth{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _MaxSliderPartHeight{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual List<Size> _SliderPartSizes{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _MinPreferredTrackHeight{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual FlutterBinding.UI.Rect _TrackRect{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsEnabled{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsDiscrete{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Material.Slidertheme.RangeValues Values{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Foundation.Platform.TargetPlatform Platform{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback SemanticFormatterCallback{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual int Divisions{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Material.Slidertheme.RangeLabels Labels{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Material.Slidertheme.SliderThemeData SliderTheme{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Material.Themedata.ThemeData Theme{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual double TextScaleFactor{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChanged{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual TextDirection TextDirection{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool ShowValueIndicator{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual Size _ThumbSize{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _AdjustmentUnit{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool SizedByParent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _SemanticActionUnit{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #region methods
 
-#region methods
+        private void _UpdateLabelPainters() { throw new NotImplementedException(); }
 
-private void _UpdateLabelPainters(){ throw new NotImplementedException(); }
 
+        private void _UpdateLabelPainter(FlutterSDK.Material.Slidertheme.Thumb thumb) { throw new NotImplementedException(); }
 
-private void _UpdateLabelPainter(FlutterSDK.Material.Slidertheme.Thumb thumb){ throw new NotImplementedException(); }
 
+        public new void SystemFontsDidChange() { throw new NotImplementedException(); }
 
-public new void SystemFontsDidChange(){ throw new NotImplementedException(); }
 
+        public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner) { throw new NotImplementedException(); }
+        public new void Attach(@Object owner) { throw new NotImplementedException(); }
 
-public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner){ throw new NotImplementedException(); }
-public new void Attach(@Object owner){ throw new NotImplementedException(); }
 
+        public new void Detach() { throw new NotImplementedException(); }
 
-public new void Detach(){ throw new NotImplementedException(); }
 
+        private double _GetValueFromVisualPosition(double visualPosition) { throw new NotImplementedException(); }
 
-private double _GetValueFromVisualPosition(double visualPosition){ throw new NotImplementedException(); }
 
+        private double _GetValueFromGlobalPosition(FlutterBinding.UI.Offset globalPosition) { throw new NotImplementedException(); }
 
-private double _GetValueFromGlobalPosition(FlutterBinding.UI.Offset globalPosition){ throw new NotImplementedException(); }
 
+        private double _Discretize(double value) { throw new NotImplementedException(); }
 
-private double _Discretize(double value){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Material.Slidertheme.RangeValues _DiscretizeRangeValues(FlutterSDK.Material.Slidertheme.RangeValues values) { throw new NotImplementedException(); }
 
-private FlutterSDK.Material.Slidertheme.RangeValues _DiscretizeRangeValues(FlutterSDK.Material.Slidertheme.RangeValues values){ throw new NotImplementedException(); }
 
+        private void _StartInteraction(FlutterBinding.UI.Offset globalPosition) { throw new NotImplementedException(); }
 
-private void _StartInteraction(FlutterBinding.UI.Offset globalPosition){ throw new NotImplementedException(); }
 
+        private void _HandleDragUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details) { throw new NotImplementedException(); }
 
-private void _HandleDragUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details){ throw new NotImplementedException(); }
 
+        private void _EndInteraction() { throw new NotImplementedException(); }
 
-private void _EndInteraction(){ throw new NotImplementedException(); }
 
+        private void _HandleDragStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details) { throw new NotImplementedException(); }
 
-private void _HandleDragStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details){ throw new NotImplementedException(); }
 
+        private void _HandleDragEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details) { throw new NotImplementedException(); }
 
-private void _HandleDragEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details){ throw new NotImplementedException(); }
 
+        private void _HandleDragCancel() { throw new NotImplementedException(); }
 
-private void _HandleDragCancel(){ throw new NotImplementedException(); }
 
+        private void _HandleTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details) { throw new NotImplementedException(); }
 
-private void _HandleTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details){ throw new NotImplementedException(); }
 
+        private void _HandleTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details) { throw new NotImplementedException(); }
 
-private void _HandleTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details){ throw new NotImplementedException(); }
 
+        private void _HandleTapCancel() { throw new NotImplementedException(); }
 
-private void _HandleTapCancel(){ throw new NotImplementedException(); }
 
+        public new bool HitTestSelf(FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
 
-public new bool HitTestSelf(FlutterBinding.UI.Offset position){ throw new NotImplementedException(); }
 
+        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Hittest.HitTestEntry entry) { throw new NotImplementedException(); }
 
-public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event,FlutterSDK.Gestures.Hittest.HitTestEntry entry){ throw new NotImplementedException(); }
 
+        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
-public new double ComputeMinIntrinsicWidth(double height){ throw new NotImplementedException(); }
 
+        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
-public new double ComputeMaxIntrinsicWidth(double height){ throw new NotImplementedException(); }
 
+        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
-public new double ComputeMinIntrinsicHeight(double width){ throw new NotImplementedException(); }
 
+        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
-public new double ComputeMaxIntrinsicHeight(double width){ throw new NotImplementedException(); }
 
+        public new void PerformResize() { throw new NotImplementedException(); }
 
-public new void PerformResize(){ throw new NotImplementedException(); }
 
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
 
+        public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config) { throw new NotImplementedException(); }
 
-public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config){ throw new NotImplementedException(); }
 
+        private void _IncreaseStartAction() { throw new NotImplementedException(); }
 
-private void _IncreaseStartAction(){ throw new NotImplementedException(); }
 
+        private void _DecreaseStartAction() { throw new NotImplementedException(); }
 
-private void _DecreaseStartAction(){ throw new NotImplementedException(); }
 
+        private void _IncreaseEndAction() { throw new NotImplementedException(); }
 
-private void _IncreaseEndAction(){ throw new NotImplementedException(); }
 
+        private void _DecreaseEndAction() { throw new NotImplementedException(); }
 
-private void _DecreaseEndAction(){ throw new NotImplementedException(); }
 
+        private double _IncreaseValue(double value) { throw new NotImplementedException(); }
 
-private double _IncreaseValue(double value){ throw new NotImplementedException(); }
 
+        private double _DecreaseValue(double value) { throw new NotImplementedException(); }
 
-private double _DecreaseValue(double value){ throw new NotImplementedException(); }
-
-#endregion
-}
+        #endregion
+    }
 
 }

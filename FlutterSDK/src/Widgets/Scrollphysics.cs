@@ -423,171 +423,178 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Scrollphysics{
-internal static class ScrollphysicsDefaultClass{
-}
-
-public class ScrollPhysics
+namespace FlutterSDK.Widgets.Scrollphysics
 {
-#region constructors
-public ScrollPhysics(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics parent = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
-{
-this.Parent = parent;throw new NotImplementedException(); }
-#endregion
+    internal static class ScrollphysicsDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Parent{get;set;}
-internal virtual FlutterSDK.Physics.Springsimulation.SpringDescription _KDefaultSpring{get;set;}
-internal virtual FlutterSDK.Physics.Tolerance.Tolerance _KDefaultTolerance{get;set;}
-public virtual FlutterSDK.Physics.Springsimulation.SpringDescription Spring{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Physics.Tolerance.Tolerance Tolerance{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double MinFlingDistance{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double MinFlingVelocity{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double MaxFlingVelocity{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double DragStartDistanceMotionThreshold{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool AllowImplicitScrolling{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class ScrollPhysics
+    {
+        #region constructors
+        public ScrollPhysics(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics parent = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
+        {
+            this.Parent = parent; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Parent { get; set; }
+        internal virtual FlutterSDK.Physics.Springsimulation.SpringDescription _KDefaultSpring { get; set; }
+        internal virtual FlutterSDK.Physics.Tolerance.Tolerance _KDefaultTolerance { get; set; }
+        public virtual FlutterSDK.Physics.Springsimulation.SpringDescription Spring { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Physics.Tolerance.Tolerance Tolerance { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double MinFlingDistance { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double MinFlingVelocity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double MaxFlingVelocity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double DragStartDistanceMotionThreshold { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool AllowImplicitScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics BuildParent(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ancestor){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ApplyTo(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ancestor){ throw new NotImplementedException(); }
-
-
-public virtual double ApplyPhysicsToUserOffset(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics position,double offset){ throw new NotImplementedException(); }
-
-
-public virtual bool ShouldAcceptUserOffset(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics position){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics BuildParent(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ancestor) { throw new NotImplementedException(); }
 
 
-public virtual bool RecommendDeferredLoading(double velocity,FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics,FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ApplyTo(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ancestor) { throw new NotImplementedException(); }
 
 
-public virtual double ApplyBoundaryConditions(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics position,double value){ throw new NotImplementedException(); }
+        public virtual double ApplyPhysicsToUserOffset(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics position, double offset) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Physics.Simulation.Simulation CreateBallisticSimulation(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics position,double velocity){ throw new NotImplementedException(); }
+        public virtual bool ShouldAcceptUserOffset(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics position) { throw new NotImplementedException(); }
 
 
-public virtual double CarriedMomentum(double existingVelocity){ throw new NotImplementedException(); }
+        public virtual bool RecommendDeferredLoading(double velocity, FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public virtual double ApplyBoundaryConditions(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics position, double value) { throw new NotImplementedException(); }
 
 
-public class BouncingScrollPhysics : FlutterSDK.Widgets.Scrollphysics.ScrollPhysics
-{
-#region constructors
-public BouncingScrollPhysics(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics parent = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
-: base(parent:parent)
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual double MinFlingVelocity{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double DragStartDistanceMotionThreshold{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Scrollphysics.BouncingScrollPhysics ApplyTo(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ancestor){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Physics.Simulation.Simulation CreateBallisticSimulation(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics position, double velocity) { throw new NotImplementedException(); }
 
 
-public virtual double FrictionFactor(double overscrollFraction){ throw new NotImplementedException(); }
+        public virtual double CarriedMomentum(double existingVelocity) { throw new NotImplementedException(); }
 
 
-public new double ApplyPhysicsToUserOffset(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics position,double offset){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-private double _ApplyFriction(double extentOutside,double absDelta,double gamma){ throw new NotImplementedException(); }
+    public class BouncingScrollPhysics : FlutterSDK.Widgets.Scrollphysics.ScrollPhysics
+    {
+        #region constructors
+        public BouncingScrollPhysics(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics parent = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
+        : base(parent: parent)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual double MinFlingVelocity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double DragStartDistanceMotionThreshold { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Scrollphysics.BouncingScrollPhysics ApplyTo(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ancestor) { throw new NotImplementedException(); }
 
 
-public new double ApplyBoundaryConditions(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics position,double value){ throw new NotImplementedException(); }
+        public virtual double FrictionFactor(double overscrollFraction) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Physics.Simulation.Simulation CreateBallisticSimulation(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics position,double velocity){ throw new NotImplementedException(); }
+        public new double ApplyPhysicsToUserOffset(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics position, double offset) { throw new NotImplementedException(); }
 
 
-public new double CarriedMomentum(double existingVelocity){ throw new NotImplementedException(); }
-
-#endregion
-}
+        private double _ApplyFriction(double extentOutside, double absDelta, double gamma) { throw new NotImplementedException(); }
 
 
-public class ClampingScrollPhysics : FlutterSDK.Widgets.Scrollphysics.ScrollPhysics
-{
-#region constructors
-public ClampingScrollPhysics(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics parent = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
-: base(parent:parent)
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Scrollphysics.ClampingScrollPhysics ApplyTo(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ancestor){ throw new NotImplementedException(); }
+        public new double ApplyBoundaryConditions(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics position, double value) { throw new NotImplementedException(); }
 
 
-public new double ApplyBoundaryConditions(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics position,double value){ throw new NotImplementedException(); }
+        public new FlutterSDK.Physics.Simulation.Simulation CreateBallisticSimulation(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics position, double velocity) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Physics.Simulation.Simulation CreateBallisticSimulation(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics position,double velocity){ throw new NotImplementedException(); }
+        public new double CarriedMomentum(double existingVelocity) { throw new NotImplementedException(); }
 
-#endregion
-}
-
-
-public class AlwaysScrollableScrollPhysics : FlutterSDK.Widgets.Scrollphysics.ScrollPhysics
-{
-#region constructors
-public AlwaysScrollableScrollPhysics(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics parent = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
-: base(parent:parent)
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Scrollphysics.AlwaysScrollableScrollPhysics ApplyTo(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ancestor){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new bool ShouldAcceptUserOffset(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics position){ throw new NotImplementedException(); }
+    public class ClampingScrollPhysics : FlutterSDK.Widgets.Scrollphysics.ScrollPhysics
+    {
+        #region constructors
+        public ClampingScrollPhysics(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics parent = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
+        : base(parent: parent)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        #endregion
 
+        #region methods
 
-public class NeverScrollableScrollPhysics : FlutterSDK.Widgets.Scrollphysics.ScrollPhysics
-{
-#region constructors
-public NeverScrollableScrollPhysics(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics parent = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
-: base(parent:parent)
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual bool AllowImplicitScrolling{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Scrollphysics.NeverScrollableScrollPhysics ApplyTo(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ancestor){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Scrollphysics.ClampingScrollPhysics ApplyTo(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ancestor) { throw new NotImplementedException(); }
 
 
-public new bool ShouldAcceptUserOffset(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics position){ throw new NotImplementedException(); }
+        public new double ApplyBoundaryConditions(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics position, double value) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new FlutterSDK.Physics.Simulation.Simulation CreateBallisticSimulation(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics position, double velocity) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class AlwaysScrollableScrollPhysics : FlutterSDK.Widgets.Scrollphysics.ScrollPhysics
+    {
+        #region constructors
+        public AlwaysScrollableScrollPhysics(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics parent = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
+        : base(parent: parent)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Scrollphysics.AlwaysScrollableScrollPhysics ApplyTo(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ancestor) { throw new NotImplementedException(); }
+
+
+        public new bool ShouldAcceptUserOffset(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics position) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class NeverScrollableScrollPhysics : FlutterSDK.Widgets.Scrollphysics.ScrollPhysics
+    {
+        #region constructors
+        public NeverScrollableScrollPhysics(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics parent = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
+        : base(parent: parent)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual bool AllowImplicitScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Scrollphysics.NeverScrollableScrollPhysics ApplyTo(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ancestor) { throw new NotImplementedException(); }
+
+
+        public new bool ShouldAcceptUserOffset(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics position) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

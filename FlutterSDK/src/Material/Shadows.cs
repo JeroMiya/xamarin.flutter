@@ -411,12 +411,14 @@ using FlutterSDK.Material.Floatingactionbuttonlocation;
 using FlutterSDK.Material.Snackbar;
 using FlutterSDK.Material.Snackbartheme;
 using FlutterSDK.Material.Textselection;
-namespace FlutterSDK.Material.Shadows{
-internal static class ShadowsDefaultClass{
-public static Dictionary<int,List<FlutterSDK.Painting.Boxshadow.BoxShadow>> KElevationToShadow = default(Dictionary<int,List<FlutterSDK.Painting.Boxshadow.BoxShadow>>);
-public static Color _KKeyUmbraOpacity = default(Color);
-public static Color _KKeyPenumbraOpacity = default(Color);
-public static Color _KAmbientShadowOpacity = default(Color);
-public static Dictionary<int,List<FlutterSDK.Painting.Boxshadow.BoxShadow>> _ElevationToShadow = default(Dictionary<int,List<FlutterSDK.Painting.Boxshadow.BoxShadow>>);
-}
+namespace FlutterSDK.Material.Shadows
+{
+    internal static class ShadowsDefaultClass
+    {
+        public static Dictionary<int, List<FlutterSDK.Painting.Boxshadow.BoxShadow>> KElevationToShadow = default(Dictionary<int, List<FlutterSDK.Painting.Boxshadow.BoxShadow>>);
+        public static Color _KKeyUmbraOpacity = default(Color);
+        public static Color _KKeyPenumbraOpacity = default(Color);
+        public static Color _KAmbientShadowOpacity = default(Color);
+        public static Dictionary<int, List<FlutterSDK.Painting.Boxshadow.BoxShadow>> _ElevationToShadow = default(Dictionary<int, List<FlutterSDK.Painting.Boxshadow.BoxShadow>>);
+    }
 }

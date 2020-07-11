@@ -422,55 +422,59 @@ using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
-namespace FlutterSDK.Widgets.Icondata{
-internal static class IcondataDefaultClass{
-}
-
-public class IconData
+namespace FlutterSDK.Widgets.Icondata
 {
-#region constructors
-public IconData(int codePoint,string fontFamily = default(string),string fontPackage = default(string),bool matchTextDirection = false)
-{
-this.CodePoint = codePoint;
-this.FontFamily = fontFamily;
-this.FontPackage = fontPackage;
-this.MatchTextDirection = matchTextDirection;throw new NotImplementedException(); }
-#endregion
+    internal static class IcondataDefaultClass
+    {
+    }
 
-#region fields
-public virtual int CodePoint{get;set;}
-public virtual string FontFamily{get;set;}
-public virtual string FontPackage{get;set;}
-public virtual bool MatchTextDirection{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class IconData
+    {
+        #region constructors
+        public IconData(int codePoint, string fontFamily = default(string), string fontPackage = default(string), bool matchTextDirection = false)
+        {
+            this.CodePoint = codePoint;
+            this.FontFamily = fontFamily;
+            this.FontPackage = fontPackage;
+            this.MatchTextDirection = matchTextDirection; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual int CodePoint { get; set; }
+        public virtual string FontFamily { get; set; }
+        public virtual string FontPackage { get; set; }
+        public virtual bool MatchTextDirection { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        #region methods
+
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class IconDataProperty : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<FlutterSDK.Widgets.Icondata.IconData>
-{
-#region constructors
-public IconDataProperty(string name,FlutterSDK.Widgets.Icondata.IconData value,string ifNull = default(string),bool showName = true,FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle),FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
-: base(name,value,showName:showName,ifNull:ifNull,style:style,level:level)
-{
-throw new NotImplementedException(); }
-#endregion
+    public class IconDataProperty : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<FlutterSDK.Widgets.Icondata.IconData>
+    {
+        #region constructors
+        public IconDataProperty(string name, FlutterSDK.Widgets.Icondata.IconData value, string ifNull = default(string), bool showName = true, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
+        : base(name, value, showName: showName, ifNull: ifNull, style: style, level: level)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-public new Dictionary<string,@Object> ToJsonMap(FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate){ throw new NotImplementedException(); }
+        public new Dictionary<string, @Object> ToJsonMap(FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 }

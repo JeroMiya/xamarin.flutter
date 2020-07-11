@@ -421,352 +421,358 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Rendering.Editable{
-public delegate void SelectionChangedHandler(FlutterSDK.Services.Textediting.TextSelection selection,FlutterSDK.Rendering.Editable.RenderEditable renderObject,FlutterSDK.Rendering.Editable.SelectionChangedCause cause);
-public delegate void CaretChangedHandler(FlutterBinding.UI.Rect caretRect);
-internal static class EditableDefaultClass{
-public static double _KCaretGap = default(double);
-public static double _KCaretHeightOffset = default(double);
-public static Offset _KFloatingCaretSizeIncrease = default(Offset);
-public static double _KFloatingCaretRadius = default(double);
-internal static bool _IsWhitespace(int codeUnit){
-throw new NotImplementedException();
-}
-
-}
-
-public class TextSelectionPoint
+namespace FlutterSDK.Rendering.Editable
 {
-#region constructors
-public TextSelectionPoint(FlutterBinding.UI.Offset point,TextDirection direction)
-: base()
-{
-this.Point = point;
-this.Direction = direction;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterBinding.UI.Offset Point{get;set;}
-public virtual TextDirection Direction{get;set;}
-#endregion
-
-#region methods
-
-#endregion
-}
-
-
-public class RenderEditable : FlutterSDK.Rendering.Box.RenderBox,IRelayoutWhenSystemFontsChangeMixin
-{
-#region constructors
-public RenderEditable(FlutterSDK.Painting.Textspan.TextSpan text = default(FlutterSDK.Painting.Textspan.TextSpan),TextDirection textDirection = default(TextDirection),TextAlign textAlign = default(TextAlign),FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color backgroundCursorColor = default(FlutterBinding.UI.Color),FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool> showCursor = default(FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool>),bool hasFocus = default(bool),FlutterSDK.Rendering.Layer.LayerLink startHandleLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink),FlutterSDK.Rendering.Layer.LayerLink endHandleLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink),int maxLines = 1,int minLines = default(int),bool expands = false,FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle),FlutterBinding.UI.Color selectionColor = default(FlutterBinding.UI.Color),double textScaleFactor = 1.0,FlutterSDK.Services.Textediting.TextSelection selection = default(FlutterSDK.Services.Textediting.TextSelection),FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset),FlutterSDK.Rendering.Editable.SelectionChangedHandler onSelectionChanged = default(FlutterSDK.Rendering.Editable.SelectionChangedHandler),FlutterSDK.Rendering.Editable.CaretChangedHandler onCaretChanged = default(FlutterSDK.Rendering.Editable.CaretChangedHandler),bool ignorePointer = false,bool readOnly = false,bool forceLine = true,FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis),bool obscureText = false,Locale locale = default(Locale),double cursorWidth = 1.0,Radius cursorRadius = default(Radius),bool paintCursorAboveText = false,FlutterBinding.UI.Offset cursorOffset = default(FlutterBinding.UI.Offset),double devicePixelRatio = 1.0,BoxHeightStyle selectionHeightStyle = default(BoxHeightStyle),BoxWidthStyle selectionWidthStyle = default(BoxWidthStyle),bool enableInteractiveSelection = default(bool),FlutterSDK.Painting.Edgeinsets.EdgeInsets floatingCursorAddedMargin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets),FlutterSDK.Services.Textinput.TextSelectionDelegate textSelectionDelegate = default(FlutterSDK.Services.Textinput.TextSelectionDelegate))
-: base()
-{
-this.OnSelectionChanged = onSelectionChanged;
-this.OnCaretChanged = onCaretChanged;
-this.IgnorePointer = ignorePointer;
-this.TextSelectionDelegate = textSelectionDelegate;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual string ObscuringCharacter{get;set;}
-public virtual FlutterSDK.Rendering.Editable.SelectionChangedHandler OnSelectionChanged{get;set;}
-internal virtual double _TextLayoutLastMaxWidth{get;set;}
-internal virtual double _TextLayoutLastMinWidth{get;set;}
-public virtual FlutterSDK.Rendering.Editable.CaretChangedHandler OnCaretChanged{get;set;}
-public virtual bool IgnorePointer{get;set;}
-internal virtual double _DevicePixelRatio{get;set;}
-internal virtual bool _ObscureText{get;set;}
-public virtual FlutterSDK.Services.Textinput.TextSelectionDelegate TextSelectionDelegate{get;set;}
-internal virtual FlutterBinding.UI.Rect _LastCaretRect{get;set;}
-internal virtual FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool> _SelectionStartInViewport{get;set;}
-internal virtual FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool> _SelectionEndInViewport{get;set;}
-internal virtual int _CursorResetLocation{get;set;}
-internal virtual bool _WasSelectingVerticallyWithKeyboard{get;set;}
-internal virtual HashSet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> _MovementKeys{get;set;}
-internal virtual HashSet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> _ShortcutKeys{get;set;}
-internal virtual HashSet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> _NonModifierKeys{get;set;}
-internal virtual HashSet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> _ModifierKeys{get;set;}
-internal virtual HashSet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> _MacOsModifierKeys{get;set;}
-internal virtual HashSet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> _InterestingKeys{get;set;}
-internal virtual string _CachedPlainText{get;set;}
-internal virtual FlutterSDK.Painting.Textpainter.TextPainter _TextPainter{get;set;}
-internal virtual FlutterBinding.UI.Color _CursorColor{get;set;}
-internal virtual FlutterBinding.UI.Color _BackgroundCursorColor{get;set;}
-internal virtual FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool> _ShowCursor{get;set;}
-internal virtual bool _HasFocus{get;set;}
-internal virtual bool _ListenerAttached{get;set;}
-internal virtual bool _ForceLine{get;set;}
-internal virtual bool _ReadOnly{get;set;}
-internal virtual int _MaxLines{get;set;}
-internal virtual int _MinLines{get;set;}
-internal virtual bool _Expands{get;set;}
-internal virtual FlutterBinding.UI.Color _SelectionColor{get;set;}
-internal virtual List<TextBox> _SelectionRects{get;set;}
-internal virtual FlutterSDK.Services.Textediting.TextSelection _Selection{get;set;}
-internal virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset _Offset{get;set;}
-internal virtual double _CursorWidth{get;set;}
-internal virtual bool _PaintCursorOnTop{get;set;}
-internal virtual FlutterBinding.UI.Offset _CursorOffset{get;set;}
-internal virtual Radius _CursorRadius{get;set;}
-internal virtual FlutterSDK.Rendering.Layer.LayerLink _StartHandleLayerLink{get;set;}
-internal virtual FlutterSDK.Rendering.Layer.LayerLink _EndHandleLayerLink{get;set;}
-internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets _FloatingCursorAddedMargin{get;set;}
-internal virtual bool _FloatingCursorOn{get;set;}
-internal virtual FlutterBinding.UI.Offset _FloatingCursorOffset{get;set;}
-internal virtual TextPosition _FloatingCursorTextPosition{get;set;}
-internal virtual BoxHeightStyle _SelectionHeightStyle{get;set;}
-internal virtual BoxWidthStyle _SelectionWidthStyle{get;set;}
-internal virtual bool _EnableInteractiveSelection{get;set;}
-internal virtual double _MaxScrollExtent{get;set;}
-internal virtual FlutterSDK.Gestures.Tap.TapGestureRecognizer _Tap{get;set;}
-internal virtual FlutterSDK.Gestures.Longpress.LongPressGestureRecognizer _LongPress{get;set;}
-internal virtual FlutterBinding.UI.Offset _LastTapDownPosition{get;set;}
-internal virtual FlutterBinding.UI.Rect _CaretPrototype{get;set;}
-internal virtual FlutterBinding.UI.Offset _RelativeOrigin{get;set;}
-internal virtual FlutterBinding.UI.Offset _PreviousOffset{get;set;}
-internal virtual bool _ResetOriginOnLeft{get;set;}
-internal virtual bool _ResetOriginOnRight{get;set;}
-internal virtual bool _ResetOriginOnTop{get;set;}
-internal virtual bool _ResetOriginOnBottom{get;set;}
-internal virtual double _ResetFloatingCursorAnimationValue{get;set;}
-public virtual FlutterSDK.Painting.Textpainter.TextWidthBasis TextWidthBasis{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual double DevicePixelRatio{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool ObscureText{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Foundation.Changenotifier.ValueListenable<bool> SelectionStartInViewport{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Foundation.Changenotifier.ValueListenable<bool> SelectionEndInViewport{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual string _PlainText{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Painting.Textspan.TextSpan Text{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual TextAlign TextAlign{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual TextDirection TextDirection{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual Locale Locale{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Painting.Strutstyle.StrutStyle StrutStyle{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterBinding.UI.Color CursorColor{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterBinding.UI.Color BackgroundCursorColor{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool> ShowCursor{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool HasFocus{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool ForceLine{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool ReadOnly{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual int MaxLines{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual int MinLines{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool Expands{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterBinding.UI.Color SelectionColor{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual double TextScaleFactor{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Services.Textediting.TextSelection Selection{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset Offset{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual double CursorWidth{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool PaintCursorAboveText{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterBinding.UI.Offset CursorOffset{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual Radius CursorRadius{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Rendering.Layer.LayerLink StartHandleLayerLink{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Rendering.Layer.LayerLink EndHandleLayerLink{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets FloatingCursorAddedMargin{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual BoxHeightStyle SelectionHeightStyle{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual BoxWidthStyle SelectionWidthStyle{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool EnableInteractiveSelection{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool SelectionEnabled{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double MaxScrollExtent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _CaretMargin{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual bool _IsMultiline{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual FlutterSDK.Painting.Basictypes.Axis _ViewportAxis{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual FlutterBinding.UI.Offset _PaintOffset{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _ViewportExtent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual bool _HasVisualOverflow{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double PreferredLineHeight{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual FlutterBinding.UI.Rect _GetCaretPrototype{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public delegate void SelectionChangedHandler(FlutterSDK.Services.Textediting.TextSelection selection, FlutterSDK.Rendering.Editable.RenderEditable renderObject, FlutterSDK.Rendering.Editable.SelectionChangedCause cause);
+    public delegate void CaretChangedHandler(FlutterBinding.UI.Rect caretRect);
+    internal static class EditableDefaultClass
+    {
+        public static double _KCaretGap = default(double);
+        public static double _KCaretHeightOffset = default(double);
+        public static Offset _KFloatingCaretSizeIncrease = default(Offset);
+        public static double _KFloatingCaretRadius = default(double);
+        internal static bool _IsWhitespace(int codeUnit)
+        {
+            throw new NotImplementedException();
+        }
+
+    }
+
+    public class TextSelectionPoint
+    {
+        #region constructors
+        public TextSelectionPoint(FlutterBinding.UI.Offset point, TextDirection direction)
+        : base()
+        {
+            this.Point = point;
+            this.Direction = direction; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterBinding.UI.Offset Point { get; set; }
+        public virtual TextDirection Direction { get; set; }
+        #endregion
+
+        #region methods
+
+        #endregion
+    }
+
+
+    public class RenderEditable : FlutterSDK.Rendering.Box.RenderBox, IRelayoutWhenSystemFontsChangeMixin
+    {
+        #region constructors
+        public RenderEditable(FlutterSDK.Painting.Textspan.TextSpan text = default(FlutterSDK.Painting.Textspan.TextSpan), TextDirection textDirection = default(TextDirection), TextAlign textAlign = default(TextAlign), FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundCursorColor = default(FlutterBinding.UI.Color), FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool> showCursor = default(FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool>), bool hasFocus = default(bool), FlutterSDK.Rendering.Layer.LayerLink startHandleLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterSDK.Rendering.Layer.LayerLink endHandleLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink), int maxLines = 1, int minLines = default(int), bool expands = false, FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), FlutterBinding.UI.Color selectionColor = default(FlutterBinding.UI.Color), double textScaleFactor = 1.0, FlutterSDK.Services.Textediting.TextSelection selection = default(FlutterSDK.Services.Textediting.TextSelection), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), FlutterSDK.Rendering.Editable.SelectionChangedHandler onSelectionChanged = default(FlutterSDK.Rendering.Editable.SelectionChangedHandler), FlutterSDK.Rendering.Editable.CaretChangedHandler onCaretChanged = default(FlutterSDK.Rendering.Editable.CaretChangedHandler), bool ignorePointer = false, bool readOnly = false, bool forceLine = true, FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), bool obscureText = false, Locale locale = default(Locale), double cursorWidth = 1.0, Radius cursorRadius = default(Radius), bool paintCursorAboveText = false, FlutterBinding.UI.Offset cursorOffset = default(FlutterBinding.UI.Offset), double devicePixelRatio = 1.0, BoxHeightStyle selectionHeightStyle = default(BoxHeightStyle), BoxWidthStyle selectionWidthStyle = default(BoxWidthStyle), bool enableInteractiveSelection = default(bool), FlutterSDK.Painting.Edgeinsets.EdgeInsets floatingCursorAddedMargin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Services.Textinput.TextSelectionDelegate textSelectionDelegate = default(FlutterSDK.Services.Textinput.TextSelectionDelegate))
+        : base()
+        {
+            this.OnSelectionChanged = onSelectionChanged;
+            this.OnCaretChanged = onCaretChanged;
+            this.IgnorePointer = ignorePointer;
+            this.TextSelectionDelegate = textSelectionDelegate; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual string ObscuringCharacter { get; set; }
+        public virtual FlutterSDK.Rendering.Editable.SelectionChangedHandler OnSelectionChanged { get; set; }
+        internal virtual double _TextLayoutLastMaxWidth { get; set; }
+        internal virtual double _TextLayoutLastMinWidth { get; set; }
+        public virtual FlutterSDK.Rendering.Editable.CaretChangedHandler OnCaretChanged { get; set; }
+        public virtual bool IgnorePointer { get; set; }
+        internal virtual double _DevicePixelRatio { get; set; }
+        internal virtual bool _ObscureText { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextSelectionDelegate TextSelectionDelegate { get; set; }
+        internal virtual FlutterBinding.UI.Rect _LastCaretRect { get; set; }
+        internal virtual FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool> _SelectionStartInViewport { get; set; }
+        internal virtual FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool> _SelectionEndInViewport { get; set; }
+        internal virtual int _CursorResetLocation { get; set; }
+        internal virtual bool _WasSelectingVerticallyWithKeyboard { get; set; }
+        internal virtual HashSet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> _MovementKeys { get; set; }
+        internal virtual HashSet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> _ShortcutKeys { get; set; }
+        internal virtual HashSet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> _NonModifierKeys { get; set; }
+        internal virtual HashSet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> _ModifierKeys { get; set; }
+        internal virtual HashSet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> _MacOsModifierKeys { get; set; }
+        internal virtual HashSet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> _InterestingKeys { get; set; }
+        internal virtual string _CachedPlainText { get; set; }
+        internal virtual FlutterSDK.Painting.Textpainter.TextPainter _TextPainter { get; set; }
+        internal virtual FlutterBinding.UI.Color _CursorColor { get; set; }
+        internal virtual FlutterBinding.UI.Color _BackgroundCursorColor { get; set; }
+        internal virtual FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool> _ShowCursor { get; set; }
+        internal virtual bool _HasFocus { get; set; }
+        internal virtual bool _ListenerAttached { get; set; }
+        internal virtual bool _ForceLine { get; set; }
+        internal virtual bool _ReadOnly { get; set; }
+        internal virtual int _MaxLines { get; set; }
+        internal virtual int _MinLines { get; set; }
+        internal virtual bool _Expands { get; set; }
+        internal virtual FlutterBinding.UI.Color _SelectionColor { get; set; }
+        internal virtual List<TextBox> _SelectionRects { get; set; }
+        internal virtual FlutterSDK.Services.Textediting.TextSelection _Selection { get; set; }
+        internal virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset _Offset { get; set; }
+        internal virtual double _CursorWidth { get; set; }
+        internal virtual bool _PaintCursorOnTop { get; set; }
+        internal virtual FlutterBinding.UI.Offset _CursorOffset { get; set; }
+        internal virtual Radius _CursorRadius { get; set; }
+        internal virtual FlutterSDK.Rendering.Layer.LayerLink _StartHandleLayerLink { get; set; }
+        internal virtual FlutterSDK.Rendering.Layer.LayerLink _EndHandleLayerLink { get; set; }
+        internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets _FloatingCursorAddedMargin { get; set; }
+        internal virtual bool _FloatingCursorOn { get; set; }
+        internal virtual FlutterBinding.UI.Offset _FloatingCursorOffset { get; set; }
+        internal virtual TextPosition _FloatingCursorTextPosition { get; set; }
+        internal virtual BoxHeightStyle _SelectionHeightStyle { get; set; }
+        internal virtual BoxWidthStyle _SelectionWidthStyle { get; set; }
+        internal virtual bool _EnableInteractiveSelection { get; set; }
+        internal virtual double _MaxScrollExtent { get; set; }
+        internal virtual FlutterSDK.Gestures.Tap.TapGestureRecognizer _Tap { get; set; }
+        internal virtual FlutterSDK.Gestures.Longpress.LongPressGestureRecognizer _LongPress { get; set; }
+        internal virtual FlutterBinding.UI.Offset _LastTapDownPosition { get; set; }
+        internal virtual FlutterBinding.UI.Rect _CaretPrototype { get; set; }
+        internal virtual FlutterBinding.UI.Offset _RelativeOrigin { get; set; }
+        internal virtual FlutterBinding.UI.Offset _PreviousOffset { get; set; }
+        internal virtual bool _ResetOriginOnLeft { get; set; }
+        internal virtual bool _ResetOriginOnRight { get; set; }
+        internal virtual bool _ResetOriginOnTop { get; set; }
+        internal virtual bool _ResetOriginOnBottom { get; set; }
+        internal virtual double _ResetFloatingCursorAnimationValue { get; set; }
+        public virtual FlutterSDK.Painting.Textpainter.TextWidthBasis TextWidthBasis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double DevicePixelRatio { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool ObscureText { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Foundation.Changenotifier.ValueListenable<bool> SelectionStartInViewport { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Foundation.Changenotifier.ValueListenable<bool> SelectionEndInViewport { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual string _PlainText { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Textspan.TextSpan Text { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextAlign TextAlign { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual Locale Locale { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Strutstyle.StrutStyle StrutStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Color CursorColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Color BackgroundCursorColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool> ShowCursor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool HasFocus { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool ForceLine { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool ReadOnly { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int MaxLines { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int MinLines { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool Expands { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Color SelectionColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double TextScaleFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Services.Textediting.TextSelection Selection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset Offset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double CursorWidth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool PaintCursorAboveText { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Offset CursorOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual Radius CursorRadius { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Layer.LayerLink StartHandleLayerLink { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Layer.LayerLink EndHandleLayerLink { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets FloatingCursorAddedMargin { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual BoxHeightStyle SelectionHeightStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual BoxWidthStyle SelectionWidthStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool EnableInteractiveSelection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool SelectionEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double MaxScrollExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _CaretMargin { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual bool _IsMultiline { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual FlutterSDK.Painting.Basictypes.Axis _ViewportAxis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual FlutterBinding.UI.Offset _PaintOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _ViewportExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual bool _HasVisualOverflow { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double PreferredLineHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual FlutterBinding.UI.Rect _GetCaretPrototype { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#region methods
+        #region methods
 
-private void _UpdateSelectionExtentsVisibility(FlutterBinding.UI.Offset effectiveOffset){ throw new NotImplementedException(); }
+        private void _UpdateSelectionExtentsVisibility(FlutterBinding.UI.Offset effectiveOffset) { throw new NotImplementedException(); }
 
 
-private void _HandleSelectionChange(FlutterSDK.Services.Textediting.TextSelection nextSelection,FlutterSDK.Rendering.Editable.SelectionChangedCause cause){ throw new NotImplementedException(); }
+        private void _HandleSelectionChange(FlutterSDK.Services.Textediting.TextSelection nextSelection, FlutterSDK.Rendering.Editable.SelectionChangedCause cause) { throw new NotImplementedException(); }
 
 
-private void _HandleKeyEvent(FlutterSDK.Services.Rawkeyboard.RawKeyEvent keyEvent){ throw new NotImplementedException(); }
+        private void _HandleKeyEvent(FlutterSDK.Services.Rawkeyboard.RawKeyEvent keyEvent) { throw new NotImplementedException(); }
 
 
-private void _HandleMovement(FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey key,bool wordModifier = default(bool),bool lineModifier = default(bool),bool shift = default(bool)){ throw new NotImplementedException(); }
+        private void _HandleMovement(FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey key, bool wordModifier = default(bool), bool lineModifier = default(bool), bool shift = default(bool)) { throw new NotImplementedException(); }
 
 
-private Future<object> _HandleShortcuts(FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey key){ throw new NotImplementedException(); }
+        private Future<object> _HandleShortcuts(FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey key) { throw new NotImplementedException(); }
 
 
-private void _HandleDelete(){ throw new NotImplementedException(); }
+        private void _HandleDelete() { throw new NotImplementedException(); }
 
 
-public virtual void MarkNeedsTextLayout(){ throw new NotImplementedException(); }
+        public virtual void MarkNeedsTextLayout() { throw new NotImplementedException(); }
 
 
-public new void SystemFontsDidChange(){ throw new NotImplementedException(); }
+        public new void SystemFontsDidChange() { throw new NotImplementedException(); }
 
 
-public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config){ throw new NotImplementedException(); }
+        public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config) { throw new NotImplementedException(); }
 
 
-private void _HandleSetSelection(FlutterSDK.Services.Textediting.TextSelection selection){ throw new NotImplementedException(); }
+        private void _HandleSetSelection(FlutterSDK.Services.Textediting.TextSelection selection) { throw new NotImplementedException(); }
 
 
-private void _HandleMoveCursorForwardByCharacter(bool extentSelection){ throw new NotImplementedException(); }
+        private void _HandleMoveCursorForwardByCharacter(bool extentSelection) { throw new NotImplementedException(); }
 
 
-private void _HandleMoveCursorBackwardByCharacter(bool extentSelection){ throw new NotImplementedException(); }
+        private void _HandleMoveCursorBackwardByCharacter(bool extentSelection) { throw new NotImplementedException(); }
 
 
-private void _HandleMoveCursorForwardByWord(bool extentSelection){ throw new NotImplementedException(); }
+        private void _HandleMoveCursorForwardByWord(bool extentSelection) { throw new NotImplementedException(); }
 
 
-private void _HandleMoveCursorBackwardByWord(bool extentSelection){ throw new NotImplementedException(); }
+        private void _HandleMoveCursorBackwardByWord(bool extentSelection) { throw new NotImplementedException(); }
 
 
-private TextRange _GetNextWord(int offset){ throw new NotImplementedException(); }
+        private TextRange _GetNextWord(int offset) { throw new NotImplementedException(); }
 
 
-private TextRange _GetPreviousWord(int offset){ throw new NotImplementedException(); }
+        private TextRange _GetPreviousWord(int offset) { throw new NotImplementedException(); }
 
 
-private bool _OnlyWhitespace(TextRange range){ throw new NotImplementedException(); }
+        private bool _OnlyWhitespace(TextRange range) { throw new NotImplementedException(); }
 
 
-public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner){ throw new NotImplementedException(); }
-public new void Attach(@Object owner){ throw new NotImplementedException(); }
+        public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner) { throw new NotImplementedException(); }
+        public new void Attach(@Object owner) { throw new NotImplementedException(); }
 
 
-public new void Detach(){ throw new NotImplementedException(); }
+        public new void Detach() { throw new NotImplementedException(); }
 
 
-private double _GetMaxScrollExtent(Size contentSize){ throw new NotImplementedException(); }
+        private double _GetMaxScrollExtent(Size contentSize) { throw new NotImplementedException(); }
 
 
-public virtual List<FlutterSDK.Rendering.Editable.TextSelectionPoint> GetEndpointsForSelection(FlutterSDK.Services.Textediting.TextSelection selection){ throw new NotImplementedException(); }
+        public virtual List<FlutterSDK.Rendering.Editable.TextSelectionPoint> GetEndpointsForSelection(FlutterSDK.Services.Textediting.TextSelection selection) { throw new NotImplementedException(); }
 
 
-public virtual TextPosition GetPositionForPoint(FlutterBinding.UI.Offset globalPosition){ throw new NotImplementedException(); }
+        public virtual TextPosition GetPositionForPoint(FlutterBinding.UI.Offset globalPosition) { throw new NotImplementedException(); }
 
 
-public virtual Rect GetLocalRectForCaret(TextPosition caretPosition){ throw new NotImplementedException(); }
+        public virtual Rect GetLocalRectForCaret(TextPosition caretPosition) { throw new NotImplementedException(); }
 
 
-public new double ComputeMinIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-public new double ComputeMaxIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-private double _PreferredHeight(double width){ throw new NotImplementedException(); }
+        private double _PreferredHeight(double width) { throw new NotImplementedException(); }
 
 
-public new double ComputeMinIntrinsicHeight(double width){ throw new NotImplementedException(); }
+        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-public new double ComputeMaxIntrinsicHeight(double width){ throw new NotImplementedException(); }
+        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-public new double ComputeDistanceToActualBaseline(TextBaseline baseline){ throw new NotImplementedException(); }
+        public new double ComputeDistanceToActualBaseline(TextBaseline baseline) { throw new NotImplementedException(); }
 
 
-public new bool HitTestSelf(FlutterBinding.UI.Offset position){ throw new NotImplementedException(); }
+        public new bool HitTestSelf(FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
 
 
-public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event,FlutterSDK.Rendering.Box.BoxHitTestEntry entry){ throw new NotImplementedException(); }
+        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Rendering.Box.BoxHitTestEntry entry) { throw new NotImplementedException(); }
 
 
-public virtual void HandleTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details){ throw new NotImplementedException(); }
+        public virtual void HandleTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details) { throw new NotImplementedException(); }
 
 
-private void _HandleTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details){ throw new NotImplementedException(); }
+        private void _HandleTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details) { throw new NotImplementedException(); }
 
 
-public virtual void HandleTap(){ throw new NotImplementedException(); }
+        public virtual void HandleTap() { throw new NotImplementedException(); }
 
 
-private void _HandleTap(){ throw new NotImplementedException(); }
+        private void _HandleTap() { throw new NotImplementedException(); }
 
 
-public virtual void HandleDoubleTap(){ throw new NotImplementedException(); }
+        public virtual void HandleDoubleTap() { throw new NotImplementedException(); }
 
 
-public virtual void HandleLongPress(){ throw new NotImplementedException(); }
+        public virtual void HandleLongPress() { throw new NotImplementedException(); }
 
 
-private void _HandleLongPress(){ throw new NotImplementedException(); }
+        private void _HandleLongPress() { throw new NotImplementedException(); }
 
 
-public virtual void SelectPosition(FlutterSDK.Rendering.Editable.SelectionChangedCause cause = default(FlutterSDK.Rendering.Editable.SelectionChangedCause)){ throw new NotImplementedException(); }
+        public virtual void SelectPosition(FlutterSDK.Rendering.Editable.SelectionChangedCause cause = default(FlutterSDK.Rendering.Editable.SelectionChangedCause)) { throw new NotImplementedException(); }
 
 
-public virtual void SelectPositionAt(FlutterBinding.UI.Offset from = default(FlutterBinding.UI.Offset),FlutterBinding.UI.Offset to = default(FlutterBinding.UI.Offset),FlutterSDK.Rendering.Editable.SelectionChangedCause cause = default(FlutterSDK.Rendering.Editable.SelectionChangedCause)){ throw new NotImplementedException(); }
+        public virtual void SelectPositionAt(FlutterBinding.UI.Offset from = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset to = default(FlutterBinding.UI.Offset), FlutterSDK.Rendering.Editable.SelectionChangedCause cause = default(FlutterSDK.Rendering.Editable.SelectionChangedCause)) { throw new NotImplementedException(); }
 
 
-public virtual void SelectWord(FlutterSDK.Rendering.Editable.SelectionChangedCause cause = default(FlutterSDK.Rendering.Editable.SelectionChangedCause)){ throw new NotImplementedException(); }
+        public virtual void SelectWord(FlutterSDK.Rendering.Editable.SelectionChangedCause cause = default(FlutterSDK.Rendering.Editable.SelectionChangedCause)) { throw new NotImplementedException(); }
 
 
-public virtual void SelectWordsInRange(FlutterBinding.UI.Offset from = default(FlutterBinding.UI.Offset),FlutterBinding.UI.Offset to = default(FlutterBinding.UI.Offset),FlutterSDK.Rendering.Editable.SelectionChangedCause cause = default(FlutterSDK.Rendering.Editable.SelectionChangedCause)){ throw new NotImplementedException(); }
+        public virtual void SelectWordsInRange(FlutterBinding.UI.Offset from = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset to = default(FlutterBinding.UI.Offset), FlutterSDK.Rendering.Editable.SelectionChangedCause cause = default(FlutterSDK.Rendering.Editable.SelectionChangedCause)) { throw new NotImplementedException(); }
 
 
-public virtual void SelectWordEdge(FlutterSDK.Rendering.Editable.SelectionChangedCause cause = default(FlutterSDK.Rendering.Editable.SelectionChangedCause)){ throw new NotImplementedException(); }
+        public virtual void SelectWordEdge(FlutterSDK.Rendering.Editable.SelectionChangedCause cause = default(FlutterSDK.Rendering.Editable.SelectionChangedCause)) { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Services.Textediting.TextSelection _SelectWordAtOffset(TextPosition position){ throw new NotImplementedException(); }
+        private FlutterSDK.Services.Textediting.TextSelection _SelectWordAtOffset(TextPosition position) { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Services.Textediting.TextSelection _SelectLineAtOffset(TextPosition position){ throw new NotImplementedException(); }
+        private FlutterSDK.Services.Textediting.TextSelection _SelectLineAtOffset(TextPosition position) { throw new NotImplementedException(); }
 
 
-private void _LayoutText(double minWidth = 0.0,double maxWidth = default(double)){ throw new NotImplementedException(); }
+        private void _LayoutText(double minWidth = 0.0, double maxWidth = default(double)) { throw new NotImplementedException(); }
 
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
 
-private Offset _GetPixelPerfectCursorOffset(FlutterBinding.UI.Rect caretRect){ throw new NotImplementedException(); }
+        private Offset _GetPixelPerfectCursorOffset(FlutterBinding.UI.Rect caretRect) { throw new NotImplementedException(); }
 
 
-private void _PaintCaret(Canvas canvas,FlutterBinding.UI.Offset effectiveOffset,TextPosition textPosition){ throw new NotImplementedException(); }
+        private void _PaintCaret(Canvas canvas, FlutterBinding.UI.Offset effectiveOffset, TextPosition textPosition) { throw new NotImplementedException(); }
 
 
-public virtual void SetFloatingCursor(FlutterSDK.Services.Textinput.FloatingCursorDragState state,FlutterBinding.UI.Offset boundedOffset,TextPosition lastTextPosition,double resetLerpValue = default(double)){ throw new NotImplementedException(); }
+        public virtual void SetFloatingCursor(FlutterSDK.Services.Textinput.FloatingCursorDragState state, FlutterBinding.UI.Offset boundedOffset, TextPosition lastTextPosition, double resetLerpValue = default(double)) { throw new NotImplementedException(); }
 
 
-private void _PaintFloatingCaret(Canvas canvas,FlutterBinding.UI.Offset effectiveOffset){ throw new NotImplementedException(); }
+        private void _PaintFloatingCaret(Canvas canvas, FlutterBinding.UI.Offset effectiveOffset) { throw new NotImplementedException(); }
 
 
-public virtual Offset CalculateBoundedFloatingCursorOffset(FlutterBinding.UI.Offset rawCursorOffset){ throw new NotImplementedException(); }
+        public virtual Offset CalculateBoundedFloatingCursorOffset(FlutterBinding.UI.Offset rawCursorOffset) { throw new NotImplementedException(); }
 
 
-private void _PaintSelection(Canvas canvas,FlutterBinding.UI.Offset effectiveOffset){ throw new NotImplementedException(); }
+        private void _PaintSelection(Canvas canvas, FlutterBinding.UI.Offset effectiveOffset) { throw new NotImplementedException(); }
 
 
-private void _PaintContents(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        private void _PaintContents(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
-private void _PaintHandleLayers(FlutterSDK.Rendering.@object.PaintingContext context,List<FlutterSDK.Rendering.Editable.TextSelectionPoint> endpoints){ throw new NotImplementedException(); }
+        private void _PaintHandleLayers(FlutterSDK.Rendering.@object.PaintingContext context, List<FlutterSDK.Rendering.Editable.TextSelectionPoint> endpoints) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
-public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
+        public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
 
-public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren(){ throw new NotImplementedException(); }
+        public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren() { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public enum SelectionChangedCause{
+    public enum SelectionChangedCause
+    {
 
-Tap,
-DoubleTap,
-LongPress,
-ForcePress,
-Keyboard,
-Drag,
-}
+        Tap,
+        DoubleTap,
+        LongPress,
+        ForcePress,
+        Keyboard,
+        Drag,
+    }
 
 }

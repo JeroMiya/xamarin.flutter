@@ -294,42 +294,46 @@ using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
-namespace FlutterSDK.Foundation._Bitfieldio{
-internal static class _BitfieldioDefaultClass{
-public static int KMaxUnsignedSMI = default(int);
-}
-
-public class BitField<T> : IBitField<T>
+namespace FlutterSDK.Foundation._Bitfieldio
 {
-#region constructors
-public BitField(int _length)
-: base()
-{
-this._Length = _length;throw new NotImplementedException(); }
-public static BitField<T> Filled(int _length,bool value)
-{
-var instance =new BitField<T>();instance._Length = _length;throw new NotImplementedException(); }
-#endregion
+    internal static class _BitfieldioDefaultClass
+    {
+        public static int KMaxUnsignedSMI = default(int);
+    }
 
-#region fields
-internal virtual int _Length{get;set;}
-internal virtual int _Bits{get;set;}
-internal virtual int _SmiBits{get;set;}
-internal virtual int _AllZeros{get;set;}
-internal virtual int _AllOnes{get;set;}
-#endregion
+    public class BitField<T> : IBitField<T>
+    {
+        #region constructors
+        public BitField(int _length)
+        : base()
+        {
+            this._Length = _length; throw new NotImplementedException();
+        }
+        public static BitField<T> Filled(int _length, bool value)
+        {
+            var instance = new BitField<T>(); instance._Length = _length; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual int _Length { get; set; }
+        internal virtual int _Bits { get; set; }
+        internal virtual int _SmiBits { get; set; }
+        internal virtual int _AllZeros { get; set; }
+        internal virtual int _AllOnes { get; set; }
+        #endregion
 
-public new bool IndexOfOperator(T index){ throw new NotImplementedException(); }
+        #region methods
+
+        public new bool IndexOfOperator(T index) { throw new NotImplementedException(); }
 
 
-public new void InsertAtOperator(T index,bool value){ throw new NotImplementedException(); }
+        public new void InsertAtOperator(T index, bool value) { throw new NotImplementedException(); }
 
 
-public new void Reset(bool value = false){ throw new NotImplementedException(); }
+        public new void Reset(bool value = false) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 }

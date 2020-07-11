@@ -294,89 +294,94 @@ using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
-namespace FlutterSDK.Gestures.Binding{
-internal static class BindingDefaultClass{
-}
-
-public interface IGestureBinding{}
-
-public class GestureBinding:IHitTestable,IHitTestDispatcher,IHitTestTarget{
-internal virtual FlutterSDK.Gestures.Binding.GestureBinding _Instance{get;set;}
-internal virtual Queue<FlutterSDK.Gestures.Events.PointerEvent> _PendingPointerEvents{get;set;}
-public virtual FlutterSDK.Gestures.Pointerrouter.PointerRouter PointerRouter{get;set;}
-public virtual FlutterSDK.Gestures.Arena.GestureArenaManager GestureArena{get;set;}
-public virtual FlutterSDK.Gestures.Pointersignalresolver.PointerSignalResolver PointerSignalResolver{get;set;}
-internal virtual Dictionary<int,FlutterSDK.Gestures.Hittest.HitTestResult> _HitTests{get;set;}
-public virtual FlutterSDK.Gestures.Binding.GestureBinding Instance{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-
-public new void InitInstances(){ throw new NotImplementedException(); }
-
-
-public new void Unlocked(){ throw new NotImplementedException(); }
-
-
-private void _HandlePointerDataPacket(PointerDataPacket packet){ throw new NotImplementedException(); }
-
-
-public virtual void CancelPointer(int pointer){ throw new NotImplementedException(); }
-
-
-private void _FlushPointerEventQueue(){ throw new NotImplementedException(); }
-
-
-private void _HandlePointerEvent(FlutterSDK.Gestures.Events.PointerEvent @event){ throw new NotImplementedException(); }
-
-
-public new void HitTest(FlutterSDK.Gestures.Hittest.HitTestResult result,FlutterBinding.UI.Offset position){ throw new NotImplementedException(); }
-
-
-public new void DispatchEvent(FlutterSDK.Gestures.Events.PointerEvent @event,FlutterSDK.Gestures.Hittest.HitTestResult hitTestResult){ throw new NotImplementedException(); }
-
-
-public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event,FlutterSDK.Gestures.Hittest.HitTestEntry entry){ throw new NotImplementedException(); }
-
-}
-public static class GestureBindingMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IGestureBinding, GestureBinding> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IGestureBinding, GestureBinding>();
-static GestureBinding GetOrCreate(IGestureBinding instance)
+namespace FlutterSDK.Gestures.Binding
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new GestureBinding();
-_table.Add(instance, value);
-}
-return (GestureBinding)value;
-}
-public static FlutterSDK.Gestures.Pointerrouter.PointerRouter PointerRouterProperty(this IGestureBinding instance) => GetOrCreate(instance).PointerRouter;
-public static FlutterSDK.Gestures.Arena.GestureArenaManager GestureArenaProperty(this IGestureBinding instance) => GetOrCreate(instance).GestureArena;
-public static FlutterSDK.Gestures.Pointersignalresolver.PointerSignalResolver PointerSignalResolverProperty(this IGestureBinding instance) => GetOrCreate(instance).PointerSignalResolver;
-public static FlutterSDK.Gestures.Binding.GestureBinding InstanceProperty(this IGestureBinding instance) => GetOrCreate(instance).Instance;
-public static void InitInstances(this IGestureBinding instance) => GetOrCreate(instance).InitInstances();
-public static void Unlocked(this IGestureBinding instance) => GetOrCreate(instance).Unlocked();
-public static void CancelPointer(this IGestureBinding instance,int pointer) => GetOrCreate(instance).CancelPointer(pointer);
-public static void HitTest(this IGestureBinding instance,FlutterSDK.Gestures.Hittest.HitTestResult result,FlutterBinding.UI.Offset position) => GetOrCreate(instance).HitTest(result, position);
-public static void DispatchEvent(this IGestureBinding instance,FlutterSDK.Gestures.Events.PointerEvent @event,FlutterSDK.Gestures.Hittest.HitTestResult hitTestResult) => GetOrCreate(instance).DispatchEvent(@event, hitTestResult);
-public static void HandleEvent(this IGestureBinding instance,FlutterSDK.Gestures.Events.PointerEvent @event,FlutterSDK.Gestures.Hittest.HitTestEntry entry) => GetOrCreate(instance).HandleEvent(@event, entry);
-}
+    internal static class BindingDefaultClass
+    {
+    }
+
+    public interface IGestureBinding { }
+
+    public class GestureBinding : IHitTestable, IHitTestDispatcher, IHitTestTarget
+    {
+        internal virtual FlutterSDK.Gestures.Binding.GestureBinding _Instance { get; set; }
+        internal virtual Queue<FlutterSDK.Gestures.Events.PointerEvent> _PendingPointerEvents { get; set; }
+        public virtual FlutterSDK.Gestures.Pointerrouter.PointerRouter PointerRouter { get; set; }
+        public virtual FlutterSDK.Gestures.Arena.GestureArenaManager GestureArena { get; set; }
+        public virtual FlutterSDK.Gestures.Pointersignalresolver.PointerSignalResolver PointerSignalResolver { get; set; }
+        internal virtual Dictionary<int, FlutterSDK.Gestures.Hittest.HitTestResult> _HitTests { get; set; }
+        public virtual FlutterSDK.Gestures.Binding.GestureBinding Instance { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+
+        public new void InitInstances() { throw new NotImplementedException(); }
 
 
-public class FlutterErrorDetailsForPointerEventDispatcher : FlutterSDK.Foundation.Assertions.FlutterErrorDetails
-{
-#region constructors
-public FlutterErrorDetailsForPointerEventDispatcher(object exception = default(object),StackTrace stack = default(StackTrace),string library = default(string),FlutterSDK.Foundation.Diagnostics.DiagnosticsNode context = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode),FlutterSDK.Gestures.Events.PointerEvent @event = default(FlutterSDK.Gestures.Events.PointerEvent),FlutterSDK.Gestures.Hittest.HitTestEntry hitTestEntry = default(FlutterSDK.Gestures.Hittest.HitTestEntry),FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector),bool silent = false)
-: base(exception:exception,stack:stack,library:library,context:context,informationCollector:informationCollector,silent:silent)
-{
-this.@event = @event;
-this.HitTestEntry = hitTestEntry;throw new NotImplementedException(); }
-#endregion
+        public new void Unlocked() { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Gestures.Events.PointerEvent @event{get;set;}
-public virtual FlutterSDK.Gestures.Hittest.HitTestEntry HitTestEntry{get;set;}
-#endregion
 
-#region methods
-#endregion
-}
+        private void _HandlePointerDataPacket(PointerDataPacket packet) { throw new NotImplementedException(); }
+
+
+        public virtual void CancelPointer(int pointer) { throw new NotImplementedException(); }
+
+
+        private void _FlushPointerEventQueue() { throw new NotImplementedException(); }
+
+
+        private void _HandlePointerEvent(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
+
+
+        public new void HitTest(FlutterSDK.Gestures.Hittest.HitTestResult result, FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
+
+
+        public new void DispatchEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Hittest.HitTestResult hitTestResult) { throw new NotImplementedException(); }
+
+
+        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Hittest.HitTestEntry entry) { throw new NotImplementedException(); }
+
+    }
+    public static class GestureBindingMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IGestureBinding, GestureBinding> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IGestureBinding, GestureBinding>();
+        static GestureBinding GetOrCreate(IGestureBinding instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new GestureBinding();
+                _table.Add(instance, value);
+            }
+            return (GestureBinding)value;
+        }
+        public static FlutterSDK.Gestures.Pointerrouter.PointerRouter PointerRouterProperty(this IGestureBinding instance) => GetOrCreate(instance).PointerRouter;
+        public static FlutterSDK.Gestures.Arena.GestureArenaManager GestureArenaProperty(this IGestureBinding instance) => GetOrCreate(instance).GestureArena;
+        public static FlutterSDK.Gestures.Pointersignalresolver.PointerSignalResolver PointerSignalResolverProperty(this IGestureBinding instance) => GetOrCreate(instance).PointerSignalResolver;
+        public static FlutterSDK.Gestures.Binding.GestureBinding InstanceProperty(this IGestureBinding instance) => GetOrCreate(instance).Instance;
+        public static void InitInstances(this IGestureBinding instance) => GetOrCreate(instance).InitInstances();
+        public static void Unlocked(this IGestureBinding instance) => GetOrCreate(instance).Unlocked();
+        public static void CancelPointer(this IGestureBinding instance, int pointer) => GetOrCreate(instance).CancelPointer(pointer);
+        public static void HitTest(this IGestureBinding instance, FlutterSDK.Gestures.Hittest.HitTestResult result, FlutterBinding.UI.Offset position) => GetOrCreate(instance).HitTest(result, position);
+        public static void DispatchEvent(this IGestureBinding instance, FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Hittest.HitTestResult hitTestResult) => GetOrCreate(instance).DispatchEvent(@event, hitTestResult);
+        public static void HandleEvent(this IGestureBinding instance, FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Hittest.HitTestEntry entry) => GetOrCreate(instance).HandleEvent(@event, entry);
+    }
+
+
+    public class FlutterErrorDetailsForPointerEventDispatcher : FlutterSDK.Foundation.Assertions.FlutterErrorDetails
+    {
+        #region constructors
+        public FlutterErrorDetailsForPointerEventDispatcher(object exception = default(object), StackTrace stack = default(StackTrace), string library = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsNode context = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode), FlutterSDK.Gestures.Events.PointerEvent @event = default(FlutterSDK.Gestures.Events.PointerEvent), FlutterSDK.Gestures.Hittest.HitTestEntry hitTestEntry = default(FlutterSDK.Gestures.Hittest.HitTestEntry), FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector), bool silent = false)
+        : base(exception: exception, stack: stack, library: library, context: context, informationCollector: informationCollector, silent: silent)
+        {
+            this.@event = @event;
+            this.HitTestEntry = hitTestEntry; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Gestures.Events.PointerEvent @event { get; set; }
+        public virtual FlutterSDK.Gestures.Hittest.HitTestEntry HitTestEntry { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
 
 }

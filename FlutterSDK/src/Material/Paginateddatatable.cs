@@ -395,117 +395,120 @@ using FlutterSDK.Material.Pagetransitionstheme;
 using FlutterSDK.Material.Card;
 using FlutterSDK.Material.Datatablesource;
 using FlutterSDK.Material.Inkdecoration;
-namespace FlutterSDK.Material.Paginateddatatable{
-internal static class PaginateddatatableDefaultClass{
-}
-
-public class PaginatedDataTable : FlutterSDK.Widgets.Framework.StatefulWidget
+namespace FlutterSDK.Material.Paginateddatatable
 {
-#region constructors
-public PaginatedDataTable(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget header = default(FlutterSDK.Widgets.Framework.Widget),List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>),List<FlutterSDK.Material.Datatable.DataColumn> columns = default(List<FlutterSDK.Material.Datatable.DataColumn>),int sortColumnIndex = default(int),bool sortAscending = true,FlutterSDK.Foundation.Basictypes.ValueSetter<bool> onSelectAll = default(FlutterSDK.Foundation.Basictypes.ValueSetter<bool>),double dataRowHeight = default(double),double headingRowHeight = 56.0,double horizontalMargin = 24.0,double columnSpacing = 56.0,bool showCheckboxColumn = true,int initialFirstRowIndex = 0,FlutterSDK.Foundation.Basictypes.ValueChanged<int> onPageChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>),int rowsPerPage = default(int),List<int> availableRowsPerPage = default(List<int>),FlutterSDK.Foundation.Basictypes.ValueChanged<int> onRowsPerPageChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>),FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior),FlutterSDK.Material.Datatablesource.DataTableSource source = default(FlutterSDK.Material.Datatablesource.DataTableSource))
-: base(key:key)
-{
-this.Header = header;
-this.Actions = actions;
-this.Columns = columns;
-this.SortColumnIndex = sortColumnIndex;
-this.SortAscending = sortAscending;
-this.OnSelectAll = onSelectAll;
-this.DataRowHeight = dataRowHeight;
-this.HeadingRowHeight = headingRowHeight;
-this.HorizontalMargin = horizontalMargin;
-this.ColumnSpacing = columnSpacing;
-this.ShowCheckboxColumn = showCheckboxColumn;
-this.InitialFirstRowIndex = initialFirstRowIndex;
-this.OnPageChanged = onPageChanged;
-this.RowsPerPage = rowsPerPage;
-this.AvailableRowsPerPage = availableRowsPerPage;
-this.OnRowsPerPageChanged = onRowsPerPageChanged;
-this.DragStartBehavior = dragStartBehavior;
-this.Source = source;throw new NotImplementedException(); }
-#endregion
+    internal static class PaginateddatatableDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Header{get;set;}
-public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions{get;set;}
-public virtual List<FlutterSDK.Material.Datatable.DataColumn> Columns{get;set;}
-public virtual int SortColumnIndex{get;set;}
-public virtual bool SortAscending{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueSetter<bool> OnSelectAll{get;set;}
-public virtual double DataRowHeight{get;set;}
-public virtual double HeadingRowHeight{get;set;}
-public virtual double HorizontalMargin{get;set;}
-public virtual double ColumnSpacing{get;set;}
-public virtual bool ShowCheckboxColumn{get;set;}
-public virtual int InitialFirstRowIndex{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnPageChanged{get;set;}
-public virtual int RowsPerPage{get;set;}
-public virtual int DefaultRowsPerPage{get;set;}
-public virtual List<int> AvailableRowsPerPage{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnRowsPerPageChanged{get;set;}
-public virtual FlutterSDK.Material.Datatablesource.DataTableSource Source{get;set;}
-public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior{get;set;}
-#endregion
+    public class PaginatedDataTable : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public PaginatedDataTable(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget header = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), List<FlutterSDK.Material.Datatable.DataColumn> columns = default(List<FlutterSDK.Material.Datatable.DataColumn>), int sortColumnIndex = default(int), bool sortAscending = true, FlutterSDK.Foundation.Basictypes.ValueSetter<bool> onSelectAll = default(FlutterSDK.Foundation.Basictypes.ValueSetter<bool>), double dataRowHeight = default(double), double headingRowHeight = 56.0, double horizontalMargin = 24.0, double columnSpacing = 56.0, bool showCheckboxColumn = true, int initialFirstRowIndex = 0, FlutterSDK.Foundation.Basictypes.ValueChanged<int> onPageChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), int rowsPerPage = default(int), List<int> availableRowsPerPage = default(List<int>), FlutterSDK.Foundation.Basictypes.ValueChanged<int> onRowsPerPageChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), FlutterSDK.Material.Datatablesource.DataTableSource source = default(FlutterSDK.Material.Datatablesource.DataTableSource))
+        : base(key: key)
+        {
+            this.Header = header;
+            this.Actions = actions;
+            this.Columns = columns;
+            this.SortColumnIndex = sortColumnIndex;
+            this.SortAscending = sortAscending;
+            this.OnSelectAll = onSelectAll;
+            this.DataRowHeight = dataRowHeight;
+            this.HeadingRowHeight = headingRowHeight;
+            this.HorizontalMargin = horizontalMargin;
+            this.ColumnSpacing = columnSpacing;
+            this.ShowCheckboxColumn = showCheckboxColumn;
+            this.InitialFirstRowIndex = initialFirstRowIndex;
+            this.OnPageChanged = onPageChanged;
+            this.RowsPerPage = rowsPerPage;
+            this.AvailableRowsPerPage = availableRowsPerPage;
+            this.OnRowsPerPageChanged = onRowsPerPageChanged;
+            this.DragStartBehavior = dragStartBehavior;
+            this.Source = source; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Header { get; set; }
+        public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions { get; set; }
+        public virtual List<FlutterSDK.Material.Datatable.DataColumn> Columns { get; set; }
+        public virtual int SortColumnIndex { get; set; }
+        public virtual bool SortAscending { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueSetter<bool> OnSelectAll { get; set; }
+        public virtual double DataRowHeight { get; set; }
+        public virtual double HeadingRowHeight { get; set; }
+        public virtual double HorizontalMargin { get; set; }
+        public virtual double ColumnSpacing { get; set; }
+        public virtual bool ShowCheckboxColumn { get; set; }
+        public virtual int InitialFirstRowIndex { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnPageChanged { get; set; }
+        public virtual int RowsPerPage { get; set; }
+        public virtual int DefaultRowsPerPage { get; set; }
+        public virtual List<int> AvailableRowsPerPage { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnRowsPerPageChanged { get; set; }
+        public virtual FlutterSDK.Material.Datatablesource.DataTableSource Source { get; set; }
+        public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
+        #endregion
 
-public new FlutterSDK.Material.Paginateddatatable.PaginatedDataTableState CreateState(){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new FlutterSDK.Material.Paginateddatatable.PaginatedDataTableState CreateState() { throw new NotImplementedException(); }
 
-
-public class PaginatedDataTableState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Paginateddatatable.PaginatedDataTable>
-{
-#region constructors
-public PaginatedDataTableState()
-{ }
-#endregion
-
-#region fields
-internal virtual int _FirstRowIndex{get;set;}
-internal virtual int _RowCount{get;set;}
-internal virtual bool _RowCountApproximate{get;set;}
-internal virtual int _SelectedRowCount{get;set;}
-internal virtual Dictionary<int,FlutterSDK.Material.Datatable.DataRow> _Rows{get;set;}
-internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _TableKey{get;set;}
-#endregion
-
-#region methods
-
-public new void InitState(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void DidUpdateWidget(FlutterSDK.Material.Paginateddatatable.PaginatedDataTable oldWidget){ throw new NotImplementedException(); }
+    public class PaginatedDataTableState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Paginateddatatable.PaginatedDataTable>
+    {
+        #region constructors
+        public PaginatedDataTableState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual int _FirstRowIndex { get; set; }
+        internal virtual int _RowCount { get; set; }
+        internal virtual bool _RowCountApproximate { get; set; }
+        internal virtual int _SelectedRowCount { get; set; }
+        internal virtual Dictionary<int, FlutterSDK.Material.Datatable.DataRow> _Rows { get; set; }
+        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _TableKey { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+        public new void DidUpdateWidget(FlutterSDK.Material.Paginateddatatable.PaginatedDataTable oldWidget) { throw new NotImplementedException(); }
 
 
-private void _HandleDataSourceChanged(){ throw new NotImplementedException(); }
+        public new void Dispose() { throw new NotImplementedException(); }
 
 
-public virtual void PageTo(int rowIndex){ throw new NotImplementedException(); }
+        private void _HandleDataSourceChanged() { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Material.Datatable.DataRow _GetBlankRowFor(int index){ throw new NotImplementedException(); }
+        public virtual void PageTo(int rowIndex) { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Material.Datatable.DataRow _GetProgressIndicatorRowFor(int index){ throw new NotImplementedException(); }
+        private FlutterSDK.Material.Datatable.DataRow _GetBlankRowFor(int index) { throw new NotImplementedException(); }
 
 
-private List<FlutterSDK.Material.Datatable.DataRow> _GetRows(int firstRowIndex,int rowsPerPage){ throw new NotImplementedException(); }
+        private FlutterSDK.Material.Datatable.DataRow _GetProgressIndicatorRowFor(int index) { throw new NotImplementedException(); }
 
 
-private void _HandlePrevious(){ throw new NotImplementedException(); }
+        private List<FlutterSDK.Material.Datatable.DataRow> _GetRows(int firstRowIndex, int rowsPerPage) { throw new NotImplementedException(); }
 
 
-private void _HandleNext(){ throw new NotImplementedException(); }
+        private void _HandlePrevious() { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        private void _HandleNext() { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

@@ -421,47 +421,50 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Services.Rawkeyboardweb{
-internal static class RawkeyboardwebDefaultClass{
-}
-
-public class RawKeyEventDataWeb : FlutterSDK.Services.Rawkeyboard.RawKeyEventData
+namespace FlutterSDK.Services.Rawkeyboardweb
 {
-#region constructors
-public RawKeyEventDataWeb(string code = default(string),string key = default(string),int metaState = default(int))
-: base()
-{
-this.Code = code;
-this.Key = key;
-this.MetaState = metaState;throw new NotImplementedException(); }
-#endregion
+    internal static class RawkeyboardwebDefaultClass
+    {
+    }
 
-#region fields
-public virtual string Code{get;set;}
-public virtual string Key{get;set;}
-public virtual int MetaState{get;set;}
-public virtual int ModifierNone{get;set;}
-public virtual int ModifierShift{get;set;}
-public virtual int ModifierAlt{get;set;}
-public virtual int ModifierControl{get;set;}
-public virtual int ModifierMeta{get;set;}
-public virtual int ModifierNumLock{get;set;}
-public virtual int ModifierCapsLock{get;set;}
-public virtual int ModifierScrollLock{get;set;}
-public virtual string KeyLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class RawKeyEventDataWeb : FlutterSDK.Services.Rawkeyboard.RawKeyEventData
+    {
+        #region constructors
+        public RawKeyEventDataWeb(string code = default(string), string key = default(string), int metaState = default(int))
+        : base()
+        {
+            this.Code = code;
+            this.Key = key;
+            this.MetaState = metaState; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual string Code { get; set; }
+        public virtual string Key { get; set; }
+        public virtual int MetaState { get; set; }
+        public virtual int ModifierNone { get; set; }
+        public virtual int ModifierShift { get; set; }
+        public virtual int ModifierAlt { get; set; }
+        public virtual int ModifierControl { get; set; }
+        public virtual int ModifierMeta { get; set; }
+        public virtual int ModifierNumLock { get; set; }
+        public virtual int ModifierCapsLock { get; set; }
+        public virtual int ModifierScrollLock { get; set; }
+        public virtual string KeyLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new bool IsModifierPressed(FlutterSDK.Services.Rawkeyboard.ModifierKey key,FlutterSDK.Services.Rawkeyboard.KeyboardSide side = default(FlutterSDK.Services.Rawkeyboard.KeyboardSide)){ throw new NotImplementedException(); }
+        #region methods
+
+        public new bool IsModifierPressed(FlutterSDK.Services.Rawkeyboard.ModifierKey key, FlutterSDK.Services.Rawkeyboard.KeyboardSide side = default(FlutterSDK.Services.Rawkeyboard.KeyboardSide)) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Services.Rawkeyboard.KeyboardSide GetModifierSide(FlutterSDK.Services.Rawkeyboard.ModifierKey key){ throw new NotImplementedException(); }
+        public new FlutterSDK.Services.Rawkeyboard.KeyboardSide GetModifierSide(FlutterSDK.Services.Rawkeyboard.ModifierKey key) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        #endregion
+    }
 
 }

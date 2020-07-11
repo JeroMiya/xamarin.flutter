@@ -351,76 +351,81 @@ using FlutterSDK.Material.Iconbutton;
 using FlutterSDK.Material.Material;
 using FlutterSDK.Material.Tabs;
 using FlutterSDK.Material.Texttheme;
-namespace FlutterSDK.Material.Backbutton{
-internal static class BackbuttonDefaultClass{
-}
-
-public class BackButtonIcon : FlutterSDK.Widgets.Framework.StatelessWidget
+namespace FlutterSDK.Material.Backbutton
 {
-#region constructors
-public BackButtonIcon(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key))
-: base(key:key)
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class BackbuttonDefaultClass
+    {
+    }
 
-#region fields
-#endregion
+    public class BackButtonIcon : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public BackButtonIcon(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key))
+        : base(key: key)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        #endregion
 
-private FlutterSDK.Widgets.Icondata.IconData _GetIconData(FlutterSDK.Foundation.Platform.TargetPlatform platform){ throw new NotImplementedException(); }
+        #region methods
 
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class BackButton : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public BackButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),VoidCallback onPressed = default(VoidCallback))
-: base(key:key)
-{
-this.Color = color;
-this.OnPressed = onPressed;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterBinding.UI.Color Color{get;set;}
-public virtual VoidCallback OnPressed{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-#endregion
-}
+        private FlutterSDK.Widgets.Icondata.IconData _GetIconData(FlutterSDK.Foundation.Platform.TargetPlatform platform) { throw new NotImplementedException(); }
 
 
-public class CloseButton : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public CloseButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),VoidCallback onPressed = default(VoidCallback))
-: base(key:key)
-{
-this.Color = color;
-this.OnPressed = onPressed;throw new NotImplementedException(); }
-#endregion
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterBinding.UI.Color Color{get;set;}
-public virtual VoidCallback OnPressed{get;set;}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+    public class BackButton : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public BackButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), VoidCallback onPressed = default(VoidCallback))
+        : base(key: key)
+        {
+            this.Color = color;
+            this.OnPressed = onPressed; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual VoidCallback OnPressed { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class CloseButton : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public CloseButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), VoidCallback onPressed = default(VoidCallback))
+        : base(key: key)
+        {
+            this.Color = color;
+            this.OnPressed = onPressed; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual VoidCallback OnPressed { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

@@ -421,38 +421,41 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Rendering.Texture{
-internal static class TextureDefaultClass{
-}
-
-public class TextureBox : FlutterSDK.Rendering.Box.RenderBox
+namespace FlutterSDK.Rendering.Texture
 {
-#region constructors
-public TextureBox(int textureId = default(int))
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class TextureDefaultClass
+    {
+    }
 
-#region fields
-internal virtual int _TextureId{get;set;}
-public virtual int TextureId{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool SizedByParent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool AlwaysNeedsCompositing{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsRepaintBoundary{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class TextureBox : FlutterSDK.Rendering.Box.RenderBox
+    {
+        #region constructors
+        public TextureBox(int textureId = default(int))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual int _TextureId { get; set; }
+        public virtual int TextureId { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsRepaintBoundary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new void PerformResize(){ throw new NotImplementedException(); }
+        #region methods
+
+        public new void PerformResize() { throw new NotImplementedException(); }
 
 
-public new bool HitTestSelf(FlutterBinding.UI.Offset position){ throw new NotImplementedException(); }
+        public new bool HitTestSelf(FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 }

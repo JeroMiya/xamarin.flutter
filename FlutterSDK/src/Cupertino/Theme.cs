@@ -291,228 +291,239 @@ using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
-namespace FlutterSDK.Cupertino.Theme{
-internal static class ThemeDefaultClass{
-public static FlutterSDK.Cupertino.Theme._CupertinoThemeDefaults _KDefaultTheme = default(FlutterSDK.Cupertino.Theme._CupertinoThemeDefaults);
-}
-
-public class CupertinoTheme : FlutterSDK.Widgets.Framework.StatelessWidget
+namespace FlutterSDK.Cupertino.Theme
 {
-#region constructors
-public CupertinoTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Cupertino.Theme.CupertinoThemeData data = default(FlutterSDK.Cupertino.Theme.CupertinoThemeData),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key)
-{
-this.Data = data;
-this.Child = child;throw new NotImplementedException(); }
-#endregion
+    internal static class ThemeDefaultClass
+    {
+        public static FlutterSDK.Cupertino.Theme._CupertinoThemeDefaults _KDefaultTheme = default(FlutterSDK.Cupertino.Theme._CupertinoThemeDefaults);
+    }
 
-#region fields
-public virtual FlutterSDK.Cupertino.Theme.CupertinoThemeData Data{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-#endregion
+    public class CupertinoTheme : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public CupertinoTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Cupertino.Theme.CupertinoThemeData data = default(FlutterSDK.Cupertino.Theme.CupertinoThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.Data = data;
+            this.Child = child; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Cupertino.Theme.CupertinoThemeData Data { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        #endregion
 
-public virtual FlutterSDK.Cupertino.Theme.CupertinoThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual Brightness BrightnessOf(FlutterSDK.Widgets.Framework.BuildContext context,bool nullOk = false){ throw new NotImplementedException(); }
-
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual FlutterSDK.Cupertino.Theme.CupertinoThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public class _InheritedCupertinoTheme : FlutterSDK.Widgets.Framework.InheritedWidget
-{
-#region constructors
-public _InheritedCupertinoTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Cupertino.Theme.CupertinoTheme theme = default(FlutterSDK.Cupertino.Theme.CupertinoTheme),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key,child:child)
-{
-this.Theme = theme;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Cupertino.Theme.CupertinoTheme Theme{get;set;}
-#endregion
-
-#region methods
-
-public new bool UpdateShouldNotify(FlutterSDK.Cupertino.Theme._InheritedCupertinoTheme old){ throw new NotImplementedException(); }
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual Brightness BrightnessOf(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false) { throw new NotImplementedException(); }
 
 
-public class CupertinoThemeData : IDiagnosticable
-{
-#region constructors
-public CupertinoThemeData(Brightness brightness = default(Brightness),FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color primaryContrastingColor = default(FlutterBinding.UI.Color),FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData textTheme = default(FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData),FlutterBinding.UI.Color barBackgroundColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color scaffoldBackgroundColor = default(FlutterBinding.UI.Color))
-: base()
-{
-throw new NotImplementedException(); }
-public static CupertinoThemeData Raw(Brightness brightness,FlutterBinding.UI.Color primaryColor,FlutterBinding.UI.Color primaryContrastingColor,FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData textTheme,FlutterBinding.UI.Color barBackgroundColor,FlutterBinding.UI.Color scaffoldBackgroundColor)
-{
-var instance =new CupertinoThemeData();throw new NotImplementedException(); }
-internal static CupertinoThemeData _RawWithDefaults(Brightness brightness,FlutterBinding.UI.Color _primaryColor,FlutterBinding.UI.Color _primaryContrastingColor,FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData _textTheme,FlutterBinding.UI.Color _barBackgroundColor,FlutterBinding.UI.Color _scaffoldBackgroundColor,FlutterSDK.Cupertino.Theme._CupertinoThemeDefaults _defaults)
-{
-var instance =new CupertinoThemeData();instance.Brightness = brightness;
-instance._PrimaryColor = _primaryColor;
-instance._PrimaryContrastingColor = _primaryContrastingColor;
-instance._TextTheme = _textTheme;
-instance._BarBackgroundColor = _barBackgroundColor;
-instance._ScaffoldBackgroundColor = _scaffoldBackgroundColor;
-instance._Defaults = _defaults;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Cupertino.Theme._CupertinoThemeDefaults _Defaults{get;set;}
-public virtual Brightness Brightness{get;set;}
-internal virtual FlutterBinding.UI.Color _PrimaryColor{get;set;}
-internal virtual FlutterBinding.UI.Color _PrimaryContrastingColor{get;set;}
-internal virtual FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData _TextTheme{get;set;}
-internal virtual FlutterBinding.UI.Color _BarBackgroundColor{get;set;}
-internal virtual FlutterBinding.UI.Color _ScaffoldBackgroundColor{get;set;}
-public virtual FlutterBinding.UI.Color PrimaryColor{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterBinding.UI.Color PrimaryContrastingColor{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData TextTheme{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterBinding.UI.Color BarBackgroundColor{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterBinding.UI.Color ScaffoldBackgroundColor{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public virtual FlutterSDK.Cupertino.Theme.CupertinoThemeData NoDefault(){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Cupertino.Theme.CupertinoThemeData ResolveFrom(FlutterSDK.Widgets.Framework.BuildContext context,bool nullOk = false){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public virtual FlutterSDK.Cupertino.Theme.CupertinoThemeData CopyWith(Brightness brightness = default(Brightness),FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color primaryContrastingColor = default(FlutterBinding.UI.Color),FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData textTheme = default(FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData),FlutterBinding.UI.Color barBackgroundColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color scaffoldBackgroundColor = default(FlutterBinding.UI.Color)){ throw new NotImplementedException(); }
+    public class _InheritedCupertinoTheme : FlutterSDK.Widgets.Framework.InheritedWidget
+    {
+        #region constructors
+        public _InheritedCupertinoTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Cupertino.Theme.CupertinoTheme theme = default(FlutterSDK.Cupertino.Theme.CupertinoTheme), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            this.Theme = theme; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Cupertino.Theme.CupertinoTheme Theme { get; set; }
+        #endregion
+
+        #region methods
+
+        public new bool UpdateShouldNotify(FlutterSDK.Cupertino.Theme._InheritedCupertinoTheme old) { throw new NotImplementedException(); }
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+    public class CupertinoThemeData : IDiagnosticable
+    {
+        #region constructors
+        public CupertinoThemeData(Brightness brightness = default(Brightness), FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryContrastingColor = default(FlutterBinding.UI.Color), FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData textTheme = default(FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData), FlutterBinding.UI.Color barBackgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color scaffoldBackgroundColor = default(FlutterBinding.UI.Color))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        public static CupertinoThemeData Raw(Brightness brightness, FlutterBinding.UI.Color primaryColor, FlutterBinding.UI.Color primaryContrastingColor, FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData textTheme, FlutterBinding.UI.Color barBackgroundColor, FlutterBinding.UI.Color scaffoldBackgroundColor)
+        {
+            var instance = new CupertinoThemeData(); throw new NotImplementedException();
+        }
+        internal static CupertinoThemeData _RawWithDefaults(Brightness brightness, FlutterBinding.UI.Color _primaryColor, FlutterBinding.UI.Color _primaryContrastingColor, FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData _textTheme, FlutterBinding.UI.Color _barBackgroundColor, FlutterBinding.UI.Color _scaffoldBackgroundColor, FlutterSDK.Cupertino.Theme._CupertinoThemeDefaults _defaults)
+        {
+            var instance = new CupertinoThemeData(); instance.Brightness = brightness;
+            instance._PrimaryColor = _primaryColor;
+            instance._PrimaryContrastingColor = _primaryContrastingColor;
+            instance._TextTheme = _textTheme;
+            instance._BarBackgroundColor = _barBackgroundColor;
+            instance._ScaffoldBackgroundColor = _scaffoldBackgroundColor;
+            instance._Defaults = _defaults; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        internal virtual FlutterSDK.Cupertino.Theme._CupertinoThemeDefaults _Defaults { get; set; }
+        public virtual Brightness Brightness { get; set; }
+        internal virtual FlutterBinding.UI.Color _PrimaryColor { get; set; }
+        internal virtual FlutterBinding.UI.Color _PrimaryContrastingColor { get; set; }
+        internal virtual FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData _TextTheme { get; set; }
+        internal virtual FlutterBinding.UI.Color _BarBackgroundColor { get; set; }
+        internal virtual FlutterBinding.UI.Color _ScaffoldBackgroundColor { get; set; }
+        public virtual FlutterBinding.UI.Color PrimaryColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Color PrimaryContrastingColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData TextTheme { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Color BarBackgroundColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Color ScaffoldBackgroundColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public class _NoDefaultCupertinoThemeData : FlutterSDK.Cupertino.Theme.CupertinoThemeData
-{
-#region constructors
-public _NoDefaultCupertinoThemeData(Brightness brightness,FlutterBinding.UI.Color primaryColor,FlutterBinding.UI.Color primaryContrastingColor,FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData textTheme,FlutterBinding.UI.Color barBackgroundColor,FlutterBinding.UI.Color scaffoldBackgroundColor)
-: base(brightness,primaryColor,primaryContrastingColor,textTheme,barBackgroundColor,scaffoldBackgroundColor,null)
-{
-this.PrimaryColor = primaryColor;
-this.PrimaryContrastingColor = primaryContrastingColor;
-this.TextTheme = textTheme;
-this.BarBackgroundColor = barBackgroundColor;
-this.ScaffoldBackgroundColor = scaffoldBackgroundColor;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public new FlutterBinding.UI.Color PrimaryColor{get;set;}
-public new FlutterBinding.UI.Color PrimaryContrastingColor{get;set;}
-public new FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData TextTheme{get;set;}
-public new FlutterBinding.UI.Color BarBackgroundColor{get;set;}
-public new FlutterBinding.UI.Color ScaffoldBackgroundColor{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Cupertino.Theme._NoDefaultCupertinoThemeData ResolveFrom(FlutterSDK.Widgets.Framework.BuildContext context,bool nullOk = false){ throw new NotImplementedException(); }
-
-
-public new FlutterSDK.Cupertino.Theme.CupertinoThemeData CopyWith(Brightness brightness = default(Brightness),FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color primaryContrastingColor = default(FlutterBinding.UI.Color),FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData textTheme = default(FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData),FlutterBinding.UI.Color barBackgroundColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color scaffoldBackgroundColor = default(FlutterBinding.UI.Color)){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _CupertinoThemeDefaults
-{
-#region constructors
-public _CupertinoThemeDefaults(Brightness brightness,FlutterBinding.UI.Color primaryColor,FlutterBinding.UI.Color primaryContrastingColor,FlutterBinding.UI.Color barBackgroundColor,FlutterBinding.UI.Color scaffoldBackgroundColor,FlutterSDK.Cupertino.Theme._CupertinoTextThemeDefaults textThemeDefaults)
-{
-this.Brightness = brightness;
-this.PrimaryColor = primaryColor;
-this.PrimaryContrastingColor = primaryContrastingColor;
-this.BarBackgroundColor = barBackgroundColor;
-this.ScaffoldBackgroundColor = scaffoldBackgroundColor;
-this.TextThemeDefaults = textThemeDefaults;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual Brightness Brightness{get;set;}
-public virtual FlutterBinding.UI.Color PrimaryColor{get;set;}
-public virtual FlutterBinding.UI.Color PrimaryContrastingColor{get;set;}
-public virtual FlutterBinding.UI.Color BarBackgroundColor{get;set;}
-public virtual FlutterBinding.UI.Color ScaffoldBackgroundColor{get;set;}
-public virtual FlutterSDK.Cupertino.Theme._CupertinoTextThemeDefaults TextThemeDefaults{get;set;}
-#endregion
-
-#region methods
-
-public virtual FlutterSDK.Cupertino.Theme._CupertinoThemeDefaults ResolveFrom(FlutterSDK.Widgets.Framework.BuildContext context,bool resolveTextTheme,bool nullOk = default(bool)){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual FlutterSDK.Cupertino.Theme.CupertinoThemeData NoDefault() { throw new NotImplementedException(); }
 
 
-public class _CupertinoTextThemeDefaults
-{
-#region constructors
-public _CupertinoTextThemeDefaults(FlutterBinding.UI.Color labelColor,FlutterBinding.UI.Color inactiveGray)
-{
-this.LabelColor = labelColor;
-this.InactiveGray = inactiveGray;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterBinding.UI.Color LabelColor{get;set;}
-public virtual FlutterBinding.UI.Color InactiveGray{get;set;}
-#endregion
-
-#region methods
-
-public virtual FlutterSDK.Cupertino.Theme._CupertinoTextThemeDefaults ResolveFrom(FlutterSDK.Widgets.Framework.BuildContext context,bool nullOk = default(bool)){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Cupertino.Theme.CupertinoThemeData ResolveFrom(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData CreateDefaults(FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color)){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual FlutterSDK.Cupertino.Theme.CupertinoThemeData CopyWith(Brightness brightness = default(Brightness), FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryContrastingColor = default(FlutterBinding.UI.Color), FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData textTheme = default(FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData), FlutterBinding.UI.Color barBackgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color scaffoldBackgroundColor = default(FlutterBinding.UI.Color)) { throw new NotImplementedException(); }
 
 
-public class _DefaultCupertinoTextThemeData : FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData
-{
-#region constructors
-public _DefaultCupertinoTextThemeData(FlutterBinding.UI.Color labelColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color inactiveGray = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color))
-: base(primaryColor:primaryColor)
-{
-this.LabelColor = labelColor;
-this.InactiveGray = inactiveGray;throw new NotImplementedException(); }
-#endregion
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterBinding.UI.Color LabelColor{get;set;}
-public virtual FlutterBinding.UI.Color InactiveGray{get;set;}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle TabLabelTextStyle{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle NavTitleTextStyle{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle NavLargeTitleTextStyle{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle PickerTextStyle{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle DateTimePickerTextStyle{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #endregion
+    }
 
-#region methods
-#endregion
-}
+
+    public class _NoDefaultCupertinoThemeData : FlutterSDK.Cupertino.Theme.CupertinoThemeData
+    {
+        #region constructors
+        public _NoDefaultCupertinoThemeData(Brightness brightness, FlutterBinding.UI.Color primaryColor, FlutterBinding.UI.Color primaryContrastingColor, FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData textTheme, FlutterBinding.UI.Color barBackgroundColor, FlutterBinding.UI.Color scaffoldBackgroundColor)
+        : base(brightness, primaryColor, primaryContrastingColor, textTheme, barBackgroundColor, scaffoldBackgroundColor, null)
+        {
+            this.PrimaryColor = primaryColor;
+            this.PrimaryContrastingColor = primaryContrastingColor;
+            this.TextTheme = textTheme;
+            this.BarBackgroundColor = barBackgroundColor;
+            this.ScaffoldBackgroundColor = scaffoldBackgroundColor; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public new FlutterBinding.UI.Color PrimaryColor { get; set; }
+        public new FlutterBinding.UI.Color PrimaryContrastingColor { get; set; }
+        public new FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData TextTheme { get; set; }
+        public new FlutterBinding.UI.Color BarBackgroundColor { get; set; }
+        public new FlutterBinding.UI.Color ScaffoldBackgroundColor { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Cupertino.Theme._NoDefaultCupertinoThemeData ResolveFrom(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false) { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Cupertino.Theme.CupertinoThemeData CopyWith(Brightness brightness = default(Brightness), FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryContrastingColor = default(FlutterBinding.UI.Color), FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData textTheme = default(FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData), FlutterBinding.UI.Color barBackgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color scaffoldBackgroundColor = default(FlutterBinding.UI.Color)) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class _CupertinoThemeDefaults
+    {
+        #region constructors
+        public _CupertinoThemeDefaults(Brightness brightness, FlutterBinding.UI.Color primaryColor, FlutterBinding.UI.Color primaryContrastingColor, FlutterBinding.UI.Color barBackgroundColor, FlutterBinding.UI.Color scaffoldBackgroundColor, FlutterSDK.Cupertino.Theme._CupertinoTextThemeDefaults textThemeDefaults)
+        {
+            this.Brightness = brightness;
+            this.PrimaryColor = primaryColor;
+            this.PrimaryContrastingColor = primaryContrastingColor;
+            this.BarBackgroundColor = barBackgroundColor;
+            this.ScaffoldBackgroundColor = scaffoldBackgroundColor;
+            this.TextThemeDefaults = textThemeDefaults; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual Brightness Brightness { get; set; }
+        public virtual FlutterBinding.UI.Color PrimaryColor { get; set; }
+        public virtual FlutterBinding.UI.Color PrimaryContrastingColor { get; set; }
+        public virtual FlutterBinding.UI.Color BarBackgroundColor { get; set; }
+        public virtual FlutterBinding.UI.Color ScaffoldBackgroundColor { get; set; }
+        public virtual FlutterSDK.Cupertino.Theme._CupertinoTextThemeDefaults TextThemeDefaults { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual FlutterSDK.Cupertino.Theme._CupertinoThemeDefaults ResolveFrom(FlutterSDK.Widgets.Framework.BuildContext context, bool resolveTextTheme, bool nullOk = default(bool)) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class _CupertinoTextThemeDefaults
+    {
+        #region constructors
+        public _CupertinoTextThemeDefaults(FlutterBinding.UI.Color labelColor, FlutterBinding.UI.Color inactiveGray)
+        {
+            this.LabelColor = labelColor;
+            this.InactiveGray = inactiveGray; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterBinding.UI.Color LabelColor { get; set; }
+        public virtual FlutterBinding.UI.Color InactiveGray { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual FlutterSDK.Cupertino.Theme._CupertinoTextThemeDefaults ResolveFrom(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = default(bool)) { throw new NotImplementedException(); }
+
+
+        public virtual FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData CreateDefaults(FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color)) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class _DefaultCupertinoTextThemeData : FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData
+    {
+        #region constructors
+        public _DefaultCupertinoTextThemeData(FlutterBinding.UI.Color labelColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveGray = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color))
+        : base(primaryColor: primaryColor)
+        {
+            this.LabelColor = labelColor;
+            this.InactiveGray = inactiveGray; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterBinding.UI.Color LabelColor { get; set; }
+        public virtual FlutterBinding.UI.Color InactiveGray { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle TabLabelTextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle NavTitleTextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle NavLargeTitleTextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle PickerTextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle DateTimePickerTextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+        #endregion
+    }
 
 }

@@ -294,39 +294,42 @@ using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
-namespace FlutterSDK.Foundation.Synchronousfuture{
-internal static class SynchronousfutureDefaultClass{
-}
-
-public class SynchronousFuture<T> : IFuture<T>
+namespace FlutterSDK.Foundation.Synchronousfuture
 {
-#region constructors
-public SynchronousFuture(T _value)
-{
-this._Value = _value;throw new NotImplementedException(); }
-#endregion
+    internal static class SynchronousfutureDefaultClass
+    {
+    }
 
-#region fields
-internal virtual T _Value{get;set;}
-#endregion
+    public class SynchronousFuture<T> : IFuture<T>
+    {
+        #region constructors
+        public SynchronousFuture(T _value)
+        {
+            this._Value = _value; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual T _Value { get; set; }
+        #endregion
 
-public new Stream<T> AsStream(){ throw new NotImplementedException(); }
+        #region methods
 
-
-public new Future<T> CatchError(Function onError,Func<bool,object> test = default(Func<bool,object>)){ throw new NotImplementedException(); }
-
-
-public new Future<E> Then<E>(Func<FutureOr<E>,T> f,Function onError = default(Function)){ throw new NotImplementedException(); }
-
-
-public new Future<T> Timeout(TimeSpan timeLimit,Func<FutureOr<T>> onTimeout = default(Func<FutureOr<T>>)){ throw new NotImplementedException(); }
+        public new Stream<T> AsStream() { throw new NotImplementedException(); }
 
 
-public new Future<T> WhenComplete(Func<FutureOr<object>> action){ throw new NotImplementedException(); }
+        public new Future<T> CatchError(Function onError, Func<bool, object> test = default(Func<bool, object>)) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new Future<E> Then<E>(Func<FutureOr<E>, T> f, Function onError = default(Function)) { throw new NotImplementedException(); }
+
+
+        public new Future<T> Timeout(TimeSpan timeLimit, Func<FutureOr<T>> onTimeout = default(Func<FutureOr<T>>)) { throw new NotImplementedException(); }
+
+
+        public new Future<T> WhenComplete(Func<FutureOr<object>> action) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

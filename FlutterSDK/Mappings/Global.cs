@@ -48,7 +48,7 @@ namespace FlutterSDK
     {
 
     }
-    
+
 
     public class SplayTreeMap<K, V> : Dictionary<K, V> { }
 
@@ -70,7 +70,7 @@ namespace FlutterSDK
     {
 
     }
-    
+
     public class Pattern
     { }
 
@@ -104,7 +104,7 @@ namespace FlutterSDK
 
     }
 
-    public class Uint8List: List<ushort>
+    public class Uint8List : List<ushort>
     {
 
     }
@@ -162,7 +162,7 @@ namespace FlutterSDK
     public class AssertionError : System.Exception
     {
         public AssertionError() { }
-        public AssertionError(string message): base(message) { }
+        public AssertionError(string message) : base(message) { }
     }
 
     public delegate void VoidCallback();
@@ -192,7 +192,7 @@ namespace FlutterSDK
         public double? Height { get; set; }
     }
 
-    
+
     public class Offset //TODO
     {
         public Offset() { }
@@ -210,11 +210,11 @@ namespace FlutterSDK
     public class Future
     {
 
-       
+
 
     }
 
-    public class Future<T>: Future
+    public class Future<T> : Future
     {
         public virtual Future<List<T>> Wait<T>(Iterable<Future<T>> futures, bool eagerError = default(bool), Action<T> cleanUp = default(Action<T>)) { throw new NotImplementedException(); }
 
@@ -279,7 +279,7 @@ namespace FlutterSDK
         public void Writeln(string value) => _value += value + '\n';
         public void Writeln(char value) => _value += value + '\n';
         public void WriteAll(List<string> values, char separator) => _value += values.Join(separator);
-      
+
         public override string ToString()
         {
             return _value;
@@ -302,7 +302,7 @@ namespace FlutterSDK
 
     public interface IIterator<E>
     {
-           E Current { get; set; }
+        E Current { get; set; }
     }
 
 

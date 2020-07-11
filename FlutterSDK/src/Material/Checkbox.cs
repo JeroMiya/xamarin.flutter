@@ -369,180 +369,185 @@ using FlutterSDK.Material.Materialbutton;
 using FlutterSDK.Material.Outlinebutton;
 using FlutterSDK.Material.Cardtheme;
 using FlutterSDK.Material.Toggleable;
-namespace FlutterSDK.Material.Checkbox{
-internal static class CheckboxDefaultClass{
-public static double _KEdgeSize = default(double);
-public static Radius _KEdgeRadius = default(Radius);
-public static double _KStrokeWidth = default(double);
-}
-
-public class Checkbox : FlutterSDK.Widgets.Framework.StatefulWidget
+namespace FlutterSDK.Material.Checkbox
 {
-#region constructors
-public Checkbox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),bool value = default(bool),bool tristate = false,FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>),FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color checkColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color),FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize),FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity),FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode),bool autofocus = false)
-: base(key:key)
-{
-this.Value = value;
-this.Tristate = tristate;
-this.OnChanged = onChanged;
-this.ActiveColor = activeColor;
-this.CheckColor = checkColor;
-this.FocusColor = focusColor;
-this.HoverColor = hoverColor;
-this.MaterialTapTargetSize = materialTapTargetSize;
-this.VisualDensity = visualDensity;
-this.FocusNode = focusNode;
-this.Autofocus = autofocus;throw new NotImplementedException(); }
-#endregion
+    internal static class CheckboxDefaultClass
+    {
+        public static double _KEdgeSize = default(double);
+        public static Radius _KEdgeRadius = default(Radius);
+        public static double _KStrokeWidth = default(double);
+    }
 
-#region fields
-public virtual bool Value{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged{get;set;}
-public virtual FlutterBinding.UI.Color ActiveColor{get;set;}
-public virtual FlutterBinding.UI.Color CheckColor{get;set;}
-public virtual bool Tristate{get;set;}
-public virtual FlutterSDK.Material.Themedata.MaterialTapTargetSize MaterialTapTargetSize{get;set;}
-public virtual FlutterSDK.Material.Themedata.VisualDensity VisualDensity{get;set;}
-public virtual FlutterBinding.UI.Color FocusColor{get;set;}
-public virtual FlutterBinding.UI.Color HoverColor{get;set;}
-public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode{get;set;}
-public virtual bool Autofocus{get;set;}
-public virtual double Width{get;set;}
-#endregion
+    public class Checkbox : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public Checkbox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool value = default(bool), bool tristate = false, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color checkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false)
+        : base(key: key)
+        {
+            this.Value = value;
+            this.Tristate = tristate;
+            this.OnChanged = onChanged;
+            this.ActiveColor = activeColor;
+            this.CheckColor = checkColor;
+            this.FocusColor = focusColor;
+            this.HoverColor = hoverColor;
+            this.MaterialTapTargetSize = materialTapTargetSize;
+            this.VisualDensity = visualDensity;
+            this.FocusNode = focusNode;
+            this.Autofocus = autofocus; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual bool Value { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged { get; set; }
+        public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
+        public virtual FlutterBinding.UI.Color CheckColor { get; set; }
+        public virtual bool Tristate { get; set; }
+        public virtual FlutterSDK.Material.Themedata.MaterialTapTargetSize MaterialTapTargetSize { get; set; }
+        public virtual FlutterSDK.Material.Themedata.VisualDensity VisualDensity { get; set; }
+        public virtual FlutterBinding.UI.Color FocusColor { get; set; }
+        public virtual FlutterBinding.UI.Color HoverColor { get; set; }
+        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+        public virtual bool Autofocus { get; set; }
+        public virtual double Width { get; set; }
+        #endregion
 
-public new FlutterSDK.Material.Checkbox._CheckboxState CreateState(){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new FlutterSDK.Material.Checkbox._CheckboxState CreateState() { throw new NotImplementedException(); }
 
-
-public class _CheckboxState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Checkbox.Checkbox>,ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-#region constructors
-public _CheckboxState()
-{ }
-#endregion
-
-#region fields
-internal virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey,object> _ActionMap{get;set;}
-internal virtual bool _Focused{get;set;}
-internal virtual bool _Hovering{get;set;}
-public virtual bool Enabled{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new void InitState(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-private void _ActionHandler(FlutterSDK.Widgets.Focusmanager.FocusNode node,FlutterSDK.Widgets.Actions.Intent intent){ throw new NotImplementedException(); }
+    public class _CheckboxState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Checkbox.Checkbox>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _CheckboxState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> _ActionMap { get; set; }
+        internal virtual bool _Focused { get; set; }
+        internal virtual bool _Hovering { get; set; }
+        public virtual bool Enabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Widgets.Actions.Action _CreateAction(){ throw new NotImplementedException(); }
+        private void _ActionHandler(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Widgets.Actions.Intent intent) { throw new NotImplementedException(); }
 
 
-private void _HandleFocusHighlightChanged(bool focused){ throw new NotImplementedException(); }
+        private FlutterSDK.Widgets.Actions.Action _CreateAction() { throw new NotImplementedException(); }
 
 
-private void _HandleHoverChanged(bool hovering){ throw new NotImplementedException(); }
+        private void _HandleFocusHighlightChanged(bool focused) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-#endregion
-}
+        private void _HandleHoverChanged(bool hovering) { throw new NotImplementedException(); }
 
 
-public class _CheckboxRenderObjectWidget : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
-{
-#region constructors
-public _CheckboxRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),bool value = default(bool),bool tristate = default(bool),FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color checkColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color),FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>),FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider),FlutterSDK.Rendering.Box.BoxConstraints additionalConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints),bool hasFocus = default(bool),bool hovering = default(bool))
-: base(key:key)
-{
-this.Value = value;
-this.Tristate = tristate;
-this.ActiveColor = activeColor;
-this.CheckColor = checkColor;
-this.InactiveColor = inactiveColor;
-this.FocusColor = focusColor;
-this.HoverColor = hoverColor;
-this.OnChanged = onChanged;
-this.Vsync = vsync;
-this.AdditionalConstraints = additionalConstraints;
-this.HasFocus = hasFocus;
-this.Hovering = hovering;throw new NotImplementedException(); }
-#endregion
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#region fields
-public virtual bool Value{get;set;}
-public virtual bool Tristate{get;set;}
-public virtual bool HasFocus{get;set;}
-public virtual bool Hovering{get;set;}
-public virtual FlutterBinding.UI.Color ActiveColor{get;set;}
-public virtual FlutterBinding.UI.Color CheckColor{get;set;}
-public virtual FlutterBinding.UI.Color InactiveColor{get;set;}
-public virtual FlutterBinding.UI.Color FocusColor{get;set;}
-public virtual FlutterBinding.UI.Color HoverColor{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged{get;set;}
-public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync{get;set;}
-public virtual FlutterSDK.Rendering.Box.BoxConstraints AdditionalConstraints{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Material.Checkbox._RenderCheckbox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Material.Checkbox._RenderCheckbox renderObject){ throw new NotImplementedException(); }
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Rendering.@object.RenderObject renderObject){ throw new NotImplementedException(); }
+    public class _CheckboxRenderObjectWidget : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
+    {
+        #region constructors
+        public _CheckboxRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool value = default(bool), bool tristate = default(bool), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color checkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), FlutterSDK.Rendering.Box.BoxConstraints additionalConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints), bool hasFocus = default(bool), bool hovering = default(bool))
+        : base(key: key)
+        {
+            this.Value = value;
+            this.Tristate = tristate;
+            this.ActiveColor = activeColor;
+            this.CheckColor = checkColor;
+            this.InactiveColor = inactiveColor;
+            this.FocusColor = focusColor;
+            this.HoverColor = hoverColor;
+            this.OnChanged = onChanged;
+            this.Vsync = vsync;
+            this.AdditionalConstraints = additionalConstraints;
+            this.HasFocus = hasFocus;
+            this.Hovering = hovering; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual bool Value { get; set; }
+        public virtual bool Tristate { get; set; }
+        public virtual bool HasFocus { get; set; }
+        public virtual bool Hovering { get; set; }
+        public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
+        public virtual FlutterBinding.UI.Color CheckColor { get; set; }
+        public virtual FlutterBinding.UI.Color InactiveColor { get; set; }
+        public virtual FlutterBinding.UI.Color FocusColor { get; set; }
+        public virtual FlutterBinding.UI.Color HoverColor { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged { get; set; }
+        public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get; set; }
+        public virtual FlutterSDK.Rendering.Box.BoxConstraints AdditionalConstraints { get; set; }
+        #endregion
 
+        #region methods
 
-public class _RenderCheckbox : FlutterSDK.Material.Toggleable.RenderToggleable
-{
-#region constructors
-public _RenderCheckbox(bool value = default(bool),bool tristate = default(bool),FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color checkColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color),FlutterSDK.Rendering.Box.BoxConstraints additionalConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints),FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>),bool hasFocus = default(bool),bool hovering = default(bool),FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider))
-: base(value:value,tristate:tristate,activeColor:activeColor,inactiveColor:inactiveColor,focusColor:focusColor,hoverColor:hoverColor,onChanged:onChanged,additionalConstraints:additionalConstraints,vsync:vsync,hasFocus:hasFocus,hovering:hovering)
-{
-this.CheckColor = checkColor;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual bool _OldValue{get;set;}
-public virtual FlutterBinding.UI.Color CheckColor{get;set;}
-public virtual bool Value{set {throw new NotImplementedException();}}
-#endregion
-
-#region methods
-
-public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config){ throw new NotImplementedException(); }
-
-
-private RRect _OuterRectAt(FlutterBinding.UI.Offset origin,double t){ throw new NotImplementedException(); }
-
-
-private Color _ColorAt(double t){ throw new NotImplementedException(); }
-
-
-private Paint _CreateStrokePaint(){ throw new NotImplementedException(); }
-
-
-private void _DrawBorder(Canvas canvas,FlutterBinding.UI.RRect outer,double t,SKPaint paint){ throw new NotImplementedException(); }
-
-
-private void _DrawCheck(Canvas canvas,FlutterBinding.UI.Offset origin,double t,SKPaint paint){ throw new NotImplementedException(); }
-
-
-private void _DrawDash(Canvas canvas,FlutterBinding.UI.Offset origin,double t,SKPaint paint){ throw new NotImplementedException(); }
+        public new FlutterSDK.Material.Checkbox._RenderCheckbox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Material.Checkbox._RenderCheckbox renderObject) { throw new NotImplementedException(); }
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
+
+
+    public class _RenderCheckbox : FlutterSDK.Material.Toggleable.RenderToggleable
+    {
+        #region constructors
+        public _RenderCheckbox(bool value = default(bool), bool tristate = default(bool), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color checkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Rendering.Box.BoxConstraints additionalConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), bool hasFocus = default(bool), bool hovering = default(bool), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider))
+        : base(value: value, tristate: tristate, activeColor: activeColor, inactiveColor: inactiveColor, focusColor: focusColor, hoverColor: hoverColor, onChanged: onChanged, additionalConstraints: additionalConstraints, vsync: vsync, hasFocus: hasFocus, hovering: hovering)
+        {
+            this.CheckColor = checkColor; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual bool _OldValue { get; set; }
+        public virtual FlutterBinding.UI.Color CheckColor { get; set; }
+        public virtual bool Value { set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config) { throw new NotImplementedException(); }
+
+
+        private RRect _OuterRectAt(FlutterBinding.UI.Offset origin, double t) { throw new NotImplementedException(); }
+
+
+        private Color _ColorAt(double t) { throw new NotImplementedException(); }
+
+
+        private Paint _CreateStrokePaint() { throw new NotImplementedException(); }
+
+
+        private void _DrawBorder(Canvas canvas, FlutterBinding.UI.RRect outer, double t, SKPaint paint) { throw new NotImplementedException(); }
+
+
+        private void _DrawCheck(Canvas canvas, FlutterBinding.UI.Offset origin, double t, SKPaint paint) { throw new NotImplementedException(); }
+
+
+        private void _DrawDash(Canvas canvas, FlutterBinding.UI.Offset origin, double t, SKPaint paint) { throw new NotImplementedException(); }
+
+
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

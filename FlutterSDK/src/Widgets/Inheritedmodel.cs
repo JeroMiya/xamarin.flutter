@@ -422,71 +422,76 @@ using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
-namespace FlutterSDK.Widgets.Inheritedmodel{
-internal static class InheritedmodelDefaultClass{
-}
-
-public interface IInheritedModel<T>{
-InheritedModelElement<T> CreateElement();
-bool UpdateShouldNotifyDependent(FlutterSDK.Widgets.Inheritedmodel.InheritedModel<T> oldWidget,HashSet<T> dependencies);
-bool IsSupportedAspect(@Object aspect);
-T InheritFrom<T>(FlutterSDK.Widgets.Framework.BuildContext context,@Object aspect = default(@Object));
-}
-
-
-public class InheritedModel<T> : FlutterSDK.Widgets.Framework.InheritedWidget
+namespace FlutterSDK.Widgets.Inheritedmodel
 {
-#region constructors
-public InheritedModel(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key,child:child)
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class InheritedmodelDefaultClass
+    {
+    }
 
-#region fields
-#endregion
-
-#region methods
-
-public new InheritedModelElement<T> CreateElement(){ throw new NotImplementedException(); }
+    public interface IInheritedModel<T>
+    {
+        InheritedModelElement<T> CreateElement();
+        bool UpdateShouldNotifyDependent(FlutterSDK.Widgets.Inheritedmodel.InheritedModel<T> oldWidget, HashSet<T> dependencies);
+        bool IsSupportedAspect(@Object aspect);
+        T InheritFrom<T>(FlutterSDK.Widgets.Framework.BuildContext context, @Object aspect = default(@Object));
+    }
 
 
-public virtual bool UpdateShouldNotifyDependent(FlutterSDK.Widgets.Inheritedmodel.InheritedModel<T> oldWidget,HashSet<T> dependencies){ throw new NotImplementedException(); }
+    public class InheritedModel<T> : FlutterSDK.Widgets.Framework.InheritedWidget
+    {
+        #region constructors
+        public InheritedModel(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new InheritedModelElement<T> CreateElement() { throw new NotImplementedException(); }
 
 
-public virtual bool IsSupportedAspect(@Object aspect){ throw new NotImplementedException(); }
+        public virtual bool UpdateShouldNotifyDependent(FlutterSDK.Widgets.Inheritedmodel.InheritedModel<T> oldWidget, HashSet<T> dependencies) { throw new NotImplementedException(); }
 
 
-private void _FindModels<T>(FlutterSDK.Widgets.Framework.BuildContext context,@Object aspect,List<FlutterSDK.Widgets.Framework.InheritedElement> results){ throw new NotImplementedException(); }
+        public virtual bool IsSupportedAspect(@Object aspect) { throw new NotImplementedException(); }
 
 
-public virtual T InheritFrom<T>(FlutterSDK.Widgets.Framework.BuildContext context,@Object aspect = default(@Object)){ throw new NotImplementedException(); }
-
-#endregion
-}
+        private void _FindModels<T>(FlutterSDK.Widgets.Framework.BuildContext context, @Object aspect, List<FlutterSDK.Widgets.Framework.InheritedElement> results) { throw new NotImplementedException(); }
 
 
-public class InheritedModelElement<T> : FlutterSDK.Widgets.Framework.InheritedElement
-{
-#region constructors
-public InheritedModelElement(FlutterSDK.Widgets.Inheritedmodel.InheritedModel<T> widget)
-: base(widget)
-{
-throw new NotImplementedException(); }
-#endregion
+        public virtual T InheritFrom<T>(FlutterSDK.Widgets.Framework.BuildContext context, @Object aspect = default(@Object)) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Widgets.Inheritedmodel.InheritedModel<T> Widget{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new void UpdateDependencies(FlutterSDK.Widgets.Framework.Element dependent,@Object aspect){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void NotifyDependent(FlutterSDK.Widgets.Inheritedmodel.InheritedModel<T> oldWidget,FlutterSDK.Widgets.Framework.Element dependent){ throw new NotImplementedException(); }
+    public class InheritedModelElement<T> : FlutterSDK.Widgets.Framework.InheritedElement
+    {
+        #region constructors
+        public InheritedModelElement(FlutterSDK.Widgets.Inheritedmodel.InheritedModel<T> widget)
+        : base(widget)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual FlutterSDK.Widgets.Inheritedmodel.InheritedModel<T> Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void UpdateDependencies(FlutterSDK.Widgets.Framework.Element dependent, @Object aspect) { throw new NotImplementedException(); }
+
+
+        public new void NotifyDependent(FlutterSDK.Widgets.Inheritedmodel.InheritedModel<T> oldWidget, FlutterSDK.Widgets.Framework.Element dependent) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

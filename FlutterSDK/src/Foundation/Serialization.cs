@@ -294,115 +294,119 @@ using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
-namespace FlutterSDK.Foundation.Serialization{
-internal static class SerializationDefaultClass{
-}
-
-public class WriteBuffer
+namespace FlutterSDK.Foundation.Serialization
 {
-#region constructors
-public WriteBuffer()
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class SerializationDefaultClass
+    {
+    }
 
-#region fields
-internal virtual Uint8Buffer _Buffer{get;set;}
-internal virtual ByteData _EightBytes{get;set;}
-internal virtual Uint8List _EightBytesAsList{get;set;}
-#endregion
+    public class WriteBuffer
+    {
+        #region constructors
+        public WriteBuffer()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual Uint8Buffer _Buffer { get; set; }
+        internal virtual ByteData _EightBytes { get; set; }
+        internal virtual Uint8List _EightBytesAsList { get; set; }
+        #endregion
 
-public virtual void PutUint8(int @byte){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual void PutUint16(int value,Endian endian = default(Endian)){ throw new NotImplementedException(); }
-
-
-public virtual void PutUint32(int value,Endian endian = default(Endian)){ throw new NotImplementedException(); }
-
-
-public virtual void PutInt32(int value,Endian endian = default(Endian)){ throw new NotImplementedException(); }
+        public virtual void PutUint8(int @byte) { throw new NotImplementedException(); }
 
 
-public virtual void PutInt64(int value,Endian endian = default(Endian)){ throw new NotImplementedException(); }
+        public virtual void PutUint16(int value, Endian endian = default(Endian)) { throw new NotImplementedException(); }
 
 
-public virtual void PutFloat64(double value,Endian endian = default(Endian)){ throw new NotImplementedException(); }
+        public virtual void PutUint32(int value, Endian endian = default(Endian)) { throw new NotImplementedException(); }
 
 
-public virtual void PutUint8List(Uint8List list){ throw new NotImplementedException(); }
+        public virtual void PutInt32(int value, Endian endian = default(Endian)) { throw new NotImplementedException(); }
 
 
-public virtual void PutInt32List(List<uint> list){ throw new NotImplementedException(); }
+        public virtual void PutInt64(int value, Endian endian = default(Endian)) { throw new NotImplementedException(); }
 
 
-public virtual void PutInt64List(Int64List list){ throw new NotImplementedException(); }
+        public virtual void PutFloat64(double value, Endian endian = default(Endian)) { throw new NotImplementedException(); }
 
 
-public virtual void PutFloat64List(List<float> list){ throw new NotImplementedException(); }
+        public virtual void PutUint8List(Uint8List list) { throw new NotImplementedException(); }
 
 
-private void _AlignTo(int alignment){ throw new NotImplementedException(); }
+        public virtual void PutInt32List(List<uint> list) { throw new NotImplementedException(); }
 
 
-public virtual ByteData Done(){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual void PutInt64List(Int64List list) { throw new NotImplementedException(); }
 
 
-public class ReadBuffer
-{
-#region constructors
-public ReadBuffer(ByteData data)
-: base()
-{
-this.Data = data;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual ByteData Data{get;set;}
-internal virtual int _Position{get;set;}
-public virtual bool HasRemaining{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public virtual int GetUint8(){ throw new NotImplementedException(); }
+        public virtual void PutFloat64List(List<float> list) { throw new NotImplementedException(); }
 
 
-public virtual int GetUint16(Endian endian = default(Endian)){ throw new NotImplementedException(); }
+        private void _AlignTo(int alignment) { throw new NotImplementedException(); }
 
 
-public virtual int GetUint32(Endian endian = default(Endian)){ throw new NotImplementedException(); }
+        public virtual ByteData Done() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public virtual int GetInt32(Endian endian = default(Endian)){ throw new NotImplementedException(); }
+    public class ReadBuffer
+    {
+        #region constructors
+        public ReadBuffer(ByteData data)
+        : base()
+        {
+            this.Data = data; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual ByteData Data { get; set; }
+        internal virtual int _Position { get; set; }
+        public virtual bool HasRemaining { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual int GetUint8() { throw new NotImplementedException(); }
 
 
-public virtual int GetInt64(Endian endian = default(Endian)){ throw new NotImplementedException(); }
+        public virtual int GetUint16(Endian endian = default(Endian)) { throw new NotImplementedException(); }
 
 
-public virtual double GetFloat64(Endian endian = default(Endian)){ throw new NotImplementedException(); }
+        public virtual int GetUint32(Endian endian = default(Endian)) { throw new NotImplementedException(); }
 
 
-public virtual Uint8List GetUint8List(int length){ throw new NotImplementedException(); }
+        public virtual int GetInt32(Endian endian = default(Endian)) { throw new NotImplementedException(); }
 
 
-public virtual List<uint> GetInt32List(int length){ throw new NotImplementedException(); }
+        public virtual int GetInt64(Endian endian = default(Endian)) { throw new NotImplementedException(); }
 
 
-public virtual Int64List GetInt64List(int length){ throw new NotImplementedException(); }
+        public virtual double GetFloat64(Endian endian = default(Endian)) { throw new NotImplementedException(); }
 
 
-public virtual List<float> GetFloat64List(int length){ throw new NotImplementedException(); }
+        public virtual Uint8List GetUint8List(int length) { throw new NotImplementedException(); }
 
 
-private void _AlignTo(int alignment){ throw new NotImplementedException(); }
+        public virtual List<uint> GetInt32List(int length) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public virtual Int64List GetInt64List(int length) { throw new NotImplementedException(); }
+
+
+        public virtual List<float> GetFloat64List(int length) { throw new NotImplementedException(); }
+
+
+        private void _AlignTo(int alignment) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

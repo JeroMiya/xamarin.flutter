@@ -421,170 +421,174 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Rendering.Paragraph{
-internal static class ParagraphDefaultClass{
-public static string _KEllipsis = default(string);
-}
-
-public class TextParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
+namespace FlutterSDK.Rendering.Paragraph
 {
-#region constructors
-public TextParentData()
-{ }
-#endregion
+    internal static class ParagraphDefaultClass
+    {
+        public static string _KEllipsis = default(string);
+    }
 
-#region fields
-public virtual double Scale{get;set;}
-#endregion
+    public class TextParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
+    {
+        #region constructors
+        public TextParentData()
+        { }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual double Scale { get; set; }
+        #endregion
 
-#endregion
-}
+        #region methods
 
+        #endregion
+    }
 
-public class RenderParagraph : FlutterSDK.Rendering.Box.RenderBox,IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox,FlutterSDK.Rendering.Paragraph.TextParentData>,IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox,FlutterSDK.Rendering.Paragraph.TextParentData>,IRelayoutWhenSystemFontsChangeMixin
-{
-#region constructors
-public RenderParagraph(FlutterSDK.Painting.Inlinespan.InlineSpan text,TextAlign textAlign = default(TextAlign),TextDirection textDirection = default(TextDirection),bool softWrap = true,FlutterSDK.Rendering.Paragraph.TextOverflow overflow = default(FlutterSDK.Rendering.Paragraph.TextOverflow),double textScaleFactor = 1.0,int maxLines = default(int),Locale locale = default(Locale),FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle),FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis),TextHeightBehavior textHeightBehavior = default(TextHeightBehavior),List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>))
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
 
-#region fields
-internal virtual FlutterSDK.Painting.Textpainter.TextPainter _TextPainter{get;set;}
-internal virtual List<FlutterSDK.Painting.Placeholderspan.PlaceholderSpan> _PlaceholderSpans{get;set;}
-internal virtual bool _SoftWrap{get;set;}
-internal virtual FlutterSDK.Rendering.Paragraph.TextOverflow _Overflow{get;set;}
-internal virtual bool _NeedsClipping{get;set;}
-internal virtual SKShader _OverflowShader{get;set;}
-internal virtual List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions> _PlaceholderDimensions{get;set;}
-internal virtual List<FlutterSDK.Painting.Inlinespan.InlineSpanSemanticsInformation> _SemanticsInfo{get;set;}
-internal virtual Queue<FlutterSDK.Semantics.Semantics.SemanticsNode> _CachedChildNodes{get;set;}
-public virtual FlutterSDK.Painting.Inlinespan.InlineSpan Text{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual TextAlign TextAlign{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual TextDirection TextDirection{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool SoftWrap{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Rendering.Paragraph.TextOverflow Overflow{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual double TextScaleFactor{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual int MaxLines{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual Locale Locale{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Painting.Strutstyle.StrutStyle StrutStyle{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Painting.Textpainter.TextWidthBasis TextWidthBasis{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual TextHeightBehavior TextHeightBehavior{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool DebugHasOverflowShader{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual Size TextSize{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class RenderParagraph : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Paragraph.TextParentData>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Paragraph.TextParentData>, IRelayoutWhenSystemFontsChangeMixin
+    {
+        #region constructors
+        public RenderParagraph(FlutterSDK.Painting.Inlinespan.InlineSpan text, TextAlign textAlign = default(TextAlign), TextDirection textDirection = default(TextDirection), bool softWrap = true, FlutterSDK.Rendering.Paragraph.TextOverflow overflow = default(FlutterSDK.Rendering.Paragraph.TextOverflow), double textScaleFactor = 1.0, int maxLines = default(int), Locale locale = default(Locale), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), TextHeightBehavior textHeightBehavior = default(TextHeightBehavior), List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual FlutterSDK.Painting.Textpainter.TextPainter _TextPainter { get; set; }
+        internal virtual List<FlutterSDK.Painting.Placeholderspan.PlaceholderSpan> _PlaceholderSpans { get; set; }
+        internal virtual bool _SoftWrap { get; set; }
+        internal virtual FlutterSDK.Rendering.Paragraph.TextOverflow _Overflow { get; set; }
+        internal virtual bool _NeedsClipping { get; set; }
+        internal virtual SKShader _OverflowShader { get; set; }
+        internal virtual List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions> _PlaceholderDimensions { get; set; }
+        internal virtual List<FlutterSDK.Painting.Inlinespan.InlineSpanSemanticsInformation> _SemanticsInfo { get; set; }
+        internal virtual Queue<FlutterSDK.Semantics.Semantics.SemanticsNode> _CachedChildNodes { get; set; }
+        public virtual FlutterSDK.Painting.Inlinespan.InlineSpan Text { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextAlign TextAlign { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool SoftWrap { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Paragraph.TextOverflow Overflow { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double TextScaleFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int MaxLines { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual Locale Locale { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Strutstyle.StrutStyle StrutStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Textpainter.TextWidthBasis TextWidthBasis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextHeightBehavior TextHeightBehavior { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool DebugHasOverflowShader { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual Size TextSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child){ throw new NotImplementedException(); }
-public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
+        #region methods
 
+        public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
+        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
-private void _ExtractPlaceholderSpans(FlutterSDK.Painting.Inlinespan.InlineSpan span){ throw new NotImplementedException(); }
 
+        private void _ExtractPlaceholderSpans(FlutterSDK.Painting.Inlinespan.InlineSpan span) { throw new NotImplementedException(); }
 
-public new double ComputeMinIntrinsicWidth(double height){ throw new NotImplementedException(); }
 
+        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
-public new double ComputeMaxIntrinsicWidth(double height){ throw new NotImplementedException(); }
 
+        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
-private double _ComputeIntrinsicHeight(double width){ throw new NotImplementedException(); }
 
+        private double _ComputeIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
-public new double ComputeMinIntrinsicHeight(double width){ throw new NotImplementedException(); }
 
+        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
-public new double ComputeMaxIntrinsicHeight(double width){ throw new NotImplementedException(); }
 
+        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
-public new double ComputeDistanceToActualBaseline(TextBaseline baseline){ throw new NotImplementedException(); }
 
+        public new double ComputeDistanceToActualBaseline(TextBaseline baseline) { throw new NotImplementedException(); }
 
-private bool _CanComputeIntrinsics(){ throw new NotImplementedException(); }
 
+        private bool _CanComputeIntrinsics() { throw new NotImplementedException(); }
 
-private void _ComputeChildrenWidthWithMaxIntrinsics(double height){ throw new NotImplementedException(); }
 
+        private void _ComputeChildrenWidthWithMaxIntrinsics(double height) { throw new NotImplementedException(); }
 
-private void _ComputeChildrenWidthWithMinIntrinsics(double height){ throw new NotImplementedException(); }
 
+        private void _ComputeChildrenWidthWithMinIntrinsics(double height) { throw new NotImplementedException(); }
 
-private void _ComputeChildrenHeightWithMinIntrinsics(double width){ throw new NotImplementedException(); }
 
+        private void _ComputeChildrenHeightWithMinIntrinsics(double width) { throw new NotImplementedException(); }
 
-public new bool HitTestSelf(FlutterBinding.UI.Offset position){ throw new NotImplementedException(); }
 
+        public new bool HitTestSelf(FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
 
-public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
 
+        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
-public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event,FlutterSDK.Rendering.Box.BoxHitTestEntry entry){ throw new NotImplementedException(); }
 
+        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Rendering.Box.BoxHitTestEntry entry) { throw new NotImplementedException(); }
 
-private void _LayoutText(double minWidth = 0.0,double maxWidth = default(double)){ throw new NotImplementedException(); }
 
+        private void _LayoutText(double minWidth = 0.0, double maxWidth = default(double)) { throw new NotImplementedException(); }
 
-public new void SystemFontsDidChange(){ throw new NotImplementedException(); }
 
+        public new void SystemFontsDidChange() { throw new NotImplementedException(); }
 
-private void _LayoutTextWithConstraints(FlutterSDK.Rendering.Box.BoxConstraints constraints){ throw new NotImplementedException(); }
 
+        private void _LayoutTextWithConstraints(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
 
-private void _LayoutChildren(FlutterSDK.Rendering.Box.BoxConstraints constraints){ throw new NotImplementedException(); }
 
+        private void _LayoutChildren(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
 
-private void _SetParentData(){ throw new NotImplementedException(); }
 
+        private void _SetParentData() { throw new NotImplementedException(); }
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
 
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
 
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-public virtual Offset GetOffsetForCaret(TextPosition position,FlutterBinding.UI.Rect caretPrototype){ throw new NotImplementedException(); }
 
+        public virtual Offset GetOffsetForCaret(TextPosition position, FlutterBinding.UI.Rect caretPrototype) { throw new NotImplementedException(); }
 
-public virtual List<TextBox> GetBoxesForSelection(FlutterSDK.Services.Textediting.TextSelection selection){ throw new NotImplementedException(); }
 
+        public virtual List<TextBox> GetBoxesForSelection(FlutterSDK.Services.Textediting.TextSelection selection) { throw new NotImplementedException(); }
 
-public virtual TextPosition GetPositionForOffset(FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
 
+        public virtual TextPosition GetPositionForOffset(FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-public virtual TextRange GetWordBoundary(TextPosition position){ throw new NotImplementedException(); }
 
+        public virtual TextRange GetWordBoundary(TextPosition position) { throw new NotImplementedException(); }
 
-private List<FlutterSDK.Painting.Inlinespan.InlineSpanSemanticsInformation> _CombineSemanticsInfo(){ throw new NotImplementedException(); }
 
+        private List<FlutterSDK.Painting.Inlinespan.InlineSpanSemanticsInformation> _CombineSemanticsInfo() { throw new NotImplementedException(); }
 
-public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config){ throw new NotImplementedException(); }
 
+        public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config) { throw new NotImplementedException(); }
 
-public new void AssembleSemanticsNode(FlutterSDK.Semantics.Semantics.SemanticsNode node,FlutterSDK.Semantics.Semantics.SemanticsConfiguration config,Iterable<FlutterSDK.Semantics.Semantics.SemanticsNode> children){ throw new NotImplementedException(); }
 
+        public new void AssembleSemanticsNode(FlutterSDK.Semantics.Semantics.SemanticsNode node, FlutterSDK.Semantics.Semantics.SemanticsConfiguration config, Iterable<FlutterSDK.Semantics.Semantics.SemanticsNode> children) { throw new NotImplementedException(); }
 
-public new void ClearSemantics(){ throw new NotImplementedException(); }
 
+        public new void ClearSemantics() { throw new NotImplementedException(); }
 
-public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren(){ throw new NotImplementedException(); }
 
+        public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren() { throw new NotImplementedException(); }
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public enum TextOverflow{
 
-Clip,
-Fade,
-Ellipsis,
-Visible,
-}
+    public enum TextOverflow
+    {
+
+        Clip,
+        Fade,
+        Ellipsis,
+        Visible,
+    }
 
 }

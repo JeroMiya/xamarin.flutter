@@ -292,38 +292,42 @@ using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
-namespace FlutterSDK.Foundation.Bitfield{
-internal static class BitfieldDefaultClass{
-public static int KMaxUnsignedSMI = default(int);
-}
-
-public interface IBitField<T>{}
-
-public class BitField<T>{
-
-public virtual bool IndexOfOperator(T index){ throw new NotImplementedException(); }
-
-
-public virtual void InsertAtOperator(T index,bool value){ throw new NotImplementedException(); }
-
-
-public virtual void Reset(bool value = false){ throw new NotImplementedException(); }
-
-}
-public static class BitFieldMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<object, object> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<object, object>();
-static BitField<T> GetOrCreate<T>(IBitField<T> instance)
+namespace FlutterSDK.Foundation.Bitfield
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new BitField<T>();
-_table.Add(instance, value);
-}
-return (BitField<T>)value;
-}
-public static bool IndexOfOperator<T>(this IBitField<T> instance,T index) => GetOrCreate(instance).IndexOfOperator(index);
-public static void InsertAtOperator<T>(this IBitField<T> instance,T index,bool value) => GetOrCreate(instance).InsertAtOperator(index, value);
-public static void Reset<T>(this IBitField<T> instance,bool value = false) => GetOrCreate(instance).Reset(value);
-}
+    internal static class BitfieldDefaultClass
+    {
+        public static int KMaxUnsignedSMI = default(int);
+    }
+
+    public interface IBitField<T> { }
+
+    public class BitField<T>
+    {
+
+        public virtual bool IndexOfOperator(T index) { throw new NotImplementedException(); }
+
+
+        public virtual void InsertAtOperator(T index, bool value) { throw new NotImplementedException(); }
+
+
+        public virtual void Reset(bool value = false) { throw new NotImplementedException(); }
+
+    }
+    public static class BitFieldMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<object, object> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<object, object>();
+        static BitField<T> GetOrCreate<T>(IBitField<T> instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new BitField<T>();
+                _table.Add(instance, value);
+            }
+            return (BitField<T>)value;
+        }
+        public static bool IndexOfOperator<T>(this IBitField<T> instance, T index) => GetOrCreate(instance).IndexOfOperator(index);
+        public static void InsertAtOperator<T>(this IBitField<T> instance, T index, bool value) => GetOrCreate(instance).InsertAtOperator(index, value);
+        public static void Reset<T>(this IBitField<T> instance, bool value = false) => GetOrCreate(instance).Reset(value);
+    }
 
 }

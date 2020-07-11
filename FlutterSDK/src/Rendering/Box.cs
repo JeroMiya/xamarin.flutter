@@ -421,526 +421,544 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Rendering.Box{
-public delegate bool BoxHitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position);
-internal static class BoxDefaultClass{
-}
-
-public interface IContainerBoxParentData<ChildType>{
-}
-
-
-public interface IRenderBox{
-void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child);
-double GetMinIntrinsicWidth(double height);
-double ComputeMinIntrinsicWidth(double height);
-double GetMaxIntrinsicWidth(double height);
-double ComputeMaxIntrinsicWidth(double height);
-double GetMinIntrinsicHeight(double width);
-double ComputeMinIntrinsicHeight(double width);
-double GetMaxIntrinsicHeight(double width);
-double ComputeMaxIntrinsicHeight(double width);
-Size DebugAdoptSize(Size value);
-void DebugResetSize();
-double GetDistanceToBaseline(TextBaseline baseline,bool onlyReal = false);
-double GetDistanceToActualBaseline(TextBaseline baseline);
-double ComputeDistanceToActualBaseline(TextBaseline baseline);
-void DebugAssertDoesMeetConstraints();
-void MarkNeedsLayout();
-void PerformResize();
-void PerformLayout();
-bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset));
-bool HitTestSelf(FlutterBinding.UI.Offset position);
-bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset));
-void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child,Matrix4 transform);
-Offset GlobalToLocal(FlutterBinding.UI.Offset point,FlutterSDK.Rendering.@object.RenderObject ancestor = default(FlutterSDK.Rendering.@object.RenderObject));
-Offset LocalToGlobal(FlutterBinding.UI.Offset point,FlutterSDK.Rendering.@object.RenderObject ancestor = default(FlutterSDK.Rendering.@object.RenderObject));
-void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event,FlutterSDK.Rendering.Box.BoxHitTestEntry entry);
-bool DebugHandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event,FlutterSDK.Gestures.Hittest.HitTestEntry entry);
-void DebugPaint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset);
-void DebugPaintSize(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset);
-void DebugPaintBaselines(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset);
-void DebugPaintPointers(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset);
-void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
-bool HasSize{get;}
-Size Size{get;set;}
-FlutterBinding.UI.Rect SemanticBounds{get;}
-FlutterSDK.Rendering.Box.BoxConstraints Constraints{get;}
-FlutterBinding.UI.Rect PaintBounds{get;}
-}
-
-
-public interface IRenderBoxContainerDefaultsMixin<ChildType,ParentDataType>{}
-
-public class RenderBoxContainerDefaultsMixin<ChildType,ParentDataType>:IContainerRenderObjectMixin<ChildType,ParentDataType>{
-
-public virtual double DefaultComputeDistanceToFirstActualBaseline(TextBaseline baseline){ throw new NotImplementedException(); }
-
-
-public virtual double DefaultComputeDistanceToHighestActualBaseline(TextBaseline baseline){ throw new NotImplementedException(); }
-
-
-public virtual bool DefaultHitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
-
-
-public virtual void DefaultPaint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
-
-
-public virtual List<ChildType> GetChildrenAsList(){ throw new NotImplementedException(); }
-
-internal virtual int _ChildCount{get;set;}
-internal virtual ChildType _FirstChild{get;set;}
-internal virtual ChildType _LastChild{get;set;}
-public virtual int ChildCount{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual ChildType FirstChild{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual ChildType LastChild{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-
-private bool _DebugUltimatePreviousSiblingOf(ChildType child,ChildType equals = default(ChildType)){ throw new NotImplementedException(); }
-
-
-private bool _DebugUltimateNextSiblingOf(ChildType child,ChildType equals = default(ChildType)){ throw new NotImplementedException(); }
-
-
-public virtual bool DebugValidateChild(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
-
-
-private void _InsertIntoChildList(ChildType child,ChildType after = default(ChildType)){ throw new NotImplementedException(); }
-
-
-public virtual void Insert(ChildType child,ChildType after = default(ChildType)){ throw new NotImplementedException(); }
-
-
-public virtual void Add(ChildType child){ throw new NotImplementedException(); }
-
-
-public virtual void AddAll(List<ChildType> children){ throw new NotImplementedException(); }
-
-
-private void _RemoveFromChildList(ChildType child){ throw new NotImplementedException(); }
-
-
-public virtual void Remove(ChildType child){ throw new NotImplementedException(); }
-
-
-public virtual void RemoveAll(){ throw new NotImplementedException(); }
-
-
-public virtual void Move(ChildType child,ChildType after = default(ChildType)){ throw new NotImplementedException(); }
-
-
-public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner){ throw new NotImplementedException(); }
-public new void Attach(@Object owner){ throw new NotImplementedException(); }
-
-
-public new void Detach(){ throw new NotImplementedException(); }
-
-
-public new void RedepthChildren(){ throw new NotImplementedException(); }
-
-
-public new void VisitChildren(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor){ throw new NotImplementedException(); }
-
-
-public virtual ChildType ChildBefore(ChildType child){ throw new NotImplementedException(); }
-
-
-public virtual ChildType ChildAfter(ChildType child){ throw new NotImplementedException(); }
-
-
-public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren(){ throw new NotImplementedException(); }
-
-}
-public static class RenderBoxContainerDefaultsMixinMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<object, object> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<object, object>();
-static RenderBoxContainerDefaultsMixin<ChildType,ParentDataType> GetOrCreate<ChildType,ParentDataType>(IRenderBoxContainerDefaultsMixin<ChildType,ParentDataType> instance)
+namespace FlutterSDK.Rendering.Box
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new RenderBoxContainerDefaultsMixin<ChildType,ParentDataType>();
-_table.Add(instance, value);
-}
-return (RenderBoxContainerDefaultsMixin<ChildType,ParentDataType>)value;
-}
-public static double DefaultComputeDistanceToFirstActualBaseline<ChildType,ParentDataType>(this IRenderBoxContainerDefaultsMixin<ChildType,ParentDataType> instance,TextBaseline baseline) => GetOrCreate(instance).DefaultComputeDistanceToFirstActualBaseline(baseline);
-public static double DefaultComputeDistanceToHighestActualBaseline<ChildType,ParentDataType>(this IRenderBoxContainerDefaultsMixin<ChildType,ParentDataType> instance,TextBaseline baseline) => GetOrCreate(instance).DefaultComputeDistanceToHighestActualBaseline(baseline);
-public static bool DefaultHitTestChildren<ChildType,ParentDataType>(this IRenderBoxContainerDefaultsMixin<ChildType,ParentDataType> instance,FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) => GetOrCreate(instance).DefaultHitTestChildren(result, position);
-public static void DefaultPaint<ChildType,ParentDataType>(this IRenderBoxContainerDefaultsMixin<ChildType,ParentDataType> instance,FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset) => GetOrCreate(instance).DefaultPaint(context, offset);
-public static List<ChildType> GetChildrenAsList<ChildType,ParentDataType>(this IRenderBoxContainerDefaultsMixin<ChildType,ParentDataType> instance) => GetOrCreate(instance).GetChildrenAsList();
-}
+    public delegate bool BoxHitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position);
+    internal static class BoxDefaultClass
+    {
+    }
 
+    public interface IContainerBoxParentData<ChildType>
+    {
+    }
 
-public class _DebugSize : Size
-{
-#region constructors
-public _DebugSize(Size source,FlutterSDK.Rendering.Box.RenderBox _owner,bool _canBeUsedByParent)
-: base(source)
-{
-this._Owner = _owner;
-this._CanBeUsedByParent = _canBeUsedByParent;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-internal virtual FlutterSDK.Rendering.Box.RenderBox _Owner{get;set;}
-internal virtual bool _CanBeUsedByParent{get;set;}
-#endregion
+    public interface IRenderBox
+    {
+        void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child);
+        double GetMinIntrinsicWidth(double height);
+        double ComputeMinIntrinsicWidth(double height);
+        double GetMaxIntrinsicWidth(double height);
+        double ComputeMaxIntrinsicWidth(double height);
+        double GetMinIntrinsicHeight(double width);
+        double ComputeMinIntrinsicHeight(double width);
+        double GetMaxIntrinsicHeight(double width);
+        double ComputeMaxIntrinsicHeight(double width);
+        Size DebugAdoptSize(Size value);
+        void DebugResetSize();
+        double GetDistanceToBaseline(TextBaseline baseline, bool onlyReal = false);
+        double GetDistanceToActualBaseline(TextBaseline baseline);
+        double ComputeDistanceToActualBaseline(TextBaseline baseline);
+        void DebugAssertDoesMeetConstraints();
+        void MarkNeedsLayout();
+        void PerformResize();
+        void PerformLayout();
+        bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset));
+        bool HitTestSelf(FlutterBinding.UI.Offset position);
+        bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset));
+        void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform);
+        Offset GlobalToLocal(FlutterBinding.UI.Offset point, FlutterSDK.Rendering.@object.RenderObject ancestor = default(FlutterSDK.Rendering.@object.RenderObject));
+        Offset LocalToGlobal(FlutterBinding.UI.Offset point, FlutterSDK.Rendering.@object.RenderObject ancestor = default(FlutterSDK.Rendering.@object.RenderObject));
+        void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Rendering.Box.BoxHitTestEntry entry);
+        bool DebugHandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Hittest.HitTestEntry entry);
+        void DebugPaint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset);
+        void DebugPaintSize(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset);
+        void DebugPaintBaselines(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset);
+        void DebugPaintPointers(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset);
+        void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
+        bool HasSize { get; }
+        Size Size { get; set; }
+        FlutterBinding.UI.Rect SemanticBounds { get; }
+        FlutterSDK.Rendering.Box.BoxConstraints Constraints { get; }
+        FlutterBinding.UI.Rect PaintBounds { get; }
+    }
 
-#region methods
-#endregion
-}
 
+    public interface IRenderBoxContainerDefaultsMixin<ChildType, ParentDataType> { }
 
-public class BoxConstraints : FlutterSDK.Rendering.@object.Constraints
-{
-#region constructors
-public BoxConstraints(double minWidth = 0.0,double maxWidth = default(double),double minHeight = 0.0,double maxHeight = default(double))
-: base()
-{
-this.MinWidth = minWidth;
-this.MaxWidth = maxWidth;
-this.MinHeight = minHeight;
-this.MaxHeight = maxHeight;throw new NotImplementedException(); }
-public static BoxConstraints Tight(Size size)
-{
-var instance =new BoxConstraints();throw new NotImplementedException(); }
-public static BoxConstraints TightFor(double width = default(double),double height = default(double))
-{
-var instance =new BoxConstraints();throw new NotImplementedException(); }
-public static BoxConstraints TightForFinite(double width = default(double),double height = default(double))
-{
-var instance =new BoxConstraints();throw new NotImplementedException(); }
-public static BoxConstraints Loose(Size size)
-{
-var instance =new BoxConstraints();throw new NotImplementedException(); }
-public static BoxConstraints Expand(double width = default(double),double height = default(double))
-{
-var instance =new BoxConstraints();throw new NotImplementedException(); }
-#endregion
+    public class RenderBoxContainerDefaultsMixin<ChildType, ParentDataType> : IContainerRenderObjectMixin<ChildType, ParentDataType>
+    {
 
-#region fields
-public virtual double MinWidth{get;set;}
-public virtual double MaxWidth{get;set;}
-public virtual double MinHeight{get;set;}
-public virtual double MaxHeight{get;set;}
-public virtual FlutterSDK.Rendering.Box.BoxConstraints Flipped{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual Size Biggest{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual Size Smallest{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool HasTightWidth{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool HasTightHeight{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsTight{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool HasBoundedWidth{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool HasBoundedHeight{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool HasInfiniteWidth{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool HasInfiniteHeight{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsNormalized{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        public virtual double DefaultComputeDistanceToFirstActualBaseline(TextBaseline baseline) { throw new NotImplementedException(); }
 
-#region methods
 
-public virtual FlutterSDK.Rendering.Box.BoxConstraints CopyWith(double minWidth = default(double),double maxWidth = default(double),double minHeight = default(double),double maxHeight = default(double)){ throw new NotImplementedException(); }
+        public virtual double DefaultComputeDistanceToHighestActualBaseline(TextBaseline baseline) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Rendering.Box.BoxConstraints Deflate(FlutterSDK.Painting.Edgeinsets.EdgeInsets edges){ throw new NotImplementedException(); }
+        public virtual bool DefaultHitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Rendering.Box.BoxConstraints Loosen(){ throw new NotImplementedException(); }
+        public virtual void DefaultPaint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Rendering.Box.BoxConstraints Enforce(FlutterSDK.Rendering.Box.BoxConstraints constraints){ throw new NotImplementedException(); }
+        public virtual List<ChildType> GetChildrenAsList() { throw new NotImplementedException(); }
 
+        internal virtual int _ChildCount { get; set; }
+        internal virtual ChildType _FirstChild { get; set; }
+        internal virtual ChildType _LastChild { get; set; }
+        public virtual int ChildCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual ChildType FirstChild { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual ChildType LastChild { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
-public virtual FlutterSDK.Rendering.Box.BoxConstraints Tighten(double width = default(double),double height = default(double)){ throw new NotImplementedException(); }
+        private bool _DebugUltimatePreviousSiblingOf(ChildType child, ChildType equals = default(ChildType)) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Rendering.Box.BoxConstraints WidthConstraints(){ throw new NotImplementedException(); }
+        private bool _DebugUltimateNextSiblingOf(ChildType child, ChildType equals = default(ChildType)) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Rendering.Box.BoxConstraints HeightConstraints(){ throw new NotImplementedException(); }
+        public virtual bool DebugValidateChild(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
 
-public virtual double ConstrainWidth(double width = default(double)){ throw new NotImplementedException(); }
+        private void _InsertIntoChildList(ChildType child, ChildType after = default(ChildType)) { throw new NotImplementedException(); }
 
 
-public virtual double ConstrainHeight(double height = default(double)){ throw new NotImplementedException(); }
+        public virtual void Insert(ChildType child, ChildType after = default(ChildType)) { throw new NotImplementedException(); }
 
 
-private Size _DebugPropagateDebugSize(Size size,Size result){ throw new NotImplementedException(); }
+        public virtual void Add(ChildType child) { throw new NotImplementedException(); }
 
 
-public virtual Size Constrain(Size size){ throw new NotImplementedException(); }
+        public virtual void AddAll(List<ChildType> children) { throw new NotImplementedException(); }
 
 
-public virtual Size ConstrainDimensions(double width,double height){ throw new NotImplementedException(); }
+        private void _RemoveFromChildList(ChildType child) { throw new NotImplementedException(); }
 
 
-public virtual Size ConstrainSizeAndAttemptToPreserveAspectRatio(Size size){ throw new NotImplementedException(); }
+        public virtual void Remove(ChildType child) { throw new NotImplementedException(); }
 
 
-public virtual bool IsSatisfiedBy(Size size){ throw new NotImplementedException(); }
+        public virtual void RemoveAll() { throw new NotImplementedException(); }
+
 
+        public virtual void Move(ChildType child, ChildType after = default(ChildType)) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Rendering.Box.BoxConstraints MultiplyOperator(double factor){ throw new NotImplementedException(); }
+
+        public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner) { throw new NotImplementedException(); }
+        public new void Attach(@Object owner) { throw new NotImplementedException(); }
+
+
+        public new void Detach() { throw new NotImplementedException(); }
+
+
+        public new void RedepthChildren() { throw new NotImplementedException(); }
+
+
+        public new void VisitChildren(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor) { throw new NotImplementedException(); }
+
+
+        public virtual ChildType ChildBefore(ChildType child) { throw new NotImplementedException(); }
+
+
+        public virtual ChildType ChildAfter(ChildType child) { throw new NotImplementedException(); }
+
+
+        public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren() { throw new NotImplementedException(); }
+
+    }
+    public static class RenderBoxContainerDefaultsMixinMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<object, object> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<object, object>();
+        static RenderBoxContainerDefaultsMixin<ChildType, ParentDataType> GetOrCreate<ChildType, ParentDataType>(IRenderBoxContainerDefaultsMixin<ChildType, ParentDataType> instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new RenderBoxContainerDefaultsMixin<ChildType, ParentDataType>();
+                _table.Add(instance, value);
+            }
+            return (RenderBoxContainerDefaultsMixin<ChildType, ParentDataType>)value;
+        }
+        public static double DefaultComputeDistanceToFirstActualBaseline<ChildType, ParentDataType>(this IRenderBoxContainerDefaultsMixin<ChildType, ParentDataType> instance, TextBaseline baseline) => GetOrCreate(instance).DefaultComputeDistanceToFirstActualBaseline(baseline);
+        public static double DefaultComputeDistanceToHighestActualBaseline<ChildType, ParentDataType>(this IRenderBoxContainerDefaultsMixin<ChildType, ParentDataType> instance, TextBaseline baseline) => GetOrCreate(instance).DefaultComputeDistanceToHighestActualBaseline(baseline);
+        public static bool DefaultHitTestChildren<ChildType, ParentDataType>(this IRenderBoxContainerDefaultsMixin<ChildType, ParentDataType> instance, FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) => GetOrCreate(instance).DefaultHitTestChildren(result, position);
+        public static void DefaultPaint<ChildType, ParentDataType>(this IRenderBoxContainerDefaultsMixin<ChildType, ParentDataType> instance, FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) => GetOrCreate(instance).DefaultPaint(context, offset);
+        public static List<ChildType> GetChildrenAsList<ChildType, ParentDataType>(this IRenderBoxContainerDefaultsMixin<ChildType, ParentDataType> instance) => GetOrCreate(instance).GetChildrenAsList();
+    }
 
 
-public virtual FlutterSDK.Rendering.Box.BoxConstraints DivideOperator(double factor){ throw new NotImplementedException(); }
+    public class _DebugSize : Size
+    {
+        #region constructors
+        public _DebugSize(Size source, FlutterSDK.Rendering.Box.RenderBox _owner, bool _canBeUsedByParent)
+        : base(source)
+        {
+            this._Owner = _owner;
+            this._CanBeUsedByParent = _canBeUsedByParent; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual FlutterSDK.Rendering.Box.RenderBox _Owner { get; set; }
+        internal virtual bool _CanBeUsedByParent { get; set; }
+        #endregion
 
-public virtual FlutterSDK.Rendering.Box.BoxConstraints DivideIntegerResultOperator(double factor){ throw new NotImplementedException(); }
+        #region methods
+        #endregion
+    }
 
 
-public virtual FlutterSDK.Rendering.Box.BoxConstraints ModuloOperator(double value){ throw new NotImplementedException(); }
+    public class BoxConstraints : FlutterSDK.Rendering.@object.Constraints
+    {
+        #region constructors
+        public BoxConstraints(double minWidth = 0.0, double maxWidth = default(double), double minHeight = 0.0, double maxHeight = default(double))
+        : base()
+        {
+            this.MinWidth = minWidth;
+            this.MaxWidth = maxWidth;
+            this.MinHeight = minHeight;
+            this.MaxHeight = maxHeight; throw new NotImplementedException();
+        }
+        public static BoxConstraints Tight(Size size)
+        {
+            var instance = new BoxConstraints(); throw new NotImplementedException();
+        }
+        public static BoxConstraints TightFor(double width = default(double), double height = default(double))
+        {
+            var instance = new BoxConstraints(); throw new NotImplementedException();
+        }
+        public static BoxConstraints TightForFinite(double width = default(double), double height = default(double))
+        {
+            var instance = new BoxConstraints(); throw new NotImplementedException();
+        }
+        public static BoxConstraints Loose(Size size)
+        {
+            var instance = new BoxConstraints(); throw new NotImplementedException();
+        }
+        public static BoxConstraints Expand(double width = default(double), double height = default(double))
+        {
+            var instance = new BoxConstraints(); throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual double MinWidth { get; set; }
+        public virtual double MaxWidth { get; set; }
+        public virtual double MinHeight { get; set; }
+        public virtual double MaxHeight { get; set; }
+        public virtual FlutterSDK.Rendering.Box.BoxConstraints Flipped { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual Size Biggest { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual Size Smallest { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool HasTightWidth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool HasTightHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsTight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool HasBoundedWidth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool HasBoundedHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool HasInfiniteWidth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool HasInfiniteHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsNormalized { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual FlutterSDK.Rendering.Box.BoxConstraints Lerp(FlutterSDK.Rendering.Box.BoxConstraints a,FlutterSDK.Rendering.Box.BoxConstraints b,double t){ throw new NotImplementedException(); }
+        #region methods
 
+        public virtual FlutterSDK.Rendering.Box.BoxConstraints CopyWith(double minWidth = default(double), double maxWidth = default(double), double minHeight = default(double), double maxHeight = default(double)) { throw new NotImplementedException(); }
 
-public new bool DebugAssertIsValid(bool isAppliedConstraint = false,FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector)){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Rendering.Box.BoxConstraints Deflate(FlutterSDK.Painting.Edgeinsets.EdgeInsets edges) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Rendering.Box.BoxConstraints Normalize(){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Rendering.Box.BoxConstraints Loosen() { throw new NotImplementedException(); }
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Rendering.Box.BoxConstraints Enforce(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public virtual FlutterSDK.Rendering.Box.BoxConstraints Tighten(double width = default(double), double height = default(double)) { throw new NotImplementedException(); }
 
-public class BoxHitTestResult : FlutterSDK.Gestures.Hittest.HitTestResult
-{
-#region constructors
-public BoxHitTestResult()
-: base()
-{
-throw new NotImplementedException(); }
-public static BoxHitTestResult Wrap(FlutterSDK.Gestures.Hittest.HitTestResult result)
-{
-var instance =new BoxHitTestResult(result);throw new NotImplementedException(); }
-#endregion
 
-#region fields
-#endregion
+        public virtual FlutterSDK.Rendering.Box.BoxConstraints WidthConstraints() { throw new NotImplementedException(); }
 
-#region methods
 
-public virtual bool AddWithPaintTransform(Matrix4 transform = default(Matrix4),FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset),FlutterSDK.Rendering.Box.BoxHitTest hitTest = default(FlutterSDK.Rendering.Box.BoxHitTest)){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Rendering.Box.BoxConstraints HeightConstraints() { throw new NotImplementedException(); }
 
 
-public virtual bool AddWithPaintOffset(FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset),FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset),FlutterSDK.Rendering.Box.BoxHitTest hitTest = default(FlutterSDK.Rendering.Box.BoxHitTest)){ throw new NotImplementedException(); }
+        public virtual double ConstrainWidth(double width = default(double)) { throw new NotImplementedException(); }
 
 
-public virtual bool AddWithRawTransform(Matrix4 transform = default(Matrix4),FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset),FlutterSDK.Rendering.Box.BoxHitTest hitTest = default(FlutterSDK.Rendering.Box.BoxHitTest)){ throw new NotImplementedException(); }
+        public virtual double ConstrainHeight(double height = default(double)) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        private Size _DebugPropagateDebugSize(Size size, Size result) { throw new NotImplementedException(); }
 
-public class BoxHitTestEntry : FlutterSDK.Gestures.Hittest.HitTestEntry
-{
-#region constructors
-public BoxHitTestEntry(FlutterSDK.Rendering.Box.RenderBox target,FlutterBinding.UI.Offset localPosition)
-: base(target)
-{
-this.LocalPosition = localPosition;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual FlutterBinding.UI.Offset LocalPosition{get;set;}
-public virtual FlutterSDK.Rendering.Box.RenderBox Target{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        public virtual Size Constrain(Size size) { throw new NotImplementedException(); }
 
-#region methods
 
-#endregion
-}
+        public virtual Size ConstrainDimensions(double width, double height) { throw new NotImplementedException(); }
 
 
-public class BoxParentData : FlutterSDK.Rendering.@object.ParentData
-{
-#region constructors
-public BoxParentData()
-{ }
-#endregion
+        public virtual Size ConstrainSizeAndAttemptToPreserveAspectRatio(Size size) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterBinding.UI.Offset Offset{get;set;}
-#endregion
 
-#region methods
+        public virtual bool IsSatisfiedBy(Size size) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public virtual FlutterSDK.Rendering.Box.BoxConstraints MultiplyOperator(double factor) { throw new NotImplementedException(); }
 
-public class ContainerBoxParentData<ChildType> : FlutterSDK.Rendering.Box.BoxParentData,IContainerParentDataMixin<ChildType>
-{
-#region constructors
-public ContainerBoxParentData()
-{ }
-#endregion
 
-#region fields
-#endregion
+        public virtual FlutterSDK.Rendering.Box.BoxConstraints DivideOperator(double factor) { throw new NotImplementedException(); }
 
-#region methods
-#endregion
-}
 
+        public virtual FlutterSDK.Rendering.Box.BoxConstraints DivideIntegerResultOperator(double factor) { throw new NotImplementedException(); }
 
-public class _IntrinsicDimensionsCacheEntry
-{
-#region constructors
-public _IntrinsicDimensionsCacheEntry(FlutterSDK.Rendering.Box._IntrinsicDimension dimension,double argument)
-{
-this.Dimension = dimension;
-this.Argument = argument;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual FlutterSDK.Rendering.Box._IntrinsicDimension Dimension{get;set;}
-public virtual double Argument{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        public virtual FlutterSDK.Rendering.Box.BoxConstraints ModuloOperator(double value) { throw new NotImplementedException(); }
 
-#region methods
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Rendering.Box.BoxConstraints Lerp(FlutterSDK.Rendering.Box.BoxConstraints a, FlutterSDK.Rendering.Box.BoxConstraints b, double t) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new bool DebugAssertIsValid(bool isAppliedConstraint = false, FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector)) { throw new NotImplementedException(); }
 
-public class RenderBox : FlutterSDK.Rendering.@object.RenderObject
-{
-#region constructors
-public RenderBox()
-{ }
-#endregion
 
-#region fields
-internal virtual Dictionary<FlutterSDK.Rendering.Box._IntrinsicDimensionsCacheEntry,double> _CachedIntrinsicDimensions{get;set;}
-internal virtual Size _Size{get;set;}
-internal virtual Dictionary<TextBaseline,double> _CachedBaselines{get;set;}
-internal virtual bool _DebugDoingBaseline{get;set;}
-internal virtual int _DebugActivePointers{get;set;}
-public virtual bool HasSize{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual Size Size{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterBinding.UI.Rect SemanticBounds{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterBinding.UI.Rect PaintBounds{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        public virtual FlutterSDK.Rendering.Box.BoxConstraints Normalize() { throw new NotImplementedException(); }
 
-#region methods
 
-public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
-private double _ComputeIntrinsicDimension(FlutterSDK.Rendering.Box._IntrinsicDimension dimension,double argument,Func<double,double> computer){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public virtual double GetMinIntrinsicWidth(double height){ throw new NotImplementedException(); }
+    public class BoxHitTestResult : FlutterSDK.Gestures.Hittest.HitTestResult
+    {
+        #region constructors
+        public BoxHitTestResult()
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        public static BoxHitTestResult Wrap(FlutterSDK.Gestures.Hittest.HitTestResult result)
+        {
+            var instance = new BoxHitTestResult(result); throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        #endregion
 
-public virtual double ComputeMinIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        #region methods
 
+        public virtual bool AddWithPaintTransform(Matrix4 transform = default(Matrix4), FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterSDK.Rendering.Box.BoxHitTest hitTest = default(FlutterSDK.Rendering.Box.BoxHitTest)) { throw new NotImplementedException(); }
 
-public virtual double GetMaxIntrinsicWidth(double height){ throw new NotImplementedException(); }
 
+        public virtual bool AddWithPaintOffset(FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterSDK.Rendering.Box.BoxHitTest hitTest = default(FlutterSDK.Rendering.Box.BoxHitTest)) { throw new NotImplementedException(); }
 
-public virtual double ComputeMaxIntrinsicWidth(double height){ throw new NotImplementedException(); }
 
+        public virtual bool AddWithRawTransform(Matrix4 transform = default(Matrix4), FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterSDK.Rendering.Box.BoxHitTest hitTest = default(FlutterSDK.Rendering.Box.BoxHitTest)) { throw new NotImplementedException(); }
 
-public virtual double GetMinIntrinsicHeight(double width){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public virtual double ComputeMinIntrinsicHeight(double width){ throw new NotImplementedException(); }
+    public class BoxHitTestEntry : FlutterSDK.Gestures.Hittest.HitTestEntry
+    {
+        #region constructors
+        public BoxHitTestEntry(FlutterSDK.Rendering.Box.RenderBox target, FlutterBinding.UI.Offset localPosition)
+        : base(target)
+        {
+            this.LocalPosition = localPosition; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
+        public virtual FlutterSDK.Rendering.Box.RenderBox Target { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual double GetMaxIntrinsicHeight(double width){ throw new NotImplementedException(); }
+        #region methods
 
+        #endregion
+    }
 
-public virtual double ComputeMaxIntrinsicHeight(double width){ throw new NotImplementedException(); }
 
+    public class BoxParentData : FlutterSDK.Rendering.@object.ParentData
+    {
+        #region constructors
+        public BoxParentData()
+        { }
+        #endregion
 
-public virtual Size DebugAdoptSize(Size value){ throw new NotImplementedException(); }
+        #region fields
+        public virtual FlutterBinding.UI.Offset Offset { get; set; }
+        #endregion
 
+        #region methods
 
-public new void DebugResetSize(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-private bool _DebugSetDoingBaseline(bool value){ throw new NotImplementedException(); }
+    public class ContainerBoxParentData<ChildType> : FlutterSDK.Rendering.Box.BoxParentData, IContainerParentDataMixin<ChildType>
+    {
+        #region constructors
+        public ContainerBoxParentData()
+        { }
+        #endregion
 
+        #region fields
+        #endregion
 
-public virtual double GetDistanceToBaseline(TextBaseline baseline,bool onlyReal = false){ throw new NotImplementedException(); }
+        #region methods
+        #endregion
+    }
 
 
-public virtual double GetDistanceToActualBaseline(TextBaseline baseline){ throw new NotImplementedException(); }
+    public class _IntrinsicDimensionsCacheEntry
+    {
+        #region constructors
+        public _IntrinsicDimensionsCacheEntry(FlutterSDK.Rendering.Box._IntrinsicDimension dimension, double argument)
+        {
+            this.Dimension = dimension;
+            this.Argument = argument; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual FlutterSDK.Rendering.Box._IntrinsicDimension Dimension { get; set; }
+        public virtual double Argument { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual double ComputeDistanceToActualBaseline(TextBaseline baseline){ throw new NotImplementedException(); }
+        #region methods
 
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
-public new void DebugAssertDoesMeetConstraints(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void MarkNeedsLayout(){ throw new NotImplementedException(); }
+    public class RenderBox : FlutterSDK.Rendering.@object.RenderObject
+    {
+        #region constructors
+        public RenderBox()
+        { }
+        #endregion
 
+        #region fields
+        internal virtual Dictionary<FlutterSDK.Rendering.Box._IntrinsicDimensionsCacheEntry, double> _CachedIntrinsicDimensions { get; set; }
+        internal virtual Size _Size { get; set; }
+        internal virtual Dictionary<TextBaseline, double> _CachedBaselines { get; set; }
+        internal virtual bool _DebugDoingBaseline { get; set; }
+        internal virtual int _DebugActivePointers { get; set; }
+        public virtual bool HasSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual Size Size { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Rect SemanticBounds { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Rect PaintBounds { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new void PerformResize(){ throw new NotImplementedException(); }
+        #region methods
 
+        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
 
+        private double _ComputeIntrinsicDimension(FlutterSDK.Rendering.Box._IntrinsicDimension dimension, double argument, Func<double, double> computer) { throw new NotImplementedException(); }
 
-public virtual bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
 
+        public virtual double GetMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
-public virtual bool HitTestSelf(FlutterBinding.UI.Offset position){ throw new NotImplementedException(); }
 
+        public virtual double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
-public virtual bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
 
+        public virtual double GetMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
-public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child,Matrix4 transform){ throw new NotImplementedException(); }
 
+        public virtual double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
-public virtual Offset GlobalToLocal(FlutterBinding.UI.Offset point,FlutterSDK.Rendering.@object.RenderObject ancestor = default(FlutterSDK.Rendering.@object.RenderObject)){ throw new NotImplementedException(); }
 
+        public virtual double GetMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
-public virtual Offset LocalToGlobal(FlutterBinding.UI.Offset point,FlutterSDK.Rendering.@object.RenderObject ancestor = default(FlutterSDK.Rendering.@object.RenderObject)){ throw new NotImplementedException(); }
 
+        public virtual double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
-public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event,FlutterSDK.Rendering.Box.BoxHitTestEntry entry){ throw new NotImplementedException(); }
 
+        public virtual double GetMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
-public virtual bool DebugHandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event,FlutterSDK.Gestures.Hittest.HitTestEntry entry){ throw new NotImplementedException(); }
 
+        public virtual double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
-public new void DebugPaint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
 
+        public virtual Size DebugAdoptSize(Size value) { throw new NotImplementedException(); }
 
-public virtual void DebugPaintSize(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
 
+        public new void DebugResetSize() { throw new NotImplementedException(); }
 
-public virtual void DebugPaintBaselines(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
 
+        private bool _DebugSetDoingBaseline(bool value) { throw new NotImplementedException(); }
 
-public virtual void DebugPaintPointers(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
 
+        public virtual double GetDistanceToBaseline(TextBaseline baseline, bool onlyReal = false) { throw new NotImplementedException(); }
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public virtual double GetDistanceToActualBaseline(TextBaseline baseline) { throw new NotImplementedException(); }
 
 
-public enum _IntrinsicDimension{
+        public virtual double ComputeDistanceToActualBaseline(TextBaseline baseline) { throw new NotImplementedException(); }
 
-MinWidth,
-MaxWidth,
-MinHeight,
-MaxHeight,
-}
+
+        public new void DebugAssertDoesMeetConstraints() { throw new NotImplementedException(); }
+
+
+        public new void MarkNeedsLayout() { throw new NotImplementedException(); }
+
+
+        public new void PerformResize() { throw new NotImplementedException(); }
+
+
+        public new void PerformLayout() { throw new NotImplementedException(); }
+
+
+        public virtual bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
+
+
+        public virtual bool HitTestSelf(FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
+
+
+        public virtual bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
+
+
+        public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform) { throw new NotImplementedException(); }
+
+
+        public virtual Offset GlobalToLocal(FlutterBinding.UI.Offset point, FlutterSDK.Rendering.@object.RenderObject ancestor = default(FlutterSDK.Rendering.@object.RenderObject)) { throw new NotImplementedException(); }
+
+
+        public virtual Offset LocalToGlobal(FlutterBinding.UI.Offset point, FlutterSDK.Rendering.@object.RenderObject ancestor = default(FlutterSDK.Rendering.@object.RenderObject)) { throw new NotImplementedException(); }
+
+
+        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Rendering.Box.BoxHitTestEntry entry) { throw new NotImplementedException(); }
+
+
+        public virtual bool DebugHandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Hittest.HitTestEntry entry) { throw new NotImplementedException(); }
+
+
+        public new void DebugPaint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
+
+
+        public virtual void DebugPaintSize(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
+
+
+        public virtual void DebugPaintBaselines(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
+
+
+        public virtual void DebugPaintPointers(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public enum _IntrinsicDimension
+    {
+
+        MinWidth,
+        MaxWidth,
+        MinHeight,
+        MaxHeight,
+    }
 
 }

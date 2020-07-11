@@ -423,284 +423,292 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Overlay{
-internal static class OverlayDefaultClass{
-}
-
-public class OverlayEntry
+namespace FlutterSDK.Widgets.Overlay
 {
-#region constructors
-public OverlayEntry(FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder),bool opaque = false,bool maintainState = false)
-: base()
-{
-this.Builder = builder;throw new NotImplementedException(); }
-#endregion
+    internal static class OverlayDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder{get;set;}
-internal virtual bool _Opaque{get;set;}
-internal virtual bool _MaintainState{get;set;}
-internal virtual FlutterSDK.Widgets.Overlay.OverlayState _Overlay{get;set;}
-internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Overlay._OverlayEntryWidgetState> _Key{get;set;}
-public virtual bool Opaque{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool MaintainState{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
+    public class OverlayEntry
+    {
+        #region constructors
+        public OverlayEntry(FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), bool opaque = false, bool maintainState = false)
+        : base()
+        {
+            this.Builder = builder; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder { get; set; }
+        internal virtual bool _Opaque { get; set; }
+        internal virtual bool _MaintainState { get; set; }
+        internal virtual FlutterSDK.Widgets.Overlay.OverlayState _Overlay { get; set; }
+        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Overlay._OverlayEntryWidgetState> _Key { get; set; }
+        public virtual bool Opaque { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool MaintainState { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual void Remove(){ throw new NotImplementedException(); }
+        #region methods
 
+        public virtual void Remove() { throw new NotImplementedException(); }
 
-public virtual void MarkNeedsBuild(){ throw new NotImplementedException(); }
 
+        public virtual void MarkNeedsBuild() { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        #endregion
+    }
 
-public class _OverlayEntryWidget : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public _OverlayEntryWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Overlay.OverlayEntry entry = default(FlutterSDK.Widgets.Overlay.OverlayEntry),bool tickerEnabled = true)
-: base(key:key)
-{
-this.Entry = entry;
-this.TickerEnabled = tickerEnabled;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual FlutterSDK.Widgets.Overlay.OverlayEntry Entry{get;set;}
-public virtual bool TickerEnabled{get;set;}
-#endregion
+    public class _OverlayEntryWidget : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public _OverlayEntryWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Overlay.OverlayEntry entry = default(FlutterSDK.Widgets.Overlay.OverlayEntry), bool tickerEnabled = true)
+        : base(key: key)
+        {
+            this.Entry = entry;
+            this.TickerEnabled = tickerEnabled; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Widgets.Overlay.OverlayEntry Entry { get; set; }
+        public virtual bool TickerEnabled { get; set; }
+        #endregion
 
-public new FlutterSDK.Widgets.Overlay._OverlayEntryWidgetState CreateState(){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new FlutterSDK.Widgets.Overlay._OverlayEntryWidgetState CreateState() { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class _OverlayEntryWidgetState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Overlay._OverlayEntryWidget>
-{
-#region constructors
-public _OverlayEntryWidgetState()
-{ }
-#endregion
 
-#region fields
-#endregion
+    public class _OverlayEntryWidgetState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Overlay._OverlayEntryWidget>
+    {
+        #region constructors
+        public _OverlayEntryWidgetState()
+        { }
+        #endregion
 
-#region methods
+        #region fields
+        #endregion
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
 
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-private void _MarkNeedsBuild(){ throw new NotImplementedException(); }
 
-#endregion
-}
+        private void _MarkNeedsBuild() { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class Overlay : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public Overlay(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),List<FlutterSDK.Widgets.Overlay.OverlayEntry> initialEntries = default(List<FlutterSDK.Widgets.Overlay.OverlayEntry>))
-: base(key:key)
-{
-this.InitialEntries = initialEntries;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual List<FlutterSDK.Widgets.Overlay.OverlayEntry> InitialEntries{get;set;}
-#endregion
+    public class Overlay : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public Overlay(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Overlay.OverlayEntry> initialEntries = default(List<FlutterSDK.Widgets.Overlay.OverlayEntry>))
+        : base(key: key)
+        {
+            this.InitialEntries = initialEntries; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual List<FlutterSDK.Widgets.Overlay.OverlayEntry> InitialEntries { get; set; }
+        #endregion
 
-public virtual FlutterSDK.Widgets.Overlay.OverlayState Of(FlutterSDK.Widgets.Framework.BuildContext context,bool rootOverlay = false,FlutterSDK.Widgets.Framework.Widget debugRequiredFor = default(FlutterSDK.Widgets.Framework.Widget)){ throw new NotImplementedException(); }
+        #region methods
 
+        public virtual FlutterSDK.Widgets.Overlay.OverlayState Of(FlutterSDK.Widgets.Framework.BuildContext context, bool rootOverlay = false, FlutterSDK.Widgets.Framework.Widget debugRequiredFor = default(FlutterSDK.Widgets.Framework.Widget)) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Widgets.Overlay.OverlayState CreateState(){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new FlutterSDK.Widgets.Overlay.OverlayState CreateState() { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class OverlayState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Overlay.Overlay>,ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-#region constructors
-public OverlayState()
-{ }
-#endregion
 
-#region fields
-internal virtual List<FlutterSDK.Widgets.Overlay.OverlayEntry> _Entries{get;set;}
-#endregion
+    public class OverlayState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Overlay.Overlay>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public OverlayState()
+        { }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual List<FlutterSDK.Widgets.Overlay.OverlayEntry> _Entries { get; set; }
+        #endregion
 
-public new void InitState(){ throw new NotImplementedException(); }
+        #region methods
 
+        public new void InitState() { throw new NotImplementedException(); }
 
-private int _InsertionIndex(FlutterSDK.Widgets.Overlay.OverlayEntry below,FlutterSDK.Widgets.Overlay.OverlayEntry above){ throw new NotImplementedException(); }
 
+        private int _InsertionIndex(FlutterSDK.Widgets.Overlay.OverlayEntry below, FlutterSDK.Widgets.Overlay.OverlayEntry above) { throw new NotImplementedException(); }
 
-public virtual void Insert(FlutterSDK.Widgets.Overlay.OverlayEntry entry,FlutterSDK.Widgets.Overlay.OverlayEntry below = default(FlutterSDK.Widgets.Overlay.OverlayEntry),FlutterSDK.Widgets.Overlay.OverlayEntry above = default(FlutterSDK.Widgets.Overlay.OverlayEntry)){ throw new NotImplementedException(); }
 
+        public virtual void Insert(FlutterSDK.Widgets.Overlay.OverlayEntry entry, FlutterSDK.Widgets.Overlay.OverlayEntry below = default(FlutterSDK.Widgets.Overlay.OverlayEntry), FlutterSDK.Widgets.Overlay.OverlayEntry above = default(FlutterSDK.Widgets.Overlay.OverlayEntry)) { throw new NotImplementedException(); }
 
-public virtual void InsertAll(Iterable<FlutterSDK.Widgets.Overlay.OverlayEntry> entries,FlutterSDK.Widgets.Overlay.OverlayEntry below = default(FlutterSDK.Widgets.Overlay.OverlayEntry),FlutterSDK.Widgets.Overlay.OverlayEntry above = default(FlutterSDK.Widgets.Overlay.OverlayEntry)){ throw new NotImplementedException(); }
 
+        public virtual void InsertAll(Iterable<FlutterSDK.Widgets.Overlay.OverlayEntry> entries, FlutterSDK.Widgets.Overlay.OverlayEntry below = default(FlutterSDK.Widgets.Overlay.OverlayEntry), FlutterSDK.Widgets.Overlay.OverlayEntry above = default(FlutterSDK.Widgets.Overlay.OverlayEntry)) { throw new NotImplementedException(); }
 
-public virtual void Rearrange(Iterable<FlutterSDK.Widgets.Overlay.OverlayEntry> newEntries,FlutterSDK.Widgets.Overlay.OverlayEntry below = default(FlutterSDK.Widgets.Overlay.OverlayEntry),FlutterSDK.Widgets.Overlay.OverlayEntry above = default(FlutterSDK.Widgets.Overlay.OverlayEntry)){ throw new NotImplementedException(); }
 
+        public virtual void Rearrange(Iterable<FlutterSDK.Widgets.Overlay.OverlayEntry> newEntries, FlutterSDK.Widgets.Overlay.OverlayEntry below = default(FlutterSDK.Widgets.Overlay.OverlayEntry), FlutterSDK.Widgets.Overlay.OverlayEntry above = default(FlutterSDK.Widgets.Overlay.OverlayEntry)) { throw new NotImplementedException(); }
 
-private void _Remove(FlutterSDK.Widgets.Overlay.OverlayEntry entry){ throw new NotImplementedException(); }
 
+        private void _Remove(FlutterSDK.Widgets.Overlay.OverlayEntry entry) { throw new NotImplementedException(); }
 
-public virtual bool DebugIsVisible(FlutterSDK.Widgets.Overlay.OverlayEntry entry){ throw new NotImplementedException(); }
 
+        public virtual bool DebugIsVisible(FlutterSDK.Widgets.Overlay.OverlayEntry entry) { throw new NotImplementedException(); }
 
-private void _DidChangeEntryOpacity(){ throw new NotImplementedException(); }
 
+        private void _DidChangeEntryOpacity() { throw new NotImplementedException(); }
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class _Theatre : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
-{
-#region constructors
-public _Theatre(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),int skipCount = 0,List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
-: base(key:key,children:children)
-{
-this.SkipCount = skipCount;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual int SkipCount{get;set;}
-#endregion
+    public class _Theatre : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
+    {
+        #region constructors
+        public _Theatre(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), int skipCount = 0, List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
+        : base(key: key, children: children)
+        {
+            this.SkipCount = skipCount; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual int SkipCount { get; set; }
+        #endregion
 
-public new FlutterSDK.Widgets.Overlay._TheatreElement CreateElement(){ throw new NotImplementedException(); }
+        #region methods
 
+        public new FlutterSDK.Widgets.Overlay._TheatreElement CreateElement() { throw new NotImplementedException(); }
 
-public new FlutterSDK.Widgets.Overlay._RenderTheatre CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Widgets.Overlay._RenderTheatre CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Widgets.Overlay._RenderTheatre renderObject){ throw new NotImplementedException(); }
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Rendering.@object.RenderObject renderObject){ throw new NotImplementedException(); }
 
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Overlay._RenderTheatre renderObject) { throw new NotImplementedException(); }
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class _TheatreElement : FlutterSDK.Widgets.Framework.MultiChildRenderObjectElement
-{
-#region constructors
-public _TheatreElement(FlutterSDK.Widgets.Overlay._Theatre widget)
-: base(widget)
-{
-throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual FlutterSDK.Widgets.Overlay._Theatre Widget{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Widgets.Overlay._RenderTheatre RenderObject{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class _TheatreElement : FlutterSDK.Widgets.Framework.MultiChildRenderObjectElement
+    {
+        #region constructors
+        public _TheatreElement(FlutterSDK.Widgets.Overlay._Theatre widget)
+        : base(widget)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Widgets.Overlay._Theatre Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Widgets.Overlay._RenderTheatre RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new void DebugVisitOnstageChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new void DebugVisitOnstageChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class _RenderTheatre : FlutterSDK.Rendering.Box.RenderBox,IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox,FlutterSDK.Rendering.Stack.StackParentData>
-{
-#region constructors
-public _RenderTheatre(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>),TextDirection textDirection = default(TextDirection),int skipCount = 0)
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
 
-#region fields
-internal virtual bool _HasVisualOverflow{get;set;}
-internal virtual FlutterSDK.Painting.Alignment.Alignment _ResolvedAlignment{get;set;}
-internal virtual TextDirection _TextDirection{get;set;}
-internal virtual int _SkipCount{get;set;}
-public virtual TextDirection TextDirection{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual int SkipCount{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-internal virtual FlutterSDK.Rendering.Box.RenderBox _FirstOnstageChild{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual FlutterSDK.Rendering.Box.RenderBox _LastOnstageChild{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual int _OnstageChildCount{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool SizedByParent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class _RenderTheatre : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Stack.StackParentData>
+    {
+        #region constructors
+        public _RenderTheatre(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), TextDirection textDirection = default(TextDirection), int skipCount = 0)
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual bool _HasVisualOverflow { get; set; }
+        internal virtual FlutterSDK.Painting.Alignment.Alignment _ResolvedAlignment { get; set; }
+        internal virtual TextDirection _TextDirection { get; set; }
+        internal virtual int _SkipCount { get; set; }
+        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int SkipCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual FlutterSDK.Rendering.Box.RenderBox _FirstOnstageChild { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual FlutterSDK.Rendering.Box.RenderBox _LastOnstageChild { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual int _OnstageChildCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child){ throw new NotImplementedException(); }
-public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
+        #region methods
 
+        public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
+        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
-private void _Resolve(){ throw new NotImplementedException(); }
 
+        private void _Resolve() { throw new NotImplementedException(); }
 
-private void _MarkNeedResolution(){ throw new NotImplementedException(); }
 
+        private void _MarkNeedResolution() { throw new NotImplementedException(); }
 
-public new double ComputeMinIntrinsicWidth(double height){ throw new NotImplementedException(); }
 
+        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
-public new double ComputeMaxIntrinsicWidth(double height){ throw new NotImplementedException(); }
 
+        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
-public new double ComputeMinIntrinsicHeight(double width){ throw new NotImplementedException(); }
 
+        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
-public new double ComputeMaxIntrinsicHeight(double width){ throw new NotImplementedException(); }
 
+        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
-public new double ComputeDistanceToActualBaseline(TextBaseline baseline){ throw new NotImplementedException(); }
 
+        public new double ComputeDistanceToActualBaseline(TextBaseline baseline) { throw new NotImplementedException(); }
 
-public new void PerformResize(){ throw new NotImplementedException(); }
 
+        public new void PerformResize() { throw new NotImplementedException(); }
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
 
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
-public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
 
+        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
-public virtual void PaintStack(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
 
+        public virtual void PaintStack(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
 
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor){ throw new NotImplementedException(); }
 
+        public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor) { throw new NotImplementedException(); }
 
-public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
 
+        public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
 
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren(){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

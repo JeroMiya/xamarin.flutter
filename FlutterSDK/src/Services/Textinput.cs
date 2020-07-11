@@ -421,384 +421,407 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Services.Textinput{
-internal static class TextinputDefaultClass{
-public static bool _KIsBrowser = default(bool);
-internal static TextAffinity _ToTextAffinity(string affinity){
-throw new NotImplementedException();
-}
-
-internal static FlutterSDK.Services.Textinput.TextInputAction _ToTextInputAction(string action){
-throw new NotImplementedException();
-}
-
-internal static FlutterSDK.Services.Textinput.FloatingCursorDragState _ToTextCursorAction(string state){
-throw new NotImplementedException();
-}
-
-internal static FlutterSDK.Services.Textinput.RawFloatingCursorPoint _ToTextPoint(FlutterSDK.Services.Textinput.FloatingCursorDragState state,Dictionary<string,object> encoded){
-throw new NotImplementedException();
-}
-
-}
-
-public interface ITextInputClient{
-void UpdateEditingValue(FlutterSDK.Services.Textinput.TextEditingValue value);
-void PerformAction(FlutterSDK.Services.Textinput.TextInputAction action);
-void UpdateFloatingCursor(FlutterSDK.Services.Textinput.RawFloatingCursorPoint point);
-void ConnectionClosed();
-FlutterSDK.Services.Textinput.TextEditingValue CurrentTextEditingValue{get;}
-}
-
-
-public interface ITextSelectionDelegate{}
-
-public class TextSelectionDelegate{
-public virtual FlutterSDK.Services.Textinput.TextEditingValue TextEditingValue{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool CutEnabled{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool CopyEnabled{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool PasteEnabled{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool SelectAllEnabled{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-
-public virtual void HideToolbar(){ throw new NotImplementedException(); }
-
-
-public virtual void BringIntoView(TextPosition position){ throw new NotImplementedException(); }
-
-}
-public static class TextSelectionDelegateMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<ITextSelectionDelegate, TextSelectionDelegate> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<ITextSelectionDelegate, TextSelectionDelegate>();
-static TextSelectionDelegate GetOrCreate(ITextSelectionDelegate instance)
+namespace FlutterSDK.Services.Textinput
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new TextSelectionDelegate();
-_table.Add(instance, value);
-}
-return (TextSelectionDelegate)value;
-}
-public static FlutterSDK.Services.Textinput.TextEditingValue TextEditingValueProperty(this ITextSelectionDelegate instance) => GetOrCreate(instance).TextEditingValue;
-public static bool CutEnabledProperty(this ITextSelectionDelegate instance) => GetOrCreate(instance).CutEnabled;
-public static bool CopyEnabledProperty(this ITextSelectionDelegate instance) => GetOrCreate(instance).CopyEnabled;
-public static bool PasteEnabledProperty(this ITextSelectionDelegate instance) => GetOrCreate(instance).PasteEnabled;
-public static bool SelectAllEnabledProperty(this ITextSelectionDelegate instance) => GetOrCreate(instance).SelectAllEnabled;
-public static void HideToolbar(this ITextSelectionDelegate instance) => GetOrCreate(instance).HideToolbar();
-public static void BringIntoView(this ITextSelectionDelegate instance,TextPosition position) => GetOrCreate(instance).BringIntoView(position);
-}
-
-
-public class TextInputType
-{
-#region constructors
-internal TextInputType(int index)
-: base()
-{
-this.Index = index;throw new NotImplementedException(); }
-public static TextInputType NumberWithOptions(bool signed = false,bool @decimal = false)
-{
-var instance =new TextInputType();instance.Signed = signed;
-instance.@decimal = @decimal;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual int Index{get;set;}
-public virtual bool Signed{get;set;}
-public virtual bool @decimal{get;set;}
-public virtual FlutterSDK.Services.Textinput.TextInputType Text{get;set;}
-public virtual FlutterSDK.Services.Textinput.TextInputType Multiline{get;set;}
-public virtual FlutterSDK.Services.Textinput.TextInputType Number{get;set;}
-public virtual FlutterSDK.Services.Textinput.TextInputType Phone{get;set;}
-public virtual FlutterSDK.Services.Textinput.TextInputType Datetime{get;set;}
-public virtual FlutterSDK.Services.Textinput.TextInputType EmailAddress{get;set;}
-public virtual FlutterSDK.Services.Textinput.TextInputType Url{get;set;}
-public virtual FlutterSDK.Services.Textinput.TextInputType VisiblePassword{get;set;}
-public virtual List<FlutterSDK.Services.Textinput.TextInputType> Values{get;set;}
-internal virtual List<string> _Names{get;set;}
-internal virtual string _Name{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public virtual Dictionary<string,object> ToJson(){ throw new NotImplementedException(); }
-
-
-
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class TextInputConfiguration
-{
-#region constructors
-public TextInputConfiguration(FlutterSDK.Services.Textinput.TextInputType inputType = default(FlutterSDK.Services.Textinput.TextInputType),bool obscureText = false,bool autocorrect = true,FlutterSDK.Services.Textinput.SmartDashesType smartDashesType = default(FlutterSDK.Services.Textinput.SmartDashesType),FlutterSDK.Services.Textinput.SmartQuotesType smartQuotesType = default(FlutterSDK.Services.Textinput.SmartQuotesType),bool enableSuggestions = true,string actionLabel = default(string),FlutterSDK.Services.Textinput.TextInputAction inputAction = default(FlutterSDK.Services.Textinput.TextInputAction),Brightness keyboardAppearance = default(Brightness),FlutterSDK.Services.Textinput.TextCapitalization textCapitalization = default(FlutterSDK.Services.Textinput.TextCapitalization))
-: base()
-{
-this.InputType = inputType;
-this.ObscureText = obscureText;
-this.Autocorrect = autocorrect;
-this.EnableSuggestions = enableSuggestions;
-this.ActionLabel = actionLabel;
-this.InputAction = inputAction;
-this.KeyboardAppearance = keyboardAppearance;
-this.TextCapitalization = textCapitalization;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Services.Textinput.TextInputType InputType{get;set;}
-public virtual bool ObscureText{get;set;}
-public virtual bool Autocorrect{get;set;}
-public virtual FlutterSDK.Services.Textinput.SmartDashesType SmartDashesType{get;set;}
-public virtual FlutterSDK.Services.Textinput.SmartQuotesType SmartQuotesType{get;set;}
-public virtual bool EnableSuggestions{get;set;}
-public virtual string ActionLabel{get;set;}
-public virtual FlutterSDK.Services.Textinput.TextInputAction InputAction{get;set;}
-public virtual FlutterSDK.Services.Textinput.TextCapitalization TextCapitalization{get;set;}
-public virtual Brightness KeyboardAppearance{get;set;}
-#endregion
-
-#region methods
-
-public virtual Dictionary<string,object> ToJson(){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class RawFloatingCursorPoint
-{
-#region constructors
-public RawFloatingCursorPoint(FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset),FlutterSDK.Services.Textinput.FloatingCursorDragState state = default(FlutterSDK.Services.Textinput.FloatingCursorDragState))
-: base()
-{
-this.Offset = offset;
-this.State = state;throw new NotImplementedException(); }
-#endregion
+    internal static class TextinputDefaultClass
+    {
+        public static bool _KIsBrowser = default(bool);
+        internal static TextAffinity _ToTextAffinity(string affinity)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static FlutterSDK.Services.Textinput.TextInputAction _ToTextInputAction(string action)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static FlutterSDK.Services.Textinput.FloatingCursorDragState _ToTextCursorAction(string state)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static FlutterSDK.Services.Textinput.RawFloatingCursorPoint _ToTextPoint(FlutterSDK.Services.Textinput.FloatingCursorDragState state, Dictionary<string, object> encoded)
+        {
+            throw new NotImplementedException();
+        }
+
+    }
+
+    public interface ITextInputClient
+    {
+        void UpdateEditingValue(FlutterSDK.Services.Textinput.TextEditingValue value);
+        void PerformAction(FlutterSDK.Services.Textinput.TextInputAction action);
+        void UpdateFloatingCursor(FlutterSDK.Services.Textinput.RawFloatingCursorPoint point);
+        void ConnectionClosed();
+        FlutterSDK.Services.Textinput.TextEditingValue CurrentTextEditingValue { get; }
+    }
+
+
+    public interface ITextSelectionDelegate { }
+
+    public class TextSelectionDelegate
+    {
+        public virtual FlutterSDK.Services.Textinput.TextEditingValue TextEditingValue { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool CutEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool CopyEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool PasteEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool SelectAllEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+
+        public virtual void HideToolbar() { throw new NotImplementedException(); }
+
+
+        public virtual void BringIntoView(TextPosition position) { throw new NotImplementedException(); }
+
+    }
+    public static class TextSelectionDelegateMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<ITextSelectionDelegate, TextSelectionDelegate> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<ITextSelectionDelegate, TextSelectionDelegate>();
+        static TextSelectionDelegate GetOrCreate(ITextSelectionDelegate instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new TextSelectionDelegate();
+                _table.Add(instance, value);
+            }
+            return (TextSelectionDelegate)value;
+        }
+        public static FlutterSDK.Services.Textinput.TextEditingValue TextEditingValueProperty(this ITextSelectionDelegate instance) => GetOrCreate(instance).TextEditingValue;
+        public static bool CutEnabledProperty(this ITextSelectionDelegate instance) => GetOrCreate(instance).CutEnabled;
+        public static bool CopyEnabledProperty(this ITextSelectionDelegate instance) => GetOrCreate(instance).CopyEnabled;
+        public static bool PasteEnabledProperty(this ITextSelectionDelegate instance) => GetOrCreate(instance).PasteEnabled;
+        public static bool SelectAllEnabledProperty(this ITextSelectionDelegate instance) => GetOrCreate(instance).SelectAllEnabled;
+        public static void HideToolbar(this ITextSelectionDelegate instance) => GetOrCreate(instance).HideToolbar();
+        public static void BringIntoView(this ITextSelectionDelegate instance, TextPosition position) => GetOrCreate(instance).BringIntoView(position);
+    }
+
+
+    public class TextInputType
+    {
+        #region constructors
+        internal TextInputType(int index)
+        : base()
+        {
+            this.Index = index; throw new NotImplementedException();
+        }
+        public static TextInputType NumberWithOptions(bool signed = false, bool @decimal = false)
+        {
+            var instance = new TextInputType(); instance.Signed = signed;
+            instance.@decimal = @decimal; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual int Index { get; set; }
+        public virtual bool Signed { get; set; }
+        public virtual bool @decimal { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextInputType Text { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextInputType Multiline { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextInputType Number { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextInputType Phone { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextInputType Datetime { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextInputType EmailAddress { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextInputType Url { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextInputType VisiblePassword { get; set; }
+        public virtual List<FlutterSDK.Services.Textinput.TextInputType> Values { get; set; }
+        internal virtual List<string> _Names { get; set; }
+        internal virtual string _Name { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual Dictionary<string, object> ToJson() { throw new NotImplementedException(); }
+
+
+
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
-#region fields
-public virtual FlutterBinding.UI.Offset Offset{get;set;}
-public virtual FlutterSDK.Services.Textinput.FloatingCursorDragState State{get;set;}
-#endregion
+
+    public class TextInputConfiguration
+    {
+        #region constructors
+        public TextInputConfiguration(FlutterSDK.Services.Textinput.TextInputType inputType = default(FlutterSDK.Services.Textinput.TextInputType), bool obscureText = false, bool autocorrect = true, FlutterSDK.Services.Textinput.SmartDashesType smartDashesType = default(FlutterSDK.Services.Textinput.SmartDashesType), FlutterSDK.Services.Textinput.SmartQuotesType smartQuotesType = default(FlutterSDK.Services.Textinput.SmartQuotesType), bool enableSuggestions = true, string actionLabel = default(string), FlutterSDK.Services.Textinput.TextInputAction inputAction = default(FlutterSDK.Services.Textinput.TextInputAction), Brightness keyboardAppearance = default(Brightness), FlutterSDK.Services.Textinput.TextCapitalization textCapitalization = default(FlutterSDK.Services.Textinput.TextCapitalization))
+        : base()
+        {
+            this.InputType = inputType;
+            this.ObscureText = obscureText;
+            this.Autocorrect = autocorrect;
+            this.EnableSuggestions = enableSuggestions;
+            this.ActionLabel = actionLabel;
+            this.InputAction = inputAction;
+            this.KeyboardAppearance = keyboardAppearance;
+            this.TextCapitalization = textCapitalization; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
-#endregion
-}
+        #region fields
+        public virtual FlutterSDK.Services.Textinput.TextInputType InputType { get; set; }
+        public virtual bool ObscureText { get; set; }
+        public virtual bool Autocorrect { get; set; }
+        public virtual FlutterSDK.Services.Textinput.SmartDashesType SmartDashesType { get; set; }
+        public virtual FlutterSDK.Services.Textinput.SmartQuotesType SmartQuotesType { get; set; }
+        public virtual bool EnableSuggestions { get; set; }
+        public virtual string ActionLabel { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextInputAction InputAction { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextCapitalization TextCapitalization { get; set; }
+        public virtual Brightness KeyboardAppearance { get; set; }
+        #endregion
 
+        #region methods
 
-public class TextEditingValue
-{
-#region constructors
-public TextEditingValue(string text = default(string),FlutterSDK.Services.Textediting.TextSelection selection = default(FlutterSDK.Services.Textediting.TextSelection),TextRange composing = default(TextRange))
-: base()
-{
-this.Text = text;
-this.Selection = selection;
-this.Composing = composing;throw new NotImplementedException(); }
-public static TextEditingValue FromJSON(Dictionary<string,object> encoded)
-{
-var instance =new TextEditingValue();throw new NotImplementedException(); }
-#endregion
+        public virtual Dictionary<string, object> ToJson() { throw new NotImplementedException(); }
 
-#region fields
-public virtual string Text{get;set;}
-public virtual FlutterSDK.Services.Textediting.TextSelection Selection{get;set;}
-public virtual TextRange Composing{get;set;}
-public virtual FlutterSDK.Services.Textinput.TextEditingValue Empty{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public virtual Dictionary<string,object> ToJSON(){ throw new NotImplementedException(); }
+    public class RawFloatingCursorPoint
+    {
+        #region constructors
+        public RawFloatingCursorPoint(FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), FlutterSDK.Services.Textinput.FloatingCursorDragState state = default(FlutterSDK.Services.Textinput.FloatingCursorDragState))
+        : base()
+        {
+            this.Offset = offset;
+            this.State = state; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual FlutterBinding.UI.Offset Offset { get; set; }
+        public virtual FlutterSDK.Services.Textinput.FloatingCursorDragState State { get; set; }
+        #endregion
 
-public virtual FlutterSDK.Services.Textinput.TextEditingValue CopyWith(string text = default(string),FlutterSDK.Services.Textediting.TextSelection selection = default(FlutterSDK.Services.Textediting.TextSelection),TextRange composing = default(TextRange)){ throw new NotImplementedException(); }
+        #region methods
+        #endregion
+    }
 
 
+    public class TextEditingValue
+    {
+        #region constructors
+        public TextEditingValue(string text = default(string), FlutterSDK.Services.Textediting.TextSelection selection = default(FlutterSDK.Services.Textediting.TextSelection), TextRange composing = default(TextRange))
+        : base()
+        {
+            this.Text = text;
+            this.Selection = selection;
+            this.Composing = composing; throw new NotImplementedException();
+        }
+        public static TextEditingValue FromJSON(Dictionary<string, object> encoded)
+        {
+            var instance = new TextEditingValue(); throw new NotImplementedException();
+        }
+        #endregion
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        #region fields
+        public virtual string Text { get; set; }
+        public virtual FlutterSDK.Services.Textediting.TextSelection Selection { get; set; }
+        public virtual TextRange Composing { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextEditingValue Empty { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#endregion
-}
+        #region methods
 
+        public virtual Dictionary<string, object> ToJSON() { throw new NotImplementedException(); }
 
-public class TextInputClient
-{
-#region constructors
-public TextInputClient()
-{
-throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual FlutterSDK.Services.Textinput.TextEditingValue CurrentTextEditingValue{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        public virtual FlutterSDK.Services.Textinput.TextEditingValue CopyWith(string text = default(string), FlutterSDK.Services.Textediting.TextSelection selection = default(FlutterSDK.Services.Textediting.TextSelection), TextRange composing = default(TextRange)) { throw new NotImplementedException(); }
 
-#region methods
 
-public virtual void UpdateEditingValue(FlutterSDK.Services.Textinput.TextEditingValue value){ throw new NotImplementedException(); }
 
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
-public virtual void PerformAction(FlutterSDK.Services.Textinput.TextInputAction action){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public virtual void UpdateFloatingCursor(FlutterSDK.Services.Textinput.RawFloatingCursorPoint point){ throw new NotImplementedException(); }
+    public class TextInputClient
+    {
+        #region constructors
+        public TextInputClient()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual FlutterSDK.Services.Textinput.TextEditingValue CurrentTextEditingValue { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual void ConnectionClosed(){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public virtual void UpdateEditingValue(FlutterSDK.Services.Textinput.TextEditingValue value) { throw new NotImplementedException(); }
 
 
-public class TextInputConnection
-{
-#region constructors
-internal TextInputConnection(FlutterSDK.Services.Textinput.TextInputClient _client)
-: base()
-{
-this._Client = _client;throw new NotImplementedException(); }
-#endregion
+        public virtual void PerformAction(FlutterSDK.Services.Textinput.TextInputAction action) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual Size _CachedSize{get;set;}
-internal virtual Matrix4 _CachedTransform{get;set;}
-internal virtual int _NextId{get;set;}
-internal virtual int _Id{get;set;}
-internal virtual FlutterSDK.Services.Textinput.TextInputClient _Client{get;set;}
-public virtual bool Attached{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+        public virtual void UpdateFloatingCursor(FlutterSDK.Services.Textinput.RawFloatingCursorPoint point) { throw new NotImplementedException(); }
 
-public virtual void DebugResetId(int to = 1){ throw new NotImplementedException(); }
 
+        public virtual void ConnectionClosed() { throw new NotImplementedException(); }
 
-public virtual void Show(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public virtual void SetEditingState(FlutterSDK.Services.Textinput.TextEditingValue value){ throw new NotImplementedException(); }
+    public class TextInputConnection
+    {
+        #region constructors
+        internal TextInputConnection(FlutterSDK.Services.Textinput.TextInputClient _client)
+        : base()
+        {
+            this._Client = _client; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual Size _CachedSize { get; set; }
+        internal virtual Matrix4 _CachedTransform { get; set; }
+        internal virtual int _NextId { get; set; }
+        internal virtual int _Id { get; set; }
+        internal virtual FlutterSDK.Services.Textinput.TextInputClient _Client { get; set; }
+        public virtual bool Attached { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual void SetEditableSizeAndTransform(Size editableBoxSize,Matrix4 transform){ throw new NotImplementedException(); }
+        #region methods
 
+        public virtual void DebugResetId(int to = 1) { throw new NotImplementedException(); }
 
-public virtual void SetStyle(string fontFamily = default(string),double fontSize = default(double),FontWeight fontWeight = default(FontWeight),TextDirection textDirection = default(TextDirection),TextAlign textAlign = default(TextAlign)){ throw new NotImplementedException(); }
 
+        public virtual void Show() { throw new NotImplementedException(); }
 
-public virtual void Close(){ throw new NotImplementedException(); }
 
+        public virtual void SetEditingState(FlutterSDK.Services.Textinput.TextEditingValue value) { throw new NotImplementedException(); }
 
-public virtual void ConnectionClosedReceived(){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public virtual void SetEditableSizeAndTransform(Size editableBoxSize, Matrix4 transform) { throw new NotImplementedException(); }
 
 
-public class TextInput
-{
-#region constructors
-internal TextInput()
-{
-throw new NotImplementedException(); }
-#endregion
+        public virtual void SetStyle(string fontFamily = default(string), double fontSize = default(double), FontWeight fontWeight = default(FontWeight), TextDirection textDirection = default(TextDirection), TextAlign textAlign = default(TextAlign)) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual FlutterSDK.Services.Textinput.TextInput _Instance{get;set;}
-internal virtual List<FlutterSDK.Services.Textinput.TextInputAction> _AndroidSupportedInputActions{get;set;}
-internal virtual List<FlutterSDK.Services.Textinput.TextInputAction> _IOSSupportedInputActions{get;set;}
-internal virtual FlutterSDK.Services.Platformchannel.MethodChannel _Channel{get;set;}
-internal virtual FlutterSDK.Services.Textinput.TextInputConnection _CurrentConnection{get;set;}
-internal virtual FlutterSDK.Services.Textinput.TextInputConfiguration _CurrentConfiguration{get;set;}
-internal virtual bool _HidePending{get;set;}
-#endregion
 
-#region methods
+        public virtual void Close() { throw new NotImplementedException(); }
 
-public virtual void SetChannel(FlutterSDK.Services.Platformchannel.MethodChannel newChannel){ throw new NotImplementedException(); }
 
+        public virtual void ConnectionClosedReceived() { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Services.Textinput.TextInputConnection Attach(FlutterSDK.Services.Textinput.TextInputClient client,FlutterSDK.Services.Textinput.TextInputConfiguration configuration){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-private void _Attach(FlutterSDK.Services.Textinput.TextInputConnection connection,FlutterSDK.Services.Textinput.TextInputConfiguration configuration){ throw new NotImplementedException(); }
+    public class TextInput
+    {
+        #region constructors
+        internal TextInput()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual FlutterSDK.Services.Textinput.TextInput _Instance { get; set; }
+        internal virtual List<FlutterSDK.Services.Textinput.TextInputAction> _AndroidSupportedInputActions { get; set; }
+        internal virtual List<FlutterSDK.Services.Textinput.TextInputAction> _IOSSupportedInputActions { get; set; }
+        internal virtual FlutterSDK.Services.Platformchannel.MethodChannel _Channel { get; set; }
+        internal virtual FlutterSDK.Services.Textinput.TextInputConnection _CurrentConnection { get; set; }
+        internal virtual FlutterSDK.Services.Textinput.TextInputConfiguration _CurrentConfiguration { get; set; }
+        internal virtual bool _HidePending { get; set; }
+        #endregion
 
-private bool _DebugEnsureInputActionWorksOnPlatform(FlutterSDK.Services.Textinput.TextInputAction inputAction){ throw new NotImplementedException(); }
+        #region methods
 
+        public virtual void SetChannel(FlutterSDK.Services.Platformchannel.MethodChannel newChannel) { throw new NotImplementedException(); }
 
-private Future<object> _HandleTextInputInvocation(FlutterSDK.Services.Messagecodec.MethodCall methodCall){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Services.Textinput.TextInputConnection Attach(FlutterSDK.Services.Textinput.TextInputClient client, FlutterSDK.Services.Textinput.TextInputConfiguration configuration) { throw new NotImplementedException(); }
 
-private void _ScheduleHide(){ throw new NotImplementedException(); }
 
+        private void _Attach(FlutterSDK.Services.Textinput.TextInputConnection connection, FlutterSDK.Services.Textinput.TextInputConfiguration configuration) { throw new NotImplementedException(); }
 
-private void _ClearClient(){ throw new NotImplementedException(); }
 
+        private bool _DebugEnsureInputActionWorksOnPlatform(FlutterSDK.Services.Textinput.TextInputAction inputAction) { throw new NotImplementedException(); }
 
-private void _SetEditingState(FlutterSDK.Services.Textinput.TextEditingValue value){ throw new NotImplementedException(); }
 
+        private Future<object> _HandleTextInputInvocation(FlutterSDK.Services.Messagecodec.MethodCall methodCall) { throw new NotImplementedException(); }
 
-private void _Show(){ throw new NotImplementedException(); }
 
+        private void _ScheduleHide() { throw new NotImplementedException(); }
 
-private void _SetEditableSizeAndTransform(Dictionary<string,object> args){ throw new NotImplementedException(); }
 
+        private void _ClearClient() { throw new NotImplementedException(); }
 
-private void _SetStyle(Dictionary<string,object> args){ throw new NotImplementedException(); }
 
-#endregion
-}
+        private void _SetEditingState(FlutterSDK.Services.Textinput.TextEditingValue value) { throw new NotImplementedException(); }
 
 
-public enum SmartDashesType{
+        private void _Show() { throw new NotImplementedException(); }
 
-Disabled,
-Enabled,
-}
 
+        private void _SetEditableSizeAndTransform(Dictionary<string, object> args) { throw new NotImplementedException(); }
 
-public enum SmartQuotesType{
 
-Disabled,
-Enabled,
-}
+        private void _SetStyle(Dictionary<string, object> args) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public enum TextInputAction{
 
-None,
-Unspecified,
-Done,
-Go,
-Search,
-Send,
-Next,
-Previous,
-ContinueAction,
-Join,
-Route,
-EmergencyCall,
-Newline,
-}
+    public enum SmartDashesType
+    {
 
+        Disabled,
+        Enabled,
+    }
 
-public enum TextCapitalization{
 
-Words,
-Sentences,
-Characters,
-None,
-}
+    public enum SmartQuotesType
+    {
 
+        Disabled,
+        Enabled,
+    }
 
-public enum FloatingCursorDragState{
 
-Start,
-Update,
-End,
-}
+    public enum TextInputAction
+    {
+
+        None,
+        Unspecified,
+        Done,
+        Go,
+        Search,
+        Send,
+        Next,
+        Previous,
+        ContinueAction,
+        Join,
+        Route,
+        EmergencyCall,
+        Newline,
+    }
+
+
+    public enum TextCapitalization
+    {
+
+        Words,
+        Sentences,
+        Characters,
+        None,
+    }
+
+
+    public enum FloatingCursorDragState
+    {
+
+        Start,
+        Update,
+        End,
+    }
 
 }

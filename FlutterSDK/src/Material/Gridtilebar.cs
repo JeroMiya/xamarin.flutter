@@ -383,36 +383,39 @@ using FlutterSDK.Material.Expandicon;
 using FlutterSDK.Material.Mergeablematerial;
 using FlutterSDK.Material.Button;
 using FlutterSDK.Material.Floatingactionbuttontheme;
-namespace FlutterSDK.Material.Gridtilebar{
-internal static class GridtilebarDefaultClass{
-}
-
-public class GridTileBar : FlutterSDK.Widgets.Framework.StatelessWidget
+namespace FlutterSDK.Material.Gridtilebar
 {
-#region constructors
-public GridTileBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.Widget trailing = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key)
-{
-this.BackgroundColor = backgroundColor;
-this.Leading = leading;
-this.Title = title;
-this.Subtitle = subtitle;
-this.Trailing = trailing;throw new NotImplementedException(); }
-#endregion
+    internal static class GridtilebarDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterBinding.UI.Color BackgroundColor{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Leading{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Title{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Subtitle{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Trailing{get;set;}
-#endregion
+    public class GridTileBar : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public GridTileBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget trailing = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.BackgroundColor = backgroundColor;
+            this.Leading = leading;
+            this.Title = title;
+            this.Subtitle = subtitle;
+            this.Trailing = trailing; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Subtitle { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Trailing { get; set; }
+        #endregion
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

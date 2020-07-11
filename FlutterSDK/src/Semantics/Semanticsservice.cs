@@ -421,29 +421,32 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Semantics.Semanticsservice{
-internal static class SemanticsserviceDefaultClass{
-}
-
-public class SemanticsService
+namespace FlutterSDK.Semantics.Semanticsservice
 {
-#region constructors
-internal SemanticsService()
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class SemanticsserviceDefaultClass
+    {
+    }
 
-#region fields
-#endregion
+    public class SemanticsService
+    {
+        #region constructors
+        internal SemanticsService()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        #endregion
 
-public virtual Future<object> Announce(string message,TextDirection textDirection){ throw new NotImplementedException(); }
+        #region methods
+
+        public virtual Future<object> Announce(string message, TextDirection textDirection) { throw new NotImplementedException(); }
 
 
-public virtual Future<object> Tooltip(string message){ throw new NotImplementedException(); }
+        public virtual Future<object> Tooltip(string message) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 }

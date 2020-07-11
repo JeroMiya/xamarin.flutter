@@ -421,8 +421,10 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Widgets.Constants{
-internal static class ConstantsDefaultClass{
-public static double KMinInteractiveDimension = default(double);
-}
+namespace FlutterSDK.Widgets.Constants
+{
+    internal static class ConstantsDefaultClass
+    {
+        public static double KMinInteractiveDimension = default(double);
+    }
 }

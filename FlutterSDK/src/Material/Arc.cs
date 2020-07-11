@@ -351,143 +351,151 @@ using FlutterSDK.Material.Iconbutton;
 using FlutterSDK.Material.Material;
 using FlutterSDK.Material.Tabs;
 using FlutterSDK.Material.Texttheme;
-namespace FlutterSDK.Material.Arc{
-public delegate double _KeyFunc<T>(T input);
-internal static class ArcDefaultClass{
-public static double _KOnAxisDelta = default(double);
-public static List<FlutterSDK.Material.Arc._Diagonal> _AllDiagonals = default(List<FlutterSDK.Material.Arc._Diagonal>);
-internal static T _MaxBy<T>(Iterable<T> input,FlutterSDK.Material.Arc._KeyFunc<T> keyFunc){
-throw new NotImplementedException();
-}
-
-}
-
-public class MaterialPointArcTween : FlutterSDK.Animation.Tween.Tween<Offset>
+namespace FlutterSDK.Material.Arc
 {
-#region constructors
-public MaterialPointArcTween(FlutterBinding.UI.Offset begin = default(FlutterBinding.UI.Offset),FlutterBinding.UI.Offset end = default(FlutterBinding.UI.Offset))
-: base(begin:begin,end:end)
-{
-throw new NotImplementedException(); }
-#endregion
+    public delegate double _KeyFunc<T>(T input);
+    internal static class ArcDefaultClass
+    {
+        public static double _KOnAxisDelta = default(double);
+        public static List<FlutterSDK.Material.Arc._Diagonal> _AllDiagonals = default(List<FlutterSDK.Material.Arc._Diagonal>);
+        internal static T _MaxBy<T>(Iterable<T> input, FlutterSDK.Material.Arc._KeyFunc<T> keyFunc)
+        {
+            throw new NotImplementedException();
+        }
 
-#region fields
-internal virtual bool _Dirty{get;set;}
-internal virtual FlutterBinding.UI.Offset _Center{get;set;}
-internal virtual double _Radius{get;set;}
-internal virtual double _BeginAngle{get;set;}
-internal virtual double _EndAngle{get;set;}
-public virtual FlutterBinding.UI.Offset Center{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double Radius{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double BeginAngle{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double EndAngle{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterBinding.UI.Offset Begin{set {throw new NotImplementedException();}}
-public virtual FlutterBinding.UI.Offset End{set {throw new NotImplementedException();}}
-#endregion
+    }
 
-#region methods
+    public class MaterialPointArcTween : FlutterSDK.Animation.Tween.Tween<Offset>
+    {
+        #region constructors
+        public MaterialPointArcTween(FlutterBinding.UI.Offset begin = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset end = default(FlutterBinding.UI.Offset))
+        : base(begin: begin, end: end)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-private void _Initialize(){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual bool _Dirty { get; set; }
+        internal virtual FlutterBinding.UI.Offset _Center { get; set; }
+        internal virtual double _Radius { get; set; }
+        internal virtual double _BeginAngle { get; set; }
+        internal virtual double _EndAngle { get; set; }
+        public virtual FlutterBinding.UI.Offset Center { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Radius { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double BeginAngle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double EndAngle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Offset Begin { set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Offset End { set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public new Offset Lerp(double t){ throw new NotImplementedException(); }
-
-
-#endregion
-}
-
-
-public class _Diagonal
-{
-#region constructors
-public _Diagonal(FlutterSDK.Material.Arc._CornerId beginId,FlutterSDK.Material.Arc._CornerId endId)
-{
-this.BeginId = beginId;
-this.EndId = endId;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Material.Arc._CornerId BeginId{get;set;}
-public virtual FlutterSDK.Material.Arc._CornerId EndId{get;set;}
-#endregion
-
-#region methods
-#endregion
-}
+        private void _Initialize() { throw new NotImplementedException(); }
 
 
-public class MaterialRectArcTween : FlutterSDK.Animation.Tween.RectTween
-{
-#region constructors
-public MaterialRectArcTween(FlutterBinding.UI.Rect begin = default(FlutterBinding.UI.Rect),FlutterBinding.UI.Rect end = default(FlutterBinding.UI.Rect))
-: base(begin:begin,end:end)
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual bool _Dirty{get;set;}
-internal virtual FlutterSDK.Material.Arc.MaterialPointArcTween _BeginArc{get;set;}
-internal virtual FlutterSDK.Material.Arc.MaterialPointArcTween _EndArc{get;set;}
-public virtual FlutterSDK.Material.Arc.MaterialPointArcTween BeginArc{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Material.Arc.MaterialPointArcTween EndArc{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterBinding.UI.Rect Begin{set {throw new NotImplementedException();}}
-public virtual FlutterBinding.UI.Rect End{set {throw new NotImplementedException();}}
-#endregion
-
-#region methods
-
-private void _Initialize(){ throw new NotImplementedException(); }
+        public new Offset Lerp(double t) { throw new NotImplementedException(); }
 
 
-private double _DiagonalSupport(FlutterBinding.UI.Offset centersVector,FlutterSDK.Material.Arc._Diagonal diagonal){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-private Offset _CornerFor(FlutterBinding.UI.Rect rect,FlutterSDK.Material.Arc._CornerId id){ throw new NotImplementedException(); }
+    public class _Diagonal
+    {
+        #region constructors
+        public _Diagonal(FlutterSDK.Material.Arc._CornerId beginId, FlutterSDK.Material.Arc._CornerId endId)
+        {
+            this.BeginId = beginId;
+            this.EndId = endId; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Material.Arc._CornerId BeginId { get; set; }
+        public virtual FlutterSDK.Material.Arc._CornerId EndId { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
 
 
-public new Rect Lerp(double t){ throw new NotImplementedException(); }
+    public class MaterialRectArcTween : FlutterSDK.Animation.Tween.RectTween
+    {
+        #region constructors
+        public MaterialRectArcTween(FlutterBinding.UI.Rect begin = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Rect end = default(FlutterBinding.UI.Rect))
+        : base(begin: begin, end: end)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual bool _Dirty { get; set; }
+        internal virtual FlutterSDK.Material.Arc.MaterialPointArcTween _BeginArc { get; set; }
+        internal virtual FlutterSDK.Material.Arc.MaterialPointArcTween _EndArc { get; set; }
+        public virtual FlutterSDK.Material.Arc.MaterialPointArcTween BeginArc { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Material.Arc.MaterialPointArcTween EndArc { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Rect Begin { set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Rect End { set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        private void _Initialize() { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        private double _DiagonalSupport(FlutterBinding.UI.Offset centersVector, FlutterSDK.Material.Arc._Diagonal diagonal) { throw new NotImplementedException(); }
 
 
-public class MaterialRectCenterArcTween : FlutterSDK.Animation.Tween.RectTween
-{
-#region constructors
-public MaterialRectCenterArcTween(FlutterBinding.UI.Rect begin = default(FlutterBinding.UI.Rect),FlutterBinding.UI.Rect end = default(FlutterBinding.UI.Rect))
-: base(begin:begin,end:end)
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual bool _Dirty{get;set;}
-internal virtual FlutterSDK.Material.Arc.MaterialPointArcTween _CenterArc{get;set;}
-public virtual FlutterSDK.Material.Arc.MaterialPointArcTween CenterArc{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterBinding.UI.Rect Begin{set {throw new NotImplementedException();}}
-public virtual FlutterBinding.UI.Rect End{set {throw new NotImplementedException();}}
-#endregion
-
-#region methods
-
-private void _Initialize(){ throw new NotImplementedException(); }
+        private Offset _CornerFor(FlutterBinding.UI.Rect rect, FlutterSDK.Material.Arc._CornerId id) { throw new NotImplementedException(); }
 
 
-public new Rect Lerp(double t){ throw new NotImplementedException(); }
+        public new Rect Lerp(double t) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        #endregion
+    }
 
 
-public enum _CornerId{
+    public class MaterialRectCenterArcTween : FlutterSDK.Animation.Tween.RectTween
+    {
+        #region constructors
+        public MaterialRectCenterArcTween(FlutterBinding.UI.Rect begin = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Rect end = default(FlutterBinding.UI.Rect))
+        : base(begin: begin, end: end)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-TopLeft,
-TopRight,
-BottomLeft,
-BottomRight,
-}
+        #region fields
+        internal virtual bool _Dirty { get; set; }
+        internal virtual FlutterSDK.Material.Arc.MaterialPointArcTween _CenterArc { get; set; }
+        public virtual FlutterSDK.Material.Arc.MaterialPointArcTween CenterArc { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Rect Begin { set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Rect End { set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        private void _Initialize() { throw new NotImplementedException(); }
+
+
+        public new Rect Lerp(double t) { throw new NotImplementedException(); }
+
+
+        #endregion
+    }
+
+
+    public enum _CornerId
+    {
+
+        TopLeft,
+        TopRight,
+        BottomLeft,
+        BottomRight,
+    }
 
 }

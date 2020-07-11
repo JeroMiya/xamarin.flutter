@@ -422,37 +422,40 @@ using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
-namespace FlutterSDK.Widgets.Imageicon{
-internal static class ImageiconDefaultClass{
-}
-
-public class ImageIcon : FlutterSDK.Widgets.Framework.StatelessWidget
+namespace FlutterSDK.Widgets.Imageicon
 {
-#region constructors
-public ImageIcon(FlutterSDK.Painting.Imageprovider.ImageProvider<object> image,FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),double size = default(double),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),string semanticLabel = default(string))
-: base(key:key)
-{
-this.Image = image;
-this.Size = size;
-this.Color = color;
-this.SemanticLabel = semanticLabel;throw new NotImplementedException(); }
-#endregion
+    internal static class ImageiconDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> Image{get;set;}
-public virtual double Size{get;set;}
-public virtual FlutterBinding.UI.Color Color{get;set;}
-public virtual string SemanticLabel{get;set;}
-#endregion
+    public class ImageIcon : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public ImageIcon(FlutterSDK.Painting.Imageprovider.ImageProvider<object> image, FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double size = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), string semanticLabel = default(string))
+        : base(key: key)
+        {
+            this.Image = image;
+            this.Size = size;
+            this.Color = color;
+            this.SemanticLabel = semanticLabel; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> Image { get; set; }
+        public virtual double Size { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual string SemanticLabel { get; set; }
+        #endregion
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 }

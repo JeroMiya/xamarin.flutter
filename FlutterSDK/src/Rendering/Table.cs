@@ -421,346 +421,358 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Rendering.Table{
-internal static class TableDefaultClass{
-}
-
-public interface ITableColumnWidth{
-double MinIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells,double containerWidth);
-double MaxIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells,double containerWidth);
-double Flex(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells);
-string ToString();
-}
-
-
-public class TableCellParentData : FlutterSDK.Rendering.Box.BoxParentData
+namespace FlutterSDK.Rendering.Table
 {
-#region constructors
-public TableCellParentData()
-{ }
-#endregion
+    internal static class TableDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Rendering.Table.TableCellVerticalAlignment VerticalAlignment{get;set;}
-public virtual int x{get;set;}
-public virtual int y{get;set;}
-#endregion
+    public interface ITableColumnWidth
+    {
+        double MinIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth);
+        double MaxIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth);
+        double Flex(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells);
+        string ToString();
+    }
 
-#region methods
 
-#endregion
-}
+    public class TableCellParentData : FlutterSDK.Rendering.Box.BoxParentData
+    {
+        #region constructors
+        public TableCellParentData()
+        { }
+        #endregion
 
+        #region fields
+        public virtual FlutterSDK.Rendering.Table.TableCellVerticalAlignment VerticalAlignment { get; set; }
+        public virtual int x { get; set; }
+        public virtual int y { get; set; }
+        #endregion
 
-public class TableColumnWidth
-{
-#region constructors
-public TableColumnWidth()
-{
-throw new NotImplementedException(); }
-#endregion
+        #region methods
 
-#region fields
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public virtual double MinIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells,double containerWidth){ throw new NotImplementedException(); }
+    public class TableColumnWidth
+    {
+        #region constructors
+        public TableColumnWidth()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        #endregion
 
-public virtual double MaxIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells,double containerWidth){ throw new NotImplementedException(); }
+        #region methods
 
+        public virtual double MinIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth) { throw new NotImplementedException(); }
 
-public virtual double Flex(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells){ throw new NotImplementedException(); }
 
+        public virtual double MaxIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public virtual double Flex(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells) { throw new NotImplementedException(); }
 
-public class IntrinsicColumnWidth : FlutterSDK.Rendering.Table.TableColumnWidth
-{
-#region constructors
-public IntrinsicColumnWidth(double flex = default(double))
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
 
-#region fields
-internal virtual double _Flex{get;set;}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public new double MinIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells,double containerWidth){ throw new NotImplementedException(); }
+    public class IntrinsicColumnWidth : FlutterSDK.Rendering.Table.TableColumnWidth
+    {
+        #region constructors
+        public IntrinsicColumnWidth(double flex = default(double))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual double _Flex { get; set; }
+        #endregion
 
-public new double MaxIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells,double containerWidth){ throw new NotImplementedException(); }
+        #region methods
 
+        public new double MinIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth) { throw new NotImplementedException(); }
 
-public new double Flex(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells){ throw new NotImplementedException(); }
 
+        public new double MaxIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new double Flex(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells) { throw new NotImplementedException(); }
 
-public class FixedColumnWidth : FlutterSDK.Rendering.Table.TableColumnWidth
-{
-#region constructors
-public FixedColumnWidth(double value)
-: base()
-{
-this.Value = value;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual double Value{get;set;}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public new double MinIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells,double containerWidth){ throw new NotImplementedException(); }
+    public class FixedColumnWidth : FlutterSDK.Rendering.Table.TableColumnWidth
+    {
+        #region constructors
+        public FixedColumnWidth(double value)
+        : base()
+        {
+            this.Value = value; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual double Value { get; set; }
+        #endregion
 
-public new double MaxIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells,double containerWidth){ throw new NotImplementedException(); }
+        #region methods
 
+        public new double MinIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new double MaxIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth) { throw new NotImplementedException(); }
 
-public class FractionColumnWidth : FlutterSDK.Rendering.Table.TableColumnWidth
-{
-#region constructors
-public FractionColumnWidth(double value)
-: base()
-{
-this.Value = value;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual double Value{get;set;}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public new double MinIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells,double containerWidth){ throw new NotImplementedException(); }
+    public class FractionColumnWidth : FlutterSDK.Rendering.Table.TableColumnWidth
+    {
+        #region constructors
+        public FractionColumnWidth(double value)
+        : base()
+        {
+            this.Value = value; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual double Value { get; set; }
+        #endregion
 
-public new double MaxIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells,double containerWidth){ throw new NotImplementedException(); }
+        #region methods
 
+        public new double MinIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new double MaxIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth) { throw new NotImplementedException(); }
 
-public class FlexColumnWidth : FlutterSDK.Rendering.Table.TableColumnWidth
-{
-#region constructors
-public FlexColumnWidth(double value = 1.0)
-: base()
-{
-this.Value = value;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual double Value{get;set;}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public new double MinIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells,double containerWidth){ throw new NotImplementedException(); }
+    public class FlexColumnWidth : FlutterSDK.Rendering.Table.TableColumnWidth
+    {
+        #region constructors
+        public FlexColumnWidth(double value = 1.0)
+        : base()
+        {
+            this.Value = value; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual double Value { get; set; }
+        #endregion
 
-public new double MaxIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells,double containerWidth){ throw new NotImplementedException(); }
+        #region methods
 
+        public new double MinIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth) { throw new NotImplementedException(); }
 
-public new double Flex(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells){ throw new NotImplementedException(); }
 
+        public new double MaxIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new double Flex(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells) { throw new NotImplementedException(); }
 
-public class MaxColumnWidth : FlutterSDK.Rendering.Table.TableColumnWidth
-{
-#region constructors
-public MaxColumnWidth(FlutterSDK.Rendering.Table.TableColumnWidth a,FlutterSDK.Rendering.Table.TableColumnWidth b)
-{
-this.a = a;
-this.b = b;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual FlutterSDK.Rendering.Table.TableColumnWidth a{get;set;}
-public virtual FlutterSDK.Rendering.Table.TableColumnWidth b{get;set;}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public new double MinIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells,double containerWidth){ throw new NotImplementedException(); }
+    public class MaxColumnWidth : FlutterSDK.Rendering.Table.TableColumnWidth
+    {
+        #region constructors
+        public MaxColumnWidth(FlutterSDK.Rendering.Table.TableColumnWidth a, FlutterSDK.Rendering.Table.TableColumnWidth b)
+        {
+            this.a = a;
+            this.b = b; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual FlutterSDK.Rendering.Table.TableColumnWidth a { get; set; }
+        public virtual FlutterSDK.Rendering.Table.TableColumnWidth b { get; set; }
+        #endregion
 
-public new double MaxIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells,double containerWidth){ throw new NotImplementedException(); }
+        #region methods
 
+        public new double MinIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth) { throw new NotImplementedException(); }
 
-public new double Flex(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells){ throw new NotImplementedException(); }
 
+        public new double MaxIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new double Flex(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells) { throw new NotImplementedException(); }
 
-public class MinColumnWidth : FlutterSDK.Rendering.Table.TableColumnWidth
-{
-#region constructors
-public MinColumnWidth(FlutterSDK.Rendering.Table.TableColumnWidth a,FlutterSDK.Rendering.Table.TableColumnWidth b)
-{
-this.a = a;
-this.b = b;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual FlutterSDK.Rendering.Table.TableColumnWidth a{get;set;}
-public virtual FlutterSDK.Rendering.Table.TableColumnWidth b{get;set;}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public new double MinIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells,double containerWidth){ throw new NotImplementedException(); }
+    public class MinColumnWidth : FlutterSDK.Rendering.Table.TableColumnWidth
+    {
+        #region constructors
+        public MinColumnWidth(FlutterSDK.Rendering.Table.TableColumnWidth a, FlutterSDK.Rendering.Table.TableColumnWidth b)
+        {
+            this.a = a;
+            this.b = b; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual FlutterSDK.Rendering.Table.TableColumnWidth a { get; set; }
+        public virtual FlutterSDK.Rendering.Table.TableColumnWidth b { get; set; }
+        #endregion
 
-public new double MaxIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells,double containerWidth){ throw new NotImplementedException(); }
+        #region methods
 
+        public new double MinIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth) { throw new NotImplementedException(); }
 
-public new double Flex(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells){ throw new NotImplementedException(); }
 
+        public new double MaxIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new double Flex(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells) { throw new NotImplementedException(); }
 
-public class RenderTable : FlutterSDK.Rendering.Box.RenderBox
-{
-#region constructors
-public RenderTable(int columns = default(int),int rows = default(int),Dictionary<int,FlutterSDK.Rendering.Table.TableColumnWidth> columnWidths = default(Dictionary<int,FlutterSDK.Rendering.Table.TableColumnWidth>),FlutterSDK.Rendering.Table.TableColumnWidth defaultColumnWidth = default(FlutterSDK.Rendering.Table.TableColumnWidth),TextDirection textDirection = default(TextDirection),FlutterSDK.Rendering.Tableborder.TableBorder border = default(FlutterSDK.Rendering.Tableborder.TableBorder),List<FlutterSDK.Painting.Decoration.Decoration> rowDecorations = default(List<FlutterSDK.Painting.Decoration.Decoration>),FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration),FlutterSDK.Rendering.Table.TableCellVerticalAlignment defaultVerticalAlignment = default(FlutterSDK.Rendering.Table.TableCellVerticalAlignment),TextBaseline textBaseline = default(TextBaseline),List<List<FlutterSDK.Rendering.Box.RenderBox>> children = default(List<List<FlutterSDK.Rendering.Box.RenderBox>>))
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
 
-#region fields
-internal virtual List<FlutterSDK.Rendering.Box.RenderBox> _Children{get;set;}
-internal virtual int _Columns{get;set;}
-internal virtual int _Rows{get;set;}
-internal virtual Dictionary<int,FlutterSDK.Rendering.Table.TableColumnWidth> _ColumnWidths{get;set;}
-internal virtual FlutterSDK.Rendering.Table.TableColumnWidth _DefaultColumnWidth{get;set;}
-internal virtual TextDirection _TextDirection{get;set;}
-internal virtual FlutterSDK.Rendering.Tableborder.TableBorder _Border{get;set;}
-internal virtual List<FlutterSDK.Painting.Decoration.Decoration> _RowDecorations{get;set;}
-internal virtual List<FlutterSDK.Painting.Decoration.BoxPainter> _RowDecorationPainters{get;set;}
-internal virtual FlutterSDK.Painting.Imageprovider.ImageConfiguration _Configuration{get;set;}
-internal virtual FlutterSDK.Rendering.Table.TableCellVerticalAlignment _DefaultVerticalAlignment{get;set;}
-internal virtual TextBaseline _TextBaseline{get;set;}
-internal virtual double _BaselineDistance{get;set;}
-internal virtual List<double> _RowTops{get;set;}
-internal virtual Iterable<double> _ColumnLefts{get;set;}
-public virtual int Columns{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual int Rows{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual Dictionary<int,FlutterSDK.Rendering.Table.TableColumnWidth> ColumnWidths{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Rendering.Table.TableColumnWidth DefaultColumnWidth{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual TextDirection TextDirection{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Rendering.Tableborder.TableBorder Border{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual List<FlutterSDK.Painting.Decoration.Decoration> RowDecorations{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Painting.Imageprovider.ImageConfiguration Configuration{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Rendering.Table.TableCellVerticalAlignment DefaultVerticalAlignment{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual TextBaseline TextBaseline{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public virtual void SetColumnWidth(int column,FlutterSDK.Rendering.Table.TableColumnWidth value){ throw new NotImplementedException(); }
+    public class RenderTable : FlutterSDK.Rendering.Box.RenderBox
+    {
+        #region constructors
+        public RenderTable(int columns = default(int), int rows = default(int), Dictionary<int, FlutterSDK.Rendering.Table.TableColumnWidth> columnWidths = default(Dictionary<int, FlutterSDK.Rendering.Table.TableColumnWidth>), FlutterSDK.Rendering.Table.TableColumnWidth defaultColumnWidth = default(FlutterSDK.Rendering.Table.TableColumnWidth), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Tableborder.TableBorder border = default(FlutterSDK.Rendering.Tableborder.TableBorder), List<FlutterSDK.Painting.Decoration.Decoration> rowDecorations = default(List<FlutterSDK.Painting.Decoration.Decoration>), FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration), FlutterSDK.Rendering.Table.TableCellVerticalAlignment defaultVerticalAlignment = default(FlutterSDK.Rendering.Table.TableCellVerticalAlignment), TextBaseline textBaseline = default(TextBaseline), List<List<FlutterSDK.Rendering.Box.RenderBox>> children = default(List<List<FlutterSDK.Rendering.Box.RenderBox>>))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual List<FlutterSDK.Rendering.Box.RenderBox> _Children { get; set; }
+        internal virtual int _Columns { get; set; }
+        internal virtual int _Rows { get; set; }
+        internal virtual Dictionary<int, FlutterSDK.Rendering.Table.TableColumnWidth> _ColumnWidths { get; set; }
+        internal virtual FlutterSDK.Rendering.Table.TableColumnWidth _DefaultColumnWidth { get; set; }
+        internal virtual TextDirection _TextDirection { get; set; }
+        internal virtual FlutterSDK.Rendering.Tableborder.TableBorder _Border { get; set; }
+        internal virtual List<FlutterSDK.Painting.Decoration.Decoration> _RowDecorations { get; set; }
+        internal virtual List<FlutterSDK.Painting.Decoration.BoxPainter> _RowDecorationPainters { get; set; }
+        internal virtual FlutterSDK.Painting.Imageprovider.ImageConfiguration _Configuration { get; set; }
+        internal virtual FlutterSDK.Rendering.Table.TableCellVerticalAlignment _DefaultVerticalAlignment { get; set; }
+        internal virtual TextBaseline _TextBaseline { get; set; }
+        internal virtual double _BaselineDistance { get; set; }
+        internal virtual List<double> _RowTops { get; set; }
+        internal virtual Iterable<double> _ColumnLefts { get; set; }
+        public virtual int Columns { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int Rows { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual Dictionary<int, FlutterSDK.Rendering.Table.TableColumnWidth> ColumnWidths { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Table.TableColumnWidth DefaultColumnWidth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Tableborder.TableBorder Border { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual List<FlutterSDK.Painting.Decoration.Decoration> RowDecorations { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Imageprovider.ImageConfiguration Configuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Table.TableCellVerticalAlignment DefaultVerticalAlignment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextBaseline TextBaseline { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
+        #region methods
 
+        public virtual void SetColumnWidth(int column, FlutterSDK.Rendering.Table.TableColumnWidth value) { throw new NotImplementedException(); }
 
-public virtual void SetFlatChildren(int columns,List<FlutterSDK.Rendering.Box.RenderBox> cells){ throw new NotImplementedException(); }
 
+        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
-public virtual void SetChildren(List<List<FlutterSDK.Rendering.Box.RenderBox>> cells){ throw new NotImplementedException(); }
 
+        public virtual void SetFlatChildren(int columns, List<FlutterSDK.Rendering.Box.RenderBox> cells) { throw new NotImplementedException(); }
 
-public virtual void AddRow(List<FlutterSDK.Rendering.Box.RenderBox> cells){ throw new NotImplementedException(); }
 
+        public virtual void SetChildren(List<List<FlutterSDK.Rendering.Box.RenderBox>> cells) { throw new NotImplementedException(); }
 
-public virtual void SetChild(int x,int y,FlutterSDK.Rendering.Box.RenderBox value){ throw new NotImplementedException(); }
 
+        public virtual void AddRow(List<FlutterSDK.Rendering.Box.RenderBox> cells) { throw new NotImplementedException(); }
 
-public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner){ throw new NotImplementedException(); }
-public new void Attach(@Object owner){ throw new NotImplementedException(); }
 
+        public virtual void SetChild(int x, int y, FlutterSDK.Rendering.Box.RenderBox value) { throw new NotImplementedException(); }
 
-public new void Detach(){ throw new NotImplementedException(); }
 
+        public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner) { throw new NotImplementedException(); }
+        public new void Attach(@Object owner) { throw new NotImplementedException(); }
 
-public new void VisitChildren(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor){ throw new NotImplementedException(); }
 
+        public new void Detach() { throw new NotImplementedException(); }
 
-public new double ComputeMinIntrinsicWidth(double height){ throw new NotImplementedException(); }
 
+        public new void VisitChildren(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor) { throw new NotImplementedException(); }
 
-public new double ComputeMaxIntrinsicWidth(double height){ throw new NotImplementedException(); }
 
+        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
-public new double ComputeMinIntrinsicHeight(double width){ throw new NotImplementedException(); }
 
+        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
-public new double ComputeMaxIntrinsicHeight(double width){ throw new NotImplementedException(); }
 
+        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
-public new double ComputeDistanceToActualBaseline(TextBaseline baseline){ throw new NotImplementedException(); }
 
+        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
-public virtual Iterable<FlutterSDK.Rendering.Box.RenderBox> Column(int x){ throw new NotImplementedException(); }
 
+        public new double ComputeDistanceToActualBaseline(TextBaseline baseline) { throw new NotImplementedException(); }
 
-public virtual Iterable<FlutterSDK.Rendering.Box.RenderBox> Row(int y){ throw new NotImplementedException(); }
 
+        public virtual Iterable<FlutterSDK.Rendering.Box.RenderBox> Column(int x) { throw new NotImplementedException(); }
 
-private List<double> _ComputeColumnWidths(FlutterSDK.Rendering.Box.BoxConstraints constraints){ throw new NotImplementedException(); }
 
+        public virtual Iterable<FlutterSDK.Rendering.Box.RenderBox> Row(int y) { throw new NotImplementedException(); }
 
-public virtual Rect GetRowBox(int row){ throw new NotImplementedException(); }
 
+        private List<double> _ComputeColumnWidths(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
 
+        public virtual Rect GetRowBox(int row) { throw new NotImplementedException(); }
 
-public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
 
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
 
+        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
 
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren(){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
 
-public enum TableCellVerticalAlignment{
+        public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren() { throw new NotImplementedException(); }
 
-Top,
-Middle,
-Bottom,
-Baseline,
-Fill,
-}
+        #endregion
+    }
+
+
+    public enum TableCellVerticalAlignment
+    {
+
+        Top,
+        Middle,
+        Bottom,
+        Baseline,
+        Fill,
+    }
 
 }

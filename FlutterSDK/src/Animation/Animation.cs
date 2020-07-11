@@ -35,71 +35,76 @@ using FlutterSDK.Foundation.Licenses;
 using FlutterSDK.Foundation.Collections;
 using FlutterSDK.Foundation.Basictypes;
 using FlutterSDK.Animation.Tween;
-namespace FlutterSDK.Animation.Animation{
-public delegate void AnimationStatusListener(FlutterSDK.Animation.Animation.AnimationStatus status);
-internal static class AnimationDefaultClass{
-}
-
-public interface IAnimation<T>{
-void AddListener(VoidCallback listener);
-void RemoveListener(VoidCallback listener);
-void AddStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener);
-void RemoveStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener);
-Animation<U> Drive<U>(FlutterSDK.Animation.Tween.Animatable<U> child);
-string ToString();
-string ToStringDetails();
-FlutterSDK.Animation.Animation.AnimationStatus Status{get;}
-T Value{get;}
-bool IsDismissed{get;}
-bool IsCompleted{get;}
-}
-
-
-public class Animation<T> : FlutterSDK.Foundation.Changenotifier.Listenable,IValueListenable<T>
+namespace FlutterSDK.Animation.Animation
 {
-#region constructors
-public Animation()
-{
-throw new NotImplementedException(); }
-#endregion
+    public delegate void AnimationStatusListener(FlutterSDK.Animation.Animation.AnimationStatus status);
+    internal static class AnimationDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Animation.Animation.AnimationStatus Status{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual T Value{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsDismissed{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsCompleted{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new void AddListener(VoidCallback listener){ throw new NotImplementedException(); }
-
-
-public new void RemoveListener(VoidCallback listener){ throw new NotImplementedException(); }
-
-
-public virtual void AddStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener){ throw new NotImplementedException(); }
+    public interface IAnimation<T>
+    {
+        void AddListener(VoidCallback listener);
+        void RemoveListener(VoidCallback listener);
+        void AddStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener);
+        void RemoveStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener);
+        Animation<U> Drive<U>(FlutterSDK.Animation.Tween.Animatable<U> child);
+        string ToString();
+        string ToStringDetails();
+        FlutterSDK.Animation.Animation.AnimationStatus Status { get; }
+        T Value { get; }
+        bool IsDismissed { get; }
+        bool IsCompleted { get; }
+    }
 
 
-public virtual void RemoveStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener){ throw new NotImplementedException(); }
+    public class Animation<T> : FlutterSDK.Foundation.Changenotifier.Listenable, IValueListenable<T>
+    {
+        #region constructors
+        public Animation()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Animation.Animation.AnimationStatus Status { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsDismissed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsCompleted { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void AddListener(VoidCallback listener) { throw new NotImplementedException(); }
 
 
-public virtual Animation<U> Drive<U>(FlutterSDK.Animation.Tween.Animatable<U> child){ throw new NotImplementedException(); }
+        public new void RemoveListener(VoidCallback listener) { throw new NotImplementedException(); }
+
+
+        public virtual void AddStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener) { throw new NotImplementedException(); }
+
+
+        public virtual void RemoveStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener) { throw new NotImplementedException(); }
+
+
+        public virtual Animation<U> Drive<U>(FlutterSDK.Animation.Tween.Animatable<U> child) { throw new NotImplementedException(); }
 
 
 
-public virtual string ToStringDetails(){ throw new NotImplementedException(); }
+        public virtual string ToStringDetails() { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public enum AnimationStatus{
+    public enum AnimationStatus
+    {
 
-Dismissed,
-Forward,
-Reverse,
-Completed,
-}
+        Dismissed,
+        Forward,
+        Reverse,
+        Completed,
+    }
 
 }

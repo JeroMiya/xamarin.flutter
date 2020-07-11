@@ -291,392 +291,402 @@ using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
-namespace FlutterSDK.Cupertino.Datepicker{
-public delegate FlutterSDK.Widgets.Framework.Widget _ColumnBuilder(double offAxisFraction,FlutterSDK.Widgets.Framework.TransitionBuilder itemPositioningBuilder);
-internal static class DatepickerDefaultClass{
-public static double _KItemExtent = default(double);
-public static double _KPickerWidth = default(double);
-public static double _KPickerHeight = default(double);
-public static bool _KUseMagnifier = default(bool);
-public static double _KMagnification = default(double);
-public static double _KDatePickerPadSize = default(double);
-public static double _KSqueeze = default(double);
-public static FlutterSDK.Painting.Textstyle.TextStyle _KDefaultPickerTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle);
-public static double _KTimerPickerHalfColumnPadding = default(double);
-public static double _KTimerPickerLabelPadSize = default(double);
-public static double _KTimerPickerLabelFontSize = default(double);
-public static double _KTimerPickerColumnIntrinsicWidth = default(double);
-public static double _KTimerPickerNumberLabelFontSize = default(double);
-internal static FlutterSDK.Painting.Textstyle.TextStyle _ThemeTextStyle(FlutterSDK.Widgets.Framework.BuildContext context,bool isValid = true){
-throw new NotImplementedException();
-}
-
-internal static void _AnimateColumnControllerToItem(FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController controller,int targetItem){
-throw new NotImplementedException();
-}
-
-}
-
-public class _DatePickerLayoutDelegate : FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate
+namespace FlutterSDK.Cupertino.Datepicker
 {
-#region constructors
-public _DatePickerLayoutDelegate(List<double> columnWidths = default(List<double>),int textDirectionFactor = default(int))
-: base()
-{
-this.ColumnWidths = columnWidths;
-this.TextDirectionFactor = textDirectionFactor;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual List<double> ColumnWidths{get;set;}
-public virtual int TextDirectionFactor{get;set;}
-#endregion
-
-#region methods
-
-public new void PerformLayout(Size size){ throw new NotImplementedException(); }
-
-
-public new bool ShouldRelayout(FlutterSDK.Cupertino.Datepicker._DatePickerLayoutDelegate oldDelegate){ throw new NotImplementedException(); }
-public new bool ShouldRelayout(FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate oldDelegate){ throw new NotImplementedException(); }
+    public delegate FlutterSDK.Widgets.Framework.Widget _ColumnBuilder(double offAxisFraction, FlutterSDK.Widgets.Framework.TransitionBuilder itemPositioningBuilder);
+    internal static class DatepickerDefaultClass
+    {
+        public static double _KItemExtent = default(double);
+        public static double _KPickerWidth = default(double);
+        public static double _KPickerHeight = default(double);
+        public static bool _KUseMagnifier = default(bool);
+        public static double _KMagnification = default(double);
+        public static double _KDatePickerPadSize = default(double);
+        public static double _KSqueeze = default(double);
+        public static FlutterSDK.Painting.Textstyle.TextStyle _KDefaultPickerTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle);
+        public static double _KTimerPickerHalfColumnPadding = default(double);
+        public static double _KTimerPickerLabelPadSize = default(double);
+        public static double _KTimerPickerLabelFontSize = default(double);
+        public static double _KTimerPickerColumnIntrinsicWidth = default(double);
+        public static double _KTimerPickerNumberLabelFontSize = default(double);
+        internal static FlutterSDK.Painting.Textstyle.TextStyle _ThemeTextStyle(FlutterSDK.Widgets.Framework.BuildContext context, bool isValid = true)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void _AnimateColumnControllerToItem(FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController controller, int targetItem)
+        {
+            throw new NotImplementedException();
+        }
+
+    }
+
+    public class _DatePickerLayoutDelegate : FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate
+    {
+        #region constructors
+        public _DatePickerLayoutDelegate(List<double> columnWidths = default(List<double>), int textDirectionFactor = default(int))
+        : base()
+        {
+            this.ColumnWidths = columnWidths;
+            this.TextDirectionFactor = textDirectionFactor; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual List<double> ColumnWidths { get; set; }
+        public virtual int TextDirectionFactor { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void PerformLayout(Size size) { throw new NotImplementedException(); }
+
+
+        public new bool ShouldRelayout(FlutterSDK.Cupertino.Datepicker._DatePickerLayoutDelegate oldDelegate) { throw new NotImplementedException(); }
+        public new bool ShouldRelayout(FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate oldDelegate) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class CupertinoDatePicker : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public CupertinoDatePicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Cupertino.Datepicker.CupertinoDatePickerMode mode = default(FlutterSDK.Cupertino.Datepicker.CupertinoDatePickerMode), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onDateTimeChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), DateTime initialDateTime = default(DateTime), DateTime minimumDate = default(DateTime), DateTime maximumDate = default(DateTime), int minimumYear = 1, int maximumYear = default(int), int minuteInterval = 1, bool use24hFormat = false, FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color))
+        : base(key: key)
+        {
+            this.Mode = mode;
+            this.OnDateTimeChanged = onDateTimeChanged;
+            this.MinimumDate = minimumDate;
+            this.MaximumDate = maximumDate;
+            this.MinimumYear = minimumYear;
+            this.MaximumYear = maximumYear;
+            this.MinuteInterval = minuteInterval;
+            this.Use24hFormat = use24hFormat;
+            this.BackgroundColor = backgroundColor; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual FlutterSDK.Cupertino.Datepicker.CupertinoDatePickerMode Mode { get; set; }
+        public virtual DateTime InitialDateTime { get; set; }
+        public virtual DateTime MinimumDate { get; set; }
+        public virtual DateTime MaximumDate { get; set; }
+        public virtual int MinimumYear { get; set; }
+        public virtual int MaximumYear { get; set; }
+        public virtual int MinuteInterval { get; set; }
+        public virtual bool Use24hFormat { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnDateTimeChanged { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        #endregion
 
+        #region methods
 
-public class CupertinoDatePicker : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public CupertinoDatePicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Cupertino.Datepicker.CupertinoDatePickerMode mode = default(FlutterSDK.Cupertino.Datepicker.CupertinoDatePickerMode),FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onDateTimeChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>),DateTime initialDateTime = default(DateTime),DateTime minimumDate = default(DateTime),DateTime maximumDate = default(DateTime),int minimumYear = 1,int maximumYear = default(int),int minuteInterval = 1,bool use24hFormat = false,FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color))
-: base(key:key)
-{
-this.Mode = mode;
-this.OnDateTimeChanged = onDateTimeChanged;
-this.MinimumDate = minimumDate;
-this.MaximumDate = maximumDate;
-this.MinimumYear = minimumYear;
-this.MaximumYear = maximumYear;
-this.MinuteInterval = minuteInterval;
-this.Use24hFormat = use24hFormat;
-this.BackgroundColor = backgroundColor;throw new NotImplementedException(); }
-#endregion
+        public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Cupertino.Datepicker.CupertinoDatePickerMode Mode{get;set;}
-public virtual DateTime InitialDateTime{get;set;}
-public virtual DateTime MinimumDate{get;set;}
-public virtual DateTime MaximumDate{get;set;}
-public virtual int MinimumYear{get;set;}
-public virtual int MaximumYear{get;set;}
-public virtual int MinuteInterval{get;set;}
-public virtual bool Use24hFormat{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnDateTimeChanged{get;set;}
-public virtual FlutterBinding.UI.Color BackgroundColor{get;set;}
-#endregion
 
-#region methods
+        private double _GetColumnWidth(FlutterSDK.Cupertino.Datepicker._PickerColumnType columnType, FlutterSDK.Cupertino.Localizations.CupertinoLocalizations localizations, FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-private double _GetColumnWidth(FlutterSDK.Cupertino.Datepicker._PickerColumnType columnType,FlutterSDK.Cupertino.Localizations.CupertinoLocalizations localizations,FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+    public class _CupertinoDatePickerDateTimeState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Datepicker.CupertinoDatePicker>
+    {
+        #region constructors
+        public _CupertinoDatePickerDateTimeState()
+        { }
+        #endregion
 
-#endregion
-}
+        #region fields
+        internal virtual double _KMaximumOffAxisFraction { get; set; }
+        public virtual int TextDirectionFactor { get; set; }
+        public virtual FlutterSDK.Cupertino.Localizations.CupertinoLocalizations Localizations { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.Alignment AlignCenterLeft { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.Alignment AlignCenterRight { get; set; }
+        public virtual DateTime InitialDateTime { get; set; }
+        public virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController DateController { get; set; }
+        public virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController HourController { get; set; }
+        public virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController MinuteController { get; set; }
+        public virtual int SelectedAmPm { get; set; }
+        public virtual int MeridiemRegion { get; set; }
+        public virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController MeridiemController { get; set; }
+        public virtual bool IsDatePickerScrolling { get; set; }
+        public virtual bool IsHourPickerScrolling { get; set; }
+        public virtual bool IsMinutePickerScrolling { get; set; }
+        public virtual bool IsMeridiemPickerScrolling { get; set; }
+        public virtual Dictionary<int, double> EstimatedColumnWidths { get; set; }
+        public virtual int SelectedDayFromInitial { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int SelectedHour { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual int _SelectedHourIndex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int SelectedMinute { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsHourRegionFlipped { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual DateTime SelectedDateTime { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public class _CupertinoDatePickerDateTimeState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Datepicker.CupertinoDatePicker>
-{
-#region constructors
-public _CupertinoDatePickerDateTimeState()
-{ }
-#endregion
+        private int _SelectedHour(int selectedAmPm, int selectedHour) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual double _KMaximumOffAxisFraction{get;set;}
-public virtual int TextDirectionFactor{get;set;}
-public virtual FlutterSDK.Cupertino.Localizations.CupertinoLocalizations Localizations{get;set;}
-public virtual FlutterSDK.Painting.Alignment.Alignment AlignCenterLeft{get;set;}
-public virtual FlutterSDK.Painting.Alignment.Alignment AlignCenterRight{get;set;}
-public virtual DateTime InitialDateTime{get;set;}
-public virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController DateController{get;set;}
-public virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController HourController{get;set;}
-public virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController MinuteController{get;set;}
-public virtual int SelectedAmPm{get;set;}
-public virtual int MeridiemRegion{get;set;}
-public virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController MeridiemController{get;set;}
-public virtual bool IsDatePickerScrolling{get;set;}
-public virtual bool IsHourPickerScrolling{get;set;}
-public virtual bool IsMinutePickerScrolling{get;set;}
-public virtual bool IsMeridiemPickerScrolling{get;set;}
-public virtual Dictionary<int,double> EstimatedColumnWidths{get;set;}
-public virtual int SelectedDayFromInitial{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int SelectedHour{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual int _SelectedHourIndex{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int SelectedMinute{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsHourRegionFlipped{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsScrolling{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual DateTime SelectedDateTime{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+        private bool _IsHourRegionFlipped(int selectedAmPm) { throw new NotImplementedException(); }
 
-private int _SelectedHour(int selectedAmPm,int selectedHour){ throw new NotImplementedException(); }
 
+        public new void InitState() { throw new NotImplementedException(); }
 
-private bool _IsHourRegionFlipped(int selectedAmPm){ throw new NotImplementedException(); }
 
+        private void _HandleSystemFontsChange() { throw new NotImplementedException(); }
 
-public new void InitState(){ throw new NotImplementedException(); }
 
+        public new void Dispose() { throw new NotImplementedException(); }
 
-private void _HandleSystemFontsChange(){ throw new NotImplementedException(); }
 
+        public new void DidUpdateWidget(FlutterSDK.Cupertino.Datepicker.CupertinoDatePicker oldWidget) { throw new NotImplementedException(); }
 
-public new void Dispose(){ throw new NotImplementedException(); }
 
+        public new void DidChangeDependencies() { throw new NotImplementedException(); }
 
-public new void DidUpdateWidget(FlutterSDK.Cupertino.Datepicker.CupertinoDatePicker oldWidget){ throw new NotImplementedException(); }
 
+        private double _GetEstimatedColumnWidth(FlutterSDK.Cupertino.Datepicker._PickerColumnType columnType) { throw new NotImplementedException(); }
 
-public new void DidChangeDependencies(){ throw new NotImplementedException(); }
 
+        private void _OnSelectedItemChange(int index) { throw new NotImplementedException(); }
 
-private double _GetEstimatedColumnWidth(FlutterSDK.Cupertino.Datepicker._PickerColumnType columnType){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildMediumDatePicker(double offAxisFraction, FlutterSDK.Widgets.Framework.TransitionBuilder itemPositioningBuilder) { throw new NotImplementedException(); }
 
-private void _OnSelectedItemChange(int index){ throw new NotImplementedException(); }
 
+        private bool _IsValidHour(int meridiemIndex, int hourIndex) { throw new NotImplementedException(); }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildMediumDatePicker(double offAxisFraction,FlutterSDK.Widgets.Framework.TransitionBuilder itemPositioningBuilder){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildHourPicker(double offAxisFraction, FlutterSDK.Widgets.Framework.TransitionBuilder itemPositioningBuilder) { throw new NotImplementedException(); }
 
-private bool _IsValidHour(int meridiemIndex,int hourIndex){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildMinutePicker(double offAxisFraction, FlutterSDK.Widgets.Framework.TransitionBuilder itemPositioningBuilder) { throw new NotImplementedException(); }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildHourPicker(double offAxisFraction,FlutterSDK.Widgets.Framework.TransitionBuilder itemPositioningBuilder){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildAmPmPicker(double offAxisFraction, FlutterSDK.Widgets.Framework.TransitionBuilder itemPositioningBuilder) { throw new NotImplementedException(); }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildMinutePicker(double offAxisFraction,FlutterSDK.Widgets.Framework.TransitionBuilder itemPositioningBuilder){ throw new NotImplementedException(); }
 
+        private void _PickerDidStopScrolling() { throw new NotImplementedException(); }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildAmPmPicker(double offAxisFraction,FlutterSDK.Widgets.Framework.TransitionBuilder itemPositioningBuilder){ throw new NotImplementedException(); }
 
+        private void _ScrollToDate(DateTime newDate, DateTime fromDate) { throw new NotImplementedException(); }
 
-private void _PickerDidStopScrolling(){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-private void _ScrollToDate(DateTime newDate,DateTime fromDate){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+    public class _CupertinoDatePickerDateState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Datepicker.CupertinoDatePicker>
+    {
+        #region constructors
+        public _CupertinoDatePickerDateState()
+        { }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual int TextDirectionFactor { get; set; }
+        public virtual FlutterSDK.Cupertino.Localizations.CupertinoLocalizations Localizations { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.Alignment AlignCenterLeft { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.Alignment AlignCenterRight { get; set; }
+        public virtual int SelectedDay { get; set; }
+        public virtual int SelectedMonth { get; set; }
+        public virtual int SelectedYear { get; set; }
+        public virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController DayController { get; set; }
+        public virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController MonthController { get; set; }
+        public virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController YearController { get; set; }
+        public virtual bool IsDayPickerScrolling { get; set; }
+        public virtual bool IsMonthPickerScrolling { get; set; }
+        public virtual bool IsYearPickerScrolling { get; set; }
+        public virtual Dictionary<int, double> EstimatedColumnWidths { get; set; }
+        public virtual bool IsScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual bool _IsCurrentDateValid { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public class _CupertinoDatePickerDateState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Datepicker.CupertinoDatePicker>
-{
-#region constructors
-public _CupertinoDatePickerDateState()
-{ }
-#endregion
+        public new void InitState() { throw new NotImplementedException(); }
 
-#region fields
-public virtual int TextDirectionFactor{get;set;}
-public virtual FlutterSDK.Cupertino.Localizations.CupertinoLocalizations Localizations{get;set;}
-public virtual FlutterSDK.Painting.Alignment.Alignment AlignCenterLeft{get;set;}
-public virtual FlutterSDK.Painting.Alignment.Alignment AlignCenterRight{get;set;}
-public virtual int SelectedDay{get;set;}
-public virtual int SelectedMonth{get;set;}
-public virtual int SelectedYear{get;set;}
-public virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController DayController{get;set;}
-public virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController MonthController{get;set;}
-public virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController YearController{get;set;}
-public virtual bool IsDayPickerScrolling{get;set;}
-public virtual bool IsMonthPickerScrolling{get;set;}
-public virtual bool IsYearPickerScrolling{get;set;}
-public virtual Dictionary<int,double> EstimatedColumnWidths{get;set;}
-public virtual bool IsScrolling{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual bool _IsCurrentDateValid{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+        private void _HandleSystemFontsChange() { throw new NotImplementedException(); }
 
-public new void InitState(){ throw new NotImplementedException(); }
 
+        public new void Dispose() { throw new NotImplementedException(); }
 
-private void _HandleSystemFontsChange(){ throw new NotImplementedException(); }
 
+        public new void DidChangeDependencies() { throw new NotImplementedException(); }
 
-public new void Dispose(){ throw new NotImplementedException(); }
 
+        private void _RefreshEstimatedColumnWidths() { throw new NotImplementedException(); }
 
-public new void DidChangeDependencies(){ throw new NotImplementedException(); }
 
+        private DateTime _LastDayInMonth(int year, int month) { throw new NotImplementedException(); }
 
-private void _RefreshEstimatedColumnWidths(){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildDayPicker(double offAxisFraction, FlutterSDK.Widgets.Framework.TransitionBuilder itemPositioningBuilder) { throw new NotImplementedException(); }
 
-private DateTime _LastDayInMonth(int year,int month){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildMonthPicker(double offAxisFraction, FlutterSDK.Widgets.Framework.TransitionBuilder itemPositioningBuilder) { throw new NotImplementedException(); }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildDayPicker(double offAxisFraction,FlutterSDK.Widgets.Framework.TransitionBuilder itemPositioningBuilder){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildYearPicker(double offAxisFraction, FlutterSDK.Widgets.Framework.TransitionBuilder itemPositioningBuilder) { throw new NotImplementedException(); }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildMonthPicker(double offAxisFraction,FlutterSDK.Widgets.Framework.TransitionBuilder itemPositioningBuilder){ throw new NotImplementedException(); }
 
+        private void _PickerDidStopScrolling() { throw new NotImplementedException(); }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildYearPicker(double offAxisFraction,FlutterSDK.Widgets.Framework.TransitionBuilder itemPositioningBuilder){ throw new NotImplementedException(); }
 
+        private void _ScrollToDate(DateTime newDate) { throw new NotImplementedException(); }
 
-private void _PickerDidStopScrolling(){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-private void _ScrollToDate(DateTime newDate){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+    public class CupertinoTimerPicker : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public CupertinoTimerPicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Cupertino.Datepicker.CupertinoTimerPickerMode mode = default(FlutterSDK.Cupertino.Datepicker.CupertinoTimerPickerMode), TimeSpan initialTimerDuration = default(TimeSpan), int minuteInterval = 1, int secondInterval = 1, FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Foundation.Basictypes.ValueChanged<TimeSpan> onTimerDurationChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<TimeSpan>))
+        : base(key: key)
+        {
+            this.Mode = mode;
+            this.InitialTimerDuration = initialTimerDuration;
+            this.MinuteInterval = minuteInterval;
+            this.SecondInterval = secondInterval;
+            this.Alignment = alignment;
+            this.BackgroundColor = backgroundColor;
+            this.OnTimerDurationChanged = onTimerDurationChanged; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual FlutterSDK.Cupertino.Datepicker.CupertinoTimerPickerMode Mode { get; set; }
+        public virtual TimeSpan InitialTimerDuration { get; set; }
+        public virtual int MinuteInterval { get; set; }
+        public virtual int SecondInterval { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<TimeSpan> OnTimerDurationChanged { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        #endregion
 
+        #region methods
 
-public class CupertinoTimerPicker : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public CupertinoTimerPicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Cupertino.Datepicker.CupertinoTimerPickerMode mode = default(FlutterSDK.Cupertino.Datepicker.CupertinoTimerPickerMode),TimeSpan initialTimerDuration = default(TimeSpan),int minuteInterval = 1,int secondInterval = 1,FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry),FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),FlutterSDK.Foundation.Basictypes.ValueChanged<TimeSpan> onTimerDurationChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<TimeSpan>))
-: base(key:key)
-{
-this.Mode = mode;
-this.InitialTimerDuration = initialTimerDuration;
-this.MinuteInterval = minuteInterval;
-this.SecondInterval = secondInterval;
-this.Alignment = alignment;
-this.BackgroundColor = backgroundColor;
-this.OnTimerDurationChanged = onTimerDurationChanged;throw new NotImplementedException(); }
-#endregion
+        public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Cupertino.Datepicker.CupertinoTimerPickerMode Mode{get;set;}
-public virtual TimeSpan InitialTimerDuration{get;set;}
-public virtual int MinuteInterval{get;set;}
-public virtual int SecondInterval{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<TimeSpan> OnTimerDurationChanged{get;set;}
-public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment{get;set;}
-public virtual FlutterBinding.UI.Color BackgroundColor{get;set;}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState(){ throw new NotImplementedException(); }
+    public class _CupertinoTimerPickerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Datepicker.CupertinoTimerPicker>
+    {
+        #region constructors
+        public _CupertinoTimerPickerState()
+        { }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual TextDirection TextDirection { get; set; }
+        public virtual FlutterSDK.Cupertino.Localizations.CupertinoLocalizations Localizations { get; set; }
+        public virtual int SelectedHour { get; set; }
+        public virtual int SelectedMinute { get; set; }
+        public virtual int SelectedSecond { get; set; }
+        public virtual int LastSelectedHour { get; set; }
+        public virtual int LastSelectedMinute { get; set; }
+        public virtual int LastSelectedSecond { get; set; }
+        public virtual FlutterSDK.Painting.Textpainter.TextPainter TextPainter { get; set; }
+        public virtual List<string> Numbers { get; set; }
+        public virtual double NumberLabelWidth { get; set; }
+        public virtual double NumberLabelHeight { get; set; }
+        public virtual double NumberLabelBaseline { get; set; }
+        public virtual int TextDirectionFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public class _CupertinoTimerPickerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Datepicker.CupertinoTimerPicker>
-{
-#region constructors
-public _CupertinoTimerPickerState()
-{ }
-#endregion
+        public new void InitState() { throw new NotImplementedException(); }
 
-#region fields
-public virtual TextDirection TextDirection{get;set;}
-public virtual FlutterSDK.Cupertino.Localizations.CupertinoLocalizations Localizations{get;set;}
-public virtual int SelectedHour{get;set;}
-public virtual int SelectedMinute{get;set;}
-public virtual int SelectedSecond{get;set;}
-public virtual int LastSelectedHour{get;set;}
-public virtual int LastSelectedMinute{get;set;}
-public virtual int LastSelectedSecond{get;set;}
-public virtual FlutterSDK.Painting.Textpainter.TextPainter TextPainter{get;set;}
-public virtual List<string> Numbers{get;set;}
-public virtual double NumberLabelWidth{get;set;}
-public virtual double NumberLabelHeight{get;set;}
-public virtual double NumberLabelBaseline{get;set;}
-public virtual int TextDirectionFactor{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+        private void _HandleSystemFontsChange() { throw new NotImplementedException(); }
 
-public new void InitState(){ throw new NotImplementedException(); }
 
+        public new void Dispose() { throw new NotImplementedException(); }
 
-private void _HandleSystemFontsChange(){ throw new NotImplementedException(); }
 
+        public new void DidUpdateWidget(FlutterSDK.Cupertino.Datepicker.CupertinoTimerPicker oldWidget) { throw new NotImplementedException(); }
 
-public new void Dispose(){ throw new NotImplementedException(); }
 
+        public new void DidChangeDependencies() { throw new NotImplementedException(); }
 
-public new void DidUpdateWidget(FlutterSDK.Cupertino.Datepicker.CupertinoTimerPicker oldWidget){ throw new NotImplementedException(); }
 
+        private void _MeasureLabelMetrics() { throw new NotImplementedException(); }
 
-public new void DidChangeDependencies(){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildLabel(string text, FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional pickerPadding) { throw new NotImplementedException(); }
 
-private void _MeasureLabelMetrics(){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildPickerNumberLabel(string text, FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional padding) { throw new NotImplementedException(); }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildLabel(string text,FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional pickerPadding){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildHourPicker(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional additionalPadding) { throw new NotImplementedException(); }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildPickerNumberLabel(string text,FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional padding){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildHourColumn(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional additionalPadding) { throw new NotImplementedException(); }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildHourPicker(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional additionalPadding){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildMinutePicker(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional additionalPadding) { throw new NotImplementedException(); }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildHourColumn(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional additionalPadding){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildMinuteColumn(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional additionalPadding) { throw new NotImplementedException(); }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildMinutePicker(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional additionalPadding){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildSecondPicker(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional additionalPadding) { throw new NotImplementedException(); }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildMinuteColumn(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional additionalPadding){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildSecondColumn(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional additionalPadding) { throw new NotImplementedException(); }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildSecondPicker(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional additionalPadding){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Painting.Textstyle.TextStyle _TextStyleFrom(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildSecondColumn(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional additionalPadding){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-private FlutterSDK.Painting.Textstyle.TextStyle _TextStyleFrom(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+    public enum CupertinoDatePickerMode
+    {
 
-#endregion
-}
+        Time,
+        Date,
+        DateAndTime,
+    }
 
 
-public enum CupertinoDatePickerMode{
+    public enum _PickerColumnType
+    {
 
-Time,
-Date,
-DateAndTime,
-}
+        DayOfMonth,
+        Month,
+        Year,
+        Date,
+        Hour,
+        Minute,
+        DayPeriod,
+    }
 
 
-public enum _PickerColumnType{
+    public enum CupertinoTimerPickerMode
+    {
 
-DayOfMonth,
-Month,
-Year,
-Date,
-Hour,
-Minute,
-DayPeriod,
-}
-
-
-public enum CupertinoTimerPickerMode{
-
-Hm,
-Ms,
-Hms,
-}
+        Hm,
+        Ms,
+        Hms,
+    }
 
 }

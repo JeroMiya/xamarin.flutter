@@ -423,77 +423,82 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Scrollmetrics{
-internal static class ScrollmetricsDefaultClass{
-}
-
-public interface IScrollMetrics{}
-
-public class ScrollMetrics{
-public virtual double MinScrollExtent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double MaxScrollExtent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double Pixels{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double ViewportDimension{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Painting.Basictypes.Axis Axis{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool OutOfRange{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool AtEdge{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double ExtentBefore{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double ExtentInside{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double ExtentAfter{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-
-public virtual FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics CopyWith(double minScrollExtent = default(double),double maxScrollExtent = default(double),double pixels = default(double),double viewportDimension = default(double),FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection)){ throw new NotImplementedException(); }
-
-}
-public static class ScrollMetricsMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IScrollMetrics, ScrollMetrics> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IScrollMetrics, ScrollMetrics>();
-static ScrollMetrics GetOrCreate(IScrollMetrics instance)
+namespace FlutterSDK.Widgets.Scrollmetrics
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new ScrollMetrics();
-_table.Add(instance, value);
-}
-return (ScrollMetrics)value;
-}
-public static double MinScrollExtentProperty(this IScrollMetrics instance) => GetOrCreate(instance).MinScrollExtent;
-public static double MaxScrollExtentProperty(this IScrollMetrics instance) => GetOrCreate(instance).MaxScrollExtent;
-public static double PixelsProperty(this IScrollMetrics instance) => GetOrCreate(instance).Pixels;
-public static double ViewportDimensionProperty(this IScrollMetrics instance) => GetOrCreate(instance).ViewportDimension;
-public static FlutterSDK.Painting.Basictypes.AxisDirection AxisDirectionProperty(this IScrollMetrics instance) => GetOrCreate(instance).AxisDirection;
-public static FlutterSDK.Painting.Basictypes.Axis AxisProperty(this IScrollMetrics instance) => GetOrCreate(instance).Axis;
-public static bool OutOfRangeProperty(this IScrollMetrics instance) => GetOrCreate(instance).OutOfRange;
-public static bool AtEdgeProperty(this IScrollMetrics instance) => GetOrCreate(instance).AtEdge;
-public static double ExtentBeforeProperty(this IScrollMetrics instance) => GetOrCreate(instance).ExtentBefore;
-public static double ExtentInsideProperty(this IScrollMetrics instance) => GetOrCreate(instance).ExtentInside;
-public static double ExtentAfterProperty(this IScrollMetrics instance) => GetOrCreate(instance).ExtentAfter;
-public static FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics CopyWith(this IScrollMetrics instance,double minScrollExtent = default(double),double maxScrollExtent = default(double),double pixels = default(double),double viewportDimension = default(double),FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection)) => GetOrCreate(instance).CopyWith(minScrollExtent, maxScrollExtent, pixels, viewportDimension, axisDirection);
-}
+    internal static class ScrollmetricsDefaultClass
+    {
+    }
+
+    public interface IScrollMetrics { }
+
+    public class ScrollMetrics
+    {
+        public virtual double MinScrollExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double MaxScrollExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Pixels { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double ViewportDimension { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Basictypes.Axis Axis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool OutOfRange { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool AtEdge { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double ExtentBefore { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double ExtentInside { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double ExtentAfter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+
+        public virtual FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics CopyWith(double minScrollExtent = default(double), double maxScrollExtent = default(double), double pixels = default(double), double viewportDimension = default(double), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection)) { throw new NotImplementedException(); }
+
+    }
+    public static class ScrollMetricsMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IScrollMetrics, ScrollMetrics> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IScrollMetrics, ScrollMetrics>();
+        static ScrollMetrics GetOrCreate(IScrollMetrics instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new ScrollMetrics();
+                _table.Add(instance, value);
+            }
+            return (ScrollMetrics)value;
+        }
+        public static double MinScrollExtentProperty(this IScrollMetrics instance) => GetOrCreate(instance).MinScrollExtent;
+        public static double MaxScrollExtentProperty(this IScrollMetrics instance) => GetOrCreate(instance).MaxScrollExtent;
+        public static double PixelsProperty(this IScrollMetrics instance) => GetOrCreate(instance).Pixels;
+        public static double ViewportDimensionProperty(this IScrollMetrics instance) => GetOrCreate(instance).ViewportDimension;
+        public static FlutterSDK.Painting.Basictypes.AxisDirection AxisDirectionProperty(this IScrollMetrics instance) => GetOrCreate(instance).AxisDirection;
+        public static FlutterSDK.Painting.Basictypes.Axis AxisProperty(this IScrollMetrics instance) => GetOrCreate(instance).Axis;
+        public static bool OutOfRangeProperty(this IScrollMetrics instance) => GetOrCreate(instance).OutOfRange;
+        public static bool AtEdgeProperty(this IScrollMetrics instance) => GetOrCreate(instance).AtEdge;
+        public static double ExtentBeforeProperty(this IScrollMetrics instance) => GetOrCreate(instance).ExtentBefore;
+        public static double ExtentInsideProperty(this IScrollMetrics instance) => GetOrCreate(instance).ExtentInside;
+        public static double ExtentAfterProperty(this IScrollMetrics instance) => GetOrCreate(instance).ExtentAfter;
+        public static FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics CopyWith(this IScrollMetrics instance, double minScrollExtent = default(double), double maxScrollExtent = default(double), double pixels = default(double), double viewportDimension = default(double), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection)) => GetOrCreate(instance).CopyWith(minScrollExtent, maxScrollExtent, pixels, viewportDimension, axisDirection);
+    }
 
 
-public class FixedScrollMetrics : FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics
-{
-#region constructors
-public FixedScrollMetrics(double minScrollExtent = default(double),double maxScrollExtent = default(double),double pixels = default(double),double viewportDimension = default(double),FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection))
-{
-this.MinScrollExtent = minScrollExtent;
-this.MaxScrollExtent = maxScrollExtent;
-this.Pixels = pixels;
-this.ViewportDimension = viewportDimension;
-this.AxisDirection = axisDirection;throw new NotImplementedException(); }
-#endregion
+    public class FixedScrollMetrics : FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics
+    {
+        #region constructors
+        public FixedScrollMetrics(double minScrollExtent = default(double), double maxScrollExtent = default(double), double pixels = default(double), double viewportDimension = default(double), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection))
+        {
+            this.MinScrollExtent = minScrollExtent;
+            this.MaxScrollExtent = maxScrollExtent;
+            this.Pixels = pixels;
+            this.ViewportDimension = viewportDimension;
+            this.AxisDirection = axisDirection; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public new double MinScrollExtent{get;set;}
-public new double MaxScrollExtent{get;set;}
-public new double Pixels{get;set;}
-public new double ViewportDimension{get;set;}
-public new FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection{get;set;}
-#endregion
+        #region fields
+        public new double MinScrollExtent { get; set; }
+        public new double MaxScrollExtent { get; set; }
+        public new double Pixels { get; set; }
+        public new double ViewportDimension { get; set; }
+        public new FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-#endregion
-}
+        #endregion
+    }
 
 }

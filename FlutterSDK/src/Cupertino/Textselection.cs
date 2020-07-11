@@ -291,158 +291,163 @@ using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
-namespace FlutterSDK.Cupertino.Textselection{
-internal static class TextselectionDefaultClass{
-public static double _KSelectionHandleOverlap = default(double);
-public static double _KSelectionHandleRadius = default(double);
-public static double _KToolbarScreenPadding = default(double);
-public static double _KArrowScreenPadding = default(double);
-public static double _KToolbarContentDistance = default(double);
-public static double _KToolbarHeight = default(double);
-public static Size _KToolbarArrowSize = default(Size);
-public static Radius _KToolbarBorderRadius = default(Radius);
-public static Color _KToolbarBackgroundColor = default(Color);
-public static Color _KToolbarDividerColor = default(Color);
-public static FlutterSDK.Painting.Textstyle.TextStyle _KToolbarButtonFontStyle = default(FlutterSDK.Painting.Textstyle.TextStyle);
-public static FlutterSDK.Painting.Edgeinsets.EdgeInsets _KToolbarButtonPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets);
-public static FlutterSDK.Widgets.Textselection.TextSelectionControls CupertinoTextSelectionControls = default(FlutterSDK.Widgets.Textselection.TextSelectionControls);
-}
-
-public class CupertinoTextSelectionToolbar : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
+namespace FlutterSDK.Cupertino.Textselection
 {
-#region constructors
-internal CupertinoTextSelectionToolbar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),double barTopY = default(double),double arrowTipX = default(double),bool isArrowPointingDown = default(bool),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key,child:child)
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class TextselectionDefaultClass
+    {
+        public static double _KSelectionHandleOverlap = default(double);
+        public static double _KSelectionHandleRadius = default(double);
+        public static double _KToolbarScreenPadding = default(double);
+        public static double _KArrowScreenPadding = default(double);
+        public static double _KToolbarContentDistance = default(double);
+        public static double _KToolbarHeight = default(double);
+        public static Size _KToolbarArrowSize = default(Size);
+        public static Radius _KToolbarBorderRadius = default(Radius);
+        public static Color _KToolbarBackgroundColor = default(Color);
+        public static Color _KToolbarDividerColor = default(Color);
+        public static FlutterSDK.Painting.Textstyle.TextStyle _KToolbarButtonFontStyle = default(FlutterSDK.Painting.Textstyle.TextStyle);
+        public static FlutterSDK.Painting.Edgeinsets.EdgeInsets _KToolbarButtonPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets);
+        public static FlutterSDK.Widgets.Textselection.TextSelectionControls CupertinoTextSelectionControls = default(FlutterSDK.Widgets.Textselection.TextSelectionControls);
+    }
 
-#region fields
-internal virtual double _BarTopY{get;set;}
-internal virtual double _ArrowTipX{get;set;}
-internal virtual bool _IsArrowPointingDown{get;set;}
-#endregion
+    public class CupertinoTextSelectionToolbar : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
+    {
+        #region constructors
+        internal CupertinoTextSelectionToolbar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double barTopY = default(double), double arrowTipX = default(double), bool isArrowPointingDown = default(bool), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual double _BarTopY { get; set; }
+        internal virtual double _ArrowTipX { get; set; }
+        internal virtual bool _IsArrowPointingDown { get; set; }
+        #endregion
 
-public new FlutterSDK.Cupertino.Textselection._ToolbarRenderBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
 
-
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Cupertino.Textselection._ToolbarRenderBox renderObject){ throw new NotImplementedException(); }
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Rendering.@object.RenderObject renderObject){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _ToolbarParentData : FlutterSDK.Rendering.Box.BoxParentData
-{
-#region constructors
-public _ToolbarParentData()
-{ }
-#endregion
-
-#region fields
-public virtual double ArrowXOffsetFromCenter{get;set;}
-#endregion
-
-#region methods
-
-#endregion
-}
+        public new FlutterSDK.Cupertino.Textselection._ToolbarRenderBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public class _ToolbarRenderBox : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
-{
-#region constructors
-public _ToolbarRenderBox(double _barTopY,double _arrowTipX,bool _isArrowPointingDown,FlutterSDK.Rendering.Box.RenderBox child)
-: base(child)
-{
-this._BarTopY = _barTopY;
-this._ArrowTipX = _arrowTipX;
-this._IsArrowPointingDown = _isArrowPointingDown;throw new NotImplementedException(); }
-#endregion
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Cupertino.Textselection._ToolbarRenderBox renderObject) { throw new NotImplementedException(); }
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual double _BarTopY{get;set;}
-internal virtual double _ArrowTipX{get;set;}
-internal virtual bool _IsArrowPointingDown{get;set;}
-public virtual FlutterSDK.Rendering.Box.BoxConstraints HeightConstraint{get;set;}
-internal virtual SKPaint _DebugPaint{get;set;}
-public virtual bool IsRepaintBoundary{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double BarTopY{set {throw new NotImplementedException();}}
-public virtual double ArrowTipX{set {throw new NotImplementedException();}}
-public virtual bool IsArrowPointingDown{set {throw new NotImplementedException();}}
-#endregion
-
-#region methods
-
-public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
+    public class _ToolbarParentData : FlutterSDK.Rendering.Box.BoxParentData
+    {
+        #region constructors
+        public _ToolbarParentData()
+        { }
+        #endregion
+
+        #region fields
+        public virtual double ArrowXOffsetFromCenter { get; set; }
+        #endregion
+
+        #region methods
+
+        #endregion
+    }
 
 
-private Path _ClipPath(){ throw new NotImplementedException(); }
+    public class _ToolbarRenderBox : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
+    {
+        #region constructors
+        public _ToolbarRenderBox(double _barTopY, double _arrowTipX, bool _isArrowPointingDown, FlutterSDK.Rendering.Box.RenderBox child)
+        : base(child)
+        {
+            this._BarTopY = _barTopY;
+            this._ArrowTipX = _arrowTipX;
+            this._IsArrowPointingDown = _isArrowPointingDown; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual double _BarTopY { get; set; }
+        internal virtual double _ArrowTipX { get; set; }
+        internal virtual bool _IsArrowPointingDown { get; set; }
+        public virtual FlutterSDK.Rendering.Box.BoxConstraints HeightConstraint { get; set; }
+        internal virtual SKPaint _DebugPaint { get; set; }
+        public virtual bool IsRepaintBoundary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double BarTopY { set { throw new NotImplementedException(); } }
+        public virtual double ArrowTipX { set { throw new NotImplementedException(); } }
+        public virtual bool IsArrowPointingDown { set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
 
-public new void DebugPaintSize(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
-
-#endregion
-}
+        private Path _ClipPath() { throw new NotImplementedException(); }
 
 
-public class _TextSelectionHandlePainter : FlutterSDK.Rendering.Custompaint.CustomPainter
-{
-#region constructors
-public _TextSelectionHandlePainter(FlutterBinding.UI.Color color)
-{
-this.Color = color;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterBinding.UI.Color Color{get;set;}
-#endregion
-
-#region methods
-
-public new void Paint(Canvas canvas,Size size){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
-public new bool ShouldRepaint(FlutterSDK.Cupertino.Textselection._TextSelectionHandlePainter oldPainter){ throw new NotImplementedException(); }
-public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate){ throw new NotImplementedException(); }
+        public new void DebugPaintSize(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-#endregion
-}
-
-
-public class _CupertinoTextSelectionControls : FlutterSDK.Widgets.Textselection.TextSelectionControls
-{
-#region constructors
-public _CupertinoTextSelectionControls()
-{ }
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public new Size GetHandleSize(double textLineHeight){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new FlutterSDK.Widgets.Framework.Widget BuildToolbar(FlutterSDK.Widgets.Framework.BuildContext context,FlutterBinding.UI.Rect globalEditableRegion,double textLineHeight,FlutterBinding.UI.Offset position,List<FlutterSDK.Rendering.Editable.TextSelectionPoint> endpoints,FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate){ throw new NotImplementedException(); }
+    public class _TextSelectionHandlePainter : FlutterSDK.Rendering.Custompaint.CustomPainter
+    {
+        #region constructors
+        public _TextSelectionHandlePainter(FlutterBinding.UI.Color color)
+        {
+            this.Color = color; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void Paint(Canvas canvas, Size size) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget BuildHandle(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Widgets.Textselection.TextSelectionHandleType type,double textLineHeight){ throw new NotImplementedException(); }
+        public new bool ShouldRepaint(FlutterSDK.Cupertino.Textselection._TextSelectionHandlePainter oldPainter) { throw new NotImplementedException(); }
+        public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public new Offset GetHandleAnchor(FlutterSDK.Widgets.Textselection.TextSelectionHandleType type,double textLineHeight){ throw new NotImplementedException(); }
+    public class _CupertinoTextSelectionControls : FlutterSDK.Widgets.Textselection.TextSelectionControls
+    {
+        #region constructors
+        public _CupertinoTextSelectionControls()
+        { }
+        #endregion
 
-#endregion
-}
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new Size GetHandleSize(double textLineHeight) { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Widgets.Framework.Widget BuildToolbar(FlutterSDK.Widgets.Framework.BuildContext context, FlutterBinding.UI.Rect globalEditableRegion, double textLineHeight, FlutterBinding.UI.Offset position, List<FlutterSDK.Rendering.Editable.TextSelectionPoint> endpoints, FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Widgets.Framework.Widget BuildHandle(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Textselection.TextSelectionHandleType type, double textLineHeight) { throw new NotImplementedException(); }
+
+
+        public new Offset GetHandleAnchor(FlutterSDK.Widgets.Textselection.TextSelectionHandleType type, double textLineHeight) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

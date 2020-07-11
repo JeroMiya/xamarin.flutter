@@ -420,165 +420,175 @@ using FlutterSDK.Material.Inksplash;
 using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
-namespace FlutterSDK.Painting.Colors{
-internal static class ColorsDefaultClass{
-internal static double _GetHue(double red,double green,double blue,double max,double delta){
-throw new NotImplementedException();
-}
-
-internal static Color _ColorFromHue(double alpha,double hue,double chroma,double secondary,double match){
-throw new NotImplementedException();
-}
-
-}
-
-public class HSVColor
+namespace FlutterSDK.Painting.Colors
 {
-#region constructors
-public static HSVColor FromAHSV(double alpha,double hue,double saturation,double value)
-{
-var instance =new HSVColor();instance.Alpha = alpha;
-instance.Hue = hue;
-instance.Saturation = saturation;
-instance.Value = value;throw new NotImplementedException(); }
-public static HSVColor FromColor(FlutterBinding.UI.Color color)
-{
-var instance =new HSVColor();throw new NotImplementedException(); }
-#endregion
+    internal static class ColorsDefaultClass
+    {
+        internal static double _GetHue(double red, double green, double blue, double max, double delta)
+        {
+            throw new NotImplementedException();
+        }
 
-#region fields
-public virtual double Alpha{get;set;}
-public virtual double Hue{get;set;}
-public virtual double Saturation{get;set;}
-public virtual double Value{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        internal static Color _ColorFromHue(double alpha, double hue, double chroma, double secondary, double match)
+        {
+            throw new NotImplementedException();
+        }
 
-#region methods
+    }
 
-public virtual FlutterSDK.Painting.Colors.HSVColor WithAlpha(double alpha){ throw new NotImplementedException(); }
+    public class HSVColor
+    {
+        #region constructors
+        public static HSVColor FromAHSV(double alpha, double hue, double saturation, double value)
+        {
+            var instance = new HSVColor(); instance.Alpha = alpha;
+            instance.Hue = hue;
+            instance.Saturation = saturation;
+            instance.Value = value; throw new NotImplementedException();
+        }
+        public static HSVColor FromColor(FlutterBinding.UI.Color color)
+        {
+            var instance = new HSVColor(); throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual double Alpha { get; set; }
+        public virtual double Hue { get; set; }
+        public virtual double Saturation { get; set; }
+        public virtual double Value { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual FlutterSDK.Painting.Colors.HSVColor WithHue(double hue){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual FlutterSDK.Painting.Colors.HSVColor WithSaturation(double saturation){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Painting.Colors.HSVColor WithValue(double value){ throw new NotImplementedException(); }
-
-
-public virtual Color ToColor(){ throw new NotImplementedException(); }
-
-
-private FlutterSDK.Painting.Colors.HSVColor _ScaleAlpha(double factor){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Painting.Colors.HSVColor Lerp(FlutterSDK.Painting.Colors.HSVColor a,FlutterSDK.Painting.Colors.HSVColor b,double t){ throw new NotImplementedException(); }
-
-
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Colors.HSVColor WithAlpha(double alpha) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public virtual FlutterSDK.Painting.Colors.HSVColor WithHue(double hue) { throw new NotImplementedException(); }
 
 
-public class HSLColor
-{
-#region constructors
-public static HSLColor FromAHSL(double alpha,double hue,double saturation,double lightness)
-{
-var instance =new HSLColor();instance.Alpha = alpha;
-instance.Hue = hue;
-instance.Saturation = saturation;
-instance.Lightness = lightness;throw new NotImplementedException(); }
-public static HSLColor FromColor(FlutterBinding.UI.Color color)
-{
-var instance =new HSLColor();throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual double Alpha{get;set;}
-public virtual double Hue{get;set;}
-public virtual double Saturation{get;set;}
-public virtual double Lightness{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public virtual FlutterSDK.Painting.Colors.HSLColor WithAlpha(double alpha){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Colors.HSVColor WithSaturation(double saturation) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Painting.Colors.HSLColor WithHue(double hue){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Colors.HSVColor WithValue(double value) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Painting.Colors.HSLColor WithSaturation(double saturation){ throw new NotImplementedException(); }
+        public virtual Color ToColor() { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Painting.Colors.HSLColor WithLightness(double lightness){ throw new NotImplementedException(); }
+        private FlutterSDK.Painting.Colors.HSVColor _ScaleAlpha(double factor) { throw new NotImplementedException(); }
 
 
-public virtual Color ToColor(){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Colors.HSVColor Lerp(FlutterSDK.Painting.Colors.HSVColor a, FlutterSDK.Painting.Colors.HSVColor b, double t) { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Painting.Colors.HSLColor _ScaleAlpha(double factor){ throw new NotImplementedException(); }
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Painting.Colors.HSLColor Lerp(FlutterSDK.Painting.Colors.HSLColor a,FlutterSDK.Painting.Colors.HSLColor b,double t){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+    public class HSLColor
+    {
+        #region constructors
+        public static HSLColor FromAHSL(double alpha, double hue, double saturation, double lightness)
+        {
+            var instance = new HSLColor(); instance.Alpha = alpha;
+            instance.Hue = hue;
+            instance.Saturation = saturation;
+            instance.Lightness = lightness; throw new NotImplementedException();
+        }
+        public static HSLColor FromColor(FlutterBinding.UI.Color color)
+        {
+            var instance = new HSLColor(); throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual double Alpha { get; set; }
+        public virtual double Hue { get; set; }
+        public virtual double Saturation { get; set; }
+        public virtual double Lightness { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual FlutterSDK.Painting.Colors.HSLColor WithAlpha(double alpha) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public virtual FlutterSDK.Painting.Colors.HSLColor WithHue(double hue) { throw new NotImplementedException(); }
 
 
-public class ColorSwatch<T> : Color
-{
-#region constructors
-public ColorSwatch(int primary,Dictionary<T,Color> _swatch)
-: base(primary)
-{
-this._Swatch = _swatch;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual Dictionary<T,Color> _Swatch{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public virtual Color IndexOfOperator(T index){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Colors.HSLColor WithSaturation(double saturation) { throw new NotImplementedException(); }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Colors.HSLColor WithLightness(double lightness) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public virtual Color ToColor() { throw new NotImplementedException(); }
 
 
-public class ColorProperty : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<Color>
-{
-#region constructors
-public ColorProperty(string name,FlutterBinding.UI.Color value,bool showName = true,@Object defaultValue = default(@Object),FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle),FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
-: base(name,value,defaultValue:defaultValue,showName:showName,style:style,level:level)
-{
-throw new NotImplementedException(); }
-#endregion
+        private FlutterSDK.Painting.Colors.HSLColor _ScaleAlpha(double factor) { throw new NotImplementedException(); }
 
-#region fields
-#endregion
 
-#region methods
+        public virtual FlutterSDK.Painting.Colors.HSLColor Lerp(FlutterSDK.Painting.Colors.HSLColor a, FlutterSDK.Painting.Colors.HSLColor b, double t) { throw new NotImplementedException(); }
 
-public new Dictionary<string,@Object> ToJsonMap(FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+
+
+        #endregion
+    }
+
+
+    public class ColorSwatch<T> : Color
+    {
+        #region constructors
+        public ColorSwatch(int primary, Dictionary<T, Color> _swatch)
+        : base(primary)
+        {
+            this._Swatch = _swatch; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual Dictionary<T, Color> _Swatch { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual Color IndexOfOperator(T index) { throw new NotImplementedException(); }
+
+
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+
+
+        #endregion
+    }
+
+
+    public class ColorProperty : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<Color>
+    {
+        #region constructors
+        public ColorProperty(string name, FlutterBinding.UI.Color value, bool showName = true, @Object defaultValue = default(@Object), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
+        : base(name, value, defaultValue: defaultValue, showName: showName, style: style, level: level)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new Dictionary<string, @Object> ToJsonMap(FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

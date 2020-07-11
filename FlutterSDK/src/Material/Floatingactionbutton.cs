@@ -383,169 +383,176 @@ using FlutterSDK.Material.Expandicon;
 using FlutterSDK.Material.Mergeablematerial;
 using FlutterSDK.Material.Button;
 using FlutterSDK.Material.Floatingactionbuttontheme;
-namespace FlutterSDK.Material.Floatingactionbutton{
-internal static class FloatingactionbuttonDefaultClass{
-public static FlutterSDK.Rendering.Box.BoxConstraints _KSizeConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints);
-public static FlutterSDK.Rendering.Box.BoxConstraints _KMiniSizeConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints);
-public static FlutterSDK.Rendering.Box.BoxConstraints _KExtendedSizeConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints);
-}
-
-public class _DefaultHeroTag
+namespace FlutterSDK.Material.Floatingactionbutton
 {
-#region constructors
-public _DefaultHeroTag()
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class FloatingactionbuttonDefaultClass
+    {
+        public static FlutterSDK.Rendering.Box.BoxConstraints _KSizeConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints);
+        public static FlutterSDK.Rendering.Box.BoxConstraints _KMiniSizeConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints);
+        public static FlutterSDK.Rendering.Box.BoxConstraints _KExtendedSizeConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints);
+    }
 
-#region fields
-#endregion
+    public class _DefaultHeroTag
+    {
+        #region constructors
+        public _DefaultHeroTag()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        #endregion
 
-#endregion
-}
+        #region methods
 
-
-public class FloatingActionButton : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public FloatingActionButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),string tooltip = default(string),FlutterBinding.UI.Color foregroundColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color),@Object heroTag = default(@Object),double elevation = default(double),double focusElevation = default(double),double hoverElevation = default(double),double highlightElevation = default(double),double disabledElevation = default(double),VoidCallback onPressed = default(VoidCallback),bool mini = false,FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder),FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip),FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode),bool autofocus = false,FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize),bool isExtended = false)
-: base(key:key)
-{
-this.Child = child;
-this.Tooltip = tooltip;
-this.ForegroundColor = foregroundColor;
-this.BackgroundColor = backgroundColor;
-this.FocusColor = focusColor;
-this.HoverColor = hoverColor;
-this.SplashColor = splashColor;
-this.HeroTag = heroTag;
-this.Elevation = elevation;
-this.FocusElevation = focusElevation;
-this.HoverElevation = hoverElevation;
-this.HighlightElevation = highlightElevation;
-this.DisabledElevation = disabledElevation;
-this.OnPressed = onPressed;
-this.Mini = mini;
-this.Shape = shape;
-this.ClipBehavior = clipBehavior;
-this.FocusNode = focusNode;
-this.Autofocus = autofocus;
-this.MaterialTapTargetSize = materialTapTargetSize;
-this.IsExtended = isExtended;throw new NotImplementedException(); }
-public static FloatingActionButton Extended(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),string tooltip = default(string),FlutterBinding.UI.Color foregroundColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color),@Object heroTag = default(@Object),double elevation = default(double),double focusElevation = default(double),double hoverElevation = default(double),FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color),double highlightElevation = default(double),double disabledElevation = default(double),VoidCallback onPressed = default(VoidCallback),FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder),bool isExtended = true,FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize),FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip),FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode),bool autofocus = false,FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget))
-{
-var instance =new FloatingActionButton(key:key);instance.Tooltip = tooltip;
-instance.ForegroundColor = foregroundColor;
-instance.BackgroundColor = backgroundColor;
-instance.FocusColor = focusColor;
-instance.HoverColor = hoverColor;
-instance.HeroTag = heroTag;
-instance.Elevation = elevation;
-instance.FocusElevation = focusElevation;
-instance.HoverElevation = hoverElevation;
-instance.SplashColor = splashColor;
-instance.HighlightElevation = highlightElevation;
-instance.DisabledElevation = disabledElevation;
-instance.OnPressed = onPressed;
-instance.Shape = shape;
-instance.IsExtended = isExtended;
-instance.MaterialTapTargetSize = materialTapTargetSize;
-instance.ClipBehavior = clipBehavior;
-instance.FocusNode = focusNode;
-instance.Autofocus = autofocus;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-public virtual string Tooltip{get;set;}
-public virtual FlutterBinding.UI.Color ForegroundColor{get;set;}
-public virtual FlutterBinding.UI.Color BackgroundColor{get;set;}
-public virtual FlutterBinding.UI.Color FocusColor{get;set;}
-public virtual FlutterBinding.UI.Color HoverColor{get;set;}
-public virtual FlutterBinding.UI.Color SplashColor{get;set;}
-public virtual @Object HeroTag{get;set;}
-public virtual VoidCallback OnPressed{get;set;}
-public virtual double Elevation{get;set;}
-public virtual double FocusElevation{get;set;}
-public virtual double HoverElevation{get;set;}
-public virtual double HighlightElevation{get;set;}
-public virtual double DisabledElevation{get;set;}
-public virtual bool Mini{get;set;}
-public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape{get;set;}
-public virtual FlutterBinding.UI.Clip ClipBehavior{get;set;}
-public virtual bool IsExtended{get;set;}
-public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode{get;set;}
-public virtual bool Autofocus{get;set;}
-public virtual FlutterSDK.Material.Themedata.MaterialTapTargetSize MaterialTapTargetSize{get;set;}
-internal virtual FlutterSDK.Rendering.Box.BoxConstraints _SizeConstraints{get;set;}
-internal virtual double _DefaultElevation{get;set;}
-internal virtual double _DefaultFocusElevation{get;set;}
-internal virtual double _DefaultHoverElevation{get;set;}
-internal virtual double _DefaultHighlightElevation{get;set;}
-internal virtual FlutterSDK.Painting.Borders.ShapeBorder _DefaultShape{get;set;}
-internal virtual FlutterSDK.Painting.Borders.ShapeBorder _DefaultExtendedShape{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+    public class FloatingActionButton : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public FloatingActionButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), string tooltip = default(string), FlutterBinding.UI.Color foregroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), @Object heroTag = default(@Object), double elevation = default(double), double focusElevation = default(double), double hoverElevation = default(double), double highlightElevation = default(double), double disabledElevation = default(double), VoidCallback onPressed = default(VoidCallback), bool mini = false, FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), bool isExtended = false)
+        : base(key: key)
+        {
+            this.Child = child;
+            this.Tooltip = tooltip;
+            this.ForegroundColor = foregroundColor;
+            this.BackgroundColor = backgroundColor;
+            this.FocusColor = focusColor;
+            this.HoverColor = hoverColor;
+            this.SplashColor = splashColor;
+            this.HeroTag = heroTag;
+            this.Elevation = elevation;
+            this.FocusElevation = focusElevation;
+            this.HoverElevation = hoverElevation;
+            this.HighlightElevation = highlightElevation;
+            this.DisabledElevation = disabledElevation;
+            this.OnPressed = onPressed;
+            this.Mini = mini;
+            this.Shape = shape;
+            this.ClipBehavior = clipBehavior;
+            this.FocusNode = focusNode;
+            this.Autofocus = autofocus;
+            this.MaterialTapTargetSize = materialTapTargetSize;
+            this.IsExtended = isExtended; throw new NotImplementedException();
+        }
+        public static FloatingActionButton Extended(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string tooltip = default(string), FlutterBinding.UI.Color foregroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), @Object heroTag = default(@Object), double elevation = default(double), double focusElevation = default(double), double hoverElevation = default(double), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), double highlightElevation = default(double), double disabledElevation = default(double), VoidCallback onPressed = default(VoidCallback), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), bool isExtended = true, FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget))
+        {
+            var instance = new FloatingActionButton(key: key); instance.Tooltip = tooltip;
+            instance.ForegroundColor = foregroundColor;
+            instance.BackgroundColor = backgroundColor;
+            instance.FocusColor = focusColor;
+            instance.HoverColor = hoverColor;
+            instance.HeroTag = heroTag;
+            instance.Elevation = elevation;
+            instance.FocusElevation = focusElevation;
+            instance.HoverElevation = hoverElevation;
+            instance.SplashColor = splashColor;
+            instance.HighlightElevation = highlightElevation;
+            instance.DisabledElevation = disabledElevation;
+            instance.OnPressed = onPressed;
+            instance.Shape = shape;
+            instance.IsExtended = isExtended;
+            instance.MaterialTapTargetSize = materialTapTargetSize;
+            instance.ClipBehavior = clipBehavior;
+            instance.FocusNode = focusNode;
+            instance.Autofocus = autofocus; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual string Tooltip { get; set; }
+        public virtual FlutterBinding.UI.Color ForegroundColor { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual FlutterBinding.UI.Color FocusColor { get; set; }
+        public virtual FlutterBinding.UI.Color HoverColor { get; set; }
+        public virtual FlutterBinding.UI.Color SplashColor { get; set; }
+        public virtual @Object HeroTag { get; set; }
+        public virtual VoidCallback OnPressed { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual double FocusElevation { get; set; }
+        public virtual double HoverElevation { get; set; }
+        public virtual double HighlightElevation { get; set; }
+        public virtual double DisabledElevation { get; set; }
+        public virtual bool Mini { get; set; }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+        public virtual bool IsExtended { get; set; }
+        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+        public virtual bool Autofocus { get; set; }
+        public virtual FlutterSDK.Material.Themedata.MaterialTapTargetSize MaterialTapTargetSize { get; set; }
+        internal virtual FlutterSDK.Rendering.Box.BoxConstraints _SizeConstraints { get; set; }
+        internal virtual double _DefaultElevation { get; set; }
+        internal virtual double _DefaultFocusElevation { get; set; }
+        internal virtual double _DefaultHoverElevation { get; set; }
+        internal virtual double _DefaultHighlightElevation { get; set; }
+        internal virtual FlutterSDK.Painting.Borders.ShapeBorder _DefaultShape { get; set; }
+        internal virtual FlutterSDK.Painting.Borders.ShapeBorder _DefaultExtendedShape { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public class _ChildOverflowBox : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
-{
-#region constructors
-public _ChildOverflowBox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key,child:child)
-{
-throw new NotImplementedException(); }
-#endregion
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#region fields
-#endregion
-
-#region methods
-
-public new FlutterSDK.Material.Floatingactionbutton._RenderChildOverflowBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Material.Floatingactionbutton._RenderChildOverflowBox renderObject){ throw new NotImplementedException(); }
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Rendering.@object.RenderObject renderObject){ throw new NotImplementedException(); }
+    public class _ChildOverflowBox : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
+    {
+        #region constructors
+        public _ChildOverflowBox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        #endregion
 
+        #region methods
 
-public class _RenderChildOverflowBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
-{
-#region constructors
-public _RenderChildOverflowBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),TextDirection textDirection = default(TextDirection))
-: base(child:child,alignment:AlignmentDefaultClass.Alignment.Center,textDirection:textDirection)
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public new double ComputeMinIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        public new FlutterSDK.Material.Floatingactionbutton._RenderChildOverflowBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public new double ComputeMinIntrinsicHeight(double width){ throw new NotImplementedException(); }
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Material.Floatingactionbutton._RenderChildOverflowBox renderObject) { throw new NotImplementedException(); }
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
+    public class _RenderChildOverflowBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
+    {
+        #region constructors
+        public _RenderChildOverflowBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), TextDirection textDirection = default(TextDirection))
+        : base(child: child, alignment: AlignmentDefaultClass.Alignment.Center, textDirection: textDirection)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
+
+
+        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
+
+
+        public new void PerformLayout() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

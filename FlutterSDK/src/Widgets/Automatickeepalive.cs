@@ -421,155 +421,161 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Widgets.Automatickeepalive{
-internal static class AutomatickeepaliveDefaultClass{
-}
-
-public interface IAutomaticKeepAliveClientMixin<T>{}
-
-public class AutomaticKeepAliveClientMixin<T>{
-internal virtual FlutterSDK.Widgets.Automatickeepalive.KeepAliveHandle _KeepAliveHandle{get;set;}
-public virtual bool WantKeepAlive{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-
-private void _EnsureKeepAlive(){ throw new NotImplementedException(); }
-
-
-private void _ReleaseKeepAlive(){ throw new NotImplementedException(); }
-
-
-public virtual void UpdateKeepAlive(){ throw new NotImplementedException(); }
-
-
-public new void InitState(){ throw new NotImplementedException(); }
-
-
-public new void Deactivate(){ throw new NotImplementedException(); }
-
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-}
-public static class AutomaticKeepAliveClientMixinMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<object, object> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<object, object>();
-static AutomaticKeepAliveClientMixin<T> GetOrCreate<T>(IAutomaticKeepAliveClientMixin<T> instance)
+namespace FlutterSDK.Widgets.Automatickeepalive
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new AutomaticKeepAliveClientMixin<T>();
-_table.Add(instance, value);
-}
-return (AutomaticKeepAliveClientMixin<T>)value;
-}
-public static bool WantKeepAliveProperty<T>(this IAutomaticKeepAliveClientMixin<T> instance) => GetOrCreate(instance).WantKeepAlive;
-public static void UpdateKeepAlive<T>(this IAutomaticKeepAliveClientMixin<T> instance) => GetOrCreate(instance).UpdateKeepAlive();
-public static void InitState<T>(this IAutomaticKeepAliveClientMixin<T> instance) => GetOrCreate(instance).InitState();
-public static void Deactivate<T>(this IAutomaticKeepAliveClientMixin<T> instance) => GetOrCreate(instance).Deactivate();
-public static FlutterSDK.Widgets.Framework.Widget Build<T>(this IAutomaticKeepAliveClientMixin<T> instance,FlutterSDK.Widgets.Framework.BuildContext context) => GetOrCreate(instance).Build(context);
-}
+    internal static class AutomatickeepaliveDefaultClass
+    {
+    }
+
+    public interface IAutomaticKeepAliveClientMixin<T> { }
+
+    public class AutomaticKeepAliveClientMixin<T>
+    {
+        internal virtual FlutterSDK.Widgets.Automatickeepalive.KeepAliveHandle _KeepAliveHandle { get; set; }
+        public virtual bool WantKeepAlive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+
+        private void _EnsureKeepAlive() { throw new NotImplementedException(); }
 
 
-public class AutomaticKeepAlive : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public AutomaticKeepAlive(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key)
-{
-this.Child = child;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Automatickeepalive._AutomaticKeepAliveState CreateState(){ throw new NotImplementedException(); }
-
-#endregion
-}
+        private void _ReleaseKeepAlive() { throw new NotImplementedException(); }
 
 
-public class _AutomaticKeepAliveState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Automatickeepalive.AutomaticKeepAlive>
-{
-#region constructors
-public _AutomaticKeepAliveState()
-{ }
-#endregion
-
-#region fields
-internal virtual Dictionary<FlutterSDK.Foundation.Changenotifier.Listenable,object> _Handles{get;set;}
-internal virtual FlutterSDK.Widgets.Framework.Widget _Child{get;set;}
-internal virtual bool _KeepingAlive{get;set;}
-#endregion
-
-#region methods
-
-public new void InitState(){ throw new NotImplementedException(); }
+        public virtual void UpdateKeepAlive() { throw new NotImplementedException(); }
 
 
-public new void DidUpdateWidget(FlutterSDK.Widgets.Automatickeepalive.AutomaticKeepAlive oldWidget){ throw new NotImplementedException(); }
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-private void _UpdateChild(){ throw new NotImplementedException(); }
+        public new void Deactivate() { throw new NotImplementedException(); }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+    }
+    public static class AutomaticKeepAliveClientMixinMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<object, object> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<object, object>();
+        static AutomaticKeepAliveClientMixin<T> GetOrCreate<T>(IAutomaticKeepAliveClientMixin<T> instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new AutomaticKeepAliveClientMixin<T>();
+                _table.Add(instance, value);
+            }
+            return (AutomaticKeepAliveClientMixin<T>)value;
+        }
+        public static bool WantKeepAliveProperty<T>(this IAutomaticKeepAliveClientMixin<T> instance) => GetOrCreate(instance).WantKeepAlive;
+        public static void UpdateKeepAlive<T>(this IAutomaticKeepAliveClientMixin<T> instance) => GetOrCreate(instance).UpdateKeepAlive();
+        public static void InitState<T>(this IAutomaticKeepAliveClientMixin<T> instance) => GetOrCreate(instance).InitState();
+        public static void Deactivate<T>(this IAutomaticKeepAliveClientMixin<T> instance) => GetOrCreate(instance).Deactivate();
+        public static FlutterSDK.Widgets.Framework.Widget Build<T>(this IAutomaticKeepAliveClientMixin<T> instance, FlutterSDK.Widgets.Framework.BuildContext context) => GetOrCreate(instance).Build(context);
+    }
 
 
-private bool _AddClient(FlutterSDK.Widgets.Automatickeepalive.KeepAliveNotification notification){ throw new NotImplementedException(); }
+    public class AutomaticKeepAlive : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public AutomaticKeepAlive(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.Child = child; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Automatickeepalive._AutomaticKeepAliveState CreateState() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-private FlutterSDK.Widgets.Framework.ParentDataElement<FlutterSDK.Rendering.Slivermultiboxadaptor.KeepAliveParentDataMixin> _GetChildElement(){ throw new NotImplementedException(); }
+    public class _AutomaticKeepAliveState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Automatickeepalive.AutomaticKeepAlive>
+    {
+        #region constructors
+        public _AutomaticKeepAliveState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual Dictionary<FlutterSDK.Foundation.Changenotifier.Listenable, object> _Handles { get; set; }
+        internal virtual FlutterSDK.Widgets.Framework.Widget _Child { get; set; }
+        internal virtual bool _KeepingAlive { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-private void _UpdateParentDataOfChild(FlutterSDK.Widgets.Framework.ParentDataElement<FlutterSDK.Rendering.Slivermultiboxadaptor.KeepAliveParentDataMixin> childElement){ throw new NotImplementedException(); }
+        public new void DidUpdateWidget(FlutterSDK.Widgets.Automatickeepalive.AutomaticKeepAlive oldWidget) { throw new NotImplementedException(); }
 
 
-private VoidCallback _CreateCallback(FlutterSDK.Foundation.Changenotifier.Listenable handle){ throw new NotImplementedException(); }
+        private void _UpdateChild() { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new void Dispose() { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description){ throw new NotImplementedException(); }
-
-#endregion
-}
+        private bool _AddClient(FlutterSDK.Widgets.Automatickeepalive.KeepAliveNotification notification) { throw new NotImplementedException(); }
 
 
-public class KeepAliveNotification : FlutterSDK.Widgets.Notificationlistener.Notification
-{
-#region constructors
-public KeepAliveNotification(FlutterSDK.Foundation.Changenotifier.Listenable handle)
-: base()
-{
-this.Handle = handle;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Foundation.Changenotifier.Listenable Handle{get;set;}
-#endregion
-
-#region methods
-#endregion
-}
+        private FlutterSDK.Widgets.Framework.ParentDataElement<FlutterSDK.Rendering.Slivermultiboxadaptor.KeepAliveParentDataMixin> _GetChildElement() { throw new NotImplementedException(); }
 
 
-public class KeepAliveHandle : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
-{
-#region constructors
-public KeepAliveHandle()
-{ }
-#endregion
+        private void _UpdateParentDataOfChild(FlutterSDK.Widgets.Framework.ParentDataElement<FlutterSDK.Rendering.Slivermultiboxadaptor.KeepAliveParentDataMixin> childElement) { throw new NotImplementedException(); }
 
-#region fields
-#endregion
 
-#region methods
+        private VoidCallback _CreateCallback(FlutterSDK.Foundation.Changenotifier.Listenable handle) { throw new NotImplementedException(); }
 
-public virtual void Release(){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class KeepAliveNotification : FlutterSDK.Widgets.Notificationlistener.Notification
+    {
+        #region constructors
+        public KeepAliveNotification(FlutterSDK.Foundation.Changenotifier.Listenable handle)
+        : base()
+        {
+            this.Handle = handle; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Foundation.Changenotifier.Listenable Handle { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    public class KeepAliveHandle : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
+    {
+        #region constructors
+        public KeepAliveHandle()
+        { }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public virtual void Release() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

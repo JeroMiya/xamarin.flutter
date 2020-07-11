@@ -422,187 +422,192 @@ using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
-namespace FlutterSDK.Widgets.Form{
-public delegate string FormFieldValidator<T>(T value);
-public delegate void FormFieldSetter<T>(T newValue);
-public delegate FlutterSDK.Widgets.Framework.Widget FormFieldBuilder<T>(FlutterSDK.Widgets.Form.FormFieldState<T> field);
-internal static class FormDefaultClass{
-}
-
-public class Form : FlutterSDK.Widgets.Framework.StatefulWidget
+namespace FlutterSDK.Widgets.Form
 {
-#region constructors
-public Form(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),bool autovalidate = false,FlutterSDK.Widgets.Navigator.WillPopCallback onWillPop = default(FlutterSDK.Widgets.Navigator.WillPopCallback),VoidCallback onChanged = default(VoidCallback))
-: base(key:key)
-{
-this.Child = child;
-this.Autovalidate = autovalidate;
-this.OnWillPop = onWillPop;
-this.OnChanged = onChanged;throw new NotImplementedException(); }
-#endregion
+    public delegate string FormFieldValidator<T>(T value);
+    public delegate void FormFieldSetter<T>(T newValue);
+    public delegate FlutterSDK.Widgets.Framework.Widget FormFieldBuilder<T>(FlutterSDK.Widgets.Form.FormFieldState<T> field);
+    internal static class FormDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-public virtual bool Autovalidate{get;set;}
-public virtual FlutterSDK.Widgets.Navigator.WillPopCallback OnWillPop{get;set;}
-public virtual VoidCallback OnChanged{get;set;}
-#endregion
+    public class Form : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public Form(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool autovalidate = false, FlutterSDK.Widgets.Navigator.WillPopCallback onWillPop = default(FlutterSDK.Widgets.Navigator.WillPopCallback), VoidCallback onChanged = default(VoidCallback))
+        : base(key: key)
+        {
+            this.Child = child;
+            this.Autovalidate = autovalidate;
+            this.OnWillPop = onWillPop;
+            this.OnChanged = onChanged; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual bool Autovalidate { get; set; }
+        public virtual FlutterSDK.Widgets.Navigator.WillPopCallback OnWillPop { get; set; }
+        public virtual VoidCallback OnChanged { get; set; }
+        #endregion
 
-public virtual FlutterSDK.Widgets.Form.FormState Of(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
 
-
-public new FlutterSDK.Widgets.Form.FormState CreateState(){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class FormState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Form.Form>
-{
-#region constructors
-public FormState()
-{ }
-#endregion
-
-#region fields
-internal virtual int _Generation{get;set;}
-internal virtual HashSet<FlutterSDK.Widgets.Form.FormFieldState<object>> _Fields{get;set;}
-#endregion
-
-#region methods
-
-private void _FieldDidChange(){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Widgets.Form.FormState Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-private void _ForceRebuild(){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Form.FormState CreateState() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-private void _Register(FlutterSDK.Widgets.Form.FormFieldState<object> field){ throw new NotImplementedException(); }
+    public class FormState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Form.Form>
+    {
+        #region constructors
+        public FormState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual int _Generation { get; set; }
+        internal virtual HashSet<FlutterSDK.Widgets.Form.FormFieldState<object>> _Fields { get; set; }
+        #endregion
+
+        #region methods
+
+        private void _FieldDidChange() { throw new NotImplementedException(); }
 
 
-private void _Unregister(FlutterSDK.Widgets.Form.FormFieldState<object> field){ throw new NotImplementedException(); }
+        private void _ForceRebuild() { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        private void _Register(FlutterSDK.Widgets.Form.FormFieldState<object> field) { throw new NotImplementedException(); }
 
 
-public virtual void Save(){ throw new NotImplementedException(); }
+        private void _Unregister(FlutterSDK.Widgets.Form.FormFieldState<object> field) { throw new NotImplementedException(); }
 
 
-public virtual void Reset(){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public virtual bool Validate(){ throw new NotImplementedException(); }
+        public virtual void Save() { throw new NotImplementedException(); }
 
 
-private bool _Validate(){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual void Reset() { throw new NotImplementedException(); }
 
 
-public class _FormScope : FlutterSDK.Widgets.Framework.InheritedWidget
-{
-#region constructors
-public _FormScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Form.FormState formState = default(FlutterSDK.Widgets.Form.FormState),int generation = default(int))
-: base(key:key,child:child)
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Widgets.Form.FormState _FormState{get;set;}
-internal virtual int _Generation{get;set;}
-public virtual FlutterSDK.Widgets.Form.Form Form{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Form._FormScope old){ throw new NotImplementedException(); }
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual bool Validate() { throw new NotImplementedException(); }
 
 
-public class FormField<T> : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public FormField(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Form.FormFieldBuilder<T> builder = default(FlutterSDK.Widgets.Form.FormFieldBuilder<T>),FlutterSDK.Widgets.Form.FormFieldSetter<T> onSaved = default(FlutterSDK.Widgets.Form.FormFieldSetter<T>),FlutterSDK.Widgets.Form.FormFieldValidator<T> validator = default(FlutterSDK.Widgets.Form.FormFieldValidator<T>),T initialValue = default(T),bool autovalidate = false,bool enabled = true)
-: base(key:key)
-{
-this.Builder = builder;
-this.OnSaved = onSaved;
-this.Validator = validator;
-this.InitialValue = initialValue;
-this.Autovalidate = autovalidate;
-this.Enabled = enabled;throw new NotImplementedException(); }
-#endregion
+        private bool _Validate() { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Widgets.Form.FormFieldSetter<T> OnSaved{get;set;}
-public virtual FlutterSDK.Widgets.Form.FormFieldValidator<T> Validator{get;set;}
-public virtual FlutterSDK.Widgets.Form.FormFieldBuilder<T> Builder{get;set;}
-public virtual T InitialValue{get;set;}
-public virtual bool Autovalidate{get;set;}
-public virtual bool Enabled{get;set;}
-#endregion
-
-#region methods
-
-public new FormFieldState<T> CreateState(){ throw new NotImplementedException(); }
-
-#endregion
-}
+        #endregion
+    }
 
 
-public class FormFieldState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Form.FormField<T>>
-{
-#region constructors
-public FormFieldState()
-{ }
-#endregion
+    public class _FormScope : FlutterSDK.Widgets.Framework.InheritedWidget
+    {
+        #region constructors
+        public _FormScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Form.FormState formState = default(FlutterSDK.Widgets.Form.FormState), int generation = default(int))
+        : base(key: key, child: child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-internal virtual T _Value{get;set;}
-internal virtual string _ErrorText{get;set;}
-public virtual T Value{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string ErrorText{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool HasError{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsValid{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #region fields
+        internal virtual FlutterSDK.Widgets.Form.FormState _FormState { get; set; }
+        internal virtual int _Generation { get; set; }
+        public virtual FlutterSDK.Widgets.Form.Form Form { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#region methods
+        #region methods
 
-public virtual void Save(){ throw new NotImplementedException(); }
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Form._FormScope old) { throw new NotImplementedException(); }
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
 
-
-public virtual void Reset(){ throw new NotImplementedException(); }
-
-
-public virtual bool Validate(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-private void _Validate(){ throw new NotImplementedException(); }
+    public class FormField<T> : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public FormField(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Form.FormFieldBuilder<T> builder = default(FlutterSDK.Widgets.Form.FormFieldBuilder<T>), FlutterSDK.Widgets.Form.FormFieldSetter<T> onSaved = default(FlutterSDK.Widgets.Form.FormFieldSetter<T>), FlutterSDK.Widgets.Form.FormFieldValidator<T> validator = default(FlutterSDK.Widgets.Form.FormFieldValidator<T>), T initialValue = default(T), bool autovalidate = false, bool enabled = true)
+        : base(key: key)
+        {
+            this.Builder = builder;
+            this.OnSaved = onSaved;
+            this.Validator = validator;
+            this.InitialValue = initialValue;
+            this.Autovalidate = autovalidate;
+            this.Enabled = enabled; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Form.FormFieldSetter<T> OnSaved { get; set; }
+        public virtual FlutterSDK.Widgets.Form.FormFieldValidator<T> Validator { get; set; }
+        public virtual FlutterSDK.Widgets.Form.FormFieldBuilder<T> Builder { get; set; }
+        public virtual T InitialValue { get; set; }
+        public virtual bool Autovalidate { get; set; }
+        public virtual bool Enabled { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FormFieldState<T> CreateState() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public virtual void DidChange(T value){ throw new NotImplementedException(); }
+    public class FormFieldState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Form.FormField<T>>
+    {
+        #region constructors
+        public FormFieldState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual T _Value { get; set; }
+        internal virtual string _ErrorText { get; set; }
+        public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ErrorText { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool HasError { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsValid { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual void Save() { throw new NotImplementedException(); }
 
 
-public virtual void SetValue(T value){ throw new NotImplementedException(); }
+        public virtual void Reset() { throw new NotImplementedException(); }
 
 
-public new void InitState(){ throw new NotImplementedException(); }
+        public virtual bool Validate() { throw new NotImplementedException(); }
 
 
-public new void Deactivate(){ throw new NotImplementedException(); }
+        private void _Validate() { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public virtual void DidChange(T value) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public virtual void SetValue(T value) { throw new NotImplementedException(); }
+
+
+        public new void InitState() { throw new NotImplementedException(); }
+
+
+        public new void Deactivate() { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

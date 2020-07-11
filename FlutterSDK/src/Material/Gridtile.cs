@@ -383,32 +383,35 @@ using FlutterSDK.Material.Expandicon;
 using FlutterSDK.Material.Mergeablematerial;
 using FlutterSDK.Material.Button;
 using FlutterSDK.Material.Floatingactionbuttontheme;
-namespace FlutterSDK.Material.Gridtile{
-internal static class GridtileDefaultClass{
-}
-
-public class GridTile : FlutterSDK.Widgets.Framework.StatelessWidget
+namespace FlutterSDK.Material.Gridtile
 {
-#region constructors
-public GridTile(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget header = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.Widget footer = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key)
-{
-this.Header = header;
-this.Footer = footer;
-this.Child = child;throw new NotImplementedException(); }
-#endregion
+    internal static class GridtileDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Header{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Footer{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-#endregion
+    public class GridTile : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public GridTile(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget header = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget footer = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.Header = header;
+            this.Footer = footer;
+            this.Child = child; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Header { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Footer { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        #endregion
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

@@ -421,108 +421,113 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Painting.Shapedecoration{
-internal static class ShapedecorationDefaultClass{
-}
-
-public class ShapeDecoration : FlutterSDK.Painting.Decoration.Decoration
+namespace FlutterSDK.Painting.Shapedecoration
 {
-#region constructors
-public ShapeDecoration(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),FlutterSDK.Painting.Decorationimage.DecorationImage image = default(FlutterSDK.Painting.Decorationimage.DecorationImage),FlutterSDK.Painting.Gradient.Gradient gradient = default(FlutterSDK.Painting.Gradient.Gradient),List<FlutterSDK.Painting.Boxshadow.BoxShadow> shadows = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>),FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder))
-: base()
-{
-this.Color = color;
-this.Image = image;
-this.Gradient = gradient;
-this.Shadows = shadows;
-this.Shape = shape;throw new NotImplementedException(); }
-public static ShapeDecoration FromBoxDecoration(FlutterSDK.Painting.Boxdecoration.BoxDecoration source)
-{
-var instance =new ShapeDecoration();throw new NotImplementedException(); }
-#endregion
+    internal static class ShapedecorationDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterBinding.UI.Color Color{get;set;}
-public virtual FlutterSDK.Painting.Gradient.Gradient Gradient{get;set;}
-public virtual FlutterSDK.Painting.Decorationimage.DecorationImage Image{get;set;}
-public virtual List<FlutterSDK.Painting.Boxshadow.BoxShadow> Shadows{get;set;}
-public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsComplex{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class ShapeDecoration : FlutterSDK.Painting.Decoration.Decoration
+    {
+        #region constructors
+        public ShapeDecoration(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Decorationimage.DecorationImage image = default(FlutterSDK.Painting.Decorationimage.DecorationImage), FlutterSDK.Painting.Gradient.Gradient gradient = default(FlutterSDK.Painting.Gradient.Gradient), List<FlutterSDK.Painting.Boxshadow.BoxShadow> shadows = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder))
+        : base()
+        {
+            this.Color = color;
+            this.Image = image;
+            this.Gradient = gradient;
+            this.Shadows = shadows;
+            this.Shape = shape; throw new NotImplementedException();
+        }
+        public static ShapeDecoration FromBoxDecoration(FlutterSDK.Painting.Boxdecoration.BoxDecoration source)
+        {
+            var instance = new ShapeDecoration(); throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual FlutterSDK.Painting.Gradient.Gradient Gradient { get; set; }
+        public virtual FlutterSDK.Painting.Decorationimage.DecorationImage Image { get; set; }
+        public virtual List<FlutterSDK.Painting.Boxshadow.BoxShadow> Shadows { get; set; }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsComplex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new Path GetClipPath(FlutterBinding.UI.Rect rect,TextDirection textDirection){ throw new NotImplementedException(); }
+        #region methods
 
-
-public new FlutterSDK.Painting.Shapedecoration.ShapeDecoration LerpFrom(FlutterSDK.Painting.Decoration.Decoration a,double t){ throw new NotImplementedException(); }
-
-
-public new FlutterSDK.Painting.Shapedecoration.ShapeDecoration LerpTo(FlutterSDK.Painting.Decoration.Decoration b,double t){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Painting.Shapedecoration.ShapeDecoration Lerp(FlutterSDK.Painting.Shapedecoration.ShapeDecoration a,FlutterSDK.Painting.Shapedecoration.ShapeDecoration b,double t){ throw new NotImplementedException(); }
-
-
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public new Path GetClipPath(FlutterBinding.UI.Rect rect, TextDirection textDirection) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Shapedecoration.ShapeDecoration LerpFrom(FlutterSDK.Painting.Decoration.Decoration a, double t) { throw new NotImplementedException(); }
 
 
-public new bool HitTest(Size size,FlutterBinding.UI.Offset position,TextDirection textDirection = default(TextDirection)){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Shapedecoration.ShapeDecoration LerpTo(FlutterSDK.Painting.Decoration.Decoration b, double t) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Painting.Shapedecoration._ShapeDecorationPainter CreateBoxPainter(VoidCallback onChanged = default(VoidCallback)){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual FlutterSDK.Painting.Shapedecoration.ShapeDecoration Lerp(FlutterSDK.Painting.Shapedecoration.ShapeDecoration a, FlutterSDK.Painting.Shapedecoration.ShapeDecoration b, double t) { throw new NotImplementedException(); }
 
 
-public class _ShapeDecorationPainter : FlutterSDK.Painting.Decoration.BoxPainter
-{
-#region constructors
-public _ShapeDecorationPainter(FlutterSDK.Painting.Shapedecoration.ShapeDecoration _decoration,VoidCallback onChanged)
-: base(onChanged)
-{
-this._Decoration = _decoration;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Painting.Shapedecoration.ShapeDecoration _Decoration{get;set;}
-internal virtual FlutterBinding.UI.Rect _LastRect{get;set;}
-internal virtual TextDirection _LastTextDirection{get;set;}
-internal virtual Path _OuterPath{get;set;}
-internal virtual Path _InnerPath{get;set;}
-internal virtual SKPaint _InteriorPaint{get;set;}
-internal virtual int _ShadowCount{get;set;}
-internal virtual List<Path> _ShadowPaths{get;set;}
-internal virtual List<Paint> _ShadowPaints{get;set;}
-internal virtual FlutterSDK.Painting.Decorationimage.DecorationImagePainter _ImagePainter{get;set;}
-#endregion
-
-#region methods
-
-private void _Precache(FlutterBinding.UI.Rect rect,TextDirection textDirection){ throw new NotImplementedException(); }
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
-private void _PaintShadows(Canvas canvas){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
 
-private void _PaintInterior(Canvas canvas){ throw new NotImplementedException(); }
+        public new bool HitTest(Size size, FlutterBinding.UI.Offset position, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
 
-private void _PaintImage(Canvas canvas,FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Shapedecoration._ShapeDecorationPainter CreateBoxPainter(VoidCallback onChanged = default(VoidCallback)) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+    public class _ShapeDecorationPainter : FlutterSDK.Painting.Decoration.BoxPainter
+    {
+        #region constructors
+        public _ShapeDecorationPainter(FlutterSDK.Painting.Shapedecoration.ShapeDecoration _decoration, VoidCallback onChanged)
+        : base(onChanged)
+        {
+            this._Decoration = _decoration; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Painting.Shapedecoration.ShapeDecoration _Decoration { get; set; }
+        internal virtual FlutterBinding.UI.Rect _LastRect { get; set; }
+        internal virtual TextDirection _LastTextDirection { get; set; }
+        internal virtual Path _OuterPath { get; set; }
+        internal virtual Path _InnerPath { get; set; }
+        internal virtual SKPaint _InteriorPaint { get; set; }
+        internal virtual int _ShadowCount { get; set; }
+        internal virtual List<Path> _ShadowPaths { get; set; }
+        internal virtual List<Paint> _ShadowPaints { get; set; }
+        internal virtual FlutterSDK.Painting.Decorationimage.DecorationImagePainter _ImagePainter { get; set; }
+        #endregion
+
+        #region methods
+
+        private void _Precache(FlutterBinding.UI.Rect rect, TextDirection textDirection) { throw new NotImplementedException(); }
 
 
-public new void Paint(Canvas canvas,FlutterBinding.UI.Offset offset,FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration){ throw new NotImplementedException(); }
+        private void _PaintShadows(Canvas canvas) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        private void _PaintInterior(Canvas canvas) { throw new NotImplementedException(); }
+
+
+        private void _PaintImage(Canvas canvas, FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) { throw new NotImplementedException(); }
+
+
+        public new void Dispose() { throw new NotImplementedException(); }
+
+
+        public new void Paint(Canvas canvas, FlutterBinding.UI.Offset offset, FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

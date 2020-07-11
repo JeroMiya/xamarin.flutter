@@ -419,602 +419,624 @@ using FlutterSDK.Material.Selectabletext;
 using FlutterSDK.Material.Inksplash;
 using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
-namespace FlutterSDK.Material.Timepicker{
-internal static class TimepickerDefaultClass{
-public static TimeSpan _KDialAnimateDuration = default(TimeSpan);
-public static double _KTwoPi = default(double);
-public static TimeSpan _KVibrateCommitDelay = default(TimeSpan);
-public static double _KTimePickerHeaderPortraitHeight = default(double);
-public static double _KTimePickerHeaderLandscapeWidth = default(double);
-public static double _KTimePickerWidthPortrait = default(double);
-public static double _KTimePickerWidthLandscape = default(double);
-public static double _KTimePickerHeightPortrait = default(double);
-public static double _KTimePickerHeightLandscape = default(double);
-public static double _KTimePickerHeightPortraitCollapsed = default(double);
-public static double _KTimePickerHeightLandscapeCollapsed = default(double);
-public static FlutterSDK.Rendering.Box.BoxConstraints _KMinTappableRegion = default(FlutterSDK.Rendering.Box.BoxConstraints);
-internal static FlutterSDK.Material.Timepicker._TimePickerHeaderFormat _BuildHeaderFormat(FlutterSDK.Material.Time.TimeOfDayFormat timeOfDayFormat,FlutterSDK.Material.Timepicker._TimePickerFragmentContext context,FlutterSDK.Widgets.Mediaquery.Orientation orientation){
-throw new NotImplementedException();
-}
-
-internal static Future<FlutterSDK.Material.Time.TimeOfDay> ShowTimePicker(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext),FlutterSDK.Material.Time.TimeOfDay initialTime = default(FlutterSDK.Material.Time.TimeOfDay),FlutterSDK.Widgets.Framework.TransitionBuilder builder = default(FlutterSDK.Widgets.Framework.TransitionBuilder),bool useRootNavigator = true,FlutterSDK.Widgets.Navigator.RouteSettings routeSettings = default(FlutterSDK.Widgets.Navigator.RouteSettings)){
-throw new NotImplementedException();
-}
-
-internal static void _AnnounceToAccessibility(FlutterSDK.Widgets.Framework.BuildContext context,string message){
-throw new NotImplementedException();
-}
-
-}
-
-public class _TimePickerFragmentContext
+namespace FlutterSDK.Material.Timepicker
 {
-#region constructors
-public _TimePickerFragmentContext(FlutterSDK.Material.Texttheme.TextTheme headerTextTheme = default(FlutterSDK.Material.Texttheme.TextTheme),TextDirection textDirection = default(TextDirection),FlutterSDK.Material.Time.TimeOfDay selectedTime = default(FlutterSDK.Material.Time.TimeOfDay),FlutterSDK.Material.Timepicker._TimePickerMode mode = default(FlutterSDK.Material.Timepicker._TimePickerMode),FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color),FlutterSDK.Painting.Textstyle.TextStyle activeStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color),FlutterSDK.Painting.Textstyle.TextStyle inactiveStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Foundation.Basictypes.ValueChanged<TimeOfDay> onTimeChange = default(FlutterSDK.Foundation.Basictypes.ValueChanged<TimeOfDay>),FlutterSDK.Foundation.Basictypes.ValueChanged<_TimePickerMode> onModeChange = default(FlutterSDK.Foundation.Basictypes.ValueChanged<_TimePickerMode>),FlutterSDK.Foundation.Platform.TargetPlatform targetPlatform = default(FlutterSDK.Foundation.Platform.TargetPlatform),bool use24HourDials = default(bool))
-: base()
-{
-this.HeaderTextTheme = headerTextTheme;
-this.TextDirection = textDirection;
-this.SelectedTime = selectedTime;
-this.Mode = mode;
-this.ActiveColor = activeColor;
-this.ActiveStyle = activeStyle;
-this.InactiveColor = inactiveColor;
-this.InactiveStyle = inactiveStyle;
-this.OnTimeChange = onTimeChange;
-this.OnModeChange = onModeChange;
-this.TargetPlatform = targetPlatform;
-this.Use24HourDials = use24HourDials;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Material.Texttheme.TextTheme HeaderTextTheme{get;set;}
-public virtual TextDirection TextDirection{get;set;}
-public virtual FlutterSDK.Material.Time.TimeOfDay SelectedTime{get;set;}
-public virtual FlutterSDK.Material.Timepicker._TimePickerMode Mode{get;set;}
-public virtual FlutterBinding.UI.Color ActiveColor{get;set;}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle ActiveStyle{get;set;}
-public virtual FlutterBinding.UI.Color InactiveColor{get;set;}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle InactiveStyle{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<TimeOfDay> OnTimeChange{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<_TimePickerMode> OnModeChange{get;set;}
-public virtual FlutterSDK.Foundation.Platform.TargetPlatform TargetPlatform{get;set;}
-public virtual bool Use24HourDials{get;set;}
-#endregion
-
-#region methods
-#endregion
-}
-
-
-public class _TimePickerHeaderFragment
-{
-#region constructors
-public _TimePickerHeaderFragment(FlutterSDK.Material.Timepicker._TimePickerHeaderId layoutId = default(FlutterSDK.Material.Timepicker._TimePickerHeaderId),FlutterSDK.Widgets.Framework.Widget widget = default(FlutterSDK.Widgets.Framework.Widget),double startMargin = 0.0)
-: base()
-{
-this.LayoutId = layoutId;
-this.Widget = widget;
-this.StartMargin = startMargin;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Material.Timepicker._TimePickerHeaderId LayoutId{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Widget{get;set;}
-public virtual double StartMargin{get;set;}
-#endregion
-
-#region methods
-#endregion
-}
-
-
-public class _TimePickerHeaderPiece
-{
-#region constructors
-public _TimePickerHeaderPiece(int pivotIndex,List<FlutterSDK.Material.Timepicker._TimePickerHeaderFragment> fragments,double bottomMargin = 0.0)
-: base()
-{
-this.PivotIndex = pivotIndex;
-this.Fragments = fragments;
-this.BottomMargin = bottomMargin;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual int PivotIndex{get;set;}
-public virtual List<FlutterSDK.Material.Timepicker._TimePickerHeaderFragment> Fragments{get;set;}
-public virtual double BottomMargin{get;set;}
-#endregion
-
-#region methods
-#endregion
-}
-
-
-public class _TimePickerHeaderFormat
-{
-#region constructors
-public _TimePickerHeaderFormat(int centerpieceIndex,List<FlutterSDK.Material.Timepicker._TimePickerHeaderPiece> pieces)
-: base()
-{
-this.CenterpieceIndex = centerpieceIndex;
-this.Pieces = pieces;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual int CenterpieceIndex{get;set;}
-public virtual List<FlutterSDK.Material.Timepicker._TimePickerHeaderPiece> Pieces{get;set;}
-#endregion
-
-#region methods
-#endregion
-}
-
+    internal static class TimepickerDefaultClass
+    {
+        public static TimeSpan _KDialAnimateDuration = default(TimeSpan);
+        public static double _KTwoPi = default(double);
+        public static TimeSpan _KVibrateCommitDelay = default(TimeSpan);
+        public static double _KTimePickerHeaderPortraitHeight = default(double);
+        public static double _KTimePickerHeaderLandscapeWidth = default(double);
+        public static double _KTimePickerWidthPortrait = default(double);
+        public static double _KTimePickerWidthLandscape = default(double);
+        public static double _KTimePickerHeightPortrait = default(double);
+        public static double _KTimePickerHeightLandscape = default(double);
+        public static double _KTimePickerHeightPortraitCollapsed = default(double);
+        public static double _KTimePickerHeightLandscapeCollapsed = default(double);
+        public static FlutterSDK.Rendering.Box.BoxConstraints _KMinTappableRegion = default(FlutterSDK.Rendering.Box.BoxConstraints);
+        internal static FlutterSDK.Material.Timepicker._TimePickerHeaderFormat _BuildHeaderFormat(FlutterSDK.Material.Time.TimeOfDayFormat timeOfDayFormat, FlutterSDK.Material.Timepicker._TimePickerFragmentContext context, FlutterSDK.Widgets.Mediaquery.Orientation orientation)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static Future<FlutterSDK.Material.Time.TimeOfDay> ShowTimePicker(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Material.Time.TimeOfDay initialTime = default(FlutterSDK.Material.Time.TimeOfDay), FlutterSDK.Widgets.Framework.TransitionBuilder builder = default(FlutterSDK.Widgets.Framework.TransitionBuilder), bool useRootNavigator = true, FlutterSDK.Widgets.Navigator.RouteSettings routeSettings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void _AnnounceToAccessibility(FlutterSDK.Widgets.Framework.BuildContext context, string message)
+        {
+            throw new NotImplementedException();
+        }
+
+    }
+
+    public class _TimePickerFragmentContext
+    {
+        #region constructors
+        public _TimePickerFragmentContext(FlutterSDK.Material.Texttheme.TextTheme headerTextTheme = default(FlutterSDK.Material.Texttheme.TextTheme), TextDirection textDirection = default(TextDirection), FlutterSDK.Material.Time.TimeOfDay selectedTime = default(FlutterSDK.Material.Time.TimeOfDay), FlutterSDK.Material.Timepicker._TimePickerMode mode = default(FlutterSDK.Material.Timepicker._TimePickerMode), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle activeStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle inactiveStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Foundation.Basictypes.ValueChanged<TimeOfDay> onTimeChange = default(FlutterSDK.Foundation.Basictypes.ValueChanged<TimeOfDay>), FlutterSDK.Foundation.Basictypes.ValueChanged<_TimePickerMode> onModeChange = default(FlutterSDK.Foundation.Basictypes.ValueChanged<_TimePickerMode>), FlutterSDK.Foundation.Platform.TargetPlatform targetPlatform = default(FlutterSDK.Foundation.Platform.TargetPlatform), bool use24HourDials = default(bool))
+        : base()
+        {
+            this.HeaderTextTheme = headerTextTheme;
+            this.TextDirection = textDirection;
+            this.SelectedTime = selectedTime;
+            this.Mode = mode;
+            this.ActiveColor = activeColor;
+            this.ActiveStyle = activeStyle;
+            this.InactiveColor = inactiveColor;
+            this.InactiveStyle = inactiveStyle;
+            this.OnTimeChange = onTimeChange;
+            this.OnModeChange = onModeChange;
+            this.TargetPlatform = targetPlatform;
+            this.Use24HourDials = use24HourDials; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Material.Texttheme.TextTheme HeaderTextTheme { get; set; }
+        public virtual TextDirection TextDirection { get; set; }
+        public virtual FlutterSDK.Material.Time.TimeOfDay SelectedTime { get; set; }
+        public virtual FlutterSDK.Material.Timepicker._TimePickerMode Mode { get; set; }
+        public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle ActiveStyle { get; set; }
+        public virtual FlutterBinding.UI.Color InactiveColor { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle InactiveStyle { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<TimeOfDay> OnTimeChange { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<_TimePickerMode> OnModeChange { get; set; }
+        public virtual FlutterSDK.Foundation.Platform.TargetPlatform TargetPlatform { get; set; }
+        public virtual bool Use24HourDials { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    public class _TimePickerHeaderFragment
+    {
+        #region constructors
+        public _TimePickerHeaderFragment(FlutterSDK.Material.Timepicker._TimePickerHeaderId layoutId = default(FlutterSDK.Material.Timepicker._TimePickerHeaderId), FlutterSDK.Widgets.Framework.Widget widget = default(FlutterSDK.Widgets.Framework.Widget), double startMargin = 0.0)
+        : base()
+        {
+            this.LayoutId = layoutId;
+            this.Widget = widget;
+            this.StartMargin = startMargin; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Material.Timepicker._TimePickerHeaderId LayoutId { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Widget { get; set; }
+        public virtual double StartMargin { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    public class _TimePickerHeaderPiece
+    {
+        #region constructors
+        public _TimePickerHeaderPiece(int pivotIndex, List<FlutterSDK.Material.Timepicker._TimePickerHeaderFragment> fragments, double bottomMargin = 0.0)
+        : base()
+        {
+            this.PivotIndex = pivotIndex;
+            this.Fragments = fragments;
+            this.BottomMargin = bottomMargin; throw new NotImplementedException();
+        }
+        #endregion
 
-public class _DayPeriodControl : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public _DayPeriodControl(FlutterSDK.Material.Timepicker._TimePickerFragmentContext fragmentContext = default(FlutterSDK.Material.Timepicker._TimePickerFragmentContext),FlutterSDK.Widgets.Mediaquery.Orientation orientation = default(FlutterSDK.Widgets.Mediaquery.Orientation))
-{
-this.FragmentContext = fragmentContext;
-this.Orientation = orientation;throw new NotImplementedException(); }
-#endregion
+        #region fields
+        public virtual int PivotIndex { get; set; }
+        public virtual List<FlutterSDK.Material.Timepicker._TimePickerHeaderFragment> Fragments { get; set; }
+        public virtual double BottomMargin { get; set; }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Material.Timepicker._TimePickerFragmentContext FragmentContext{get;set;}
-public virtual FlutterSDK.Widgets.Mediaquery.Orientation Orientation{get;set;}
-#endregion
+        #region methods
+        #endregion
+    }
 
-#region methods
 
-private void _TogglePeriod(){ throw new NotImplementedException(); }
+    public class _TimePickerHeaderFormat
+    {
+        #region constructors
+        public _TimePickerHeaderFormat(int centerpieceIndex, List<FlutterSDK.Material.Timepicker._TimePickerHeaderPiece> pieces)
+        : base()
+        {
+            this.CenterpieceIndex = centerpieceIndex;
+            this.Pieces = pieces; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual int CenterpieceIndex { get; set; }
+        public virtual List<FlutterSDK.Material.Timepicker._TimePickerHeaderPiece> Pieces { get; set; }
+        #endregion
 
-private void _SetAm(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
+        #endregion
+    }
 
 
-private void _SetPm(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+    public class _DayPeriodControl : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public _DayPeriodControl(FlutterSDK.Material.Timepicker._TimePickerFragmentContext fragmentContext = default(FlutterSDK.Material.Timepicker._TimePickerFragmentContext), FlutterSDK.Widgets.Mediaquery.Orientation orientation = default(FlutterSDK.Widgets.Mediaquery.Orientation))
+        {
+            this.FragmentContext = fragmentContext;
+            this.Orientation = orientation; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual FlutterSDK.Material.Timepicker._TimePickerFragmentContext FragmentContext { get; set; }
+        public virtual FlutterSDK.Widgets.Mediaquery.Orientation Orientation { get; set; }
+        #endregion
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        private void _TogglePeriod() { throw new NotImplementedException(); }
 
 
-public class _HourControl : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public _HourControl(FlutterSDK.Material.Timepicker._TimePickerFragmentContext fragmentContext = default(FlutterSDK.Material.Timepicker._TimePickerFragmentContext))
-{
-this.FragmentContext = fragmentContext;throw new NotImplementedException(); }
-#endregion
+        private void _SetAm(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Material.Timepicker._TimePickerFragmentContext FragmentContext{get;set;}
-#endregion
 
-#region methods
+        private void _SetPm(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class _StringFragment : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public _StringFragment(FlutterSDK.Material.Timepicker._TimePickerFragmentContext fragmentContext = default(FlutterSDK.Material.Timepicker._TimePickerFragmentContext),string value = default(string))
-{
-this.FragmentContext = fragmentContext;
-this.Value = value;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual FlutterSDK.Material.Timepicker._TimePickerFragmentContext FragmentContext{get;set;}
-public virtual string Value{get;set;}
-#endregion
+    public class _HourControl : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public _HourControl(FlutterSDK.Material.Timepicker._TimePickerFragmentContext fragmentContext = default(FlutterSDK.Material.Timepicker._TimePickerFragmentContext))
+        {
+            this.FragmentContext = fragmentContext; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Material.Timepicker._TimePickerFragmentContext FragmentContext { get; set; }
+        #endregion
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class _MinuteControl : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public _MinuteControl(FlutterSDK.Material.Timepicker._TimePickerFragmentContext fragmentContext = default(FlutterSDK.Material.Timepicker._TimePickerFragmentContext))
-{
-this.FragmentContext = fragmentContext;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual FlutterSDK.Material.Timepicker._TimePickerFragmentContext FragmentContext{get;set;}
-#endregion
+    public class _StringFragment : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public _StringFragment(FlutterSDK.Material.Timepicker._TimePickerFragmentContext fragmentContext = default(FlutterSDK.Material.Timepicker._TimePickerFragmentContext), string value = default(string))
+        {
+            this.FragmentContext = fragmentContext;
+            this.Value = value; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Material.Timepicker._TimePickerFragmentContext FragmentContext { get; set; }
+        public virtual string Value { get; set; }
+        #endregion
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class _TimePickerHeaderLayout : FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate
-{
-#region constructors
-public _TimePickerHeaderLayout(FlutterSDK.Widgets.Mediaquery.Orientation orientation,FlutterSDK.Material.Timepicker._TimePickerHeaderFormat format)
-: base()
-{
-this.Orientation = orientation;
-this.Format = format;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual FlutterSDK.Widgets.Mediaquery.Orientation Orientation{get;set;}
-public virtual FlutterSDK.Material.Timepicker._TimePickerHeaderFormat Format{get;set;}
-#endregion
+    public class _MinuteControl : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public _MinuteControl(FlutterSDK.Material.Timepicker._TimePickerFragmentContext fragmentContext = default(FlutterSDK.Material.Timepicker._TimePickerFragmentContext))
+        {
+            this.FragmentContext = fragmentContext; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Material.Timepicker._TimePickerFragmentContext FragmentContext { get; set; }
+        #endregion
 
-public new void PerformLayout(Size size){ throw new NotImplementedException(); }
+        #region methods
 
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-private void _LayoutHorizontally(Size size,FlutterSDK.Rendering.Box.BoxConstraints constraints){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-private void _LayoutVertically(Size size,FlutterSDK.Rendering.Box.BoxConstraints constraints){ throw new NotImplementedException(); }
+    public class _TimePickerHeaderLayout : FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate
+    {
+        #region constructors
+        public _TimePickerHeaderLayout(FlutterSDK.Widgets.Mediaquery.Orientation orientation, FlutterSDK.Material.Timepicker._TimePickerHeaderFormat format)
+        : base()
+        {
+            this.Orientation = orientation;
+            this.Format = format; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual FlutterSDK.Widgets.Mediaquery.Orientation Orientation { get; set; }
+        public virtual FlutterSDK.Material.Timepicker._TimePickerHeaderFormat Format { get; set; }
+        #endregion
 
-private void _PositionPivoted(double width,double y,Dictionary<FlutterSDK.Material.Timepicker._TimePickerHeaderId,Size> childSizes,List<FlutterSDK.Material.Timepicker._TimePickerHeaderFragment> fragments,int pivotIndex){ throw new NotImplementedException(); }
+        #region methods
 
+        public new void PerformLayout(Size size) { throw new NotImplementedException(); }
 
-private void _PositionPiece(double width,double centeredAroundY,Dictionary<FlutterSDK.Material.Timepicker._TimePickerHeaderId,Size> childSizes,List<FlutterSDK.Material.Timepicker._TimePickerHeaderFragment> fragments){ throw new NotImplementedException(); }
 
+        private void _LayoutHorizontally(Size size, FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
 
-public new bool ShouldRelayout(FlutterSDK.Material.Timepicker._TimePickerHeaderLayout oldDelegate){ throw new NotImplementedException(); }
-public new bool ShouldRelayout(FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate oldDelegate){ throw new NotImplementedException(); }
 
-#endregion
-}
+        private void _LayoutVertically(Size size, FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
 
 
-public class _TimePickerHeader : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public _TimePickerHeader(FlutterSDK.Material.Time.TimeOfDay selectedTime = default(FlutterSDK.Material.Time.TimeOfDay),FlutterSDK.Material.Timepicker._TimePickerMode mode = default(FlutterSDK.Material.Timepicker._TimePickerMode),FlutterSDK.Widgets.Mediaquery.Orientation orientation = default(FlutterSDK.Widgets.Mediaquery.Orientation),FlutterSDK.Foundation.Basictypes.ValueChanged<_TimePickerMode> onModeChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<_TimePickerMode>),FlutterSDK.Foundation.Basictypes.ValueChanged<TimeOfDay> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<TimeOfDay>),bool use24HourDials = default(bool))
-: base()
-{
-this.SelectedTime = selectedTime;
-this.Mode = mode;
-this.Orientation = orientation;
-this.OnModeChanged = onModeChanged;
-this.OnChanged = onChanged;
-this.Use24HourDials = use24HourDials;throw new NotImplementedException(); }
-#endregion
+        private void _PositionPivoted(double width, double y, Dictionary<FlutterSDK.Material.Timepicker._TimePickerHeaderId, Size> childSizes, List<FlutterSDK.Material.Timepicker._TimePickerHeaderFragment> fragments, int pivotIndex) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Material.Time.TimeOfDay SelectedTime{get;set;}
-public virtual FlutterSDK.Material.Timepicker._TimePickerMode Mode{get;set;}
-public virtual FlutterSDK.Widgets.Mediaquery.Orientation Orientation{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<_TimePickerMode> OnModeChanged{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<TimeOfDay> OnChanged{get;set;}
-public virtual bool Use24HourDials{get;set;}
-#endregion
 
-#region methods
+        private void _PositionPiece(double width, double centeredAroundY, Dictionary<FlutterSDK.Material.Timepicker._TimePickerHeaderId, Size> childSizes, List<FlutterSDK.Material.Timepicker._TimePickerHeaderFragment> fragments) { throw new NotImplementedException(); }
 
-private void _HandleChangeMode(FlutterSDK.Material.Timepicker._TimePickerMode value){ throw new NotImplementedException(); }
 
+        public new bool ShouldRelayout(FlutterSDK.Material.Timepicker._TimePickerHeaderLayout oldDelegate) { throw new NotImplementedException(); }
+        public new bool ShouldRelayout(FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate oldDelegate) { throw new NotImplementedException(); }
 
-private FlutterSDK.Painting.Textstyle.TextStyle _GetBaseHeaderStyle(FlutterSDK.Material.Texttheme.TextTheme headerTextTheme){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+    public class _TimePickerHeader : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public _TimePickerHeader(FlutterSDK.Material.Time.TimeOfDay selectedTime = default(FlutterSDK.Material.Time.TimeOfDay), FlutterSDK.Material.Timepicker._TimePickerMode mode = default(FlutterSDK.Material.Timepicker._TimePickerMode), FlutterSDK.Widgets.Mediaquery.Orientation orientation = default(FlutterSDK.Widgets.Mediaquery.Orientation), FlutterSDK.Foundation.Basictypes.ValueChanged<_TimePickerMode> onModeChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<_TimePickerMode>), FlutterSDK.Foundation.Basictypes.ValueChanged<TimeOfDay> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<TimeOfDay>), bool use24HourDials = default(bool))
+        : base()
+        {
+            this.SelectedTime = selectedTime;
+            this.Mode = mode;
+            this.Orientation = orientation;
+            this.OnModeChanged = onModeChanged;
+            this.OnChanged = onChanged;
+            this.Use24HourDials = use24HourDials; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual FlutterSDK.Material.Time.TimeOfDay SelectedTime { get; set; }
+        public virtual FlutterSDK.Material.Timepicker._TimePickerMode Mode { get; set; }
+        public virtual FlutterSDK.Widgets.Mediaquery.Orientation Orientation { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<_TimePickerMode> OnModeChanged { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<TimeOfDay> OnChanged { get; set; }
+        public virtual bool Use24HourDials { get; set; }
+        #endregion
 
+        #region methods
 
-public class _TappableLabel
-{
-#region constructors
-public _TappableLabel(int value = default(int),FlutterSDK.Painting.Textpainter.TextPainter painter = default(FlutterSDK.Painting.Textpainter.TextPainter),VoidCallback onTap = default(VoidCallback))
-{
-this.Value = value;
-this.Painter = painter;
-this.OnTap = onTap;throw new NotImplementedException(); }
-#endregion
+        private void _HandleChangeMode(FlutterSDK.Material.Timepicker._TimePickerMode value) { throw new NotImplementedException(); }
 
-#region fields
-public virtual int Value{get;set;}
-public virtual FlutterSDK.Painting.Textpainter.TextPainter Painter{get;set;}
-public virtual VoidCallback OnTap{get;set;}
-#endregion
 
-#region methods
-#endregion
-}
+        private FlutterSDK.Painting.Textstyle.TextStyle _GetBaseHeaderStyle(FlutterSDK.Material.Texttheme.TextTheme headerTextTheme) { throw new NotImplementedException(); }
 
 
-public class _DialPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
-{
-#region constructors
-public _DialPainter(List<FlutterSDK.Material.Timepicker._TappableLabel> primaryOuterLabels = default(List<FlutterSDK.Material.Timepicker._TappableLabel>),List<FlutterSDK.Material.Timepicker._TappableLabel> primaryInnerLabels = default(List<FlutterSDK.Material.Timepicker._TappableLabel>),List<FlutterSDK.Material.Timepicker._TappableLabel> secondaryOuterLabels = default(List<FlutterSDK.Material.Timepicker._TappableLabel>),List<FlutterSDK.Material.Timepicker._TappableLabel> secondaryInnerLabels = default(List<FlutterSDK.Material.Timepicker._TappableLabel>),FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color accentColor = default(FlutterBinding.UI.Color),double theta = default(double),FlutterSDK.Material.Timepicker._DialRing activeRing = default(FlutterSDK.Material.Timepicker._DialRing),TextDirection textDirection = default(TextDirection),int selectedValue = default(int))
-: base(repaint:BindingDefaultClass.PaintingBinding.Instance.SystemFonts)
-{
-this.PrimaryOuterLabels = primaryOuterLabels;
-this.PrimaryInnerLabels = primaryInnerLabels;
-this.SecondaryOuterLabels = secondaryOuterLabels;
-this.SecondaryInnerLabels = secondaryInnerLabels;
-this.BackgroundColor = backgroundColor;
-this.AccentColor = accentColor;
-this.Theta = theta;
-this.ActiveRing = activeRing;
-this.TextDirection = textDirection;
-this.SelectedValue = selectedValue;throw new NotImplementedException(); }
-#endregion
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#region fields
-public virtual List<FlutterSDK.Material.Timepicker._TappableLabel> PrimaryOuterLabels{get;set;}
-public virtual List<FlutterSDK.Material.Timepicker._TappableLabel> PrimaryInnerLabels{get;set;}
-public virtual List<FlutterSDK.Material.Timepicker._TappableLabel> SecondaryOuterLabels{get;set;}
-public virtual List<FlutterSDK.Material.Timepicker._TappableLabel> SecondaryInnerLabels{get;set;}
-public virtual FlutterBinding.UI.Color BackgroundColor{get;set;}
-public virtual FlutterBinding.UI.Color AccentColor{get;set;}
-public virtual double Theta{get;set;}
-public virtual FlutterSDK.Material.Timepicker._DialRing ActiveRing{get;set;}
-public virtual TextDirection TextDirection{get;set;}
-public virtual int SelectedValue{get;set;}
-internal virtual double _SemanticNodeSizeScale{get;set;}
-public virtual FlutterSDK.Rendering.Custompaint.SemanticsBuilderCallback SemanticsBuilder{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public new void Paint(Canvas canvas,Size size){ throw new NotImplementedException(); }
+    public class _TappableLabel
+    {
+        #region constructors
+        public _TappableLabel(int value = default(int), FlutterSDK.Painting.Textpainter.TextPainter painter = default(FlutterSDK.Painting.Textpainter.TextPainter), VoidCallback onTap = default(VoidCallback))
+        {
+            this.Value = value;
+            this.Painter = painter;
+            this.OnTap = onTap; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual int Value { get; set; }
+        public virtual FlutterSDK.Painting.Textpainter.TextPainter Painter { get; set; }
+        public virtual VoidCallback OnTap { get; set; }
+        #endregion
 
-private List<FlutterSDK.Rendering.Custompaint.CustomPainterSemantics> _BuildSemantics(Size size){ throw new NotImplementedException(); }
+        #region methods
+        #endregion
+    }
 
 
-public new bool ShouldRepaint(FlutterSDK.Material.Timepicker._DialPainter oldPainter){ throw new NotImplementedException(); }
-public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate){ throw new NotImplementedException(); }
+    public class _DialPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
+    {
+        #region constructors
+        public _DialPainter(List<FlutterSDK.Material.Timepicker._TappableLabel> primaryOuterLabels = default(List<FlutterSDK.Material.Timepicker._TappableLabel>), List<FlutterSDK.Material.Timepicker._TappableLabel> primaryInnerLabels = default(List<FlutterSDK.Material.Timepicker._TappableLabel>), List<FlutterSDK.Material.Timepicker._TappableLabel> secondaryOuterLabels = default(List<FlutterSDK.Material.Timepicker._TappableLabel>), List<FlutterSDK.Material.Timepicker._TappableLabel> secondaryInnerLabels = default(List<FlutterSDK.Material.Timepicker._TappableLabel>), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color accentColor = default(FlutterBinding.UI.Color), double theta = default(double), FlutterSDK.Material.Timepicker._DialRing activeRing = default(FlutterSDK.Material.Timepicker._DialRing), TextDirection textDirection = default(TextDirection), int selectedValue = default(int))
+        : base(repaint: BindingDefaultClass.PaintingBinding.Instance.SystemFonts)
+        {
+            this.PrimaryOuterLabels = primaryOuterLabels;
+            this.PrimaryInnerLabels = primaryInnerLabels;
+            this.SecondaryOuterLabels = secondaryOuterLabels;
+            this.SecondaryInnerLabels = secondaryInnerLabels;
+            this.BackgroundColor = backgroundColor;
+            this.AccentColor = accentColor;
+            this.Theta = theta;
+            this.ActiveRing = activeRing;
+            this.TextDirection = textDirection;
+            this.SelectedValue = selectedValue; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual List<FlutterSDK.Material.Timepicker._TappableLabel> PrimaryOuterLabels { get; set; }
+        public virtual List<FlutterSDK.Material.Timepicker._TappableLabel> PrimaryInnerLabels { get; set; }
+        public virtual List<FlutterSDK.Material.Timepicker._TappableLabel> SecondaryOuterLabels { get; set; }
+        public virtual List<FlutterSDK.Material.Timepicker._TappableLabel> SecondaryInnerLabels { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual FlutterBinding.UI.Color AccentColor { get; set; }
+        public virtual double Theta { get; set; }
+        public virtual FlutterSDK.Material.Timepicker._DialRing ActiveRing { get; set; }
+        public virtual TextDirection TextDirection { get; set; }
+        public virtual int SelectedValue { get; set; }
+        internal virtual double _SemanticNodeSizeScale { get; set; }
+        public virtual FlutterSDK.Rendering.Custompaint.SemanticsBuilderCallback SemanticsBuilder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public class _Dial : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public _Dial(FlutterSDK.Material.Time.TimeOfDay selectedTime = default(FlutterSDK.Material.Time.TimeOfDay),FlutterSDK.Material.Timepicker._TimePickerMode mode = default(FlutterSDK.Material.Timepicker._TimePickerMode),bool use24HourDials = default(bool),FlutterSDK.Foundation.Basictypes.ValueChanged<TimeOfDay> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<TimeOfDay>),VoidCallback onHourSelected = default(VoidCallback))
-: base()
-{
-this.SelectedTime = selectedTime;
-this.Mode = mode;
-this.Use24HourDials = use24HourDials;
-this.OnChanged = onChanged;
-this.OnHourSelected = onHourSelected;throw new NotImplementedException(); }
-#endregion
+        public new void Paint(Canvas canvas, Size size) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Material.Time.TimeOfDay SelectedTime{get;set;}
-public virtual FlutterSDK.Material.Timepicker._TimePickerMode Mode{get;set;}
-public virtual bool Use24HourDials{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<TimeOfDay> OnChanged{get;set;}
-public virtual VoidCallback OnHourSelected{get;set;}
-#endregion
 
-#region methods
+        private List<FlutterSDK.Rendering.Custompaint.CustomPainterSemantics> _BuildSemantics(Size size) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Material.Timepicker._DialState CreateState(){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new bool ShouldRepaint(FlutterSDK.Material.Timepicker._DialPainter oldPainter) { throw new NotImplementedException(); }
+        public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class _DialState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Timepicker._Dial>,ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-#region constructors
-public _DialState()
-{ }
-#endregion
 
-#region fields
-public virtual FlutterSDK.Material.Themedata.ThemeData ThemeData{get;set;}
-public virtual FlutterSDK.Material.Materiallocalizations.MaterialLocalizations Localizations{get;set;}
-public virtual FlutterSDK.Widgets.Mediaquery.MediaQueryData Media{get;set;}
-internal virtual FlutterSDK.Animation.Tween.Tween<double> _ThetaTween{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _Theta{get;set;}
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _ThetaController{get;set;}
-internal virtual bool _Dragging{get;set;}
-internal virtual FlutterBinding.UI.Offset _Position{get;set;}
-internal virtual FlutterBinding.UI.Offset _Center{get;set;}
-internal virtual FlutterSDK.Material.Timepicker._DialRing _ActiveRing{get;set;}
-internal virtual List<FlutterSDK.Material.Time.TimeOfDay> _AmHours{get;set;}
-internal virtual List<FlutterSDK.Material.Time.TimeOfDay> _PmHours{get;set;}
-#endregion
+    public class _Dial : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public _Dial(FlutterSDK.Material.Time.TimeOfDay selectedTime = default(FlutterSDK.Material.Time.TimeOfDay), FlutterSDK.Material.Timepicker._TimePickerMode mode = default(FlutterSDK.Material.Timepicker._TimePickerMode), bool use24HourDials = default(bool), FlutterSDK.Foundation.Basictypes.ValueChanged<TimeOfDay> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<TimeOfDay>), VoidCallback onHourSelected = default(VoidCallback))
+        : base()
+        {
+            this.SelectedTime = selectedTime;
+            this.Mode = mode;
+            this.Use24HourDials = use24HourDials;
+            this.OnChanged = onChanged;
+            this.OnHourSelected = onHourSelected; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Material.Time.TimeOfDay SelectedTime { get; set; }
+        public virtual FlutterSDK.Material.Timepicker._TimePickerMode Mode { get; set; }
+        public virtual bool Use24HourDials { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<TimeOfDay> OnChanged { get; set; }
+        public virtual VoidCallback OnHourSelected { get; set; }
+        #endregion
 
-public new void InitState(){ throw new NotImplementedException(); }
+        #region methods
 
+        public new FlutterSDK.Material.Timepicker._DialState CreateState() { throw new NotImplementedException(); }
 
-public new void DidChangeDependencies(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void DidUpdateWidget(FlutterSDK.Material.Timepicker._Dial oldWidget){ throw new NotImplementedException(); }
+    public class _DialState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Timepicker._Dial>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _DialState()
+        { }
+        #endregion
 
+        #region fields
+        public virtual FlutterSDK.Material.Themedata.ThemeData ThemeData { get; set; }
+        public virtual FlutterSDK.Material.Materiallocalizations.MaterialLocalizations Localizations { get; set; }
+        public virtual FlutterSDK.Widgets.Mediaquery.MediaQueryData Media { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.Tween<double> _ThetaTween { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _Theta { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _ThetaController { get; set; }
+        internal virtual bool _Dragging { get; set; }
+        internal virtual FlutterBinding.UI.Offset _Position { get; set; }
+        internal virtual FlutterBinding.UI.Offset _Center { get; set; }
+        internal virtual FlutterSDK.Material.Timepicker._DialRing _ActiveRing { get; set; }
+        internal virtual List<FlutterSDK.Material.Time.TimeOfDay> _AmHours { get; set; }
+        internal virtual List<FlutterSDK.Material.Time.TimeOfDay> _PmHours { get; set; }
+        #endregion
 
-private void _UpdateDialRingFromWidget(){ throw new NotImplementedException(); }
+        #region methods
 
+        public new void InitState() { throw new NotImplementedException(); }
 
-public new void Dispose(){ throw new NotImplementedException(); }
 
+        public new void DidChangeDependencies() { throw new NotImplementedException(); }
 
-private double _Nearest(double target,double a,double b){ throw new NotImplementedException(); }
 
+        public new void DidUpdateWidget(FlutterSDK.Material.Timepicker._Dial oldWidget) { throw new NotImplementedException(); }
 
-private void _AnimateTo(double targetTheta){ throw new NotImplementedException(); }
 
+        private void _UpdateDialRingFromWidget() { throw new NotImplementedException(); }
 
-private double _GetThetaForTime(FlutterSDK.Material.Time.TimeOfDay time){ throw new NotImplementedException(); }
 
+        public new void Dispose() { throw new NotImplementedException(); }
 
-private FlutterSDK.Material.Time.TimeOfDay _GetTimeForTheta(double theta){ throw new NotImplementedException(); }
 
+        private double _Nearest(double target, double a, double b) { throw new NotImplementedException(); }
 
-private FlutterSDK.Material.Time.TimeOfDay _NotifyOnChangedIfNeeded(){ throw new NotImplementedException(); }
 
+        private void _AnimateTo(double targetTheta) { throw new NotImplementedException(); }
 
-private void _UpdateThetaForPan(){ throw new NotImplementedException(); }
 
+        private double _GetThetaForTime(FlutterSDK.Material.Time.TimeOfDay time) { throw new NotImplementedException(); }
 
-private void _HandlePanStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Material.Time.TimeOfDay _GetTimeForTheta(double theta) { throw new NotImplementedException(); }
 
-private void _HandlePanUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Material.Time.TimeOfDay _NotifyOnChangedIfNeeded() { throw new NotImplementedException(); }
 
-private void _HandlePanEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details){ throw new NotImplementedException(); }
 
+        private void _UpdateThetaForPan() { throw new NotImplementedException(); }
 
-private void _HandleTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details){ throw new NotImplementedException(); }
 
+        private void _HandlePanStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details) { throw new NotImplementedException(); }
 
-private void _SelectHour(int hour){ throw new NotImplementedException(); }
 
+        private void _HandlePanUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details) { throw new NotImplementedException(); }
 
-private void _SelectMinute(int minute){ throw new NotImplementedException(); }
 
+        private void _HandlePanEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details) { throw new NotImplementedException(); }
 
-private FlutterSDK.Material.Timepicker._TappableLabel _BuildTappableLabel(FlutterSDK.Material.Texttheme.TextTheme textTheme,int value,string label,VoidCallback onTap){ throw new NotImplementedException(); }
 
+        private void _HandleTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details) { throw new NotImplementedException(); }
 
-private List<FlutterSDK.Material.Timepicker._TappableLabel> _Build24HourInnerRing(FlutterSDK.Material.Texttheme.TextTheme textTheme){ throw new NotImplementedException(); }
 
+        private void _SelectHour(int hour) { throw new NotImplementedException(); }
 
-private List<FlutterSDK.Material.Timepicker._TappableLabel> _Build24HourOuterRing(FlutterSDK.Material.Texttheme.TextTheme textTheme){ throw new NotImplementedException(); }
 
+        private void _SelectMinute(int minute) { throw new NotImplementedException(); }
 
-private List<FlutterSDK.Material.Timepicker._TappableLabel> _Build12HourOuterRing(FlutterSDK.Material.Texttheme.TextTheme textTheme){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Material.Timepicker._TappableLabel _BuildTappableLabel(FlutterSDK.Material.Texttheme.TextTheme textTheme, int value, string label, VoidCallback onTap) { throw new NotImplementedException(); }
 
-private List<FlutterSDK.Material.Timepicker._TappableLabel> _BuildMinutes(FlutterSDK.Material.Texttheme.TextTheme textTheme){ throw new NotImplementedException(); }
 
+        private List<FlutterSDK.Material.Timepicker._TappableLabel> _Build24HourInnerRing(FlutterSDK.Material.Texttheme.TextTheme textTheme) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
 
-#endregion
-}
+        private List<FlutterSDK.Material.Timepicker._TappableLabel> _Build24HourOuterRing(FlutterSDK.Material.Texttheme.TextTheme textTheme) { throw new NotImplementedException(); }
 
 
-public class _TimePickerDialog : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public _TimePickerDialog(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Material.Time.TimeOfDay initialTime = default(FlutterSDK.Material.Time.TimeOfDay))
-: base(key:key)
-{
-this.InitialTime = initialTime;throw new NotImplementedException(); }
-#endregion
+        private List<FlutterSDK.Material.Timepicker._TappableLabel> _Build12HourOuterRing(FlutterSDK.Material.Texttheme.TextTheme textTheme) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Material.Time.TimeOfDay InitialTime{get;set;}
-#endregion
 
-#region methods
+        private List<FlutterSDK.Material.Timepicker._TappableLabel> _BuildMinutes(FlutterSDK.Material.Texttheme.TextTheme textTheme) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Material.Timepicker._TimePickerDialogState CreateState(){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public class _TimePickerDialogState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Timepicker._TimePickerDialog>
-{
-#region constructors
-public _TimePickerDialogState()
-{ }
-#endregion
 
-#region fields
-internal virtual FlutterSDK.Material.Timepicker._TimePickerMode _Mode{get;set;}
-internal virtual FlutterSDK.Material.Timepicker._TimePickerMode _LastModeAnnounced{get;set;}
-internal virtual FlutterSDK.Material.Time.TimeOfDay _SelectedTime{get;set;}
-internal virtual Timer _VibrateTimer{get;set;}
-public virtual FlutterSDK.Material.Materiallocalizations.MaterialLocalizations Localizations{get;set;}
-internal virtual bool _AnnouncedInitialTime{get;set;}
-public virtual FlutterSDK.Material.Time.TimeOfDay SelectedTime{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class _TimePickerDialog : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public _TimePickerDialog(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Time.TimeOfDay initialTime = default(FlutterSDK.Material.Time.TimeOfDay))
+        : base(key: key)
+        {
+            this.InitialTime = initialTime; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Material.Time.TimeOfDay InitialTime { get; set; }
+        #endregion
 
-public new void InitState(){ throw new NotImplementedException(); }
+        #region methods
 
+        public new FlutterSDK.Material.Timepicker._TimePickerDialogState CreateState() { throw new NotImplementedException(); }
 
-public new void DidChangeDependencies(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-private void _Vibrate(){ throw new NotImplementedException(); }
+    public class _TimePickerDialogState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Timepicker._TimePickerDialog>
+    {
+        #region constructors
+        public _TimePickerDialogState()
+        { }
+        #endregion
 
+        #region fields
+        internal virtual FlutterSDK.Material.Timepicker._TimePickerMode _Mode { get; set; }
+        internal virtual FlutterSDK.Material.Timepicker._TimePickerMode _LastModeAnnounced { get; set; }
+        internal virtual FlutterSDK.Material.Time.TimeOfDay _SelectedTime { get; set; }
+        internal virtual Timer _VibrateTimer { get; set; }
+        public virtual FlutterSDK.Material.Materiallocalizations.MaterialLocalizations Localizations { get; set; }
+        internal virtual bool _AnnouncedInitialTime { get; set; }
+        public virtual FlutterSDK.Material.Time.TimeOfDay SelectedTime { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-private void _HandleModeChanged(FlutterSDK.Material.Timepicker._TimePickerMode mode){ throw new NotImplementedException(); }
+        #region methods
 
+        public new void InitState() { throw new NotImplementedException(); }
 
-private void _AnnounceModeOnce(){ throw new NotImplementedException(); }
 
+        public new void DidChangeDependencies() { throw new NotImplementedException(); }
 
-private void _AnnounceInitialTimeOnce(){ throw new NotImplementedException(); }
 
+        private void _Vibrate() { throw new NotImplementedException(); }
 
-private void _HandleTimeChanged(FlutterSDK.Material.Time.TimeOfDay value){ throw new NotImplementedException(); }
 
+        private void _HandleModeChanged(FlutterSDK.Material.Timepicker._TimePickerMode mode) { throw new NotImplementedException(); }
 
-private void _HandleHourSelected(){ throw new NotImplementedException(); }
 
+        private void _AnnounceModeOnce() { throw new NotImplementedException(); }
 
-private void _HandleCancel(){ throw new NotImplementedException(); }
 
+        private void _AnnounceInitialTimeOnce() { throw new NotImplementedException(); }
 
-private void _HandleOk(){ throw new NotImplementedException(); }
 
+        private void _HandleTimeChanged(FlutterSDK.Material.Time.TimeOfDay value) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
 
+        private void _HandleHourSelected() { throw new NotImplementedException(); }
 
-public new void Dispose(){ throw new NotImplementedException(); }
 
-#endregion
-}
+        private void _HandleCancel() { throw new NotImplementedException(); }
 
 
-public enum _TimePickerMode{
+        private void _HandleOk() { throw new NotImplementedException(); }
 
-Hour,
-Minute,
-}
 
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-public enum _TimePickerHeaderId{
 
-Hour,
-Colon,
-Minute,
-Period,
-Dot,
-HString,
-}
+        public new void Dispose() { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public enum _DialRing{
 
-Outer,
-Inner,
-}
+    public enum _TimePickerMode
+    {
+
+        Hour,
+        Minute,
+    }
+
+
+    public enum _TimePickerHeaderId
+    {
+
+        Hour,
+        Colon,
+        Minute,
+        Period,
+        Dot,
+        HString,
+    }
+
+
+    public enum _DialRing
+    {
+
+        Outer,
+        Inner,
+    }
 
 }

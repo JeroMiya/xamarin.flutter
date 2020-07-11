@@ -420,275 +420,283 @@ using FlutterSDK.Material.Inksplash;
 using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
-namespace FlutterSDK.Painting.Alignment{
-internal static class AlignmentDefaultClass{
-}
-
-public interface IAlignmentGeometry{
-FlutterSDK.Painting.Alignment.AlignmentGeometry Add(FlutterSDK.Painting.Alignment.AlignmentGeometry other);
-FlutterSDK.Painting.Alignment.AlignmentGeometry Unary();
-FlutterSDK.Painting.Alignment.AlignmentGeometry MultiplyOperator(double other);
-FlutterSDK.Painting.Alignment.AlignmentGeometry DivideOperator(double other);
-FlutterSDK.Painting.Alignment.AlignmentGeometry DivideIntegerResultOperator(double other);
-FlutterSDK.Painting.Alignment.AlignmentGeometry ModuloOperator(double other);
-FlutterSDK.Painting.Alignment.AlignmentGeometry Lerp(FlutterSDK.Painting.Alignment.AlignmentGeometry a,FlutterSDK.Painting.Alignment.AlignmentGeometry b,double t);
-FlutterSDK.Painting.Alignment.Alignment Resolve(TextDirection direction);
-string ToString();
-bool Equals(@Object other);
-int HashCode{get;}
-}
-
-
-public class AlignmentGeometry
+namespace FlutterSDK.Painting.Alignment
 {
-#region constructors
-public AlignmentGeometry()
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class AlignmentDefaultClass
+    {
+    }
 
-#region fields
-internal virtual double _X{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _Start{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _Y{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public interface IAlignmentGeometry
+    {
+        FlutterSDK.Painting.Alignment.AlignmentGeometry Add(FlutterSDK.Painting.Alignment.AlignmentGeometry other);
+        FlutterSDK.Painting.Alignment.AlignmentGeometry Unary();
+        FlutterSDK.Painting.Alignment.AlignmentGeometry MultiplyOperator(double other);
+        FlutterSDK.Painting.Alignment.AlignmentGeometry DivideOperator(double other);
+        FlutterSDK.Painting.Alignment.AlignmentGeometry DivideIntegerResultOperator(double other);
+        FlutterSDK.Painting.Alignment.AlignmentGeometry ModuloOperator(double other);
+        FlutterSDK.Painting.Alignment.AlignmentGeometry Lerp(FlutterSDK.Painting.Alignment.AlignmentGeometry a, FlutterSDK.Painting.Alignment.AlignmentGeometry b, double t);
+        FlutterSDK.Painting.Alignment.Alignment Resolve(TextDirection direction);
+        string ToString();
+        bool Equals(@Object other);
+        int HashCode { get; }
+    }
 
-#region methods
 
-public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Add(FlutterSDK.Painting.Alignment.AlignmentGeometry other){ throw new NotImplementedException(); }
+    public class AlignmentGeometry
+    {
+        #region constructors
+        public AlignmentGeometry()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual double _X { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _Start { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _Y { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Unary(){ throw new NotImplementedException(); }
+        #region methods
 
+        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Add(FlutterSDK.Painting.Alignment.AlignmentGeometry other) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry MultiplyOperator(double other){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Unary() { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry DivideOperator(double other){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry MultiplyOperator(double other) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry DivideIntegerResultOperator(double other){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry DivideOperator(double other) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry ModuloOperator(double other){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry DivideIntegerResultOperator(double other) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Lerp(FlutterSDK.Painting.Alignment.AlignmentGeometry a,FlutterSDK.Painting.Alignment.AlignmentGeometry b,double t){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry ModuloOperator(double other) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Alignment.Alignment Resolve(TextDirection direction){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Lerp(FlutterSDK.Painting.Alignment.AlignmentGeometry a, FlutterSDK.Painting.Alignment.AlignmentGeometry b, double t) { throw new NotImplementedException(); }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Alignment.Alignment Resolve(TextDirection direction) { throw new NotImplementedException(); }
 
-#endregion
-}
 
 
-public class Alignment : FlutterSDK.Painting.Alignment.AlignmentGeometry
-{
-#region constructors
-public Alignment(double x,double y)
-: base()
-{
-this.x = x;
-this.y = y;throw new NotImplementedException(); }
-#endregion
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
-#region fields
-public virtual double x{get;set;}
-public virtual double y{get;set;}
-public virtual FlutterSDK.Painting.Alignment.Alignment TopLeft{get;set;}
-public virtual FlutterSDK.Painting.Alignment.Alignment TopCenter{get;set;}
-public virtual FlutterSDK.Painting.Alignment.Alignment TopRight{get;set;}
-public virtual FlutterSDK.Painting.Alignment.Alignment CenterLeft{get;set;}
-public virtual FlutterSDK.Painting.Alignment.Alignment Center{get;set;}
-public virtual FlutterSDK.Painting.Alignment.Alignment CenterRight{get;set;}
-public virtual FlutterSDK.Painting.Alignment.Alignment BottomLeft{get;set;}
-public virtual FlutterSDK.Painting.Alignment.Alignment BottomCenter{get;set;}
-public virtual FlutterSDK.Painting.Alignment.Alignment BottomRight{get;set;}
-internal virtual double _X{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _Start{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _Y{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public new FlutterSDK.Painting.Alignment.AlignmentGeometry Add(FlutterSDK.Painting.Alignment.AlignmentGeometry other){ throw new NotImplementedException(); }
+    public class Alignment : FlutterSDK.Painting.Alignment.AlignmentGeometry
+    {
+        #region constructors
+        public Alignment(double x, double y)
+        : base()
+        {
+            this.x = x;
+            this.y = y; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual double x { get; set; }
+        public virtual double y { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.Alignment TopLeft { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.Alignment TopCenter { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.Alignment TopRight { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.Alignment CenterLeft { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.Alignment Center { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.Alignment CenterRight { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.Alignment BottomLeft { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.Alignment BottomCenter { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.Alignment BottomRight { get; set; }
+        internal virtual double _X { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _Start { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _Y { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual FlutterSDK.Painting.Alignment.Alignment Unary(FlutterSDK.Painting.Alignment.Alignment other){ throw new NotImplementedException(); }
+        #region methods
 
+        public new FlutterSDK.Painting.Alignment.AlignmentGeometry Add(FlutterSDK.Painting.Alignment.AlignmentGeometry other) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Alignment.Alignment AddOperator(FlutterSDK.Painting.Alignment.Alignment other){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Alignment.Alignment Unary(FlutterSDK.Painting.Alignment.Alignment other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Alignment.Alignment Unary(){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Alignment.Alignment AddOperator(FlutterSDK.Painting.Alignment.Alignment other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Alignment.Alignment MultiplyOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Alignment.Alignment Unary() { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Alignment.Alignment DivideOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Alignment.Alignment MultiplyOperator(double other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Alignment.Alignment DivideIntegerResultOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Alignment.Alignment DivideOperator(double other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Alignment.Alignment ModuloOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Alignment.Alignment DivideIntegerResultOperator(double other) { throw new NotImplementedException(); }
 
-public virtual Offset AlongOffset(FlutterBinding.UI.Offset other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Alignment.Alignment ModuloOperator(double other) { throw new NotImplementedException(); }
 
-public virtual Offset AlongSize(Size other){ throw new NotImplementedException(); }
 
+        public virtual Offset AlongOffset(FlutterBinding.UI.Offset other) { throw new NotImplementedException(); }
 
-public virtual Offset WithinRect(FlutterBinding.UI.Rect rect){ throw new NotImplementedException(); }
 
+        public virtual Offset AlongSize(Size other) { throw new NotImplementedException(); }
 
-public virtual Rect Inscribe(Size size,FlutterBinding.UI.Rect rect){ throw new NotImplementedException(); }
 
+        public virtual Offset WithinRect(FlutterBinding.UI.Rect rect) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Alignment.Alignment Lerp(FlutterSDK.Painting.Alignment.Alignment a,FlutterSDK.Painting.Alignment.Alignment b,double t){ throw new NotImplementedException(); }
 
+        public virtual Rect Inscribe(Size size, FlutterBinding.UI.Rect rect) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Alignment.Alignment Resolve(TextDirection direction){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Alignment.Alignment Lerp(FlutterSDK.Painting.Alignment.Alignment a, FlutterSDK.Painting.Alignment.Alignment b, double t) { throw new NotImplementedException(); }
 
-private string _Stringify(double x,double y){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Alignment.Alignment Resolve(TextDirection direction) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        private string _Stringify(double x, double y) { throw new NotImplementedException(); }
 
-public class AlignmentDirectional : FlutterSDK.Painting.Alignment.AlignmentGeometry
-{
-#region constructors
-public AlignmentDirectional(double start,double y)
-: base()
-{
-this.Start = start;
-this.y = y;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual double Start{get;set;}
-public virtual double y{get;set;}
-public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional TopStart{get;set;}
-public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional TopCenter{get;set;}
-public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional TopEnd{get;set;}
-public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional CenterStart{get;set;}
-public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional Center{get;set;}
-public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional CenterEnd{get;set;}
-public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional BottomStart{get;set;}
-public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional BottomCenter{get;set;}
-public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional BottomEnd{get;set;}
-internal virtual double _X{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _Start{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _Y{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public new FlutterSDK.Painting.Alignment.AlignmentGeometry Add(FlutterSDK.Painting.Alignment.AlignmentGeometry other){ throw new NotImplementedException(); }
+    public class AlignmentDirectional : FlutterSDK.Painting.Alignment.AlignmentGeometry
+    {
+        #region constructors
+        public AlignmentDirectional(double start, double y)
+        : base()
+        {
+            this.Start = start;
+            this.y = y; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual double Start { get; set; }
+        public virtual double y { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional TopStart { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional TopCenter { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional TopEnd { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional CenterStart { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional Center { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional CenterEnd { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional BottomStart { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional BottomCenter { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional BottomEnd { get; set; }
+        internal virtual double _X { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _Start { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _Y { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional Unary(FlutterSDK.Painting.Alignment.AlignmentDirectional other){ throw new NotImplementedException(); }
+        #region methods
 
+        public new FlutterSDK.Painting.Alignment.AlignmentGeometry Add(FlutterSDK.Painting.Alignment.AlignmentGeometry other) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional AddOperator(FlutterSDK.Painting.Alignment.AlignmentDirectional other){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional Unary(FlutterSDK.Painting.Alignment.AlignmentDirectional other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Alignment.AlignmentDirectional Unary(){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional AddOperator(FlutterSDK.Painting.Alignment.AlignmentDirectional other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Alignment.AlignmentDirectional MultiplyOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Alignment.AlignmentDirectional Unary() { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Alignment.AlignmentDirectional DivideOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Alignment.AlignmentDirectional MultiplyOperator(double other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Alignment.AlignmentDirectional DivideIntegerResultOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Alignment.AlignmentDirectional DivideOperator(double other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Alignment.AlignmentDirectional ModuloOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Alignment.AlignmentDirectional DivideIntegerResultOperator(double other) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional Lerp(FlutterSDK.Painting.Alignment.AlignmentDirectional a,FlutterSDK.Painting.Alignment.AlignmentDirectional b,double t){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Alignment.AlignmentDirectional ModuloOperator(double other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Alignment.Alignment Resolve(TextDirection direction){ throw new NotImplementedException(); }
 
+        public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional Lerp(FlutterSDK.Painting.Alignment.AlignmentDirectional a, FlutterSDK.Painting.Alignment.AlignmentDirectional b, double t) { throw new NotImplementedException(); }
 
-private string _Stringify(double start,double y){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Alignment.Alignment Resolve(TextDirection direction) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        private string _Stringify(double start, double y) { throw new NotImplementedException(); }
 
-public class _MixedAlignment : FlutterSDK.Painting.Alignment.AlignmentGeometry
-{
-#region constructors
-public _MixedAlignment(double _x,double _start,double _y)
-{
-this._X = _x;
-this._Start = _start;
-this._Y = _y;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-internal new double _X{get;set;}
-internal new double _Start{get;set;}
-internal new double _Y{get;set;}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public new FlutterSDK.Painting.Alignment._MixedAlignment Unary(){ throw new NotImplementedException(); }
+    public class _MixedAlignment : FlutterSDK.Painting.Alignment.AlignmentGeometry
+    {
+        #region constructors
+        public _MixedAlignment(double _x, double _start, double _y)
+        {
+            this._X = _x;
+            this._Start = _start;
+            this._Y = _y; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal new double _X { get; set; }
+        internal new double _Start { get; set; }
+        internal new double _Y { get; set; }
+        #endregion
 
-public new FlutterSDK.Painting.Alignment._MixedAlignment MultiplyOperator(double other){ throw new NotImplementedException(); }
+        #region methods
 
+        public new FlutterSDK.Painting.Alignment._MixedAlignment Unary() { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Alignment._MixedAlignment DivideOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Alignment._MixedAlignment MultiplyOperator(double other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Alignment._MixedAlignment DivideIntegerResultOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Alignment._MixedAlignment DivideOperator(double other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Alignment._MixedAlignment ModuloOperator(double other){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Painting.Alignment._MixedAlignment DivideIntegerResultOperator(double other) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Painting.Alignment.Alignment Resolve(TextDirection direction){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new FlutterSDK.Painting.Alignment._MixedAlignment ModuloOperator(double other) { throw new NotImplementedException(); }
 
 
-public class TextAlignVertical
-{
-#region constructors
-public TextAlignVertical(double y = default(double))
-: base()
-{
-this.y = y;throw new NotImplementedException(); }
-#endregion
+        public new FlutterSDK.Painting.Alignment.Alignment Resolve(TextDirection direction) { throw new NotImplementedException(); }
 
-#region fields
-public virtual double y{get;set;}
-public virtual FlutterSDK.Painting.Alignment.TextAlignVertical Top{get;set;}
-public virtual FlutterSDK.Painting.Alignment.TextAlignVertical Center{get;set;}
-public virtual FlutterSDK.Painting.Alignment.TextAlignVertical Bottom{get;set;}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-#endregion
-}
+    public class TextAlignVertical
+    {
+        #region constructors
+        public TextAlignVertical(double y = default(double))
+        : base()
+        {
+            this.y = y; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual double y { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.TextAlignVertical Top { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.TextAlignVertical Center { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.TextAlignVertical Bottom { get; set; }
+        #endregion
+
+        #region methods
+
+        #endregion
+    }
 
 }

@@ -421,32 +421,36 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Services.Systemsound{
-internal static class SystemsoundDefaultClass{
-}
-
-public class SystemSound
+namespace FlutterSDK.Services.Systemsound
 {
-#region constructors
-internal SystemSound()
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class SystemsoundDefaultClass
+    {
+    }
 
-#region fields
-#endregion
+    public class SystemSound
+    {
+        #region constructors
+        internal SystemSound()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        #endregion
 
-public virtual Future<object> Play(FlutterSDK.Services.Systemsound.SystemSoundType type){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public virtual Future<object> Play(FlutterSDK.Services.Systemsound.SystemSoundType type) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public enum SystemSoundType{
+    public enum SystemSoundType
+    {
 
-Click,
-}
+        Click,
+    }
 
 }

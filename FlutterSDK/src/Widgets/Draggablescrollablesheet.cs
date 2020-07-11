@@ -421,253 +421,262 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Widgets.Draggablescrollablesheet{
-public delegate FlutterSDK.Widgets.Framework.Widget ScrollableWidgetBuilder(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Widgets.Scrollcontroller.ScrollController scrollController);
-internal static class DraggablescrollablesheetDefaultClass{
-}
-
-public class DraggableScrollableSheet : FlutterSDK.Widgets.Framework.StatefulWidget
+namespace FlutterSDK.Widgets.Draggablescrollablesheet
 {
-#region constructors
-public DraggableScrollableSheet(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),double initialChildSize = 0.5,double minChildSize = 0.25,double maxChildSize = 1.0,bool expand = true,FlutterSDK.Widgets.Draggablescrollablesheet.ScrollableWidgetBuilder builder = default(FlutterSDK.Widgets.Draggablescrollablesheet.ScrollableWidgetBuilder))
-: base(key:key)
-{
-this.InitialChildSize = initialChildSize;
-this.MinChildSize = minChildSize;
-this.MaxChildSize = maxChildSize;
-this.Expand = expand;
-this.Builder = builder;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual double InitialChildSize{get;set;}
-public virtual double MinChildSize{get;set;}
-public virtual double MaxChildSize{get;set;}
-public virtual bool Expand{get;set;}
-public virtual FlutterSDK.Widgets.Draggablescrollablesheet.ScrollableWidgetBuilder Builder{get;set;}
-#endregion
+    public delegate FlutterSDK.Widgets.Framework.Widget ScrollableWidgetBuilder(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Scrollcontroller.ScrollController scrollController);
+    internal static class DraggablescrollablesheetDefaultClass
+    {
+    }
+
+    public class DraggableScrollableSheet : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public DraggableScrollableSheet(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double initialChildSize = 0.5, double minChildSize = 0.25, double maxChildSize = 1.0, bool expand = true, FlutterSDK.Widgets.Draggablescrollablesheet.ScrollableWidgetBuilder builder = default(FlutterSDK.Widgets.Draggablescrollablesheet.ScrollableWidgetBuilder))
+        : base(key: key)
+        {
+            this.InitialChildSize = initialChildSize;
+            this.MinChildSize = minChildSize;
+            this.MaxChildSize = maxChildSize;
+            this.Expand = expand;
+            this.Builder = builder; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual double InitialChildSize { get; set; }
+        public virtual double MinChildSize { get; set; }
+        public virtual double MaxChildSize { get; set; }
+        public virtual bool Expand { get; set; }
+        public virtual FlutterSDK.Widgets.Draggablescrollablesheet.ScrollableWidgetBuilder Builder { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Draggablescrollablesheet._DraggableScrollableSheetState CreateState() { throw new NotImplementedException(); }
 
-#region methods
+        #endregion
+    }
+
+
+    public class DraggableScrollableNotification : FlutterSDK.Widgets.Notificationlistener.Notification, IViewportNotificationMixin
+    {
+        #region constructors
+        public DraggableScrollableNotification(double extent = default(double), double minExtent = default(double), double maxExtent = default(double), double initialExtent = default(double), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext))
+        : base()
+        {
+            this.Extent = extent;
+            this.MinExtent = minExtent;
+            this.MaxExtent = maxExtent;
+            this.InitialExtent = initialExtent;
+            this.Context = context; throw new NotImplementedException();
+        }
+        #endregion
 
-public new FlutterSDK.Widgets.Draggablescrollablesheet._DraggableScrollableSheetState CreateState(){ throw new NotImplementedException(); }
+        #region fields
+        public virtual double Extent { get; set; }
+        public virtual double MinExtent { get; set; }
+        public virtual double MaxExtent { get; set; }
+        public virtual double InitialExtent { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.BuildContext Context { get; set; }
+        #endregion
 
-#endregion
-}
+        #region methods
 
+        public new void DebugFillDescription(List<string> description) { throw new NotImplementedException(); }
 
-public class DraggableScrollableNotification : FlutterSDK.Widgets.Notificationlistener.Notification,IViewportNotificationMixin
-{
-#region constructors
-public DraggableScrollableNotification(double extent = default(double),double minExtent = default(double),double maxExtent = default(double),double initialExtent = default(double),FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext))
-: base()
-{
-this.Extent = extent;
-this.MinExtent = minExtent;
-this.MaxExtent = maxExtent;
-this.InitialExtent = initialExtent;
-this.Context = context;throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-public virtual double Extent{get;set;}
-public virtual double MinExtent{get;set;}
-public virtual double MaxExtent{get;set;}
-public virtual double InitialExtent{get;set;}
-public virtual FlutterSDK.Widgets.Framework.BuildContext Context{get;set;}
-#endregion
 
-#region methods
+    public class _DraggableSheetExtent
+    {
+        #region constructors
+        public _DraggableSheetExtent(double minExtent = default(double), double maxExtent = default(double), double initialExtent = default(double), VoidCallback listener = default(VoidCallback))
+        : base()
+        {
+            this.MinExtent = minExtent;
+            this.MaxExtent = maxExtent;
+            this.InitialExtent = initialExtent; throw new NotImplementedException();
+        }
+        #endregion
 
-public new void DebugFillDescription(List<string> description){ throw new NotImplementedException(); }
+        #region fields
+        public virtual double MinExtent { get; set; }
+        public virtual double MaxExtent { get; set; }
+        public virtual double InitialExtent { get; set; }
+        internal virtual FlutterSDK.Foundation.Changenotifier.ValueNotifier<double> _CurrentExtent { get; set; }
+        public virtual double AvailablePixels { get; set; }
+        public virtual bool IsAtMin { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsAtMax { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double CurrentExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double AdditionalMinExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double AdditionalMaxExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#endregion
-}
+        #region methods
 
+        public virtual void AddPixelDelta(double delta, FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-public class _DraggableSheetExtent
-{
-#region constructors
-public _DraggableSheetExtent(double minExtent = default(double),double maxExtent = default(double),double initialExtent = default(double),VoidCallback listener = default(VoidCallback))
-: base()
-{
-this.MinExtent = minExtent;
-this.MaxExtent = maxExtent;
-this.InitialExtent = initialExtent;throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-public virtual double MinExtent{get;set;}
-public virtual double MaxExtent{get;set;}
-public virtual double InitialExtent{get;set;}
-internal virtual FlutterSDK.Foundation.Changenotifier.ValueNotifier<double> _CurrentExtent{get;set;}
-public virtual double AvailablePixels{get;set;}
-public virtual bool IsAtMin{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsAtMax{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double CurrentExtent{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual double AdditionalMinExtent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double AdditionalMaxExtent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+    public class _DraggableScrollableSheetState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Draggablescrollablesheet.DraggableScrollableSheet>
+    {
+        #region constructors
+        public _DraggableScrollableSheetState()
+        { }
+        #endregion
 
-public virtual void AddPixelDelta(double delta,FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual FlutterSDK.Widgets.Draggablescrollablesheet._DraggableScrollableSheetScrollController _ScrollController { get; set; }
+        internal virtual FlutterSDK.Widgets.Draggablescrollablesheet._DraggableSheetExtent _Extent { get; set; }
+        #endregion
 
-#endregion
-}
+        #region methods
 
+        public new void InitState() { throw new NotImplementedException(); }
 
-public class _DraggableScrollableSheetState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Draggablescrollablesheet.DraggableScrollableSheet>
-{
-#region constructors
-public _DraggableScrollableSheetState()
-{ }
-#endregion
 
-#region fields
-internal virtual FlutterSDK.Widgets.Draggablescrollablesheet._DraggableScrollableSheetScrollController _ScrollController{get;set;}
-internal virtual FlutterSDK.Widgets.Draggablescrollablesheet._DraggableSheetExtent _Extent{get;set;}
-#endregion
+        public new void DidChangeDependencies() { throw new NotImplementedException(); }
 
-#region methods
 
-public new void InitState(){ throw new NotImplementedException(); }
+        private void _SetExtent() { throw new NotImplementedException(); }
 
 
-public new void DidChangeDependencies(){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-private void _SetExtent(){ throw new NotImplementedException(); }
+        public new void Dispose() { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
 
+    public class _DraggableScrollableSheetScrollController : FlutterSDK.Widgets.Scrollcontroller.ScrollController
+    {
+        #region constructors
+        public _DraggableScrollableSheetScrollController(double initialScrollOffset = 0.0, string debugLabel = default(string), FlutterSDK.Widgets.Draggablescrollablesheet._DraggableSheetExtent extent = default(FlutterSDK.Widgets.Draggablescrollablesheet._DraggableSheetExtent))
+        : base(debugLabel: debugLabel, initialScrollOffset: initialScrollOffset)
+        {
+            this.Extent = extent; throw new NotImplementedException();
+        }
+        #endregion
 
-public new void Dispose(){ throw new NotImplementedException(); }
+        #region fields
+        public virtual FlutterSDK.Widgets.Draggablescrollablesheet._DraggableSheetExtent Extent { get; set; }
+        #endregion
 
-#endregion
-}
+        #region methods
 
+        public new FlutterSDK.Widgets.Draggablescrollablesheet._DraggableScrollableSheetScrollPosition CreateScrollPosition(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics, FlutterSDK.Widgets.Scrollcontext.ScrollContext context, FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition) { throw new NotImplementedException(); }
 
-public class _DraggableScrollableSheetScrollController : FlutterSDK.Widgets.Scrollcontroller.ScrollController
-{
-#region constructors
-public _DraggableScrollableSheetScrollController(double initialScrollOffset = 0.0,string debugLabel = default(string),FlutterSDK.Widgets.Draggablescrollablesheet._DraggableSheetExtent extent = default(FlutterSDK.Widgets.Draggablescrollablesheet._DraggableSheetExtent))
-: base(debugLabel:debugLabel,initialScrollOffset:initialScrollOffset)
-{
-this.Extent = extent;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual FlutterSDK.Widgets.Draggablescrollablesheet._DraggableSheetExtent Extent{get;set;}
-#endregion
+        public new void DebugFillDescription(List<string> description) { throw new NotImplementedException(); }
 
-#region methods
+        #endregion
+    }
 
-public new FlutterSDK.Widgets.Draggablescrollablesheet._DraggableScrollableSheetScrollPosition CreateScrollPosition(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics,FlutterSDK.Widgets.Scrollcontext.ScrollContext context,FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition){ throw new NotImplementedException(); }
 
+    public class _DraggableScrollableSheetScrollPosition : FlutterSDK.Widgets.Scrollpositionwithsinglecontext.ScrollPositionWithSingleContext
+    {
+        #region constructors
+        public _DraggableScrollableSheetScrollPosition(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Widgets.Scrollcontext.ScrollContext context = default(FlutterSDK.Widgets.Scrollcontext.ScrollContext), double initialPixels = 0.0, bool keepScrollOffset = true, FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition = default(FlutterSDK.Widgets.Scrollposition.ScrollPosition), string debugLabel = default(string), FlutterSDK.Widgets.Draggablescrollablesheet._DraggableSheetExtent extent = default(FlutterSDK.Widgets.Draggablescrollablesheet._DraggableSheetExtent))
+        : base(physics: physics, context: context, initialPixels: initialPixels, keepScrollOffset: keepScrollOffset, oldPosition: oldPosition, debugLabel: debugLabel)
+        {
+            this.Extent = extent; throw new NotImplementedException();
+        }
+        #endregion
 
-public new void DebugFillDescription(List<string> description){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual VoidCallback _DragCancelCallback { get; set; }
+        public virtual FlutterSDK.Widgets.Draggablescrollablesheet._DraggableSheetExtent Extent { get; set; }
+        public virtual bool ListShouldScroll { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#endregion
-}
+        #region methods
 
+        public new bool ApplyContentDimensions(double minScrollExtent, double maxScrollExtent) { throw new NotImplementedException(); }
 
-public class _DraggableScrollableSheetScrollPosition : FlutterSDK.Widgets.Scrollpositionwithsinglecontext.ScrollPositionWithSingleContext
-{
-#region constructors
-public _DraggableScrollableSheetScrollPosition(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics),FlutterSDK.Widgets.Scrollcontext.ScrollContext context = default(FlutterSDK.Widgets.Scrollcontext.ScrollContext),double initialPixels = 0.0,bool keepScrollOffset = true,FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition = default(FlutterSDK.Widgets.Scrollposition.ScrollPosition),string debugLabel = default(string),FlutterSDK.Widgets.Draggablescrollablesheet._DraggableSheetExtent extent = default(FlutterSDK.Widgets.Draggablescrollablesheet._DraggableSheetExtent))
-: base(physics:physics,context:context,initialPixels:initialPixels,keepScrollOffset:keepScrollOffset,oldPosition:oldPosition,debugLabel:debugLabel)
-{
-this.Extent = extent;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-internal virtual VoidCallback _DragCancelCallback{get;set;}
-public virtual FlutterSDK.Widgets.Draggablescrollablesheet._DraggableSheetExtent Extent{get;set;}
-public virtual bool ListShouldScroll{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        public new void ApplyUserOffset(double delta) { throw new NotImplementedException(); }
 
-#region methods
 
-public new bool ApplyContentDimensions(double minScrollExtent,double maxScrollExtent){ throw new NotImplementedException(); }
+        public new void GoBallistic(double velocity) { throw new NotImplementedException(); }
 
 
-public new void ApplyUserOffset(double delta){ throw new NotImplementedException(); }
+        public new FlutterSDK.Gestures.Drag.Drag Drag(FlutterSDK.Gestures.Dragdetails.DragStartDetails details, VoidCallback dragCancelCallback) { throw new NotImplementedException(); }
 
+        #endregion
+    }
 
-public new void GoBallistic(double velocity){ throw new NotImplementedException(); }
 
+    public class DraggableScrollableActuator : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public DraggableScrollableActuator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.Child = child; throw new NotImplementedException();
+        }
+        #endregion
 
-public new FlutterSDK.Gestures.Drag.Drag Drag(FlutterSDK.Gestures.Dragdetails.DragStartDetails details,VoidCallback dragCancelCallback){ throw new NotImplementedException(); }
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        internal virtual FlutterSDK.Widgets.Draggablescrollablesheet._ResetNotifier _Notifier { get; set; }
+        #endregion
 
-#endregion
-}
+        #region methods
 
+        public virtual bool Reset(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-public class DraggableScrollableActuator : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public DraggableScrollableActuator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key)
-{
-this.Child = child;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-internal virtual FlutterSDK.Widgets.Draggablescrollablesheet._ResetNotifier _Notifier{get;set;}
-#endregion
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#region methods
+        #endregion
+    }
 
-public virtual bool Reset(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
 
+    public class _ResetNotifier : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
+    {
+        #region constructors
+        public _ResetNotifier()
+        { }
+        #endregion
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual bool _WasCalled { get; set; }
+        #endregion
 
-#endregion
-}
+        #region methods
 
+        public virtual bool SendReset() { throw new NotImplementedException(); }
 
-public class _ResetNotifier : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
-{
-#region constructors
-public _ResetNotifier()
-{ }
-#endregion
+        #endregion
+    }
 
-#region fields
-internal virtual bool _WasCalled{get;set;}
-#endregion
 
-#region methods
+    public class _InheritedResetNotifier : FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<FlutterSDK.Widgets.Draggablescrollablesheet._ResetNotifier>
+    {
+        #region constructors
+        public _InheritedResetNotifier(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Draggablescrollablesheet._ResetNotifier notifier = default(FlutterSDK.Widgets.Draggablescrollablesheet._ResetNotifier))
+        : base(key: key, child: child, notifier: notifier)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-public virtual bool SendReset(){ throw new NotImplementedException(); }
+        #region fields
+        #endregion
 
-#endregion
-}
+        #region methods
 
+        private bool _SendReset() { throw new NotImplementedException(); }
 
-public class _InheritedResetNotifier : FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<FlutterSDK.Widgets.Draggablescrollablesheet._ResetNotifier>
-{
-#region constructors
-public _InheritedResetNotifier(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Draggablescrollablesheet._ResetNotifier notifier = default(FlutterSDK.Widgets.Draggablescrollablesheet._ResetNotifier))
-: base(key:key,child:child,notifier:notifier)
-{
-throw new NotImplementedException(); }
-#endregion
 
-#region fields
-#endregion
+        public virtual bool ShouldReset(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#region methods
-
-private bool _SendReset(){ throw new NotImplementedException(); }
-
-
-public virtual bool ShouldReset(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-#endregion
-}
+        #endregion
+    }
 
 }

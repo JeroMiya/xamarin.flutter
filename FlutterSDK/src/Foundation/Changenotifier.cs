@@ -292,143 +292,154 @@ using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
-namespace FlutterSDK.Foundation.Changenotifier{
-internal static class ChangenotifierDefaultClass{
-}
-
-public interface IListenable{
-void AddListener(VoidCallback listener);
-void RemoveListener(VoidCallback listener);
-}
-
-
-public interface IValueListenable<T>{
-T Value{get;}
-}
-
-
-public interface IChangeNotifier{}
-
-public class ChangeNotifier:IListenable{
-internal virtual FlutterSDK.Foundation.Observerlist.ObserverList<object> _Listeners{get;set;}
-public virtual bool HasListeners{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-
-private bool _DebugAssertNotDisposed(){ throw new NotImplementedException(); }
-
-
-public new void AddListener(VoidCallback listener){ throw new NotImplementedException(); }
-
-
-public new void RemoveListener(VoidCallback listener){ throw new NotImplementedException(); }
-
-
-public virtual void Dispose(){ throw new NotImplementedException(); }
-
-
-public virtual void NotifyListeners(){ throw new NotImplementedException(); }
-
-}
-public static class ChangeNotifierMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IChangeNotifier, ChangeNotifier> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IChangeNotifier, ChangeNotifier>();
-static ChangeNotifier GetOrCreate(IChangeNotifier instance)
+namespace FlutterSDK.Foundation.Changenotifier
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new ChangeNotifier();
-_table.Add(instance, value);
-}
-return (ChangeNotifier)value;
-}
-public static bool HasListenersProperty(this IChangeNotifier instance) => GetOrCreate(instance).HasListeners;
-public static void AddListener(this IChangeNotifier instance,VoidCallback listener) => GetOrCreate(instance).AddListener(listener);
-public static void RemoveListener(this IChangeNotifier instance,VoidCallback listener) => GetOrCreate(instance).RemoveListener(listener);
-public static void Dispose(this IChangeNotifier instance) => GetOrCreate(instance).Dispose();
-public static void NotifyListeners(this IChangeNotifier instance) => GetOrCreate(instance).NotifyListeners();
-}
+    internal static class ChangenotifierDefaultClass
+    {
+    }
+
+    public interface IListenable
+    {
+        void AddListener(VoidCallback listener);
+        void RemoveListener(VoidCallback listener);
+    }
 
 
-public class Listenable
-{
-#region constructors
-public Listenable()
-{
-throw new NotImplementedException(); }
-public static Listenable Merge(List<FlutterSDK.Foundation.Changenotifier.Listenable> listenables)
-{
-var instance =new Listenable();throw new NotImplementedException(); }
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public virtual void AddListener(VoidCallback listener){ throw new NotImplementedException(); }
+    public interface IValueListenable<T>
+    {
+        T Value { get; }
+    }
 
 
-public virtual void RemoveListener(VoidCallback listener){ throw new NotImplementedException(); }
+    public interface IChangeNotifier { }
 
-#endregion
-}
+    public class ChangeNotifier : IListenable
+    {
+        internal virtual FlutterSDK.Foundation.Observerlist.ObserverList<object> _Listeners { get; set; }
+        public virtual bool HasListeners { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
-
-public class ValueListenable<T> : FlutterSDK.Foundation.Changenotifier.Listenable
-{
-#region constructors
-public ValueListenable()
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual T Value{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-#endregion
-}
+        private bool _DebugAssertNotDisposed() { throw new NotImplementedException(); }
 
 
-public class _MergingListenable : FlutterSDK.Foundation.Changenotifier.Listenable
-{
-#region constructors
-public _MergingListenable(List<FlutterSDK.Foundation.Changenotifier.Listenable> _children)
-{
-this._Children = _children;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual List<FlutterSDK.Foundation.Changenotifier.Listenable> _Children{get;set;}
-#endregion
-
-#region methods
-
-public new void AddListener(VoidCallback listener){ throw new NotImplementedException(); }
+        public new void AddListener(VoidCallback listener) { throw new NotImplementedException(); }
 
 
-public new void RemoveListener(VoidCallback listener){ throw new NotImplementedException(); }
+        public new void RemoveListener(VoidCallback listener) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public virtual void Dispose() { throw new NotImplementedException(); }
 
 
-public class ValueNotifier<T> : FlutterSDK.Foundation.Changenotifier.ChangeNotifier,IValueListenable<T>
-{
-#region constructors
-public ValueNotifier(T _value)
-{
-this._Value = _value;throw new NotImplementedException(); }
-#endregion
+        public virtual void NotifyListeners() { throw new NotImplementedException(); }
 
-#region fields
-internal virtual T _Value{get;set;}
-public virtual T Value{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
+    }
+    public static class ChangeNotifierMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IChangeNotifier, ChangeNotifier> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IChangeNotifier, ChangeNotifier>();
+        static ChangeNotifier GetOrCreate(IChangeNotifier instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new ChangeNotifier();
+                _table.Add(instance, value);
+            }
+            return (ChangeNotifier)value;
+        }
+        public static bool HasListenersProperty(this IChangeNotifier instance) => GetOrCreate(instance).HasListeners;
+        public static void AddListener(this IChangeNotifier instance, VoidCallback listener) => GetOrCreate(instance).AddListener(listener);
+        public static void RemoveListener(this IChangeNotifier instance, VoidCallback listener) => GetOrCreate(instance).RemoveListener(listener);
+        public static void Dispose(this IChangeNotifier instance) => GetOrCreate(instance).Dispose();
+        public static void NotifyListeners(this IChangeNotifier instance) => GetOrCreate(instance).NotifyListeners();
+    }
 
-#region methods
 
-#endregion
-}
+    public class Listenable
+    {
+        #region constructors
+        public Listenable()
+        {
+            throw new NotImplementedException();
+        }
+        public static Listenable Merge(List<FlutterSDK.Foundation.Changenotifier.Listenable> listenables)
+        {
+            var instance = new Listenable(); throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public virtual void AddListener(VoidCallback listener) { throw new NotImplementedException(); }
+
+
+        public virtual void RemoveListener(VoidCallback listener) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class ValueListenable<T> : FlutterSDK.Foundation.Changenotifier.Listenable
+    {
+        #region constructors
+        public ValueListenable()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    public class _MergingListenable : FlutterSDK.Foundation.Changenotifier.Listenable
+    {
+        #region constructors
+        public _MergingListenable(List<FlutterSDK.Foundation.Changenotifier.Listenable> _children)
+        {
+            this._Children = _children; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual List<FlutterSDK.Foundation.Changenotifier.Listenable> _Children { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void AddListener(VoidCallback listener) { throw new NotImplementedException(); }
+
+
+        public new void RemoveListener(VoidCallback listener) { throw new NotImplementedException(); }
+
+
+        #endregion
+    }
+
+
+    public class ValueNotifier<T> : FlutterSDK.Foundation.Changenotifier.ChangeNotifier, IValueListenable<T>
+    {
+        #region constructors
+        public ValueNotifier(T _value)
+        {
+            this._Value = _value; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual T _Value { get; set; }
+        public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        #endregion
+    }
 
 }

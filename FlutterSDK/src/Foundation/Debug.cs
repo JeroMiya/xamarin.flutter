@@ -292,22 +292,27 @@ using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
-namespace FlutterSDK.Foundation.Debug{
-internal static class DebugDefaultClass{
-public static bool DebugInstrumentationEnabled = default(bool);
-public static Dictionary<string,string> TimelineWhitelistArguments = default(Dictionary<string,string>);
-public static int DebugDoublePrecision = default(int);
-internal static bool DebugAssertAllFoundationVarsUnset(string reason,FlutterSDK.Foundation.Print.DebugPrintCallback debugPrintOverride = default(FlutterSDK.Foundation.Print.DebugPrintCallback)){
-throw new NotImplementedException();
-}
+namespace FlutterSDK.Foundation.Debug
+{
+    internal static class DebugDefaultClass
+    {
+        public static bool DebugInstrumentationEnabled = default(bool);
+        public static Dictionary<string, string> TimelineWhitelistArguments = default(Dictionary<string, string>);
+        public static int DebugDoublePrecision = default(int);
+        internal static bool DebugAssertAllFoundationVarsUnset(string reason, FlutterSDK.Foundation.Print.DebugPrintCallback debugPrintOverride = default(FlutterSDK.Foundation.Print.DebugPrintCallback))
+        {
+            throw new NotImplementedException();
+        }
 
-internal static Future<T> DebugInstrumentAction<T>(string description,Func<Future<T>> action){
-throw new NotImplementedException();
-}
+        internal static Future<T> DebugInstrumentAction<T>(string description, Func<Future<T>> action)
+        {
+            throw new NotImplementedException();
+        }
 
-internal static string DebugFormatDouble(double value){
-throw new NotImplementedException();
-}
+        internal static string DebugFormatDouble(double value)
+        {
+            throw new NotImplementedException();
+        }
 
-}
+    }
 }

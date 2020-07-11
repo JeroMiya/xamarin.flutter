@@ -421,206 +421,211 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Rendering.Listwheelviewport{
-public delegate double _ChildSizingFunction(FlutterSDK.Rendering.Box.RenderBox child);
-internal static class ListwheelviewportDefaultClass{
-}
-
-public interface IListWheelChildManager{}
-
-public class ListWheelChildManager{
-public virtual int ChildCount{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-
-public virtual bool ChildExistsAt(int index){ throw new NotImplementedException(); }
-
-
-public virtual void CreateChild(int index,FlutterSDK.Rendering.Box.RenderBox after = default(FlutterSDK.Rendering.Box.RenderBox)){ throw new NotImplementedException(); }
-
-
-public virtual void RemoveChild(FlutterSDK.Rendering.Box.RenderBox child){ throw new NotImplementedException(); }
-
-}
-public static class ListWheelChildManagerMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IListWheelChildManager, ListWheelChildManager> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IListWheelChildManager, ListWheelChildManager>();
-static ListWheelChildManager GetOrCreate(IListWheelChildManager instance)
+namespace FlutterSDK.Rendering.Listwheelviewport
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new ListWheelChildManager();
-_table.Add(instance, value);
-}
-return (ListWheelChildManager)value;
-}
-public static int ChildCountProperty(this IListWheelChildManager instance) => GetOrCreate(instance).ChildCount;
-public static bool ChildExistsAt(this IListWheelChildManager instance,int index) => GetOrCreate(instance).ChildExistsAt(index);
-public static void CreateChild(this IListWheelChildManager instance,int index,FlutterSDK.Rendering.Box.RenderBox after = default(FlutterSDK.Rendering.Box.RenderBox)) => GetOrCreate(instance).CreateChild(index, after);
-public static void RemoveChild(this IListWheelChildManager instance,FlutterSDK.Rendering.Box.RenderBox child) => GetOrCreate(instance).RemoveChild(child);
-}
+    public delegate double _ChildSizingFunction(FlutterSDK.Rendering.Box.RenderBox child);
+    internal static class ListwheelviewportDefaultClass
+    {
+    }
+
+    public interface IListWheelChildManager { }
+
+    public class ListWheelChildManager
+    {
+        public virtual int ChildCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+
+        public virtual bool ChildExistsAt(int index) { throw new NotImplementedException(); }
+
+
+        public virtual void CreateChild(int index, FlutterSDK.Rendering.Box.RenderBox after = default(FlutterSDK.Rendering.Box.RenderBox)) { throw new NotImplementedException(); }
+
+
+        public virtual void RemoveChild(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
+
+    }
+    public static class ListWheelChildManagerMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IListWheelChildManager, ListWheelChildManager> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IListWheelChildManager, ListWheelChildManager>();
+        static ListWheelChildManager GetOrCreate(IListWheelChildManager instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new ListWheelChildManager();
+                _table.Add(instance, value);
+            }
+            return (ListWheelChildManager)value;
+        }
+        public static int ChildCountProperty(this IListWheelChildManager instance) => GetOrCreate(instance).ChildCount;
+        public static bool ChildExistsAt(this IListWheelChildManager instance, int index) => GetOrCreate(instance).ChildExistsAt(index);
+        public static void CreateChild(this IListWheelChildManager instance, int index, FlutterSDK.Rendering.Box.RenderBox after = default(FlutterSDK.Rendering.Box.RenderBox)) => GetOrCreate(instance).CreateChild(index, after);
+        public static void RemoveChild(this IListWheelChildManager instance, FlutterSDK.Rendering.Box.RenderBox child) => GetOrCreate(instance).RemoveChild(child);
+    }
 
 
-public class ListWheelParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
-{
-#region constructors
-public ListWheelParentData()
-{ }
-#endregion
+    public class ListWheelParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
+    {
+        #region constructors
+        public ListWheelParentData()
+        { }
+        #endregion
 
-#region fields
-public virtual int Index{get;set;}
-#endregion
+        #region fields
+        public virtual int Index { get; set; }
+        #endregion
 
-#region methods
-#endregion
-}
+        #region methods
+        #endregion
+    }
 
 
-public class RenderListWheelViewport : FlutterSDK.Rendering.Box.RenderBox,IRenderAbstractViewport,IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox,FlutterSDK.Rendering.Listwheelviewport.ListWheelParentData>
-{
-#region constructors
-public RenderListWheelViewport(FlutterSDK.Rendering.Listwheelviewport.ListWheelChildManager childManager = default(FlutterSDK.Rendering.Listwheelviewport.ListWheelChildManager),FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset),double diameterRatio = default(double),double perspective = default(double),double offAxisFraction = 0,bool useMagnifier = false,double magnification = 1,double overAndUnderCenterOpacity = 1,double itemExtent = default(double),double squeeze = 1,bool clipToSize = true,bool renderChildrenOutsideViewport = false,List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>))
-: base()
-{
-this.ChildManager = childManager;throw new NotImplementedException(); }
-#endregion
+    public class RenderListWheelViewport : FlutterSDK.Rendering.Box.RenderBox, IRenderAbstractViewport, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Listwheelviewport.ListWheelParentData>
+    {
+        #region constructors
+        public RenderListWheelViewport(FlutterSDK.Rendering.Listwheelviewport.ListWheelChildManager childManager = default(FlutterSDK.Rendering.Listwheelviewport.ListWheelChildManager), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), double diameterRatio = default(double), double perspective = default(double), double offAxisFraction = 0, bool useMagnifier = false, double magnification = 1, double overAndUnderCenterOpacity = 1, double itemExtent = default(double), double squeeze = 1, bool clipToSize = true, bool renderChildrenOutsideViewport = false, List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>))
+        : base()
+        {
+            this.ChildManager = childManager; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual double DefaultDiameterRatio{get;set;}
-public virtual double DefaultPerspective{get;set;}
-public virtual string DiameterRatioZeroMessage{get;set;}
-public virtual string PerspectiveTooHighMessage{get;set;}
-public virtual string ClipToSizeAndRenderChildrenOutsideViewportConflict{get;set;}
-public virtual FlutterSDK.Rendering.Listwheelviewport.ListWheelChildManager ChildManager{get;set;}
-internal virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset _Offset{get;set;}
-internal virtual double _DiameterRatio{get;set;}
-internal virtual double _Perspective{get;set;}
-internal virtual double _OffAxisFraction{get;set;}
-internal virtual bool _UseMagnifier{get;set;}
-internal virtual double _Magnification{get;set;}
-internal virtual double _OverAndUnderCenterOpacity{get;set;}
-internal virtual double _ItemExtent{get;set;}
-internal virtual double _Squeeze{get;set;}
-internal virtual bool _ClipToSize{get;set;}
-internal virtual bool _RenderChildrenOutsideViewport{get;set;}
-public virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset Offset{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual double DiameterRatio{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual double Perspective{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual double OffAxisFraction{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool UseMagnifier{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual double Magnification{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual double OverAndUnderCenterOpacity{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual double ItemExtent{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual double Squeeze{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool ClipToSize{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool RenderChildrenOutsideViewport{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool IsRepaintBoundary{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _ViewportExtent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _MinEstimatedScrollExtent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _MaxEstimatedScrollExtent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _TopScrollMarginExtent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual double _MaxVisibleRadian{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool SizedByParent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #region fields
+        public virtual double DefaultDiameterRatio { get; set; }
+        public virtual double DefaultPerspective { get; set; }
+        public virtual string DiameterRatioZeroMessage { get; set; }
+        public virtual string PerspectiveTooHighMessage { get; set; }
+        public virtual string ClipToSizeAndRenderChildrenOutsideViewportConflict { get; set; }
+        public virtual FlutterSDK.Rendering.Listwheelviewport.ListWheelChildManager ChildManager { get; set; }
+        internal virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset _Offset { get; set; }
+        internal virtual double _DiameterRatio { get; set; }
+        internal virtual double _Perspective { get; set; }
+        internal virtual double _OffAxisFraction { get; set; }
+        internal virtual bool _UseMagnifier { get; set; }
+        internal virtual double _Magnification { get; set; }
+        internal virtual double _OverAndUnderCenterOpacity { get; set; }
+        internal virtual double _ItemExtent { get; set; }
+        internal virtual double _Squeeze { get; set; }
+        internal virtual bool _ClipToSize { get; set; }
+        internal virtual bool _RenderChildrenOutsideViewport { get; set; }
+        public virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset Offset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double DiameterRatio { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Perspective { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double OffAxisFraction { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool UseMagnifier { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Magnification { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double OverAndUnderCenterOpacity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double ItemExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Squeeze { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool ClipToSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool RenderChildrenOutsideViewport { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsRepaintBoundary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _ViewportExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _MinEstimatedScrollExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _MaxEstimatedScrollExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _TopScrollMarginExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _MaxVisibleRadian { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#region methods
+        #region methods
 
-private void _HasScrolled(){ throw new NotImplementedException(); }
+        private void _HasScrolled() { throw new NotImplementedException(); }
 
 
-public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
+        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
 
-public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner){ throw new NotImplementedException(); }
-public new void Attach(@Object owner){ throw new NotImplementedException(); }
+        public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner) { throw new NotImplementedException(); }
+        public new void Attach(@Object owner) { throw new NotImplementedException(); }
 
 
-public new void Detach(){ throw new NotImplementedException(); }
+        public new void Detach() { throw new NotImplementedException(); }
 
 
-private double _GetUntransformedPaintingCoordinateY(double layoutCoordinateY){ throw new NotImplementedException(); }
+        private double _GetUntransformedPaintingCoordinateY(double layoutCoordinateY) { throw new NotImplementedException(); }
 
 
-private double _GetIntrinsicCrossAxis(FlutterSDK.Rendering.Listwheelviewport._ChildSizingFunction childSize){ throw new NotImplementedException(); }
+        private double _GetIntrinsicCrossAxis(FlutterSDK.Rendering.Listwheelviewport._ChildSizingFunction childSize) { throw new NotImplementedException(); }
 
 
-public new double ComputeMinIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-public new double ComputeMaxIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-public new double ComputeMinIntrinsicHeight(double width){ throw new NotImplementedException(); }
+        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-public new double ComputeMaxIntrinsicHeight(double width){ throw new NotImplementedException(); }
+        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-public new void PerformResize(){ throw new NotImplementedException(); }
+        public new void PerformResize() { throw new NotImplementedException(); }
 
 
-public virtual int IndexOf(FlutterSDK.Rendering.Box.RenderBox child){ throw new NotImplementedException(); }
+        public virtual int IndexOf(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
 
 
-public virtual int ScrollOffsetToIndex(double scrollOffset){ throw new NotImplementedException(); }
+        public virtual int ScrollOffsetToIndex(double scrollOffset) { throw new NotImplementedException(); }
 
 
-public virtual double IndexToScrollOffset(int index){ throw new NotImplementedException(); }
+        public virtual double IndexToScrollOffset(int index) { throw new NotImplementedException(); }
 
 
-private void _CreateChild(int index,FlutterSDK.Rendering.Box.RenderBox after = default(FlutterSDK.Rendering.Box.RenderBox)){ throw new NotImplementedException(); }
+        private void _CreateChild(int index, FlutterSDK.Rendering.Box.RenderBox after = default(FlutterSDK.Rendering.Box.RenderBox)) { throw new NotImplementedException(); }
 
 
-private void _DestroyChild(FlutterSDK.Rendering.Box.RenderBox child){ throw new NotImplementedException(); }
+        private void _DestroyChild(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
 
 
-private void _LayoutChild(FlutterSDK.Rendering.Box.RenderBox child,FlutterSDK.Rendering.Box.BoxConstraints constraints,int index){ throw new NotImplementedException(); }
+        private void _LayoutChild(FlutterSDK.Rendering.Box.RenderBox child, FlutterSDK.Rendering.Box.BoxConstraints constraints, int index) { throw new NotImplementedException(); }
 
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
 
-private bool _ShouldClipAtCurrentOffset(){ throw new NotImplementedException(); }
+        private bool _ShouldClipAtCurrentOffset() { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
-private void _PaintVisibleChildren(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        private void _PaintVisibleChildren(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
-private void _PaintTransformedChild(FlutterSDK.Rendering.Box.RenderBox child,FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset,FlutterBinding.UI.Offset layoutOffset){ throw new NotImplementedException(); }
+        private void _PaintTransformedChild(FlutterSDK.Rendering.Box.RenderBox child, FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset, FlutterBinding.UI.Offset layoutOffset) { throw new NotImplementedException(); }
 
 
-private void _PaintChildWithMagnifier(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset,FlutterSDK.Rendering.Box.RenderBox child,Matrix4 cylindricalTransform,FlutterBinding.UI.Offset offsetToCenter,FlutterBinding.UI.Offset untransformedPaintingCoordinates){ throw new NotImplementedException(); }
+        private void _PaintChildWithMagnifier(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset, FlutterSDK.Rendering.Box.RenderBox child, Matrix4 cylindricalTransform, FlutterBinding.UI.Offset offsetToCenter, FlutterBinding.UI.Offset untransformedPaintingCoordinates) { throw new NotImplementedException(); }
 
 
-private void _PaintChildCylindrically(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset,FlutterSDK.Rendering.Box.RenderBox child,Matrix4 cylindricalTransform,FlutterBinding.UI.Offset offsetToCenter){ throw new NotImplementedException(); }
+        private void _PaintChildCylindrically(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset, FlutterSDK.Rendering.Box.RenderBox child, Matrix4 cylindricalTransform, FlutterBinding.UI.Offset offsetToCenter) { throw new NotImplementedException(); }
 
 
-private Matrix4 _MagnifyTransform(){ throw new NotImplementedException(); }
+        private Matrix4 _MagnifyTransform() { throw new NotImplementedException(); }
 
 
-private Matrix4 _CenterOriginTransform(Matrix4 originalMatrix){ throw new NotImplementedException(); }
+        private Matrix4 _CenterOriginTransform(Matrix4 originalMatrix) { throw new NotImplementedException(); }
 
 
-public new void ApplyPaintTransform(FlutterSDK.Rendering.Box.RenderBox child,Matrix4 transform){ throw new NotImplementedException(); }
-public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child,Matrix4 transform){ throw new NotImplementedException(); }
+        public new void ApplyPaintTransform(FlutterSDK.Rendering.Box.RenderBox child, Matrix4 transform) { throw new NotImplementedException(); }
+        public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform) { throw new NotImplementedException(); }
 
 
-public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
+        public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
 
-public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
+        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Rendering.Viewport.RevealedOffset GetOffsetToReveal(FlutterSDK.Rendering.@object.RenderObject target,double alignment,FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect)){ throw new NotImplementedException(); }
+        public new FlutterSDK.Rendering.Viewport.RevealedOffset GetOffsetToReveal(FlutterSDK.Rendering.@object.RenderObject target, double alignment, FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect)) { throw new NotImplementedException(); }
 
 
-public new void ShowOnScreen(FlutterSDK.Rendering.@object.RenderObject descendant = default(FlutterSDK.Rendering.@object.RenderObject),FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect),TimeSpan duration = default(TimeSpan),FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)){ throw new NotImplementedException(); }
+        public new void ShowOnScreen(FlutterSDK.Rendering.@object.RenderObject descendant = default(FlutterSDK.Rendering.@object.RenderObject), FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)) { throw new NotImplementedException(); }
 
-#endregion
-RenderAbstractViewport _RenderAbstractViewportInstance = new RenderAbstractViewport();
-public FlutterSDK.Rendering.Viewport.RenderAbstractViewport Of(FlutterSDK.Rendering.@object.RenderObject @object) => _RenderAbstractViewportInstance.Of(@object);
-public double DefaultCacheExtent => _RenderAbstractViewportInstance.DefaultCacheExtent;
-}
+        #endregion
+        RenderAbstractViewport _RenderAbstractViewportInstance = new RenderAbstractViewport();
+        public FlutterSDK.Rendering.Viewport.RenderAbstractViewport Of(FlutterSDK.Rendering.@object.RenderObject @object) => _RenderAbstractViewportInstance.Of(@object);
+        public double DefaultCacheExtent => _RenderAbstractViewportInstance.DefaultCacheExtent;
+    }
 
 }

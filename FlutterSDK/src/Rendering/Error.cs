@@ -421,54 +421,57 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Rendering.Error{
-internal static class ErrorDefaultClass{
-public static double _KMaxWidth = default(double);
-public static double _KMaxHeight = default(double);
-}
-
-public class RenderErrorBox : FlutterSDK.Rendering.Box.RenderBox
+namespace FlutterSDK.Rendering.Error
 {
-#region constructors
-public RenderErrorBox(string message = default(string))
-{
-this.Message = message;throw new NotImplementedException(); }
-#endregion
+    internal static class ErrorDefaultClass
+    {
+        public static double _KMaxWidth = default(double);
+        public static double _KMaxHeight = default(double);
+    }
 
-#region fields
-public virtual string Message{get;set;}
-internal virtual FlutterBinding.UI.Paragraph _Paragraph{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Padding{get;set;}
-public virtual double MinimumWidth{get;set;}
-public virtual FlutterBinding.UI.Color BackgroundColor{get;set;}
-public virtual FlutterBinding.UI.TextStyle TextStyle{get;set;}
-public virtual ParagraphStyle ParagraphStyle{get;set;}
-public virtual bool SizedByParent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class RenderErrorBox : FlutterSDK.Rendering.Box.RenderBox
+    {
+        #region constructors
+        public RenderErrorBox(string message = default(string))
+        {
+            this.Message = message; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual string Message { get; set; }
+        internal virtual FlutterBinding.UI.Paragraph _Paragraph { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Padding { get; set; }
+        public virtual double MinimumWidth { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual FlutterBinding.UI.TextStyle TextStyle { get; set; }
+        public virtual ParagraphStyle ParagraphStyle { get; set; }
+        public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new double ComputeMaxIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        #region methods
 
-
-public new double ComputeMaxIntrinsicHeight(double width){ throw new NotImplementedException(); }
-
-
-public new bool HitTestSelf(FlutterBinding.UI.Offset position){ throw new NotImplementedException(); }
-
-
-public new void PerformResize(){ throw new NotImplementedException(); }
-
-
-private Color _InitBackgroundColor(){ throw new NotImplementedException(); }
+        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-private TextStyle _InitTextStyle(){ throw new NotImplementedException(); }
+        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new bool HitTestSelf(FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new void PerformResize() { throw new NotImplementedException(); }
+
+
+        private Color _InitBackgroundColor() { throw new NotImplementedException(); }
+
+
+        private TextStyle _InitTextStyle() { throw new NotImplementedException(); }
+
+
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

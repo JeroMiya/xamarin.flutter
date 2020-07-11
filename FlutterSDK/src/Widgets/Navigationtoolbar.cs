@@ -422,74 +422,79 @@ using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
-namespace FlutterSDK.Widgets.Navigationtoolbar{
-internal static class NavigationtoolbarDefaultClass{
-}
-
-public class NavigationToolbar : FlutterSDK.Widgets.Framework.StatelessWidget
+namespace FlutterSDK.Widgets.Navigationtoolbar
 {
-#region constructors
-public NavigationToolbar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.Widget middle = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.Widget trailing = default(FlutterSDK.Widgets.Framework.Widget),bool centerMiddle = true,double middleSpacing = default(double))
-: base(key:key)
-{
-this.Leading = leading;
-this.Middle = middle;
-this.Trailing = trailing;
-this.CenterMiddle = centerMiddle;
-this.MiddleSpacing = middleSpacing;throw new NotImplementedException(); }
-#endregion
+    internal static class NavigationtoolbarDefaultClass
+    {
+    }
 
-#region fields
-public virtual double KMiddleSpacing{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Leading{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Middle{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Trailing{get;set;}
-public virtual bool CenterMiddle{get;set;}
-public virtual double MiddleSpacing{get;set;}
-#endregion
+    public class NavigationToolbar : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public NavigationToolbar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget middle = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget trailing = default(FlutterSDK.Widgets.Framework.Widget), bool centerMiddle = true, double middleSpacing = default(double))
+        : base(key: key)
+        {
+            this.Leading = leading;
+            this.Middle = middle;
+            this.Trailing = trailing;
+            this.CenterMiddle = centerMiddle;
+            this.MiddleSpacing = middleSpacing; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual double KMiddleSpacing { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Middle { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Trailing { get; set; }
+        public virtual bool CenterMiddle { get; set; }
+        public virtual double MiddleSpacing { get; set; }
+        #endregion
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-
-public class _ToolbarLayout : FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate
-{
-#region constructors
-public _ToolbarLayout(bool centerMiddle = default(bool),double middleSpacing = default(double),TextDirection textDirection = default(TextDirection))
-: base()
-{
-this.CenterMiddle = centerMiddle;
-this.MiddleSpacing = middleSpacing;
-this.TextDirection = textDirection;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual bool CenterMiddle{get;set;}
-public virtual double MiddleSpacing{get;set;}
-public virtual TextDirection TextDirection{get;set;}
-#endregion
-
-#region methods
-
-public new void PerformLayout(Size size){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new bool ShouldRelayout(FlutterSDK.Widgets.Navigationtoolbar._ToolbarLayout oldDelegate){ throw new NotImplementedException(); }
-public new bool ShouldRelayout(FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate oldDelegate){ throw new NotImplementedException(); }
+    public class _ToolbarLayout : FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate
+    {
+        #region constructors
+        public _ToolbarLayout(bool centerMiddle = default(bool), double middleSpacing = default(double), TextDirection textDirection = default(TextDirection))
+        : base()
+        {
+            this.CenterMiddle = centerMiddle;
+            this.MiddleSpacing = middleSpacing;
+            this.TextDirection = textDirection; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual bool CenterMiddle { get; set; }
+        public virtual double MiddleSpacing { get; set; }
+        public virtual TextDirection TextDirection { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void PerformLayout(Size size) { throw new NotImplementedException(); }
 
 
-public enum _ToolbarSlot{
+        public new bool ShouldRelayout(FlutterSDK.Widgets.Navigationtoolbar._ToolbarLayout oldDelegate) { throw new NotImplementedException(); }
+        public new bool ShouldRelayout(FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate oldDelegate) { throw new NotImplementedException(); }
 
-Leading,
-Middle,
-Trailing,
-}
+        #endregion
+    }
+
+
+    public enum _ToolbarSlot
+    {
+
+        Leading,
+        Middle,
+        Trailing,
+    }
 
 }

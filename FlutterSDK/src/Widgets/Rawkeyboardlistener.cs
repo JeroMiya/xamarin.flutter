@@ -423,77 +423,80 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Rawkeyboardlistener{
-internal static class RawkeyboardlistenerDefaultClass{
-}
-
-public class RawKeyboardListener : FlutterSDK.Widgets.Framework.StatefulWidget
+namespace FlutterSDK.Widgets.Rawkeyboardlistener
 {
-#region constructors
-public RawKeyboardListener(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode),bool autofocus = false,FlutterSDK.Foundation.Basictypes.ValueChanged<RawKeyEvent> onKey = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RawKeyEvent>),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key)
-{
-this.FocusNode = focusNode;
-this.Autofocus = autofocus;
-this.OnKey = onKey;
-this.Child = child;throw new NotImplementedException(); }
-#endregion
+    internal static class RawkeyboardlistenerDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode{get;set;}
-public virtual bool Autofocus{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RawKeyEvent> OnKey{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-#endregion
+    public class RawKeyboardListener : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public RawKeyboardListener(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterSDK.Foundation.Basictypes.ValueChanged<RawKeyEvent> onKey = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RawKeyEvent>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.FocusNode = focusNode;
+            this.Autofocus = autofocus;
+            this.OnKey = onKey;
+            this.Child = child; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+        public virtual bool Autofocus { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RawKeyEvent> OnKey { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        #endregion
 
-public new FlutterSDK.Widgets.Rawkeyboardlistener._RawKeyboardListenerState CreateState(){ throw new NotImplementedException(); }
+        #region methods
 
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _RawKeyboardListenerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Rawkeyboardlistener.RawKeyboardListener>
-{
-#region constructors
-public _RawKeyboardListenerState()
-{ }
-#endregion
-
-#region fields
-internal virtual bool _Listening{get;set;}
-#endregion
-
-#region methods
-
-public new void InitState(){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Rawkeyboardlistener._RawKeyboardListenerState CreateState() { throw new NotImplementedException(); }
 
 
-public new void DidUpdateWidget(FlutterSDK.Widgets.Rawkeyboardlistener.RawKeyboardListener oldWidget){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+    public class _RawKeyboardListenerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Rawkeyboardlistener.RawKeyboardListener>
+    {
+        #region constructors
+        public _RawKeyboardListenerState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual bool _Listening { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-private void _HandleFocusChanged(){ throw new NotImplementedException(); }
+        public new void DidUpdateWidget(FlutterSDK.Widgets.Rawkeyboardlistener.RawKeyboardListener oldWidget) { throw new NotImplementedException(); }
 
 
-private void _AttachKeyboardIfDetached(){ throw new NotImplementedException(); }
+        public new void Dispose() { throw new NotImplementedException(); }
 
 
-private void _DetachKeyboardIfAttached(){ throw new NotImplementedException(); }
+        private void _HandleFocusChanged() { throw new NotImplementedException(); }
 
 
-private void _HandleRawKeyEvent(FlutterSDK.Services.Rawkeyboard.RawKeyEvent @event){ throw new NotImplementedException(); }
+        private void _AttachKeyboardIfDetached() { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        private void _DetachKeyboardIfAttached() { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        private void _HandleRawKeyEvent(FlutterSDK.Services.Rawkeyboard.RawKeyEvent @event) { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

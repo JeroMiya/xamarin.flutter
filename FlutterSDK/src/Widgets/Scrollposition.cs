@@ -423,186 +423,191 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Scrollposition{
-internal static class ScrollpositionDefaultClass{
-}
-
-public interface IScrollPosition{
-void Absorb(FlutterSDK.Widgets.Scrollposition.ScrollPosition other);
-double SetPixels(double newPixels);
-void CorrectPixels(double value);
-void CorrectBy(double correction);
-void ForcePixels(double value);
-void SaveScrollOffset();
-void RestoreScrollOffset();
-double ApplyBoundaryConditions(double value);
-bool ApplyViewportDimension(double viewportDimension);
-bool ApplyContentDimensions(double minScrollExtent,double maxScrollExtent);
-void ApplyNewDimensions();
-Future<object> EnsureVisible(FlutterSDK.Rendering.@object.RenderObject @object,double alignment = 0.0,TimeSpan duration = default(TimeSpan),FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve),FlutterSDK.Widgets.Scrollposition.ScrollPositionAlignmentPolicy alignmentPolicy = default(FlutterSDK.Widgets.Scrollposition.ScrollPositionAlignmentPolicy));
-Future<object> AnimateTo(double to,TimeSpan duration = default(TimeSpan),FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve));
-void JumpTo(double value);
-Future<object> MoveTo(double to,TimeSpan duration = default(TimeSpan),FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve),bool clamp = true);
-void JumpToWithoutSettling(double value);
-FlutterSDK.Widgets.Scrollactivity.ScrollHoldController Hold(VoidCallback holdCancelCallback);
-FlutterSDK.Gestures.Drag.Drag Drag(FlutterSDK.Gestures.Dragdetails.DragStartDetails details,VoidCallback dragCancelCallback);
-void BeginActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivity newActivity);
-void DidStartScroll();
-void DidUpdateScrollPositionBy(double delta);
-void DidEndScroll();
-void DidOverscrollBy(double value);
-void DidUpdateScrollDirection(FlutterSDK.Rendering.Viewportoffset.ScrollDirection direction);
-bool RecommendDeferredLoading(FlutterSDK.Widgets.Framework.BuildContext context);
-void Dispose();
-void NotifyListeners();
-void DebugFillDescription(List<string> description);
-FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics{get;}
-FlutterSDK.Widgets.Scrollcontext.ScrollContext Context{get;}
-bool KeepScrollOffset{get;}
-string DebugLabel{get;}
-FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool> IsScrollingNotifier{get;}
-double MinScrollExtent{get;}
-double MaxScrollExtent{get;}
-double Pixels{get;}
-double ViewportDimension{get;}
-bool HaveDimensions{get;}
-bool AllowImplicitScrolling{get;}
-FlutterSDK.Widgets.Scrollactivity.ScrollActivity Activity{get;}
-}
-
-
-public class ScrollPosition : FlutterSDK.Rendering.Viewportoffset.ViewportOffset,IScrollMetrics
+namespace FlutterSDK.Widgets.Scrollposition
 {
-#region constructors
-public ScrollPosition(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics),FlutterSDK.Widgets.Scrollcontext.ScrollContext context = default(FlutterSDK.Widgets.Scrollcontext.ScrollContext),bool keepScrollOffset = true,FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition = default(FlutterSDK.Widgets.Scrollposition.ScrollPosition),string debugLabel = default(string))
-: base()
-{
-this.Physics = physics;
-this.Context = context;
-this.KeepScrollOffset = keepScrollOffset;
-this.DebugLabel = debugLabel;throw new NotImplementedException(); }
-#endregion
+    internal static class ScrollpositionDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics{get;set;}
-public virtual FlutterSDK.Widgets.Scrollcontext.ScrollContext Context{get;set;}
-public virtual bool KeepScrollOffset{get;set;}
-public virtual string DebugLabel{get;set;}
-internal virtual double _MinScrollExtent{get;set;}
-internal virtual double _MaxScrollExtent{get;set;}
-internal virtual double _Pixels{get;set;}
-internal virtual double _ViewportDimension{get;set;}
-internal virtual bool _HaveDimensions{get;set;}
-internal virtual bool _DidChangeViewportDimensionOrReceiveCorrection{get;set;}
-internal virtual HashSet<SemanticsAction> _SemanticActions{get;set;}
-public virtual FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool> IsScrollingNotifier{get;set;}
-internal virtual FlutterSDK.Widgets.Scrollactivity.ScrollActivity _Activity{get;set;}
-public virtual double MinScrollExtent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double MaxScrollExtent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double Pixels{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual double ViewportDimension{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool HaveDimensions{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool AllowImplicitScrolling{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Widgets.Scrollactivity.ScrollActivity Activity{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public virtual void Absorb(FlutterSDK.Widgets.Scrollposition.ScrollPosition other){ throw new NotImplementedException(); }
-
-
-public virtual double SetPixels(double newPixels){ throw new NotImplementedException(); }
-
-
-public virtual void CorrectPixels(double value){ throw new NotImplementedException(); }
-
-
-public new void CorrectBy(double correction){ throw new NotImplementedException(); }
-
-
-public virtual void ForcePixels(double value){ throw new NotImplementedException(); }
-
-
-public virtual void SaveScrollOffset(){ throw new NotImplementedException(); }
+    public interface IScrollPosition
+    {
+        void Absorb(FlutterSDK.Widgets.Scrollposition.ScrollPosition other);
+        double SetPixels(double newPixels);
+        void CorrectPixels(double value);
+        void CorrectBy(double correction);
+        void ForcePixels(double value);
+        void SaveScrollOffset();
+        void RestoreScrollOffset();
+        double ApplyBoundaryConditions(double value);
+        bool ApplyViewportDimension(double viewportDimension);
+        bool ApplyContentDimensions(double minScrollExtent, double maxScrollExtent);
+        void ApplyNewDimensions();
+        Future<object> EnsureVisible(FlutterSDK.Rendering.@object.RenderObject @object, double alignment = 0.0, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Widgets.Scrollposition.ScrollPositionAlignmentPolicy alignmentPolicy = default(FlutterSDK.Widgets.Scrollposition.ScrollPositionAlignmentPolicy));
+        Future<object> AnimateTo(double to, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve));
+        void JumpTo(double value);
+        Future<object> MoveTo(double to, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), bool clamp = true);
+        void JumpToWithoutSettling(double value);
+        FlutterSDK.Widgets.Scrollactivity.ScrollHoldController Hold(VoidCallback holdCancelCallback);
+        FlutterSDK.Gestures.Drag.Drag Drag(FlutterSDK.Gestures.Dragdetails.DragStartDetails details, VoidCallback dragCancelCallback);
+        void BeginActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivity newActivity);
+        void DidStartScroll();
+        void DidUpdateScrollPositionBy(double delta);
+        void DidEndScroll();
+        void DidOverscrollBy(double value);
+        void DidUpdateScrollDirection(FlutterSDK.Rendering.Viewportoffset.ScrollDirection direction);
+        bool RecommendDeferredLoading(FlutterSDK.Widgets.Framework.BuildContext context);
+        void Dispose();
+        void NotifyListeners();
+        void DebugFillDescription(List<string> description);
+        FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics { get; }
+        FlutterSDK.Widgets.Scrollcontext.ScrollContext Context { get; }
+        bool KeepScrollOffset { get; }
+        string DebugLabel { get; }
+        FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool> IsScrollingNotifier { get; }
+        double MinScrollExtent { get; }
+        double MaxScrollExtent { get; }
+        double Pixels { get; }
+        double ViewportDimension { get; }
+        bool HaveDimensions { get; }
+        bool AllowImplicitScrolling { get; }
+        FlutterSDK.Widgets.Scrollactivity.ScrollActivity Activity { get; }
+    }
 
 
-public virtual void RestoreScrollOffset(){ throw new NotImplementedException(); }
+    public class ScrollPosition : FlutterSDK.Rendering.Viewportoffset.ViewportOffset, IScrollMetrics
+    {
+        #region constructors
+        public ScrollPosition(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Widgets.Scrollcontext.ScrollContext context = default(FlutterSDK.Widgets.Scrollcontext.ScrollContext), bool keepScrollOffset = true, FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition = default(FlutterSDK.Widgets.Scrollposition.ScrollPosition), string debugLabel = default(string))
+        : base()
+        {
+            this.Physics = physics;
+            this.Context = context;
+            this.KeepScrollOffset = keepScrollOffset;
+            this.DebugLabel = debugLabel; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics { get; set; }
+        public virtual FlutterSDK.Widgets.Scrollcontext.ScrollContext Context { get; set; }
+        public virtual bool KeepScrollOffset { get; set; }
+        public virtual string DebugLabel { get; set; }
+        internal virtual double _MinScrollExtent { get; set; }
+        internal virtual double _MaxScrollExtent { get; set; }
+        internal virtual double _Pixels { get; set; }
+        internal virtual double _ViewportDimension { get; set; }
+        internal virtual bool _HaveDimensions { get; set; }
+        internal virtual bool _DidChangeViewportDimensionOrReceiveCorrection { get; set; }
+        internal virtual HashSet<SemanticsAction> _SemanticActions { get; set; }
+        public virtual FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool> IsScrollingNotifier { get; set; }
+        internal virtual FlutterSDK.Widgets.Scrollactivity.ScrollActivity _Activity { get; set; }
+        public virtual double MinScrollExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double MaxScrollExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Pixels { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double ViewportDimension { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool HaveDimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool AllowImplicitScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Widgets.Scrollactivity.ScrollActivity Activity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual void Absorb(FlutterSDK.Widgets.Scrollposition.ScrollPosition other) { throw new NotImplementedException(); }
 
 
-public virtual double ApplyBoundaryConditions(double value){ throw new NotImplementedException(); }
+        public virtual double SetPixels(double newPixels) { throw new NotImplementedException(); }
 
 
-public new bool ApplyViewportDimension(double viewportDimension){ throw new NotImplementedException(); }
+        public virtual void CorrectPixels(double value) { throw new NotImplementedException(); }
 
 
-private void _UpdateSemanticActions(){ throw new NotImplementedException(); }
+        public new void CorrectBy(double correction) { throw new NotImplementedException(); }
 
 
-public new bool ApplyContentDimensions(double minScrollExtent,double maxScrollExtent){ throw new NotImplementedException(); }
+        public virtual void ForcePixels(double value) { throw new NotImplementedException(); }
 
 
-public virtual void ApplyNewDimensions(){ throw new NotImplementedException(); }
+        public virtual void SaveScrollOffset() { throw new NotImplementedException(); }
 
 
-public virtual Future<object> EnsureVisible(FlutterSDK.Rendering.@object.RenderObject @object,double alignment = 0.0,TimeSpan duration = default(TimeSpan),FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve),FlutterSDK.Widgets.Scrollposition.ScrollPositionAlignmentPolicy alignmentPolicy = default(FlutterSDK.Widgets.Scrollposition.ScrollPositionAlignmentPolicy)){ throw new NotImplementedException(); }
+        public virtual void RestoreScrollOffset() { throw new NotImplementedException(); }
 
 
-public new Future<object> AnimateTo(double to,TimeSpan duration = default(TimeSpan),FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)){ throw new NotImplementedException(); }
+        public virtual double ApplyBoundaryConditions(double value) { throw new NotImplementedException(); }
 
 
-public new void JumpTo(double value){ throw new NotImplementedException(); }
+        public new bool ApplyViewportDimension(double viewportDimension) { throw new NotImplementedException(); }
 
 
-public new Future<object> MoveTo(double to,TimeSpan duration = default(TimeSpan),FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve),bool clamp = true){ throw new NotImplementedException(); }
+        private void _UpdateSemanticActions() { throw new NotImplementedException(); }
 
 
-public virtual void JumpToWithoutSettling(double value){ throw new NotImplementedException(); }
+        public new bool ApplyContentDimensions(double minScrollExtent, double maxScrollExtent) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Widgets.Scrollactivity.ScrollHoldController Hold(VoidCallback holdCancelCallback){ throw new NotImplementedException(); }
+        public virtual void ApplyNewDimensions() { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Gestures.Drag.Drag Drag(FlutterSDK.Gestures.Dragdetails.DragStartDetails details,VoidCallback dragCancelCallback){ throw new NotImplementedException(); }
+        public virtual Future<object> EnsureVisible(FlutterSDK.Rendering.@object.RenderObject @object, double alignment = 0.0, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Widgets.Scrollposition.ScrollPositionAlignmentPolicy alignmentPolicy = default(FlutterSDK.Widgets.Scrollposition.ScrollPositionAlignmentPolicy)) { throw new NotImplementedException(); }
 
 
-public virtual void BeginActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivity newActivity){ throw new NotImplementedException(); }
+        public new Future<object> AnimateTo(double to, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)) { throw new NotImplementedException(); }
 
 
-public virtual void DidStartScroll(){ throw new NotImplementedException(); }
+        public new void JumpTo(double value) { throw new NotImplementedException(); }
 
 
-public virtual void DidUpdateScrollPositionBy(double delta){ throw new NotImplementedException(); }
+        public new Future<object> MoveTo(double to, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), bool clamp = true) { throw new NotImplementedException(); }
 
 
-public virtual void DidEndScroll(){ throw new NotImplementedException(); }
+        public virtual void JumpToWithoutSettling(double value) { throw new NotImplementedException(); }
 
 
-public virtual void DidOverscrollBy(double value){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Widgets.Scrollactivity.ScrollHoldController Hold(VoidCallback holdCancelCallback) { throw new NotImplementedException(); }
 
 
-public virtual void DidUpdateScrollDirection(FlutterSDK.Rendering.Viewportoffset.ScrollDirection direction){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Gestures.Drag.Drag Drag(FlutterSDK.Gestures.Dragdetails.DragStartDetails details, VoidCallback dragCancelCallback) { throw new NotImplementedException(); }
 
 
-public virtual bool RecommendDeferredLoading(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public virtual void BeginActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivity newActivity) { throw new NotImplementedException(); }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+        public virtual void DidStartScroll() { throw new NotImplementedException(); }
 
 
-public new void NotifyListeners(){ throw new NotImplementedException(); }
+        public virtual void DidUpdateScrollPositionBy(double delta) { throw new NotImplementedException(); }
 
 
-public new void DebugFillDescription(List<string> description){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual void DidEndScroll() { throw new NotImplementedException(); }
 
 
-public enum ScrollPositionAlignmentPolicy{
+        public virtual void DidOverscrollBy(double value) { throw new NotImplementedException(); }
 
-Explicit,
-KeepVisibleAtEnd,
-KeepVisibleAtStart,
-}
+
+        public virtual void DidUpdateScrollDirection(FlutterSDK.Rendering.Viewportoffset.ScrollDirection direction) { throw new NotImplementedException(); }
+
+
+        public virtual bool RecommendDeferredLoading(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+
+        public new void Dispose() { throw new NotImplementedException(); }
+
+
+        public new void NotifyListeners() { throw new NotImplementedException(); }
+
+
+        public new void DebugFillDescription(List<string> description) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public enum ScrollPositionAlignmentPolicy
+    {
+
+        Explicit,
+        KeepVisibleAtEnd,
+        KeepVisibleAtStart,
+    }
 
 }

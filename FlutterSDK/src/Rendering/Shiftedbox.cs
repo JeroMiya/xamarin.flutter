@@ -421,439 +421,456 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Rendering.Shiftedbox{
-internal static class ShiftedboxDefaultClass{
-}
-
-public interface IRenderShiftedBox{
-double ComputeMinIntrinsicWidth(double height);
-double ComputeMaxIntrinsicWidth(double height);
-double ComputeMinIntrinsicHeight(double width);
-double ComputeMaxIntrinsicHeight(double width);
-double ComputeDistanceToActualBaseline(TextBaseline baseline);
-void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset);
-bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset));
-}
-
-
-public interface IRenderAligningShiftedBox{
-void AlignChild();
-void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
-FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment{get;set;}
-TextDirection TextDirection{get;set;}
-}
-
-
-public interface ISingleChildLayoutDelegate{
-Size GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints);
-FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(FlutterSDK.Rendering.Box.BoxConstraints constraints);
-Offset GetPositionForChild(Size size,Size childSize);
-bool ShouldRelayout(FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate oldDelegate);
-}
-
-
-public class RenderShiftedBox : FlutterSDK.Rendering.Box.RenderBox,IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>
+namespace FlutterSDK.Rendering.Shiftedbox
 {
-#region constructors
-public RenderShiftedBox(FlutterSDK.Rendering.Box.RenderBox child)
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class ShiftedboxDefaultClass
+    {
+    }
 
-#region fields
-#endregion
+    public interface IRenderShiftedBox
+    {
+        double ComputeMinIntrinsicWidth(double height);
+        double ComputeMaxIntrinsicWidth(double height);
+        double ComputeMinIntrinsicHeight(double width);
+        double ComputeMaxIntrinsicHeight(double width);
+        double ComputeDistanceToActualBaseline(TextBaseline baseline);
+        void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset);
+        bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset));
+    }
 
-#region methods
 
-public new double ComputeMinIntrinsicWidth(double height){ throw new NotImplementedException(); }
+    public interface IRenderAligningShiftedBox
+    {
+        void AlignChild();
+        void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
+        FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
+        TextDirection TextDirection { get; set; }
+    }
 
 
-public new double ComputeMaxIntrinsicWidth(double height){ throw new NotImplementedException(); }
+    public interface ISingleChildLayoutDelegate
+    {
+        Size GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints);
+        FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(FlutterSDK.Rendering.Box.BoxConstraints constraints);
+        Offset GetPositionForChild(Size size, Size childSize);
+        bool ShouldRelayout(FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate oldDelegate);
+    }
 
 
-public new double ComputeMinIntrinsicHeight(double width){ throw new NotImplementedException(); }
+    public class RenderShiftedBox : FlutterSDK.Rendering.Box.RenderBox, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>
+    {
+        #region constructors
+        public RenderShiftedBox(FlutterSDK.Rendering.Box.RenderBox child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        #endregion
 
-public new double ComputeMaxIntrinsicHeight(double width){ throw new NotImplementedException(); }
+        #region methods
 
+        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
-public new double ComputeDistanceToActualBaseline(TextBaseline baseline){ throw new NotImplementedException(); }
 
+        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
 
+        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
-public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-public class RenderPadding : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
-{
-#region constructors
-public RenderPadding(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),TextDirection textDirection = default(TextDirection),FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-: base(child)
-{
-throw new NotImplementedException(); }
-#endregion
+        public new double ComputeDistanceToActualBaseline(TextBaseline baseline) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets _ResolvedPadding{get;set;}
-internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry _Padding{get;set;}
-internal virtual TextDirection _TextDirection{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual TextDirection TextDirection{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
 
-#region methods
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-private void _Resolve(){ throw new NotImplementedException(); }
 
+        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
-private void _MarkNeedResolution(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new double ComputeMinIntrinsicWidth(double height){ throw new NotImplementedException(); }
+    public class RenderPadding : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
+    {
+        #region constructors
+        public RenderPadding(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+        : base(child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets _ResolvedPadding { get; set; }
+        internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry _Padding { get; set; }
+        internal virtual TextDirection _TextDirection { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new double ComputeMaxIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        #region methods
 
+        private void _Resolve() { throw new NotImplementedException(); }
 
-public new double ComputeMinIntrinsicHeight(double width){ throw new NotImplementedException(); }
 
+        private void _MarkNeedResolution() { throw new NotImplementedException(); }
 
-public new double ComputeMaxIntrinsicHeight(double width){ throw new NotImplementedException(); }
 
+        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
 
+        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
-public new void DebugPaintSize(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
 
+        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-public class RenderAligningShiftedBox : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
-{
-#region constructors
-public RenderAligningShiftedBox(FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry),TextDirection textDirection = default(TextDirection),FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-: base(child)
-{
-throw new NotImplementedException(); }
-public static RenderAligningShiftedBox Mixin(FlutterSDK.Painting.Alignment.AlignmentGeometry alignment,TextDirection textDirection,FlutterSDK.Rendering.Box.RenderBox child)
-{
-var instance =new RenderAligningShiftedBox();throw new NotImplementedException(); }
-#endregion
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
-#region fields
-internal virtual FlutterSDK.Painting.Alignment.Alignment _ResolvedAlignment{get;set;}
-internal virtual FlutterSDK.Painting.Alignment.AlignmentGeometry _Alignment{get;set;}
-internal virtual TextDirection _TextDirection{get;set;}
-public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual TextDirection TextDirection{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
 
-#region methods
+        public new void DebugPaintSize(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-private void _Resolve(){ throw new NotImplementedException(); }
 
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-private void _MarkNeedResolution(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public virtual void AlignChild(){ throw new NotImplementedException(); }
+    public class RenderAligningShiftedBox : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
+    {
+        #region constructors
+        public RenderAligningShiftedBox(FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+        : base(child)
+        {
+            throw new NotImplementedException();
+        }
+        public static RenderAligningShiftedBox Mixin(FlutterSDK.Painting.Alignment.AlignmentGeometry alignment, TextDirection textDirection, FlutterSDK.Rendering.Box.RenderBox child)
+        {
+            var instance = new RenderAligningShiftedBox(); throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual FlutterSDK.Painting.Alignment.Alignment _ResolvedAlignment { get; set; }
+        internal virtual FlutterSDK.Painting.Alignment.AlignmentGeometry _Alignment { get; set; }
+        internal virtual TextDirection _TextDirection { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        private void _Resolve() { throw new NotImplementedException(); }
 
 
-public class RenderPositionedBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
-{
-#region constructors
-public RenderPositionedBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),double widthFactor = default(double),double heightFactor = default(double),FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry),TextDirection textDirection = default(TextDirection))
-: base(child:child,alignment:alignment,textDirection:textDirection)
-{
-throw new NotImplementedException(); }
-#endregion
+        private void _MarkNeedResolution() { throw new NotImplementedException(); }
 
-#region fields
-internal virtual double _WidthFactor{get;set;}
-internal virtual double _HeightFactor{get;set;}
-public virtual double WidthFactor{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual double HeightFactor{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
 
-#region methods
+        public virtual void AlignChild() { throw new NotImplementedException(); }
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
 
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-public new void DebugPaintSize(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+    public class RenderPositionedBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
+    {
+        #region constructors
+        public RenderPositionedBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), double widthFactor = default(double), double heightFactor = default(double), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection))
+        : base(child: child, alignment: alignment, textDirection: textDirection)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        internal virtual double _WidthFactor { get; set; }
+        internal virtual double _HeightFactor { get; set; }
+        public virtual double WidthFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double HeightFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public class RenderConstrainedOverflowBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
-{
-#region constructors
-public RenderConstrainedOverflowBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),double minWidth = default(double),double maxWidth = default(double),double minHeight = default(double),double maxHeight = default(double),FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry),TextDirection textDirection = default(TextDirection))
-: base(child:child,alignment:alignment,textDirection:textDirection)
-{
-throw new NotImplementedException(); }
-#endregion
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
-#region fields
-internal virtual double _MinWidth{get;set;}
-internal virtual double _MaxWidth{get;set;}
-internal virtual double _MinHeight{get;set;}
-internal virtual double _MaxHeight{get;set;}
-public virtual double MinWidth{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual double MaxWidth{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual double MinHeight{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual double MaxHeight{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool SizedByParent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+        public new void DebugPaintSize(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-private FlutterSDK.Rendering.Box.BoxConstraints _GetInnerConstraints(FlutterSDK.Rendering.Box.BoxConstraints constraints){ throw new NotImplementedException(); }
 
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-public new void PerformResize(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
+    public class RenderConstrainedOverflowBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
+    {
+        #region constructors
+        public RenderConstrainedOverflowBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), double minWidth = default(double), double maxWidth = default(double), double minHeight = default(double), double maxHeight = default(double), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection))
+        : base(child: child, alignment: alignment, textDirection: textDirection)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual double _MinWidth { get; set; }
+        internal virtual double _MaxWidth { get; set; }
+        internal virtual double _MinHeight { get; set; }
+        internal virtual double _MaxHeight { get; set; }
+        public virtual double MinWidth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double MaxWidth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double MinHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double MaxHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        private FlutterSDK.Rendering.Box.BoxConstraints _GetInnerConstraints(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
 
 
-public class RenderUnconstrainedBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox,IDebugOverflowIndicatorMixin
-{
-#region constructors
-public RenderUnconstrainedBox(FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry),TextDirection textDirection = default(TextDirection),FlutterSDK.Painting.Basictypes.Axis constrainedAxis = default(FlutterSDK.Painting.Basictypes.Axis),FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-: base(alignment,textDirection,child)
-{
-throw new NotImplementedException(); }
-#endregion
+        public new void PerformResize() { throw new NotImplementedException(); }
 
-#region fields
-internal virtual FlutterSDK.Painting.Basictypes.Axis _ConstrainedAxis{get;set;}
-internal virtual FlutterBinding.UI.Rect _OverflowContainerRect{get;set;}
-internal virtual FlutterBinding.UI.Rect _OverflowChildRect{get;set;}
-internal virtual bool _IsOverflowing{get;set;}
-public virtual FlutterSDK.Painting.Basictypes.Axis ConstrainedAxis{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
 
-#region methods
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
 
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
+    public class RenderUnconstrainedBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox, IDebugOverflowIndicatorMixin
+    {
+        #region constructors
+        public RenderUnconstrainedBox(FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Basictypes.Axis constrainedAxis = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+        : base(alignment, textDirection, child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual FlutterSDK.Painting.Basictypes.Axis _ConstrainedAxis { get; set; }
+        internal virtual FlutterBinding.UI.Rect _OverflowContainerRect { get; set; }
+        internal virtual FlutterBinding.UI.Rect _OverflowChildRect { get; set; }
+        internal virtual bool _IsOverflowing { get; set; }
+        public virtual FlutterSDK.Painting.Basictypes.Axis ConstrainedAxis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new string ToStringShort(){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
 
-public class RenderSizedOverflowBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
-{
-#region constructors
-public RenderSizedOverflowBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),Size requestedSize = default(Size),FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry),TextDirection textDirection = default(TextDirection))
-: base(child:child,alignment:alignment,textDirection:textDirection)
-{
-throw new NotImplementedException(); }
-#endregion
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual Size _RequestedSize{get;set;}
-public virtual Size RequestedSize{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
 
-#region methods
+        public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
-public new double ComputeMinIntrinsicWidth(double height){ throw new NotImplementedException(); }
 
+        public new string ToStringShort() { throw new NotImplementedException(); }
 
-public new double ComputeMaxIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new double ComputeMinIntrinsicHeight(double width){ throw new NotImplementedException(); }
+    public class RenderSizedOverflowBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
+    {
+        #region constructors
+        public RenderSizedOverflowBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), Size requestedSize = default(Size), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection))
+        : base(child: child, alignment: alignment, textDirection: textDirection)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual Size _RequestedSize { get; set; }
+        public virtual Size RequestedSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new double ComputeMaxIntrinsicHeight(double width){ throw new NotImplementedException(); }
+        #region methods
 
+        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
-public new double ComputeDistanceToActualBaseline(TextBaseline baseline){ throw new NotImplementedException(); }
 
+        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-public class RenderFractionallySizedOverflowBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
-{
-#region constructors
-public RenderFractionallySizedOverflowBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),double widthFactor = default(double),double heightFactor = default(double),FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry),TextDirection textDirection = default(TextDirection))
-: base(child:child,alignment:alignment,textDirection:textDirection)
-{
-throw new NotImplementedException(); }
-#endregion
+        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual double _WidthFactor{get;set;}
-internal virtual double _HeightFactor{get;set;}
-public virtual double WidthFactor{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual double HeightFactor{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
 
-#region methods
+        public new double ComputeDistanceToActualBaseline(TextBaseline baseline) { throw new NotImplementedException(); }
 
-private FlutterSDK.Rendering.Box.BoxConstraints _GetInnerConstraints(FlutterSDK.Rendering.Box.BoxConstraints constraints){ throw new NotImplementedException(); }
 
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
-public new double ComputeMinIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new double ComputeMaxIntrinsicWidth(double height){ throw new NotImplementedException(); }
+    public class RenderFractionallySizedOverflowBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
+    {
+        #region constructors
+        public RenderFractionallySizedOverflowBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), double widthFactor = default(double), double heightFactor = default(double), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection))
+        : base(child: child, alignment: alignment, textDirection: textDirection)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual double _WidthFactor { get; set; }
+        internal virtual double _HeightFactor { get; set; }
+        public virtual double WidthFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double HeightFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new double ComputeMinIntrinsicHeight(double width){ throw new NotImplementedException(); }
+        #region methods
 
+        private FlutterSDK.Rendering.Box.BoxConstraints _GetInnerConstraints(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
 
-public new double ComputeMaxIntrinsicHeight(double width){ throw new NotImplementedException(); }
 
+        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
 
+        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-public class SingleChildLayoutDelegate
-{
-#region constructors
-public SingleChildLayoutDelegate(FlutterSDK.Foundation.Changenotifier.Listenable relayout = default(FlutterSDK.Foundation.Changenotifier.Listenable))
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
+        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual FlutterSDK.Foundation.Changenotifier.Listenable _Relayout{get;set;}
-#endregion
 
-#region methods
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
-public virtual Size GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints){ throw new NotImplementedException(); }
 
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(FlutterSDK.Rendering.Box.BoxConstraints constraints){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public virtual Offset GetPositionForChild(Size size,Size childSize){ throw new NotImplementedException(); }
+    public class SingleChildLayoutDelegate
+    {
+        #region constructors
+        public SingleChildLayoutDelegate(FlutterSDK.Foundation.Changenotifier.Listenable relayout = default(FlutterSDK.Foundation.Changenotifier.Listenable))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual FlutterSDK.Foundation.Changenotifier.Listenable _Relayout { get; set; }
+        #endregion
 
-public virtual bool ShouldRelayout(FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate oldDelegate){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public virtual Size GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
 
 
-public class RenderCustomSingleChildLayoutBox : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
-{
-#region constructors
-public RenderCustomSingleChildLayoutBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate @delegate = default(FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate))
-: base(child)
-{
-throw new NotImplementedException(); }
-#endregion
+        public virtual FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate _Delegate{get;set;}
-public virtual FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate @delegate{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
 
-#region methods
+        public virtual Offset GetPositionForChild(Size size, Size childSize) { throw new NotImplementedException(); }
 
-public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner){ throw new NotImplementedException(); }
-public new void Attach(@Object owner){ throw new NotImplementedException(); }
 
+        public virtual bool ShouldRelayout(FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate oldDelegate) { throw new NotImplementedException(); }
 
-public new void Detach(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-private Size _GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints){ throw new NotImplementedException(); }
+    public class RenderCustomSingleChildLayoutBox : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
+    {
+        #region constructors
+        public RenderCustomSingleChildLayoutBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate @delegate = default(FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate))
+        : base(child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate _Delegate { get; set; }
+        public virtual FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate @delegate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new double ComputeMinIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        #region methods
 
+        public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner) { throw new NotImplementedException(); }
+        public new void Attach(@Object owner) { throw new NotImplementedException(); }
 
-public new double ComputeMaxIntrinsicWidth(double height){ throw new NotImplementedException(); }
 
+        public new void Detach() { throw new NotImplementedException(); }
 
-public new double ComputeMinIntrinsicHeight(double width){ throw new NotImplementedException(); }
 
+        private Size _GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
 
-public new double ComputeMaxIntrinsicHeight(double width){ throw new NotImplementedException(); }
 
+        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-public class RenderBaseline : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
-{
-#region constructors
-public RenderBaseline(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox),double baseline = default(double),TextBaseline baselineType = default(TextBaseline))
-: base(child)
-{
-throw new NotImplementedException(); }
-#endregion
+        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual double _Baseline{get;set;}
-internal virtual TextBaseline _BaselineType{get;set;}
-public virtual double Baseline{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual TextBaseline BaselineType{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
 
-#region methods
+        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
 
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        #endregion
+    }
 
-#endregion
-}
+
+    public class RenderBaseline : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
+    {
+        #region constructors
+        public RenderBaseline(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), double baseline = default(double), TextBaseline baselineType = default(TextBaseline))
+        : base(child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual double _Baseline { get; set; }
+        internal virtual TextBaseline _BaselineType { get; set; }
+        public virtual double Baseline { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextBaseline BaselineType { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void PerformLayout() { throw new NotImplementedException(); }
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

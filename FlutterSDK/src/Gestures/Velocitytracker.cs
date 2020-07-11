@@ -294,125 +294,132 @@ using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
-namespace FlutterSDK.Gestures.Velocitytracker{
-internal static class VelocitytrackerDefaultClass{
-}
-
-public interface IVelocityTracker{}
-
-public class VelocityTracker{
-internal virtual int _AssumePointerMoveStoppedMilliseconds{get;set;}
-internal virtual int _HistorySize{get;set;}
-internal virtual int _HorizonMilliseconds{get;set;}
-internal virtual int _MinSampleSize{get;set;}
-internal virtual List<FlutterSDK.Gestures.Velocitytracker._PointAtTime> _Samples{get;set;}
-internal virtual int _Index{get;set;}
-
-public virtual void AddPosition(TimeSpan time,FlutterBinding.UI.Offset position){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Gestures.Velocitytracker.VelocityEstimate GetVelocityEstimate(){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Gestures.Velocitytracker.Velocity GetVelocity(){ throw new NotImplementedException(); }
-
-}
-public static class VelocityTrackerMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IVelocityTracker, VelocityTracker> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IVelocityTracker, VelocityTracker>();
-static VelocityTracker GetOrCreate(IVelocityTracker instance)
+namespace FlutterSDK.Gestures.Velocitytracker
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new VelocityTracker();
-_table.Add(instance, value);
-}
-return (VelocityTracker)value;
-}
-public static void AddPosition(this IVelocityTracker instance,TimeSpan time,FlutterBinding.UI.Offset position) => GetOrCreate(instance).AddPosition(time, position);
-public static FlutterSDK.Gestures.Velocitytracker.VelocityEstimate GetVelocityEstimate(this IVelocityTracker instance) => GetOrCreate(instance).GetVelocityEstimate();
-public static FlutterSDK.Gestures.Velocitytracker.Velocity GetVelocity(this IVelocityTracker instance) => GetOrCreate(instance).GetVelocity();
-}
+    internal static class VelocitytrackerDefaultClass
+    {
+    }
+
+    public interface IVelocityTracker { }
+
+    public class VelocityTracker
+    {
+        internal virtual int _AssumePointerMoveStoppedMilliseconds { get; set; }
+        internal virtual int _HistorySize { get; set; }
+        internal virtual int _HorizonMilliseconds { get; set; }
+        internal virtual int _MinSampleSize { get; set; }
+        internal virtual List<FlutterSDK.Gestures.Velocitytracker._PointAtTime> _Samples { get; set; }
+        internal virtual int _Index { get; set; }
+
+        public virtual void AddPosition(TimeSpan time, FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
 
 
-public class Velocity
-{
-#region constructors
-public Velocity(FlutterBinding.UI.Offset pixelsPerSecond = default(FlutterBinding.UI.Offset))
-: base()
-{
-this.PixelsPerSecond = pixelsPerSecond;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Gestures.Velocitytracker.Velocity Zero{get;set;}
-public virtual FlutterBinding.UI.Offset PixelsPerSecond{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public virtual FlutterSDK.Gestures.Velocitytracker.Velocity Unary(){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Gestures.Velocitytracker.VelocityEstimate GetVelocityEstimate() { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Gestures.Velocitytracker.Velocity SubtractOperator(FlutterSDK.Gestures.Velocitytracker.Velocity other){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Gestures.Velocitytracker.Velocity GetVelocity() { throw new NotImplementedException(); }
+
+    }
+    public static class VelocityTrackerMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IVelocityTracker, VelocityTracker> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IVelocityTracker, VelocityTracker>();
+        static VelocityTracker GetOrCreate(IVelocityTracker instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new VelocityTracker();
+                _table.Add(instance, value);
+            }
+            return (VelocityTracker)value;
+        }
+        public static void AddPosition(this IVelocityTracker instance, TimeSpan time, FlutterBinding.UI.Offset position) => GetOrCreate(instance).AddPosition(time, position);
+        public static FlutterSDK.Gestures.Velocitytracker.VelocityEstimate GetVelocityEstimate(this IVelocityTracker instance) => GetOrCreate(instance).GetVelocityEstimate();
+        public static FlutterSDK.Gestures.Velocitytracker.Velocity GetVelocity(this IVelocityTracker instance) => GetOrCreate(instance).GetVelocity();
+    }
 
 
-public virtual FlutterSDK.Gestures.Velocitytracker.Velocity AddOperator(FlutterSDK.Gestures.Velocitytracker.Velocity other){ throw new NotImplementedException(); }
+    public class Velocity
+    {
+        #region constructors
+        public Velocity(FlutterBinding.UI.Offset pixelsPerSecond = default(FlutterBinding.UI.Offset))
+        : base()
+        {
+            this.PixelsPerSecond = pixelsPerSecond; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Gestures.Velocitytracker.Velocity Zero { get; set; }
+        public virtual FlutterBinding.UI.Offset PixelsPerSecond { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual FlutterSDK.Gestures.Velocitytracker.Velocity Unary() { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Gestures.Velocitytracker.Velocity ClampMagnitude(double minValue,double maxValue){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Gestures.Velocitytracker.Velocity SubtractOperator(FlutterSDK.Gestures.Velocitytracker.Velocity other) { throw new NotImplementedException(); }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Gestures.Velocitytracker.Velocity AddOperator(FlutterSDK.Gestures.Velocitytracker.Velocity other) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public virtual FlutterSDK.Gestures.Velocitytracker.Velocity ClampMagnitude(double minValue, double maxValue) { throw new NotImplementedException(); }
 
 
-public class VelocityEstimate
-{
-#region constructors
-public VelocityEstimate(FlutterBinding.UI.Offset pixelsPerSecond = default(FlutterBinding.UI.Offset),double confidence = default(double),TimeSpan duration = default(TimeSpan),FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset))
-: base()
-{
-this.PixelsPerSecond = pixelsPerSecond;
-this.Confidence = confidence;
-this.Duration = duration;
-this.Offset = offset;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterBinding.UI.Offset PixelsPerSecond{get;set;}
-public virtual double Confidence{get;set;}
-public virtual TimeSpan Duration{get;set;}
-public virtual FlutterBinding.UI.Offset Offset{get;set;}
-#endregion
-
-#region methods
-
-#endregion
-}
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
-public class _PointAtTime
-{
-#region constructors
-public _PointAtTime(FlutterBinding.UI.Offset point,TimeSpan time)
-: base()
-{
-this.Point = point;
-this.Time = time;throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-public virtual TimeSpan Time{get;set;}
-public virtual FlutterBinding.UI.Offset Point{get;set;}
-#endregion
 
-#region methods
+    public class VelocityEstimate
+    {
+        #region constructors
+        public VelocityEstimate(FlutterBinding.UI.Offset pixelsPerSecond = default(FlutterBinding.UI.Offset), double confidence = default(double), TimeSpan duration = default(TimeSpan), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset))
+        : base()
+        {
+            this.PixelsPerSecond = pixelsPerSecond;
+            this.Confidence = confidence;
+            this.Duration = duration;
+            this.Offset = offset; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual FlutterBinding.UI.Offset PixelsPerSecond { get; set; }
+        public virtual double Confidence { get; set; }
+        public virtual TimeSpan Duration { get; set; }
+        public virtual FlutterBinding.UI.Offset Offset { get; set; }
+        #endregion
+
+        #region methods
+
+        #endregion
+    }
+
+
+    public class _PointAtTime
+    {
+        #region constructors
+        public _PointAtTime(FlutterBinding.UI.Offset point, TimeSpan time)
+        : base()
+        {
+            this.Point = point;
+            this.Time = time; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual TimeSpan Time { get; set; }
+        public virtual FlutterBinding.UI.Offset Point { get; set; }
+        #endregion
+
+        #region methods
+
+        #endregion
+    }
 
 }

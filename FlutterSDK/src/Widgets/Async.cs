@@ -421,250 +421,261 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Widgets.Async{
-public delegate FlutterSDK.Widgets.Framework.Widget AsyncWidgetBuilder<T>(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Widgets.Async.AsyncSnapshot<T> snapshot);
-internal static class AsyncDefaultClass{
-}
-
-public interface IStreamBuilderBase<T,S>{
-S Initial();
-S AfterConnected(S current);
-S AfterData(S current,T data);
-S AfterError(S current,@Object error);
-S AfterDone(S current);
-S AfterDisconnected(S current);
-FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context,S currentSummary);
-FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Async.StreamBuilderBase<T,S>> CreateState();
-Stream<T> Stream{get;}
-}
-
-
-public class StreamBuilderBase<T,S> : FlutterSDK.Widgets.Framework.StatefulWidget
+namespace FlutterSDK.Widgets.Async
 {
-#region constructors
-public StreamBuilderBase(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),Stream<T> stream = default(Stream<T>))
-: base(key:key)
-{
-this.Stream = stream;throw new NotImplementedException(); }
-#endregion
+    public delegate FlutterSDK.Widgets.Framework.Widget AsyncWidgetBuilder<T>(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Async.AsyncSnapshot<T> snapshot);
+    internal static class AsyncDefaultClass
+    {
+    }
 
-#region fields
-public virtual Stream<T> Stream{get;set;}
-#endregion
+    public interface IStreamBuilderBase<T, S>
+    {
+        S Initial();
+        S AfterConnected(S current);
+        S AfterData(S current, T data);
+        S AfterError(S current, @Object error);
+        S AfterDone(S current);
+        S AfterDisconnected(S current);
+        FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context, S currentSummary);
+        FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Async.StreamBuilderBase<T, S>> CreateState();
+        Stream<T> Stream { get; }
+    }
 
-#region methods
 
-public virtual S Initial(){ throw new NotImplementedException(); }
+    public class StreamBuilderBase<T, S> : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public StreamBuilderBase(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Stream<T> stream = default(Stream<T>))
+        : base(key: key)
+        {
+            this.Stream = stream; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual Stream<T> Stream { get; set; }
+        #endregion
 
-public virtual S AfterConnected(S current){ throw new NotImplementedException(); }
+        #region methods
 
+        public virtual S Initial() { throw new NotImplementedException(); }
 
-public virtual S AfterData(S current,T data){ throw new NotImplementedException(); }
 
+        public virtual S AfterConnected(S current) { throw new NotImplementedException(); }
 
-public virtual S AfterError(S current,@Object error){ throw new NotImplementedException(); }
 
+        public virtual S AfterData(S current, T data) { throw new NotImplementedException(); }
 
-public virtual S AfterDone(S current){ throw new NotImplementedException(); }
 
+        public virtual S AfterError(S current, @Object error) { throw new NotImplementedException(); }
 
-public virtual S AfterDisconnected(S current){ throw new NotImplementedException(); }
 
+        public virtual S AfterDone(S current) { throw new NotImplementedException(); }
 
-public virtual FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context,S currentSummary){ throw new NotImplementedException(); }
 
+        public virtual S AfterDisconnected(S current) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Async.StreamBuilderBase<T,S>> CreateState(){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public virtual FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context, S currentSummary) { throw new NotImplementedException(); }
 
 
-public class _StreamBuilderBaseState<T,S> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Async.StreamBuilderBase<T,S>>
-{
-#region constructors
-public _StreamBuilderBaseState()
-{ }
-#endregion
+        public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Async.StreamBuilderBase<T, S>> CreateState() { throw new NotImplementedException(); }
 
-#region fields
-internal virtual StreamSubscription<T> _Subscription{get;set;}
-internal virtual S _Summary{get;set;}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public new void InitState(){ throw new NotImplementedException(); }
+    public class _StreamBuilderBaseState<T, S> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Async.StreamBuilderBase<T, S>>
+    {
+        #region constructors
+        public _StreamBuilderBaseState()
+        { }
+        #endregion
 
+        #region fields
+        internal virtual StreamSubscription<T> _Subscription { get; set; }
+        internal virtual S _Summary { get; set; }
+        #endregion
 
-public new void DidUpdateWidget(FlutterSDK.Widgets.Async.StreamBuilderBase<T,S> oldWidget){ throw new NotImplementedException(); }
+        #region methods
 
+        public new void InitState() { throw new NotImplementedException(); }
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
 
+        public new void DidUpdateWidget(FlutterSDK.Widgets.Async.StreamBuilderBase<T, S> oldWidget) { throw new NotImplementedException(); }
 
-public new void Dispose(){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-private void _Subscribe(){ throw new NotImplementedException(); }
 
+        public new void Dispose() { throw new NotImplementedException(); }
 
-private void _Unsubscribe(){ throw new NotImplementedException(); }
 
-#endregion
-}
+        private void _Subscribe() { throw new NotImplementedException(); }
 
 
-public class AsyncSnapshot<T>
-{
-#region constructors
-internal AsyncSnapshot(FlutterSDK.Widgets.Async.ConnectionState connectionState,T data,@Object error)
-: base()
-{
-this.ConnectionState = connectionState;
-this.Data = data;
-this.Error = error;throw new NotImplementedException(); }
-public static AsyncSnapshot<T> Nothing()
-{
-var instance =new AsyncSnapshot<T>();throw new NotImplementedException(); }
-public static AsyncSnapshot<T> WithData(FlutterSDK.Widgets.Async.ConnectionState state,T data)
-{
-var instance =new AsyncSnapshot<T>();throw new NotImplementedException(); }
-public static AsyncSnapshot<T> WithError(FlutterSDK.Widgets.Async.ConnectionState state,@Object error)
-{
-var instance =new AsyncSnapshot<T>();throw new NotImplementedException(); }
-#endregion
+        private void _Unsubscribe() { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Widgets.Async.ConnectionState ConnectionState{get;set;}
-public virtual T Data{get;set;}
-public virtual @Object Error{get;set;}
-public virtual T RequireData{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool HasData{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool HasError{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public virtual AsyncSnapshot<T> InState(FlutterSDK.Widgets.Async.ConnectionState state){ throw new NotImplementedException(); }
+    public class AsyncSnapshot<T>
+    {
+        #region constructors
+        internal AsyncSnapshot(FlutterSDK.Widgets.Async.ConnectionState connectionState, T data, @Object error)
+        : base()
+        {
+            this.ConnectionState = connectionState;
+            this.Data = data;
+            this.Error = error; throw new NotImplementedException();
+        }
+        public static AsyncSnapshot<T> Nothing()
+        {
+            var instance = new AsyncSnapshot<T>(); throw new NotImplementedException();
+        }
+        public static AsyncSnapshot<T> WithData(FlutterSDK.Widgets.Async.ConnectionState state, T data)
+        {
+            var instance = new AsyncSnapshot<T>(); throw new NotImplementedException();
+        }
+        public static AsyncSnapshot<T> WithError(FlutterSDK.Widgets.Async.ConnectionState state, @Object error)
+        {
+            var instance = new AsyncSnapshot<T>(); throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual FlutterSDK.Widgets.Async.ConnectionState ConnectionState { get; set; }
+        public virtual T Data { get; set; }
+        public virtual @Object Error { get; set; }
+        public virtual T RequireData { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool HasData { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool HasError { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public virtual AsyncSnapshot<T> InState(FlutterSDK.Widgets.Async.ConnectionState state) { throw new NotImplementedException(); }
 
-#endregion
-}
 
 
-public class StreamBuilder<T> : FlutterSDK.Widgets.Async.StreamBuilderBase<T,FlutterSDK.Widgets.Async.AsyncSnapshot<T>>
-{
-#region constructors
-public StreamBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),T initialData = default(T),Stream<T> stream = default(Stream<T>),FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T> builder = default(FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T>))
-: base(key:key,stream:stream)
-{
-this.InitialData = initialData;
-this.Builder = builder;throw new NotImplementedException(); }
-#endregion
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T> Builder{get;set;}
-public virtual T InitialData{get;set;}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public new AsyncSnapshot<T> Initial(){ throw new NotImplementedException(); }
+    public class StreamBuilder<T> : FlutterSDK.Widgets.Async.StreamBuilderBase<T, FlutterSDK.Widgets.Async.AsyncSnapshot<T>>
+    {
+        #region constructors
+        public StreamBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), T initialData = default(T), Stream<T> stream = default(Stream<T>), FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T> builder = default(FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T>))
+        : base(key: key, stream: stream)
+        {
+            this.InitialData = initialData;
+            this.Builder = builder; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T> Builder { get; set; }
+        public virtual T InitialData { get; set; }
+        #endregion
 
-public new AsyncSnapshot<T> AfterConnected(FlutterSDK.Widgets.Async.AsyncSnapshot<T> current){ throw new NotImplementedException(); }
+        #region methods
 
+        public new AsyncSnapshot<T> Initial() { throw new NotImplementedException(); }
 
-public new AsyncSnapshot<T> AfterData(FlutterSDK.Widgets.Async.AsyncSnapshot<T> current,T data){ throw new NotImplementedException(); }
 
+        public new AsyncSnapshot<T> AfterConnected(FlutterSDK.Widgets.Async.AsyncSnapshot<T> current) { throw new NotImplementedException(); }
 
-public new AsyncSnapshot<T> AfterError(FlutterSDK.Widgets.Async.AsyncSnapshot<T> current,@Object error){ throw new NotImplementedException(); }
 
+        public new AsyncSnapshot<T> AfterData(FlutterSDK.Widgets.Async.AsyncSnapshot<T> current, T data) { throw new NotImplementedException(); }
 
-public new AsyncSnapshot<T> AfterDone(FlutterSDK.Widgets.Async.AsyncSnapshot<T> current){ throw new NotImplementedException(); }
 
+        public new AsyncSnapshot<T> AfterError(FlutterSDK.Widgets.Async.AsyncSnapshot<T> current, @Object error) { throw new NotImplementedException(); }
 
-public new AsyncSnapshot<T> AfterDisconnected(FlutterSDK.Widgets.Async.AsyncSnapshot<T> current){ throw new NotImplementedException(); }
 
+        public new AsyncSnapshot<T> AfterDone(FlutterSDK.Widgets.Async.AsyncSnapshot<T> current) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Widgets.Async.AsyncSnapshot<T> currentSummary){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new AsyncSnapshot<T> AfterDisconnected(FlutterSDK.Widgets.Async.AsyncSnapshot<T> current) { throw new NotImplementedException(); }
 
 
-public class FutureBuilder<T> : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public FutureBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),Future<T> future = default(Future<T>),T initialData = default(T),FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T> builder = default(FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T>))
-: base(key:key)
-{
-this.Future = future;
-this.InitialData = initialData;
-this.Builder = builder;throw new NotImplementedException(); }
-#endregion
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Async.AsyncSnapshot<T> currentSummary) { throw new NotImplementedException(); }
 
-#region fields
-public virtual Future<T> Future{get;set;}
-public virtual FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T> Builder{get;set;}
-public virtual T InitialData{get;set;}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Async.FutureBuilder<T>> CreateState(){ throw new NotImplementedException(); }
+    public class FutureBuilder<T> : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public FutureBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Future<T> future = default(Future<T>), T initialData = default(T), FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T> builder = default(FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T>))
+        : base(key: key)
+        {
+            this.Future = future;
+            this.InitialData = initialData;
+            this.Builder = builder; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual Future<T> Future { get; set; }
+        public virtual FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T> Builder { get; set; }
+        public virtual T InitialData { get; set; }
+        #endregion
 
+        #region methods
 
-public class _FutureBuilderState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Async.FutureBuilder<T>>
-{
-#region constructors
-public _FutureBuilderState()
-{ }
-#endregion
+        public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Async.FutureBuilder<T>> CreateState() { throw new NotImplementedException(); }
 
-#region fields
-internal virtual @Object _ActiveCallbackIdentity{get;set;}
-internal virtual FlutterSDK.Widgets.Async.AsyncSnapshot<T> _Snapshot{get;set;}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public new void InitState(){ throw new NotImplementedException(); }
+    public class _FutureBuilderState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Async.FutureBuilder<T>>
+    {
+        #region constructors
+        public _FutureBuilderState()
+        { }
+        #endregion
 
+        #region fields
+        internal virtual @Object _ActiveCallbackIdentity { get; set; }
+        internal virtual FlutterSDK.Widgets.Async.AsyncSnapshot<T> _Snapshot { get; set; }
+        #endregion
 
-public new void DidUpdateWidget(FlutterSDK.Widgets.Async.FutureBuilder<T> oldWidget){ throw new NotImplementedException(); }
+        #region methods
 
+        public new void InitState() { throw new NotImplementedException(); }
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
 
+        public new void DidUpdateWidget(FlutterSDK.Widgets.Async.FutureBuilder<T> oldWidget) { throw new NotImplementedException(); }
 
-public new void Dispose(){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-private void _Subscribe(){ throw new NotImplementedException(); }
 
+        public new void Dispose() { throw new NotImplementedException(); }
 
-private void _Unsubscribe(){ throw new NotImplementedException(); }
 
-#endregion
-}
+        private void _Subscribe() { throw new NotImplementedException(); }
 
 
-public enum ConnectionState{
+        private void _Unsubscribe() { throw new NotImplementedException(); }
 
-None,
-Waiting,
-Active,
-Done,
-}
+        #endregion
+    }
+
+
+    public enum ConnectionState
+    {
+
+        None,
+        Waiting,
+        Active,
+        Done,
+    }
 
 }

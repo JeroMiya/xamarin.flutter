@@ -294,314 +294,328 @@ using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
-namespace FlutterSDK.Gestures.Multidrag{
-public delegate FlutterSDK.Gestures.Drag.Drag GestureMultiDragStartCallback(FlutterBinding.UI.Offset position);
-internal static class MultidragDefaultClass{
-}
-
-public interface IMultiDragPointerState{
-void Resolve(FlutterSDK.Gestures.Arena.GestureDisposition disposition);
-void CheckForResolutionAfterMove();
-void Accepted(FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback starter);
-void Rejected();
-void Dispose();
-FlutterBinding.UI.Offset InitialPosition{get;}
-FlutterBinding.UI.Offset PendingDelta{get;}
-}
-
-
-public interface IMultiDragGestureRecognizer<T>{
-void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event);
-T CreateNewPointerState(FlutterSDK.Gestures.Events.PointerDownEvent @event);
-void AcceptGesture(int pointer);
-void RejectGesture(int pointer);
-void Dispose();
-FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback OnStart{get;set;}
-}
-
-
-public class MultiDragPointerState
+namespace FlutterSDK.Gestures.Multidrag
 {
-#region constructors
-public MultiDragPointerState(FlutterBinding.UI.Offset initialPosition)
-: base()
-{
-this.InitialPosition = initialPosition;throw new NotImplementedException(); }
-#endregion
+    public delegate FlutterSDK.Gestures.Drag.Drag GestureMultiDragStartCallback(FlutterBinding.UI.Offset position);
+    internal static class MultidragDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterBinding.UI.Offset InitialPosition{get;set;}
-internal virtual FlutterSDK.Gestures.Velocitytracker.VelocityTracker _VelocityTracker{get;set;}
-internal virtual FlutterSDK.Gestures.Drag.Drag _Client{get;set;}
-internal virtual FlutterBinding.UI.Offset _PendingDelta{get;set;}
-internal virtual TimeSpan _LastPendingEventTimestamp{get;set;}
-internal virtual FlutterSDK.Gestures.Arena.GestureArenaEntry _ArenaEntry{get;set;}
-public virtual FlutterBinding.UI.Offset PendingDelta{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public interface IMultiDragPointerState
+    {
+        void Resolve(FlutterSDK.Gestures.Arena.GestureDisposition disposition);
+        void CheckForResolutionAfterMove();
+        void Accepted(FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback starter);
+        void Rejected();
+        void Dispose();
+        FlutterBinding.UI.Offset InitialPosition { get; }
+        FlutterBinding.UI.Offset PendingDelta { get; }
+    }
 
-#region methods
 
-private void _SetArenaEntry(FlutterSDK.Gestures.Arena.GestureArenaEntry entry){ throw new NotImplementedException(); }
+    public interface IMultiDragGestureRecognizer<T>
+    {
+        void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event);
+        T CreateNewPointerState(FlutterSDK.Gestures.Events.PointerDownEvent @event);
+        void AcceptGesture(int pointer);
+        void RejectGesture(int pointer);
+        void Dispose();
+        FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback OnStart { get; set; }
+    }
 
 
-public virtual void Resolve(FlutterSDK.Gestures.Arena.GestureDisposition disposition){ throw new NotImplementedException(); }
+    public class MultiDragPointerState
+    {
+        #region constructors
+        public MultiDragPointerState(FlutterBinding.UI.Offset initialPosition)
+        : base()
+        {
+            this.InitialPosition = initialPosition; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual FlutterBinding.UI.Offset InitialPosition { get; set; }
+        internal virtual FlutterSDK.Gestures.Velocitytracker.VelocityTracker _VelocityTracker { get; set; }
+        internal virtual FlutterSDK.Gestures.Drag.Drag _Client { get; set; }
+        internal virtual FlutterBinding.UI.Offset _PendingDelta { get; set; }
+        internal virtual TimeSpan _LastPendingEventTimestamp { get; set; }
+        internal virtual FlutterSDK.Gestures.Arena.GestureArenaEntry _ArenaEntry { get; set; }
+        public virtual FlutterBinding.UI.Offset PendingDelta { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-private void _Move(FlutterSDK.Gestures.Events.PointerMoveEvent @event){ throw new NotImplementedException(); }
+        #region methods
 
+        private void _SetArenaEntry(FlutterSDK.Gestures.Arena.GestureArenaEntry entry) { throw new NotImplementedException(); }
 
-public virtual void CheckForResolutionAfterMove(){ throw new NotImplementedException(); }
 
+        public virtual void Resolve(FlutterSDK.Gestures.Arena.GestureDisposition disposition) { throw new NotImplementedException(); }
 
-public virtual void Accepted(FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback starter){ throw new NotImplementedException(); }
 
+        private void _Move(FlutterSDK.Gestures.Events.PointerMoveEvent @event) { throw new NotImplementedException(); }
 
-public virtual void Rejected(){ throw new NotImplementedException(); }
 
+        public virtual void CheckForResolutionAfterMove() { throw new NotImplementedException(); }
 
-private void _StartDrag(FlutterSDK.Gestures.Drag.Drag client){ throw new NotImplementedException(); }
 
+        public virtual void Accepted(FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback starter) { throw new NotImplementedException(); }
 
-private void _Up(){ throw new NotImplementedException(); }
 
+        public virtual void Rejected() { throw new NotImplementedException(); }
 
-private void _Cancel(){ throw new NotImplementedException(); }
 
+        private void _StartDrag(FlutterSDK.Gestures.Drag.Drag client) { throw new NotImplementedException(); }
 
-public virtual void Dispose(){ throw new NotImplementedException(); }
 
-#endregion
-}
+        private void _Up() { throw new NotImplementedException(); }
 
 
-public class MultiDragGestureRecognizer<T> : FlutterSDK.Gestures.Recognizer.GestureRecognizer
-{
-#region constructors
-public MultiDragGestureRecognizer(@Object debugOwner = default(@Object),PointerDeviceKind kind = default(PointerDeviceKind))
-: base(debugOwner:debugOwner,kind:kind)
-{
-throw new NotImplementedException(); }
-#endregion
+        private void _Cancel() { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback OnStart{get;set;}
-internal virtual Dictionary<int,T> _Pointers{get;set;}
-#endregion
 
-#region methods
+        public virtual void Dispose() { throw new NotImplementedException(); }
 
-public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public virtual T CreateNewPointerState(FlutterSDK.Gestures.Events.PointerDownEvent @event){ throw new NotImplementedException(); }
+    public class MultiDragGestureRecognizer<T> : FlutterSDK.Gestures.Recognizer.GestureRecognizer
+    {
+        #region constructors
+        public MultiDragGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
+        : base(debugOwner: debugOwner, kind: kind)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback OnStart { get; set; }
+        internal virtual Dictionary<int, T> _Pointers { get; set; }
+        #endregion
 
-private void _HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event){ throw new NotImplementedException(); }
+        #region methods
 
+        public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
 
-public new void AcceptGesture(int pointer){ throw new NotImplementedException(); }
 
+        public virtual T CreateNewPointerState(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
 
-private FlutterSDK.Gestures.Drag.Drag _StartDrag(FlutterBinding.UI.Offset initialPosition,int pointer){ throw new NotImplementedException(); }
 
+        private void _HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
 
-public new void RejectGesture(int pointer){ throw new NotImplementedException(); }
 
+        public new void AcceptGesture(int pointer) { throw new NotImplementedException(); }
 
-private void _RemoveState(int pointer){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Gestures.Drag.Drag _StartDrag(FlutterBinding.UI.Offset initialPosition, int pointer) { throw new NotImplementedException(); }
 
-public new void Dispose(){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new void RejectGesture(int pointer) { throw new NotImplementedException(); }
 
 
-public class _ImmediatePointerState : FlutterSDK.Gestures.Multidrag.MultiDragPointerState
-{
-#region constructors
-public _ImmediatePointerState(FlutterBinding.UI.Offset initialPosition)
-: base(initialPosition)
-{
-throw new NotImplementedException(); }
-#endregion
+        private void _RemoveState(int pointer) { throw new NotImplementedException(); }
 
-#region fields
-#endregion
 
-#region methods
+        public new void Dispose() { throw new NotImplementedException(); }
 
-public new void CheckForResolutionAfterMove(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void Accepted(FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback starter){ throw new NotImplementedException(); }
+    public class _ImmediatePointerState : FlutterSDK.Gestures.Multidrag.MultiDragPointerState
+    {
+        #region constructors
+        public _ImmediatePointerState(FlutterBinding.UI.Offset initialPosition)
+        : base(initialPosition)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        #endregion
 
+        #region methods
 
-public class ImmediateMultiDragGestureRecognizer : FlutterSDK.Gestures.Multidrag.MultiDragGestureRecognizer<FlutterSDK.Gestures.Multidrag._ImmediatePointerState>
-{
-#region constructors
-public ImmediateMultiDragGestureRecognizer(@Object debugOwner = default(@Object),PointerDeviceKind kind = default(PointerDeviceKind))
-: base(debugOwner:debugOwner,kind:kind)
-{
-throw new NotImplementedException(); }
-#endregion
+        public new void CheckForResolutionAfterMove() { throw new NotImplementedException(); }
 
-#region fields
-public virtual string DebugDescription{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+        public new void Accepted(FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback starter) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Gestures.Multidrag._ImmediatePointerState CreateNewPointerState(FlutterSDK.Gestures.Events.PointerDownEvent @event){ throw new NotImplementedException(); }
+        #endregion
+    }
 
-#endregion
-}
 
+    public class ImmediateMultiDragGestureRecognizer : FlutterSDK.Gestures.Multidrag.MultiDragGestureRecognizer<FlutterSDK.Gestures.Multidrag._ImmediatePointerState>
+    {
+        #region constructors
+        public ImmediateMultiDragGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
+        : base(debugOwner: debugOwner, kind: kind)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-public class _HorizontalPointerState : FlutterSDK.Gestures.Multidrag.MultiDragPointerState
-{
-#region constructors
-public _HorizontalPointerState(FlutterBinding.UI.Offset initialPosition)
-: base(initialPosition)
-{
-throw new NotImplementedException(); }
-#endregion
+        #region fields
+        public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#region fields
-#endregion
+        #region methods
 
-#region methods
+        public new FlutterSDK.Gestures.Multidrag._ImmediatePointerState CreateNewPointerState(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
 
-public new void CheckForResolutionAfterMove(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void Accepted(FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback starter){ throw new NotImplementedException(); }
+    public class _HorizontalPointerState : FlutterSDK.Gestures.Multidrag.MultiDragPointerState
+    {
+        #region constructors
+        public _HorizontalPointerState(FlutterBinding.UI.Offset initialPosition)
+        : base(initialPosition)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        #endregion
 
+        #region methods
 
-public class HorizontalMultiDragGestureRecognizer : FlutterSDK.Gestures.Multidrag.MultiDragGestureRecognizer<FlutterSDK.Gestures.Multidrag._HorizontalPointerState>
-{
-#region constructors
-public HorizontalMultiDragGestureRecognizer(@Object debugOwner = default(@Object),PointerDeviceKind kind = default(PointerDeviceKind))
-: base(debugOwner:debugOwner,kind:kind)
-{
-throw new NotImplementedException(); }
-#endregion
+        public new void CheckForResolutionAfterMove() { throw new NotImplementedException(); }
 
-#region fields
-public virtual string DebugDescription{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+        public new void Accepted(FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback starter) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Gestures.Multidrag._HorizontalPointerState CreateNewPointerState(FlutterSDK.Gestures.Events.PointerDownEvent @event){ throw new NotImplementedException(); }
+        #endregion
+    }
 
-#endregion
-}
 
+    public class HorizontalMultiDragGestureRecognizer : FlutterSDK.Gestures.Multidrag.MultiDragGestureRecognizer<FlutterSDK.Gestures.Multidrag._HorizontalPointerState>
+    {
+        #region constructors
+        public HorizontalMultiDragGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
+        : base(debugOwner: debugOwner, kind: kind)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-public class _VerticalPointerState : FlutterSDK.Gestures.Multidrag.MultiDragPointerState
-{
-#region constructors
-public _VerticalPointerState(FlutterBinding.UI.Offset initialPosition)
-: base(initialPosition)
-{
-throw new NotImplementedException(); }
-#endregion
+        #region fields
+        public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#region fields
-#endregion
+        #region methods
 
-#region methods
+        public new FlutterSDK.Gestures.Multidrag._HorizontalPointerState CreateNewPointerState(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
 
-public new void CheckForResolutionAfterMove(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void Accepted(FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback starter){ throw new NotImplementedException(); }
+    public class _VerticalPointerState : FlutterSDK.Gestures.Multidrag.MultiDragPointerState
+    {
+        #region constructors
+        public _VerticalPointerState(FlutterBinding.UI.Offset initialPosition)
+        : base(initialPosition)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        #endregion
 
+        #region methods
 
-public class VerticalMultiDragGestureRecognizer : FlutterSDK.Gestures.Multidrag.MultiDragGestureRecognizer<FlutterSDK.Gestures.Multidrag._VerticalPointerState>
-{
-#region constructors
-public VerticalMultiDragGestureRecognizer(@Object debugOwner = default(@Object),PointerDeviceKind kind = default(PointerDeviceKind))
-: base(debugOwner:debugOwner,kind:kind)
-{
-throw new NotImplementedException(); }
-#endregion
+        public new void CheckForResolutionAfterMove() { throw new NotImplementedException(); }
 
-#region fields
-public virtual string DebugDescription{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+        public new void Accepted(FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback starter) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Gestures.Multidrag._VerticalPointerState CreateNewPointerState(FlutterSDK.Gestures.Events.PointerDownEvent @event){ throw new NotImplementedException(); }
+        #endregion
+    }
 
-#endregion
-}
 
+    public class VerticalMultiDragGestureRecognizer : FlutterSDK.Gestures.Multidrag.MultiDragGestureRecognizer<FlutterSDK.Gestures.Multidrag._VerticalPointerState>
+    {
+        #region constructors
+        public VerticalMultiDragGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
+        : base(debugOwner: debugOwner, kind: kind)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-public class _DelayedPointerState : FlutterSDK.Gestures.Multidrag.MultiDragPointerState
-{
-#region constructors
-public _DelayedPointerState(FlutterBinding.UI.Offset initialPosition,TimeSpan delay)
-: base(initialPosition)
-{
-throw new NotImplementedException(); }
-#endregion
+        #region fields
+        public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#region fields
-internal virtual Timer _Timer{get;set;}
-internal virtual FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback _Starter{get;set;}
-#endregion
+        #region methods
 
-#region methods
+        public new FlutterSDK.Gestures.Multidrag._VerticalPointerState CreateNewPointerState(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
 
-private void _DelayPassed(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-private void _EnsureTimerStopped(){ throw new NotImplementedException(); }
+    public class _DelayedPointerState : FlutterSDK.Gestures.Multidrag.MultiDragPointerState
+    {
+        #region constructors
+        public _DelayedPointerState(FlutterBinding.UI.Offset initialPosition, TimeSpan delay)
+        : base(initialPosition)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual Timer _Timer { get; set; }
+        internal virtual FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback _Starter { get; set; }
+        #endregion
 
-public new void Accepted(FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback starter){ throw new NotImplementedException(); }
+        #region methods
 
+        private void _DelayPassed() { throw new NotImplementedException(); }
 
-public new void CheckForResolutionAfterMove(){ throw new NotImplementedException(); }
 
+        private void _EnsureTimerStopped() { throw new NotImplementedException(); }
 
-public new void Dispose(){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public new void Accepted(FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback starter) { throw new NotImplementedException(); }
 
 
-public class DelayedMultiDragGestureRecognizer : FlutterSDK.Gestures.Multidrag.MultiDragGestureRecognizer<FlutterSDK.Gestures.Multidrag._DelayedPointerState>
-{
-#region constructors
-public DelayedMultiDragGestureRecognizer(TimeSpan delay = default(TimeSpan),@Object debugOwner = default(@Object),PointerDeviceKind kind = default(PointerDeviceKind))
-: base(debugOwner:debugOwner,kind:kind)
-{
-this.Delay = delay;throw new NotImplementedException(); }
-#endregion
+        public new void CheckForResolutionAfterMove() { throw new NotImplementedException(); }
 
-#region fields
-public virtual TimeSpan Delay{get;set;}
-public virtual string DebugDescription{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+        public new void Dispose() { throw new NotImplementedException(); }
 
-public new FlutterSDK.Gestures.Multidrag._DelayedPointerState CreateNewPointerState(FlutterSDK.Gestures.Events.PointerDownEvent @event){ throw new NotImplementedException(); }
+        #endregion
+    }
 
-#endregion
-}
+
+    public class DelayedMultiDragGestureRecognizer : FlutterSDK.Gestures.Multidrag.MultiDragGestureRecognizer<FlutterSDK.Gestures.Multidrag._DelayedPointerState>
+    {
+        #region constructors
+        public DelayedMultiDragGestureRecognizer(TimeSpan delay = default(TimeSpan), @Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
+        : base(debugOwner: debugOwner, kind: kind)
+        {
+            this.Delay = delay; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual TimeSpan Delay { get; set; }
+        public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Gestures.Multidrag._DelayedPointerState CreateNewPointerState(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

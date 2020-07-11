@@ -420,169 +420,177 @@ using FlutterSDK.Material.Inksplash;
 using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
-namespace FlutterSDK.Painting.Imagecache{
-internal static class ImagecacheDefaultClass{
-public static int _KDefaultSize = default(int);
-public static int _KDefaultSizeBytes = default(int);
-}
-
-public interface IImageCache{}
-
-public class ImageCache{
-internal virtual Dictionary<@Object,FlutterSDK.Painting.Imagecache._PendingImage> _PendingImages{get;set;}
-internal virtual Dictionary<@Object,FlutterSDK.Painting.Imagecache._CachedImage> _Cache{get;set;}
-internal virtual Dictionary<@Object,FlutterSDK.Painting.Imagecache._LiveImage> _LiveImages{get;set;}
-internal virtual int _MaximumSize{get;set;}
-internal virtual int _MaximumSizeBytes{get;set;}
-internal virtual int _CurrentSizeBytes{get;set;}
-public virtual int MaximumSize{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual int CurrentSize{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int MaximumSizeBytes{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual int CurrentSizeBytes{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int LiveImageCount{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int PendingImageCount{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-
-public virtual void Clear(){ throw new NotImplementedException(); }
-
-
-public virtual bool Evict(@Object key,bool includeLive = true){ throw new NotImplementedException(); }
-
-
-private void _Touch(@Object key,FlutterSDK.Painting.Imagecache._CachedImage image,TimelineTask timelineTask){ throw new NotImplementedException(); }
-
-
-private void _TrackLiveImage(@Object key,FlutterSDK.Painting.Imagecache._LiveImage image,bool debugPutOk = true){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Painting.Imagestream.ImageStreamCompleter PutIfAbsent(@Object key,Func<ImageStreamCompleter> loader,FlutterSDK.Painting.Imagestream.ImageErrorListener onError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener)){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Painting.Imagecache.ImageCacheStatus StatusForKey(@Object key){ throw new NotImplementedException(); }
-
-
-public virtual bool ContainsKey(@Object key){ throw new NotImplementedException(); }
-
-
-public virtual void ClearLiveImages(){ throw new NotImplementedException(); }
-
-
-private void _CheckCacheSize(TimelineTask timelineTask){ throw new NotImplementedException(); }
-
-}
-public static class ImageCacheMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IImageCache, ImageCache> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IImageCache, ImageCache>();
-static ImageCache GetOrCreate(IImageCache instance)
+namespace FlutterSDK.Painting.Imagecache
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new ImageCache();
-_table.Add(instance, value);
-}
-return (ImageCache)value;
-}
-public static int MaximumSizeProperty(this IImageCache instance) => GetOrCreate(instance).MaximumSize;
-public static int CurrentSizeProperty(this IImageCache instance) => GetOrCreate(instance).CurrentSize;
-public static int MaximumSizeBytesProperty(this IImageCache instance) => GetOrCreate(instance).MaximumSizeBytes;
-public static int CurrentSizeBytesProperty(this IImageCache instance) => GetOrCreate(instance).CurrentSizeBytes;
-public static int LiveImageCountProperty(this IImageCache instance) => GetOrCreate(instance).LiveImageCount;
-public static int PendingImageCountProperty(this IImageCache instance) => GetOrCreate(instance).PendingImageCount;
-public static void Clear(this IImageCache instance) => GetOrCreate(instance).Clear();
-public static bool Evict(this IImageCache instance,@Object key,bool includeLive = true) => GetOrCreate(instance).Evict(key, includeLive);
-public static FlutterSDK.Painting.Imagestream.ImageStreamCompleter PutIfAbsent(this IImageCache instance,@Object key,Func<ImageStreamCompleter> loader,FlutterSDK.Painting.Imagestream.ImageErrorListener onError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener)) => GetOrCreate(instance).PutIfAbsent(key, loader, onError);
-public static FlutterSDK.Painting.Imagecache.ImageCacheStatus StatusForKey(this IImageCache instance,@Object key) => GetOrCreate(instance).StatusForKey(key);
-public static bool ContainsKey(this IImageCache instance,@Object key) => GetOrCreate(instance).ContainsKey(key);
-public static void ClearLiveImages(this IImageCache instance) => GetOrCreate(instance).ClearLiveImages();
-}
+    internal static class ImagecacheDefaultClass
+    {
+        public static int _KDefaultSize = default(int);
+        public static int _KDefaultSizeBytes = default(int);
+    }
+
+    public interface IImageCache { }
+
+    public class ImageCache
+    {
+        internal virtual Dictionary<@Object, FlutterSDK.Painting.Imagecache._PendingImage> _PendingImages { get; set; }
+        internal virtual Dictionary<@Object, FlutterSDK.Painting.Imagecache._CachedImage> _Cache { get; set; }
+        internal virtual Dictionary<@Object, FlutterSDK.Painting.Imagecache._LiveImage> _LiveImages { get; set; }
+        internal virtual int _MaximumSize { get; set; }
+        internal virtual int _MaximumSizeBytes { get; set; }
+        internal virtual int _CurrentSizeBytes { get; set; }
+        public virtual int MaximumSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int CurrentSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int MaximumSizeBytes { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int CurrentSizeBytes { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int LiveImageCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int PendingImageCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+
+        public virtual void Clear() { throw new NotImplementedException(); }
 
 
-public class ImageCacheStatus
-{
-#region constructors
-internal ImageCacheStatus(bool pending = false,bool keepAlive = false,bool live = false)
-: base()
-{
-this.Pending = pending;
-this.KeepAlive = keepAlive;
-this.Live = live;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual bool Pending{get;set;}
-public virtual bool KeepAlive{get;set;}
-public virtual bool Live{get;set;}
-public virtual bool Tracked{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool Untracked{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public virtual bool Evict(@Object key, bool includeLive = true) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        private void _Touch(@Object key, FlutterSDK.Painting.Imagecache._CachedImage image, TimelineTask timelineTask) { throw new NotImplementedException(); }
 
 
-public class _CachedImage
-{
-#region constructors
-public _CachedImage(FlutterSDK.Painting.Imagestream.ImageStreamCompleter completer,int sizeBytes)
-{
-this.Completer = completer;
-this.SizeBytes = sizeBytes;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Painting.Imagestream.ImageStreamCompleter Completer{get;set;}
-public virtual int SizeBytes{get;set;}
-#endregion
-
-#region methods
-#endregion
-}
+        private void _TrackLiveImage(@Object key, FlutterSDK.Painting.Imagecache._LiveImage image, bool debugPutOk = true) { throw new NotImplementedException(); }
 
 
-public class _LiveImage : FlutterSDK.Painting.Imagecache._CachedImage
-{
-#region constructors
-public _LiveImage(FlutterSDK.Painting.Imagestream.ImageStreamCompleter completer,int sizeBytes,VoidCallback handleRemove)
-: base(completer,sizeBytes)
-{
-this.HandleRemove = handleRemove;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual VoidCallback HandleRemove{get;set;}
-#endregion
-
-#region methods
-
-public virtual void RemoveListener(){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual FlutterSDK.Painting.Imagestream.ImageStreamCompleter PutIfAbsent(@Object key, Func<ImageStreamCompleter> loader, FlutterSDK.Painting.Imagestream.ImageErrorListener onError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener)) { throw new NotImplementedException(); }
 
 
-public class _PendingImage
-{
-#region constructors
-public _PendingImage(FlutterSDK.Painting.Imagestream.ImageStreamCompleter completer,FlutterSDK.Painting.Imagestream.ImageStreamListener listener)
-{
-this.Completer = completer;
-this.Listener = listener;throw new NotImplementedException(); }
-#endregion
+        public virtual FlutterSDK.Painting.Imagecache.ImageCacheStatus StatusForKey(@Object key) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Painting.Imagestream.ImageStreamCompleter Completer{get;set;}
-public virtual FlutterSDK.Painting.Imagestream.ImageStreamListener Listener{get;set;}
-#endregion
 
-#region methods
+        public virtual bool ContainsKey(@Object key) { throw new NotImplementedException(); }
 
-public virtual void RemoveListener(){ throw new NotImplementedException(); }
 
-#endregion
-}
+        public virtual void ClearLiveImages() { throw new NotImplementedException(); }
+
+
+        private void _CheckCacheSize(TimelineTask timelineTask) { throw new NotImplementedException(); }
+
+    }
+    public static class ImageCacheMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IImageCache, ImageCache> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IImageCache, ImageCache>();
+        static ImageCache GetOrCreate(IImageCache instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new ImageCache();
+                _table.Add(instance, value);
+            }
+            return (ImageCache)value;
+        }
+        public static int MaximumSizeProperty(this IImageCache instance) => GetOrCreate(instance).MaximumSize;
+        public static int CurrentSizeProperty(this IImageCache instance) => GetOrCreate(instance).CurrentSize;
+        public static int MaximumSizeBytesProperty(this IImageCache instance) => GetOrCreate(instance).MaximumSizeBytes;
+        public static int CurrentSizeBytesProperty(this IImageCache instance) => GetOrCreate(instance).CurrentSizeBytes;
+        public static int LiveImageCountProperty(this IImageCache instance) => GetOrCreate(instance).LiveImageCount;
+        public static int PendingImageCountProperty(this IImageCache instance) => GetOrCreate(instance).PendingImageCount;
+        public static void Clear(this IImageCache instance) => GetOrCreate(instance).Clear();
+        public static bool Evict(this IImageCache instance, @Object key, bool includeLive = true) => GetOrCreate(instance).Evict(key, includeLive);
+        public static FlutterSDK.Painting.Imagestream.ImageStreamCompleter PutIfAbsent(this IImageCache instance, @Object key, Func<ImageStreamCompleter> loader, FlutterSDK.Painting.Imagestream.ImageErrorListener onError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener)) => GetOrCreate(instance).PutIfAbsent(key, loader, onError);
+        public static FlutterSDK.Painting.Imagecache.ImageCacheStatus StatusForKey(this IImageCache instance, @Object key) => GetOrCreate(instance).StatusForKey(key);
+        public static bool ContainsKey(this IImageCache instance, @Object key) => GetOrCreate(instance).ContainsKey(key);
+        public static void ClearLiveImages(this IImageCache instance) => GetOrCreate(instance).ClearLiveImages();
+    }
+
+
+    public class ImageCacheStatus
+    {
+        #region constructors
+        internal ImageCacheStatus(bool pending = false, bool keepAlive = false, bool live = false)
+        : base()
+        {
+            this.Pending = pending;
+            this.KeepAlive = keepAlive;
+            this.Live = live; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual bool Pending { get; set; }
+        public virtual bool KeepAlive { get; set; }
+        public virtual bool Live { get; set; }
+        public virtual bool Tracked { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool Untracked { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+
+
+        #endregion
+    }
+
+
+    public class _CachedImage
+    {
+        #region constructors
+        public _CachedImage(FlutterSDK.Painting.Imagestream.ImageStreamCompleter completer, int sizeBytes)
+        {
+            this.Completer = completer;
+            this.SizeBytes = sizeBytes; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Painting.Imagestream.ImageStreamCompleter Completer { get; set; }
+        public virtual int SizeBytes { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    public class _LiveImage : FlutterSDK.Painting.Imagecache._CachedImage
+    {
+        #region constructors
+        public _LiveImage(FlutterSDK.Painting.Imagestream.ImageStreamCompleter completer, int sizeBytes, VoidCallback handleRemove)
+        : base(completer, sizeBytes)
+        {
+            this.HandleRemove = handleRemove; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual VoidCallback HandleRemove { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual void RemoveListener() { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class _PendingImage
+    {
+        #region constructors
+        public _PendingImage(FlutterSDK.Painting.Imagestream.ImageStreamCompleter completer, FlutterSDK.Painting.Imagestream.ImageStreamListener listener)
+        {
+            this.Completer = completer;
+            this.Listener = listener; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Painting.Imagestream.ImageStreamCompleter Completer { get; set; }
+        public virtual FlutterSDK.Painting.Imagestream.ImageStreamListener Listener { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual void RemoveListener() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

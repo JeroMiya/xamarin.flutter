@@ -419,204 +419,209 @@ using FlutterSDK.Material.Selectabletext;
 using FlutterSDK.Material.Inksplash;
 using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
-namespace FlutterSDK.Material.Tooltip{
-internal static class TooltipDefaultClass{
-}
-
-public class Tooltip : FlutterSDK.Widgets.Framework.StatefulWidget
+namespace FlutterSDK.Material.Tooltip
 {
-#region constructors
-public Tooltip(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),string message = default(string),double height = default(double),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),double verticalOffset = default(double),bool preferBelow = default(bool),bool excludeFromSemantics = default(bool),FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration),FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),TimeSpan waitDuration = default(TimeSpan),TimeSpan showDuration = default(TimeSpan),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key)
-{
-this.Message = message;
-this.Height = height;
-this.Padding = padding;
-this.Margin = margin;
-this.VerticalOffset = verticalOffset;
-this.PreferBelow = preferBelow;
-this.ExcludeFromSemantics = excludeFromSemantics;
-this.Decoration = decoration;
-this.TextStyle = textStyle;
-this.WaitDuration = waitDuration;
-this.ShowDuration = showDuration;
-this.Child = child;throw new NotImplementedException(); }
-#endregion
+    internal static class TooltipDefaultClass
+    {
+    }
 
-#region fields
-public virtual string Message{get;set;}
-public virtual double Height{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin{get;set;}
-public virtual double VerticalOffset{get;set;}
-public virtual bool PreferBelow{get;set;}
-public virtual bool ExcludeFromSemantics{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-public virtual FlutterSDK.Painting.Decoration.Decoration Decoration{get;set;}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle{get;set;}
-public virtual TimeSpan WaitDuration{get;set;}
-public virtual TimeSpan ShowDuration{get;set;}
-#endregion
+    public class Tooltip : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public Tooltip(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string message = default(string), double height = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), double verticalOffset = default(double), bool preferBelow = default(bool), bool excludeFromSemantics = default(bool), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), TimeSpan waitDuration = default(TimeSpan), TimeSpan showDuration = default(TimeSpan), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.Message = message;
+            this.Height = height;
+            this.Padding = padding;
+            this.Margin = margin;
+            this.VerticalOffset = verticalOffset;
+            this.PreferBelow = preferBelow;
+            this.ExcludeFromSemantics = excludeFromSemantics;
+            this.Decoration = decoration;
+            this.TextStyle = textStyle;
+            this.WaitDuration = waitDuration;
+            this.ShowDuration = showDuration;
+            this.Child = child; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual string Message { get; set; }
+        public virtual double Height { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
+        public virtual double VerticalOffset { get; set; }
+        public virtual bool PreferBelow { get; set; }
+        public virtual bool ExcludeFromSemantics { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
+        public virtual TimeSpan WaitDuration { get; set; }
+        public virtual TimeSpan ShowDuration { get; set; }
+        #endregion
 
-public new FlutterSDK.Material.Tooltip._TooltipState CreateState(){ throw new NotImplementedException(); }
+        #region methods
 
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _TooltipState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Tooltip.Tooltip>,ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-#region constructors
-public _TooltipState()
-{ }
-#endregion
-
-#region fields
-internal virtual double _DefaultTooltipHeight{get;set;}
-internal virtual double _DefaultVerticalOffset{get;set;}
-internal virtual bool _DefaultPreferBelow{get;set;}
-internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry _DefaultPadding{get;set;}
-internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry _DefaultMargin{get;set;}
-internal virtual TimeSpan _FadeInDuration{get;set;}
-internal virtual TimeSpan _FadeOutDuration{get;set;}
-internal virtual TimeSpan _DefaultShowDuration{get;set;}
-internal virtual TimeSpan _DefaultWaitDuration{get;set;}
-internal virtual bool _DefaultExcludeFromSemantics{get;set;}
-public virtual double Height{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin{get;set;}
-public virtual FlutterSDK.Painting.Decoration.Decoration Decoration{get;set;}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle{get;set;}
-public virtual double VerticalOffset{get;set;}
-public virtual bool PreferBelow{get;set;}
-public virtual bool ExcludeFromSemantics{get;set;}
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller{get;set;}
-internal virtual FlutterSDK.Widgets.Overlay.OverlayEntry _Entry{get;set;}
-internal virtual Timer _HideTimer{get;set;}
-internal virtual Timer _ShowTimer{get;set;}
-public virtual TimeSpan ShowDuration{get;set;}
-public virtual TimeSpan WaitDuration{get;set;}
-internal virtual bool _MouseIsConnected{get;set;}
-internal virtual bool _LongPressActivated{get;set;}
-#endregion
-
-#region methods
-
-public new void InitState(){ throw new NotImplementedException(); }
+        public new FlutterSDK.Material.Tooltip._TooltipState CreateState() { throw new NotImplementedException(); }
 
 
-private void _HandleMouseTrackerChange(){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-private void _HandleStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status){ throw new NotImplementedException(); }
+    public class _TooltipState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Tooltip.Tooltip>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _TooltipState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual double _DefaultTooltipHeight { get; set; }
+        internal virtual double _DefaultVerticalOffset { get; set; }
+        internal virtual bool _DefaultPreferBelow { get; set; }
+        internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry _DefaultPadding { get; set; }
+        internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry _DefaultMargin { get; set; }
+        internal virtual TimeSpan _FadeInDuration { get; set; }
+        internal virtual TimeSpan _FadeOutDuration { get; set; }
+        internal virtual TimeSpan _DefaultShowDuration { get; set; }
+        internal virtual TimeSpan _DefaultWaitDuration { get; set; }
+        internal virtual bool _DefaultExcludeFromSemantics { get; set; }
+        public virtual double Height { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
+        public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
+        public virtual double VerticalOffset { get; set; }
+        public virtual bool PreferBelow { get; set; }
+        public virtual bool ExcludeFromSemantics { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
+        internal virtual FlutterSDK.Widgets.Overlay.OverlayEntry _Entry { get; set; }
+        internal virtual Timer _HideTimer { get; set; }
+        internal virtual Timer _ShowTimer { get; set; }
+        public virtual TimeSpan ShowDuration { get; set; }
+        public virtual TimeSpan WaitDuration { get; set; }
+        internal virtual bool _MouseIsConnected { get; set; }
+        internal virtual bool _LongPressActivated { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-private void _HideTooltip(bool immediately = false){ throw new NotImplementedException(); }
+        private void _HandleMouseTrackerChange() { throw new NotImplementedException(); }
 
 
-private void _ShowTooltip(bool immediately = false){ throw new NotImplementedException(); }
+        private void _HandleStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status) { throw new NotImplementedException(); }
 
 
-public virtual bool EnsureTooltipVisible(){ throw new NotImplementedException(); }
+        private void _HideTooltip(bool immediately = false) { throw new NotImplementedException(); }
 
 
-private void _CreateNewEntry(){ throw new NotImplementedException(); }
+        private void _ShowTooltip(bool immediately = false) { throw new NotImplementedException(); }
 
 
-private void _RemoveEntry(){ throw new NotImplementedException(); }
+        public virtual bool EnsureTooltipVisible() { throw new NotImplementedException(); }
 
 
-private void _HandlePointerEvent(FlutterSDK.Gestures.Events.PointerEvent @event){ throw new NotImplementedException(); }
+        private void _CreateNewEntry() { throw new NotImplementedException(); }
 
 
-public new void Deactivate(){ throw new NotImplementedException(); }
+        private void _RemoveEntry() { throw new NotImplementedException(); }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+        private void _HandlePointerEvent(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
 
 
-private void _HandleLongPress(){ throw new NotImplementedException(); }
+        public new void Deactivate() { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public new void Dispose() { throw new NotImplementedException(); }
 
 
-public class _TooltipPositionDelegate : FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate
-{
-#region constructors
-public _TooltipPositionDelegate(FlutterBinding.UI.Offset target = default(FlutterBinding.UI.Offset),double verticalOffset = default(double),bool preferBelow = default(bool))
-: base()
-{
-this.Target = target;
-this.VerticalOffset = verticalOffset;
-this.PreferBelow = preferBelow;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterBinding.UI.Offset Target{get;set;}
-public virtual double VerticalOffset{get;set;}
-public virtual bool PreferBelow{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(FlutterSDK.Rendering.Box.BoxConstraints constraints){ throw new NotImplementedException(); }
+        private void _HandleLongPress() { throw new NotImplementedException(); }
 
 
-public new Offset GetPositionForChild(Size size,Size childSize){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public new bool ShouldRelayout(FlutterSDK.Material.Tooltip._TooltipPositionDelegate oldDelegate){ throw new NotImplementedException(); }
-public new bool ShouldRelayout(FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate oldDelegate){ throw new NotImplementedException(); }
+    public class _TooltipPositionDelegate : FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate
+    {
+        #region constructors
+        public _TooltipPositionDelegate(FlutterBinding.UI.Offset target = default(FlutterBinding.UI.Offset), double verticalOffset = default(double), bool preferBelow = default(bool))
+        : base()
+        {
+            this.Target = target;
+            this.VerticalOffset = verticalOffset;
+            this.PreferBelow = preferBelow; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual FlutterBinding.UI.Offset Target { get; set; }
+        public virtual double VerticalOffset { get; set; }
+        public virtual bool PreferBelow { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
 
 
-public class _TooltipOverlay : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public _TooltipOverlay(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),string message = default(string),double height = default(double),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration),FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterBinding.UI.Offset target = default(FlutterBinding.UI.Offset),double verticalOffset = default(double),bool preferBelow = default(bool))
-: base(key:key)
-{
-this.Message = message;
-this.Height = height;
-this.Padding = padding;
-this.Margin = margin;
-this.Decoration = decoration;
-this.TextStyle = textStyle;
-this.Animation = animation;
-this.Target = target;
-this.VerticalOffset = verticalOffset;
-this.PreferBelow = preferBelow;throw new NotImplementedException(); }
-#endregion
+        public new Offset GetPositionForChild(Size size, Size childSize) { throw new NotImplementedException(); }
 
-#region fields
-public virtual string Message{get;set;}
-public virtual double Height{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin{get;set;}
-public virtual FlutterSDK.Painting.Decoration.Decoration Decoration{get;set;}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle{get;set;}
-public virtual FlutterSDK.Animation.Animation.Animation<double> Animation{get;set;}
-public virtual FlutterBinding.UI.Offset Target{get;set;}
-public virtual double VerticalOffset{get;set;}
-public virtual bool PreferBelow{get;set;}
-#endregion
 
-#region methods
+        public new bool ShouldRelayout(FlutterSDK.Material.Tooltip._TooltipPositionDelegate oldDelegate) { throw new NotImplementedException(); }
+        public new bool ShouldRelayout(FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate oldDelegate) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #endregion
+    }
 
-#endregion
-}
+
+    public class _TooltipOverlay : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public _TooltipOverlay(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string message = default(string), double height = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterBinding.UI.Offset target = default(FlutterBinding.UI.Offset), double verticalOffset = default(double), bool preferBelow = default(bool))
+        : base(key: key)
+        {
+            this.Message = message;
+            this.Height = height;
+            this.Padding = padding;
+            this.Margin = margin;
+            this.Decoration = decoration;
+            this.TextStyle = textStyle;
+            this.Animation = animation;
+            this.Target = target;
+            this.VerticalOffset = verticalOffset;
+            this.PreferBelow = preferBelow; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual string Message { get; set; }
+        public virtual double Height { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
+        public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
+        public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
+        public virtual FlutterBinding.UI.Offset Target { get; set; }
+        public virtual double VerticalOffset { get; set; }
+        public virtual bool PreferBelow { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

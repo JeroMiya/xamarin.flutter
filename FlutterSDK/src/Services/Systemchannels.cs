@@ -421,32 +421,35 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Services.Systemchannels{
-internal static class SystemchannelsDefaultClass{
-}
-
-public class SystemChannels
+namespace FlutterSDK.Services.Systemchannels
 {
-#region constructors
-internal SystemChannels()
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class SystemchannelsDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Services.Platformchannel.MethodChannel Navigation{get;set;}
-public virtual FlutterSDK.Services.Platformchannel.MethodChannel Platform{get;set;}
-public virtual FlutterSDK.Services.Platformchannel.MethodChannel TextInput{get;set;}
-public virtual FlutterSDK.Services.Platformchannel.BasicMessageChannel<object> KeyEvent{get;set;}
-public virtual FlutterSDK.Services.Platformchannel.BasicMessageChannel<string> Lifecycle{get;set;}
-public virtual FlutterSDK.Services.Platformchannel.BasicMessageChannel<object> System{get;set;}
-public virtual FlutterSDK.Services.Platformchannel.BasicMessageChannel<object> Accessibility{get;set;}
-public virtual FlutterSDK.Services.Platformchannel.MethodChannel Platformviews{get;set;}
-public virtual FlutterSDK.Services.Platformchannel.MethodChannel Skia{get;set;}
-#endregion
+    public class SystemChannels
+    {
+        #region constructors
+        internal SystemChannels()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
-#endregion
-}
+        #region fields
+        public virtual FlutterSDK.Services.Platformchannel.MethodChannel Navigation { get; set; }
+        public virtual FlutterSDK.Services.Platformchannel.MethodChannel Platform { get; set; }
+        public virtual FlutterSDK.Services.Platformchannel.MethodChannel TextInput { get; set; }
+        public virtual FlutterSDK.Services.Platformchannel.BasicMessageChannel<object> KeyEvent { get; set; }
+        public virtual FlutterSDK.Services.Platformchannel.BasicMessageChannel<string> Lifecycle { get; set; }
+        public virtual FlutterSDK.Services.Platformchannel.BasicMessageChannel<object> System { get; set; }
+        public virtual FlutterSDK.Services.Platformchannel.BasicMessageChannel<object> Accessibility { get; set; }
+        public virtual FlutterSDK.Services.Platformchannel.MethodChannel Platformviews { get; set; }
+        public virtual FlutterSDK.Services.Platformchannel.MethodChannel Skia { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
 
 }

@@ -385,108 +385,113 @@ using FlutterSDK.Material.Button;
 using FlutterSDK.Material.Floatingactionbuttontheme;
 using FlutterSDK.Material.Inkhighlight;
 using FlutterSDK.Material.Inputborder;
-namespace FlutterSDK.Material.Materialbutton{
-internal static class MaterialbuttonDefaultClass{
-}
-
-public interface IMaterialButtonWithIconMixin{}
-
-public class MaterialButtonWithIconMixin{
-}
-public static class MaterialButtonWithIconMixinMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IMaterialButtonWithIconMixin, MaterialButtonWithIconMixin> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IMaterialButtonWithIconMixin, MaterialButtonWithIconMixin>();
-static MaterialButtonWithIconMixin GetOrCreate(IMaterialButtonWithIconMixin instance)
+namespace FlutterSDK.Material.Materialbutton
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new MaterialButtonWithIconMixin();
-_table.Add(instance, value);
-}
-return (MaterialButtonWithIconMixin)value;
-}
-}
+    internal static class MaterialbuttonDefaultClass
+    {
+    }
+
+    public interface IMaterialButtonWithIconMixin { }
+
+    public class MaterialButtonWithIconMixin
+    {
+    }
+    public static class MaterialButtonWithIconMixinMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IMaterialButtonWithIconMixin, MaterialButtonWithIconMixin> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IMaterialButtonWithIconMixin, MaterialButtonWithIconMixin>();
+        static MaterialButtonWithIconMixin GetOrCreate(IMaterialButtonWithIconMixin instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new MaterialButtonWithIconMixin();
+                _table.Add(instance, value);
+            }
+            return (MaterialButtonWithIconMixin)value;
+        }
+    }
 
 
-public class MaterialButton : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public MaterialButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),VoidCallback onPressed = default(VoidCallback),VoidCallback onLongPress = default(VoidCallback),FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onHighlightChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>),FlutterSDK.Material.Buttontheme.ButtonTextTheme textTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme),FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color disabledTextColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color),Brightness colorBrightness = default(Brightness),double elevation = default(double),double focusElevation = default(double),double hoverElevation = default(double),double highlightElevation = default(double),double disabledElevation = default(double),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity),FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder),FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip),FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode),bool autofocus = false,FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize),TimeSpan animationDuration = default(TimeSpan),double minWidth = default(double),double height = default(double),bool enableFeedback = true,FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key)
-{
-this.OnPressed = onPressed;
-this.OnLongPress = onLongPress;
-this.OnHighlightChanged = onHighlightChanged;
-this.TextTheme = textTheme;
-this.TextColor = textColor;
-this.DisabledTextColor = disabledTextColor;
-this.Color = color;
-this.DisabledColor = disabledColor;
-this.FocusColor = focusColor;
-this.HoverColor = hoverColor;
-this.HighlightColor = highlightColor;
-this.SplashColor = splashColor;
-this.ColorBrightness = colorBrightness;
-this.Elevation = elevation;
-this.FocusElevation = focusElevation;
-this.HoverElevation = hoverElevation;
-this.HighlightElevation = highlightElevation;
-this.DisabledElevation = disabledElevation;
-this.Padding = padding;
-this.VisualDensity = visualDensity;
-this.Shape = shape;
-this.ClipBehavior = clipBehavior;
-this.FocusNode = focusNode;
-this.Autofocus = autofocus;
-this.MaterialTapTargetSize = materialTapTargetSize;
-this.AnimationDuration = animationDuration;
-this.MinWidth = minWidth;
-this.Height = height;
-this.EnableFeedback = enableFeedback;
-this.Child = child;throw new NotImplementedException(); }
-#endregion
+    public class MaterialButton : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public MaterialButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback onPressed = default(VoidCallback), VoidCallback onLongPress = default(VoidCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onHighlightChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Material.Buttontheme.ButtonTextTheme textTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme), FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledTextColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), Brightness colorBrightness = default(Brightness), double elevation = default(double), double focusElevation = default(double), double hoverElevation = default(double), double highlightElevation = default(double), double disabledElevation = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), TimeSpan animationDuration = default(TimeSpan), double minWidth = default(double), double height = default(double), bool enableFeedback = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.OnPressed = onPressed;
+            this.OnLongPress = onLongPress;
+            this.OnHighlightChanged = onHighlightChanged;
+            this.TextTheme = textTheme;
+            this.TextColor = textColor;
+            this.DisabledTextColor = disabledTextColor;
+            this.Color = color;
+            this.DisabledColor = disabledColor;
+            this.FocusColor = focusColor;
+            this.HoverColor = hoverColor;
+            this.HighlightColor = highlightColor;
+            this.SplashColor = splashColor;
+            this.ColorBrightness = colorBrightness;
+            this.Elevation = elevation;
+            this.FocusElevation = focusElevation;
+            this.HoverElevation = hoverElevation;
+            this.HighlightElevation = highlightElevation;
+            this.DisabledElevation = disabledElevation;
+            this.Padding = padding;
+            this.VisualDensity = visualDensity;
+            this.Shape = shape;
+            this.ClipBehavior = clipBehavior;
+            this.FocusNode = focusNode;
+            this.Autofocus = autofocus;
+            this.MaterialTapTargetSize = materialTapTargetSize;
+            this.AnimationDuration = animationDuration;
+            this.MinWidth = minWidth;
+            this.Height = height;
+            this.EnableFeedback = enableFeedback;
+            this.Child = child; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual VoidCallback OnPressed{get;set;}
-public virtual VoidCallback OnLongPress{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnHighlightChanged{get;set;}
-public virtual FlutterSDK.Material.Buttontheme.ButtonTextTheme TextTheme{get;set;}
-public virtual FlutterBinding.UI.Color TextColor{get;set;}
-public virtual FlutterBinding.UI.Color DisabledTextColor{get;set;}
-public virtual FlutterBinding.UI.Color Color{get;set;}
-public virtual FlutterBinding.UI.Color DisabledColor{get;set;}
-public virtual FlutterBinding.UI.Color SplashColor{get;set;}
-public virtual FlutterBinding.UI.Color FocusColor{get;set;}
-public virtual FlutterBinding.UI.Color HoverColor{get;set;}
-public virtual FlutterBinding.UI.Color HighlightColor{get;set;}
-public virtual double Elevation{get;set;}
-public virtual double HoverElevation{get;set;}
-public virtual double FocusElevation{get;set;}
-public virtual double HighlightElevation{get;set;}
-public virtual double DisabledElevation{get;set;}
-public virtual Brightness ColorBrightness{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding{get;set;}
-public virtual FlutterSDK.Material.Themedata.VisualDensity VisualDensity{get;set;}
-public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape{get;set;}
-public virtual FlutterBinding.UI.Clip ClipBehavior{get;set;}
-public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode{get;set;}
-public virtual bool Autofocus{get;set;}
-public virtual TimeSpan AnimationDuration{get;set;}
-public virtual FlutterSDK.Material.Themedata.MaterialTapTargetSize MaterialTapTargetSize{get;set;}
-public virtual double MinWidth{get;set;}
-public virtual double Height{get;set;}
-public virtual bool EnableFeedback{get;set;}
-public virtual bool Enabled{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #region fields
+        public virtual VoidCallback OnPressed { get; set; }
+        public virtual VoidCallback OnLongPress { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnHighlightChanged { get; set; }
+        public virtual FlutterSDK.Material.Buttontheme.ButtonTextTheme TextTheme { get; set; }
+        public virtual FlutterBinding.UI.Color TextColor { get; set; }
+        public virtual FlutterBinding.UI.Color DisabledTextColor { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual FlutterBinding.UI.Color DisabledColor { get; set; }
+        public virtual FlutterBinding.UI.Color SplashColor { get; set; }
+        public virtual FlutterBinding.UI.Color FocusColor { get; set; }
+        public virtual FlutterBinding.UI.Color HoverColor { get; set; }
+        public virtual FlutterBinding.UI.Color HighlightColor { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual double HoverElevation { get; set; }
+        public virtual double FocusElevation { get; set; }
+        public virtual double HighlightElevation { get; set; }
+        public virtual double DisabledElevation { get; set; }
+        public virtual Brightness ColorBrightness { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        public virtual FlutterSDK.Material.Themedata.VisualDensity VisualDensity { get; set; }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+        public virtual bool Autofocus { get; set; }
+        public virtual TimeSpan AnimationDuration { get; set; }
+        public virtual FlutterSDK.Material.Themedata.MaterialTapTargetSize MaterialTapTargetSize { get; set; }
+        public virtual double MinWidth { get; set; }
+        public virtual double Height { get; set; }
+        public virtual bool EnableFeedback { get; set; }
+        public virtual bool Enabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#region methods
+        #region methods
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 }

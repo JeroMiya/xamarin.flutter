@@ -410,184 +410,192 @@ using FlutterSDK.Material.Drawer;
 using FlutterSDK.Material.Floatingactionbuttonlocation;
 using FlutterSDK.Material.Snackbar;
 using FlutterSDK.Material.Snackbartheme;
-namespace FlutterSDK.Material.Search{
-internal static class SearchDefaultClass{
-internal static Future<T> ShowSearch<T>(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext),FlutterSDK.Material.Search.SearchDelegate<T> @delegate = default(FlutterSDK.Material.Search.SearchDelegate<T>),string query = default(string)){
-throw new NotImplementedException();
-}
-
-}
-
-public interface ISearchDelegate<T>{
-FlutterSDK.Widgets.Framework.Widget BuildSuggestions(FlutterSDK.Widgets.Framework.BuildContext context);
-FlutterSDK.Widgets.Framework.Widget BuildResults(FlutterSDK.Widgets.Framework.BuildContext context);
-FlutterSDK.Widgets.Framework.Widget BuildLeading(FlutterSDK.Widgets.Framework.BuildContext context);
-List<FlutterSDK.Widgets.Framework.Widget> BuildActions(FlutterSDK.Widgets.Framework.BuildContext context);
-FlutterSDK.Material.Themedata.ThemeData AppBarTheme(FlutterSDK.Widgets.Framework.BuildContext context);
-void ShowResults(FlutterSDK.Widgets.Framework.BuildContext context);
-void ShowSuggestions(FlutterSDK.Widgets.Framework.BuildContext context);
-void Close(FlutterSDK.Widgets.Framework.BuildContext context,T result);
-string SearchFieldLabel{get;}
-FlutterSDK.Services.Textinput.TextInputType KeyboardType{get;}
-FlutterSDK.Services.Textinput.TextInputAction TextInputAction{get;}
-string Query{get;set;}
-FlutterSDK.Animation.Animation.Animation<double> TransitionAnimation{get;}
-}
-
-
-public class SearchDelegate<T>
+namespace FlutterSDK.Material.Search
 {
-#region constructors
-public SearchDelegate(string searchFieldLabel = default(string),FlutterSDK.Services.Textinput.TextInputType keyboardType = default(FlutterSDK.Services.Textinput.TextInputType),FlutterSDK.Services.Textinput.TextInputAction textInputAction = default(FlutterSDK.Services.Textinput.TextInputAction))
-{
-this.SearchFieldLabel = searchFieldLabel;
-this.KeyboardType = keyboardType;
-this.TextInputAction = textInputAction;throw new NotImplementedException(); }
-#endregion
+    internal static class SearchDefaultClass
+    {
+        internal static Future<T> ShowSearch<T>(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Material.Search.SearchDelegate<T> @delegate = default(FlutterSDK.Material.Search.SearchDelegate<T>), string query = default(string))
+        {
+            throw new NotImplementedException();
+        }
 
-#region fields
-public virtual string SearchFieldLabel{get;set;}
-public virtual FlutterSDK.Services.Textinput.TextInputType KeyboardType{get;set;}
-public virtual FlutterSDK.Services.Textinput.TextInputAction TextInputAction{get;set;}
-internal virtual FlutterSDK.Widgets.Focusmanager.FocusNode _FocusNode{get;set;}
-internal virtual FlutterSDK.Widgets.Editabletext.TextEditingController _QueryTextController{get;set;}
-internal virtual FlutterSDK.Animation.Animations.ProxyAnimation _ProxyAnimation{get;set;}
-internal virtual FlutterSDK.Foundation.Changenotifier.ValueNotifier<FlutterSDK.Material.Search._SearchBody> _CurrentBodyNotifier{get;set;}
-internal virtual FlutterSDK.Material.Search._SearchPageRoute<T> _Route{get;set;}
-public virtual string Query{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Animation.Animation.Animation<double> TransitionAnimation{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual FlutterSDK.Material.Search._SearchBody _CurrentBody{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
+    }
 
-#region methods
-
-public virtual FlutterSDK.Widgets.Framework.Widget BuildSuggestions(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Widgets.Framework.Widget BuildResults(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+    public interface ISearchDelegate<T>
+    {
+        FlutterSDK.Widgets.Framework.Widget BuildSuggestions(FlutterSDK.Widgets.Framework.BuildContext context);
+        FlutterSDK.Widgets.Framework.Widget BuildResults(FlutterSDK.Widgets.Framework.BuildContext context);
+        FlutterSDK.Widgets.Framework.Widget BuildLeading(FlutterSDK.Widgets.Framework.BuildContext context);
+        List<FlutterSDK.Widgets.Framework.Widget> BuildActions(FlutterSDK.Widgets.Framework.BuildContext context);
+        FlutterSDK.Material.Themedata.ThemeData AppBarTheme(FlutterSDK.Widgets.Framework.BuildContext context);
+        void ShowResults(FlutterSDK.Widgets.Framework.BuildContext context);
+        void ShowSuggestions(FlutterSDK.Widgets.Framework.BuildContext context);
+        void Close(FlutterSDK.Widgets.Framework.BuildContext context, T result);
+        string SearchFieldLabel { get; }
+        FlutterSDK.Services.Textinput.TextInputType KeyboardType { get; }
+        FlutterSDK.Services.Textinput.TextInputAction TextInputAction { get; }
+        string Query { get; set; }
+        FlutterSDK.Animation.Animation.Animation<double> TransitionAnimation { get; }
+    }
 
 
-public virtual FlutterSDK.Widgets.Framework.Widget BuildLeading(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+    public class SearchDelegate<T>
+    {
+        #region constructors
+        public SearchDelegate(string searchFieldLabel = default(string), FlutterSDK.Services.Textinput.TextInputType keyboardType = default(FlutterSDK.Services.Textinput.TextInputType), FlutterSDK.Services.Textinput.TextInputAction textInputAction = default(FlutterSDK.Services.Textinput.TextInputAction))
+        {
+            this.SearchFieldLabel = searchFieldLabel;
+            this.KeyboardType = keyboardType;
+            this.TextInputAction = textInputAction; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual string SearchFieldLabel { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextInputType KeyboardType { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextInputAction TextInputAction { get; set; }
+        internal virtual FlutterSDK.Widgets.Focusmanager.FocusNode _FocusNode { get; set; }
+        internal virtual FlutterSDK.Widgets.Editabletext.TextEditingController _QueryTextController { get; set; }
+        internal virtual FlutterSDK.Animation.Animations.ProxyAnimation _ProxyAnimation { get; set; }
+        internal virtual FlutterSDK.Foundation.Changenotifier.ValueNotifier<FlutterSDK.Material.Search._SearchBody> _CurrentBodyNotifier { get; set; }
+        internal virtual FlutterSDK.Material.Search._SearchPageRoute<T> _Route { get; set; }
+        public virtual string Query { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Animation.Animation.Animation<double> TransitionAnimation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual FlutterSDK.Material.Search._SearchBody _CurrentBody { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual FlutterSDK.Widgets.Framework.Widget BuildSuggestions(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public virtual List<FlutterSDK.Widgets.Framework.Widget> BuildActions(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Widgets.Framework.Widget BuildResults(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Material.Themedata.ThemeData AppBarTheme(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Widgets.Framework.Widget BuildLeading(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public virtual void ShowResults(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public virtual List<FlutterSDK.Widgets.Framework.Widget> BuildActions(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public virtual void ShowSuggestions(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Material.Themedata.ThemeData AppBarTheme(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public virtual void Close(FlutterSDK.Widgets.Framework.BuildContext context,T result){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual void ShowResults(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public class _SearchPageRoute<T> : FlutterSDK.Widgets.Pages.PageRoute<T>
-{
-#region constructors
-public _SearchPageRoute(FlutterSDK.Material.Search.SearchDelegate<T> @delegate = default(FlutterSDK.Material.Search.SearchDelegate<T>))
-: base()
-{
-this.@delegate = @delegate;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Material.Search.SearchDelegate<T> @delegate{get;set;}
-public virtual FlutterBinding.UI.Color BarrierColor{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string BarrierLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual TimeSpan TransitionDuration{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool MaintainState{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget BuildTransitions(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Animation.Animation.Animation<double> animation,FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation,FlutterSDK.Widgets.Framework.Widget child){ throw new NotImplementedException(); }
+        public virtual void ShowSuggestions(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Animation.Animation.Animation<double> CreateAnimation(){ throw new NotImplementedException(); }
+        public virtual void Close(FlutterSDK.Widgets.Framework.BuildContext context, T result) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public new FlutterSDK.Widgets.Framework.Widget BuildPage(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Animation.Animation.Animation<double> animation,FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation){ throw new NotImplementedException(); }
+    public class _SearchPageRoute<T> : FlutterSDK.Widgets.Pages.PageRoute<T>
+    {
+        #region constructors
+        public _SearchPageRoute(FlutterSDK.Material.Search.SearchDelegate<T> @delegate = default(FlutterSDK.Material.Search.SearchDelegate<T>))
+        : base()
+        {
+            this.@delegate = @delegate; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Material.Search.SearchDelegate<T> @delegate { get; set; }
+        public virtual FlutterBinding.UI.Color BarrierColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string BarrierLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TimeSpan TransitionDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool MaintainState { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget BuildTransitions(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
 
 
-public new void DidComplete(T result){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public new FlutterSDK.Animation.Animation.Animation<double> CreateAnimation() { throw new NotImplementedException(); }
 
 
-public class _SearchPage<T> : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public _SearchPage(FlutterSDK.Material.Search.SearchDelegate<T> @delegate = default(FlutterSDK.Material.Search.SearchDelegate<T>),FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>))
-{
-this.@delegate = @delegate;
-this.Animation = animation;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Material.Search.SearchDelegate<T> @delegate{get;set;}
-public virtual FlutterSDK.Animation.Animation.Animation<double> Animation{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState(){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public new FlutterSDK.Widgets.Framework.Widget BuildPage(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation) { throw new NotImplementedException(); }
 
 
-public class _SearchPageState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Search._SearchPage<T>>
-{
-#region constructors
-public _SearchPageState()
-{ }
-#endregion
+        public new void DidComplete(T result) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode{get;set;}
-#endregion
-
-#region methods
-
-public new void InitState(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+    public class _SearchPage<T> : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public _SearchPage(FlutterSDK.Material.Search.SearchDelegate<T> @delegate = default(FlutterSDK.Material.Search.SearchDelegate<T>), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>))
+        {
+            this.@delegate = @delegate;
+            this.Animation = animation; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Material.Search.SearchDelegate<T> @delegate { get; set; }
+        public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-private void _OnAnimationStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status){ throw new NotImplementedException(); }
+    public class _SearchPageState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Search._SearchPage<T>>
+    {
+        #region constructors
+        public _SearchPageState()
+        { }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-public new void DidUpdateWidget(FlutterSDK.Material.Search._SearchPage<T> oldWidget){ throw new NotImplementedException(); }
+        public new void Dispose() { throw new NotImplementedException(); }
 
 
-private void _OnFocusChanged(){ throw new NotImplementedException(); }
+        private void _OnAnimationStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status) { throw new NotImplementedException(); }
 
 
-private void _OnQueryChanged(){ throw new NotImplementedException(); }
+        public new void DidUpdateWidget(FlutterSDK.Material.Search._SearchPage<T> oldWidget) { throw new NotImplementedException(); }
 
 
-private void _OnSearchBodyChanged(){ throw new NotImplementedException(); }
+        private void _OnFocusChanged() { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-#endregion
-}
+        private void _OnQueryChanged() { throw new NotImplementedException(); }
 
 
-public enum _SearchBody{
+        private void _OnSearchBodyChanged() { throw new NotImplementedException(); }
 
-Suggestions,
-Results,
-}
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public enum _SearchBody
+    {
+
+        Suggestions,
+        Results,
+    }
 
 }

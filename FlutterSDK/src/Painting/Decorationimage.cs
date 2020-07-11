@@ -420,96 +420,103 @@ using FlutterSDK.Material.Inksplash;
 using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
-namespace FlutterSDK.Painting.Decorationimage{
-internal static class DecorationimageDefaultClass{
-internal static void PaintImage(Canvas canvas = default(Canvas),FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect),SKImage image = default(SKImage),double scale = 1.0,ColorFilter colorFilter = default(ColorFilter),FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit),FlutterSDK.Painting.Alignment.Alignment alignment = default(FlutterSDK.Painting.Alignment.Alignment),FlutterBinding.UI.Rect centerSlice = default(FlutterBinding.UI.Rect),FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat),bool flipHorizontally = false,bool invertColors = false,FilterQuality filterQuality = default(FilterQuality)){
-throw new NotImplementedException();
-}
-
-internal static Iterable<Rect> _GenerateImageTileRects(FlutterBinding.UI.Rect outputRect,FlutterBinding.UI.Rect fundamentalRect,FlutterSDK.Painting.Decorationimage.ImageRepeat repeat){
-throw new NotImplementedException();
-}
-
-}
-
-public class DecorationImage
+namespace FlutterSDK.Painting.Decorationimage
 {
-#region constructors
-public DecorationImage(FlutterSDK.Painting.Imageprovider.ImageProvider<object> image = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>),FlutterSDK.Painting.Imagestream.ImageErrorListener onError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener),ColorFilter colorFilter = default(ColorFilter),FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit),FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry),FlutterBinding.UI.Rect centerSlice = default(FlutterBinding.UI.Rect),FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat),bool matchTextDirection = false)
-: base()
-{
-this.Image = image;
-this.OnError = onError;
-this.ColorFilter = colorFilter;
-this.Fit = fit;
-this.Alignment = alignment;
-this.CenterSlice = centerSlice;
-this.Repeat = repeat;
-this.MatchTextDirection = matchTextDirection;throw new NotImplementedException(); }
-#endregion
+    internal static class DecorationimageDefaultClass
+    {
+        internal static void PaintImage(Canvas canvas = default(Canvas), FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), SKImage image = default(SKImage), double scale = 1.0, ColorFilter colorFilter = default(ColorFilter), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.Alignment alignment = default(FlutterSDK.Painting.Alignment.Alignment), FlutterBinding.UI.Rect centerSlice = default(FlutterBinding.UI.Rect), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), bool flipHorizontally = false, bool invertColors = false, FilterQuality filterQuality = default(FilterQuality))
+        {
+            throw new NotImplementedException();
+        }
 
-#region fields
-public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> Image{get;set;}
-public virtual FlutterSDK.Painting.Imagestream.ImageErrorListener OnError{get;set;}
-public virtual ColorFilter ColorFilter{get;set;}
-public virtual FlutterSDK.Painting.Boxfit.BoxFit Fit{get;set;}
-public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment{get;set;}
-public virtual FlutterBinding.UI.Rect CenterSlice{get;set;}
-public virtual FlutterSDK.Painting.Decorationimage.ImageRepeat Repeat{get;set;}
-public virtual bool MatchTextDirection{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        internal static Iterable<Rect> _GenerateImageTileRects(FlutterBinding.UI.Rect outputRect, FlutterBinding.UI.Rect fundamentalRect, FlutterSDK.Painting.Decorationimage.ImageRepeat repeat)
+        {
+            throw new NotImplementedException();
+        }
 
-#region methods
+    }
 
-public virtual FlutterSDK.Painting.Decorationimage.DecorationImagePainter CreatePainter(VoidCallback onChanged){ throw new NotImplementedException(); }
+    public class DecorationImage
+    {
+        #region constructors
+        public DecorationImage(FlutterSDK.Painting.Imageprovider.ImageProvider<object> image = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imagestream.ImageErrorListener onError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener), ColorFilter colorFilter = default(ColorFilter), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterBinding.UI.Rect centerSlice = default(FlutterBinding.UI.Rect), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), bool matchTextDirection = false)
+        : base()
+        {
+            this.Image = image;
+            this.OnError = onError;
+            this.ColorFilter = colorFilter;
+            this.Fit = fit;
+            this.Alignment = alignment;
+            this.CenterSlice = centerSlice;
+            this.Repeat = repeat;
+            this.MatchTextDirection = matchTextDirection; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> Image { get; set; }
+        public virtual FlutterSDK.Painting.Imagestream.ImageErrorListener OnError { get; set; }
+        public virtual ColorFilter ColorFilter { get; set; }
+        public virtual FlutterSDK.Painting.Boxfit.BoxFit Fit { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
+        public virtual FlutterBinding.UI.Rect CenterSlice { get; set; }
+        public virtual FlutterSDK.Painting.Decorationimage.ImageRepeat Repeat { get; set; }
+        public virtual bool MatchTextDirection { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        #region methods
 
-
-#endregion
-}
-
-
-public class DecorationImagePainter
-{
-#region constructors
-internal DecorationImagePainter(FlutterSDK.Painting.Decorationimage.DecorationImage _details,VoidCallback _onChanged)
-: base()
-{
-this._Details = _details;
-this._OnChanged = _onChanged;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Painting.Decorationimage.DecorationImage _Details{get;set;}
-internal virtual VoidCallback _OnChanged{get;set;}
-internal virtual FlutterSDK.Painting.Imagestream.ImageStream _ImageStream{get;set;}
-internal virtual FlutterSDK.Painting.Imagestream.ImageInfo _Image{get;set;}
-#endregion
-
-#region methods
-
-public virtual void Paint(Canvas canvas,FlutterBinding.UI.Rect rect,Path clipPath,FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Decorationimage.DecorationImagePainter CreatePainter(VoidCallback onChanged) { throw new NotImplementedException(); }
 
 
-private void _HandleImage(FlutterSDK.Painting.Imagestream.ImageInfo value,bool synchronousCall){ throw new NotImplementedException(); }
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
-public virtual void Dispose(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-#endregion
-}
+    public class DecorationImagePainter
+    {
+        #region constructors
+        internal DecorationImagePainter(FlutterSDK.Painting.Decorationimage.DecorationImage _details, VoidCallback _onChanged)
+        : base()
+        {
+            this._Details = _details;
+            this._OnChanged = _onChanged; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Painting.Decorationimage.DecorationImage _Details { get; set; }
+        internal virtual VoidCallback _OnChanged { get; set; }
+        internal virtual FlutterSDK.Painting.Imagestream.ImageStream _ImageStream { get; set; }
+        internal virtual FlutterSDK.Painting.Imagestream.ImageInfo _Image { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, Path clipPath, FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) { throw new NotImplementedException(); }
 
 
-public enum ImageRepeat{
+        private void _HandleImage(FlutterSDK.Painting.Imagestream.ImageInfo value, bool synchronousCall) { throw new NotImplementedException(); }
 
-Repeat,
-RepeatX,
-RepeatY,
-NoRepeat,
-}
+
+        public virtual void Dispose() { throw new NotImplementedException(); }
+
+
+        #endregion
+    }
+
+
+    public enum ImageRepeat
+    {
+
+        Repeat,
+        RepeatX,
+        RepeatY,
+        NoRepeat,
+    }
 
 }

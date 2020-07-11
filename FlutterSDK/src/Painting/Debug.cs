@@ -420,14 +420,17 @@ using FlutterSDK.Material.Inksplash;
 using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
-namespace FlutterSDK.Painting.Debug{
-public delegate HttpClient HttpClientProvider();
-internal static class DebugDefaultClass{
-public static bool DebugDisableShadows = default(bool);
-public static object DebugNetworkImageHttpClientProvider = default(object);
-internal static bool DebugAssertAllPaintingVarsUnset(string reason,bool debugDisableShadowsOverride = false){
-throw new NotImplementedException();
-}
+namespace FlutterSDK.Painting.Debug
+{
+    public delegate HttpClient HttpClientProvider();
+    internal static class DebugDefaultClass
+    {
+        public static bool DebugDisableShadows = default(bool);
+        public static object DebugNetworkImageHttpClientProvider = default(object);
+        internal static bool DebugAssertAllPaintingVarsUnset(string reason, bool debugDisableShadowsOverride = false)
+        {
+            throw new NotImplementedException();
+        }
 
-}
+    }
 }

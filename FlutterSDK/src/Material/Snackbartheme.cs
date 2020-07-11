@@ -411,57 +411,61 @@ using FlutterSDK.Material.Floatingactionbuttonlocation;
 using FlutterSDK.Material.Snackbar;
 using FlutterSDK.Material.Snackbartheme;
 using FlutterSDK.Material.Textselection;
-namespace FlutterSDK.Material.Snackbartheme{
-internal static class SnackbarthemeDefaultClass{
-}
-
-public class SnackBarThemeData : IDiagnosticable
+namespace FlutterSDK.Material.Snackbartheme
 {
-#region constructors
-public SnackBarThemeData(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color actionTextColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color disabledActionTextColor = default(FlutterBinding.UI.Color),FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),double elevation = default(double),FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder),FlutterSDK.Material.Snackbartheme.SnackBarBehavior behavior = default(FlutterSDK.Material.Snackbartheme.SnackBarBehavior))
-: base()
-{
-this.BackgroundColor = backgroundColor;
-this.ActionTextColor = actionTextColor;
-this.DisabledActionTextColor = disabledActionTextColor;
-this.ContentTextStyle = contentTextStyle;
-this.Elevation = elevation;
-this.Shape = shape;
-this.Behavior = behavior;throw new NotImplementedException(); }
-#endregion
+    internal static class SnackbarthemeDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterBinding.UI.Color BackgroundColor{get;set;}
-public virtual FlutterBinding.UI.Color ActionTextColor{get;set;}
-public virtual FlutterBinding.UI.Color DisabledActionTextColor{get;set;}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle ContentTextStyle{get;set;}
-public virtual double Elevation{get;set;}
-public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape{get;set;}
-public virtual FlutterSDK.Material.Snackbartheme.SnackBarBehavior Behavior{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class SnackBarThemeData : IDiagnosticable
+    {
+        #region constructors
+        public SnackBarThemeData(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color actionTextColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledActionTextColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Material.Snackbartheme.SnackBarBehavior behavior = default(FlutterSDK.Material.Snackbartheme.SnackBarBehavior))
+        : base()
+        {
+            this.BackgroundColor = backgroundColor;
+            this.ActionTextColor = actionTextColor;
+            this.DisabledActionTextColor = disabledActionTextColor;
+            this.ContentTextStyle = contentTextStyle;
+            this.Elevation = elevation;
+            this.Shape = shape;
+            this.Behavior = behavior; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual FlutterBinding.UI.Color ActionTextColor { get; set; }
+        public virtual FlutterBinding.UI.Color DisabledActionTextColor { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle ContentTextStyle { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        public virtual FlutterSDK.Material.Snackbartheme.SnackBarBehavior Behavior { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual FlutterSDK.Material.Snackbartheme.SnackBarThemeData CopyWith(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color actionTextColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color disabledActionTextColor = default(FlutterBinding.UI.Color),FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),double elevation = default(double),FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder),FlutterSDK.Material.Snackbartheme.SnackBarBehavior behavior = default(FlutterSDK.Material.Snackbartheme.SnackBarBehavior)){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual FlutterSDK.Material.Snackbartheme.SnackBarThemeData Lerp(FlutterSDK.Material.Snackbartheme.SnackBarThemeData a,FlutterSDK.Material.Snackbartheme.SnackBarThemeData b,double t){ throw new NotImplementedException(); }
-
-
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual FlutterSDK.Material.Snackbartheme.SnackBarThemeData CopyWith(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color actionTextColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledActionTextColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Material.Snackbartheme.SnackBarBehavior behavior = default(FlutterSDK.Material.Snackbartheme.SnackBarBehavior)) { throw new NotImplementedException(); }
 
 
-public enum SnackBarBehavior{
+        public virtual FlutterSDK.Material.Snackbartheme.SnackBarThemeData Lerp(FlutterSDK.Material.Snackbartheme.SnackBarThemeData a, FlutterSDK.Material.Snackbartheme.SnackBarThemeData b, double t) { throw new NotImplementedException(); }
 
-@Fixed,
-Floating,
-}
+
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public enum SnackBarBehavior
+    {
+
+        @Fixed,
+        Floating,
+    }
 
 }

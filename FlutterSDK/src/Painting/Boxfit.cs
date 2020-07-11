@@ -420,42 +420,47 @@ using FlutterSDK.Material.Inksplash;
 using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
-namespace FlutterSDK.Painting.Boxfit{
-internal static class BoxfitDefaultClass{
-internal static FlutterSDK.Painting.Boxfit.FittedSizes ApplyBoxFit(FlutterSDK.Painting.Boxfit.BoxFit fit,Size inputSize,Size outputSize){
-throw new NotImplementedException();
-}
-
-}
-
-public class FittedSizes
+namespace FlutterSDK.Painting.Boxfit
 {
-#region constructors
-public FittedSizes(Size source,Size destination)
-{
-this.Source = source;
-this.Destination = destination;throw new NotImplementedException(); }
-#endregion
+    internal static class BoxfitDefaultClass
+    {
+        internal static FlutterSDK.Painting.Boxfit.FittedSizes ApplyBoxFit(FlutterSDK.Painting.Boxfit.BoxFit fit, Size inputSize, Size outputSize)
+        {
+            throw new NotImplementedException();
+        }
 
-#region fields
-public virtual Size Source{get;set;}
-public virtual Size Destination{get;set;}
-#endregion
+    }
 
-#region methods
-#endregion
-}
+    public class FittedSizes
+    {
+        #region constructors
+        public FittedSizes(Size source, Size destination)
+        {
+            this.Source = source;
+            this.Destination = destination; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual Size Source { get; set; }
+        public virtual Size Destination { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
 
 
-public enum BoxFit{
+    public enum BoxFit
+    {
 
-Fill,
-Contain,
-Cover,
-FitWidth,
-FitHeight,
-None,
-ScaleDown,
-}
+        Fill,
+        Contain,
+        Cover,
+        FitWidth,
+        FitHeight,
+        None,
+        ScaleDown,
+    }
 
 }

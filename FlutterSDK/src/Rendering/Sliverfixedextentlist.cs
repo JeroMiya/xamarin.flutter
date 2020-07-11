@@ -421,79 +421,84 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Rendering.Sliverfixedextentlist{
-internal static class SliverfixedextentlistDefaultClass{
-}
-
-public interface IRenderSliverFixedExtentBoxAdaptor{
-double IndexToLayoutOffset(double itemExtent,int index);
-int GetMinChildIndexForScrollOffset(double scrollOffset,double itemExtent);
-int GetMaxChildIndexForScrollOffset(double scrollOffset,double itemExtent);
-double EstimateMaxScrollOffset(FlutterSDK.Rendering.Sliver.SliverConstraints constraints,int firstIndex = default(int),int lastIndex = default(int),double leadingScrollOffset = default(double),double trailingScrollOffset = default(double));
-double ComputeMaxScrollOffset(FlutterSDK.Rendering.Sliver.SliverConstraints constraints,double itemExtent);
-void PerformLayout();
-double ItemExtent{get;}
-}
-
-
-public class RenderSliverFixedExtentBoxAdaptor : FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverMultiBoxAdaptor
+namespace FlutterSDK.Rendering.Sliverfixedextentlist
 {
-#region constructors
-public RenderSliverFixedExtentBoxAdaptor(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager childManager = default(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager))
-: base(childManager:childManager)
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class SliverfixedextentlistDefaultClass
+    {
+    }
 
-#region fields
-public virtual double ItemExtent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public virtual double IndexToLayoutOffset(double itemExtent,int index){ throw new NotImplementedException(); }
-
-
-public virtual int GetMinChildIndexForScrollOffset(double scrollOffset,double itemExtent){ throw new NotImplementedException(); }
+    public interface IRenderSliverFixedExtentBoxAdaptor
+    {
+        double IndexToLayoutOffset(double itemExtent, int index);
+        int GetMinChildIndexForScrollOffset(double scrollOffset, double itemExtent);
+        int GetMaxChildIndexForScrollOffset(double scrollOffset, double itemExtent);
+        double EstimateMaxScrollOffset(FlutterSDK.Rendering.Sliver.SliverConstraints constraints, int firstIndex = default(int), int lastIndex = default(int), double leadingScrollOffset = default(double), double trailingScrollOffset = default(double));
+        double ComputeMaxScrollOffset(FlutterSDK.Rendering.Sliver.SliverConstraints constraints, double itemExtent);
+        void PerformLayout();
+        double ItemExtent { get; }
+    }
 
 
-public virtual int GetMaxChildIndexForScrollOffset(double scrollOffset,double itemExtent){ throw new NotImplementedException(); }
+    public class RenderSliverFixedExtentBoxAdaptor : FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverMultiBoxAdaptor
+    {
+        #region constructors
+        public RenderSliverFixedExtentBoxAdaptor(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager childManager = default(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager))
+        : base(childManager: childManager)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual double ItemExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual double IndexToLayoutOffset(double itemExtent, int index) { throw new NotImplementedException(); }
 
 
-public virtual double EstimateMaxScrollOffset(FlutterSDK.Rendering.Sliver.SliverConstraints constraints,int firstIndex = default(int),int lastIndex = default(int),double leadingScrollOffset = default(double),double trailingScrollOffset = default(double)){ throw new NotImplementedException(); }
+        public virtual int GetMinChildIndexForScrollOffset(double scrollOffset, double itemExtent) { throw new NotImplementedException(); }
 
 
-public virtual double ComputeMaxScrollOffset(FlutterSDK.Rendering.Sliver.SliverConstraints constraints,double itemExtent){ throw new NotImplementedException(); }
+        public virtual int GetMaxChildIndexForScrollOffset(double scrollOffset, double itemExtent) { throw new NotImplementedException(); }
 
 
-private int _CalculateLeadingGarbage(int firstIndex){ throw new NotImplementedException(); }
+        public virtual double EstimateMaxScrollOffset(FlutterSDK.Rendering.Sliver.SliverConstraints constraints, int firstIndex = default(int), int lastIndex = default(int), double leadingScrollOffset = default(double), double trailingScrollOffset = default(double)) { throw new NotImplementedException(); }
 
 
-private int _CalculateTrailingGarbage(int targetLastIndex){ throw new NotImplementedException(); }
+        public virtual double ComputeMaxScrollOffset(FlutterSDK.Rendering.Sliver.SliverConstraints constraints, double itemExtent) { throw new NotImplementedException(); }
 
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
-
-#endregion
-}
+        private int _CalculateLeadingGarbage(int firstIndex) { throw new NotImplementedException(); }
 
 
-public class RenderSliverFixedExtentList : FlutterSDK.Rendering.Sliverfixedextentlist.RenderSliverFixedExtentBoxAdaptor
-{
-#region constructors
-public RenderSliverFixedExtentList(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager childManager = default(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager),double itemExtent = default(double))
-: base(childManager:childManager)
-{
-throw new NotImplementedException(); }
-#endregion
+        private int _CalculateTrailingGarbage(int targetLastIndex) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual double _ItemExtent{get;set;}
-public virtual double ItemExtent{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
 
-#region methods
-#endregion
-}
+        public new void PerformLayout() { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class RenderSliverFixedExtentList : FlutterSDK.Rendering.Sliverfixedextentlist.RenderSliverFixedExtentBoxAdaptor
+    {
+        #region constructors
+        public RenderSliverFixedExtentList(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager childManager = default(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager), double itemExtent = default(double))
+        : base(childManager: childManager)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual double _ItemExtent { get; set; }
+        public virtual double ItemExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+        #endregion
+    }
 
 }

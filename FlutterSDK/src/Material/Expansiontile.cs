@@ -381,91 +381,94 @@ using FlutterSDK.Material.Inputdecorator;
 using FlutterSDK.Material.Shadows;
 using FlutterSDK.Material.Expandicon;
 using FlutterSDK.Material.Mergeablematerial;
-namespace FlutterSDK.Material.Expansiontile{
-internal static class ExpansiontileDefaultClass{
-public static TimeSpan _KExpand = default(TimeSpan);
-}
-
-public class ExpansionTile : FlutterSDK.Widgets.Framework.StatefulWidget
+namespace FlutterSDK.Material.Expansiontile
 {
-#region constructors
-public ExpansionTile(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget),FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onExpansionChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>),List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>),FlutterSDK.Widgets.Framework.Widget trailing = default(FlutterSDK.Widgets.Framework.Widget),bool initiallyExpanded = false)
-: base(key:key)
-{
-this.Leading = leading;
-this.Title = title;
-this.Subtitle = subtitle;
-this.BackgroundColor = backgroundColor;
-this.OnExpansionChanged = onExpansionChanged;
-this.Children = children;
-this.Trailing = trailing;
-this.InitiallyExpanded = initiallyExpanded;throw new NotImplementedException(); }
-#endregion
+    internal static class ExpansiontileDefaultClass
+    {
+        public static TimeSpan _KExpand = default(TimeSpan);
+    }
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Leading{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Title{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Subtitle{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnExpansionChanged{get;set;}
-public virtual List<FlutterSDK.Widgets.Framework.Widget> Children{get;set;}
-public virtual FlutterBinding.UI.Color BackgroundColor{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Trailing{get;set;}
-public virtual bool InitiallyExpanded{get;set;}
-#endregion
+    public class ExpansionTile : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public ExpansionTile(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onExpansionChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Framework.Widget trailing = default(FlutterSDK.Widgets.Framework.Widget), bool initiallyExpanded = false)
+        : base(key: key)
+        {
+            this.Leading = leading;
+            this.Title = title;
+            this.Subtitle = subtitle;
+            this.BackgroundColor = backgroundColor;
+            this.OnExpansionChanged = onExpansionChanged;
+            this.Children = children;
+            this.Trailing = trailing;
+            this.InitiallyExpanded = initiallyExpanded; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Subtitle { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnExpansionChanged { get; set; }
+        public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Trailing { get; set; }
+        public virtual bool InitiallyExpanded { get; set; }
+        #endregion
 
-public new FlutterSDK.Material.Expansiontile._ExpansionTileState CreateState(){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new FlutterSDK.Material.Expansiontile._ExpansionTileState CreateState() { throw new NotImplementedException(); }
 
-
-public class _ExpansionTileState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Expansiontile.ExpansionTile>,ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-#region constructors
-public _ExpansionTileState()
-{ }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Animation.Tween.Animatable<double> _EaseOutTween{get;set;}
-internal virtual FlutterSDK.Animation.Tween.Animatable<double> _EaseInTween{get;set;}
-internal virtual FlutterSDK.Animation.Tween.Animatable<double> _HalfTween{get;set;}
-internal virtual FlutterSDK.Animation.Tween.ColorTween _BorderColorTween{get;set;}
-internal virtual FlutterSDK.Animation.Tween.ColorTween _HeaderColorTween{get;set;}
-internal virtual FlutterSDK.Animation.Tween.ColorTween _IconColorTween{get;set;}
-internal virtual FlutterSDK.Animation.Tween.ColorTween _BackgroundColorTween{get;set;}
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _IconTurns{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _HeightFactor{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<Color> _BorderColor{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<Color> _HeaderColor{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<Color> _IconColor{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<Color> _BackgroundColor{get;set;}
-internal virtual bool _IsExpanded{get;set;}
-#endregion
-
-#region methods
-
-public new void InitState(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+    public class _ExpansionTileState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Expansiontile.ExpansionTile>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _ExpansionTileState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Animation.Tween.Animatable<double> _EaseOutTween { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.Animatable<double> _EaseInTween { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.Animatable<double> _HalfTween { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.ColorTween _BorderColorTween { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.ColorTween _HeaderColorTween { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.ColorTween _IconColorTween { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.ColorTween _BackgroundColorTween { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _IconTurns { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _HeightFactor { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<Color> _BorderColor { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<Color> _HeaderColor { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<Color> _IconColor { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<Color> _BackgroundColor { get; set; }
+        internal virtual bool _IsExpanded { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-private void _HandleTap(){ throw new NotImplementedException(); }
+        public new void Dispose() { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Widgets.Framework.Widget _BuildChildren(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Widgets.Framework.Widget child){ throw new NotImplementedException(); }
+        private void _HandleTap() { throw new NotImplementedException(); }
 
 
-public new void DidChangeDependencies(){ throw new NotImplementedException(); }
+        private FlutterSDK.Widgets.Framework.Widget _BuildChildren(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new void DidChangeDependencies() { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

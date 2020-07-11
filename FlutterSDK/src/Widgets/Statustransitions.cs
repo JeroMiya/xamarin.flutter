@@ -423,68 +423,72 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Statustransitions{
-internal static class StatustransitionsDefaultClass{
-}
-
-public interface IStatusTransitionWidget{
-FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context);
-FlutterSDK.Widgets.Statustransitions._StatusTransitionState CreateState();
-FlutterSDK.Animation.Animation.Animation<double> Animation{get;}
-}
-
-
-public class StatusTransitionWidget : FlutterSDK.Widgets.Framework.StatefulWidget
+namespace FlutterSDK.Widgets.Statustransitions
 {
-#region constructors
-public StatusTransitionWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>))
-: base(key:key)
-{
-this.Animation = animation;throw new NotImplementedException(); }
-#endregion
+    internal static class StatustransitionsDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Animation.Animation.Animation<double> Animation{get;set;}
-#endregion
-
-#region methods
-
-public virtual FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+    public interface IStatusTransitionWidget
+    {
+        FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context);
+        FlutterSDK.Widgets.Statustransitions._StatusTransitionState CreateState();
+        FlutterSDK.Animation.Animation.Animation<double> Animation { get; }
+    }
 
 
-public new FlutterSDK.Widgets.Statustransitions._StatusTransitionState CreateState(){ throw new NotImplementedException(); }
+    public class StatusTransitionWidget : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public StatusTransitionWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>))
+        : base(key: key)
+        {
+            this.Animation = animation; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
+        #endregion
 
+        #region methods
 
-public class _StatusTransitionState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Statustransitions.StatusTransitionWidget>
-{
-#region constructors
-public _StatusTransitionState()
-{ }
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public new void InitState(){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public new void DidUpdateWidget(FlutterSDK.Widgets.Statustransitions.StatusTransitionWidget oldWidget){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Statustransitions._StatusTransitionState CreateState() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+    public class _StatusTransitionState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Statustransitions.StatusTransitionWidget>
+    {
+        #region constructors
+        public _StatusTransitionState()
+        { }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-private void _AnimationStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status){ throw new NotImplementedException(); }
+        public new void DidUpdateWidget(FlutterSDK.Widgets.Statustransitions.StatusTransitionWidget oldWidget) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new void Dispose() { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        private void _AnimationStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status) { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

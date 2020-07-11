@@ -421,38 +421,43 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Rendering.Debug{
-public delegate void ProfilePaintCallback(FlutterSDK.Rendering.@object.RenderObject renderObject);
-internal static class DebugDefaultClass{
-public static FlutterSDK.Painting.Colors.HSVColor _KDebugDefaultRepaintColor = default(FlutterSDK.Painting.Colors.HSVColor);
-public static bool DebugPaintSizeEnabled = default(bool);
-public static bool DebugPaintBaselinesEnabled = default(bool);
-public static bool DebugPaintLayerBordersEnabled = default(bool);
-public static bool DebugPaintPointersEnabled = default(bool);
-public static bool DebugRepaintRainbowEnabled = default(bool);
-public static bool DebugRepaintTextRainbowEnabled = default(bool);
-public static bool DebugCheckElevationsEnabled = default(bool);
-public static FlutterSDK.Painting.Colors.HSVColor DebugCurrentRepaintColor = default(FlutterSDK.Painting.Colors.HSVColor);
-public static bool DebugPrintMarkNeedsLayoutStacks = default(bool);
-public static bool DebugPrintMarkNeedsPaintStacks = default(bool);
-public static bool DebugPrintLayouts = default(bool);
-public static bool DebugCheckIntrinsicSizes = default(bool);
-public static bool DebugProfilePaintsEnabled = default(bool);
-public static object DebugOnProfilePaint = default(object);
-public static bool DebugDisableClipLayers = default(bool);
-public static bool DebugDisablePhysicalShapeLayers = default(bool);
-public static bool DebugDisableOpacityLayers = default(bool);
-internal static void _DebugDrawDoubleRect(Canvas canvas,FlutterBinding.UI.Rect outerRect,FlutterBinding.UI.Rect innerRect,FlutterBinding.UI.Color color){
-throw new NotImplementedException();
-}
+namespace FlutterSDK.Rendering.Debug
+{
+    public delegate void ProfilePaintCallback(FlutterSDK.Rendering.@object.RenderObject renderObject);
+    internal static class DebugDefaultClass
+    {
+        public static FlutterSDK.Painting.Colors.HSVColor _KDebugDefaultRepaintColor = default(FlutterSDK.Painting.Colors.HSVColor);
+        public static bool DebugPaintSizeEnabled = default(bool);
+        public static bool DebugPaintBaselinesEnabled = default(bool);
+        public static bool DebugPaintLayerBordersEnabled = default(bool);
+        public static bool DebugPaintPointersEnabled = default(bool);
+        public static bool DebugRepaintRainbowEnabled = default(bool);
+        public static bool DebugRepaintTextRainbowEnabled = default(bool);
+        public static bool DebugCheckElevationsEnabled = default(bool);
+        public static FlutterSDK.Painting.Colors.HSVColor DebugCurrentRepaintColor = default(FlutterSDK.Painting.Colors.HSVColor);
+        public static bool DebugPrintMarkNeedsLayoutStacks = default(bool);
+        public static bool DebugPrintMarkNeedsPaintStacks = default(bool);
+        public static bool DebugPrintLayouts = default(bool);
+        public static bool DebugCheckIntrinsicSizes = default(bool);
+        public static bool DebugProfilePaintsEnabled = default(bool);
+        public static object DebugOnProfilePaint = default(object);
+        public static bool DebugDisableClipLayers = default(bool);
+        public static bool DebugDisablePhysicalShapeLayers = default(bool);
+        public static bool DebugDisableOpacityLayers = default(bool);
+        internal static void _DebugDrawDoubleRect(Canvas canvas, FlutterBinding.UI.Rect outerRect, FlutterBinding.UI.Rect innerRect, FlutterBinding.UI.Color color)
+        {
+            throw new NotImplementedException();
+        }
 
-internal static void DebugPaintPadding(Canvas canvas,FlutterBinding.UI.Rect outerRect,FlutterBinding.UI.Rect innerRect,double outlineWidth = 2.0){
-throw new NotImplementedException();
-}
+        internal static void DebugPaintPadding(Canvas canvas, FlutterBinding.UI.Rect outerRect, FlutterBinding.UI.Rect innerRect, double outlineWidth = 2.0)
+        {
+            throw new NotImplementedException();
+        }
 
-internal static bool DebugAssertAllRenderVarsUnset(string reason,bool debugCheckIntrinsicSizesOverride = false){
-throw new NotImplementedException();
-}
+        internal static bool DebugAssertAllRenderVarsUnset(string reason, bool debugCheckIntrinsicSizesOverride = false)
+        {
+            throw new NotImplementedException();
+        }
 
-}
+    }
 }

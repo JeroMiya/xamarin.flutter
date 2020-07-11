@@ -291,321 +291,334 @@ using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
-namespace FlutterSDK.Cupertino.Route{
-internal static class RouteDefaultClass{
-public static double _KBackGestureWidth = default(double);
-public static double _KMinFlingVelocity = default(double);
-public static int _KMaxDroppedSwipePageForwardAnimationTime = default(int);
-public static int _KMaxPageBackAnimationTime = default(int);
-public static Color _KModalBarrierColor = default(Color);
-public static TimeSpan _KModalPopupTransitionDuration = default(TimeSpan);
-public static FlutterSDK.Animation.Tween.Animatable<Offset> _KRightMiddleTween = default(FlutterSDK.Animation.Tween.Animatable<Offset>);
-public static FlutterSDK.Animation.Tween.Animatable<Offset> _KMiddleLeftTween = default(FlutterSDK.Animation.Tween.Animatable<Offset>);
-public static FlutterSDK.Animation.Tween.Animatable<Offset> _KBottomUpTween = default(FlutterSDK.Animation.Tween.Animatable<Offset>);
-public static FlutterSDK.Widgets.Implicitanimations.DecorationTween _KGradientShadowTween = default(FlutterSDK.Widgets.Implicitanimations.DecorationTween);
-public static FlutterSDK.Animation.Tween.Animatable<double> _DialogScaleTween = default(FlutterSDK.Animation.Tween.Animatable<double>);
-internal static Future<T> ShowCupertinoModalPopup<T>(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext),FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder),ImageFilter filter = default(ImageFilter),bool useRootNavigator = true,bool semanticsDismissible = default(bool)){
-throw new NotImplementedException();
-}
-
-internal static FlutterSDK.Widgets.Framework.Widget _BuildCupertinoDialogTransitions(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Animation.Animation.Animation<double> animation,FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation,FlutterSDK.Widgets.Framework.Widget child){
-throw new NotImplementedException();
-}
-
-internal static Future<T> ShowCupertinoDialog<T>(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext),FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder),bool useRootNavigator = true,FlutterSDK.Widgets.Navigator.RouteSettings routeSettings = default(FlutterSDK.Widgets.Navigator.RouteSettings)){
-throw new NotImplementedException();
-}
-
-}
-
-public class CupertinoPageRoute<T> : FlutterSDK.Widgets.Pages.PageRoute<T>
+namespace FlutterSDK.Cupertino.Route
 {
-#region constructors
-public CupertinoPageRoute(FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder),string title = default(string),FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings),bool maintainState = true,bool fullscreenDialog = false)
-: base(settings:settings,fullscreenDialog:fullscreenDialog)
-{
-this.Builder = builder;
-this.Title = title;
-this.MaintainState = maintainState;throw new NotImplementedException(); }
-#endregion
+    internal static class RouteDefaultClass
+    {
+        public static double _KBackGestureWidth = default(double);
+        public static double _KMinFlingVelocity = default(double);
+        public static int _KMaxDroppedSwipePageForwardAnimationTime = default(int);
+        public static int _KMaxPageBackAnimationTime = default(int);
+        public static Color _KModalBarrierColor = default(Color);
+        public static TimeSpan _KModalPopupTransitionDuration = default(TimeSpan);
+        public static FlutterSDK.Animation.Tween.Animatable<Offset> _KRightMiddleTween = default(FlutterSDK.Animation.Tween.Animatable<Offset>);
+        public static FlutterSDK.Animation.Tween.Animatable<Offset> _KMiddleLeftTween = default(FlutterSDK.Animation.Tween.Animatable<Offset>);
+        public static FlutterSDK.Animation.Tween.Animatable<Offset> _KBottomUpTween = default(FlutterSDK.Animation.Tween.Animatable<Offset>);
+        public static FlutterSDK.Widgets.Implicitanimations.DecorationTween _KGradientShadowTween = default(FlutterSDK.Widgets.Implicitanimations.DecorationTween);
+        public static FlutterSDK.Animation.Tween.Animatable<double> _DialogScaleTween = default(FlutterSDK.Animation.Tween.Animatable<double>);
+        internal static Future<T> ShowCupertinoModalPopup<T>(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), ImageFilter filter = default(ImageFilter), bool useRootNavigator = true, bool semanticsDismissible = default(bool))
+        {
+            throw new NotImplementedException();
+        }
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder{get;set;}
-public virtual string Title{get;set;}
-internal virtual FlutterSDK.Foundation.Changenotifier.ValueNotifier<string> _PreviousTitle{get;set;}
-public new bool MaintainState{get;set;}
-public virtual FlutterSDK.Foundation.Changenotifier.ValueListenable<string> PreviousTitle{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual TimeSpan TransitionDuration{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterBinding.UI.Color BarrierColor{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string BarrierLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool PopGestureInProgress{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool PopGestureEnabled{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string DebugLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        internal static FlutterSDK.Widgets.Framework.Widget _BuildCupertinoDialogTransitions(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child)
+        {
+            throw new NotImplementedException();
+        }
 
-#region methods
+        internal static Future<T> ShowCupertinoDialog<T>(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), bool useRootNavigator = true, FlutterSDK.Widgets.Navigator.RouteSettings routeSettings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
+        {
+            throw new NotImplementedException();
+        }
 
-public new void DidChangePrevious(FlutterSDK.Widgets.Navigator.Route<object> previousRoute){ throw new NotImplementedException(); }
+    }
 
+    public class CupertinoPageRoute<T> : FlutterSDK.Widgets.Pages.PageRoute<T>
+    {
+        #region constructors
+        public CupertinoPageRoute(FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), string title = default(string), FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings), bool maintainState = true, bool fullscreenDialog = false)
+        : base(settings: settings, fullscreenDialog: fullscreenDialog)
+        {
+            this.Builder = builder;
+            this.Title = title;
+            this.MaintainState = maintainState; throw new NotImplementedException();
+        }
+        #endregion
 
-public new bool CanTransitionTo(FlutterSDK.Widgets.Routes.TransitionRoute<object> nextRoute){ throw new NotImplementedException(); }
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder { get; set; }
+        public virtual string Title { get; set; }
+        internal virtual FlutterSDK.Foundation.Changenotifier.ValueNotifier<string> _PreviousTitle { get; set; }
+        public new bool MaintainState { get; set; }
+        public virtual FlutterSDK.Foundation.Changenotifier.ValueListenable<string> PreviousTitle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TimeSpan TransitionDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Color BarrierColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string BarrierLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool PopGestureInProgress { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool PopGestureEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string DebugLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public virtual bool IsPopGestureInProgress(FlutterSDK.Widgets.Pages.PageRoute<object> route){ throw new NotImplementedException(); }
+        public new void DidChangePrevious(FlutterSDK.Widgets.Navigator.Route<object> previousRoute) { throw new NotImplementedException(); }
 
 
-private bool _IsPopGestureEnabled<T>(FlutterSDK.Widgets.Pages.PageRoute<T> route){ throw new NotImplementedException(); }
+        public new bool CanTransitionTo(FlutterSDK.Widgets.Routes.TransitionRoute<object> nextRoute) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget BuildPage(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Animation.Animation.Animation<double> animation,FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation){ throw new NotImplementedException(); }
+        public virtual bool IsPopGestureInProgress(FlutterSDK.Widgets.Pages.PageRoute<object> route) { throw new NotImplementedException(); }
 
 
-private _CupertinoBackGestureController<T> _StartPopGesture<T>(FlutterSDK.Widgets.Pages.PageRoute<T> route){ throw new NotImplementedException(); }
+        private bool _IsPopGestureEnabled<T>(FlutterSDK.Widgets.Pages.PageRoute<T> route) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Widgets.Framework.Widget BuildPageTransitions<T>(FlutterSDK.Widgets.Pages.PageRoute<T> route,FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Animation.Animation.Animation<double> animation,FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation,FlutterSDK.Widgets.Framework.Widget child){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget BuildPage(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget BuildTransitions(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Animation.Animation.Animation<double> animation,FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation,FlutterSDK.Widgets.Framework.Widget child){ throw new NotImplementedException(); }
+        private _CupertinoBackGestureController<T> _StartPopGesture<T>(FlutterSDK.Widgets.Pages.PageRoute<T> route) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public virtual FlutterSDK.Widgets.Framework.Widget BuildPageTransitions<T>(FlutterSDK.Widgets.Pages.PageRoute<T> route, FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
 
-public class CupertinoPageTransition : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public CupertinoPageTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Animation.Animation.Animation<double> primaryRouteAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterSDK.Animation.Animation.Animation<double> secondaryRouteAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),bool linearTransition = default(bool))
-: base(key:key)
-{
-this.Child = child;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-internal virtual FlutterSDK.Animation.Animation.Animation<Offset> _PrimaryPositionAnimation{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<Offset> _SecondaryPositionAnimation{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Decoration.Decoration> _PrimaryShadowAnimation{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-#endregion
+        public new FlutterSDK.Widgets.Framework.Widget BuildTransitions(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
 
-#region methods
+        #endregion
+    }
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
 
-#endregion
-}
+    public class CupertinoPageTransition : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public CupertinoPageTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> primaryRouteAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> secondaryRouteAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool linearTransition = default(bool))
+        : base(key: key)
+        {
+            this.Child = child; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual FlutterSDK.Animation.Animation.Animation<Offset> _PrimaryPositionAnimation { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<Offset> _SecondaryPositionAnimation { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Decoration.Decoration> _PrimaryShadowAnimation { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        #endregion
 
-public class CupertinoFullscreenDialogTransition : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public CupertinoFullscreenDialogTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Animation.Animation.Animation<double> primaryRouteAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterSDK.Animation.Animation.Animation<double> secondaryRouteAnimation = default(FlutterSDK.Animation.Animation.Animation<double>),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),bool linearTransition = default(bool))
-: base(key:key)
-{
-this.Child = child;throw new NotImplementedException(); }
-#endregion
+        #region methods
 
-#region fields
-internal virtual FlutterSDK.Animation.Animation.Animation<Offset> _PositionAnimation{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<Offset> _SecondaryPositionAnimation{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-#endregion
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#region methods
+        #endregion
+    }
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
 
-#endregion
-}
+    public class CupertinoFullscreenDialogTransition : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public CupertinoFullscreenDialogTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> primaryRouteAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> secondaryRouteAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool linearTransition = default(bool))
+        : base(key: key)
+        {
+            this.Child = child; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual FlutterSDK.Animation.Animation.Animation<Offset> _PositionAnimation { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<Offset> _SecondaryPositionAnimation { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        #endregion
 
-public class _CupertinoBackGestureDetector<T> : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public _CupertinoBackGestureDetector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Foundation.Basictypes.ValueGetter<bool> enabledCallback = default(FlutterSDK.Foundation.Basictypes.ValueGetter<bool>),FlutterSDK.Foundation.Basictypes.ValueGetter<_CupertinoBackGestureController<T>> onStartPopGesture = default(FlutterSDK.Foundation.Basictypes.ValueGetter<_CupertinoBackGestureController<T>>),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key)
-{
-this.EnabledCallback = enabledCallback;
-this.OnStartPopGesture = onStartPopGesture;
-this.Child = child;throw new NotImplementedException(); }
-#endregion
+        #region methods
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueGetter<bool> EnabledCallback{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueGetter<_CupertinoBackGestureController<T>> OnStartPopGesture{get;set;}
-#endregion
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#region methods
+        #endregion
+    }
 
-public new _CupertinoBackGestureDetectorState<T> CreateState(){ throw new NotImplementedException(); }
 
-#endregion
-}
+    public class _CupertinoBackGestureDetector<T> : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public _CupertinoBackGestureDetector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Foundation.Basictypes.ValueGetter<bool> enabledCallback = default(FlutterSDK.Foundation.Basictypes.ValueGetter<bool>), FlutterSDK.Foundation.Basictypes.ValueGetter<_CupertinoBackGestureController<T>> onStartPopGesture = default(FlutterSDK.Foundation.Basictypes.ValueGetter<_CupertinoBackGestureController<T>>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.EnabledCallback = enabledCallback;
+            this.OnStartPopGesture = onStartPopGesture;
+            this.Child = child; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueGetter<bool> EnabledCallback { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueGetter<_CupertinoBackGestureController<T>> OnStartPopGesture { get; set; }
+        #endregion
 
-public class _CupertinoBackGestureDetectorState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Route._CupertinoBackGestureDetector<T>>
-{
-#region constructors
-public _CupertinoBackGestureDetectorState()
-{ }
-#endregion
+        #region methods
 
-#region fields
-internal virtual FlutterSDK.Cupertino.Route._CupertinoBackGestureController<T> _BackGestureController{get;set;}
-internal virtual FlutterSDK.Gestures.Monodrag.HorizontalDragGestureRecognizer _Recognizer{get;set;}
-#endregion
+        public new _CupertinoBackGestureDetectorState<T> CreateState() { throw new NotImplementedException(); }
 
-#region methods
+        #endregion
+    }
 
-public new void InitState(){ throw new NotImplementedException(); }
 
+    public class _CupertinoBackGestureDetectorState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Route._CupertinoBackGestureDetector<T>>
+    {
+        #region constructors
+        public _CupertinoBackGestureDetectorState()
+        { }
+        #endregion
 
-public new void Dispose(){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual FlutterSDK.Cupertino.Route._CupertinoBackGestureController<T> _BackGestureController { get; set; }
+        internal virtual FlutterSDK.Gestures.Monodrag.HorizontalDragGestureRecognizer _Recognizer { get; set; }
+        #endregion
 
+        #region methods
 
-private void _HandleDragStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details){ throw new NotImplementedException(); }
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-private void _HandleDragUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details){ throw new NotImplementedException(); }
+        public new void Dispose() { throw new NotImplementedException(); }
 
 
-private void _HandleDragEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details){ throw new NotImplementedException(); }
+        private void _HandleDragStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details) { throw new NotImplementedException(); }
 
 
-private void _HandleDragCancel(){ throw new NotImplementedException(); }
+        private void _HandleDragUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details) { throw new NotImplementedException(); }
 
 
-private void _HandlePointerDown(FlutterSDK.Gestures.Events.PointerDownEvent @event){ throw new NotImplementedException(); }
+        private void _HandleDragEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details) { throw new NotImplementedException(); }
 
 
-private double _ConvertToLogical(double value){ throw new NotImplementedException(); }
+        private void _HandleDragCancel() { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        private void _HandlePointerDown(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        private double _ConvertToLogical(double value) { throw new NotImplementedException(); }
 
-public class _CupertinoBackGestureController<T>
-{
-#region constructors
-public _CupertinoBackGestureController(FlutterSDK.Widgets.Navigator.NavigatorState navigator = default(FlutterSDK.Widgets.Navigator.NavigatorState),FlutterSDK.Animation.Animationcontroller.AnimationController controller = default(FlutterSDK.Animation.Animationcontroller.AnimationController))
-: base()
-{
-this.Navigator = navigator;
-this.Controller = controller;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual FlutterSDK.Animation.Animationcontroller.AnimationController Controller{get;set;}
-public virtual FlutterSDK.Widgets.Navigator.NavigatorState Navigator{get;set;}
-#endregion
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#region methods
+        #endregion
+    }
 
-public virtual void DragUpdate(double delta){ throw new NotImplementedException(); }
 
+    public class _CupertinoBackGestureController<T>
+    {
+        #region constructors
+        public _CupertinoBackGestureController(FlutterSDK.Widgets.Navigator.NavigatorState navigator = default(FlutterSDK.Widgets.Navigator.NavigatorState), FlutterSDK.Animation.Animationcontroller.AnimationController controller = default(FlutterSDK.Animation.Animationcontroller.AnimationController))
+        : base()
+        {
+            this.Navigator = navigator;
+            this.Controller = controller; throw new NotImplementedException();
+        }
+        #endregion
 
-public virtual void DragEnd(double velocity){ throw new NotImplementedException(); }
+        #region fields
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController Controller { get; set; }
+        public virtual FlutterSDK.Widgets.Navigator.NavigatorState Navigator { get; set; }
+        #endregion
 
-#endregion
-}
+        #region methods
 
+        public virtual void DragUpdate(double delta) { throw new NotImplementedException(); }
 
-public class _CupertinoEdgeShadowDecoration : FlutterSDK.Painting.Decoration.Decoration
-{
-#region constructors
-public _CupertinoEdgeShadowDecoration(FlutterSDK.Painting.Gradient.LinearGradient edgeGradient = default(FlutterSDK.Painting.Gradient.LinearGradient))
-{
-this.EdgeGradient = edgeGradient;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-public virtual FlutterSDK.Cupertino.Route._CupertinoEdgeShadowDecoration None{get;set;}
-public virtual FlutterSDK.Painting.Gradient.LinearGradient EdgeGradient{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        public virtual void DragEnd(double velocity) { throw new NotImplementedException(); }
 
-#region methods
+        #endregion
+    }
 
-public virtual FlutterSDK.Cupertino.Route._CupertinoEdgeShadowDecoration Lerp(FlutterSDK.Cupertino.Route._CupertinoEdgeShadowDecoration a,FlutterSDK.Cupertino.Route._CupertinoEdgeShadowDecoration b,double t){ throw new NotImplementedException(); }
 
+    public class _CupertinoEdgeShadowDecoration : FlutterSDK.Painting.Decoration.Decoration
+    {
+        #region constructors
+        public _CupertinoEdgeShadowDecoration(FlutterSDK.Painting.Gradient.LinearGradient edgeGradient = default(FlutterSDK.Painting.Gradient.LinearGradient))
+        {
+            this.EdgeGradient = edgeGradient; throw new NotImplementedException();
+        }
+        #endregion
 
-public new FlutterSDK.Cupertino.Route._CupertinoEdgeShadowDecoration LerpFrom(FlutterSDK.Painting.Decoration.Decoration a,double t){ throw new NotImplementedException(); }
+        #region fields
+        public virtual FlutterSDK.Cupertino.Route._CupertinoEdgeShadowDecoration None { get; set; }
+        public virtual FlutterSDK.Painting.Gradient.LinearGradient EdgeGradient { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public new FlutterSDK.Cupertino.Route._CupertinoEdgeShadowDecoration LerpTo(FlutterSDK.Painting.Decoration.Decoration b,double t){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Cupertino.Route._CupertinoEdgeShadowDecoration Lerp(FlutterSDK.Cupertino.Route._CupertinoEdgeShadowDecoration a, FlutterSDK.Cupertino.Route._CupertinoEdgeShadowDecoration b, double t) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Cupertino.Route._CupertinoEdgeShadowPainter CreateBoxPainter(VoidCallback onChanged = default(VoidCallback)){ throw new NotImplementedException(); }
+        public new FlutterSDK.Cupertino.Route._CupertinoEdgeShadowDecoration LerpFrom(FlutterSDK.Painting.Decoration.Decoration a, double t) { throw new NotImplementedException(); }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public new FlutterSDK.Cupertino.Route._CupertinoEdgeShadowDecoration LerpTo(FlutterSDK.Painting.Decoration.Decoration b, double t) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new FlutterSDK.Cupertino.Route._CupertinoEdgeShadowPainter CreateBoxPainter(VoidCallback onChanged = default(VoidCallback)) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
-public class _CupertinoEdgeShadowPainter : FlutterSDK.Painting.Decoration.BoxPainter
-{
-#region constructors
-public _CupertinoEdgeShadowPainter(FlutterSDK.Cupertino.Route._CupertinoEdgeShadowDecoration _decoration,VoidCallback onChange)
-: base(onChange)
-{
-this._Decoration = _decoration;throw new NotImplementedException(); }
-#endregion
 
-#region fields
-internal virtual FlutterSDK.Cupertino.Route._CupertinoEdgeShadowDecoration _Decoration{get;set;}
-#endregion
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#region methods
+        #endregion
+    }
 
-public new void Paint(Canvas canvas,FlutterBinding.UI.Offset offset,FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration){ throw new NotImplementedException(); }
 
-#endregion
-}
+    public class _CupertinoEdgeShadowPainter : FlutterSDK.Painting.Decoration.BoxPainter
+    {
+        #region constructors
+        public _CupertinoEdgeShadowPainter(FlutterSDK.Cupertino.Route._CupertinoEdgeShadowDecoration _decoration, VoidCallback onChange)
+        : base(onChange)
+        {
+            this._Decoration = _decoration; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        internal virtual FlutterSDK.Cupertino.Route._CupertinoEdgeShadowDecoration _Decoration { get; set; }
+        #endregion
 
-public class _CupertinoModalPopupRoute<T> : FlutterSDK.Widgets.Routes.PopupRoute<T>
-{
-#region constructors
-public _CupertinoModalPopupRoute(FlutterBinding.UI.Color barrierColor = default(FlutterBinding.UI.Color),string barrierLabel = default(string),FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder),bool semanticsDismissible = default(bool),ImageFilter filter = default(ImageFilter),FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
-: base(filter:filter,settings:settings)
-{
-this.BarrierColor = barrierColor;
-this.BarrierLabel = barrierLabel;
-this.Builder = builder;throw new NotImplementedException(); }
-#endregion
+        #region methods
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder{get;set;}
-internal virtual bool _SemanticsDismissible{get;set;}
-public new string BarrierLabel{get;set;}
-public new FlutterBinding.UI.Color BarrierColor{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _Animation{get;set;}
-internal virtual FlutterSDK.Animation.Tween.Tween<Offset> _OffsetTween{get;set;}
-public virtual bool BarrierDismissible{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool SemanticsDismissible{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual TimeSpan TransitionDuration{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        public new void Paint(Canvas canvas, FlutterBinding.UI.Offset offset, FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) { throw new NotImplementedException(); }
 
-#region methods
+        #endregion
+    }
 
-public new FlutterSDK.Animation.Animation.Animation<double> CreateAnimation(){ throw new NotImplementedException(); }
 
+    public class _CupertinoModalPopupRoute<T> : FlutterSDK.Widgets.Routes.PopupRoute<T>
+    {
+        #region constructors
+        public _CupertinoModalPopupRoute(FlutterBinding.UI.Color barrierColor = default(FlutterBinding.UI.Color), string barrierLabel = default(string), FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), bool semanticsDismissible = default(bool), ImageFilter filter = default(ImageFilter), FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
+        : base(filter: filter, settings: settings)
+        {
+            this.BarrierColor = barrierColor;
+            this.BarrierLabel = barrierLabel;
+            this.Builder = builder; throw new NotImplementedException();
+        }
+        #endregion
 
-public new FlutterSDK.Widgets.Framework.Widget BuildPage(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Animation.Animation.Animation<double> animation,FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation){ throw new NotImplementedException(); }
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder { get; set; }
+        internal virtual bool _SemanticsDismissible { get; set; }
+        public new string BarrierLabel { get; set; }
+        public new FlutterBinding.UI.Color BarrierColor { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _Animation { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.Tween<Offset> _OffsetTween { get; set; }
+        public virtual bool BarrierDismissible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool SemanticsDismissible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TimeSpan TransitionDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public new FlutterSDK.Widgets.Framework.Widget BuildTransitions(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Animation.Animation.Animation<double> animation,FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation,FlutterSDK.Widgets.Framework.Widget child){ throw new NotImplementedException(); }
+        public new FlutterSDK.Animation.Animation.Animation<double> CreateAnimation() { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new FlutterSDK.Widgets.Framework.Widget BuildPage(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation) { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Widgets.Framework.Widget BuildTransitions(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

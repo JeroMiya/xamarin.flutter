@@ -421,36 +421,39 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Services.Fontloader{
-internal static class FontloaderDefaultClass{
-}
-
-public class FontLoader
+namespace FlutterSDK.Services.Fontloader
 {
-#region constructors
-public FontLoader(string family)
-: base()
-{
-this.Family = family;throw new NotImplementedException(); }
-#endregion
+    internal static class FontloaderDefaultClass
+    {
+    }
 
-#region fields
-public virtual string Family{get;set;}
-internal virtual bool _Loaded{get;set;}
-internal virtual List<Future<Uint8List>> _FontFutures{get;set;}
-#endregion
+    public class FontLoader
+    {
+        #region constructors
+        public FontLoader(string family)
+        : base()
+        {
+            this.Family = family; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual string Family { get; set; }
+        internal virtual bool _Loaded { get; set; }
+        internal virtual List<Future<Uint8List>> _FontFutures { get; set; }
+        #endregion
 
-public virtual void AddFont(Future<ByteData> bytes){ throw new NotImplementedException(); }
+        #region methods
+
+        public virtual void AddFont(Future<ByteData> bytes) { throw new NotImplementedException(); }
 
 
-public virtual Future<object> Load(){ throw new NotImplementedException(); }
+        public virtual Future<object> Load() { throw new NotImplementedException(); }
 
 
-public virtual Future<object> LoadFont(Uint8List list,string family){ throw new NotImplementedException(); }
+        public virtual Future<object> LoadFont(Uint8List list, string family) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 }

@@ -420,57 +420,60 @@ using FlutterSDK.Material.Inksplash;
 using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
-namespace FlutterSDK.Painting.Continuousrectangleborder{
-internal static class ContinuousrectangleborderDefaultClass{
-}
-
-public class ContinuousRectangleBorder : FlutterSDK.Painting.Borders.ShapeBorder
+namespace FlutterSDK.Painting.Continuousrectangleborder
 {
-#region constructors
-public ContinuousRectangleBorder(FlutterSDK.Painting.Borders.BorderSide side = default(FlutterSDK.Painting.Borders.BorderSide),FlutterSDK.Painting.Borderradius.BorderRadiusGeometry borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry))
-: base()
-{
-this.Side = side;
-this.BorderRadius = borderRadius;throw new NotImplementedException(); }
-#endregion
+    internal static class ContinuousrectangleborderDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry BorderRadius{get;set;}
-public virtual FlutterSDK.Painting.Borders.BorderSide Side{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class ContinuousRectangleBorder : FlutterSDK.Painting.Borders.ShapeBorder
+    {
+        #region constructors
+        public ContinuousRectangleBorder(FlutterSDK.Painting.Borders.BorderSide side = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadiusGeometry borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry))
+        : base()
+        {
+            this.Side = side;
+            this.BorderRadius = borderRadius; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry BorderRadius { get; set; }
+        public virtual FlutterSDK.Painting.Borders.BorderSide Side { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new FlutterSDK.Painting.Borders.ShapeBorder Scale(double t){ throw new NotImplementedException(); }
+        #region methods
 
-
-public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a,double t){ throw new NotImplementedException(); }
-
-
-public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b,double t){ throw new NotImplementedException(); }
-
-
-private double _ClampToShortest(FlutterBinding.UI.RRect rrect,double value){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Borders.ShapeBorder Scale(double t) { throw new NotImplementedException(); }
 
 
-private Path _GetPath(FlutterBinding.UI.RRect rrect){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t) { throw new NotImplementedException(); }
 
 
-public new Path GetInnerPath(FlutterBinding.UI.Rect rect,TextDirection textDirection = default(TextDirection)){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t) { throw new NotImplementedException(); }
 
 
-public new Path GetOuterPath(FlutterBinding.UI.Rect rect,TextDirection textDirection = default(TextDirection)){ throw new NotImplementedException(); }
+        private double _ClampToShortest(FlutterBinding.UI.RRect rrect, double value) { throw new NotImplementedException(); }
 
 
-public new void Paint(Canvas canvas,FlutterBinding.UI.Rect rect,TextDirection textDirection = default(TextDirection)){ throw new NotImplementedException(); }
+        private Path _GetPath(FlutterBinding.UI.RRect rrect) { throw new NotImplementedException(); }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public new Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public new Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
+
+
+        public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
+
+
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+
+
+        #endregion
+    }
 
 }

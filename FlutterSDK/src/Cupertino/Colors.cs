@@ -291,136 +291,144 @@ using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
-namespace FlutterSDK.Cupertino.Colors{
-internal static class ColorsDefaultClass{
-internal static FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<Color> CreateCupertinoColorProperty(string name,FlutterBinding.UI.Color value,bool showName = true,@Object defaultValue = default(@Object),FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle),DiagnosticLevel level = default(DiagnosticLevel)){
-throw new NotImplementedException();
-}
-
-}
-
-public class CupertinoColors
+namespace FlutterSDK.Cupertino.Colors
 {
-#region constructors
-internal CupertinoColors()
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class ColorsDefaultClass
+    {
+        internal static FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<Color> CreateCupertinoColorProperty(string name, FlutterBinding.UI.Color value, bool showName = true, @Object defaultValue = default(@Object), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), DiagnosticLevel level = default(DiagnosticLevel))
+        {
+            throw new NotImplementedException();
+        }
 
-#region fields
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor ActiveBlue{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor ActiveGreen{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor ActiveOrange{get;set;}
-public virtual FlutterBinding.UI.Color White{get;set;}
-public virtual FlutterBinding.UI.Color Black{get;set;}
-public virtual FlutterBinding.UI.Color LightBackgroundGray{get;set;}
-public virtual FlutterBinding.UI.Color ExtraLightBackgroundGray{get;set;}
-public virtual FlutterBinding.UI.Color DarkBackgroundGray{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor InactiveGray{get;set;}
-public virtual FlutterBinding.UI.Color DestructiveRed{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemBlue{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGreen{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemIndigo{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemOrange{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemPink{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemPurple{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemRed{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemTeal{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemYellow{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGrey{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGrey2{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGrey3{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGrey4{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGrey5{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGrey6{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor Label{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SecondaryLabel{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor TertiaryLabel{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor QuaternaryLabel{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemFill{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SecondarySystemFill{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor TertiarySystemFill{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor QuaternarySystemFill{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor PlaceholderText{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemBackground{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SecondarySystemBackground{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor TertiarySystemBackground{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGroupedBackground{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SecondarySystemGroupedBackground{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor TertiarySystemGroupedBackground{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor Separator{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor OpaqueSeparator{get;set;}
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor Link{get;set;}
-#endregion
+    }
 
-#region methods
-#endregion
-}
+    public class CupertinoColors
+    {
+        #region constructors
+        internal CupertinoColors()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor ActiveBlue { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor ActiveGreen { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor ActiveOrange { get; set; }
+        public virtual FlutterBinding.UI.Color White { get; set; }
+        public virtual FlutterBinding.UI.Color Black { get; set; }
+        public virtual FlutterBinding.UI.Color LightBackgroundGray { get; set; }
+        public virtual FlutterBinding.UI.Color ExtraLightBackgroundGray { get; set; }
+        public virtual FlutterBinding.UI.Color DarkBackgroundGray { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor InactiveGray { get; set; }
+        public virtual FlutterBinding.UI.Color DestructiveRed { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemBlue { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGreen { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemIndigo { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemOrange { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemPink { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemPurple { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemRed { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemTeal { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemYellow { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGrey { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGrey2 { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGrey3 { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGrey4 { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGrey5 { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGrey6 { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor Label { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SecondaryLabel { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor TertiaryLabel { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor QuaternaryLabel { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemFill { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SecondarySystemFill { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor TertiarySystemFill { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor QuaternarySystemFill { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor PlaceholderText { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemBackground { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SecondarySystemBackground { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor TertiarySystemBackground { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGroupedBackground { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SecondarySystemGroupedBackground { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor TertiarySystemGroupedBackground { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor Separator { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor OpaqueSeparator { get; set; }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor Link { get; set; }
+        #endregion
 
-public class CupertinoDynamicColor : Color,IDiagnosticable
-{
-#region constructors
-public CupertinoDynamicColor(string debugLabel = default(string),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color darkColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color highContrastColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color darkHighContrastColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color elevatedColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color darkElevatedColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color highContrastElevatedColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color darkHighContrastElevatedColor = default(FlutterBinding.UI.Color))
-: base()
-{
-throw new NotImplementedException(); }
-public static CupertinoDynamicColor WithBrightnessAndContrast(string debugLabel = default(string),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color darkColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color highContrastColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color darkHighContrastColor = default(FlutterBinding.UI.Color))
-{
-var instance =new CupertinoDynamicColor();throw new NotImplementedException(); }
-public static CupertinoDynamicColor WithBrightness(string debugLabel = default(string),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color darkColor = default(FlutterBinding.UI.Color))
-{
-var instance =new CupertinoDynamicColor();throw new NotImplementedException(); }
-internal CupertinoDynamicColor(FlutterBinding.UI.Color _effectiveColor,FlutterBinding.UI.Color color,FlutterBinding.UI.Color darkColor,FlutterBinding.UI.Color highContrastColor,FlutterBinding.UI.Color darkHighContrastColor,FlutterBinding.UI.Color elevatedColor,FlutterBinding.UI.Color darkElevatedColor,FlutterBinding.UI.Color highContrastElevatedColor,FlutterBinding.UI.Color darkHighContrastElevatedColor,FlutterSDK.Widgets.Framework.Element _debugResolveContext,string _debugLabel)
-: base(0)
-{
-this._EffectiveColor = _effectiveColor;
-this.Color = color;
-this.DarkColor = darkColor;
-this.HighContrastColor = highContrastColor;
-this.DarkHighContrastColor = darkHighContrastColor;
-this.ElevatedColor = elevatedColor;
-this.DarkElevatedColor = darkElevatedColor;
-this.HighContrastElevatedColor = highContrastElevatedColor;
-this.DarkHighContrastElevatedColor = darkHighContrastElevatedColor;
-this._DebugResolveContext = _debugResolveContext;
-this._DebugLabel = _debugLabel;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual FlutterBinding.UI.Color _EffectiveColor{get;set;}
-internal virtual string _DebugLabel{get;set;}
-internal virtual FlutterSDK.Widgets.Framework.Element _DebugResolveContext{get;set;}
-public virtual FlutterBinding.UI.Color Color{get;set;}
-public virtual FlutterBinding.UI.Color DarkColor{get;set;}
-public virtual FlutterBinding.UI.Color HighContrastColor{get;set;}
-public virtual FlutterBinding.UI.Color DarkHighContrastColor{get;set;}
-public virtual FlutterBinding.UI.Color ElevatedColor{get;set;}
-public virtual FlutterBinding.UI.Color DarkElevatedColor{get;set;}
-public virtual FlutterBinding.UI.Color HighContrastElevatedColor{get;set;}
-public virtual FlutterBinding.UI.Color DarkHighContrastElevatedColor{get;set;}
-public virtual int Value{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual bool _IsPlatformBrightnessDependent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual bool _IsHighContrastDependent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual bool _IsInterfaceElevationDependent{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public virtual Color Resolve(FlutterBinding.UI.Color resolvable,FlutterSDK.Widgets.Framework.BuildContext context,bool nullOk = true){ throw new NotImplementedException(); }
+        #region methods
+        #endregion
+    }
 
 
-public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor ResolveFrom(FlutterSDK.Widgets.Framework.BuildContext context,bool nullOk = true){ throw new NotImplementedException(); }
+    public class CupertinoDynamicColor : Color, IDiagnosticable
+    {
+        #region constructors
+        public CupertinoDynamicColor(string debugLabel = default(string), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highContrastColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkHighContrastColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color elevatedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkElevatedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highContrastElevatedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkHighContrastElevatedColor = default(FlutterBinding.UI.Color))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        public static CupertinoDynamicColor WithBrightnessAndContrast(string debugLabel = default(string), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highContrastColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkHighContrastColor = default(FlutterBinding.UI.Color))
+        {
+            var instance = new CupertinoDynamicColor(); throw new NotImplementedException();
+        }
+        public static CupertinoDynamicColor WithBrightness(string debugLabel = default(string), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkColor = default(FlutterBinding.UI.Color))
+        {
+            var instance = new CupertinoDynamicColor(); throw new NotImplementedException();
+        }
+        internal CupertinoDynamicColor(FlutterBinding.UI.Color _effectiveColor, FlutterBinding.UI.Color color, FlutterBinding.UI.Color darkColor, FlutterBinding.UI.Color highContrastColor, FlutterBinding.UI.Color darkHighContrastColor, FlutterBinding.UI.Color elevatedColor, FlutterBinding.UI.Color darkElevatedColor, FlutterBinding.UI.Color highContrastElevatedColor, FlutterBinding.UI.Color darkHighContrastElevatedColor, FlutterSDK.Widgets.Framework.Element _debugResolveContext, string _debugLabel)
+        : base(0)
+        {
+            this._EffectiveColor = _effectiveColor;
+            this.Color = color;
+            this.DarkColor = darkColor;
+            this.HighContrastColor = highContrastColor;
+            this.DarkHighContrastColor = darkHighContrastColor;
+            this.ElevatedColor = elevatedColor;
+            this.DarkElevatedColor = darkElevatedColor;
+            this.HighContrastElevatedColor = highContrastElevatedColor;
+            this.DarkHighContrastElevatedColor = darkHighContrastElevatedColor;
+            this._DebugResolveContext = _debugResolveContext;
+            this._DebugLabel = _debugLabel; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterBinding.UI.Color _EffectiveColor { get; set; }
+        internal virtual string _DebugLabel { get; set; }
+        internal virtual FlutterSDK.Widgets.Framework.Element _DebugResolveContext { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual FlutterBinding.UI.Color DarkColor { get; set; }
+        public virtual FlutterBinding.UI.Color HighContrastColor { get; set; }
+        public virtual FlutterBinding.UI.Color DarkHighContrastColor { get; set; }
+        public virtual FlutterBinding.UI.Color ElevatedColor { get; set; }
+        public virtual FlutterBinding.UI.Color DarkElevatedColor { get; set; }
+        public virtual FlutterBinding.UI.Color HighContrastElevatedColor { get; set; }
+        public virtual FlutterBinding.UI.Color DarkHighContrastElevatedColor { get; set; }
+        public virtual int Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual bool _IsPlatformBrightnessDependent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual bool _IsHighContrastDependent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual bool _IsInterfaceElevationDependent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual Color Resolve(FlutterBinding.UI.Color resolvable, FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = true) { throw new NotImplementedException(); }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor ResolveFrom(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = true) { throw new NotImplementedException(); }
+
+
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 }

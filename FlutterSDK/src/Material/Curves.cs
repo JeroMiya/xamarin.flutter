@@ -373,10 +373,12 @@ using FlutterSDK.Material.Checkbox;
 using FlutterSDK.Material.Chiptheme;
 using FlutterSDK.Material.Feedback;
 using FlutterSDK.Material.Tooltip;
-namespace FlutterSDK.Material.Curves{
-internal static class CurvesDefaultClass{
-public static FlutterSDK.Animation.Curves.Curve StandardEasing = default(FlutterSDK.Animation.Curves.Curve);
-public static FlutterSDK.Animation.Curves.Curve AccelerateEasing = default(FlutterSDK.Animation.Curves.Curve);
-public static FlutterSDK.Animation.Curves.Curve DecelerateEasing = default(FlutterSDK.Animation.Curves.Curve);
-}
+namespace FlutterSDK.Material.Curves
+{
+    internal static class CurvesDefaultClass
+    {
+        public static FlutterSDK.Animation.Curves.Curve StandardEasing = default(FlutterSDK.Animation.Curves.Curve);
+        public static FlutterSDK.Animation.Curves.Curve AccelerateEasing = default(FlutterSDK.Animation.Curves.Curve);
+        public static FlutterSDK.Animation.Curves.Curve DecelerateEasing = default(FlutterSDK.Animation.Curves.Curve);
+    }
 }

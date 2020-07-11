@@ -420,93 +420,99 @@ using FlutterSDK.Material.Inksplash;
 using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
-namespace FlutterSDK.Painting.Decoration{
-internal static class DecorationDefaultClass{
-}
-
-public interface IDecoration{
-string ToStringShort();
-bool DebugAssertIsValid();
-FlutterSDK.Painting.Decoration.Decoration LerpFrom(FlutterSDK.Painting.Decoration.Decoration a,double t);
-FlutterSDK.Painting.Decoration.Decoration LerpTo(FlutterSDK.Painting.Decoration.Decoration b,double t);
-FlutterSDK.Painting.Decoration.Decoration Lerp(FlutterSDK.Painting.Decoration.Decoration a,FlutterSDK.Painting.Decoration.Decoration b,double t);
-bool HitTest(Size size,FlutterBinding.UI.Offset position,TextDirection textDirection = default(TextDirection));
-FlutterSDK.Painting.Decoration.BoxPainter CreateBoxPainter(VoidCallback onChanged = default(VoidCallback));
-Path GetClipPath(FlutterBinding.UI.Rect rect,TextDirection textDirection);
-FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding{get;}
-bool IsComplex{get;}
-}
-
-
-public interface IBoxPainter{
-void Paint(Canvas canvas,FlutterBinding.UI.Offset offset,FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration);
-void Dispose();
-VoidCallback OnChanged{get;}
-}
-
-
-public class Decoration : IDiagnosticable
+namespace FlutterSDK.Painting.Decoration
 {
-#region constructors
-public Decoration()
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class DecorationDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool IsComplex{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new string ToStringShort(){ throw new NotImplementedException(); }
-
-
-public virtual bool DebugAssertIsValid(){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Painting.Decoration.Decoration LerpFrom(FlutterSDK.Painting.Decoration.Decoration a,double t){ throw new NotImplementedException(); }
+    public interface IDecoration
+    {
+        string ToStringShort();
+        bool DebugAssertIsValid();
+        FlutterSDK.Painting.Decoration.Decoration LerpFrom(FlutterSDK.Painting.Decoration.Decoration a, double t);
+        FlutterSDK.Painting.Decoration.Decoration LerpTo(FlutterSDK.Painting.Decoration.Decoration b, double t);
+        FlutterSDK.Painting.Decoration.Decoration Lerp(FlutterSDK.Painting.Decoration.Decoration a, FlutterSDK.Painting.Decoration.Decoration b, double t);
+        bool HitTest(Size size, FlutterBinding.UI.Offset position, TextDirection textDirection = default(TextDirection));
+        FlutterSDK.Painting.Decoration.BoxPainter CreateBoxPainter(VoidCallback onChanged = default(VoidCallback));
+        Path GetClipPath(FlutterBinding.UI.Rect rect, TextDirection textDirection);
+        FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; }
+        bool IsComplex { get; }
+    }
 
 
-public virtual FlutterSDK.Painting.Decoration.Decoration LerpTo(FlutterSDK.Painting.Decoration.Decoration b,double t){ throw new NotImplementedException(); }
+    public interface IBoxPainter
+    {
+        void Paint(Canvas canvas, FlutterBinding.UI.Offset offset, FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration);
+        void Dispose();
+        VoidCallback OnChanged { get; }
+    }
 
 
-public virtual FlutterSDK.Painting.Decoration.Decoration Lerp(FlutterSDK.Painting.Decoration.Decoration a,FlutterSDK.Painting.Decoration.Decoration b,double t){ throw new NotImplementedException(); }
+    public class Decoration : IDiagnosticable
+    {
+        #region constructors
+        public Decoration()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsComplex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new string ToStringShort() { throw new NotImplementedException(); }
 
 
-public virtual bool HitTest(Size size,FlutterBinding.UI.Offset position,TextDirection textDirection = default(TextDirection)){ throw new NotImplementedException(); }
+        public virtual bool DebugAssertIsValid() { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Painting.Decoration.BoxPainter CreateBoxPainter(VoidCallback onChanged = default(VoidCallback)){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Decoration.Decoration LerpFrom(FlutterSDK.Painting.Decoration.Decoration a, double t) { throw new NotImplementedException(); }
 
 
-public virtual Path GetClipPath(FlutterBinding.UI.Rect rect,TextDirection textDirection){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual FlutterSDK.Painting.Decoration.Decoration LerpTo(FlutterSDK.Painting.Decoration.Decoration b, double t) { throw new NotImplementedException(); }
 
 
-public class BoxPainter
-{
-#region constructors
-public BoxPainter(VoidCallback onChanged = default(VoidCallback))
-{
-this.OnChanged = onChanged;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual VoidCallback OnChanged{get;set;}
-#endregion
-
-#region methods
-
-public virtual void Paint(Canvas canvas,FlutterBinding.UI.Offset offset,FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Decoration.Decoration Lerp(FlutterSDK.Painting.Decoration.Decoration a, FlutterSDK.Painting.Decoration.Decoration b, double t) { throw new NotImplementedException(); }
 
 
-public virtual void Dispose(){ throw new NotImplementedException(); }
+        public virtual bool HitTest(Size size, FlutterBinding.UI.Offset position, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public virtual FlutterSDK.Painting.Decoration.BoxPainter CreateBoxPainter(VoidCallback onChanged = default(VoidCallback)) { throw new NotImplementedException(); }
+
+
+        public virtual Path GetClipPath(FlutterBinding.UI.Rect rect, TextDirection textDirection) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class BoxPainter
+    {
+        #region constructors
+        public BoxPainter(VoidCallback onChanged = default(VoidCallback))
+        {
+            this.OnChanged = onChanged; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual VoidCallback OnChanged { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual void Paint(Canvas canvas, FlutterBinding.UI.Offset offset, FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) { throw new NotImplementedException(); }
+
+
+        public virtual void Dispose() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

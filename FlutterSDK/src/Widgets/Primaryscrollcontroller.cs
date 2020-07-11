@@ -423,38 +423,42 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Primaryscrollcontroller{
-internal static class PrimaryscrollcontrollerDefaultClass{
-}
-
-public class PrimaryScrollController : FlutterSDK.Widgets.Framework.InheritedWidget
+namespace FlutterSDK.Widgets.Primaryscrollcontroller
 {
-#region constructors
-public PrimaryScrollController(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key,child:child)
-{
-this.Controller = controller;throw new NotImplementedException(); }
-public static PrimaryScrollController None(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-{
-var instance =new PrimaryScrollController(key:key,child:child);throw new NotImplementedException(); }
-#endregion
+    internal static class PrimaryscrollcontrollerDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller{get;set;}
-#endregion
+    public class PrimaryScrollController : FlutterSDK.Widgets.Framework.InheritedWidget
+    {
+        #region constructors
+        public PrimaryScrollController(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            this.Controller = controller; throw new NotImplementedException();
+        }
+        public static PrimaryScrollController None(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        {
+            var instance = new PrimaryScrollController(key: key, child: child); throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller { get; set; }
+        #endregion
 
-public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Of(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
+
+        public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Primaryscrollcontroller.PrimaryScrollController oldWidget){ throw new NotImplementedException(); }
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget){ throw new NotImplementedException(); }
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Primaryscrollcontroller.PrimaryScrollController oldWidget) { throw new NotImplementedException(); }
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 }

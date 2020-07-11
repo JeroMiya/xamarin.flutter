@@ -291,112 +291,118 @@ using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
-namespace FlutterSDK.Cupertino.Texttheme{
-internal static class TextthemeDefaultClass{
-public static FlutterSDK.Painting.Textstyle.TextStyle _KDefaultTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle);
-public static FlutterSDK.Painting.Textstyle.TextStyle _KDefaultActionTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle);
-public static FlutterSDK.Painting.Textstyle.TextStyle _KDefaultTabLabelTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle);
-public static FlutterSDK.Painting.Textstyle.TextStyle _KDefaultMiddleTitleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle);
-public static FlutterSDK.Painting.Textstyle.TextStyle _KDefaultLargeTitleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle);
-public static FlutterSDK.Painting.Textstyle.TextStyle _KDefaultPickerTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle);
-public static FlutterSDK.Painting.Textstyle.TextStyle _KDefaultDateTimePickerTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle);
-internal static FlutterSDK.Painting.Textstyle.TextStyle _ResolveTextStyle(FlutterSDK.Painting.Textstyle.TextStyle style,FlutterSDK.Widgets.Framework.BuildContext context,bool nullOk){
-throw new NotImplementedException();
-}
-
-}
-
-public class CupertinoTextThemeData : IDiagnosticable
+namespace FlutterSDK.Cupertino.Texttheme
 {
-#region constructors
-public CupertinoTextThemeData(FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color),Brightness brightness = default(Brightness),FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Painting.Textstyle.TextStyle actionTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Painting.Textstyle.TextStyle tabLabelTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Painting.Textstyle.TextStyle navTitleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Painting.Textstyle.TextStyle navLargeTitleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Painting.Textstyle.TextStyle navActionTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Painting.Textstyle.TextStyle pickerTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Painting.Textstyle.TextStyle dateTimePickerTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
-: base()
-{
-throw new NotImplementedException(); }
-internal static CupertinoTextThemeData _Raw(FlutterSDK.Cupertino.Texttheme._TextThemeDefaultsBuilder _defaults,FlutterBinding.UI.Color _primaryColor,FlutterSDK.Painting.Textstyle.TextStyle _textStyle,FlutterSDK.Painting.Textstyle.TextStyle _actionTextStyle,FlutterSDK.Painting.Textstyle.TextStyle _tabLabelTextStyle,FlutterSDK.Painting.Textstyle.TextStyle _navTitleTextStyle,FlutterSDK.Painting.Textstyle.TextStyle _navLargeTitleTextStyle,FlutterSDK.Painting.Textstyle.TextStyle _navActionTextStyle,FlutterSDK.Painting.Textstyle.TextStyle _pickerTextStyle,FlutterSDK.Painting.Textstyle.TextStyle _dateTimePickerTextStyle)
-{
-var instance =new CupertinoTextThemeData();instance._Defaults = _defaults;
-instance._PrimaryColor = _primaryColor;
-instance._TextStyle = _textStyle;
-instance._ActionTextStyle = _actionTextStyle;
-instance._TabLabelTextStyle = _tabLabelTextStyle;
-instance._NavTitleTextStyle = _navTitleTextStyle;
-instance._NavLargeTitleTextStyle = _navLargeTitleTextStyle;
-instance._NavActionTextStyle = _navActionTextStyle;
-instance._PickerTextStyle = _pickerTextStyle;
-instance._DateTimePickerTextStyle = _dateTimePickerTextStyle;throw new NotImplementedException(); }
-#endregion
+    internal static class TextthemeDefaultClass
+    {
+        public static FlutterSDK.Painting.Textstyle.TextStyle _KDefaultTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle);
+        public static FlutterSDK.Painting.Textstyle.TextStyle _KDefaultActionTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle);
+        public static FlutterSDK.Painting.Textstyle.TextStyle _KDefaultTabLabelTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle);
+        public static FlutterSDK.Painting.Textstyle.TextStyle _KDefaultMiddleTitleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle);
+        public static FlutterSDK.Painting.Textstyle.TextStyle _KDefaultLargeTitleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle);
+        public static FlutterSDK.Painting.Textstyle.TextStyle _KDefaultPickerTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle);
+        public static FlutterSDK.Painting.Textstyle.TextStyle _KDefaultDateTimePickerTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle);
+        internal static FlutterSDK.Painting.Textstyle.TextStyle _ResolveTextStyle(FlutterSDK.Painting.Textstyle.TextStyle style, FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk)
+        {
+            throw new NotImplementedException();
+        }
 
-#region fields
-internal virtual FlutterSDK.Cupertino.Texttheme._TextThemeDefaultsBuilder _Defaults{get;set;}
-internal virtual FlutterBinding.UI.Color _PrimaryColor{get;set;}
-internal virtual FlutterSDK.Painting.Textstyle.TextStyle _TextStyle{get;set;}
-internal virtual FlutterSDK.Painting.Textstyle.TextStyle _ActionTextStyle{get;set;}
-internal virtual FlutterSDK.Painting.Textstyle.TextStyle _TabLabelTextStyle{get;set;}
-internal virtual FlutterSDK.Painting.Textstyle.TextStyle _NavTitleTextStyle{get;set;}
-internal virtual FlutterSDK.Painting.Textstyle.TextStyle _NavLargeTitleTextStyle{get;set;}
-internal virtual FlutterSDK.Painting.Textstyle.TextStyle _NavActionTextStyle{get;set;}
-internal virtual FlutterSDK.Painting.Textstyle.TextStyle _PickerTextStyle{get;set;}
-internal virtual FlutterSDK.Painting.Textstyle.TextStyle _DateTimePickerTextStyle{get;set;}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle ActionTextStyle{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle TabLabelTextStyle{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle NavTitleTextStyle{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle NavLargeTitleTextStyle{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle NavActionTextStyle{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle PickerTextStyle{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle DateTimePickerTextStyle{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    }
 
-#region methods
+    public class CupertinoTextThemeData : IDiagnosticable
+    {
+        #region constructors
+        public CupertinoTextThemeData(FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle actionTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle tabLabelTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle navTitleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle navLargeTitleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle navActionTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle pickerTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle dateTimePickerTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        internal static CupertinoTextThemeData _Raw(FlutterSDK.Cupertino.Texttheme._TextThemeDefaultsBuilder _defaults, FlutterBinding.UI.Color _primaryColor, FlutterSDK.Painting.Textstyle.TextStyle _textStyle, FlutterSDK.Painting.Textstyle.TextStyle _actionTextStyle, FlutterSDK.Painting.Textstyle.TextStyle _tabLabelTextStyle, FlutterSDK.Painting.Textstyle.TextStyle _navTitleTextStyle, FlutterSDK.Painting.Textstyle.TextStyle _navLargeTitleTextStyle, FlutterSDK.Painting.Textstyle.TextStyle _navActionTextStyle, FlutterSDK.Painting.Textstyle.TextStyle _pickerTextStyle, FlutterSDK.Painting.Textstyle.TextStyle _dateTimePickerTextStyle)
+        {
+            var instance = new CupertinoTextThemeData(); instance._Defaults = _defaults;
+            instance._PrimaryColor = _primaryColor;
+            instance._TextStyle = _textStyle;
+            instance._ActionTextStyle = _actionTextStyle;
+            instance._TabLabelTextStyle = _tabLabelTextStyle;
+            instance._NavTitleTextStyle = _navTitleTextStyle;
+            instance._NavLargeTitleTextStyle = _navLargeTitleTextStyle;
+            instance._NavActionTextStyle = _navActionTextStyle;
+            instance._PickerTextStyle = _pickerTextStyle;
+            instance._DateTimePickerTextStyle = _dateTimePickerTextStyle; throw new NotImplementedException();
+        }
+        #endregion
 
-public virtual FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData ResolveFrom(FlutterSDK.Widgets.Framework.BuildContext context,bool nullOk = false){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual FlutterSDK.Cupertino.Texttheme._TextThemeDefaultsBuilder _Defaults { get; set; }
+        internal virtual FlutterBinding.UI.Color _PrimaryColor { get; set; }
+        internal virtual FlutterSDK.Painting.Textstyle.TextStyle _TextStyle { get; set; }
+        internal virtual FlutterSDK.Painting.Textstyle.TextStyle _ActionTextStyle { get; set; }
+        internal virtual FlutterSDK.Painting.Textstyle.TextStyle _TabLabelTextStyle { get; set; }
+        internal virtual FlutterSDK.Painting.Textstyle.TextStyle _NavTitleTextStyle { get; set; }
+        internal virtual FlutterSDK.Painting.Textstyle.TextStyle _NavLargeTitleTextStyle { get; set; }
+        internal virtual FlutterSDK.Painting.Textstyle.TextStyle _NavActionTextStyle { get; set; }
+        internal virtual FlutterSDK.Painting.Textstyle.TextStyle _PickerTextStyle { get; set; }
+        internal virtual FlutterSDK.Painting.Textstyle.TextStyle _DateTimePickerTextStyle { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle ActionTextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle TabLabelTextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle NavTitleTextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle NavLargeTitleTextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle NavActionTextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle PickerTextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle DateTimePickerTextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public virtual FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData CopyWith(FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color),Brightness brightness = default(Brightness),FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Painting.Textstyle.TextStyle actionTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Painting.Textstyle.TextStyle tabLabelTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Painting.Textstyle.TextStyle navTitleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Painting.Textstyle.TextStyle navLargeTitleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Painting.Textstyle.TextStyle navActionTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Painting.Textstyle.TextStyle pickerTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Painting.Textstyle.TextStyle dateTimePickerTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle)){ throw new NotImplementedException(); }
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _TextThemeDefaultsBuilder
-{
-#region constructors
-public _TextThemeDefaultsBuilder(FlutterBinding.UI.Color labelColor,FlutterBinding.UI.Color inactiveGrayColor)
-: base()
-{
-this.LabelColor = labelColor;
-this.InactiveGrayColor = inactiveGrayColor;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterBinding.UI.Color LabelColor{get;set;}
-public virtual FlutterBinding.UI.Color InactiveGrayColor{get;set;}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle TabLabelTextStyle{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle NavTitleTextStyle{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle NavLargeTitleTextStyle{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle PickerTextStyle{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle DateTimePickerTextStyle{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-private FlutterSDK.Painting.Textstyle.TextStyle _ApplyLabelColor(FlutterSDK.Painting.Textstyle.TextStyle original,FlutterBinding.UI.Color color){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData ResolveFrom(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Painting.Textstyle.TextStyle ActionTextStyle(FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color)){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData CopyWith(FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle actionTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle tabLabelTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle navTitleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle navLargeTitleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle navActionTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle pickerTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle dateTimePickerTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle)) { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Painting.Textstyle.TextStyle NavActionTextStyle(FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color)){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public virtual FlutterSDK.Cupertino.Texttheme._TextThemeDefaultsBuilder ResolveFrom(FlutterSDK.Widgets.Framework.BuildContext context,bool nullOk){ throw new NotImplementedException(); }
+    public class _TextThemeDefaultsBuilder
+    {
+        #region constructors
+        public _TextThemeDefaultsBuilder(FlutterBinding.UI.Color labelColor, FlutterBinding.UI.Color inactiveGrayColor)
+        : base()
+        {
+            this.LabelColor = labelColor;
+            this.InactiveGrayColor = inactiveGrayColor; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual FlutterBinding.UI.Color LabelColor { get; set; }
+        public virtual FlutterBinding.UI.Color InactiveGrayColor { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle TabLabelTextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle NavTitleTextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle NavLargeTitleTextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle PickerTextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle DateTimePickerTextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        private FlutterSDK.Painting.Textstyle.TextStyle _ApplyLabelColor(FlutterSDK.Painting.Textstyle.TextStyle original, FlutterBinding.UI.Color color) { throw new NotImplementedException(); }
+
+
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle ActionTextStyle(FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color)) { throw new NotImplementedException(); }
+
+
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle NavActionTextStyle(FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color)) { throw new NotImplementedException(); }
+
+
+        public virtual FlutterSDK.Cupertino.Texttheme._TextThemeDefaultsBuilder ResolveFrom(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

@@ -421,97 +421,101 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Widgets.Animatedcrossfade{
-public delegate FlutterSDK.Widgets.Framework.Widget AnimatedCrossFadeBuilder(FlutterSDK.Widgets.Framework.Widget topChild,FlutterSDK.Foundation.Key.Key topChildKey,FlutterSDK.Widgets.Framework.Widget bottomChild,FlutterSDK.Foundation.Key.Key bottomChildKey);
-internal static class AnimatedcrossfadeDefaultClass{
-}
-
-public class AnimatedCrossFade : FlutterSDK.Widgets.Framework.StatefulWidget
+namespace FlutterSDK.Widgets.Animatedcrossfade
 {
-#region constructors
-public AnimatedCrossFade(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget firstChild = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.Widget secondChild = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Animation.Curves.Curve firstCurve = default(FlutterSDK.Animation.Curves.Curve),FlutterSDK.Animation.Curves.Curve secondCurve = default(FlutterSDK.Animation.Curves.Curve),FlutterSDK.Animation.Curves.Curve sizeCurve = default(FlutterSDK.Animation.Curves.Curve),FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry),FlutterSDK.Widgets.Animatedcrossfade.CrossFadeState crossFadeState = default(FlutterSDK.Widgets.Animatedcrossfade.CrossFadeState),TimeSpan duration = default(TimeSpan),TimeSpan reverseDuration = default(TimeSpan),FlutterSDK.Widgets.Animatedcrossfade.AnimatedCrossFadeBuilder layoutBuilder = default(FlutterSDK.Widgets.Animatedcrossfade.AnimatedCrossFadeBuilder))
-: base(key:key)
-{
-this.FirstChild = firstChild;
-this.SecondChild = secondChild;
-this.FirstCurve = firstCurve;
-this.SecondCurve = secondCurve;
-this.SizeCurve = sizeCurve;
-this.Alignment = alignment;
-this.CrossFadeState = crossFadeState;
-this.Duration = duration;
-this.ReverseDuration = reverseDuration;
-this.LayoutBuilder = layoutBuilder;throw new NotImplementedException(); }
-#endregion
+    public delegate FlutterSDK.Widgets.Framework.Widget AnimatedCrossFadeBuilder(FlutterSDK.Widgets.Framework.Widget topChild, FlutterSDK.Foundation.Key.Key topChildKey, FlutterSDK.Widgets.Framework.Widget bottomChild, FlutterSDK.Foundation.Key.Key bottomChildKey);
+    internal static class AnimatedcrossfadeDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget FirstChild{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget SecondChild{get;set;}
-public virtual FlutterSDK.Widgets.Animatedcrossfade.CrossFadeState CrossFadeState{get;set;}
-public virtual TimeSpan Duration{get;set;}
-public virtual TimeSpan ReverseDuration{get;set;}
-public virtual FlutterSDK.Animation.Curves.Curve FirstCurve{get;set;}
-public virtual FlutterSDK.Animation.Curves.Curve SecondCurve{get;set;}
-public virtual FlutterSDK.Animation.Curves.Curve SizeCurve{get;set;}
-public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment{get;set;}
-public virtual FlutterSDK.Widgets.Animatedcrossfade.AnimatedCrossFadeBuilder LayoutBuilder{get;set;}
-#endregion
+    public class AnimatedCrossFade : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public AnimatedCrossFade(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget firstChild = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget secondChild = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Animation.Curves.Curve firstCurve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Animation.Curves.Curve secondCurve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Animation.Curves.Curve sizeCurve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Widgets.Animatedcrossfade.CrossFadeState crossFadeState = default(FlutterSDK.Widgets.Animatedcrossfade.CrossFadeState), TimeSpan duration = default(TimeSpan), TimeSpan reverseDuration = default(TimeSpan), FlutterSDK.Widgets.Animatedcrossfade.AnimatedCrossFadeBuilder layoutBuilder = default(FlutterSDK.Widgets.Animatedcrossfade.AnimatedCrossFadeBuilder))
+        : base(key: key)
+        {
+            this.FirstChild = firstChild;
+            this.SecondChild = secondChild;
+            this.FirstCurve = firstCurve;
+            this.SecondCurve = secondCurve;
+            this.SizeCurve = sizeCurve;
+            this.Alignment = alignment;
+            this.CrossFadeState = crossFadeState;
+            this.Duration = duration;
+            this.ReverseDuration = reverseDuration;
+            this.LayoutBuilder = layoutBuilder; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget FirstChild { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget SecondChild { get; set; }
+        public virtual FlutterSDK.Widgets.Animatedcrossfade.CrossFadeState CrossFadeState { get; set; }
+        public virtual TimeSpan Duration { get; set; }
+        public virtual TimeSpan ReverseDuration { get; set; }
+        public virtual FlutterSDK.Animation.Curves.Curve FirstCurve { get; set; }
+        public virtual FlutterSDK.Animation.Curves.Curve SecondCurve { get; set; }
+        public virtual FlutterSDK.Animation.Curves.Curve SizeCurve { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
+        public virtual FlutterSDK.Widgets.Animatedcrossfade.AnimatedCrossFadeBuilder LayoutBuilder { get; set; }
+        #endregion
 
-public virtual FlutterSDK.Widgets.Framework.Widget DefaultLayoutBuilder(FlutterSDK.Widgets.Framework.Widget topChild,FlutterSDK.Foundation.Key.Key topChildKey,FlutterSDK.Widgets.Framework.Widget bottomChild,FlutterSDK.Foundation.Key.Key bottomChildKey){ throw new NotImplementedException(); }
+        #region methods
 
-
-public new FlutterSDK.Widgets.Animatedcrossfade._AnimatedCrossFadeState CreateState(){ throw new NotImplementedException(); }
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _AnimatedCrossFadeState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Animatedcrossfade.AnimatedCrossFade>,ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-#region constructors
-public _AnimatedCrossFadeState()
-{ }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _FirstAnimation{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _SecondAnimation{get;set;}
-internal virtual bool _IsTransitioning{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new void InitState(){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Widgets.Framework.Widget DefaultLayoutBuilder(FlutterSDK.Widgets.Framework.Widget topChild, FlutterSDK.Foundation.Key.Key topChildKey, FlutterSDK.Widgets.Framework.Widget bottomChild, FlutterSDK.Foundation.Key.Key bottomChildKey) { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Animation.Animation.Animation<double> _InitAnimation(FlutterSDK.Animation.Curves.Curve curve,bool inverted){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Animatedcrossfade._AnimatedCrossFadeState CreateState() { throw new NotImplementedException(); }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public new void DidUpdateWidget(FlutterSDK.Widgets.Animatedcrossfade.AnimatedCrossFade oldWidget){ throw new NotImplementedException(); }
+    public class _AnimatedCrossFadeState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Animatedcrossfade.AnimatedCrossFade>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _AnimatedCrossFadeState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _FirstAnimation { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _SecondAnimation { get; set; }
+        internal virtual bool _IsTransitioning { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        private FlutterSDK.Animation.Animation.Animation<double> _InitAnimation(FlutterSDK.Animation.Curves.Curve curve, bool inverted) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public new void Dispose() { throw new NotImplementedException(); }
 
 
-public enum CrossFadeState{
+        public new void DidUpdateWidget(FlutterSDK.Widgets.Animatedcrossfade.AnimatedCrossFade oldWidget) { throw new NotImplementedException(); }
 
-ShowFirst,
-ShowSecond,
-}
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public enum CrossFadeState
+    {
+
+        ShowFirst,
+        ShowSecond,
+    }
 
 }

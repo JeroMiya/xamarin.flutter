@@ -351,50 +351,53 @@ using FlutterSDK.Material.Iconbutton;
 using FlutterSDK.Material.Material;
 using FlutterSDK.Material.Tabs;
 using FlutterSDK.Material.Texttheme;
-namespace FlutterSDK.Material.Appbartheme{
-internal static class AppbarthemeDefaultClass{
-}
-
-public class AppBarTheme : IDiagnosticable
+namespace FlutterSDK.Material.Appbartheme
 {
-#region constructors
-public AppBarTheme(Brightness brightness = default(Brightness),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),double elevation = default(double),FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData),FlutterSDK.Widgets.Iconthemedata.IconThemeData actionsIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData),FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme))
-{
-this.Brightness = brightness;
-this.Color = color;
-this.Elevation = elevation;
-this.IconTheme = iconTheme;
-this.ActionsIconTheme = actionsIconTheme;
-this.TextTheme = textTheme;throw new NotImplementedException(); }
-#endregion
+    internal static class AppbarthemeDefaultClass
+    {
+    }
 
-#region fields
-public virtual Brightness Brightness{get;set;}
-public virtual FlutterBinding.UI.Color Color{get;set;}
-public virtual double Elevation{get;set;}
-public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData IconTheme{get;set;}
-public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData ActionsIconTheme{get;set;}
-public virtual FlutterSDK.Material.Texttheme.TextTheme TextTheme{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class AppBarTheme : IDiagnosticable
+    {
+        #region constructors
+        public AppBarTheme(Brightness brightness = default(Brightness), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData actionsIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme))
+        {
+            this.Brightness = brightness;
+            this.Color = color;
+            this.Elevation = elevation;
+            this.IconTheme = iconTheme;
+            this.ActionsIconTheme = actionsIconTheme;
+            this.TextTheme = textTheme; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual Brightness Brightness { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData IconTheme { get; set; }
+        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData ActionsIconTheme { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme TextTheme { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual FlutterSDK.Material.Appbartheme.AppBarTheme CopyWith(FlutterSDK.Widgets.Iconthemedata.IconThemeData actionsIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData),Brightness brightness = default(Brightness),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),double elevation = default(double),FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData),FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme)){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual FlutterSDK.Material.Appbartheme.AppBarTheme Of(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Material.Appbartheme.AppBarTheme Lerp(FlutterSDK.Material.Appbartheme.AppBarTheme a,FlutterSDK.Material.Appbartheme.AppBarTheme b,double t){ throw new NotImplementedException(); }
-
-
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Material.Appbartheme.AppBarTheme CopyWith(FlutterSDK.Widgets.Iconthemedata.IconThemeData actionsIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), Brightness brightness = default(Brightness), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme)) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Material.Appbartheme.AppBarTheme Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public virtual FlutterSDK.Material.Appbartheme.AppBarTheme Lerp(FlutterSDK.Material.Appbartheme.AppBarTheme a, FlutterSDK.Material.Appbartheme.AppBarTheme b, double t) { throw new NotImplementedException(); }
+
+
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

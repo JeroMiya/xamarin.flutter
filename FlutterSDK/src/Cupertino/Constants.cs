@@ -291,8 +291,10 @@ using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
-namespace FlutterSDK.Cupertino.Constants{
-internal static class ConstantsDefaultClass{
-public static double KMinInteractiveDimensionCupertino = default(double);
-}
+namespace FlutterSDK.Cupertino.Constants
+{
+    internal static class ConstantsDefaultClass
+    {
+        public static double KMinInteractiveDimensionCupertino = default(double);
+    }
 }

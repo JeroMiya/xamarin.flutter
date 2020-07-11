@@ -388,353 +388,359 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-namespace FlutterSDK.Material.Materiallocalizations{
-internal static class MateriallocalizationsDefaultClass{
-}
-
-public interface IMaterialLocalizations{}
-
-public class MaterialLocalizations{
-public virtual string OpenAppDrawerTooltip{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string BackButtonTooltip{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string CloseButtonTooltip{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string DeleteButtonTooltip{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string MoreButtonTooltip{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string NextMonthTooltip{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string PreviousMonthTooltip{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string NextPageTooltip{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string PreviousPageTooltip{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string ShowMenuTooltip{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string LicensesPageTitle{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string RowsPerPageTitle{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string CancelButtonLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string CloseButtonLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string ContinueButtonLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string CopyButtonLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string CutButtonLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string OkButtonLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string PasteButtonLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string SelectAllButtonLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string ViewLicensesButtonLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string AnteMeridiemAbbreviation{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string PostMeridiemAbbreviation{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string TimePickerHourModeAnnouncement{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string TimePickerMinuteModeAnnouncement{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string ModalBarrierDismissLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string DrawerLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string PopupMenuLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string DialogLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string AlertDialogLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string SearchFieldLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Material.Typography.ScriptCategory ScriptCategory{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual List<string> NarrowWeekdays{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int FirstDayOfWeekIndex{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string SignedInLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string HideAccountsLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string ShowAccountsLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string ReorderItemToStart{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string ReorderItemToEnd{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string ReorderItemUp{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string ReorderItemDown{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string ReorderItemLeft{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string ReorderItemRight{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string ExpandedIconTapHint{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string CollapsedIconTapHint{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string RefreshIndicatorSemanticLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-
-public virtual string AboutListTileTitle(string applicationName){ throw new NotImplementedException(); }
-
-
-public virtual string PageRowsInfoTitle(int firstRow,int lastRow,int rowCount,bool rowCountIsApproximate){ throw new NotImplementedException(); }
-
-
-public virtual string TabLabel(int tabIndex = default(int),int tabCount = default(int)){ throw new NotImplementedException(); }
-
-
-public virtual string SelectedRowCountTitle(int selectedRowCount){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Material.Time.TimeOfDayFormat TimeOfDayFormat(bool alwaysUse24HourFormat = false){ throw new NotImplementedException(); }
-
-
-public virtual string FormatDecimal(int number){ throw new NotImplementedException(); }
-
-
-public virtual string FormatHour(FlutterSDK.Material.Time.TimeOfDay timeOfDay,bool alwaysUse24HourFormat = false){ throw new NotImplementedException(); }
-
-
-public virtual string FormatMinute(FlutterSDK.Material.Time.TimeOfDay timeOfDay){ throw new NotImplementedException(); }
-
-
-public virtual string FormatTimeOfDay(FlutterSDK.Material.Time.TimeOfDay timeOfDay,bool alwaysUse24HourFormat = false){ throw new NotImplementedException(); }
-
-
-public virtual string FormatYear(DateTime date){ throw new NotImplementedException(); }
-
-
-public virtual string FormatCompactDate(DateTime date){ throw new NotImplementedException(); }
-
-
-public virtual string FormatShortDate(DateTime date){ throw new NotImplementedException(); }
-
-
-public virtual string FormatMediumDate(DateTime date){ throw new NotImplementedException(); }
-
-
-public virtual string FormatFullDate(DateTime date){ throw new NotImplementedException(); }
-
-
-public virtual string FormatMonthYear(DateTime date){ throw new NotImplementedException(); }
-
-
-public virtual string FormatShortMonthDay(DateTime date){ throw new NotImplementedException(); }
-
-
-public virtual DateTime ParseCompactDate(string inputString){ throw new NotImplementedException(); }
-
-
-public virtual string RemainingTextFieldCharacterCount(int remaining){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Material.Materiallocalizations.MaterialLocalizations Of(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-}
-public static class MaterialLocalizationsMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IMaterialLocalizations, MaterialLocalizations> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IMaterialLocalizations, MaterialLocalizations>();
-static MaterialLocalizations GetOrCreate(IMaterialLocalizations instance)
+namespace FlutterSDK.Material.Materiallocalizations
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new MaterialLocalizations();
-_table.Add(instance, value);
-}
-return (MaterialLocalizations)value;
-}
-public static string OpenAppDrawerTooltipProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).OpenAppDrawerTooltip;
-public static string BackButtonTooltipProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).BackButtonTooltip;
-public static string CloseButtonTooltipProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).CloseButtonTooltip;
-public static string DeleteButtonTooltipProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).DeleteButtonTooltip;
-public static string MoreButtonTooltipProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).MoreButtonTooltip;
-public static string NextMonthTooltipProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).NextMonthTooltip;
-public static string PreviousMonthTooltipProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).PreviousMonthTooltip;
-public static string NextPageTooltipProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).NextPageTooltip;
-public static string PreviousPageTooltipProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).PreviousPageTooltip;
-public static string ShowMenuTooltipProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).ShowMenuTooltip;
-public static string LicensesPageTitleProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).LicensesPageTitle;
-public static string RowsPerPageTitleProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).RowsPerPageTitle;
-public static string CancelButtonLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).CancelButtonLabel;
-public static string CloseButtonLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).CloseButtonLabel;
-public static string ContinueButtonLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).ContinueButtonLabel;
-public static string CopyButtonLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).CopyButtonLabel;
-public static string CutButtonLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).CutButtonLabel;
-public static string OkButtonLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).OkButtonLabel;
-public static string PasteButtonLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).PasteButtonLabel;
-public static string SelectAllButtonLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).SelectAllButtonLabel;
-public static string ViewLicensesButtonLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).ViewLicensesButtonLabel;
-public static string AnteMeridiemAbbreviationProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).AnteMeridiemAbbreviation;
-public static string PostMeridiemAbbreviationProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).PostMeridiemAbbreviation;
-public static string TimePickerHourModeAnnouncementProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).TimePickerHourModeAnnouncement;
-public static string TimePickerMinuteModeAnnouncementProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).TimePickerMinuteModeAnnouncement;
-public static string ModalBarrierDismissLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).ModalBarrierDismissLabel;
-public static string DrawerLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).DrawerLabel;
-public static string PopupMenuLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).PopupMenuLabel;
-public static string DialogLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).DialogLabel;
-public static string AlertDialogLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).AlertDialogLabel;
-public static string SearchFieldLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).SearchFieldLabel;
-public static FlutterSDK.Material.Typography.ScriptCategory ScriptCategoryProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).ScriptCategory;
-public static List<string> NarrowWeekdaysProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).NarrowWeekdays;
-public static int FirstDayOfWeekIndexProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).FirstDayOfWeekIndex;
-public static string SignedInLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).SignedInLabel;
-public static string HideAccountsLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).HideAccountsLabel;
-public static string ShowAccountsLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).ShowAccountsLabel;
-public static string ReorderItemToStartProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).ReorderItemToStart;
-public static string ReorderItemToEndProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).ReorderItemToEnd;
-public static string ReorderItemUpProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).ReorderItemUp;
-public static string ReorderItemDownProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).ReorderItemDown;
-public static string ReorderItemLeftProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).ReorderItemLeft;
-public static string ReorderItemRightProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).ReorderItemRight;
-public static string ExpandedIconTapHintProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).ExpandedIconTapHint;
-public static string CollapsedIconTapHintProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).CollapsedIconTapHint;
-public static string RefreshIndicatorSemanticLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).RefreshIndicatorSemanticLabel;
-public static string AboutListTileTitle(this IMaterialLocalizations instance,string applicationName) => GetOrCreate(instance).AboutListTileTitle(applicationName);
-public static string PageRowsInfoTitle(this IMaterialLocalizations instance,int firstRow,int lastRow,int rowCount,bool rowCountIsApproximate) => GetOrCreate(instance).PageRowsInfoTitle(firstRow, lastRow, rowCount, rowCountIsApproximate);
-public static string TabLabel(this IMaterialLocalizations instance,int tabIndex = default(int),int tabCount = default(int)) => GetOrCreate(instance).TabLabel(tabIndex, tabCount);
-public static string SelectedRowCountTitle(this IMaterialLocalizations instance,int selectedRowCount) => GetOrCreate(instance).SelectedRowCountTitle(selectedRowCount);
-public static FlutterSDK.Material.Time.TimeOfDayFormat TimeOfDayFormat(this IMaterialLocalizations instance,bool alwaysUse24HourFormat = false) => GetOrCreate(instance).TimeOfDayFormat(alwaysUse24HourFormat);
-public static string FormatDecimal(this IMaterialLocalizations instance,int number) => GetOrCreate(instance).FormatDecimal(number);
-public static string FormatHour(this IMaterialLocalizations instance,FlutterSDK.Material.Time.TimeOfDay timeOfDay,bool alwaysUse24HourFormat = false) => GetOrCreate(instance).FormatHour(timeOfDay, alwaysUse24HourFormat);
-public static string FormatMinute(this IMaterialLocalizations instance,FlutterSDK.Material.Time.TimeOfDay timeOfDay) => GetOrCreate(instance).FormatMinute(timeOfDay);
-public static string FormatTimeOfDay(this IMaterialLocalizations instance,FlutterSDK.Material.Time.TimeOfDay timeOfDay,bool alwaysUse24HourFormat = false) => GetOrCreate(instance).FormatTimeOfDay(timeOfDay, alwaysUse24HourFormat);
-public static string FormatYear(this IMaterialLocalizations instance,DateTime date) => GetOrCreate(instance).FormatYear(date);
-public static string FormatCompactDate(this IMaterialLocalizations instance,DateTime date) => GetOrCreate(instance).FormatCompactDate(date);
-public static string FormatShortDate(this IMaterialLocalizations instance,DateTime date) => GetOrCreate(instance).FormatShortDate(date);
-public static string FormatMediumDate(this IMaterialLocalizations instance,DateTime date) => GetOrCreate(instance).FormatMediumDate(date);
-public static string FormatFullDate(this IMaterialLocalizations instance,DateTime date) => GetOrCreate(instance).FormatFullDate(date);
-public static string FormatMonthYear(this IMaterialLocalizations instance,DateTime date) => GetOrCreate(instance).FormatMonthYear(date);
-public static string FormatShortMonthDay(this IMaterialLocalizations instance,DateTime date) => GetOrCreate(instance).FormatShortMonthDay(date);
-public static DateTime ParseCompactDate(this IMaterialLocalizations instance,string inputString) => GetOrCreate(instance).ParseCompactDate(inputString);
-public static string RemainingTextFieldCharacterCount(this IMaterialLocalizations instance,int remaining) => GetOrCreate(instance).RemainingTextFieldCharacterCount(remaining);
-public static FlutterSDK.Material.Materiallocalizations.MaterialLocalizations Of(this IMaterialLocalizations instance,FlutterSDK.Widgets.Framework.BuildContext context) => GetOrCreate(instance).Of(context);
-}
+    internal static class MateriallocalizationsDefaultClass
+    {
+    }
+
+    public interface IMaterialLocalizations { }
+
+    public class MaterialLocalizations
+    {
+        public virtual string OpenAppDrawerTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string BackButtonTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string CloseButtonTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string DeleteButtonTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string MoreButtonTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string NextMonthTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string PreviousMonthTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string NextPageTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string PreviousPageTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ShowMenuTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string LicensesPageTitle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string RowsPerPageTitle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string CancelButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string CloseButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ContinueButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string CopyButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string CutButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string OkButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string PasteButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string SelectAllButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ViewLicensesButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string AnteMeridiemAbbreviation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string PostMeridiemAbbreviation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string TimePickerHourModeAnnouncement { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string TimePickerMinuteModeAnnouncement { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ModalBarrierDismissLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string DrawerLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string PopupMenuLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string DialogLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string AlertDialogLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string SearchFieldLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Material.Typography.ScriptCategory ScriptCategory { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual List<string> NarrowWeekdays { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int FirstDayOfWeekIndex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string SignedInLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string HideAccountsLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ShowAccountsLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ReorderItemToStart { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ReorderItemToEnd { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ReorderItemUp { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ReorderItemDown { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ReorderItemLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ReorderItemRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ExpandedIconTapHint { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string CollapsedIconTapHint { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string RefreshIndicatorSemanticLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+
+        public virtual string AboutListTileTitle(string applicationName) { throw new NotImplementedException(); }
 
 
-public class _MaterialLocalizationsDelegate : FlutterSDK.Widgets.Localizations.LocalizationsDelegate<FlutterSDK.Material.Materiallocalizations.MaterialLocalizations>
-{
-#region constructors
-public _MaterialLocalizationsDelegate()
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public new bool IsSupported(Locale locale){ throw new NotImplementedException(); }
+        public virtual string PageRowsInfoTitle(int firstRow, int lastRow, int rowCount, bool rowCountIsApproximate) { throw new NotImplementedException(); }
 
 
-public new Future<FlutterSDK.Material.Materiallocalizations.MaterialLocalizations> Load(Locale locale){ throw new NotImplementedException(); }
+        public virtual string TabLabel(int tabIndex = default(int), int tabCount = default(int)) { throw new NotImplementedException(); }
 
 
-public new bool ShouldReload(FlutterSDK.Material.Materiallocalizations._MaterialLocalizationsDelegate old){ throw new NotImplementedException(); }
+        public virtual string SelectedRowCountTitle(int selectedRowCount) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public virtual FlutterSDK.Material.Time.TimeOfDayFormat TimeOfDayFormat(bool alwaysUse24HourFormat = false) { throw new NotImplementedException(); }
 
 
-public class DefaultMaterialLocalizations : IMaterialLocalizations
-{
-#region constructors
-public DefaultMaterialLocalizations()
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual List<string> _ShortWeekdays{get;set;}
-internal virtual List<string> _Weekdays{get;set;}
-internal virtual List<string> _NarrowWeekdays{get;set;}
-internal virtual List<string> _ShortMonths{get;set;}
-internal virtual List<string> _Months{get;set;}
-public virtual FlutterSDK.Widgets.Localizations.LocalizationsDelegate<FlutterSDK.Material.Materiallocalizations.MaterialLocalizations> @delegate{get;set;}
-public virtual List<string> NarrowWeekdays{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int FirstDayOfWeekIndex{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string OpenAppDrawerTooltip{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string BackButtonTooltip{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string CloseButtonTooltip{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string DeleteButtonTooltip{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string MoreButtonTooltip{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string NextMonthTooltip{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string PreviousMonthTooltip{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string NextPageTooltip{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string PreviousPageTooltip{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string ShowMenuTooltip{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string DrawerLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string PopupMenuLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string DialogLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string AlertDialogLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string SearchFieldLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string LicensesPageTitle{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string RowsPerPageTitle{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string CancelButtonLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string CloseButtonLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string ContinueButtonLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string CopyButtonLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string CutButtonLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string OkButtonLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string PasteButtonLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string SelectAllButtonLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string ViewLicensesButtonLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string AnteMeridiemAbbreviation{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string PostMeridiemAbbreviation{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string TimePickerHourModeAnnouncement{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string TimePickerMinuteModeAnnouncement{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string ModalBarrierDismissLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Material.Typography.ScriptCategory ScriptCategory{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string SignedInLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string HideAccountsLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string ShowAccountsLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string ReorderItemUp{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string ReorderItemDown{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string ReorderItemLeft{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string ReorderItemRight{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string ReorderItemToEnd{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string ReorderItemToStart{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string ExpandedIconTapHint{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string CollapsedIconTapHint{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual string RefreshIndicatorSemanticLabel{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-private int _GetDaysInMonth(int year,int month){ throw new NotImplementedException(); }
+        public virtual string FormatDecimal(int number) { throw new NotImplementedException(); }
 
 
-public new string FormatHour(FlutterSDK.Material.Time.TimeOfDay timeOfDay,bool alwaysUse24HourFormat = false){ throw new NotImplementedException(); }
+        public virtual string FormatHour(FlutterSDK.Material.Time.TimeOfDay timeOfDay, bool alwaysUse24HourFormat = false) { throw new NotImplementedException(); }
 
 
-private string _FormatTwoDigitZeroPad(int number){ throw new NotImplementedException(); }
+        public virtual string FormatMinute(FlutterSDK.Material.Time.TimeOfDay timeOfDay) { throw new NotImplementedException(); }
 
 
-public new string FormatMinute(FlutterSDK.Material.Time.TimeOfDay timeOfDay){ throw new NotImplementedException(); }
+        public virtual string FormatTimeOfDay(FlutterSDK.Material.Time.TimeOfDay timeOfDay, bool alwaysUse24HourFormat = false) { throw new NotImplementedException(); }
 
 
-public new string FormatYear(DateTime date){ throw new NotImplementedException(); }
+        public virtual string FormatYear(DateTime date) { throw new NotImplementedException(); }
 
 
-public new string FormatCompactDate(DateTime date){ throw new NotImplementedException(); }
+        public virtual string FormatCompactDate(DateTime date) { throw new NotImplementedException(); }
 
 
-public new string FormatShortDate(DateTime date){ throw new NotImplementedException(); }
+        public virtual string FormatShortDate(DateTime date) { throw new NotImplementedException(); }
 
 
-public new string FormatMediumDate(DateTime date){ throw new NotImplementedException(); }
+        public virtual string FormatMediumDate(DateTime date) { throw new NotImplementedException(); }
 
 
-public new string FormatFullDate(DateTime date){ throw new NotImplementedException(); }
+        public virtual string FormatFullDate(DateTime date) { throw new NotImplementedException(); }
 
 
-public new string FormatMonthYear(DateTime date){ throw new NotImplementedException(); }
+        public virtual string FormatMonthYear(DateTime date) { throw new NotImplementedException(); }
 
 
-public new string FormatShortMonthDay(DateTime date){ throw new NotImplementedException(); }
+        public virtual string FormatShortMonthDay(DateTime date) { throw new NotImplementedException(); }
 
 
-public new DateTime ParseCompactDate(string inputString){ throw new NotImplementedException(); }
+        public virtual DateTime ParseCompactDate(string inputString) { throw new NotImplementedException(); }
 
 
-private string _FormatDayPeriod(FlutterSDK.Material.Time.TimeOfDay timeOfDay){ throw new NotImplementedException(); }
+        public virtual string RemainingTextFieldCharacterCount(int remaining) { throw new NotImplementedException(); }
 
 
-public new string FormatDecimal(int number){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Material.Materiallocalizations.MaterialLocalizations Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+    }
+    public static class MaterialLocalizationsMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IMaterialLocalizations, MaterialLocalizations> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IMaterialLocalizations, MaterialLocalizations>();
+        static MaterialLocalizations GetOrCreate(IMaterialLocalizations instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new MaterialLocalizations();
+                _table.Add(instance, value);
+            }
+            return (MaterialLocalizations)value;
+        }
+        public static string OpenAppDrawerTooltipProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).OpenAppDrawerTooltip;
+        public static string BackButtonTooltipProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).BackButtonTooltip;
+        public static string CloseButtonTooltipProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).CloseButtonTooltip;
+        public static string DeleteButtonTooltipProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).DeleteButtonTooltip;
+        public static string MoreButtonTooltipProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).MoreButtonTooltip;
+        public static string NextMonthTooltipProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).NextMonthTooltip;
+        public static string PreviousMonthTooltipProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).PreviousMonthTooltip;
+        public static string NextPageTooltipProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).NextPageTooltip;
+        public static string PreviousPageTooltipProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).PreviousPageTooltip;
+        public static string ShowMenuTooltipProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).ShowMenuTooltip;
+        public static string LicensesPageTitleProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).LicensesPageTitle;
+        public static string RowsPerPageTitleProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).RowsPerPageTitle;
+        public static string CancelButtonLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).CancelButtonLabel;
+        public static string CloseButtonLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).CloseButtonLabel;
+        public static string ContinueButtonLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).ContinueButtonLabel;
+        public static string CopyButtonLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).CopyButtonLabel;
+        public static string CutButtonLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).CutButtonLabel;
+        public static string OkButtonLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).OkButtonLabel;
+        public static string PasteButtonLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).PasteButtonLabel;
+        public static string SelectAllButtonLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).SelectAllButtonLabel;
+        public static string ViewLicensesButtonLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).ViewLicensesButtonLabel;
+        public static string AnteMeridiemAbbreviationProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).AnteMeridiemAbbreviation;
+        public static string PostMeridiemAbbreviationProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).PostMeridiemAbbreviation;
+        public static string TimePickerHourModeAnnouncementProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).TimePickerHourModeAnnouncement;
+        public static string TimePickerMinuteModeAnnouncementProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).TimePickerMinuteModeAnnouncement;
+        public static string ModalBarrierDismissLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).ModalBarrierDismissLabel;
+        public static string DrawerLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).DrawerLabel;
+        public static string PopupMenuLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).PopupMenuLabel;
+        public static string DialogLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).DialogLabel;
+        public static string AlertDialogLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).AlertDialogLabel;
+        public static string SearchFieldLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).SearchFieldLabel;
+        public static FlutterSDK.Material.Typography.ScriptCategory ScriptCategoryProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).ScriptCategory;
+        public static List<string> NarrowWeekdaysProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).NarrowWeekdays;
+        public static int FirstDayOfWeekIndexProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).FirstDayOfWeekIndex;
+        public static string SignedInLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).SignedInLabel;
+        public static string HideAccountsLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).HideAccountsLabel;
+        public static string ShowAccountsLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).ShowAccountsLabel;
+        public static string ReorderItemToStartProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).ReorderItemToStart;
+        public static string ReorderItemToEndProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).ReorderItemToEnd;
+        public static string ReorderItemUpProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).ReorderItemUp;
+        public static string ReorderItemDownProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).ReorderItemDown;
+        public static string ReorderItemLeftProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).ReorderItemLeft;
+        public static string ReorderItemRightProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).ReorderItemRight;
+        public static string ExpandedIconTapHintProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).ExpandedIconTapHint;
+        public static string CollapsedIconTapHintProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).CollapsedIconTapHint;
+        public static string RefreshIndicatorSemanticLabelProperty(this IMaterialLocalizations instance) => GetOrCreate(instance).RefreshIndicatorSemanticLabel;
+        public static string AboutListTileTitle(this IMaterialLocalizations instance, string applicationName) => GetOrCreate(instance).AboutListTileTitle(applicationName);
+        public static string PageRowsInfoTitle(this IMaterialLocalizations instance, int firstRow, int lastRow, int rowCount, bool rowCountIsApproximate) => GetOrCreate(instance).PageRowsInfoTitle(firstRow, lastRow, rowCount, rowCountIsApproximate);
+        public static string TabLabel(this IMaterialLocalizations instance, int tabIndex = default(int), int tabCount = default(int)) => GetOrCreate(instance).TabLabel(tabIndex, tabCount);
+        public static string SelectedRowCountTitle(this IMaterialLocalizations instance, int selectedRowCount) => GetOrCreate(instance).SelectedRowCountTitle(selectedRowCount);
+        public static FlutterSDK.Material.Time.TimeOfDayFormat TimeOfDayFormat(this IMaterialLocalizations instance, bool alwaysUse24HourFormat = false) => GetOrCreate(instance).TimeOfDayFormat(alwaysUse24HourFormat);
+        public static string FormatDecimal(this IMaterialLocalizations instance, int number) => GetOrCreate(instance).FormatDecimal(number);
+        public static string FormatHour(this IMaterialLocalizations instance, FlutterSDK.Material.Time.TimeOfDay timeOfDay, bool alwaysUse24HourFormat = false) => GetOrCreate(instance).FormatHour(timeOfDay, alwaysUse24HourFormat);
+        public static string FormatMinute(this IMaterialLocalizations instance, FlutterSDK.Material.Time.TimeOfDay timeOfDay) => GetOrCreate(instance).FormatMinute(timeOfDay);
+        public static string FormatTimeOfDay(this IMaterialLocalizations instance, FlutterSDK.Material.Time.TimeOfDay timeOfDay, bool alwaysUse24HourFormat = false) => GetOrCreate(instance).FormatTimeOfDay(timeOfDay, alwaysUse24HourFormat);
+        public static string FormatYear(this IMaterialLocalizations instance, DateTime date) => GetOrCreate(instance).FormatYear(date);
+        public static string FormatCompactDate(this IMaterialLocalizations instance, DateTime date) => GetOrCreate(instance).FormatCompactDate(date);
+        public static string FormatShortDate(this IMaterialLocalizations instance, DateTime date) => GetOrCreate(instance).FormatShortDate(date);
+        public static string FormatMediumDate(this IMaterialLocalizations instance, DateTime date) => GetOrCreate(instance).FormatMediumDate(date);
+        public static string FormatFullDate(this IMaterialLocalizations instance, DateTime date) => GetOrCreate(instance).FormatFullDate(date);
+        public static string FormatMonthYear(this IMaterialLocalizations instance, DateTime date) => GetOrCreate(instance).FormatMonthYear(date);
+        public static string FormatShortMonthDay(this IMaterialLocalizations instance, DateTime date) => GetOrCreate(instance).FormatShortMonthDay(date);
+        public static DateTime ParseCompactDate(this IMaterialLocalizations instance, string inputString) => GetOrCreate(instance).ParseCompactDate(inputString);
+        public static string RemainingTextFieldCharacterCount(this IMaterialLocalizations instance, int remaining) => GetOrCreate(instance).RemainingTextFieldCharacterCount(remaining);
+        public static FlutterSDK.Material.Materiallocalizations.MaterialLocalizations Of(this IMaterialLocalizations instance, FlutterSDK.Widgets.Framework.BuildContext context) => GetOrCreate(instance).Of(context);
+    }
 
 
-public new string FormatTimeOfDay(FlutterSDK.Material.Time.TimeOfDay timeOfDay,bool alwaysUse24HourFormat = false){ throw new NotImplementedException(); }
+    public class _MaterialLocalizationsDelegate : FlutterSDK.Widgets.Localizations.LocalizationsDelegate<FlutterSDK.Material.Materiallocalizations.MaterialLocalizations>
+    {
+        #region constructors
+        public _MaterialLocalizationsDelegate()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new bool IsSupported(Locale locale) { throw new NotImplementedException(); }
 
 
-public new string AboutListTileTitle(string applicationName){ throw new NotImplementedException(); }
+        public new Future<FlutterSDK.Material.Materiallocalizations.MaterialLocalizations> Load(Locale locale) { throw new NotImplementedException(); }
 
 
-public new string PageRowsInfoTitle(int firstRow,int lastRow,int rowCount,bool rowCountIsApproximate){ throw new NotImplementedException(); }
+        public new bool ShouldReload(FlutterSDK.Material.Materiallocalizations._MaterialLocalizationsDelegate old) { throw new NotImplementedException(); }
 
 
-public new string TabLabel(int tabIndex = default(int),int tabCount = default(int)){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new string SelectedRowCountTitle(int selectedRowCount){ throw new NotImplementedException(); }
+    public class DefaultMaterialLocalizations : IMaterialLocalizations
+    {
+        #region constructors
+        public DefaultMaterialLocalizations()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual List<string> _ShortWeekdays { get; set; }
+        internal virtual List<string> _Weekdays { get; set; }
+        internal virtual List<string> _NarrowWeekdays { get; set; }
+        internal virtual List<string> _ShortMonths { get; set; }
+        internal virtual List<string> _Months { get; set; }
+        public virtual FlutterSDK.Widgets.Localizations.LocalizationsDelegate<FlutterSDK.Material.Materiallocalizations.MaterialLocalizations> @delegate { get; set; }
+        public virtual List<string> NarrowWeekdays { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int FirstDayOfWeekIndex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string OpenAppDrawerTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string BackButtonTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string CloseButtonTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string DeleteButtonTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string MoreButtonTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string NextMonthTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string PreviousMonthTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string NextPageTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string PreviousPageTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ShowMenuTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string DrawerLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string PopupMenuLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string DialogLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string AlertDialogLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string SearchFieldLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string LicensesPageTitle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string RowsPerPageTitle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string CancelButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string CloseButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ContinueButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string CopyButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string CutButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string OkButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string PasteButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string SelectAllButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ViewLicensesButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string AnteMeridiemAbbreviation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string PostMeridiemAbbreviation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string TimePickerHourModeAnnouncement { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string TimePickerMinuteModeAnnouncement { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ModalBarrierDismissLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Material.Typography.ScriptCategory ScriptCategory { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string SignedInLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string HideAccountsLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ShowAccountsLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ReorderItemUp { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ReorderItemDown { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ReorderItemLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ReorderItemRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ReorderItemToEnd { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ReorderItemToStart { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ExpandedIconTapHint { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string CollapsedIconTapHint { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string RefreshIndicatorSemanticLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        private int _GetDaysInMonth(int year, int month) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Material.Time.TimeOfDayFormat TimeOfDayFormat(bool alwaysUse24HourFormat = false){ throw new NotImplementedException(); }
+        public new string FormatHour(FlutterSDK.Material.Time.TimeOfDay timeOfDay, bool alwaysUse24HourFormat = false) { throw new NotImplementedException(); }
 
 
-public virtual Future<FlutterSDK.Material.Materiallocalizations.MaterialLocalizations> Load(Locale locale){ throw new NotImplementedException(); }
+        private string _FormatTwoDigitZeroPad(int number) { throw new NotImplementedException(); }
 
 
-public new string RemainingTextFieldCharacterCount(int remaining){ throw new NotImplementedException(); }
+        public new string FormatMinute(FlutterSDK.Material.Time.TimeOfDay timeOfDay) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new string FormatYear(DateTime date) { throw new NotImplementedException(); }
+
+
+        public new string FormatCompactDate(DateTime date) { throw new NotImplementedException(); }
+
+
+        public new string FormatShortDate(DateTime date) { throw new NotImplementedException(); }
+
+
+        public new string FormatMediumDate(DateTime date) { throw new NotImplementedException(); }
+
+
+        public new string FormatFullDate(DateTime date) { throw new NotImplementedException(); }
+
+
+        public new string FormatMonthYear(DateTime date) { throw new NotImplementedException(); }
+
+
+        public new string FormatShortMonthDay(DateTime date) { throw new NotImplementedException(); }
+
+
+        public new DateTime ParseCompactDate(string inputString) { throw new NotImplementedException(); }
+
+
+        private string _FormatDayPeriod(FlutterSDK.Material.Time.TimeOfDay timeOfDay) { throw new NotImplementedException(); }
+
+
+        public new string FormatDecimal(int number) { throw new NotImplementedException(); }
+
+
+        public new string FormatTimeOfDay(FlutterSDK.Material.Time.TimeOfDay timeOfDay, bool alwaysUse24HourFormat = false) { throw new NotImplementedException(); }
+
+
+        public new string AboutListTileTitle(string applicationName) { throw new NotImplementedException(); }
+
+
+        public new string PageRowsInfoTitle(int firstRow, int lastRow, int rowCount, bool rowCountIsApproximate) { throw new NotImplementedException(); }
+
+
+        public new string TabLabel(int tabIndex = default(int), int tabCount = default(int)) { throw new NotImplementedException(); }
+
+
+        public new string SelectedRowCountTitle(int selectedRowCount) { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Material.Time.TimeOfDayFormat TimeOfDayFormat(bool alwaysUse24HourFormat = false) { throw new NotImplementedException(); }
+
+
+        public virtual Future<FlutterSDK.Material.Materiallocalizations.MaterialLocalizations> Load(Locale locale) { throw new NotImplementedException(); }
+
+
+        public new string RemainingTextFieldCharacterCount(int remaining) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

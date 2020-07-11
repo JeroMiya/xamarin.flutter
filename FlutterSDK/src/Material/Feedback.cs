@@ -381,38 +381,41 @@ using FlutterSDK.Material.Inputdecorator;
 using FlutterSDK.Material.Shadows;
 using FlutterSDK.Material.Expandicon;
 using FlutterSDK.Material.Mergeablematerial;
-namespace FlutterSDK.Material.Feedback{
-internal static class FeedbackDefaultClass{
-}
-
-public class Feedback
+namespace FlutterSDK.Material.Feedback
 {
-#region constructors
-internal Feedback()
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class FeedbackDefaultClass
+    {
+    }
 
-#region fields
-#endregion
+    public class Feedback
+    {
+        #region constructors
+        internal Feedback()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        #endregion
 
-public virtual Future<object> ForTap(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual FlutterSDK.Gestures.Tap.GestureTapCallback WrapForTap(FlutterSDK.Gestures.Tap.GestureTapCallback callback,FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-
-public virtual Future<object> ForLongPress(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Gestures.Longpress.GestureLongPressCallback WrapForLongPress(FlutterSDK.Gestures.Longpress.GestureLongPressCallback callback,FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public virtual Future<object> ForTap(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Foundation.Platform.TargetPlatform _Platform(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Gestures.Tap.GestureTapCallback WrapForTap(FlutterSDK.Gestures.Tap.GestureTapCallback callback, FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public virtual Future<object> ForLongPress(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+
+        public virtual FlutterSDK.Gestures.Longpress.GestureLongPressCallback WrapForLongPress(FlutterSDK.Gestures.Longpress.GestureLongPressCallback callback, FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+
+        private FlutterSDK.Foundation.Platform.TargetPlatform _Platform(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

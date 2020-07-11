@@ -421,147 +421,153 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Rendering.Wrap{
-internal static class WrapDefaultClass{
-}
-
-public class _RunMetrics
+namespace FlutterSDK.Rendering.Wrap
 {
-#region constructors
-public _RunMetrics(double mainAxisExtent,double crossAxisExtent,int childCount)
-{
-this.MainAxisExtent = mainAxisExtent;
-this.CrossAxisExtent = crossAxisExtent;
-this.ChildCount = childCount;throw new NotImplementedException(); }
-#endregion
+    internal static class WrapDefaultClass
+    {
+    }
 
-#region fields
-public virtual double MainAxisExtent{get;set;}
-public virtual double CrossAxisExtent{get;set;}
-public virtual int ChildCount{get;set;}
-#endregion
+    public class _RunMetrics
+    {
+        #region constructors
+        public _RunMetrics(double mainAxisExtent, double crossAxisExtent, int childCount)
+        {
+            this.MainAxisExtent = mainAxisExtent;
+            this.CrossAxisExtent = crossAxisExtent;
+            this.ChildCount = childCount; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
-#endregion
-}
+        #region fields
+        public virtual double MainAxisExtent { get; set; }
+        public virtual double CrossAxisExtent { get; set; }
+        public virtual int ChildCount { get; set; }
+        #endregion
 
-
-public class WrapParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
-{
-#region constructors
-public WrapParentData()
-{ }
-#endregion
-
-#region fields
-internal virtual int _RunIndex{get;set;}
-#endregion
-
-#region methods
-#endregion
-}
+        #region methods
+        #endregion
+    }
 
 
-public class RenderWrap : FlutterSDK.Rendering.Box.RenderBox,IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox,FlutterSDK.Rendering.Wrap.WrapParentData>,IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox,FlutterSDK.Rendering.Wrap.WrapParentData>
-{
-#region constructors
-public RenderWrap(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>),FlutterSDK.Painting.Basictypes.Axis direction = default(FlutterSDK.Painting.Basictypes.Axis),FlutterSDK.Rendering.Wrap.WrapAlignment alignment = default(FlutterSDK.Rendering.Wrap.WrapAlignment),double spacing = 0.0,FlutterSDK.Rendering.Wrap.WrapAlignment runAlignment = default(FlutterSDK.Rendering.Wrap.WrapAlignment),double runSpacing = 0.0,FlutterSDK.Rendering.Wrap.WrapCrossAlignment crossAxisAlignment = default(FlutterSDK.Rendering.Wrap.WrapCrossAlignment),TextDirection textDirection = default(TextDirection),FlutterSDK.Painting.Basictypes.VerticalDirection verticalDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection))
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
+    public class WrapParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
+    {
+        #region constructors
+        public WrapParentData()
+        { }
+        #endregion
 
-#region fields
-internal virtual FlutterSDK.Painting.Basictypes.Axis _Direction{get;set;}
-internal virtual FlutterSDK.Rendering.Wrap.WrapAlignment _Alignment{get;set;}
-internal virtual double _Spacing{get;set;}
-internal virtual FlutterSDK.Rendering.Wrap.WrapAlignment _RunAlignment{get;set;}
-internal virtual double _RunSpacing{get;set;}
-internal virtual FlutterSDK.Rendering.Wrap.WrapCrossAlignment _CrossAxisAlignment{get;set;}
-internal virtual TextDirection _TextDirection{get;set;}
-internal virtual FlutterSDK.Painting.Basictypes.VerticalDirection _VerticalDirection{get;set;}
-internal virtual bool _HasVisualOverflow{get;set;}
-public virtual FlutterSDK.Painting.Basictypes.Axis Direction{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Rendering.Wrap.WrapAlignment Alignment{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual double Spacing{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Rendering.Wrap.WrapAlignment RunAlignment{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual double RunSpacing{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Rendering.Wrap.WrapCrossAlignment CrossAxisAlignment{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual TextDirection TextDirection{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Painting.Basictypes.VerticalDirection VerticalDirection{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-internal virtual bool _DebugHasNecessaryDirections{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #region fields
+        internal virtual int _RunIndex { get; set; }
+        #endregion
 
-#region methods
-
-public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child){ throw new NotImplementedException(); }
-public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
+        #region methods
+        #endregion
+    }
 
 
-private double _ComputeIntrinsicHeightForWidth(double width){ throw new NotImplementedException(); }
+    public class RenderWrap : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Wrap.WrapParentData>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Wrap.WrapParentData>
+    {
+        #region constructors
+        public RenderWrap(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Painting.Basictypes.Axis direction = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Rendering.Wrap.WrapAlignment alignment = default(FlutterSDK.Rendering.Wrap.WrapAlignment), double spacing = 0.0, FlutterSDK.Rendering.Wrap.WrapAlignment runAlignment = default(FlutterSDK.Rendering.Wrap.WrapAlignment), double runSpacing = 0.0, FlutterSDK.Rendering.Wrap.WrapCrossAlignment crossAxisAlignment = default(FlutterSDK.Rendering.Wrap.WrapCrossAlignment), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Basictypes.VerticalDirection verticalDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Painting.Basictypes.Axis _Direction { get; set; }
+        internal virtual FlutterSDK.Rendering.Wrap.WrapAlignment _Alignment { get; set; }
+        internal virtual double _Spacing { get; set; }
+        internal virtual FlutterSDK.Rendering.Wrap.WrapAlignment _RunAlignment { get; set; }
+        internal virtual double _RunSpacing { get; set; }
+        internal virtual FlutterSDK.Rendering.Wrap.WrapCrossAlignment _CrossAxisAlignment { get; set; }
+        internal virtual TextDirection _TextDirection { get; set; }
+        internal virtual FlutterSDK.Painting.Basictypes.VerticalDirection _VerticalDirection { get; set; }
+        internal virtual bool _HasVisualOverflow { get; set; }
+        public virtual FlutterSDK.Painting.Basictypes.Axis Direction { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Wrap.WrapAlignment Alignment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Spacing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Wrap.WrapAlignment RunAlignment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double RunSpacing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Wrap.WrapCrossAlignment CrossAxisAlignment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Basictypes.VerticalDirection VerticalDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual bool _DebugHasNecessaryDirections { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
+        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
 
-private double _ComputeIntrinsicWidthForHeight(double height){ throw new NotImplementedException(); }
+        private double _ComputeIntrinsicHeightForWidth(double width) { throw new NotImplementedException(); }
 
 
-public new double ComputeMinIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        private double _ComputeIntrinsicWidthForHeight(double height) { throw new NotImplementedException(); }
 
 
-public new double ComputeMaxIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-public new double ComputeMinIntrinsicHeight(double width){ throw new NotImplementedException(); }
+        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-public new double ComputeMaxIntrinsicHeight(double width){ throw new NotImplementedException(); }
+        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-public new double ComputeDistanceToActualBaseline(TextBaseline baseline){ throw new NotImplementedException(); }
+        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-private double _GetMainAxisExtent(FlutterSDK.Rendering.Box.RenderBox child){ throw new NotImplementedException(); }
+        public new double ComputeDistanceToActualBaseline(TextBaseline baseline) { throw new NotImplementedException(); }
 
 
-private double _GetCrossAxisExtent(FlutterSDK.Rendering.Box.RenderBox child){ throw new NotImplementedException(); }
+        private double _GetMainAxisExtent(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
 
 
-private Offset _GetOffset(double mainAxisOffset,double crossAxisOffset){ throw new NotImplementedException(); }
+        private double _GetCrossAxisExtent(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
 
 
-private double _GetChildCrossAxisOffset(bool flipCrossAxis,double runCrossAxisExtent,double childCrossAxisExtent){ throw new NotImplementedException(); }
+        private Offset _GetOffset(double mainAxisOffset, double crossAxisOffset) { throw new NotImplementedException(); }
 
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
+        private double _GetChildCrossAxisOffset(bool flipCrossAxis, double runCrossAxisExtent, double childCrossAxisExtent) { throw new NotImplementedException(); }
 
 
-public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
-public enum WrapAlignment{
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-Start,
-End,
-Center,
-SpaceBetween,
-SpaceAround,
-SpaceEvenly,
-}
+        #endregion
+    }
 
 
-public enum WrapCrossAlignment{
+    public enum WrapAlignment
+    {
 
-Start,
-End,
-Center,
-}
+        Start,
+        End,
+        Center,
+        SpaceBetween,
+        SpaceAround,
+        SpaceEvenly,
+    }
+
+
+    public enum WrapCrossAlignment
+    {
+
+        Start,
+        End,
+        Center,
+    }
 
 }

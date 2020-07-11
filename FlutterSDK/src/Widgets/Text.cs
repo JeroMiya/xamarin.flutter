@@ -423,120 +423,126 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Text{
-internal static class TextDefaultClass{
-}
-
-public class DefaultTextStyle : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
+namespace FlutterSDK.Widgets.Text
 {
-#region constructors
-public DefaultTextStyle(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle),TextAlign textAlign = default(TextAlign),bool softWrap = true,FlutterSDK.Rendering.Paragraph.TextOverflow overflow = default(FlutterSDK.Rendering.Paragraph.TextOverflow),int maxLines = default(int),FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis),TextHeightBehavior textHeightBehavior = default(TextHeightBehavior),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key,child:child)
-{
-this.Style = style;
-this.TextAlign = textAlign;
-this.SoftWrap = softWrap;
-this.Overflow = overflow;
-this.MaxLines = maxLines;
-this.TextWidthBasis = textWidthBasis;
-this.TextHeightBehavior = textHeightBehavior;throw new NotImplementedException(); }
-public static DefaultTextStyle Fallback(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key))
-{
-var instance =new DefaultTextStyle(key:key,child:null);throw new NotImplementedException(); }
-#endregion
+    internal static class TextDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Painting.Textstyle.TextStyle Style{get;set;}
-public virtual TextAlign TextAlign{get;set;}
-public virtual bool SoftWrap{get;set;}
-public virtual FlutterSDK.Rendering.Paragraph.TextOverflow Overflow{get;set;}
-public virtual int MaxLines{get;set;}
-public virtual FlutterSDK.Painting.Textpainter.TextWidthBasis TextWidthBasis{get;set;}
-public virtual TextHeightBehavior TextHeightBehavior{get;set;}
-#endregion
+    public class DefaultTextStyle : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
+    {
+        #region constructors
+        public DefaultTextStyle(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), TextAlign textAlign = default(TextAlign), bool softWrap = true, FlutterSDK.Rendering.Paragraph.TextOverflow overflow = default(FlutterSDK.Rendering.Paragraph.TextOverflow), int maxLines = default(int), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), TextHeightBehavior textHeightBehavior = default(TextHeightBehavior), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            this.Style = style;
+            this.TextAlign = textAlign;
+            this.SoftWrap = softWrap;
+            this.Overflow = overflow;
+            this.MaxLines = maxLines;
+            this.TextWidthBasis = textWidthBasis;
+            this.TextHeightBehavior = textHeightBehavior; throw new NotImplementedException();
+        }
+        public static DefaultTextStyle Fallback(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key))
+        {
+            var instance = new DefaultTextStyle(key: key, child: null); throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle Style { get; set; }
+        public virtual TextAlign TextAlign { get; set; }
+        public virtual bool SoftWrap { get; set; }
+        public virtual FlutterSDK.Rendering.Paragraph.TextOverflow Overflow { get; set; }
+        public virtual int MaxLines { get; set; }
+        public virtual FlutterSDK.Painting.Textpainter.TextWidthBasis TextWidthBasis { get; set; }
+        public virtual TextHeightBehavior TextHeightBehavior { get; set; }
+        #endregion
 
-public virtual FlutterSDK.Widgets.Framework.Widget Merge(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle),TextAlign textAlign = default(TextAlign),bool softWrap = default(bool),FlutterSDK.Rendering.Paragraph.TextOverflow overflow = default(FlutterSDK.Rendering.Paragraph.TextOverflow),int maxLines = default(int),FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget)){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual FlutterSDK.Widgets.Text.DefaultTextStyle Of(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Text.DefaultTextStyle oldWidget){ throw new NotImplementedException(); }
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget){ throw new NotImplementedException(); }
-
-
-public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Widgets.Framework.Widget child){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Widgets.Framework.Widget Merge(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), TextAlign textAlign = default(TextAlign), bool softWrap = default(bool), FlutterSDK.Rendering.Paragraph.TextOverflow overflow = default(FlutterSDK.Rendering.Paragraph.TextOverflow), int maxLines = default(int), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget)) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual FlutterSDK.Widgets.Text.DefaultTextStyle Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public class Text : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public Text(string data,FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle),TextAlign textAlign = default(TextAlign),TextDirection textDirection = default(TextDirection),Locale locale = default(Locale),bool softWrap = default(bool),FlutterSDK.Rendering.Paragraph.TextOverflow overflow = default(FlutterSDK.Rendering.Paragraph.TextOverflow),double textScaleFactor = default(double),int maxLines = default(int),string semanticsLabel = default(string),FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis),TextHeightBehavior textHeightBehavior = default(TextHeightBehavior))
-: base(key:key)
-{
-this.Data = data;
-this.Style = style;
-this.StrutStyle = strutStyle;
-this.TextAlign = textAlign;
-this.TextDirection = textDirection;
-this.Locale = locale;
-this.SoftWrap = softWrap;
-this.Overflow = overflow;
-this.TextScaleFactor = textScaleFactor;
-this.MaxLines = maxLines;
-this.SemanticsLabel = semanticsLabel;
-this.TextWidthBasis = textWidthBasis;
-this.TextHeightBehavior = textHeightBehavior;throw new NotImplementedException(); }
-public static Text Rich(FlutterSDK.Painting.Inlinespan.InlineSpan textSpan,FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle),TextAlign textAlign = default(TextAlign),TextDirection textDirection = default(TextDirection),Locale locale = default(Locale),bool softWrap = default(bool),FlutterSDK.Rendering.Paragraph.TextOverflow overflow = default(FlutterSDK.Rendering.Paragraph.TextOverflow),double textScaleFactor = default(double),int maxLines = default(int),string semanticsLabel = default(string),FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis),TextHeightBehavior textHeightBehavior = default(TextHeightBehavior))
-{
-var instance =new Text(key:key);instance.TextSpan = textSpan;
-instance.Style = style;
-instance.StrutStyle = strutStyle;
-instance.TextAlign = textAlign;
-instance.TextDirection = textDirection;
-instance.Locale = locale;
-instance.SoftWrap = softWrap;
-instance.Overflow = overflow;
-instance.TextScaleFactor = textScaleFactor;
-instance.MaxLines = maxLines;
-instance.SemanticsLabel = semanticsLabel;
-instance.TextWidthBasis = textWidthBasis;
-instance.TextHeightBehavior = textHeightBehavior;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual string Data{get;set;}
-public virtual FlutterSDK.Painting.Inlinespan.InlineSpan TextSpan{get;set;}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle Style{get;set;}
-public virtual FlutterSDK.Painting.Strutstyle.StrutStyle StrutStyle{get;set;}
-public virtual TextAlign TextAlign{get;set;}
-public virtual TextDirection TextDirection{get;set;}
-public virtual Locale Locale{get;set;}
-public virtual bool SoftWrap{get;set;}
-public virtual FlutterSDK.Rendering.Paragraph.TextOverflow Overflow{get;set;}
-public virtual double TextScaleFactor{get;set;}
-public virtual int MaxLines{get;set;}
-public virtual string SemanticsLabel{get;set;}
-public virtual FlutterSDK.Painting.Textpainter.TextWidthBasis TextWidthBasis{get;set;}
-public virtual TextHeightBehavior TextHeightBehavior{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Text.DefaultTextStyle oldWidget) { throw new NotImplementedException(); }
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class Text : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public Text(string data, FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), TextAlign textAlign = default(TextAlign), TextDirection textDirection = default(TextDirection), Locale locale = default(Locale), bool softWrap = default(bool), FlutterSDK.Rendering.Paragraph.TextOverflow overflow = default(FlutterSDK.Rendering.Paragraph.TextOverflow), double textScaleFactor = default(double), int maxLines = default(int), string semanticsLabel = default(string), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), TextHeightBehavior textHeightBehavior = default(TextHeightBehavior))
+        : base(key: key)
+        {
+            this.Data = data;
+            this.Style = style;
+            this.StrutStyle = strutStyle;
+            this.TextAlign = textAlign;
+            this.TextDirection = textDirection;
+            this.Locale = locale;
+            this.SoftWrap = softWrap;
+            this.Overflow = overflow;
+            this.TextScaleFactor = textScaleFactor;
+            this.MaxLines = maxLines;
+            this.SemanticsLabel = semanticsLabel;
+            this.TextWidthBasis = textWidthBasis;
+            this.TextHeightBehavior = textHeightBehavior; throw new NotImplementedException();
+        }
+        public static Text Rich(FlutterSDK.Painting.Inlinespan.InlineSpan textSpan, FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), TextAlign textAlign = default(TextAlign), TextDirection textDirection = default(TextDirection), Locale locale = default(Locale), bool softWrap = default(bool), FlutterSDK.Rendering.Paragraph.TextOverflow overflow = default(FlutterSDK.Rendering.Paragraph.TextOverflow), double textScaleFactor = default(double), int maxLines = default(int), string semanticsLabel = default(string), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), TextHeightBehavior textHeightBehavior = default(TextHeightBehavior))
+        {
+            var instance = new Text(key: key); instance.TextSpan = textSpan;
+            instance.Style = style;
+            instance.StrutStyle = strutStyle;
+            instance.TextAlign = textAlign;
+            instance.TextDirection = textDirection;
+            instance.Locale = locale;
+            instance.SoftWrap = softWrap;
+            instance.Overflow = overflow;
+            instance.TextScaleFactor = textScaleFactor;
+            instance.MaxLines = maxLines;
+            instance.SemanticsLabel = semanticsLabel;
+            instance.TextWidthBasis = textWidthBasis;
+            instance.TextHeightBehavior = textHeightBehavior; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual string Data { get; set; }
+        public virtual FlutterSDK.Painting.Inlinespan.InlineSpan TextSpan { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle Style { get; set; }
+        public virtual FlutterSDK.Painting.Strutstyle.StrutStyle StrutStyle { get; set; }
+        public virtual TextAlign TextAlign { get; set; }
+        public virtual TextDirection TextDirection { get; set; }
+        public virtual Locale Locale { get; set; }
+        public virtual bool SoftWrap { get; set; }
+        public virtual FlutterSDK.Rendering.Paragraph.TextOverflow Overflow { get; set; }
+        public virtual double TextScaleFactor { get; set; }
+        public virtual int MaxLines { get; set; }
+        public virtual string SemanticsLabel { get; set; }
+        public virtual FlutterSDK.Painting.Textpainter.TextWidthBasis TextWidthBasis { get; set; }
+        public virtual TextHeightBehavior TextHeightBehavior { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

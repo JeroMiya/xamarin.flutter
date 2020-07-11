@@ -379,74 +379,77 @@ using FlutterSDK.Material.Dialogtheme;
 using FlutterSDK.Material.Dividertheme;
 using FlutterSDK.Material.Inputdecorator;
 using FlutterSDK.Material.Shadows;
-namespace FlutterSDK.Material.Expandicon{
-internal static class ExpandiconDefaultClass{
-}
-
-public class ExpandIcon : FlutterSDK.Widgets.Framework.StatefulWidget
+namespace FlutterSDK.Material.Expandicon
 {
-#region constructors
-public ExpandIcon(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),bool isExpanded = false,double size = 24.0,FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onPressed = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color expandedColor = default(FlutterBinding.UI.Color))
-: base(key:key)
-{
-this.IsExpanded = isExpanded;
-this.Size = size;
-this.OnPressed = onPressed;
-this.Padding = padding;
-this.Color = color;
-this.DisabledColor = disabledColor;
-this.ExpandedColor = expandedColor;throw new NotImplementedException(); }
-#endregion
+    internal static class ExpandiconDefaultClass
+    {
+    }
 
-#region fields
-public virtual bool IsExpanded{get;set;}
-public virtual double Size{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnPressed{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding{get;set;}
-public virtual FlutterBinding.UI.Color Color{get;set;}
-public virtual FlutterBinding.UI.Color DisabledColor{get;set;}
-public virtual FlutterBinding.UI.Color ExpandedColor{get;set;}
-#endregion
+    public class ExpandIcon : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public ExpandIcon(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool isExpanded = false, double size = 24.0, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onPressed = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color expandedColor = default(FlutterBinding.UI.Color))
+        : base(key: key)
+        {
+            this.IsExpanded = isExpanded;
+            this.Size = size;
+            this.OnPressed = onPressed;
+            this.Padding = padding;
+            this.Color = color;
+            this.DisabledColor = disabledColor;
+            this.ExpandedColor = expandedColor; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual bool IsExpanded { get; set; }
+        public virtual double Size { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnPressed { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual FlutterBinding.UI.Color DisabledColor { get; set; }
+        public virtual FlutterBinding.UI.Color ExpandedColor { get; set; }
+        #endregion
 
-public new FlutterSDK.Material.Expandicon._ExpandIconState CreateState(){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new FlutterSDK.Material.Expandicon._ExpandIconState CreateState() { throw new NotImplementedException(); }
 
-
-public class _ExpandIconState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Expandicon.ExpandIcon>,ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-#region constructors
-public _ExpandIconState()
-{ }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _IconTurns{get;set;}
-internal virtual FlutterSDK.Animation.Tween.Animatable<double> _IconTurnTween{get;set;}
-internal virtual FlutterBinding.UI.Color _IconColor{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new void InitState(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+    public class _ExpandIconState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Expandicon.ExpandIcon>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _ExpandIconState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _IconTurns { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.Animatable<double> _IconTurnTween { get; set; }
+        internal virtual FlutterBinding.UI.Color _IconColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-public new void DidUpdateWidget(FlutterSDK.Material.Expandicon.ExpandIcon oldWidget){ throw new NotImplementedException(); }
+        public new void Dispose() { throw new NotImplementedException(); }
 
 
-private void _HandlePressed(){ throw new NotImplementedException(); }
+        public new void DidUpdateWidget(FlutterSDK.Material.Expandicon.ExpandIcon oldWidget) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        private void _HandlePressed() { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

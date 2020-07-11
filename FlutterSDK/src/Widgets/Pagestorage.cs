@@ -423,110 +423,117 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Pagestorage{
-internal static class PagestorageDefaultClass{
-}
-
-public interface IPageStorageBucket{}
-
-public class PageStorageBucket{
-internal virtual Dictionary<@Object,object> _Storage{get;set;}
-
-private bool _MaybeAddKey(FlutterSDK.Widgets.Framework.BuildContext context,List<FlutterSDK.Widgets.Pagestorage.PageStorageKey<object>> keys){ throw new NotImplementedException(); }
-
-
-private List<FlutterSDK.Widgets.Pagestorage.PageStorageKey<object>> _AllKeys(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-
-private FlutterSDK.Widgets.Pagestorage._StorageEntryIdentifier _ComputeIdentifier(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-
-public virtual void WriteState(FlutterSDK.Widgets.Framework.BuildContext context,object data,@Object identifier = default(@Object)){ throw new NotImplementedException(); }
-
-
-public virtual object ReadState(FlutterSDK.Widgets.Framework.BuildContext context,@Object identifier = default(@Object)){ throw new NotImplementedException(); }
-
-}
-public static class PageStorageBucketMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IPageStorageBucket, PageStorageBucket> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IPageStorageBucket, PageStorageBucket>();
-static PageStorageBucket GetOrCreate(IPageStorageBucket instance)
+namespace FlutterSDK.Widgets.Pagestorage
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new PageStorageBucket();
-_table.Add(instance, value);
-}
-return (PageStorageBucket)value;
-}
-public static void WriteState(this IPageStorageBucket instance,FlutterSDK.Widgets.Framework.BuildContext context,object data,@Object identifier = default(@Object)) => GetOrCreate(instance).WriteState(context, data, identifier);
-public static object ReadState(this IPageStorageBucket instance,FlutterSDK.Widgets.Framework.BuildContext context,@Object identifier = default(@Object)) => GetOrCreate(instance).ReadState(context, identifier);
-}
+    internal static class PagestorageDefaultClass
+    {
+    }
+
+    public interface IPageStorageBucket { }
+
+    public class PageStorageBucket
+    {
+        internal virtual Dictionary<@Object, object> _Storage { get; set; }
+
+        private bool _MaybeAddKey(FlutterSDK.Widgets.Framework.BuildContext context, List<FlutterSDK.Widgets.Pagestorage.PageStorageKey<object>> keys) { throw new NotImplementedException(); }
 
 
-public class PageStorageKey<T> : FlutterSDK.Foundation.Key.ValueKey<T>
-{
-#region constructors
-public PageStorageKey(T value)
-: base(value)
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-#endregion
-}
+        private List<FlutterSDK.Widgets.Pagestorage.PageStorageKey<object>> _AllKeys(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public class _StorageEntryIdentifier
-{
-#region constructors
-public _StorageEntryIdentifier(List<FlutterSDK.Widgets.Pagestorage.PageStorageKey<object>> keys)
-: base()
-{
-this.Keys = keys;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual List<FlutterSDK.Widgets.Pagestorage.PageStorageKey<object>> Keys{get;set;}
-public virtual bool IsNotEmpty{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        private FlutterSDK.Widgets.Pagestorage._StorageEntryIdentifier _ComputeIdentifier(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-#endregion
-}
+        public virtual void WriteState(FlutterSDK.Widgets.Framework.BuildContext context, object data, @Object identifier = default(@Object)) { throw new NotImplementedException(); }
 
 
-public class PageStorage : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public PageStorage(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Pagestorage.PageStorageBucket bucket = default(FlutterSDK.Widgets.Pagestorage.PageStorageBucket),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key)
-{
-this.Bucket = bucket;
-this.Child = child;throw new NotImplementedException(); }
-#endregion
+        public virtual object ReadState(FlutterSDK.Widgets.Framework.BuildContext context, @Object identifier = default(@Object)) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-public virtual FlutterSDK.Widgets.Pagestorage.PageStorageBucket Bucket{get;set;}
-#endregion
+    }
+    public static class PageStorageBucketMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IPageStorageBucket, PageStorageBucket> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IPageStorageBucket, PageStorageBucket>();
+        static PageStorageBucket GetOrCreate(IPageStorageBucket instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new PageStorageBucket();
+                _table.Add(instance, value);
+            }
+            return (PageStorageBucket)value;
+        }
+        public static void WriteState(this IPageStorageBucket instance, FlutterSDK.Widgets.Framework.BuildContext context, object data, @Object identifier = default(@Object)) => GetOrCreate(instance).WriteState(context, data, identifier);
+        public static object ReadState(this IPageStorageBucket instance, FlutterSDK.Widgets.Framework.BuildContext context, @Object identifier = default(@Object)) => GetOrCreate(instance).ReadState(context, identifier);
+    }
 
-#region methods
 
-public virtual FlutterSDK.Widgets.Pagestorage.PageStorageBucket Of(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+    public class PageStorageKey<T> : FlutterSDK.Foundation.Key.ValueKey<T>
+    {
+        #region constructors
+        public PageStorageKey(T value)
+        : base(value)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+        #endregion
+    }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+    public class _StorageEntryIdentifier
+    {
+        #region constructors
+        public _StorageEntryIdentifier(List<FlutterSDK.Widgets.Pagestorage.PageStorageKey<object>> keys)
+        : base()
+        {
+            this.Keys = keys; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual List<FlutterSDK.Widgets.Pagestorage.PageStorageKey<object>> Keys { get; set; }
+        public virtual bool IsNotEmpty { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+
+
+        #endregion
+    }
+
+
+    public class PageStorage : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public PageStorage(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Pagestorage.PageStorageBucket bucket = default(FlutterSDK.Widgets.Pagestorage.PageStorageBucket), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.Bucket = bucket;
+            this.Child = child; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual FlutterSDK.Widgets.Pagestorage.PageStorageBucket Bucket { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual FlutterSDK.Widgets.Pagestorage.PageStorageBucket Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

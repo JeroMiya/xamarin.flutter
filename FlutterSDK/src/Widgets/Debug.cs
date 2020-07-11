@@ -421,47 +421,57 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Widgets.Debug{
-public delegate void RebuildDirtyWidgetCallback(FlutterSDK.Widgets.Framework.Element e,bool builtOnce);
-internal static class DebugDefaultClass{
-public static bool DebugPrintRebuildDirtyWidgets = default(bool);
-public static object DebugOnRebuildDirtyWidget = default(object);
-public static bool DebugPrintBuildScope = default(bool);
-public static bool DebugPrintScheduleBuildForStacks = default(bool);
-public static bool DebugPrintGlobalKeyedWidgetLifecycle = default(bool);
-public static bool DebugProfileBuildsEnabled = default(bool);
-public static bool DebugHighlightDeprecatedWidgets = default(bool);
-internal static FlutterSDK.Foundation.Key.Key _FirstNonUniqueKey(Iterable<FlutterSDK.Widgets.Framework.Widget> widgets){
-throw new NotImplementedException();
-}
+namespace FlutterSDK.Widgets.Debug
+{
+    public delegate void RebuildDirtyWidgetCallback(FlutterSDK.Widgets.Framework.Element e, bool builtOnce);
+    internal static class DebugDefaultClass
+    {
+        public static bool DebugPrintRebuildDirtyWidgets = default(bool);
+        public static object DebugOnRebuildDirtyWidget = default(object);
+        public static bool DebugPrintBuildScope = default(bool);
+        public static bool DebugPrintScheduleBuildForStacks = default(bool);
+        public static bool DebugPrintGlobalKeyedWidgetLifecycle = default(bool);
+        public static bool DebugProfileBuildsEnabled = default(bool);
+        public static bool DebugHighlightDeprecatedWidgets = default(bool);
+        internal static FlutterSDK.Foundation.Key.Key _FirstNonUniqueKey(Iterable<FlutterSDK.Widgets.Framework.Widget> widgets)
+        {
+            throw new NotImplementedException();
+        }
 
-internal static bool DebugChildrenHaveDuplicateKeys(FlutterSDK.Widgets.Framework.Widget parent,Iterable<FlutterSDK.Widgets.Framework.Widget> children){
-throw new NotImplementedException();
-}
+        internal static bool DebugChildrenHaveDuplicateKeys(FlutterSDK.Widgets.Framework.Widget parent, Iterable<FlutterSDK.Widgets.Framework.Widget> children)
+        {
+            throw new NotImplementedException();
+        }
 
-internal static bool DebugItemsHaveDuplicateKeys(Iterable<FlutterSDK.Widgets.Framework.Widget> items){
-throw new NotImplementedException();
-}
+        internal static bool DebugItemsHaveDuplicateKeys(Iterable<FlutterSDK.Widgets.Framework.Widget> items)
+        {
+            throw new NotImplementedException();
+        }
 
-internal static bool DebugCheckHasTable(FlutterSDK.Widgets.Framework.BuildContext context){
-throw new NotImplementedException();
-}
+        internal static bool DebugCheckHasTable(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            throw new NotImplementedException();
+        }
 
-internal static bool DebugCheckHasMediaQuery(FlutterSDK.Widgets.Framework.BuildContext context){
-throw new NotImplementedException();
-}
+        internal static bool DebugCheckHasMediaQuery(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            throw new NotImplementedException();
+        }
 
-internal static bool DebugCheckHasDirectionality(FlutterSDK.Widgets.Framework.BuildContext context){
-throw new NotImplementedException();
-}
+        internal static bool DebugCheckHasDirectionality(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            throw new NotImplementedException();
+        }
 
-internal static void DebugWidgetBuilderValue(FlutterSDK.Widgets.Framework.Widget widget,FlutterSDK.Widgets.Framework.Widget built){
-throw new NotImplementedException();
-}
+        internal static void DebugWidgetBuilderValue(FlutterSDK.Widgets.Framework.Widget widget, FlutterSDK.Widgets.Framework.Widget built)
+        {
+            throw new NotImplementedException();
+        }
 
-internal static bool DebugAssertAllWidgetVarsUnset(string reason){
-throw new NotImplementedException();
-}
+        internal static bool DebugAssertAllWidgetVarsUnset(string reason)
+        {
+            throw new NotImplementedException();
+        }
 
-}
+    }
 }

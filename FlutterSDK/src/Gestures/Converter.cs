@@ -294,33 +294,37 @@ using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
-namespace FlutterSDK.Gestures.Converter{
-internal static class ConverterDefaultClass{
-internal static int _SynthesiseDownButtons(int buttons,PointerDeviceKind kind){
-throw new NotImplementedException();
-}
-
-}
-
-public class PointerEventConverter
+namespace FlutterSDK.Gestures.Converter
 {
-#region constructors
-internal PointerEventConverter()
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class ConverterDefaultClass
+    {
+        internal static int _SynthesiseDownButtons(int buttons, PointerDeviceKind kind)
+        {
+            throw new NotImplementedException();
+        }
 
-#region fields
-#endregion
+    }
 
-#region methods
+    public class PointerEventConverter
+    {
+        #region constructors
+        internal PointerEventConverter()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-public virtual Iterable<FlutterSDK.Gestures.Events.PointerEvent> Expand(Iterable<PointerData> data,double devicePixelRatio){ throw new NotImplementedException(); }
+        #region fields
+        #endregion
+
+        #region methods
+
+        public virtual Iterable<FlutterSDK.Gestures.Events.PointerEvent> Expand(Iterable<PointerData> data, double devicePixelRatio) { throw new NotImplementedException(); }
 
 
-private double _ToLogicalPixels(double physicalPixels,double devicePixelRatio){ throw new NotImplementedException(); }
+        private double _ToLogicalPixels(double physicalPixels, double devicePixelRatio) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 }

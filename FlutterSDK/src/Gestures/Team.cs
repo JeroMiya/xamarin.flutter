@@ -294,92 +294,98 @@ using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
-namespace FlutterSDK.Gestures.Team{
-internal static class TeamDefaultClass{
-}
-
-public interface IGestureArenaTeam{}
-
-public class GestureArenaTeam{
-internal virtual Dictionary<int,FlutterSDK.Gestures.Team._CombiningGestureArenaMember> _Combiners{get;set;}
-public virtual FlutterSDK.Gestures.Arena.GestureArenaMember Captain{get;set;}
-
-public virtual FlutterSDK.Gestures.Arena.GestureArenaEntry Add(int pointer,FlutterSDK.Gestures.Arena.GestureArenaMember member){ throw new NotImplementedException(); }
-
-}
-public static class GestureArenaTeamMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IGestureArenaTeam, GestureArenaTeam> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IGestureArenaTeam, GestureArenaTeam>();
-static GestureArenaTeam GetOrCreate(IGestureArenaTeam instance)
+namespace FlutterSDK.Gestures.Team
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new GestureArenaTeam();
-_table.Add(instance, value);
-}
-return (GestureArenaTeam)value;
-}
-public static FlutterSDK.Gestures.Arena.GestureArenaMember CaptainProperty(this IGestureArenaTeam instance) => GetOrCreate(instance).Captain;
-public static FlutterSDK.Gestures.Arena.GestureArenaEntry Add(this IGestureArenaTeam instance,int pointer,FlutterSDK.Gestures.Arena.GestureArenaMember member) => GetOrCreate(instance).Add(pointer, member);
-}
+    internal static class TeamDefaultClass
+    {
+    }
+
+    public interface IGestureArenaTeam { }
+
+    public class GestureArenaTeam
+    {
+        internal virtual Dictionary<int, FlutterSDK.Gestures.Team._CombiningGestureArenaMember> _Combiners { get; set; }
+        public virtual FlutterSDK.Gestures.Arena.GestureArenaMember Captain { get; set; }
+
+        public virtual FlutterSDK.Gestures.Arena.GestureArenaEntry Add(int pointer, FlutterSDK.Gestures.Arena.GestureArenaMember member) { throw new NotImplementedException(); }
+
+    }
+    public static class GestureArenaTeamMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IGestureArenaTeam, GestureArenaTeam> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IGestureArenaTeam, GestureArenaTeam>();
+        static GestureArenaTeam GetOrCreate(IGestureArenaTeam instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new GestureArenaTeam();
+                _table.Add(instance, value);
+            }
+            return (GestureArenaTeam)value;
+        }
+        public static FlutterSDK.Gestures.Arena.GestureArenaMember CaptainProperty(this IGestureArenaTeam instance) => GetOrCreate(instance).Captain;
+        public static FlutterSDK.Gestures.Arena.GestureArenaEntry Add(this IGestureArenaTeam instance, int pointer, FlutterSDK.Gestures.Arena.GestureArenaMember member) => GetOrCreate(instance).Add(pointer, member);
+    }
 
 
-public class _CombiningGestureArenaEntry : IGestureArenaEntry
-{
-#region constructors
-public _CombiningGestureArenaEntry(FlutterSDK.Gestures.Team._CombiningGestureArenaMember _combiner,FlutterSDK.Gestures.Arena.GestureArenaMember _member)
-{
-this._Combiner = _combiner;
-this._Member = _member;throw new NotImplementedException(); }
-#endregion
+    public class _CombiningGestureArenaEntry : IGestureArenaEntry
+    {
+        #region constructors
+        public _CombiningGestureArenaEntry(FlutterSDK.Gestures.Team._CombiningGestureArenaMember _combiner, FlutterSDK.Gestures.Arena.GestureArenaMember _member)
+        {
+            this._Combiner = _combiner;
+            this._Member = _member; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-internal virtual FlutterSDK.Gestures.Team._CombiningGestureArenaMember _Combiner{get;set;}
-internal virtual FlutterSDK.Gestures.Arena.GestureArenaMember _Member{get;set;}
-#endregion
+        #region fields
+        internal virtual FlutterSDK.Gestures.Team._CombiningGestureArenaMember _Combiner { get; set; }
+        internal virtual FlutterSDK.Gestures.Arena.GestureArenaMember _Member { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new void Resolve(FlutterSDK.Gestures.Arena.GestureDisposition disposition){ throw new NotImplementedException(); }
+        public new void Resolve(FlutterSDK.Gestures.Arena.GestureDisposition disposition) { throw new NotImplementedException(); }
 
-#endregion
-}
-
-
-public class _CombiningGestureArenaMember : FlutterSDK.Gestures.Arena.GestureArenaMember
-{
-#region constructors
-public _CombiningGestureArenaMember(FlutterSDK.Gestures.Team.GestureArenaTeam _owner,int _pointer)
-{
-this._Owner = _owner;
-this._Pointer = _pointer;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Gestures.Team.GestureArenaTeam _Owner{get;set;}
-internal virtual List<FlutterSDK.Gestures.Arena.GestureArenaMember> _Members{get;set;}
-internal virtual int _Pointer{get;set;}
-internal virtual bool _Resolved{get;set;}
-internal virtual FlutterSDK.Gestures.Arena.GestureArenaMember _Winner{get;set;}
-internal virtual FlutterSDK.Gestures.Arena.GestureArenaEntry _Entry{get;set;}
-#endregion
-
-#region methods
-
-public new void AcceptGesture(int pointer){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void RejectGesture(int pointer){ throw new NotImplementedException(); }
+    public class _CombiningGestureArenaMember : FlutterSDK.Gestures.Arena.GestureArenaMember
+    {
+        #region constructors
+        public _CombiningGestureArenaMember(FlutterSDK.Gestures.Team.GestureArenaTeam _owner, int _pointer)
+        {
+            this._Owner = _owner;
+            this._Pointer = _pointer; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Gestures.Team.GestureArenaTeam _Owner { get; set; }
+        internal virtual List<FlutterSDK.Gestures.Arena.GestureArenaMember> _Members { get; set; }
+        internal virtual int _Pointer { get; set; }
+        internal virtual bool _Resolved { get; set; }
+        internal virtual FlutterSDK.Gestures.Arena.GestureArenaMember _Winner { get; set; }
+        internal virtual FlutterSDK.Gestures.Arena.GestureArenaEntry _Entry { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void AcceptGesture(int pointer) { throw new NotImplementedException(); }
 
 
-private void _Close(){ throw new NotImplementedException(); }
+        public new void RejectGesture(int pointer) { throw new NotImplementedException(); }
 
 
-private FlutterSDK.Gestures.Arena.GestureArenaEntry _Add(int pointer,FlutterSDK.Gestures.Arena.GestureArenaMember member){ throw new NotImplementedException(); }
+        private void _Close() { throw new NotImplementedException(); }
 
 
-private void _Resolve(FlutterSDK.Gestures.Arena.GestureArenaMember member,FlutterSDK.Gestures.Arena.GestureDisposition disposition){ throw new NotImplementedException(); }
+        private FlutterSDK.Gestures.Arena.GestureArenaEntry _Add(int pointer, FlutterSDK.Gestures.Arena.GestureArenaMember member) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        private void _Resolve(FlutterSDK.Gestures.Arena.GestureArenaMember member, FlutterSDK.Gestures.Arena.GestureDisposition disposition) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

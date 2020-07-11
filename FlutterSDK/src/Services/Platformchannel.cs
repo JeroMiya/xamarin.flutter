@@ -421,132 +421,138 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Services.Platformchannel{
-internal static class PlatformchannelDefaultClass{
-}
-
-public class BasicMessageChannel<T>
+namespace FlutterSDK.Services.Platformchannel
 {
-#region constructors
-public BasicMessageChannel(string name,FlutterSDK.Services.Messagecodec.MessageCodec<T> codec,FlutterSDK.Services.Binarymessenger.BinaryMessenger binaryMessenger = default(FlutterSDK.Services.Binarymessenger.BinaryMessenger))
-: base()
-{
-this.Name = name;
-this.Codec = codec;throw new NotImplementedException(); }
-#endregion
+    internal static class PlatformchannelDefaultClass
+    {
+    }
 
-#region fields
-public virtual string Name{get;set;}
-public virtual FlutterSDK.Services.Messagecodec.MessageCodec<T> Codec{get;set;}
-internal virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger _BinaryMessenger{get;set;}
-public virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger BinaryMessenger{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class BasicMessageChannel<T>
+    {
+        #region constructors
+        public BasicMessageChannel(string name, FlutterSDK.Services.Messagecodec.MessageCodec<T> codec, FlutterSDK.Services.Binarymessenger.BinaryMessenger binaryMessenger = default(FlutterSDK.Services.Binarymessenger.BinaryMessenger))
+        : base()
+        {
+            this.Name = name;
+            this.Codec = codec; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual string Name { get; set; }
+        public virtual FlutterSDK.Services.Messagecodec.MessageCodec<T> Codec { get; set; }
+        internal virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger _BinaryMessenger { get; set; }
+        public virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger BinaryMessenger { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public virtual Future<T> Send(T message){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual void SetMessageHandler(Func<Future<T>,T> handler){ throw new NotImplementedException(); }
-
-
-public virtual void SetMockMessageHandler(Func<Future<T>,T> handler){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual Future<T> Send(T message) { throw new NotImplementedException(); }
 
 
-public class MethodChannel
-{
-#region constructors
-public MethodChannel(string name,FlutterSDK.Services.Messagecodec.MethodCodec codec = default(FlutterSDK.Services.Messagecodec.MethodCodec),FlutterSDK.Services.Binarymessenger.BinaryMessenger binaryMessenger = default(FlutterSDK.Services.Binarymessenger.BinaryMessenger))
-: base()
-{
-this.Name = name;
-this.Codec = codec;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual string Name{get;set;}
-public virtual FlutterSDK.Services.Messagecodec.MethodCodec Codec{get;set;}
-internal virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger _BinaryMessenger{get;set;}
-public virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger BinaryMessenger{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-private Future<T> _InvokeMethod<T>(string method,bool missingOk = default(bool),object arguments = default(object)){ throw new NotImplementedException(); }
+        public virtual void SetMessageHandler(Func<Future<T>, T> handler) { throw new NotImplementedException(); }
 
 
-public virtual Future<T> InvokeMethod<T>(string method,object arguments = default(object)){ throw new NotImplementedException(); }
+        public virtual void SetMockMessageHandler(Func<Future<T>, T> handler) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public virtual Future<List<T>> InvokeListMethod<T>(string method,object arguments = default(object)){ throw new NotImplementedException(); }
+    public class MethodChannel
+    {
+        #region constructors
+        public MethodChannel(string name, FlutterSDK.Services.Messagecodec.MethodCodec codec = default(FlutterSDK.Services.Messagecodec.MethodCodec), FlutterSDK.Services.Binarymessenger.BinaryMessenger binaryMessenger = default(FlutterSDK.Services.Binarymessenger.BinaryMessenger))
+        : base()
+        {
+            this.Name = name;
+            this.Codec = codec; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual string Name { get; set; }
+        public virtual FlutterSDK.Services.Messagecodec.MethodCodec Codec { get; set; }
+        internal virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger _BinaryMessenger { get; set; }
+        public virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger BinaryMessenger { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        private Future<T> _InvokeMethod<T>(string method, bool missingOk = default(bool), object arguments = default(object)) { throw new NotImplementedException(); }
 
 
-public virtual Future<Dictionary<K,V>> InvokeMapMethod<K,V>(string method,object arguments = default(object)){ throw new NotImplementedException(); }
+        public virtual Future<T> InvokeMethod<T>(string method, object arguments = default(object)) { throw new NotImplementedException(); }
 
 
-public virtual void SetMethodCallHandler(Func<Future<object>,MethodCall> handler){ throw new NotImplementedException(); }
+        public virtual Future<List<T>> InvokeListMethod<T>(string method, object arguments = default(object)) { throw new NotImplementedException(); }
 
 
-public virtual void SetMockMethodCallHandler(Func<Future<object>,MethodCall> handler){ throw new NotImplementedException(); }
+        public virtual Future<Dictionary<K, V>> InvokeMapMethod<K, V>(string method, object arguments = default(object)) { throw new NotImplementedException(); }
 
 
-private Future<ByteData> _HandleAsMethodCall(ByteData message,Func<Future<object>,MethodCall> handler){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual void SetMethodCallHandler(Func<Future<object>, MethodCall> handler) { throw new NotImplementedException(); }
 
 
-public class OptionalMethodChannel : FlutterSDK.Services.Platformchannel.MethodChannel
-{
-#region constructors
-public OptionalMethodChannel(string name,FlutterSDK.Services.Messagecodec.MethodCodec codec = default(FlutterSDK.Services.Messagecodec.MethodCodec))
-: base(name,codec)
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public new Future<T> InvokeMethod<T>(string method,object arguments = default(object)){ throw new NotImplementedException(); }
+        public virtual void SetMockMethodCallHandler(Func<Future<object>, MethodCall> handler) { throw new NotImplementedException(); }
 
 
-public new Future<List<T>> InvokeListMethod<T>(string method,object arguments = default(object)){ throw new NotImplementedException(); }
+        private Future<ByteData> _HandleAsMethodCall(ByteData message, Func<Future<object>, MethodCall> handler) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public new Future<Dictionary<K,V>> InvokeMapMethod<K,V>(string method,object arguments = default(object)){ throw new NotImplementedException(); }
+    public class OptionalMethodChannel : FlutterSDK.Services.Platformchannel.MethodChannel
+    {
+        #region constructors
+        public OptionalMethodChannel(string name, FlutterSDK.Services.Messagecodec.MethodCodec codec = default(FlutterSDK.Services.Messagecodec.MethodCodec))
+        : base(name, codec)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new Future<T> InvokeMethod<T>(string method, object arguments = default(object)) { throw new NotImplementedException(); }
 
 
-public class EventChannel
-{
-#region constructors
-public EventChannel(string name,FlutterSDK.Services.Messagecodec.MethodCodec codec = default(FlutterSDK.Services.Messagecodec.MethodCodec),FlutterSDK.Services.Binarymessenger.BinaryMessenger binaryMessenger = default(FlutterSDK.Services.Binarymessenger.BinaryMessenger))
-: base()
-{
-this.Name = name;
-this.Codec = codec;throw new NotImplementedException(); }
-#endregion
+        public new Future<List<T>> InvokeListMethod<T>(string method, object arguments = default(object)) { throw new NotImplementedException(); }
 
-#region fields
-public virtual string Name{get;set;}
-public virtual FlutterSDK.Services.Messagecodec.MethodCodec Codec{get;set;}
-internal virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger _BinaryMessenger{get;set;}
-public virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger BinaryMessenger{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+        public new Future<Dictionary<K, V>> InvokeMapMethod<K, V>(string method, object arguments = default(object)) { throw new NotImplementedException(); }
 
-public virtual Stream<object> ReceiveBroadcastStream(object arguments = default(object)){ throw new NotImplementedException(); }
+        #endregion
+    }
 
-#endregion
-}
+
+    public class EventChannel
+    {
+        #region constructors
+        public EventChannel(string name, FlutterSDK.Services.Messagecodec.MethodCodec codec = default(FlutterSDK.Services.Messagecodec.MethodCodec), FlutterSDK.Services.Binarymessenger.BinaryMessenger binaryMessenger = default(FlutterSDK.Services.Binarymessenger.BinaryMessenger))
+        : base()
+        {
+            this.Name = name;
+            this.Codec = codec; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual string Name { get; set; }
+        public virtual FlutterSDK.Services.Messagecodec.MethodCodec Codec { get; set; }
+        internal virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger _BinaryMessenger { get; set; }
+        public virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger BinaryMessenger { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual Stream<object> ReceiveBroadcastStream(object arguments = default(object)) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

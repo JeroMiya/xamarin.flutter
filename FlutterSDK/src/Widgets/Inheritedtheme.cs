@@ -422,59 +422,64 @@ using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
-namespace FlutterSDK.Widgets.Inheritedtheme{
-internal static class InheritedthemeDefaultClass{
-}
-
-public interface IInheritedTheme{
-FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Widgets.Framework.Widget child);
-FlutterSDK.Widgets.Framework.Widget CaptureAll(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Widgets.Framework.Widget child);
-}
-
-
-public class InheritedTheme : FlutterSDK.Widgets.Framework.InheritedWidget
+namespace FlutterSDK.Widgets.Inheritedtheme
 {
-#region constructors
-public InheritedTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key,child:child)
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class InheritedthemeDefaultClass
+    {
+    }
 
-#region fields
-#endregion
-
-#region methods
-
-public virtual FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Widgets.Framework.Widget child){ throw new NotImplementedException(); }
+    public interface IInheritedTheme
+    {
+        FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child);
+        FlutterSDK.Widgets.Framework.Widget CaptureAll(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child);
+    }
 
 
-public virtual FlutterSDK.Widgets.Framework.Widget CaptureAll(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Widgets.Framework.Widget child){ throw new NotImplementedException(); }
+    public class InheritedTheme : FlutterSDK.Widgets.Framework.InheritedWidget
+    {
+        #region constructors
+        public InheritedTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        #endregion
+
+        #region methods
+
+        public virtual FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
 
 
-public class _CaptureAll : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public _CaptureAll(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),List<FlutterSDK.Widgets.Inheritedtheme.InheritedTheme> themes = default(List<FlutterSDK.Widgets.Inheritedtheme.InheritedTheme>),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key)
-{
-this.Themes = themes;
-this.Child = child;throw new NotImplementedException(); }
-#endregion
+        public virtual FlutterSDK.Widgets.Framework.Widget CaptureAll(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
 
-#region fields
-public virtual List<FlutterSDK.Widgets.Inheritedtheme.InheritedTheme> Themes{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-#endregion
+        #endregion
+    }
 
-#region methods
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+    public class _CaptureAll : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public _CaptureAll(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Inheritedtheme.InheritedTheme> themes = default(List<FlutterSDK.Widgets.Inheritedtheme.InheritedTheme>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.Themes = themes;
+            this.Child = child; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual List<FlutterSDK.Widgets.Inheritedtheme.InheritedTheme> Themes { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

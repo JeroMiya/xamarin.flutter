@@ -416,331 +416,341 @@ using FlutterSDK.Material.Tabbartheme;
 using FlutterSDK.Material.Tabcontroller;
 using FlutterSDK.Material.Tabindicator;
 using FlutterSDK.Material.Selectabletext;
-namespace FlutterSDK.Material.Textselection{
-internal static class TextselectionDefaultClass{
-public static double _KHandleSize = default(double);
-public static double _KToolbarScreenPadding = default(double);
-public static double _KToolbarHeight = default(double);
-public static double _KToolbarContentDistanceBelow = default(double);
-public static double _KToolbarContentDistance = default(double);
-public static FlutterSDK.Widgets.Textselection.TextSelectionControls MaterialTextSelectionControls = default(FlutterSDK.Widgets.Textselection.TextSelectionControls);
-}
-
-public class _TextSelectionToolbar : FlutterSDK.Widgets.Framework.StatefulWidget
+namespace FlutterSDK.Material.Textselection
 {
-#region constructors
-public _TextSelectionToolbar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),VoidCallback handleCut = default(VoidCallback),VoidCallback handleCopy = default(VoidCallback),VoidCallback handlePaste = default(VoidCallback),VoidCallback handleSelectAll = default(VoidCallback),bool isAbove = default(bool))
-: base(key:key)
-{
-this.HandleCut = handleCut;
-this.HandleCopy = handleCopy;
-this.HandlePaste = handlePaste;
-this.HandleSelectAll = handleSelectAll;
-this.IsAbove = isAbove;throw new NotImplementedException(); }
-#endregion
+    internal static class TextselectionDefaultClass
+    {
+        public static double _KHandleSize = default(double);
+        public static double _KToolbarScreenPadding = default(double);
+        public static double _KToolbarHeight = default(double);
+        public static double _KToolbarContentDistanceBelow = default(double);
+        public static double _KToolbarContentDistance = default(double);
+        public static FlutterSDK.Widgets.Textselection.TextSelectionControls MaterialTextSelectionControls = default(FlutterSDK.Widgets.Textselection.TextSelectionControls);
+    }
+
+    public class _TextSelectionToolbar : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public _TextSelectionToolbar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback handleCut = default(VoidCallback), VoidCallback handleCopy = default(VoidCallback), VoidCallback handlePaste = default(VoidCallback), VoidCallback handleSelectAll = default(VoidCallback), bool isAbove = default(bool))
+        : base(key: key)
+        {
+            this.HandleCut = handleCut;
+            this.HandleCopy = handleCopy;
+            this.HandlePaste = handlePaste;
+            this.HandleSelectAll = handleSelectAll;
+            this.IsAbove = isAbove; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual VoidCallback HandleCut{get;set;}
-public virtual VoidCallback HandleCopy{get;set;}
-public virtual VoidCallback HandlePaste{get;set;}
-public virtual VoidCallback HandleSelectAll{get;set;}
-public virtual bool IsAbove{get;set;}
-#endregion
+        #region fields
+        public virtual VoidCallback HandleCut { get; set; }
+        public virtual VoidCallback HandleCopy { get; set; }
+        public virtual VoidCallback HandlePaste { get; set; }
+        public virtual VoidCallback HandleSelectAll { get; set; }
+        public virtual bool IsAbove { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new FlutterSDK.Material.Textselection._TextSelectionToolbarState CreateState(){ throw new NotImplementedException(); }
+        public new FlutterSDK.Material.Textselection._TextSelectionToolbarState CreateState() { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _TextSelectionToolbarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Textselection._TextSelectionToolbar>,ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-#region constructors
-public _TextSelectionToolbarState()
-{ }
-#endregion
+    public class _TextSelectionToolbarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Textselection._TextSelectionToolbar>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _TextSelectionToolbarState()
+        { }
+        #endregion
 
-#region fields
-internal virtual bool _OverflowOpen{get;set;}
-internal virtual FlutterSDK.Widgets.Framework.UniqueKey _ContainerKey{get;set;}
-#endregion
+        #region fields
+        internal virtual bool _OverflowOpen { get; set; }
+        internal virtual FlutterSDK.Widgets.Framework.UniqueKey _ContainerKey { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-private FlutterSDK.Material.Flatbutton.FlatButton _GetItem(VoidCallback onPressed,string label){ throw new NotImplementedException(); }
+        private FlutterSDK.Material.Flatbutton.FlatButton _GetItem(VoidCallback onPressed, string label) { throw new NotImplementedException(); }
 
 
-public new void DidUpdateWidget(FlutterSDK.Material.Textselection._TextSelectionToolbar oldWidget){ throw new NotImplementedException(); }
+        public new void DidUpdateWidget(FlutterSDK.Material.Textselection._TextSelectionToolbar oldWidget) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _TextSelectionToolbarContainer : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
-{
-#region constructors
-public _TextSelectionToolbarContainer(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),bool overflowOpen = default(bool))
-: base(key:key,child:child)
-{
-this.OverflowOpen = overflowOpen;throw new NotImplementedException(); }
-#endregion
+    public class _TextSelectionToolbarContainer : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
+    {
+        #region constructors
+        public _TextSelectionToolbarContainer(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool overflowOpen = default(bool))
+        : base(key: key, child: child)
+        {
+            this.OverflowOpen = overflowOpen; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual bool OverflowOpen{get;set;}
-#endregion
+        #region fields
+        public virtual bool OverflowOpen { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new FlutterSDK.Material.Textselection._TextSelectionToolbarContainerRenderBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new FlutterSDK.Material.Textselection._TextSelectionToolbarContainerRenderBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Material.Textselection._TextSelectionToolbarContainerRenderBox renderObject){ throw new NotImplementedException(); }
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Rendering.@object.RenderObject renderObject){ throw new NotImplementedException(); }
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Material.Textselection._TextSelectionToolbarContainerRenderBox renderObject) { throw new NotImplementedException(); }
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _TextSelectionToolbarContainerRenderBox : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-#region constructors
-public _TextSelectionToolbarContainerRenderBox(bool overflowOpen = default(bool))
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
+    public class _TextSelectionToolbarContainerRenderBox : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public _TextSelectionToolbarContainerRenderBox(bool overflowOpen = default(bool))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-internal virtual double _ClosedWidth{get;set;}
-internal virtual bool _OverflowOpen{get;set;}
-public virtual bool OverflowOpen{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
+        #region fields
+        internal virtual double _ClosedWidth { get; set; }
+        internal virtual bool _OverflowOpen { get; set; }
+        public virtual bool OverflowOpen { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#region methods
+        #region methods
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
-public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
+        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
 
-public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child){ throw new NotImplementedException(); }
-public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
+        public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
+        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
 
-public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child,Matrix4 transform){ throw new NotImplementedException(); }
+        public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _TextSelectionToolbarItems : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
-{
-#region constructors
-public _TextSelectionToolbarItems(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),bool isAbove = default(bool),bool overflowOpen = default(bool),List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
-: base(key:key,children:children)
-{
-this.IsAbove = isAbove;
-this.OverflowOpen = overflowOpen;throw new NotImplementedException(); }
-#endregion
+    public class _TextSelectionToolbarItems : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
+    {
+        #region constructors
+        public _TextSelectionToolbarItems(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool isAbove = default(bool), bool overflowOpen = default(bool), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
+        : base(key: key, children: children)
+        {
+            this.IsAbove = isAbove;
+            this.OverflowOpen = overflowOpen; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual bool IsAbove{get;set;}
-public virtual bool OverflowOpen{get;set;}
-#endregion
+        #region fields
+        public virtual bool IsAbove { get; set; }
+        public virtual bool OverflowOpen { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new FlutterSDK.Material.Textselection._TextSelectionToolbarItemsRenderBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new FlutterSDK.Material.Textselection._TextSelectionToolbarItemsRenderBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Material.Textselection._TextSelectionToolbarItemsRenderBox renderObject){ throw new NotImplementedException(); }
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Rendering.@object.RenderObject renderObject){ throw new NotImplementedException(); }
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Material.Textselection._TextSelectionToolbarItemsRenderBox renderObject) { throw new NotImplementedException(); }
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Material.Textselection._TextSelectionToolbarItemsElement CreateElement(){ throw new NotImplementedException(); }
+        public new FlutterSDK.Material.Textselection._TextSelectionToolbarItemsElement CreateElement() { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _ToolbarParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
-{
-#region constructors
-public _ToolbarParentData()
-{ }
-#endregion
+    public class _ToolbarParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
+    {
+        #region constructors
+        public _ToolbarParentData()
+        { }
+        #endregion
 
-#region fields
-public virtual bool ShouldPaint{get;set;}
-#endregion
+        #region fields
+        public virtual bool ShouldPaint { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _TextSelectionToolbarItemsElement : FlutterSDK.Widgets.Framework.MultiChildRenderObjectElement
-{
-#region constructors
-public _TextSelectionToolbarItemsElement(FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget widget)
-: base(widget)
-{
-throw new NotImplementedException(); }
-#endregion
+    public class _TextSelectionToolbarItemsElement : FlutterSDK.Widgets.Framework.MultiChildRenderObjectElement
+    {
+        #region constructors
+        public _TextSelectionToolbarItemsElement(FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget widget)
+        : base(widget)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-private bool _ShouldPaint(FlutterSDK.Widgets.Framework.Element child){ throw new NotImplementedException(); }
+        private bool _ShouldPaint(FlutterSDK.Widgets.Framework.Element child) { throw new NotImplementedException(); }
 
 
-public new void DebugVisitOnstageChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor){ throw new NotImplementedException(); }
+        public new void DebugVisitOnstageChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _TextSelectionToolbarItemsRenderBox : FlutterSDK.Rendering.Box.RenderBox,IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox,FlutterSDK.Material.Textselection._ToolbarParentData>
-{
-#region constructors
-public _TextSelectionToolbarItemsRenderBox(bool isAbove = default(bool),bool overflowOpen = default(bool))
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
+    public class _TextSelectionToolbarItemsRenderBox : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Material.Textselection._ToolbarParentData>
+    {
+        #region constructors
+        public _TextSelectionToolbarItemsRenderBox(bool isAbove = default(bool), bool overflowOpen = default(bool))
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-internal virtual int _LastIndexThatFits{get;set;}
-internal virtual bool _IsAbove{get;set;}
-internal virtual bool _OverflowOpen{get;set;}
-public virtual bool IsAbove{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool OverflowOpen{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-#endregion
+        #region fields
+        internal virtual int _LastIndexThatFits { get; set; }
+        internal virtual bool _IsAbove { get; set; }
+        internal virtual bool _OverflowOpen { get; set; }
+        public virtual bool IsAbove { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool OverflowOpen { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#region methods
+        #region methods
 
-private void _LayoutChildren(){ throw new NotImplementedException(); }
+        private void _LayoutChildren() { throw new NotImplementedException(); }
 
 
-private bool _ShouldPaintChild(FlutterSDK.Rendering.@object.RenderObject renderObjectChild,int index){ throw new NotImplementedException(); }
+        private bool _ShouldPaintChild(FlutterSDK.Rendering.@object.RenderObject renderObjectChild, int index) { throw new NotImplementedException(); }
 
 
-private void _PlaceChildren(){ throw new NotImplementedException(); }
+        private void _PlaceChildren() { throw new NotImplementedException(); }
 
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
-public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child){ throw new NotImplementedException(); }
-public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
+        public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
+        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
 
-public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
+        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _TextSelectionToolbarLayout : FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate
-{
-#region constructors
-public _TextSelectionToolbarLayout(FlutterBinding.UI.Offset anchor,double upperBounds,bool fitsAbove)
-{
-this.Anchor = anchor;
-this.UpperBounds = upperBounds;
-this.FitsAbove = fitsAbove;throw new NotImplementedException(); }
-#endregion
+    public class _TextSelectionToolbarLayout : FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate
+    {
+        #region constructors
+        public _TextSelectionToolbarLayout(FlutterBinding.UI.Offset anchor, double upperBounds, bool fitsAbove)
+        {
+            this.Anchor = anchor;
+            this.UpperBounds = upperBounds;
+            this.FitsAbove = fitsAbove; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual FlutterBinding.UI.Offset Anchor{get;set;}
-public virtual double UpperBounds{get;set;}
-public virtual bool FitsAbove{get;set;}
-#endregion
+        #region fields
+        public virtual FlutterBinding.UI.Offset Anchor { get; set; }
+        public virtual double UpperBounds { get; set; }
+        public virtual bool FitsAbove { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-private double _CenterOn(double position,double width,double min,double max){ throw new NotImplementedException(); }
+        private double _CenterOn(double position, double width, double min, double max) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(FlutterSDK.Rendering.Box.BoxConstraints constraints){ throw new NotImplementedException(); }
+        public new FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
 
 
-public new Offset GetPositionForChild(Size size,Size childSize){ throw new NotImplementedException(); }
+        public new Offset GetPositionForChild(Size size, Size childSize) { throw new NotImplementedException(); }
 
 
-public new bool ShouldRelayout(FlutterSDK.Material.Textselection._TextSelectionToolbarLayout oldDelegate){ throw new NotImplementedException(); }
-public new bool ShouldRelayout(FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate oldDelegate){ throw new NotImplementedException(); }
+        public new bool ShouldRelayout(FlutterSDK.Material.Textselection._TextSelectionToolbarLayout oldDelegate) { throw new NotImplementedException(); }
+        public new bool ShouldRelayout(FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate oldDelegate) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _TextSelectionHandlePainter : FlutterSDK.Rendering.Custompaint.CustomPainter
-{
-#region constructors
-public _TextSelectionHandlePainter(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color))
-{
-this.Color = color;throw new NotImplementedException(); }
-#endregion
+    public class _TextSelectionHandlePainter : FlutterSDK.Rendering.Custompaint.CustomPainter
+    {
+        #region constructors
+        public _TextSelectionHandlePainter(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color))
+        {
+            this.Color = color; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual FlutterBinding.UI.Color Color{get;set;}
-#endregion
+        #region fields
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new void Paint(Canvas canvas,Size size){ throw new NotImplementedException(); }
+        public new void Paint(Canvas canvas, Size size) { throw new NotImplementedException(); }
 
 
-public new bool ShouldRepaint(FlutterSDK.Material.Textselection._TextSelectionHandlePainter oldPainter){ throw new NotImplementedException(); }
-public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate){ throw new NotImplementedException(); }
+        public new bool ShouldRepaint(FlutterSDK.Material.Textselection._TextSelectionHandlePainter oldPainter) { throw new NotImplementedException(); }
+        public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 
-public class _MaterialTextSelectionControls : FlutterSDK.Widgets.Textselection.TextSelectionControls
-{
-#region constructors
-public _MaterialTextSelectionControls()
-{ }
-#endregion
+    public class _MaterialTextSelectionControls : FlutterSDK.Widgets.Textselection.TextSelectionControls
+    {
+        #region constructors
+        public _MaterialTextSelectionControls()
+        { }
+        #endregion
 
-#region fields
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-public new Size GetHandleSize(double textLineHeight){ throw new NotImplementedException(); }
+        public new Size GetHandleSize(double textLineHeight) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget BuildToolbar(FlutterSDK.Widgets.Framework.BuildContext context,FlutterBinding.UI.Rect globalEditableRegion,double textLineHeight,FlutterBinding.UI.Offset selectionMidpoint,List<FlutterSDK.Rendering.Editable.TextSelectionPoint> endpoints,FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget BuildToolbar(FlutterSDK.Widgets.Framework.BuildContext context, FlutterBinding.UI.Rect globalEditableRegion, double textLineHeight, FlutterBinding.UI.Offset selectionMidpoint, List<FlutterSDK.Rendering.Editable.TextSelectionPoint> endpoints, FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget BuildHandle(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Widgets.Textselection.TextSelectionHandleType type,double textHeight){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget BuildHandle(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Textselection.TextSelectionHandleType type, double textHeight) { throw new NotImplementedException(); }
 
 
-public new Offset GetHandleAnchor(FlutterSDK.Widgets.Textselection.TextSelectionHandleType type,double textLineHeight){ throw new NotImplementedException(); }
+        public new Offset GetHandleAnchor(FlutterSDK.Widgets.Textselection.TextSelectionHandleType type, double textLineHeight) { throw new NotImplementedException(); }
 
 
-public new bool CanSelectAll(FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate){ throw new NotImplementedException(); }
+        public new bool CanSelectAll(FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 }

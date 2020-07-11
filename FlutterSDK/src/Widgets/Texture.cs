@@ -423,32 +423,35 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Texture{
-internal static class TextureDefaultClass{
-}
-
-public class Texture : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
+namespace FlutterSDK.Widgets.Texture
 {
-#region constructors
-public Texture(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),int textureId = default(int))
-: base(key:key)
-{
-this.TextureId = textureId;throw new NotImplementedException(); }
-#endregion
+    internal static class TextureDefaultClass
+    {
+    }
 
-#region fields
-public virtual int TextureId{get;set;}
-#endregion
+    public class Texture : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
+    {
+        #region constructors
+        public Texture(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), int textureId = default(int))
+        : base(key: key)
+        {
+            this.TextureId = textureId; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual int TextureId { get; set; }
+        #endregion
 
-public new FlutterSDK.Rendering.Texture.TextureBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region methods
+
+        public new FlutterSDK.Rendering.Texture.TextureBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Rendering.Texture.TextureBox renderObject){ throw new NotImplementedException(); }
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Rendering.@object.RenderObject renderObject){ throw new NotImplementedException(); }
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Texture.TextureBox renderObject) { throw new NotImplementedException(); }
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 }

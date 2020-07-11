@@ -411,193 +411,199 @@ using FlutterSDK.Material.Floatingactionbuttonlocation;
 using FlutterSDK.Material.Snackbar;
 using FlutterSDK.Material.Snackbartheme;
 using FlutterSDK.Material.Textselection;
-namespace FlutterSDK.Material.Selectabletext{
-internal static class SelectabletextDefaultClass{
-public static int IOSHorizontalOffset = default(int);
-}
-
-public class _TextSpanEditingController : FlutterSDK.Widgets.Editabletext.TextEditingController
+namespace FlutterSDK.Material.Selectabletext
 {
-#region constructors
-public _TextSpanEditingController(FlutterSDK.Painting.Textspan.TextSpan textSpan = default(FlutterSDK.Painting.Textspan.TextSpan))
-: base(text:textSpan.ToPlainText())
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class SelectabletextDefaultClass
+    {
+        public static int IOSHorizontalOffset = default(int);
+    }
 
-#region fields
-internal virtual FlutterSDK.Painting.Textspan.TextSpan _TextSpan{get;set;}
-public virtual string Text{set {throw new NotImplementedException();}}
-#endregion
+    public class _TextSpanEditingController : FlutterSDK.Widgets.Editabletext.TextEditingController
+    {
+        #region constructors
+        public _TextSpanEditingController(FlutterSDK.Painting.Textspan.TextSpan textSpan = default(FlutterSDK.Painting.Textspan.TextSpan))
+        : base(text: textSpan.ToPlainText())
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual FlutterSDK.Painting.Textspan.TextSpan _TextSpan { get; set; }
+        public virtual string Text { set { throw new NotImplementedException(); } }
+        #endregion
 
-public new FlutterSDK.Painting.Textspan.TextSpan BuildTextSpan(FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle),bool withComposing = default(bool)){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new FlutterSDK.Painting.Textspan.TextSpan BuildTextSpan(FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), bool withComposing = default(bool)) { throw new NotImplementedException(); }
 
-
-public class _SelectableTextSelectionGestureDetectorBuilder : FlutterSDK.Widgets.Textselection.TextSelectionGestureDetectorBuilder
-{
-#region constructors
-public _SelectableTextSelectionGestureDetectorBuilder(FlutterSDK.Material.Selectabletext._SelectableTextState state = default(FlutterSDK.Material.Selectabletext._SelectableTextState))
-: base(@delegate:state)
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Material.Selectabletext._SelectableTextState _State{get;set;}
-#endregion
-
-#region methods
-
-public new void OnForcePressStart(FlutterSDK.Gestures.Forcepress.ForcePressDetails details){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void OnForcePressEnd(FlutterSDK.Gestures.Forcepress.ForcePressDetails details){ throw new NotImplementedException(); }
+    public class _SelectableTextSelectionGestureDetectorBuilder : FlutterSDK.Widgets.Textselection.TextSelectionGestureDetectorBuilder
+    {
+        #region constructors
+        public _SelectableTextSelectionGestureDetectorBuilder(FlutterSDK.Material.Selectabletext._SelectableTextState state = default(FlutterSDK.Material.Selectabletext._SelectableTextState))
+        : base(@delegate: state)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Material.Selectabletext._SelectableTextState _State { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void OnForcePressStart(FlutterSDK.Gestures.Forcepress.ForcePressDetails details) { throw new NotImplementedException(); }
 
 
-public new void OnSingleLongTapMoveUpdate(FlutterSDK.Gestures.Longpress.LongPressMoveUpdateDetails details){ throw new NotImplementedException(); }
+        public new void OnForcePressEnd(FlutterSDK.Gestures.Forcepress.ForcePressDetails details) { throw new NotImplementedException(); }
 
 
-public new void OnSingleTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details){ throw new NotImplementedException(); }
+        public new void OnSingleLongTapMoveUpdate(FlutterSDK.Gestures.Longpress.LongPressMoveUpdateDetails details) { throw new NotImplementedException(); }
 
 
-public new void OnSingleLongTapStart(FlutterSDK.Gestures.Longpress.LongPressStartDetails details){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public new void OnSingleTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details) { throw new NotImplementedException(); }
 
 
-public class SelectableText : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public SelectableText(string data,FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode),FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle),TextAlign textAlign = default(TextAlign),TextDirection textDirection = default(TextDirection),double textScaleFactor = default(double),bool showCursor = false,bool autofocus = false,FlutterSDK.Widgets.Editabletext.ToolbarOptions toolbarOptions = default(FlutterSDK.Widgets.Editabletext.ToolbarOptions),int minLines = default(int),int maxLines = default(int),double cursorWidth = 2.0,Radius cursorRadius = default(Radius),FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color),FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior),bool enableInteractiveSelection = true,FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback),FlutterSDK.Widgets.Scrollphysics.ScrollPhysics scrollPhysics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics),FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis))
-: base(key:key)
-{
-this.Data = data;
-this.FocusNode = focusNode;
-this.Style = style;
-this.StrutStyle = strutStyle;
-this.TextAlign = textAlign;
-this.TextDirection = textDirection;
-this.TextScaleFactor = textScaleFactor;
-this.ShowCursor = showCursor;
-this.Autofocus = autofocus;
-this.MinLines = minLines;
-this.MaxLines = maxLines;
-this.CursorWidth = cursorWidth;
-this.CursorRadius = cursorRadius;
-this.CursorColor = cursorColor;
-this.DragStartBehavior = dragStartBehavior;
-this.EnableInteractiveSelection = enableInteractiveSelection;
-this.OnTap = onTap;
-this.ScrollPhysics = scrollPhysics;
-this.TextWidthBasis = textWidthBasis;throw new NotImplementedException(); }
-public static SelectableText Rich(FlutterSDK.Painting.Textspan.TextSpan textSpan,FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode),FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle),FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle),TextAlign textAlign = default(TextAlign),TextDirection textDirection = default(TextDirection),double textScaleFactor = default(double),bool showCursor = false,bool autofocus = false,FlutterSDK.Widgets.Editabletext.ToolbarOptions toolbarOptions = default(FlutterSDK.Widgets.Editabletext.ToolbarOptions),int minLines = default(int),int maxLines = default(int),double cursorWidth = 2.0,Radius cursorRadius = default(Radius),FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color),FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior),bool enableInteractiveSelection = true,FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback),FlutterSDK.Widgets.Scrollphysics.ScrollPhysics scrollPhysics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics),FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis))
-{
-var instance =new SelectableText(key:key);instance.TextSpan = textSpan;
-instance.FocusNode = focusNode;
-instance.Style = style;
-instance.StrutStyle = strutStyle;
-instance.TextAlign = textAlign;
-instance.TextDirection = textDirection;
-instance.TextScaleFactor = textScaleFactor;
-instance.ShowCursor = showCursor;
-instance.Autofocus = autofocus;
-instance.MinLines = minLines;
-instance.MaxLines = maxLines;
-instance.CursorWidth = cursorWidth;
-instance.CursorRadius = cursorRadius;
-instance.CursorColor = cursorColor;
-instance.DragStartBehavior = dragStartBehavior;
-instance.EnableInteractiveSelection = enableInteractiveSelection;
-instance.OnTap = onTap;
-instance.ScrollPhysics = scrollPhysics;
-instance.TextWidthBasis = textWidthBasis;throw new NotImplementedException(); }
-#endregion
+        public new void OnSingleLongTapStart(FlutterSDK.Gestures.Longpress.LongPressStartDetails details) { throw new NotImplementedException(); }
 
-#region fields
-public virtual string Data{get;set;}
-public virtual FlutterSDK.Painting.Textspan.TextSpan TextSpan{get;set;}
-public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode{get;set;}
-public virtual FlutterSDK.Painting.Textstyle.TextStyle Style{get;set;}
-public virtual FlutterSDK.Painting.Strutstyle.StrutStyle StrutStyle{get;set;}
-public virtual TextAlign TextAlign{get;set;}
-public virtual TextDirection TextDirection{get;set;}
-public virtual double TextScaleFactor{get;set;}
-public virtual bool Autofocus{get;set;}
-public virtual int MinLines{get;set;}
-public virtual int MaxLines{get;set;}
-public virtual bool ShowCursor{get;set;}
-public virtual double CursorWidth{get;set;}
-public virtual Radius CursorRadius{get;set;}
-public virtual FlutterBinding.UI.Color CursorColor{get;set;}
-public virtual bool EnableInteractiveSelection{get;set;}
-public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior{get;set;}
-public virtual FlutterSDK.Widgets.Editabletext.ToolbarOptions ToolbarOptions{get;set;}
-public virtual FlutterSDK.Gestures.Tap.GestureTapCallback OnTap{get;set;}
-public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ScrollPhysics{get;set;}
-public virtual FlutterSDK.Painting.Textpainter.TextWidthBasis TextWidthBasis{get;set;}
-public virtual bool SelectionEnabled{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Material.Selectabletext._SelectableTextState CreateState(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+    public class SelectableText : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public SelectableText(string data, FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), TextAlign textAlign = default(TextAlign), TextDirection textDirection = default(TextDirection), double textScaleFactor = default(double), bool showCursor = false, bool autofocus = false, FlutterSDK.Widgets.Editabletext.ToolbarOptions toolbarOptions = default(FlutterSDK.Widgets.Editabletext.ToolbarOptions), int minLines = default(int), int maxLines = default(int), double cursorWidth = 2.0, Radius cursorRadius = default(Radius), FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), bool enableInteractiveSelection = true, FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics scrollPhysics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis))
+        : base(key: key)
+        {
+            this.Data = data;
+            this.FocusNode = focusNode;
+            this.Style = style;
+            this.StrutStyle = strutStyle;
+            this.TextAlign = textAlign;
+            this.TextDirection = textDirection;
+            this.TextScaleFactor = textScaleFactor;
+            this.ShowCursor = showCursor;
+            this.Autofocus = autofocus;
+            this.MinLines = minLines;
+            this.MaxLines = maxLines;
+            this.CursorWidth = cursorWidth;
+            this.CursorRadius = cursorRadius;
+            this.CursorColor = cursorColor;
+            this.DragStartBehavior = dragStartBehavior;
+            this.EnableInteractiveSelection = enableInteractiveSelection;
+            this.OnTap = onTap;
+            this.ScrollPhysics = scrollPhysics;
+            this.TextWidthBasis = textWidthBasis; throw new NotImplementedException();
+        }
+        public static SelectableText Rich(FlutterSDK.Painting.Textspan.TextSpan textSpan, FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), TextAlign textAlign = default(TextAlign), TextDirection textDirection = default(TextDirection), double textScaleFactor = default(double), bool showCursor = false, bool autofocus = false, FlutterSDK.Widgets.Editabletext.ToolbarOptions toolbarOptions = default(FlutterSDK.Widgets.Editabletext.ToolbarOptions), int minLines = default(int), int maxLines = default(int), double cursorWidth = 2.0, Radius cursorRadius = default(Radius), FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), bool enableInteractiveSelection = true, FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics scrollPhysics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis))
+        {
+            var instance = new SelectableText(key: key); instance.TextSpan = textSpan;
+            instance.FocusNode = focusNode;
+            instance.Style = style;
+            instance.StrutStyle = strutStyle;
+            instance.TextAlign = textAlign;
+            instance.TextDirection = textDirection;
+            instance.TextScaleFactor = textScaleFactor;
+            instance.ShowCursor = showCursor;
+            instance.Autofocus = autofocus;
+            instance.MinLines = minLines;
+            instance.MaxLines = maxLines;
+            instance.CursorWidth = cursorWidth;
+            instance.CursorRadius = cursorRadius;
+            instance.CursorColor = cursorColor;
+            instance.DragStartBehavior = dragStartBehavior;
+            instance.EnableInteractiveSelection = enableInteractiveSelection;
+            instance.OnTap = onTap;
+            instance.ScrollPhysics = scrollPhysics;
+            instance.TextWidthBasis = textWidthBasis; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual string Data { get; set; }
+        public virtual FlutterSDK.Painting.Textspan.TextSpan TextSpan { get; set; }
+        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle Style { get; set; }
+        public virtual FlutterSDK.Painting.Strutstyle.StrutStyle StrutStyle { get; set; }
+        public virtual TextAlign TextAlign { get; set; }
+        public virtual TextDirection TextDirection { get; set; }
+        public virtual double TextScaleFactor { get; set; }
+        public virtual bool Autofocus { get; set; }
+        public virtual int MinLines { get; set; }
+        public virtual int MaxLines { get; set; }
+        public virtual bool ShowCursor { get; set; }
+        public virtual double CursorWidth { get; set; }
+        public virtual Radius CursorRadius { get; set; }
+        public virtual FlutterBinding.UI.Color CursorColor { get; set; }
+        public virtual bool EnableInteractiveSelection { get; set; }
+        public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
+        public virtual FlutterSDK.Widgets.Editabletext.ToolbarOptions ToolbarOptions { get; set; }
+        public virtual FlutterSDK.Gestures.Tap.GestureTapCallback OnTap { get; set; }
+        public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ScrollPhysics { get; set; }
+        public virtual FlutterSDK.Painting.Textpainter.TextWidthBasis TextWidthBasis { get; set; }
+        public virtual bool SelectionEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Material.Selectabletext._SelectableTextState CreateState() { throw new NotImplementedException(); }
 
 
-public class _SelectableTextState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Selectabletext.SelectableText>,ITextSelectionGestureDetectorBuilderDelegate,IAutomaticKeepAliveClientMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-#region constructors
-public _SelectableTextState()
-{ }
-#endregion
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-#region fields
-internal virtual FlutterSDK.Material.Selectabletext._TextSpanEditingController _Controller{get;set;}
-internal virtual FlutterSDK.Widgets.Focusmanager.FocusNode _FocusNode{get;set;}
-internal virtual bool _ShowSelectionHandles{get;set;}
-internal virtual FlutterSDK.Material.Selectabletext._SelectableTextSelectionGestureDetectorBuilder _SelectionGestureDetectorBuilder{get;set;}
-public new bool ForcePressEnabled{get;set;}
-public new FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Editabletext.EditableTextState> EditableTextKey{get;set;}
-internal virtual FlutterSDK.Widgets.Editabletext.EditableTextState _EditableText{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-internal virtual FlutterSDK.Widgets.Focusmanager.FocusNode _EffectiveFocusNode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool SelectionEnabled{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool WantKeepAlive{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new void InitState(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new void DidUpdateWidget(FlutterSDK.Material.Selectabletext.SelectableText oldWidget){ throw new NotImplementedException(); }
+    public class _SelectableTextState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Selectabletext.SelectableText>, ITextSelectionGestureDetectorBuilderDelegate, IAutomaticKeepAliveClientMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _SelectableTextState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Material.Selectabletext._TextSpanEditingController _Controller { get; set; }
+        internal virtual FlutterSDK.Widgets.Focusmanager.FocusNode _FocusNode { get; set; }
+        internal virtual bool _ShowSelectionHandles { get; set; }
+        internal virtual FlutterSDK.Material.Selectabletext._SelectableTextSelectionGestureDetectorBuilder _SelectionGestureDetectorBuilder { get; set; }
+        public new bool ForcePressEnabled { get; set; }
+        public new FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Editabletext.EditableTextState> EditableTextKey { get; set; }
+        internal virtual FlutterSDK.Widgets.Editabletext.EditableTextState _EditableText { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual FlutterSDK.Widgets.Focusmanager.FocusNode _EffectiveFocusNode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool SelectionEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool WantKeepAlive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
 
 
-public new void Dispose(){ throw new NotImplementedException(); }
+        public new void DidUpdateWidget(FlutterSDK.Material.Selectabletext.SelectableText oldWidget) { throw new NotImplementedException(); }
 
 
-private void _HandleSelectionChanged(FlutterSDK.Services.Textediting.TextSelection selection,FlutterSDK.Rendering.Editable.SelectionChangedCause cause){ throw new NotImplementedException(); }
+        public new void Dispose() { throw new NotImplementedException(); }
 
 
-private void _HandleSelectionHandleTapped(){ throw new NotImplementedException(); }
+        private void _HandleSelectionChanged(FlutterSDK.Services.Textediting.TextSelection selection, FlutterSDK.Rendering.Editable.SelectionChangedCause cause) { throw new NotImplementedException(); }
 
 
-private bool _ShouldShowSelectionHandles(FlutterSDK.Rendering.Editable.SelectionChangedCause cause){ throw new NotImplementedException(); }
+        private void _HandleSelectionHandleTapped() { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        private bool _ShouldShowSelectionHandles(FlutterSDK.Rendering.Editable.SelectionChangedCause cause) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

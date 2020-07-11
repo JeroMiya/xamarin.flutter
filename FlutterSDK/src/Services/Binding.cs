@@ -421,94 +421,99 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Services.Binding{
-internal static class BindingDefaultClass{
-}
-
-public interface IServicesBinding{}
-
-public class ServicesBinding{
-internal virtual FlutterSDK.Services.Binding.ServicesBinding _Instance{get;set;}
-internal virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger _DefaultBinaryMessenger{get;set;}
-public virtual FlutterSDK.Services.Binding.ServicesBinding Instance{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger DefaultBinaryMessenger{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-
-public new void InitInstances(){ throw new NotImplementedException(); }
-
-
-public virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger CreateBinaryMessenger(){ throw new NotImplementedException(); }
-
-
-public virtual Future<object> HandleSystemMessage(@Object systemMessage){ throw new NotImplementedException(); }
-
-
-public virtual void InitLicenses(){ throw new NotImplementedException(); }
-
-
-private Stream<FlutterSDK.Foundation.Licenses.LicenseEntry> _AddLicenses(){ throw new NotImplementedException(); }
-
-
-private List<FlutterSDK.Foundation.Licenses.LicenseEntry> _ParseLicenses(string rawLicenses){ throw new NotImplementedException(); }
-
-
-public new void InitServiceExtensions(){ throw new NotImplementedException(); }
-
-
-public virtual void Evict(string asset){ throw new NotImplementedException(); }
-
-}
-public static class ServicesBindingMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<IServicesBinding, ServicesBinding> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IServicesBinding, ServicesBinding>();
-static ServicesBinding GetOrCreate(IServicesBinding instance)
+namespace FlutterSDK.Services.Binding
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new ServicesBinding();
-_table.Add(instance, value);
-}
-return (ServicesBinding)value;
-}
-public static FlutterSDK.Services.Binding.ServicesBinding InstanceProperty(this IServicesBinding instance) => GetOrCreate(instance).Instance;
-public static FlutterSDK.Services.Binarymessenger.BinaryMessenger DefaultBinaryMessengerProperty(this IServicesBinding instance) => GetOrCreate(instance).DefaultBinaryMessenger;
-public static void InitInstances(this IServicesBinding instance) => GetOrCreate(instance).InitInstances();
-public static FlutterSDK.Services.Binarymessenger.BinaryMessenger CreateBinaryMessenger(this IServicesBinding instance) => GetOrCreate(instance).CreateBinaryMessenger();
-public static Future<object> HandleSystemMessage(this IServicesBinding instance,@Object systemMessage) => GetOrCreate(instance).HandleSystemMessage(systemMessage);
-public static void InitLicenses(this IServicesBinding instance) => GetOrCreate(instance).InitLicenses();
-public static void InitServiceExtensions(this IServicesBinding instance) => GetOrCreate(instance).InitServiceExtensions();
-public static void Evict(this IServicesBinding instance,string asset) => GetOrCreate(instance).Evict(asset);
-}
+    internal static class BindingDefaultClass
+    {
+    }
+
+    public interface IServicesBinding { }
+
+    public class ServicesBinding
+    {
+        internal virtual FlutterSDK.Services.Binding.ServicesBinding _Instance { get; set; }
+        internal virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger _DefaultBinaryMessenger { get; set; }
+        public virtual FlutterSDK.Services.Binding.ServicesBinding Instance { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger DefaultBinaryMessenger { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+
+        public new void InitInstances() { throw new NotImplementedException(); }
 
 
-public class _DefaultBinaryMessenger : FlutterSDK.Services.Binarymessenger.BinaryMessenger
-{
-#region constructors
-internal _DefaultBinaryMessenger()
-{
-throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual Dictionary<string,object> _Handlers{get;set;}
-internal virtual Dictionary<string,object> _MockHandlers{get;set;}
-#endregion
-
-#region methods
-
-private Future<ByteData> _SendPlatformMessage(string channel,ByteData message){ throw new NotImplementedException(); }
+        public virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger CreateBinaryMessenger() { throw new NotImplementedException(); }
 
 
-public new Future<object> HandlePlatformMessage(string channel,ByteData data,PlatformMessageResponseCallback callback){ throw new NotImplementedException(); }
+        public virtual Future<object> HandleSystemMessage(@Object systemMessage) { throw new NotImplementedException(); }
 
 
-public new Future<ByteData> Send(string channel,ByteData message){ throw new NotImplementedException(); }
+        public virtual void InitLicenses() { throw new NotImplementedException(); }
 
 
-public new void SetMessageHandler(string channel,FlutterSDK.Services.Binarymessenger.MessageHandler handler){ throw new NotImplementedException(); }
+        private Stream<FlutterSDK.Foundation.Licenses.LicenseEntry> _AddLicenses() { throw new NotImplementedException(); }
 
 
-public new void SetMockMessageHandler(string channel,FlutterSDK.Services.Binarymessenger.MessageHandler handler){ throw new NotImplementedException(); }
+        private List<FlutterSDK.Foundation.Licenses.LicenseEntry> _ParseLicenses(string rawLicenses) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new void InitServiceExtensions() { throw new NotImplementedException(); }
+
+
+        public virtual void Evict(string asset) { throw new NotImplementedException(); }
+
+    }
+    public static class ServicesBindingMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IServicesBinding, ServicesBinding> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IServicesBinding, ServicesBinding>();
+        static ServicesBinding GetOrCreate(IServicesBinding instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new ServicesBinding();
+                _table.Add(instance, value);
+            }
+            return (ServicesBinding)value;
+        }
+        public static FlutterSDK.Services.Binding.ServicesBinding InstanceProperty(this IServicesBinding instance) => GetOrCreate(instance).Instance;
+        public static FlutterSDK.Services.Binarymessenger.BinaryMessenger DefaultBinaryMessengerProperty(this IServicesBinding instance) => GetOrCreate(instance).DefaultBinaryMessenger;
+        public static void InitInstances(this IServicesBinding instance) => GetOrCreate(instance).InitInstances();
+        public static FlutterSDK.Services.Binarymessenger.BinaryMessenger CreateBinaryMessenger(this IServicesBinding instance) => GetOrCreate(instance).CreateBinaryMessenger();
+        public static Future<object> HandleSystemMessage(this IServicesBinding instance, @Object systemMessage) => GetOrCreate(instance).HandleSystemMessage(systemMessage);
+        public static void InitLicenses(this IServicesBinding instance) => GetOrCreate(instance).InitLicenses();
+        public static void InitServiceExtensions(this IServicesBinding instance) => GetOrCreate(instance).InitServiceExtensions();
+        public static void Evict(this IServicesBinding instance, string asset) => GetOrCreate(instance).Evict(asset);
+    }
+
+
+    public class _DefaultBinaryMessenger : FlutterSDK.Services.Binarymessenger.BinaryMessenger
+    {
+        #region constructors
+        internal _DefaultBinaryMessenger()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual Dictionary<string, object> _Handlers { get; set; }
+        internal virtual Dictionary<string, object> _MockHandlers { get; set; }
+        #endregion
+
+        #region methods
+
+        private Future<ByteData> _SendPlatformMessage(string channel, ByteData message) { throw new NotImplementedException(); }
+
+
+        public new Future<object> HandlePlatformMessage(string channel, ByteData data, PlatformMessageResponseCallback callback) { throw new NotImplementedException(); }
+
+
+        public new Future<ByteData> Send(string channel, ByteData message) { throw new NotImplementedException(); }
+
+
+        public new void SetMessageHandler(string channel, FlutterSDK.Services.Binarymessenger.MessageHandler handler) { throw new NotImplementedException(); }
+
+
+        public new void SetMockMessageHandler(string channel, FlutterSDK.Services.Binarymessenger.MessageHandler handler) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

@@ -419,127 +419,131 @@ using FlutterSDK.Material.Selectabletext;
 using FlutterSDK.Material.Inksplash;
 using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
-namespace FlutterSDK.Material.Toggleable{
-internal static class ToggleableDefaultClass{
-public static TimeSpan _KToggleDuration = default(TimeSpan);
-public static FlutterSDK.Animation.Tween.Animatable<double> _KRadialReactionRadiusTween = default(FlutterSDK.Animation.Tween.Animatable<double>);
-public static TimeSpan _KReactionFadeDuration = default(TimeSpan);
-}
-
-public interface IRenderToggleable{
-void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner);
-void Detach();
-bool HitTestSelf(FlutterBinding.UI.Offset position);
-void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event,FlutterSDK.Rendering.Box.BoxHitTestEntry entry);
-void PaintRadialReaction(Canvas canvas,FlutterBinding.UI.Offset offset,FlutterBinding.UI.Offset origin);
-void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config);
-void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
-FlutterSDK.Animation.Animationcontroller.AnimationController PositionController{get;}
-FlutterSDK.Animation.Animations.CurvedAnimation Position{get;}
-FlutterSDK.Animation.Animationcontroller.AnimationController ReactionController{get;}
-FlutterSDK.Animation.Animationcontroller.AnimationController ReactionFocusFadeController{get;}
-FlutterSDK.Animation.Animationcontroller.AnimationController ReactionHoverFadeController{get;}
-bool HasFocus{get;set;}
-bool Hovering{get;set;}
-FlutterSDK.Scheduler.Ticker.TickerProvider Vsync{get;set;}
-bool Value{get;set;}
-bool Tristate{get;set;}
-FlutterBinding.UI.Color ActiveColor{get;set;}
-FlutterBinding.UI.Color InactiveColor{get;set;}
-FlutterBinding.UI.Color HoverColor{get;set;}
-FlutterBinding.UI.Color FocusColor{get;set;}
-FlutterBinding.UI.Color ReactionColor{get;set;}
-FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged{get;set;}
-bool IsInteractive{get;}
-}
-
-
-public class RenderToggleable : FlutterSDK.Rendering.Proxybox.RenderConstrainedBox
+namespace FlutterSDK.Material.Toggleable
 {
-#region constructors
-public RenderToggleable(bool value = default(bool),bool tristate = false,FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color),FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>),FlutterSDK.Rendering.Box.BoxConstraints additionalConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints),FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider),bool hasFocus = false,bool hovering = false)
-: base(additionalConstraints:additionalConstraints)
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class ToggleableDefaultClass
+    {
+        public static TimeSpan _KToggleDuration = default(TimeSpan);
+        public static FlutterSDK.Animation.Tween.Animatable<double> _KRadialReactionRadiusTween = default(FlutterSDK.Animation.Tween.Animatable<double>);
+        public static TimeSpan _KReactionFadeDuration = default(TimeSpan);
+    }
 
-#region fields
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _PositionController{get;set;}
-internal virtual FlutterSDK.Animation.Animations.CurvedAnimation _Position{get;set;}
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _ReactionController{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _Reaction{get;set;}
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _ReactionFocusFadeController{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _ReactionFocusFade{get;set;}
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _ReactionHoverFadeController{get;set;}
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _ReactionHoverFade{get;set;}
-internal virtual bool _HasFocus{get;set;}
-internal virtual bool _Hovering{get;set;}
-internal virtual FlutterSDK.Scheduler.Ticker.TickerProvider _Vsync{get;set;}
-internal virtual bool _Value{get;set;}
-internal virtual bool _Tristate{get;set;}
-internal virtual FlutterBinding.UI.Color _ActiveColor{get;set;}
-internal virtual FlutterBinding.UI.Color _InactiveColor{get;set;}
-internal virtual FlutterBinding.UI.Color _HoverColor{get;set;}
-internal virtual FlutterBinding.UI.Color _FocusColor{get;set;}
-internal virtual FlutterBinding.UI.Color _ReactionColor{get;set;}
-internal virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> _OnChanged{get;set;}
-internal virtual FlutterSDK.Gestures.Tap.TapGestureRecognizer _Tap{get;set;}
-internal virtual FlutterBinding.UI.Offset _DownPosition{get;set;}
-public virtual FlutterSDK.Animation.Animationcontroller.AnimationController PositionController{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Animation.Animations.CurvedAnimation Position{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Animation.Animationcontroller.AnimationController ReactionController{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Animation.Animationcontroller.AnimationController ReactionFocusFadeController{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual FlutterSDK.Animation.Animationcontroller.AnimationController ReactionHoverFadeController{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-public virtual bool HasFocus{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool Hovering{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool Value{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool Tristate{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterBinding.UI.Color ActiveColor{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterBinding.UI.Color InactiveColor{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterBinding.UI.Color HoverColor{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterBinding.UI.Color FocusColor{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterBinding.UI.Color ReactionColor{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual bool IsInteractive{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner){ throw new NotImplementedException(); }
-public new void Attach(@Object owner){ throw new NotImplementedException(); }
+    public interface IRenderToggleable
+    {
+        void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner);
+        void Detach();
+        bool HitTestSelf(FlutterBinding.UI.Offset position);
+        void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Rendering.Box.BoxHitTestEntry entry);
+        void PaintRadialReaction(Canvas canvas, FlutterBinding.UI.Offset offset, FlutterBinding.UI.Offset origin);
+        void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config);
+        void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
+        FlutterSDK.Animation.Animationcontroller.AnimationController PositionController { get; }
+        FlutterSDK.Animation.Animations.CurvedAnimation Position { get; }
+        FlutterSDK.Animation.Animationcontroller.AnimationController ReactionController { get; }
+        FlutterSDK.Animation.Animationcontroller.AnimationController ReactionFocusFadeController { get; }
+        FlutterSDK.Animation.Animationcontroller.AnimationController ReactionHoverFadeController { get; }
+        bool HasFocus { get; set; }
+        bool Hovering { get; set; }
+        FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get; set; }
+        bool Value { get; set; }
+        bool Tristate { get; set; }
+        FlutterBinding.UI.Color ActiveColor { get; set; }
+        FlutterBinding.UI.Color InactiveColor { get; set; }
+        FlutterBinding.UI.Color HoverColor { get; set; }
+        FlutterBinding.UI.Color FocusColor { get; set; }
+        FlutterBinding.UI.Color ReactionColor { get; set; }
+        FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged { get; set; }
+        bool IsInteractive { get; }
+    }
 
 
-public new void Detach(){ throw new NotImplementedException(); }
+    public class RenderToggleable : FlutterSDK.Rendering.Proxybox.RenderConstrainedBox
+    {
+        #region constructors
+        public RenderToggleable(bool value = default(bool), bool tristate = false, FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Rendering.Box.BoxConstraints additionalConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), bool hasFocus = false, bool hovering = false)
+        : base(additionalConstraints: additionalConstraints)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _PositionController { get; set; }
+        internal virtual FlutterSDK.Animation.Animations.CurvedAnimation _Position { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _ReactionController { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _Reaction { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _ReactionFocusFadeController { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _ReactionFocusFade { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _ReactionHoverFadeController { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _ReactionHoverFade { get; set; }
+        internal virtual bool _HasFocus { get; set; }
+        internal virtual bool _Hovering { get; set; }
+        internal virtual FlutterSDK.Scheduler.Ticker.TickerProvider _Vsync { get; set; }
+        internal virtual bool _Value { get; set; }
+        internal virtual bool _Tristate { get; set; }
+        internal virtual FlutterBinding.UI.Color _ActiveColor { get; set; }
+        internal virtual FlutterBinding.UI.Color _InactiveColor { get; set; }
+        internal virtual FlutterBinding.UI.Color _HoverColor { get; set; }
+        internal virtual FlutterBinding.UI.Color _FocusColor { get; set; }
+        internal virtual FlutterBinding.UI.Color _ReactionColor { get; set; }
+        internal virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> _OnChanged { get; set; }
+        internal virtual FlutterSDK.Gestures.Tap.TapGestureRecognizer _Tap { get; set; }
+        internal virtual FlutterBinding.UI.Offset _DownPosition { get; set; }
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController PositionController { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Animation.Animations.CurvedAnimation Position { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController ReactionController { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController ReactionFocusFadeController { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController ReactionHoverFadeController { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool HasFocus { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool Hovering { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool Tristate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Color ActiveColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Color InactiveColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Color HoverColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Color FocusColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Color ReactionColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsInteractive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner) { throw new NotImplementedException(); }
+        public new void Attach(@Object owner) { throw new NotImplementedException(); }
 
 
-private void _HandleTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details){ throw new NotImplementedException(); }
+        public new void Detach() { throw new NotImplementedException(); }
 
 
-private void _HandleTap(){ throw new NotImplementedException(); }
+        private void _HandleTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details) { throw new NotImplementedException(); }
 
 
-private void _HandleTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details){ throw new NotImplementedException(); }
+        private void _HandleTap() { throw new NotImplementedException(); }
 
 
-private void _HandleTapCancel(){ throw new NotImplementedException(); }
+        private void _HandleTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details) { throw new NotImplementedException(); }
 
 
-public new bool HitTestSelf(FlutterBinding.UI.Offset position){ throw new NotImplementedException(); }
+        private void _HandleTapCancel() { throw new NotImplementedException(); }
 
 
-public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event,FlutterSDK.Rendering.Box.BoxHitTestEntry entry){ throw new NotImplementedException(); }
+        public new bool HitTestSelf(FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
 
 
-public virtual void PaintRadialReaction(Canvas canvas,FlutterBinding.UI.Offset offset,FlutterBinding.UI.Offset origin){ throw new NotImplementedException(); }
+        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Rendering.Box.BoxHitTestEntry entry) { throw new NotImplementedException(); }
 
 
-public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config){ throw new NotImplementedException(); }
+        public virtual void PaintRadialReaction(Canvas canvas, FlutterBinding.UI.Offset offset, FlutterBinding.UI.Offset origin) { throw new NotImplementedException(); }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties){ throw new NotImplementedException(); }
+        public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

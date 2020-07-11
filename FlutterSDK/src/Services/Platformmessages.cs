@@ -421,36 +421,39 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Services.Platformmessages{
-internal static class PlatformmessagesDefaultClass{
-}
-
-public class BinaryMessages
+namespace FlutterSDK.Services.Platformmessages
 {
-#region constructors
-internal BinaryMessages()
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class PlatformmessagesDefaultClass
+    {
+    }
 
-#region fields
-internal virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger _BinaryMessenger{get;set;}
-#endregion
+    public class BinaryMessages
+    {
+        #region constructors
+        internal BinaryMessages()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        internal virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger _BinaryMessenger { get; set; }
+        #endregion
 
-public virtual Future<object> HandlePlatformMessage(string channel,ByteData data,PlatformMessageResponseCallback callback){ throw new NotImplementedException(); }
+        #region methods
 
-
-public virtual Future<ByteData> Send(string channel,ByteData message){ throw new NotImplementedException(); }
-
-
-public virtual void SetMessageHandler(string channel,Func<Future<ByteData>,ByteData> handler){ throw new NotImplementedException(); }
+        public virtual Future<object> HandlePlatformMessage(string channel, ByteData data, PlatformMessageResponseCallback callback) { throw new NotImplementedException(); }
 
 
-public virtual void SetMockMessageHandler(string channel,Func<Future<ByteData>,ByteData> handler){ throw new NotImplementedException(); }
+        public virtual Future<ByteData> Send(string channel, ByteData message) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public virtual void SetMessageHandler(string channel, Func<Future<ByteData>, ByteData> handler) { throw new NotImplementedException(); }
+
+
+        public virtual void SetMockMessageHandler(string channel, Func<Future<ByteData>, ByteData> handler) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

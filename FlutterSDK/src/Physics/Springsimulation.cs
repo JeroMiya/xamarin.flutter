@@ -421,208 +421,223 @@ using FlutterSDK.Material.Togglebuttonstheme;
 using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
-namespace FlutterSDK.Physics.Springsimulation{
-internal static class SpringsimulationDefaultClass{
-}
-
-public interface I_SpringSolution{}
-
-public class _SpringSolution{
-public virtual FlutterSDK.Physics.Springsimulation.SpringType Type{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-
-public virtual double x(double time){ throw new NotImplementedException(); }
-
-
-public virtual double Dx(double time){ throw new NotImplementedException(); }
-
-}
-public static class _SpringSolutionMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<I_SpringSolution, _SpringSolution> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<I_SpringSolution, _SpringSolution>();
-static _SpringSolution GetOrCreate(I_SpringSolution instance)
+namespace FlutterSDK.Physics.Springsimulation
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new _SpringSolution();
-_table.Add(instance, value);
-}
-return (_SpringSolution)value;
-}
-public static FlutterSDK.Physics.Springsimulation.SpringType TypeProperty(this I_SpringSolution instance) => GetOrCreate(instance).Type;
-public static double x(this I_SpringSolution instance,double time) => GetOrCreate(instance).x(time);
-public static double Dx(this I_SpringSolution instance,double time) => GetOrCreate(instance).Dx(time);
-}
+    internal static class SpringsimulationDefaultClass
+    {
+    }
+
+    public interface I_SpringSolution { }
+
+    public class _SpringSolution
+    {
+        public virtual FlutterSDK.Physics.Springsimulation.SpringType Type { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+
+        public virtual double x(double time) { throw new NotImplementedException(); }
 
 
-public class SpringDescription
-{
-#region constructors
-public SpringDescription(double mass = default(double),double stiffness = default(double),double damping = default(double))
-{
-this.Mass = mass;
-this.Stiffness = stiffness;
-this.Damping = damping;throw new NotImplementedException(); }
-public static SpringDescription WithDampingRatio(double mass = default(double),double stiffness = default(double),double ratio = 1.0)
-{
-var instance =new SpringDescription();instance.Mass = mass;
-instance.Stiffness = stiffness;throw new NotImplementedException(); }
-#endregion
+        public virtual double Dx(double time) { throw new NotImplementedException(); }
 
-#region fields
-public virtual double Mass{get;set;}
-public virtual double Stiffness{get;set;}
-public virtual double Damping{get;set;}
-#endregion
-
-#region methods
-
-#endregion
-}
+    }
+    public static class _SpringSolutionMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<I_SpringSolution, _SpringSolution> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<I_SpringSolution, _SpringSolution>();
+        static _SpringSolution GetOrCreate(I_SpringSolution instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new _SpringSolution();
+                _table.Add(instance, value);
+            }
+            return (_SpringSolution)value;
+        }
+        public static FlutterSDK.Physics.Springsimulation.SpringType TypeProperty(this I_SpringSolution instance) => GetOrCreate(instance).Type;
+        public static double x(this I_SpringSolution instance, double time) => GetOrCreate(instance).x(time);
+        public static double Dx(this I_SpringSolution instance, double time) => GetOrCreate(instance).Dx(time);
+    }
 
 
-public class SpringSimulation : FlutterSDK.Physics.Simulation.Simulation
-{
-#region constructors
-public SpringSimulation(FlutterSDK.Physics.Springsimulation.SpringDescription spring,double start,double end,double velocity,FlutterSDK.Physics.Tolerance.Tolerance tolerance = default(FlutterSDK.Physics.Tolerance.Tolerance))
-: base(tolerance:tolerance)
-{
-throw new NotImplementedException(); }
-#endregion
+    public class SpringDescription
+    {
+        #region constructors
+        public SpringDescription(double mass = default(double), double stiffness = default(double), double damping = default(double))
+        {
+            this.Mass = mass;
+            this.Stiffness = stiffness;
+            this.Damping = damping; throw new NotImplementedException();
+        }
+        public static SpringDescription WithDampingRatio(double mass = default(double), double stiffness = default(double), double ratio = 1.0)
+        {
+            var instance = new SpringDescription(); instance.Mass = mass;
+            instance.Stiffness = stiffness; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-internal virtual double _EndPosition{get;set;}
-internal virtual FlutterSDK.Physics.Springsimulation._SpringSolution _Solution{get;set;}
-public virtual FlutterSDK.Physics.Springsimulation.SpringType Type{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #region fields
+        public virtual double Mass { get; set; }
+        public virtual double Stiffness { get; set; }
+        public virtual double Damping { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new double x(double time){ throw new NotImplementedException(); }
-
-
-public new double Dx(double time){ throw new NotImplementedException(); }
-
-
-public new bool IsDone(double time){ throw new NotImplementedException(); }
-
-
-#endregion
-}
+        #endregion
+    }
 
 
-public class ScrollSpringSimulation : FlutterSDK.Physics.Springsimulation.SpringSimulation
-{
-#region constructors
-public ScrollSpringSimulation(FlutterSDK.Physics.Springsimulation.SpringDescription spring,double start,double end,double velocity,FlutterSDK.Physics.Tolerance.Tolerance tolerance = default(FlutterSDK.Physics.Tolerance.Tolerance))
-: base(spring,start,end,velocity,tolerance:tolerance)
-{
-throw new NotImplementedException(); }
-#endregion
+    public class SpringSimulation : FlutterSDK.Physics.Simulation.Simulation
+    {
+        #region constructors
+        public SpringSimulation(FlutterSDK.Physics.Springsimulation.SpringDescription spring, double start, double end, double velocity, FlutterSDK.Physics.Tolerance.Tolerance tolerance = default(FlutterSDK.Physics.Tolerance.Tolerance))
+        : base(tolerance: tolerance)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-#endregion
+        #region fields
+        internal virtual double _EndPosition { get; set; }
+        internal virtual FlutterSDK.Physics.Springsimulation._SpringSolution _Solution { get; set; }
+        public virtual FlutterSDK.Physics.Springsimulation.SpringType Type { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#region methods
+        #region methods
 
-public new double x(double time){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _CriticalSolution : I_SpringSolution
-{
-#region constructors
-public _CriticalSolution(FlutterSDK.Physics.Springsimulation.SpringDescription spring,double distance,double velocity)
-{
-throw new NotImplementedException(); }
-public static _CriticalSolution WithArgs(double r,double c1,double c2)
-{
-var instance =new _CriticalSolution();throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual double _R{get;set;}
-internal virtual double _C1{get;set;}
-internal virtual double _C2{get;set;}
-public virtual FlutterSDK.Physics.Springsimulation.SpringType Type{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new double x(double time){ throw new NotImplementedException(); }
+        public new double x(double time) { throw new NotImplementedException(); }
 
 
-public new double Dx(double time){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public new double Dx(double time) { throw new NotImplementedException(); }
 
 
-public class _OverdampedSolution : I_SpringSolution
-{
-#region constructors
-public _OverdampedSolution(FlutterSDK.Physics.Springsimulation.SpringDescription spring,double distance,double velocity)
-{
-throw new NotImplementedException(); }
-public static _OverdampedSolution WithArgs(double r1,double r2,double c1,double c2)
-{
-var instance =new _OverdampedSolution();throw new NotImplementedException(); }
-#endregion
-
-#region fields
-internal virtual double _R1{get;set;}
-internal virtual double _R2{get;set;}
-internal virtual double _C1{get;set;}
-internal virtual double _C2{get;set;}
-public virtual FlutterSDK.Physics.Springsimulation.SpringType Type{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new double x(double time){ throw new NotImplementedException(); }
+        public new bool IsDone(double time) { throw new NotImplementedException(); }
 
 
-public new double Dx(double time){ throw new NotImplementedException(); }
-
-#endregion
-}
+        #endregion
+    }
 
 
-public class _UnderdampedSolution : I_SpringSolution
-{
-#region constructors
-public _UnderdampedSolution(FlutterSDK.Physics.Springsimulation.SpringDescription spring,double distance,double velocity)
-{
-throw new NotImplementedException(); }
-public static _UnderdampedSolution WithArgs(double w,double r,double c1,double c2)
-{
-var instance =new _UnderdampedSolution();throw new NotImplementedException(); }
-#endregion
+    public class ScrollSpringSimulation : FlutterSDK.Physics.Springsimulation.SpringSimulation
+    {
+        #region constructors
+        public ScrollSpringSimulation(FlutterSDK.Physics.Springsimulation.SpringDescription spring, double start, double end, double velocity, FlutterSDK.Physics.Tolerance.Tolerance tolerance = default(FlutterSDK.Physics.Tolerance.Tolerance))
+        : base(spring, start, end, velocity, tolerance: tolerance)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-internal virtual double _W{get;set;}
-internal virtual double _R{get;set;}
-internal virtual double _C1{get;set;}
-internal virtual double _C2{get;set;}
-public virtual FlutterSDK.Physics.Springsimulation.SpringType Type{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-public new double x(double time){ throw new NotImplementedException(); }
+        public new double x(double time) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public new double Dx(double time){ throw new NotImplementedException(); }
+    public class _CriticalSolution : I_SpringSolution
+    {
+        #region constructors
+        public _CriticalSolution(FlutterSDK.Physics.Springsimulation.SpringDescription spring, double distance, double velocity)
+        {
+            throw new NotImplementedException();
+        }
+        public static _CriticalSolution WithArgs(double r, double c1, double c2)
+        {
+            var instance = new _CriticalSolution(); throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        internal virtual double _R { get; set; }
+        internal virtual double _C1 { get; set; }
+        internal virtual double _C2 { get; set; }
+        public virtual FlutterSDK.Physics.Springsimulation.SpringType Type { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new double x(double time) { throw new NotImplementedException(); }
 
 
-public enum SpringType{
+        public new double Dx(double time) { throw new NotImplementedException(); }
 
-CriticallyDamped,
-UnderDamped,
-OverDamped,
-}
+        #endregion
+    }
+
+
+    public class _OverdampedSolution : I_SpringSolution
+    {
+        #region constructors
+        public _OverdampedSolution(FlutterSDK.Physics.Springsimulation.SpringDescription spring, double distance, double velocity)
+        {
+            throw new NotImplementedException();
+        }
+        public static _OverdampedSolution WithArgs(double r1, double r2, double c1, double c2)
+        {
+            var instance = new _OverdampedSolution(); throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual double _R1 { get; set; }
+        internal virtual double _R2 { get; set; }
+        internal virtual double _C1 { get; set; }
+        internal virtual double _C2 { get; set; }
+        public virtual FlutterSDK.Physics.Springsimulation.SpringType Type { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new double x(double time) { throw new NotImplementedException(); }
+
+
+        public new double Dx(double time) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class _UnderdampedSolution : I_SpringSolution
+    {
+        #region constructors
+        public _UnderdampedSolution(FlutterSDK.Physics.Springsimulation.SpringDescription spring, double distance, double velocity)
+        {
+            throw new NotImplementedException();
+        }
+        public static _UnderdampedSolution WithArgs(double w, double r, double c1, double c2)
+        {
+            var instance = new _UnderdampedSolution(); throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        internal virtual double _W { get; set; }
+        internal virtual double _R { get; set; }
+        internal virtual double _C1 { get; set; }
+        internal virtual double _C2 { get; set; }
+        public virtual FlutterSDK.Physics.Springsimulation.SpringType Type { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new double x(double time) { throw new NotImplementedException(); }
+
+
+        public new double Dx(double time) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public enum SpringType
+    {
+
+        CriticallyDamped,
+        UnderDamped,
+        OverDamped,
+    }
 
 }

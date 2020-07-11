@@ -411,147 +411,152 @@ using FlutterSDK.Material.Floatingactionbuttonlocation;
 using FlutterSDK.Material.Snackbar;
 using FlutterSDK.Material.Snackbartheme;
 using FlutterSDK.Material.Textselection;
-namespace FlutterSDK.Material.Snackbar{
-internal static class SnackbarDefaultClass{
-public static double _SingleLineVerticalPadding = default(double);
-public static TimeSpan _SnackBarTransitionDuration = default(TimeSpan);
-public static TimeSpan _SnackBarDisplayDuration = default(TimeSpan);
-public static FlutterSDK.Animation.Curves.Curve _SnackBarHeightCurve = default(FlutterSDK.Animation.Curves.Curve);
-public static FlutterSDK.Animation.Curves.Curve _SnackBarFadeInCurve = default(FlutterSDK.Animation.Curves.Curve);
-public static FlutterSDK.Animation.Curves.Curve _SnackBarFadeOutCurve = default(FlutterSDK.Animation.Curves.Curve);
-}
-
-public class SnackBarAction : FlutterSDK.Widgets.Framework.StatefulWidget
+namespace FlutterSDK.Material.Snackbar
 {
-#region constructors
-public SnackBarAction(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color),FlutterBinding.UI.Color disabledTextColor = default(FlutterBinding.UI.Color),string label = default(string),VoidCallback onPressed = default(VoidCallback))
-: base(key:key)
-{
-this.TextColor = textColor;
-this.DisabledTextColor = disabledTextColor;
-this.Label = label;
-this.OnPressed = onPressed;throw new NotImplementedException(); }
-#endregion
+    internal static class SnackbarDefaultClass
+    {
+        public static double _SingleLineVerticalPadding = default(double);
+        public static TimeSpan _SnackBarTransitionDuration = default(TimeSpan);
+        public static TimeSpan _SnackBarDisplayDuration = default(TimeSpan);
+        public static FlutterSDK.Animation.Curves.Curve _SnackBarHeightCurve = default(FlutterSDK.Animation.Curves.Curve);
+        public static FlutterSDK.Animation.Curves.Curve _SnackBarFadeInCurve = default(FlutterSDK.Animation.Curves.Curve);
+        public static FlutterSDK.Animation.Curves.Curve _SnackBarFadeOutCurve = default(FlutterSDK.Animation.Curves.Curve);
+    }
 
-#region fields
-public virtual FlutterBinding.UI.Color TextColor{get;set;}
-public virtual FlutterBinding.UI.Color DisabledTextColor{get;set;}
-public virtual string Label{get;set;}
-public virtual VoidCallback OnPressed{get;set;}
-#endregion
+    public class SnackBarAction : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public SnackBarAction(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledTextColor = default(FlutterBinding.UI.Color), string label = default(string), VoidCallback onPressed = default(VoidCallback))
+        : base(key: key)
+        {
+            this.TextColor = textColor;
+            this.DisabledTextColor = disabledTextColor;
+            this.Label = label;
+            this.OnPressed = onPressed; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterBinding.UI.Color TextColor { get; set; }
+        public virtual FlutterBinding.UI.Color DisabledTextColor { get; set; }
+        public virtual string Label { get; set; }
+        public virtual VoidCallback OnPressed { get; set; }
+        #endregion
 
-public new FlutterSDK.Material.Snackbar._SnackBarActionState CreateState(){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public new FlutterSDK.Material.Snackbar._SnackBarActionState CreateState() { throw new NotImplementedException(); }
 
-
-public class _SnackBarActionState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Snackbar.SnackBarAction>
-{
-#region constructors
-public _SnackBarActionState()
-{ }
-#endregion
-
-#region fields
-internal virtual bool _HaveTriggeredAction{get;set;}
-#endregion
-
-#region methods
-
-private void _HandlePressed(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+    public class _SnackBarActionState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Snackbar.SnackBarAction>
+    {
+        #region constructors
+        public _SnackBarActionState()
+        { }
+        #endregion
 
-#endregion
-}
+        #region fields
+        internal virtual bool _HaveTriggeredAction { get; set; }
+        #endregion
 
+        #region methods
 
-public class SnackBar : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public SnackBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget content = default(FlutterSDK.Widgets.Framework.Widget),FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color),double elevation = default(double),FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder),FlutterSDK.Material.Snackbartheme.SnackBarBehavior behavior = default(FlutterSDK.Material.Snackbartheme.SnackBarBehavior),FlutterSDK.Material.Snackbar.SnackBarAction action = default(FlutterSDK.Material.Snackbar.SnackBarAction),TimeSpan duration = default(TimeSpan),FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>),VoidCallback onVisible = default(VoidCallback))
-: base(key:key)
-{
-this.Content = content;
-this.BackgroundColor = backgroundColor;
-this.Elevation = elevation;
-this.Shape = shape;
-this.Behavior = behavior;
-this.Action = action;
-this.Duration = duration;
-this.Animation = animation;
-this.OnVisible = onVisible;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Content{get;set;}
-public virtual FlutterBinding.UI.Color BackgroundColor{get;set;}
-public virtual double Elevation{get;set;}
-public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape{get;set;}
-public virtual FlutterSDK.Material.Snackbartheme.SnackBarBehavior Behavior{get;set;}
-public virtual FlutterSDK.Material.Snackbar.SnackBarAction Action{get;set;}
-public virtual TimeSpan Duration{get;set;}
-public virtual FlutterSDK.Animation.Animation.Animation<double> Animation{get;set;}
-public virtual VoidCallback OnVisible{get;set;}
-#endregion
-
-#region methods
-
-public virtual FlutterSDK.Animation.Animationcontroller.AnimationController CreateAnimationController(FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider)){ throw new NotImplementedException(); }
+        private void _HandlePressed() { throw new NotImplementedException(); }
 
 
-public virtual FlutterSDK.Material.Snackbar.SnackBar WithAnimation(FlutterSDK.Animation.Animation.Animation<double> newAnimation,FlutterSDK.Foundation.Key.Key fallbackKey = default(FlutterSDK.Foundation.Key.Key)){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Snackbar.SnackBar> CreateState(){ throw new NotImplementedException(); }
+    public class SnackBar : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public SnackBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget content = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Material.Snackbartheme.SnackBarBehavior behavior = default(FlutterSDK.Material.Snackbartheme.SnackBarBehavior), FlutterSDK.Material.Snackbar.SnackBarAction action = default(FlutterSDK.Material.Snackbar.SnackBarAction), TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>), VoidCallback onVisible = default(VoidCallback))
+        : base(key: key)
+        {
+            this.Content = content;
+            this.BackgroundColor = backgroundColor;
+            this.Elevation = elevation;
+            this.Shape = shape;
+            this.Behavior = behavior;
+            this.Action = action;
+            this.Duration = duration;
+            this.Animation = animation;
+            this.OnVisible = onVisible; throw new NotImplementedException();
+        }
+        #endregion
 
-#endregion
-}
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Content { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        public virtual FlutterSDK.Material.Snackbartheme.SnackBarBehavior Behavior { get; set; }
+        public virtual FlutterSDK.Material.Snackbar.SnackBarAction Action { get; set; }
+        public virtual TimeSpan Duration { get; set; }
+        public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
+        public virtual VoidCallback OnVisible { get; set; }
+        #endregion
 
+        #region methods
 
-public class _SnackBarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Snackbar.SnackBar>
-{
-#region constructors
-public _SnackBarState()
-{ }
-#endregion
-
-#region fields
-internal virtual bool _WasVisible{get;set;}
-#endregion
-
-#region methods
-
-public new void InitState(){ throw new NotImplementedException(); }
-
-
-public new void DidUpdateWidget(FlutterSDK.Material.Snackbar.SnackBar oldWidget){ throw new NotImplementedException(); }
-
-
-public new void Dispose(){ throw new NotImplementedException(); }
-
-
-private void _OnAnimationStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus animationStatus){ throw new NotImplementedException(); }
-
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController CreateAnimationController(FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider)) { throw new NotImplementedException(); }
 
 
-public enum SnackBarClosedReason{
+        public virtual FlutterSDK.Material.Snackbar.SnackBar WithAnimation(FlutterSDK.Animation.Animation.Animation<double> newAnimation, FlutterSDK.Foundation.Key.Key fallbackKey = default(FlutterSDK.Foundation.Key.Key)) { throw new NotImplementedException(); }
 
-Action,
-Dismiss,
-Swipe,
-Hide,
-Remove,
-Timeout,
-}
+
+        public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Snackbar.SnackBar> CreateState() { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public class _SnackBarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Snackbar.SnackBar>
+    {
+        #region constructors
+        public _SnackBarState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual bool _WasVisible { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
+
+
+        public new void DidUpdateWidget(FlutterSDK.Material.Snackbar.SnackBar oldWidget) { throw new NotImplementedException(); }
+
+
+        public new void Dispose() { throw new NotImplementedException(); }
+
+
+        private void _OnAnimationStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus animationStatus) { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
+
+
+    public enum SnackBarClosedReason
+    {
+
+        Action,
+        Dismiss,
+        Swipe,
+        Hide,
+        Remove,
+        Timeout,
+    }
 
 }

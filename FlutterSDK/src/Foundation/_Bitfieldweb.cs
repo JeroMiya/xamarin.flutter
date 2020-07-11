@@ -294,36 +294,40 @@ using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
-namespace FlutterSDK.Foundation._Bitfieldweb{
-internal static class _BitfieldwebDefaultClass{
-public static int KMaxUnsignedSMI = default(int);
-}
-
-public class BitField<T> : IBitField<T>
+namespace FlutterSDK.Foundation._Bitfieldweb
 {
-#region constructors
-public BitField(int length)
-{
-throw new NotImplementedException(); }
-public static BitField<T> Filled(int length,bool value)
-{
-var instance =new BitField<T>();throw new NotImplementedException(); }
-#endregion
+    internal static class _BitfieldwebDefaultClass
+    {
+        public static int KMaxUnsignedSMI = default(int);
+    }
 
-#region fields
-#endregion
+    public class BitField<T> : IBitField<T>
+    {
+        #region constructors
+        public BitField(int length)
+        {
+            throw new NotImplementedException();
+        }
+        public static BitField<T> Filled(int length, bool value)
+        {
+            var instance = new BitField<T>(); throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        #endregion
 
-public new bool IndexOfOperator(T index){ throw new NotImplementedException(); }
+        #region methods
+
+        public new bool IndexOfOperator(T index) { throw new NotImplementedException(); }
 
 
-public new void InsertAtOperator(T index,bool value){ throw new NotImplementedException(); }
+        public new void InsertAtOperator(T index, bool value) { throw new NotImplementedException(); }
 
 
-public new void Reset(bool value = false){ throw new NotImplementedException(); }
+        public new void Reset(bool value = false) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 }

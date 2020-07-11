@@ -305,144 +305,154 @@ using FlutterSDK.Material.Progressindicator;
 using FlutterSDK.Material.Scaffold;
 using FlutterSDK.Material.Scrollbar;
 using FlutterSDK.Material.Theme;
-namespace FlutterSDK.Material.About{
-internal static class AboutDefaultClass{
-internal static void ShowAboutDialog(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext),string applicationName = default(string),string applicationVersion = default(string),FlutterSDK.Widgets.Framework.Widget applicationIcon = default(FlutterSDK.Widgets.Framework.Widget),string applicationLegalese = default(string),List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>),bool useRootNavigator = true,FlutterSDK.Widgets.Navigator.RouteSettings routeSettings = default(FlutterSDK.Widgets.Navigator.RouteSettings)){
-throw new NotImplementedException();
-}
-
-internal static void ShowLicensePage(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext),string applicationName = default(string),string applicationVersion = default(string),FlutterSDK.Widgets.Framework.Widget applicationIcon = default(FlutterSDK.Widgets.Framework.Widget),string applicationLegalese = default(string),bool useRootNavigator = false){
-throw new NotImplementedException();
-}
-
-internal static string _DefaultApplicationName(FlutterSDK.Widgets.Framework.BuildContext context){
-throw new NotImplementedException();
-}
-
-internal static string _DefaultApplicationVersion(FlutterSDK.Widgets.Framework.BuildContext context){
-throw new NotImplementedException();
-}
-
-internal static FlutterSDK.Widgets.Framework.Widget _DefaultApplicationIcon(FlutterSDK.Widgets.Framework.BuildContext context){
-throw new NotImplementedException();
-}
-
-}
-
-public class AboutListTile : FlutterSDK.Widgets.Framework.StatelessWidget
+namespace FlutterSDK.Material.About
 {
-#region constructors
-public AboutListTile(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget),FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),string applicationName = default(string),string applicationVersion = default(string),FlutterSDK.Widgets.Framework.Widget applicationIcon = default(FlutterSDK.Widgets.Framework.Widget),string applicationLegalese = default(string),List<FlutterSDK.Widgets.Framework.Widget> aboutBoxChildren = default(List<FlutterSDK.Widgets.Framework.Widget>),bool dense = default(bool))
-: base(key:key)
-{
-this.Icon = icon;
-this.Child = child;
-this.ApplicationName = applicationName;
-this.ApplicationVersion = applicationVersion;
-this.ApplicationIcon = applicationIcon;
-this.ApplicationLegalese = applicationLegalese;
-this.AboutBoxChildren = aboutBoxChildren;
-this.Dense = dense;throw new NotImplementedException(); }
-#endregion
+    internal static class AboutDefaultClass
+    {
+        internal static void ShowAboutDialog(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), string applicationName = default(string), string applicationVersion = default(string), FlutterSDK.Widgets.Framework.Widget applicationIcon = default(FlutterSDK.Widgets.Framework.Widget), string applicationLegalese = default(string), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), bool useRootNavigator = true, FlutterSDK.Widgets.Navigator.RouteSettings routeSettings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
+        {
+            throw new NotImplementedException();
+        }
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Icon{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-public virtual string ApplicationName{get;set;}
-public virtual string ApplicationVersion{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget ApplicationIcon{get;set;}
-public virtual string ApplicationLegalese{get;set;}
-public virtual List<FlutterSDK.Widgets.Framework.Widget> AboutBoxChildren{get;set;}
-public virtual bool Dense{get;set;}
-#endregion
+        internal static void ShowLicensePage(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), string applicationName = default(string), string applicationVersion = default(string), FlutterSDK.Widgets.Framework.Widget applicationIcon = default(FlutterSDK.Widgets.Framework.Widget), string applicationLegalese = default(string), bool useRootNavigator = false)
+        {
+            throw new NotImplementedException();
+        }
 
-#region methods
+        internal static string _DefaultApplicationName(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            throw new NotImplementedException();
+        }
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        internal static string _DefaultApplicationVersion(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            throw new NotImplementedException();
+        }
 
-#endregion
-}
+        internal static FlutterSDK.Widgets.Framework.Widget _DefaultApplicationIcon(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            throw new NotImplementedException();
+        }
 
+    }
 
-public class AboutDialog : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public AboutDialog(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),string applicationName = default(string),string applicationVersion = default(string),FlutterSDK.Widgets.Framework.Widget applicationIcon = default(FlutterSDK.Widgets.Framework.Widget),string applicationLegalese = default(string),List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
-: base(key:key)
-{
-this.ApplicationName = applicationName;
-this.ApplicationVersion = applicationVersion;
-this.ApplicationIcon = applicationIcon;
-this.ApplicationLegalese = applicationLegalese;
-this.Children = children;throw new NotImplementedException(); }
-#endregion
+    public class AboutListTile : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public AboutListTile(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), string applicationName = default(string), string applicationVersion = default(string), FlutterSDK.Widgets.Framework.Widget applicationIcon = default(FlutterSDK.Widgets.Framework.Widget), string applicationLegalese = default(string), List<FlutterSDK.Widgets.Framework.Widget> aboutBoxChildren = default(List<FlutterSDK.Widgets.Framework.Widget>), bool dense = default(bool))
+        : base(key: key)
+        {
+            this.Icon = icon;
+            this.Child = child;
+            this.ApplicationName = applicationName;
+            this.ApplicationVersion = applicationVersion;
+            this.ApplicationIcon = applicationIcon;
+            this.ApplicationLegalese = applicationLegalese;
+            this.AboutBoxChildren = aboutBoxChildren;
+            this.Dense = dense; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-public virtual string ApplicationName{get;set;}
-public virtual string ApplicationVersion{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget ApplicationIcon{get;set;}
-public virtual string ApplicationLegalese{get;set;}
-public virtual List<FlutterSDK.Widgets.Framework.Widget> Children{get;set;}
-#endregion
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Icon { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual string ApplicationName { get; set; }
+        public virtual string ApplicationVersion { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget ApplicationIcon { get; set; }
+        public virtual string ApplicationLegalese { get; set; }
+        public virtual List<FlutterSDK.Widgets.Framework.Widget> AboutBoxChildren { get; set; }
+        public virtual bool Dense { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#endregion
-}
-
-
-public class LicensePage : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public LicensePage(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),string applicationName = default(string),string applicationVersion = default(string),FlutterSDK.Widgets.Framework.Widget applicationIcon = default(FlutterSDK.Widgets.Framework.Widget),string applicationLegalese = default(string))
-: base(key:key)
-{
-this.ApplicationName = applicationName;
-this.ApplicationVersion = applicationVersion;
-this.ApplicationIcon = applicationIcon;
-this.ApplicationLegalese = applicationLegalese;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual string ApplicationName{get;set;}
-public virtual string ApplicationVersion{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget ApplicationIcon{get;set;}
-public virtual string ApplicationLegalese{get;set;}
-#endregion
-
-#region methods
-
-public new FlutterSDK.Material.About._LicensePageState CreateState(){ throw new NotImplementedException(); }
-
-#endregion
-}
+        #endregion
+    }
 
 
-public class _LicensePageState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.About.LicensePage>
-{
-#region constructors
-public _LicensePageState()
-{ }
-#endregion
+    public class AboutDialog : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public AboutDialog(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string applicationName = default(string), string applicationVersion = default(string), FlutterSDK.Widgets.Framework.Widget applicationIcon = default(FlutterSDK.Widgets.Framework.Widget), string applicationLegalese = default(string), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
+        : base(key: key)
+        {
+            this.ApplicationName = applicationName;
+            this.ApplicationVersion = applicationVersion;
+            this.ApplicationIcon = applicationIcon;
+            this.ApplicationLegalese = applicationLegalese;
+            this.Children = children; throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-internal virtual List<FlutterSDK.Widgets.Framework.Widget> _Licenses{get;set;}
-internal virtual bool _Loaded{get;set;}
-#endregion
+        #region fields
+        public virtual string ApplicationName { get; set; }
+        public virtual string ApplicationVersion { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget ApplicationIcon { get; set; }
+        public virtual string ApplicationLegalese { get; set; }
+        public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
+        #endregion
 
-#region methods
+        #region methods
 
-public new void InitState(){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-private Future<object> _InitLicenses(){ throw new NotImplementedException(); }
+    public class LicensePage : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public LicensePage(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string applicationName = default(string), string applicationVersion = default(string), FlutterSDK.Widgets.Framework.Widget applicationIcon = default(FlutterSDK.Widgets.Framework.Widget), string applicationLegalese = default(string))
+        : base(key: key)
+        {
+            this.ApplicationName = applicationName;
+            this.ApplicationVersion = applicationVersion;
+            this.ApplicationIcon = applicationIcon;
+            this.ApplicationLegalese = applicationLegalese; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual string ApplicationName { get; set; }
+        public virtual string ApplicationVersion { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget ApplicationIcon { get; set; }
+        public virtual string ApplicationLegalese { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Material.About._LicensePageState CreateState() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+    public class _LicensePageState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.About.LicensePage>
+    {
+        #region constructors
+        public _LicensePageState()
+        { }
+        #endregion
 
-#endregion
-}
+        #region fields
+        internal virtual List<FlutterSDK.Widgets.Framework.Widget> _Licenses { get; set; }
+        internal virtual bool _Loaded { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState() { throw new NotImplementedException(); }
+
+
+        private Future<object> _InitLicenses() { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

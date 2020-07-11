@@ -292,37 +292,40 @@ using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
-namespace FlutterSDK.Foundation.Consolidateresponse{
-public delegate void BytesReceivedCallback(int cumulative,int total);
-internal static class ConsolidateresponseDefaultClass{
-internal static Future<Uint8List> ConsolidateHttpClientResponseBytes(HttpResponseMessage response,bool autoUncompress = true,FlutterSDK.Foundation.Consolidateresponse.BytesReceivedCallback onBytesReceived = default(FlutterSDK.Foundation.Consolidateresponse.BytesReceivedCallback)){
-throw new NotImplementedException();
-}
-
-}
-
-public class _OutputBuffer : ByteConversionSinkBase
+namespace FlutterSDK.Foundation.Consolidateresponse
 {
-#region constructors
-public _OutputBuffer()
-{ }
-#endregion
+    public delegate void BytesReceivedCallback(int cumulative, int total);
+    internal static class ConsolidateresponseDefaultClass
+    {
+        internal static Future<Uint8List> ConsolidateHttpClientResponseBytes(HttpResponseMessage response, bool autoUncompress = true, FlutterSDK.Foundation.Consolidateresponse.BytesReceivedCallback onBytesReceived = default(FlutterSDK.Foundation.Consolidateresponse.BytesReceivedCallback))
+        {
+            throw new NotImplementedException();
+        }
 
-#region fields
-internal virtual List<List<int>> _Chunks{get;set;}
-internal virtual int _ContentLength{get;set;}
-internal virtual Uint8List _Bytes{get;set;}
-public virtual Uint8List Bytes{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    }
 
-#region methods
+    public class _OutputBuffer : ByteConversionSinkBase
+    {
+        #region constructors
+        public _OutputBuffer()
+        { }
+        #endregion
 
-public new void Add(List<int> chunk){ throw new NotImplementedException(); }
+        #region fields
+        internal virtual List<List<int>> _Chunks { get; set; }
+        internal virtual int _ContentLength { get; set; }
+        internal virtual Uint8List _Bytes { get; set; }
+        public virtual Uint8List Bytes { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void Add(List<int> chunk) { throw new NotImplementedException(); }
 
 
-public new void Close(){ throw new NotImplementedException(); }
+        public new void Close() { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 }

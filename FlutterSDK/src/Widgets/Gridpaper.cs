@@ -422,69 +422,73 @@ using FlutterSDK.Material.Tooltiptheme;
 using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
-namespace FlutterSDK.Widgets.Gridpaper{
-internal static class GridpaperDefaultClass{
-}
-
-public class _GridPaperPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
+namespace FlutterSDK.Widgets.Gridpaper
 {
-#region constructors
-public _GridPaperPainter(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),double interval = default(double),int divisions = default(int),int subdivisions = default(int))
-{
-this.Color = color;
-this.Interval = interval;
-this.Divisions = divisions;
-this.Subdivisions = subdivisions;throw new NotImplementedException(); }
-#endregion
+    internal static class GridpaperDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterBinding.UI.Color Color{get;set;}
-public virtual double Interval{get;set;}
-public virtual int Divisions{get;set;}
-public virtual int Subdivisions{get;set;}
-#endregion
+    public class _GridPaperPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
+    {
+        #region constructors
+        public _GridPaperPainter(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double interval = default(double), int divisions = default(int), int subdivisions = default(int))
+        {
+            this.Color = color;
+            this.Interval = interval;
+            this.Divisions = divisions;
+            this.Subdivisions = subdivisions; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual double Interval { get; set; }
+        public virtual int Divisions { get; set; }
+        public virtual int Subdivisions { get; set; }
+        #endregion
 
-public new void Paint(Canvas canvas,Size size){ throw new NotImplementedException(); }
+        #region methods
 
-
-public new bool ShouldRepaint(FlutterSDK.Widgets.Gridpaper._GridPaperPainter oldPainter){ throw new NotImplementedException(); }
-public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate){ throw new NotImplementedException(); }
-
-
-public new bool HitTest(FlutterBinding.UI.Offset position){ throw new NotImplementedException(); }
-
-#endregion
-}
+        public new void Paint(Canvas canvas, Size size) { throw new NotImplementedException(); }
 
 
-public class GridPaper : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-#region constructors
-public GridPaper(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),double interval = 100.0,int divisions = 2,int subdivisions = 5,FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-: base(key:key)
-{
-this.Color = color;
-this.Interval = interval;
-this.Divisions = divisions;
-this.Subdivisions = subdivisions;
-this.Child = child;throw new NotImplementedException(); }
-#endregion
+        public new bool ShouldRepaint(FlutterSDK.Widgets.Gridpaper._GridPaperPainter oldPainter) { throw new NotImplementedException(); }
+        public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate) { throw new NotImplementedException(); }
 
-#region fields
-public virtual FlutterBinding.UI.Color Color{get;set;}
-public virtual double Interval{get;set;}
-public virtual int Divisions{get;set;}
-public virtual int Subdivisions{get;set;}
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-#endregion
 
-#region methods
+        public new bool HitTest(FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #endregion
+    }
 
-#endregion
-}
+
+    public class GridPaper : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public GridPaper(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double interval = 100.0, int divisions = 2, int subdivisions = 5, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.Color = color;
+            this.Interval = interval;
+            this.Divisions = divisions;
+            this.Subdivisions = subdivisions;
+            this.Child = child; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual double Interval { get; set; }
+        public virtual int Divisions { get; set; }
+        public virtual int Subdivisions { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

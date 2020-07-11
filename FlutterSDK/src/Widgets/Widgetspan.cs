@@ -423,50 +423,53 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Widgetspan{
-internal static class WidgetspanDefaultClass{
-}
-
-public class WidgetSpan : FlutterSDK.Painting.Placeholderspan.PlaceholderSpan
+namespace FlutterSDK.Widgets.Widgetspan
 {
-#region constructors
-public WidgetSpan(FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget),PlaceholderAlignment alignment = default(PlaceholderAlignment),TextBaseline baseline = default(TextBaseline),FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle))
-: base(alignment:alignment,baseline:baseline,style:style)
-{
-this.Child = child;throw new NotImplementedException(); }
-#endregion
+    internal static class WidgetspanDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
+    public class WidgetSpan : FlutterSDK.Painting.Placeholderspan.PlaceholderSpan
+    {
+        #region constructors
+        public WidgetSpan(FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), PlaceholderAlignment alignment = default(PlaceholderAlignment), TextBaseline baseline = default(TextBaseline), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle))
+        : base(alignment: alignment, baseline: baseline, style: style)
+        {
+            this.Child = child; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new void Build(ParagraphBuilder builder,double textScaleFactor = 1.0,List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions> dimensions = default(List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions>)){ throw new NotImplementedException(); }
+        #region methods
 
-
-public new bool VisitChildren(FlutterSDK.Painting.Inlinespan.InlineSpanVisitor visitor){ throw new NotImplementedException(); }
-
-
-public new FlutterSDK.Painting.Inlinespan.InlineSpan GetSpanForPositionVisitor(TextPosition position,FlutterSDK.Painting.Inlinespan.Accumulator offset){ throw new NotImplementedException(); }
-
-
-public new int CodeUnitAtVisitor(int index,FlutterSDK.Painting.Inlinespan.Accumulator offset){ throw new NotImplementedException(); }
+        public new void Build(ParagraphBuilder builder, double textScaleFactor = 1.0, List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions> dimensions = default(List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions>)) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Painting.Basictypes.RenderComparison CompareTo(FlutterSDK.Painting.Inlinespan.InlineSpan other){ throw new NotImplementedException(); }
+        public new bool VisitChildren(FlutterSDK.Painting.Inlinespan.InlineSpanVisitor visitor) { throw new NotImplementedException(); }
 
 
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Inlinespan.InlineSpan GetSpanForPositionVisitor(TextPosition position, FlutterSDK.Painting.Inlinespan.Accumulator offset) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Painting.Inlinespan.InlineSpan GetSpanForPosition(TextPosition position){ throw new NotImplementedException(); }
+        public new int CodeUnitAtVisitor(int index, FlutterSDK.Painting.Inlinespan.Accumulator offset) { throw new NotImplementedException(); }
 
 
-public new bool DebugAssertIsValid(){ throw new NotImplementedException(); }
+        public new FlutterSDK.Painting.Basictypes.RenderComparison CompareTo(FlutterSDK.Painting.Inlinespan.InlineSpan other) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+
+
+        public new FlutterSDK.Painting.Inlinespan.InlineSpan GetSpanForPosition(TextPosition position) { throw new NotImplementedException(); }
+
+
+        public new bool DebugAssertIsValid() { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

@@ -293,94 +293,104 @@ using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
-namespace FlutterSDK.Foundation.Key{
-internal static class KeyDefaultClass{
-}
-
-public interface IKey{
-}
-
-
-public interface ILocalKey{
-}
-
-
-public interface I_TypeLiteral<T>{}
-
-public class _TypeLiteral<T>{
-public virtual Type Type{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-}
-public static class _TypeLiteralMixin {
-static System.Runtime.CompilerServices.ConditionalWeakTable<object, object> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<object, object>();
-static _TypeLiteral<T> GetOrCreate<T>(I_TypeLiteral<T> instance)
+namespace FlutterSDK.Foundation.Key
 {
-if (!_table.TryGetValue(instance, out var value))
-{
-value = new _TypeLiteral<T>();
-_table.Add(instance, value);
-}
-return (_TypeLiteral<T>)value;
-}
-public static Type TypeProperty<T>(this I_TypeLiteral<T> instance) => GetOrCreate(instance).Type;
-}
+    internal static class KeyDefaultClass
+    {
+    }
+
+    public interface IKey
+    {
+    }
 
 
-public class Key
-{
-#region constructors
-public Key(string value)
-: base()
-{
-throw new NotImplementedException(); }
-public static Key Empty()
-{
-var instance =new Key();throw new NotImplementedException(); }
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-#endregion
-}
+    public interface ILocalKey
+    {
+    }
 
 
-public class LocalKey : FlutterSDK.Foundation.Key.Key
-{
-#region constructors
-public LocalKey()
-: base()
-{
-throw new NotImplementedException(); }
-#endregion
+    public interface I_TypeLiteral<T> { }
 
-#region fields
-#endregion
-
-#region methods
-#endregion
-}
-
-
-public class ValueKey<T> : FlutterSDK.Foundation.Key.LocalKey
-{
-#region constructors
-public ValueKey(T value)
-{
-this.Value = value;throw new NotImplementedException(); }
-#endregion
-
-#region fields
-public virtual T Value{get;set;}
-public virtual int HashCode{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
-
-#region methods
-
-public new bool Equals(@Object other){ throw new NotImplementedException(); }
+    public class _TypeLiteral<T>
+    {
+        public virtual Type Type { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    }
+    public static class _TypeLiteralMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<object, object> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<object, object>();
+        static _TypeLiteral<T> GetOrCreate<T>(I_TypeLiteral<T> instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new _TypeLiteral<T>();
+                _table.Add(instance, value);
+            }
+            return (_TypeLiteral<T>)value;
+        }
+        public static Type TypeProperty<T>(this I_TypeLiteral<T> instance) => GetOrCreate(instance).Type;
+    }
 
 
-#endregion
-}
+    public class Key
+    {
+        #region constructors
+        public Key(string value)
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        public static Key Empty()
+        {
+            var instance = new Key(); throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    public class LocalKey : FlutterSDK.Foundation.Key.Key
+    {
+        #region constructors
+        public LocalKey()
+        : base()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    public class ValueKey<T> : FlutterSDK.Foundation.Key.LocalKey
+    {
+        #region constructors
+        public ValueKey(T value)
+        {
+            this.Value = value; throw new NotImplementedException();
+        }
+        #endregion
+
+        #region fields
+        public virtual T Value { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+
+
+        #endregion
+    }
 
 }

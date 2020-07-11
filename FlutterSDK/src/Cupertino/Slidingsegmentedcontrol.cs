@@ -291,310 +291,317 @@ using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
-namespace FlutterSDK.Cupertino.Slidingsegmentedcontrol{
-internal static class SlidingsegmentedcontrolDefaultClass{
-public static FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry _KHorizontalItemPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry);
-public static Radius _KThumbRadius = default(Radius);
-public static FlutterSDK.Painting.Edgeinsets.EdgeInsets _KThumbInsets = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets);
-public static double _KMinSegmentedControlHeight = default(double);
-public static Color _KSeparatorColor = default(Color);
-public static FlutterSDK.Cupertino.Colors.CupertinoDynamicColor _KThumbColor = default(FlutterSDK.Cupertino.Colors.CupertinoDynamicColor);
-public static FlutterSDK.Painting.Edgeinsets.EdgeInsets _KSeparatorInset = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets);
-public static double _KSeparatorWidth = default(double);
-public static Radius _KSeparatorRadius = default(Radius);
-public static double _KMinThumbScale = default(double);
-public static double _KSegmentMinPadding = default(double);
-public static double _KTouchYDistanceThreshold = default(double);
-public static double _KCornerRadius = default(double);
-public static FlutterSDK.Physics.Springsimulation.SpringSimulation _KThumbSpringAnimationSimulation = default(FlutterSDK.Physics.Springsimulation.SpringSimulation);
-public static TimeSpan _KSpringAnimationDuration = default(TimeSpan);
-public static TimeSpan _KOpacityAnimationDuration = default(TimeSpan);
-public static TimeSpan _KHighlightAnimationDuration = default(TimeSpan);
-}
-
-public class _FontWeightTween : FlutterSDK.Animation.Tween.Tween<FontWeight>
+namespace FlutterSDK.Cupertino.Slidingsegmentedcontrol
 {
-#region constructors
-public _FontWeightTween(FontWeight begin = default(FontWeight),FontWeight end = default(FontWeight))
-: base(begin:begin,end:end)
-{
-throw new NotImplementedException(); }
-#endregion
+    internal static class SlidingsegmentedcontrolDefaultClass
+    {
+        public static FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry _KHorizontalItemPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry);
+        public static Radius _KThumbRadius = default(Radius);
+        public static FlutterSDK.Painting.Edgeinsets.EdgeInsets _KThumbInsets = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets);
+        public static double _KMinSegmentedControlHeight = default(double);
+        public static Color _KSeparatorColor = default(Color);
+        public static FlutterSDK.Cupertino.Colors.CupertinoDynamicColor _KThumbColor = default(FlutterSDK.Cupertino.Colors.CupertinoDynamicColor);
+        public static FlutterSDK.Painting.Edgeinsets.EdgeInsets _KSeparatorInset = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets);
+        public static double _KSeparatorWidth = default(double);
+        public static Radius _KSeparatorRadius = default(Radius);
+        public static double _KMinThumbScale = default(double);
+        public static double _KSegmentMinPadding = default(double);
+        public static double _KTouchYDistanceThreshold = default(double);
+        public static double _KCornerRadius = default(double);
+        public static FlutterSDK.Physics.Springsimulation.SpringSimulation _KThumbSpringAnimationSimulation = default(FlutterSDK.Physics.Springsimulation.SpringSimulation);
+        public static TimeSpan _KSpringAnimationDuration = default(TimeSpan);
+        public static TimeSpan _KOpacityAnimationDuration = default(TimeSpan);
+        public static TimeSpan _KHighlightAnimationDuration = default(TimeSpan);
+    }
+
+    public class _FontWeightTween : FlutterSDK.Animation.Tween.Tween<FontWeight>
+    {
+        #region constructors
+        public _FontWeightTween(FontWeight begin = default(FontWeight), FontWeight end = default(FontWeight))
+        : base(begin: begin, end: end)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
 
-#region fields
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-public new FontWeight Lerp(double t){ throw new NotImplementedException(); }
+        public new FontWeight Lerp(double t) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
+
+    public class CupertinoSlidingSegmentedControl<T> : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public CupertinoSlidingSegmentedControl(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Dictionary<T, FlutterSDK.Widgets.Framework.Widget> children = default(Dictionary<T, FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Foundation.Basictypes.ValueChanged<T> onValueChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<T>), T groupValue = default(T), FlutterBinding.UI.Color thumbColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color))
+        : base(key: key)
+        {
+            this.Children = children;
+            this.OnValueChanged = onValueChanged;
+            this.GroupValue = groupValue;
+            this.ThumbColor = thumbColor;
+            this.Padding = padding;
+            this.BackgroundColor = backgroundColor; throw new NotImplementedException();
+        }
+        #endregion
 
-public class CupertinoSlidingSegmentedControl<T> : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-#region constructors
-public CupertinoSlidingSegmentedControl(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),Dictionary<T,FlutterSDK.Widgets.Framework.Widget> children = default(Dictionary<T,FlutterSDK.Widgets.Framework.Widget>),FlutterSDK.Foundation.Basictypes.ValueChanged<T> onValueChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<T>),T groupValue = default(T),FlutterBinding.UI.Color thumbColor = default(FlutterBinding.UI.Color),FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry),FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color))
-: base(key:key)
-{
-this.Children = children;
-this.OnValueChanged = onValueChanged;
-this.GroupValue = groupValue;
-this.ThumbColor = thumbColor;
-this.Padding = padding;
-this.BackgroundColor = backgroundColor;throw new NotImplementedException(); }
-#endregion
+        #region fields
+        public virtual Dictionary<T, FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
+        public virtual T GroupValue { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<T> OnValueChanged { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual FlutterBinding.UI.Color ThumbColor { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        #endregion
 
-#region fields
-public virtual Dictionary<T,FlutterSDK.Widgets.Framework.Widget> Children{get;set;}
-public virtual T GroupValue{get;set;}
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<T> OnValueChanged{get;set;}
-public virtual FlutterBinding.UI.Color BackgroundColor{get;set;}
-public virtual FlutterBinding.UI.Color ThumbColor{get;set;}
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding{get;set;}
-#endregion
+        #region methods
 
-#region methods
+        public new _SegmentedControlState<T> CreateState() { throw new NotImplementedException(); }
 
-public new _SegmentedControlState<T> CreateState(){ throw new NotImplementedException(); }
+        #endregion
+    }
 
-#endregion
-}
 
+    public class _SegmentedControlState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Slidingsegmentedcontrol.CupertinoSlidingSegmentedControl<T>>, ITickerProviderStateMixin<FlutterSDK.Cupertino.Slidingsegmentedcontrol.CupertinoSlidingSegmentedControl<T>>
+    {
+        #region constructors
+        public _SegmentedControlState()
+        { }
+        #endregion
 
-public class _SegmentedControlState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Slidingsegmentedcontrol.CupertinoSlidingSegmentedControl<T>>,ITickerProviderStateMixin<FlutterSDK.Cupertino.Slidingsegmentedcontrol.CupertinoSlidingSegmentedControl<T>>
-{
-#region constructors
-public _SegmentedControlState()
-{ }
-#endregion
+        #region fields
+        internal virtual Dictionary<T, FlutterSDK.Animation.Animationcontroller.AnimationController> _HighlightControllers { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.Tween<FontWeight> _HighlightTween { get; set; }
+        internal virtual Dictionary<T, FlutterSDK.Animation.Animationcontroller.AnimationController> _PressControllers { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.Tween<double> _PressTween { get; set; }
+        public virtual List<T> Keys { get; set; }
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController ThumbController { get; set; }
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController SeparatorOpacityController { get; set; }
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController ThumbScaleController { get; set; }
+        public virtual FlutterSDK.Gestures.Tap.TapGestureRecognizer Tap { get; set; }
+        public virtual FlutterSDK.Gestures.Monodrag.HorizontalDragGestureRecognizer Drag { get; set; }
+        public virtual FlutterSDK.Gestures.Longpress.LongPressGestureRecognizer LongPress { get; set; }
+        internal virtual T _Highlighted { get; set; }
+        internal virtual T _Pressed { get; set; }
+        public virtual T Highlighted { set { throw new NotImplementedException(); } }
+        public virtual T Pressed { set { throw new NotImplementedException(); } }
+        #endregion
 
-#region fields
-internal virtual Dictionary<T,FlutterSDK.Animation.Animationcontroller.AnimationController> _HighlightControllers{get;set;}
-internal virtual FlutterSDK.Animation.Tween.Tween<FontWeight> _HighlightTween{get;set;}
-internal virtual Dictionary<T,FlutterSDK.Animation.Animationcontroller.AnimationController> _PressControllers{get;set;}
-internal virtual FlutterSDK.Animation.Tween.Tween<double> _PressTween{get;set;}
-public virtual List<T> Keys{get;set;}
-public virtual FlutterSDK.Animation.Animationcontroller.AnimationController ThumbController{get;set;}
-public virtual FlutterSDK.Animation.Animationcontroller.AnimationController SeparatorOpacityController{get;set;}
-public virtual FlutterSDK.Animation.Animationcontroller.AnimationController ThumbScaleController{get;set;}
-public virtual FlutterSDK.Gestures.Tap.TapGestureRecognizer Tap{get;set;}
-public virtual FlutterSDK.Gestures.Monodrag.HorizontalDragGestureRecognizer Drag{get;set;}
-public virtual FlutterSDK.Gestures.Longpress.LongPressGestureRecognizer LongPress{get;set;}
-internal virtual T _Highlighted{get;set;}
-internal virtual T _Pressed{get;set;}
-public virtual T Highlighted{set {throw new NotImplementedException();}}
-public virtual T Pressed{set {throw new NotImplementedException();}}
-#endregion
+        #region methods
 
-#region methods
+        private FlutterSDK.Animation.Animationcontroller.AnimationController _CreateHighlightAnimationController(bool isCompleted = false) { throw new NotImplementedException(); }
 
-private FlutterSDK.Animation.Animationcontroller.AnimationController _CreateHighlightAnimationController(bool isCompleted = false){ throw new NotImplementedException(); }
 
+        private FlutterSDK.Animation.Animationcontroller.AnimationController _CreateFadeoutAnimationController() { throw new NotImplementedException(); }
 
-private FlutterSDK.Animation.Animationcontroller.AnimationController _CreateFadeoutAnimationController(){ throw new NotImplementedException(); }
 
+        public new void InitState() { throw new NotImplementedException(); }
 
-public new void InitState(){ throw new NotImplementedException(); }
 
+        public new void DidUpdateWidget(FlutterSDK.Cupertino.Slidingsegmentedcontrol.CupertinoSlidingSegmentedControl<T> oldWidget) { throw new NotImplementedException(); }
 
-public new void DidUpdateWidget(FlutterSDK.Cupertino.Slidingsegmentedcontrol.CupertinoSlidingSegmentedControl<T> oldWidget){ throw new NotImplementedException(); }
 
+        public new void Dispose() { throw new NotImplementedException(); }
 
-public new void Dispose(){ throw new NotImplementedException(); }
 
+        private void _AnimateHighlightController(T at = default(T), bool forward = default(bool)) { throw new NotImplementedException(); }
 
-private void _AnimateHighlightController(T at = default(T),bool forward = default(bool)){ throw new NotImplementedException(); }
 
+        public virtual void DidChangeSelectedViaGesture() { throw new NotImplementedException(); }
 
-public virtual void DidChangeSelectedViaGesture(){ throw new NotImplementedException(); }
 
+        public virtual T IndexToKey(int index) { throw new NotImplementedException(); }
 
-public virtual T IndexToKey(int index){ throw new NotImplementedException(); }
 
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
-
-#endregion
-}
-
-
-public class _SegmentedControlRenderWidget<T> : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
-{
-#region constructors
-public _SegmentedControlRenderWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>),int selectedIndex = default(int),FlutterBinding.UI.Color thumbColor = default(FlutterBinding.UI.Color),FlutterSDK.Cupertino.Slidingsegmentedcontrol._SegmentedControlState<T> state = default(FlutterSDK.Cupertino.Slidingsegmentedcontrol._SegmentedControlState<T>))
-: base(key:key,children:children)
-{
-this.SelectedIndex = selectedIndex;
-this.ThumbColor = thumbColor;
-this.State = state;throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-public virtual int SelectedIndex{get;set;}
-public virtual FlutterBinding.UI.Color ThumbColor{get;set;}
-public virtual FlutterSDK.Cupertino.Slidingsegmentedcontrol._SegmentedControlState<T> State{get;set;}
-#endregion
 
-#region methods
+    public class _SegmentedControlRenderWidget<T> : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
+    {
+        #region constructors
+        public _SegmentedControlRenderWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), int selectedIndex = default(int), FlutterBinding.UI.Color thumbColor = default(FlutterBinding.UI.Color), FlutterSDK.Cupertino.Slidingsegmentedcontrol._SegmentedControlState<T> state = default(FlutterSDK.Cupertino.Slidingsegmentedcontrol._SegmentedControlState<T>))
+        : base(key: key, children: children)
+        {
+            this.SelectedIndex = selectedIndex;
+            this.ThumbColor = thumbColor;
+            this.State = state; throw new NotImplementedException();
+        }
+        #endregion
 
-public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        #region fields
+        public virtual int SelectedIndex { get; set; }
+        public virtual FlutterBinding.UI.Color ThumbColor { get; set; }
+        public virtual FlutterSDK.Cupertino.Slidingsegmentedcontrol._SegmentedControlState<T> State { get; set; }
+        #endregion
 
+        #region methods
 
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Cupertino.Slidingsegmentedcontrol._RenderSegmentedControl<T> renderObject){ throw new NotImplementedException(); }
+        public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#endregion
-}
 
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Cupertino.Slidingsegmentedcontrol._RenderSegmentedControl<T> renderObject) { throw new NotImplementedException(); }
 
-public class _ChildAnimationManifest
-{
-#region constructors
-public _ChildAnimationManifest(double opacity = 1,double separatorOpacity = default(double))
-: base()
-{
-this.Opacity = opacity;
-this.SeparatorOpacity = separatorOpacity;throw new NotImplementedException(); }
-#endregion
+        #endregion
+    }
 
-#region fields
-public virtual double Opacity{get;set;}
-public virtual FlutterSDK.Animation.Tween.Tween<double> OpacityTween{get;set;}
-public virtual double SeparatorOpacity{get;set;}
-public virtual FlutterSDK.Animation.Tween.Tween<double> SeparatorTween{get;set;}
-#endregion
 
-#region methods
-#endregion
-}
+    public class _ChildAnimationManifest
+    {
+        #region constructors
+        public _ChildAnimationManifest(double opacity = 1, double separatorOpacity = default(double))
+        : base()
+        {
+            this.Opacity = opacity;
+            this.SeparatorOpacity = separatorOpacity; throw new NotImplementedException();
+        }
+        #endregion
 
+        #region fields
+        public virtual double Opacity { get; set; }
+        public virtual FlutterSDK.Animation.Tween.Tween<double> OpacityTween { get; set; }
+        public virtual double SeparatorOpacity { get; set; }
+        public virtual FlutterSDK.Animation.Tween.Tween<double> SeparatorTween { get; set; }
+        #endregion
 
-public class _SegmentedControlContainerBoxParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
-{
-#region constructors
-public _SegmentedControlContainerBoxParentData()
-{ }
-#endregion
+        #region methods
+        #endregion
+    }
 
-#region fields
-#endregion
 
-#region methods
-#endregion
-}
+    public class _SegmentedControlContainerBoxParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
+    {
+        #region constructors
+        public _SegmentedControlContainerBoxParentData()
+        { }
+        #endregion
 
+        #region fields
+        #endregion
 
-public class _RenderSegmentedControl<T> : FlutterSDK.Rendering.Box.RenderBox,IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox,FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>>,IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox,FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>>
-{
-#region constructors
-public _RenderSegmentedControl(int selectedIndex = default(int),FlutterBinding.UI.Color thumbColor = default(FlutterBinding.UI.Color),FlutterSDK.Cupertino.Slidingsegmentedcontrol._SegmentedControlState<T> state = default(FlutterSDK.Cupertino.Slidingsegmentedcontrol._SegmentedControlState<T>))
-: base()
-{
-this.State = state;throw new NotImplementedException(); }
-#endregion
+        #region methods
+        #endregion
+    }
 
-#region fields
-public virtual FlutterSDK.Cupertino.Slidingsegmentedcontrol._SegmentedControlState<T> State{get;set;}
-internal virtual Dictionary<FlutterSDK.Rendering.Box.RenderBox,FlutterSDK.Cupertino.Slidingsegmentedcontrol._ChildAnimationManifest> _ChildAnimations{get;set;}
-public virtual FlutterBinding.UI.Rect CurrentThumbRect{get;set;}
-internal virtual FlutterSDK.Animation.Tween.Tween<Rect> _CurrentThumbTween{get;set;}
-internal virtual FlutterSDK.Animation.Tween.Tween<double> _ThumbScaleTween{get;set;}
-public virtual double CurrentThumbScale{get;set;}
-internal virtual FlutterBinding.UI.Offset _LocalDragOffset{get;set;}
-internal virtual bool _StartedOnSelectedSegment{get;set;}
-internal virtual bool _NeedsThumbAnimationUpdate{get;set;}
-internal virtual int _HighlightedIndex{get;set;}
-internal virtual int _PressedIndex{get;set;}
-internal virtual FlutterBinding.UI.Color _ThumbColor{get;set;}
-public virtual int HighlightedIndex{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual int PressedIndex{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual FlutterBinding.UI.Color ThumbColor{get {throw new NotImplementedException();}set {throw new NotImplementedException();}}
-public virtual double TotalSeparatorWidth{get {throw new NotImplementedException();}set { throw new NotImplementedException(); }}
-#endregion
 
-#region methods
+    public class _RenderSegmentedControl<T> : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>>
+    {
+        #region constructors
+        public _RenderSegmentedControl(int selectedIndex = default(int), FlutterBinding.UI.Color thumbColor = default(FlutterBinding.UI.Color), FlutterSDK.Cupertino.Slidingsegmentedcontrol._SegmentedControlState<T> state = default(FlutterSDK.Cupertino.Slidingsegmentedcontrol._SegmentedControlState<T>))
+        : base()
+        {
+            this.State = state; throw new NotImplementedException();
+        }
+        #endregion
 
-public new void Insert(FlutterSDK.Rendering.Box.RenderBox child,FlutterSDK.Rendering.Box.RenderBox after = default(FlutterSDK.Rendering.Box.RenderBox)){ throw new NotImplementedException(); }
+        #region fields
+        public virtual FlutterSDK.Cupertino.Slidingsegmentedcontrol._SegmentedControlState<T> State { get; set; }
+        internal virtual Dictionary<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Cupertino.Slidingsegmentedcontrol._ChildAnimationManifest> _ChildAnimations { get; set; }
+        public virtual FlutterBinding.UI.Rect CurrentThumbRect { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.Tween<Rect> _CurrentThumbTween { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.Tween<double> _ThumbScaleTween { get; set; }
+        public virtual double CurrentThumbScale { get; set; }
+        internal virtual FlutterBinding.UI.Offset _LocalDragOffset { get; set; }
+        internal virtual bool _StartedOnSelectedSegment { get; set; }
+        internal virtual bool _NeedsThumbAnimationUpdate { get; set; }
+        internal virtual int _HighlightedIndex { get; set; }
+        internal virtual int _PressedIndex { get; set; }
+        internal virtual FlutterBinding.UI.Color _ThumbColor { get; set; }
+        public virtual int HighlightedIndex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int PressedIndex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Color ThumbColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double TotalSeparatorWidth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public new void Remove(FlutterSDK.Rendering.Box.RenderBox child){ throw new NotImplementedException(); }
+        public new void Insert(FlutterSDK.Rendering.Box.RenderBox child, FlutterSDK.Rendering.Box.RenderBox after = default(FlutterSDK.Rendering.Box.RenderBox)) { throw new NotImplementedException(); }
 
 
-public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner){ throw new NotImplementedException(); }
-public new void Attach(@Object owner){ throw new NotImplementedException(); }
+        public new void Remove(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
 
 
-public new void Detach(){ throw new NotImplementedException(); }
+        public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner) { throw new NotImplementedException(); }
+        public new void Attach(@Object owner) { throw new NotImplementedException(); }
 
 
-public virtual void GuardedSetHighlightedIndex(int value){ throw new NotImplementedException(); }
+        public new void Detach() { throw new NotImplementedException(); }
 
 
-public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event,FlutterSDK.Rendering.Box.BoxHitTestEntry entry){ throw new NotImplementedException(); }
+        public virtual void GuardedSetHighlightedIndex(int value) { throw new NotImplementedException(); }
 
 
-public virtual int IndexFromLocation(FlutterBinding.UI.Offset location){ throw new NotImplementedException(); }
+        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Rendering.Box.BoxHitTestEntry entry) { throw new NotImplementedException(); }
 
 
-private void _OnTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details){ throw new NotImplementedException(); }
+        public virtual int IndexFromLocation(FlutterBinding.UI.Offset location) { throw new NotImplementedException(); }
 
 
-private void _OnDown(FlutterSDK.Gestures.Dragdetails.DragDownDetails details){ throw new NotImplementedException(); }
+        private void _OnTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details) { throw new NotImplementedException(); }
 
 
-private void _OnUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details){ throw new NotImplementedException(); }
+        private void _OnDown(FlutterSDK.Gestures.Dragdetails.DragDownDetails details) { throw new NotImplementedException(); }
 
 
-private void _OnEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details){ throw new NotImplementedException(); }
+        private void _OnUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details) { throw new NotImplementedException(); }
 
 
-private void _OnCancel(){ throw new NotImplementedException(); }
+        private void _OnEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details) { throw new NotImplementedException(); }
 
 
-private void _PlayThumbScaleAnimation(bool isExpanding = default(bool)){ throw new NotImplementedException(); }
+        private void _OnCancel() { throw new NotImplementedException(); }
 
 
-private bool _HasDraggedTooFar(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details){ throw new NotImplementedException(); }
+        private void _PlayThumbScaleAnimation(bool isExpanding = default(bool)) { throw new NotImplementedException(); }
 
 
-public new double ComputeMinIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        private bool _HasDraggedTooFar(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details) { throw new NotImplementedException(); }
 
 
-public new double ComputeMaxIntrinsicWidth(double height){ throw new NotImplementedException(); }
+        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-public new double ComputeMinIntrinsicHeight(double width){ throw new NotImplementedException(); }
+        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
 
 
-public new double ComputeMaxIntrinsicHeight(double width){ throw new NotImplementedException(); }
+        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-public new double ComputeDistanceToActualBaseline(TextBaseline baseline){ throw new NotImplementedException(); }
+        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
-public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child){ throw new NotImplementedException(); }
-public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child){ throw new NotImplementedException(); }
+        public new double ComputeDistanceToActualBaseline(TextBaseline baseline) { throw new NotImplementedException(); }
 
 
-public new void PerformLayout(){ throw new NotImplementedException(); }
+        public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
+        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset){ throw new NotImplementedException(); }
+        public new void PerformLayout() { throw new NotImplementedException(); }
 
 
-private void _PaintSeparator(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset,FlutterSDK.Rendering.Box.RenderBox child){ throw new NotImplementedException(); }
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
-private void _PaintChild(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset,FlutterSDK.Rendering.Box.RenderBox child,int childIndex){ throw new NotImplementedException(); }
+        private void _PaintSeparator(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset, FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
 
 
-private void _PaintThumb(FlutterSDK.Rendering.@object.PaintingContext context,FlutterBinding.UI.Offset offset,FlutterBinding.UI.Rect thumbRect){ throw new NotImplementedException(); }
+        private void _PaintChild(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset, FlutterSDK.Rendering.Box.RenderBox child, int childIndex) { throw new NotImplementedException(); }
 
 
-public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result,FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)){ throw new NotImplementedException(); }
+        private void _PaintThumb(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset, FlutterBinding.UI.Rect thumbRect) { throw new NotImplementedException(); }
 
-#endregion
-}
+
+        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

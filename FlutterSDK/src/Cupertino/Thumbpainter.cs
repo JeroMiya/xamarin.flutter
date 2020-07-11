@@ -291,38 +291,42 @@ using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
 using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
-namespace FlutterSDK.Cupertino.Thumbpainter{
-internal static class ThumbpainterDefaultClass{
-public static Color _KThumbBorderColor = default(Color);
-public static List<FlutterSDK.Painting.Boxshadow.BoxShadow> _KSwitchBoxShadows = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>);
-public static List<FlutterSDK.Painting.Boxshadow.BoxShadow> _KSliderBoxShadows = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>);
-}
-
-public class CupertinoThumbPainter
+namespace FlutterSDK.Cupertino.Thumbpainter
 {
-#region constructors
-public CupertinoThumbPainter(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),List<FlutterSDK.Painting.Boxshadow.BoxShadow> shadows = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>))
-: base()
-{
-this.Color = color;
-this.Shadows = shadows;throw new NotImplementedException(); }
-public static CupertinoThumbPainter SwitchThumb(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color),List<FlutterSDK.Painting.Boxshadow.BoxShadow> shadows = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>))
-{
-var instance =new CupertinoThumbPainter();throw new NotImplementedException(); }
-#endregion
+    internal static class ThumbpainterDefaultClass
+    {
+        public static Color _KThumbBorderColor = default(Color);
+        public static List<FlutterSDK.Painting.Boxshadow.BoxShadow> _KSwitchBoxShadows = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>);
+        public static List<FlutterSDK.Painting.Boxshadow.BoxShadow> _KSliderBoxShadows = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>);
+    }
 
-#region fields
-public virtual FlutterBinding.UI.Color Color{get;set;}
-public virtual List<FlutterSDK.Painting.Boxshadow.BoxShadow> Shadows{get;set;}
-public virtual double Radius{get;set;}
-public virtual double Extension{get;set;}
-#endregion
+    public class CupertinoThumbPainter
+    {
+        #region constructors
+        public CupertinoThumbPainter(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), List<FlutterSDK.Painting.Boxshadow.BoxShadow> shadows = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>))
+        : base()
+        {
+            this.Color = color;
+            this.Shadows = shadows; throw new NotImplementedException();
+        }
+        public static CupertinoThumbPainter SwitchThumb(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), List<FlutterSDK.Painting.Boxshadow.BoxShadow> shadows = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>))
+        {
+            var instance = new CupertinoThumbPainter(); throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual List<FlutterSDK.Painting.Boxshadow.BoxShadow> Shadows { get; set; }
+        public virtual double Radius { get; set; }
+        public virtual double Extension { get; set; }
+        #endregion
 
-public virtual void Paint(Canvas canvas,FlutterBinding.UI.Rect rect){ throw new NotImplementedException(); }
+        #region methods
 
-#endregion
-}
+        public virtual void Paint(Canvas canvas, FlutterBinding.UI.Rect rect) { throw new NotImplementedException(); }
+
+        #endregion
+    }
 
 }

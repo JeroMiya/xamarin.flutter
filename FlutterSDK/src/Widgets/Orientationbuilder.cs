@@ -423,32 +423,35 @@ using FlutterSDK.Material.Drawerheader;
 using FlutterSDK.Painting._Networkimageio;
 using FlutterSDK.Widgets.Constants;
 using FlutterSDK.Widgets.Routenotificationmessages;
-namespace FlutterSDK.Widgets.Orientationbuilder{
-public delegate FlutterSDK.Widgets.Framework.Widget OrientationWidgetBuilder(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Widgets.Mediaquery.Orientation orientation);
-internal static class OrientationbuilderDefaultClass{
-}
-
-public class OrientationBuilder : FlutterSDK.Widgets.Framework.StatelessWidget
+namespace FlutterSDK.Widgets.Orientationbuilder
 {
-#region constructors
-public OrientationBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key),FlutterSDK.Widgets.Orientationbuilder.OrientationWidgetBuilder builder = default(FlutterSDK.Widgets.Orientationbuilder.OrientationWidgetBuilder))
-: base(key:key)
-{
-this.Builder = builder;throw new NotImplementedException(); }
-#endregion
+    public delegate FlutterSDK.Widgets.Framework.Widget OrientationWidgetBuilder(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Mediaquery.Orientation orientation);
+    internal static class OrientationbuilderDefaultClass
+    {
+    }
 
-#region fields
-public virtual FlutterSDK.Widgets.Orientationbuilder.OrientationWidgetBuilder Builder{get;set;}
-#endregion
+    public class OrientationBuilder : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public OrientationBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Orientationbuilder.OrientationWidgetBuilder builder = default(FlutterSDK.Widgets.Orientationbuilder.OrientationWidgetBuilder))
+        : base(key: key)
+        {
+            this.Builder = builder; throw new NotImplementedException();
+        }
+        #endregion
 
-#region methods
+        #region fields
+        public virtual FlutterSDK.Widgets.Orientationbuilder.OrientationWidgetBuilder Builder { get; set; }
+        #endregion
 
-private FlutterSDK.Widgets.Framework.Widget _BuildWithConstraints(FlutterSDK.Widgets.Framework.BuildContext context,FlutterSDK.Rendering.Box.BoxConstraints constraints){ throw new NotImplementedException(); }
+        #region methods
+
+        private FlutterSDK.Widgets.Framework.Widget _BuildWithConstraints(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context){ throw new NotImplementedException(); }
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-#endregion
-}
+        #endregion
+    }
 
 }

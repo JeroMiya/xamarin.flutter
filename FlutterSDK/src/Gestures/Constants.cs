@@ -294,24 +294,26 @@ using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
-namespace FlutterSDK.Gestures.Constants{
-internal static class ConstantsDefaultClass{
-public static TimeSpan KPressTimeout = default(TimeSpan);
-public static TimeSpan KHoverTapTimeout = default(TimeSpan);
-public static double KHoverTapSlop = default(double);
-public static TimeSpan KLongPressTimeout = default(TimeSpan);
-public static TimeSpan KDoubleTapTimeout = default(TimeSpan);
-public static TimeSpan KDoubleTapMinTime = default(TimeSpan);
-public static double KDoubleTapTouchSlop = default(double);
-public static double KDoubleTapSlop = default(double);
-public static TimeSpan KZoomControlsTimeout = default(TimeSpan);
-public static double KTouchSlop = default(double);
-public static double KPagingTouchSlop = default(double);
-public static double KPanSlop = default(double);
-public static double KScaleSlop = default(double);
-public static double KWindowTouchSlop = default(double);
-public static double KMinFlingVelocity = default(double);
-public static double KMaxFlingVelocity = default(double);
-public static TimeSpan KJumpTapTimeout = default(TimeSpan);
-}
+namespace FlutterSDK.Gestures.Constants
+{
+    internal static class ConstantsDefaultClass
+    {
+        public static TimeSpan KPressTimeout = default(TimeSpan);
+        public static TimeSpan KHoverTapTimeout = default(TimeSpan);
+        public static double KHoverTapSlop = default(double);
+        public static TimeSpan KLongPressTimeout = default(TimeSpan);
+        public static TimeSpan KDoubleTapTimeout = default(TimeSpan);
+        public static TimeSpan KDoubleTapMinTime = default(TimeSpan);
+        public static double KDoubleTapTouchSlop = default(double);
+        public static double KDoubleTapSlop = default(double);
+        public static TimeSpan KZoomControlsTimeout = default(TimeSpan);
+        public static double KTouchSlop = default(double);
+        public static double KPagingTouchSlop = default(double);
+        public static double KPanSlop = default(double);
+        public static double KScaleSlop = default(double);
+        public static double KWindowTouchSlop = default(double);
+        public static double KMinFlingVelocity = default(double);
+        public static double KMaxFlingVelocity = default(double);
+        public static TimeSpan KJumpTapTimeout = default(TimeSpan);
+    }
 }
