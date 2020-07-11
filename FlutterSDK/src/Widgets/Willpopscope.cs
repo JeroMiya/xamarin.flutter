@@ -429,6 +429,15 @@ namespace FlutterSDK.Widgets.Willpopscope
     {
     }
 
+    /// <Summary>
+    /// Registers a callback to veto attempts by the user to dismiss the enclosing
+    /// [ModalRoute].
+    ///
+    /// See also:
+    ///
+    ///  * [ModalRoute.addScopedWillPopCallback] and [ModalRoute.removeScopedWillPopCallback],
+    ///    which this widget uses to register and unregister [onWillPop].
+    /// </Summary>
     public class WillPopScope : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors

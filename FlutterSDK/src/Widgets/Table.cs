@@ -429,6 +429,14 @@ namespace FlutterSDK.Widgets.Table
     {
     }
 
+    /// <Summary>
+    /// A horizontal group of cells in a [Table].
+    ///
+    /// Every row in a table must have the same number of children.
+    ///
+    /// The alignment of individual cells in a row can be controlled using a
+    /// [TableCell].
+    /// </Summary>
     public class TableRow
     {
         #region constructors
@@ -472,6 +480,25 @@ namespace FlutterSDK.Widgets.Table
     }
 
 
+    /// <Summary>
+    /// A widget that uses the table layout algorithm for its children.
+    ///
+    /// {@youtube 560 315 https://www.youtube.com/watch?v=_lbE0wsVZSw}
+    ///
+    /// If you only have one row, the [Row] widget is more appropriate. If you only
+    /// have one column, the [SliverList] or [Column] widgets will be more
+    /// appropriate.
+    ///
+    /// Rows size vertically based on their contents. To control the column widths,
+    /// use the [columnWidths] property.
+    ///
+    /// For more details about the table layout algorithm, see [RenderTable].
+    /// To control the alignment of children, see [TableCell].
+    ///
+    /// See also:
+    ///
+    ///  * The [catalog of layout widgets](https://flutter.dev/widgets/layout/).
+    /// </Summary>
     public class Table : FlutterSDK.Widgets.Framework.RenderObjectWidget
     {
         #region constructors
@@ -562,6 +589,14 @@ namespace FlutterSDK.Widgets.Table
     }
 
 
+    /// <Summary>
+    /// A widget that controls how a child of a [Table] is aligned.
+    ///
+    /// A [TableCell] widget must be a descendant of a [Table], and the path from
+    /// the [TableCell] widget to its enclosing [Table] must contain only
+    /// [TableRow]s, [StatelessWidget]s, or [StatefulWidget]s (not
+    /// other kinds of widgets, like [RenderObjectWidget]s).
+    /// </Summary>
     public class TableCell : FlutterSDK.Widgets.Framework.ParentDataWidget<FlutterSDK.Rendering.Table.TableCellParentData>
     {
         #region constructors

@@ -302,14 +302,37 @@ namespace FlutterSDK.Foundation.Platform
         public static FlutterSDK.Foundation.Platform.TargetPlatform DebugDefaultTargetPlatformOverride = default(FlutterSDK.Foundation.Platform.TargetPlatform);
     }
 
+    /// <Summary>
+    /// The platform that user interaction should adapt to target.
+    ///
+    /// The [defaultTargetPlatform] getter returns the current platform.
+    /// </Summary>
     public enum TargetPlatform
     {
 
+        /// <Summary>
+        /// Android: <https://www.android.com/>
+        /// </Summary>
         Android,
+        /// <Summary>
+        /// Fuchsia: <https://fuchsia.googlesource.com/>
+        /// </Summary>
         Fuchsia,
+        /// <Summary>
+        /// iOS: <https://www.apple.com/ios/>
+        /// </Summary>
         IOS,
+        /// <Summary>
+        /// Linux: <https://www.linux.org>
+        /// </Summary>
         Linux,
+        /// <Summary>
+        /// macOS: <https://www.apple.com/macos>
+        /// </Summary>
         MacOS,
+        /// <Summary>
+        /// Windows: <https://www.windows.com>
+        /// </Summary>
         Windows,
     }
 

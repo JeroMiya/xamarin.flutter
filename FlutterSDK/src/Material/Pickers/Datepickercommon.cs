@@ -404,18 +404,48 @@ namespace FlutterSDK.Material.Pickers.Datepickercommon
     {
     }
 
+    /// <Summary>
+    /// Mode of the date picker dialog.
+    ///
+    /// Either a calendar or text input. In [calendar] mode, a calendar view is
+    /// displayed and the user taps the day they wish to select. In [input] mode a
+    /// [TextField] is displayed and the user types in the date they wish to select.
+    /// </Summary>
     public enum DatePickerEntryMode
     {
 
+        /// <Summary>
+        /// Tapping on a calendar.
+        /// </Summary>
         Calendar,
+        /// <Summary>
+        /// Text input.
+        /// </Summary>
         Input,
     }
 
 
+    /// <Summary>
+    /// Initial display of a calendar date picker.
+    ///
+    /// Either a grid of available years or a monthly calendar.
+    ///
+    /// See also:
+    ///
+    ///  * [showDatePicker], which shows a dialog that contains a material design
+    ///    date picker.
+    ///  * [CalendarDatePicker], widget which implements the material design date picker.
+    /// </Summary>
     public enum DatePickerMode
     {
 
+        /// <Summary>
+        /// Choosing a month and day.
+        /// </Summary>
         Day,
+        /// <Summary>
+        /// Choosing a year.
+        /// </Summary>
         Year,
     }
 

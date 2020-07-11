@@ -433,6 +433,9 @@ namespace FlutterSDK.Widgets.Banner
         public static FlutterSDK.Painting.Textstyle.TextStyle _KTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle);
     }
 
+    /// <Summary>
+    /// Paints a [Banner].
+    /// </Summary>
     public class BannerPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
     {
         #region constructors
@@ -487,6 +490,17 @@ namespace FlutterSDK.Widgets.Banner
     }
 
 
+    /// <Summary>
+    /// Displays a diagonal message above the corner of another widget.
+    ///
+    /// Useful for showing the execution mode of an app (e.g., that asserts are
+    /// enabled.)
+    ///
+    /// See also:
+    ///
+    ///  * [CheckedModeBanner], which the [WidgetsApp] widget includes by default in
+    ///    debug mode, to show a banner that says "DEBUG".
+    /// </Summary>
     public class Banner : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors
@@ -524,6 +538,11 @@ namespace FlutterSDK.Widgets.Banner
     }
 
 
+    /// <Summary>
+    /// Displays a [Banner] saying "DEBUG" when running in checked mode.
+    /// [MaterialApp] builds one of these by default.
+    /// Does nothing in release mode.
+    /// </Summary>
     public class CheckedModeBanner : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors
@@ -549,12 +568,40 @@ namespace FlutterSDK.Widgets.Banner
     }
 
 
+    /// <Summary>
+    /// Where to show a [Banner].
+    ///
+    /// The start and end locations are relative to the ambient [Directionality]
+    /// (which can be overridden by [Banner.layoutDirection]).
+    /// </Summary>
     public enum BannerLocation
     {
 
+        /// <Summary>
+        /// Show the banner in the top-right corner when the ambient [Directionality]
+        /// (or [Banner.layoutDirection]) is [TextDirection.rtl] and in the top-left
+        /// corner when the ambient [Directionality] is [TextDirection.ltr].
+        /// </Summary>
         TopStart,
+        /// <Summary>
+        /// Show the banner in the top-left corner when the ambient [Directionality]
+        /// (or [Banner.layoutDirection]) is [TextDirection.rtl] and in the top-right
+        /// corner when the ambient [Directionality] is [TextDirection.ltr].
+        /// </Summary>
         TopEnd,
+        /// <Summary>
+        /// Show the banner in the bottom-right corner when the ambient
+        /// [Directionality] (or [Banner.layoutDirection]) is [TextDirection.rtl] and
+        /// in the bottom-left corner when the ambient [Directionality] is
+        /// [TextDirection.ltr].
+        /// </Summary>
         BottomStart,
+        /// <Summary>
+        /// Show the banner in the bottom-left corner when the ambient
+        /// [Directionality] (or [Banner.layoutDirection]) is [TextDirection.rtl] and
+        /// in the bottom-right corner when the ambient [Directionality] is
+        /// [TextDirection.ltr].
+        /// </Summary>
         BottomEnd,
     }
 

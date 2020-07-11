@@ -427,6 +427,25 @@ namespace FlutterSDK.Rendering.Proxysliver
     {
     }
 
+    /// <Summary>
+    /// A base class for sliver render objects that resemble their children.
+    ///
+    /// A proxy sliver has a single child and simply mimics all the properties of
+    /// that child by calling through to the child for each function in the render
+    /// sliver protocol. For example, a proxy sliver determines its geometry by
+    /// asking its sliver child to layout with the same constraints and then
+    /// matching the geometry.
+    ///
+    /// A proxy sliver isn't useful on its own because you might as well just
+    /// replace the proxy sliver with its child. However, RenderProxySliver is a
+    /// useful base class for render objects that wish to mimic most, but not all,
+    /// of the properties of their sliver child.
+    ///
+    /// See also:
+    ///
+    ///  * [RenderProxyBox], a base class for render boxes that resemble their
+    ///    children.
+    /// </Summary>
     public interface IRenderProxySliver
     {
         void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child);
@@ -438,6 +457,25 @@ namespace FlutterSDK.Rendering.Proxysliver
     }
 
 
+    /// <Summary>
+    /// A base class for sliver render objects that resemble their children.
+    ///
+    /// A proxy sliver has a single child and simply mimics all the properties of
+    /// that child by calling through to the child for each function in the render
+    /// sliver protocol. For example, a proxy sliver determines its geometry by
+    /// asking its sliver child to layout with the same constraints and then
+    /// matching the geometry.
+    ///
+    /// A proxy sliver isn't useful on its own because you might as well just
+    /// replace the proxy sliver with its child. However, RenderProxySliver is a
+    /// useful base class for render objects that wish to mimic most, but not all,
+    /// of the properties of their sliver child.
+    ///
+    /// See also:
+    ///
+    ///  * [RenderProxyBox], a base class for render boxes that resemble their
+    ///    children.
+    /// </Summary>
     public class RenderProxySliver : FlutterSDK.Rendering.Sliver.RenderSliver, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Sliver.RenderSliver>
     {
         #region constructors
@@ -474,6 +512,18 @@ namespace FlutterSDK.Rendering.Proxysliver
     }
 
 
+    /// <Summary>
+    /// Makes its sliver child partially transparent.
+    ///
+    /// This class paints its sliver child into an intermediate buffer and then
+    /// blends the sliver child back into the scene, partially transparent.
+    ///
+    /// For values of opacity other than 0.0 and 1.0, this class is relatively
+    /// expensive, because it requires painting the sliver child into an intermediate
+    /// buffer. For the value 0.0, the sliver child is simply not painted at all.
+    /// For the value 1.0, the sliver child is painted immediately without an
+    /// intermediate buffer.
+    /// </Summary>
     public class RenderSliverOpacity : FlutterSDK.Rendering.Proxysliver.RenderProxySliver
     {
         #region constructors
@@ -507,6 +557,18 @@ namespace FlutterSDK.Rendering.Proxysliver
     }
 
 
+    /// <Summary>
+    /// A render object that is invisible during hit testing.
+    ///
+    /// When [ignoring] is true, this render object (and its subtree) is invisible
+    /// to hit testing. It still consumes space during layout and paints its sliver
+    /// child as usual. It just cannot be the target of located events, because its
+    /// render object returns false from [hitTest].
+    ///
+    /// When [ignoringSemantics] is true, the subtree will be invisible to the
+    /// semantics layer (and thus e.g. accessibility tools). If [ignoringSemantics]
+    /// is null, it uses the value of [ignoring].
+    /// </Summary>
     public class RenderSliverIgnorePointer : FlutterSDK.Rendering.Proxysliver.RenderProxySliver
     {
         #region constructors
@@ -539,6 +601,11 @@ namespace FlutterSDK.Rendering.Proxysliver
     }
 
 
+    /// <Summary>
+    /// Lays the sliver child out as if it was in the tree, but without painting
+    /// anything, without making the sliver child available for hit testing, and
+    /// without taking any room in the parent.
+    /// </Summary>
     public class RenderSliverOffstage : FlutterSDK.Rendering.Proxysliver.RenderProxySliver
     {
         #region constructors
@@ -580,6 +647,12 @@ namespace FlutterSDK.Rendering.Proxysliver
     }
 
 
+    /// <Summary>
+    /// Makes its sliver child partially transparent, driven from an [Animation].
+    ///
+    /// This is a variant of [RenderSliverOpacity] that uses an [Animation<double>]
+    /// rather than a [double] to control the opacity.
+    /// </Summary>
     public class RenderSliverAnimatedOpacity : FlutterSDK.Rendering.Proxysliver.RenderProxySliver, IRenderAnimatedOpacityMixin<FlutterSDK.Rendering.Sliver.RenderSliver>
     {
         #region constructors

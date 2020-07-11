@@ -452,6 +452,9 @@ namespace FlutterSDK.Material.Timepicker
 
     }
 
+    /// <Summary>
+    /// Provides properties for rendering time picker header fragments.
+    /// </Summary>
     public class _TimePickerFragmentContext
     {
         #region constructors
@@ -493,6 +496,11 @@ namespace FlutterSDK.Material.Timepicker
     }
 
 
+    /// <Summary>
+    /// Contains the [widget] and layout properties of an atom of time information,
+    /// such as am/pm indicator, hour, minute and string literals appearing in the
+    /// formatted time string.
+    /// </Summary>
     public class _TimePickerHeaderFragment
     {
         #region constructors
@@ -516,6 +524,12 @@ namespace FlutterSDK.Material.Timepicker
     }
 
 
+    /// <Summary>
+    /// An unbreakable part of the time picker header.
+    ///
+    /// When the picker is laid out vertically, [fragments] of the piece are laid
+    /// out on the same line, with each piece getting its own line.
+    /// </Summary>
     public class _TimePickerHeaderPiece
     {
         #region constructors
@@ -539,6 +553,24 @@ namespace FlutterSDK.Material.Timepicker
     }
 
 
+    /// <Summary>
+    /// Describes how the time picker header must be formatted.
+    ///
+    /// A [_TimePickerHeaderFormat] is made of multiple [_TimePickerHeaderPiece]s.
+    /// A piece is made of multiple [_TimePickerHeaderFragment]s. A fragment has a
+    /// widget used to render some time information and contains some layout
+    /// properties.
+    ///
+    /// ## Layout rules
+    ///
+    /// Pieces are laid out such that all fragments inside the same piece are laid
+    /// out horizontally. Pieces are laid out horizontally if portrait orientation,
+    /// and vertically in landscape orientation.
+    ///
+    /// One of the pieces is identified as a _centerpiece_. It is a piece that is
+    /// positioned in the center of the header, with all other pieces positioned
+    /// to the left or right of it.
+    /// </Summary>
     public class _TimePickerHeaderFormat
     {
         #region constructors
@@ -560,6 +592,10 @@ namespace FlutterSDK.Material.Timepicker
     }
 
 
+    /// <Summary>
+    /// Displays the am/pm fragment and provides controls for switching between am
+    /// and pm.
+    /// </Summary>
     public class _DayPeriodControl : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors
@@ -592,6 +628,11 @@ namespace FlutterSDK.Material.Timepicker
     }
 
 
+    /// <Summary>
+    /// Displays the hour fragment.
+    ///
+    /// When tapped changes time picker dial mode to [_TimePickerMode.hour].
+    /// </Summary>
     public class _HourControl : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors
@@ -613,6 +654,9 @@ namespace FlutterSDK.Material.Timepicker
     }
 
 
+    /// <Summary>
+    /// A passive fragment showing a string value.
+    /// </Summary>
     public class _StringFragment : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors
@@ -636,6 +680,11 @@ namespace FlutterSDK.Material.Timepicker
     }
 
 
+    /// <Summary>
+    /// Displays the minute fragment.
+    ///
+    /// When tapped changes time picker dial mode to [_TimePickerMode.minute].
+    /// </Summary>
     public class _MinuteControl : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors
@@ -796,6 +845,13 @@ namespace FlutterSDK.Material.Timepicker
         public new void Paint(Canvas canvas, Size size) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Creates semantics nodes for the hour/minute labels painted on the dial.
+        ///
+        /// The nodes are positioned on top of the text and their size is
+        /// [_semanticNodeSizeScale] bigger than those of the text boxes to provide
+        /// bigger tap area.
+        /// </Summary>
         private List<FlutterSDK.Rendering.Custompaint.CustomPainterSemantics> _BuildSemantics(Size size) { throw new NotImplementedException(); }
 
 
@@ -932,6 +988,14 @@ namespace FlutterSDK.Material.Timepicker
     }
 
 
+    /// <Summary>
+    /// A material design time picker designed to appear inside a popup dialog.
+    ///
+    /// Pass this widget to [showDialog]. The value returned by [showDialog] is the
+    /// selected [TimeOfDay] if the user taps the "OK" button, or null if the user
+    /// taps the "CANCEL" button. The selected time is reported by calling
+    /// [Navigator.pop].
+    /// </Summary>
     public class _TimePickerDialog : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors

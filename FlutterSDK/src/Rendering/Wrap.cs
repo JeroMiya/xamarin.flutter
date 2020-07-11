@@ -449,6 +449,9 @@ namespace FlutterSDK.Rendering.Wrap
     }
 
 
+    /// <Summary>
+    /// Parent data for use with [RenderWrap].
+    /// </Summary>
     public class WrapParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
     {
         #region constructors
@@ -465,6 +468,22 @@ namespace FlutterSDK.Rendering.Wrap
     }
 
 
+    /// <Summary>
+    /// Displays its children in multiple horizontal or vertical runs.
+    ///
+    /// A [RenderWrap] lays out each child and attempts to place the child adjacent
+    /// to the previous child in the main axis, given by [direction], leaving
+    /// [spacing] space in between. If there is not enough space to fit the child,
+    /// [RenderWrap] creates a new _run_ adjacent to the existing children in the
+    /// cross axis.
+    ///
+    /// After all the children have been allocated to runs, the children within the
+    /// runs are positioned according to the [alignment] in the main axis and
+    /// according to the [crossAxisAlignment] in the cross axis.
+    ///
+    /// The runs themselves are then positioned in the cross axis according to the
+    /// [runSpacing] and [runAlignment].
+    /// </Summary>
     public class RenderWrap : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Wrap.WrapParentData>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Wrap.WrapParentData>
     {
         #region constructors
@@ -550,23 +569,88 @@ namespace FlutterSDK.Rendering.Wrap
     }
 
 
+    /// <Summary>
+    /// How [Wrap] should align objects.
+    ///
+    /// Used both to align children within a run in the main axis as well as to
+    /// align the runs themselves in the cross axis.
+    /// </Summary>
     public enum WrapAlignment
     {
 
+        /// <Summary>
+        /// Place the objects as close to the start of the axis as possible.
+        ///
+        /// If this value is used in a horizontal direction, a [TextDirection] must be
+        /// available to determine if the start is the left or the right.
+        ///
+        /// If this value is used in a vertical direction, a [VerticalDirection] must be
+        /// available to determine if the start is the top or the bottom.
+        /// </Summary>
         Start,
+        /// <Summary>
+        /// Place the objects as close to the end of the axis as possible.
+        ///
+        /// If this value is used in a horizontal direction, a [TextDirection] must be
+        /// available to determine if the end is the left or the right.
+        ///
+        /// If this value is used in a vertical direction, a [VerticalDirection] must be
+        /// available to determine if the end is the top or the bottom.
+        /// </Summary>
         End,
+        /// <Summary>
+        /// Place the objects as close to the middle of the axis as possible.
+        /// </Summary>
         Center,
+        /// <Summary>
+        /// Place the free space evenly between the objects.
+        /// </Summary>
         SpaceBetween,
+        /// <Summary>
+        /// Place the free space evenly between the objects as well as half of that
+        /// space before and after the first and last objects.
+        /// </Summary>
         SpaceAround,
+        /// <Summary>
+        /// Place the free space evenly between the objects as well as before and
+        /// after the first and last objects.
+        /// </Summary>
         SpaceEvenly,
     }
 
 
+    /// <Summary>
+    /// Who [Wrap] should align children within a run in the cross axis.
+    /// </Summary>
     public enum WrapCrossAlignment
     {
 
+        /// <Summary>
+        /// Place the children as close to the start of the run in the cross axis as
+        /// possible.
+        ///
+        /// If this value is used in a horizontal direction, a [TextDirection] must be
+        /// available to determine if the start is the left or the right.
+        ///
+        /// If this value is used in a vertical direction, a [VerticalDirection] must be
+        /// available to determine if the start is the top or the bottom.
+        /// </Summary>
         Start,
+        /// <Summary>
+        /// Place the children as close to the end of the run in the cross axis as
+        /// possible.
+        ///
+        /// If this value is used in a horizontal direction, a [TextDirection] must be
+        /// available to determine if the end is the left or the right.
+        ///
+        /// If this value is used in a vertical direction, a [VerticalDirection] must be
+        /// available to determine if the end is the top or the bottom.
+        /// </Summary>
         End,
+        /// <Summary>
+        /// Place the children as close to the middle of the run in the cross axis as
+        /// possible.
+        /// </Summary>
         Center,
     }
 

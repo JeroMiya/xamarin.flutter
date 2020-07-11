@@ -441,6 +441,86 @@ namespace FlutterSDK.Widgets.Sliver
 
     }
 
+    /// <Summary>
+    /// A delegate that supplies children for slivers.
+    ///
+    /// Many slivers lazily construct their box children to avoid creating more
+    /// children than are visible through the [Viewport]. Rather than receiving
+    /// their children as an explicit [List], they receive their children using a
+    /// [SliverChildDelegate].
+    ///
+    /// It's uncommon to subclass [SliverChildDelegate]. Instead, consider using one
+    /// of the existing subclasses that provide adaptors to builder callbacks or
+    /// explicit child lists.
+    ///
+    /// {@template flutter.widgets.sliverChildDelegate.lifecycle}
+    /// ## Child elements' lifecycle
+    ///
+    /// ### Creation
+    ///
+    /// While laying out the list, visible children's elements, states and render
+    /// objects will be created lazily based on existing widgets (such as in the
+    /// case of [SliverChildListDelegate]) or lazily provided ones (such as in the
+    /// case of [SliverChildBuilderDelegate]).
+    ///
+    /// ### Destruction
+    ///
+    /// When a child is scrolled out of view, the associated element subtree, states
+    /// and render objects are destroyed. A new child at the same position in the
+    /// sliver will be lazily recreated along with new elements, states and render
+    /// objects when it is scrolled back.
+    ///
+    /// ### Destruction mitigation
+    ///
+    /// In order to preserve state as child elements are scrolled in and out of
+    /// view, the following options are possible:
+    ///
+    ///  * Moving the ownership of non-trivial UI-state-driving business logic
+    ///    out of the sliver child subtree. For instance, if a list contains posts
+    ///    with their number of upvotes coming from a cached network response, store
+    ///    the list of posts and upvote number in a data model outside the list. Let
+    ///    the sliver child UI subtree be easily recreate-able from the
+    ///    source-of-truth model object. Use [StatefulWidget]s in the child widget
+    ///    subtree to store instantaneous UI state only.
+    ///
+    ///  * Letting [KeepAlive] be the root widget of the sliver child widget subtree
+    ///    that needs to be preserved. The [KeepAlive] widget marks the child
+    ///    subtree's top render object child for keepalive. When the associated top
+    ///    render object is scrolled out of view, the sliver keeps the child's
+    ///    render object (and by extension, its associated elements and states) in a
+    ///    cache list instead of destroying them. When scrolled back into view, the
+    ///    render object is repainted as-is (if it wasn't marked dirty in the
+    ///    interim).
+    ///
+    ///    This only works if the [SliverChildDelegate] subclasses don't wrap the
+    ///    child widget subtree with other widgets such as [AutomaticKeepAlive] and
+    ///    [RepaintBoundary] via `addAutomaticKeepAlives` and
+    ///    `addRepaintBoundaries`.
+    ///
+    ///  * Using [AutomaticKeepAlive] widgets (inserted by default in
+    ///    [SliverChildListDelegate] or [SliverChildListDelegate]).
+    ///    [AutomaticKeepAlive] allows descendant widgets to control whether the
+    ///    subtree is actually kept alive or not. This behavior is in contrast with
+    ///    [KeepAlive], which will unconditionally keep the subtree alive.
+    ///
+    ///    As an example, the [EditableText] widget signals its sliver child element
+    ///    subtree to stay alive while its text field has input focus. If it doesn't
+    ///    have focus and no other descendants signaled for keepalive via a
+    ///    [KeepAliveNotification], the sliver child element subtree will be
+    ///    destroyed when scrolled away.
+    ///
+    ///    [AutomaticKeepAlive] descendants typically signal it to be kept alive by
+    ///    using the [AutomaticKeepAliveClientMixin], then implementing the
+    ///    [wantKeepAlive] getter and calling [updateKeepAlive].
+    /// {@endtemplate}
+    ///
+    /// See also:
+    ///
+    ///  * [SliverChildBuilderDelegate], which is a delegate that uses a builder
+    ///    callback to construct the children.
+    ///  * [SliverChildListDelegate], which is a delegate that has an explicit list
+    ///    of children.
+    /// </Summary>
     public interface ISliverChildDelegate
     {
         FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context, int index);
@@ -454,12 +534,24 @@ namespace FlutterSDK.Widgets.Sliver
     }
 
 
+    /// <Summary>
+    /// A base class for sliver that have [KeepAlive] children.
+    /// </Summary>
     public interface ISliverWithKeepAliveWidget
     {
         FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverWithKeepAliveMixin CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context);
     }
 
 
+    /// <Summary>
+    /// A base class for sliver that have multiple box children.
+    ///
+    /// Helps subclasses build their children lazily using a [SliverChildDelegate].
+    ///
+    /// The widgets returned by the [delegate] are cached and the delegate is only
+    /// consulted again if it changes and the new delegate's [shouldRebuild] method
+    /// returns true.
+    /// </Summary>
     public interface ISliverMultiBoxAdaptorWidget
     {
         FlutterSDK.Widgets.Sliver.SliverMultiBoxAdaptorElement CreateElement();
@@ -470,6 +562,86 @@ namespace FlutterSDK.Widgets.Sliver
     }
 
 
+    /// <Summary>
+    /// A delegate that supplies children for slivers.
+    ///
+    /// Many slivers lazily construct their box children to avoid creating more
+    /// children than are visible through the [Viewport]. Rather than receiving
+    /// their children as an explicit [List], they receive their children using a
+    /// [SliverChildDelegate].
+    ///
+    /// It's uncommon to subclass [SliverChildDelegate]. Instead, consider using one
+    /// of the existing subclasses that provide adaptors to builder callbacks or
+    /// explicit child lists.
+    ///
+    /// {@template flutter.widgets.sliverChildDelegate.lifecycle}
+    /// ## Child elements' lifecycle
+    ///
+    /// ### Creation
+    ///
+    /// While laying out the list, visible children's elements, states and render
+    /// objects will be created lazily based on existing widgets (such as in the
+    /// case of [SliverChildListDelegate]) or lazily provided ones (such as in the
+    /// case of [SliverChildBuilderDelegate]).
+    ///
+    /// ### Destruction
+    ///
+    /// When a child is scrolled out of view, the associated element subtree, states
+    /// and render objects are destroyed. A new child at the same position in the
+    /// sliver will be lazily recreated along with new elements, states and render
+    /// objects when it is scrolled back.
+    ///
+    /// ### Destruction mitigation
+    ///
+    /// In order to preserve state as child elements are scrolled in and out of
+    /// view, the following options are possible:
+    ///
+    ///  * Moving the ownership of non-trivial UI-state-driving business logic
+    ///    out of the sliver child subtree. For instance, if a list contains posts
+    ///    with their number of upvotes coming from a cached network response, store
+    ///    the list of posts and upvote number in a data model outside the list. Let
+    ///    the sliver child UI subtree be easily recreate-able from the
+    ///    source-of-truth model object. Use [StatefulWidget]s in the child widget
+    ///    subtree to store instantaneous UI state only.
+    ///
+    ///  * Letting [KeepAlive] be the root widget of the sliver child widget subtree
+    ///    that needs to be preserved. The [KeepAlive] widget marks the child
+    ///    subtree's top render object child for keepalive. When the associated top
+    ///    render object is scrolled out of view, the sliver keeps the child's
+    ///    render object (and by extension, its associated elements and states) in a
+    ///    cache list instead of destroying them. When scrolled back into view, the
+    ///    render object is repainted as-is (if it wasn't marked dirty in the
+    ///    interim).
+    ///
+    ///    This only works if the [SliverChildDelegate] subclasses don't wrap the
+    ///    child widget subtree with other widgets such as [AutomaticKeepAlive] and
+    ///    [RepaintBoundary] via `addAutomaticKeepAlives` and
+    ///    `addRepaintBoundaries`.
+    ///
+    ///  * Using [AutomaticKeepAlive] widgets (inserted by default in
+    ///    [SliverChildListDelegate] or [SliverChildListDelegate]).
+    ///    [AutomaticKeepAlive] allows descendant widgets to control whether the
+    ///    subtree is actually kept alive or not. This behavior is in contrast with
+    ///    [KeepAlive], which will unconditionally keep the subtree alive.
+    ///
+    ///    As an example, the [EditableText] widget signals its sliver child element
+    ///    subtree to stay alive while its text field has input focus. If it doesn't
+    ///    have focus and no other descendants signaled for keepalive via a
+    ///    [KeepAliveNotification], the sliver child element subtree will be
+    ///    destroyed when scrolled away.
+    ///
+    ///    [AutomaticKeepAlive] descendants typically signal it to be kept alive by
+    ///    using the [AutomaticKeepAliveClientMixin], then implementing the
+    ///    [wantKeepAlive] getter and calling [updateKeepAlive].
+    /// {@endtemplate}
+    ///
+    /// See also:
+    ///
+    ///  * [SliverChildBuilderDelegate], which is a delegate that uses a builder
+    ///    callback to construct the children.
+    ///  * [SliverChildListDelegate], which is a delegate that has an explicit list
+    ///    of children.
+    /// </Summary>
     public class SliverChildDelegate
     {
         #region constructors
@@ -485,22 +657,76 @@ namespace FlutterSDK.Widgets.Sliver
 
         #region methods
 
+        /// <Summary>
+        /// Returns the child with the given index.
+        ///
+        /// Should return null if asked to build a widget with a greater index than
+        /// exists. If this returns null, [estimatedChildCount] must subsequently
+        /// return a precise non-null value.
+        ///
+        /// Subclasses typically override this function and wrap their children in
+        /// [AutomaticKeepAlive], [IndexedSemantics], and [RepaintBoundary] widgets.
+        ///
+        /// The values returned by this method are cached. To indicate that the
+        /// widgets have changed, a new delegate must be provided, and the new
+        /// delegate's [shouldRebuild] method must return true.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context, int index) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns an estimate of the max scroll extent for all the children.
+        ///
+        /// Subclasses should override this function if they have additional
+        /// information about their max scroll extent.
+        ///
+        /// The default implementation returns null, which causes the caller to
+        /// extrapolate the max scroll offset from the given parameters.
+        /// </Summary>
         public virtual double EstimateMaxScrollOffset(int firstIndex, int lastIndex, double leadingScrollOffset, double trailingScrollOffset) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called at the end of layout to indicate that layout is now complete.
+        ///
+        /// The `firstIndex` argument is the index of the first child that was
+        /// included in the current layout. The `lastIndex` argument is the index of
+        /// the last child that was included in the current layout.
+        ///
+        /// Useful for subclasses that which to track which children are included in
+        /// the underlying render tree.
+        /// </Summary>
         public virtual void DidFinishLayout(int firstIndex, int lastIndex) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called whenever a new instance of the child delegate class is
+        /// provided to the sliver.
+        ///
+        /// If the new instance represents different information than the old
+        /// instance, then the method should return true, otherwise it should return
+        /// false.
+        ///
+        /// If the method returns false, then the [build] call might be optimized
+        /// away.
+        /// </Summary>
         public virtual bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildDelegate oldDelegate) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Find index of child element with associated key.
+        ///
+        /// This will be called during [performRebuild] in [SliverMultiBoxAdaptorElement]
+        /// to check if a child has moved to a different position. It should return the
+        /// index of the child element with associated key, null if not found.
+        /// </Summary>
         public virtual int FindIndexByKey(FlutterSDK.Foundation.Key.Key key) { throw new NotImplementedException(); }
 
 
 
+        /// <Summary>
+        /// Add additional information to the given description for use by [toString].
+        /// </Summary>
         public virtual void DebugFillDescription(List<string> description) { throw new NotImplementedException(); }
 
         #endregion
@@ -525,6 +751,112 @@ namespace FlutterSDK.Widgets.Sliver
     }
 
 
+    /// <Summary>
+    /// A delegate that supplies children for slivers using a builder callback.
+    ///
+    /// Many slivers lazily construct their box children to avoid creating more
+    /// children than are visible through the [Viewport]. This delegate provides
+    /// children using an [IndexedWidgetBuilder] callback, so that the children do
+    /// not even have to be built until they are displayed.
+    ///
+    /// The widgets returned from the builder callback are automatically wrapped in
+    /// [AutomaticKeepAlive] widgets if [addAutomaticKeepAlives] is true (the
+    /// default) and in [RepaintBoundary] widgets if [addRepaintBoundaries] is true
+    /// (also the default).
+    ///
+    /// ## Accessibility
+    ///
+    /// The [CustomScrollView] requires that its semantic children are annotated
+    /// using [IndexedSemantics]. This is done by default in the delegate with
+    /// the `addSemanticIndexes` parameter set to true.
+    ///
+    /// If multiple delegates are used in a single scroll view, then the indexes
+    /// will not be correct by default. The `semanticIndexOffset` can be used to
+    /// offset the semantic indexes of each delegate so that the indexes are
+    /// monotonically increasing. For example, if a scroll view contains two
+    /// delegates where the first has 10 children contributing semantics, then the
+    /// second delegate should offset its children by 10.
+    ///
+    /// {@tool snippet}
+    ///
+    /// This sample code shows how to use `semanticIndexOffset` to handle multiple
+    /// delegates in a single scroll view.
+    ///
+    /// ```dart
+    /// CustomScrollView(
+    ///   semanticChildCount: 4,
+    ///   slivers: <Widget>[
+    ///     SliverGrid(
+    ///       gridDelegate: _gridDelegate,
+    ///       delegate: SliverChildBuilderDelegate(
+    ///         (BuildContext context, int index) {
+    ///            return Text('...');
+    ///          },
+    ///          childCount: 2,
+    ///        ),
+    ///      ),
+    ///     SliverGrid(
+    ///       gridDelegate: _gridDelegate,
+    ///       delegate: SliverChildBuilderDelegate(
+    ///         (BuildContext context, int index) {
+    ///            return Text('...');
+    ///          },
+    ///          childCount: 2,
+    ///          semanticIndexOffset: 2,
+    ///        ),
+    ///      ),
+    ///   ],
+    /// )
+    /// ```
+    /// {@end-tool}
+    ///
+    /// In certain cases, only a subset of child widgets should be annotated
+    /// with a semantic index. For example, in [new ListView.separated()] the
+    /// separators do not have an index associated with them. This is done by
+    /// providing a `semanticIndexCallback` which returns null for separators
+    /// indexes and rounds the non-separator indexes down by half.
+    ///
+    /// {@tool snippet}
+    ///
+    /// This sample code shows how to use `semanticIndexCallback` to handle
+    /// annotating a subset of child nodes with a semantic index. There is
+    /// a [Spacer] widget at odd indexes which should not have a semantic
+    /// index.
+    ///
+    /// ```dart
+    /// CustomScrollView(
+    ///   semanticChildCount: 5,
+    ///   slivers: <Widget>[
+    ///     SliverGrid(
+    ///       gridDelegate: _gridDelegate,
+    ///       delegate: SliverChildBuilderDelegate(
+    ///         (BuildContext context, int index) {
+    ///            if (index.isEven) {
+    ///              return Text('...');
+    ///            }
+    ///            return Spacer();
+    ///          },
+    ///          semanticIndexCallback: (Widget widget, int localIndex) {
+    ///            if (localIndex.isEven) {
+    ///              return localIndex ~/ 2;
+    ///            }
+    ///            return null;
+    ///          },
+    ///          childCount: 10,
+    ///        ),
+    ///      ),
+    ///   ],
+    /// )
+    /// ```
+    /// {@end-tool}
+    ///
+    /// See also:
+    ///
+    ///  * [SliverChildListDelegate], which is a delegate that has an explicit list
+    ///    of children.
+    ///  * [IndexedSemantics], for an example of manually annotating child nodes
+    ///    with semantic indexes.
+    /// </Summary>
     public class SliverChildBuilderDelegate : FlutterSDK.Widgets.Sliver.SliverChildDelegate
     {
         #region constructors
@@ -569,6 +901,59 @@ namespace FlutterSDK.Widgets.Sliver
     }
 
 
+    /// <Summary>
+    /// A delegate that supplies children for slivers using an explicit list.
+    ///
+    /// Many slivers lazily construct their box children to avoid creating more
+    /// children than are visible through the [Viewport]. This delegate provides
+    /// children using an explicit list, which is convenient but reduces the benefit
+    /// of building children lazily.
+    ///
+    /// In general building all the widgets in advance is not efficient. It is
+    /// better to create a delegate that builds them on demand using
+    /// [SliverChildBuilderDelegate] or by subclassing [SliverChildDelegate]
+    /// directly.
+    ///
+    /// This class is provided for the cases where either the list of children is
+    /// known well in advance (ideally the children are themselves compile-time
+    /// constants, for example), and therefore will not be built each time the
+    /// delegate itself is created, or the list is small, such that it's likely
+    /// always visible (and thus there is nothing to be gained by building it on
+    /// demand). For example, the body of a dialog box might fit both of these
+    /// conditions.
+    ///
+    /// The widgets in the given [children] list are automatically wrapped in
+    /// [AutomaticKeepAlive] widgets if [addAutomaticKeepAlives] is true (the
+    /// default) and in [RepaintBoundary] widgets if [addRepaintBoundaries] is true
+    /// (also the default).
+    ///
+    /// ## Accessibility
+    ///
+    /// The [CustomScrollView] requires that its semantic children are annotated
+    /// using [IndexedSemantics]. This is done by default in the delegate with
+    /// the `addSemanticIndexes` parameter set to true.
+    ///
+    /// If multiple delegates are used in a single scroll view, then the indexes
+    /// will not be correct by default. The `semanticIndexOffset` can be used to
+    /// offset the semantic indexes of each delegate so that the indexes are
+    /// monotonically increasing. For example, if a scroll view contains two
+    /// delegates where the first has 10 children contributing semantics, then the
+    /// second delegate should offset its children by 10.
+    ///
+    /// In certain cases, only a subset of child widgets should be annotated
+    /// with a semantic index. For example, in [new ListView.separated()] the
+    /// separators do not have an index associated with them. This is done by
+    /// providing a `semanticIndexCallback` which returns null for separators
+    /// indexes and rounds the non-separator indexes down by half.
+    ///
+    /// See [SliverChildBuilderDelegate] for sample code using
+    /// `semanticIndexOffset` and `semanticIndexCallback`.
+    ///
+    /// See also:
+    ///
+    ///  * [SliverChildBuilderDelegate], which is a delegate that uses a builder
+    ///    callback to construct the children.
+    /// </Summary>
     public class SliverChildListDelegate : FlutterSDK.Widgets.Sliver.SliverChildDelegate
     {
         #region constructors
@@ -623,6 +1008,9 @@ namespace FlutterSDK.Widgets.Sliver
     }
 
 
+    /// <Summary>
+    /// A base class for sliver that have [KeepAlive] children.
+    /// </Summary>
     public class SliverWithKeepAliveWidget : FlutterSDK.Widgets.Framework.RenderObjectWidget
     {
         #region constructors
@@ -644,6 +1032,15 @@ namespace FlutterSDK.Widgets.Sliver
     }
 
 
+    /// <Summary>
+    /// A base class for sliver that have multiple box children.
+    ///
+    /// Helps subclasses build their children lazily using a [SliverChildDelegate].
+    ///
+    /// The widgets returned by the [delegate] are cached and the delegate is only
+    /// consulted again if it changes and the new delegate's [shouldRebuild] method
+    /// returns true.
+    /// </Summary>
     public class SliverMultiBoxAdaptorWidget : FlutterSDK.Widgets.Sliver.SliverWithKeepAliveWidget
     {
         #region constructors
@@ -666,6 +1063,18 @@ namespace FlutterSDK.Widgets.Sliver
         public new FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverMultiBoxAdaptor CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns an estimate of the max scroll extent for all the children.
+        ///
+        /// Subclasses should override this function if they have additional
+        /// information about their max scroll extent.
+        ///
+        /// This is used by [SliverMultiBoxAdaptorElement] to implement part of the
+        /// [RenderSliverBoxChildManager] API.
+        ///
+        /// The default implementation defers to [delegate] via its
+        /// [SliverChildDelegate.estimateMaxScrollOffset] method.
+        /// </Summary>
         public virtual double EstimateMaxScrollOffset(FlutterSDK.Rendering.Sliver.SliverConstraints constraints, int firstIndex, int lastIndex, double leadingScrollOffset, double trailingScrollOffset) { throw new NotImplementedException(); }
 
 
@@ -675,6 +1084,36 @@ namespace FlutterSDK.Widgets.Sliver
     }
 
 
+    /// <Summary>
+    /// A sliver that places multiple box children in a linear array along the main
+    /// axis.
+    ///
+    /// Each child is forced to have the [SliverConstraints.crossAxisExtent] in the
+    /// cross axis but determines its own main axis extent.
+    ///
+    /// [SliverList] determines its scroll offset by "dead reckoning" because
+    /// children outside the visible part of the sliver are not materialized, which
+    /// means [SliverList] cannot learn their main axis extent. Instead, newly
+    /// materialized children are placed adjacent to existing children.
+    ///
+    /// {@youtube 560 315 https://www.youtube.com/watch?v=ORiTTaVY6mM}
+    ///
+    /// If the children have a fixed extent in the main axis, consider using
+    /// [SliverFixedExtentList] rather than [SliverList] because
+    /// [SliverFixedExtentList] does not need to perform layout on its children to
+    /// obtain their extent in the main axis and is therefore more efficient.
+    ///
+    /// {@macro flutter.widgets.sliverChildDelegate.lifecycle}
+    ///
+    /// See also:
+    ///
+    ///  * [SliverFixedExtentList], which is more efficient for children with
+    ///    the same extent in the main axis.
+    ///  * [SliverPrototypeExtentList], which is similar to [SliverFixedExtentList]
+    ///    except that it uses a prototype list item instead of a pixel value to define
+    ///    the main axis extent of each item.
+    ///  * [SliverGrid], which places its children in arbitrary positions.
+    /// </Summary>
     public class SliverList : FlutterSDK.Widgets.Sliver.SliverMultiBoxAdaptorWidget
     {
         #region constructors
@@ -696,6 +1135,52 @@ namespace FlutterSDK.Widgets.Sliver
     }
 
 
+    /// <Summary>
+    /// A sliver that places multiple box children with the same main axis extent in
+    /// a linear array.
+    ///
+    /// [SliverFixedExtentList] places its children in a linear array along the main
+    /// axis starting at offset zero and without gaps. Each child is forced to have
+    /// the [itemExtent] in the main axis and the
+    /// [SliverConstraints.crossAxisExtent] in the cross axis.
+    ///
+    /// [SliverFixedExtentList] is more efficient than [SliverList] because
+    /// [SliverFixedExtentList] does not need to perform layout on its children to
+    /// obtain their extent in the main axis.
+    ///
+    /// {@tool snippet}
+    ///
+    /// This example, which would be inserted into a [CustomScrollView.slivers]
+    /// list, shows an infinite number of items in varying shades of blue:
+    ///
+    /// ```dart
+    /// SliverFixedExtentList(
+    ///   itemExtent: 50.0,
+    ///   delegate: SliverChildBuilderDelegate(
+    ///     (BuildContext context, int index) {
+    ///       return Container(
+    ///         alignment: Alignment.center,
+    ///         color: Colors.lightBlue[100 * (index % 9)],
+    ///         child: Text('list item $index'),
+    ///       );
+    ///     },
+    ///   ),
+    /// )
+    /// ```
+    /// {@end-tool}
+    ///
+    /// {@macro flutter.widgets.sliverChildDelegate.lifecycle}
+    ///
+    /// See also:
+    ///
+    ///  * [SliverPrototypeExtentList], which is similar to [SliverFixedExtentList]
+    ///    except that it uses a prototype list item instead of a pixel value to define
+    ///    the main axis extent of each item.
+    ///  * [SliverFillViewport], which determines the [itemExtent] based on
+    ///    [SliverConstraints.viewportMainAxisExtent].
+    ///  * [SliverList], which does not require its children to have the same
+    ///    extent in the main axis.
+    /// </Summary>
     public class SliverFixedExtentList : FlutterSDK.Widgets.Sliver.SliverMultiBoxAdaptorWidget
     {
         #region constructors
@@ -722,6 +1207,56 @@ namespace FlutterSDK.Widgets.Sliver
     }
 
 
+    /// <Summary>
+    /// A sliver that places multiple box children in a two dimensional arrangement.
+    ///
+    /// [SliverGrid] places its children in arbitrary positions determined by
+    /// [gridDelegate]. Each child is forced to have the size specified by the
+    /// [gridDelegate].
+    ///
+    /// The main axis direction of a grid is the direction in which it scrolls; the
+    /// cross axis direction is the orthogonal direction.
+    ///
+    /// {@youtube 560 315 https://www.youtube.com/watch?v=ORiTTaVY6mM}
+    ///
+    /// {@tool snippet}
+    ///
+    /// This example, which would be inserted into a [CustomScrollView.slivers]
+    /// list, shows twenty boxes in a pretty teal grid:
+    ///
+    /// ```dart
+    /// SliverGrid(
+    ///   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+    ///     maxCrossAxisExtent: 200.0,
+    ///     mainAxisSpacing: 10.0,
+    ///     crossAxisSpacing: 10.0,
+    ///     childAspectRatio: 4.0,
+    ///   ),
+    ///   delegate: SliverChildBuilderDelegate(
+    ///     (BuildContext context, int index) {
+    ///       return Container(
+    ///         alignment: Alignment.center,
+    ///         color: Colors.teal[100 * (index % 9)],
+    ///         child: Text('grid item $index'),
+    ///       );
+    ///     },
+    ///     childCount: 20,
+    ///   ),
+    /// )
+    /// ```
+    /// {@end-tool}
+    ///
+    /// {@macro flutter.widgets.sliverChildDelegate.lifecycle}
+    ///
+    /// See also:
+    ///
+    ///  * [SliverList], which places its children in a linear array.
+    ///  * [SliverFixedExtentList], which places its children in a linear
+    ///    array with a fixed extent in the main axis.
+    ///  * [SliverPrototypeExtentList], which is similar to [SliverFixedExtentList]
+    ///    except that it uses a prototype list item instead of a pixel value to define
+    ///    the main axis extent of each item.
+    /// </Summary>
     public class SliverGrid : FlutterSDK.Widgets.Sliver.SliverMultiBoxAdaptorWidget
     {
         #region constructors
@@ -759,6 +1294,12 @@ namespace FlutterSDK.Widgets.Sliver
     }
 
 
+    /// <Summary>
+    /// An element that lazily builds children for a [SliverMultiBoxAdaptorWidget].
+    ///
+    /// Implements [RenderSliverBoxChildManager], which lets this element manage
+    /// the children of subclasses of [RenderSliverMultiBoxAdaptor].
+    /// </Summary>
     public class SliverMultiBoxAdaptorElement : FlutterSDK.Widgets.Framework.RenderObjectElement, IRenderSliverBoxChildManager
     {
         #region constructors
@@ -845,6 +1386,49 @@ namespace FlutterSDK.Widgets.Sliver
     }
 
 
+    /// <Summary>
+    /// A sliver widget that makes its sliver child partially transparent.
+    ///
+    /// This class paints its sliver child into an intermediate buffer and then
+    /// blends the sliver back into the scene partially transparent.
+    ///
+    /// For values of opacity other than 0.0 and 1.0, this class is relatively
+    /// expensive because it requires painting the sliver child into an intermediate
+    /// buffer. For the value 0.0, the sliver child is simply not painted at all.
+    /// For the value 1.0, the sliver child is painted immediately without an
+    /// intermediate buffer.
+    ///
+    /// {@tool snippet}
+    ///
+    /// This example shows a [SliverList] when the `_visible` member field is true,
+    /// and hides it when it is false:
+    ///
+    /// ```dart
+    /// bool _visible = true;
+    /// List<Widget> listItems = <Widget>[
+    ///   Text('Now you see me,'),
+    ///   Text("Now you don't!"),
+    /// ];
+    ///
+    /// SliverOpacity(
+    ///   opacity: _visible ? 1.0 : 0.0,
+    ///   sliver: SliverList(
+    ///     delegate: SliverChildListDelegate(listItems),
+    ///   ),
+    /// )
+    /// ```
+    /// {@end-tool}
+    ///
+    /// This is more efficient than adding and removing the sliver child widget
+    /// from the tree on demand.
+    ///
+    /// See also:
+    ///
+    ///  * [Opacity], which can apply a uniform alpha effect to its child using the
+    ///    RenderBox layout protocol.
+    ///  * [AnimatedOpacity], which uses an animation internally to efficiently
+    ///    animate [Opacity].
+    /// </Summary>
     public class SliverOpacity : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
         #region constructors
@@ -876,6 +1460,18 @@ namespace FlutterSDK.Widgets.Sliver
     }
 
 
+    /// <Summary>
+    /// A sliver widget that is invisible during hit testing.
+    ///
+    /// When [ignoring] is true, this widget (and its subtree) is invisible
+    /// to hit testing. It still consumes space during layout and paints its sliver
+    /// child as usual. It just cannot be the target of located events, because it
+    /// returns false from [RenderSliver.hitTest].
+    ///
+    /// When [ignoringSemantics] is true, the subtree will be invisible to
+    /// the semantics layer (and thus e.g. accessibility tools). If
+    /// [ignoringSemantics] is null, it uses the value of [ignoring].
+    /// </Summary>
     public class SliverIgnorePointer : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
         #region constructors
@@ -907,6 +1503,19 @@ namespace FlutterSDK.Widgets.Sliver
     }
 
 
+    /// <Summary>
+    /// A sliver that lays its sliver child out as if it was in the tree, but
+    /// without painting anything, without making the sliver child available for hit
+    /// testing, and without taking any room in the parent.
+    ///
+    /// Animations continue to run in offstage sliver children, and therefore use
+    /// battery and CPU time, regardless of whether the animations end up being
+    /// visible.
+    ///
+    /// To hide a sliver widget from view while it is
+    /// not needed, prefer removing the widget from the tree entirely rather than
+    /// keeping it alive in an [Offstage] subtree.
+    /// </Summary>
     public class SliverOffstage : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
         #region constructors
@@ -961,6 +1570,28 @@ namespace FlutterSDK.Widgets.Sliver
     }
 
 
+    /// <Summary>
+    /// Mark a child as needing to stay alive even when it's in a lazy list that
+    /// would otherwise remove it.
+    ///
+    /// This widget is for use in [SliverWithKeepAliveWidget]s, such as
+    /// [SliverGrid] or [SliverList].
+    ///
+    /// This widget is rarely used directly. The [SliverChildBuilderDelegate] and
+    /// [SliverChildListDelegate] delegates, used with [SliverList] and
+    /// [SliverGrid], as well as the scroll view counterparts [ListView] and
+    /// [GridView], have an `addAutomaticKeepAlives` feature, which is enabled by
+    /// default, and which causes [AutomaticKeepAlive] widgets to be inserted around
+    /// each child, causing [KeepAlive] widgets to be automatically added and
+    /// configured in response to [KeepAliveNotification]s.
+    ///
+    /// Therefore, to keep a widget alive, it is more common to use those
+    /// notifications than to directly deal with [KeepAlive] widgets.
+    ///
+    /// In practice, the simplest way to deal with these notifications is to mix
+    /// [AutomaticKeepAliveClientMixin] into one's [State]. See the documentation
+    /// for that mixin class for details.
+    /// </Summary>
     public class KeepAlive : FlutterSDK.Widgets.Framework.ParentDataWidget<FlutterSDK.Rendering.Slivermultiboxadaptor.KeepAliveParentDataMixin>
     {
         #region constructors

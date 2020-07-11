@@ -431,6 +431,13 @@ namespace FlutterSDK.Widgets.Gesturedetector
     {
     }
 
+    /// <Summary>
+    /// Factory for creating gesture recognizers.
+    ///
+    /// `T` is the type of gesture recognizer this class manages.
+    ///
+    /// Used by [RawGestureDetector.gestures].
+    /// </Summary>
     public interface IGestureRecognizerFactory<T>
     {
         T Constructor();
@@ -438,6 +445,12 @@ namespace FlutterSDK.Widgets.Gesturedetector
     }
 
 
+    /// <Summary>
+    /// A base class that describes what semantics notations a [RawGestureDetector]
+    /// should add to the render object [RenderSemanticsGestureHandler].
+    ///
+    /// It is used to allow custom [GestureDetector]s to add semantics notations.
+    /// </Summary>
     public interface ISemanticsGestureDelegate
     {
         void AssignSemantics(FlutterSDK.Rendering.Proxybox.RenderSemanticsGestureHandler renderObject);
@@ -445,6 +458,13 @@ namespace FlutterSDK.Widgets.Gesturedetector
     }
 
 
+    /// <Summary>
+    /// Factory for creating gesture recognizers.
+    ///
+    /// `T` is the type of gesture recognizer this class manages.
+    ///
+    /// Used by [RawGestureDetector.gestures].
+    /// </Summary>
     public class GestureRecognizerFactory<T>
     {
         #region constructors
@@ -459,9 +479,18 @@ namespace FlutterSDK.Widgets.Gesturedetector
 
         #region methods
 
+        /// <Summary>
+        /// Must return an instance of T.
+        /// </Summary>
         public virtual T Constructor() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Must configure the given instance (which will have been created by
+        /// `constructor`).
+        ///
+        /// This normally means setting the callbacks.
+        /// </Summary>
         public virtual void Initializer(T instance) { throw new NotImplementedException(); }
 
 
@@ -471,6 +500,11 @@ namespace FlutterSDK.Widgets.Gesturedetector
     }
 
 
+    /// <Summary>
+    /// Factory for creating gesture recognizers that delegates to callbacks.
+    ///
+    /// Used by [RawGestureDetector.gestures].
+    /// </Summary>
     public class GestureRecognizerFactoryWithHandlers<T> : FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactory<T>
     {
         #region constructors
@@ -498,6 +532,72 @@ namespace FlutterSDK.Widgets.Gesturedetector
     }
 
 
+    /// <Summary>
+    /// A widget that detects gestures.
+    ///
+    /// Attempts to recognize gestures that correspond to its non-null callbacks.
+    ///
+    /// If this widget has a child, it defers to that child for its sizing behavior.
+    /// If it does not have a child, it grows to fit the parent instead.
+    ///
+    /// By default a GestureDetector with an invisible child ignores touches;
+    /// this behavior can be controlled with [behavior].
+    ///
+    /// GestureDetector also listens for accessibility events and maps
+    /// them to the callbacks. To ignore accessibility events, set
+    /// [excludeFromSemantics] to true.
+    ///
+    /// See <http://flutter.dev/gestures/> for additional information.
+    ///
+    /// Material design applications typically react to touches with ink splash
+    /// effects. The [InkWell] class implements this effect and can be used in place
+    /// of a [GestureDetector] for handling taps.
+    ///
+    /// {@animation 200 150 https://flutter.github.io/assets-for-api-docs/assets/widgets/gesture_detector.mp4}
+    ///
+    /// {@tool snippet}
+    ///
+    /// This example turns the light bulb yellow when the "turn lights on" button is
+    /// tapped by setting the `_lights` field:
+    ///
+    /// ```dart
+    /// Container(
+    ///   alignment: FractionalOffset.center,
+    ///   color: Colors.white,
+    ///   child: Column(
+    ///     mainAxisAlignment: MainAxisAlignment.center,
+    ///     children: <Widget>[
+    ///       Padding(
+    ///         padding: const EdgeInsets.all(8.0),
+    ///         child: Icon(
+    ///           Icons.lightbulb_outline,
+    ///           color: _lights ? Colors.yellow.shade600 : Colors.black,
+    ///           size: 60,
+    ///         ),
+    ///       ),
+    ///       GestureDetector(
+    ///         onTap: () {
+    ///           setState(() {
+    ///             _lights = true;
+    ///           });
+    ///         },
+    ///         child: Container(
+    ///           color: Colors.yellow.shade600,
+    ///           padding: const EdgeInsets.all(8),
+    ///           child: const Text('TURN LIGHTS ON'),
+    ///         ),
+    ///       ),
+    ///     ],
+    ///   ),
+    /// )
+    /// ```
+    /// {@end-tool}
+    ///
+    /// ## Debugging
+    ///
+    /// To see how large the hit test box of a [GestureDetector] is for debugging
+    /// purposes, set [debugPaintPointersEnabled] to true.
+    /// </Summary>
     public class GestureDetector : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors
@@ -599,6 +699,48 @@ namespace FlutterSDK.Widgets.Gesturedetector
     }
 
 
+    /// <Summary>
+    /// A widget that detects gestures described by the given gesture
+    /// factories.
+    ///
+    /// For common gestures, use a [GestureRecognizer].
+    /// [RawGestureDetector] is useful primarily when developing your
+    /// own gesture recognizers.
+    ///
+    /// Configuring the gesture recognizers requires a carefully constructed map, as
+    /// described in [gestures] and as shown in the example below.
+    ///
+    /// {@tool snippet}
+    ///
+    /// This example shows how to hook up a [TapGestureRecognizer]. It assumes that
+    /// the code is being used inside a [State] object with a `_last` field that is
+    /// then displayed as the child of the gesture detector.
+    ///
+    /// ```dart
+    /// RawGestureDetector(
+    ///   gestures: <Type, GestureRecognizerFactory>{
+    ///     TapGestureRecognizer: GestureRecognizerFactoryWithHandlers<TapGestureRecognizer>(
+    ///       () => TapGestureRecognizer(),
+    ///       (TapGestureRecognizer instance) {
+    ///         instance
+    ///           ..onTapDown = (TapDownDetails details) { setState(() { _last = 'down'; }); }
+    ///           ..onTapUp = (TapUpDetails details) { setState(() { _last = 'up'; }); }
+    ///           ..onTap = () { setState(() { _last = 'tap'; }); }
+    ///           ..onTapCancel = () { setState(() { _last = 'cancel'; }); };
+    ///       },
+    ///     ),
+    ///   },
+    ///   child: Container(width: 300.0, height: 300.0, color: Colors.yellow, child: Text(_last)),
+    /// )
+    /// ```
+    /// {@end-tool}
+    ///
+    /// See also:
+    ///
+    ///  * [GestureDetector], a less flexible but much simpler widget that does the same thing.
+    ///  * [Listener], a widget that reports raw pointer events.
+    ///  * [GestureRecognizer], the class that you extend to create a custom gesture recognizer.
+    /// </Summary>
     public class RawGestureDetector : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -629,6 +771,9 @@ namespace FlutterSDK.Widgets.Gesturedetector
     }
 
 
+    /// <Summary>
+    /// State for a [RawGestureDetector].
+    /// </Summary>
     public class RawGestureDetectorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Gesturedetector.RawGestureDetector>
     {
         #region constructors
@@ -650,9 +795,37 @@ namespace FlutterSDK.Widgets.Gesturedetector
         public new void DidUpdateWidget(FlutterSDK.Widgets.Gesturedetector.RawGestureDetector oldWidget) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// This method can be called after the build phase, during the
+        /// layout of the nearest descendant [RenderObjectWidget] of the
+        /// gesture detector, to update the list of active gesture
+        /// recognizers.
+        ///
+        /// The typical use case is [Scrollable]s, which put their viewport
+        /// in their gesture detector, and then need to know the dimensions
+        /// of the viewport and the viewport's child to determine whether
+        /// the gesture detector should be enabled.
+        ///
+        /// The argument should follow the same conventions as
+        /// [RawGestureDetector.gestures]. It acts like a temporary replacement for
+        /// that value until the next build.
+        /// </Summary>
         public virtual void ReplaceGestureRecognizers(Dictionary<Type, FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactory<FlutterSDK.Gestures.Recognizer.GestureRecognizer>> gestures) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// This method can be called to filter the list of available semantic actions,
+        /// after the render object was created.
+        ///
+        /// The actual filtering is happening in the next frame and a frame will be
+        /// scheduled if non is pending.
+        ///
+        /// This is used by [Scrollable] to configure system accessibility tools so
+        /// that they know in which direction a particular list can be scrolled.
+        ///
+        /// If this is never called, then the actions are not filtered. If the list of
+        /// actions to filter changes, it must be called again.
+        /// </Summary>
         public virtual void ReplaceSemanticsActions(HashSet<SemanticsAction> actions) { throw new NotImplementedException(); }
 
 
@@ -703,6 +876,12 @@ namespace FlutterSDK.Widgets.Gesturedetector
     }
 
 
+    /// <Summary>
+    /// A base class that describes what semantics notations a [RawGestureDetector]
+    /// should add to the render object [RenderSemanticsGestureHandler].
+    ///
+    /// It is used to allow custom [GestureDetector]s to add semantics notations.
+    /// </Summary>
     public class SemanticsGestureDelegate
     {
         #region constructors
@@ -717,6 +896,13 @@ namespace FlutterSDK.Widgets.Gesturedetector
 
         #region methods
 
+        /// <Summary>
+        /// Assigns semantics notations to the [RenderSemanticsGestureHandler] render
+        /// object of the gesture detector.
+        ///
+        /// This method is called when the widget is created, updated, or during
+        /// [RawGestureDetector.replaceGestureRecognizers].
+        /// </Summary>
         public virtual void AssignSemantics(FlutterSDK.Rendering.Proxybox.RenderSemanticsGestureHandler renderObject) { throw new NotImplementedException(); }
 
 

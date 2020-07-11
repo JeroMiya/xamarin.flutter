@@ -363,6 +363,31 @@ namespace FlutterSDK.Material.Bottomappbar
     {
     }
 
+    /// <Summary>
+    /// A container that is typically used with [Scaffold.bottomNavigationBar], and
+    /// can have a notch along the top that makes room for an overlapping
+    /// [FloatingActionButton].
+    ///
+    /// Typically used with a [Scaffold] and a [FloatingActionButton].
+    ///
+    /// {@tool snippet}
+    /// ```dart
+    /// Scaffold(
+    ///   bottomNavigationBar: BottomAppBar(
+    ///     color: Colors.white,
+    ///     child: bottomAppBarContents,
+    ///   ),
+    ///   floatingActionButton: FloatingActionButton(onPressed: null),
+    /// )
+    /// ```
+    /// {@end-tool}
+    ///
+    /// See also:
+    ///
+    ///  * [NotchedShape] which calculates the notch for a notched [BottomAppBar].
+    ///  * [FloatingActionButton] which the [BottomAppBar] makes a notch for.
+    ///  * [AppBar] for a toolbar that is shown at the top of the screen.
+    /// </Summary>
     public class BottomAppBar : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors

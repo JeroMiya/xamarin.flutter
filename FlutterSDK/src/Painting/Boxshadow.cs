@@ -426,6 +426,22 @@ namespace FlutterSDK.Painting.Boxshadow
     {
     }
 
+    /// <Summary>
+    /// A shadow cast by a box.
+    ///
+    /// [BoxShadow] can cast non-rectangular shadows if the box is non-rectangular
+    /// (e.g., has a border radius or a circular shape).
+    ///
+    /// This class is similar to CSS box-shadow.
+    ///
+    /// See also:
+    ///
+    ///  * [Canvas.drawShadow], which is a more efficient way to draw shadows.
+    ///  * [PhysicalModel], a widget for showing shadows.
+    ///  * [kElevationToShadow], for some predefined shadows used in Material
+    ///    Design.
+    ///  * [Shadow], which is the parent class that lacks [spreadRadius].
+    /// </Summary>
     public class BoxShadow : Shadow
     {
         #region constructors
@@ -443,15 +459,42 @@ namespace FlutterSDK.Painting.Boxshadow
 
         #region methods
 
+        /// <Summary>
+        /// Create the [Paint] object that corresponds to this shadow description.
+        ///
+        /// The [offset] and [spreadRadius] are not represented in the [Paint] object.
+        /// To honor those as well, the shape should be inflated by [spreadRadius] pixels
+        /// in every direction and then translated by [offset] before being filled using
+        /// this [Paint].
+        /// </Summary>
         public new Paint ToPaint() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a new box shadow with its offset, blurRadius, and spreadRadius scaled by the given factor.
+        /// </Summary>
         public new FlutterSDK.Painting.Boxshadow.BoxShadow Scale(double factor) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two box shadows.
+        ///
+        /// If either box shadow is null, this function linearly interpolates from a
+        /// a box shadow that matches the other box shadow in color but has a zero
+        /// offset and a zero blurRadius.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
         public virtual FlutterSDK.Painting.Boxshadow.BoxShadow Lerp(FlutterSDK.Painting.Boxshadow.BoxShadow a, FlutterSDK.Painting.Boxshadow.BoxShadow b, double t) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two lists of box shadows.
+        ///
+        /// If the lists differ in length, excess items are lerped with null.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
         public virtual List<FlutterSDK.Painting.Boxshadow.BoxShadow> LerpList(List<FlutterSDK.Painting.Boxshadow.BoxShadow> a, List<FlutterSDK.Painting.Boxshadow.BoxShadow> b, double t) { throw new NotImplementedException(); }
 
 

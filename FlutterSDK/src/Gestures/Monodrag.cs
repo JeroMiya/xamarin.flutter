@@ -302,6 +302,28 @@ namespace FlutterSDK.Gestures.Monodrag
     {
     }
 
+    /// <Summary>
+    /// Recognizes movement.
+    ///
+    /// In contrast to [MultiDragGestureRecognizer], [DragGestureRecognizer]
+    /// recognizes a single gesture sequence for all the pointers it watches, which
+    /// means that the recognizer has at most one drag sequence active at any given
+    /// time regardless of how many pointers are in contact with the screen.
+    ///
+    /// [DragGestureRecognizer] is not intended to be used directly. Instead,
+    /// consider using one of its subclasses to recognize specific types for drag
+    /// gestures.
+    ///
+    /// [DragGestureRecognizer] competes on pointer events of [kPrimaryButton]
+    /// only when it has at least one non-null callback. If it has no callbacks, it
+    /// is a no-op.
+    ///
+    /// See also:
+    ///
+    ///  * [HorizontalDragGestureRecognizer], for left and right drags.
+    ///  * [VerticalDragGestureRecognizer], for up and down drags.
+    ///  * [PanGestureRecognizer], for drags that are not locked to a single axis.
+    /// </Summary>
     public interface IDragGestureRecognizer
     {
         bool IsFlingGesture(FlutterSDK.Gestures.Velocitytracker.VelocityEstimate estimate);
@@ -325,6 +347,28 @@ namespace FlutterSDK.Gestures.Monodrag
     }
 
 
+    /// <Summary>
+    /// Recognizes movement.
+    ///
+    /// In contrast to [MultiDragGestureRecognizer], [DragGestureRecognizer]
+    /// recognizes a single gesture sequence for all the pointers it watches, which
+    /// means that the recognizer has at most one drag sequence active at any given
+    /// time regardless of how many pointers are in contact with the screen.
+    ///
+    /// [DragGestureRecognizer] is not intended to be used directly. Instead,
+    /// consider using one of its subclasses to recognize specific types for drag
+    /// gestures.
+    ///
+    /// [DragGestureRecognizer] competes on pointer events of [kPrimaryButton]
+    /// only when it has at least one non-null callback. If it has no callbacks, it
+    /// is a no-op.
+    ///
+    /// See also:
+    ///
+    ///  * [HorizontalDragGestureRecognizer], for left and right drags.
+    ///  * [VerticalDragGestureRecognizer], for up and down drags.
+    ///  * [PanGestureRecognizer], for drags that are not locked to a single axis.
+    /// </Summary>
     public class DragGestureRecognizer : FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer
     {
         #region constructors
@@ -358,6 +402,13 @@ namespace FlutterSDK.Gestures.Monodrag
 
         #region methods
 
+        /// <Summary>
+        /// Determines if a gesture is a fling or not based on velocity.
+        ///
+        /// A fling calls its gesture end callback with a velocity, allowing the
+        /// provider of the callback to respond by carrying the gesture forward with
+        /// inertia, for example.
+        /// </Summary>
         public virtual bool IsFlingGesture(FlutterSDK.Gestures.Velocitytracker.VelocityEstimate estimate) { throw new NotImplementedException(); }
 
 
@@ -412,6 +463,18 @@ namespace FlutterSDK.Gestures.Monodrag
     }
 
 
+    /// <Summary>
+    /// Recognizes movement in the vertical direction.
+    ///
+    /// Used for vertical scrolling.
+    ///
+    /// See also:
+    ///
+    ///  * [HorizontalDragGestureRecognizer], for a similar recognizer but for
+    ///    horizontal movement.
+    ///  * [MultiDragGestureRecognizer], for a family of gesture recognizers that
+    ///    track each touch point independently.
+    /// </Summary>
     public class VerticalDragGestureRecognizer : FlutterSDK.Gestures.Monodrag.DragGestureRecognizer
     {
         #region constructors
@@ -441,6 +504,18 @@ namespace FlutterSDK.Gestures.Monodrag
     }
 
 
+    /// <Summary>
+    /// Recognizes movement in the horizontal direction.
+    ///
+    /// Used for horizontal scrolling.
+    ///
+    /// See also:
+    ///
+    ///  * [VerticalDragGestureRecognizer], for a similar recognizer but for
+    ///    vertical movement.
+    ///  * [MultiDragGestureRecognizer], for a family of gesture recognizers that
+    ///    track each touch point independently.
+    /// </Summary>
     public class HorizontalDragGestureRecognizer : FlutterSDK.Gestures.Monodrag.DragGestureRecognizer
     {
         #region constructors
@@ -470,6 +545,17 @@ namespace FlutterSDK.Gestures.Monodrag
     }
 
 
+    /// <Summary>
+    /// Recognizes movement both horizontally and vertically.
+    ///
+    /// See also:
+    ///
+    ///  * [ImmediateMultiDragGestureRecognizer], for a similar recognizer that
+    ///    tracks each touch point independently.
+    ///  * [DelayedMultiDragGestureRecognizer], for a similar recognizer that
+    ///    tracks each touch point independently, but that doesn't start until
+    ///    some time has passed.
+    /// </Summary>
     public class PanGestureRecognizer : FlutterSDK.Gestures.Monodrag.DragGestureRecognizer
     {
         #region constructors

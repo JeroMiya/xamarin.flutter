@@ -297,6 +297,10 @@ namespace FlutterSDK.Cupertino.Iconthemedata
     {
     }
 
+    /// <Summary>
+    /// An [IconThemeData] subclass that automatically resolves its [color] when retrieved
+    /// using [IconTheme.of].
+    /// </Summary>
     public class CupertinoIconThemeData : FlutterSDK.Widgets.Iconthemedata.IconThemeData, IDiagnosticable
     {
         #region constructors
@@ -312,9 +316,16 @@ namespace FlutterSDK.Cupertino.Iconthemedata
 
         #region methods
 
+        /// <Summary>
+        /// Called by [IconTheme.of] to resolve [color] against the given [BuildContext].
+        /// </Summary>
         public new FlutterSDK.Widgets.Iconthemedata.IconThemeData Resolve(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Creates a copy of this icon theme but with the given fields replaced with
+        /// the new values.
+        /// </Summary>
         public new FlutterSDK.Cupertino.Iconthemedata.CupertinoIconThemeData CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double opacity = default(double), double size = default(double)) { throw new NotImplementedException(); }
 
 

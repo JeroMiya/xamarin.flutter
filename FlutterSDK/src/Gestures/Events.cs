@@ -331,6 +331,29 @@ namespace FlutterSDK.Gestures.Events
 
     }
 
+    /// <Summary>
+    /// Base class for touch, stylus, or mouse events.
+    ///
+    /// Pointer events operate in the coordinate space of the screen, scaled to
+    /// logical pixels. Logical pixels approximate a grid with about 38 pixels per
+    /// centimeter, or 96 pixels per inch.
+    ///
+    /// This allows gestures to be recognized independent of the precise hardware
+    /// characteristics of the device. In particular, features such as touch slop
+    /// (see [kTouchSlop]) can be defined in terms of roughly physical lengths so
+    /// that the user can shift their finger by the same distance on a high-density
+    /// display as on a low-resolution device.
+    ///
+    /// For similar reasons, pointer events are not affected by any transforms in
+    /// the rendering layer. This means that deltas may need to be scaled before
+    /// being applied to movement within the rendering. For example, if a scrolling
+    /// list is shown scaled by 2x, the pointer deltas will have to be scaled by the
+    /// inverse amount if the list is to appear to scroll with the user's finger.
+    ///
+    /// See also:
+    ///
+    ///  * [Window.devicePixelRatio], which defines the device's current resolution.
+    /// </Summary>
     public interface IPointerEvent
     {
         FlutterSDK.Gestures.Events.PointerEvent Transformed(Matrix4 transform);
@@ -370,11 +393,41 @@ namespace FlutterSDK.Gestures.Events
     }
 
 
+    /// <Summary>
+    /// An event that corresponds to a discrete pointer signal.
+    ///
+    /// Pointer signals are events that originate from the pointer but don't change
+    /// the state of the pointer itself, and are discrete rather than needing to be
+    /// interpreted in the context of a series of events.
+    /// </Summary>
     public interface IPointerSignalEvent
     {
     }
 
 
+    /// <Summary>
+    /// Base class for touch, stylus, or mouse events.
+    ///
+    /// Pointer events operate in the coordinate space of the screen, scaled to
+    /// logical pixels. Logical pixels approximate a grid with about 38 pixels per
+    /// centimeter, or 96 pixels per inch.
+    ///
+    /// This allows gestures to be recognized independent of the precise hardware
+    /// characteristics of the device. In particular, features such as touch slop
+    /// (see [kTouchSlop]) can be defined in terms of roughly physical lengths so
+    /// that the user can shift their finger by the same distance on a high-density
+    /// display as on a low-resolution device.
+    ///
+    /// For similar reasons, pointer events are not affected by any transforms in
+    /// the rendering layer. This means that deltas may need to be scaled before
+    /// being applied to movement within the rendering. For example, if a scrolling
+    /// list is shown scaled by 2x, the pointer deltas will have to be scaled by the
+    /// inverse amount if the list is to appear to scroll with the user's finger.
+    ///
+    /// See also:
+    ///
+    ///  * [Window.devicePixelRatio], which defines the device's current resolution.
+    /// </Summary>
     public class PointerEvent : IDiagnosticable
     {
         #region constructors
@@ -442,27 +495,76 @@ namespace FlutterSDK.Gestures.Events
 
         #region methods
 
+        /// <Summary>
+        /// Transforms the event from the global coordinate space into the coordinate
+        /// space of an event receiver.
+        ///
+        /// The coordinate space of the event receiver is described by `transform`. A
+        /// null value for `transform` is treated as the identity transformation.
+        ///
+        /// The method may return the same object instance if for example the
+        /// transformation has no effect on the event.
+        ///
+        /// Transforms are not commutative. If this method is called on a
+        /// [PointerEvent] that has a non-null [transform] value, that value will be
+        /// overridden by the provided `transform`.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Events.PointerEvent Transformed(Matrix4 transform) { throw new NotImplementedException(); }
 
 
         public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a complete textual description of this event.
+        /// </Summary>
         public virtual string ToStringFull() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the transformation of `position` into the coordinate system
+        /// described by `transform`.
+        ///
+        /// The z-value of `position` is assumed to be 0.0. If `transform` is null,
+        /// `position` is returned as-is.
+        /// </Summary>
         public virtual Offset TransformPosition(Matrix4 transform, FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Transforms `untransformedDelta` into the coordinate system described by
+        /// `transform`.
+        ///
+        /// It uses the provided `untransformedEndPosition` and
+        /// `transformedEndPosition` of the provided delta to increase accuracy.
+        ///
+        /// If `transform` is null, `untransformedDelta` is returned.
+        /// </Summary>
         public virtual Offset TransformDeltaViaPositions(FlutterBinding.UI.Offset untransformedEndPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset transformedEndPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset untransformedDelta = default(FlutterBinding.UI.Offset), Matrix4 transform = default(Matrix4)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Removes the "perspective" component from `transform`.
+        ///
+        /// When applying the resulting transform matrix to a point with a
+        /// z-coordinate of zero (which is generally assumed for all points
+        /// represented by an [Offset]), the other coordinates will get transformed as
+        /// before, but the new z-coordinate is going to be zero again. This is
+        /// achieved by setting the third column and third row of the matrix to
+        /// "0, 0, 1, 0".
+        /// </Summary>
         public virtual Matrix4 RemovePerspectiveTransform(Matrix4 transform) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// The device has started tracking the pointer.
+    ///
+    /// For example, the pointer might be hovering above the device, having not yet
+    /// made contact with the surface of the device.
+    /// </Summary>
     public class PointerAddedEvent : FlutterSDK.Gestures.Events.PointerEvent
     {
         #region constructors
@@ -484,6 +586,12 @@ namespace FlutterSDK.Gestures.Events
     }
 
 
+    /// <Summary>
+    /// The device is no longer tracking the pointer.
+    ///
+    /// For example, the pointer might have drifted out of the device's hover
+    /// detection range or might have been disconnected from the system entirely.
+    /// </Summary>
     public class PointerRemovedEvent : FlutterSDK.Gestures.Events.PointerEvent
     {
         #region constructors
@@ -505,6 +613,18 @@ namespace FlutterSDK.Gestures.Events
     }
 
 
+    /// <Summary>
+    /// The pointer has moved with respect to the device while the pointer is not
+    /// in contact with the device.
+    ///
+    /// See also:
+    ///
+    ///  * [PointerEnterEvent], which reports when the pointer has entered an
+    ///    object.
+    ///  * [PointerExitEvent], which reports when the pointer has left an object.
+    ///  * [PointerMoveEvent], which reports movement while the pointer is in
+    ///    contact with the device.
+    /// </Summary>
     public class PointerHoverEvent : FlutterSDK.Gestures.Events.PointerEvent
     {
         #region constructors
@@ -526,6 +646,18 @@ namespace FlutterSDK.Gestures.Events
     }
 
 
+    /// <Summary>
+    /// The pointer has moved with respect to the device while the pointer is or is
+    /// not in contact with the device, and it has entered a target object.
+    ///
+    /// See also:
+    ///
+    ///  * [PointerHoverEvent], which reports when the pointer has moved while
+    ///    within an object.
+    ///  * [PointerExitEvent], which reports when the pointer has left an object.
+    ///  * [PointerMoveEvent], which reports movement while the pointer is in
+    ///    contact with the device.
+    /// </Summary>
     public class PointerEnterEvent : FlutterSDK.Gestures.Events.PointerEvent
     {
         #region constructors
@@ -555,6 +687,18 @@ namespace FlutterSDK.Gestures.Events
     }
 
 
+    /// <Summary>
+    /// The pointer has moved with respect to the device while the pointer is or is
+    /// not in contact with the device, and entered a target object.
+    ///
+    /// See also:
+    ///
+    ///  * [PointerHoverEvent], which reports when the pointer has moved while
+    ///    within an object.
+    ///  * [PointerEnterEvent], which reports when the pointer has entered an object.
+    ///  * [PointerMoveEvent], which reports movement while the pointer is in
+    ///    contact with the device.
+    /// </Summary>
     public class PointerExitEvent : FlutterSDK.Gestures.Events.PointerEvent
     {
         #region constructors
@@ -584,6 +728,9 @@ namespace FlutterSDK.Gestures.Events
     }
 
 
+    /// <Summary>
+    /// The pointer has made contact with the device.
+    /// </Summary>
     public class PointerDownEvent : FlutterSDK.Gestures.Events.PointerEvent
     {
         #region constructors
@@ -605,6 +752,15 @@ namespace FlutterSDK.Gestures.Events
     }
 
 
+    /// <Summary>
+    /// The pointer has moved with respect to the device while the pointer is in
+    /// contact with the device.
+    ///
+    /// See also:
+    ///
+    ///  * [PointerHoverEvent], which reports movement while the pointer is not in
+    ///    contact with the device.
+    /// </Summary>
     public class PointerMoveEvent : FlutterSDK.Gestures.Events.PointerEvent
     {
         #region constructors
@@ -626,6 +782,9 @@ namespace FlutterSDK.Gestures.Events
     }
 
 
+    /// <Summary>
+    /// The pointer has stopped making contact with the device.
+    /// </Summary>
     public class PointerUpEvent : FlutterSDK.Gestures.Events.PointerEvent
     {
         #region constructors
@@ -647,6 +806,13 @@ namespace FlutterSDK.Gestures.Events
     }
 
 
+    /// <Summary>
+    /// An event that corresponds to a discrete pointer signal.
+    ///
+    /// Pointer signals are events that originate from the pointer but don't change
+    /// the state of the pointer itself, and are discrete rather than needing to be
+    /// interpreted in the context of a series of events.
+    /// </Summary>
     public class PointerSignalEvent : FlutterSDK.Gestures.Events.PointerEvent
     {
         #region constructors
@@ -665,6 +831,12 @@ namespace FlutterSDK.Gestures.Events
     }
 
 
+    /// <Summary>
+    /// The pointer issued a scroll event.
+    ///
+    /// Scrolling the scroll wheel on a mouse is an example of an event that
+    /// would create a [PointerScrollEvent].
+    /// </Summary>
     public class PointerScrollEvent : FlutterSDK.Gestures.Events.PointerSignalEvent
     {
         #region constructors
@@ -690,6 +862,9 @@ namespace FlutterSDK.Gestures.Events
     }
 
 
+    /// <Summary>
+    /// The input from the pointer is no longer directed towards this receiver.
+    /// </Summary>
     public class PointerCancelEvent : FlutterSDK.Gestures.Events.PointerEvent
     {
         #region constructors

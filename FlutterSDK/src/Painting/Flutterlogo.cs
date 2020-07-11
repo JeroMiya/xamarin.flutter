@@ -426,6 +426,9 @@ namespace FlutterSDK.Painting.Flutterlogo
     {
     }
 
+    /// <Summary>
+    /// An immutable description of how to paint Flutter's logo.
+    /// </Summary>
     public class FlutterLogoDecoration : FlutterSDK.Painting.Decoration.Decoration
     {
         #region constructors
@@ -468,6 +471,21 @@ namespace FlutterSDK.Painting.Flutterlogo
         public new bool DebugAssertIsValid() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two Flutter logo descriptions.
+        ///
+        /// Interpolates both the color and the style in a continuous fashion.
+        ///
+        /// If both values are null, this returns null. Otherwise, it returns a
+        /// non-null value. If one of the values is null, then the result is obtained
+        /// by scaling the other value's opacity and [margin].
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        ///
+        /// See also:
+        ///
+        ///  * [Decoration.lerp], which interpolates between arbitrary decorations.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Flutterlogo.FlutterLogoDecoration Lerp(FlutterSDK.Painting.Flutterlogo.FlutterLogoDecoration a, FlutterSDK.Painting.Flutterlogo.FlutterLogoDecoration b, double t) { throw new NotImplementedException(); }
 
 
@@ -492,6 +510,9 @@ namespace FlutterSDK.Painting.Flutterlogo
     }
 
 
+    /// <Summary>
+    /// An object that paints a [BoxDecoration] into a canvas.
+    /// </Summary>
     public class _FlutterLogoPainter : FlutterSDK.Painting.Decoration.BoxPainter
     {
         #region constructors
@@ -522,11 +543,25 @@ namespace FlutterSDK.Painting.Flutterlogo
     }
 
 
+    /// <Summary>
+    /// Possible ways to draw Flutter's logo.
+    /// </Summary>
     public enum FlutterLogoStyle
     {
 
+        /// <Summary>
+        /// Show only Flutter's logo, not the "Flutter" label.
+        ///
+        /// This is the default behavior for [FlutterLogoDecoration] objects.
+        /// </Summary>
         MarkOnly,
+        /// <Summary>
+        /// Show Flutter's logo on the left, and the "Flutter" label to its right.
+        /// </Summary>
         Horizontal,
+        /// <Summary>
+        /// Show Flutter's logo above the "Flutter" label.
+        /// </Summary>
         Stacked,
     }
 

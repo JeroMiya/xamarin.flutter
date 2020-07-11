@@ -304,12 +304,27 @@ namespace FlutterSDK.Foundation.Bitfield
     public class BitField<T>
     {
 
+        /// <Summary>
+        /// Returns whether the bit with the given index is set to one.
+        /// </Summary>
         public virtual bool IndexOfOperator(T index) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Sets the bit with the given index to the given value.
+        ///
+        /// If value is true, the bit with the given index is set to one. Otherwise,
+        /// the bit is set to zero.
+        /// </Summary>
         public virtual void InsertAtOperator(T index, bool value) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Sets all the bits to the given value.
+        ///
+        /// If the value is true, the bits are all set to one. Otherwise, the bits are
+        /// all set to zero. Defaults to setting all the bits to zero.
+        /// </Summary>
         public virtual void Reset(bool value = false) { throw new NotImplementedException(); }
 
     }

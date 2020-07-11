@@ -385,6 +385,13 @@ namespace FlutterSDK.Material.Elevationoverlay
     {
     }
 
+    /// <Summary>
+    /// A simple utility class for dealing with the overlay color needed
+    /// to indicate elevation for dark theme widgets.
+    ///
+    /// This is an internal implementation class and should not be exported by
+    /// the material package.
+    /// </Summary>
     public class ElevationOverlay
     {
         #region constructors
@@ -399,9 +406,36 @@ namespace FlutterSDK.Material.Elevationoverlay
 
         #region methods
 
+        /// <Summary>
+        /// Applies an elevation overlay color to a surface color to indicate
+        /// the level of elevation in a dark theme.
+        ///
+        /// If the surrounding [Theme.applyElevationOverlayColor] is true, and
+        /// [color] is [Theme.colorScheme.surface] then this will return
+        /// a version of the given color with a semi-transparent [Theme.colorScheme.onSurface]
+        /// overlaid on top of it. The opacity of the overlay is controlled by the
+        /// [elevation].
+        ///
+        /// Otherwise it will just return the [color] unmodified.
+        ///
+        /// See also:
+        ///
+        ///  * [ThemeData.applyElevationOverlayColor] which controls the whether
+        ///    an overlay color will be applied to indicate elevation.
+        ///  * [overlayColor] which computes the needed overlay color.
+        /// </Summary>
         public virtual Color ApplyOverlay(FlutterSDK.Widgets.Framework.BuildContext context, FlutterBinding.UI.Color color, double elevation) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Computes the appropriate overlay color used to indicate elevation in
+        /// dark themes.
+        ///
+        /// See also:
+        ///
+        ///  * https://material.io/design/color/dark-theme.html#properties which
+        ///    specifies the exact overlay values for a given elevation.
+        /// </Summary>
         public virtual Color OverlayColor(FlutterSDK.Widgets.Framework.BuildContext context, double elevation) { throw new NotImplementedException(); }
 
         #endregion

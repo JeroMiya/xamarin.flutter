@@ -300,6 +300,16 @@ namespace FlutterSDK.Foundation.Unicode
     {
     }
 
+    /// <Summary>
+    /// Constants for useful Unicode characters.
+    ///
+    /// Currently, these characters are all related to bidirectional text.
+    ///
+    /// See also:
+    ///
+    ///  * <http://unicode.org/reports/tr9/>, which describes the Unicode
+    ///    bidirectional text algorithm.
+    /// </Summary>
     public class Unicode
     {
         #region constructors

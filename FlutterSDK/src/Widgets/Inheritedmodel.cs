@@ -428,6 +428,93 @@ namespace FlutterSDK.Widgets.Inheritedmodel
     {
     }
 
+    /// <Summary>
+    /// An [InheritedWidget] that's intended to be used as the base class for
+    /// models whose dependents may only depend on one part or "aspect" of the
+    /// overall model.
+    ///
+    /// An inherited widget's dependents are unconditionally rebuilt when the
+    /// inherited widget changes per [InheritedWidget.updateShouldNotify].
+    /// This widget is similar except that dependents aren't rebuilt
+    /// unconditionally.
+    ///
+    /// Widgets that depend on an [InheritedModel] qualify their dependence
+    /// with a value that indicates what "aspect" of the model they depend
+    /// on. When the model is rebuilt, dependents will also be rebuilt, but
+    /// only if there was a change in the model that corresponds to the aspect
+    /// they provided.
+    ///
+    /// The type parameter `T` is the type of the model aspect objects.
+    ///
+    /// {@youtube 560 315 https://www.youtube.com/watch?v=ml5uefGgkaA}
+    ///
+    /// Widgets create a dependency on an [InheritedModel] with a static method:
+    /// [InheritedModel.inheritFrom]. This method's `context` parameter
+    /// defines the subtree that will be rebuilt when the model changes.
+    /// Typically the `inheritFrom` method is called from a model-specific
+    /// static `of` method. For example:
+    ///
+    /// ```dart
+    /// class MyModel extends InheritedModel<String> {
+    ///   // ...
+    ///   static MyModel of(BuildContext context, String aspect) {
+    ///     return InheritedModel.inheritFrom<MyModel>(context, aspect: aspect);
+    ///   }
+    /// }
+    /// ```
+    ///
+    /// Calling `MyModel.of(context, 'foo')` means that `context` should only
+    /// be rebuilt when the `foo` aspect of `MyModel` changes. If the aspect
+    /// is null, then the model supports all aspects.
+    ///
+    /// When the inherited model is rebuilt the [updateShouldNotify] and
+    /// [updateShouldNotifyDependent] methods are used to decide what
+    /// should be rebuilt. If [updateShouldNotify] returns true, then the
+    /// inherited model's [updateShouldNotifyDependent] method is tested for
+    /// each dependent and the set of aspect objects it depends on.
+    /// The [updateShouldNotifyDependent] method must compare the set of aspect
+    /// dependencies with the changes in the model itself.
+    ///
+    /// For example:
+    ///
+    /// ```dart
+    /// class ABModel extends InheritedModel<String> {
+    ///   ABModel({ this.a, this.b, Widget child }) : super(child: child);
+    ///
+    ///   final int a;
+    ///   final int b;
+    ///
+    ///   @override
+    ///   bool updateShouldNotify(ABModel old) {
+    ///     return a != old.a || b != old.b;
+    ///   }
+    ///
+    ///   @override
+    ///   bool updateShouldNotifyDependent(ABModel old, Set<String> aspects) {
+    ///     return (a != old.a && aspects.contains('a'))
+    ///         || (b != old.b && aspects.contains('b'))
+    ///   }
+    ///
+    ///   // ...
+    /// }
+    /// ```
+    ///
+    /// In the previous example the dependencies checked by
+    /// [updateShouldNotifyDependent] are just the aspect strings passed to
+    /// `dependOnInheritedWidgetOfExactType`. They're represented as a [Set] because
+    /// one Widget can depend on more than one aspect of the model.
+    /// If a widget depends on the model but doesn't specify an aspect,
+    /// then changes in the model will cause the widget to be rebuilt
+    /// unconditionally.
+    ///
+    /// See also:
+    ///
+    ///  * [InheritedWidget], an inherited widget that only notifies dependents
+    ///    when its value is different.
+    ///  * [InheritedNotifier], an inherited widget whose value can be a
+    ///    [Listenable], and which will notify dependents whenever the value
+    ///    sends notifications.
+    /// </Summary>
     public interface IInheritedModel<T>
     {
         InheritedModelElement<T> CreateElement();
@@ -437,6 +524,93 @@ namespace FlutterSDK.Widgets.Inheritedmodel
     }
 
 
+    /// <Summary>
+    /// An [InheritedWidget] that's intended to be used as the base class for
+    /// models whose dependents may only depend on one part or "aspect" of the
+    /// overall model.
+    ///
+    /// An inherited widget's dependents are unconditionally rebuilt when the
+    /// inherited widget changes per [InheritedWidget.updateShouldNotify].
+    /// This widget is similar except that dependents aren't rebuilt
+    /// unconditionally.
+    ///
+    /// Widgets that depend on an [InheritedModel] qualify their dependence
+    /// with a value that indicates what "aspect" of the model they depend
+    /// on. When the model is rebuilt, dependents will also be rebuilt, but
+    /// only if there was a change in the model that corresponds to the aspect
+    /// they provided.
+    ///
+    /// The type parameter `T` is the type of the model aspect objects.
+    ///
+    /// {@youtube 560 315 https://www.youtube.com/watch?v=ml5uefGgkaA}
+    ///
+    /// Widgets create a dependency on an [InheritedModel] with a static method:
+    /// [InheritedModel.inheritFrom]. This method's `context` parameter
+    /// defines the subtree that will be rebuilt when the model changes.
+    /// Typically the `inheritFrom` method is called from a model-specific
+    /// static `of` method. For example:
+    ///
+    /// ```dart
+    /// class MyModel extends InheritedModel<String> {
+    ///   // ...
+    ///   static MyModel of(BuildContext context, String aspect) {
+    ///     return InheritedModel.inheritFrom<MyModel>(context, aspect: aspect);
+    ///   }
+    /// }
+    /// ```
+    ///
+    /// Calling `MyModel.of(context, 'foo')` means that `context` should only
+    /// be rebuilt when the `foo` aspect of `MyModel` changes. If the aspect
+    /// is null, then the model supports all aspects.
+    ///
+    /// When the inherited model is rebuilt the [updateShouldNotify] and
+    /// [updateShouldNotifyDependent] methods are used to decide what
+    /// should be rebuilt. If [updateShouldNotify] returns true, then the
+    /// inherited model's [updateShouldNotifyDependent] method is tested for
+    /// each dependent and the set of aspect objects it depends on.
+    /// The [updateShouldNotifyDependent] method must compare the set of aspect
+    /// dependencies with the changes in the model itself.
+    ///
+    /// For example:
+    ///
+    /// ```dart
+    /// class ABModel extends InheritedModel<String> {
+    ///   ABModel({ this.a, this.b, Widget child }) : super(child: child);
+    ///
+    ///   final int a;
+    ///   final int b;
+    ///
+    ///   @override
+    ///   bool updateShouldNotify(ABModel old) {
+    ///     return a != old.a || b != old.b;
+    ///   }
+    ///
+    ///   @override
+    ///   bool updateShouldNotifyDependent(ABModel old, Set<String> aspects) {
+    ///     return (a != old.a && aspects.contains('a'))
+    ///         || (b != old.b && aspects.contains('b'))
+    ///   }
+    ///
+    ///   // ...
+    /// }
+    /// ```
+    ///
+    /// In the previous example the dependencies checked by
+    /// [updateShouldNotifyDependent] are just the aspect strings passed to
+    /// `dependOnInheritedWidgetOfExactType`. They're represented as a [Set] because
+    /// one Widget can depend on more than one aspect of the model.
+    /// If a widget depends on the model but doesn't specify an aspect,
+    /// then changes in the model will cause the widget to be rebuilt
+    /// unconditionally.
+    ///
+    /// See also:
+    ///
+    ///  * [InheritedWidget], an inherited widget that only notifies dependents
+    ///    when its value is different.
+    ///  * [InheritedNotifier], an inherited widget whose value can be a
+    ///    [Listenable], and which will notify dependents whenever the value
+    ///    sends notifications.
+    /// </Summary>
     public class InheritedModel<T> : FlutterSDK.Widgets.Framework.InheritedWidget
     {
         #region constructors
@@ -455,21 +629,54 @@ namespace FlutterSDK.Widgets.Inheritedmodel
         public new InheritedModelElement<T> CreateElement() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Return true if the changes between this model and [oldWidget] match any
+        /// of the [dependencies].
+        /// </Summary>
         public virtual bool UpdateShouldNotifyDependent(FlutterSDK.Widgets.Inheritedmodel.InheritedModel<T> oldWidget, HashSet<T> dependencies) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns true if this model supports the given [aspect].
+        ///
+        /// Returns true by default: this model supports all aspects.
+        ///
+        /// Subclasses may override this method to indicate that they do not support
+        /// all model aspects. This is typically done when a model can be used
+        /// to "shadow" some aspects of an ancestor.
+        /// </Summary>
         public virtual bool IsSupportedAspect(@Object aspect) { throw new NotImplementedException(); }
 
 
         private void _FindModels<T>(FlutterSDK.Widgets.Framework.BuildContext context, @Object aspect, List<FlutterSDK.Widgets.Framework.InheritedElement> results) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Makes [context] dependent on the specified [aspect] of an [InheritedModel]
+        /// of type T.
+        ///
+        /// When the given [aspect] of the model changes, the [context] will be
+        /// rebuilt. The [updateShouldNotifyDependent] method must determine if a
+        /// change in the model widget corresponds to an [aspect] value.
+        ///
+        /// The dependencies created by this method target all [InheritedModel] ancestors
+        /// of type T up to and including the first one for which [isSupportedAspect]
+        /// returns true.
+        ///
+        /// If [aspect] is null this method is the same as
+        /// `context.dependOnInheritedWidgetOfExactType<T>()`.
+        ///
+        /// If no ancestor of type T exists, null is returned.
+        /// </Summary>
         public virtual T InheritFrom<T>(FlutterSDK.Widgets.Framework.BuildContext context, @Object aspect = default(@Object)) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// An [Element] that uses a [InheritedModel] as its configuration.
+    /// </Summary>
     public class InheritedModelElement<T> : FlutterSDK.Widgets.Framework.InheritedElement
     {
         #region constructors

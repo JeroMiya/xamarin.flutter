@@ -428,6 +428,12 @@ namespace FlutterSDK.Widgets.Icondata
     {
     }
 
+    /// <Summary>
+    /// A description of an icon fulfilled by a font glyph.
+    ///
+    /// See [Icons] for a number of predefined icons available for material
+    /// design applications.
+    /// </Summary>
     public class IconData
     {
         #region constructors
@@ -457,6 +463,9 @@ namespace FlutterSDK.Widgets.Icondata
     }
 
 
+    /// <Summary>
+    /// [DiagnosticsProperty] that has an [IconData] as value.
+    /// </Summary>
     public class IconDataProperty : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<FlutterSDK.Widgets.Icondata.IconData>
     {
         #region constructors

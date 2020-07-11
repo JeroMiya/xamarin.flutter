@@ -444,9 +444,29 @@ namespace FlutterSDK.Widgets.Pagestorage
         private FlutterSDK.Widgets.Pagestorage._StorageEntryIdentifier _ComputeIdentifier(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Write the given data into this page storage bucket using the
+        /// specified identifier or an identifier computed from the given context.
+        /// The computed identifier is based on the [PageStorageKey]s
+        /// found in the path from context to the [PageStorage] widget that
+        /// owns this page storage bucket.
+        ///
+        /// If an explicit identifier is not provided and no [PageStorageKey]s
+        /// are found, then the `data` is not saved.
+        /// </Summary>
         public virtual void WriteState(FlutterSDK.Widgets.Framework.BuildContext context, object data, @Object identifier = default(@Object)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Read given data from into this page storage bucket using the specified
+        /// identifier or an identifier computed from the given context.
+        /// The computed identifier is based on the [PageStorageKey]s
+        /// found in the path from context to the [PageStorage] widget that
+        /// owns this page storage bucket.
+        ///
+        /// If an explicit identifier is not provided and no [PageStorageKey]s
+        /// are found, then null is returned.
+        /// </Summary>
         public virtual object ReadState(FlutterSDK.Widgets.Framework.BuildContext context, @Object identifier = default(@Object)) { throw new NotImplementedException(); }
 
     }
@@ -467,6 +487,35 @@ namespace FlutterSDK.Widgets.Pagestorage
     }
 
 
+    /// <Summary>
+    /// A [ValueKey] that defines where [PageStorage] values will be saved.
+    ///
+    /// [Scrollable]s ([ScrollPosition]s really) use [PageStorage] to save their
+    /// scroll offset. Each time a scroll completes, the scrollable's page
+    /// storage is updated.
+    ///
+    /// [PageStorage] is used to save and restore values that can outlive the widget.
+    /// The values are stored in a per-route [Map] whose keys are defined by the
+    /// [PageStorageKey]s for the widget and its ancestors. To make it possible
+    /// for a saved value to be found when a widget is recreated, the key's values
+    /// must not be objects whose identity will change each time the widget is created.
+    ///
+    /// For example, to ensure that the scroll offsets for the scrollable within
+    /// each `MyScrollableTabView` below are restored when the [TabBarView]
+    /// is recreated, we've specified [PageStorageKey]s whose values are the
+    /// tabs' string labels.
+    ///
+    /// ```dart
+    /// TabBarView(
+    ///   children: myTabs.map((Tab tab) {
+    ///     MyScrollableTabView(
+    ///       key: PageStorageKey<String>(tab.text), // like 'Tab 1'
+    ///       tab: tab,
+    ///     ),
+    ///   }),
+    /// )
+    /// ```
+    /// </Summary>
     public class PageStorageKey<T> : FlutterSDK.Foundation.Key.ValueKey<T>
     {
         #region constructors
@@ -510,6 +559,9 @@ namespace FlutterSDK.Widgets.Pagestorage
     }
 
 
+    /// <Summary>
+    /// A widget that establishes a page storage bucket for this widget subtree.
+    /// </Summary>
     public class PageStorage : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors
@@ -528,6 +580,17 @@ namespace FlutterSDK.Widgets.Pagestorage
 
         #region methods
 
+        /// <Summary>
+        /// The bucket from the closest instance of this class that encloses the given context.
+        ///
+        /// Returns null if none exists.
+        ///
+        /// Typical usage is as follows:
+        ///
+        /// ```dart
+        /// PageStorageBucket bucket = PageStorage.of(context);
+        /// ```
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Pagestorage.PageStorageBucket Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 

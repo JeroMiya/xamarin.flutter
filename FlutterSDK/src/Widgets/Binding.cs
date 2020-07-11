@@ -471,9 +471,38 @@ namespace FlutterSDK.Widgets.Binding
         private Future<object> _ForceRebuild() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Registers the given object as a binding observer. Binding
+        /// observers are notified when various application events occur,
+        /// for example when the system locale changes. Generally, one
+        /// widget in the widget tree registers itself as a binding
+        /// observer, and converts the system state into inherited widgets.
+        ///
+        /// For example, the [WidgetsApp] widget registers as a binding
+        /// observer and passes the screen size to a [MediaQuery] widget
+        /// each time it is built, which enables other widgets to use the
+        /// [MediaQuery.of] static method and (implicitly) the
+        /// [InheritedWidget] mechanism to be notified whenever the screen
+        /// size changes (e.g. whenever the screen rotates).
+        ///
+        /// See also:
+        ///
+        ///  * [removeObserver], to release the resources reserved by this method.
+        ///  * [WidgetsBindingObserver], which has an example of using this method.
+        /// </Summary>
         public virtual void AddObserver(FlutterSDK.Widgets.Binding.WidgetsBindingObserver observer) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Unregisters the given observer. This should be used sparingly as
+        /// it is relatively expensive (O(N) in the number of registered
+        /// observers).
+        ///
+        /// See also:
+        ///
+        ///  * [addObserver], for the method that adds observers in the first place.
+        ///  * [WidgetsBindingObserver], which has an example of using this method.
+        /// </Summary>
         public virtual bool RemoveObserver(FlutterSDK.Widgets.Binding.WidgetsBindingObserver observer) { throw new NotImplementedException(); }
 
 
@@ -489,18 +518,69 @@ namespace FlutterSDK.Widgets.Binding
         public new void HandleAccessibilityFeaturesChanged() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called when the system locale changes.
+        ///
+        /// Calls [dispatchLocaleChanged] to notify the binding observers.
+        ///
+        /// See [Window.onLocaleChanged].
+        /// </Summary>
         public virtual void HandleLocaleChanged() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Notify all the observers that the locale has changed (using
+        /// [WidgetsBindingObserver.didChangeLocales]), giving them the
+        /// `locales` argument.
+        ///
+        /// This is called by [handleLocaleChanged] when the [Window.onLocaleChanged]
+        /// notification is received.
+        /// </Summary>
         public virtual void DispatchLocalesChanged(List<Locale> locales) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Notify all the observers that the active set of [AccessibilityFeatures]
+        /// has changed (using [WidgetsBindingObserver.didChangeAccessibilityFeatures]),
+        /// giving them the `features` argument.
+        ///
+        /// This is called by [handleAccessibilityFeaturesChanged] when the
+        /// [Window.onAccessibilityFeaturesChanged] notification is received.
+        /// </Summary>
         public virtual void DispatchAccessibilityFeaturesChanged() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called when the system pops the current route.
+        ///
+        /// This first notifies the binding observers (using
+        /// [WidgetsBindingObserver.didPopRoute]), in registration order, until one
+        /// returns true, meaning that it was able to handle the request (e.g. by
+        /// closing a dialog box). If none return true, then the application is shut
+        /// down by calling [SystemNavigator.pop].
+        ///
+        /// [WidgetsApp] uses this in conjunction with a [Navigator] to
+        /// cause the back button to close dialog boxes, return from modal
+        /// pages, and so forth.
+        ///
+        /// This method exposes the `popRoute` notification from
+        /// [SystemChannels.navigation].
+        /// </Summary>
         public virtual Future<object> HandlePopRoute() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called when the host tells the app to push a new route onto the
+        /// navigator.
+        ///
+        /// This notifies the binding observers (using
+        /// [WidgetsBindingObserver.didPushRoute]), in registration order, until one
+        /// returns true, meaning that it was able to handle the request (e.g. by
+        /// opening a dialog box). If none return true, then nothing happens.
+        ///
+        /// This method exposes the `pushRoute` notification from
+        /// [SystemChannels.navigation].
+        /// </Summary>
         public virtual Future<object> HandlePushRoute(string route) { throw new NotImplementedException(); }
 
 
@@ -510,27 +590,132 @@ namespace FlutterSDK.Widgets.Binding
         public new void HandleAppLifecycleStateChanged(AppLifecycleState state) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called when the operating system notifies the application of a memory
+        /// pressure situation.
+        ///
+        /// Notifies all the observers using
+        /// [WidgetsBindingObserver.didHaveMemoryPressure].
+        ///
+        /// This method exposes the `memoryPressure` notification from
+        /// [SystemChannels.system].
+        /// </Summary>
         public virtual void HandleMemoryPressure() { throw new NotImplementedException(); }
 
 
         public new Future<object> HandleSystemMessage(@Object systemMessage) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Tell the framework not to report the frame it is building as a "useful"
+        /// first frame until there is a corresponding call to [allowFirstFrameReport].
+        ///
+        /// Deprecated. Use [deferFirstFrame]/[allowFirstFrame] to delay rendering the
+        /// first frame.
+        /// </Summary>
         public virtual void DeferFirstFrameReport() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// When called after [deferFirstFrameReport]: tell the framework to report
+        /// the frame it is building as a "useful" first frame.
+        ///
+        /// Deprecated. Use [deferFirstFrame]/[allowFirstFrame] to delay rendering the
+        /// first frame.
+        /// </Summary>
         public virtual void AllowFirstFrameReport() { throw new NotImplementedException(); }
 
 
         private void _HandleBuildScheduled() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Pump the build and rendering pipeline to generate a frame.
+        ///
+        /// This method is called by [handleDrawFrame], which itself is called
+        /// automatically by the engine when it is time to lay out and paint a
+        /// frame.
+        ///
+        /// Each frame consists of the following phases:
+        ///
+        /// 1. The animation phase: The [handleBeginFrame] method, which is registered
+        /// with [Window.onBeginFrame], invokes all the transient frame callbacks
+        /// registered with [scheduleFrameCallback], in
+        /// registration order. This includes all the [Ticker] instances that are
+        /// driving [AnimationController] objects, which means all of the active
+        /// [Animation] objects tick at this point.
+        ///
+        /// 2. Microtasks: After [handleBeginFrame] returns, any microtasks that got
+        /// scheduled by transient frame callbacks get to run. This typically includes
+        /// callbacks for futures from [Ticker]s and [AnimationController]s that
+        /// completed this frame.
+        ///
+        /// After [handleBeginFrame], [handleDrawFrame], which is registered with
+        /// [Window.onDrawFrame], is called, which invokes all the persistent frame
+        /// callbacks, of which the most notable is this method, [drawFrame], which
+        /// proceeds as follows:
+        ///
+        /// 3. The build phase: All the dirty [Element]s in the widget tree are
+        /// rebuilt (see [State.build]). See [State.setState] for further details on
+        /// marking a widget dirty for building. See [BuildOwner] for more information
+        /// on this step.
+        ///
+        /// 4. The layout phase: All the dirty [RenderObject]s in the system are laid
+        /// out (see [RenderObject.performLayout]). See [RenderObject.markNeedsLayout]
+        /// for further details on marking an object dirty for layout.
+        ///
+        /// 5. The compositing bits phase: The compositing bits on any dirty
+        /// [RenderObject] objects are updated. See
+        /// [RenderObject.markNeedsCompositingBitsUpdate].
+        ///
+        /// 6. The paint phase: All the dirty [RenderObject]s in the system are
+        /// repainted (see [RenderObject.paint]). This generates the [Layer] tree. See
+        /// [RenderObject.markNeedsPaint] for further details on marking an object
+        /// dirty for paint.
+        ///
+        /// 7. The compositing phase: The layer tree is turned into a [Scene] and
+        /// sent to the GPU.
+        ///
+        /// 8. The semantics phase: All the dirty [RenderObject]s in the system have
+        /// their semantics updated (see [RenderObject.assembleSemanticsNode]). This
+        /// generates the [SemanticsNode] tree. See
+        /// [RenderObject.markNeedsSemanticsUpdate] for further details on marking an
+        /// object dirty for semantics.
+        ///
+        /// For more details on steps 4-8, see [PipelineOwner].
+        ///
+        /// 9. The finalization phase in the widgets layer: The widgets tree is
+        /// finalized. This causes [State.dispose] to be invoked on any objects that
+        /// were removed from the widgets tree this frame. See
+        /// [BuildOwner.finalizeTree] for more details.
+        ///
+        /// 10. The finalization phase in the scheduler layer: After [drawFrame]
+        /// returns, [handleDrawFrame] then invokes post-frame callbacks (registered
+        /// with [addPostFrameCallback]).
+        /// </Summary>
         public new void DrawFrame() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Schedules a [Timer] for attaching the root widget.
+        ///
+        /// This is called by [runApp] to configure the widget tree. Consider using
+        /// [attachRootWidget] if you want to build the widget tree synchronously.
+        /// </Summary>
         public virtual void ScheduleAttachRootWidget(FlutterSDK.Widgets.Framework.Widget rootWidget) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Takes a widget and attaches it to the [renderViewElement], creating it if
+        /// necessary.
+        ///
+        /// This is called by [runApp] to configure the widget tree.
+        ///
+        /// See also:
+        ///
+        ///  * [RenderObjectToWidgetAdapter.attachToRenderTree], which inflates a
+        ///    widget and attaches it to the render tree.
+        /// </Summary>
         public virtual void AttachRootWidget(FlutterSDK.Widgets.Framework.Widget rootWidget) { throw new NotImplementedException(); }
 
 
@@ -589,30 +774,201 @@ namespace FlutterSDK.Widgets.Binding
     public class WidgetsBindingObserver
     {
 
+        /// <Summary>
+        /// Called when the system tells the app to pop the current route.
+        /// For example, on Android, this is called when the user presses
+        /// the back button.
+        ///
+        /// Observers are notified in registration order until one returns
+        /// true. If none return true, the application quits.
+        ///
+        /// Observers are expected to return true if they were able to
+        /// handle the notification, for example by closing an active dialog
+        /// box, and false otherwise. The [WidgetsApp] widget uses this
+        /// mechanism to notify the [Navigator] widget that it should pop
+        /// its current route if possible.
+        ///
+        /// This method exposes the `popRoute` notification from
+        /// [SystemChannels.navigation].
+        /// </Summary>
         public virtual Future<bool> DidPopRoute() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called when the host tells the app to push a new route onto the
+        /// navigator.
+        ///
+        /// Observers are expected to return true if they were able to
+        /// handle the notification. Observers are notified in registration
+        /// order until one returns true.
+        ///
+        /// This method exposes the `pushRoute` notification from
+        /// [SystemChannels.navigation].
+        /// </Summary>
         public virtual Future<bool> DidPushRoute(string route) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called when the application's dimensions change. For example,
+        /// when a phone is rotated.
+        ///
+        /// This method exposes notifications from [Window.onMetricsChanged].
+        ///
+        /// {@tool snippet}
+        ///
+        /// This [StatefulWidget] implements the parts of the [State] and
+        /// [WidgetsBindingObserver] protocols necessary to react when the device is
+        /// rotated (or otherwise changes dimensions).
+        ///
+        /// ```dart
+        /// class MetricsReactor extends StatefulWidget {
+        ///   const MetricsReactor({ Key key }) : super(key: key);
+        ///
+        ///   @override
+        ///   _MetricsReactorState createState() => _MetricsReactorState();
+        /// }
+        ///
+        /// class _MetricsReactorState extends State<MetricsReactor> with WidgetsBindingObserver {
+        ///   Size _lastSize;
+        ///
+        ///   @override
+        ///   void initState() {
+        ///     super.initState();
+        ///     _lastSize = WidgetsBinding.instance.window.physicalSize;
+        ///     WidgetsBinding.instance.addObserver(this);
+        ///   }
+        ///
+        ///   @override
+        ///   void dispose() {
+        ///     WidgetsBinding.instance.removeObserver(this);
+        ///     super.dispose();
+        ///   }
+        ///
+        ///   @override
+        ///   void didChangeMetrics() {
+        ///     setState(() { _lastSize = WidgetsBinding.instance.window.physicalSize; });
+        ///   }
+        ///
+        ///   @override
+        ///   Widget build(BuildContext context) {
+        ///     return Text('Current size: $_lastSize');
+        ///   }
+        /// }
+        /// ```
+        /// {@end-tool}
+        ///
+        /// In general, this is unnecessary as the layout system takes care of
+        /// automatically recomputing the application geometry when the application
+        /// size changes.
+        ///
+        /// See also:
+        ///
+        ///  * [MediaQuery.of], which provides a similar service with less
+        ///    boilerplate.
+        /// </Summary>
         public virtual void DidChangeMetrics() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called when the platform's text scale factor changes.
+        ///
+        /// This typically happens as the result of the user changing system
+        /// preferences, and it should affect all of the text sizes in the
+        /// application.
+        ///
+        /// This method exposes notifications from [Window.onTextScaleFactorChanged].
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// class TextScaleFactorReactor extends StatefulWidget {
+        ///   const TextScaleFactorReactor({ Key key }) : super(key: key);
+        ///
+        ///   @override
+        ///   _TextScaleFactorReactorState createState() => _TextScaleFactorReactorState();
+        /// }
+        ///
+        /// class _TextScaleFactorReactorState extends State<TextScaleFactorReactor> with WidgetsBindingObserver {
+        ///   @override
+        ///   void initState() {
+        ///     super.initState();
+        ///     WidgetsBinding.instance.addObserver(this);
+        ///   }
+        ///
+        ///   @override
+        ///   void dispose() {
+        ///     WidgetsBinding.instance.removeObserver(this);
+        ///     super.dispose();
+        ///   }
+        ///
+        ///   double _lastTextScaleFactor;
+        ///
+        ///   @override
+        ///   void didChangeTextScaleFactor() {
+        ///     setState(() { _lastTextScaleFactor = WidgetsBinding.instance.window.textScaleFactor; });
+        ///   }
+        ///
+        ///   @override
+        ///   Widget build(BuildContext context) {
+        ///     return Text('Current scale factor: $_lastTextScaleFactor');
+        ///   }
+        /// }
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [MediaQuery.of], which provides a similar service with less
+        ///    boilerplate.
+        /// </Summary>
         public virtual void DidChangeTextScaleFactor() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called when the platform brightness changes.
+        ///
+        /// This method exposes notifications from [Window.onPlatformBrightnessChanged].
+        /// </Summary>
         public virtual void DidChangePlatformBrightness() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called when the system tells the app that the user's locale has
+        /// changed. For example, if the user changes the system language
+        /// settings.
+        ///
+        /// This method exposes notifications from [Window.onLocaleChanged].
+        /// </Summary>
         public virtual void DidChangeLocales(List<Locale> locale) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called when the system puts the app in the background or returns
+        /// the app to the foreground.
+        ///
+        /// An example of implementing this method is provided in the class-level
+        /// documentation for the [WidgetsBindingObserver] class.
+        ///
+        /// This method exposes notifications from [SystemChannels.lifecycle].
+        /// </Summary>
         public virtual void DidChangeAppLifecycleState(AppLifecycleState state) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called when the system is running low on memory.
+        ///
+        /// This method exposes the `memoryPressure` notification from
+        /// [SystemChannels.system].
+        /// </Summary>
         public virtual void DidHaveMemoryPressure() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called when the system changes the set of currently active accessibility
+        /// features.
+        ///
+        /// This method exposes notifications from [Window.onAccessibilityFeaturesChanged].
+        /// </Summary>
         public virtual void DidChangeAccessibilityFeatures() { throw new NotImplementedException(); }
 
     }
@@ -640,6 +996,16 @@ namespace FlutterSDK.Widgets.Binding
     }
 
 
+    /// <Summary>
+    /// A bridge from a [RenderObject] to an [Element] tree.
+    ///
+    /// The given container is the [RenderObject] that the [Element] tree should be
+    /// inserted into. It must be a [RenderObject] that implements the
+    /// [RenderObjectWithChildMixin] protocol. The type argument `T` is the kind of
+    /// [RenderObject] that the container expects as its child.
+    ///
+    /// Used by [runApp] to bootstrap applications.
+    /// </Summary>
     public class RenderObjectToWidgetAdapter<T> : FlutterSDK.Widgets.Framework.RenderObjectWidget
     {
         #region constructors
@@ -669,6 +1035,15 @@ namespace FlutterSDK.Widgets.Binding
         public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Inflate this widget and actually set the resulting [RenderObject] as the
+        /// child of [container].
+        ///
+        /// If `element` is null, this function will create a new element. Otherwise,
+        /// the given element will have an update scheduled to switch to this widget.
+        ///
+        /// Used by [runApp] to bootstrap applications.
+        /// </Summary>
         public virtual RenderObjectToWidgetElement<T> AttachToRenderTree(FlutterSDK.Widgets.Framework.BuildOwner owner, FlutterSDK.Widgets.Binding.RenderObjectToWidgetElement<T> element = default(FlutterSDK.Widgets.Binding.RenderObjectToWidgetElement<T>)) { throw new NotImplementedException(); }
 
 
@@ -678,6 +1053,18 @@ namespace FlutterSDK.Widgets.Binding
     }
 
 
+    /// <Summary>
+    /// A [RootRenderObjectElement] that is hosted by a [RenderObject].
+    ///
+    /// This element class is the instantiation of a [RenderObjectToWidgetAdapter]
+    /// widget. It can be used only as the root of an [Element] tree (it cannot be
+    /// mounted into another [Element]; it's parent must be null).
+    ///
+    /// In typical usage, it will be instantiated for a [RenderObjectToWidgetAdapter]
+    /// whose container is the [RenderView] that connects to the Flutter engine. In
+    /// this usage, it is normally instantiated by the bootstrapping logic in the
+    /// [WidgetsFlutterBinding] singleton created by [runApp].
+    /// </Summary>
     public class RenderObjectToWidgetElement<T> : FlutterSDK.Widgets.Framework.RootRenderObjectElement
     {
         #region constructors
@@ -728,6 +1115,11 @@ namespace FlutterSDK.Widgets.Binding
     }
 
 
+    /// <Summary>
+    /// A concrete binding for applications based on the Widgets framework.
+    ///
+    /// This is the glue that binds the framework to the Flutter engine.
+    /// </Summary>
     public class WidgetsFlutterBinding : FlutterSDK.Foundation.Binding.BindingBase, IGestureBinding, IServicesBinding, ISchedulerBinding, IPaintingBinding, ISemanticsBinding, IRendererBinding, IWidgetsBinding
     {
         #region constructors
@@ -740,6 +1132,19 @@ namespace FlutterSDK.Widgets.Binding
 
         #region methods
 
+        /// <Summary>
+        /// Returns an instance of the [WidgetsBinding], creating and
+        /// initializing it if necessary. If one is created, it will be a
+        /// [WidgetsFlutterBinding]. If one was previously initialized, then
+        /// it will at least implement [WidgetsBinding].
+        ///
+        /// You only need to call this method if you need the binding to be
+        /// initialized before calling [runApp].
+        ///
+        /// In the `flutter_test` framework, [testWidgets] initializes the
+        /// binding instance to a [TestWidgetsFlutterBinding], not a
+        /// [WidgetsFlutterBinding].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Binding.WidgetsBinding EnsureInitialized() { throw new NotImplementedException(); }
 
         #endregion

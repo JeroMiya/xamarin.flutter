@@ -435,12 +435,30 @@ namespace FlutterSDK.Painting.Clip
         private void _ClipAndPaint(Action<bool> canvasClipCall, FlutterBinding.UI.Clip clipBehavior, FlutterBinding.UI.Rect bounds, Action painter) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Clip [canvas] with [Path] according to [Clip] and then paint. [canvas] is
+        /// restored to the pre-clip status afterwards.
+        ///
+        /// `bounds` is the saveLayer bounds used for [Clip.antiAliasWithSaveLayer].
+        /// </Summary>
         public virtual void ClipPathAndPaint(Path path, FlutterBinding.UI.Clip clipBehavior, FlutterBinding.UI.Rect bounds, Action painter) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Clip [canvas] with [Path] according to [RRect] and then paint. [canvas] is
+        /// restored to the pre-clip status afterwards.
+        ///
+        /// `bounds` is the saveLayer bounds used for [Clip.antiAliasWithSaveLayer].
+        /// </Summary>
         public virtual void ClipRRectAndPaint(FlutterBinding.UI.RRect rrect, FlutterBinding.UI.Clip clipBehavior, FlutterBinding.UI.Rect bounds, Action painter) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Clip [canvas] with [Path] according to [Rect] and then paint. [canvas] is
+        /// restored to the pre-clip status afterwards.
+        ///
+        /// `bounds` is the saveLayer bounds used for [Clip.antiAliasWithSaveLayer].
+        /// </Summary>
         public virtual void ClipRectAndPaint(FlutterBinding.UI.Rect rect, FlutterBinding.UI.Clip clipBehavior, FlutterBinding.UI.Rect bounds, Action painter) { throw new NotImplementedException(); }
 
     }

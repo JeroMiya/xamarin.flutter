@@ -427,6 +427,54 @@ namespace FlutterSDK.Painting.Textspan
     {
     }
 
+    /// <Summary>
+    /// An immutable span of text.
+    ///
+    /// A [TextSpan] object can be styled using its [style] property. The style will
+    /// be applied to the [text] and the [children].
+    ///
+    /// A [TextSpan] object can just have plain text, or it can have children
+    /// [TextSpan] objects with their own styles that (possibly only partially)
+    /// override the [style] of this object. If a [TextSpan] has both [text] and
+    /// [children], then the [text] is treated as if it was an un-styled [TextSpan]
+    /// at the start of the [children] list. Leaving the [TextSpan.text] field null
+    /// results in the [TextSpan] acting as an empty node in the [InlineSpan] tree
+    /// with a list of children.
+    ///
+    /// To paint a [TextSpan] on a [Canvas], use a [TextPainter]. To display a text
+    /// span in a widget, use a [RichText]. For text with a single style, consider
+    /// using the [Text] widget.
+    ///
+    /// {@tool snippet}
+    ///
+    /// The text "Hello world!", in black:
+    ///
+    /// ```dart
+    /// TextSpan(
+    ///   text: 'Hello world!',
+    ///   style: TextStyle(color: Colors.black),
+    /// )
+    /// ```
+    /// {@end-tool}
+    ///
+    /// _There is some more detailed sample code in the documentation for the
+    /// [recognizer] property._
+    ///
+    /// The [TextSpan.text] will be used as the semantics label unless overridden
+    /// by the [TextSpan.semanticsLabel] property. Any [PlaceholderSpan]s in the
+    /// [TextSpan.children] list will separate the text before and after it into two
+    /// semantics nodes.
+    ///
+    /// See also:
+    ///
+    ///  * [WidgetSpan], a leaf node that represents an embedded inline widget in an
+    ///    [InlineSpan] tree. Specify a widget within the [children] list by
+    ///    wrapping the widget with a [WidgetSpan]. The widget will be laid out
+    ///    inline within the paragraph.
+    ///  * [Text], a widget for showing uniformly-styled text.
+    ///  * [RichText], a widget for finer control of text rendering.
+    ///  * [TextPainter], a class for painting [TextSpan] objects on a [Canvas].
+    /// </Summary>
     public class TextSpan : FlutterSDK.Painting.Inlinespan.InlineSpan
     {
         #region constructors
@@ -450,15 +498,41 @@ namespace FlutterSDK.Painting.Textspan
 
         #region methods
 
+        /// <Summary>
+        /// Apply the [style], [text], and [children] of this object to the
+        /// given [ParagraphBuilder], from which a [Paragraph] can be obtained.
+        /// [Paragraph] objects can be drawn on [Canvas] objects.
+        ///
+        /// Rather than using this directly, it's simpler to use the
+        /// [TextPainter] class to paint [TextSpan] objects onto [Canvas]
+        /// objects.
+        /// </Summary>
         public new void Build(ParagraphBuilder builder, double textScaleFactor = 1.0, List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions> dimensions = default(List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions>)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Walks this [TextSpan] and its descendants in pre-order and calls [visitor]
+        /// for each span that has text.
+        ///
+        /// When `visitor` returns true, the walk will continue. When `visitor`
+        /// returns false, then the walk will end.
+        /// </Summary>
         public new bool VisitChildren(FlutterSDK.Painting.Inlinespan.InlineSpanVisitor visitor) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Walks this [TextSpan] and any descendants in pre-order and calls `visitor`
+        /// for each span that has content.
+        ///
+        /// When `visitor` returns true, the walk will continue. When `visitor`
+        /// returns false, then the walk will end.
+        /// </Summary>
         public new bool VisitTextSpan(Func<bool, TextSpan> visitor) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the text span that contains the given position in the text.
+        /// </Summary>
         public new FlutterSDK.Painting.Inlinespan.InlineSpan GetSpanForPositionVisitor(TextPosition position, FlutterSDK.Painting.Inlinespan.Accumulator offset) { throw new NotImplementedException(); }
 
 
@@ -474,6 +548,16 @@ namespace FlutterSDK.Painting.Textspan
         public new void DescribeSemantics(FlutterSDK.Painting.Inlinespan.Accumulator offset, List<int> semanticsOffsets, List<object> semanticsElements) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// In checked mode, throws an exception if the object is not in a valid
+        /// configuration. Otherwise, returns true.
+        ///
+        /// This is intended to be used as follows:
+        ///
+        /// ```dart
+        /// assert(myTextSpan.debugAssertIsValid());
+        /// ```
+        /// </Summary>
         public new bool DebugAssertIsValid() { throw new NotImplementedException(); }
 
 

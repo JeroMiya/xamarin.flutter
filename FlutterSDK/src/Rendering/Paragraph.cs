@@ -428,6 +428,9 @@ namespace FlutterSDK.Rendering.Paragraph
         public static string _KEllipsis = default(string);
     }
 
+    /// <Summary>
+    /// Parent data for use with [RenderParagraph].
+    /// </Summary>
     public class TextParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
     {
         #region constructors
@@ -445,6 +448,9 @@ namespace FlutterSDK.Rendering.Paragraph
     }
 
 
+    /// <Summary>
+    /// A render object that displays a paragraph of text.
+    /// </Summary>
     public class RenderParagraph : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Paragraph.TextParentData>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Paragraph.TextParentData>, IRelayoutWhenSystemFontsChangeMixin
     {
         #region constructors
@@ -549,18 +555,52 @@ namespace FlutterSDK.Rendering.Paragraph
         public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the offset at which to paint the caret.
+        ///
+        /// Valid only after [layout].
+        /// </Summary>
         public virtual Offset GetOffsetForCaret(TextPosition position, FlutterBinding.UI.Rect caretPrototype) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a list of rects that bound the given selection.
+        ///
+        /// A given selection might have more than one rect if this text painter
+        /// contains bidirectional text because logically contiguous text might not be
+        /// visually contiguous.
+        ///
+        /// Valid only after [layout].
+        /// </Summary>
         public virtual List<TextBox> GetBoxesForSelection(FlutterSDK.Services.Textediting.TextSelection selection) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the position within the text for the given pixel offset.
+        ///
+        /// Valid only after [layout].
+        /// </Summary>
         public virtual TextPosition GetPositionForOffset(FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the text range of the word at the given offset. Characters not
+        /// part of a word, such as spaces, symbols, and punctuation, have word breaks
+        /// on both sides. In such cases, this method will return a text range that
+        /// contains the given text position.
+        ///
+        /// Word boundaries are defined more precisely in Unicode Standard Annex #29
+        /// <http://www.unicode.org/reports/tr29/#Word_Boundaries>.
+        ///
+        /// Valid only after [layout].
+        /// </Summary>
         public virtual TextRange GetWordBoundary(TextPosition position) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Combines _semanticsInfo entries where permissible, determined by
+        /// [InlineSpanSemanticsInformation.requiresOwnNode].
+        /// </Summary>
         private List<FlutterSDK.Painting.Inlinespan.InlineSpanSemanticsInformation> _CombineSemanticsInfo() { throw new NotImplementedException(); }
 
 
@@ -582,12 +622,30 @@ namespace FlutterSDK.Rendering.Paragraph
     }
 
 
+    /// <Summary>
+    /// How overflowing text should be handled.
+    ///
+    /// A [TextOverflow] can be passed to [Text] and [RichText] via their
+    /// [Text.overflow] and [RichText.overflow] properties respectively.
+    /// </Summary>
     public enum TextOverflow
     {
 
+        /// <Summary>
+        /// Clip the overflowing text to fix its container.
+        /// </Summary>
         Clip,
+        /// <Summary>
+        /// Fade the overflowing text to transparent.
+        /// </Summary>
         Fade,
+        /// <Summary>
+        /// Use an ellipsis to indicate that the text has overflowed.
+        /// </Summary>
         Ellipsis,
+        /// <Summary>
+        /// Render overflowing text outside of its container.
+        /// </Summary>
         Visible,
     }
 

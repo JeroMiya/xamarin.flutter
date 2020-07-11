@@ -427,6 +427,9 @@ namespace FlutterSDK.Services.Systemchannels
     {
     }
 
+    /// <Summary>
+    /// Platform channels used by the Flutter system.
+    /// </Summary>
     public class SystemChannels
     {
         #region constructors

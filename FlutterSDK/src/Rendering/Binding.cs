@@ -464,27 +464,101 @@ namespace FlutterSDK.Rendering.Binding
         public new void InitServiceExtensions() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Creates a [RenderView] object to be the root of the
+        /// [RenderObject] rendering tree, and initializes it so that it
+        /// will be rendered when the next frame is requested.
+        ///
+        /// Called automatically when the binding is created.
+        /// </Summary>
         public virtual void InitRenderView() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called when the system metrics change.
+        ///
+        /// See [Window.onMetricsChanged].
+        /// </Summary>
         public virtual void HandleMetricsChanged() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called when the platform text scale factor changes.
+        ///
+        /// See [Window.onTextScaleFactorChanged].
+        /// </Summary>
         public virtual void HandleTextScaleFactorChanged() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called when the platform brightness changes.
+        ///
+        /// The current platform brightness can be queried from a Flutter binding or
+        /// from a [MediaQuery] widget. The latter is preferred from widgets because
+        /// it causes the widget to be automatically rebuilt when the brightness
+        /// changes.
+        ///
+        /// {@tool snippet}
+        /// Querying [Window.platformBrightness].
+        ///
+        /// ```dart
+        /// final Brightness brightness = WidgetsBinding.instance.window.platformBrightness;
+        /// ```
+        /// {@end-tool}
+        ///
+        /// {@tool snippet}
+        /// Querying [MediaQuery] directly. Preferred.
+        ///
+        /// ```dart
+        /// final Brightness brightness = MediaQuery.platformBrightnessOf(context);
+        /// ```
+        /// {@end-tool}
+        ///
+        /// {@tool snippet}
+        /// Querying [MediaQueryData].
+        ///
+        /// ```dart
+        /// final MediaQueryData mediaQueryData = MediaQuery.of(context);
+        /// final Brightness brightness = mediaQueryData.platformBrightness;
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See [Window.onPlatformBrightnessChanged].
+        /// </Summary>
         public virtual void HandlePlatformBrightnessChanged() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a [ViewConfiguration] configured for the [RenderView] based on the
+        /// current environment.
+        ///
+        /// This is called during construction and also in response to changes to the
+        /// system metrics.
+        ///
+        /// Bindings can override this method to change what size or device pixel
+        /// ratio the [RenderView] will use. For example, the testing framework uses
+        /// this to force the display into 800x600 when a test is run on the device
+        /// using `flutter run`.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.View.ViewConfiguration CreateViewConfiguration() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Creates a [MouseTracker] which manages state about currently connected
+        /// mice, for hover notification.
+        ///
+        /// Used by testing framework to reinitialize the mouse tracker between tests.
+        /// </Summary>
         public virtual void InitMouseTracker(FlutterSDK.Rendering.Mousetracking.MouseTracker tracker = default(FlutterSDK.Rendering.Mousetracking.MouseTracker)) { throw new NotImplementedException(); }
 
 
         private void _HandleSemanticsEnabledChanged() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Whether the render tree associated with this binding should produce a tree
+        /// of [SemanticsNode] objects.
+        /// </Summary>
         public virtual void SetSemanticsEnabled(bool enabled) { throw new NotImplementedException(); }
 
 
@@ -500,15 +574,99 @@ namespace FlutterSDK.Rendering.Binding
         private void _HandlePersistentFrameCallback(TimeSpan timeStamp) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Tell the framework to not send the first frames to the engine until there
+        /// is a corresponding call to [allowFirstFrame].
+        ///
+        /// Call this to perform asynchronous initialization work before the first
+        /// frame is rendered (which takes down the splash screen). The framework
+        /// will still do all the work to produce frames, but those frames are never
+        /// sent to the engine and will not appear on screen.
+        ///
+        /// Calling this has no effect after the first frame has been sent to the
+        /// engine.
+        /// </Summary>
         public virtual void DeferFirstFrame() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called after [deferFirstFrame] to tell the framework that it is ok to
+        /// send the first frame to the engine now.
+        ///
+        /// For best performance, this method should only be called while the
+        /// [schedulerPhase] is [SchedulerPhase.idle].
+        ///
+        /// This method may only be called once for each corresponding call
+        /// to [deferFirstFrame].
+        /// </Summary>
         public virtual void AllowFirstFrame() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Call this to pretend that no frames have been sent to the engine yet.
+        ///
+        /// This is useful for tests that want to call [deferFirstFrame] and
+        /// [allowFirstFrame] since those methods only have an effect if no frames
+        /// have been sent to the engine yet.
+        /// </Summary>
         public virtual void ResetFirstFrameSent() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Pump the rendering pipeline to generate a frame.
+        ///
+        /// This method is called by [handleDrawFrame], which itself is called
+        /// automatically by the engine when it is time to lay out and paint a frame.
+        ///
+        /// Each frame consists of the following phases:
+        ///
+        /// 1. The animation phase: The [handleBeginFrame] method, which is registered
+        /// with [Window.onBeginFrame], invokes all the transient frame callbacks
+        /// registered with [scheduleFrameCallback], in registration order. This
+        /// includes all the [Ticker] instances that are driving [AnimationController]
+        /// objects, which means all of the active [Animation] objects tick at this
+        /// point.
+        ///
+        /// 2. Microtasks: After [handleBeginFrame] returns, any microtasks that got
+        /// scheduled by transient frame callbacks get to run. This typically includes
+        /// callbacks for futures from [Ticker]s and [AnimationController]s that
+        /// completed this frame.
+        ///
+        /// After [handleBeginFrame], [handleDrawFrame], which is registered with
+        /// [Window.onDrawFrame], is called, which invokes all the persistent frame
+        /// callbacks, of which the most notable is this method, [drawFrame], which
+        /// proceeds as follows:
+        ///
+        /// 3. The layout phase: All the dirty [RenderObject]s in the system are laid
+        /// out (see [RenderObject.performLayout]). See [RenderObject.markNeedsLayout]
+        /// for further details on marking an object dirty for layout.
+        ///
+        /// 4. The compositing bits phase: The compositing bits on any dirty
+        /// [RenderObject] objects are updated. See
+        /// [RenderObject.markNeedsCompositingBitsUpdate].
+        ///
+        /// 5. The paint phase: All the dirty [RenderObject]s in the system are
+        /// repainted (see [RenderObject.paint]). This generates the [Layer] tree. See
+        /// [RenderObject.markNeedsPaint] for further details on marking an object
+        /// dirty for paint.
+        ///
+        /// 6. The compositing phase: The layer tree is turned into a [Scene] and
+        /// sent to the GPU.
+        ///
+        /// 7. The semantics phase: All the dirty [RenderObject]s in the system have
+        /// their semantics updated (see [RenderObject.semanticsAnnotator]). This
+        /// generates the [SemanticsNode] tree. See
+        /// [RenderObject.markNeedsSemanticsUpdate] for further details on marking an
+        /// object dirty for semantics.
+        ///
+        /// For more details on steps 3-7, see [PipelineOwner].
+        ///
+        /// 8. The finalization phase: After [drawFrame] returns, [handleDrawFrame]
+        /// then invokes post-frame callbacks (registered with [addPostFrameCallback]).
+        ///
+        /// Some bindings (for example, the [WidgetsBinding]) add extra steps to this
+        /// list (for example, see [WidgetsBinding.drawFrame]).
+        /// </Summary>
         public virtual void DrawFrame() { throw new NotImplementedException(); }
 
 
@@ -556,6 +714,15 @@ namespace FlutterSDK.Rendering.Binding
     }
 
 
+    /// <Summary>
+    /// A concrete binding for applications that use the Rendering framework
+    /// directly. This is the glue that binds the framework to the Flutter engine.
+    ///
+    /// You would only use this binding if you are writing to the
+    /// rendering layer directly. If you are writing to a higher-level
+    /// library, such as the Flutter Widgets library, then you would use
+    /// that layer's binding.
+    /// </Summary>
     public class RenderingFlutterBinding : FlutterSDK.Foundation.Binding.BindingBase, IGestureBinding, IServicesBinding, ISchedulerBinding, ISemanticsBinding, IPaintingBinding, IRendererBinding
     {
         #region constructors

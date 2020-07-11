@@ -427,6 +427,28 @@ namespace FlutterSDK.Rendering.Slivergrid
     {
     }
 
+    /// <Summary>
+    /// The size and position of all the tiles in a [RenderSliverGrid].
+    ///
+    /// Rather that providing a grid with a [SliverGridLayout] directly, you instead
+    /// provide the grid a [SliverGridDelegate], which can compute a
+    /// [SliverGridLayout] given the current [SliverConstraints].
+    ///
+    /// The tiles can be placed arbitrarily, but it is more efficient to place tiles
+    /// in roughly in order by scroll offset because grids reify a contiguous
+    /// sequence of children.
+    ///
+    /// See also:
+    ///
+    ///  * [SliverGridRegularTileLayout], which represents a layout that uses
+    ///    equally sized and spaced tiles.
+    ///  * [SliverGridGeometry], which represents the size and position of a single
+    ///    tile in a grid.
+    ///  * [SliverGridDelegate.getLayout], which returns this object to describe the
+    ///    delegate's layout.
+    ///  * [RenderSliverGrid], which uses this class during its
+    ///    [RenderSliverGrid.performLayout] method.
+    /// </Summary>
     public interface ISliverGridLayout
     {
         int GetMinChildIndexForScrollOffset(double scrollOffset);
@@ -436,6 +458,26 @@ namespace FlutterSDK.Rendering.Slivergrid
     }
 
 
+    /// <Summary>
+    /// Controls the layout of tiles in a grid.
+    ///
+    /// Given the current constraints on the grid, a [SliverGridDelegate] computes
+    /// the layout for the tiles in the grid. The tiles can be placed arbitrarily,
+    /// but it is more efficient to place tiles in roughly in order by scroll offset
+    /// because grids reify a contiguous sequence of children.
+    ///
+    /// See also:
+    ///
+    ///  * [SliverGridDelegateWithFixedCrossAxisCount], which creates a layout with
+    ///    a fixed number of tiles in the cross axis.
+    ///  * [SliverGridDelegateWithMaxCrossAxisExtent], which creates a layout with
+    ///    tiles that have a maximum cross-axis extent.
+    ///  * [GridView], which uses this delegate to control the layout of its tiles.
+    ///  * [SliverGrid], which uses this delegate to control the layout of its
+    ///    tiles.
+    ///  * [RenderSliverGrid], which uses this delegate to control the layout of its
+    ///    tiles.
+    /// </Summary>
     public interface ISliverGridDelegate
     {
         FlutterSDK.Rendering.Slivergrid.SliverGridLayout GetLayout(FlutterSDK.Rendering.Sliver.SliverConstraints constraints);
@@ -443,6 +485,18 @@ namespace FlutterSDK.Rendering.Slivergrid
     }
 
 
+    /// <Summary>
+    /// Describes the placement of a child in a [RenderSliverGrid].
+    ///
+    /// See also:
+    ///
+    ///  * [SliverGridLayout], which represents the geometry of all the tiles in a
+    ///    grid.
+    ///  * [SliverGridLayout.getGeometryForChildIndex], which returns this object
+    ///    to describe the child's placement.
+    ///  * [RenderSliverGrid], which uses this class during its
+    ///    [RenderSliverGrid.performLayout] method.
+    /// </Summary>
     public class SliverGridGeometry
     {
         #region constructors
@@ -465,6 +519,10 @@ namespace FlutterSDK.Rendering.Slivergrid
 
         #region methods
 
+        /// <Summary>
+        /// Returns a tight [BoxConstraints] that forces the child to have the
+        /// required size.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Box.BoxConstraints GetBoxConstraints(FlutterSDK.Rendering.Sliver.SliverConstraints constraints) { throw new NotImplementedException(); }
 
 
@@ -472,6 +530,28 @@ namespace FlutterSDK.Rendering.Slivergrid
     }
 
 
+    /// <Summary>
+    /// The size and position of all the tiles in a [RenderSliverGrid].
+    ///
+    /// Rather that providing a grid with a [SliverGridLayout] directly, you instead
+    /// provide the grid a [SliverGridDelegate], which can compute a
+    /// [SliverGridLayout] given the current [SliverConstraints].
+    ///
+    /// The tiles can be placed arbitrarily, but it is more efficient to place tiles
+    /// in roughly in order by scroll offset because grids reify a contiguous
+    /// sequence of children.
+    ///
+    /// See also:
+    ///
+    ///  * [SliverGridRegularTileLayout], which represents a layout that uses
+    ///    equally sized and spaced tiles.
+    ///  * [SliverGridGeometry], which represents the size and position of a single
+    ///    tile in a grid.
+    ///  * [SliverGridDelegate.getLayout], which returns this object to describe the
+    ///    delegate's layout.
+    ///  * [RenderSliverGrid], which uses this class during its
+    ///    [RenderSliverGrid.performLayout] method.
+    /// </Summary>
     public class SliverGridLayout
     {
         #region constructors
@@ -486,21 +566,58 @@ namespace FlutterSDK.Rendering.Slivergrid
 
         #region methods
 
+        /// <Summary>
+        /// The minimum child index that is visible at (or after) this scroll offset.
+        /// </Summary>
         public virtual int GetMinChildIndexForScrollOffset(double scrollOffset) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The maximum child index that is visible at (or before) this scroll offset.
+        /// </Summary>
         public virtual int GetMaxChildIndexForScrollOffset(double scrollOffset) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The size and position of the child with the given index.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Slivergrid.SliverGridGeometry GetGeometryForChildIndex(int index) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The scroll extent needed to fully display all the tiles if there are
+        /// `childCount` children in total.
+        ///
+        /// The child count will never be null.
+        /// </Summary>
         public virtual double ComputeMaxScrollOffset(int childCount) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// A [SliverGridLayout] that uses equally sized and spaced tiles.
+    ///
+    /// Rather that providing a grid with a [SliverGridLayout] directly, you instead
+    /// provide the grid a [SliverGridDelegate], which can compute a
+    /// [SliverGridLayout] given the current [SliverConstraints].
+    ///
+    /// This layout is used by [SliverGridDelegateWithFixedCrossAxisCount] and
+    /// [SliverGridDelegateWithMaxCrossAxisExtent].
+    ///
+    /// See also:
+    ///
+    ///  * [SliverGridDelegateWithFixedCrossAxisCount], which uses this layout.
+    ///  * [SliverGridDelegateWithMaxCrossAxisExtent], which uses this layout.
+    ///  * [SliverGridLayout], which represents an arbitrary tile layout.
+    ///  * [SliverGridGeometry], which represents the size and position of a single
+    ///    tile in a grid.
+    ///  * [SliverGridDelegate.getLayout], which returns this object to describe the
+    ///    delegate's layout.
+    ///  * [RenderSliverGrid], which uses this class during its
+    ///    [RenderSliverGrid.performLayout] method.
+    /// </Summary>
     public class SliverGridRegularTileLayout : FlutterSDK.Rendering.Slivergrid.SliverGridLayout
     {
         #region constructors
@@ -545,6 +662,26 @@ namespace FlutterSDK.Rendering.Slivergrid
     }
 
 
+    /// <Summary>
+    /// Controls the layout of tiles in a grid.
+    ///
+    /// Given the current constraints on the grid, a [SliverGridDelegate] computes
+    /// the layout for the tiles in the grid. The tiles can be placed arbitrarily,
+    /// but it is more efficient to place tiles in roughly in order by scroll offset
+    /// because grids reify a contiguous sequence of children.
+    ///
+    /// See also:
+    ///
+    ///  * [SliverGridDelegateWithFixedCrossAxisCount], which creates a layout with
+    ///    a fixed number of tiles in the cross axis.
+    ///  * [SliverGridDelegateWithMaxCrossAxisExtent], which creates a layout with
+    ///    tiles that have a maximum cross-axis extent.
+    ///  * [GridView], which uses this delegate to control the layout of its tiles.
+    ///  * [SliverGrid], which uses this delegate to control the layout of its
+    ///    tiles.
+    ///  * [RenderSliverGrid], which uses this delegate to control the layout of its
+    ///    tiles.
+    /// </Summary>
     public class SliverGridDelegate
     {
         #region constructors
@@ -559,15 +696,47 @@ namespace FlutterSDK.Rendering.Slivergrid
 
         #region methods
 
+        /// <Summary>
+        /// Returns information about the size and position of the tiles in the grid.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Slivergrid.SliverGridLayout GetLayout(FlutterSDK.Rendering.Sliver.SliverConstraints constraints) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Override this method to return true when the children need to be
+        /// laid out.
+        ///
+        /// This should compare the fields of the current delegate and the given
+        /// `oldDelegate` and return true if the fields are such that the layout would
+        /// be different.
+        /// </Summary>
         public virtual bool ShouldRelayout(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate oldDelegate) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// Creates grid layouts with a fixed number of tiles in the cross axis.
+    ///
+    /// For example, if the grid is vertical, this delegate will create a layout
+    /// with a fixed number of columns. If the grid is horizontal, this delegate
+    /// will create a layout with a fixed number of rows.
+    ///
+    /// This delegate creates grids with equally sized and spaced tiles.
+    ///
+    /// See also:
+    ///
+    ///  * [SliverGridDelegateWithMaxCrossAxisExtent], which creates a layout with
+    ///    tiles that have a maximum cross-axis extent.
+    ///  * [SliverGridDelegate], which creates arbitrary layouts.
+    ///  * [GridView], which can use this delegate to control the layout of its
+    ///    tiles.
+    ///  * [SliverGrid], which can use this delegate to control the layout of its
+    ///    tiles.
+    ///  * [RenderSliverGrid], which can use this delegate to control the layout of
+    ///    its tiles.
+    /// </Summary>
     public class SliverGridDelegateWithFixedCrossAxisCount : FlutterSDK.Rendering.Slivergrid.SliverGridDelegate
     {
         #region constructors
@@ -603,6 +772,33 @@ namespace FlutterSDK.Rendering.Slivergrid
     }
 
 
+    /// <Summary>
+    /// Creates grid layouts with tiles that each have a maximum cross-axis extent.
+    ///
+    /// This delegate will select a cross-axis extent for the tiles that is as
+    /// large as possible subject to the following conditions:
+    ///
+    ///  - The extent evenly divides the cross-axis extent of the grid.
+    ///  - The extent is at most [maxCrossAxisExtent].
+    ///
+    /// For example, if the grid is vertical, the grid is 500.0 pixels wide, and
+    /// [maxCrossAxisExtent] is 150.0, this delegate will create a grid with 4
+    /// columns that are 125.0 pixels wide.
+    ///
+    /// This delegate creates grids with equally sized and spaced tiles.
+    ///
+    /// See also:
+    ///
+    ///  * [SliverGridDelegateWithFixedCrossAxisCount], which creates a layout with
+    ///    a fixed number of tiles in the cross axis.
+    ///  * [SliverGridDelegate], which creates arbitrary layouts.
+    ///  * [GridView], which can use this delegate to control the layout of its
+    ///    tiles.
+    ///  * [SliverGrid], which can use this delegate to control the layout of its
+    ///    tiles.
+    ///  * [RenderSliverGrid], which can use this delegate to control the layout of
+    ///    its tiles.
+    /// </Summary>
     public class SliverGridDelegateWithMaxCrossAxisExtent : FlutterSDK.Rendering.Slivergrid.SliverGridDelegate
     {
         #region constructors
@@ -638,6 +834,9 @@ namespace FlutterSDK.Rendering.Slivergrid
     }
 
 
+    /// <Summary>
+    /// Parent data structure used by [RenderSliverGrid].
+    /// </Summary>
     public class SliverGridParentData : FlutterSDK.Rendering.Slivermultiboxadaptor.SliverMultiBoxAdaptorParentData
     {
         #region constructors
@@ -655,6 +854,20 @@ namespace FlutterSDK.Rendering.Slivergrid
     }
 
 
+    /// <Summary>
+    /// A sliver that places multiple box children in a two dimensional arrangement.
+    ///
+    /// [RenderSliverGrid] places its children in arbitrary positions determined by
+    /// [gridDelegate]. Each child is forced to have the size specified by the
+    /// [gridDelegate].
+    ///
+    /// See also:
+    ///
+    ///  * [RenderSliverList], which places its children in a linear
+    ///    array.
+    ///  * [RenderSliverFixedExtentList], which places its children in a linear
+    ///    array with a fixed extent in the main axis.
+    /// </Summary>
     public class RenderSliverGrid : FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverMultiBoxAdaptor
     {
         #region constructors

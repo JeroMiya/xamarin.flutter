@@ -427,6 +427,24 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
     {
     }
 
+    /// <Summary>
+    /// A base class for slivers that have a [RenderBox] child which scrolls
+    /// normally, except that when it hits the leading edge (typically the top) of
+    /// the viewport, it shrinks to a minimum size ([minExtent]).
+    ///
+    /// This class primarily provides helpers for managing the child, in particular:
+    ///
+    ///  * [layoutChild], which applies min and max extents and a scroll offset to
+    ///    lay out the child. This is normally called from [performLayout].
+    ///
+    ///  * [childExtent], to convert the child's box layout dimensions to the sliver
+    ///    geometry model.
+    ///
+    ///  * hit testing, painting, and other details of the sliver protocol.
+    ///
+    /// Subclasses must implement [performLayout], [minExtent], and [maxExtent], and
+    /// typically also will implement [updateChild].
+    /// </Summary>
     public interface IRenderSliverPersistentHeader
     {
         void UpdateChild(double shrinkOffset, bool overlapsContent);
@@ -446,6 +464,13 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
     }
 
 
+    /// <Summary>
+    /// A sliver with a [RenderBox] child which scrolls normally, except that when
+    /// it hits the leading edge (typically the top) of the viewport, it shrinks to
+    /// a minimum size before continuing to scroll.
+    ///
+    /// This sliver makes no effort to avoid overlapping other content.
+    /// </Summary>
     public interface IRenderSliverScrollingPersistentHeader
     {
         double UpdateGeometry();
@@ -454,6 +479,13 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
     }
 
 
+    /// <Summary>
+    /// A sliver with a [RenderBox] child which never scrolls off the viewport in
+    /// the positive scroll direction, and which first scrolls on at a full size but
+    /// then shrinks as the viewport continues to scroll.
+    ///
+    /// This sliver avoids overlapping other earlier slivers where possible.
+    /// </Summary>
     public interface IRenderSliverPinnedPersistentHeader
     {
         void PerformLayout();
@@ -461,6 +493,16 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
     }
 
 
+    /// <Summary>
+    /// A sliver with a [RenderBox] child which shrinks and scrolls like a
+    /// [RenderSliverScrollingPersistentHeader], but immediately comes back when the
+    /// user scrolls in the reverse direction.
+    ///
+    /// See also:
+    ///
+    ///  * [RenderSliverFloatingPinnedPersistentHeader], which is similar but sticks
+    ///    to the start of the viewport rather than scrolling off.
+    /// </Summary>
     public interface IRenderSliverFloatingPersistentHeader
     {
         void Detach();
@@ -474,12 +516,30 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
     }
 
 
+    /// <Summary>
+    /// A sliver with a [RenderBox] child which shrinks and then remains pinned to
+    /// the start of the viewport like a [RenderSliverPinnedPersistentHeader], but
+    /// immediately grows when the user scrolls in the reverse direction.
+    ///
+    /// See also:
+    ///
+    ///  * [RenderSliverFloatingPersistentHeader], which is similar but scrolls off
+    ///    the top rather than sticking to it.
+    /// </Summary>
     public interface IRenderSliverFloatingPinnedPersistentHeader
     {
         double UpdateGeometry();
     }
 
 
+    /// <Summary>
+    /// Specifies how a stretched header is to trigger an [AsyncCallback].
+    ///
+    /// See also:
+    ///
+    ///  * [SliverAppBar], which creates a header that can be stretched into an
+    ///    overscroll area and trigger a callback function.
+    /// </Summary>
     public class OverScrollHeaderStretchConfiguration
     {
         #region constructors
@@ -501,6 +561,24 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
     }
 
 
+    /// <Summary>
+    /// A base class for slivers that have a [RenderBox] child which scrolls
+    /// normally, except that when it hits the leading edge (typically the top) of
+    /// the viewport, it shrinks to a minimum size ([minExtent]).
+    ///
+    /// This class primarily provides helpers for managing the child, in particular:
+    ///
+    ///  * [layoutChild], which applies min and max extents and a scroll offset to
+    ///    lay out the child. This is normally called from [performLayout].
+    ///
+    ///  * [childExtent], to convert the child's box layout dimensions to the sliver
+    ///    geometry model.
+    ///
+    ///  * hit testing, painting, and other details of the sliver protocol.
+    ///
+    /// Subclasses must implement [performLayout], [minExtent], and [maxExtent], and
+    /// typically also will implement [updateChild].
+    /// </Summary>
     public class RenderSliverPersistentHeader : FlutterSDK.Rendering.Sliver.RenderSliver, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>, IRenderSliverHelpers
     {
         #region constructors
@@ -525,15 +603,69 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
 
         #region methods
 
+        /// <Summary>
+        /// Update the child render object if necessary.
+        ///
+        /// Called before the first layout, any time [markNeedsLayout] is called, and
+        /// any time the scroll offset changes. The `shrinkOffset` is the difference
+        /// between the [maxExtent] and the current size. Zero means the header is
+        /// fully expanded, any greater number up to [maxExtent] means that the header
+        /// has been scrolled by that much. The `overlapsContent` argument is true if
+        /// the sliver's leading edge is beyond its normal place in the viewport
+        /// contents, and false otherwise. It may still paint beyond its normal place
+        /// if the [minExtent] after this call is greater than the amount of space that
+        /// would normally be left.
+        ///
+        /// The render object will size itself to the larger of (a) the [maxExtent]
+        /// minus the child's intrinsic height and (b) the [maxExtent] minus the
+        /// shrink offset.
+        ///
+        /// When this method is called by [layoutChild], the [child] can be set,
+        /// mutated, or replaced. (It should not be called outside [layoutChild].)
+        ///
+        /// Any time this method would mutate the child, call [markNeedsLayout].
+        /// </Summary>
         public virtual void UpdateChild(double shrinkOffset, bool overlapsContent) { throw new NotImplementedException(); }
 
 
         public new void MarkNeedsLayout() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Lays out the [child].
+        ///
+        /// This is called by [performLayout]. It applies the given `scrollOffset`
+        /// (which need not match the offset given by the [constraints]) and the
+        /// `maxExtent` (which need not match the value returned by the [maxExtent]
+        /// getter).
+        ///
+        /// The `overlapsContent` argument is passed to [updateChild].
+        /// </Summary>
         public virtual void LayoutChild(double scrollOffset, double maxExtent, bool overlapsContent = false) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the distance from the leading _visible_ edge of the sliver to the
+        /// side of the child closest to that edge, in the scroll axis direction.
+        ///
+        /// For example, if the [constraints] describe this sliver as having an axis
+        /// direction of [AxisDirection.down], then this is the distance from the top
+        /// of the visible portion of the sliver to the top of the child. If the child
+        /// is scrolled partially off the top of the viewport, then this will be
+        /// negative. On the other hand, if the [constraints] describe this sliver as
+        /// having an axis direction of [AxisDirection.up], then this is the distance
+        /// from the bottom of the visible portion of the sliver to the bottom of the
+        /// child. In both cases, this is the direction of increasing
+        /// [SliverConstraints.scrollOffset].
+        ///
+        /// Calling this when the child is not visible is not valid.
+        ///
+        /// The argument must be the value of the [child] property.
+        ///
+        /// This must be implemented by [RenderSliverPersistentHeader] subclasses.
+        ///
+        /// If there is no child, this should return 0.0.
+        /// </Summary>
         public new double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
 
@@ -555,6 +687,13 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
     }
 
 
+    /// <Summary>
+    /// A sliver with a [RenderBox] child which scrolls normally, except that when
+    /// it hits the leading edge (typically the top) of the viewport, it shrinks to
+    /// a minimum size before continuing to scroll.
+    ///
+    /// This sliver makes no effort to avoid overlapping other content.
+    /// </Summary>
     public class RenderSliverScrollingPersistentHeader : FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverPersistentHeader
     {
         #region constructors
@@ -571,6 +710,11 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
 
         #region methods
 
+        /// <Summary>
+        /// Updates [geometry], and returns the new value for [childMainAxisPosition].
+        ///
+        /// This is used by [performLayout].
+        /// </Summary>
         public virtual double UpdateGeometry() { throw new NotImplementedException(); }
 
 
@@ -584,6 +728,13 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
     }
 
 
+    /// <Summary>
+    /// A sliver with a [RenderBox] child which never scrolls off the viewport in
+    /// the positive scroll direction, and which first scrolls on at a full size but
+    /// then shrinks as the viewport continues to scroll.
+    ///
+    /// This sliver avoids overlapping other earlier slivers where possible.
+    /// </Summary>
     public class RenderSliverPinnedPersistentHeader : FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverPersistentHeader
     {
         #region constructors
@@ -609,6 +760,18 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
     }
 
 
+    /// <Summary>
+    /// Specifies how a floating header is to be "snapped" (animated) into or out
+    /// of view.
+    ///
+    /// See also:
+    ///
+    ///  * [RenderSliverFloatingPersistentHeader.maybeStartSnapAnimation] and
+    ///    [RenderSliverFloatingPersistentHeader.maybeStopSnapAnimation], which
+    ///    start or stop the floating header's animation.
+    ///  * [SliverAppBar], which creates a header that can be pinned, floating,
+    ///    and snapped into view via the corresponding parameters.
+    /// </Summary>
     public class FloatingHeaderSnapConfiguration
     {
         #region constructors
@@ -632,6 +795,16 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
     }
 
 
+    /// <Summary>
+    /// A sliver with a [RenderBox] child which shrinks and scrolls like a
+    /// [RenderSliverScrollingPersistentHeader], but immediately comes back when the
+    /// user scrolls in the reverse direction.
+    ///
+    /// See also:
+    ///
+    ///  * [RenderSliverFloatingPinnedPersistentHeader], which is similar but sticks
+    ///    to the start of the viewport rather than scrolling off.
+    /// </Summary>
     public class RenderSliverFloatingPersistentHeader : FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverPersistentHeader
     {
         #region constructors
@@ -657,12 +830,23 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
         public new void Detach() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Updates [geometry], and returns the new value for [childMainAxisPosition].
+        ///
+        /// This is used by [performLayout].
+        /// </Summary>
         public virtual double UpdateGeometry() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// If the header isn't already fully exposed, then scroll it into view.
+        /// </Summary>
         public virtual void MaybeStartSnapAnimation(FlutterSDK.Rendering.Viewportoffset.ScrollDirection direction) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// If a header snap animation is underway then stop it.
+        /// </Summary>
         public virtual void MaybeStopSnapAnimation(FlutterSDK.Rendering.Viewportoffset.ScrollDirection direction) { throw new NotImplementedException(); }
 
 
@@ -679,6 +863,16 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
     }
 
 
+    /// <Summary>
+    /// A sliver with a [RenderBox] child which shrinks and then remains pinned to
+    /// the start of the viewport like a [RenderSliverPinnedPersistentHeader], but
+    /// immediately grows when the user scrolls in the reverse direction.
+    ///
+    /// See also:
+    ///
+    ///  * [RenderSliverFloatingPersistentHeader], which is similar but scrolls off
+    ///    the top rather than sticking to it.
+    /// </Summary>
     public class RenderSliverFloatingPinnedPersistentHeader : FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverFloatingPersistentHeader
     {
         #region constructors

@@ -451,38 +451,154 @@ namespace FlutterSDK.Painting.Basictypes
 
     }
 
+    /// <Summary>
+    /// The description of the difference between two objects, in the context of how
+    /// it will affect the rendering.
+    ///
+    /// Used by [TextSpan.compareTo] and [TextStyle.compareTo].
+    ///
+    /// The values in this enum are ordered such that they are in increasing order
+    /// of cost. A value with index N implies all the values with index less than N.
+    /// For example, [layout] (index 3) implies [paint] (2).
+    /// </Summary>
     public enum RenderComparison
     {
 
+        /// <Summary>
+        /// The two objects are identical (meaning deeply equal, not necessarily
+        /// [dart:core.identical]).
+        /// </Summary>
         Identical,
+        /// <Summary>
+        /// The two objects are identical for the purpose of layout, but may be different
+        /// in other ways.
+        ///
+        /// For example, maybe some event handlers changed.
+        /// </Summary>
         Metadata,
+        /// <Summary>
+        /// The two objects are different but only in ways that affect paint, not layout.
+        ///
+        /// For example, only the color is changed.
+        ///
+        /// [RenderObject.markNeedsPaint] would be necessary to handle this kind of
+        /// change in a render object.
+        /// </Summary>
         Paint,
+        /// <Summary>
+        /// The two objects are different in ways that affect layout (and therefore paint).
+        ///
+        /// For example, the size is changed.
+        ///
+        /// This is the most drastic level of change possible.
+        ///
+        /// [RenderObject.markNeedsLayout] would be necessary to handle this kind of
+        /// change in a render object.
+        /// </Summary>
         Layout,
     }
 
 
+    /// <Summary>
+    /// The two cardinal directions in two dimensions.
+    ///
+    /// The axis is always relative to the current coordinate space. This means, for
+    /// example, that a [horizontal] axis might actually be diagonally from top
+    /// right to bottom left, due to some local [Transform] applied to the scene.
+    ///
+    /// See also:
+    ///
+    ///  * [AxisDirection], which is a directional version of this enum (with values
+    ///    light left and right, rather than just horizontal).
+    ///  * [TextDirection], which disambiguates between left-to-right horizontal
+    ///    content and right-to-left horizontal content.
+    /// </Summary>
     public enum Axis
     {
 
+        /// <Summary>
+        /// Left and right.
+        ///
+        /// See also:
+        ///
+        ///  * [TextDirection], which disambiguates between left-to-right horizontal
+        ///    content and right-to-left horizontal content.
+        /// </Summary>
         Horizontal,
+        /// <Summary>
+        /// Up and down.
+        /// </Summary>
         Vertical,
     }
 
 
+    /// <Summary>
+    /// A direction in which boxes flow vertically.
+    ///
+    /// This is used by the flex algorithm (e.g. [Column]) to decide in which
+    /// direction to draw boxes.
+    ///
+    /// This is also used to disambiguate `start` and `end` values (e.g.
+    /// [MainAxisAlignment.start] or [CrossAxisAlignment.end]).
+    ///
+    /// See also:
+    ///
+    ///  * [TextDirection], which controls the same thing but horizontally.
+    /// </Summary>
     public enum VerticalDirection
     {
 
+        /// <Summary>
+        /// Boxes should start at the bottom and be stacked vertically towards the top.
+        ///
+        /// The "start" is at the bottom, the "end" is at the top.
+        /// </Summary>
         Up,
+        /// <Summary>
+        /// Boxes should start at the top and be stacked vertically towards the bottom.
+        ///
+        /// The "start" is at the top, the "end" is at the bottom.
+        /// </Summary>
         Down,
     }
 
 
+    /// <Summary>
+    /// A direction along either the horizontal or vertical [Axis].
+    /// </Summary>
     public enum AxisDirection
     {
 
+        /// <Summary>
+        /// Zero is at the bottom and positive values are above it: ⇈
+        ///
+        /// Alphabetical content with a [GrowthDirection.forward] would have the A at
+        /// the bottom and the Z at the top. This is an unusual configuration.
+        /// </Summary>
         Up,
+        /// <Summary>
+        /// Zero is on the left and positive values are to the right of it: ⇉
+        ///
+        /// Alphabetical content with a [GrowthDirection.forward] would have the A on
+        /// the left and the Z on the right. This is the ordinary reading order for a
+        /// horizontal set of tabs in an English application, for example.
+        /// </Summary>
         Right,
+        /// <Summary>
+        /// Zero is at the top and positive values are below it: ⇊
+        ///
+        /// Alphabetical content with a [GrowthDirection.forward] would have the A at
+        /// the top and the Z at the bottom. This is the ordinary reading order for a
+        /// vertical list.
+        /// </Summary>
         Down,
+        /// <Summary>
+        /// Zero is to the right and positive values are to the left of it: ⇇
+        ///
+        /// Alphabetical content with a [GrowthDirection.forward] would have the A at
+        /// the right and the Z at the left. This is the ordinary reading order for a
+        /// horizontal set of tabs in a Hebrew application, for example.
+        /// </Summary>
         Left,
     }
 

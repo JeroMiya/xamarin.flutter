@@ -417,6 +417,24 @@ namespace FlutterSDK.Material.Floatingactionbuttonlocation
 
     }
 
+    /// <Summary>
+    /// An object that defines a position for the [FloatingActionButton]
+    /// based on the [Scaffold]'s [ScaffoldPrelayoutGeometry].
+    ///
+    /// Flutter provides [FloatingActionButtonLocation]s for the common
+    /// [FloatingActionButton] placements in Material Design applications. These
+    /// locations are available as static members of this class.
+    ///
+    /// See also:
+    ///
+    ///  * [FloatingActionButton], which is a circular button typically shown in the
+    ///    bottom right corner of the app.
+    ///  * [FloatingActionButtonAnimator], which is used to animate the
+    ///    [Scaffold.floatingActionButton] from one [FloatingActionButtonLocation] to
+    ///    another.
+    ///  * [ScaffoldPrelayoutGeometry], the geometry that
+    ///    [FloatingActionButtonLocation]s use to position the [FloatingActionButton].
+    /// </Summary>
     public interface IFloatingActionButtonLocation
     {
         Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry);
@@ -437,6 +455,24 @@ namespace FlutterSDK.Material.Floatingactionbuttonlocation
     }
 
 
+    /// <Summary>
+    /// Provider of animations to move the [FloatingActionButton] between [FloatingActionButtonLocation]s.
+    ///
+    /// The [Scaffold] uses [Scaffold.floatingActionButtonAnimator] to define:
+    ///
+    ///  * The [Offset] of the [FloatingActionButton] between the old and new
+    ///    [FloatingActionButtonLocation]s as part of the transition animation.
+    ///  * An [Animation] to scale the [FloatingActionButton] during the transition.
+    ///  * An [Animation] to rotate the [FloatingActionButton] during the transition.
+    ///  * Where to start a new animation from if an animation is interrupted.
+    ///
+    /// See also:
+    ///
+    ///  * [FloatingActionButton], which is a circular button typically shown in the
+    ///    bottom right corner of the app.
+    ///  * [FloatingActionButtonLocation], which the [Scaffold] uses to place the
+    ///    [Scaffold.floatingActionButton] within the [Scaffold]'s layout.
+    /// </Summary>
     public interface IFloatingActionButtonAnimator
     {
         Offset GetOffset(FlutterBinding.UI.Offset begin = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset end = default(FlutterBinding.UI.Offset), double progress = default(double));
@@ -448,6 +484,24 @@ namespace FlutterSDK.Material.Floatingactionbuttonlocation
     }
 
 
+    /// <Summary>
+    /// An object that defines a position for the [FloatingActionButton]
+    /// based on the [Scaffold]'s [ScaffoldPrelayoutGeometry].
+    ///
+    /// Flutter provides [FloatingActionButtonLocation]s for the common
+    /// [FloatingActionButton] placements in Material Design applications. These
+    /// locations are available as static members of this class.
+    ///
+    /// See also:
+    ///
+    ///  * [FloatingActionButton], which is a circular button typically shown in the
+    ///    bottom right corner of the app.
+    ///  * [FloatingActionButtonAnimator], which is used to animate the
+    ///    [Scaffold.floatingActionButton] from one [FloatingActionButtonLocation] to
+    ///    another.
+    ///  * [ScaffoldPrelayoutGeometry], the geometry that
+    ///    [FloatingActionButtonLocation]s use to position the [FloatingActionButton].
+    /// </Summary>
     public class FloatingActionButtonLocation
     {
         #region constructors
@@ -469,6 +523,15 @@ namespace FlutterSDK.Material.Floatingactionbuttonlocation
 
         #region methods
 
+        /// <Summary>
+        /// Places the [FloatingActionButton] based on the [Scaffold]'s layout.
+        ///
+        /// This uses a [ScaffoldPrelayoutGeometry], which the [Scaffold] constructs
+        /// during its layout phase after it has laid out every widget it can lay out
+        /// except the [FloatingActionButton]. The [Scaffold] uses the [Offset]
+        /// returned from this method to position the [FloatingActionButton] and
+        /// complete its layout.
+        /// </Summary>
         public virtual Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry) { throw new NotImplementedException(); }
 
 
@@ -643,6 +706,24 @@ namespace FlutterSDK.Material.Floatingactionbuttonlocation
     }
 
 
+    /// <Summary>
+    /// Provider of animations to move the [FloatingActionButton] between [FloatingActionButtonLocation]s.
+    ///
+    /// The [Scaffold] uses [Scaffold.floatingActionButtonAnimator] to define:
+    ///
+    ///  * The [Offset] of the [FloatingActionButton] between the old and new
+    ///    [FloatingActionButtonLocation]s as part of the transition animation.
+    ///  * An [Animation] to scale the [FloatingActionButton] during the transition.
+    ///  * An [Animation] to rotate the [FloatingActionButton] during the transition.
+    ///  * Where to start a new animation from if an animation is interrupted.
+    ///
+    /// See also:
+    ///
+    ///  * [FloatingActionButton], which is a circular button typically shown in the
+    ///    bottom right corner of the app.
+    ///  * [FloatingActionButtonLocation], which the [Scaffold] uses to place the
+    ///    [Scaffold.floatingActionButton] within the [Scaffold]'s layout.
+    /// </Summary>
     public class FloatingActionButtonAnimator
     {
         #region constructors
@@ -658,15 +739,80 @@ namespace FlutterSDK.Material.Floatingactionbuttonlocation
 
         #region methods
 
+        /// <Summary>
+        /// Gets the [FloatingActionButton]'s position relative to the origin of the
+        /// [Scaffold] based on [progress].
+        ///
+        /// [begin] is the [Offset] provided by the previous
+        /// [FloatingActionButtonLocation].
+        ///
+        /// [end] is the [Offset] provided by the new
+        /// [FloatingActionButtonLocation].
+        ///
+        /// [progress] is the current progress of the transition animation.
+        /// When [progress] is 0.0, the returned [Offset] should be equal to [begin].
+        /// when [progress] is 1.0, the returned [Offset] should be equal to [end].
+        /// </Summary>
         public virtual Offset GetOffset(FlutterBinding.UI.Offset begin = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset end = default(FlutterBinding.UI.Offset), double progress = default(double)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Animates the scale of the [FloatingActionButton].
+        ///
+        /// The animation should both start and end with a value of 1.0.
+        ///
+        /// For example, to create an animation that linearly scales out and then back in,
+        /// you could join animations that pass each other:
+        ///
+        /// ```dart
+        ///   @override
+        ///   Animation<double> getScaleAnimation({@required Animation<double> parent}) {
+        ///     // The animations will cross at value 0, and the train will return to 1.0.
+        ///     return TrainHoppingAnimation(
+        ///       Tween<double>(begin: 1.0, end: -1.0).animate(parent),
+        ///       Tween<double>(begin: -1.0, end: 1.0).animate(parent),
+        ///     );
+        ///   }
+        /// ```
+        /// </Summary>
         public virtual FlutterSDK.Animation.Animation.Animation<double> GetScaleAnimation(FlutterSDK.Animation.Animation.Animation<double> parent = default(FlutterSDK.Animation.Animation.Animation<double>)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Animates the rotation of [Scaffold.floatingActionButton].
+        ///
+        /// The animation should both start and end with a value of 0.0 or 1.0.
+        ///
+        /// The animation values are a fraction of a full circle, with 0.0 and 1.0
+        /// corresponding to 0 and 360 degrees, while 0.5 corresponds to 180 degrees.
+        ///
+        /// For example, to create a rotation animation that rotates the
+        /// [FloatingActionButton] through a full circle:
+        ///
+        /// ```dart
+        /// @override
+        /// Animation<double> getRotationAnimation({@required Animation<double> parent}) {
+        ///   return Tween<double>(begin: 0.0, end: 1.0).animate(parent);
+        /// }
+        /// ```
+        /// </Summary>
         public virtual FlutterSDK.Animation.Animation.Animation<double> GetRotationAnimation(FlutterSDK.Animation.Animation.Animation<double> parent = default(FlutterSDK.Animation.Animation.Animation<double>)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Gets the progress value to restart a motion animation from when the animation is interrupted.
+        ///
+        /// [previousValue] is the value of the animation before it was interrupted.
+        ///
+        /// The restart of the animation will affect all three parts of the motion animation:
+        /// offset animation, scale animation, and rotation animation.
+        ///
+        /// An interruption triggers if the [Scaffold] is given a new [FloatingActionButtonLocation]
+        /// while it is still animating a transition between two previous [FloatingActionButtonLocation]s.
+        ///
+        /// A sensible default is usually 0.0, which is the same as restarting
+        /// the animation from the beginning, regardless of the original state of the animation.
+        /// </Summary>
         public virtual double GetAnimationRestart(double previousValue) { throw new NotImplementedException(); }
 
 
@@ -705,6 +851,12 @@ namespace FlutterSDK.Material.Floatingactionbuttonlocation
     }
 
 
+    /// <Summary>
+    /// An animation that swaps from one animation to the next when the [parent] passes [swapThreshold].
+    ///
+    /// The [value] of this animation is the value of [first] when [parent.value] < [swapThreshold]
+    /// and the value of [next] otherwise.
+    /// </Summary>
     public class _AnimationSwap<T> : FlutterSDK.Animation.Animations.CompoundAnimation<T>
     {
         #region constructors

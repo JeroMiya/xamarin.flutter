@@ -383,6 +383,25 @@ namespace FlutterSDK.Material.Dividertheme
     {
     }
 
+    /// <Summary>
+    /// Defines the visual properties of [Divider], [VerticalDivider], dividers
+    /// between [ListTile]s, and dividers between rows in [DataTable]s.
+    ///
+    /// Descendant widgets obtain the current [DividerThemeData] object using
+    /// `DividerTheme.of(context)`. Instances of [DividerThemeData]
+    /// can be customized with [DividerThemeData.copyWith].
+    ///
+    /// Typically a [DividerThemeData] is specified as part of the overall
+    /// [Theme] with [ThemeData.dividerTheme].
+    ///
+    /// All [DividerThemeData] properties are `null` by default. When null,
+    /// the widgets will provide their own defaults.
+    ///
+    /// See also:
+    ///
+    ///  * [ThemeData], which describes the overall theme information for the
+    ///    application.
+    /// </Summary>
     public class DividerThemeData : IDiagnosticable
     {
         #region constructors
@@ -407,9 +426,20 @@ namespace FlutterSDK.Material.Dividertheme
 
         #region methods
 
+        /// <Summary>
+        /// Creates a copy of this object with the given fields replaced with the
+        /// new values.
+        /// </Summary>
         public virtual FlutterSDK.Material.Dividertheme.DividerThemeData CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double space = default(double), double thickness = default(double), double indent = default(double), double endIndent = default(double)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two Divider themes.
+        ///
+        /// The argument `t` must not be null.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
         public virtual FlutterSDK.Material.Dividertheme.DividerThemeData Lerp(FlutterSDK.Material.Dividertheme.DividerThemeData a, FlutterSDK.Material.Dividertheme.DividerThemeData b, double t) { throw new NotImplementedException(); }
 
 
@@ -422,6 +452,11 @@ namespace FlutterSDK.Material.Dividertheme
     }
 
 
+    /// <Summary>
+    /// An inherited widget that defines the configuration for
+    /// [Divider]s, [VerticalDivider]s, dividers between [ListTile]s, and dividers
+    /// between rows in [DataTable]s in this widget's subtree.
+    /// </Summary>
     public class DividerTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
         #region constructors
@@ -438,6 +473,19 @@ namespace FlutterSDK.Material.Dividertheme
 
         #region methods
 
+        /// <Summary>
+        /// The closest instance of this class's [data] value that encloses the given
+        /// context.
+        ///
+        /// If there is no ancestor, it returns [ThemeData.dividerTheme]. Applications
+        /// can assume that the returned value will not be null.
+        ///
+        /// Typical usage is as follows:
+        ///
+        /// ```dart
+        /// DividerThemeData theme = DividerTheme.of(context);
+        /// ```
+        /// </Summary>
         public virtual FlutterSDK.Material.Dividertheme.DividerThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 

@@ -427,6 +427,17 @@ namespace FlutterSDK.Rendering.Table
     {
     }
 
+    /// <Summary>
+    /// Base class to describe how wide a column in a [RenderTable] should be.
+    ///
+    /// To size a column to a specific number of pixels, use a [FixedColumnWidth].
+    /// This is the cheapest way to size a column.
+    ///
+    /// Other algorithms that are relatively cheap include [FlexColumnWidth], which
+    /// distributes the space equally among the flexible columns,
+    /// [FractionColumnWidth], which sizes a column based on the size of the
+    /// table's container.
+    /// </Summary>
     public interface ITableColumnWidth
     {
         double MinIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth);
@@ -436,6 +447,9 @@ namespace FlutterSDK.Rendering.Table
     }
 
 
+    /// <Summary>
+    /// Parent data used by [RenderTable] for its children.
+    /// </Summary>
     public class TableCellParentData : FlutterSDK.Rendering.Box.BoxParentData
     {
         #region constructors
@@ -455,6 +469,17 @@ namespace FlutterSDK.Rendering.Table
     }
 
 
+    /// <Summary>
+    /// Base class to describe how wide a column in a [RenderTable] should be.
+    ///
+    /// To size a column to a specific number of pixels, use a [FixedColumnWidth].
+    /// This is the cheapest way to size a column.
+    ///
+    /// Other algorithms that are relatively cheap include [FlexColumnWidth], which
+    /// distributes the space equally among the flexible columns,
+    /// [FractionColumnWidth], which sizes a column based on the size of the
+    /// table's container.
+    /// </Summary>
     public class TableColumnWidth
     {
         #region constructors
@@ -469,12 +494,46 @@ namespace FlutterSDK.Rendering.Table
 
         #region methods
 
+        /// <Summary>
+        /// The smallest width that the column can have.
+        ///
+        /// The `cells` argument is an iterable that provides all the cells
+        /// in the table for this column. Walking the cells is by definition
+        /// O(N), so algorithms that do that should be considered expensive.
+        ///
+        /// The `containerWidth` argument is the `maxWidth` of the incoming
+        /// constraints for the table, and might be infinite.
+        /// </Summary>
         public virtual double MinIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The ideal width that the column should have. This must be equal
+        /// to or greater than the [minIntrinsicWidth]. The column might be
+        /// bigger than this width, e.g. if the column is flexible or if the
+        /// table's width ends up being forced to be bigger than the sum of
+        /// all the maxIntrinsicWidth values.
+        ///
+        /// The `cells` argument is an iterable that provides all the cells
+        /// in the table for this column. Walking the cells is by definition
+        /// O(N), so algorithms that do that should be considered expensive.
+        ///
+        /// The `containerWidth` argument is the `maxWidth` of the incoming
+        /// constraints for the table, and might be infinite.
+        /// </Summary>
         public virtual double MaxIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The flex factor to apply to the cell if there is any room left
+        /// over when laying out the table. The remaining space is
+        /// distributed to any columns with flex in proportion to their flex
+        /// value (higher values get more space).
+        ///
+        /// The `cells` argument is an iterable that provides all the cells
+        /// in the table for this column. Walking the cells is by definition
+        /// O(N), so algorithms that do that should be considered expensive.
+        /// </Summary>
         public virtual double Flex(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells) { throw new NotImplementedException(); }
 
 
@@ -482,6 +541,16 @@ namespace FlutterSDK.Rendering.Table
     }
 
 
+    /// <Summary>
+    /// Sizes the column according to the intrinsic dimensions of all the
+    /// cells in that column.
+    ///
+    /// This is a very expensive way to size a column.
+    ///
+    /// A flex value can be provided. If specified (and non-null), the
+    /// column will participate in the distribution of remaining space
+    /// once all the non-flexible columns have been sized.
+    /// </Summary>
     public class IntrinsicColumnWidth : FlutterSDK.Rendering.Table.TableColumnWidth
     {
         #region constructors
@@ -511,6 +580,11 @@ namespace FlutterSDK.Rendering.Table
     }
 
 
+    /// <Summary>
+    /// Sizes the column to a specific number of pixels.
+    ///
+    /// This is the cheapest way to size a column.
+    /// </Summary>
     public class FixedColumnWidth : FlutterSDK.Rendering.Table.TableColumnWidth
     {
         #region constructors
@@ -537,6 +611,11 @@ namespace FlutterSDK.Rendering.Table
     }
 
 
+    /// <Summary>
+    /// Sizes the column to a fraction of the table's constraints' maxWidth.
+    ///
+    /// This is a cheap way to size a column.
+    /// </Summary>
     public class FractionColumnWidth : FlutterSDK.Rendering.Table.TableColumnWidth
     {
         #region constructors
@@ -563,6 +642,15 @@ namespace FlutterSDK.Rendering.Table
     }
 
 
+    /// <Summary>
+    /// Sizes the column by taking a part of the remaining space once all
+    /// the other columns have been laid out.
+    ///
+    /// For example, if two columns have a [FlexColumnWidth], then half the
+    /// space will go to one and half the space will go to the other.
+    ///
+    /// This is a cheap way to size a column.
+    /// </Summary>
     public class FlexColumnWidth : FlutterSDK.Rendering.Table.TableColumnWidth
     {
         #region constructors
@@ -592,6 +680,18 @@ namespace FlutterSDK.Rendering.Table
     }
 
 
+    /// <Summary>
+    /// Sizes the column such that it is the size that is the maximum of
+    /// two column width specifications.
+    ///
+    /// For example, to have a column be 10% of the container width or
+    /// 100px, whichever is bigger, you could use:
+    ///
+    ///     const MaxColumnWidth(const FixedColumnWidth(100.0), FractionColumnWidth(0.1))
+    ///
+    /// Both specifications are evaluated, so if either specification is
+    /// expensive, so is this.
+    /// </Summary>
     public class MaxColumnWidth : FlutterSDK.Rendering.Table.TableColumnWidth
     {
         #region constructors
@@ -622,6 +722,18 @@ namespace FlutterSDK.Rendering.Table
     }
 
 
+    /// <Summary>
+    /// Sizes the column such that it is the size that is the minimum of
+    /// two column width specifications.
+    ///
+    /// For example, to have a column be 10% of the container width but
+    /// never bigger than 100px, you could use:
+    ///
+    ///     const MinColumnWidth(const FixedColumnWidth(100.0), FractionColumnWidth(0.1))
+    ///
+    /// Both specifications are evaluated, so if either specification is
+    /// expensive, so is this.
+    /// </Summary>
     public class MinColumnWidth : FlutterSDK.Rendering.Table.TableColumnWidth
     {
         #region constructors
@@ -652,6 +764,9 @@ namespace FlutterSDK.Rendering.Table
     }
 
 
+    /// <Summary>
+    /// A table where the columns and rows are sized to fit the contents of the cells.
+    /// </Summary>
     public class RenderTable : FlutterSDK.Rendering.Box.RenderBox
     {
         #region constructors
@@ -692,21 +807,49 @@ namespace FlutterSDK.Rendering.Table
 
         #region methods
 
+        /// <Summary>
+        /// Determines how the width of column with the given index is determined.
+        /// </Summary>
         public virtual void SetColumnWidth(int column, FlutterSDK.Rendering.Table.TableColumnWidth value) { throw new NotImplementedException(); }
 
 
         public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Replaces the children of this table with the given cells.
+        ///
+        /// The cells are divided into the specified number of columns before
+        /// replacing the existing children.
+        ///
+        /// If the new cells contain any existing children of the table, those
+        /// children are simply moved to their new location in the table rather than
+        /// removed from the table and re-added.
+        /// </Summary>
         public virtual void SetFlatChildren(int columns, List<FlutterSDK.Rendering.Box.RenderBox> cells) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Replaces the children of this table with the given cells.
+        /// </Summary>
         public virtual void SetChildren(List<List<FlutterSDK.Rendering.Box.RenderBox>> cells) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Adds a row to the end of the table.
+        ///
+        /// The newly added children must not already have parents.
+        /// </Summary>
         public virtual void AddRow(List<FlutterSDK.Rendering.Box.RenderBox> cells) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Replaces the child at the given position with the given child.
+        ///
+        /// If the given child is already located at the given position, this function
+        /// does not modify the table. Otherwise, the given child must not already
+        /// have a parent.
+        /// </Summary>
         public virtual void SetChild(int x, int y, FlutterSDK.Rendering.Box.RenderBox value) { throw new NotImplementedException(); }
 
 
@@ -735,15 +878,36 @@ namespace FlutterSDK.Rendering.Table
         public new double ComputeDistanceToActualBaseline(TextBaseline baseline) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the list of [RenderBox] objects that are in the given
+        /// column, in row order, starting from the first row.
+        ///
+        /// This is a lazily-evaluated iterable.
+        /// </Summary>
         public virtual Iterable<FlutterSDK.Rendering.Box.RenderBox> Column(int x) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the list of [RenderBox] objects that are on the given
+        /// row, in column order, starting with the first column.
+        ///
+        /// This is a lazily-evaluated iterable.
+        /// </Summary>
         public virtual Iterable<FlutterSDK.Rendering.Box.RenderBox> Row(int y) { throw new NotImplementedException(); }
 
 
         private List<double> _ComputeColumnWidths(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the position and dimensions of the box that the given
+        /// row covers, in this render object's coordinate space (so the
+        /// left coordinate is always 0.0).
+        ///
+        /// The row being queried must exist.
+        ///
+        /// This is only valid after layout.
+        /// </Summary>
         public virtual Rect GetRowBox(int row) { throw new NotImplementedException(); }
 
 
@@ -765,13 +929,41 @@ namespace FlutterSDK.Rendering.Table
     }
 
 
+    /// <Summary>
+    /// Vertical alignment options for cells in [RenderTable] objects.
+    ///
+    /// This is specified using [TableCellParentData] objects on the
+    /// [RenderObject.parentData] of the children of the [RenderTable].
+    /// </Summary>
     public enum TableCellVerticalAlignment
     {
 
+        /// <Summary>
+        /// Cells with this alignment are placed with their top at the top of the row.
+        /// </Summary>
         Top,
+        /// <Summary>
+        /// Cells with this alignment are vertically centered in the row.
+        /// </Summary>
         Middle,
+        /// <Summary>
+        /// Cells with this alignment are placed with their bottom at the bottom of the row.
+        /// </Summary>
         Bottom,
+        /// <Summary>
+        /// Cells with this alignment are aligned such that they all share the same
+        /// baseline. Cells with no baseline are top-aligned instead. The baseline
+        /// used is specified by [RenderTable.textBaseline]. It is not valid to use
+        /// the baseline value if [RenderTable.textBaseline] is not specified.
+        ///
+        /// This vertical alignment is relatively expensive because it causes the table
+        /// to compute the baseline for each cell in the row.
+        /// </Summary>
         Baseline,
+        /// <Summary>
+        /// Cells with this alignment are sized to be as tall as the row, then made to fit the row.
+        /// If all the cells have this alignment, then the row will have zero height.
+        /// </Summary>
         Fill,
     }
 

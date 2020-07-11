@@ -427,6 +427,13 @@ namespace FlutterSDK.Semantics.Semanticsevent
     {
     }
 
+    /// <Summary>
+    /// An event sent by the application to notify interested listeners that
+    /// something happened to the user interface (e.g. a view scrolled).
+    ///
+    /// These events are usually interpreted by assistive technologies to give the
+    /// user additional clues about the current state of the UI.
+    /// </Summary>
     public interface ISemanticsEvent
     {
         Dictionary<string, object> ToMap(int nodeId = default(int));
@@ -436,6 +443,13 @@ namespace FlutterSDK.Semantics.Semanticsevent
     }
 
 
+    /// <Summary>
+    /// An event sent by the application to notify interested listeners that
+    /// something happened to the user interface (e.g. a view scrolled).
+    ///
+    /// These events are usually interpreted by assistive technologies to give the
+    /// user additional clues about the current state of the UI.
+    /// </Summary>
     public class SemanticsEvent
     {
         #region constructors
@@ -451,9 +465,19 @@ namespace FlutterSDK.Semantics.Semanticsevent
 
         #region methods
 
+        /// <Summary>
+        /// Converts this event to a Map that can be encoded with
+        /// [StandardMessageCodec].
+        ///
+        /// [nodeId] is the unique identifier of the semantics node associated with
+        /// the event, or null if the event is not associated with a semantics node.
+        /// </Summary>
         public virtual Dictionary<string, object> ToMap(int nodeId = default(int)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the event's data object.
+        /// </Summary>
         public virtual Dictionary<string, object> GetDataMap() { throw new NotImplementedException(); }
 
 
@@ -461,6 +485,18 @@ namespace FlutterSDK.Semantics.Semanticsevent
     }
 
 
+    /// <Summary>
+    /// An event for a semantic announcement.
+    ///
+    /// This should be used for announcement that are not seamlessly announced by
+    /// the system as a result of a UI state change.
+    ///
+    /// For example a camera application can use this method to make accessibility
+    /// announcements regarding objects in the viewfinder.
+    ///
+    /// When possible, prefer using mechanisms like [Semantics] to implicitly
+    /// trigger announcements over using this event.
+    /// </Summary>
     public class AnnounceSemanticsEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
     {
         #region constructors
@@ -485,6 +521,11 @@ namespace FlutterSDK.Semantics.Semanticsevent
     }
 
 
+    /// <Summary>
+    /// An event for a semantic announcement of a tooltip.
+    ///
+    /// This is only used by Android to announce tooltip values.
+    /// </Summary>
     public class TooltipSemanticsEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
     {
         #region constructors
@@ -507,6 +548,12 @@ namespace FlutterSDK.Semantics.Semanticsevent
     }
 
 
+    /// <Summary>
+    /// An event which triggers long press semantic feedback.
+    ///
+    /// Currently only honored on Android. Triggers a long-press specific sound
+    /// when TalkBack is enabled.
+    /// </Summary>
     public class LongPressSemanticsEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
     {
         #region constructors
@@ -528,6 +575,12 @@ namespace FlutterSDK.Semantics.Semanticsevent
     }
 
 
+    /// <Summary>
+    /// An event which triggers tap semantic feedback.
+    ///
+    /// Currently only honored on Android. Triggers a tap specific sound when
+    /// TalkBack is enabled.
+    /// </Summary>
     public class TapSemanticEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
     {
         #region constructors
@@ -549,6 +602,22 @@ namespace FlutterSDK.Semantics.Semanticsevent
     }
 
 
+    /// <Summary>
+    /// An event which triggers a polite announcement of a live region.
+    ///
+    /// This requires that the semantics node has already been marked as a live
+    /// region. On Android, TalkBack will make a verbal announcement, as long as
+    /// the label of the semantics node has changed since the last live region
+    /// update. iOS does not currently support this event.
+    ///
+    /// Deprecated. This message was never implemented, and references to it should
+    /// be removed.
+    ///
+    /// See also:
+    ///
+    ///  * [SemanticsFlag.liveRegion], for a description of live regions.
+    ///
+    /// </Summary>
     public class UpdateLiveRegionEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
     {
         #region constructors

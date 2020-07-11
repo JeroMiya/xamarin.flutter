@@ -300,6 +300,11 @@ namespace FlutterSDK.Cupertino.Thumbpainter
         public static List<FlutterSDK.Painting.Boxshadow.BoxShadow> _KSliderBoxShadows = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>);
     }
 
+    /// <Summary>
+    /// Paints an iOS-style slider thumb or switch thumb.
+    ///
+    /// Used by [CupertinoSwitch] and [CupertinoSlider].
+    /// </Summary>
     public class CupertinoThumbPainter
     {
         #region constructors
@@ -324,6 +329,12 @@ namespace FlutterSDK.Cupertino.Thumbpainter
 
         #region methods
 
+        /// <Summary>
+        /// Paints the thumb onto the given canvas in the given rectangle.
+        ///
+        /// Consider using [radius] and [extension] when deciding how large a
+        /// rectangle to use for the thumb.
+        /// </Summary>
         public virtual void Paint(Canvas canvas, FlutterBinding.UI.Rect rect) { throw new NotImplementedException(); }
 
         #endregion

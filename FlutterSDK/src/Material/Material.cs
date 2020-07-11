@@ -393,6 +393,13 @@ namespace FlutterSDK.Material.Material
         public static Dictionary<FlutterSDK.Material.Material.MaterialType, FlutterSDK.Painting.Borderradius.BorderRadius> KMaterialEdges = default(Dictionary<FlutterSDK.Material.Material.MaterialType, FlutterSDK.Painting.Borderradius.BorderRadius>);
     }
 
+    /// <Summary>
+    /// A visual reaction on a piece of [Material].
+    ///
+    /// To add an ink feature to a piece of [Material], obtain the
+    /// [MaterialInkController] via [Material.of] and call
+    /// [MaterialInkController.addInkFeature].
+    /// </Summary>
     public interface IInkFeature
     {
         void Dispose();
@@ -411,9 +418,17 @@ namespace FlutterSDK.Material.Material
         public virtual FlutterBinding.UI.Color Color { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
+        /// <Summary>
+        /// Add an [InkFeature], such as an [InkSplash] or an [InkHighlight].
+        ///
+        /// The ink feature will paint as part of this controller.
+        /// </Summary>
         public virtual void AddInkFeature(FlutterSDK.Material.Material.InkFeature feature) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Notifies the controller that one of its ink features needs to repaint.
+        /// </Summary>
         public virtual void MarkNeedsPaint() { throw new NotImplementedException(); }
 
     }
@@ -436,6 +451,77 @@ namespace FlutterSDK.Material.Material
     }
 
 
+    /// <Summary>
+    /// A piece of material.
+    ///
+    /// The Material widget is responsible for:
+    ///
+    /// 1. Clipping: If [clipBehavior] is not [Clip.none], Material clips its widget
+    ///    sub-tree to the shape specified by [shape], [type], and [borderRadius].
+    ///    By default, [clipBehavior] is [Clip.none] for performance considerations.
+    /// 2. Elevation: Material elevates its widget sub-tree on the Z axis by
+    ///    [elevation] pixels, and draws the appropriate shadow.
+    /// 3. Ink effects: Material shows ink effects implemented by [InkFeature]s
+    ///    like [InkSplash] and [InkHighlight] below its children.
+    ///
+    /// ## The Material Metaphor
+    ///
+    /// Material is the central metaphor in material design. Each piece of material
+    /// exists at a given elevation, which influences how that piece of material
+    /// visually relates to other pieces of material and how that material casts
+    /// shadows.
+    ///
+    /// Most user interface elements are either conceptually printed on a piece of
+    /// material or themselves made of material. Material reacts to user input using
+    /// [InkSplash] and [InkHighlight] effects. To trigger a reaction on the
+    /// material, use a [MaterialInkController] obtained via [Material.of].
+    ///
+    /// In general, the features of a [Material] should not change over time (e.g. a
+    /// [Material] should not change its [color], [shadowColor] or [type]).
+    /// Changes to [elevation] and [shadowColor] are animated for [animationDuration].
+    /// Changes to [shape] are animated if [type] is not [MaterialType.transparency]
+    /// and [ShapeBorder.lerp] between the previous and next [shape] values is
+    /// supported. Shape changes are also animated for [animationDuration].
+    ///
+    ///
+    /// ## Shape
+    ///
+    /// The shape for material is determined by [shape], [type], and [borderRadius].
+    ///
+    ///  - If [shape] is non null, it determines the shape.
+    ///  - If [shape] is null and [borderRadius] is non null, the shape is a
+    ///    rounded rectangle, with corners specified by [borderRadius].
+    ///  - If [shape] and [borderRadius] are null, [type] determines the
+    ///    shape as follows:
+    ///    - [MaterialType.canvas]: the default material shape is a rectangle.
+    ///    - [MaterialType.card]: the default material shape is a rectangle with
+    ///      rounded edges. The edge radii is specified by [kMaterialEdges].
+    ///    - [MaterialType.circle]: the default material shape is a circle.
+    ///    - [MaterialType.button]: the default material shape is a rectangle with
+    ///      rounded edges. The edge radii is specified by [kMaterialEdges].
+    ///    - [MaterialType.transparency]: the default material shape is a rectangle.
+    ///
+    /// ## Border
+    ///
+    /// If [shape] is not null, then its border will also be painted (if any).
+    ///
+    /// ## Layout change notifications
+    ///
+    /// If the layout changes (e.g. because there's a list on the material, and it's
+    /// been scrolled), a [LayoutChangedNotification] must be dispatched at the
+    /// relevant subtree. This in particular means that transitions (e.g.
+    /// [SlideTransition]) should not be placed inside [Material] widgets so as to
+    /// move subtrees that contain [InkResponse]s, [InkWell]s, [Ink]s, or other
+    /// widgets that use the [InkFeature] mechanism. Otherwise, in-progress ink
+    /// features (e.g., ink splashes and ink highlights) won't move to account for
+    /// the new layout.
+    ///
+    /// See also:
+    ///
+    ///  * [MergeableMaterial], a piece of material that can split and re-merge.
+    ///  * [Card], a wrapper for a [Material] of [type] [MaterialType.card].
+    ///  * <https://material.io/design/>
+    /// </Summary>
     public class Material : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -473,6 +559,16 @@ namespace FlutterSDK.Material.Material
 
         #region methods
 
+        /// <Summary>
+        /// The ink controller from the closest instance of this class that
+        /// encloses the given context.
+        ///
+        /// Typical usage is as follows:
+        ///
+        /// ```dart
+        /// MaterialInkController inkController = Material.of(context);
+        /// ```
+        /// </Summary>
         public virtual FlutterSDK.Material.Material.MaterialInkController Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
@@ -578,6 +674,13 @@ namespace FlutterSDK.Material.Material
     }
 
 
+    /// <Summary>
+    /// A visual reaction on a piece of [Material].
+    ///
+    /// To add an ink feature to a piece of [Material], obtain the
+    /// [MaterialInkController] via [Material.of] and call
+    /// [MaterialInkController.addInkFeature].
+    /// </Summary>
     public class InkFeature
     {
         #region constructors
@@ -599,12 +702,21 @@ namespace FlutterSDK.Material.Material
 
         #region methods
 
+        /// <Summary>
+        /// Free up the resources associated with this ink feature.
+        /// </Summary>
         public virtual void Dispose() { throw new NotImplementedException(); }
 
 
         private void _Paint(Canvas canvas) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Override this method to paint the ink feature.
+        ///
+        /// The transform argument gives the coordinate conversion from the coordinate
+        /// system of the canvas to the coordinate system of the [referenceBox].
+        /// </Summary>
         public virtual void PaintFeature(Canvas canvas, Matrix4 transform) { throw new NotImplementedException(); }
 
 
@@ -612,6 +724,11 @@ namespace FlutterSDK.Material.Material
     }
 
 
+    /// <Summary>
+    /// An interpolation between two [ShapeBorder]s.
+    ///
+    /// This class specializes the interpolation of [Tween] to use [ShapeBorder.lerp].
+    /// </Summary>
     public class ShapeBorderTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Borders.ShapeBorder>
     {
         #region constructors
@@ -627,12 +744,20 @@ namespace FlutterSDK.Material.Material
 
         #region methods
 
+        /// <Summary>
+        /// Returns the value this tween has at the given animation clock value.
+        /// </Summary>
         public new FlutterSDK.Painting.Borders.ShapeBorder Lerp(double t) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// The interior of non-transparent material.
+    ///
+    /// Animates [elevation], [shadowColor], and [shape].
+    /// </Summary>
     public class _MaterialInterior : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
     {
         #region constructors
@@ -746,13 +871,46 @@ namespace FlutterSDK.Material.Material
     }
 
 
+    /// <Summary>
+    /// The various kinds of material in material design. Used to
+    /// configure the default behavior of [Material] widgets.
+    ///
+    /// See also:
+    ///
+    ///  * [Material], in particular [Material.type].
+    ///  * [kMaterialEdges]
+    /// </Summary>
     public enum MaterialType
     {
 
+        /// <Summary>
+        /// Rectangle using default theme canvas color.
+        /// </Summary>
         Canvas,
+        /// <Summary>
+        /// Rounded edges, card theme color.
+        /// </Summary>
         Card,
+        /// <Summary>
+        /// A circle, no color by default (used for floating action buttons).
+        /// </Summary>
         Circle,
+        /// <Summary>
+        /// Rounded edges, no color by default (used for [MaterialButton] buttons).
+        /// </Summary>
         Button,
+        /// <Summary>
+        /// A transparent piece of material that draws ink splashes and highlights.
+        ///
+        /// While the material metaphor describes child widgets as printed on the
+        /// material itself and do not hide ink effects, in practice the [Material]
+        /// widget draws child widgets on top of the ink effects.
+        /// A [Material] with type transparency can be placed on top of opaque widgets
+        /// to show ink effects on top of them.
+        ///
+        /// Prefer using the [Ink] widget for showing ink effects on top of opaque
+        /// widgets.
+        /// </Summary>
         Transparency,
     }
 

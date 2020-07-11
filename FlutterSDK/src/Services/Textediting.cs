@@ -427,6 +427,9 @@ namespace FlutterSDK.Services.Textediting
     {
     }
 
+    /// <Summary>
+    /// A range of text that represents a selection.
+    /// </Summary>
     public class TextSelection : TextRange
     {
         #region constructors
@@ -464,6 +467,10 @@ namespace FlutterSDK.Services.Textediting
         public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Creates a new [TextSelection] based on the current selection, with the
+        /// provided parameters overridden.
+        /// </Summary>
         public virtual FlutterSDK.Services.Textediting.TextSelection CopyWith(int baseOffset = default(int), int extentOffset = default(int), TextAffinity affinity = default(TextAffinity), bool isDirectional = default(bool)) { throw new NotImplementedException(); }
 
         #endregion

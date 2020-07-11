@@ -433,6 +433,9 @@ namespace FlutterSDK.Rendering.Flex
 
     }
 
+    /// <Summary>
+    /// Parent data for use with [RenderFlex].
+    /// </Summary>
     public class FlexParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
     {
         #region constructors
@@ -451,6 +454,55 @@ namespace FlutterSDK.Rendering.Flex
     }
 
 
+    /// <Summary>
+    /// Displays its children in a one-dimensional array.
+    ///
+    /// ## Layout algorithm
+    ///
+    /// _This section describes how the framework causes [RenderFlex] to position
+    /// its children._
+    /// _See [BoxConstraints] for an introduction to box layout models._
+    ///
+    /// Layout for a [RenderFlex] proceeds in six steps:
+    ///
+    /// 1. Layout each child a null or zero flex factor with unbounded main axis
+    ///    constraints and the incoming cross axis constraints. If the
+    ///    [crossAxisAlignment] is [CrossAxisAlignment.stretch], instead use tight
+    ///    cross axis constraints that match the incoming max extent in the cross
+    ///    axis.
+    /// 2. Divide the remaining main axis space among the children with non-zero
+    ///    flex factors according to their flex factor. For example, a child with a
+    ///    flex factor of 2.0 will receive twice the amount of main axis space as a
+    ///    child with a flex factor of 1.0.
+    /// 3. Layout each of the remaining children with the same cross axis
+    ///    constraints as in step 1, but instead of using unbounded main axis
+    ///    constraints, use max axis constraints based on the amount of space
+    ///    allocated in step 2. Children with [Flexible.fit] properties that are
+    ///    [FlexFit.tight] are given tight constraints (i.e., forced to fill the
+    ///    allocated space), and children with [Flexible.fit] properties that are
+    ///    [FlexFit.loose] are given loose constraints (i.e., not forced to fill the
+    ///    allocated space).
+    /// 4. The cross axis extent of the [RenderFlex] is the maximum cross axis
+    ///    extent of the children (which will always satisfy the incoming
+    ///    constraints).
+    /// 5. The main axis extent of the [RenderFlex] is determined by the
+    ///    [mainAxisSize] property. If the [mainAxisSize] property is
+    ///    [MainAxisSize.max], then the main axis extent of the [RenderFlex] is the
+    ///    max extent of the incoming main axis constraints. If the [mainAxisSize]
+    ///    property is [MainAxisSize.min], then the main axis extent of the [Flex]
+    ///    is the sum of the main axis extents of the children (subject to the
+    ///    incoming constraints).
+    /// 6. Determine the position for each child according to the
+    ///    [mainAxisAlignment] and the [crossAxisAlignment]. For example, if the
+    ///    [mainAxisAlignment] is [MainAxisAlignment.spaceBetween], any main axis
+    ///    space that has not been allocated to children is divided evenly and
+    ///    placed between the children.
+    ///
+    /// See also:
+    ///
+    ///  * [Flex], the widget equivalent.
+    ///  * [Row] and [Column], direction-specific variants of [Flex].
+    /// </Summary>
     public class RenderFlex : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Flex.FlexParentData>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Flex.FlexParentData>, IDebugOverflowIndicatorMixin
     {
         #region constructors
@@ -538,41 +590,196 @@ namespace FlutterSDK.Rendering.Flex
     }
 
 
+    /// <Summary>
+    /// How the child is inscribed into the available space.
+    ///
+    /// See also:
+    ///
+    ///  * [RenderFlex], the flex render object.
+    ///  * [Column], [Row], and [Flex], the flex widgets.
+    ///  * [Expanded], the widget equivalent of [tight].
+    ///  * [Flexible], the widget equivalent of [loose].
+    /// </Summary>
     public enum FlexFit
     {
 
+        /// <Summary>
+        /// The child is forced to fill the available space.
+        ///
+        /// The [Expanded] widget assigns this kind of [FlexFit] to its child.
+        /// </Summary>
         Tight,
+        /// <Summary>
+        /// The child can be at most as large as the available space (but is
+        /// allowed to be smaller).
+        ///
+        /// The [Flexible] widget assigns this kind of [FlexFit] to its child.
+        /// </Summary>
         Loose,
     }
 
 
+    /// <Summary>
+    /// How much space should be occupied in the main axis.
+    ///
+    /// During a flex layout, available space along the main axis is allocated to
+    /// children. After allocating space, there might be some remaining free space.
+    /// This value controls whether to maximize or minimize the amount of free
+    /// space, subject to the incoming layout constraints.
+    ///
+    /// See also:
+    ///
+    ///  * [Column], [Row], and [Flex], the flex widgets.
+    ///  * [Expanded] and [Flexible], the widgets that controls a flex widgets'
+    ///    children's flex.
+    ///  * [RenderFlex], the flex render object.
+    ///  * [MainAxisAlignment], which controls how the free space is distributed.
+    /// </Summary>
     public enum MainAxisSize
     {
 
+        /// <Summary>
+        /// Minimize the amount of free space along the main axis, subject to the
+        /// incoming layout constraints.
+        ///
+        /// If the incoming layout constraints have a large enough
+        /// [BoxConstraints.minWidth] or [BoxConstraints.minHeight], there might still
+        /// be a non-zero amount of free space.
+        ///
+        /// If the incoming layout constraints are unbounded, and any children have a
+        /// non-zero [FlexParentData.flex] and a [FlexFit.tight] fit (as applied by
+        /// [Expanded]), the [RenderFlex] will assert, because there would be infinite
+        /// remaining free space and boxes cannot be given infinite size.
+        /// </Summary>
         Min,
+        /// <Summary>
+        /// Maximize the amount of free space along the main axis, subject to the
+        /// incoming layout constraints.
+        ///
+        /// If the incoming layout constraints have a small enough
+        /// [BoxConstraints.maxWidth] or [BoxConstraints.maxHeight], there might still
+        /// be no free space.
+        ///
+        /// If the incoming layout constraints are unbounded, the [RenderFlex] will
+        /// assert, because there would be infinite remaining free space and boxes
+        /// cannot be given infinite size.
+        /// </Summary>
         Max,
     }
 
 
+    /// <Summary>
+    /// How the children should be placed along the main axis in a flex layout.
+    ///
+    /// See also:
+    ///
+    ///  * [Column], [Row], and [Flex], the flex widgets.
+    ///  * [RenderFlex], the flex render object.
+    /// </Summary>
     public enum MainAxisAlignment
     {
 
+        /// <Summary>
+        /// Place the children as close to the start of the main axis as possible.
+        ///
+        /// If this value is used in a horizontal direction, a [TextDirection] must be
+        /// available to determine if the start is the left or the right.
+        ///
+        /// If this value is used in a vertical direction, a [VerticalDirection] must be
+        /// available to determine if the start is the top or the bottom.
+        /// </Summary>
         Start,
+        /// <Summary>
+        /// Place the children as close to the end of the main axis as possible.
+        ///
+        /// If this value is used in a horizontal direction, a [TextDirection] must be
+        /// available to determine if the end is the left or the right.
+        ///
+        /// If this value is used in a vertical direction, a [VerticalDirection] must be
+        /// available to determine if the end is the top or the bottom.
+        /// </Summary>
         End,
+        /// <Summary>
+        /// Place the children as close to the middle of the main axis as possible.
+        /// </Summary>
         Center,
+        /// <Summary>
+        /// Place the free space evenly between the children.
+        /// </Summary>
         SpaceBetween,
+        /// <Summary>
+        /// Place the free space evenly between the children as well as half of that
+        /// space before and after the first and last child.
+        /// </Summary>
         SpaceAround,
+        /// <Summary>
+        /// Place the free space evenly between the children as well as before and
+        /// after the first and last child.
+        /// </Summary>
         SpaceEvenly,
     }
 
 
+    /// <Summary>
+    /// How the children should be placed along the cross axis in a flex layout.
+    ///
+    /// See also:
+    ///
+    ///  * [Column], [Row], and [Flex], the flex widgets.
+    ///  * [RenderFlex], the flex render object.
+    /// </Summary>
     public enum CrossAxisAlignment
     {
 
+        /// <Summary>
+        /// Place the children with their start edge aligned with the start side of
+        /// the cross axis.
+        ///
+        /// For example, in a column (a flex with a vertical axis) whose
+        /// [TextDirection] is [TextDirection.ltr], this aligns the left edge of the
+        /// children along the left edge of the column.
+        ///
+        /// If this value is used in a horizontal direction, a [TextDirection] must be
+        /// available to determine if the start is the left or the right.
+        ///
+        /// If this value is used in a vertical direction, a [VerticalDirection] must be
+        /// available to determine if the start is the top or the bottom.
+        /// </Summary>
         Start,
+        /// <Summary>
+        /// Place the children as close to the end of the cross axis as possible.
+        ///
+        /// For example, in a column (a flex with a vertical axis) whose
+        /// [TextDirection] is [TextDirection.ltr], this aligns the right edge of the
+        /// children along the right edge of the column.
+        ///
+        /// If this value is used in a horizontal direction, a [TextDirection] must be
+        /// available to determine if the end is the left or the right.
+        ///
+        /// If this value is used in a vertical direction, a [VerticalDirection] must be
+        /// available to determine if the end is the top or the bottom.
+        /// </Summary>
         End,
+        /// <Summary>
+        /// Place the children so that their centers align with the middle of the
+        /// cross axis.
+        ///
+        /// This is the default cross-axis alignment.
+        /// </Summary>
         Center,
+        /// <Summary>
+        /// Require the children to fill the cross axis.
+        ///
+        /// This causes the constraints passed to the children to be tight in the
+        /// cross axis.
+        /// </Summary>
         Stretch,
+        /// <Summary>
+        /// Place the children along the cross axis such that their baselines match.
+        ///
+        /// If the main axis is vertical, then this value is treated like [start]
+        /// (since baselines are always horizontal).
+        /// </Summary>
         Baseline,
     }
 

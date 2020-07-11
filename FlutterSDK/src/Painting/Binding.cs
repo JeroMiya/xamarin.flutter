@@ -442,9 +442,26 @@ namespace FlutterSDK.Painting.Binding
         public new void InitInstances() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Creates the [ImageCache] singleton (accessible via [imageCache]).
+        ///
+        /// This method can be overridden to provide a custom image cache.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Imagecache.ImageCache CreateImageCache() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Calls through to [dart:ui] with [decodedCacheRatioCap] from [ImageCache].
+        ///
+        /// The [cacheWidth] and [cacheHeight] parameters, when specified, indicate the
+        /// size to decode the image to.
+        ///
+        /// Both [cacheWidth] and [cacheHeight] must be positive values greater than or
+        /// equal to 1 or null. It is valid to specify only one of [cacheWidth] and
+        /// [cacheHeight] with the other remaining null, in which case the omitted
+        /// dimension will decode to its original size. When both are null or omitted,
+        /// the image will be decoded at its native resolution.
+        /// </Summary>
         public virtual Future<SKCodec> InstantiateImageCodec(Uint8List bytes, int cacheWidth = default(int), int cacheHeight = default(int)) { throw new NotImplementedException(); }
 
 

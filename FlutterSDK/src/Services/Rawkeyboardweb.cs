@@ -427,6 +427,13 @@ namespace FlutterSDK.Services.Rawkeyboardweb
     {
     }
 
+    /// <Summary>
+    /// Platform-specific key event data for Web.
+    ///
+    /// See also:
+    ///
+    ///  * [RawKeyboard], which uses this interface to expose key data.
+    /// </Summary>
     public class RawKeyEventDataWeb : FlutterSDK.Services.Rawkeyboard.RawKeyEventData
     {
         #region constructors

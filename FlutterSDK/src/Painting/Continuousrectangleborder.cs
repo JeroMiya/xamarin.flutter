@@ -426,6 +426,29 @@ namespace FlutterSDK.Painting.Continuousrectangleborder
     {
     }
 
+    /// <Summary>
+    /// A rectangular border with smooth continuous transitions between the straight
+    /// sides and the rounded corners.
+    ///
+    /// {@tool snippet}
+    /// ```dart
+    /// Widget build(BuildContext context) {
+    ///   return Material(
+    ///     shape: ContinuousRectangleBorder(
+    ///       borderRadius: BorderRadius.circular(28.0),
+    ///     ),
+    ///   );
+    /// }
+    /// ```
+    /// {@end-tool}
+    ///
+    /// See also:
+    ///
+    ///  * [RoundedRectangleBorder] Which creates rectangles with rounded corners,
+    ///    however its straight sides change into a rounded corner with a circular
+    ///    radius in a step function instead of gradually like the
+    ///    [ContinuousRectangleBorder].
+    /// </Summary>
     public class ContinuousRectangleBorder : FlutterSDK.Painting.Borders.ShapeBorder
     {
         #region constructors

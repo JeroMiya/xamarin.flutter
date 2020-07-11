@@ -430,6 +430,12 @@ namespace FlutterSDK.Widgets.Scrollconfiguration
         public static Color _KDefaultGlowColor = default(Color);
     }
 
+    /// <Summary>
+    /// Describes how [Scrollable] widgets should behave.
+    ///
+    /// Used by [ScrollConfiguration] to configure the [Scrollable] widgets in a
+    /// subtree.
+    /// </Summary>
     public class ScrollBehavior
     {
         #region constructors
@@ -444,15 +450,45 @@ namespace FlutterSDK.Widgets.Scrollconfiguration
 
         #region methods
 
+        /// <Summary>
+        /// The platform whose scroll physics should be implemented.
+        ///
+        /// Defaults to the current platform.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Platform.TargetPlatform GetPlatform(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Wraps the given widget, which scrolls in the given [AxisDirection].
+        ///
+        /// For example, on Android, this method wraps the given widget with a
+        /// [GlowingOverscrollIndicator] to provide visual feedback when the user
+        /// overscrolls.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget BuildViewportChrome(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child, FlutterSDK.Painting.Basictypes.AxisDirection axisDirection) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The scroll physics to use for the platform given by [getPlatform].
+        ///
+        /// Defaults to [BouncingScrollPhysics] on iOS and [ClampingScrollPhysics] on
+        /// Android.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics GetScrollPhysics(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called whenever a [ScrollConfiguration] is rebuilt with a new
+        /// [ScrollBehavior] of the same [runtimeType].
+        ///
+        /// If the new instance represents different information than the old
+        /// instance, then the method should return true, otherwise it should return
+        /// false.
+        ///
+        /// If this method returns true, all the widgets that inherit from the
+        /// [ScrollConfiguration] will rebuild using the new [ScrollBehavior]. If this
+        /// method returns false, the rebuilds might be optimized away.
+        /// </Summary>
         public virtual bool ShouldNotify(FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior oldDelegate) { throw new NotImplementedException(); }
 
 
@@ -460,6 +496,12 @@ namespace FlutterSDK.Widgets.Scrollconfiguration
     }
 
 
+    /// <Summary>
+    /// Controls how [Scrollable] widgets behave in a subtree.
+    ///
+    /// The scroll configuration determines the [ScrollPhysics] and viewport
+    /// decorations used by descendants of [child].
+    /// </Summary>
     public class ScrollConfiguration : FlutterSDK.Widgets.Framework.InheritedWidget
     {
         #region constructors
@@ -476,6 +518,12 @@ namespace FlutterSDK.Widgets.Scrollconfiguration
 
         #region methods
 
+        /// <Summary>
+        /// The [ScrollBehavior] for [Scrollable] widgets in the given [BuildContext].
+        ///
+        /// If no [ScrollConfiguration] widget is in scope of the given `context`,
+        /// a default [ScrollBehavior] instance is returned.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 

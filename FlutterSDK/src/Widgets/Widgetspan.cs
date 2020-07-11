@@ -429,6 +429,58 @@ namespace FlutterSDK.Widgets.Widgetspan
     {
     }
 
+    /// <Summary>
+    /// An immutable widget that is embedded inline within text.
+    ///
+    /// The [child] property is the widget that will be embedded. Children are
+    /// constrained by the width of the paragraph.
+    ///
+    /// The [child] property may contain its own [Widget] children (if applicable),
+    /// including [Text] and [RichText] widgets which may include additional
+    /// [WidgetSpan]s. Child [Text] and [RichText] widgets will be laid out
+    /// independently and occupy a rectangular space in the parent text layout.
+    ///
+    /// [WidgetSpan]s will be ignored when passed into a [TextPainter] directly.
+    /// To properly layout and paint the [child] widget, [WidgetSpan] should be
+    /// passed into a [Text.rich] widget.
+    ///
+    /// {@tool snippet}
+    ///
+    /// A card with `Hello World!` embedded inline within a TextSpan tree.
+    ///
+    /// ```dart
+    /// Text.rich(
+    ///   TextSpan(
+    ///     children: <InlineSpan>[
+    ///       TextSpan(text: 'Flutter is'),
+    ///       WidgetSpan(
+    ///         child: SizedBox(
+    ///           width: 120,
+    ///           height: 50,
+    ///           child: Card(
+    ///             child: Center(
+    ///               child: Text('Hello World!')
+    ///             )
+    ///           ),
+    ///         )
+    ///       ),
+    ///       TextSpan(text: 'the best!'),
+    ///     ],
+    ///   )
+    /// )
+    /// ```
+    /// {@end-tool}
+    ///
+    /// [WidgetSpan] contributes the semantics of the [WidgetSpan.child] to the
+    /// semantics tree.
+    ///
+    /// See also:
+    ///
+    ///  * [TextSpan], a node that represents text in an [InlineSpan] tree.
+    ///  * [Text], a widget for showing uniformly-styled text.
+    ///  * [RichText], a widget for finer control of text rendering.
+    ///  * [TextPainter], a class for painting [InlineSpan] objects on a [Canvas].
+    /// </Summary>
     public class WidgetSpan : FlutterSDK.Painting.Placeholderspan.PlaceholderSpan
     {
         #region constructors
@@ -446,9 +498,22 @@ namespace FlutterSDK.Widgets.Widgetspan
 
         #region methods
 
+        /// <Summary>
+        /// Adds a placeholder box to the paragraph builder if a size has been
+        /// calculated for the widget.
+        ///
+        /// Sizes are provided through `dimensions`, which should contain a 1:1
+        /// in-order mapping of widget to laid-out dimensions. If no such dimension
+        /// is provided, the widget will be skipped.
+        ///
+        /// The `textScaleFactor` will be applied to the laid-out size of the widget.
+        /// </Summary>
         public new void Build(ParagraphBuilder builder, double textScaleFactor = 1.0, List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions> dimensions = default(List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions>)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Calls `visitor` on this [WidgetSpan]. There are no children spans to walk.
+        /// </Summary>
         public new bool VisitChildren(FlutterSDK.Painting.Inlinespan.InlineSpanVisitor visitor) { throw new NotImplementedException(); }
 
 
@@ -464,9 +529,22 @@ namespace FlutterSDK.Widgets.Widgetspan
         public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the text span that contains the given position in the text.
+        /// </Summary>
         public new FlutterSDK.Painting.Inlinespan.InlineSpan GetSpanForPosition(TextPosition position) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// In debug mode, throws an exception if the object is not in a
+        /// valid configuration. Otherwise, returns true.
+        ///
+        /// This is intended to be used as follows:
+        ///
+        /// ```dart
+        /// assert(myWidgetSpan.debugAssertIsValid());
+        /// ```
+        /// </Summary>
         public new bool DebugAssertIsValid() { throw new NotImplementedException(); }
 
         #endregion

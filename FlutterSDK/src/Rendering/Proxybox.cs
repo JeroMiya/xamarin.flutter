@@ -433,6 +433,10 @@ namespace FlutterSDK.Rendering.Proxybox
     {
     }
 
+    /// <Summary>
+    /// A RenderProxyBox subclass that allows you to customize the
+    /// hit-testing behavior.
+    /// </Summary>
     public interface IRenderProxyBoxWithHitTestBehavior
     {
         bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset));
@@ -442,6 +446,31 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// An interface for providing custom clips.
+    ///
+    /// This class is used by a number of clip widgets (e.g., [ClipRect] and
+    /// [ClipPath]).
+    ///
+    /// The [getClip] method is called whenever the custom clip needs to be updated.
+    ///
+    /// The [shouldReclip] method is called when a new instance of the class
+    /// is provided, to check if the new instance actually represents different
+    /// information.
+    ///
+    /// The most efficient way to update the clip provided by this class is to
+    /// supply a `reclip` argument to the constructor of the [CustomClipper]. The
+    /// custom object will listen to this animation and update the clip whenever the
+    /// animation ticks, avoiding both the build and layout phases of the pipeline.
+    ///
+    /// See also:
+    ///
+    ///  * [ClipRect], which can be customized with a [CustomClipper<Rect>].
+    ///  * [ClipRRect], which can be customized with a [CustomClipper<RRect>].
+    ///  * [ClipOval], which can be customized with a [CustomClipper<Rect>].
+    ///  * [ClipPath], which can be customized with a [CustomClipper<Path>].
+    ///  * [ShapeBorderClipper], for specifying a clip path using a [ShapeBorder].
+    /// </Summary>
     public interface ICustomClipper<T>
     {
         T GetClip(Size size);
@@ -463,6 +492,12 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// A physical model layer casts a shadow based on its [elevation].
+    ///
+    /// The concrete implementations [RenderPhysicalModel] and [RenderPhysicalShape]
+    /// determine the actual shape of the physical model.
+    /// </Summary>
     internal interface I_RenderPhysicalModelBase<T>
     {
         void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config);
@@ -588,6 +623,24 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// A base class for render boxes that resemble their children.
+    ///
+    /// A proxy box has a single child and simply mimics all the properties of that
+    /// child by calling through to the child for each function in the render box
+    /// protocol. For example, a proxy box determines its size by asking its child
+    /// to layout with the same constraints and then matching the size.
+    ///
+    /// A proxy box isn't useful on its own because you might as well just replace
+    /// the proxy box with its child. However, RenderProxyBox is a useful base class
+    /// for render objects that wish to mimic most, but not all, of the properties
+    /// of their child.
+    ///
+    /// See also:
+    ///
+    ///  * [RenderProxySliver], a base class for render slivers that resemble their
+    ///    children.
+    /// </Summary>
     public class RenderProxyBox : FlutterSDK.Rendering.Box.RenderBox, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>, IRenderProxyBoxMixin<FlutterSDK.Rendering.Box.RenderBox>
     {
         #region constructors
@@ -605,6 +658,10 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// A RenderProxyBox subclass that allows you to customize the
+    /// hit-testing behavior.
+    /// </Summary>
     public class RenderProxyBoxWithHitTestBehavior : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
         #region constructors
@@ -633,6 +690,18 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// Imposes additional constraints on its child.
+    ///
+    /// A render constrained box proxies most functions in the render box protocol
+    /// to its child, except that when laying out its child, it tightens the
+    /// constraints provided by its parent by enforcing the [additionalConstraints]
+    /// as well.
+    ///
+    /// For example, if you wanted [child] to have a minimum height of 50.0 logical
+    /// pixels, you could use `const BoxConstraints(minHeight: 50.0)` as the
+    /// [additionalConstraints].
+    /// </Summary>
     public class RenderConstrainedBox : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
         #region constructors
@@ -674,6 +743,20 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// Constrains the child's [BoxConstraints.maxWidth] and
+    /// [BoxConstraints.maxHeight] if they're otherwise unconstrained.
+    ///
+    /// This has the effect of giving the child a natural dimension in unbounded
+    /// environments. For example, by providing a [maxHeight] to a widget that
+    /// normally tries to be as big as possible, the widget will normally size
+    /// itself to fit its parent, but when placed in a vertical list, it will take
+    /// on the given height.
+    ///
+    /// This is useful when composing widgets that normally try to match their
+    /// parents' size, so that they behave reasonably in lists (which are
+    /// unbounded).
+    /// </Summary>
     public class RenderLimitedBox : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
         #region constructors
@@ -705,6 +788,34 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// Attempts to size the child to a specific aspect ratio.
+    ///
+    /// The render object first tries the largest width permitted by the layout
+    /// constraints. The height of the render object is determined by applying the
+    /// given aspect ratio to the width, expressed as a ratio of width to height.
+    ///
+    /// For example, a 16:9 width:height aspect ratio would have a value of
+    /// 16.0/9.0. If the maximum width is infinite, the initial width is determined
+    /// by applying the aspect ratio to the maximum height.
+    ///
+    /// Now consider a second example, this time with an aspect ratio of 2.0 and
+    /// layout constraints that require the width to be between 0.0 and 100.0 and
+    /// the height to be between 0.0 and 100.0. We'll select a width of 100.0 (the
+    /// biggest allowed) and a height of 50.0 (to match the aspect ratio).
+    ///
+    /// In that same situation, if the aspect ratio is 0.5, we'll also select a
+    /// width of 100.0 (still the biggest allowed) and we'll attempt to use a height
+    /// of 200.0. Unfortunately, that violates the constraints because the child can
+    /// be at most 100.0 pixels tall. The render object will then take that value
+    /// and apply the aspect ratio again to obtain a width of 50.0. That width is
+    /// permitted by the constraints and the child receives a width of 50.0 and a
+    /// height of 100.0. If the width were not permitted, the render object would
+    /// continue iterating through the constraints. If the render object does not
+    /// find a feasible size after consulting each constraint, the render object
+    /// will eventually select a size for the child that meets the layout
+    /// constraints but fails to meet the aspect ratio constraints.
+    /// </Summary>
     public class RenderAspectRatio : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
         #region constructors
@@ -746,6 +857,23 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// Sizes its child to the child's intrinsic width.
+    ///
+    /// Sizes its child's width to the child's maximum intrinsic width. If
+    /// [stepWidth] is non-null, the child's width will be snapped to a multiple of
+    /// the [stepWidth]. Similarly, if [stepHeight] is non-null, the child's height
+    /// will be snapped to a multiple of the [stepHeight].
+    ///
+    /// This class is useful, for example, when unlimited width is available and
+    /// you would like a child that would otherwise attempt to expand infinitely to
+    /// instead size itself to a more reasonable width.
+    ///
+    /// This class is relatively expensive, because it adds a speculative layout
+    /// pass before the final layout phase. Avoid using it where possible. In the
+    /// worst case, this render object can result in a layout that is O(N²) in the
+    /// depth of the tree.
+    /// </Summary>
     public class RenderIntrinsicWidth : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
         #region constructors
@@ -789,6 +917,18 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// Sizes its child to the child's intrinsic height.
+    ///
+    /// This class is useful, for example, when unlimited height is available and
+    /// you would like a child that would otherwise attempt to expand infinitely to
+    /// instead size itself to a more reasonable height.
+    ///
+    /// This class is relatively expensive, because it adds a speculative layout
+    /// pass before the final layout phase. Avoid using it where possible. In the
+    /// worst case, this render object can result in a layout that is O(N²) in the
+    /// depth of the tree.
+    /// </Summary>
     public class RenderIntrinsicHeight : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
         #region constructors
@@ -819,6 +959,17 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// Makes its child partially transparent.
+    ///
+    /// This class paints its child into an intermediate buffer and then blends the
+    /// child back into the scene partially transparent.
+    ///
+    /// For values of opacity other than 0.0 and 1.0, this class is relatively
+    /// expensive because it requires painting the child into an intermediate
+    /// buffer. For the value 0.0, the child is simply not painted at all. For the
+    /// value 1.0, the child is painted immediately without an intermediate buffer.
+    /// </Summary>
     public class RenderOpacity : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
         #region constructors
@@ -852,6 +1003,12 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// Makes its child partially transparent, driven from an [Animation].
+    ///
+    /// This is a variant of [RenderOpacity] that uses an [Animation<double>] rather
+    /// than a [double] to control the opacity.
+    /// </Summary>
     public class RenderAnimatedOpacity : FlutterSDK.Rendering.Proxybox.RenderProxyBox, IRenderProxyBoxMixin<FlutterSDK.Rendering.Box.RenderBox>, IRenderAnimatedOpacityMixin<FlutterSDK.Rendering.Box.RenderBox>
     {
         #region constructors
@@ -870,6 +1027,12 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// Applies a mask generated by a [Shader] to its child.
+    ///
+    /// For example, [RenderShaderMask] can be used to gradually fade out the edge
+    /// of a child by using a [new ui.Gradient.linear] mask.
+    /// </Summary>
     public class RenderShaderMask : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
         #region constructors
@@ -897,6 +1060,12 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// Applies a filter to the existing painted content and then paints [child].
+    ///
+    /// This effect is relatively expensive, especially if the filter is non-local,
+    /// such as a blur.
+    /// </Summary>
     public class RenderBackdropFilter : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
         #region constructors
@@ -922,6 +1091,31 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// An interface for providing custom clips.
+    ///
+    /// This class is used by a number of clip widgets (e.g., [ClipRect] and
+    /// [ClipPath]).
+    ///
+    /// The [getClip] method is called whenever the custom clip needs to be updated.
+    ///
+    /// The [shouldReclip] method is called when a new instance of the class
+    /// is provided, to check if the new instance actually represents different
+    /// information.
+    ///
+    /// The most efficient way to update the clip provided by this class is to
+    /// supply a `reclip` argument to the constructor of the [CustomClipper]. The
+    /// custom object will listen to this animation and update the clip whenever the
+    /// animation ticks, avoiding both the build and layout phases of the pipeline.
+    ///
+    /// See also:
+    ///
+    ///  * [ClipRect], which can be customized with a [CustomClipper<Rect>].
+    ///  * [ClipRRect], which can be customized with a [CustomClipper<RRect>].
+    ///  * [ClipOval], which can be customized with a [CustomClipper<Rect>].
+    ///  * [ClipPath], which can be customized with a [CustomClipper<Path>].
+    ///  * [ShapeBorderClipper], for specifying a clip path using a [ShapeBorder].
+    /// </Summary>
     public class CustomClipper<T>
     {
         #region constructors
@@ -938,12 +1132,43 @@ namespace FlutterSDK.Rendering.Proxybox
 
         #region methods
 
+        /// <Summary>
+        /// Returns a description of the clip given that the render object being
+        /// clipped is of the given size.
+        /// </Summary>
         public virtual T GetClip(Size size) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns an approximation of the clip returned by [getClip], as
+        /// an axis-aligned Rect. This is used by the semantics layer to
+        /// determine whether widgets should be excluded.
+        ///
+        /// By default, this returns a rectangle that is the same size as
+        /// the RenderObject. If getClip returns a shape that is roughly the
+        /// same size as the RenderObject (e.g. it's a rounded rectangle
+        /// with very small arcs in the corners), then this may be adequate.
+        /// </Summary>
         public virtual Rect GetApproximateClipRect(Size size) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called whenever a new instance of the custom clipper delegate class is
+        /// provided to the clip object, or any time that a new clip object is created
+        /// with a new instance of the custom painter delegate class (which amounts to
+        /// the same thing, because the latter is implemented in terms of the former).
+        ///
+        /// If the new instance represents different information than the old
+        /// instance, then the method should return true, otherwise it should return
+        /// false.
+        ///
+        /// If the method returns false, then the [getClip] call might be optimized
+        /// away.
+        ///
+        /// It's possible that the [getClip] method will get called even if
+        /// [shouldReclip] returns false or if the [shouldReclip] method is never
+        /// called at all (e.g. if the box changes size).
+        /// </Summary>
         public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> oldClipper) { throw new NotImplementedException(); }
 
 
@@ -951,6 +1176,9 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// A [CustomClipper] that clips to the outer path of a [ShapeBorder].
+    /// </Summary>
     public class ShapeBorderClipper : FlutterSDK.Rendering.Proxybox.CustomClipper<Path>
     {
         #region constructors
@@ -969,6 +1197,9 @@ namespace FlutterSDK.Rendering.Proxybox
 
         #region methods
 
+        /// <Summary>
+        /// Returns the outer path of [shape] as the clip.
+        /// </Summary>
         public new Path GetClip(Size size) { throw new NotImplementedException(); }
 
 
@@ -1026,6 +1257,13 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// Clips its child using a rectangle.
+    ///
+    /// By default, [RenderClipRect] prevents its child from painting outside its
+    /// bounds, but the size and location of the clip rect can be customized using a
+    /// custom [clipper].
+    /// </Summary>
     public class RenderClipRect : FlutterSDK.Rendering.Proxybox._RenderCustomClip<Rect>
     {
         #region constructors
@@ -1054,6 +1292,13 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// Clips its child using a rounded rectangle.
+    ///
+    /// By default, [RenderClipRRect] uses its own bounds as the base rectangle for
+    /// the clip, but the size and location of the clip can be customized using a
+    /// custom [clipper].
+    /// </Summary>
     public class RenderClipRRect : FlutterSDK.Rendering.Proxybox._RenderCustomClip<RRect>
     {
         #region constructors
@@ -1084,6 +1329,13 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// Clips its child using an oval.
+    ///
+    /// By default, inscribes an axis-aligned oval into its layout dimensions and
+    /// prevents its child from painting outside that oval, but the size and
+    /// location of the clip oval can be customized using a custom [clipper].
+    /// </Summary>
     public class RenderClipOval : FlutterSDK.Rendering.Proxybox._RenderCustomClip<Rect>
     {
         #region constructors
@@ -1117,6 +1369,19 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// Clips its child using a path.
+    ///
+    /// Takes a delegate whose primary method returns a path that should
+    /// be used to prevent the child from painting outside the path.
+    ///
+    /// Clipping to a path is expensive. Certain shapes have more
+    /// optimized render objects:
+    ///
+    ///  * To clip to a rectangle, consider [RenderClipRect].
+    ///  * To clip to an oval or circle, consider [RenderClipOval].
+    ///  * To clip to a rounded rectangle, consider [RenderClipRRect].
+    /// </Summary>
     public class RenderClipPath : FlutterSDK.Rendering.Proxybox._RenderCustomClip<Path>
     {
         #region constructors
@@ -1145,6 +1410,12 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// A physical model layer casts a shadow based on its [elevation].
+    ///
+    /// The concrete implementations [RenderPhysicalModel] and [RenderPhysicalShape]
+    /// determine the actual shape of the physical model.
+    /// </Summary>
     public class _RenderPhysicalModelBase<T> : FlutterSDK.Rendering.Proxybox._RenderCustomClip<T>
     {
         #region constructors
@@ -1176,6 +1447,12 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// Creates a physical model layer that clips its child to a rounded
+    /// rectangle.
+    ///
+    /// A physical model layer casts a shadow based on its [elevation].
+    /// </Summary>
     public class RenderPhysicalModel : FlutterSDK.Rendering.Proxybox._RenderPhysicalModelBase<RRect>
     {
         #region constructors
@@ -1209,6 +1486,16 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// Creates a physical shape layer that clips its child to a [Path].
+    ///
+    /// A physical shape layer casts a shadow based on its [elevation].
+    ///
+    /// See also:
+    ///
+    ///  * [RenderPhysicalModel], which is optimized for rounded rectangles and
+    ///    circles.
+    /// </Summary>
     public class RenderPhysicalShape : FlutterSDK.Rendering.Proxybox._RenderPhysicalModelBase<Path>
     {
         #region constructors
@@ -1238,6 +1525,9 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// Paints a [Decoration] either before or after its child paints.
+    /// </Summary>
     public class RenderDecoratedBox : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
         #region constructors
@@ -1275,6 +1565,9 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// Applies a transformation before painting its child.
+    /// </Summary>
     public class RenderTransform : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
         #region constructors
@@ -1300,21 +1593,39 @@ namespace FlutterSDK.Rendering.Proxybox
 
         #region methods
 
+        /// <Summary>
+        /// Sets the transform to the identity matrix.
+        /// </Summary>
         public virtual void SetIdentity() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Concatenates a rotation about the x axis into the transform.
+        /// </Summary>
         public virtual void RotateX(double radians) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Concatenates a rotation about the y axis into the transform.
+        /// </Summary>
         public virtual void RotateY(double radians) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Concatenates a rotation about the z axis into the transform.
+        /// </Summary>
         public virtual void RotateZ(double radians) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Concatenates a translation by (x, y, z) into the transform.
+        /// </Summary>
         public virtual void Translate(double x, double y = 0.0, double z = 0.0) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Concatenates a scale into the transform.
+        /// </Summary>
         public virtual void Scale(double x, double y = default(double), double z = default(double)) { throw new NotImplementedException(); }
 
 
@@ -1337,6 +1648,9 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// Scales and positions its child within itself according to [fit].
+    /// </Summary>
     public class RenderFittedBox : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
         #region constructors
@@ -1395,6 +1709,17 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// Applies a translation transformation before painting its child.
+    ///
+    /// The translation is expressed as an [Offset] scaled to the child's size. For
+    /// example, an [Offset] with a `dx` of 0.25 will result in a horizontal
+    /// translation of one quarter the width of the child.
+    ///
+    /// Hit tests will only be detected inside the bounds of the
+    /// [RenderFractionalTranslation], even if the contents are offset such that
+    /// they overflow.
+    /// </Summary>
     public class RenderFractionalTranslation : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
         #region constructors
@@ -1432,6 +1757,20 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// Calls callbacks in response to common pointer events.
+    ///
+    /// It responds to events that can construct gestures, such as when the
+    /// pointer is pressed, moved, then released or canceled.
+    ///
+    /// It does not respond to events that are exclusive to mouse, such as when the
+    /// mouse enters, exits or hovers a region without pressing any buttons. For
+    /// these events, use [RenderMouseRegion].
+    ///
+    /// If it has a child, defers to the child for sizing behavior.
+    ///
+    /// If it does not have a child, grows to fit the parent-provided constraints.
+    /// </Summary>
     public class RenderPointerListener : FlutterSDK.Rendering.Proxybox.RenderProxyBoxWithHitTestBehavior
     {
         #region constructors
@@ -1468,6 +1807,26 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// Calls callbacks in response to pointer events that are exclusive to mice.
+    ///
+    /// It responds to events that are related to hovering, i.e. when the mouse
+    /// enters, exits (with or without pressing buttons), or moves over a region
+    /// without pressing buttons.
+    ///
+    /// It does not respond to common events that construct gestures, such as when
+    /// the pointer is pressed, moved, then released or canceled. For these events,
+    /// use [RenderPointerListener].
+    ///
+    /// If it has a child, it defers to the child for sizing behavior.
+    ///
+    /// If it does not have a child, it grows to fit the parent-provided constraints.
+    ///
+    /// See also:
+    ///
+    ///  * [MouseRegion], a widget that listens to hover events using
+    ///    [RenderMouseRegion].
+    /// </Summary>
     public class RenderMouseRegion : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
         #region constructors
@@ -1532,6 +1891,33 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// Creates a separate display list for its child.
+    ///
+    /// This render object creates a separate display list for its child, which
+    /// can improve performance if the subtree repaints at different times than
+    /// the surrounding parts of the tree. Specifically, when the child does not
+    /// repaint but its parent does, we can re-use the display list we recorded
+    /// previously. Similarly, when the child repaints but the surround tree does
+    /// not, we can re-record its display list without re-recording the display list
+    /// for the surround tree.
+    ///
+    /// In some cases, it is necessary to place _two_ (or more) repaint boundaries
+    /// to get a useful effect. Consider, for example, an e-mail application that
+    /// shows an unread count and a list of e-mails. Whenever a new e-mail comes in,
+    /// the list would update, but so would the unread count. If only one of these
+    /// two parts of the application was behind a repaint boundary, the entire
+    /// application would repaint each time. On the other hand, if both were behind
+    /// a repaint boundary, a new e-mail would only change those two parts of the
+    /// application and the rest of the application would not repaint.
+    ///
+    /// To tell if a particular RenderRepaintBoundary is useful, run your
+    /// application in checked mode, interacting with it in typical ways, and then
+    /// call [debugDumpRenderTree]. Each RenderRepaintBoundary will include the
+    /// ratio of cases where the repaint boundary was useful vs the cases where it
+    /// was not. These counts can also be inspected programmatically using
+    /// [debugAsymmetricPaintCount] and [debugSymmetricPaintCount] respectively.
+    /// </Summary>
     public class RenderRepaintBoundary : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
         #region constructors
@@ -1552,9 +1938,76 @@ namespace FlutterSDK.Rendering.Proxybox
 
         #region methods
 
+        /// <Summary>
+        /// Capture an image of the current state of this render object and its
+        /// children.
+        ///
+        /// The returned [ui.Image] has uncompressed raw RGBA bytes in the dimensions
+        /// of the render object, multiplied by the [pixelRatio].
+        ///
+        /// To use [toImage], the render object must have gone through the paint phase
+        /// (i.e. [debugNeedsPaint] must be false).
+        ///
+        /// The [pixelRatio] describes the scale between the logical pixels and the
+        /// size of the output image. It is independent of the
+        /// [window.devicePixelRatio] for the device, so specifying 1.0 (the default)
+        /// will give you a 1:1 mapping between logical pixels and the output pixels
+        /// in the image.
+        ///
+        /// {@tool snippet}
+        ///
+        /// The following is an example of how to go from a `GlobalKey` on a
+        /// `RepaintBoundary` to a PNG:
+        ///
+        /// ```dart
+        /// class PngHome extends StatefulWidget {
+        ///   PngHome({Key key}) : super(key: key);
+        ///
+        ///   @override
+        ///   _PngHomeState createState() => _PngHomeState();
+        /// }
+        ///
+        /// class _PngHomeState extends State<PngHome> {
+        ///   GlobalKey globalKey = GlobalKey();
+        ///
+        ///   Future<void> _capturePng() async {
+        ///     RenderRepaintBoundary boundary = globalKey.currentContext.findRenderObject();
+        ///     ui.Image image = await boundary.toImage();
+        ///     ByteData byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+        ///     Uint8List pngBytes = byteData.buffer.asUint8List();
+        ///     print(pngBytes);
+        ///   }
+        ///
+        ///   @override
+        ///   Widget build(BuildContext context) {
+        ///     return RepaintBoundary(
+        ///       key: globalKey,
+        ///       child: Center(
+        ///         child: FlatButton(
+        ///           child: Text('Hello World', textDirection: TextDirection.ltr),
+        ///           onPressed: _capturePng,
+        ///         ),
+        ///       ),
+        ///     );
+        ///   }
+        /// }
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [OffsetLayer.toImage] for a similar API at the layer level.
+        ///  * [dart:ui.Scene.toImage] for more information about the image returned.
+        /// </Summary>
         public virtual Future<SKImage> ToImage(double pixelRatio = 1.0) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Resets the [debugSymmetricPaintCount] and [debugAsymmetricPaintCount]
+        /// counts to zero.
+        ///
+        /// Only valid when asserts are enabled. Does nothing in release builds.
+        /// </Summary>
         public virtual void DebugResetMetrics() { throw new NotImplementedException(); }
 
 
@@ -1567,6 +2020,23 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// A render object that is invisible during hit testing.
+    ///
+    /// When [ignoring] is true, this render object (and its subtree) is invisible
+    /// to hit testing. It still consumes space during layout and paints its child
+    /// as usual. It just cannot be the target of located events, because its render
+    /// object returns false from [hitTest].
+    ///
+    /// When [ignoringSemantics] is true, the subtree will be invisible to
+    /// the semantics layer (and thus e.g. accessibility tools). If
+    /// [ignoringSemantics] is null, it uses the value of [ignoring].
+    ///
+    /// See also:
+    ///
+    ///  * [RenderAbsorbPointer], which takes the pointer events but prevents any
+    ///    nodes in the subtree from seeing them.
+    /// </Summary>
     public class RenderIgnorePointer : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
         #region constructors
@@ -1599,6 +2069,11 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// Lays the child out as if it was in the tree, but without painting anything,
+    /// without making the child available for hit testing, and without taking any
+    /// room in the parent.
+    /// </Summary>
     public class RenderOffstage : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
         #region constructors
@@ -1656,6 +2131,20 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// A render object that absorbs pointers during hit testing.
+    ///
+    /// When [absorbing] is true, this render object prevents its subtree from
+    /// receiving pointer events by terminating hit testing at itself. It still
+    /// consumes space during layout and paints its child as usual. It just prevents
+    /// its children from being the target of located events, because its render
+    /// object returns true from [hitTest].
+    ///
+    /// See also:
+    ///
+    ///  * [RenderIgnorePointer], which has the opposite effect: removing the
+    ///    subtree from considering entirely for the purposes of hit testing.
+    /// </Summary>
     public class RenderAbsorbPointer : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
         #region constructors
@@ -1688,6 +2177,14 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// Holds opaque meta data in the render tree.
+    ///
+    /// Useful for decorating the render tree with information that will be consumed
+    /// later. For example, you could store information in the render tree that will
+    /// be used when the user interacts with the render tree but has no visual
+    /// impact prior to the interaction.
+    /// </Summary>
     public class RenderMetaData : FlutterSDK.Rendering.Proxybox.RenderProxyBoxWithHitTestBehavior
     {
         #region constructors
@@ -1710,6 +2207,10 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// Listens for the specified gestures from the semantics server (e.g.
+    /// an accessibility tool).
+    /// </Summary>
     public class RenderSemanticsGestureHandler : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
         #region constructors
@@ -1760,6 +2261,9 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// Add annotations to the [SemanticsNode] for this subtree.
+    /// </Summary>
     public class RenderSemanticsAnnotations : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
         #region constructors
@@ -1945,6 +2449,13 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// Causes the semantics of all earlier render objects below the same semantic
+    /// boundary to be dropped.
+    ///
+    /// This is useful in a stack where an opaque mask should prevent interactions
+    /// with the render objects painted below the mask.
+    /// </Summary>
     public class RenderBlockSemantics : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
         #region constructors
@@ -1971,6 +2482,15 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// Causes the semantics of all descendants to be merged into this
+    /// node such that the entire subtree becomes a single leaf in the
+    /// semantics tree.
+    ///
+    /// Useful for combining the semantics of multiple render objects that
+    /// form part of a single conceptual widget, e.g. a checkbox, a label,
+    /// and the gesture detector that goes with them.
+    /// </Summary>
     public class RenderMergeSemantics : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
         #region constructors
@@ -1992,6 +2512,15 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// Excludes this subtree from the semantic tree.
+    ///
+    /// When [excluding] is true, this render object (and its subtree) is excluded
+    /// from the semantic tree.
+    ///
+    /// Useful e.g. for hiding text that is redundant with other text next
+    /// to it (e.g. text included only for the visual effect).
+    /// </Summary>
     public class RenderExcludeSemantics : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
         #region constructors
@@ -2018,6 +2547,18 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// A render objects that annotates semantics with an index.
+    ///
+    /// Certain widgets will automatically provide a child index for building
+    /// semantics. For example, the [ScrollView] uses the index of the first
+    /// visible child semantics node to determine the
+    /// [SemanticsConfiguration.scrollIndex].
+    ///
+    /// See also:
+    ///
+    ///  * [CustomScrollView], for an explanation of scroll semantics.
+    /// </Summary>
     public class RenderIndexedSemantics : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
         #region constructors
@@ -2044,6 +2585,14 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// Provides an anchor for a [RenderFollowerLayer].
+    ///
+    /// See also:
+    ///
+    ///  * [CompositedTransformTarget], the corresponding widget.
+    ///  * [LeaderLayer], the layer that this render object creates.
+    /// </Summary>
     public class RenderLeaderLayer : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
         #region constructors
@@ -2071,6 +2620,21 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// Transform the child so that its origin is [offset] from the origin of the
+    /// [RenderLeaderLayer] with the same [LayerLink].
+    ///
+    /// The [RenderLeaderLayer] in question must be earlier in the paint order.
+    ///
+    /// Hit testing on descendants of this render object will only work if the
+    /// target position is within the box that this render object's parent considers
+    /// to be hittable.
+    ///
+    /// See also:
+    ///
+    ///  * [CompositedTransformFollower], the corresponding widget.
+    ///  * [FollowerLayer], the layer that this render object creates.
+    /// </Summary>
     public class RenderFollowerLayer : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
         #region constructors
@@ -2097,6 +2661,14 @@ namespace FlutterSDK.Rendering.Proxybox
         public new void Detach() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Return the transform that was used in the last composition phase, if any.
+        ///
+        /// If the [FollowerLayer] has not yet been created, was never composited, or
+        /// was unable to determine the transform (see
+        /// [FollowerLayer.getLastTransform]), this returns the identity matrix (see
+        /// [new Matrix4.identity].
+        /// </Summary>
         public virtual Matrix4 GetCurrentTransform() { throw new NotImplementedException(); }
 
 
@@ -2119,6 +2691,14 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// Render object which inserts an [AnnotatedRegionLayer] into the layer tree.
+    ///
+    /// See also:
+    ///
+    ///  * [Layer.find], for an example of how this value is retrieved.
+    ///  * [AnnotatedRegionLayer], the layer this render object creates.
+    /// </Summary>
     public class RenderAnnotatedRegion<T> : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
         #region constructors
@@ -2145,19 +2725,44 @@ namespace FlutterSDK.Rendering.Proxybox
     }
 
 
+    /// <Summary>
+    /// How to behave during hit tests.
+    /// </Summary>
     public enum HitTestBehavior
     {
 
+        /// <Summary>
+        /// Targets that defer to their children receive events within their bounds
+        /// only if one of their children is hit by the hit test.
+        /// </Summary>
         DeferToChild,
+        /// <Summary>
+        /// Opaque targets can be hit by hit tests, causing them to both receive
+        /// events within their bounds and prevent targets visually behind them from
+        /// also receiving events.
+        /// </Summary>
         Opaque,
+        /// <Summary>
+        /// Translucent targets both receive events within their bounds and permit
+        /// targets visually behind them to also receive events.
+        /// </Summary>
         Translucent,
     }
 
 
+    /// <Summary>
+    /// Where to paint a box decoration.
+    /// </Summary>
     public enum DecorationPosition
     {
 
+        /// <Summary>
+        /// Paint the box decoration behind the children.
+        /// </Summary>
         Background,
+        /// <Summary>
+        /// Paint the box decoration in front of the children.
+        /// </Summary>
         Foreground,
     }
 

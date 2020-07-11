@@ -439,12 +439,28 @@ namespace FlutterSDK.Services.Binding
         public new void InitInstances() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Creates a default [BinaryMessenger] instance that can be used for sending
+        /// platform messages.
+        /// </Summary>
         public virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger CreateBinaryMessenger() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Handler called for messages received on the [SystemChannels.system]
+        /// message channel.
+        ///
+        /// Other bindings may override this to respond to incoming system messages.
+        /// </Summary>
         public virtual Future<object> HandleSystemMessage(@Object systemMessage) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Adds relevant licenses to the [LicenseRegistry].
+        ///
+        /// By default, the [ServicesBinding]'s implementation of [initLicenses] adds
+        /// all the licenses collected by the `flutter` tool during compilation.
+        /// </Summary>
         public virtual void InitLicenses() { throw new NotImplementedException(); }
 
 
@@ -457,6 +473,12 @@ namespace FlutterSDK.Services.Binding
         public new void InitServiceExtensions() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called in response to the `ext.flutter.evict` service extension.
+        ///
+        /// This is used by the `flutter` tool during hot reload so that any images
+        /// that have changed on disk get cleared from caches.
+        /// </Summary>
         public virtual void Evict(string asset) { throw new NotImplementedException(); }
 
     }
@@ -483,6 +505,13 @@ namespace FlutterSDK.Services.Binding
     }
 
 
+    /// <Summary>
+    /// The default implementation of [BinaryMessenger].
+    ///
+    /// This messenger sends messages from the app-side to the platform-side and
+    /// dispatches incoming messages from the platform-side to the appropriate
+    /// handler.
+    /// </Summary>
     public class _DefaultBinaryMessenger : FlutterSDK.Services.Binarymessenger.BinaryMessenger
     {
         #region constructors

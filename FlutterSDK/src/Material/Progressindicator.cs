@@ -416,6 +416,17 @@ namespace FlutterSDK.Material.Progressindicator
         public static FlutterSDK.Animation.Tween.Animatable<double> _KRotationTween = default(FlutterSDK.Animation.Tween.Animatable<double>);
     }
 
+    /// <Summary>
+    /// A base class for material design progress indicators.
+    ///
+    /// This widget cannot be instantiated directly. For a linear progress
+    /// indicator, see [LinearProgressIndicator]. For a circular progress indicator,
+    /// see [CircularProgressIndicator].
+    ///
+    /// See also:
+    ///
+    ///  * <https://material.io/design/components/progress-indicators.html>
+    /// </Summary>
     public interface IProgressIndicator
     {
         void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties);
@@ -427,6 +438,17 @@ namespace FlutterSDK.Material.Progressindicator
     }
 
 
+    /// <Summary>
+    /// A base class for material design progress indicators.
+    ///
+    /// This widget cannot be instantiated directly. For a linear progress
+    /// indicator, see [LinearProgressIndicator]. For a circular progress indicator,
+    /// see [CircularProgressIndicator].
+    ///
+    /// See also:
+    ///
+    ///  * <https://material.io/design/components/progress-indicators.html>
+    /// </Summary>
     public class ProgressIndicator : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -504,6 +526,31 @@ namespace FlutterSDK.Material.Progressindicator
     }
 
 
+    /// <Summary>
+    /// A material design linear progress indicator, also known as a progress bar.
+    ///
+    /// A widget that shows progress along a line. There are two kinds of linear
+    /// progress indicators:
+    ///
+    ///  * _Determinate_. Determinate progress indicators have a specific value at
+    ///    each point in time, and the value should increase monotonically from 0.0
+    ///    to 1.0, at which time the indicator is complete. To create a determinate
+    ///    progress indicator, use a non-null [value] between 0.0 and 1.0.
+    ///  * _Indeterminate_. Indeterminate progress indicators do not have a specific
+    ///    value at each point in time and instead indicate that progress is being
+    ///    made without indicating how much progress remains. To create an
+    ///    indeterminate progress indicator, use a null [value].
+    ///
+    /// The indicator line is displayed with [valueColor], an animated value. To
+    /// specify a constant color value use: `AlwaysStoppedAnimation<Color>(color)`.
+    ///
+    /// See also:
+    ///
+    ///  * [CircularProgressIndicator], which shows progress along a circular arc.
+    ///  * [RefreshIndicator], which automatically displays a [CircularProgressIndicator]
+    ///    when the underlying vertical scrollable is overscrolled.
+    ///  * <https://material.io/design/components/progress-indicators.html#linear-progress-indicators>
+    /// </Summary>
     public class LinearProgressIndicator : FlutterSDK.Material.Progressindicator.ProgressIndicator
     {
         #region constructors
@@ -602,6 +649,32 @@ namespace FlutterSDK.Material.Progressindicator
     }
 
 
+    /// <Summary>
+    /// A material design circular progress indicator, which spins to indicate that
+    /// the application is busy.
+    ///
+    /// A widget that shows progress along a circle. There are two kinds of circular
+    /// progress indicators:
+    ///
+    ///  * _Determinate_. Determinate progress indicators have a specific value at
+    ///    each point in time, and the value should increase monotonically from 0.0
+    ///    to 1.0, at which time the indicator is complete. To create a determinate
+    ///    progress indicator, use a non-null [value] between 0.0 and 1.0.
+    ///  * _Indeterminate_. Indeterminate progress indicators do not have a specific
+    ///    value at each point in time and instead indicate that progress is being
+    ///    made without indicating how much progress remains. To create an
+    ///    indeterminate progress indicator, use a null [value].
+    ///
+    /// The indicator arc is displayed with [valueColor], an animated value. To
+    /// specify a constant color use: `AlwaysStoppedAnimation<Color>(color)`.
+    ///
+    /// See also:
+    ///
+    ///  * [LinearProgressIndicator], which displays progress along a line.
+    ///  * [RefreshIndicator], which automatically displays a [CircularProgressIndicator]
+    ///    when the underlying vertical scrollable is overscrolled.
+    ///  * <https://material.io/design/components/progress-indicators.html#circular-progress-indicators>
+    /// </Summary>
     public class CircularProgressIndicator : FlutterSDK.Material.Progressindicator.ProgressIndicator
     {
         #region constructors
@@ -683,6 +756,21 @@ namespace FlutterSDK.Material.Progressindicator
     }
 
 
+    /// <Summary>
+    /// An indicator for the progress of refreshing the contents of a widget.
+    ///
+    /// Typically used for swipe-to-refresh interactions. See [RefreshIndicator] for
+    /// a complete implementation of swipe-to-refresh driven by a [Scrollable]
+    /// widget.
+    ///
+    /// The indicator arc is displayed with [valueColor], an animated value. To
+    /// specify a constant color use: `AlwaysStoppedAnimation<Color>(color)`.
+    ///
+    /// See also:
+    ///
+    ///  * [RefreshIndicator], which automatically displays a [CircularProgressIndicator]
+    ///    when the underlying vertical scrollable is overscrolled.
+    /// </Summary>
     public class RefreshProgressIndicator : FlutterSDK.Material.Progressindicator.CircularProgressIndicator
     {
         #region constructors

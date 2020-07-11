@@ -298,6 +298,50 @@ namespace FlutterSDK.Foundation.Changenotifier
     {
     }
 
+    /// <Summary>
+    /// An object that maintains a list of listeners.
+    ///
+    /// The listeners are typically used to notify clients that the object has been
+    /// updated.
+    ///
+    /// There are two variants of this interface:
+    ///
+    ///  * [ValueListenable], an interface that augments the [Listenable] interface
+    ///    with the concept of a _current value_.
+    ///
+    ///  * [Animation], an interface that augments the [ValueListenable] interface
+    ///    to add the concept of direction (forward or reverse).
+    ///
+    /// Many classes in the Flutter API use or implement these interfaces. The
+    /// following subclasses are especially relevant:
+    ///
+    ///  * [ChangeNotifier], which can be subclassed or mixed in to create objects
+    ///    that implement the [Listenable] interface.
+    ///
+    ///  * [ValueNotifier], which implements the [ValueListenable] interface with
+    ///    a mutable value that triggers the notifications when modified.
+    ///
+    /// The terms "notify clients", "send notifications", "trigger notifications",
+    /// and "fire notifications" are used interchangeably.
+    ///
+    /// See also:
+    ///
+    ///  * [AnimatedBuilder], a widget that uses a builder callback to rebuild
+    ///    whenever a given [Listenable] triggers its notifications. This widget is
+    ///    commonly used with [Animation] subclasses, hence its name, but is by no
+    ///    means limited to animations, as it can be used with any [Listenable]. It
+    ///    is a subclass of [AnimatedWidget], which can be used to create widgets
+    ///    that are driven from a [Listenable].
+    ///  * [ValueListenableBuilder], a widget that uses a builder callback to
+    ///    rebuild whenever a [ValueListenable] object triggers its notifications,
+    ///    providing the builder with the value of the object.
+    ///  * [InheritedNotifier], an abstract superclass for widgets that use a
+    ///    [Listenable]'s notifications to trigger rebuilds in descendant widgets
+    ///    that declare a dependency on them, using the [InheritedWidget] mechanism.
+    ///  * [new Listenable.merge], which creates a [Listenable] that triggers
+    ///    notifications whenever any of a list of other [Listenable]s trigger their
+    ///    notifications.
+    /// </Summary>
     public interface IListenable
     {
         void AddListener(VoidCallback listener);
@@ -305,6 +349,12 @@ namespace FlutterSDK.Foundation.Changenotifier
     }
 
 
+    /// <Summary>
+    /// An interface for subclasses of [Listenable] that expose a [value].
+    ///
+    /// This interface is implemented by [ValueNotifier<T>] and [Animation<T>], and
+    /// allows other APIs to accept either of those implementations interchangeably.
+    /// </Summary>
     public interface IValueListenable<T>
     {
         T Value { get; }
@@ -321,15 +371,66 @@ namespace FlutterSDK.Foundation.Changenotifier
         private bool _DebugAssertNotDisposed() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Register a closure to be called when the object changes.
+        ///
+        /// This method must not be called after [dispose] has been called.
+        /// </Summary>
         public new void AddListener(VoidCallback listener) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Remove a previously registered closure from the list of closures that are
+        /// notified when the object changes.
+        ///
+        /// If the given listener is not registered, the call is ignored.
+        ///
+        /// This method must not be called after [dispose] has been called.
+        ///
+        /// If a listener had been added twice, and is removed once during an
+        /// iteration (i.e. in response to a notification), it will still be called
+        /// again. If, on the other hand, it is removed as many times as it was
+        /// registered, then it will no longer be called. This odd behavior is the
+        /// result of the [ChangeNotifier] not being able to determine which listener
+        /// is being removed, since they are identical, and therefore conservatively
+        /// still calling all the listeners when it knows that any are still
+        /// registered.
+        ///
+        /// This surprising behavior can be unexpectedly observed when registering a
+        /// listener on two separate objects which are both forwarding all
+        /// registrations to a common upstream object.
+        /// </Summary>
         public new void RemoveListener(VoidCallback listener) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Discards any resources used by the object. After this is called, the
+        /// object is not in a usable state and should be discarded (calls to
+        /// [addListener] and [removeListener] will throw after the object is
+        /// disposed).
+        ///
+        /// This method should only be called by the object's owner.
+        /// </Summary>
         public virtual void Dispose() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Call all the registered listeners.
+        ///
+        /// Call this method whenever the object changes, to notify any clients the
+        /// object may have. Listeners that are added during this iteration will not
+        /// be visited. Listeners that are removed during this iteration will not be
+        /// visited after they are removed.
+        ///
+        /// Exceptions thrown by listeners will be caught and reported using
+        /// [FlutterError.reportError].
+        ///
+        /// This method must not be called after [dispose] has been called.
+        ///
+        /// Surprising behavior can result when reentrantly removing a listener (i.e.
+        /// in response to a notification) that has been registered multiple times.
+        /// See the discussion at [removeListener].
+        /// </Summary>
         public virtual void NotifyListeners() { throw new NotImplementedException(); }
 
     }
@@ -353,6 +454,50 @@ namespace FlutterSDK.Foundation.Changenotifier
     }
 
 
+    /// <Summary>
+    /// An object that maintains a list of listeners.
+    ///
+    /// The listeners are typically used to notify clients that the object has been
+    /// updated.
+    ///
+    /// There are two variants of this interface:
+    ///
+    ///  * [ValueListenable], an interface that augments the [Listenable] interface
+    ///    with the concept of a _current value_.
+    ///
+    ///  * [Animation], an interface that augments the [ValueListenable] interface
+    ///    to add the concept of direction (forward or reverse).
+    ///
+    /// Many classes in the Flutter API use or implement these interfaces. The
+    /// following subclasses are especially relevant:
+    ///
+    ///  * [ChangeNotifier], which can be subclassed or mixed in to create objects
+    ///    that implement the [Listenable] interface.
+    ///
+    ///  * [ValueNotifier], which implements the [ValueListenable] interface with
+    ///    a mutable value that triggers the notifications when modified.
+    ///
+    /// The terms "notify clients", "send notifications", "trigger notifications",
+    /// and "fire notifications" are used interchangeably.
+    ///
+    /// See also:
+    ///
+    ///  * [AnimatedBuilder], a widget that uses a builder callback to rebuild
+    ///    whenever a given [Listenable] triggers its notifications. This widget is
+    ///    commonly used with [Animation] subclasses, hence its name, but is by no
+    ///    means limited to animations, as it can be used with any [Listenable]. It
+    ///    is a subclass of [AnimatedWidget], which can be used to create widgets
+    ///    that are driven from a [Listenable].
+    ///  * [ValueListenableBuilder], a widget that uses a builder callback to
+    ///    rebuild whenever a [ValueListenable] object triggers its notifications,
+    ///    providing the builder with the value of the object.
+    ///  * [InheritedNotifier], an abstract superclass for widgets that use a
+    ///    [Listenable]'s notifications to trigger rebuilds in descendant widgets
+    ///    that declare a dependency on them, using the [InheritedWidget] mechanism.
+    ///  * [new Listenable.merge], which creates a [Listenable] that triggers
+    ///    notifications whenever any of a list of other [Listenable]s trigger their
+    ///    notifications.
+    /// </Summary>
     public class Listenable
     {
         #region constructors
@@ -371,15 +516,28 @@ namespace FlutterSDK.Foundation.Changenotifier
 
         #region methods
 
+        /// <Summary>
+        /// Register a closure to be called when the object notifies its listeners.
+        /// </Summary>
         public virtual void AddListener(VoidCallback listener) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Remove a previously registered closure from the list of closures that the
+        /// object notifies.
+        /// </Summary>
         public virtual void RemoveListener(VoidCallback listener) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// An interface for subclasses of [Listenable] that expose a [value].
+    ///
+    /// This interface is implemented by [ValueNotifier<T>] and [Animation<T>], and
+    /// allows other APIs to accept either of those implementations interchangeably.
+    /// </Summary>
     public class ValueListenable<T> : FlutterSDK.Foundation.Changenotifier.Listenable
     {
         #region constructors
@@ -423,6 +581,13 @@ namespace FlutterSDK.Foundation.Changenotifier
     }
 
 
+    /// <Summary>
+    /// A [ChangeNotifier] that holds a single value.
+    ///
+    /// When [value] is replaced with something that is not equal to the old
+    /// value as evaluated by the equality operator ==, this class notifies its
+    /// listeners.
+    /// </Summary>
     public class ValueNotifier<T> : FlutterSDK.Foundation.Changenotifier.ChangeNotifier, IValueListenable<T>
     {
         #region constructors

@@ -312,6 +312,35 @@ namespace FlutterSDK.Cupertino.Actionsheet
         public static double _KDividerThickness = default(double);
     }
 
+    /// <Summary>
+    /// An iOS-style action sheet.
+    ///
+    /// An action sheet is a specific style of alert that presents the user
+    /// with a set of two or more choices related to the current context.
+    /// An action sheet can have a title, an additional message, and a list
+    /// of actions. The title is displayed above the message and the actions
+    /// are displayed below this content.
+    ///
+    /// This action sheet styles its title and message to match standard iOS action
+    /// sheet title and message text style.
+    ///
+    /// To display action buttons that look like standard iOS action sheet buttons,
+    /// provide [CupertinoActionSheetAction]s for the [actions] given to this action
+    /// sheet.
+    ///
+    /// To include a iOS-style cancel button separate from the other buttons,
+    /// provide an [CupertinoActionSheetAction] for the [cancelButton] given to this
+    /// action sheet.
+    ///
+    /// An action sheet is typically passed as the child widget to
+    /// [showCupertinoModalPopup], which displays the action sheet by sliding it up
+    /// from the bottom of the screen.
+    ///
+    /// See also:
+    ///
+    ///  * [CupertinoActionSheetAction], which is an iOS-style action sheet button.
+    ///  * <https://developer.apple.com/design/human-interface-guidelines/ios/views/action-sheets/>
+    /// </Summary>
     public class CupertinoActionSheet : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors
@@ -353,6 +382,14 @@ namespace FlutterSDK.Cupertino.Actionsheet
     }
 
 
+    /// <Summary>
+    /// A button typically used in a [CupertinoActionSheet].
+    ///
+    /// See also:
+    ///
+    ///  * [CupertinoActionSheet], an alert that presents the user with a set of two or
+    ///    more choices related to the current context.
+    /// </Summary>
     public class CupertinoActionSheetAction : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors

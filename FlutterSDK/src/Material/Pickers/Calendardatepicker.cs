@@ -416,6 +416,26 @@ namespace FlutterSDK.Material.Pickers.Calendardatepicker
         public static FlutterSDK.Material.Pickers.Calendardatepicker._YearPickerGridDelegate _YearPickerGridDelegate = default(FlutterSDK.Material.Pickers.Calendardatepicker._YearPickerGridDelegate);
     }
 
+    /// <Summary>
+    /// Displays a grid of days for a given month and allows the user to select a date.
+    ///
+    /// Days are arranged in a rectangular grid with one column for each day of the
+    /// week. Controls are provided to change the year and month that the grid is
+    /// showing.
+    ///
+    /// The calendar picker widget is rarely used directly. Instead, consider using
+    /// [showDatePicker], which will create a dialog that uses this as well as provides
+    /// a text entry option.
+    ///
+    /// See also:
+    ///
+    ///  * [showDatePicker], which creates a Dialog that contains a [CalendarDatePicker]
+    ///    and provides an optional compact view where the user can enter a date as
+    ///    a line of text.
+    ///  * [showTimePicker], which shows a dialog that contains a material design
+    ///    time picker.
+    ///
+    /// </Summary>
     public class CalendarDatePicker : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -497,6 +517,12 @@ namespace FlutterSDK.Material.Pickers.Calendardatepicker
     }
 
 
+    /// <Summary>
+    /// A button that used to toggle the [DatePickerMode] for a date picker.
+    ///
+    /// This appears above the calendar grid and allows the user to toggle the
+    /// [DatePickerMode] to display either the calendar view or the year list.
+    /// </Summary>
     public class _DatePickerModeToggleButton : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -633,6 +659,12 @@ namespace FlutterSDK.Material.Pickers.Calendardatepicker
     }
 
 
+    /// <Summary>
+    /// Displays the days of a given month and allows choosing a day.
+    ///
+    /// The days are arranged in a rectangular grid with one column for each day of
+    /// the week.
+    /// </Summary>
     public class _DayPicker : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors
@@ -703,6 +735,26 @@ namespace FlutterSDK.Material.Pickers.Calendardatepicker
 
         #region methods
 
+        /// <Summary>
+        /// Builds widgets showing abbreviated days of week. The first widget in the
+        /// returned list corresponds to the first day of week for the current locale.
+        ///
+        /// Examples:
+        ///
+        /// ```
+        /// ┌ Sunday is the first day of week in the US (en_US)
+        /// |
+        /// S M T W T F S  <-- the returned list contains these widgets
+        /// _ _ _ _ _ 1 2
+        /// 3 4 5 6 7 8 9
+        ///
+        /// ┌ But it's Monday in the UK (en_GB)
+        /// |
+        /// M T W T F S S  <-- the returned list contains these widgets
+        /// _ _ _ _ 1 2 3
+        /// 4 5 6 7 8 9 10
+        /// ```
+        /// </Summary>
         private List<FlutterSDK.Widgets.Framework.Widget> _GetDayHeaders(FlutterSDK.Painting.Textstyle.TextStyle headerStyle, FlutterSDK.Material.Materiallocalizations.MaterialLocalizations localizations) { throw new NotImplementedException(); }
 
 
@@ -712,6 +764,9 @@ namespace FlutterSDK.Material.Pickers.Calendardatepicker
     }
 
 
+    /// <Summary>
+    /// A scrollable list of years to allow picking a year.
+    /// </Summary>
     public class _YearPicker : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors

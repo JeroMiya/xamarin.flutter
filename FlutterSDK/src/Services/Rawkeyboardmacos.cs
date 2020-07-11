@@ -427,6 +427,16 @@ namespace FlutterSDK.Services.Rawkeyboardmacos
     {
     }
 
+    /// <Summary>
+    /// Platform-specific key event data for macOS.
+    ///
+    /// This object contains information about key events obtained from macOS's
+    /// `NSEvent` interface.
+    ///
+    /// See also:
+    ///
+    ///  * [RawKeyboard], which uses this interface to expose key data.
+    /// </Summary>
     public class RawKeyEventDataMacOs : FlutterSDK.Services.Rawkeyboard.RawKeyEventData
     {
         #region constructors
@@ -478,6 +488,17 @@ namespace FlutterSDK.Services.Rawkeyboardmacos
         public new FlutterSDK.Services.Rawkeyboard.KeyboardSide GetModifierSide(FlutterSDK.Services.Rawkeyboard.ModifierKey key) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns true if the given label represents an unprintable key.
+        ///
+        /// Examples of unprintable keys are "NSUpArrowFunctionKey = 0xF700"
+        /// or "NSHomeFunctionKey = 0xF729".
+        ///
+        /// See <https://developer.apple.com/documentation/appkit/1535851-function-key_unicodes?language=objc> for more
+        /// information.
+        ///
+        /// Used by [RawKeyEvent] subclasses to help construct IDs.
+        /// </Summary>
         private bool _IsUnprintableKey(string label) { throw new NotImplementedException(); }
 
 

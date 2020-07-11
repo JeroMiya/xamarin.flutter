@@ -432,6 +432,12 @@ namespace FlutterSDK.Rendering.Mousetracking
     {
     }
 
+    /// <Summary>
+    /// The annotation object used to annotate layers that are interested in mouse
+    /// movements.
+    ///
+    /// This is added to a layer and managed by the [MouseRegion] widget.
+    /// </Summary>
     public class MouseTrackerAnnotation : IDiagnosticable
     {
         #region constructors
@@ -484,6 +490,33 @@ namespace FlutterSDK.Rendering.Mousetracking
     }
 
 
+    /// <Summary>
+    /// Maintains the relationship between mouse devices and
+    /// [MouseTrackerAnnotation]s, and notifies interested callbacks of the changes
+    /// thereof.
+    ///
+    /// This class is a [ChangeNotifier] that notifies its listeners if the value of
+    /// [mouseIsConnected] changes.
+    ///
+    /// An instance of [MouseTracker] is owned by the global singleton of
+    /// [RendererBinding].
+    ///
+    /// ### Details
+    ///
+    /// The state of [MouseTracker] consists of two parts:
+    ///
+    ///  * The mouse devices that are connected.
+    ///  * In which annotations each device is contained.
+    ///
+    /// The states remain stable most of the time, and are only changed at the
+    /// following moments:
+    ///
+    ///  * An eligible [PointerEvent] has been observed, e.g. a device is added,
+    ///    removed, or moved. In this case, the state related to this device will
+    ///    be immediately updated.
+    ///  * A frame has been painted. In this case, a callback will be scheduled for
+    ///    the upcoming post-frame phase to update all devices.
+    /// </Summary>
     public class MouseTracker : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
     {
         #region constructors
@@ -528,6 +561,19 @@ namespace FlutterSDK.Rendering.Mousetracking
         private void _DispatchDeviceCallbacks(LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> lastAnnotations = default(LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation>), LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> nextAnnotations = default(LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation>), FlutterSDK.Gestures.Events.PointerEvent previousEvent = default(FlutterSDK.Gestures.Events.PointerEvent), FlutterSDK.Gestures.Events.PointerEvent unhandledEvent = default(FlutterSDK.Gestures.Events.PointerEvent)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Mark all devices as dirty, and schedule a callback that is executed in the
+        /// upcoming post-frame phase to check their updates.
+        ///
+        /// Checking a device means to collect the annotations that the pointer
+        /// hovers, and triggers necessary callbacks accordingly.
+        ///
+        /// Although the actual callback belongs to the scheduler's post-frame phase,
+        /// this method must be called in persistent callback phase to ensure that
+        /// the callback is scheduled after every frame, since every frame can change
+        /// the position of annotations. Typically the method is called by
+        /// [RendererBinding]'s drawing method.
+        /// </Summary>
         public virtual void SchedulePostFrameCheck() { throw new NotImplementedException(); }
 
         #endregion

@@ -423,6 +423,26 @@ namespace FlutterSDK.Material.Theme
         public static TimeSpan KThemeAnimationDuration = default(TimeSpan);
     }
 
+    /// <Summary>
+    /// Applies a theme to descendant widgets.
+    ///
+    /// A theme describes the colors and typographic choices of an application.
+    ///
+    /// Descendant widgets obtain the current theme's [ThemeData] object using
+    /// [Theme.of]. When a widget uses [Theme.of], it is automatically rebuilt if
+    /// the theme later changes, so that the changes can be applied.
+    ///
+    /// The [Theme] widget implies an [IconTheme] widget, set to the value of the
+    /// [ThemeData.iconTheme] of the [data] for the [Theme].
+    ///
+    /// See also:
+    ///
+    ///  * [ThemeData], which describes the actual configuration of a theme.
+    ///  * [AnimatedTheme], which animates the [ThemeData] when it changes rather
+    ///    than changing the theme all at once.
+    ///  * [MaterialApp], which includes an [AnimatedTheme] widget configured via
+    ///    the [MaterialApp.theme] argument.
+    /// </Summary>
     public class Theme : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors
@@ -444,6 +464,65 @@ namespace FlutterSDK.Material.Theme
 
         #region methods
 
+        /// <Summary>
+        /// The data from the closest [Theme] instance that encloses the given
+        /// context.
+        ///
+        /// If the given context is enclosed in a [Localizations] widget providing
+        /// [MaterialLocalizations], the returned data is localized according to the
+        /// nearest available [MaterialLocalizations].
+        ///
+        /// Defaults to [new ThemeData.fallback] if there is no [Theme] in the given
+        /// build context.
+        ///
+        /// If [shadowThemeOnly] is true and the closest [Theme] ancestor was
+        /// installed by the [MaterialApp] — in other words if the closest [Theme]
+        /// ancestor does not shadow the application's theme — then this returns null.
+        /// This argument should be used in situations where its useful to wrap a
+        /// route's widgets with a [Theme], but only when the application's overall
+        /// theme is being shadowed by a [Theme] widget that is deeper in the tree.
+        /// See [isMaterialAppTheme].
+        ///
+        /// Typical usage is as follows:
+        ///
+        /// ```dart
+        /// @override
+        /// Widget build(BuildContext context) {
+        ///   return Text(
+        ///     'Example',
+        ///     style: Theme.of(context).textTheme.headline6,
+        ///   );
+        /// }
+        /// ```
+        ///
+        /// When the [Theme] is actually created in the same `build` function
+        /// (possibly indirectly, e.g. as part of a [MaterialApp]), the `context`
+        /// argument to the `build` function can't be used to find the [Theme] (since
+        /// it's "above" the widget being returned). In such cases, the following
+        /// technique with a [Builder] can be used to provide a new scope with a
+        /// [BuildContext] that is "under" the [Theme]:
+        ///
+        /// ```dart
+        /// @override
+        /// Widget build(BuildContext context) {
+        ///   return MaterialApp(
+        ///     theme: ThemeData.light(),
+        ///     body: Builder(
+        ///       // Create an inner BuildContext so that we can refer to
+        ///       // the Theme with Theme.of().
+        ///       builder: (BuildContext context) {
+        ///         return Center(
+        ///           child: Text(
+        ///             'Example',
+        ///             style: Theme.of(context).textTheme.headline6,
+        ///           ),
+        ///         );
+        ///       },
+        ///     ),
+        ///   );
+        /// }
+        /// ```
+        /// </Summary>
         public virtual FlutterSDK.Material.Themedata.ThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context, bool shadowThemeOnly = false) { throw new NotImplementedException(); }
 
 
@@ -482,6 +561,14 @@ namespace FlutterSDK.Material.Theme
     }
 
 
+    /// <Summary>
+    /// An interpolation between two [ThemeData]s.
+    ///
+    /// This class specializes the interpolation of [Tween<ThemeData>] to call the
+    /// [ThemeData.lerp] method.
+    ///
+    /// See [Tween] for a discussion on how to use interpolation objects.
+    /// </Summary>
     public class ThemeDataTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Material.Themedata.ThemeData>
     {
         #region constructors
@@ -503,6 +590,22 @@ namespace FlutterSDK.Material.Theme
     }
 
 
+    /// <Summary>
+    /// Animated version of [Theme] which automatically transitions the colors,
+    /// etc, over a given duration whenever the given theme changes.
+    ///
+    /// Here's an illustration of what using this widget looks like, using a [curve]
+    /// of [Curves.elasticInOut].
+    /// {@animation 250 266 https://flutter.github.io/assets-for-api-docs/assets/widgets/animated_theme.mp4}
+    ///
+    /// See also:
+    ///
+    ///  * [Theme], which [AnimatedTheme] uses to actually apply the interpolated
+    ///    theme.
+    ///  * [ThemeData], which describes the actual configuration of a theme.
+    ///  * [MaterialApp], which includes an [AnimatedTheme] widget configured via
+    ///    the [MaterialApp.theme] argument.
+    /// </Summary>
     public class AnimatedTheme : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
     {
         #region constructors

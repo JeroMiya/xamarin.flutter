@@ -427,6 +427,14 @@ namespace FlutterSDK.Widgets.Animatedsize
     {
     }
 
+    /// <Summary>
+    /// Animated widget that automatically transitions its size over a given
+    /// duration whenever the given child's size changes.
+    ///
+    /// See also:
+    ///
+    ///  * [SizeTransition], which changes its size based on an [Animation].
+    /// </Summary>
     public class AnimatedSize : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
         #region constructors

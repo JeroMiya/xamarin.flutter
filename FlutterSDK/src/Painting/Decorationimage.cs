@@ -436,6 +436,12 @@ namespace FlutterSDK.Painting.Decorationimage
 
     }
 
+    /// <Summary>
+    /// An image for a box decoration.
+    ///
+    /// The image is painted using [paintImage], which describes the meanings of the
+    /// various fields on this class in more detail.
+    /// </Summary>
     public class DecorationImage
     {
         #region constructors
@@ -467,6 +473,13 @@ namespace FlutterSDK.Painting.Decorationimage
 
         #region methods
 
+        /// <Summary>
+        /// Creates a [DecorationImagePainter] for this [DecorationImage].
+        ///
+        /// The `onChanged` argument must not be null. It will be called whenever the
+        /// image needs to be repainted, e.g. because it is loading incrementally or
+        /// because it is animated.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Decorationimage.DecorationImagePainter CreatePainter(VoidCallback onChanged) { throw new NotImplementedException(); }
 
 
@@ -477,6 +490,19 @@ namespace FlutterSDK.Painting.Decorationimage
     }
 
 
+    /// <Summary>
+    /// The painter for a [DecorationImage].
+    ///
+    /// To obtain a painter, call [DecorationImage.createPainter].
+    ///
+    /// To paint, call [paint]. The `onChanged` callback passed to
+    /// [DecorationImage.createPainter] will be called if the image needs to paint
+    /// again (e.g. because it is animated or because it had not yet loaded the
+    /// first time the [paint] method was called).
+    ///
+    /// This object should be disposed using the [dispose] method when it is no
+    /// longer needed.
+    /// </Summary>
     public class DecorationImagePainter
     {
         #region constructors
@@ -497,12 +523,35 @@ namespace FlutterSDK.Painting.Decorationimage
 
         #region methods
 
+        /// <Summary>
+        /// Draw the image onto the given canvas.
+        ///
+        /// The image is drawn at the position and size given by the `rect` argument.
+        ///
+        /// The image is clipped to the given `clipPath`, if any.
+        ///
+        /// The `configuration` object is used to resolve the image (e.g. to pick
+        /// resolution-specific assets), and to implement the
+        /// [DecorationImage.matchTextDirection] feature.
+        ///
+        /// If the image needs to be painted again, e.g. because it is animated or
+        /// because it had not yet been loaded the first time this method was called,
+        /// then the `onChanged` callback passed to [DecorationImage.createPainter]
+        /// will be called.
+        /// </Summary>
         public virtual void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, Path clipPath, FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) { throw new NotImplementedException(); }
 
 
         private void _HandleImage(FlutterSDK.Painting.Imagestream.ImageInfo value, bool synchronousCall) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Releases the resources used by this painter.
+        ///
+        /// This should be called whenever the painter is no longer needed.
+        ///
+        /// After this method has been called, the object is no longer usable.
+        /// </Summary>
         public virtual void Dispose() { throw new NotImplementedException(); }
 
 
@@ -510,12 +559,27 @@ namespace FlutterSDK.Painting.Decorationimage
     }
 
 
+    /// <Summary>
+    /// How to paint any portions of a box not covered by an image.
+    /// </Summary>
     public enum ImageRepeat
     {
 
+        /// <Summary>
+        /// Repeat the image in both the x and y directions until the box is filled.
+        /// </Summary>
         Repeat,
+        /// <Summary>
+        /// Repeat the image in the x direction until the box is filled horizontally.
+        /// </Summary>
         RepeatX,
+        /// <Summary>
+        /// Repeat the image in the y direction until the box is filled vertically.
+        /// </Summary>
         RepeatY,
+        /// <Summary>
+        /// Leave uncovered portions of the box transparent.
+        /// </Summary>
         NoRepeat,
     }
 

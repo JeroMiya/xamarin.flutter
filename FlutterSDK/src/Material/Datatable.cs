@@ -381,6 +381,13 @@ namespace FlutterSDK.Material.Datatable
     {
     }
 
+    /// <Summary>
+    /// Column configuration for a [DataTable].
+    ///
+    /// One column configuration must be provided for each column to
+    /// display in the table. The list of [DataColumn] objects is passed
+    /// as the `columns` argument to the [new DataTable] constructor.
+    /// </Summary>
     public class DataColumn
     {
         #region constructors
@@ -407,6 +414,16 @@ namespace FlutterSDK.Material.Datatable
     }
 
 
+    /// <Summary>
+    /// Row configuration and cell data for a [DataTable].
+    ///
+    /// One row configuration must be provided for each row to
+    /// display in the table. The list of [DataRow] objects is passed
+    /// as the `rows` argument to the [new DataTable] constructor.
+    ///
+    /// The data for this row of the table is provided in the [cells]
+    /// property of the [DataRow] object.
+    /// </Summary>
     public class DataRow
     {
         #region constructors
@@ -439,6 +456,13 @@ namespace FlutterSDK.Material.Datatable
     }
 
 
+    /// <Summary>
+    /// The data for a cell of a [DataTable].
+    ///
+    /// One list of [DataCell] objects must be provided for each [DataRow]
+    /// in the [DataTable], in the [new DataRow] constructor's `cells`
+    /// argument.
+    /// </Summary>
     public class DataCell
     {
         #region constructors
@@ -466,6 +490,92 @@ namespace FlutterSDK.Material.Datatable
     }
 
 
+    /// <Summary>
+    /// A material design data table.
+    ///
+    /// {@youtube 560 315 https://www.youtube.com/watch?v=ktTajqbhIcY}
+    ///
+    /// Displaying data in a table is expensive, because to lay out the
+    /// table all the data must be measured twice, once to negotiate the
+    /// dimensions to use for each column, and once to actually lay out
+    /// the table given the results of the negotiation.
+    ///
+    /// For this reason, if you have a lot of data (say, more than a dozen
+    /// rows with a dozen columns, though the precise limits depend on the
+    /// target device), it is suggested that you use a
+    /// [PaginatedDataTable] which automatically splits the data into
+    /// multiple pages.
+    ///
+    /// {@tool dartpad --template=stateless_widget_scaffold}
+    ///
+    /// This sample shows how to display a [DataTable] with three columns: name, age, and
+    /// role. The columns are defined by three [DataColumn] objects. The table
+    /// contains three rows of data for three example users, the data for which
+    /// is defined by three [DataRow] objects.
+    ///
+    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/data_table.png)
+    ///
+    /// ```dart
+    /// Widget build(BuildContext context) {
+    ///   return DataTable(
+    ///     columns: const <DataColumn>[
+    ///       DataColumn(
+    ///         label: Text(
+    ///           'Name',
+    ///           style: TextStyle(fontStyle: FontStyle.italic),
+    ///         ),
+    ///       ),
+    ///       DataColumn(
+    ///         label: Text(
+    ///           'Age',
+    ///           style: TextStyle(fontStyle: FontStyle.italic),
+    ///         ),
+    ///       ),
+    ///       DataColumn(
+    ///         label: Text(
+    ///           'Role',
+    ///           style: TextStyle(fontStyle: FontStyle.italic),
+    ///         ),
+    ///       ),
+    ///     ],
+    ///     rows: const <DataRow>[
+    ///       DataRow(
+    ///         cells: <DataCell>[
+    ///           DataCell(Text('Sarah')),
+    ///           DataCell(Text('19')),
+    ///           DataCell(Text('Student')),
+    ///         ],
+    ///       ),
+    ///       DataRow(
+    ///         cells: <DataCell>[
+    ///           DataCell(Text('Janine')),
+    ///           DataCell(Text('43')),
+    ///           DataCell(Text('Professor')),
+    ///         ],
+    ///       ),
+    ///       DataRow(
+    ///         cells: <DataCell>[
+    ///           DataCell(Text('William')),
+    ///           DataCell(Text('27')),
+    ///           DataCell(Text('Associate Professor')),
+    ///         ],
+    ///       ),
+    ///     ],
+    ///   );
+    /// }
+    /// ```
+    ///
+    /// {@end-tool}
+    ///
+    /// See also:
+    ///
+    ///  * [DataColumn], which describes a column in the data table.
+    ///  * [DataRow], which contains the data for a row in the data table.
+    ///  * [DataCell], which contains the data for a single cell in the data table.
+    ///  * [PaginatedDataTable], which shows part of the data in a data table and
+    ///    provides controls for paging through the remainder of the data.
+    ///  * <https://material.io/design/components/data-tables.html>
+    /// </Summary>
     public class DataTable : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors
@@ -531,6 +641,21 @@ namespace FlutterSDK.Material.Datatable
     }
 
 
+    /// <Summary>
+    /// A rectangular area of a Material that responds to touch but clips
+    /// its ink splashes to the current table row of the nearest table.
+    ///
+    /// Must have an ancestor [Material] widget in which to cause ink
+    /// reactions and an ancestor [Table] widget to establish a row.
+    ///
+    /// The [TableRowInkWell] must be in the same coordinate space (modulo
+    /// translations) as the [Table]. If it's rotated or scaled or
+    /// otherwise transformed, it will not be able to describe the
+    /// rectangle of the row in its own coordinate system as a [Rect], and
+    /// thus the splash will not occur. (In general, this is easy to
+    /// achieve: just put the [TableRowInkWell] as the direct child of the
+    /// [Table], and put the other contents of the cell inside it.)
+    /// </Summary>
     public class TableRowInkWell : FlutterSDK.Material.Inkwell.InkResponse
     {
         #region constructors

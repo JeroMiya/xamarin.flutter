@@ -435,6 +435,46 @@ namespace FlutterSDK.Widgets.Scrollnotification
 
     }
 
+    /// <Summary>
+    /// A [Notification] related to scrolling.
+    ///
+    /// [Scrollable] widgets notify their ancestors about scrolling-related changes.
+    /// The notifications have the following lifecycle:
+    ///
+    ///  * A [ScrollStartNotification], which indicates that the widget has started
+    ///    scrolling.
+    ///  * Zero or more [ScrollUpdateNotification]s, which indicate that the widget
+    ///    has changed its scroll position, mixed with zero or more
+    ///    [OverscrollNotification]s, which indicate that the widget has not changed
+    ///    its scroll position because the change would have caused its scroll
+    ///    position to go outside its scroll bounds.
+    ///  * Interspersed with the [ScrollUpdateNotification]s and
+    ///    [OverscrollNotification]s are zero or more [UserScrollNotification]s,
+    ///    which indicate that the user has changed the direction in which they are
+    ///    scrolling.
+    ///  * A [ScrollEndNotification], which indicates that the widget has stopped
+    ///    scrolling.
+    ///  * A [UserScrollNotification], with a [UserScrollNotification.direction] of
+    ///    [ScrollDirection.idle].
+    ///
+    /// Notifications bubble up through the tree, which means a given
+    /// [NotificationListener] will receive notifications for all descendant
+    /// [Scrollable] widgets. To focus on notifications from the nearest
+    /// [Scrollable] descendant, check that the [depth] property of the notification
+    /// is zero.
+    ///
+    /// When a scroll notification is received by a [NotificationListener], the
+    /// listener will have already completed build and layout, and it is therefore
+    /// too late for that widget to call [State.setState]. Any attempt to adjust the
+    /// build or layout based on a scroll notification would result in a layout that
+    /// lagged one frame behind, which is a poor user experience. Scroll
+    /// notifications are therefore primarily useful for paint effects (since paint
+    /// happens after layout). The [GlowingOverscrollIndicator] and [Scrollbar]
+    /// widgets are examples of paint effects that use scroll notifications.
+    ///
+    /// To drive layout based on the scroll position, consider listening to the
+    /// [ScrollPosition] directly (or indirectly via a [ScrollController]).
+    /// </Summary>
     public interface IScrollNotification
     {
         void DebugFillDescription(List<string> description);
@@ -474,6 +514,46 @@ namespace FlutterSDK.Widgets.Scrollnotification
     }
 
 
+    /// <Summary>
+    /// A [Notification] related to scrolling.
+    ///
+    /// [Scrollable] widgets notify their ancestors about scrolling-related changes.
+    /// The notifications have the following lifecycle:
+    ///
+    ///  * A [ScrollStartNotification], which indicates that the widget has started
+    ///    scrolling.
+    ///  * Zero or more [ScrollUpdateNotification]s, which indicate that the widget
+    ///    has changed its scroll position, mixed with zero or more
+    ///    [OverscrollNotification]s, which indicate that the widget has not changed
+    ///    its scroll position because the change would have caused its scroll
+    ///    position to go outside its scroll bounds.
+    ///  * Interspersed with the [ScrollUpdateNotification]s and
+    ///    [OverscrollNotification]s are zero or more [UserScrollNotification]s,
+    ///    which indicate that the user has changed the direction in which they are
+    ///    scrolling.
+    ///  * A [ScrollEndNotification], which indicates that the widget has stopped
+    ///    scrolling.
+    ///  * A [UserScrollNotification], with a [UserScrollNotification.direction] of
+    ///    [ScrollDirection.idle].
+    ///
+    /// Notifications bubble up through the tree, which means a given
+    /// [NotificationListener] will receive notifications for all descendant
+    /// [Scrollable] widgets. To focus on notifications from the nearest
+    /// [Scrollable] descendant, check that the [depth] property of the notification
+    /// is zero.
+    ///
+    /// When a scroll notification is received by a [NotificationListener], the
+    /// listener will have already completed build and layout, and it is therefore
+    /// too late for that widget to call [State.setState]. Any attempt to adjust the
+    /// build or layout based on a scroll notification would result in a layout that
+    /// lagged one frame behind, which is a poor user experience. Scroll
+    /// notifications are therefore primarily useful for paint effects (since paint
+    /// happens after layout). The [GlowingOverscrollIndicator] and [Scrollbar]
+    /// widgets are examples of paint effects that use scroll notifications.
+    ///
+    /// To drive layout based on the scroll position, consider listening to the
+    /// [ScrollPosition] directly (or indirectly via a [ScrollController]).
+    /// </Summary>
     public class ScrollNotification : FlutterSDK.Widgets.Notificationlistener.LayoutChangedNotification, IViewportNotificationMixin
     {
         #region constructors
@@ -497,6 +577,14 @@ namespace FlutterSDK.Widgets.Scrollnotification
     }
 
 
+    /// <Summary>
+    /// A notification that a [Scrollable] widget has started scrolling.
+    ///
+    /// See also:
+    ///
+    ///  * [ScrollEndNotification], which indicates that scrolling has stopped.
+    ///  * [ScrollNotification], which describes the notification lifecycle.
+    /// </Summary>
     public class ScrollStartNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
     {
         #region constructors
@@ -519,6 +607,16 @@ namespace FlutterSDK.Widgets.Scrollnotification
     }
 
 
+    /// <Summary>
+    /// A notification that a [Scrollable] widget has changed its scroll position.
+    ///
+    /// See also:
+    ///
+    ///  * [OverscrollNotification], which indicates that a [Scrollable] widget
+    ///    has not changed its scroll position because the change would have caused
+    ///    its scroll position to go outside its scroll bounds.
+    ///  * [ScrollNotification], which describes the notification lifecycle.
+    /// </Summary>
     public class ScrollUpdateNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
     {
         #region constructors
@@ -543,6 +641,17 @@ namespace FlutterSDK.Widgets.Scrollnotification
     }
 
 
+    /// <Summary>
+    /// A notification that a [Scrollable] widget has not changed its scroll position
+    /// because the change would have caused its scroll position to go outside of
+    /// its scroll bounds.
+    ///
+    /// See also:
+    ///
+    ///  * [ScrollUpdateNotification], which indicates that a [Scrollable] widget
+    ///    has changed its scroll position.
+    ///  * [ScrollNotification], which describes the notification lifecycle.
+    /// </Summary>
     public class OverscrollNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
     {
         #region constructors
@@ -569,6 +678,14 @@ namespace FlutterSDK.Widgets.Scrollnotification
     }
 
 
+    /// <Summary>
+    /// A notification that a [Scrollable] widget has stopped scrolling.
+    ///
+    /// See also:
+    ///
+    ///  * [ScrollStartNotification], which indicates that scrolling has started.
+    ///  * [ScrollNotification], which describes the notification lifecycle.
+    /// </Summary>
     public class ScrollEndNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
     {
         #region constructors
@@ -591,6 +708,14 @@ namespace FlutterSDK.Widgets.Scrollnotification
     }
 
 
+    /// <Summary>
+    /// A notification that the user has changed the direction in which they are
+    /// scrolling.
+    ///
+    /// See also:
+    ///
+    ///  * [ScrollNotification], which describes the notification lifecycle.
+    /// </Summary>
     public class UserScrollNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
     {
         #region constructors

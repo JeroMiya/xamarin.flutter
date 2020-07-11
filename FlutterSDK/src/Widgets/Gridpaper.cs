@@ -462,6 +462,16 @@ namespace FlutterSDK.Widgets.Gridpaper
     }
 
 
+    /// <Summary>
+    /// A widget that draws a rectilinear grid of lines one pixel wide.
+    ///
+    /// Useful with a [Stack] for visualizing your layout along a grid.
+    ///
+    /// The grid's origin (where the first primary horizontal line and the first
+    /// primary vertical line intersect) is at the top left of the widget.
+    ///
+    /// The grid is drawn over the [child] widget.
+    /// </Summary>
     public class GridPaper : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors

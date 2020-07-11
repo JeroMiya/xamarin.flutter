@@ -379,6 +379,14 @@ namespace FlutterSDK.Material.Colorscheme
     {
     }
 
+    /// <Summary>
+    /// A set of twelve colors based on the
+    /// [Material spec](https://material.io/design/color/the-color-system.html)
+    /// that can be used to configure the color properties of most components.
+    ///
+    /// The [Theme] has a color scheme, [ThemeData.colorScheme], which is constructed
+    /// with [ColorScheme.fromSwatch].
+    /// </Summary>
     public class ColorScheme : IDiagnosticable
     {
         #region constructors
@@ -459,9 +467,18 @@ namespace FlutterSDK.Material.Colorscheme
         private Brightness _BrightnessFor(FlutterBinding.UI.Color color) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Creates a copy of this color scheme with the given fields
+        /// replaced by the non-null parameter values.
+        /// </Summary>
         public virtual FlutterSDK.Material.Colorscheme.ColorScheme CopyWith(FlutterBinding.UI.Color primary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryVariant = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondaryVariant = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color surface = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color background = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color error = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onPrimary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onSecondary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onSurface = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onBackground = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onError = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two [ColorScheme] objects.
+        ///
+        /// {@macro flutter.material.themeData.lerp}
+        /// </Summary>
         public virtual FlutterSDK.Material.Colorscheme.ColorScheme Lerp(FlutterSDK.Material.Colorscheme.ColorScheme a, FlutterSDK.Material.Colorscheme.ColorScheme b, double t) { throw new NotImplementedException(); }
 
 

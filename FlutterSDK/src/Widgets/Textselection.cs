@@ -437,39 +437,139 @@ namespace FlutterSDK.Widgets.Textselection
     public class TextSelectionControls
     {
 
+        /// <Summary>
+        /// Builds a selection handle of the given type.
+        ///
+        /// The top left corner of this widget is positioned at the bottom of the
+        /// selection position.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget BuildHandle(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Textselection.TextSelectionHandleType type, double textLineHeight) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Get the anchor point of the handle relative to itself. The anchor point is
+        /// the point that is aligned with a specific point in the text. A handle
+        /// often visually "points to" that location.
+        /// </Summary>
         public virtual Offset GetHandleAnchor(FlutterSDK.Widgets.Textselection.TextSelectionHandleType type, double textLineHeight) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Builds a toolbar near a text selection.
+        ///
+        /// Typically displays buttons for copying and pasting text.
+        ///
+        /// [globalEditableRegion] is the TextField size of the global coordinate system
+        /// in logical pixels.
+        ///
+        /// [textLineHeight] is the `preferredLineHeight` of the [RenderEditable] we
+        /// are building a toolbar for.
+        ///
+        /// The [position] is a general calculation midpoint parameter of the toolbar.
+        /// If you want more detailed position information, can use [endpoints]
+        /// to calculate it.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget BuildToolbar(FlutterSDK.Widgets.Framework.BuildContext context, FlutterBinding.UI.Rect globalEditableRegion, double textLineHeight, FlutterBinding.UI.Offset position, List<FlutterSDK.Rendering.Editable.TextSelectionPoint> endpoints, FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the size of the selection handle.
+        /// </Summary>
         public virtual Size GetHandleSize(double textLineHeight) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Whether the current selection of the text field managed by the given
+        /// `delegate` can be removed from the text field and placed into the
+        /// [Clipboard].
+        ///
+        /// By default, false is returned when nothing is selected in the text field.
+        ///
+        /// Subclasses can use this to decide if they should expose the cut
+        /// functionality to the user.
+        /// </Summary>
         public virtual bool CanCut(FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Whether the current selection of the text field managed by the given
+        /// `delegate` can be copied to the [Clipboard].
+        ///
+        /// By default, false is returned when nothing is selected in the text field.
+        ///
+        /// Subclasses can use this to decide if they should expose the copy
+        /// functionality to the user.
+        /// </Summary>
         public virtual bool CanCopy(FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Whether the current [Clipboard] content can be pasted into the text field
+        /// managed by the given `delegate`.
+        ///
+        /// Subclasses can use this to decide if they should expose the paste
+        /// functionality to the user.
+        /// </Summary>
         public virtual bool CanPaste(FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Whether the current selection of the text field managed by the given
+        /// `delegate` can be extended to include the entire content of the text
+        /// field.
+        ///
+        /// Subclasses can use this to decide if they should expose the select all
+        /// functionality to the user.
+        /// </Summary>
         public virtual bool CanSelectAll(FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Copy the current selection of the text field managed by the given
+        /// `delegate` to the [Clipboard]. Then, remove the selected text from the
+        /// text field and hide the toolbar.
+        ///
+        /// This is called by subclasses when their cut affordance is activated by
+        /// the user.
+        /// </Summary>
         public virtual void HandleCut(FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Copy the current selection of the text field managed by the given
+        /// `delegate` to the [Clipboard]. Then, move the cursor to the end of the
+        /// text (collapsing the selection in the process), and hide the toolbar.
+        ///
+        /// This is called by subclasses when their copy affordance is activated by
+        /// the user.
+        /// </Summary>
         public virtual void HandleCopy(FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Paste the current clipboard selection (obtained from [Clipboard]) into
+        /// the text field managed by the given `delegate`, replacing its current
+        /// selection, if any. Then, hide the toolbar.
+        ///
+        /// This is called by subclasses when their paste affordance is activated by
+        /// the user.
+        ///
+        /// This function is asynchronous since interacting with the clipboard is
+        /// asynchronous. Race conditions may exist with this API as currently
+        /// implemented.
+        /// </Summary>
         public virtual Future<object> HandlePaste(FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Adjust the selection of the text field managed by the given `delegate` so
+        /// that everything is selected.
+        ///
+        /// Does not hide the toolbar.
+        ///
+        /// This is called by subclasses when their select-all affordance is activated
+        /// by the user.
+        /// </Summary>
         public virtual void HandleSelectAll(FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) { throw new NotImplementedException(); }
 
     }
@@ -526,6 +626,12 @@ namespace FlutterSDK.Widgets.Textselection
     }
 
 
+    /// <Summary>
+    /// An object that manages a pair of text selection handles.
+    ///
+    /// The selection handles are displayed in the [Overlay] that most closely
+    /// encloses the given [BuildContext].
+    /// </Summary>
     public class TextSelectionOverlay
     {
         #region constructors
@@ -572,30 +678,67 @@ namespace FlutterSDK.Widgets.Textselection
 
         #region methods
 
+        /// <Summary>
+        /// Builds the handles by inserting them into the [context]'s overlay.
+        /// </Summary>
         public virtual void ShowHandles() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Destroys the handles by removing them from overlay.
+        /// </Summary>
         public virtual void HideHandles() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Shows the toolbar by inserting it into the [context]'s overlay.
+        /// </Summary>
         public virtual void ShowToolbar() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Updates the overlay after the selection has changed.
+        ///
+        /// If this method is called while the [SchedulerBinding.schedulerPhase] is
+        /// [SchedulerPhase.persistentCallbacks], i.e. during the build, layout, or
+        /// paint phases (see [WidgetsBinding.drawFrame]), then the update is delayed
+        /// until the post-frame callbacks phase. Otherwise the update is done
+        /// synchronously. This means that it is safe to call during builds, but also
+        /// that if you do call this during a build, the UI will not update until the
+        /// next frame (i.e. many milliseconds later).
+        /// </Summary>
         public virtual void Update(FlutterSDK.Services.Textinput.TextEditingValue newValue) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Causes the overlay to update its rendering.
+        ///
+        /// This is intended to be called when the [renderObject] may have changed its
+        /// text metrics (e.g. because the text was scrolled).
+        /// </Summary>
         public virtual void UpdateForScroll() { throw new NotImplementedException(); }
 
 
         private void _MarkNeedsBuild(TimeSpan duration = default(TimeSpan)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Hides the entire overlay including the toolbar and the handles.
+        /// </Summary>
         public virtual void Hide() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Hides the toolbar part of the overlay.
+        ///
+        /// To hide the whole overlay, see [hide].
+        /// </Summary>
         public virtual void HideToolbar() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Final cleanup.
+        /// </Summary>
         public virtual void Dispose() { throw new NotImplementedException(); }
 
 
@@ -611,6 +754,9 @@ namespace FlutterSDK.Widgets.Textselection
     }
 
 
+    /// <Summary>
+    /// This widget represents a single draggable text selection handle.
+    /// </Summary>
     public class _TextSelectionHandleOverlay : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -695,6 +841,26 @@ namespace FlutterSDK.Widgets.Textselection
     }
 
 
+    /// <Summary>
+    /// Builds a [TextSelectionGestureDetector] to wrap an [EditableText].
+    ///
+    /// The class implements sensible defaults for many user interactions
+    /// with an [EditableText] (see the documentation of the various gesture handler
+    /// methods, e.g. [onTapDown], [onFrocePress], etc.). Subclasses of
+    /// [EditableTextSelectionHandlesProvider] can change the behavior performed in
+    /// responds to these gesture events by overriding the corresponding handler
+    /// methods of this class.
+    ///
+    /// The resulting [TextSelectionGestureDetector] to wrap an [EditableText] is
+    /// obtained by calling [buildGestureDetector].
+    ///
+    /// See also:
+    ///
+    ///  * [TextField], which uses a subclass to implement the Material-specific
+    ///    gesture logic of an [EditableText].
+    ///  * [CupertinoTextField], which uses a subclass to implement the
+    ///    Cupertino-specific gesture logic of an [EditableText].
+    /// </Summary>
     public class TextSelectionGestureDetectorBuilder
     {
         #region constructors
@@ -715,48 +881,197 @@ namespace FlutterSDK.Widgets.Textselection
 
         #region methods
 
+        /// <Summary>
+        /// Handler for [TextSelectionGestureDetector.onTapDown].
+        ///
+        /// By default, it forwards the tap to [RenderEditable.handleTapDown] and sets
+        /// [shouldShowSelectionToolbar] to true if the tap was initiated by a finger or stylus.
+        ///
+        /// See also:
+        ///
+        ///  * [TextSelectionGestureDetector.onTapDown], which triggers this callback.
+        /// </Summary>
         public virtual void OnTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Handler for [TextSelectionGestureDetector.onForcePressStart].
+        ///
+        /// By default, it selects the word at the position of the force press,
+        /// if selection is enabled.
+        ///
+        /// This callback is only applicable when force press is enabled.
+        ///
+        /// See also:
+        ///
+        ///  * [TextSelectionGestureDetector.onForcePressStart], which triggers this
+        ///    callback.
+        /// </Summary>
         public virtual void OnForcePressStart(FlutterSDK.Gestures.Forcepress.ForcePressDetails details) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Handler for [TextSelectionGestureDetector.onForcePressEnd].
+        ///
+        /// By default, it selects words in the range specified in [details] and shows
+        /// toolbar if it is necessary.
+        ///
+        /// This callback is only applicable when force press is enabled.
+        ///
+        /// See also:
+        ///
+        ///  * [TextSelectionGestureDetector.onForcePressEnd], which triggers this
+        ///    callback.
+        /// </Summary>
         public virtual void OnForcePressEnd(FlutterSDK.Gestures.Forcepress.ForcePressDetails details) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Handler for [TextSelectionGestureDetector.onSingleTapUp].
+        ///
+        /// By default, it selects word edge if selection is enabled.
+        ///
+        /// See also:
+        ///
+        ///  * [TextSelectionGestureDetector.onSingleTapUp], which triggers
+        ///    this callback.
+        /// </Summary>
         public virtual void OnSingleTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Handler for [TextSelectionGestureDetector.onSingleTapCancel].
+        ///
+        /// By default, it services as place holder to enable subclass override.
+        ///
+        /// See also:
+        ///
+        ///  * [TextSelectionGestureDetector.onSingleTapCancel], which triggers
+        ///    this callback.
+        /// </Summary>
         public virtual void OnSingleTapCancel() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Handler for [TextSelectionGestureDetector.onSingleLongTapStart].
+        ///
+        /// By default, it selects text position specified in [details] if selection
+        /// is enabled.
+        ///
+        /// See also:
+        ///
+        ///  * [TextSelectionGestureDetector.onSingleLongTapStart], which triggers
+        ///    this callback.
+        /// </Summary>
         public virtual void OnSingleLongTapStart(FlutterSDK.Gestures.Longpress.LongPressStartDetails details) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Handler for [TextSelectionGestureDetector.onSingleLongTapMoveUpdate].
+        ///
+        /// By default, it updates the selection location specified in [details] if
+        /// selection is enabled.
+        ///
+        /// See also:
+        ///
+        ///  * [TextSelectionGestureDetector.onSingleLongTapMoveUpdate], which
+        ///    triggers this callback.
+        /// </Summary>
         public virtual void OnSingleLongTapMoveUpdate(FlutterSDK.Gestures.Longpress.LongPressMoveUpdateDetails details) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Handler for [TextSelectionGestureDetector.onSingleLongTapEnd].
+        ///
+        /// By default, it shows toolbar if necessary.
+        ///
+        /// See also:
+        ///
+        ///  * [TextSelectionGestureDetector.onSingleLongTapEnd], which triggers this
+        ///    callback.
+        /// </Summary>
         public virtual void OnSingleLongTapEnd(FlutterSDK.Gestures.Longpress.LongPressEndDetails details) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Handler for [TextSelectionGestureDetector.onDoubleTapDown].
+        ///
+        /// By default, it selects a word through [renderEditable.selectWord] if
+        /// selectionEnabled and shows toolbar if necessary.
+        ///
+        /// See also:
+        ///
+        ///  * [TextSelectionGestureDetector.onDoubleTapDown], which triggers this
+        ///    callback.
+        /// </Summary>
         public virtual void OnDoubleTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Handler for [TextSelectionGestureDetector.onDragSelectionStart].
+        ///
+        /// By default, it selects a text position specified in [details].
+        ///
+        /// See also:
+        ///
+        ///  * [TextSelectionGestureDetector.onDragSelectionStart], which triggers
+        ///    this callback.
+        /// </Summary>
         public virtual void OnDragSelectionStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Handler for [TextSelectionGestureDetector.onDragSelectionUpdate].
+        ///
+        /// By default, it updates the selection location specified in [details].
+        ///
+        /// See also:
+        ///
+        ///  * [TextSelectionGestureDetector.onDragSelectionUpdate], which triggers
+        ///    this callback./lib/src/material/text_field.dart
+        /// </Summary>
         public virtual void OnDragSelectionUpdate(FlutterSDK.Gestures.Dragdetails.DragStartDetails startDetails, FlutterSDK.Gestures.Dragdetails.DragUpdateDetails updateDetails) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Handler for [TextSelectionGestureDetector.onDragSelectionEnd].
+        ///
+        /// By default, it services as place holder to enable subclass override.
+        ///
+        /// See also:
+        ///
+        ///  * [TextSelectionGestureDetector.onDragSelectionEnd], which triggers this
+        ///    callback.
+        /// </Summary>
         public virtual void OnDragSelectionEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a [TextSelectionGestureDetector] configured with the handlers
+        /// provided by this builder.
+        ///
+        /// The [child] or its subtree should contain [EditableText].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget BuildGestureDetector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget)) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// A gesture detector to respond to non-exclusive event chains for a text field.
+    ///
+    /// An ordinary [GestureDetector] configured to handle events like tap and
+    /// double tap will only recognize one or the other. This widget detects both:
+    /// first the tap and then, if another tap down occurs within a time limit, the
+    /// double tap.
+    ///
+    /// See also:
+    ///
+    ///  * [TextField], a Material text field which uses this gesture detector.
+    ///  * [CupertinoTextField], a Cupertino text field which uses this gesture
+    ///    detector.
+    /// </Summary>
     public class TextSelectionGestureDetector : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -841,6 +1156,14 @@ namespace FlutterSDK.Widgets.Textselection
         private void _HandleDragUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Drag updates are being throttled to avoid excessive text layouts in text
+        /// fields. The frequency of invocations is controlled by the constant
+        /// [_kDragSelectionUpdateThrottle].
+        ///
+        /// Once the drag gesture ends, any pending drag update will be fired
+        /// immediately. See [_handleDragEnd].
+        /// </Summary>
         private void _HandleDragUpdateThrottled() { throw new NotImplementedException(); }
 
 
@@ -895,15 +1218,51 @@ namespace FlutterSDK.Widgets.Textselection
     }
 
 
+    /// <Summary>
+    /// Which type of selection handle to be displayed.
+    ///
+    /// With mixed-direction text, both handles may be the same type. Examples:
+    ///
+    /// * LTR text: 'the &lt;quick brown&gt; fox':
+    ///
+    ///   The '&lt;' is drawn with the [left] type, the '&gt;' with the [right]
+    ///
+    /// * RTL text: 'XOF &lt;NWORB KCIUQ&gt; EHT':
+    ///
+    ///   Same as above.
+    ///
+    /// * mixed text: '&lt;the NWOR&lt;B KCIUQ fox'
+    ///
+    ///   Here 'the QUICK B' is selected, but 'QUICK BROWN' is RTL. Both are drawn
+    ///   with the [left] type.
+    ///
+    /// See also:
+    ///
+    ///  * [TextDirection], which discusses left-to-right and right-to-left text in
+    ///    more detail.
+    /// </Summary>
     public enum TextSelectionHandleType
     {
 
+        /// <Summary>
+        /// The selection handle is to the left of the selection end point.
+        /// </Summary>
         Left,
+        /// <Summary>
+        /// The selection handle is to the right of the selection end point.
+        /// </Summary>
         Right,
+        /// <Summary>
+        /// The start and end of the selection are co-incident at this point.
+        /// </Summary>
         Collapsed,
     }
 
 
+    /// <Summary>
+    /// The text position that a give selection handle manipulates. Dragging the
+    /// [start] handle always moves the [start]/[baseOffset] of the selection.
+    /// </Summary>
     public enum _TextSelectionHandlePosition
     {
 

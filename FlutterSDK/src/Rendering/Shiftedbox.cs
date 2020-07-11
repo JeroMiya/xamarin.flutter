@@ -427,6 +427,10 @@ namespace FlutterSDK.Rendering.Shiftedbox
     {
     }
 
+    /// <Summary>
+    /// Abstract class for one-child-layout render boxes that provide control over
+    /// the child's position.
+    /// </Summary>
     public interface IRenderShiftedBox
     {
         double ComputeMinIntrinsicWidth(double height);
@@ -439,6 +443,10 @@ namespace FlutterSDK.Rendering.Shiftedbox
     }
 
 
+    /// <Summary>
+    /// Abstract class for one-child-layout render boxes that use a
+    /// [AlignmentGeometry] to align their children.
+    /// </Summary>
     public interface IRenderAligningShiftedBox
     {
         void AlignChild();
@@ -448,6 +456,34 @@ namespace FlutterSDK.Rendering.Shiftedbox
     }
 
 
+    /// <Summary>
+    /// A delegate for computing the layout of a render object with a single child.
+    ///
+    /// Used by [CustomSingleChildLayout] (in the widgets library) and
+    /// [RenderCustomSingleChildLayoutBox] (in the rendering library).
+    ///
+    /// When asked to layout, [CustomSingleChildLayout] first calls [getSize] with
+    /// its incoming constraints to determine its size. It then calls
+    /// [getConstraintsForChild] to determine the constraints to apply to the child.
+    /// After the child completes its layout, [RenderCustomSingleChildLayoutBox]
+    /// calls [getPositionForChild] to determine the child's position.
+    ///
+    /// The [shouldRelayout] method is called when a new instance of the class
+    /// is provided, to check if the new instance actually represents different
+    /// information.
+    ///
+    /// The most efficient way to trigger a relayout is to supply a `relayout`
+    /// argument to the constructor of the [SingleChildLayoutDelegate]. The custom
+    /// layout will listen to this value and relayout whenever the Listenable
+    /// notifies its listeners, such as when an [Animation] ticks. This allows
+    /// the custom layout to avoid the build phase of the pipeline.
+    ///
+    /// See also:
+    ///
+    ///  * [CustomSingleChildLayout], the widget that uses this delegate.
+    ///  * [RenderCustomSingleChildLayoutBox], render object that uses this
+    ///    delegate.
+    /// </Summary>
     public interface ISingleChildLayoutDelegate
     {
         Size GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints);
@@ -457,6 +493,10 @@ namespace FlutterSDK.Rendering.Shiftedbox
     }
 
 
+    /// <Summary>
+    /// Abstract class for one-child-layout render boxes that provide control over
+    /// the child's position.
+    /// </Summary>
     public class RenderShiftedBox : FlutterSDK.Rendering.Box.RenderBox, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>
     {
         #region constructors
@@ -495,6 +535,14 @@ namespace FlutterSDK.Rendering.Shiftedbox
     }
 
 
+    /// <Summary>
+    /// Insets its child by the given padding.
+    ///
+    /// When passing layout constraints to its child, padding shrinks the
+    /// constraints by the given padding, causing the child to layout at a smaller
+    /// size. Padding then sizes itself to its child's size, inflated by the
+    /// padding, effectively creating empty space around the child.
+    /// </Summary>
     public class RenderPadding : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
     {
         #region constructors
@@ -545,6 +593,10 @@ namespace FlutterSDK.Rendering.Shiftedbox
     }
 
 
+    /// <Summary>
+    /// Abstract class for one-child-layout render boxes that use a
+    /// [AlignmentGeometry] to align their children.
+    /// </Summary>
     public class RenderAligningShiftedBox : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
     {
         #region constructors
@@ -575,6 +627,16 @@ namespace FlutterSDK.Rendering.Shiftedbox
         private void _MarkNeedResolution() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Apply the current [alignment] to the [child].
+        ///
+        /// Subclasses should call this method if they have a child, to have
+        /// this class perform the actual alignment. If there is no child,
+        /// do not call this method.
+        ///
+        /// This method must be called after the child has been laid out and
+        /// this object's own size has been set.
+        /// </Summary>
         public virtual void AlignChild() { throw new NotImplementedException(); }
 
 
@@ -584,6 +646,18 @@ namespace FlutterSDK.Rendering.Shiftedbox
     }
 
 
+    /// <Summary>
+    /// Positions its child using an [AlignmentGeometry].
+    ///
+    /// For example, to align a box at the bottom right, you would pass this box a
+    /// tight constraint that is bigger than the child's natural size,
+    /// with an alignment of [Alignment.bottomRight].
+    ///
+    /// By default, sizes to be as big as possible in both axes. If either axis is
+    /// unconstrained, then in that direction it will be sized to fit the child's
+    /// dimensions. Using widthFactor and heightFactor you can force this latter
+    /// behavior in all cases.
+    /// </Summary>
     public class RenderPositionedBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
     {
         #region constructors
@@ -615,6 +689,38 @@ namespace FlutterSDK.Rendering.Shiftedbox
     }
 
 
+    /// <Summary>
+    /// A render object that imposes different constraints on its child than it gets
+    /// from its parent, possibly allowing the child to overflow the parent.
+    ///
+    /// A render overflow box proxies most functions in the render box protocol to
+    /// its child, except that when laying out its child, it passes constraints
+    /// based on the minWidth, maxWidth, minHeight, and maxHeight fields instead of
+    /// just passing the parent's constraints in. Specifically, it overrides any of
+    /// the equivalent fields on the constraints given by the parent with the
+    /// constraints given by these fields for each such field that is not null. It
+    /// then sizes itself based on the parent's constraints' maxWidth and maxHeight,
+    /// ignoring the child's dimensions.
+    ///
+    /// For example, if you wanted a box to always render 50 pixels high, regardless
+    /// of where it was rendered, you would wrap it in a
+    /// RenderConstrainedOverflowBox with minHeight and maxHeight set to 50.0.
+    /// Generally speaking, to avoid confusing behavior around hit testing, a
+    /// RenderConstrainedOverflowBox should usually be wrapped in a RenderClipRect.
+    ///
+    /// The child is positioned according to [alignment]. To position a smaller
+    /// child inside a larger parent, use [RenderPositionedBox] and
+    /// [RenderConstrainedBox] rather than RenderConstrainedOverflowBox.
+    ///
+    /// See also:
+    ///
+    ///  * [RenderUnconstrainedBox] for a render object that allows its children
+    ///    to render themselves unconstrained, expands to fit them, and considers
+    ///    overflow to be an error.
+    ///  * [RenderSizedOverflowBox], a render object that is a specific size but
+    ///    passes its original constraints through to its child, which it allows to
+    ///    overflow.
+    /// </Summary>
     public class RenderConstrainedOverflowBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
     {
         #region constructors
@@ -654,6 +760,32 @@ namespace FlutterSDK.Rendering.Shiftedbox
     }
 
 
+    /// <Summary>
+    /// Renders a box, imposing no constraints on its child, allowing the child to
+    /// render at its "natural" size.
+    ///
+    /// This allows a child to render at the size it would render if it were alone
+    /// on an infinite canvas with no constraints. This box will then attempt to
+    /// adopt the same size, within the limits of its own constraints. If it ends
+    /// up with a different size, it will align the child based on [alignment].
+    /// If the box cannot expand enough to accommodate the entire child, the
+    /// child will be clipped.
+    ///
+    /// In debug mode, if the child overflows the box, a warning will be printed on
+    /// the console, and black and yellow striped areas will appear where the
+    /// overflow occurs.
+    ///
+    /// See also:
+    ///
+    ///  * [RenderConstrainedBox], which renders a box which imposes constraints
+    ///    on its child.
+    ///  * [RenderConstrainedOverflowBox], which renders a box that imposes different
+    ///    constraints on its child than it gets from its parent, possibly allowing
+    ///    the child to overflow the parent.
+    ///  * [RenderSizedOverflowBox], a render object that is a specific size but
+    ///    passes its original constraints through to its child, which it allows to
+    ///    overflow.
+    /// </Summary>
     public class RenderUnconstrainedBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox, IDebugOverflowIndicatorMixin
     {
         #region constructors
@@ -689,6 +821,22 @@ namespace FlutterSDK.Rendering.Shiftedbox
     }
 
 
+    /// <Summary>
+    /// A render object that is a specific size but passes its original constraints
+    /// through to its child, which it allows to overflow.
+    ///
+    /// If the child's resulting size differs from this render object's size, then
+    /// the child is aligned according to the [alignment] property.
+    ///
+    /// See also:
+    ///
+    ///  * [RenderUnconstrainedBox] for a render object that allows its children
+    ///    to render themselves unconstrained, expands to fit them, and considers
+    ///    overflow to be an error.
+    ///  * [RenderConstrainedOverflowBox] for a render object that imposes
+    ///    different constraints on its child than it gets from its parent,
+    ///    possibly allowing the child to overflow the parent.
+    /// </Summary>
     public class RenderSizedOverflowBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
     {
         #region constructors
@@ -727,6 +875,19 @@ namespace FlutterSDK.Rendering.Shiftedbox
     }
 
 
+    /// <Summary>
+    /// Sizes its child to a fraction of the total available space.
+    ///
+    /// For both its width and height, this render object imposes a tight
+    /// constraint on its child that is a multiple (typically less than 1.0) of the
+    /// maximum constraint it received from its parent on that axis. If the factor
+    /// for a given axis is null, then the constraints from the parent are just
+    /// passed through instead.
+    ///
+    /// It then tries to size itself to the size of its child. Where this is not
+    /// possible (e.g. if the constraints from the parent are themselves tight), the
+    /// child is aligned according to [alignment].
+    /// </Summary>
     public class RenderFractionallySizedOverflowBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
     {
         #region constructors
@@ -770,6 +931,34 @@ namespace FlutterSDK.Rendering.Shiftedbox
     }
 
 
+    /// <Summary>
+    /// A delegate for computing the layout of a render object with a single child.
+    ///
+    /// Used by [CustomSingleChildLayout] (in the widgets library) and
+    /// [RenderCustomSingleChildLayoutBox] (in the rendering library).
+    ///
+    /// When asked to layout, [CustomSingleChildLayout] first calls [getSize] with
+    /// its incoming constraints to determine its size. It then calls
+    /// [getConstraintsForChild] to determine the constraints to apply to the child.
+    /// After the child completes its layout, [RenderCustomSingleChildLayoutBox]
+    /// calls [getPositionForChild] to determine the child's position.
+    ///
+    /// The [shouldRelayout] method is called when a new instance of the class
+    /// is provided, to check if the new instance actually represents different
+    /// information.
+    ///
+    /// The most efficient way to trigger a relayout is to supply a `relayout`
+    /// argument to the constructor of the [SingleChildLayoutDelegate]. The custom
+    /// layout will listen to this value and relayout whenever the Listenable
+    /// notifies its listeners, such as when an [Animation] ticks. This allows
+    /// the custom layout to avoid the build phase of the pipeline.
+    ///
+    /// See also:
+    ///
+    ///  * [CustomSingleChildLayout], the widget that uses this delegate.
+    ///  * [RenderCustomSingleChildLayoutBox], render object that uses this
+    ///    delegate.
+    /// </Summary>
     public class SingleChildLayoutDelegate
     {
         #region constructors
@@ -786,21 +975,75 @@ namespace FlutterSDK.Rendering.Shiftedbox
 
         #region methods
 
+        /// <Summary>
+        /// The size of this object given the incoming constraints.
+        ///
+        /// Defaults to the biggest size that satisfies the given constraints.
+        /// </Summary>
         public virtual Size GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The constraints for the child given the incoming constraints.
+        ///
+        /// During layout, the child is given the layout constraints returned by this
+        /// function. The child is required to pick a size for itself that satisfies
+        /// these constraints.
+        ///
+        /// Defaults to the given constraints.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The position where the child should be placed.
+        ///
+        /// The `size` argument is the size of the parent, which might be different
+        /// from the value returned by [getSize] if that size doesn't satisfy the
+        /// constraints passed to [getSize]. The `childSize` argument is the size of
+        /// the child, which will satisfy the constraints returned by
+        /// [getConstraintsForChild].
+        ///
+        /// Defaults to positioning the child in the upper left corner of the parent.
+        /// </Summary>
         public virtual Offset GetPositionForChild(Size size, Size childSize) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called whenever a new instance of the custom layout delegate class is
+        /// provided to the [RenderCustomSingleChildLayoutBox] object, or any time
+        /// that a new [CustomSingleChildLayout] object is created with a new instance
+        /// of the custom layout delegate class (which amounts to the same thing,
+        /// because the latter is implemented in terms of the former).
+        ///
+        /// If the new instance represents different information than the old
+        /// instance, then the method should return true, otherwise it should return
+        /// false.
+        ///
+        /// If the method returns false, then the [getSize],
+        /// [getConstraintsForChild], and [getPositionForChild] calls might be
+        /// optimized away.
+        ///
+        /// It's possible that the layout methods will get called even if
+        /// [shouldRelayout] returns false (e.g. if an ancestor changed its layout).
+        /// It's also possible that the layout method will get called
+        /// without [shouldRelayout] being called at all (e.g. if the parent changes
+        /// size).
+        /// </Summary>
         public virtual bool ShouldRelayout(FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate oldDelegate) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// Defers the layout of its single child to a delegate.
+    ///
+    /// The delegate can determine the layout constraints for the child and can
+    /// decide where to position the child. The delegate can also determine the size
+    /// of the parent, but the size of the parent cannot depend on the size of the
+    /// child.
+    /// </Summary>
     public class RenderCustomSingleChildLayoutBox : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
     {
         #region constructors
@@ -846,6 +1089,24 @@ namespace FlutterSDK.Rendering.Shiftedbox
     }
 
 
+    /// <Summary>
+    /// Shifts the child down such that the child's baseline (or the
+    /// bottom of the child, if the child has no baseline) is [baseline]
+    /// logical pixels below the top of this box, then sizes this box to
+    /// contain the child.
+    ///
+    /// If [baseline] is less than the distance from the top of the child
+    /// to the baseline of the child, then the child will overflow the top
+    /// of the box. This is typically not desirable, in particular, that
+    /// part of the child will not be found when doing hit tests, so the
+    /// user cannot interact with that part of the child.
+    ///
+    /// This box will be sized so that its bottom is coincident with the
+    /// bottom of the child. This means if this box shifts the child down,
+    /// there will be space between the top of this box and the top of the
+    /// child, but there is never space between the bottom of the child
+    /// and the bottom of the box.
+    /// </Summary>
     public class RenderBaseline : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
     {
         #region constructors

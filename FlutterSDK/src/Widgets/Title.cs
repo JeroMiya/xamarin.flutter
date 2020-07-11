@@ -429,6 +429,9 @@ namespace FlutterSDK.Widgets.Title
     {
     }
 
+    /// <Summary>
+    /// A widget that describes this app in the operating system.
+    /// </Summary>
     public class Title : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors

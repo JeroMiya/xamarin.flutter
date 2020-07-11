@@ -303,6 +303,16 @@ namespace FlutterSDK.Gestures.Dragdetails
     {
     }
 
+    /// <Summary>
+    /// Details object for callbacks that use [GestureDragDownCallback].
+    ///
+    /// See also:
+    ///
+    ///  * [DragGestureRecognizer.onDown], which uses [GestureDragDownCallback].
+    ///  * [DragStartDetails], the details for [GestureDragStartCallback].
+    ///  * [DragUpdateDetails], the details for [GestureDragUpdateCallback].
+    ///  * [DragEndDetails], the details for [GestureDragEndCallback].
+    /// </Summary>
     public class DragDownDetails
     {
         #region constructors
@@ -324,6 +334,16 @@ namespace FlutterSDK.Gestures.Dragdetails
     }
 
 
+    /// <Summary>
+    /// Details object for callbacks that use [GestureDragStartCallback].
+    ///
+    /// See also:
+    ///
+    ///  * [DragGestureRecognizer.onStart], which uses [GestureDragStartCallback].
+    ///  * [DragDownDetails], the details for [GestureDragDownCallback].
+    ///  * [DragUpdateDetails], the details for [GestureDragUpdateCallback].
+    ///  * [DragEndDetails], the details for [GestureDragEndCallback].
+    /// </Summary>
     public class DragStartDetails
     {
         #region constructors
@@ -347,6 +367,16 @@ namespace FlutterSDK.Gestures.Dragdetails
     }
 
 
+    /// <Summary>
+    /// Details object for callbacks that use [GestureDragUpdateCallback].
+    ///
+    /// See also:
+    ///
+    ///  * [DragGestureRecognizer.onUpdate], which uses [GestureDragUpdateCallback].
+    ///  * [DragDownDetails], the details for [GestureDragDownCallback].
+    ///  * [DragStartDetails], the details for [GestureDragStartCallback].
+    ///  * [DragEndDetails], the details for [GestureDragEndCallback].
+    /// </Summary>
     public class DragUpdateDetails
     {
         #region constructors
@@ -374,6 +404,16 @@ namespace FlutterSDK.Gestures.Dragdetails
     }
 
 
+    /// <Summary>
+    /// Details object for callbacks that use [GestureDragEndCallback].
+    ///
+    /// See also:
+    ///
+    ///  * [DragGestureRecognizer.onEnd], which uses [GestureDragEndCallback].
+    ///  * [DragDownDetails], the details for [GestureDragDownCallback].
+    ///  * [DragStartDetails], the details for [GestureDragStartCallback].
+    ///  * [DragUpdateDetails], the details for [GestureDragUpdateCallback].
+    /// </Summary>
     public class DragEndDetails
     {
         #region constructors

@@ -357,6 +357,25 @@ namespace FlutterSDK.Material.Appbartheme
     {
     }
 
+    /// <Summary>
+    /// Defines default property values for descendant [AppBar] widgets.
+    ///
+    /// Descendant widgets obtain the current [AppBarTheme] object using
+    /// `AppBarTheme.of(context)`. Instances of [AppBarTheme] can be customized
+    /// with [AppBarTheme.copyWith].
+    ///
+    /// Typically an [AppBarTheme] is specified as part of the overall [Theme] with
+    /// [ThemeData.appBarTheme].
+    ///
+    /// All [AppBarTheme] properties are `null` by default. When null, the [AppBar]
+    /// will use the values from [ThemeData] if they exist, otherwise it will
+    /// provide its own defaults.
+    ///
+    /// See also:
+    ///
+    ///  * [ThemeData], which describes the overall theme information for the
+    ///    application.
+    /// </Summary>
     public class AppBarTheme : IDiagnosticable
     {
         #region constructors
@@ -383,12 +402,26 @@ namespace FlutterSDK.Material.Appbartheme
 
         #region methods
 
+        /// <Summary>
+        /// Creates a copy of this object with the given fields replaced with the
+        /// new values.
+        /// </Summary>
         public virtual FlutterSDK.Material.Appbartheme.AppBarTheme CopyWith(FlutterSDK.Widgets.Iconthemedata.IconThemeData actionsIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), Brightness brightness = default(Brightness), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The [ThemeData.appBarTheme] property of the ambient [Theme].
+        /// </Summary>
         public virtual FlutterSDK.Material.Appbartheme.AppBarTheme Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two AppBar themes.
+        ///
+        /// The argument `t` must not be null.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
         public virtual FlutterSDK.Material.Appbartheme.AppBarTheme Lerp(FlutterSDK.Material.Appbartheme.AppBarTheme a, FlutterSDK.Material.Appbartheme.AppBarTheme b, double t) { throw new NotImplementedException(); }
 
 

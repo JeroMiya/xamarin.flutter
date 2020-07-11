@@ -300,6 +300,14 @@ namespace FlutterSDK.Foundation.Serialization
     {
     }
 
+    /// <Summary>
+    /// Write-only buffer for incrementally building a [ByteData] instance.
+    ///
+    /// A WriteBuffer instance can be used only once. Attempts to reuse will result
+    /// in [NoSuchMethodError]s being thrown.
+    ///
+    /// The byte order used is [Endian.host] throughout.
+    /// </Summary>
     public class WriteBuffer
     {
         #region constructors
@@ -317,45 +325,83 @@ namespace FlutterSDK.Foundation.Serialization
 
         #region methods
 
+        /// <Summary>
+        /// Write a Uint8 into the buffer.
+        /// </Summary>
         public virtual void PutUint8(int @byte) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Write a Uint16 into the buffer.
+        /// </Summary>
         public virtual void PutUint16(int value, Endian endian = default(Endian)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Write a Uint32 into the buffer.
+        /// </Summary>
         public virtual void PutUint32(int value, Endian endian = default(Endian)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Write an Int32 into the buffer.
+        /// </Summary>
         public virtual void PutInt32(int value, Endian endian = default(Endian)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Write an Int64 into the buffer.
+        /// </Summary>
         public virtual void PutInt64(int value, Endian endian = default(Endian)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Write an Float64 into the buffer.
+        /// </Summary>
         public virtual void PutFloat64(double value, Endian endian = default(Endian)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Write all the values from a [Uint8List] into the buffer.
+        /// </Summary>
         public virtual void PutUint8List(Uint8List list) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Write all the values from an [Int32List] into the buffer.
+        /// </Summary>
         public virtual void PutInt32List(List<uint> list) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Write all the values from an [Int64List] into the buffer.
+        /// </Summary>
         public virtual void PutInt64List(Int64List list) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Write all the values from a [Float64List] into the buffer.
+        /// </Summary>
         public virtual void PutFloat64List(List<float> list) { throw new NotImplementedException(); }
 
 
         private void _AlignTo(int alignment) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Finalize and return the written [ByteData].
+        /// </Summary>
         public virtual ByteData Done() { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// Read-only buffer for reading sequentially from a [ByteData] instance.
+    ///
+    /// The byte order used is [Endian.host] throughout.
+    /// </Summary>
     public class ReadBuffer
     {
         #region constructors
@@ -374,33 +420,63 @@ namespace FlutterSDK.Foundation.Serialization
 
         #region methods
 
+        /// <Summary>
+        /// Reads a Uint8 from the buffer.
+        /// </Summary>
         public virtual int GetUint8() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Reads a Uint16 from the buffer.
+        /// </Summary>
         public virtual int GetUint16(Endian endian = default(Endian)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Reads a Uint32 from the buffer.
+        /// </Summary>
         public virtual int GetUint32(Endian endian = default(Endian)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Reads an Int32 from the buffer.
+        /// </Summary>
         public virtual int GetInt32(Endian endian = default(Endian)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Reads an Int64 from the buffer.
+        /// </Summary>
         public virtual int GetInt64(Endian endian = default(Endian)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Reads a Float64 from the buffer.
+        /// </Summary>
         public virtual double GetFloat64(Endian endian = default(Endian)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Reads the given number of Uint8s from the buffer.
+        /// </Summary>
         public virtual Uint8List GetUint8List(int length) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Reads the given number of Int32s from the buffer.
+        /// </Summary>
         public virtual List<uint> GetInt32List(int length) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Reads the given number of Int64s from the buffer.
+        /// </Summary>
         public virtual Int64List GetInt64List(int length) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Reads the given number of Float64s from the buffer.
+        /// </Summary>
         public virtual List<float> GetFloat64List(int length) { throw new NotImplementedException(); }
 
 

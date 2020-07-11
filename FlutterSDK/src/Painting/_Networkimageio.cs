@@ -427,6 +427,9 @@ namespace FlutterSDK.Painting._Networkimageio
     {
     }
 
+    /// <Summary>
+    /// The dart:io implementation of [image_provider.NetworkImage].
+    /// </Summary>
     public class NetworkImage : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider.NetworkImage>, INetworkImage
     {
         #region constructors

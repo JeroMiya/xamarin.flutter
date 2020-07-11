@@ -428,6 +428,13 @@ namespace FlutterSDK.Material.Toggleable
         public static TimeSpan _KReactionFadeDuration = default(TimeSpan);
     }
 
+    /// <Summary>
+    /// A base class for material style toggleable controls with toggle animations.
+    ///
+    /// This class handles storing the current value, dispatching ValueChanged on a
+    /// tap gesture and driving a changed animation. Subclasses are responsible for
+    /// painting.
+    /// </Summary>
     public interface IRenderToggleable
     {
         void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner);
@@ -457,6 +464,13 @@ namespace FlutterSDK.Material.Toggleable
     }
 
 
+    /// <Summary>
+    /// A base class for material style toggleable controls with toggle animations.
+    ///
+    /// This class handles storing the current value, dispatching ValueChanged on a
+    /// tap gesture and driving a changed animation. Subclasses are responsible for
+    /// painting.
+    /// </Summary>
     public class RenderToggleable : FlutterSDK.Rendering.Proxybox.RenderConstrainedBox
     {
         #region constructors
@@ -535,6 +549,14 @@ namespace FlutterSDK.Material.Toggleable
         public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Rendering.Box.BoxHitTestEntry entry) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Used by subclasses to paint the radial ink reaction for this control.
+        ///
+        /// The reaction is painted on the given canvas at the given offset. The
+        /// origin is the center point of the reaction (usually distinct from the
+        /// point at which the user interacted with the control, which is handled
+        /// automatically).
+        /// </Summary>
         public virtual void PaintRadialReaction(Canvas canvas, FlutterBinding.UI.Offset offset, FlutterBinding.UI.Offset origin) { throw new NotImplementedException(); }
 
 

@@ -427,6 +427,21 @@ namespace FlutterSDK.Rendering.Sliverpadding
     {
     }
 
+    /// <Summary>
+    /// Insets a [RenderSliver] by applying [resolvedPadding] on each side.
+    ///
+    /// A [RenderSliverEdgeInsetsPadding] subclass wraps the [SliverGeometry.layoutExtent]
+    /// of its child. Any incoming [SliverConstraints.overlap] is ignored and not
+    /// passed on to the child.
+    ///
+    /// {@template flutter.rendering.sliverPadding.limitation}
+    /// Applying padding to anything but the most mundane sliver is likely to have
+    /// undesired effects. For example, wrapping a [RenderSliverPinnedPersistentHeader]
+    /// will cause the app bar to overlap earlier slivers (contrary to the normal
+    /// behavior of pinned app bars), and while the app bar is pinned, the padding
+    /// will scroll away.
+    /// {@endtemplate}
+    /// </Summary>
     public interface IRenderSliverEdgeInsetsPadding
     {
         void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child);
@@ -446,6 +461,21 @@ namespace FlutterSDK.Rendering.Sliverpadding
     }
 
 
+    /// <Summary>
+    /// Insets a [RenderSliver] by applying [resolvedPadding] on each side.
+    ///
+    /// A [RenderSliverEdgeInsetsPadding] subclass wraps the [SliverGeometry.layoutExtent]
+    /// of its child. Any incoming [SliverConstraints.overlap] is ignored and not
+    /// passed on to the child.
+    ///
+    /// {@template flutter.rendering.sliverPadding.limitation}
+    /// Applying padding to anything but the most mundane sliver is likely to have
+    /// undesired effects. For example, wrapping a [RenderSliverPinnedPersistentHeader]
+    /// will cause the app bar to overlap earlier slivers (contrary to the normal
+    /// behavior of pinned app bars), and while the app bar is pinned, the padding
+    /// will scroll away.
+    /// {@endtemplate}
+    /// </Summary>
     public class RenderSliverEdgeInsetsPadding : FlutterSDK.Rendering.Sliver.RenderSliver, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Sliver.RenderSliver>
     {
         #region constructors
@@ -495,6 +525,15 @@ namespace FlutterSDK.Rendering.Sliverpadding
     }
 
 
+    /// <Summary>
+    /// Insets a [RenderSliver], applying padding on each side.
+    ///
+    /// A [RenderSliverPadding] object wraps the [SliverGeometry.layoutExtent] of
+    /// its child. Any incoming [SliverConstraints.overlap] is ignored and not
+    /// passed on to the child.
+    ///
+    /// {@macro flutter.rendering.sliverPadding.limitation}
+    /// </Summary>
     public class RenderSliverPadding : FlutterSDK.Rendering.Sliverpadding.RenderSliverEdgeInsetsPadding
     {
         #region constructors

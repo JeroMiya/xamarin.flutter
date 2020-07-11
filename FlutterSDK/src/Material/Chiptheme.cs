@@ -379,6 +379,36 @@ namespace FlutterSDK.Material.Chiptheme
     {
     }
 
+    /// <Summary>
+    /// Applies a chip theme to descendant [RawChip]-based widgets, like [Chip],
+    /// [InputChip], [ChoiceChip], [FilterChip], and [ActionChip].
+    ///
+    /// A chip theme describes the color, shape and text styles for the chips it is
+    /// applied to
+    ///
+    /// Descendant widgets obtain the current theme's [ChipThemeData] object using
+    /// [ChipTheme.of]. When a widget uses [ChipTheme.of], it is automatically
+    /// rebuilt if the theme later changes.
+    ///
+    /// The [ThemeData] object given by the [Theme.of] call also contains a default
+    /// [ThemeData.chipTheme] that can be customized by copying it (using
+    /// [ChipThemeData.copyWith]).
+    ///
+    /// See also:
+    ///
+    ///  * [Chip], a chip that displays information and can be deleted.
+    ///  * [InputChip], a chip that represents a complex piece of information, such
+    ///    as an entity (person, place, or thing) or conversational text, in a
+    ///    compact form.
+    ///  * [ChoiceChip], allows a single selection from a set of options. Choice
+    ///    chips contain related descriptive text or categories.
+    ///  * [FilterChip], uses tags or descriptive words as a way to filter content.
+    ///  * [ActionChip], represents an action related to primary content.
+    ///  * [ChipThemeData], which describes the actual configuration of a chip
+    ///    theme.
+    ///  * [ThemeData], which describes the overall theme information for the
+    ///    application.
+    /// </Summary>
     public class ChipTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
         #region constructors
@@ -395,6 +425,36 @@ namespace FlutterSDK.Material.Chiptheme
 
         #region methods
 
+        /// <Summary>
+        /// Returns the data from the closest [ChipTheme] instance that encloses
+        /// the given context.
+        ///
+        /// Defaults to the ambient [ThemeData.chipTheme] if there is no
+        /// [ChipTheme] in the given build context.
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// class Spaceship extends StatelessWidget {
+        ///   @override
+        ///   Widget build(BuildContext context) {
+        ///     return ChipTheme(
+        ///       data: ChipTheme.of(context).copyWith(backgroundColor: Colors.red),
+        ///       child: ActionChip(
+        ///         label: const Text('Launch'),
+        ///         onPressed: () { print('We have liftoff!'); },
+        ///       ),
+        ///     );
+        ///   }
+        /// }
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [ChipThemeData], which describes the actual configuration of a chip
+        ///    theme.
+        /// </Summary>
         public virtual FlutterSDK.Material.Chiptheme.ChipThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
@@ -408,6 +468,77 @@ namespace FlutterSDK.Material.Chiptheme
     }
 
 
+    /// <Summary>
+    /// Holds the color, shape, and text styles for a material design chip theme.
+    ///
+    /// Use this class to configure a [ChipTheme] widget, or to set the
+    /// [ThemeData.chipTheme] for a [Theme] widget.
+    ///
+    /// To obtain the current ambient chip theme, use [ChipTheme.of].
+    ///
+    /// The parts of a chip are:
+    ///
+    ///  * The "avatar", which is a widget that appears at the beginning of the
+    ///    chip. This is typically a [CircleAvatar] widget.
+    ///  * The "label", which is the widget displayed in the center of the chip.
+    ///    Typically this is a [Text] widget.
+    ///  * The "delete icon", which is a widget that appears at the end of the chip.
+    ///  * The chip is disabled when it is not accepting user input. Only some chips
+    ///    have a disabled state: [InputChip], [ChoiceChip], and [FilterChip].
+    ///
+    /// The simplest way to create a ChipThemeData is to use [copyWith] on the one
+    /// you get from [ChipTheme.of], or create an entirely new one with
+    /// [ChipThemeData..fromDefaults].
+    ///
+    /// {@tool snippet}
+    ///
+    /// ```dart
+    /// class CarColor extends StatefulWidget {
+    ///   @override
+    ///   State createState() => _CarColorState();
+    /// }
+    ///
+    /// class _CarColorState extends State<CarColor> {
+    ///   Color _color = Colors.red;
+    ///
+    ///   @override
+    ///   Widget build(BuildContext context) {
+    ///     return ChipTheme(
+    ///       data: ChipTheme.of(context).copyWith(backgroundColor: Colors.lightBlue),
+    ///       child: ChoiceChip(
+    ///         label: Text('Light Blue'),
+    ///         onSelected: (bool value) {
+    ///           setState(() {
+    ///             _color = value ? Colors.lightBlue : Colors.red;
+    ///           });
+    ///         },
+    ///         selected: _color == Colors.lightBlue,
+    ///       ),
+    ///     );
+    ///   }
+    /// }
+    /// ```
+    /// {@end-tool}
+    ///
+    /// See also:
+    ///
+    ///  * [Chip], a chip that displays information and can be deleted.
+    ///  * [InputChip], a chip that represents a complex piece of information, such
+    ///    as an entity (person, place, or thing) or conversational text, in a
+    ///    compact form.
+    ///  * [ChoiceChip], allows a single selection from a set of options. Choice
+    ///    chips contain related descriptive text or categories.
+    ///  * [FilterChip], uses tags or descriptive words as a way to filter content.
+    ///  * [ActionChip], represents an action related to primary content.
+    ///  * [CircleAvatar], which shows images or initials of entities.
+    ///  * [Wrap], A widget that displays its children in multiple horizontal or
+    ///    vertical runs.
+    ///  * [ChipTheme] widget, which can override the chip theme of its
+    ///    children.
+    ///  * [Theme] widget, which performs a similar function to [ChipTheme],
+    ///    but for overall themes.
+    ///  * [ThemeData], which has a default [ChipThemeData].
+    /// </Summary>
     public class ChipThemeData : IDiagnosticable
     {
         #region constructors
@@ -461,9 +592,20 @@ namespace FlutterSDK.Material.Chiptheme
 
         #region methods
 
+        /// <Summary>
+        /// Creates a copy of this object but with the given fields replaced with the
+        /// new values.
+        /// </Summary>
         public virtual FlutterSDK.Material.Chiptheme.ChipThemeData CopyWith(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color deleteIconColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondarySelectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedShadowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color checkmarkColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle secondaryLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), Brightness brightness = default(Brightness), double elevation = default(double), double pressElevation = default(double)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two chip themes.
+        ///
+        /// The arguments must not be null.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
         public virtual FlutterSDK.Material.Chiptheme.ChipThemeData Lerp(FlutterSDK.Material.Chiptheme.ChipThemeData a, FlutterSDK.Material.Chiptheme.ChipThemeData b, double t) { throw new NotImplementedException(); }
 
 

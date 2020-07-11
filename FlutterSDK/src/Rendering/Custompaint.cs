@@ -428,6 +428,112 @@ namespace FlutterSDK.Rendering.Custompaint
     {
     }
 
+    /// <Summary>
+    /// The interface used by [CustomPaint] (in the widgets library) and
+    /// [RenderCustomPaint] (in the rendering library).
+    ///
+    /// To implement a custom painter, either subclass or implement this interface
+    /// to define your custom paint delegate. [CustomPaint] subclasses must
+    /// implement the [paint] and [shouldRepaint] methods, and may optionally also
+    /// implement the [hitTest] and [shouldRebuildSemantics] methods, and the
+    /// [semanticsBuilder] getter.
+    ///
+    /// The [paint] method is called whenever the custom object needs to be repainted.
+    ///
+    /// The [shouldRepaint] method is called when a new instance of the class
+    /// is provided, to check if the new instance actually represents different
+    /// information.
+    ///
+    /// {@youtube 560 315 https://www.youtube.com/watch?v=vvI_NUXK00s}
+    ///
+    /// The most efficient way to trigger a repaint is to either:
+    ///
+    /// * Extend this class and supply a `repaint` argument to the constructor of
+    ///   the [CustomPainter], where that object notifies its listeners when it is
+    ///   time to repaint.
+    /// * Extend [Listenable] (e.g. via [ChangeNotifier]) and implement
+    ///   [CustomPainter], so that the object itself provides the notifications
+    ///   directly.
+    ///
+    /// In either case, the [CustomPaint] widget or [RenderCustomPaint]
+    /// render object will listen to the [Listenable] and repaint whenever the
+    /// animation ticks, avoiding both the build and layout phases of the pipeline.
+    ///
+    /// The [hitTest] method is called when the user interacts with the underlying
+    /// render object, to determine if the user hit the object or missed it.
+    ///
+    /// The [semanticsBuilder] is called whenever the custom object needs to rebuild
+    /// its semantics information.
+    ///
+    /// The [shouldRebuildSemantics] method is called when a new instance of the
+    /// class is provided, to check if the new instance contains different
+    /// information that affects the semantics tree.
+    ///
+    /// {@tool snippet}
+    ///
+    /// This sample extends the same code shown for [RadialGradient] to create a
+    /// custom painter that paints a sky.
+    ///
+    /// ```dart
+    /// class Sky extends CustomPainter {
+    ///   @override
+    ///   void paint(Canvas canvas, Size size) {
+    ///     var rect = Offset.zero & size;
+    ///     var gradient = RadialGradient(
+    ///       center: const Alignment(0.7, -0.6),
+    ///       radius: 0.2,
+    ///       colors: [const Color(0xFFFFFF00), const Color(0xFF0099FF)],
+    ///       stops: [0.4, 1.0],
+    ///     );
+    ///     canvas.drawRect(
+    ///       rect,
+    ///       Paint()..shader = gradient.createShader(rect),
+    ///     );
+    ///   }
+    ///
+    ///   @override
+    ///   SemanticsBuilderCallback get semanticsBuilder {
+    ///     return (Size size) {
+    ///       // Annotate a rectangle containing the picture of the sun
+    ///       // with the label "Sun". When text to speech feature is enabled on the
+    ///       // device, a user will be able to locate the sun on this picture by
+    ///       // touch.
+    ///       var rect = Offset.zero & size;
+    ///       var width = size.shortestSide * 0.4;
+    ///       rect = const Alignment(0.8, -0.9).inscribe(Size(width, width), rect);
+    ///       return [
+    ///         CustomPainterSemantics(
+    ///           rect: rect,
+    ///           properties: SemanticsProperties(
+    ///             label: 'Sun',
+    ///             textDirection: TextDirection.ltr,
+    ///           ),
+    ///         ),
+    ///       ];
+    ///     };
+    ///   }
+    ///
+    ///   // Since this Sky painter has no fields, it always paints
+    ///   // the same thing and semantics information is the same.
+    ///   // Therefore we return false here. If we had fields (set
+    ///   // from the constructor) then we would return true if any
+    ///   // of them differed from the same fields on the oldDelegate.
+    ///   @override
+    ///   bool shouldRepaint(Sky oldDelegate) => false;
+    ///   @override
+    ///   bool shouldRebuildSemantics(Sky oldDelegate) => false;
+    /// }
+    /// ```
+    /// {@end-tool}
+    ///
+    /// See also:
+    ///
+    ///  * [Canvas], the class that a custom painter uses to paint.
+    ///  * [CustomPaint], the widget that uses [CustomPainter], and whose sample
+    ///    code shows how to use the above `Sky` class.
+    ///  * [RadialGradient], whose sample code section shows a different take
+    ///    on the sample code above.
+    /// </Summary>
     public interface ICustomPainter
     {
         void AddListener(VoidCallback listener);
@@ -441,6 +547,112 @@ namespace FlutterSDK.Rendering.Custompaint
     }
 
 
+    /// <Summary>
+    /// The interface used by [CustomPaint] (in the widgets library) and
+    /// [RenderCustomPaint] (in the rendering library).
+    ///
+    /// To implement a custom painter, either subclass or implement this interface
+    /// to define your custom paint delegate. [CustomPaint] subclasses must
+    /// implement the [paint] and [shouldRepaint] methods, and may optionally also
+    /// implement the [hitTest] and [shouldRebuildSemantics] methods, and the
+    /// [semanticsBuilder] getter.
+    ///
+    /// The [paint] method is called whenever the custom object needs to be repainted.
+    ///
+    /// The [shouldRepaint] method is called when a new instance of the class
+    /// is provided, to check if the new instance actually represents different
+    /// information.
+    ///
+    /// {@youtube 560 315 https://www.youtube.com/watch?v=vvI_NUXK00s}
+    ///
+    /// The most efficient way to trigger a repaint is to either:
+    ///
+    /// * Extend this class and supply a `repaint` argument to the constructor of
+    ///   the [CustomPainter], where that object notifies its listeners when it is
+    ///   time to repaint.
+    /// * Extend [Listenable] (e.g. via [ChangeNotifier]) and implement
+    ///   [CustomPainter], so that the object itself provides the notifications
+    ///   directly.
+    ///
+    /// In either case, the [CustomPaint] widget or [RenderCustomPaint]
+    /// render object will listen to the [Listenable] and repaint whenever the
+    /// animation ticks, avoiding both the build and layout phases of the pipeline.
+    ///
+    /// The [hitTest] method is called when the user interacts with the underlying
+    /// render object, to determine if the user hit the object or missed it.
+    ///
+    /// The [semanticsBuilder] is called whenever the custom object needs to rebuild
+    /// its semantics information.
+    ///
+    /// The [shouldRebuildSemantics] method is called when a new instance of the
+    /// class is provided, to check if the new instance contains different
+    /// information that affects the semantics tree.
+    ///
+    /// {@tool snippet}
+    ///
+    /// This sample extends the same code shown for [RadialGradient] to create a
+    /// custom painter that paints a sky.
+    ///
+    /// ```dart
+    /// class Sky extends CustomPainter {
+    ///   @override
+    ///   void paint(Canvas canvas, Size size) {
+    ///     var rect = Offset.zero & size;
+    ///     var gradient = RadialGradient(
+    ///       center: const Alignment(0.7, -0.6),
+    ///       radius: 0.2,
+    ///       colors: [const Color(0xFFFFFF00), const Color(0xFF0099FF)],
+    ///       stops: [0.4, 1.0],
+    ///     );
+    ///     canvas.drawRect(
+    ///       rect,
+    ///       Paint()..shader = gradient.createShader(rect),
+    ///     );
+    ///   }
+    ///
+    ///   @override
+    ///   SemanticsBuilderCallback get semanticsBuilder {
+    ///     return (Size size) {
+    ///       // Annotate a rectangle containing the picture of the sun
+    ///       // with the label "Sun". When text to speech feature is enabled on the
+    ///       // device, a user will be able to locate the sun on this picture by
+    ///       // touch.
+    ///       var rect = Offset.zero & size;
+    ///       var width = size.shortestSide * 0.4;
+    ///       rect = const Alignment(0.8, -0.9).inscribe(Size(width, width), rect);
+    ///       return [
+    ///         CustomPainterSemantics(
+    ///           rect: rect,
+    ///           properties: SemanticsProperties(
+    ///             label: 'Sun',
+    ///             textDirection: TextDirection.ltr,
+    ///           ),
+    ///         ),
+    ///       ];
+    ///     };
+    ///   }
+    ///
+    ///   // Since this Sky painter has no fields, it always paints
+    ///   // the same thing and semantics information is the same.
+    ///   // Therefore we return false here. If we had fields (set
+    ///   // from the constructor) then we would return true if any
+    ///   // of them differed from the same fields on the oldDelegate.
+    ///   @override
+    ///   bool shouldRepaint(Sky oldDelegate) => false;
+    ///   @override
+    ///   bool shouldRebuildSemantics(Sky oldDelegate) => false;
+    /// }
+    /// ```
+    /// {@end-tool}
+    ///
+    /// See also:
+    ///
+    ///  * [Canvas], the class that a custom painter uses to paint.
+    ///  * [CustomPaint], the widget that uses [CustomPainter], and whose sample
+    ///    code shows how to use the above `Sky` class.
+    ///  * [RadialGradient], whose sample code section shows a different take
+    ///    on the sample code above.
+    /// </Summary>
     public class CustomPainter : FlutterSDK.Foundation.Changenotifier.Listenable
     {
         #region constructors
@@ -458,21 +670,134 @@ namespace FlutterSDK.Rendering.Custompaint
 
         #region methods
 
+        /// <Summary>
+        /// Register a closure to be notified when it is time to repaint.
+        ///
+        /// The [CustomPainter] implementation merely forwards to the same method on
+        /// the [Listenable] provided to the constructor in the `repaint` argument, if
+        /// it was not null.
+        /// </Summary>
         public new void AddListener(VoidCallback listener) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Remove a previously registered closure from the list of closures that the
+        /// object notifies when it is time to repaint.
+        ///
+        /// The [CustomPainter] implementation merely forwards to the same method on
+        /// the [Listenable] provided to the constructor in the `repaint` argument, if
+        /// it was not null.
+        /// </Summary>
         public new void RemoveListener(VoidCallback listener) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called whenever the object needs to paint. The given [Canvas] has its
+        /// coordinate space configured such that the origin is at the top left of the
+        /// box. The area of the box is the size of the [size] argument.
+        ///
+        /// Paint operations should remain inside the given area. Graphical
+        /// operations outside the bounds may be silently ignored, clipped, or not
+        /// clipped. It may sometimes be difficult to guarantee that a certain
+        /// operation is inside the bounds (e.g., drawing a rectangle whose size is
+        /// determined by user inputs). In that case, consider calling
+        /// [Canvas.clipRect] at the beginning of [paint] so everything that follows
+        /// will be guaranteed to only draw within the clipped area.
+        ///
+        /// Implementations should be wary of correctly pairing any calls to
+        /// [Canvas.save]/[Canvas.saveLayer] and [Canvas.restore], otherwise all
+        /// subsequent painting on this canvas may be affected, with potentially
+        /// hilarious but confusing results.
+        ///
+        /// To paint text on a [Canvas], use a [TextPainter].
+        ///
+        /// To paint an image on a [Canvas]:
+        ///
+        /// 1. Obtain an [ImageStream], for example by calling [ImageProvider.resolve]
+        ///    on an [AssetImage] or [NetworkImage] object.
+        ///
+        /// 2. Whenever the [ImageStream]'s underlying [ImageInfo] object changes
+        ///    (see [ImageStream.addListener]), create a new instance of your custom
+        ///    paint delegate, giving it the new [ImageInfo] object.
+        ///
+        /// 3. In your delegate's [paint] method, call the [Canvas.drawImage],
+        ///    [Canvas.drawImageRect], or [Canvas.drawImageNine] methods to paint the
+        ///    [ImageInfo.image] object, applying the [ImageInfo.scale] value to
+        ///    obtain the correct rendering size.
+        /// </Summary>
         public virtual void Paint(Canvas canvas, Size size) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called whenever a new instance of the custom painter delegate class is
+        /// provided to the [RenderCustomPaint] object, or any time that a new
+        /// [CustomPaint] object is created with a new instance of the custom painter
+        /// delegate class (which amounts to the same thing, because the latter is
+        /// implemented in terms of the former).
+        ///
+        /// If the new instance would cause [semanticsBuilder] to create different
+        /// semantics information, then this method should return true, otherwise it
+        /// should return false.
+        ///
+        /// If the method returns false, then the [semanticsBuilder] call might be
+        /// optimized away.
+        ///
+        /// It's possible that the [semanticsBuilder] will get called even if
+        /// [shouldRebuildSemantics] would return false. For example, it is called
+        /// when the [CustomPaint] is rendered for the very first time, or when the
+        /// box changes its size.
+        ///
+        /// By default this method delegates to [shouldRepaint] under the assumption
+        /// that in most cases semantics change when something new is drawn.
+        /// </Summary>
         public virtual bool ShouldRebuildSemantics(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called whenever a new instance of the custom painter delegate class is
+        /// provided to the [RenderCustomPaint] object, or any time that a new
+        /// [CustomPaint] object is created with a new instance of the custom painter
+        /// delegate class (which amounts to the same thing, because the latter is
+        /// implemented in terms of the former).
+        ///
+        /// If the new instance represents different information than the old
+        /// instance, then the method should return true, otherwise it should return
+        /// false.
+        ///
+        /// If the method returns false, then the [paint] call might be optimized
+        /// away.
+        ///
+        /// It's possible that the [paint] method will get called even if
+        /// [shouldRepaint] returns false (e.g. if an ancestor or descendant needed to
+        /// be repainted). It's also possible that the [paint] method will get called
+        /// without [shouldRepaint] being called at all (e.g. if the box changes
+        /// size).
+        ///
+        /// If a custom delegate has a particularly expensive paint function such that
+        /// repaints should be avoided as much as possible, a [RepaintBoundary] or
+        /// [RenderRepaintBoundary] (or other render object with
+        /// [RenderObject.isRepaintBoundary] set to true) might be helpful.
+        ///
+        /// The `oldDelegate` argument will never be null.
+        /// </Summary>
         public virtual bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called whenever a hit test is being performed on an object that is using
+        /// this custom paint delegate.
+        ///
+        /// The given point is relative to the same coordinate space as the last
+        /// [paint] call.
+        ///
+        /// The default behavior is to consider all points to be hits for
+        /// background painters, and no points to be hits for foreground painters.
+        ///
+        /// Return true if the given position corresponds to a point on the drawn
+        /// image that should be considered a "hit", false if it corresponds to a
+        /// point that should be considered outside the painted image, and null to use
+        /// the default behavior.
+        /// </Summary>
         public virtual bool HitTest(FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
 
 
@@ -480,6 +805,22 @@ namespace FlutterSDK.Rendering.Custompaint
     }
 
 
+    /// <Summary>
+    /// Contains properties describing information drawn in a rectangle contained by
+    /// the [Canvas] used by a [CustomPaint].
+    ///
+    /// This information is used, for example, by assistive technologies to improve
+    /// the accessibility of applications.
+    ///
+    /// Implement [CustomPainter.semanticsBuilder] to build the semantic
+    /// description of the whole picture drawn by a [CustomPaint], rather that one
+    /// particular rectangle.
+    ///
+    /// See also:
+    ///
+    ///  * [SemanticsNode], which is created using the properties of this class.
+    ///  * [CustomPainter], which creates instances of this class.
+    /// </Summary>
     public class CustomPainterSemantics
     {
         #region constructors
@@ -507,6 +848,33 @@ namespace FlutterSDK.Rendering.Custompaint
     }
 
 
+    /// <Summary>
+    /// Provides a canvas on which to draw during the paint phase.
+    ///
+    /// When asked to paint, [RenderCustomPaint] first asks its [painter] to paint
+    /// on the current canvas, then it paints its child, and then, after painting
+    /// its child, it asks its [foregroundPainter] to paint. The coordinate system of
+    /// the canvas matches the coordinate system of the [CustomPaint] object. The
+    /// painters are expected to paint within a rectangle starting at the origin and
+    /// encompassing a region of the given size. (If the painters paint outside
+    /// those bounds, there might be insufficient memory allocated to rasterize the
+    /// painting commands and the resulting behavior is undefined.)
+    ///
+    /// Painters are implemented by subclassing or implementing [CustomPainter].
+    ///
+    /// Because custom paint calls its painters during paint, you cannot mark the
+    /// tree as needing a new layout during the callback (the layout for this frame
+    /// has already happened).
+    ///
+    /// Custom painters normally size themselves to their child. If they do not have
+    /// a child, they attempt to size themselves to the [preferredSize], which
+    /// defaults to [Size.zero].
+    ///
+    /// See also:
+    ///
+    ///  * [CustomPainter], the class that custom painter delegates should extend.
+    ///  * [Canvas], the API provided to custom painter delegates.
+    /// </Summary>
     public class RenderCustomPaint : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
         #region constructors
@@ -572,12 +940,48 @@ namespace FlutterSDK.Rendering.Custompaint
         public new void ClearSemantics() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Updates the nodes of `oldSemantics` using data in `newChildSemantics`, and
+        /// returns a new list containing child nodes sorted according to the order
+        /// specified by `newChildSemantics`.
+        ///
+        /// [SemanticsNode]s that match [CustomPainterSemantics] by [Key]s preserve
+        /// their [SemanticsNode.key] field. If a node with the same key appears in
+        /// a different position in the list, it is moved to the new position, but the
+        /// same object is reused.
+        ///
+        /// [SemanticsNode]s whose `key` is null may be updated from
+        /// [CustomPainterSemantics] whose `key` is also null. However, the algorithm
+        /// does not guarantee it. If your semantics require that specific nodes are
+        /// updated from specific [CustomPainterSemantics], it is recommended to match
+        /// them by specifying non-null keys.
+        ///
+        /// The algorithm tries to be as close to [RenderObjectElement.updateChildren]
+        /// as possible, deviating only where the concepts diverge between widgets and
+        /// semantics. For example, a [SemanticsNode] can be updated from a
+        /// [CustomPainterSemantics] based on `Key` alone; their types are not
+        /// considered because there is only one type of [SemanticsNode]. There is no
+        /// concept of a "forgotten" node in semantics, deactivated nodes, or global
+        /// keys.
+        /// </Summary>
         private List<FlutterSDK.Semantics.Semantics.SemanticsNode> _UpdateSemanticsChildren(List<FlutterSDK.Semantics.Semantics.SemanticsNode> oldSemantics, List<FlutterSDK.Rendering.Custompaint.CustomPainterSemantics> newChildSemantics) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Whether `oldChild` can be updated with properties from `newSemantics`.
+        ///
+        /// If `oldChild` can be updated, it is updated using [_updateSemanticsChild].
+        /// Otherwise, the node is replaced by a new instance of [SemanticsNode].
+        /// </Summary>
         private bool _CanUpdateSemanticsChild(FlutterSDK.Semantics.Semantics.SemanticsNode oldChild, FlutterSDK.Rendering.Custompaint.CustomPainterSemantics newSemantics) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Updates `oldChild` using the properties of `newSemantics`.
+        ///
+        /// This method requires that `_canUpdateSemanticsChild(oldChild, newSemantics)`
+        /// is true prior to calling it.
+        /// </Summary>
         private FlutterSDK.Semantics.Semantics.SemanticsNode _UpdateSemanticsChild(FlutterSDK.Semantics.Semantics.SemanticsNode oldChild, FlutterSDK.Rendering.Custompaint.CustomPainterSemantics newSemantics) { throw new NotImplementedException(); }
 
         #endregion

@@ -438,6 +438,17 @@ namespace FlutterSDK.Widgets.Listwheelscrollview
 
     }
 
+    /// <Summary>
+    /// Metrics for a [ScrollPosition] to a scroll view with fixed item sizes.
+    ///
+    /// The metrics are available on [ScrollNotification]s generated from a scroll
+    /// views such as [ListWheelScrollView]s with a [FixedExtentScrollController] and
+    /// exposes the current [itemIndex] and the scroll view's [itemExtent].
+    ///
+    /// `FixedExtent` refers to the fact that the scrollable items have the same size.
+    /// This is distinct from `Fixed` in the parent class name's [FixedScrollMetric]
+    /// which refers to its immutability.
+    /// </Summary>
     public interface IFixedExtentMetrics
     {
         FlutterSDK.Widgets.Listwheelscrollview.FixedExtentMetrics CopyWith(double minScrollExtent = default(double), double maxScrollExtent = default(double), double pixels = default(double), double viewportDimension = default(double), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), int itemIndex = default(int));
@@ -451,12 +462,29 @@ namespace FlutterSDK.Widgets.Listwheelscrollview
     {
         public virtual int EstimatedChildCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
+        /// <Summary>
+        /// Return the child at the given index. If the child at the given
+        /// index does not exist, return null.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context, int index) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the true index for a child built at a given index. Defaults to
+        /// the given index, however if the delegate is [ListWheelChildLoopingListDelegate],
+        /// this value is the index of the true element that the delegate is looping to.
+        ///
+        ///
+        /// Example: [ListWheelChildLoopingListDelegate] is built by looping a list of
+        /// length 8. Then, trueIndexOf(10) = 2 and trueIndexOf(-5) = 3.
+        /// </Summary>
         public virtual int TrueIndexOf(int index) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called to check whether this and the old delegate are actually 'different',
+        /// so that the caller can decide to rebuild or not.
+        /// </Summary>
         public virtual bool ShouldRebuild(FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate oldDelegate) { throw new NotImplementedException(); }
 
     }
@@ -479,6 +507,28 @@ namespace FlutterSDK.Widgets.Listwheelscrollview
     }
 
 
+    /// <Summary>
+    /// A delegate that supplies children for [ListWheelScrollView] using an
+    /// explicit list.
+    ///
+    /// [ListWheelScrollView] lazily constructs its children to avoid creating more
+    /// children than are visible through the [Viewport]. This delegate provides
+    /// children using an explicit list, which is convenient but reduces the benefit
+    /// of building children lazily.
+    ///
+    /// In general building all the widgets in advance is not efficient. It is
+    /// better to create a delegate that builds them on demand using
+    /// [ListWheelChildBuilderDelegate] or by subclassing [ListWheelChildDelegate]
+    /// directly.
+    ///
+    /// This class is provided for the cases where either the list of children is
+    /// known well in advance (ideally the children are themselves compile-time
+    /// constants, for example), and therefore will not be built each time the
+    /// delegate itself is created, or the list is small, such that it's likely
+    /// always visible (and thus there is nothing to be gained by building it on
+    /// demand). For example, the body of a dialog box might fit both of these
+    /// conditions.
+    /// </Summary>
     public class ListWheelChildListDelegate : FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate
     {
         #region constructors
@@ -506,6 +556,28 @@ namespace FlutterSDK.Widgets.Listwheelscrollview
     }
 
 
+    /// <Summary>
+    /// A delegate that supplies infinite children for [ListWheelScrollView] by
+    /// looping an explicit list.
+    ///
+    /// [ListWheelScrollView] lazily constructs its children to avoid creating more
+    /// children than are visible through the [Viewport]. This delegate provides
+    /// children using an explicit list, which is convenient but reduces the benefit
+    /// of building children lazily.
+    ///
+    /// In general building all the widgets in advance is not efficient. It is
+    /// better to create a delegate that builds them on demand using
+    /// [ListWheelChildBuilderDelegate] or by subclassing [ListWheelChildDelegate]
+    /// directly.
+    ///
+    /// This class is provided for the cases where either the list of children is
+    /// known well in advance (ideally the children are themselves compile-time
+    /// constants, for example), and therefore will not be built each time the
+    /// delegate itself is created, or the list is small, such that it's likely
+    /// always visible (and thus there is nothing to be gained by building it on
+    /// demand). For example, the body of a dialog box might fit both of these
+    /// conditions.
+    /// </Summary>
     public class ListWheelChildLoopingListDelegate : FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate
     {
         #region constructors
@@ -536,6 +608,15 @@ namespace FlutterSDK.Widgets.Listwheelscrollview
     }
 
 
+    /// <Summary>
+    /// A delegate that supplies children for [ListWheelScrollView] using a builder
+    /// callback.
+    ///
+    /// [ListWheelScrollView] lazily constructs its children to avoid creating more
+    /// children than are visible through the [Viewport]. This delegate provides
+    /// children using an [IndexedWidgetBuilder] callback, so that the children do
+    /// not have to be built until they are displayed.
+    /// </Summary>
     public class ListWheelChildBuilderDelegate : FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate
     {
         #region constructors
@@ -565,6 +646,22 @@ namespace FlutterSDK.Widgets.Listwheelscrollview
     }
 
 
+    /// <Summary>
+    /// A controller for scroll views whose items have the same size.
+    ///
+    /// Similar to a standard [ScrollController] but with the added convenience
+    /// mechanisms to read and go to item indices rather than a raw pixel scroll
+    /// offset.
+    ///
+    /// See also:
+    ///
+    ///  * [ListWheelScrollView], a scrollable view widget with fixed size items
+    ///    that this widget controls.
+    ///  * [FixedExtentMetrics], the `metrics` property exposed by
+    ///    [ScrollNotification] from [ListWheelScrollView] which can be used
+    ///    to listen to the current item index on a push basis rather than polling
+    ///    the [FixedExtentScrollController].
+    /// </Summary>
     public class FixedExtentScrollController : FlutterSDK.Widgets.Scrollcontroller.ScrollController
     {
         #region constructors
@@ -582,9 +679,23 @@ namespace FlutterSDK.Widgets.Listwheelscrollview
 
         #region methods
 
+        /// <Summary>
+        /// Animates the controlled scroll view to the given item index.
+        ///
+        /// The animation lasts for the given duration and follows the given curve.
+        /// The returned [Future] resolves when the animation completes.
+        ///
+        /// The `duration` and `curve` arguments must not be null.
+        /// </Summary>
         public virtual Future<object> AnimateToItem(int itemIndex, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Changes which item index is centered in the controlled scroll view.
+        ///
+        /// Jumps the item index position from its current value to the given value,
+        /// without animation, and without checking if the new value is in range.
+        /// </Summary>
         public virtual void JumpToItem(int itemIndex) { throw new NotImplementedException(); }
 
 
@@ -594,6 +705,17 @@ namespace FlutterSDK.Widgets.Listwheelscrollview
     }
 
 
+    /// <Summary>
+    /// Metrics for a [ScrollPosition] to a scroll view with fixed item sizes.
+    ///
+    /// The metrics are available on [ScrollNotification]s generated from a scroll
+    /// views such as [ListWheelScrollView]s with a [FixedExtentScrollController] and
+    /// exposes the current [itemIndex] and the scroll view's [itemExtent].
+    ///
+    /// `FixedExtent` refers to the fact that the scrollable items have the same size.
+    /// This is distinct from `Fixed` in the parent class name's [FixedScrollMetric]
+    /// which refers to its immutability.
+    /// </Summary>
     public class FixedExtentMetrics : FlutterSDK.Widgets.Scrollmetrics.FixedScrollMetrics
     {
         #region constructors
@@ -616,6 +738,10 @@ namespace FlutterSDK.Widgets.Listwheelscrollview
     }
 
 
+    /// <Summary>
+    /// A [ScrollPositionWithSingleContext] that can only be created based on
+    /// [_FixedExtentScrollable] and can access its `itemExtent` to derive [itemIndex].
+    /// </Summary>
     public class _FixedExtentScrollPosition : FlutterSDK.Widgets.Scrollpositionwithsinglecontext.ScrollPositionWithSingleContext, IFixedExtentMetrics
     {
         #region constructors
@@ -642,6 +768,10 @@ namespace FlutterSDK.Widgets.Listwheelscrollview
     }
 
 
+    /// <Summary>
+    /// A [Scrollable] which must be given its viewport children's item extent
+    /// size so it can pass it on ultimately to the [FixedExtentScrollController].
+    /// </Summary>
     public class _FixedExtentScrollable : FlutterSDK.Widgets.Scrollable.Scrollable
     {
         #region constructors
@@ -664,6 +794,10 @@ namespace FlutterSDK.Widgets.Listwheelscrollview
     }
 
 
+    /// <Summary>
+    /// This [ScrollContext] is used by [_FixedExtentScrollPosition] to read the
+    /// prescribed [itemExtent].
+    /// </Summary>
     public class _FixedExtentScrollableState : FlutterSDK.Widgets.Scrollable.ScrollableState
     {
         #region constructors
@@ -680,6 +814,18 @@ namespace FlutterSDK.Widgets.Listwheelscrollview
     }
 
 
+    /// <Summary>
+    /// A snapping physics that always lands directly on items instead of anywhere
+    /// within the scroll extent.
+    ///
+    /// Behaves similarly to a slot machine wheel except the ballistics simulation
+    /// never overshoots and rolls back within a single item if it's to settle on
+    /// that item.
+    ///
+    /// Must be used with a scrollable that uses a [FixedExtentScrollController].
+    ///
+    /// Defers back to the parent beyond the scroll extents.
+    /// </Summary>
     public class FixedExtentScrollPhysics : FlutterSDK.Widgets.Scrollphysics.ScrollPhysics
     {
         #region constructors
@@ -704,6 +850,19 @@ namespace FlutterSDK.Widgets.Listwheelscrollview
     }
 
 
+    /// <Summary>
+    /// A box in which children on a wheel can be scrolled.
+    ///
+    /// This widget is similar to a [ListView] but with the restriction that all
+    /// children must be the same size along the scrolling axis.
+    ///
+    /// When the list is at the zero scroll offset, the first child is aligned with
+    /// the middle of the viewport. When the list is at the final scroll offset,
+    /// the last child is aligned with the middle of the viewport
+    ///
+    /// The children are rendered as if rotating on a wheel instead of scrolling on
+    /// a plane.
+    /// </Summary>
     public class ListWheelScrollView : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -794,6 +953,9 @@ namespace FlutterSDK.Widgets.Listwheelscrollview
     }
 
 
+    /// <Summary>
+    /// Element that supports building children lazily for [ListWheelViewport].
+    /// </Summary>
     public class ListWheelElement : FlutterSDK.Widgets.Framework.RenderObjectElement, IListWheelChildManager
     {
         #region constructors
@@ -821,6 +983,13 @@ namespace FlutterSDK.Widgets.Listwheelscrollview
         public new void PerformRebuild() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Asks the underlying delegate for a widget at the given index.
+        ///
+        /// Normally the builder is only called once for each index and the result
+        /// will be cached. However when the element is rebuilt, the cache will be
+        /// cleared.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget RetrieveWidget(int index) { throw new NotImplementedException(); }
 
 
@@ -855,6 +1024,20 @@ namespace FlutterSDK.Widgets.Listwheelscrollview
     }
 
 
+    /// <Summary>
+    /// A viewport showing a subset of children on a wheel.
+    ///
+    /// Typically used with [ListWheelScrollView], this viewport is similar to
+    /// [Viewport] in that it shows a subset of children in a scrollable based
+    /// on the scrolling offset and the children's dimensions. But uses
+    /// [RenderListWheelViewport] to display the children on a wheel.
+    ///
+    /// See also:
+    ///
+    ///  * [ListWheelScrollView], widget that combines this viewport with a scrollable.
+    ///  * [RenderListWheelViewport], the render object that renders the children
+    ///    on a wheel.
+    /// </Summary>
     public class ListWheelViewport : FlutterSDK.Widgets.Framework.RenderObjectWidget
     {
         #region constructors

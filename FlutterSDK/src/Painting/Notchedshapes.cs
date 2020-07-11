@@ -427,12 +427,36 @@ namespace FlutterSDK.Painting.Notchedshapes
     {
     }
 
+    /// <Summary>
+    /// A shape with a notch in its outline.
+    ///
+    /// Typically used as the outline of a 'host' widget to make a notch that
+    /// accommodates a 'guest' widget. e.g the [BottomAppBar] may have a notch to
+    /// accommodate the [FloatingActionButton].
+    ///
+    /// See also:
+    ///
+    ///  * [ShapeBorder], which defines a shaped border without a dynamic notch.
+    ///  * [AutomaticNotchedShape], an adapter from [ShapeBorder] to [NotchedShape].
+    /// </Summary>
     public interface INotchedShape
     {
         Path GetOuterPath(FlutterBinding.UI.Rect host, FlutterBinding.UI.Rect guest);
     }
 
 
+    /// <Summary>
+    /// A shape with a notch in its outline.
+    ///
+    /// Typically used as the outline of a 'host' widget to make a notch that
+    /// accommodates a 'guest' widget. e.g the [BottomAppBar] may have a notch to
+    /// accommodate the [FloatingActionButton].
+    ///
+    /// See also:
+    ///
+    ///  * [ShapeBorder], which defines a shaped border without a dynamic notch.
+    ///  * [AutomaticNotchedShape], an adapter from [ShapeBorder] to [NotchedShape].
+    /// </Summary>
     public class NotchedShape
     {
         #region constructors
@@ -447,12 +471,27 @@ namespace FlutterSDK.Painting.Notchedshapes
 
         #region methods
 
+        /// <Summary>
+        /// Creates a [Path] that describes the outline of the shape.
+        ///
+        /// The `host` is the bounding rectangle of the shape.
+        ///
+        /// The `guest` is the bounding rectangle of the shape for which a notch will
+        /// be made. It is null when there is no guest.
+        /// </Summary>
         public virtual Path GetOuterPath(FlutterBinding.UI.Rect host, FlutterBinding.UI.Rect guest) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// A rectangle with a smooth circular notch.
+    ///
+    /// See also:
+    ///
+    ///  * [CircleBorder], a [ShapeBorder] that describes a circle.
+    /// </Summary>
     public class CircularNotchedRectangle : FlutterSDK.Painting.Notchedshapes.NotchedShape
     {
         #region constructors
@@ -467,12 +506,33 @@ namespace FlutterSDK.Painting.Notchedshapes
 
         #region methods
 
+        /// <Summary>
+        /// Creates a [Path] that describes a rectangle with a smooth circular notch.
+        ///
+        /// `host` is the bounding box for the returned shape. Conceptually this is
+        /// the rectangle to which the notch will be applied.
+        ///
+        /// `guest` is the bounding box of a circle that the notch accommodates. All
+        /// points in the circle bounded by `guest` will be outside of the returned
+        /// path.
+        ///
+        /// The notch is curve that smoothly connects the host's top edge and
+        /// the guest circle.
+        /// </Summary>
         public new Path GetOuterPath(FlutterBinding.UI.Rect host, FlutterBinding.UI.Rect guest) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// A [NotchedShape] created from [ShapeBorder]s.
+    ///
+    /// Two shapes can be provided. The [host] is the shape of the widget that
+    /// uses the [NotchedShape] (typically a [BottomAppBar]). The [guest] is
+    /// subtracted from the [host] to create the notch (typically to make room
+    /// for a [FloatingActionButton]).
+    /// </Summary>
     public class AutomaticNotchedShape : FlutterSDK.Painting.Notchedshapes.NotchedShape
     {
         #region constructors

@@ -301,6 +301,9 @@ namespace FlutterSDK.Foundation._Bitfieldweb
         public static int KMaxUnsignedSMI = default(int);
     }
 
+    /// <Summary>
+    /// The dart:html implementation of [bitfield.Bitfield].
+    /// </Summary>
     public class BitField<T> : IBitField<T>
     {
         #region constructors

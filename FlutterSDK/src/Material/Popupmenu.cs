@@ -426,6 +426,29 @@ namespace FlutterSDK.Material.Popupmenu
 
     }
 
+    /// <Summary>
+    /// A base class for entries in a material design popup menu.
+    ///
+    /// The popup menu widget uses this interface to interact with the menu items.
+    /// To show a popup menu, use the [showMenu] function. To create a button that
+    /// shows a popup menu, consider using [PopupMenuButton].
+    ///
+    /// The type `T` is the type of the value(s) the entry represents. All the
+    /// entries in a given menu must represent values with consistent types.
+    ///
+    /// A [PopupMenuEntry] may represent multiple values, for example a row with
+    /// several icons, or a single entry, for example a menu item with an icon (see
+    /// [PopupMenuItem]), or no value at all (for example, [PopupMenuDivider]).
+    ///
+    /// See also:
+    ///
+    ///  * [PopupMenuItem], a popup menu entry for a single value.
+    ///  * [PopupMenuDivider], a popup menu entry that is just a horizontal line.
+    ///  * [CheckedPopupMenuItem], a popup menu item with a checkmark.
+    ///  * [showMenu], a method to dynamically show a popup menu at a given location.
+    ///  * [PopupMenuButton], an [IconButton] that automatically shows a menu when
+    ///    it is tapped.
+    /// </Summary>
     public interface IPopupMenuEntry<T>
     {
         bool Represents(T value);
@@ -433,6 +456,29 @@ namespace FlutterSDK.Material.Popupmenu
     }
 
 
+    /// <Summary>
+    /// A base class for entries in a material design popup menu.
+    ///
+    /// The popup menu widget uses this interface to interact with the menu items.
+    /// To show a popup menu, use the [showMenu] function. To create a button that
+    /// shows a popup menu, consider using [PopupMenuButton].
+    ///
+    /// The type `T` is the type of the value(s) the entry represents. All the
+    /// entries in a given menu must represent values with consistent types.
+    ///
+    /// A [PopupMenuEntry] may represent multiple values, for example a row with
+    /// several icons, or a single entry, for example a menu item with an icon (see
+    /// [PopupMenuItem]), or no value at all (for example, [PopupMenuDivider]).
+    ///
+    /// See also:
+    ///
+    ///  * [PopupMenuItem], a popup menu entry for a single value.
+    ///  * [PopupMenuDivider], a popup menu entry that is just a horizontal line.
+    ///  * [CheckedPopupMenuItem], a popup menu item with a checkmark.
+    ///  * [showMenu], a method to dynamically show a popup menu at a given location.
+    ///  * [PopupMenuButton], an [IconButton] that automatically shows a menu when
+    ///    it is tapped.
+    /// </Summary>
     public class PopupMenuEntry<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -449,12 +495,38 @@ namespace FlutterSDK.Material.Popupmenu
 
         #region methods
 
+        /// <Summary>
+        /// Whether this entry represents a particular value.
+        ///
+        /// This method is used by [showMenu], when it is called, to align the entry
+        /// representing the `initialValue`, if any, to the given `position`, and then
+        /// later is called on each entry to determine if it should be highlighted (if
+        /// the method returns true, the entry will have its background color set to
+        /// the ambient [ThemeData.highlightColor]). If `initialValue` is null, then
+        /// this method is not called.
+        ///
+        /// If the [PopupMenuEntry] represents a single value, this should return true
+        /// if the argument matches that value. If it represents multiple values, it
+        /// should return true if the argument matches any of them.
+        /// </Summary>
         public virtual bool Represents(T value) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// A horizontal divider in a material design popup menu.
+    ///
+    /// This widget adapts the [Divider] for use in popup menus.
+    ///
+    /// See also:
+    ///
+    ///  * [PopupMenuItem], for the kinds of items that this widget divides.
+    ///  * [showMenu], a method to dynamically show a popup menu at a given location.
+    ///  * [PopupMenuButton], an [IconButton] that automatically shows a menu when
+    ///    it is tapped.
+    /// </Summary>
     public class PopupMenuDivider : FlutterSDK.Material.Popupmenu.PopupMenuEntry<Null>
     {
         #region constructors
@@ -546,6 +618,47 @@ namespace FlutterSDK.Material.Popupmenu
     }
 
 
+    /// <Summary>
+    /// An item in a material design popup menu.
+    ///
+    /// To show a popup menu, use the [showMenu] function. To create a button that
+    /// shows a popup menu, consider using [PopupMenuButton].
+    ///
+    /// To show a checkmark next to a popup menu item, consider using
+    /// [CheckedPopupMenuItem].
+    ///
+    /// Typically the [child] of a [PopupMenuItem] is a [Text] widget. More
+    /// elaborate menus with icons can use a [ListTile]. By default, a
+    /// [PopupMenuItem] is kMinInteractiveDimension pixels high. If you use a widget
+    /// with a different height, it must be specified in the [height] property.
+    ///
+    /// {@tool snippet}
+    ///
+    /// Here, a [Text] widget is used with a popup menu item. The `WhyFarther` type
+    /// is an enum, not shown here.
+    ///
+    /// ```dart
+    /// const PopupMenuItem<WhyFarther>(
+    ///   value: WhyFarther.harder,
+    ///   child: Text('Working a lot harder'),
+    /// )
+    /// ```
+    /// {@end-tool}
+    ///
+    /// See the example at [PopupMenuButton] for how this example could be used in a
+    /// complete menu, and see the example at [CheckedPopupMenuItem] for one way to
+    /// keep the text of [PopupMenuItem]s that use [Text] widgets in their [child]
+    /// slot aligned with the text of [CheckedPopupMenuItem]s or of [PopupMenuItem]
+    /// that use a [ListTile] in their [child] slot.
+    ///
+    /// See also:
+    ///
+    ///  * [PopupMenuDivider], which can be used to divide items from each other.
+    ///  * [CheckedPopupMenuItem], a variant of [PopupMenuItem] with a checkmark.
+    ///  * [showMenu], a method to dynamically show a popup menu at a given location.
+    ///  * [PopupMenuButton], an [IconButton] that automatically shows a menu when
+    ///    it is tapped.
+    /// </Summary>
     public class PopupMenuItem<T> : FlutterSDK.Material.Popupmenu.PopupMenuEntry<T>
     {
         #region constructors
@@ -579,6 +692,24 @@ namespace FlutterSDK.Material.Popupmenu
     }
 
 
+    /// <Summary>
+    /// The [State] for [PopupMenuItem] subclasses.
+    ///
+    /// By default this implements the basic styling and layout of Material Design
+    /// popup menu items.
+    ///
+    /// The [buildChild] method can be overridden to adjust exactly what gets placed
+    /// in the menu. By default it returns [PopupMenuItem.child].
+    ///
+    /// The [handleTap] method can be overridden to adjust exactly what happens when
+    /// the item is tapped. By default, it uses [Navigator.pop] to return the
+    /// [PopupMenuItem.value] from the menu route.
+    ///
+    /// This class takes two type arguments. The second, `W`, is the exact type of
+    /// the [Widget] that is using this [State]. It must be a subclass of
+    /// [PopupMenuItem]. The first, `T`, must match the type argument of that widget
+    /// class, and is the type of values returned from this menu.
+    /// </Summary>
     public class PopupMenuItemState<T, W> : FlutterSDK.Widgets.Framework.State<W>
     {
         #region constructors
@@ -591,9 +722,25 @@ namespace FlutterSDK.Material.Popupmenu
 
         #region methods
 
+        /// <Summary>
+        /// The menu item contents.
+        ///
+        /// Used by the [build] method.
+        ///
+        /// By default, this returns [PopupMenuItem.child]. Override this to put
+        /// something else in the menu entry.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget BuildChild() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The handler for when the user selects the menu item.
+        ///
+        /// Used by the [InkWell] inserted by the [build] method.
+        ///
+        /// By default, uses [Navigator.pop] to return the [PopupMenuItem.value] from
+        /// the menu route.
+        /// </Summary>
         public virtual void HandleTap() { throw new NotImplementedException(); }
 
 
@@ -603,6 +750,70 @@ namespace FlutterSDK.Material.Popupmenu
     }
 
 
+    /// <Summary>
+    /// An item with a checkmark in a material design popup menu.
+    ///
+    /// To show a popup menu, use the [showMenu] function. To create a button that
+    /// shows a popup menu, consider using [PopupMenuButton].
+    ///
+    /// A [CheckedPopupMenuItem] is kMinInteractiveDimension pixels high, which
+    /// matches the default minimum height of a [PopupMenuItem]. The horizontal
+    /// layout uses [ListTile]; the checkmark is an [Icons.done] icon, shown in the
+    /// [ListTile.leading] position.
+    ///
+    /// {@tool snippet}
+    ///
+    /// Suppose a `Commands` enum exists that lists the possible commands from a
+    /// particular popup menu, including `Commands.heroAndScholar` and
+    /// `Commands.hurricaneCame`, and further suppose that there is a
+    /// `_heroAndScholar` member field which is a boolean. The example below shows a
+    /// menu with one menu item with a checkmark that can toggle the boolean, and
+    /// one menu item without a checkmark for selecting the second option. (It also
+    /// shows a divider placed between the two menu items.)
+    ///
+    /// ```dart
+    /// PopupMenuButton<Commands>(
+    ///   onSelected: (Commands result) {
+    ///     switch (result) {
+    ///       case Commands.heroAndScholar:
+    ///         setState(() { _heroAndScholar = !_heroAndScholar; });
+    ///         break;
+    ///       case Commands.hurricaneCame:
+    ///         // ...handle hurricane option
+    ///         break;
+    ///       // ...other items handled here
+    ///     }
+    ///   },
+    ///   itemBuilder: (BuildContext context) => <PopupMenuEntry<Commands>>[
+    ///     CheckedPopupMenuItem<Commands>(
+    ///       checked: _heroAndScholar,
+    ///       value: Commands.heroAndScholar,
+    ///       child: const Text('Hero and scholar'),
+    ///     ),
+    ///     const PopupMenuDivider(),
+    ///     const PopupMenuItem<Commands>(
+    ///       value: Commands.hurricaneCame,
+    ///       child: ListTile(leading: Icon(null), title: Text('Bring hurricane')),
+    ///     ),
+    ///     // ...other items listed here
+    ///   ],
+    /// )
+    /// ```
+    /// {@end-tool}
+    ///
+    /// In particular, observe how the second menu item uses a [ListTile] with a
+    /// blank [Icon] in the [ListTile.leading] position to get the same alignment as
+    /// the item with the checkmark.
+    ///
+    /// See also:
+    ///
+    ///  * [PopupMenuItem], a popup menu entry for picking a command (as opposed to
+    ///    toggling a value).
+    ///  * [PopupMenuDivider], a popup menu entry that is just a horizontal line.
+    ///  * [showMenu], a method to dynamically show a popup menu at a given location.
+    ///  * [PopupMenuButton], an [IconButton] that automatically shows a menu when
+    ///    it is tapped.
+    /// </Summary>
     public class CheckedPopupMenuItem<T> : FlutterSDK.Material.Popupmenu.PopupMenuItem<T>
     {
         #region constructors
@@ -762,6 +973,59 @@ namespace FlutterSDK.Material.Popupmenu
     }
 
 
+    /// <Summary>
+    /// Displays a menu when pressed and calls [onSelected] when the menu is dismissed
+    /// because an item was selected. The value passed to [onSelected] is the value of
+    /// the selected menu item.
+    ///
+    /// One of [child] or [icon] may be provided, but not both. If [icon] is provided,
+    /// then [PopupMenuButton] behaves like an [IconButton].
+    ///
+    /// If both are null, then a standard overflow icon is created (depending on the
+    /// platform).
+    ///
+    /// {@tool snippet}
+    ///
+    /// This example shows a menu with four items, selecting between an enum's
+    /// values and setting a `_selection` field based on the selection.
+    ///
+    /// ```dart
+    /// // This is the type used by the popup menu below.
+    /// enum WhyFarther { harder, smarter, selfStarter, tradingCharter }
+    ///
+    /// // This menu button widget updates a _selection field (of type WhyFarther,
+    /// // not shown here).
+    /// PopupMenuButton<WhyFarther>(
+    ///   onSelected: (WhyFarther result) { setState(() { _selection = result; }); },
+    ///   itemBuilder: (BuildContext context) => <PopupMenuEntry<WhyFarther>>[
+    ///     const PopupMenuItem<WhyFarther>(
+    ///       value: WhyFarther.harder,
+    ///       child: Text('Working a lot harder'),
+    ///     ),
+    ///     const PopupMenuItem<WhyFarther>(
+    ///       value: WhyFarther.smarter,
+    ///       child: Text('Being a lot smarter'),
+    ///     ),
+    ///     const PopupMenuItem<WhyFarther>(
+    ///       value: WhyFarther.selfStarter,
+    ///       child: Text('Being a self-starter'),
+    ///     ),
+    ///     const PopupMenuItem<WhyFarther>(
+    ///       value: WhyFarther.tradingCharter,
+    ///       child: Text('Placed in charge of trading charter'),
+    ///     ),
+    ///   ],
+    /// )
+    /// ```
+    /// {@end-tool}
+    ///
+    /// See also:
+    ///
+    ///  * [PopupMenuItem], a popup menu entry for a single value.
+    ///  * [PopupMenuDivider], a popup menu entry that is just a horizontal line.
+    ///  * [CheckedPopupMenuItem], a popup menu item with a checkmark.
+    ///  * [showMenu], a method to dynamically show a popup menu at a given location.
+    /// </Summary>
     public class PopupMenuButton<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -810,6 +1074,12 @@ namespace FlutterSDK.Material.Popupmenu
     }
 
 
+    /// <Summary>
+    /// The [State] for a [PopupMenuButton].
+    ///
+    /// See [showButtonMenu] for a way to programmatically open the popup menu
+    /// of your button state.
+    /// </Summary>
     public class PopupMenuButtonState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Popupmenu.PopupMenuButton<T>>
     {
         #region constructors
@@ -822,6 +1092,16 @@ namespace FlutterSDK.Material.Popupmenu
 
         #region methods
 
+        /// <Summary>
+        /// A method to show a popup menu with the items supplied to
+        /// [PopupMenuButton.itemBuilder] at the position of your [PopupMenuButton].
+        ///
+        /// By default, it is called when the user taps the button and [PopupMenuButton.enabled]
+        /// is set to `true`. Moreover, you can open the button by calling the method manually.
+        ///
+        /// You would access your [PopupMenuButtonState] using a [GlobalKey] and
+        /// show the menu of the button with `globalKey.currentState.showButtonMenu`.
+        /// </Summary>
         public virtual void ShowButtonMenu() { throw new NotImplementedException(); }
 
 

@@ -448,6 +448,12 @@ namespace FlutterSDK.Rendering.Platformview
         internal virtual FlutterSDK.Rendering.Platformview._HandlePointerEvent _HandlePointerEvent { get; set; }
         internal virtual FlutterSDK.Rendering.Platformview._PlatformViewGestureRecognizer _GestureRecognizer { get; set; }
 
+        /// <Summary>
+        /// {@macro  flutter.rendering.platformView.updateGestureRecognizers}
+        ///
+        /// Any active gesture arena the `PlatformView` participates in is rejected when the
+        /// set of gesture recognizers is changed.
+        /// </Summary>
         private void _UpdateGestureRecognizersWithCallBack(HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizers, FlutterSDK.Rendering.Platformview._HandlePointerEvent handlePointerEvent) { throw new NotImplementedException(); }
 
 
@@ -488,6 +494,32 @@ namespace FlutterSDK.Rendering.Platformview
     }
 
 
+    /// <Summary>
+    /// A render object for an Android view.
+    ///
+    /// Requires Android API level 20 or greater.
+    ///
+    /// [RenderAndroidView] is responsible for sizing, displaying and passing touch events to an
+    /// Android [View](https://developer.android.com/reference/android/view/View).
+    ///
+    /// {@template flutter.rendering.platformView.layout}
+    /// The render object's layout behavior is to fill all available space, the parent of this object must
+    /// provide bounded layout constraints.
+    /// {@endtemplate}
+    ///
+    /// {@template flutter.rendering.platformView.gestures}
+    /// The render object participates in Flutter's [GestureArena]s, and dispatches touch events to the
+    /// platform view iff it won the arena. Specific gestures that should be dispatched to the platform
+    /// view can be specified with factories in the `gestureRecognizers` constructor parameter or
+    /// by calling `updateGestureRecognizers`. If the set of gesture recognizers is empty, the gesture
+    /// will be dispatched to the platform view iff it was not claimed by any other gesture recognizer.
+    /// {@endtemplate}
+    ///
+    /// See also:
+    ///
+    ///  * [AndroidView] which is a widget that is used to show an Android view.
+    ///  * [PlatformViewsService] which is a service for controlling platform views.
+    /// </Summary>
     public class RenderAndroidView : FlutterSDK.Rendering.Box.RenderBox, I_PlatformViewGestureMixin
     {
         #region constructors
@@ -515,6 +547,24 @@ namespace FlutterSDK.Rendering.Platformview
         private void _OnPlatformViewCreated(int id) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// {@template flutter.rendering.platformView.updateGestureRecognizers}
+        /// Updates which gestures should be forwarded to the platform view.
+        ///
+        /// Gesture recognizers created by factories in this set participate in the gesture arena for each
+        /// pointer that was put down on the render box. If any of the recognizers on this list wins the
+        /// gesture arena, the entire pointer event sequence starting from the pointer down event
+        /// will be dispatched to the Android view.
+        ///
+        /// The `gestureRecognizers` property must not contain more than one factory with the same [Factory.type].
+        ///
+        /// Setting a new set of gesture recognizer factories with the same [Factory.type]s as the current
+        /// set has no effect, because the factories' constructors would have already been called with the previous set.
+        /// {@endtemplate}
+        ///
+        /// Any active gesture arena the Android view participates in is rejected when the
+        /// set of gesture recognizers is changed.
+        /// </Summary>
         public virtual void UpdateGestureRecognizers(HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizers) { throw new NotImplementedException(); }
 
 
@@ -536,6 +586,30 @@ namespace FlutterSDK.Rendering.Platformview
     }
 
 
+    /// <Summary>
+    /// A render object for an iOS UIKit UIView.
+    ///
+    /// {@template flutter.rendering.platformView.preview}
+    /// Embedding UIViews is still in release preview, to enable the preview for an iOS app add a boolean
+    /// field with the key 'io.flutter.embedded_views_preview' and the value set to 'YES' to the
+    /// application's Info.plist file. A list of open issued with embedding UIViews is available on
+    /// [Github](https://github.com/flutter/flutter/issues?q=is%3Aopen+is%3Aissue+label%3A%22a%3A+platform-views%22+label%3A%22%E2%8C%BA%E2%80%AC+platform-ios%22)
+    /// {@endtemplate}
+    ///
+    /// [RenderUiKitView] is responsible for sizing and displaying an iOS
+    /// [UIView](https://developer.apple.com/documentation/uikit/uiview).
+    ///
+    /// UIViews are added as sub views of the FlutterView and are composited by Quartz.
+    ///
+    /// {@macro flutter.rendering.platformView.layout}
+    ///
+    /// {@macro flutter.rendering.platformView.gestures}
+    ///
+    /// See also:
+    ///
+    ///  * [UiKitView] which is a widget that is used to show a UIView.
+    ///  * [PlatformViewsService] which is a service for controlling platform views.
+    /// </Summary>
     public class RenderUiKitView : FlutterSDK.Rendering.Box.RenderBox
     {
         #region constructors
@@ -559,6 +633,9 @@ namespace FlutterSDK.Rendering.Platformview
 
         #region methods
 
+        /// <Summary>
+        /// {@macro flutter.rendering.platformView.updateGestureRecognizers}
+        /// </Summary>
         public virtual void UpdateGestureRecognizers(HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizers) { throw new NotImplementedException(); }
 
 
@@ -724,6 +801,12 @@ namespace FlutterSDK.Rendering.Platformview
     }
 
 
+    /// <Summary>
+    /// A render object for embedding a platform view.
+    ///
+    /// [PlatformViewRenderBox] presents a platform view by adding a [PlatformViewLayer] layer,
+    /// integrates it with the gesture arenas system and adds relevant semantic nodes to the semantics tree.
+    /// </Summary>
     public class PlatformViewRenderBox : FlutterSDK.Rendering.Box.RenderBox, I_PlatformViewGestureMixin
     {
         #region constructors
@@ -744,6 +827,12 @@ namespace FlutterSDK.Rendering.Platformview
 
         #region methods
 
+        /// <Summary>
+        /// {@macro  flutter.rendering.platformView.updateGestureRecognizers}
+        ///
+        /// Any active gesture arena the `PlatformView` participates in is rejected when the
+        /// set of gesture recognizers is changed.
+        /// </Summary>
         public virtual void UpdateGestureRecognizers(HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizers) { throw new NotImplementedException(); }
 
 
@@ -759,11 +848,27 @@ namespace FlutterSDK.Rendering.Platformview
     }
 
 
+    /// <Summary>
+    /// How an embedded platform view behave during hit tests.
+    /// </Summary>
     public enum PlatformViewHitTestBehavior
     {
 
+        /// <Summary>
+        /// Opaque targets can be hit by hit tests, causing them to both receive
+        /// events within their bounds and prevent targets visually behind them from
+        /// also receiving events.
+        /// </Summary>
         Opaque,
+        /// <Summary>
+        /// Translucent targets both receive events within their bounds and permit
+        /// targets visually behind them to also receive events.
+        /// </Summary>
         Translucent,
+        /// <Summary>
+        /// Transparent targets don't receive events within their bounds and permit
+        /// targets visually behind them to receive events.
+        /// </Summary>
         Transparent,
     }
 

@@ -426,6 +426,16 @@ namespace FlutterSDK.Material.Stepper
         public static double _KTriangleHeight = default(double);
     }
 
+    /// <Summary>
+    /// A material step used in [Stepper]. The step can have a title and subtitle,
+    /// an icon within its circle, some content and a state that governs its
+    /// styling.
+    ///
+    /// See also:
+    ///
+    ///  * [Stepper]
+    ///  * <https://material.io/archive/guidelines/components/steppers.html>
+    /// </Summary>
     public class Step
     {
         #region constructors
@@ -453,6 +463,21 @@ namespace FlutterSDK.Material.Stepper
     }
 
 
+    /// <Summary>
+    /// A material stepper widget that displays progress through a sequence of
+    /// steps. Steppers are particularly useful in the case of forms where one step
+    /// requires the completion of another one, or where multiple steps need to be
+    /// completed in order to submit the whole form.
+    ///
+    /// The widget is a flexible wrapper. A parent class should pass [currentStep]
+    /// to this widget based on some logic triggered by the three callbacks that it
+    /// provides.
+    ///
+    /// See also:
+    ///
+    ///  * [Step]
+    ///  * <https://material.io/archive/guidelines/components/steppers.html>
+    /// </Summary>
     public class Stepper : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -597,21 +622,54 @@ namespace FlutterSDK.Material.Stepper
     }
 
 
+    /// <Summary>
+    /// The state of a [Step] which is used to control the style of the circle and
+    /// text.
+    ///
+    /// See also:
+    ///
+    ///  * [Step]
+    /// </Summary>
     public enum StepState
     {
 
+        /// <Summary>
+        /// A step that displays its index in its circle.
+        /// </Summary>
         Indexed,
+        /// <Summary>
+        /// A step that displays a pencil icon in its circle.
+        /// </Summary>
         Editing,
+        /// <Summary>
+        /// A step that displays a tick icon in its circle.
+        /// </Summary>
         Complete,
+        /// <Summary>
+        /// A step that is disabled and does not to react to taps.
+        /// </Summary>
         Disabled,
+        /// <Summary>
+        /// A step that is currently having an error. e.g. the user has submitted wrong
+        /// input.
+        /// </Summary>
         Error,
     }
 
 
+    /// <Summary>
+    /// Defines the [Stepper]'s main axis.
+    /// </Summary>
     public enum StepperType
     {
 
+        /// <Summary>
+        /// A vertical layout of the steps with their content in-between the titles.
+        /// </Summary>
         Vertical,
+        /// <Summary>
+        /// A horizontal layout of the steps with their content below the titles.
+        /// </Summary>
         Horizontal,
     }
 

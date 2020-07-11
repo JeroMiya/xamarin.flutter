@@ -430,6 +430,14 @@ namespace FlutterSDK.Painting.Imagestream
     {
     }
 
+    /// <Summary>
+    /// Base class for those that manage the loading of [dart:ui.Image] objects for
+    /// [ImageStream]s.
+    ///
+    /// [ImageStreamListener] objects are rarely constructed directly. Generally, an
+    /// [ImageProvider] subclass will return an [ImageStream] and automatically
+    /// configure it with the right [ImageStreamCompleter] when possible.
+    /// </Summary>
     public interface IImageStreamCompleter
     {
         void AddListener(FlutterSDK.Painting.Imagestream.ImageStreamListener listener);
@@ -443,6 +451,12 @@ namespace FlutterSDK.Painting.Imagestream
     }
 
 
+    /// <Summary>
+    /// A [dart:ui.Image] object with its corresponding scale.
+    ///
+    /// ImageInfo objects are used by [ImageStream] objects to represent the
+    /// actual data of the image once it has been obtained.
+    /// </Summary>
     public class ImageInfo
     {
         #region constructors
@@ -469,6 +483,18 @@ namespace FlutterSDK.Painting.Imagestream
     }
 
 
+    /// <Summary>
+    /// Interface for receiving notifications about the loading of an image.
+    ///
+    /// This class overrides [operator ==] and [hashCode] to compare the individual
+    /// callbacks in the listener, meaning that if you add an instance of this class
+    /// as a listener (e.g. via [ImageStream.addListener]), you can instantiate a
+    /// _different_ instance of this class when you remove the listener, and the
+    /// listener will be properly removed as long as all associated callbacks are
+    /// equal.
+    ///
+    /// Used by [ImageStream] and [ImageStreamCompleter].
+    /// </Summary>
     public class ImageStreamListener
     {
         #region constructors
@@ -496,6 +522,17 @@ namespace FlutterSDK.Painting.Imagestream
     }
 
 
+    /// <Summary>
+    /// An immutable notification of image bytes that have been incrementally loaded.
+    ///
+    /// Chunk events represent progress notifications while an image is being
+    /// loaded (e.g. from disk or over the network).
+    ///
+    /// See also:
+    ///
+    ///  * [ImageChunkListener], the means by which callers get notified of
+    ///    these events.
+    /// </Summary>
     public class ImageChunkEvent : IDiagnosticable
     {
         #region constructors
@@ -520,6 +557,29 @@ namespace FlutterSDK.Painting.Imagestream
     }
 
 
+    /// <Summary>
+    /// A handle to an image resource.
+    ///
+    /// ImageStream represents a handle to a [dart:ui.Image] object and its scale
+    /// (together represented by an [ImageInfo] object). The underlying image object
+    /// might change over time, either because the image is animating or because the
+    /// underlying image resource was mutated.
+    ///
+    /// ImageStream objects can also represent an image that hasn't finished
+    /// loading.
+    ///
+    /// ImageStream objects are backed by [ImageStreamCompleter] objects.
+    ///
+    /// The [ImageCache] will consider an image to be live until the listener count
+    /// drops to zero after adding at least one listener. The
+    /// [addOnLastListenerRemovedCallback] method is used for tracking this
+    /// information.
+    ///
+    /// See also:
+    ///
+    ///  * [ImageProvider], which has an example that includes the use of an
+    ///    [ImageStream] in a [Widget].
+    /// </Summary>
     public class ImageStream : IDiagnosticable
     {
         #region constructors
@@ -538,12 +598,48 @@ namespace FlutterSDK.Painting.Imagestream
 
         #region methods
 
+        /// <Summary>
+        /// Assigns a particular [ImageStreamCompleter] to this [ImageStream].
+        ///
+        /// This is usually done automatically by the [ImageProvider] that created the
+        /// [ImageStream].
+        ///
+        /// This method can only be called once per stream. To have an [ImageStream]
+        /// represent multiple images over time, assign it a completer that
+        /// completes several images in succession.
+        /// </Summary>
         public virtual void SetCompleter(FlutterSDK.Painting.Imagestream.ImageStreamCompleter value) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Adds a listener callback that is called whenever a new concrete [ImageInfo]
+        /// object is available. If a concrete image is already available, this object
+        /// will call the listener synchronously.
+        ///
+        /// If the assigned [completer] completes multiple images over its lifetime,
+        /// this listener will fire multiple times.
+        ///
+        /// {@template flutter.painting.imageStream.addListener}
+        /// The listener will be passed a flag indicating whether a synchronous call
+        /// occurred. If the listener is added within a render object paint function,
+        /// then use this flag to avoid calling [RenderObject.markNeedsPaint] during
+        /// a paint.
+        ///
+        /// If a duplicate `listener` is registered N times, then it will be called N
+        /// times when the image stream completes (whether because a new image is
+        /// available or because an error occurs). Likewise, to remove all instances
+        /// of the listener, [removeListener] would need to called N times as well.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual void AddListener(FlutterSDK.Painting.Imagestream.ImageStreamListener listener) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Stops listening for events from this stream's [ImageStreamCompleter].
+        ///
+        /// If [listener] has been added multiple times, this removes the _first_
+        /// instance of the listener.
+        /// </Summary>
         public virtual void RemoveListener(FlutterSDK.Painting.Imagestream.ImageStreamListener listener) { throw new NotImplementedException(); }
 
 
@@ -553,6 +649,14 @@ namespace FlutterSDK.Painting.Imagestream
     }
 
 
+    /// <Summary>
+    /// Base class for those that manage the loading of [dart:ui.Image] objects for
+    /// [ImageStream]s.
+    ///
+    /// [ImageStreamListener] objects are rarely constructed directly. Generally, an
+    /// [ImageProvider] subclass will return an [ImageStream] and automatically
+    /// configure it with the right [ImageStreamCompleter] when possible.
+    /// </Summary>
     public class ImageStreamCompleter : IDiagnosticable
     {
         #region constructors
@@ -570,30 +674,98 @@ namespace FlutterSDK.Painting.Imagestream
 
         #region methods
 
+        /// <Summary>
+        /// Adds a listener callback that is called whenever a new concrete [ImageInfo]
+        /// object is available or an error is reported. If a concrete image is
+        /// already available, or if an error has been already reported, this object
+        /// will notify the listener synchronously.
+        ///
+        /// If the [ImageStreamCompleter] completes multiple images over its lifetime,
+        /// this listener's [ImageStreamListener.onImage] will fire multiple times.
+        ///
+        /// {@macro flutter.painting.imageStream.addListener}
+        /// </Summary>
         public virtual void AddListener(FlutterSDK.Painting.Imagestream.ImageStreamListener listener) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Stops the specified [listener] from receiving image stream events.
+        ///
+        /// If [listener] has been added multiple times, this removes the _first_
+        /// instance of the listener.
+        /// </Summary>
         public virtual void RemoveListener(FlutterSDK.Painting.Imagestream.ImageStreamListener listener) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Adds a callback to call when [removeListener] results in an empty
+        /// list of listeners.
+        ///
+        /// This callback will never fire if [removeListener] is never called.
+        /// </Summary>
         public virtual void AddOnLastListenerRemovedCallback(VoidCallback callback) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Removes a callback previously suppplied to
+        /// [addOnLastListenerRemovedCallback].
+        /// </Summary>
         public virtual void RemoveOnLastListenerRemovedCallback(VoidCallback callback) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Calls all the registered listeners to notify them of a new image.
+        /// </Summary>
         public virtual void SetImage(FlutterSDK.Painting.Imagestream.ImageInfo image) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Calls all the registered error listeners to notify them of an error that
+        /// occurred while resolving the image.
+        ///
+        /// If no error listeners (listeners with an [ImageStreamListener.onError]
+        /// specified) are attached, a [FlutterError] will be reported instead.
+        ///
+        /// The `context` should be a string describing where the error was caught, in
+        /// a form that will make sense in English when following the word "thrown",
+        /// as in "thrown while obtaining the image from the network" (for the context
+        /// "while obtaining the image from the network").
+        ///
+        /// The `exception` is the error being reported; the `stack` is the
+        /// [StackTrace] associated with the exception.
+        ///
+        /// The `informationCollector` is a callback (of type [InformationCollector])
+        /// that is called when the exception is used by [FlutterError.reportError].
+        /// It is used to obtain further details to include in the logs, which may be
+        /// expensive to collect, and thus should only be collected if the error is to
+        /// be logged in the first place.
+        ///
+        /// The `silent` argument causes the exception to not be reported to the logs
+        /// in release builds, if passed to [FlutterError.reportError]. (It is still
+        /// sent to error handlers.) It should be set to true if the error is one that
+        /// is expected to be encountered in release builds, for example network
+        /// errors. That way, logs on end-user devices will not have spurious
+        /// messages, but errors during development will still be reported.
+        ///
+        /// See [FlutterErrorDetails] for further details on these values.
+        /// </Summary>
         public virtual void ReportError(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode context = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode), object exception = default(object), StackTrace stack = default(StackTrace), FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector), bool silent = false) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Accumulates a list of strings describing the object's state. Subclasses
+        /// should override this to have their information included in [toString].
+        /// </Summary>
         public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// Manages the loading of [dart:ui.Image] objects for static [ImageStream]s (those
+    /// with only one frame).
+    /// </Summary>
     public class OneFrameImageStreamCompleter : FlutterSDK.Painting.Imagestream.ImageStreamCompleter
     {
         #region constructors
@@ -612,6 +784,40 @@ namespace FlutterSDK.Painting.Imagestream
     }
 
 
+    /// <Summary>
+    /// Manages the decoding and scheduling of image frames.
+    ///
+    /// New frames will only be emitted while there are registered listeners to the
+    /// stream (registered with [addListener]).
+    ///
+    /// This class deals with 2 types of frames:
+    ///
+    ///  * image frames - image frames of an animated image.
+    ///  * app frames - frames that the flutter engine is drawing to the screen to
+    ///    show the app GUI.
+    ///
+    /// For single frame images the stream will only complete once.
+    ///
+    /// For animated images, this class eagerly decodes the next image frame,
+    /// and notifies the listeners that a new frame is ready on the first app frame
+    /// that is scheduled after the image frame duration has passed.
+    ///
+    /// Scheduling new timers only from scheduled app frames, makes sure we pause
+    /// the animation when the app is not visible (as new app frames will not be
+    /// scheduled).
+    ///
+    /// See the following timeline example:
+    ///
+    ///     | Time | Event                                      | Comment                   |
+    ///     |------|--------------------------------------------|---------------------------|
+    ///     | t1   | App frame scheduled (image frame A posted) |                           |
+    ///     | t2   | App frame scheduled                        |                           |
+    ///     | t3   | App frame scheduled                        |                           |
+    ///     | t4   | Image frame B decoded                      |                           |
+    ///     | t5   | App frame scheduled                        | t5 - t1 < frameB_duration |
+    ///     | t6   | App frame scheduled (image frame B posted) | t6 - t1 > frameB_duration |
+    ///
+    /// </Summary>
     public class MultiFrameImageStreamCompleter : FlutterSDK.Painting.Imagestream.ImageStreamCompleter
     {
         #region constructors

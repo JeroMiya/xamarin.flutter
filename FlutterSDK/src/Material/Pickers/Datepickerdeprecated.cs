@@ -432,6 +432,23 @@ namespace FlutterSDK.Material.Pickers.Datepickerdeprecated
     }
 
 
+    /// <Summary>
+    /// Displays the days of a given month and allows choosing a day.
+    ///
+    /// The days are arranged in a rectangular grid with one column for each day of
+    /// the week.
+    ///
+    /// The day picker widget is rarely used directly. Instead, consider using
+    /// [showDatePicker], which creates a date picker dialog.
+    ///
+    /// See also:
+    ///
+    ///  * [showDatePicker], which shows a dialog that contains a material design
+    ///    date picker.
+    ///  * [showTimePicker], which shows a dialog that contains a material design
+    ///    time picker.
+    ///
+    /// </Summary>
     public class DayPicker : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors
@@ -463,12 +480,73 @@ namespace FlutterSDK.Material.Pickers.Datepickerdeprecated
 
         #region methods
 
+        /// <Summary>
+        /// Builds widgets showing abbreviated days of week. The first widget in the
+        /// returned list corresponds to the first day of week for the current locale.
+        ///
+        /// Examples:
+        ///
+        /// ```
+        /// ┌ Sunday is the first day of week in the US (en_US)
+        /// |
+        /// S M T W T F S  <-- the returned list contains these widgets
+        /// _ _ _ _ _ 1 2
+        /// 3 4 5 6 7 8 9
+        ///
+        /// ┌ But it's Monday in the UK (en_GB)
+        /// |
+        /// M T W T F S S  <-- the returned list contains these widgets
+        /// _ _ _ _ 1 2 3
+        /// 4 5 6 7 8 9 10
+        /// ```
+        /// </Summary>
         private List<FlutterSDK.Widgets.Framework.Widget> _GetDayHeaders(FlutterSDK.Painting.Textstyle.TextStyle headerStyle, FlutterSDK.Material.Materiallocalizations.MaterialLocalizations localizations) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the number of days in a month, according to the proleptic
+        /// Gregorian calendar.
+        ///
+        /// This applies the leap year logic introduced by the Gregorian reforms of
+        /// 1582. It will not give valid results for dates prior to that time.
+        /// </Summary>
         public virtual int GetDaysInMonth(int year, int month) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Computes the offset from the first day of week that the first day of the
+        /// [month] falls on.
+        ///
+        /// For example, September 1, 2017 falls on a Friday, which in the calendar
+        /// localized for United States English appears as:
+        ///
+        /// ```
+        /// S M T W T F S
+        /// _ _ _ _ _ 1 2
+        /// ```
+        ///
+        /// The offset for the first day of the months is the number of leading blanks
+        /// in the calendar, i.e. 5.
+        ///
+        /// The same date localized for the Russian calendar has a different offset,
+        /// because the first day of week is Monday rather than Sunday:
+        ///
+        /// ```
+        /// M T W T F S S
+        /// _ _ _ _ 1 2 3
+        /// ```
+        ///
+        /// So the offset is 4, rather than 5.
+        ///
+        /// This code consolidates the following:
+        ///
+        /// - [DateTime.weekday] provides a 1-based index into days of week, with 1
+        ///   falling on Monday.
+        /// - [MaterialLocalizations.firstDayOfWeekIndex] provides a 0-based index
+        ///   into the [MaterialLocalizations.narrowWeekdays] list.
+        /// - [MaterialLocalizations.narrowWeekdays] list provides localized names of
+        ///   days of week, always starting with Sunday and ending with Saturday.
+        /// </Summary>
         private int _ComputeFirstDayOffset(int year, int month, FlutterSDK.Material.Materiallocalizations.MaterialLocalizations localizations) { throw new NotImplementedException(); }
 
 
@@ -478,6 +556,23 @@ namespace FlutterSDK.Material.Pickers.Datepickerdeprecated
     }
 
 
+    /// <Summary>
+    /// A scrollable list of months to allow picking a month.
+    ///
+    /// Shows the days of each month in a rectangular grid with one column for each
+    /// day of the week.
+    ///
+    /// The month picker widget is rarely used directly. Instead, consider using
+    /// [showDatePicker], which creates a date picker dialog.
+    ///
+    /// See also:
+    ///
+    ///  * [showDatePicker], which shows a dialog that contains a material design
+    ///    date picker.
+    ///  * [showTimePicker], which shows a dialog that contains a material design
+    ///    time picker.
+    ///
+    /// </Summary>
     public class MonthPicker : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -550,6 +645,9 @@ namespace FlutterSDK.Material.Pickers.Datepickerdeprecated
         private int _MonthDelta(DateTime startDate, DateTime endDate) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Add months to a month truncated date.
+        /// </Summary>
         private DateTime _AddMonthsToMonthDate(DateTime monthDate, int monthsToAdd) { throw new NotImplementedException(); }
 
 
@@ -595,6 +693,22 @@ namespace FlutterSDK.Material.Pickers.Datepickerdeprecated
     }
 
 
+    /// <Summary>
+    /// A scrollable list of years to allow picking a year.
+    ///
+    /// The year picker widget is rarely used directly. Instead, consider using
+    /// [showDatePicker], which creates a date picker dialog.
+    ///
+    /// Requires one of its ancestors to be a [Material] widget.
+    ///
+    /// See also:
+    ///
+    ///  * [showDatePicker], which shows a dialog that contains a material design
+    ///    date picker.
+    ///  * [showTimePicker], which shows a dialog that contains a material design
+    ///    time picker.
+    ///
+    /// </Summary>
     public class YearPicker : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors

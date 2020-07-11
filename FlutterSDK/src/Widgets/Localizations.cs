@@ -433,6 +433,15 @@ namespace FlutterSDK.Widgets.Localizations
 
     }
 
+    /// <Summary>
+    /// A factory for a set of localized resources of type `T`, to be loaded by a
+    /// [Localizations] widget.
+    ///
+    /// Typical applications have one [Localizations] widget which is created by the
+    /// [WidgetsApp] and configured with the app's `localizationsDelegates`
+    /// parameter (a list of delegates). The delegate's [type] is used to identify
+    /// the object created by an individual delegate's [load] method.
+    /// </Summary>
     public interface ILocalizationsDelegate<T>
     {
         bool IsSupported(Locale locale);
@@ -449,6 +458,20 @@ namespace FlutterSDK.Widgets.Localizations
     {
         public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
+        /// <Summary>
+        /// The `WidgetsLocalizations` from the closest [Localizations] instance
+        /// that encloses the given context.
+        ///
+        /// This method is just a convenient shorthand for:
+        /// `Localizations.of<WidgetsLocalizations>(context, WidgetsLocalizations)`.
+        ///
+        /// References to the localized resources defined by this class are typically
+        /// written in terms of this method. For example:
+        ///
+        /// ```dart
+        /// textDirection: WidgetsLocalizations.of(context).textDirection,
+        /// ```
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Localizations.WidgetsLocalizations Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
     }
@@ -489,6 +512,15 @@ namespace FlutterSDK.Widgets.Localizations
     }
 
 
+    /// <Summary>
+    /// A factory for a set of localized resources of type `T`, to be loaded by a
+    /// [Localizations] widget.
+    ///
+    /// Typical applications have one [Localizations] widget which is created by the
+    /// [WidgetsApp] and configured with the app's `localizationsDelegates`
+    /// parameter (a list of delegates). The delegate's [type] is used to identify
+    /// the object created by an individual delegate's [load] method.
+    /// </Summary>
     public class LocalizationsDelegate<T>
     {
         #region constructors
@@ -504,12 +536,34 @@ namespace FlutterSDK.Widgets.Localizations
 
         #region methods
 
+        /// <Summary>
+        /// Whether resources for the given locale can be loaded by this delegate.
+        ///
+        /// Return true if the instance of `T` loaded by this delegate's [load]
+        /// method supports the given `locale`'s language.
+        /// </Summary>
         public virtual bool IsSupported(Locale locale) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Start loading the resources for `locale`. The returned future completes
+        /// when the resources have finished loading.
+        ///
+        /// It's assumed that the this method will return an object that contains
+        /// a collection of related resources (typically defined with one method per
+        /// resource). The object will be retrieved with [Localizations.of].
+        /// </Summary>
         public virtual Future<T> Load(Locale locale) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns true if the resources for this delegate should be loaded
+        /// again by calling the [load] method.
+        ///
+        /// This method is called whenever its [Localizations] widget is
+        /// rebuilt. If it returns true then dependent widgets will be rebuilt
+        /// after [load] has completed.
+        /// </Summary>
         public virtual bool ShouldReload(FlutterSDK.Widgets.Localizations.LocalizationsDelegate<T> old) { throw new NotImplementedException(); }
 
 
@@ -544,6 +598,16 @@ namespace FlutterSDK.Widgets.Localizations
     }
 
 
+    /// <Summary>
+    /// US English localizations for the widgets library.
+    ///
+    /// See also:
+    ///
+    ///  * [GlobalWidgetsLocalizations], which provides widgets localizations for
+    ///    many languages.
+    ///  * [WidgetsApp.delegates], which automatically includes
+    ///    [DefaultWidgetsLocalizations.delegate] by default.
+    /// </Summary>
     public class DefaultWidgetsLocalizations : IWidgetsLocalizations
     {
         #region constructors
@@ -560,6 +624,15 @@ namespace FlutterSDK.Widgets.Localizations
 
         #region methods
 
+        /// <Summary>
+        /// Creates an object that provides US English resource values for the
+        /// lowest levels of the widgets library.
+        ///
+        /// The [locale] parameter is ignored.
+        ///
+        /// This method is typically used to create a [LocalizationsDelegate].
+        /// The [WidgetsApp] does so by default.
+        /// </Summary>
         public virtual Future<FlutterSDK.Widgets.Localizations.WidgetsLocalizations> Load(Locale locale) { throw new NotImplementedException(); }
 
         #endregion
@@ -593,6 +666,98 @@ namespace FlutterSDK.Widgets.Localizations
     }
 
 
+    /// <Summary>
+    /// Defines the [Locale] for its `child` and the localized resources that the
+    /// child depends on.
+    ///
+    /// Localized resources are loaded by the list of [LocalizationsDelegate]
+    /// `delegates`. Each delegate is essentially a factory for a collection
+    /// of localized resources. There are multiple delegates because there are
+    /// multiple sources for localizations within an app.
+    ///
+    /// Delegates are typically simple subclasses of [LocalizationsDelegate] that
+    /// override [LocalizationsDelegate.load]. For example a delegate for the
+    /// `MyLocalizations` class defined below would be:
+    ///
+    /// ```dart
+    /// class _MyDelegate extends LocalizationsDelegate<MyLocalizations> {
+    ///   @override
+    ///   Future<MyLocalizations> load(Locale locale) => MyLocalizations.load(locale);
+    ///
+    ///   @override
+    ///   bool shouldReload(MyLocalizationsDelegate old) => false;
+    /// }
+    /// ```
+    ///
+    /// Each delegate can be viewed as a factory for objects that encapsulate a
+    /// a set of localized resources. These objects are retrieved with
+    /// by runtime type with [Localizations.of].
+    ///
+    /// The [WidgetsApp] class creates a `Localizations` widget so most apps
+    /// will not need to create one. The widget app's `Localizations` delegates can
+    /// be initialized with [WidgetsApp.localizationsDelegates]. The [MaterialApp]
+    /// class also provides a `localizationsDelegates` parameter that's just
+    /// passed along to the [WidgetsApp].
+    ///
+    /// Apps should retrieve collections of localized resources with
+    /// `Localizations.of<MyLocalizations>(context, MyLocalizations)`,
+    /// where MyLocalizations is an app specific class defines one function per
+    /// resource. This is conventionally done by a static `.of` method on the
+    /// MyLocalizations class.
+    ///
+    /// For example, using the `MyLocalizations` class defined below, one would
+    /// lookup a localized title string like this:
+    /// ```dart
+    /// MyLocalizations.of(context).title()
+    /// ```
+    /// If `Localizations` were to be rebuilt with a new `locale` then
+    /// the widget subtree that corresponds to [BuildContext] `context` would
+    /// be rebuilt after the corresponding resources had been loaded.
+    ///
+    /// This class is effectively an [InheritedWidget]. If it's rebuilt with
+    /// a new `locale` or a different list of delegates or any of its
+    /// delegates' [LocalizationsDelegate.shouldReload()] methods returns true,
+    /// then widgets that have created a dependency by calling
+    /// `Localizations.of(context)` will be rebuilt after the resources
+    /// for the new locale have been loaded.
+    ///
+    /// {@tool snippet}
+    ///
+    /// This following class is defined in terms of the
+    /// [Dart `intl` package](https://github.com/dart-lang/intl). Using the `intl`
+    /// package isn't required.
+    ///
+    /// ```dart
+    /// class MyLocalizations {
+    ///   MyLocalizations(this.locale);
+    ///
+    ///   final Locale locale;
+    ///
+    ///   static Future<MyLocalizations> load(Locale locale) {
+    ///     return initializeMessages(locale.toString())
+    ///       .then((void _) {
+    ///         return MyLocalizations(locale);
+    ///       });
+    ///   }
+    ///
+    ///   static MyLocalizations of(BuildContext context) {
+    ///     return Localizations.of<MyLocalizations>(context, MyLocalizations);
+    ///   }
+    ///
+    ///   String title() => Intl.message('<title>', name: 'title', locale: locale.toString());
+    ///   // ... more Intl.message() methods like title()
+    /// }
+    /// ```
+    /// {@end-tool}
+    /// A class based on the `intl` package imports a generated message catalog that provides
+    /// the `initializeMessages()` function and the per-locale backing store for `Intl.message()`.
+    /// The message catalog is produced by an `intl` tool that analyzes the source code for
+    /// classes that contain `Intl.message()` calls. In this case that would just be the
+    /// `MyLocalizations` class.
+    ///
+    /// One could choose another approach for loading localized resources and looking them up while
+    /// still conforming to the structure of this example.
+    /// </Summary>
     public class Localizations : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -617,12 +782,37 @@ namespace FlutterSDK.Widgets.Localizations
 
         #region methods
 
+        /// <Summary>
+        /// The locale of the Localizations widget for the widget tree that
+        /// corresponds to [BuildContext] `context`.
+        ///
+        /// If no [Localizations] widget is in scope then the [Localizations.localeOf]
+        /// method will throw an exception, unless the `nullOk` argument is set to
+        /// true, in which case it returns null.
+        /// </Summary>
         public virtual Locale LocaleOf(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false) { throw new NotImplementedException(); }
 
 
         private List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> _DelegatesOf(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the localized resources object of the given `type` for the widget
+        /// tree that corresponds to the given `context`.
+        ///
+        /// Returns null if no resources object of the given `type` exists within
+        /// the given `context`.
+        ///
+        /// This method is typically used by a static factory method on the `type`
+        /// class. For example Flutter's MaterialLocalizations class looks up Material
+        /// resources with a method defined like this:
+        ///
+        /// ```dart
+        /// static MaterialLocalizations of(BuildContext context) {
+        ///    return Localizations.of<MaterialLocalizations>(context, MaterialLocalizations);
+        /// }
+        /// ```
+        /// </Summary>
         public virtual T Of<T>(FlutterSDK.Widgets.Framework.BuildContext context, Type type) { throw new NotImplementedException(); }
 
 

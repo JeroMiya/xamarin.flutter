@@ -421,6 +421,33 @@ namespace FlutterSDK.Material.Search
 
     }
 
+    /// <Summary>
+    /// Delegate for [showSearch] to define the content of the search page.
+    ///
+    /// The search page always shows an [AppBar] at the top where users can
+    /// enter their search queries. The buttons shown before and after the search
+    /// query text field can be customized via [SearchDelegate.leading] and
+    /// [SearchDelegate.actions].
+    ///
+    /// The body below the [AppBar] can either show suggested queries (returned by
+    /// [SearchDelegate.buildSuggestions]) or - once the user submits a search  - the
+    /// results of the search as returned by [SearchDelegate.buildResults].
+    ///
+    /// [SearchDelegate.query] always contains the current query entered by the user
+    /// and should be used to build the suggestions and results.
+    ///
+    /// The results can be brought on screen by calling [SearchDelegate.showResults]
+    /// and you can go back to showing the suggestions by calling
+    /// [SearchDelegate.showSuggestions].
+    ///
+    /// Once the user has selected a search result, [SearchDelegate.close] should be
+    /// called to remove the search page from the top of the navigation stack and
+    /// to notify the caller of [showSearch] about the selected search result.
+    ///
+    /// A given [SearchDelegate] can only be associated with one active [showSearch]
+    /// call. Call [SearchDelegate.close] before re-using the same delegate instance
+    /// for another [showSearch] call.
+    /// </Summary>
     public interface ISearchDelegate<T>
     {
         FlutterSDK.Widgets.Framework.Widget BuildSuggestions(FlutterSDK.Widgets.Framework.BuildContext context);
@@ -439,6 +466,33 @@ namespace FlutterSDK.Material.Search
     }
 
 
+    /// <Summary>
+    /// Delegate for [showSearch] to define the content of the search page.
+    ///
+    /// The search page always shows an [AppBar] at the top where users can
+    /// enter their search queries. The buttons shown before and after the search
+    /// query text field can be customized via [SearchDelegate.leading] and
+    /// [SearchDelegate.actions].
+    ///
+    /// The body below the [AppBar] can either show suggested queries (returned by
+    /// [SearchDelegate.buildSuggestions]) or - once the user submits a search  - the
+    /// results of the search as returned by [SearchDelegate.buildResults].
+    ///
+    /// [SearchDelegate.query] always contains the current query entered by the user
+    /// and should be used to build the suggestions and results.
+    ///
+    /// The results can be brought on screen by calling [SearchDelegate.showResults]
+    /// and you can go back to showing the suggestions by calling
+    /// [SearchDelegate.showSuggestions].
+    ///
+    /// Once the user has selected a search result, [SearchDelegate.close] should be
+    /// called to remove the search page from the top of the navigation stack and
+    /// to notify the caller of [showSearch] about the selected search result.
+    ///
+    /// A given [SearchDelegate] can only be associated with one active [showSearch]
+    /// call. Call [SearchDelegate.close] before re-using the same delegate instance
+    /// for another [showSearch] call.
+    /// </Summary>
     public class SearchDelegate<T>
     {
         #region constructors
@@ -466,27 +520,128 @@ namespace FlutterSDK.Material.Search
 
         #region methods
 
+        /// <Summary>
+        /// Suggestions shown in the body of the search page while the user types a
+        /// query into the search field.
+        ///
+        /// The delegate method is called whenever the content of [query] changes.
+        /// The suggestions should be based on the current [query] string. If the query
+        /// string is empty, it is good practice to show suggested queries based on
+        /// past queries or the current context.
+        ///
+        /// Usually, this method will return a [ListView] with one [ListTile] per
+        /// suggestion. When [ListTile.onTap] is called, [query] should be updated
+        /// with the corresponding suggestion and the results page should be shown
+        /// by calling [showResults].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget BuildSuggestions(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The results shown after the user submits a search from the search page.
+        ///
+        /// The current value of [query] can be used to determine what the user
+        /// searched for.
+        ///
+        /// This method might be applied more than once to the same query.
+        /// If your [buildResults] method is computationally expensive, you may want
+        /// to cache the search results for one or more queries.
+        ///
+        /// Typically, this method returns a [ListView] with the search results.
+        /// When the user taps on a particular search result, [close] should be called
+        /// with the selected result as argument. This will close the search page and
+        /// communicate the result back to the initial caller of [showSearch].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget BuildResults(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// A widget to display before the current query in the [AppBar].
+        ///
+        /// Typically an [IconButton] configured with a [BackButtonIcon] that exits
+        /// the search with [close]. One can also use an [AnimatedIcon] driven by
+        /// [transitionAnimation], which animates from e.g. a hamburger menu to the
+        /// back button as the search overlay fades in.
+        ///
+        /// Returns null if no widget should be shown.
+        ///
+        /// See also:
+        ///
+        ///  * [AppBar.leading], the intended use for the return value of this method.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget BuildLeading(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Widgets to display after the search query in the [AppBar].
+        ///
+        /// If the [query] is not empty, this should typically contain a button to
+        /// clear the query and show the suggestions again (via [showSuggestions]) if
+        /// the results are currently shown.
+        ///
+        /// Returns null if no widget should be shown
+        ///
+        /// See also:
+        ///
+        ///  * [AppBar.actions], the intended use for the return value of this method.
+        /// </Summary>
         public virtual List<FlutterSDK.Widgets.Framework.Widget> BuildActions(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The theme used to style the [AppBar].
+        ///
+        /// By default, a white theme is used.
+        ///
+        /// See also:
+        ///
+        ///  * [AppBar.backgroundColor], which is set to [ThemeData.primaryColor].
+        ///  * [AppBar.iconTheme], which is set to [ThemeData.primaryIconTheme].
+        ///  * [AppBar.textTheme], which is set to [ThemeData.primaryTextTheme].
+        ///  * [AppBar.brightness], which is set to [ThemeData.primaryColorBrightness].
+        /// </Summary>
         public virtual FlutterSDK.Material.Themedata.ThemeData AppBarTheme(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Transition from the suggestions returned by [buildSuggestions] to the
+        /// [query] results returned by [buildResults].
+        ///
+        /// If the user taps on a suggestion provided by [buildSuggestions] the
+        /// screen should typically transition to the page showing the search
+        /// results for the suggested query. This transition can be triggered
+        /// by calling this method.
+        ///
+        /// See also:
+        ///
+        ///  * [showSuggestions] to show the search suggestions again.
+        /// </Summary>
         public virtual void ShowResults(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Transition from showing the results returned by [buildResults] to showing
+        /// the suggestions returned by [buildSuggestions].
+        ///
+        /// Calling this method will also put the input focus back into the search
+        /// field of the [AppBar].
+        ///
+        /// If the results are currently shown this method can be used to go back
+        /// to showing the search suggestions.
+        ///
+        /// See also:
+        ///
+        ///  * [showResults] to show the search results.
+        /// </Summary>
         public virtual void ShowSuggestions(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Closes the search page and returns to the underlying route.
+        ///
+        /// The value provided for `result` is used as the return value of the call
+        /// to [showSearch] that launched the search initially.
+        /// </Summary>
         public virtual void Close(FlutterSDK.Widgets.Framework.BuildContext context, T result) { throw new NotImplementedException(); }
 
         #endregion
@@ -591,10 +746,24 @@ namespace FlutterSDK.Material.Search
     }
 
 
+    /// <Summary>
+    /// Describes the body that is currently shown under the [AppBar] in the
+    /// search page.
+    /// </Summary>
     public enum _SearchBody
     {
 
+        /// <Summary>
+        /// Suggested queries are shown in the body.
+        ///
+        /// The suggested queries are generated by [SearchDelegate.buildSuggestions].
+        /// </Summary>
         Suggestions,
+        /// <Summary>
+        /// Search results are currently shown in the body.
+        ///
+        /// The search results are generated by [SearchDelegate.buildResults].
+        /// </Summary>
         Results,
     }
 

@@ -429,6 +429,17 @@ namespace FlutterSDK.Widgets.Primaryscrollcontroller
     {
     }
 
+    /// <Summary>
+    /// Associates a [ScrollController] with a subtree.
+    ///
+    /// When a [ScrollView] has [ScrollView.primary] set to true and is not given
+    /// an explicit [ScrollController], the [ScrollView] uses [of] to find the
+    /// [ScrollController] associated with its subtree.
+    ///
+    /// This mechanism can be used to provide default behavior for scroll views in a
+    /// subtree. For example, the [Scaffold] uses this mechanism to implement the
+    /// scroll-to-top gesture on iOS.
+    /// </Summary>
     public class PrimaryScrollController : FlutterSDK.Widgets.Framework.InheritedWidget
     {
         #region constructors
@@ -449,6 +460,13 @@ namespace FlutterSDK.Widgets.Primaryscrollcontroller
 
         #region methods
 
+        /// <Summary>
+        /// Returns the [ScrollController] most closely associated with the given
+        /// context.
+        ///
+        /// Returns null if there is no [ScrollController] associated with the given
+        /// context.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 

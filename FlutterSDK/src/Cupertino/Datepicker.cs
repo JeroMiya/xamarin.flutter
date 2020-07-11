@@ -349,6 +349,31 @@ namespace FlutterSDK.Cupertino.Datepicker
     }
 
 
+    /// <Summary>
+    /// A date picker widget in iOS style.
+    ///
+    /// There are several modes of the date picker listed in [CupertinoDatePickerMode].
+    ///
+    /// The class will display its children as consecutive columns. Its children
+    /// order is based on internationalization.
+    ///
+    /// Example of the picker in date mode:
+    ///
+    ///  * US-English: `| July | 13 | 2012 |`
+    ///  * Vietnamese: `| 13 | Tháng 7 | 2012 |`
+    ///
+    /// Can be used with [showCupertinoModalPopup] to display the picker modally at
+    /// the bottom of the screen.
+    ///
+    /// Sizes itself to its parent and may not render correctly if not given the
+    /// full screen width. Content texts are shown with
+    /// [CupertinoTextThemeData.dateTimePickerTextStyle].
+    ///
+    /// See also:
+    ///
+    ///  * [CupertinoTimerPicker], the class that implements the iOS-style timer picker.
+    ///  * [CupertinoPicker], the class that implements a content agnostic spinner UI.
+    /// </Summary>
     public class CupertinoDatePicker : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -548,6 +573,25 @@ namespace FlutterSDK.Cupertino.Datepicker
     }
 
 
+    /// <Summary>
+    /// A countdown timer picker in iOS style.
+    ///
+    /// This picker shows a countdown duration with hour, minute and second spinners.
+    /// The duration is bound between 0 and 23 hours 59 minutes 59 seconds.
+    ///
+    /// There are several modes of the timer picker listed in [CupertinoTimerPickerMode].
+    ///
+    /// The picker has a fixed size of 320 x 216, in logical pixels, with the exception
+    /// of [CupertinoTimerPickerMode.hms], which is 330 x 216. If the parent widget
+    /// provides more space than it needs, the picker will position itself according
+    /// to its [alignment] property.
+    ///
+    /// See also:
+    ///
+    ///  * [CupertinoDatePicker], the class that implements different display modes
+    ///    of the iOS-style date picker.
+    ///  * [CupertinoPicker], the class that implements a content agnostic spinner UI.
+    /// </Summary>
     public class CupertinoTimerPicker : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -659,11 +703,42 @@ namespace FlutterSDK.Cupertino.Datepicker
     }
 
 
+    /// <Summary>
+    /// Different display modes of [CupertinoDatePicker].
+    ///
+    /// See also:
+    ///
+    ///  * [CupertinoDatePicker], the class that implements different display modes
+    ///    of the iOS-style date picker.
+    ///  * [CupertinoPicker], the class that implements a content agnostic spinner UI.
+    /// </Summary>
     public enum CupertinoDatePickerMode
     {
 
+        /// <Summary>
+        /// Mode that shows the date in hour, minute, and (optional) an AM/PM designation.
+        /// The AM/PM designation is shown only if [CupertinoDatePicker] does not use 24h format.
+        /// Column order is subject to internationalization.
+        ///
+        /// Example: ` 4 | 14 | PM `.
+        /// </Summary>
         Time,
+        /// <Summary>
+        /// Mode that shows the date in month, day of month, and year.
+        /// Name of month is spelled in full.
+        /// Column order is subject to internationalization.
+        ///
+        /// Example: ` July | 13 | 2012 `.
+        /// </Summary>
         Date,
+        /// <Summary>
+        /// Mode that shows the date as day of the week, month, day of month and
+        /// the time in hour, minute, and (optional) an AM/PM designation.
+        /// The AM/PM designation is shown only if [CupertinoDatePicker] does not use 24h format.
+        /// Column order is subject to internationalization.
+        ///
+        /// Example: ` Fri Jul 13 | 4 | 14 | PM `
+        /// </Summary>
         DateAndTime,
     }
 
@@ -681,11 +756,34 @@ namespace FlutterSDK.Cupertino.Datepicker
     }
 
 
+    /// <Summary>
+    /// Different modes of [CupertinoTimerPicker].
+    ///
+    /// See also:
+    ///
+    ///  * [CupertinoTimerPicker], the class that implements the iOS-style timer picker.
+    ///  * [CupertinoPicker], the class that implements a content agnostic spinner UI.
+    /// </Summary>
     public enum CupertinoTimerPickerMode
     {
 
+        /// <Summary>
+        /// Mode that shows the timer duration in hour and minute.
+        ///
+        /// Examples: 16 hours | 14 min.
+        /// </Summary>
         Hm,
+        /// <Summary>
+        /// Mode that shows the timer duration in minute and second.
+        ///
+        /// Examples: 14 min | 43 sec.
+        /// </Summary>
         Ms,
+        /// <Summary>
+        /// Mode that shows the timer duration in hour, minute, and second.
+        ///
+        /// Examples: 16 hours | 14 min | 43 sec.
+        /// </Summary>
         Hms,
     }
 

@@ -374,6 +374,25 @@ namespace FlutterSDK.Material.Cardtheme
     {
     }
 
+    /// <Summary>
+    /// Defines default property values for descendant [Card] widgets.
+    ///
+    /// Descendant widgets obtain the current [CardTheme] object using
+    /// `CardTheme.of(context)`. Instances of [CardTheme] can be
+    /// customized with [CardTheme.copyWith].
+    ///
+    /// Typically a [CardTheme] is specified as part of the overall [Theme]
+    /// with [ThemeData.cardTheme].
+    ///
+    /// All [CardTheme] properties are `null` by default. When null, the [Card]
+    /// will use the values from [ThemeData] if they exist, otherwise it will
+    /// provide its own defaults.
+    ///
+    /// See also:
+    ///
+    ///  * [ThemeData], which describes the overall theme information for the
+    ///    application.
+    /// </Summary>
     public class CardTheme : IDiagnosticable
     {
         #region constructors
@@ -401,12 +420,26 @@ namespace FlutterSDK.Material.Cardtheme
 
         #region methods
 
+        /// <Summary>
+        /// Creates a copy of this object with the given fields replaced with the
+        /// new values.
+        /// </Summary>
         public virtual FlutterSDK.Material.Cardtheme.CardTheme CopyWith(FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The [ThemeData.cardTheme] property of the ambient [Theme].
+        /// </Summary>
         public virtual FlutterSDK.Material.Cardtheme.CardTheme Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two Card themes.
+        ///
+        /// The argument `t` must not be null.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
         public virtual FlutterSDK.Material.Cardtheme.CardTheme Lerp(FlutterSDK.Material.Cardtheme.CardTheme a, FlutterSDK.Material.Cardtheme.CardTheme b, double t) { throw new NotImplementedException(); }
 
 

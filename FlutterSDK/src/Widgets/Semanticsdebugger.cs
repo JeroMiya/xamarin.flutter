@@ -429,6 +429,12 @@ namespace FlutterSDK.Widgets.Semanticsdebugger
     {
     }
 
+    /// <Summary>
+    /// A widget that visualizes the semantics for the child.
+    ///
+    /// This widget is useful for understand how an app presents itself to
+    /// accessibility technology.
+    /// </Summary>
     public class SemanticsDebugger : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors

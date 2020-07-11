@@ -429,6 +429,46 @@ namespace FlutterSDK.Widgets.Overlay
     {
     }
 
+    /// <Summary>
+    /// A place in an [Overlay] that can contain a widget.
+    ///
+    /// Overlay entries are inserted into an [Overlay] using the
+    /// [OverlayState.insert] or [OverlayState.insertAll] functions. To find the
+    /// closest enclosing overlay for a given [BuildContext], use the [Overlay.of]
+    /// function.
+    ///
+    /// An overlay entry can be in at most one overlay at a time. To remove an entry
+    /// from its overlay, call the [remove] function on the overlay entry.
+    ///
+    /// Because an [Overlay] uses a [Stack] layout, overlay entries can use
+    /// [Positioned] and [AnimatedPositioned] to position themselves within the
+    /// overlay.
+    ///
+    /// For example, [Draggable] uses an [OverlayEntry] to show the drag avatar that
+    /// follows the user's finger across the screen after the drag begins. Using the
+    /// overlay to display the drag avatar lets the avatar float over the other
+    /// widgets in the app. As the user's finger moves, draggable calls
+    /// [markNeedsBuild] on the overlay entry to cause it to rebuild. It its build,
+    /// the entry includes a [Positioned] with its top and left property set to
+    /// position the drag avatar near the user's finger. When the drag is over,
+    /// [Draggable] removes the entry from the overlay to remove the drag avatar
+    /// from view.
+    ///
+    /// By default, if there is an entirely [opaque] entry over this one, then this
+    /// one will not be included in the widget tree (in particular, stateful widgets
+    /// within the overlay entry will not be instantiated). To ensure that your
+    /// overlay entry is still built even if it is not visible, set [maintainState]
+    /// to true. This is more expensive, so should be done with care. In particular,
+    /// if widgets in an overlay entry with [maintainState] set to true repeatedly
+    /// call [State.setState], the user's battery will be drained unnecessarily.
+    ///
+    /// See also:
+    ///
+    ///  * [Overlay]
+    ///  * [OverlayState]
+    ///  * [WidgetsApp]
+    ///  * [MaterialApp]
+    /// </Summary>
     public class OverlayEntry
     {
         #region constructors
@@ -451,9 +491,27 @@ namespace FlutterSDK.Widgets.Overlay
 
         #region methods
 
+        /// <Summary>
+        /// Remove this entry from the overlay.
+        ///
+        /// This should only be called once.
+        ///
+        /// If this method is called while the [SchedulerBinding.schedulerPhase] is
+        /// [SchedulerPhase.persistentCallbacks], i.e. during the build, layout, or
+        /// paint phases (see [WidgetsBinding.drawFrame]), then the removal is
+        /// delayed until the post-frame callbacks phase. Otherwise the removal is
+        /// done synchronously. This means that it is safe to call during builds, but
+        /// also that if you do call this during a build, the UI will not update until
+        /// the next frame (i.e. many milliseconds later).
+        /// </Summary>
         public virtual void Remove() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Cause this entry to rebuild during the next pipeline flush.
+        ///
+        /// You need to call this function if the output of [builder] has changed.
+        /// </Summary>
         public virtual void MarkNeedsBuild() { throw new NotImplementedException(); }
 
 
@@ -506,6 +564,25 @@ namespace FlutterSDK.Widgets.Overlay
     }
 
 
+    /// <Summary>
+    /// A [Stack] of entries that can be managed independently.
+    ///
+    /// Overlays let independent child widgets "float" visual elements on top of
+    /// other widgets by inserting them into the overlay's [Stack]. The overlay lets
+    /// each of these widgets manage their participation in the overlay using
+    /// [OverlayEntry] objects.
+    ///
+    /// Although you can create an [Overlay] directly, it's most common to use the
+    /// overlay created by the [Navigator] in a [WidgetsApp] or a [MaterialApp]. The
+    /// navigator uses its overlay to manage the visual appearance of its routes.
+    ///
+    /// See also:
+    ///
+    ///  * [OverlayEntry].
+    ///  * [OverlayState].
+    ///  * [WidgetsApp].
+    ///  * [MaterialApp].
+    /// </Summary>
     public class Overlay : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -522,6 +599,25 @@ namespace FlutterSDK.Widgets.Overlay
 
         #region methods
 
+        /// <Summary>
+        /// The state from the closest instance of this class that encloses the given context.
+        ///
+        /// In debug mode, if the `debugRequiredFor` argument is provided then this
+        /// function will assert that an overlay was found and will throw an exception
+        /// if not. The exception attempts to explain that the calling [Widget] (the
+        /// one given by the `debugRequiredFor` argument) needs an [Overlay] to be
+        /// present to function.
+        ///
+        /// Typical usage is as follows:
+        ///
+        /// ```dart
+        /// OverlayState overlay = Overlay.of(context);
+        /// ```
+        ///
+        /// If `rootOverlay` is set to true, the state from the furthest instance of
+        /// this class is given instead. Useful for installing overlay entries
+        /// above all subsequent instances of [Overlay].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Overlay.OverlayState Of(FlutterSDK.Widgets.Framework.BuildContext context, bool rootOverlay = false, FlutterSDK.Widgets.Framework.Widget debugRequiredFor = default(FlutterSDK.Widgets.Framework.Widget)) { throw new NotImplementedException(); }
 
 
@@ -531,6 +627,12 @@ namespace FlutterSDK.Widgets.Overlay
     }
 
 
+    /// <Summary>
+    /// The current state of an [Overlay].
+    ///
+    /// Used to insert [OverlayEntry]s into the overlay using the [insert] and
+    /// [insertAll] functions.
+    /// </Summary>
     public class OverlayState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Overlay.Overlay>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
         #region constructors
@@ -550,18 +652,63 @@ namespace FlutterSDK.Widgets.Overlay
         private int _InsertionIndex(FlutterSDK.Widgets.Overlay.OverlayEntry below, FlutterSDK.Widgets.Overlay.OverlayEntry above) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Insert the given entry into the overlay.
+        ///
+        /// If `below` is non-null, the entry is inserted just below `below`.
+        /// If `above` is non-null, the entry is inserted just above `above`.
+        /// Otherwise, the entry is inserted on top.
+        ///
+        /// It is an error to specify both `above` and `below`.
+        /// </Summary>
         public virtual void Insert(FlutterSDK.Widgets.Overlay.OverlayEntry entry, FlutterSDK.Widgets.Overlay.OverlayEntry below = default(FlutterSDK.Widgets.Overlay.OverlayEntry), FlutterSDK.Widgets.Overlay.OverlayEntry above = default(FlutterSDK.Widgets.Overlay.OverlayEntry)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Insert all the entries in the given iterable.
+        ///
+        /// If `below` is non-null, the entries are inserted just below `below`.
+        /// If `above` is non-null, the entries are inserted just above `above`.
+        /// Otherwise, the entries are inserted on top.
+        ///
+        /// It is an error to specify both `above` and `below`.
+        /// </Summary>
         public virtual void InsertAll(Iterable<FlutterSDK.Widgets.Overlay.OverlayEntry> entries, FlutterSDK.Widgets.Overlay.OverlayEntry below = default(FlutterSDK.Widgets.Overlay.OverlayEntry), FlutterSDK.Widgets.Overlay.OverlayEntry above = default(FlutterSDK.Widgets.Overlay.OverlayEntry)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Remove all the entries listed in the given iterable, then reinsert them
+        /// into the overlay in the given order.
+        ///
+        /// Entries mention in `newEntries` but absent from the overlay are inserted
+        /// as if with [insertAll].
+        ///
+        /// Entries not mentioned in `newEntries` but present in the overlay are
+        /// positioned as a group in the resulting list relative to the entries that
+        /// were moved, as specified by one of `below` or `above`, which, if
+        /// specified, must be one of the entries in `newEntries`:
+        ///
+        /// If `below` is non-null, the group is positioned just below `below`.
+        /// If `above` is non-null, the group is positioned just above `above`.
+        /// Otherwise, the group is left on top, with all the rearranged entries
+        /// below.
+        ///
+        /// It is an error to specify both `above` and `below`.
+        /// </Summary>
         public virtual void Rearrange(Iterable<FlutterSDK.Widgets.Overlay.OverlayEntry> newEntries, FlutterSDK.Widgets.Overlay.OverlayEntry below = default(FlutterSDK.Widgets.Overlay.OverlayEntry), FlutterSDK.Widgets.Overlay.OverlayEntry above = default(FlutterSDK.Widgets.Overlay.OverlayEntry)) { throw new NotImplementedException(); }
 
 
         private void _Remove(FlutterSDK.Widgets.Overlay.OverlayEntry entry) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// (DEBUG ONLY) Check whether a given entry is visible (i.e., not behind an
+        /// opaque entry).
+        ///
+        /// This is an O(N) algorithm, and should not be necessary except for debug
+        /// asserts. To avoid people depending on it, this function is implemented
+        /// only in debug mode, and always returns false in release mode.
+        /// </Summary>
         public virtual bool DebugIsVisible(FlutterSDK.Widgets.Overlay.OverlayEntry entry) { throw new NotImplementedException(); }
 
 
@@ -577,6 +724,12 @@ namespace FlutterSDK.Widgets.Overlay
     }
 
 
+    /// <Summary>
+    /// Special version of a [Stack], that doesn't layout and render the first
+    /// [skipCount] children.
+    ///
+    /// The first [skipCount] children are considered "offstage".
+    /// </Summary>
     public class _Theatre : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
     {
         #region constructors

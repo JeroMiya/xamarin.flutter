@@ -397,6 +397,29 @@ namespace FlutterSDK.Material.Navigationrailtheme
     {
     }
 
+    /// <Summary>
+    /// Defines default property values for descendant [NavigationRail]
+    /// widgets.
+    ///
+    /// Descendant widgets obtain the current [NavigationRailThemeData] object
+    /// using `NavigationRailTheme.of(context)`. Instances of
+    /// [NavigationRailThemeData] can be customized with
+    /// [NavigationRailThemeData.copyWith].
+    ///
+    /// Typically a [NavigationRailThemeData] is specified as part of the
+    /// overall [Theme] with [ThemeData.navigationRailTheme].
+    ///
+    /// All [NavigationRailThemeData] properties are `null` by default.
+    /// When null, the [NavigationRail] will use the values from [ThemeData]
+    /// if they exist, otherwise it will provide its own defaults based on the
+    /// overall [Theme]'s textTheme and colorScheme. See the individual
+    /// [NavigationRail] properties for details.
+    ///
+    /// See also:
+    ///
+    ///  * [ThemeData], which describes the overall theme information for the
+    ///    application.
+    /// </Summary>
     public class NavigationRailThemeData : IDiagnosticable
     {
         #region constructors
@@ -427,9 +450,20 @@ namespace FlutterSDK.Material.Navigationrailtheme
 
         #region methods
 
+        /// <Summary>
+        /// Creates a copy of this object with the given fields replaced with the
+        /// new values.
+        /// </Summary>
         public virtual FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData CopyWith(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Textstyle.TextStyle unselectedLabelTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle selectedLabelTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Iconthemedata.IconThemeData unselectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData selectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), double groupAlignment = default(double), FlutterSDK.Material.Navigationrail.NavigationRailLabelType labelType = default(FlutterSDK.Material.Navigationrail.NavigationRailLabelType)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two navigation rail themes.
+        ///
+        /// If both arguments are null then null is returned.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
         public virtual FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData Lerp(FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData a, FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData b, double t) { throw new NotImplementedException(); }
 
 
@@ -442,6 +476,13 @@ namespace FlutterSDK.Material.Navigationrailtheme
     }
 
 
+    /// <Summary>
+    /// An inherited widget that defines visual properties for [NavigationRail]s and
+    /// [NavigationRailDestination]s in this widget's subtree.
+    ///
+    /// Values specified here are used for [NavigationRail] properties that are not
+    /// given an explicit non-null value.
+    /// </Summary>
     public class NavigationRailTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
         #region constructors
@@ -458,6 +499,18 @@ namespace FlutterSDK.Material.Navigationrailtheme
 
         #region methods
 
+        /// <Summary>
+        /// The closest instance of this class that encloses the given context.
+        ///
+        /// If there is no enclosing [NavigationRailTheme] widget, then
+        /// [ThemeData.navigationRailTheme] is used.
+        ///
+        /// Typical usage is as follows:
+        ///
+        /// ```dart
+        /// NavigationRailTheme theme = NavigationRailTheme.of(context);
+        /// ```
+        /// </Summary>
         public virtual FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 

@@ -421,6 +421,80 @@ namespace FlutterSDK.Material.Tabcontroller
     {
     }
 
+    /// <Summary>
+    /// Coordinates tab selection between a [TabBar] and a [TabBarView].
+    ///
+    /// The [index] property is the index of the selected tab and the [animation]
+    /// represents the current scroll positions of the tab bar and the tab bar view.
+    /// The selected tab's index can be changed with [animateTo].
+    ///
+    /// A stateful widget that builds a [TabBar] or a [TabBarView] can create
+    /// a [TabController] and share it directly.
+    ///
+    /// When the [TabBar] and [TabBarView] don't have a convenient stateful
+    /// ancestor, a [TabController] can be shared by providing a
+    /// [DefaultTabController] inherited widget.
+    ///
+    /// {@animation 700 540 https://flutter.github.io/assets-for-api-docs/assets/material/tabs.mp4}
+    ///
+    /// {@tool snippet}
+    ///
+    /// This widget introduces a [Scaffold] with an [AppBar] and a [TabBar].
+    ///
+    /// ```dart
+    /// class MyTabbedPage extends StatefulWidget {
+    ///   const MyTabbedPage({ Key key }) : super(key: key);
+    ///   @override
+    ///   _MyTabbedPageState createState() => _MyTabbedPageState();
+    /// }
+    ///
+    /// class _MyTabbedPageState extends State<MyTabbedPage> with SingleTickerProviderStateMixin {
+    ///   final List<Tab> myTabs = <Tab>[
+    ///     Tab(text: 'LEFT'),
+    ///     Tab(text: 'RIGHT'),
+    ///   ];
+    ///
+    ///   TabController _tabController;
+    ///
+    ///   @override
+    ///   void initState() {
+    ///     super.initState();
+    ///     _tabController = TabController(vsync: this, length: myTabs.length);
+    ///   }
+    ///
+    ///  @override
+    ///  void dispose() {
+    ///    _tabController.dispose();
+    ///    super.dispose();
+    ///  }
+    ///
+    ///   @override
+    ///   Widget build(BuildContext context) {
+    ///     return Scaffold(
+    ///       appBar: AppBar(
+    ///         bottom: TabBar(
+    ///           controller: _tabController,
+    ///           tabs: myTabs,
+    ///         ),
+    ///       ),
+    ///       body: TabBarView(
+    ///         controller: _tabController,
+    ///         children: myTabs.map((Tab tab) {
+    ///           final String label = tab.text.toLowerCase();
+    ///           return Center(
+    ///             child: Text(
+    ///               'This is the $label tab',
+    ///               style: const TextStyle(fontSize: 36),
+    ///             ),
+    ///           );
+    ///         }).toList(),
+    ///       ),
+    ///     );
+    ///   }
+    /// }
+    /// ```
+    /// {@end-tool}
+    /// </Summary>
     public class TabController : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
     {
         #region constructors
@@ -451,12 +525,28 @@ namespace FlutterSDK.Material.Tabcontroller
 
         #region methods
 
+        /// <Summary>
+        /// Creates a new [TabController] with `index`, `previousIndex`, and `length`
+        /// if they are non-null.
+        ///
+        /// This method is used by [DefaultTabController].
+        ///
+        /// When [DefaultTabController.length] is updated, this method is called to
+        /// create a new [TabController] without creating a new [AnimationController].
+        /// </Summary>
         private FlutterSDK.Material.Tabcontroller.TabController _CopyWith(int index = default(int), int length = default(int), int previousIndex = default(int)) { throw new NotImplementedException(); }
 
 
         private void _ChangeIndex(int value, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Immediately sets [index] and [previousIndex] and then plays the
+        /// [animation] from its current value to [index].
+        ///
+        /// While the animation is running [indexIsChanging] is true. When the
+        /// animation completes [offset] will be 0.0.
+        /// </Summary>
         public virtual void AnimateTo(int value, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)) { throw new NotImplementedException(); }
 
 
@@ -491,6 +581,52 @@ namespace FlutterSDK.Material.Tabcontroller
     }
 
 
+    /// <Summary>
+    /// The [TabController] for descendant widgets that don't specify one
+    /// explicitly.
+    ///
+    /// [DefaultTabController] is an inherited widget that is used to share a
+    /// [TabController] with a [TabBar] or a [TabBarView]. It's used when sharing an
+    /// explicitly created [TabController] isn't convenient because the tab bar
+    /// widgets are created by a stateless parent widget or by different parent
+    /// widgets.
+    ///
+    /// {@animation 700 540 https://flutter.github.io/assets-for-api-docs/assets/material/tabs.mp4}
+    ///
+    /// ```dart
+    /// class MyDemo extends StatelessWidget {
+    ///   final List<Tab> myTabs = <Tab>[
+    ///     Tab(text: 'LEFT'),
+    ///     Tab(text: 'RIGHT'),
+    ///   ];
+    ///
+    ///   @override
+    ///   Widget build(BuildContext context) {
+    ///     return DefaultTabController(
+    ///       length: myTabs.length,
+    ///       child: Scaffold(
+    ///         appBar: AppBar(
+    ///           bottom: TabBar(
+    ///             tabs: myTabs,
+    ///           ),
+    ///         ),
+    ///         body: TabBarView(
+    ///           children: myTabs.map((Tab tab) {
+    ///             final String label = tab.text.toLowerCase();
+    ///             return Center(
+    ///               child: Text(
+    ///                 'This is the $label tab',
+    ///                 style: const TextStyle(fontSize: 36),
+    ///               ),
+    ///             );
+    ///           }).toList(),
+    ///         ),
+    ///       ),
+    ///     );
+    ///   }
+    /// }
+    /// ```
+    /// </Summary>
     public class DefaultTabController : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -511,6 +647,17 @@ namespace FlutterSDK.Material.Tabcontroller
 
         #region methods
 
+        /// <Summary>
+        /// The closest instance of this class that encloses the given context.
+        ///
+        /// {@tool snippet}
+        /// Typical usage is as follows:
+        ///
+        /// ```dart
+        /// TabController controller = DefaultTabController.of(context);
+        /// ```
+        /// {@end-tool}
+        /// </Summary>
         public virtual FlutterSDK.Material.Tabcontroller.TabController Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 

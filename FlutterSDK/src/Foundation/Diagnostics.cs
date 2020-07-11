@@ -330,6 +330,18 @@ namespace FlutterSDK.Foundation.Diagnostics
 
     }
 
+    /// <Summary>
+    /// Defines diagnostics data for a [value].
+    ///
+    /// For debug and profile modes, [DiagnosticsNode] provides a high quality
+    /// multiline string dump via [toStringDeep]. The core members are the [name],
+    /// [toDescription], [getProperties], [value], and [getChildren]. All other
+    /// members exist typically to provide hints for how [toStringDeep] and
+    /// debugging tools should format output.
+    ///
+    /// In release mode, far less information is retained and some information may
+    /// not print at all.
+    /// </Summary>
     public interface IDiagnosticsNode
     {
         string ToDescription(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration));
@@ -364,6 +376,21 @@ namespace FlutterSDK.Foundation.Diagnostics
     }
 
 
+    /// <Summary>
+    /// A base class for providing string and [DiagnosticsNode] debug
+    /// representations describing the properties and children of an object.
+    ///
+    /// The string debug representation is generated from the intermediate
+    /// [DiagnosticsNode] representation. The [DiagnosticsNode] representation is
+    /// also used by debugging tools displaying interactive trees of objects and
+    /// properties.
+    ///
+    /// See also:
+    ///
+    ///  * [DiagnosticableTreeMixin], a mixin that implements this class.
+    ///  * [DiagnosticableMixin], which should be used instead of this class to
+    ///    provide diagnostics for objects without children.
+    /// </Summary>
     public interface IDiagnosticableTree
     {
         string ToStringShallow(string joiner = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel minLevel = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel));
@@ -413,13 +440,241 @@ namespace FlutterSDK.Foundation.Diagnostics
     public class Diagnosticable
     {
 
+        /// <Summary>
+        /// A brief description of this object, usually just the [runtimeType] and the
+        /// [hashCode].
+        ///
+        /// See also:
+        ///
+        ///  * [toString], for a detailed description of the object.
+        /// </Summary>
         public virtual string ToStringShort() { throw new NotImplementedException(); }
 
 
 
+        /// <Summary>
+        /// Returns a debug representation of the object that is used by debugging
+        /// tools and by [DiagnosticsNode.toStringDeep].
+        ///
+        /// Leave [name] as null if there is not a meaningful description of the
+        /// relationship between the this node and its parent.
+        ///
+        /// Typically the [style] argument is only specified to indicate an atypical
+        /// relationship between the parent and the node. For example, pass
+        /// [DiagnosticsTreeStyle.offstage] to indicate that a node is offstage.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticsNode ToDiagnosticsNode(string name = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Add additional properties associated with the node.
+        ///
+        /// Use the most specific [DiagnosticsProperty] existing subclass to describe
+        /// each property instead of the [DiagnosticsProperty] base class. There are
+        /// only a small number of [DiagnosticsProperty] subclasses each covering a
+        /// common use case. Consider what values a property is relevant for users
+        /// debugging as users debugging large trees are overloaded with information.
+        /// Common named parameters in [DiagnosticsNode] subclasses help filter when
+        /// and how properties are displayed.
+        ///
+        /// `defaultValue`, `showName`, `showSeparator`, and `level` keep string
+        /// representations of diagnostics terse and hide properties when they are not
+        /// very useful.
+        ///
+        ///  * Use `defaultValue` any time the default value of a property is
+        ///    uninteresting. For example, specify a default value of null any time
+        ///    a property being null does not indicate an error.
+        ///  * Avoid specifying the `level` parameter unless the result you want
+        ///    cannot be achieved by using the `defaultValue` parameter or using
+        ///    the [ObjectFlagProperty] class to conditionally display the property
+        ///    as a flag.
+        ///  * Specify `showName` and `showSeparator` in rare cases where the string
+        ///    output would look clumsy if they were not set.
+        ///    ```dart
+        ///    DiagnosticsProperty<Object>('child(3, 4)', null, ifNull: 'is null', showSeparator: false).toString()
+        ///    ```
+        ///    Shows using `showSeparator` to get output `child(3, 4) is null` which
+        ///    is more polished than `child(3, 4): is null`.
+        ///    ```dart
+        ///    DiagnosticsProperty<IconData>('icon', icon, ifNull: '<empty>', showName: false)).toString()
+        ///    ```
+        ///    Shows using `showName` to omit the property name as in this context the
+        ///    property name does not add useful information.
+        ///
+        /// `ifNull`, `ifEmpty`, `unit`, and `tooltip` make property
+        /// descriptions clearer. The examples in the code sample below illustrate
+        /// good uses of all of these parameters.
+        ///
+        /// ## DiagnosticsProperty subclasses for primitive types
+        ///
+        ///  * [StringProperty], which supports automatically enclosing a [String]
+        ///    value in quotes.
+        ///  * [DoubleProperty], which supports specifying a unit of measurement for
+        ///    a [double] value.
+        ///  * [PercentProperty], which clamps a [double] to between 0 and 1 and
+        ///    formats it as a percentage.
+        ///  * [IntProperty], which supports specifying a unit of measurement for an
+        ///    [int] value.
+        ///  * [FlagProperty], which formats a [bool] value as one or more flags.
+        ///    Depending on the use case it is better to format a bool as
+        ///    `DiagnosticsProperty<bool>` instead of using [FlagProperty] as the
+        ///    output is more verbose but unambiguous.
+        ///
+        /// ## Other important [DiagnosticsProperty] variants
+        ///
+        ///  * [EnumProperty], which provides terse descriptions of enum values
+        ///    working around limitations of the `toString` implementation for Dart
+        ///    enum types.
+        ///  * [IterableProperty], which handles iterable values with display
+        ///    customizable depending on the [DiagnosticsTreeStyle] used.
+        ///  * [ObjectFlagProperty], which provides terse descriptions of whether a
+        ///    property value is present or not. For example, whether an `onClick`
+        ///    callback is specified or an animation is in progress.
+        ///  * [ColorProperty], which must be used if the property value is
+        ///    a [Color] or one of its subclasses.
+        ///  * [IconDataProperty], which must be used if the property value
+        ///    is of type [IconData].
+        ///
+        /// If none of these subclasses apply, use the [DiagnosticsProperty]
+        /// constructor or in rare cases create your own [DiagnosticsProperty]
+        /// subclass as in the case for [TransformProperty] which handles [Matrix4]
+        /// that represent transforms. Generally any property value with a good
+        /// `toString` method implementation works fine using [DiagnosticsProperty]
+        /// directly.
+        ///
+        /// {@tool snippet}
+        ///
+        /// This example shows best practices for implementing [debugFillProperties]
+        /// illustrating use of all common [DiagnosticsProperty] subclasses and all
+        /// common [DiagnosticsProperty] parameters.
+        ///
+        /// ```dart
+        /// class ExampleObject extends ExampleSuperclass {
+        ///
+        ///   // ...various members and properties...
+        ///
+        ///   @override
+        ///   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+        ///     // Always add properties from the base class first.
+        ///     super.debugFillProperties(properties);
+        ///
+        ///     // Omit the property name 'message' when displaying this String property
+        ///     // as it would just add visual noise.
+        ///     properties.add(StringProperty('message', message, showName: false));
+        ///
+        ///     properties.add(DoubleProperty('stepWidth', stepWidth));
+        ///
+        ///     // A scale of 1.0 does nothing so should be hidden.
+        ///     properties.add(DoubleProperty('scale', scale, defaultValue: 1.0));
+        ///
+        ///     // If the hitTestExtent matches the paintExtent, it is just set to its
+        ///     // default value so is not relevant.
+        ///     properties.add(DoubleProperty('hitTestExtent', hitTestExtent, defaultValue: paintExtent));
+        ///
+        ///     // maxWidth of double.infinity indicates the width is unconstrained and
+        ///     // so maxWidth has no impact.,
+        ///     properties.add(DoubleProperty('maxWidth', maxWidth, defaultValue: double.infinity));
+        ///
+        ///     // Progress is a value between 0 and 1 or null. Showing it as a
+        ///     // percentage makes the meaning clear enough that the name can be
+        ///     // hidden.
+        ///     properties.add(PercentProperty(
+        ///       'progress',
+        ///       progress,
+        ///       showName: false,
+        ///       ifNull: '<indeterminate>',
+        ///     ));
+        ///
+        ///     // Most text fields have maxLines set to 1.
+        ///     properties.add(IntProperty('maxLines', maxLines, defaultValue: 1));
+        ///
+        ///     // Specify the unit as otherwise it would be unclear that time is in
+        ///     // milliseconds.
+        ///     properties.add(IntProperty('duration', duration.inMilliseconds, unit: 'ms'));
+        ///
+        ///     // Tooltip is used instead of unit for this case as a unit should be a
+        ///     // terse description appropriate to display directly after a number
+        ///     // without a space.
+        ///     properties.add(DoubleProperty(
+        ///       'device pixel ratio',
+        ///       ui.window.devicePixelRatio,
+        ///       tooltip: 'physical pixels per logical pixel',
+        ///     ));
+        ///
+        ///     // Displaying the depth value would be distracting. Instead only display
+        ///     // if the depth value is missing.
+        ///     properties.add(ObjectFlagProperty<int>('depth', depth, ifNull: 'no depth'));
+        ///
+        ///     // bool flag that is only shown when the value is true.
+        ///     properties.add(FlagProperty('using primary controller', value: primary));
+        ///
+        ///     properties.add(FlagProperty(
+        ///       'isCurrent',
+        ///       value: isCurrent,
+        ///       ifTrue: 'active',
+        ///       ifFalse: 'inactive',
+        ///       showName: false,
+        ///     ));
+        ///
+        ///     properties.add(DiagnosticsProperty<bool>('keepAlive', keepAlive));
+        ///
+        ///     // FlagProperty could have also been used in this case.
+        ///     // This option results in the text "obscureText: true" instead
+        ///     // of "obscureText" which is a bit more verbose but a bit clearer.
+        ///     properties.add(DiagnosticsProperty<bool>('obscureText', obscureText, defaultValue: false));
+        ///
+        ///     properties.add(EnumProperty<TextAlign>('textAlign', textAlign, defaultValue: null));
+        ///     properties.add(EnumProperty<ImageRepeat>('repeat', repeat, defaultValue: ImageRepeat.noRepeat));
+        ///
+        ///     // Warn users when the widget is missing but do not show the value.
+        ///     properties.add(ObjectFlagProperty<Widget>('widget', widget, ifNull: 'no widget'));
+        ///
+        ///     properties.add(IterableProperty<BoxShadow>(
+        ///       'boxShadow',
+        ///       boxShadow,
+        ///       defaultValue: null,
+        ///       style: style,
+        ///     ));
+        ///
+        ///     // Getting the value of size throws an exception unless hasSize is true.
+        ///     properties.add(DiagnosticsProperty<Size>.lazy(
+        ///       'size',
+        ///       () => size,
+        ///       description: '${ hasSize ? size : "MISSING" }',
+        ///     ));
+        ///
+        ///     // If the `toString` method for the property value does not provide a
+        ///     // good terse description, write a DiagnosticsProperty subclass as in
+        ///     // the case of TransformProperty which displays a nice debugging view
+        ///     // of a Matrix4 that represents a transform.
+        ///     properties.add(TransformProperty('transform', transform));
+        ///
+        ///     // If the value class has a good `toString` method, use
+        ///     // DiagnosticsProperty<YourValueType>. Specifying the value type ensures
+        ///     // that debugging tools always know the type of the field and so can
+        ///     // provide the right UI affordances. For example, in this case even
+        ///     // if color is null, a debugging tool still knows the value is a Color
+        ///     // and can display relevant color related UI.
+        ///     properties.add(DiagnosticsProperty<Color>('color', color));
+        ///
+        ///     // Use a custom description to generate a more terse summary than the
+        ///     // `toString` method on the map class.
+        ///     properties.add(DiagnosticsProperty<Map<Listenable, VoidCallback>>(
+        ///       'handles',
+        ///       handles,
+        ///       description: handles != null ?
+        ///       '${handles.length} active client${ handles.length == 1 ? "" : "s" }' :
+        ///       null,
+        ///       ifNull: 'no notifications ever received',
+        ///       showName: false,
+        ///     ));
+        ///   }
+        /// }
+        /// ```
+        /// {@end-tool}
+        ///
+        /// Used by [toDiagnosticsNode] and [toString].
+        /// </Summary>
         public virtual void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
     }
@@ -496,21 +751,81 @@ namespace FlutterSDK.Foundation.Diagnostics
         public virtual bool IncludeProperties { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool ExpandPropertyValues { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
+        /// <Summary>
+        /// Returns a serializable map of additional information that will be included
+        /// in the serialization of the given [DiagnosticsNode].
+        ///
+        /// This method is called for every [DiagnosticsNode] that's included in
+        /// the serialization.
+        /// </Summary>
         public virtual Dictionary<string, @Object> AdditionalNodeProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Filters the list of [DiagnosticsNode]s that will be included as children
+        /// for the given `owner` node.
+        ///
+        /// The callback may return a subset of the children in the provided list
+        /// or replace the entire list with new child nodes.
+        ///
+        /// See also:
+        ///
+        ///  * [subtreeDepth], which controls how many levels of children will be
+        ///    included in the serialization.
+        /// </Summary>
         public virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> FilterChildren(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> nodes, FlutterSDK.Foundation.Diagnostics.DiagnosticsNode owner) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Filters the list of [DiagnosticsNode]s that will be included as properties
+        /// for the given `owner` node.
+        ///
+        /// The callback may return a subset of the properties in the provided list
+        /// or replace the entire list with new property nodes.
+        ///
+        /// By default, `nodes` is returned as-is.
+        ///
+        /// See also:
+        ///
+        ///  * [includeProperties], which controls whether properties will be included
+        ///    at all.
+        /// </Summary>
         public virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> FilterProperties(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> nodes, FlutterSDK.Foundation.Diagnostics.DiagnosticsNode owner) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Truncates the given list of [DiagnosticsNode] that will be added to the
+        /// serialization as children or properties of the `owner` node.
+        ///
+        /// The method must return a subset of the provided nodes and may
+        /// not replace any nodes. While [filterProperties] and [filterChildren]
+        /// completely hide a node from the serialization, truncating a node will
+        /// leave a hint in the serialization that there were additional nodes in the
+        /// result that are not included in the current serialization.
+        ///
+        /// By default, `nodes` is returned as-is.
+        /// </Summary>
         public virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> TruncateNodesList(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> nodes, FlutterSDK.Foundation.Diagnostics.DiagnosticsNode owner) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the [DiagnosticsSerializationDelegate] to be used
+        /// for adding the provided [DiagnosticsNode] to the serialization.
+        ///
+        /// By default, this will return a copy of this delegate, which has the
+        /// [subtreeDepth] reduced by one.
+        ///
+        /// This is called for nodes that will be added to the serialization as
+        /// property or child of another node. It may return the same delegate if no
+        /// changes to it are necessary.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate DelegateForNode(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Creates a copy of this [DiagnosticsSerializationDelegate] with the
+        /// provided values.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate CopyWith(int subtreeDepth = default(int), bool includeProperties = default(bool)) { throw new NotImplementedException(); }
 
     }
@@ -538,6 +853,17 @@ namespace FlutterSDK.Foundation.Diagnostics
     }
 
 
+    /// <Summary>
+    /// Configuration specifying how a particular [DiagnosticsTreeStyle] should be
+    /// rendered as text art.
+    ///
+    /// See also:
+    ///
+    ///  * [sparseTextConfiguration], which is a typical style.
+    ///  * [transitionTextConfiguration], which is an example of a complex tree style.
+    ///  * [DiagnosticsNode.toStringDeep], for code using [TextTreeConfiguration]
+    ///    to render text art for arbitrary trees of [DiagnosticsNode] objects.
+    /// </Summary>
     public class TextTreeConfiguration
     {
         #region constructors
@@ -606,6 +932,15 @@ namespace FlutterSDK.Foundation.Diagnostics
     }
 
 
+    /// <Summary>
+    /// Builder that builds a String with specified prefixes for the first and
+    /// subsequent lines.
+    ///
+    /// Allows for the incremental building of strings using `write*()` methods.
+    /// The strings are concatenated into a single string with the first line
+    /// prefixed by [prefixLineOne] and subsequent lines prefixed by
+    /// [prefixOtherLines].
+    /// </Summary>
     public class _PrefixedStringBuilder
     {
         #region constructors
@@ -639,9 +974,28 @@ namespace FlutterSDK.Foundation.Diagnostics
         private void _FinalizeLine(bool addTrailingLineBreak) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Wraps the given string at the given width.
+        ///
+        /// Wrapping occurs at space characters (U+0020).
+        ///
+        /// This is not suitable for use with arbitrary Unicode text. For example, it
+        /// doesn't implement UAX #14, can't handle ideographic text, doesn't hyphenate,
+        /// and so forth. It is only intended for formatting error messages.
+        ///
+        /// This method wraps a sequence of text where only some spans of text can be
+        /// used as wrap boundaries.
+        /// </Summary>
         private Iterable<string> _WordWrapLine(string message, List<int> wrapRanges, int width, int startOffset = 0, int otherLineOffset = 0) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Write text ensuring the specified prefixes for the first and subsequent
+        /// lines.
+        ///
+        /// If [allowWrap] is true, the text may be wrapped to stay within the
+        /// allow `wrapWidth`.
+        /// </Summary>
         public virtual void Write(string s, bool allowWrap = false) { throw new NotImplementedException(); }
 
 
@@ -654,9 +1008,16 @@ namespace FlutterSDK.Foundation.Diagnostics
         private string _GetCurrentPrefix(bool firstLine) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Write lines assuming the lines obey the specified prefixes. Ensures that
+        /// a newline is added if one is not present.
+        /// </Summary>
         public virtual void WriteRawLines(string lines) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Finishes the current line with a stretched version of text.
+        /// </Summary>
         public virtual void WriteStretched(string text, int targetLineLength) { throw new NotImplementedException(); }
 
 
@@ -683,6 +1044,15 @@ namespace FlutterSDK.Foundation.Diagnostics
     }
 
 
+    /// <Summary>
+    /// Renderer that creates ASCII art representations of trees of
+    /// [DiagnosticsNode] objects.
+    ///
+    /// See also:
+    ///
+    ///  * [DiagnosticsNode.toStringDeep], which uses a [TextTreeRenderer] to return a
+    ///    string representation of this node and its descendants.
+    /// </Summary>
     public class TextTreeRenderer
     {
         #region constructors
@@ -702,9 +1072,20 @@ namespace FlutterSDK.Foundation.Diagnostics
 
         #region methods
 
+        /// <Summary>
+        /// Text configuration to use to connect this node to a `child`.
+        ///
+        /// The singleLine styles are special cased because the connection from the
+        /// parent to the child should be consistent with the parent's style as the
+        /// single line style does not provide any meaningful style for how children
+        /// should be connected to their parents.
+        /// </Summary>
         private FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration _ChildTextConfiguration(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode child, FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration textStyle) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Renders a [node] to a String.
+        /// </Summary>
         public virtual string Render(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node, string prefixLineOne = default(string), string prefixOtherLines = default(string), FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration)) { throw new NotImplementedException(); }
 
 
@@ -714,6 +1095,18 @@ namespace FlutterSDK.Foundation.Diagnostics
     }
 
 
+    /// <Summary>
+    /// Defines diagnostics data for a [value].
+    ///
+    /// For debug and profile modes, [DiagnosticsNode] provides a high quality
+    /// multiline string dump via [toStringDeep]. The core members are the [name],
+    /// [toDescription], [getProperties], [value], and [getChildren]. All other
+    /// members exist typically to provide hints for how [toStringDeep] and
+    /// debugging tools should format output.
+    ///
+    /// In release mode, far less information is retained and some information may
+    /// not print at all.
+    /// </Summary>
     public class DiagnosticsNode
     {
         #region constructors
@@ -750,31 +1143,129 @@ namespace FlutterSDK.Foundation.Diagnostics
 
         #region methods
 
+        /// <Summary>
+        /// Returns a description with a short summary of the node itself not
+        /// including children or properties.
+        ///
+        /// `parentConfiguration` specifies how the parent is rendered as text art.
+        /// For example, if the parent does not line break between properties, the
+        /// description of a property should also be a single line if possible.
+        /// </Summary>
         public virtual string ToDescription(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Whether the diagnostic should be filtered due to its [level] being lower
+        /// than `minLevel`.
+        ///
+        /// If `minLevel` is [DiagnosticLevel.hidden] no diagnostics will be filtered.
+        /// If `minLevel` is [DiagnosticLevel.off] all diagnostics will be filtered.
+        /// </Summary>
         public virtual bool IsFiltered(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel minLevel) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Properties of this [DiagnosticsNode].
+        ///
+        /// Properties and children are kept distinct even though they are both
+        /// [List<DiagnosticsNode>] because they should be grouped differently.
+        /// </Summary>
         public virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> GetProperties() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Children of this [DiagnosticsNode].
+        ///
+        /// See also:
+        ///
+        ///  * [getProperties]
+        /// </Summary>
         public virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> GetChildren() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Serialize the node to a JSON map according to the configuration provided
+        /// in the [DiagnosticsSerializationDelegate].
+        ///
+        /// Subclasses should override if they have additional properties that are
+        /// useful for the GUI tools that consume this JSON.
+        ///
+        /// See also:
+        ///
+        ///  * [WidgetInspectorService], which forms the bridge between JSON returned
+        ///    by this method and interactive tree views in the Flutter IntelliJ
+        ///    plugin.
+        /// </Summary>
         public virtual Dictionary<string, @Object> ToJsonMap(FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Serializes a [List] of [DiagnosticsNode]s to a JSON list according to
+        /// the configuration provided by the [DiagnosticsSerializationDelegate].
+        ///
+        /// The provided `nodes` may be properties or children of the `parent`
+        /// [DiagnosticsNode].
+        /// </Summary>
         public virtual List<Dictionary<string, @Object>> ToJsonList(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> nodes, FlutterSDK.Foundation.Diagnostics.DiagnosticsNode parent, FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate) { throw new NotImplementedException(); }
 
 
 
+        /// <Summary>
+        /// Returns a string representation of this node and its descendants.
+        ///
+        /// `prefixLineOne` will be added to the front of the first line of the
+        /// output. `prefixOtherLines` will be added to the front of each other line.
+        /// If `prefixOtherLines` is null, the `prefixLineOne` is used for every line.
+        /// By default, there is no prefix.
+        ///
+        /// `minLevel` specifies the minimum [DiagnosticLevel] for properties included
+        /// in the output.
+        ///
+        /// The [toStringDeep] method takes other arguments, but those are intended
+        /// for internal use when recursing to the descendants, and so can be ignored.
+        ///
+        /// See also:
+        ///
+        ///  * [toString], for a brief description of the [value] but not its
+        ///    children.
+        /// </Summary>
         public virtual string ToStringDeep(string prefixLineOne = default(string), string prefixOtherLines = default(string), FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel minLevel = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel)) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// Debugging message displayed like a property.
+    ///
+    /// {@tool snippet}
+    ///
+    /// The following two properties are better expressed using this
+    /// [MessageProperty] class, rather than [StringProperty], as the intent is to
+    /// show a message with property style display rather than to describe the value
+    /// of an actual property of the object:
+    ///
+    /// ```dart
+    /// var table = MessageProperty('table size', '$columns\u00D7$rows');
+    /// var usefulness = MessageProperty('usefulness ratio', 'no metrics collected yet (never painted)');
+    /// ```
+    /// {@end-tool}
+    /// {@tool snippet}
+    ///
+    /// On the other hand, [StringProperty] is better suited when the property has a
+    /// concrete value that is a string:
+    ///
+    /// ```dart
+    /// var name = StringProperty('name', _name);
+    /// ```
+    /// {@end-tool}
+    ///
+    /// See also:
+    ///
+    ///  * [DiagnosticsNode.message], which serves the same role for messages
+    ///    without a clear property name.
+    ///  * [StringProperty], which is a better fit for properties with string values.
+    /// </Summary>
     public class MessageProperty : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<object>
     {
         #region constructors
@@ -793,6 +1284,14 @@ namespace FlutterSDK.Foundation.Diagnostics
     }
 
 
+    /// <Summary>
+    /// Property which encloses its string [value] in quotes.
+    ///
+    /// See also:
+    ///
+    ///  * [MessageProperty], which is a better fit for showing a message
+    ///    instead of describing a property with a string value.
+    /// </Summary>
     public class StringProperty : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<string>
     {
         #region constructors
@@ -841,6 +1340,9 @@ namespace FlutterSDK.Foundation.Diagnostics
         public new Dictionary<string, @Object> ToJsonMap(FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// String describing just the numeric [value] without a unit suffix.
+        /// </Summary>
         public virtual string NumberToString() { throw new NotImplementedException(); }
 
 
@@ -850,6 +1352,11 @@ namespace FlutterSDK.Foundation.Diagnostics
     }
 
 
+    /// <Summary>
+    /// Property describing a [double] [value] with an optional [unit] of measurement.
+    ///
+    /// Numeric formatting is optimized for debug message readability.
+    /// </Summary>
     public class DoubleProperty : FlutterSDK.Foundation.Diagnostics._NumProperty<double>
     {
         #region constructors
@@ -875,6 +1382,11 @@ namespace FlutterSDK.Foundation.Diagnostics
     }
 
 
+    /// <Summary>
+    /// An int valued property with an optional unit the value is measured in.
+    ///
+    /// Examples of units include 'px' and 'ms'.
+    /// </Summary>
     public class IntProperty : FlutterSDK.Foundation.Diagnostics._NumProperty<int>
     {
         #region constructors
@@ -896,6 +1408,10 @@ namespace FlutterSDK.Foundation.Diagnostics
     }
 
 
+    /// <Summary>
+    /// Property which clamps a [double] to between 0 and 1 and formats it as a
+    /// percentage.
+    /// </Summary>
     public class PercentProperty : FlutterSDK.Foundation.Diagnostics.DoubleProperty
     {
         #region constructors
@@ -920,6 +1436,47 @@ namespace FlutterSDK.Foundation.Diagnostics
     }
 
 
+    /// <Summary>
+    /// Property where the description is either [ifTrue] or [ifFalse] depending on
+    /// whether [value] is true or false.
+    ///
+    /// Using [FlagProperty] instead of [DiagnosticsProperty<bool>] can make
+    /// diagnostics display more polished. For example, given a property named
+    /// `visible` that is typically true, the following code will return 'hidden'
+    /// when `visible` is false and nothing when visible is true, in contrast to
+    /// `visible: true` or `visible: false`.
+    ///
+    /// {@tool snippet}
+    ///
+    /// ```dart
+    /// FlagProperty(
+    ///   'visible',
+    ///   value: true,
+    ///   ifFalse: 'hidden',
+    /// )
+    /// ```
+    /// {@end-tool}
+    /// {@tool snippet}
+    ///
+    /// [FlagProperty] should also be used instead of [DiagnosticsProperty<bool>]
+    /// if showing the bool value would not clearly indicate the meaning of the
+    /// property value.
+    ///
+    /// ```dart
+    /// FlagProperty(
+    ///   'inherit',
+    ///   value: inherit,
+    ///   ifTrue: '<all styles inherited>',
+    ///   ifFalse: '<no style specified>',
+    /// )
+    /// ```
+    /// {@end-tool}
+    ///
+    /// See also:
+    ///
+    ///  * [ObjectFlagProperty], which provides similar behavior describing whether
+    ///    a [value] is null.
+    /// </Summary>
     public class FlagProperty : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<bool>
     {
         #region constructors
@@ -949,6 +1506,14 @@ namespace FlutterSDK.Foundation.Diagnostics
     }
 
 
+    /// <Summary>
+    /// Property with an `Iterable<T>` [value] that can be displayed with
+    /// different [DiagnosticsTreeStyle] for custom rendering.
+    ///
+    /// If [style] is [DiagnosticsTreeStyle.singleLine], the iterable is described
+    /// as a comma separated list, otherwise the iterable is described as a line
+    /// break separated list.
+    /// </Summary>
     public class IterableProperty<T> : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<Iterable<T>>
     {
         #region constructors
@@ -974,6 +1539,17 @@ namespace FlutterSDK.Foundation.Diagnostics
     }
 
 
+    /// <Summary>
+    /// An property than displays enum values tersely.
+    ///
+    /// The enum value is displayed with the class name stripped. For example:
+    /// [HitTestBehavior.deferToChild] is shown as `deferToChild`.
+    ///
+    /// See also:
+    ///
+    ///  * [DiagnosticsProperty] which documents named parameters common to all
+    ///    [DiagnosticsProperty].
+    /// </Summary>
     public class EnumProperty<T> : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<T>
     {
         #region constructors
@@ -995,6 +1571,30 @@ namespace FlutterSDK.Foundation.Diagnostics
     }
 
 
+    /// <Summary>
+    /// A property where the important diagnostic information is primarily whether
+    /// the [value] is present (non-null) or absent (null), rather than the actual
+    /// value of the property itself.
+    ///
+    /// The [ifPresent] and [ifNull] strings describe the property [value] when it
+    /// is non-null and null respectively. If one of [ifPresent] or [ifNull] is
+    /// omitted, that is taken to mean that [level] should be
+    /// [DiagnosticLevel.hidden] when [value] is non-null or null respectively.
+    ///
+    /// This kind of diagnostics property is typically used for opaque
+    /// values, like closures, where presenting the actual object is of dubious
+    /// value but where reporting the presence or absence of the value is much more
+    /// useful.
+    ///
+    /// See also:
+    ///
+    ///
+    ///  * [FlagsSummary], which provides similar functionality but accepts multiple
+    ///    flags under the same name, and is preferred if there are multiple such
+    ///    values that can fit into a same category (such as "listeners").
+    ///  * [FlagProperty], which provides similar functionality describing whether
+    ///    a [value] is true or false.
+    /// </Summary>
     public class ObjectFlagProperty<T> : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<T>
     {
         #region constructors
@@ -1026,6 +1626,29 @@ namespace FlutterSDK.Foundation.Diagnostics
     }
 
 
+    /// <Summary>
+    /// A summary of multiple properties, indicating whether each of them is present
+    /// (non-null) or absent (null).
+    ///
+    /// Each entry of [value] is described by its key. The eventual description will
+    /// be a list of keys of non-null entries.
+    ///
+    /// The [ifEmpty] describes the entire collection of [value] when it contains no
+    /// non-null entries. If [ifEmpty] is omitted, [level] will be
+    /// [DiagnosticLevel.hidden] when [value] contains no non-null entries.
+    ///
+    /// This kind of diagnostics property is typically used for opaque
+    /// values, like closures, where presenting the actual object is of dubious
+    /// value but where reporting the presence or absence of the value is much more
+    /// useful.
+    ///
+    /// See also:
+    ///
+    ///  * [ObjectFlagProperty], which provides similar functionality but accepts
+    ///    only one flag, and is preferred if there is only one entry.
+    ///  * [IterableProperty], which provides similar functionality describing
+    ///    the values a collection of objects.
+    /// </Summary>
     public class FlagsSummary<T> : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<Dictionary<string, T>>
     {
         #region constructors
@@ -1057,6 +1680,15 @@ namespace FlutterSDK.Foundation.Diagnostics
     }
 
 
+    /// <Summary>
+    /// Property with a [value] of type [T].
+    ///
+    /// If the default `value.toString()` does not provide an adequate description
+    /// of the value, specify `description` defining a custom description.
+    ///
+    /// The [showSeparator] property indicates whether a separator should be placed
+    /// between the property [name] and its [value].
+    /// </Summary>
     public class DiagnosticsProperty<T> : FlutterSDK.Foundation.Diagnostics.DiagnosticsNode
     {
         #region constructors
@@ -1109,12 +1741,34 @@ namespace FlutterSDK.Foundation.Diagnostics
         public new Dictionary<string, @Object> ToJsonMap(FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a string representation of the property value.
+        ///
+        /// Subclasses should override this method instead of [toDescription] to
+        /// customize how property values are converted to strings.
+        ///
+        /// Overriding this method ensures that behavior controlling how property
+        /// values are decorated to generate a nice [toDescription] are consistent
+        /// across all implementations. Debugging tools may also choose to use
+        /// [valueToString] directly instead of [toDescription].
+        ///
+        /// `parentConfiguration` specifies how the parent is rendered as text art.
+        /// For example, if the parent places all properties on one line, the value
+        /// of the property should be displayed without line breaks if possible.
+        /// </Summary>
         public virtual string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration)) { throw new NotImplementedException(); }
 
 
         public new string ToDescription(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// If a [tooltip] is specified, add the tooltip it to the end of `text`
+        /// enclosing it parenthesis to disambiguate the tooltip from the rest of
+        /// the text.
+        ///
+        /// `text` must not be null.
+        /// </Summary>
         private string _AddTooltip(string text) { throw new NotImplementedException(); }
 
 
@@ -1130,6 +1784,10 @@ namespace FlutterSDK.Foundation.Diagnostics
     }
 
 
+    /// <Summary>
+    /// [DiagnosticsNode] that lazily calls the associated [Diagnosticable] [value]
+    /// to implement [getChildren] and [getProperties].
+    /// </Summary>
     public class DiagnosticableNode<T> : FlutterSDK.Foundation.Diagnostics.DiagnosticsNode
     {
         #region constructors
@@ -1162,6 +1820,9 @@ namespace FlutterSDK.Foundation.Diagnostics
     }
 
 
+    /// <Summary>
+    /// [DiagnosticsNode] for an instance of [DiagnosticableTree].
+    /// </Summary>
     public class DiagnosticableTreeNode : FlutterSDK.Foundation.Diagnostics.DiagnosticableNode<FlutterSDK.Foundation.Diagnostics.DiagnosticableTree>
     {
         #region constructors
@@ -1183,6 +1844,10 @@ namespace FlutterSDK.Foundation.Diagnostics
     }
 
 
+    /// <Summary>
+    /// Builder to accumulate properties and configuration used to assemble a
+    /// [DiagnosticsNode] from a [DiagnosticableMixin] object.
+    /// </Summary>
     public class DiagnosticPropertiesBuilder
     {
         #region constructors
@@ -1205,12 +1870,30 @@ namespace FlutterSDK.Foundation.Diagnostics
 
         #region methods
 
+        /// <Summary>
+        /// Add a property to the list of properties.
+        /// </Summary>
         public virtual void Add(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode property) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// A base class for providing string and [DiagnosticsNode] debug
+    /// representations describing the properties and children of an object.
+    ///
+    /// The string debug representation is generated from the intermediate
+    /// [DiagnosticsNode] representation. The [DiagnosticsNode] representation is
+    /// also used by debugging tools displaying interactive trees of objects and
+    /// properties.
+    ///
+    /// See also:
+    ///
+    ///  * [DiagnosticableTreeMixin], a mixin that implements this class.
+    ///  * [DiagnosticableMixin], which should be used instead of this class to
+    ///    provide diagnostics for objects without children.
+    /// </Summary>
     public class DiagnosticableTree : IDiagnosticable
     {
         #region constructors
@@ -1225,9 +1908,48 @@ namespace FlutterSDK.Foundation.Diagnostics
 
         #region methods
 
+        /// <Summary>
+        /// Returns a one-line detailed description of the object.
+        ///
+        /// This description is often somewhat long. This includes the same
+        /// information given by [toStringDeep], but does not recurse to any children.
+        ///
+        /// `joiner` specifies the string which is place between each part obtained
+        /// from [debugFillProperties]. Passing a string such as `'\n '` will result
+        /// in a multiline string that indents the properties of the object below its
+        /// name (as per [toString]).
+        ///
+        /// `minLevel` specifies the minimum [DiagnosticLevel] for properties included
+        /// in the output.
+        ///
+        /// See also:
+        ///
+        ///  * [toString], for a brief description of the object.
+        ///  * [toStringDeep], for a description of the subtree rooted at this object.
+        /// </Summary>
         public virtual string ToStringShallow(string joiner = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel minLevel = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a string representation of this node and its descendants.
+        ///
+        /// `prefixLineOne` will be added to the front of the first line of the
+        /// output. `prefixOtherLines` will be added to the front of each other line.
+        /// If `prefixOtherLines` is null, the `prefixLineOne` is used for every line.
+        /// By default, there is no prefix.
+        ///
+        /// `minLevel` specifies the minimum [DiagnosticLevel] for properties included
+        /// in the output.
+        ///
+        /// The [toStringDeep] method takes other arguments, but those are intended
+        /// for internal use when recursing to the descendants, and so can be ignored.
+        ///
+        /// See also:
+        ///
+        ///  * [toString], for a brief description of the object but not its children.
+        ///  * [toStringShallow], for a detailed description of the object but not its
+        ///    children.
+        /// </Summary>
         public virtual string ToStringDeep(string prefixLineOne = default(string), string prefixOtherLines = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel minLevel = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel)) { throw new NotImplementedException(); }
 
 
@@ -1237,12 +1959,37 @@ namespace FlutterSDK.Foundation.Diagnostics
         public new FlutterSDK.Foundation.Diagnostics.DiagnosticsNode ToDiagnosticsNode(string name = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a list of [DiagnosticsNode] objects describing this node's
+        /// children.
+        ///
+        /// Children that are offstage should be added with `style` set to
+        /// [DiagnosticsTreeStyle.offstage] to indicate that they are offstage.
+        ///
+        /// The list must not contain any null entries. If there are explicit null
+        /// children to report, consider [new DiagnosticsNode.message] or
+        /// [DiagnosticsProperty<Object>] as possible [DiagnosticsNode] objects to
+        /// provide.
+        ///
+        /// Used by [toStringDeep], [toDiagnosticsNode] and [toStringShallow].
+        ///
+        /// See also:
+        ///
+        ///  * [RenderTable.debugDescribeChildren], which provides high quality custom
+        ///    descriptions for its child nodes.
+        /// </Summary>
         public virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren() { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// [DiagnosticsNode] that exists mainly to provide a container for other
+    /// diagnostics that typically lacks a meaningful value of its own.
+    ///
+    /// This class is typically used for displaying complex nested error messages.
+    /// </Summary>
     public class DiagnosticsBlock : FlutterSDK.Foundation.Diagnostics.DiagnosticsNode
     {
         #region constructors
@@ -1317,35 +2064,197 @@ namespace FlutterSDK.Foundation.Diagnostics
     }
 
 
+    /// <Summary>
+    /// The various priority levels used to filter which diagnostics are shown and
+    /// omitted.
+    ///
+    /// Trees of Flutter diagnostics can be very large so filtering the diagnostics
+    /// shown matters. Typically filtering to only show diagnostics with at least
+    /// level [debug] is appropriate.
+    /// </Summary>
     public enum DiagnosticLevel
     {
 
+        /// <Summary>
+        /// Diagnostics that should not be shown.
+        ///
+        /// If a user chooses to display [hidden] diagnostics, they should not expect
+        /// the diagnostics to be formatted consistently with other diagnostics and
+        /// they should expect them to sometimes be misleading. For example,
+        /// [FlagProperty] and [ObjectFlagProperty] have uglier formatting when the
+        /// property `value` does does not match a value with a custom flag
+        /// description. An example of a misleading diagnostic is a diagnostic for
+        /// a property that has no effect because some other property of the object is
+        /// set in a way that causes the hidden property to have no effect.
+        /// </Summary>
         Hidden,
+        /// <Summary>
+        /// A diagnostic that is likely to be low value but where the diagnostic
+        /// display is just as high quality as a diagnostic with a higher level.
+        ///
+        /// Use this level for diagnostic properties that match their default value
+        /// and other cases where showing a diagnostic would not add much value such
+        /// as an [IterableProperty] where the value is empty.
+        /// </Summary>
         Fine,
+        /// <Summary>
+        /// Diagnostics that should only be shown when performing fine grained
+        /// debugging of an object.
+        ///
+        /// Unlike a [fine] diagnostic, these diagnostics provide important
+        /// information about the object that is likely to be needed to debug. Used by
+        /// properties that are important but where the property value is too verbose
+        /// (e.g. 300+ characters long) to show with a higher diagnostic level.
+        /// </Summary>
         Debug,
+        /// <Summary>
+        /// Interesting diagnostics that should be typically shown.
+        /// </Summary>
         Info,
+        /// <Summary>
+        /// Very important diagnostics that indicate problematic property values.
+        ///
+        /// For example, use if you would write the property description
+        /// message in ALL CAPS.
+        /// </Summary>
         Warning,
+        /// <Summary>
+        /// Diagnostics that provide a hint about best practices.
+        ///
+        /// For example, a diagnostic describing best practices for fixing an error.
+        /// </Summary>
         Hint,
+        /// <Summary>
+        /// Diagnostics that summarize other diagnostics present.
+        ///
+        /// For example, use this level for a short one or two line summary
+        /// describing other diagnostics present.
+        /// </Summary>
         Summary,
+        /// <Summary>
+        /// Diagnostics that indicate errors or unexpected conditions.
+        ///
+        /// For example, use for property values where computing the value throws an
+        /// exception.
+        /// </Summary>
         Error,
+        /// <Summary>
+        /// Special level indicating that no diagnostics should be shown.
+        ///
+        /// Do not specify this level for diagnostics. This level is only used to
+        /// filter which diagnostics are shown.
+        /// </Summary>
         Off,
     }
 
 
+    /// <Summary>
+    /// Styles for displaying a node in a [DiagnosticsNode] tree.
+    ///
+    /// See also:
+    ///
+    ///  * [DiagnosticsNode.toStringDeep], which dumps text art trees for these
+    ///    styles.
+    /// </Summary>
     public enum DiagnosticsTreeStyle
     {
 
+        /// <Summary>
+        /// A style that does not display the tree, for release mode.
+        /// </Summary>
         None,
+        /// <Summary>
+        /// Sparse style for displaying trees.
+        ///
+        /// See also:
+        ///
+        ///  * [RenderObject], which uses this style.
+        /// </Summary>
         Sparse,
+        /// <Summary>
+        /// Connects a node to its parent with a dashed line.
+        ///
+        /// See also:
+        ///
+        ///  * [RenderSliverMultiBoxAdaptor], which uses this style to distinguish
+        ///    offstage children from onstage children.
+        /// </Summary>
         Offstage,
+        /// <Summary>
+        /// Slightly more compact version of the [sparse] style.
+        ///
+        /// See also:
+        ///
+        ///  * [Element], which uses this style.
+        /// </Summary>
         Dense,
+        /// <Summary>
+        /// Style that enables transitioning from nodes of one style to children of
+        /// another.
+        ///
+        /// See also:
+        ///
+        ///  * [RenderParagraph], which uses this style to display a [TextSpan] child
+        ///    in a way that is compatible with the [DiagnosticsTreeStyle.sparse]
+        ///    style of the [RenderObject] tree.
+        /// </Summary>
         Transition,
+        /// <Summary>
+        /// Style for displaying content describing an error.
+        ///
+        /// See also:
+        ///
+        ///  * [FlutterError], which uses this style for the root node in a tree
+        ///    describing an error.
+        /// </Summary>
         Error,
+        /// <Summary>
+        /// Render the tree just using whitespace without connecting parents to
+        /// children using lines.
+        ///
+        /// See also:
+        ///
+        ///  * [SliverGeometry], which uses this style.
+        /// </Summary>
         Whitespace,
+        /// <Summary>
+        /// Render the tree without indenting children at all.
+        ///
+        /// See also:
+        ///
+        ///  * [DiagnosticsStackTrace], which uses this style.
+        /// </Summary>
         Flat,
+        /// <Summary>
+        /// Render the tree on a single line without showing children.
+        /// </Summary>
         SingleLine,
+        /// <Summary>
+        /// Render the tree using a style appropriate for properties that are part
+        /// of an error message.
+        ///
+        /// The name is placed on one line with the value and properties placed on
+        /// the following line.
+        ///
+        /// See also:
+        ///
+        ///  * [singleLine], which displays the same information but keeps the
+        ///    property and value on the same line.
+        /// </Summary>
         ErrorProperty,
+        /// <Summary>
+        /// Render only the immediate properties of a node instead of the full tree.
+        ///
+        /// See also:
+        ///
+        ///  * [DebugOverflowIndicatorMixin], which uses this style to display just
+        ///    the immediate children of a node.
+        /// </Summary>
         Shallow,
+        /// <Summary>
+        /// Render only the children of a node truncating before the tree becomes too
+        /// large.
+        /// </Summary>
         TruncateChildren,
     }
 

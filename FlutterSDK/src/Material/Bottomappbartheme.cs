@@ -363,6 +363,24 @@ namespace FlutterSDK.Material.Bottomappbartheme
     {
     }
 
+    /// <Summary>
+    /// Defines default property values for descendant [BottomAppBar] widgets.
+    ///
+    /// Descendant widgets obtain the current [BottomAppBarTheme] object using
+    /// `BottomAppBarTheme.of(context)`. Instances of [BottomAppBarTheme] can be
+    /// customized with [BottomAppBarTheme.copyWith].
+    ///
+    /// Typically a [BottomAppBarTheme] is specified as part of the overall [Theme]
+    /// with [ThemeData.bottomAppBarTheme].
+    ///
+    /// All [BottomAppBarTheme] properties are `null` by default. When null, the
+    /// [BottomAppBar] constructor provides defaults.
+    ///
+    /// See also:
+    ///
+    ///  * [ThemeData], which describes the overall theme information for the
+    ///    application.
+    /// </Summary>
     public class BottomAppBarTheme : IDiagnosticable
     {
         #region constructors
@@ -383,12 +401,26 @@ namespace FlutterSDK.Material.Bottomappbartheme
 
         #region methods
 
+        /// <Summary>
+        /// Creates a copy of this object but with the given fields replaced with the
+        /// new values.
+        /// </Summary>
         public virtual FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Notchedshapes.NotchedShape shape = default(FlutterSDK.Painting.Notchedshapes.NotchedShape)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The [ThemeData.bottomAppBarTheme] property of the ambient [Theme].
+        /// </Summary>
         public virtual FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two BAB themes.
+        ///
+        /// The argument `t` must not be null.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
         public virtual FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme Lerp(FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme a, FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme b, double t) { throw new NotImplementedException(); }
 
 

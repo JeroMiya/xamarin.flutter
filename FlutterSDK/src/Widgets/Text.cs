@@ -429,6 +429,17 @@ namespace FlutterSDK.Widgets.Text
     {
     }
 
+    /// <Summary>
+    /// The text style to apply to descendant [Text] widgets which don't have an
+    /// explicit style.
+    ///
+    /// See also:
+    ///
+    ///  * [AnimatedDefaultTextStyle], which animates changes in the text style
+    ///    smoothly over a given duration.
+    ///  * [DefaultTextStyleTransition], which takes a provided [Animation] to
+    ///    animate changes in text style smoothly over time.
+    /// </Summary>
     public class DefaultTextStyle : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
         #region constructors
@@ -461,9 +472,39 @@ namespace FlutterSDK.Widgets.Text
 
         #region methods
 
+        /// <Summary>
+        /// Creates a default text style that overrides the text styles in scope at
+        /// this point in the widget tree.
+        ///
+        /// The given [style] is merged with the [style] from the default text style
+        /// for the [BuildContext] where the widget is inserted, and any of the other
+        /// arguments that are not null replace the corresponding properties on that
+        /// same default text style.
+        ///
+        /// This constructor cannot be used to override the [maxLines] property of the
+        /// ancestor with the value null, since null here is used to mean "defer to
+        /// ancestor". To replace a non-null [maxLines] from an ancestor with the null
+        /// value (to remove the restriction on number of lines), manually obtain the
+        /// ambient [DefaultTextStyle] using [DefaultTextStyle.of], then create a new
+        /// [DefaultTextStyle] using the [new DefaultTextStyle] constructor directly.
+        /// See the source below for an example of how to do this (since that's
+        /// essentially what this constructor does).
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Merge(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), TextAlign textAlign = default(TextAlign), bool softWrap = default(bool), FlutterSDK.Rendering.Paragraph.TextOverflow overflow = default(FlutterSDK.Rendering.Paragraph.TextOverflow), int maxLines = default(int), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The closest instance of this class that encloses the given context.
+        ///
+        /// If no such instance exists, returns an instance created by
+        /// [DefaultTextStyle.fallback], which contains fallback values.
+        ///
+        /// Typical usage is as follows:
+        ///
+        /// ```dart
+        /// DefaultTextStyle style = DefaultTextStyle.of(context);
+        /// ```
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Text.DefaultTextStyle Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
@@ -480,6 +521,79 @@ namespace FlutterSDK.Widgets.Text
     }
 
 
+    /// <Summary>
+    /// A run of text with a single style.
+    ///
+    /// The [Text] widget displays a string of text with single style. The string
+    /// might break across multiple lines or might all be displayed on the same line
+    /// depending on the layout constraints.
+    ///
+    /// The [style] argument is optional. When omitted, the text will use the style
+    /// from the closest enclosing [DefaultTextStyle]. If the given style's
+    /// [TextStyle.inherit] property is true (the default), the given style will
+    /// be merged with the closest enclosing [DefaultTextStyle]. This merging
+    /// behavior is useful, for example, to make the text bold while using the
+    /// default font family and size.
+    ///
+    /// {@tool snippet}
+    ///
+    /// This example shows how to display text using the [Text] widget with the
+    /// [overflow] set to [TextOverflow.ellipsis].
+    ///
+    /// ![If the text is shorter than the available space, it is displayed in full without an ellipsis.](https://flutter.github.io/assets-for-api-docs/assets/widgets/text.png)
+    ///
+    /// ![If the text overflows, the Text widget displays an ellipsis to trim the overflowing text](https://flutter.github.io/assets-for-api-docs/assets/widgets/text_ellipsis.png)
+    ///
+    /// ```dart
+    /// Text(
+    ///   'Hello, $_name! How are you?',
+    ///   textAlign: TextAlign.center,
+    ///   overflow: TextOverflow.ellipsis,
+    ///   style: TextStyle(fontWeight: FontWeight.bold),
+    /// )
+    /// ```
+    /// {@end-tool}
+    ///
+    /// Using the [Text.rich] constructor, the [Text] widget can
+    /// display a paragraph with differently styled [TextSpan]s. The sample
+    /// that follows displays "Hello beautiful world" with different styles
+    /// for each word.
+    ///
+    /// {@tool snippet}
+    ///
+    /// ![The word "Hello" is shown with the default text styles. The word "beautiful" is italicized. The word "world" is bold.](https://flutter.github.io/assets-for-api-docs/assets/widgets/text_rich.png)
+    ///
+    /// ```dart
+    /// const Text.rich(
+    ///   TextSpan(
+    ///     text: 'Hello', // default text style
+    ///     children: <TextSpan>[
+    ///       TextSpan(text: ' beautiful ', style: TextStyle(fontStyle: FontStyle.italic)),
+    ///       TextSpan(text: 'world', style: TextStyle(fontWeight: FontWeight.bold)),
+    ///     ],
+    ///   ),
+    /// )
+    /// ```
+    /// {@end-tool}
+    ///
+    /// ## Interactivity
+    ///
+    /// To make [Text] react to touch events, wrap it in a [GestureDetector] widget
+    /// with a [GestureDetector.onTap] handler.
+    ///
+    /// In a material design application, consider using a [FlatButton] instead, or
+    /// if that isn't appropriate, at least using an [InkWell] instead of
+    /// [GestureDetector].
+    ///
+    /// To make sections of the text interactive, use [RichText] and specify a
+    /// [TapGestureRecognizer] as the [TextSpan.recognizer] of the relevant part of
+    /// the text.
+    ///
+    /// See also:
+    ///
+    ///  * [RichText], which gives you more control over the text styles.
+    ///  * [DefaultTextStyle], which sets default styles for [Text] widgets.
+    /// </Summary>
     public class Text : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors

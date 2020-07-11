@@ -426,6 +426,62 @@ namespace FlutterSDK.Painting.Boxdecoration
     {
     }
 
+    /// <Summary>
+    /// An immutable description of how to paint a box.
+    ///
+    /// The [BoxDecoration] class provides a variety of ways to draw a box.
+    ///
+    /// The box has a [border], a body, and may cast a [boxShadow].
+    ///
+    /// The [shape] of the box can be a circle or a rectangle. If it is a rectangle,
+    /// then the [borderRadius] property controls the roundness of the corners.
+    ///
+    /// The body of the box is painted in layers. The bottom-most layer is the
+    /// [color], which fills the box. Above that is the [gradient], which also fills
+    /// the box. Finally there is the [image], the precise alignment of which is
+    /// controlled by the [DecorationImage] class.
+    ///
+    /// The [border] paints over the body; the [boxShadow], naturally, paints below it.
+    ///
+    /// {@tool snippet}
+    ///
+    /// The following applies a [BoxDecoration] to a [Container] widget to draw an
+    /// [image] of an owl with a thick black [border] and rounded corners.
+    ///
+    /// ![](https://flutter.github.io/assets-for-api-docs/assets/painting/box_decoration.png)
+    ///
+    /// ```dart
+    /// Container(
+    ///   decoration: BoxDecoration(
+    ///     color: const Color(0xff7c94b6),
+    ///     image: const DecorationImage(
+    ///       image: NetworkImage('https:///flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg'),
+    ///       fit: BoxFit.cover,
+    ///     ),
+    ///     border: Border.all(
+    ///       color: Colors.black,
+    ///       width: 8,
+    ///     ),
+    ///     borderRadius: BorderRadius.circular(12),
+    ///   ),
+    /// )
+    /// ```
+    /// {@end-tool}
+    ///
+    /// {@template flutter.painting.boxDecoration.clip}
+    /// The [shape] or the [borderRadius] won't clip the children of the
+    /// decorated [Container]. If the clip is required, insert a clip widget
+    /// (e.g., [ClipRect], [ClipRRect], [ClipPath]) as the child of the [Container].
+    /// Be aware that clipping may be costly in terms of performance.
+    /// {@endtemplate}
+    ///
+    /// See also:
+    ///
+    ///  * [DecoratedBox] and [Container], widgets that can be configured with
+    ///    [BoxDecoration] objects.
+    ///  * [CustomPaint], a widget that lets you draw arbitrary graphics.
+    ///  * [Decoration], the base class which lets you define other decorations.
+    /// </Summary>
     public class BoxDecoration : FlutterSDK.Painting.Decoration.Decoration
     {
         #region constructors
@@ -459,6 +515,10 @@ namespace FlutterSDK.Painting.Boxdecoration
 
         #region methods
 
+        /// <Summary>
+        /// Creates a copy of this object but with the given fields replaced with the
+        /// new values.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Boxdecoration.BoxDecoration CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Decorationimage.DecorationImage image = default(FlutterSDK.Painting.Decorationimage.DecorationImage), FlutterSDK.Painting.Boxborder.BoxBorder border = default(FlutterSDK.Painting.Boxborder.BoxBorder), FlutterSDK.Painting.Borderradius.BorderRadiusGeometry borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry), List<FlutterSDK.Painting.Boxshadow.BoxShadow> boxShadow = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>), FlutterSDK.Painting.Gradient.Gradient gradient = default(FlutterSDK.Painting.Gradient.Gradient), FlutterBinding.UI.BlendMode backgroundBlendMode = default(FlutterBinding.UI.BlendMode), FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape)) { throw new NotImplementedException(); }
 
 
@@ -468,6 +528,9 @@ namespace FlutterSDK.Painting.Boxdecoration
         public new Path GetClipPath(FlutterBinding.UI.Rect rect, TextDirection textDirection) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a new box decoration that is scaled by the given factor.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Boxdecoration.BoxDecoration Scale(double factor) { throw new NotImplementedException(); }
 
 
@@ -477,6 +540,31 @@ namespace FlutterSDK.Painting.Boxdecoration
         public new FlutterSDK.Painting.Boxdecoration.BoxDecoration LerpTo(FlutterSDK.Painting.Decoration.Decoration b, double t) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two box decorations.
+        ///
+        /// Interpolates each parameter of the box decoration separately.
+        ///
+        /// The [shape] is not interpolated. To interpolate the shape, consider using
+        /// a [ShapeDecoration] with different border shapes.
+        ///
+        /// If both values are null, this returns null. Otherwise, it returns a
+        /// non-null value. If one of the values is null, then the result is obtained
+        /// by applying [scale] to the other value. If neither value is null and `t ==
+        /// 0.0`, then `a` is returned unmodified; if `t == 1.0` then `b` is returned
+        /// unmodified. Otherwise, the values are computed by interpolating the
+        /// properties appropriately.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        ///
+        /// See also:
+        ///
+        ///  * [Decoration.lerp], which can interpolate between any two types of
+        ///    [Decoration]s, not just [BoxDecoration]s.
+        ///  * [lerpFrom] and [lerpTo], which are used to implement [Decoration.lerp]
+        ///    and which use [BoxDecoration.lerp] when interpolating two
+        ///    [BoxDecoration]s or a [BoxDecoration] to or from null.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Boxdecoration.BoxDecoration Lerp(FlutterSDK.Painting.Boxdecoration.BoxDecoration a, FlutterSDK.Painting.Boxdecoration.BoxDecoration b, double t) { throw new NotImplementedException(); }
 
 
@@ -495,6 +583,9 @@ namespace FlutterSDK.Painting.Boxdecoration
     }
 
 
+    /// <Summary>
+    /// An object that paints a [BoxDecoration] into a canvas.
+    /// </Summary>
     public class _BoxDecorationPainter : FlutterSDK.Painting.Decoration.BoxPainter
     {
         #region constructors
@@ -532,6 +623,9 @@ namespace FlutterSDK.Painting.Boxdecoration
         public new void Dispose() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Paint the box decoration into the given location on the given canvas
+        /// </Summary>
         public new void Paint(Canvas canvas, FlutterBinding.UI.Offset offset, FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) { throw new NotImplementedException(); }
 
 

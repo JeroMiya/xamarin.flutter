@@ -429,6 +429,39 @@ namespace FlutterSDK.Widgets.Viewport
     {
     }
 
+    /// <Summary>
+    /// A widget that is bigger on the inside.
+    ///
+    /// [Viewport] is the visual workhorse of the scrolling machinery. It displays a
+    /// subset of its children according to its own dimensions and the given
+    /// [offset]. As the offset varies, different children are visible through
+    /// the viewport.
+    ///
+    /// [Viewport] hosts a bidirectional list of slivers, anchored on a [center]
+    /// sliver, which is placed at the zero scroll offset. The center widget is
+    /// displayed in the viewport according to the [anchor] property.
+    ///
+    /// Slivers that are earlier in the child list than [center] are displayed in
+    /// reverse order in the reverse [axisDirection] starting from the [center]. For
+    /// example, if the [axisDirection] is [AxisDirection.down], the first sliver
+    /// before [center] is placed above the [center]. The slivers that are later in
+    /// the child list than [center] are placed in order in the [axisDirection]. For
+    /// example, in the preceding scenario, the first sliver after [center] is
+    /// placed below the [center].
+    ///
+    /// [Viewport] cannot contain box children directly. Instead, use a
+    /// [SliverList], [SliverFixedExtentList], [SliverGrid], or a
+    /// [SliverToBoxAdapter], for example.
+    ///
+    /// See also:
+    ///
+    ///  * [ListView], [PageView], [GridView], and [CustomScrollView], which combine
+    ///    [Scrollable] and [Viewport] into widgets that are easier to use.
+    ///  * [SliverToBoxAdapter], which allows a box widget to be placed inside a
+    ///    sliver context (the opposite of this widget).
+    ///  * [ShrinkWrappingViewport], a variant of [Viewport] that shrink-wraps its
+    ///    contents along the main axis.
+    /// </Summary>
     public class Viewport : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
     {
         #region constructors
@@ -457,6 +490,13 @@ namespace FlutterSDK.Widgets.Viewport
 
         #region methods
 
+        /// <Summary>
+        /// Given a [BuildContext] and an [AxisDirection], determine the correct cross
+        /// axis direction.
+        ///
+        /// This depends on the [Directionality] if the `axisDirection` is vertical;
+        /// otherwise, the default cross axis direction is downwards.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Basictypes.AxisDirection GetDefaultCrossAxisDirection(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Painting.Basictypes.AxisDirection axisDirection) { throw new NotImplementedException(); }
 
 
@@ -509,6 +549,33 @@ namespace FlutterSDK.Widgets.Viewport
     }
 
 
+    /// <Summary>
+    /// A widget that is bigger on the inside and shrink wraps its children in the
+    /// main axis.
+    ///
+    /// [ShrinkWrappingViewport] displays a subset of its children according to its
+    /// own dimensions and the given [offset]. As the offset varies, different
+    /// children are visible through the viewport.
+    ///
+    /// [ShrinkWrappingViewport] differs from [Viewport] in that [Viewport] expands
+    /// to fill the main axis whereas [ShrinkWrappingViewport] sizes itself to match
+    /// its children in the main axis. This shrink wrapping behavior is expensive
+    /// because the children, and hence the viewport, could potentially change size
+    /// whenever the [offset] changes (e.g., because of a collapsing header).
+    ///
+    /// [ShrinkWrappingViewport] cannot contain box children directly. Instead, use
+    /// a [SliverList], [SliverFixedExtentList], [SliverGrid], or a
+    /// [SliverToBoxAdapter], for example.
+    ///
+    /// See also:
+    ///
+    ///  * [ListView], [PageView], [GridView], and [CustomScrollView], which combine
+    ///    [Scrollable] and [ShrinkWrappingViewport] into widgets that are easier to
+    ///    use.
+    ///  * [SliverToBoxAdapter], which allows a box widget to be placed inside a
+    ///    sliver context (the opposite of this widget).
+    ///  * [Viewport], a viewport that does not shrink-wrap its contents.
+    /// </Summary>
     public class ShrinkWrappingViewport : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
     {
         #region constructors

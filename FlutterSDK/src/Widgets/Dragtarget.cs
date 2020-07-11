@@ -439,6 +439,31 @@ namespace FlutterSDK.Widgets.Dragtarget
 
     }
 
+    /// <Summary>
+    /// A widget that can be dragged from to a [DragTarget].
+    ///
+    /// When a draggable widget recognizes the start of a drag gesture, it displays
+    /// a [feedback] widget that tracks the user's finger across the screen. If the
+    /// user lifts their finger while on top of a [DragTarget], that target is given
+    /// the opportunity to accept the [data] carried by the draggable.
+    ///
+    /// On multitouch devices, multiple drags can occur simultaneously because there
+    /// can be multiple pointers in contact with the device at once. To limit the
+    /// number of simultaneous drags, use the [maxSimultaneousDrags] property. The
+    /// default is to allow an unlimited number of simultaneous drags.
+    ///
+    /// This widget displays [child] when zero drags are under way. If
+    /// [childWhenDragging] is non-null, this widget instead displays
+    /// [childWhenDragging] when one or more drags are underway. Otherwise, this
+    /// widget always displays [child].
+    ///
+    /// {@youtube 560 315 https://www.youtube.com/watch?v=QzA4c4QHZCY}
+    ///
+    /// See also:
+    ///
+    ///  * [DragTarget]
+    ///  * [LongPressDraggable]
+    /// </Summary>
     public class Draggable<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -481,6 +506,12 @@ namespace FlutterSDK.Widgets.Dragtarget
 
         #region methods
 
+        /// <Summary>
+        /// Creates a gesture recognizer that recognizes the start of the drag.
+        ///
+        /// Subclasses can override this function to customize when they start
+        /// recognizing a drag.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Multidrag.MultiDragGestureRecognizer<FlutterSDK.Gestures.Multidrag.MultiDragPointerState> CreateRecognizer(FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback onStart) { throw new NotImplementedException(); }
 
 
@@ -490,6 +521,9 @@ namespace FlutterSDK.Widgets.Dragtarget
     }
 
 
+    /// <Summary>
+    /// Makes its child draggable starting from long press.
+    /// </Summary>
     public class LongPressDraggable<T> : FlutterSDK.Widgets.Dragtarget.Draggable<T>
     {
         #region constructors
@@ -547,6 +581,15 @@ namespace FlutterSDK.Widgets.Dragtarget
     }
 
 
+    /// <Summary>
+    /// Represents the details when a specific pointer event occurred on
+    /// the [Draggable].
+    ///
+    /// This includes the [Velocity] at which the pointer was moving and [Offset]
+    /// when the draggable event occurred, and whether its [DragTarget] accepted it.
+    ///
+    /// Also, this is the details object for callbacks that use [DragEndCallback].
+    /// </Summary>
     public class DraggableDetails
     {
         #region constructors
@@ -570,6 +613,20 @@ namespace FlutterSDK.Widgets.Dragtarget
     }
 
 
+    /// <Summary>
+    /// A widget that receives data when a [Draggable] widget is dropped.
+    ///
+    /// When a draggable is dragged on top of a drag target, the drag target is
+    /// asked whether it will accept the data the draggable is carrying. If the user
+    /// does drop the draggable on top of the drag target (and the drag target has
+    /// indicated that it will accept the draggable's data), then the drag target is
+    /// asked to accept the draggable's data.
+    ///
+    /// See also:
+    ///
+    ///  * [Draggable]
+    ///  * [LongPressDraggable]
+    /// </Summary>
     public class DragTarget<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -695,10 +752,30 @@ namespace FlutterSDK.Widgets.Dragtarget
     }
 
 
+    /// <Summary>
+    /// Where the [Draggable] should be anchored during a drag.
+    /// </Summary>
     public enum DragAnchor
     {
 
+        /// <Summary>
+        /// Display the feedback anchored at the position of the original child. If
+        /// feedback is identical to the child, then this means the feedback will
+        /// exactly overlap the original child when the drag starts.
+        /// </Summary>
         Child,
+        /// <Summary>
+        /// Display the feedback anchored at the position of the touch that started
+        /// the drag. If feedback is identical to the child, then this means the top
+        /// left of the feedback will be under the finger when the drag starts. This
+        /// will likely not exactly overlap the original child, e.g. if the child is
+        /// big and the touch was not centered. This mode is useful when the feedback
+        /// is transformed so as to move the feedback to the left by half its width,
+        /// and up by half its width plus the height of the finger, since then it
+        /// appears as if putting the finger down makes the touch feedback appear
+        /// above the finger. (It feels weird for it to appear offset from the
+        /// original child if it's anchored to the child and not the finger.)
+        /// </Summary>
         Pointer,
     }
 

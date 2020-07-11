@@ -383,6 +383,67 @@ namespace FlutterSDK.Material.Divider
     {
     }
 
+    /// <Summary>
+    /// A thin horizontal line, with padding on either side.
+    ///
+    /// In the material design language, this represents a divider. Dividers can be
+    /// used in lists, [Drawer]s, and elsewhere to separate content.
+    ///
+    /// To create a divider between [ListTile] items, consider using
+    /// [ListTile.divideTiles], which is optimized for this case.
+    ///
+    /// The box's total height is controlled by [height]. The appropriate
+    /// padding is automatically computed from the height.
+    ///
+    /// {@tool dartpad --template=stateless_widget_scaffold}
+    ///
+    /// This sample shows how to display a Divider between an orange and blue box
+    /// inside a column. The Divider is 20 logical pixels in height and contains a
+    /// vertically centered black line that is 5 logical pixels thick. The black
+    /// line is indented by 20 logical pixels.
+    ///
+    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/divider.png)
+    ///
+    /// ```dart
+    /// Widget build(BuildContext context) {
+    ///   return Center(
+    ///     child: Column(
+    ///       children: <Widget>[
+    ///         Expanded(
+    ///           child: Container(
+    ///             color: Colors.amber,
+    ///             child: const Center(
+    ///               child: Text('Above'),
+    ///             ),
+    ///           ),
+    ///         ),
+    ///         const Divider(
+    ///           color: Colors.black,
+    ///           height: 20,
+    ///           thickness: 5,
+    ///           indent: 20,
+    ///           endIndent: 0,
+    ///         ),
+    ///         Expanded(
+    ///           child: Container(
+    ///             color: Colors.blue,
+    ///             child: const Center(
+    ///               child: Text('Below'),
+    ///             ),
+    ///           ),
+    ///         ),
+    ///       ],
+    ///     ),
+    ///   );
+    /// }
+    /// ```
+    /// {@end-tool}
+    /// See also:
+    ///
+    ///  * [PopupMenuDivider], which is the equivalent but for popup menus.
+    ///  * [ListTile.divideTiles], another approach to dividing widgets in a list.
+    ///  * <https://material.io/design/components/dividers.html>
+    /// </Summary>
     public class Divider : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors
@@ -407,6 +468,37 @@ namespace FlutterSDK.Material.Divider
 
         #region methods
 
+        /// <Summary>
+        /// Computes the [BorderSide] that represents a divider..
+        ///
+        /// If [color] is null, then [DividerThemeData.color] is used. If that is also
+        /// null, then [ThemeData.dividerColor] is used.
+        ///
+        /// If [width] is null, then [DividerThemeData.thickness] is used. If that is
+        /// also null, then this defaults to 0.0 (a hairline border).
+        ///
+        /// If [context] is null, the default color of [BorderSide] is used and the
+        /// default width of 0.0 is used.
+        ///
+        /// {@tool snippet}
+        ///
+        /// This example uses this method to create a box that has a divider above and
+        /// below it. This is sometimes useful with lists, for instance, to separate a
+        /// scrollable section from the rest of the interface.
+        ///
+        /// ```dart
+        /// DecoratedBox(
+        ///   decoration: BoxDecoration(
+        ///     border: Border(
+        ///       top: Divider.createBorderSide(context),
+        ///       bottom: Divider.createBorderSide(context),
+        ///     ),
+        ///   ),
+        ///   // child: ...
+        /// )
+        /// ```
+        /// {@end-tool}
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.BorderSide CreateBorderSide(FlutterSDK.Widgets.Framework.BuildContext context, FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double width = default(double)) { throw new NotImplementedException(); }
 
 
@@ -416,6 +508,21 @@ namespace FlutterSDK.Material.Divider
     }
 
 
+    /// <Summary>
+    /// A thin vertical line, with padding on either side.
+    ///
+    /// In the material design language, this represents a divider. Vertical
+    /// dividers can be used in horizontally scrolling lists, such as a
+    /// [ListView] with [ListView.scrollDirection] set to [Axis.horizontal].
+    ///
+    /// The box's total width is controlled by [width]. The appropriate
+    /// padding is automatically computed from the width.
+    ///
+    /// See also:
+    ///
+    ///  * [ListView.separated], which can be used to generate vertical dividers.
+    ///  * <https://material.io/design/components/dividers.html>
+    /// </Summary>
     public class VerticalDivider : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors

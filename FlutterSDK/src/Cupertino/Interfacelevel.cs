@@ -297,6 +297,23 @@ namespace FlutterSDK.Cupertino.Interfacelevel
     {
     }
 
+    /// <Summary>
+    /// Establishes a subtree in which [CupertinoUserInterfaceLevel.of] resolves to
+    /// the given data.
+    ///
+    /// Querying the current elevation status using [CupertinoUserInterfaceLevel.of]
+    /// will cause your widget to rebuild automatically whenever the [CupertinoUserInterfaceLevelData]
+    /// changes.
+    ///
+    /// If no [CupertinoUserInterfaceLevel] is in scope then the [CupertinoUserInterfaceLevel.of]
+    /// method will throw an exception, unless the `nullOk` argument is set to true,
+    /// in which case it returns null.
+    ///
+    /// See also:
+    ///
+    ///  * [CupertinoUserInterfaceLevelData], specifies the visual level for the content
+    ///    in the subtree [CupertinoUserInterfaceLevel] established.
+    /// </Summary>
     public class CupertinoUserInterfaceLevel : FlutterSDK.Widgets.Framework.InheritedWidget
     {
         #region constructors
@@ -317,6 +334,14 @@ namespace FlutterSDK.Cupertino.Interfacelevel
         public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The data from the closest instance of this class that encloses the given
+        /// context.
+        ///
+        /// You can use this function to query the user interface elevation level within
+        /// the given [BuildContext]. When that information changes, your widget will
+        /// be scheduled to be rebuilt, keeping your widget up-to-date.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Interfacelevel.CupertinoUserInterfaceLevelData Of(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false) { throw new NotImplementedException(); }
 
 
@@ -326,10 +351,24 @@ namespace FlutterSDK.Cupertino.Interfacelevel
     }
 
 
+    /// <Summary>
+    /// Indicates the visual level for a piece of content. Equivalent to `UIUserInterfaceLevel`
+    /// from `UIKit`.
+    ///
+    /// See also:
+    ///
+    ///  * `UIUserInterfaceLevel`, the UIKit equivalent: https://developer.apple.com/documentation/uikit/uiuserinterfacelevel.
+    /// </Summary>
     public enum CupertinoUserInterfaceLevelData
     {
 
+        /// <Summary>
+        /// The level for your window's main content.
+        /// </Summary>
         @Base,
+        /// <Summary>
+        /// The level for content visually above [base].
+        /// </Summary>
         Elevated,
     }
 

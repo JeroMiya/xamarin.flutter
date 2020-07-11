@@ -427,6 +427,14 @@ namespace FlutterSDK.Physics.Frictionsimulation
     {
     }
 
+    /// <Summary>
+    /// A simulation that applies a drag to slow a particle down.
+    ///
+    /// Models a particle affected by fluid drag, e.g. air resistance.
+    ///
+    /// The simulation ends when the velocity of the particle drops to zero (within
+    /// the current velocity [tolerance]).
+    /// </Summary>
     public class FrictionSimulation : FlutterSDK.Physics.Simulation.Simulation
     {
         #region constructors
@@ -460,6 +468,11 @@ namespace FlutterSDK.Physics.Frictionsimulation
         public new double Dx(double time) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The time at which the value of `x(time)` will equal [x].
+        ///
+        /// Returns `double.infinity` if the simulation will never reach [x].
+        /// </Summary>
         public virtual double TimeAtX(double x) { throw new NotImplementedException(); }
 
 
@@ -469,6 +482,10 @@ namespace FlutterSDK.Physics.Frictionsimulation
     }
 
 
+    /// <Summary>
+    /// A [FrictionSimulation] that clamps the modeled particle to a specific range
+    /// of values.
+    /// </Summary>
     public class BoundedFrictionSimulation : FlutterSDK.Physics.Frictionsimulation.FrictionSimulation
     {
         #region constructors

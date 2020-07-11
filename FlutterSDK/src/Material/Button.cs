@@ -368,6 +368,18 @@ namespace FlutterSDK.Material.Button
     {
     }
 
+    /// <Summary>
+    /// Creates a button based on [Semantics], [Material], and [InkWell]
+    /// widgets.
+    ///
+    /// This class does not use the current [Theme] or [ButtonTheme] to
+    /// compute default values for unspecified parameters. It's intended to
+    /// be used for custom Material buttons that optionally incorporate defaults
+    /// from the themes or from app-specific sources.
+    ///
+    /// [RaisedButton] and [FlatButton] configure a [RawMaterialButton] based
+    /// on the current [Theme] and [ButtonTheme].
+    /// </Summary>
     public class RawMaterialButton : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -480,6 +492,13 @@ namespace FlutterSDK.Material.Button
     }
 
 
+    /// <Summary>
+    /// A widget to pad the area around a [MaterialButton]'s inner [Material].
+    ///
+    /// Redirect taps that occur in the padded area around the child to the center
+    /// of the child. This increases the size of the button and the button's
+    /// "tap target", but not its material or its ink splashes.
+    /// </Summary>
     public class _InputPadding : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
         #region constructors

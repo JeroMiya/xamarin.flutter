@@ -398,6 +398,24 @@ namespace FlutterSDK.Material.Pagetransitionstheme
     {
     }
 
+    /// <Summary>
+    /// Used by [PageTransitionsTheme] to define a [MaterialPageRoute] page
+    /// transition animation.
+    ///
+    /// Apps can configure the map of builders for [ThemeData.pageTransitionsTheme]
+    /// to customize the default [MaterialPageRoute] page transition animation
+    /// for different platforms.
+    ///
+    /// See also:
+    ///
+    ///  * [FadeUpwardsPageTransitionsBuilder], which defines a default page transition.
+    ///  * [OpenUpwardsPageTransitionsBuilder], which defines a page transition
+    ///    that's similar to the one provided by Android P.
+    ///  * [ZoomPageTransitionsBuilder], which defines a page transition similar
+    ///    to the one provided in Android 10.
+    ///  * [CupertinoPageTransitionsBuilder], which defines a horizontal page
+    ///    transition that matches native iOS page transitions.
+    /// </Summary>
     public interface IPageTransitionsBuilder
     {
         FlutterSDK.Widgets.Framework.Widget BuildTransitions<T>(FlutterSDK.Widgets.Pages.PageRoute<T> route, FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child);
@@ -515,6 +533,24 @@ namespace FlutterSDK.Material.Pagetransitionstheme
     }
 
 
+    /// <Summary>
+    /// Used by [PageTransitionsTheme] to define a [MaterialPageRoute] page
+    /// transition animation.
+    ///
+    /// Apps can configure the map of builders for [ThemeData.pageTransitionsTheme]
+    /// to customize the default [MaterialPageRoute] page transition animation
+    /// for different platforms.
+    ///
+    /// See also:
+    ///
+    ///  * [FadeUpwardsPageTransitionsBuilder], which defines a default page transition.
+    ///  * [OpenUpwardsPageTransitionsBuilder], which defines a page transition
+    ///    that's similar to the one provided by Android P.
+    ///  * [ZoomPageTransitionsBuilder], which defines a page transition similar
+    ///    to the one provided in Android 10.
+    ///  * [CupertinoPageTransitionsBuilder], which defines a horizontal page
+    ///    transition that matches native iOS page transitions.
+    /// </Summary>
     public class PageTransitionsBuilder
     {
         #region constructors
@@ -529,12 +565,37 @@ namespace FlutterSDK.Material.Pagetransitionstheme
 
         #region methods
 
+        /// <Summary>
+        /// Wraps the child with one or more transition widgets which define how [route]
+        /// arrives on and leaves the screen.
+        ///
+        /// The [MaterialPageRoute.buildTransitions] method looks up the current
+        /// current [PageTransitionsTheme] with `Theme.of(context).pageTransitionsTheme`
+        /// and delegates to this method with a [PageTransitionsBuilder] based
+        /// on the theme's [ThemeData.platform].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget BuildTransitions<T>(FlutterSDK.Widgets.Pages.PageRoute<T> route, FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// Used by [PageTransitionsTheme] to define a default [MaterialPageRoute] page
+    /// transition animation.
+    ///
+    /// The default animation fades the new page in while translating it upwards,
+    /// starting from about 25% below the top of the screen.
+    ///
+    /// See also:
+    ///
+    ///  * [OpenUpwardsPageTransitionsBuilder], which defines a page transition
+    ///    that's similar to the one provided by Android P.
+    ///  * [ZoomPageTransitionsBuilder], which defines a page transition similar
+    ///    to the one provided in Android 10.
+    ///  * [CupertinoPageTransitionsBuilder], which defines a horizontal page
+    ///    transition that matches native iOS page transitions.
+    /// </Summary>
     public class FadeUpwardsPageTransitionsBuilder : FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder
     {
         #region constructors
@@ -555,6 +616,19 @@ namespace FlutterSDK.Material.Pagetransitionstheme
     }
 
 
+    /// <Summary>
+    /// Used by [PageTransitionsTheme] to define a vertical [MaterialPageRoute] page
+    /// transition animation that looks like the default page transition
+    /// used on Android P.
+    ///
+    /// See also:
+    ///
+    ///  * [FadeUpwardsPageTransitionsBuilder], which defines a default page transition.
+    ///  * [ZoomPageTransitionsBuilder], which defines a page transition similar
+    ///    to the one provided in Android 10.
+    ///  * [CupertinoPageTransitionsBuilder], which defines a horizontal page
+    ///    transition that matches native iOS page transitions.
+    /// </Summary>
     public class OpenUpwardsPageTransitionsBuilder : FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder
     {
         #region constructors
@@ -575,6 +649,19 @@ namespace FlutterSDK.Material.Pagetransitionstheme
     }
 
 
+    /// <Summary>
+    /// Used by [PageTransitionsTheme] to define a zooming [MaterialPageRoute] page
+    /// transition animation that looks like the default page transition used on
+    /// Android 10.
+    ///
+    /// See also:
+    ///
+    ///  * [FadeUpwardsPageTransitionsBuilder], which defines a default page transition.
+    ///  * [OpenUpwardsPageTransitionsBuilder], which defines a page transition
+    ///    similar to the one provided by Android P.
+    ///  * [CupertinoPageTransitionsBuilder], which defines a horizontal page
+    ///    transition that matches native iOS page transitions.
+    /// </Summary>
     public class ZoomPageTransitionsBuilder : FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder
     {
         #region constructors
@@ -595,6 +682,18 @@ namespace FlutterSDK.Material.Pagetransitionstheme
     }
 
 
+    /// <Summary>
+    /// Used by [PageTransitionsTheme] to define a horizontal [MaterialPageRoute]
+    /// page transition animation that matches native iOS page transitions.
+    ///
+    /// See also:
+    ///
+    ///  * [FadeUpwardsPageTransitionsBuilder], which defines a default page transition.
+    ///  * [OpenUpwardsPageTransitionsBuilder], which defines a page transition
+    ///    that's similar to the one provided by Android P.
+    ///  * [ZoomPageTransitionsBuilder], which defines a page transition similar
+    ///    to the one provided in Android 10.
+    /// </Summary>
     public class CupertinoPageTransitionsBuilder : FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder
     {
         #region constructors
@@ -615,6 +714,27 @@ namespace FlutterSDK.Material.Pagetransitionstheme
     }
 
 
+    /// <Summary>
+    /// Defines the page transition animations used by [MaterialPageRoute]
+    /// for different [TargetPlatform]s.
+    ///
+    /// The [MaterialPageRoute.buildTransitions] method looks up the current
+    /// current [PageTransitionsTheme] with `Theme.of(context).pageTransitionsTheme`
+    /// and delegates to [buildTransitions].
+    ///
+    /// If a builder with a matching platform is not found, then the
+    /// [FadeUpwardsPageTransitionsBuilder] is used.
+    ///
+    /// See also:
+    ///
+    ///  * [ThemeData.pageTransitionsTheme], which defines the default page
+    ///    transitions for the overall theme.
+    ///  * [FadeUpwardsPageTransitionsBuilder], which defines a default page transition.
+    ///  * [OpenUpwardsPageTransitionsBuilder], which defines a page transition
+    ///    that's similar to the one provided by Android P.
+    ///  * [CupertinoPageTransitionsBuilder], which defines a horizontal page
+    ///    transition that matches native iOS page transitions.
+    /// </Summary>
     public class PageTransitionsTheme : IDiagnosticable
     {
         #region constructors
@@ -634,6 +754,12 @@ namespace FlutterSDK.Material.Pagetransitionstheme
 
         #region methods
 
+        /// <Summary>
+        /// Delegates to the builder for the current [ThemeData.platform]
+        /// or [FadeUpwardsPageTransitionsBuilder].
+        ///
+        /// [MaterialPageRoute.buildTransitions] delegates to this method.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget BuildTransitions<T>(FlutterSDK.Widgets.Pages.PageRoute<T> route, FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
 
 

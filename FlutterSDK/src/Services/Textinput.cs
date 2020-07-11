@@ -448,6 +448,13 @@ namespace FlutterSDK.Services.Textinput
 
     }
 
+    /// <Summary>
+    /// An interface to receive information from [TextInput].
+    ///
+    /// See also:
+    ///
+    ///  * [TextInput.attach]
+    /// </Summary>
     public interface ITextInputClient
     {
         void UpdateEditingValue(FlutterSDK.Services.Textinput.TextEditingValue value);
@@ -468,9 +475,16 @@ namespace FlutterSDK.Services.Textinput
         public virtual bool PasteEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool SelectAllEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
+        /// <Summary>
+        /// Hides the text selection toolbar.
+        /// </Summary>
         public virtual void HideToolbar() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Brings the provided [TextPosition] into the visible area of the text
+        /// input.
+        /// </Summary>
         public virtual void BringIntoView(TextPosition position) { throw new NotImplementedException(); }
 
     }
@@ -496,6 +510,15 @@ namespace FlutterSDK.Services.Textinput
     }
 
 
+    /// <Summary>
+    /// The type of information for which to optimize the text input control.
+    ///
+    /// On Android, behavior may vary across device and keyboard provider.
+    ///
+    /// This class stays as close to [Enum] interface as possible, and allows
+    /// for additional flags for some input types. For example, numeric input
+    /// can specify whether it supports decimal numbers and/or signed numbers.
+    /// </Summary>
     public class TextInputType
     {
         #region constructors
@@ -531,6 +554,9 @@ namespace FlutterSDK.Services.Textinput
 
         #region methods
 
+        /// <Summary>
+        /// Returns a representation of this object as a JSON object.
+        /// </Summary>
         public virtual Dictionary<string, object> ToJson() { throw new NotImplementedException(); }
 
 
@@ -541,6 +567,24 @@ namespace FlutterSDK.Services.Textinput
     }
 
 
+    /// <Summary>
+    /// Controls the visual appearance of the text input control.
+    ///
+    /// Many [TextInputAction]s are common between Android and iOS. However, if an
+    /// [inputAction] is provided that is not supported by the current
+    /// platform in debug mode, an error will be thrown when the corresponding
+    /// text input is attached. For example, providing iOS's "emergencyCall"
+    /// action when running on an Android device will result in an error when in
+    /// debug mode. In release mode, incompatible [TextInputAction]s are replaced
+    /// either with "unspecified" on Android, or "default" on iOS. Appropriate
+    /// [inputAction]s can be chosen by checking the current platform and then
+    /// selecting the appropriate action.
+    ///
+    /// See also:
+    ///
+    ///  * [TextInput.attach]
+    ///  * [TextInputAction]
+    /// </Summary>
     public class TextInputConfiguration
     {
         #region constructors
@@ -573,12 +617,18 @@ namespace FlutterSDK.Services.Textinput
 
         #region methods
 
+        /// <Summary>
+        /// Returns a representation of this object as a JSON object.
+        /// </Summary>
         public virtual Dictionary<string, object> ToJson() { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// The current state and position of the floating cursor.
+    /// </Summary>
     public class RawFloatingCursorPoint
     {
         #region constructors
@@ -600,6 +650,9 @@ namespace FlutterSDK.Services.Textinput
     }
 
 
+    /// <Summary>
+    /// The current text, selection, and composing state for editing a run of text.
+    /// </Summary>
     public class TextEditingValue
     {
         #region constructors
@@ -626,9 +679,15 @@ namespace FlutterSDK.Services.Textinput
 
         #region methods
 
+        /// <Summary>
+        /// Returns a representation of this object as a JSON object.
+        /// </Summary>
         public virtual Dictionary<string, object> ToJSON() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Creates a copy of this value but with the given fields replaced with the new values.
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.TextEditingValue CopyWith(string text = default(string), FlutterSDK.Services.Textediting.TextSelection selection = default(FlutterSDK.Services.Textediting.TextSelection), TextRange composing = default(TextRange)) { throw new NotImplementedException(); }
 
 
@@ -639,6 +698,13 @@ namespace FlutterSDK.Services.Textinput
     }
 
 
+    /// <Summary>
+    /// An interface to receive information from [TextInput].
+    ///
+    /// See also:
+    ///
+    ///  * [TextInput.attach]
+    /// </Summary>
     public class TextInputClient
     {
         #region constructors
@@ -654,21 +720,42 @@ namespace FlutterSDK.Services.Textinput
 
         #region methods
 
+        /// <Summary>
+        /// Requests that this client update its editing state to the given value.
+        /// </Summary>
         public virtual void UpdateEditingValue(FlutterSDK.Services.Textinput.TextEditingValue value) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Requests that this client perform the given action.
+        /// </Summary>
         public virtual void PerformAction(FlutterSDK.Services.Textinput.TextInputAction action) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Updates the floating cursor position and state.
+        /// </Summary>
         public virtual void UpdateFloatingCursor(FlutterSDK.Services.Textinput.RawFloatingCursorPoint point) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Platform notified framework of closed connection.
+        ///
+        /// [TextInputClient] should cleanup its connection and finalize editing.
+        /// </Summary>
         public virtual void ConnectionClosed() { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// An interface for interacting with a text input control.
+    ///
+    /// See also:
+    ///
+    ///  * [TextInput.attach]
+    /// </Summary>
     public class TextInputConnection
     {
         #region constructors
@@ -690,30 +777,74 @@ namespace FlutterSDK.Services.Textinput
 
         #region methods
 
+        /// <Summary>
+        /// Resets the internal ID counter for testing purposes.
+        ///
+        /// This call has no effect when asserts are disabled. Calling it from
+        /// application code will likely break text input for the application.
+        /// </Summary>
         public virtual void DebugResetId(int to = 1) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Requests that the text input control become visible.
+        /// </Summary>
         public virtual void Show() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Requests that the text input control change its internal state to match the given state.
+        /// </Summary>
         public virtual void SetEditingState(FlutterSDK.Services.Textinput.TextEditingValue value) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Send the size and transform of the editable text to engine.
+        ///
+        /// The values are sent as platform messages so they can be used on web for
+        /// example to correctly position and size the html input field.
+        ///
+        /// 1. [editableBoxSize]: size of the render editable box.
+        ///
+        /// 2. [transform]: a matrix that maps the local paint coordinate system
+        ///                 to the [PipelineOwner.rootNode].
+        /// </Summary>
         public virtual void SetEditableSizeAndTransform(Size editableBoxSize, Matrix4 transform) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Send text styling information.
+        ///
+        /// This information is used by the Flutter Web Engine to change the style
+        /// of the hidden native input's content. Hence, the content size will match
+        /// to the size of the editable widget's content.
+        /// </Summary>
         public virtual void SetStyle(string fontFamily = default(string), double fontSize = default(double), FontWeight fontWeight = default(FontWeight), TextDirection textDirection = default(TextDirection), TextAlign textAlign = default(TextAlign)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Stop interacting with the text input control.
+        ///
+        /// After calling this method, the text input control might disappear if no
+        /// other client attaches to it within this animation frame.
+        /// </Summary>
         public virtual void Close() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Platform sent a notification informing the connection is closed.
+        ///
+        /// [TextInputConnection] should clean current client connection.
+        /// </Summary>
         public virtual void ConnectionClosedReceived() { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// An interface to the system's text input control.
+    /// </Summary>
     public class TextInput
     {
         #region constructors
@@ -735,12 +866,37 @@ namespace FlutterSDK.Services.Textinput
 
         #region methods
 
+        /// <Summary>
+        /// Set the [MethodChannel] used to communicate with the system's text input
+        /// control.
+        ///
+        /// This is only meant for testing within the Flutter SDK. Changing this
+        /// will break the ability to input text. This has no effect if asserts are
+        /// disabled.
+        /// </Summary>
         public virtual void SetChannel(FlutterSDK.Services.Platformchannel.MethodChannel newChannel) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Begin interacting with the text input control.
+        ///
+        /// Calling this function helps multiple clients coordinate about which one is
+        /// currently interacting with the text input control. The returned
+        /// [TextInputConnection] provides an interface for actually interacting with
+        /// the text input control.
+        ///
+        /// A client that no longer wishes to interact with the text input control
+        /// should call [TextInputConnection.close] on the returned
+        /// [TextInputConnection].
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.TextInputConnection Attach(FlutterSDK.Services.Textinput.TextInputClient client, FlutterSDK.Services.Textinput.TextInputConfiguration configuration) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// This method actually notifies the embedding of the client. It is utilized
+        /// by [attach] and by [_handleTextInputInvocation] for the
+        /// `TextInputClient.requestExistingInputState` method.
+        /// </Summary>
         private void _Attach(FlutterSDK.Services.Textinput.TextInputConnection connection, FlutterSDK.Services.Textinput.TextInputConfiguration configuration) { throw new NotImplementedException(); }
 
 
@@ -771,56 +927,325 @@ namespace FlutterSDK.Services.Textinput
     }
 
 
+    /// <Summary>
+    /// Indicates how to handle the intelligent replacement of dashes in text input.
+    ///
+    /// See also:
+    ///
+    ///  * [TextField.smartDashesType]
+    ///  * [TextFormField.smartDashesType]
+    ///  * [CupertinoTextField.smartDashesType]
+    ///  * [EditableText.smartDashesType]
+    ///  * [SmartQuotesType]
+    ///  * <https://developer.apple.com/documentation/uikit/uitextinputtraits>
+    /// </Summary>
     public enum SmartDashesType
     {
 
+        /// <Summary>
+        /// Smart dashes is disabled.
+        ///
+        /// This corresponds to the
+        /// ["no" value of UITextSmartDashesType](https://developer.apple.com/documentation/uikit/uitextsmartdashestype/no).
+        /// </Summary>
         Disabled,
+        /// <Summary>
+        /// Smart dashes is enabled.
+        ///
+        /// This corresponds to the
+        /// ["yes" value of UITextSmartDashesType](https://developer.apple.com/documentation/uikit/uitextsmartdashestype/yes).
+        /// </Summary>
         Enabled,
     }
 
 
+    /// <Summary>
+    /// Indicates how to handle the intelligent replacement of quotes in text input.
+    ///
+    /// See also:
+    ///
+    ///  * [TextField.smartQuotesType]
+    ///  * [TextFormField.smartQuotesType]
+    ///  * [CupertinoTextField.smartQuotesType]
+    ///  * [EditableText.smartQuotesType]
+    ///  * [SmartDashesType]
+    ///  * <https://developer.apple.com/documentation/uikit/uitextinputtraits>
+    /// </Summary>
     public enum SmartQuotesType
     {
 
+        /// <Summary>
+        /// Smart quotes is disabled.
+        ///
+        /// This corresponds to the
+        /// ["no" value of UITextSmartQuotesType](https://developer.apple.com/documentation/uikit/uitextsmartquotestype/no).
+        /// </Summary>
         Disabled,
+        /// <Summary>
+        /// Smart quotes is enabled.
+        ///
+        /// This corresponds to the
+        /// ["yes" value of UITextSmartQuotesType](https://developer.apple.com/documentation/uikit/uitextsmartquotestype/yes).
+        /// </Summary>
         Enabled,
     }
 
 
+    /// <Summary>
+    /// An action the user has requested the text input control to perform.
+    ///
+    /// Each action represents a logical meaning, and also configures the soft
+    /// keyboard to display a certain kind of action button. The visual appearance
+    /// of the action button might differ between versions of the same OS.
+    ///
+    /// Despite the logical meaning of each action, choosing a particular
+    /// [TextInputAction] does not necessarily cause any specific behavior to
+    /// happen. It is up to the developer to ensure that the behavior that occurs
+    /// when an action button is pressed is appropriate for the action button chosen.
+    ///
+    /// For example: If the user presses the keyboard action button on iOS when it
+    /// reads "Emergency Call", the result should not be a focus change to the next
+    /// TextField. This behavior is not logically appropriate for a button that says
+    /// "Emergency Call".
+    ///
+    /// See [EditableText] for more information about customizing action button
+    /// behavior.
+    ///
+    /// Most [TextInputAction]s are supported equally by both Android and iOS.
+    /// However, there is not a complete, direct mapping between Android's IME input
+    /// types and iOS's keyboard return types. Therefore, some [TextInputAction]s
+    /// are inappropriate for one of the platforms. If a developer chooses an
+    /// inappropriate [TextInputAction] when running in debug mode, an error will be
+    /// thrown. If the same thing is done in release mode, then instead of sending
+    /// the inappropriate value, Android will use "unspecified" on the platform
+    /// side and iOS will use "default" on the platform side.
+    ///
+    /// See also:
+    ///
+    ///  * [TextInput], which configures the platform's keyboard setup.
+    ///  * [EditableText], which invokes callbacks when the action button is pressed.
+    /// </Summary>
     public enum TextInputAction
     {
 
+        /// <Summary>
+        /// Logical meaning: There is no relevant input action for the current input
+        /// source, e.g., [TextField].
+        ///
+        /// Android: Corresponds to Android's "IME_ACTION_NONE". The keyboard setup
+        /// is decided by the OS. The keyboard will likely show a return key.
+        ///
+        /// iOS: iOS does not have a keyboard return type of "none." It is
+        /// inappropriate to choose this [TextInputAction] when running on iOS.
+        /// </Summary>
         None,
+        /// <Summary>
+        /// Logical meaning: Let the OS decide which action is most appropriate.
+        ///
+        /// Android: Corresponds to Android's "IME_ACTION_UNSPECIFIED". The OS chooses
+        /// which keyboard action to display. The decision will likely be a done
+        /// button or a return key.
+        ///
+        /// iOS: Corresponds to iOS's "UIReturnKeyDefault". The title displayed in
+        /// the action button is "return".
+        /// </Summary>
         Unspecified,
+        /// <Summary>
+        /// Logical meaning: The user is done providing input to a group of inputs
+        /// (like a form). Some kind of finalization behavior should now take place.
+        ///
+        /// Android: Corresponds to Android's "IME_ACTION_DONE". The OS displays a
+        /// button that represents completion, e.g., a checkmark button.
+        ///
+        /// iOS: Corresponds to iOS's "UIReturnKeyDone". The title displayed in the
+        /// action button is "Done".
+        /// </Summary>
         Done,
+        /// <Summary>
+        /// Logical meaning: The user has entered some text that represents a
+        /// destination, e.g., a restaurant name. The "go" button is intended to take
+        /// the user to a part of the app that corresponds to this destination.
+        ///
+        /// Android: Corresponds to Android's "IME_ACTION_GO". The OS displays a
+        /// button that represents taking "the user to the target of the text they
+        /// typed", e.g., a right-facing arrow button.
+        ///
+        /// iOS: Corresponds to iOS's "UIReturnKeyGo". The title displayed in the
+        /// action button is "Go".
+        /// </Summary>
         Go,
+        /// <Summary>
+        /// Logical meaning: Execute a search query.
+        ///
+        /// Android: Corresponds to Android's "IME_ACTION_SEARCH". The OS displays a
+        /// button that represents a search, e.g., a magnifying glass button.
+        ///
+        /// iOS: Corresponds to iOS's "UIReturnKeySearch". The title displayed in the
+        /// action button is "Search".
+        /// </Summary>
         Search,
+        /// <Summary>
+        /// Logical meaning: Sends something that the user has composed, e.g., an
+        /// email or a text message.
+        ///
+        /// Android: Corresponds to Android's "IME_ACTION_SEND". The OS displays a
+        /// button that represents sending something, e.g., a paper plane button.
+        ///
+        /// iOS: Corresponds to iOS's "UIReturnKeySend". The title displayed in the
+        /// action button is "Send".
+        /// </Summary>
         Send,
+        /// <Summary>
+        /// Logical meaning: The user is done with the current input source and wants
+        /// to move to the next one.
+        ///
+        /// Android: Corresponds to Android's "IME_ACTION_NEXT". The OS displays a
+        /// button that represents moving forward, e.g., a right-facing arrow button.
+        ///
+        /// iOS: Corresponds to iOS's "UIReturnKeyNext". The title displayed in the
+        /// action button is "Next".
+        /// </Summary>
         Next,
+        /// <Summary>
+        /// Logical meaning: The user wishes to return to the previous input source
+        /// in the group, e.g., a form with multiple [TextField]s.
+        ///
+        /// Android: Corresponds to Android's "IME_ACTION_PREVIOUS". The OS displays a
+        /// button that represents moving backward, e.g., a left-facing arrow button.
+        ///
+        /// iOS: iOS does not have a keyboard return type of "previous." It is
+        /// inappropriate to choose this [TextInputAction] when running on iOS.
+        /// </Summary>
         Previous,
+        /// <Summary>
+        /// Logical meaning: In iOS apps, it is common for a "Back" button and
+        /// "Continue" button to appear at the top of the screen. However, when the
+        /// keyboard is open, these buttons are often hidden off-screen. Therefore,
+        /// the purpose of the "Continue" return key on iOS is to make the "Continue"
+        /// button available when the user is entering text.
+        ///
+        /// Historical context aside, [TextInputAction.continueAction] can be used any
+        /// time that the term "Continue" seems most appropriate for the given action.
+        ///
+        /// Android: Android does not have an IME input type of "continue." It is
+        /// inappropriate to choose this [TextInputAction] when running on Android.
+        ///
+        /// iOS: Corresponds to iOS's "UIReturnKeyContinue". The title displayed in the
+        /// action button is "Continue". This action is only available on iOS 9.0+.
+        ///
+        /// The reason that this value has "Action" post-fixed to it is because
+        /// "continue" is a reserved word in Dart, as well as many other languages.
+        /// </Summary>
         ContinueAction,
+        /// <Summary>
+        /// Logical meaning: The user wants to join something, e.g., a wireless
+        /// network.
+        ///
+        /// Android: Android does not have an IME input type of "join." It is
+        /// inappropriate to choose this [TextInputAction] when running on Android.
+        ///
+        /// iOS: Corresponds to iOS's "UIReturnKeyJoin". The title displayed in the
+        /// action button is "Join".
+        /// </Summary>
         Join,
+        /// <Summary>
+        /// Logical meaning: The user wants routing options, e.g., driving directions.
+        ///
+        /// Android: Android does not have an IME input type of "route." It is
+        /// inappropriate to choose this [TextInputAction] when running on Android.
+        ///
+        /// iOS: Corresponds to iOS's "UIReturnKeyRoute". The title displayed in the
+        /// action button is "Route".
+        /// </Summary>
         Route,
+        /// <Summary>
+        /// Logical meaning: Initiate a call to emergency services.
+        ///
+        /// Android: Android does not have an IME input type of "emergencyCall." It is
+        /// inappropriate to choose this [TextInputAction] when running on Android.
+        ///
+        /// iOS: Corresponds to iOS's "UIReturnKeyEmergencyCall". The title displayed
+        /// in the action button is "Emergency Call".
+        /// </Summary>
         EmergencyCall,
+        /// <Summary>
+        /// Logical meaning: Insert a newline character in the focused text input,
+        /// e.g., [TextField].
+        ///
+        /// Android: Corresponds to Android's "IME_ACTION_NONE". The OS displays a
+        /// button that represents a new line, e.g., a carriage return button.
+        ///
+        /// iOS: Corresponds to iOS's "UIReturnKeyDefault". The title displayed in the
+        /// action button is "return".
+        ///
+        /// The term [TextInputAction.newline] exists in Flutter but not in Android
+        /// or iOS. The reason for introducing this term is so that developers can
+        /// achieve the common result of inserting new lines without needing to
+        /// understand the various IME actions on Android and return keys on iOS.
+        /// Thus, [TextInputAction.newline] is a convenience term that alleviates the
+        /// need to understand the underlying platforms to achieve this common behavior.
+        /// </Summary>
         Newline,
     }
 
 
+    /// <Summary>
+    /// Configures how the platform keyboard will select an uppercase or
+    /// lowercase keyboard.
+    ///
+    /// Only supports text keyboards, other keyboard types will ignore this
+    /// configuration. Capitalization is locale-aware.
+    /// </Summary>
     public enum TextCapitalization
     {
 
+        /// <Summary>
+        /// Defaults to an uppercase keyboard for the first letter of each word.
+        ///
+        /// Corresponds to `InputType.TYPE_TEXT_FLAG_CAP_WORDS` on Android, and
+        /// `UITextAutocapitalizationTypeWords` on iOS.
+        /// </Summary>
         Words,
+        /// <Summary>
+        /// Defaults to an uppercase keyboard for the first letter of each sentence.
+        ///
+        /// Corresponds to `InputType.TYPE_TEXT_FLAG_CAP_SENTENCES` on Android, and
+        /// `UITextAutocapitalizationTypeSentences` on iOS.
+        /// </Summary>
         Sentences,
+        /// <Summary>
+        /// Defaults to an uppercase keyboard for each character.
+        ///
+        /// Corresponds to `InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS` on Android, and
+        /// `UITextAutocapitalizationTypeAllCharacters` on iOS.
+        /// </Summary>
         Characters,
+        /// <Summary>
+        /// Defaults to a lowercase keyboard.
+        /// </Summary>
         None,
     }
 
 
+    /// <Summary>
+    /// A floating cursor state the user has induced by force pressing an iOS
+    /// keyboard.
+    /// </Summary>
     public enum FloatingCursorDragState
     {
 
+        /// <Summary>
+        /// A user has just activated a floating cursor.
+        /// </Summary>
         Start,
+        /// <Summary>
+        /// A user is dragging a floating cursor.
+        /// </Summary>
         Update,
+        /// <Summary>
+        /// A user has lifted their finger off the screen after using a floating
+        /// cursor.
+        /// </Summary>
         End,
     }
 

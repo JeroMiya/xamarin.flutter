@@ -427,6 +427,10 @@ namespace FlutterSDK.Physics.Tolerance
     {
     }
 
+    /// <Summary>
+    /// Structure that specifies maximum allowable magnitudes for distances,
+    /// durations, and velocity differences to be considered equal.
+    /// </Summary>
     public class Tolerance
     {
         #region constructors

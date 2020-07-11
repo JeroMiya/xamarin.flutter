@@ -401,6 +401,20 @@ namespace FlutterSDK.Material.Paginateddatatable
     {
     }
 
+    /// <Summary>
+    /// A material design data table that shows data using multiple pages.
+    ///
+    /// A paginated data table shows [rowsPerPage] rows of data per page and
+    /// provides controls for showing other pages.
+    ///
+    /// Data is read lazily from from a [DataTableSource]. The widget is presented
+    /// as a [Card].
+    ///
+    /// See also:
+    ///
+    ///  * [DataTable], which is not paginated.
+    ///  * <https://material.io/go/design-data-tables#data-tables-tables-within-cards>
+    /// </Summary>
     public class PaginatedDataTable : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -458,6 +472,11 @@ namespace FlutterSDK.Material.Paginateddatatable
     }
 
 
+    /// <Summary>
+    /// Holds the state of a [PaginatedDataTable].
+    ///
+    /// The table can be programmatically paged using the [pageTo] method.
+    /// </Summary>
     public class PaginatedDataTableState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Paginateddatatable.PaginatedDataTable>
     {
         #region constructors
@@ -488,6 +507,9 @@ namespace FlutterSDK.Material.Paginateddatatable
         private void _HandleDataSourceChanged() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Ensures that the given row is visible.
+        /// </Summary>
         public virtual void PageTo(int rowIndex) { throw new NotImplementedException(); }
 
 

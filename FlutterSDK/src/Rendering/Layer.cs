@@ -427,6 +427,27 @@ namespace FlutterSDK.Rendering.Layer
     {
     }
 
+    /// <Summary>
+    /// A composited layer.
+    ///
+    /// During painting, the render tree generates a tree of composited layers that
+    /// are uploaded into the engine and displayed by the compositor. This class is
+    /// the base class for all composited layers.
+    ///
+    /// Most layers can have their properties mutated, and layers can be moved to
+    /// different parents. The scene must be explicitly recomposited after such
+    /// changes are made; the layer tree does not maintain its own dirty state.
+    ///
+    /// To composite the tree, create a [SceneBuilder] object, pass it to the
+    /// root [Layer] object's [addToScene] method, and then call
+    /// [SceneBuilder.build] to obtain a [Scene]. A [Scene] can then be painted
+    /// using [Window.render].
+    ///
+    /// See also:
+    ///
+    ///  * [RenderView.compositeFrame], which implements this recomposition protocol
+    ///    for painting [RenderObject] trees on the display.
+    /// </Summary>
     public interface ILayer
     {
         void MarkNeedsAddToScene();
@@ -460,6 +481,12 @@ namespace FlutterSDK.Rendering.Layer
         public virtual Iterable<FlutterSDK.Rendering.Layer.AnnotationEntry<T>> Entries { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual Iterable<T> Annotations { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
+        /// <Summary>
+        /// Add a new entry to the end of the result.
+        ///
+        /// Usually, entries should be added in order from most specific to least
+        /// specific, typically during an upward walk of the tree.
+        /// </Summary>
         public virtual void Add(FlutterSDK.Rendering.Layer.AnnotationEntry<T> entry) { throw new NotImplementedException(); }
 
     }
@@ -506,6 +533,13 @@ namespace FlutterSDK.Rendering.Layer
     }
 
 
+    /// <Summary>
+    /// Information collected for an annotation that is found in the layer tree.
+    ///
+    /// See also:
+    ///
+    ///  * [Layer.findAnnotations], which create and use objects of this class.
+    /// </Summary>
     public class AnnotationEntry<T>
     {
         #region constructors
@@ -528,6 +562,27 @@ namespace FlutterSDK.Rendering.Layer
     }
 
 
+    /// <Summary>
+    /// A composited layer.
+    ///
+    /// During painting, the render tree generates a tree of composited layers that
+    /// are uploaded into the engine and displayed by the compositor. This class is
+    /// the base class for all composited layers.
+    ///
+    /// Most layers can have their properties mutated, and layers can be moved to
+    /// different parents. The scene must be explicitly recomposited after such
+    /// changes are made; the layer tree does not maintain its own dirty state.
+    ///
+    /// To composite the tree, create a [SceneBuilder] object, pass it to the
+    /// root [Layer] object's [addToScene] method, and then call
+    /// [SceneBuilder.build] to obtain a [Scene]. A [Scene] can then be painted
+    /// using [Window.render].
+    ///
+    /// See also:
+    ///
+    ///  * [RenderView.compositeFrame], which implements this recomposition protocol
+    ///    for painting [RenderObject] trees on the display.
+    /// </Summary>
     public class Layer : FlutterSDK.Foundation.Node.AbstractNode, IDiagnosticableTreeMixin
     {
         #region constructors
@@ -551,12 +606,32 @@ namespace FlutterSDK.Rendering.Layer
 
         #region methods
 
+        /// <Summary>
+        /// Mark that this layer has changed and [addToScene] needs to be called.
+        /// </Summary>
         public virtual void MarkNeedsAddToScene() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Mark that this layer is in sync with engine.
+        ///
+        /// This is for debugging and testing purposes only. In release builds
+        /// this method has no effect.
+        /// </Summary>
         public virtual void DebugMarkClean() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Traverses the layer subtree starting from this layer and determines whether it needs [addToScene].
+        ///
+        /// A layer needs [addToScene] if any of the following is true:
+        ///
+        /// - [alwaysNeedsAddToScene] is true.
+        /// - [markNeedsAddToScene] has been called.
+        /// - Any of its descendants need [addToScene].
+        ///
+        /// [ContainerLayer] overrides this method to recursively call it on its children.
+        /// </Summary>
         public virtual void UpdateSubtreeNeedsAddToScene() { throw new NotImplementedException(); }
 
 
@@ -566,21 +641,154 @@ namespace FlutterSDK.Rendering.Layer
         public new void AdoptChild(FlutterSDK.Foundation.Node.AbstractNode child) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Removes this layer from its parent layer's child list.
+        ///
+        /// This has no effect if the layer's parent is already null.
+        /// </Summary>
         public virtual void Remove() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Search this layer and its subtree for annotations of type `S` at the
+        /// location described by `localPosition`.
+        ///
+        /// This method is called by the default implementation of [find] and
+        /// [findAllAnnotations]. Override this method to customize how the layer
+        /// should search for annotations, or if the layer has its own annotations to
+        /// add.
+        ///
+        /// The default implementation simply returns `false`, which means neither
+        /// the layer nor its children has annotations, and the annotation search
+        /// is not absorbed either (see below for explanation).
+        ///
+        /// ## About layer annotations
+        ///
+        /// {@template flutter.rendering.layer.findAnnotations.aboutAnnotations}
+        /// An annotation is an optional object of any type that can be carried with a
+        /// layer. An annotation can be found at a location as long as the owner layer
+        /// contains the location and is walked to.
+        ///
+        /// The annotations are searched by first visiting each child recursively,
+        /// then this layer, resulting in an order from visually front to back.
+        /// Annotations must meet the given restrictions, such as type and position.
+        ///
+        /// The common way for a value to be found here is by pushing an
+        /// [AnnotatedRegionLayer] into the layer tree, or by adding the desired
+        /// annotation by overriding [findAnnotations].
+        /// {@endtemplate}
+        ///
+        /// ## Parameters and return value
+        ///
+        /// The [result] parameter is where the method outputs the resulting
+        /// annotations. New annotations found during the walk are added to the tail.
+        ///
+        /// The [onlyFirst] parameter indicates that, if true, the search will stop
+        /// when it finds the first qualified annotation; otherwise, it will walk the
+        /// entire subtree.
+        ///
+        /// The return value indicates the opacity of this layer and its subtree at
+        /// this position. If it returns true, then this layer's parent should skip
+        /// the children behind this layer. In other words, it is opaque to this type
+        /// of annotation and has absorbed the search so that its siblings behind it
+        /// are not aware of the search. If the return value is false, then the parent
+        /// might continue with other siblings.
+        ///
+        /// The return value does not affect whether the parent adds its own
+        /// annotations; in other words, if a layer is supposed to add an annotation,
+        /// it will always add it even if its children are opaque to this type of
+        /// annotation. However, the opacity that the parents return might be affected
+        /// by their children, hence making all of its ancestors opaque to this type
+        /// of annotation.
+        /// </Summary>
         public virtual bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Search this layer and its subtree for the first annotation of type `S`
+        /// under the point described by `localPosition`.
+        ///
+        /// Returns null if no matching annotations are found.
+        ///
+        /// By default this method simply calls [findAnnotations] with `onlyFirst:
+        /// true` and returns the annotation of the first result. Prefer overriding
+        /// [findAnnotations] instead of this method, because during an annotation
+        /// search, only [findAnnotations] is recursively called, while custom
+        /// behavior in this method is ignored.
+        ///
+        /// ## About layer annotations
+        ///
+        /// {@macro flutter.rendering.layer.findAnnotations.aboutAnnotations}
+        ///
+        /// See also:
+        ///
+        ///  * [findAllAnnotations], which is similar but returns all annotations found
+        ///    at the given position.
+        ///  * [AnnotatedRegionLayer], for placing values in the layer tree.
+        /// </Summary>
         public virtual S Find<S>(FlutterBinding.UI.Offset localPosition) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Search this layer and its subtree for all annotations of type `S` under
+        /// the point described by `localPosition`.
+        ///
+        /// Returns a result with empty entries if no matching annotations are found.
+        ///
+        /// By default this method simply calls [findAnnotations] with `onlyFirst:
+        /// false` and returns the annotations of its result. Prefer overriding
+        /// [findAnnotations] instead of this method, because during an annotation
+        /// search, only [findAnnotations] is recursively called, while custom
+        /// behavior in this method is ignored.
+        ///
+        /// ## About layer annotations
+        ///
+        /// {@macro flutter.rendering.layer.findAnnotations.aboutAnnotations}
+        ///
+        /// See also:
+        ///
+        ///  * [find], which is similar but returns the first annotation found at the
+        ///    given position.
+        ///  * [findAllAnnotations], which is similar but returns an
+        ///    [AnnotationResult], which contains more information, such as the local
+        ///    position of the event related to each annotation, and is equally fast,
+        ///    hence is preferred over [findAll].
+        ///  * [AnnotatedRegionLayer], for placing values in the layer tree.
+        /// </Summary>
         public virtual Iterable<S> FindAll<S>(FlutterBinding.UI.Offset localPosition) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Search this layer and its subtree for all annotations of type `S` under
+        /// the point described by `localPosition`.
+        ///
+        /// Returns a result with empty entries if no matching annotations are found.
+        ///
+        /// By default this method simply calls [findAnnotations] with `onlyFirst:
+        /// false` and returns the annotations of its result. Prefer overriding
+        /// [findAnnotations] instead of this method, because during an annotation
+        /// search, only [findAnnotations] is recursively called, while custom
+        /// behavior in this method is ignored.
+        ///
+        /// ## About layer annotations
+        ///
+        /// {@macro flutter.rendering.layer.findAnnotations.aboutAnnotations}
+        ///
+        /// See also:
+        ///
+        ///  * [find], which is similar but returns the first annotation found at the
+        ///    given position.
+        ///  * [AnnotatedRegionLayer], for placing values in the layer tree.
+        /// </Summary>
         public virtual AnnotationResult<S> FindAllAnnotations<S>(FlutterBinding.UI.Offset localPosition) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Override this method to upload this layer to the engine.
+        ///
+        /// Return the engine layer for retained rendering. When there's no
+        /// corresponding engine layer, null is returned.
+        /// </Summary>
         public virtual void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
 
@@ -596,6 +804,11 @@ namespace FlutterSDK.Rendering.Layer
     }
 
 
+    /// <Summary>
+    /// A composited layer containing a [Picture].
+    ///
+    /// Picture layers are always leaves in the layer tree.
+    /// </Summary>
     public class PictureLayer : FlutterSDK.Rendering.Layer.Layer
     {
         #region constructors
@@ -629,6 +842,34 @@ namespace FlutterSDK.Rendering.Layer
     }
 
 
+    /// <Summary>
+    /// A composited layer that maps a backend texture to a rectangle.
+    ///
+    /// Backend textures are images that can be applied (mapped) to an area of the
+    /// Flutter view. They are created, managed, and updated using a
+    /// platform-specific texture registry. This is typically done by a plugin
+    /// that integrates with host platform video player, camera, or OpenGL APIs,
+    /// or similar image sources.
+    ///
+    /// A texture layer refers to its backend texture using an integer ID. Texture
+    /// IDs are obtained from the texture registry and are scoped to the Flutter
+    /// view. Texture IDs may be reused after deregistration, at the discretion
+    /// of the registry. The use of texture IDs currently unknown to the registry
+    /// will silently result in a blank rectangle.
+    ///
+    /// Once inserted into the layer tree, texture layers are repainted autonomously
+    /// as dictated by the backend (e.g. on arrival of a video frame). Such
+    /// repainting generally does not involve executing Dart code.
+    ///
+    /// Texture layers are always leaves in the layer tree.
+    ///
+    /// See also:
+    ///
+    ///  * <https://api.flutter.dev/javadoc/io/flutter/view/TextureRegistry.html>
+    ///    for how to create and manage backend textures on Android.
+    ///  * <https://api.flutter.dev/objcdoc/Protocols/FlutterTextureRegistry.html>
+    ///    for how to create and manage backend textures on iOS.
+    /// </Summary>
     public class TextureLayer : FlutterSDK.Rendering.Layer.Layer
     {
         #region constructors
@@ -658,6 +899,10 @@ namespace FlutterSDK.Rendering.Layer
     }
 
 
+    /// <Summary>
+    /// A layer that shows an embedded [UIView](https://developer.apple.com/documentation/uikit/uiview)
+    /// on iOS.
+    /// </Summary>
     public class PlatformViewLayer : FlutterSDK.Rendering.Layer.Layer
     {
         #region constructors
@@ -687,6 +932,12 @@ namespace FlutterSDK.Rendering.Layer
     }
 
 
+    /// <Summary>
+    /// A layer that indicates to the compositor that it should display
+    /// certain performance statistics within it.
+    ///
+    /// Performance overlay layers are always leaves in the layer tree.
+    /// </Summary>
     public class PerformanceOverlayLayer : FlutterSDK.Rendering.Layer.Layer
     {
         #region constructors
@@ -720,6 +971,13 @@ namespace FlutterSDK.Rendering.Layer
     }
 
 
+    /// <Summary>
+    /// A composited layer that has a list of children.
+    ///
+    /// A [ContainerLayer] instance merely takes a list of children and inserts them
+    /// into the composited rendering in order. There are subclasses of
+    /// [ContainerLayer] which apply more elaborate effects in the process.
+    /// </Summary>
     public class ContainerLayer : FlutterSDK.Rendering.Layer.Layer
     {
         #region constructors
@@ -737,6 +995,10 @@ namespace FlutterSDK.Rendering.Layer
 
         #region methods
 
+        /// <Summary>
+        /// Consider this layer as the root and build a scene (a tree of layers)
+        /// in the engine.
+        /// </Summary>
         public virtual Scene BuildScene(SceneBuilder builder) { throw new NotImplementedException(); }
 
 
@@ -752,6 +1014,14 @@ namespace FlutterSDK.Rendering.Layer
         private List<FlutterSDK.Rendering.Layer.PictureLayer> _ProcessConflictingPhysicalLayers(FlutterSDK.Rendering.Layer.PhysicalModelLayer predecessor, FlutterSDK.Rendering.Layer.PhysicalModelLayer child) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Checks that no [PhysicalModelLayer] would paint after another overlapping
+        /// [PhysicalModelLayer] that has a higher elevation.
+        ///
+        /// Returns a list of [PictureLayer] objects it added to the tree to highlight
+        /// bad nodes. These layers should be removed from the tree after building the
+        /// [Scene].
+        /// </Summary>
         private List<FlutterSDK.Rendering.Layer.PictureLayer> _DebugCheckElevations() { throw new NotImplementedException(); }
 
 
@@ -767,24 +1037,77 @@ namespace FlutterSDK.Rendering.Layer
         public new void Detach() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Adds the given layer to the end of this layer's child list.
+        /// </Summary>
         public virtual void Append(FlutterSDK.Rendering.Layer.Layer child) { throw new NotImplementedException(); }
 
 
         private void _RemoveChild(FlutterSDK.Rendering.Layer.Layer child) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Removes all of this layer's children from its child list.
+        /// </Summary>
         public virtual void RemoveAllChildren() { throw new NotImplementedException(); }
 
 
         public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Uploads all of this layer's children to the engine.
+        ///
+        /// This method is typically used by [addToScene] to insert the children into
+        /// the scene. Subclasses of [ContainerLayer] typically override [addToScene]
+        /// to apply effects to the scene using the [SceneBuilder] API, then insert
+        /// their children using [addChildrenToScene], then reverse the aforementioned
+        /// effects before returning from [addToScene].
+        /// </Summary>
         public virtual void AddChildrenToScene(SceneBuilder builder, FlutterBinding.UI.Offset childOffset = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Applies the transform that would be applied when compositing the given
+        /// child to the given matrix.
+        ///
+        /// Specifically, this should apply the transform that is applied to child's
+        /// _origin_. When using [applyTransform] with a chain of layers, results will
+        /// be unreliable unless the deepest layer in the chain collapses the
+        /// `layerOffset` in [addToScene] to zero, meaning that it passes
+        /// [Offset.zero] to its children, and bakes any incoming `layerOffset` into
+        /// the [SceneBuilder] as (for instance) a transform (which is then also
+        /// included in the transformation applied by [applyTransform]).
+        ///
+        /// For example, if [addToScene] applies the `layerOffset` and then
+        /// passes [Offset.zero] to the children, then it should be included in the
+        /// transform applied here, whereas if [addToScene] just passes the
+        /// `layerOffset` to the child, then it should not be included in the
+        /// transform applied here.
+        ///
+        /// This method is only valid immediately after [addToScene] has been called,
+        /// before any of the properties have been changed.
+        ///
+        /// The default implementation does nothing, since [ContainerLayer], by
+        /// default, composites its children at the origin of the [ContainerLayer]
+        /// itself.
+        ///
+        /// The `child` argument should generally not be null, since in principle a
+        /// layer could transform each child independently. However, certain layers
+        /// may explicitly allow null as a value, for example if they know that they
+        /// transform all their children identically.
+        ///
+        /// The `transform` argument must not be null.
+        ///
+        /// Used by [FollowerLayer] to transform its child to a [LeaderLayer]'s
+        /// position.
+        /// </Summary>
         public virtual void ApplyTransform(FlutterSDK.Rendering.Layer.Layer child, Matrix4 transform) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the descendants of this layer in depth first order.
+        /// </Summary>
         public virtual List<FlutterSDK.Rendering.Layer.Layer> DepthFirstIterateChildren() { throw new NotImplementedException(); }
 
 
@@ -794,6 +1117,17 @@ namespace FlutterSDK.Rendering.Layer
     }
 
 
+    /// <Summary>
+    /// A layer that is displayed at an offset from its parent layer.
+    ///
+    /// Offset layers are key to efficient repainting because they are created by
+    /// repaint boundaries in the [RenderObject] tree (see
+    /// [RenderObject.isRepaintBoundary]). When a render object that is a repaint
+    /// boundary is asked to paint at given offset in a [PaintingContext], the
+    /// render object first checks whether it needs to repaint itself. If not, it
+    /// reuses its existing [OffsetLayer] (and its entire subtree) by mutating its
+    /// [offset] property, cutting off the paint walk.
+    /// </Summary>
     public class OffsetLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     {
         #region constructors
@@ -823,12 +1157,37 @@ namespace FlutterSDK.Rendering.Layer
         public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Capture an image of the current state of this layer and its children.
+        ///
+        /// The returned [ui.Image] has uncompressed raw RGBA bytes, will be offset
+        /// by the top-left corner of [bounds], and have dimensions equal to the size
+        /// of [bounds] multiplied by [pixelRatio].
+        ///
+        /// The [pixelRatio] describes the scale between the logical pixels and the
+        /// size of the output image. It is independent of the
+        /// [window.devicePixelRatio] for the device, so specifying 1.0 (the default)
+        /// will give you a 1:1 mapping between logical pixels and the output pixels
+        /// in the image.
+        ///
+        /// See also:
+        ///
+        ///  * [RenderRepaintBoundary.toImage] for a similar API at the render object level.
+        ///  * [dart:ui.Scene.toImage] for more information about the image returned.
+        /// </Summary>
         public virtual Future<SKImage> ToImage(FlutterBinding.UI.Rect bounds, double pixelRatio = 1.0) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// A composite layer that clips its children using a rectangle.
+    ///
+    /// When debugging, setting [debugDisableClipLayers] to true will cause this
+    /// layer to be skipped (directly replaced by its children). This can be helpful
+    /// to track down the cause of performance problems.
+    /// </Summary>
     public class ClipRectLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     {
         #region constructors
@@ -860,6 +1219,13 @@ namespace FlutterSDK.Rendering.Layer
     }
 
 
+    /// <Summary>
+    /// A composite layer that clips its children using a rounded rectangle.
+    ///
+    /// When debugging, setting [debugDisableClipLayers] to true will cause this
+    /// layer to be skipped (directly replaced by its children). This can be helpful
+    /// to track down the cause of performance problems.
+    /// </Summary>
     public class ClipRRectLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     {
         #region constructors
@@ -891,6 +1257,13 @@ namespace FlutterSDK.Rendering.Layer
     }
 
 
+    /// <Summary>
+    /// A composite layer that clips its children using a path.
+    ///
+    /// When debugging, setting [debugDisableClipLayers] to true will cause this
+    /// layer to be skipped (directly replaced by its children). This can be helpful
+    /// to track down the cause of performance problems.
+    /// </Summary>
     public class ClipPathLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     {
         #region constructors
@@ -922,6 +1295,9 @@ namespace FlutterSDK.Rendering.Layer
     }
 
 
+    /// <Summary>
+    /// A composite layer that applies a [ColorFilter] to its children.
+    /// </Summary>
     public class ColorFilterLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     {
         #region constructors
@@ -948,6 +1324,9 @@ namespace FlutterSDK.Rendering.Layer
     }
 
 
+    /// <Summary>
+    /// A composite layer that applies an [ImageFilter] to its children.
+    /// </Summary>
     public class ImageFilterLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     {
         #region constructors
@@ -974,6 +1353,13 @@ namespace FlutterSDK.Rendering.Layer
     }
 
 
+    /// <Summary>
+    /// A composited layer that applies a given transformation matrix to its
+    /// children.
+    ///
+    /// This class inherits from [OffsetLayer] to make it one of the layers that
+    /// can be used at the root of a [RenderObject] hierarchy.
+    /// </Summary>
     public class TransformLayer : FlutterSDK.Rendering.Layer.OffsetLayer
     {
         #region constructors
@@ -1012,6 +1398,16 @@ namespace FlutterSDK.Rendering.Layer
     }
 
 
+    /// <Summary>
+    /// A composited layer that makes its children partially transparent.
+    ///
+    /// When debugging, setting [debugDisableOpacityLayers] to true will cause this
+    /// layer to be skipped (directly replaced by its children). This can be helpful
+    /// to track down the cause of performance problems.
+    ///
+    /// Try to avoid an [OpacityLayer] with no children. Remove that layer if
+    /// possible to save some tree walks.
+    /// </Summary>
     public class OpacityLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     {
         #region constructors
@@ -1043,6 +1439,14 @@ namespace FlutterSDK.Rendering.Layer
     }
 
 
+    /// <Summary>
+    /// A composited layer that applies a shader to its children.
+    ///
+    /// The shader is only applied inside the given [maskRect]. The shader itself
+    /// uses the top left of the [maskRect] as its origin.
+    ///
+    /// The [maskRect] does not affect the positions of any child layers.
+    /// </Summary>
     public class ShaderMaskLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     {
         #region constructors
@@ -1073,6 +1477,9 @@ namespace FlutterSDK.Rendering.Layer
     }
 
 
+    /// <Summary>
+    /// A composited layer that applies a filter to the existing contents of the scene.
+    /// </Summary>
     public class BackdropFilterLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     {
         #region constructors
@@ -1096,6 +1503,17 @@ namespace FlutterSDK.Rendering.Layer
     }
 
 
+    /// <Summary>
+    /// A composited layer that uses a physical model to producing lighting effects.
+    ///
+    /// For example, the layer casts a shadow according to its geometry and the
+    /// relative position of lights and other physically modeled objects in the
+    /// scene.
+    ///
+    /// When debugging, setting [debugDisablePhysicalShapeLayers] to true will cause this
+    /// layer to be skipped (directly replaced by its children). This can be helpful
+    /// to track down the cause of performance problems.
+    /// </Summary>
     public class PhysicalModelLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     {
         #region constructors
@@ -1134,6 +1552,13 @@ namespace FlutterSDK.Rendering.Layer
     }
 
 
+    /// <Summary>
+    /// A composited layer that can be followed by a [FollowerLayer].
+    ///
+    /// This layer collapses the accumulated offset into a transform and passes
+    /// [Offset.zero] to its child layers in the [addToScene]/[addChildrenToScene]
+    /// methods, so that [applyTransform] will work reliably.
+    /// </Summary>
     public class LeaderLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     {
         #region constructors
@@ -1166,6 +1591,15 @@ namespace FlutterSDK.Rendering.Layer
         public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Applies the transform that would be applied when compositing the given
+        /// child to the given matrix.
+        ///
+        /// See [ContainerLayer.applyTransform] for details.
+        ///
+        /// The `child` argument may be null, as the same transform is applied to all
+        /// children.
+        /// </Summary>
         public new void ApplyTransform(FlutterSDK.Rendering.Layer.Layer child, Matrix4 transform) { throw new NotImplementedException(); }
 
 
@@ -1175,6 +1609,18 @@ namespace FlutterSDK.Rendering.Layer
     }
 
 
+    /// <Summary>
+    /// A composited layer that applies a transformation matrix to its children such
+    /// that they are positioned to match a [LeaderLayer].
+    ///
+    /// If any of the ancestors of this layer have a degenerate matrix (e.g. scaling
+    /// by zero), then the [FollowerLayer] will not be able to transform its child
+    /// to the coordinate space of the [LeaderLayer].
+    ///
+    /// A [linkedOffset] property can be provided to further offset the child layer
+    /// from the leader layer, for example if the child is to follow the linked
+    /// layer at a distance rather than directly overlapping it.
+    /// </Summary>
     public class FollowerLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     {
         #region constructors
@@ -1208,12 +1654,31 @@ namespace FlutterSDK.Rendering.Layer
         public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The transform that was used during the last composition phase.
+        ///
+        /// If the [link] was not linked to a [LeaderLayer], or if this layer has
+        /// a degenerate matrix applied, then this will be null.
+        ///
+        /// This method returns a new [Matrix4] instance each time it is invoked.
+        /// </Summary>
         public virtual Matrix4 GetLastTransform() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Call [applyTransform] for each layer in the provided list.
+        ///
+        /// The list is in reverse order (deepest first). The first layer will be
+        /// treated as the child of the second, and so forth. The first layer in the
+        /// list won't have [applyTransform] called on it. The first layer may be
+        /// null.
+        /// </Summary>
         private Matrix4 _CollectTransformForLayerChain(List<FlutterSDK.Rendering.Layer.ContainerLayer> layers) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Populate [_lastTransform] given the current state of the tree.
+        /// </Summary>
         private void _EstablishTransform() { throw new NotImplementedException(); }
 
 
@@ -1229,6 +1694,29 @@ namespace FlutterSDK.Rendering.Layer
     }
 
 
+    /// <Summary>
+    /// A composited layer which annotates its children with a value. Pushing this
+    /// layer to the tree is the common way of adding an annotation.
+    ///
+    /// An annotation is an optional object of any type that, when attached with a
+    /// layer, can be retrieved using [Layer.find] or [Layer.findAllAnnotations]
+    /// with a position. The search process is done recursively, controlled by a
+    /// concept of being opaque to a type of annotation, explained in the document
+    /// of [Layer.findAnnotations].
+    ///
+    /// When an annotation search arrives, this layer defers the same search to each
+    /// of this layer's children, respecting their opacity. Then it adds this
+    /// layer's [annotation] if all of the following restrictions are met:
+    ///
+    /// {@template flutter.rendering.annotatedRegionLayer.restrictions}
+    /// * The target type must be identical to the annotated type `T`.
+    /// * If [size] is provided, the target position must be contained within the
+    ///   rectangle formed by [size] and [offset].
+    /// {@endtemplate}
+    ///
+    /// This layer is opaque to a type of annotation if any child is also opaque, or
+    /// if [opaque] is true and the layer's annotation is added.
+    /// </Summary>
     public class AnnotatedRegionLayer<T> : FlutterSDK.Rendering.Layer.ContainerLayer
     {
         #region constructors
@@ -1250,6 +1738,28 @@ namespace FlutterSDK.Rendering.Layer
 
         #region methods
 
+        /// <Summary>
+        /// Searches the subtree for annotations of type `S` at the location
+        /// `localPosition`, then adds the annotation [value] if applicable.
+        ///
+        /// This method always searches its children, and if any child returns `true`,
+        /// the remaining children are skipped. Regardless of what the children
+        /// return, this method then adds this layer's annotation if all of the
+        /// following restrictions are met:
+        ///
+        /// {@macro flutter.rendering.annotatedRegionLayer.restrictions}
+        ///
+        /// This search process respects `onlyFirst`, meaning that when `onlyFirst` is
+        /// true, the search will stop when it finds the first annotation from the
+        /// children, and the layer's own annotation is checked only when none is
+        /// given by the children.
+        ///
+        /// The return value is true if any child returns `true`, or if [opaque] is
+        /// true and the layer's annotation is added.
+        ///
+        /// For explanation of layer annotations, parameters and return value, refer
+        /// to [Layer.findAnnotations].
+        /// </Summary>
         public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool)) { throw new NotImplementedException(); }
 
 

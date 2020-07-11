@@ -428,6 +428,68 @@ namespace FlutterSDK.Widgets.Mediaquery
     {
     }
 
+    /// <Summary>
+    /// Information about a piece of media (e.g., a window).
+    ///
+    /// For example, the [MediaQueryData.size] property contains the width and
+    /// height of the current window.
+    ///
+    /// To obtain the current [MediaQueryData] for a given [BuildContext], use the
+    /// [MediaQuery.of] function. For example, to obtain the size of the current
+    /// window, use `MediaQuery.of(context).size`.
+    ///
+    /// If no [MediaQuery] is in scope then the [MediaQuery.of] method will throw an
+    /// exception, unless the `nullOk` argument is set to true, in which case it
+    /// returns null.
+    ///
+    /// ## Insets and Padding
+    ///
+    /// ![A diagram of padding, viewInsets, and viewPadding in correlation with each
+    /// other](https://flutter.github.io/assets-for-api-docs/assets/widgets/media_query.png)
+    ///
+    /// This diagram illustrates how [padding] relates to [viewPadding] and
+    /// [viewInsets], shown here in its simplest configuration, as the difference
+    /// between the two. In cases when the viewInsets exceed the viewPadding, like
+    /// when a software keyboard is shown below, padding goes to zero rather than a
+    /// negative value. Therefore, padding is calculated by taking
+    /// `max(0.0, viewPadding - viewInsets)`.
+    ///
+    /// {@animation 300 300 https://flutter.github.io/assets-for-api-docs/assets/widgets/window_padding.mp4}
+    ///
+    /// In this diagram, the black areas represent system UI that the app cannot
+    /// draw over. The red area represents view padding that the application may not
+    /// be able to detect gestures in and may not want to draw in. The grey area
+    /// represents the system keyboard, which can cover over the bottom view padding
+    /// when visible.
+    ///
+    /// MediaQueryData includes three [EdgeInsets] values:
+    /// [padding], [viewPadding], and [viewInsets]. These values reflect the
+    /// configuration of the device and are used and optionally consumed by widgets
+    /// that position content within these insets. The padding value defines areas
+    /// that might not be completely visible, like the display "notch" on the iPhone
+    /// X. The viewInsets value defines areas that aren't visible at all, typically
+    /// because they're obscured by the device's keyboard. Similar to viewInsets,
+    /// viewPadding does not differentiate padding in areas that may be obscured.
+    /// For example, by using the viewPadding property, padding would defer to the
+    /// iPhone "safe area" regardless of whether a keyboard is showing.
+    ///
+    /// The viewInsets and viewPadding are independent values, they're
+    /// measured from the edges of the MediaQuery widget's bounds. Together they
+    /// inform the [padding] property. The bounds of the top level MediaQuery
+    /// created by [WidgetsApp] are the same as the window that contains the app.
+    ///
+    /// Widgets whose layouts consume space defined by [viewInsets], [viewPadding],
+    /// or [padding] should enclose their children in secondary MediaQuery
+    /// widgets that reduce those properties by the same amount.
+    /// The [removePadding], [removeViewPadding], and [removeViewInsets] methods are
+    /// useful for this.
+    ///
+    /// See also:
+    ///
+    ///  * [Scaffold], [SafeArea], [CupertinoTabScaffold], and
+    ///    [CupertinoPageScaffold], all of which are informed by [padding],
+    ///    [viewPadding], and [viewInsets].
+    /// </Summary>
     public class MediaQueryData
     {
         #region constructors
@@ -478,15 +540,66 @@ namespace FlutterSDK.Widgets.Mediaquery
 
         #region methods
 
+        /// <Summary>
+        /// Creates a copy of this media query data but with the given fields replaced
+        /// with the new values.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Mediaquery.MediaQueryData CopyWith(Size size = default(Size), double devicePixelRatio = default(double), double textScaleFactor = default(double), Brightness platformBrightness = default(Brightness), FlutterSDK.Painting.Edgeinsets.EdgeInsets padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Painting.Edgeinsets.EdgeInsets viewPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Painting.Edgeinsets.EdgeInsets viewInsets = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Painting.Edgeinsets.EdgeInsets systemGestureInsets = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), double physicalDepth = default(double), bool alwaysUse24HourFormat = default(bool), bool highContrast = default(bool), bool disableAnimations = default(bool), bool invertColors = default(bool), bool accessibleNavigation = default(bool), bool boldText = default(bool)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Creates a copy of this media query data but with the given [padding]s
+        /// replaced with zero.
+        ///
+        /// The `removeLeft`, `removeTop`, `removeRight`, and `removeBottom` arguments
+        /// must not be null. If all four are false (the default) then this
+        /// [MediaQueryData] is returned unmodified.
+        ///
+        /// See also:
+        ///
+        ///  * [MediaQuery.removePadding], which uses this method to remove [padding]
+        ///    from the ambient [MediaQuery].
+        ///  * [SafeArea], which both removes the padding from the [MediaQuery] and
+        ///    adds a [Padding] widget.
+        ///  * [removeViewInsets], the same thing but for [viewInsets].
+        ///  * [removeViewPadding], the same thing but for [viewPadding].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Mediaquery.MediaQueryData RemovePadding(bool removeLeft = false, bool removeTop = false, bool removeRight = false, bool removeBottom = false) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Creates a copy of this media query data but with the given [viewInsets]
+        /// replaced with zero.
+        ///
+        /// The `removeLeft`, `removeTop`, `removeRight`, and `removeBottom` arguments
+        /// must not be null. If all four are false (the default) then this
+        /// [MediaQueryData] is returned unmodified.
+        ///
+        /// See also:
+        ///
+        ///  * [MediaQuery.removeViewInsets], which uses this method to remove
+        ///    [viewInsets] from the ambient [MediaQuery].
+        ///  * [removePadding], the same thing but for [padding].
+        ///  * [removeViewPadding], the same thing but for [viewPadding].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Mediaquery.MediaQueryData RemoveViewInsets(bool removeLeft = false, bool removeTop = false, bool removeRight = false, bool removeBottom = false) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Creates a copy of this media query data but with the given [viewPadding]
+        /// replaced with zero.
+        ///
+        /// The `removeLeft`, `removeTop`, `removeRight`, and `removeBottom` arguments
+        /// must not be null. If all four are false (the default) then this
+        /// [MediaQueryData] is returned unmodified.
+        ///
+        /// See also:
+        ///
+        ///  * [MediaQuery.removeViewPadding], which uses this method to remove
+        ///    [viewPadding] from the ambient [MediaQuery].
+        ///  * [removePadding], the same thing but for [padding].
+        ///  * [removeViewInsets], the same thing but for [viewInsets].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Mediaquery.MediaQueryData RemoveViewPadding(bool removeLeft = false, bool removeTop = false, bool removeRight = false, bool removeBottom = false) { throw new NotImplementedException(); }
 
 
@@ -497,6 +610,30 @@ namespace FlutterSDK.Widgets.Mediaquery
     }
 
 
+    /// <Summary>
+    /// Establishes a subtree in which media queries resolve to the given data.
+    ///
+    /// For example, to learn the size of the current media (e.g., the window
+    /// containing your app), you can read the [MediaQueryData.size] property from
+    /// the [MediaQueryData] returned by [MediaQuery.of]:
+    /// `MediaQuery.of(context).size`.
+    ///
+    /// Querying the current media using [MediaQuery.of] will cause your widget to
+    /// rebuild automatically whenever the [MediaQueryData] changes (e.g., if the
+    /// user rotates their device).
+    ///
+    /// If no [MediaQuery] is in scope then the [MediaQuery.of] method will throw an
+    /// exception, unless the `nullOk` argument is set to true, in which case it
+    /// returns null.
+    ///
+    /// {@youtube 560 315 https://www.youtube.com/watch?v=A3WrA4zAaPw}
+    ///
+    /// See also:
+    ///
+    ///  * [WidgetsApp] and [MaterialApp], which introduce a [MediaQuery] and keep
+    ///    it up to date with the current screen metrics as they change.
+    ///  * [MediaQueryData], the data structure that represents the metrics.
+    /// </Summary>
     public class MediaQuery : FlutterSDK.Widgets.Framework.InheritedWidget
     {
         #region constructors
@@ -525,15 +662,50 @@ namespace FlutterSDK.Widgets.Mediaquery
 
         #region methods
 
+        /// <Summary>
+        /// The data from the closest instance of this class that encloses the given
+        /// context.
+        ///
+        /// You can use this function to query the size an orientation of the screen.
+        /// When that information changes, your widget will be scheduled to be
+        /// rebuilt, keeping your widget up-to-date.
+        ///
+        /// Typical usage is as follows:
+        ///
+        /// ```dart
+        /// MediaQueryData media = MediaQuery.of(context);
+        /// ```
+        ///
+        /// If there is no [MediaQuery] in scope, then this will throw an exception.
+        /// To return null if there is no [MediaQuery], then pass `nullOk: true`.
+        ///
+        /// If you use this from a widget (e.g. in its build function), consider
+        /// calling [debugCheckHasMediaQuery].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Mediaquery.MediaQueryData Of(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns textScaleFactor for the nearest MediaQuery ancestor or 1.0, if
+        /// no such ancestor exists.
+        /// </Summary>
         public virtual double TextScaleFactorOf(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns platformBrightness for the nearest MediaQuery ancestor or
+        /// [Brightness.light], if no such ancestor exists.
+        ///
+        /// Use of this method will cause the given [context] to rebuild any time that
+        /// any property of the ancestor [MediaQuery] changes.
+        /// </Summary>
         public virtual Brightness PlatformBrightnessOf(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the boldText accessibility setting for the nearest MediaQuery
+        /// ancestor, or false if no such ancestor exists.
+        /// </Summary>
         public virtual bool BoldTextOverride(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
@@ -547,10 +719,19 @@ namespace FlutterSDK.Widgets.Mediaquery
     }
 
 
+    /// <Summary>
+    /// Whether in portrait or landscape.
+    /// </Summary>
     public enum Orientation
     {
 
+        /// <Summary>
+        /// Taller than wide.
+        /// </Summary>
         Portrait,
+        /// <Summary>
+        /// Wider than tall.
+        /// </Summary>
         Landscape,
     }
 

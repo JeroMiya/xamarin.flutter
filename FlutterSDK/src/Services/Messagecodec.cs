@@ -432,9 +432,19 @@ namespace FlutterSDK.Services.Messagecodec
     public class MessageCodec<T>
     {
 
+        /// <Summary>
+        /// Encodes the specified [message] in binary.
+        ///
+        /// Returns null if the message is null.
+        /// </Summary>
         public virtual ByteData EncodeMessage(T message) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Decodes the specified [message] from binary.
+        ///
+        /// Returns null if the message is null.
+        /// </Summary>
         public virtual T DecodeMessage(ByteData message) { throw new NotImplementedException(); }
 
     }
@@ -460,18 +470,39 @@ namespace FlutterSDK.Services.Messagecodec
     public class MethodCodec
     {
 
+        /// <Summary>
+        /// Encodes the specified [methodCall] into binary.
+        /// </Summary>
         public virtual ByteData EncodeMethodCall(FlutterSDK.Services.Messagecodec.MethodCall methodCall) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Decodes the specified [methodCall] from binary.
+        /// </Summary>
         public virtual FlutterSDK.Services.Messagecodec.MethodCall DecodeMethodCall(ByteData methodCall) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Decodes the specified result [envelope] from binary.
+        ///
+        /// Throws [PlatformException], if [envelope] represents an error, otherwise
+        /// returns the enveloped result.
+        /// </Summary>
         public virtual object DecodeEnvelope(ByteData envelope) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Encodes a successful [result] into a binary envelope.
+        /// </Summary>
         public virtual ByteData EncodeSuccessEnvelope(object result) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Encodes an error result into a binary envelope.
+        ///
+        /// The specified error [code], human-readable error [message], and error
+        /// [details] correspond to the fields of [PlatformException].
+        /// </Summary>
         public virtual ByteData EncodeErrorEnvelope(string code = default(string), string message = default(string), object details = default(object)) { throw new NotImplementedException(); }
 
     }
@@ -495,6 +526,9 @@ namespace FlutterSDK.Services.Messagecodec
     }
 
 
+    /// <Summary>
+    /// An command object representing the invocation of a named method.
+    /// </Summary>
     public class MethodCall
     {
         #region constructors
@@ -517,6 +551,21 @@ namespace FlutterSDK.Services.Messagecodec
     }
 
 
+    /// <Summary>
+    /// Thrown to indicate that a platform interaction failed in the platform
+    /// plugin.
+    ///
+    /// See also:
+    ///
+    ///  * [MethodCodec], which throws a [PlatformException], if a received result
+    ///    envelope represents an error.
+    ///  * [MethodChannel.invokeMethod], which completes the returned future
+    ///    with a [PlatformException], if invoking the platform plugin method
+    ///    results in an error envelope.
+    ///  * [EventChannel.receiveBroadcastStream], which emits
+    ///    [PlatformException]s as error events, whenever an event received from the
+    ///    platform plugin is wrapped in an error envelope.
+    /// </Summary>
     public class PlatformException : IException
     {
         #region constructors
@@ -541,6 +590,18 @@ namespace FlutterSDK.Services.Messagecodec
     }
 
 
+    /// <Summary>
+    /// Thrown to indicate that a platform interaction failed to find a handling
+    /// plugin.
+    ///
+    /// See also:
+    ///
+    ///  * [MethodChannel.invokeMethod], which completes the returned future
+    ///    with a [MissingPluginException], if no plugin handler for the method call
+    ///    was found.
+    ///  * [OptionalMethodChannel.invokeMethod], which completes the returned future
+    ///    with null, if no plugin handler for the method call was found.
+    /// </Summary>
     public class MissingPluginException : IException
     {
         #region constructors

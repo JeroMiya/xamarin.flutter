@@ -427,6 +427,10 @@ namespace FlutterSDK.Services.Systemsound
     {
     }
 
+    /// <Summary>
+    /// Provides access to the library of short system specific sounds for common
+    /// tasks.
+    /// </Summary>
     public class SystemSound
     {
         #region constructors
@@ -441,15 +445,25 @@ namespace FlutterSDK.Services.Systemsound
 
         #region methods
 
+        /// <Summary>
+        /// Play the specified system sound. If that sound is not present on the
+        /// system, the call is ignored.
+        /// </Summary>
         public virtual Future<object> Play(FlutterSDK.Services.Systemsound.SystemSoundType type) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// A sound provided by the system.
+    /// </Summary>
     public enum SystemSoundType
     {
 
+        /// <Summary>
+        /// A short indication that a button was pressed.
+        /// </Summary>
         Click,
     }
 

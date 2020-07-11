@@ -307,6 +307,15 @@ namespace FlutterSDK.Gestures.Team
         internal virtual Dictionary<int, FlutterSDK.Gestures.Team._CombiningGestureArenaMember> _Combiners { get; set; }
         public virtual FlutterSDK.Gestures.Arena.GestureArenaMember Captain { get; set; }
 
+        /// <Summary>
+        /// Adds a new member to the arena on behalf of this team.
+        ///
+        /// Used by [GestureRecognizer] subclasses that wish to compete in the arena
+        /// using this team.
+        ///
+        /// To assign a gesture recognizer to a team, see
+        /// [OneSequenceGestureRecognizer.team].
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Arena.GestureArenaEntry Add(int pointer, FlutterSDK.Gestures.Arena.GestureArenaMember member) { throw new NotImplementedException(); }
 
     }

@@ -433,6 +433,16 @@ namespace FlutterSDK.Services.Assetbundle
 
     }
 
+    /// <Summary>
+    /// An [AssetBundle] that permanently caches string and structured resources
+    /// that have been fetched.
+    ///
+    /// Strings (for [loadString] and [loadStructuredData]) are decoded as UTF-8.
+    /// Data that is cached is cached for the lifetime of the asset bundle
+    /// (typically the lifetime of the application).
+    ///
+    /// Binary resources (from [load]) are not cached.
+    /// </Summary>
     public interface ICachingAssetBundle
     {
         Future<string> LoadString(string key, bool cache = true);
@@ -446,18 +456,46 @@ namespace FlutterSDK.Services.Assetbundle
     public class AssetBundle
     {
 
+        /// <Summary>
+        /// Retrieve a binary resource from the asset bundle as a data stream.
+        ///
+        /// Throws an exception if the asset is not found.
+        /// </Summary>
         public virtual Future<ByteData> Load(string key) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Retrieve a string from the asset bundle.
+        ///
+        /// Throws an exception if the asset is not found.
+        ///
+        /// If the `cache` argument is set to false, then the data will not be
+        /// cached, and reading the data may bypass the cache. This is useful if the
+        /// caller is going to be doing its own caching. (It might not be cached if
+        /// it's set to true either, that depends on the asset bundle
+        /// implementation.)
+        /// </Summary>
         public virtual Future<string> LoadString(string key, bool cache = true) { throw new NotImplementedException(); }
 
 
         private string _Utf8decode(ByteData data) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Retrieve a string from the asset bundle, parse it with the given function,
+        /// and return the function's result.
+        ///
+        /// Implementations may cache the result, so a particular key should only be
+        /// used with one parser for the lifetime of the asset bundle.
+        /// </Summary>
         public virtual Future<T> LoadStructuredData<T>(string key, Func<Future<T>, string> parser) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// If this is a caching asset bundle, and the given key describes a cached
+        /// asset, then evict the asset from the cache so that the next time it is
+        /// loaded, the cache will be reread from the asset bundle.
+        /// </Summary>
         public virtual void Evict(string key) { throw new NotImplementedException(); }
 
 
@@ -482,6 +520,12 @@ namespace FlutterSDK.Services.Assetbundle
     }
 
 
+    /// <Summary>
+    /// An [AssetBundle] that loads resources over the network.
+    ///
+    /// This asset bundle does not cache any resources, though the underlying
+    /// network stack may implement some level of caching itself.
+    /// </Summary>
     public class NetworkAssetBundle : FlutterSDK.Services.Assetbundle.AssetBundle
     {
         #region constructors
@@ -505,6 +549,13 @@ namespace FlutterSDK.Services.Assetbundle
         public new Future<ByteData> Load(string key) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Retrieve a string from the asset bundle, parse it with the given function,
+        /// and return the function's result.
+        ///
+        /// The result is not cached. The parser is run each time the resource is
+        /// fetched.
+        /// </Summary>
         public new Future<T> LoadStructuredData<T>(string key, Func<Future<T>, string> parser) { throw new NotImplementedException(); }
 
 
@@ -512,6 +563,16 @@ namespace FlutterSDK.Services.Assetbundle
     }
 
 
+    /// <Summary>
+    /// An [AssetBundle] that permanently caches string and structured resources
+    /// that have been fetched.
+    ///
+    /// Strings (for [loadString] and [loadStructuredData]) are decoded as UTF-8.
+    /// Data that is cached is cached for the lifetime of the asset bundle
+    /// (typically the lifetime of the application).
+    ///
+    /// Binary resources (from [load]) are not cached.
+    /// </Summary>
     public class CachingAssetBundle : FlutterSDK.Services.Assetbundle.AssetBundle
     {
         #region constructors
@@ -529,6 +590,18 @@ namespace FlutterSDK.Services.Assetbundle
         public new Future<string> LoadString(string key, bool cache = true) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Retrieve a string from the asset bundle, parse it with the given function,
+        /// and return the function's result.
+        ///
+        /// The result of parsing the string is cached (the string itself is not,
+        /// unless you also fetch it with [loadString]). For any given `key`, the
+        /// `parser` is only run the first time.
+        ///
+        /// Once the value has been parsed, the future returned by this function for
+        /// subsequent calls will be a [SynchronousFuture], which resolves its
+        /// callback synchronously.
+        /// </Summary>
         public new Future<T> LoadStructuredData<T>(string key, Func<Future<T>, string> parser) { throw new NotImplementedException(); }
 
 
@@ -538,6 +611,9 @@ namespace FlutterSDK.Services.Assetbundle
     }
 
 
+    /// <Summary>
+    /// An [AssetBundle] that loads resources using platform messages.
+    /// </Summary>
     public class PlatformAssetBundle : FlutterSDK.Services.Assetbundle.CachingAssetBundle
     {
         #region constructors

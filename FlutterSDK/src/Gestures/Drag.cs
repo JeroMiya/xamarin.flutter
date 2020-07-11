@@ -305,12 +305,27 @@ namespace FlutterSDK.Gestures.Drag
     public class Drag
     {
 
+        /// <Summary>
+        /// The pointer has moved.
+        /// </Summary>
         public virtual void Update(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The pointer is no longer in contact with the screen.
+        ///
+        /// The velocity at which the pointer was moving when it stopped contacting
+        /// the screen is available in the `details`.
+        /// </Summary>
         public virtual void End(FlutterSDK.Gestures.Dragdetails.DragEndDetails details) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The input from the pointer is no longer directed towards this receiver.
+        ///
+        /// For example, the user might have been interrupted by a system-modal dialog
+        /// in the middle of the drag.
+        /// </Summary>
         public virtual void Cancel() { throw new NotImplementedException(); }
 
     }

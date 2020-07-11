@@ -427,6 +427,11 @@ namespace FlutterSDK.Painting._Networkimageweb
     {
     }
 
+    /// <Summary>
+    /// The dart:html implementation of [image_provider.NetworkImage].
+    ///
+    /// NetworkImage on the web does not support decoding to a specified size.
+    /// </Summary>
     public class NetworkImage : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider.NetworkImage>, INetworkImage
     {
         #region constructors

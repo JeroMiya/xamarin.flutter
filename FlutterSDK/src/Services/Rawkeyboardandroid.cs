@@ -428,6 +428,16 @@ namespace FlutterSDK.Services.Rawkeyboardandroid
         public static int _KCombiningCharacterMask = default(int);
     }
 
+    /// <Summary>
+    /// Platform-specific key event data for Android.
+    ///
+    /// This object contains information about key events obtained from Android's
+    /// `KeyEvent` interface.
+    ///
+    /// See also:
+    ///
+    ///  * [RawKeyboard], which uses this interface to expose key data.
+    /// </Summary>
     public class RawKeyEventDataAndroid : FlutterSDK.Services.Rawkeyboard.RawKeyEventData
     {
         #region constructors

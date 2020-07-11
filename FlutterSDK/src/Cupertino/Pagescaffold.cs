@@ -302,6 +302,12 @@ namespace FlutterSDK.Cupertino.Pagescaffold
     public class ObstructingPreferredSizeWidget : IPreferredSizeWidget
     {
 
+        /// <Summary>
+        /// If true, this widget fully obstructs widgets behind it by the specified
+        /// size.
+        ///
+        /// If false, this widget partially obstructs.
+        /// </Summary>
         public virtual bool ShouldFullyObstruct(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
         public virtual Size PreferredSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -322,6 +328,18 @@ namespace FlutterSDK.Cupertino.Pagescaffold
     }
 
 
+    /// <Summary>
+    /// Implements a single iOS application page's layout.
+    ///
+    /// The scaffold lays out the navigation bar on top and the content between or
+    /// behind the navigation bar.
+    ///
+    /// See also:
+    ///
+    ///  * [CupertinoTabScaffold], a similar widget for tabbed applications.
+    ///  * [CupertinoPageRoute], a modal page route that typically hosts a
+    ///    [CupertinoPageScaffold] with support for iOS-style page transitions.
+    /// </Summary>
     public class CupertinoPageScaffold : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors

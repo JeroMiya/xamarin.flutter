@@ -429,6 +429,22 @@ namespace FlutterSDK.Widgets.Rawkeyboardlistener
     {
     }
 
+    /// <Summary>
+    /// A widget that calls a callback whenever the user presses or releases a key
+    /// on a keyboard.
+    ///
+    /// A [RawKeyboardListener] is useful for listening to raw key events and
+    /// hardware buttons that are represented as keys. Typically used by games and
+    /// other apps that use keyboards for purposes other than text entry.
+    ///
+    /// For text entry, consider using a [EditableText], which integrates with
+    /// on-screen keyboards and input method editors (IMEs).
+    ///
+    /// See also:
+    ///
+    ///  * [EditableText], which should be used instead of this widget for text
+    ///    entry.
+    /// </Summary>
     public class RawKeyboardListener : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors

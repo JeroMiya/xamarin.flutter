@@ -994,6 +994,28 @@ namespace FlutterSDK.Material.Inputdecorator
     }
 
 
+    /// <Summary>
+    /// Defines the appearance of a Material Design text field.
+    ///
+    /// [InputDecorator] displays the visual elements of a Material Design text
+    /// field around its input [child]. The visual elements themselves are defined
+    /// by an [InputDecoration] object and their layout and appearance depend
+    /// on the `baseStyle`, `textAlign`, `isFocused`, and `isEmpty` parameters.
+    ///
+    /// [TextField] uses this widget to decorate its [EditableText] child.
+    ///
+    /// [InputDecorator] can be used to create widgets that look and behave like a
+    /// [TextField] but support other kinds of input.
+    ///
+    /// Requires one of its ancestors to be a [Material] widget.
+    ///
+    /// See also:
+    ///
+    ///  * [TextField], which uses an [InputDecorator] to display a border,
+    ///    labels, and icons, around its [EditableText] child.
+    ///  * [Decoration] and [DecoratedBox], for drawing arbitrary decorations
+    ///    around other widgets.
+    /// </Summary>
     public class InputDecorator : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -1030,6 +1052,15 @@ namespace FlutterSDK.Material.Inputdecorator
         public new FlutterSDK.Material.Inputdecorator._InputDecoratorState CreateState() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The RenderBox that defines this decorator's "container". That's the
+        /// area which is filled if [InputDecoration.filled] is true. It's the area
+        /// adjacent to [InputDecoration.icon] and above the widgets that contain
+        /// [InputDecoration.helperText], [InputDecoration.errorText], and
+        /// [InputDecoration.counterText].
+        ///
+        /// [TextField] renders ink splashes within the container.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Box.RenderBox ContainerOf(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
@@ -1114,6 +1145,111 @@ namespace FlutterSDK.Material.Inputdecorator
     }
 
 
+    /// <Summary>
+    /// The border, labels, icons, and styles used to decorate a Material
+    /// Design text field.
+    ///
+    /// The [TextField] and [InputDecorator] classes use [InputDecoration] objects
+    /// to describe their decoration. (In fact, this class is merely the
+    /// configuration of an [InputDecorator], which does all the heavy lifting.)
+    ///
+    /// {@tool dartpad --template=stateless_widget_scaffold}
+    ///
+    /// This sample shows how to style a `TextField` using an `InputDecorator`. The
+    /// TextField displays a "send message" icon to the left of the input area,
+    /// which is surrounded by a border an all sides. It displays the `hintText`
+    /// inside the input area to help the user understand what input is required. It
+    /// displays the `helperText` and `counterText` below the input area.
+    ///
+    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/input_decoration.png)
+    ///
+    /// ```dart
+    /// Widget build(BuildContext context) {
+    ///   return TextField(
+    ///     decoration: InputDecoration(
+    ///       icon: Icon(Icons.send),
+    ///       hintText: 'Hint Text',
+    ///       helperText: 'Helper Text',
+    ///       counterText: '0 characters',
+    ///       border: const OutlineInputBorder(),
+    ///     ),
+    ///   );
+    /// }
+    /// ```
+    /// {@end-tool}
+    ///
+    /// {@tool dartpad --template=stateless_widget_scaffold}
+    ///
+    /// This sample shows how to style a "collapsed" `TextField` using an
+    /// `InputDecorator`. The collapsed `TextField` surrounds the hint text and
+    /// input area with a border, but does not add padding around them.
+    ///
+    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/input_decoration_collapsed.png)
+    ///
+    /// ```dart
+    /// Widget build(BuildContext context) {
+    ///   return TextField(
+    ///     decoration: InputDecoration.collapsed(
+    ///       hintText: 'Hint Text',
+    ///       border: OutlineInputBorder(),
+    ///     ),
+    ///   );
+    /// }
+    /// ```
+    /// {@end-tool}
+    ///
+    /// {@tool dartpad --template=stateless_widget_scaffold}
+    ///
+    /// This sample shows how to create a `TextField` with hint text, a red border
+    /// on all sides, and an error message. To display a red border and error
+    /// message, provide `errorText` to the `InputDecoration` constructor.
+    ///
+    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/input_decoration_error.png)
+    ///
+    /// ```dart
+    /// Widget build(BuildContext context) {
+    ///   return TextField(
+    ///     decoration: InputDecoration(
+    ///       hintText: 'Hint Text',
+    ///       errorText: 'Error Text',
+    ///       border: OutlineInputBorder(),
+    ///     ),
+    ///   );
+    /// }
+    /// ```
+    /// {@end-tool}
+    ///
+    /// {@tool dartpad --template=stateless_widget_scaffold}
+    ///
+    /// This sample shows how to style a `TextField` with a round border and
+    /// additional text before and after the input area. It displays "Prefix" before
+    /// the input area, and "Suffix" after the input area.
+    ///
+    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/input_decoration_prefix_suffix.png)
+    ///
+    /// ```dart
+    /// Widget build(BuildContext context) {
+    ///   return TextFormField(
+    ///     initialValue: 'abc',
+    ///     decoration: const InputDecoration(
+    ///       prefix: Text('Prefix'),
+    ///       suffix: Text('Suffix'),
+    ///       border: OutlineInputBorder(),
+    ///     ),
+    ///   );
+    /// }
+    /// ```
+    /// {@end-tool}
+    ///
+    /// See also:
+    ///
+    ///  * [TextField], which is a text input widget that uses an
+    ///    [InputDecoration].
+    ///  * [InputDecorator], which is a widget that draws an [InputDecoration]
+    ///    around an input child widget.
+    ///  * [Decoration] and [DecoratedBox], for drawing borders and backgrounds
+    ///    around a child widget.
+    /// </Summary>
     public class InputDecoration
     {
         #region constructors
@@ -1227,9 +1363,22 @@ namespace FlutterSDK.Material.Inputdecorator
 
         #region methods
 
+        /// <Summary>
+        /// Creates a copy of this input decoration with the given fields replaced
+        /// by the new values.
+        ///
+        /// Always sets [isCollapsed] to false.
+        /// </Summary>
         public virtual FlutterSDK.Material.Inputdecorator.InputDecoration CopyWith(FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), string labelText = default(string), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), string helperText = default(string), FlutterSDK.Painting.Textstyle.TextStyle helperStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), int helperMaxLines = default(int), string hintText = default(string), FlutterSDK.Painting.Textstyle.TextStyle hintStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), int hintMaxLines = default(int), string errorText = default(string), FlutterSDK.Painting.Textstyle.TextStyle errorStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), int errorMaxLines = default(int), bool hasFloatingPlaceholder = default(bool), FlutterSDK.Material.Inputdecorator.FloatingLabelBehavior floatingLabelBehavior = default(FlutterSDK.Material.Inputdecorator.FloatingLabelBehavior), bool isDense = default(bool), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget prefixIcon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget prefix = default(FlutterSDK.Widgets.Framework.Widget), string prefixText = default(string), FlutterSDK.Rendering.Box.BoxConstraints prefixIconConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Painting.Textstyle.TextStyle prefixStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Framework.Widget suffixIcon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget suffix = default(FlutterSDK.Widgets.Framework.Widget), string suffixText = default(string), FlutterSDK.Painting.Textstyle.TextStyle suffixStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Rendering.Box.BoxConstraints suffixIconConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Widgets.Framework.Widget counter = default(FlutterSDK.Widgets.Framework.Widget), string counterText = default(string), FlutterSDK.Painting.Textstyle.TextStyle counterStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), bool filled = default(bool), FlutterBinding.UI.Color fillColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Inputborder.InputBorder errorBorder = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputborder.InputBorder focusedBorder = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputborder.InputBorder focusedErrorBorder = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputborder.InputBorder disabledBorder = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputborder.InputBorder enabledBorder = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputborder.InputBorder border = default(FlutterSDK.Material.Inputborder.InputBorder), bool enabled = default(bool), string semanticCounterText = default(string), bool alignLabelWithHint = default(bool)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Used by widgets like [TextField] and [InputDecorator] to create a new
+        /// [InputDecoration] with default values taken from the [theme].
+        ///
+        /// Only null valued properties from this [InputDecoration] are replaced
+        /// by the corresponding values from [theme].
+        /// </Summary>
         public virtual FlutterSDK.Material.Inputdecorator.InputDecoration ApplyDefaults(FlutterSDK.Material.Inputdecorator.InputDecorationTheme theme) { throw new NotImplementedException(); }
 
 
@@ -1240,6 +1389,17 @@ namespace FlutterSDK.Material.Inputdecorator
     }
 
 
+    /// <Summary>
+    /// Defines the default appearance of [InputDecorator]s.
+    ///
+    /// This class is used to define the value of [ThemeData.inputDecorationTheme].
+    /// The [InputDecorator], [TextField], and [TextFormField] widgets use
+    /// the current input decoration theme to initialize null [InputDecoration]
+    /// properties.
+    ///
+    /// The [InputDecoration.applyDefaults] method is used to combine a input
+    /// decoration theme with an [InputDecoration] object.
+    /// </Summary>
     public class InputDecorationTheme : IDiagnosticable
     {
         #region constructors
@@ -1305,6 +1465,10 @@ namespace FlutterSDK.Material.Inputdecorator
 
         #region methods
 
+        /// <Summary>
+        /// Creates a copy of this object but with the given fields replaced with the
+        /// new values.
+        /// </Summary>
         public virtual FlutterSDK.Material.Inputdecorator.InputDecorationTheme CopyWith(FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle helperStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), int helperMaxLines = default(int), FlutterSDK.Painting.Textstyle.TextStyle hintStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle errorStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), int errorMaxLines = default(int), bool hasFloatingPlaceholder = default(bool), FlutterSDK.Material.Inputdecorator.FloatingLabelBehavior floatingLabelBehavior = default(FlutterSDK.Material.Inputdecorator.FloatingLabelBehavior), bool isDense = default(bool), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), bool isCollapsed = default(bool), FlutterSDK.Painting.Textstyle.TextStyle prefixStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle suffixStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle counterStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), bool filled = default(bool), FlutterBinding.UI.Color fillColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Inputborder.InputBorder errorBorder = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputborder.InputBorder focusedBorder = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputborder.InputBorder focusedErrorBorder = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputborder.InputBorder disabledBorder = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputborder.InputBorder enabledBorder = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputborder.InputBorder border = default(FlutterSDK.Material.Inputborder.InputBorder), bool alignLabelWithHint = default(bool)) { throw new NotImplementedException(); }
 
 
@@ -1317,11 +1481,23 @@ namespace FlutterSDK.Material.Inputdecorator
     }
 
 
+    /// <Summary>
+    /// Defines the behaviour of the floating label
+    /// </Summary>
     public enum FloatingLabelBehavior
     {
 
+        /// <Summary>
+        /// The label will always be positioned within the content, or hidden.
+        /// </Summary>
         Never,
+        /// <Summary>
+        /// The label will float when the input is focused, or has content.
+        /// </Summary>
         Auto,
+        /// <Summary>
+        /// The label will always float above the content.
+        /// </Summary>
         Always,
     }
 

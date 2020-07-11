@@ -67,15 +67,39 @@ namespace FlutterSDK.Animation.Listenerhelpers
         internal virtual int _ListenerCounter { get; set; }
         public virtual bool IsListening { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
+        /// <Summary>
+        /// Calls [didStartListening] every time a registration of a listener causes
+        /// an empty list of listeners to become non-empty.
+        ///
+        /// See also:
+        ///
+        ///  * [didUnregisterListener], which may cause the listener list to
+        ///    become empty again, and in turn cause this method to call
+        ///    [didStartListening] again.
+        /// </Summary>
         public virtual void DidRegisterListener() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Calls [didStopListening] when an only remaining listener is unregistered,
+        /// thus making the list empty.
+        ///
+        /// See also:
+        ///
+        ///  * [didRegisterListener], which causes the listener list to become non-empty.
+        /// </Summary>
         public virtual void DidUnregisterListener() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called when the number of listeners changes from zero to one.
+        /// </Summary>
         public virtual void DidStartListening() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called when the number of listeners changes from one to zero.
+        /// </Summary>
         public virtual void DidStopListening() { throw new NotImplementedException(); }
 
     }
@@ -104,12 +128,22 @@ namespace FlutterSDK.Animation.Listenerhelpers
     public class AnimationEagerListenerMixin
     {
 
+        /// <Summary>
+        /// This implementation ignores listener registrations.
+        /// </Summary>
         public virtual void DidRegisterListener() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// This implementation ignores listener registrations.
+        /// </Summary>
         public virtual void DidUnregisterListener() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Release the resources used by this object. The object is no longer usable
+        /// after this method is called.
+        /// </Summary>
         public virtual void Dispose() { throw new NotImplementedException(); }
 
     }
@@ -137,18 +171,46 @@ namespace FlutterSDK.Animation.Listenerhelpers
     {
         internal virtual FlutterSDK.Foundation.Observerlist.ObserverList<object> _Listeners { get; set; }
 
+        /// <Summary>
+        /// Called immediately before a listener is added via [addListener].
+        ///
+        /// At the time this method is called the registered listener is not yet
+        /// notified by [notifyListeners].
+        /// </Summary>
         public virtual void DidRegisterListener() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called immediately after a listener is removed via [removeListener].
+        ///
+        /// At the time this method is called the removed listener is no longer
+        /// notified by [notifyListeners].
+        /// </Summary>
         public virtual void DidUnregisterListener() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Calls the listener every time the value of the animation changes.
+        ///
+        /// Listeners can be removed with [removeListener].
+        /// </Summary>
         public virtual void AddListener(VoidCallback listener) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Stop calling the listener every time the value of the animation changes.
+        ///
+        /// Listeners can be added with [addListener].
+        /// </Summary>
         public virtual void RemoveListener(VoidCallback listener) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Calls all the listeners.
+        ///
+        /// If listeners are added or removed during this function, the modifications
+        /// will not change which listeners are called during this iteration.
+        /// </Summary>
         public virtual void NotifyListeners() { throw new NotImplementedException(); }
 
     }
@@ -178,18 +240,46 @@ namespace FlutterSDK.Animation.Listenerhelpers
     {
         internal virtual FlutterSDK.Foundation.Observerlist.ObserverList<object> _StatusListeners { get; set; }
 
+        /// <Summary>
+        /// Called immediately before a status listener is added via [addStatusListener].
+        ///
+        /// At the time this method is called the registered listener is not yet
+        /// notified by [notifyStatusListeners].
+        /// </Summary>
         public virtual void DidRegisterListener() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called immediately after a status listener is removed via [removeStatusListener].
+        ///
+        /// At the time this method is called the removed listener is no longer
+        /// notified by [notifyStatusListeners].
+        /// </Summary>
         public virtual void DidUnregisterListener() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Calls listener every time the status of the animation changes.
+        ///
+        /// Listeners can be removed with [removeStatusListener].
+        /// </Summary>
         public virtual void AddStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Stops calling the listener every time the status of the animation changes.
+        ///
+        /// Listeners can be added with [addStatusListener].
+        /// </Summary>
         public virtual void RemoveStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Calls all the status listeners.
+        ///
+        /// If listeners are added or removed during this function, the modifications
+        /// will not change which listeners are called during this iteration.
+        /// </Summary>
         public virtual void NotifyStatusListeners(FlutterSDK.Animation.Animation.AnimationStatus status) { throw new NotImplementedException(); }
 
     }

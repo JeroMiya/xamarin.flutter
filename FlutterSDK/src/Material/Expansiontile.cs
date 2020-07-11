@@ -388,6 +388,23 @@ namespace FlutterSDK.Material.Expansiontile
         public static TimeSpan _KExpand = default(TimeSpan);
     }
 
+    /// <Summary>
+    /// A single-line [ListTile] with a trailing button that expands or collapses
+    /// the tile to reveal or hide the [children].
+    ///
+    /// This widget is typically used with [ListView] to create an
+    /// "expand / collapse" list entry. When used with scrolling widgets like
+    /// [ListView], a unique [PageStorageKey] must be specified to enable the
+    /// [ExpansionTile] to save and restore its expanded state when it is scrolled
+    /// in and out of view.
+    ///
+    /// See also:
+    ///
+    ///  * [ListTile], useful for creating expansion tile [children] when the
+    ///    expansion tile represents a sublist.
+    ///  * The "Expand/collapse" section of
+    ///    <https://material.io/guidelines/components/lists-controls.html>.
+    /// </Summary>
     public class ExpansionTile : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors

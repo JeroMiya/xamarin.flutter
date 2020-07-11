@@ -320,12 +320,37 @@ namespace FlutterSDK.Material.Animatedicons.Animatedicons
 
     }
 
+    /// <Summary>
+    /// Paths are being built by a set of commands e.g moveTo, lineTo, etc...
+    ///
+    /// _PathCommand instances represents such a command, and can apply it to
+    /// a given Path.
+    /// </Summary>
     internal interface I_PathCommand
     {
         void Apply(Path path, double progress);
     }
 
 
+    /// <Summary>
+    /// Shows an animated icon at a given animation [progress].
+    ///
+    /// The available icons are specified in [AnimatedIcons].
+    ///
+    /// {@youtube 560 315 https://www.youtube.com/watch?v=pJcbh8pbvJs}
+    ///
+    /// {@tool snippet}
+    ///
+    /// ```dart
+    /// AnimatedIcon(
+    ///   icon: AnimatedIcons.menu_arrow,
+    ///   progress: controller,
+    ///   semanticLabel: 'Show menu',
+    /// )
+    /// ```
+    /// {@end-tool}
+    ///
+    /// </Summary>
     public class AnimatedIcon
     {
         #region constructors
@@ -424,6 +449,12 @@ namespace FlutterSDK.Material.Animatedicons.Animatedicons
     }
 
 
+    /// <Summary>
+    /// Paths are being built by a set of commands e.g moveTo, lineTo, etc...
+    ///
+    /// _PathCommand instances represents such a command, and can apply it to
+    /// a given Path.
+    /// </Summary>
     public class _PathCommand
     {
         #region constructors
@@ -438,6 +469,12 @@ namespace FlutterSDK.Material.Animatedicons.Animatedicons
 
         #region methods
 
+        /// <Summary>
+        /// Applies the path command to [path].
+        ///
+        /// For example if the object is a [_PathMoveTo] command it will invoke
+        /// [Path.moveTo] on [path].
+        /// </Summary>
         public virtual void Apply(Path path, double progress) { throw new NotImplementedException(); }
 
         #endregion

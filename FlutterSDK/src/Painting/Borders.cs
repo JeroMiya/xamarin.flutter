@@ -431,6 +431,22 @@ namespace FlutterSDK.Painting.Borders
 
     }
 
+    /// <Summary>
+    /// Base class for shape outlines.
+    ///
+    /// This class handles how to add multiple borders together. Subclasses define
+    /// various shapes, like circles ([CircleBorder]), rounded rectangles
+    /// ([RoundedRectangleBorder]), continuous rectangles
+    /// ([ContinuousRectangleBorder]), or beveled rectangles
+    /// ([BeveledRectangleBorder]).
+    ///
+    /// See also:
+    ///
+    ///  * [ShapeDecoration], which can be used with [DecoratedBox] to show a shape.
+    ///  * [Material] (and many other widgets in the Material library), which takes
+    ///    a [ShapeBorder] to define its shape.
+    ///  * [NotchedShape], which describes a shape with a hole in it.
+    /// </Summary>
     public interface IShapeBorder
     {
         FlutterSDK.Painting.Borders.ShapeBorder Add(FlutterSDK.Painting.Borders.ShapeBorder other, bool reversed = false);
@@ -447,6 +463,44 @@ namespace FlutterSDK.Painting.Borders
     }
 
 
+    /// <Summary>
+    /// A side of a border of a box.
+    ///
+    /// A [Border] consists of four [BorderSide] objects: [Border.top],
+    /// [Border.left], [Border.right], and [Border.bottom].
+    ///
+    /// Note that setting [BorderSide.width] to 0.0 will result in hairline
+    /// rendering. A more involved explanation is present in [BorderSide.width].
+    ///
+    /// {@tool snippet}
+    ///
+    /// This sample shows how [BorderSide] objects can be used in a [Container], via
+    /// a [BoxDecoration] and a [Border], to decorate some [Text]. In this example,
+    /// the text has a thick bar above it that is light blue, and a thick bar below
+    /// it that is a darker shade of blue.
+    ///
+    /// ```dart
+    /// Container(
+    ///   padding: EdgeInsets.all(8.0),
+    ///   decoration: BoxDecoration(
+    ///     border: Border(
+    ///       top: BorderSide(width: 16.0, color: Colors.lightBlue.shade50),
+    ///       bottom: BorderSide(width: 16.0, color: Colors.lightBlue.shade900),
+    ///     ),
+    ///   ),
+    ///   child: Text('Flutter in the sky', textAlign: TextAlign.center),
+    /// )
+    /// ```
+    /// {@end-tool}
+    ///
+    /// See also:
+    ///
+    ///  * [Border], which uses [BorderSide] objects to represent its sides.
+    ///  * [BoxDecoration], which optionally takes a [Border] object.
+    ///  * [TableBorder], which is similar to [Border] but has two more sides
+    ///    ([TableBorder.horizontalInside] and [TableBorder.verticalInside]), both
+    ///    of which are also [BorderSide] objects.
+    /// </Summary>
     public class BorderSide
     {
         #region constructors
@@ -469,21 +523,79 @@ namespace FlutterSDK.Painting.Borders
 
         #region methods
 
+        /// <Summary>
+        /// Creates a [BorderSide] that represents the addition of the two given
+        /// [BorderSide]s.
+        ///
+        /// It is only valid to call this if [canMerge] returns true for the two
+        /// sides.
+        ///
+        /// If one of the sides is zero-width with [BorderStyle.none], then the other
+        /// side is return as-is. If both of the sides are zero-width with
+        /// [BorderStyle.none], then [BorderSide.zero] is returned.
+        ///
+        /// The arguments must not be null.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.BorderSide Merge(FlutterSDK.Painting.Borders.BorderSide a, FlutterSDK.Painting.Borders.BorderSide b) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Creates a copy of this border but with the given fields replaced with the new values.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.BorderSide CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double width = default(double), FlutterSDK.Painting.Borders.BorderStyle style = default(FlutterSDK.Painting.Borders.BorderStyle)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Creates a copy of this border side description but with the width scaled
+        /// by the factor `t`.
+        ///
+        /// The `t` argument represents the multiplicand, or the position on the
+        /// timeline for an interpolation from nothing to `this`, with 0.0 meaning
+        /// that the object returned should be the nil variant of this object, 1.0
+        /// meaning that no change should be applied, returning `this` (or something
+        /// equivalent to `this`), and other values meaning that the object should be
+        /// multiplied by `t`. Negative values are treated like zero.
+        ///
+        /// Since a zero width is normally painted as a hairline width rather than no
+        /// border at all, the zero factor is special-cased to instead change the
+        /// style to [BorderStyle.none].
+        ///
+        /// Values for `t` are usually obtained from an [Animation<double>], such as
+        /// an [AnimationController].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.BorderSide Scale(double t) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Create a [Paint] object that, if used to stroke a line, will draw the line
+        /// in this border's style.
+        ///
+        /// Not all borders use this method to paint their border sides. For example,
+        /// non-uniform rectangular [Border]s have beveled edges and so paint their
+        /// border sides as filled shapes rather than using a stroke.
+        /// </Summary>
         public virtual Paint ToPaint() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Whether the two given [BorderSide]s can be merged using [new
+        /// BorderSide.merge].
+        ///
+        /// Two sides can be merged if one or both are zero-width with
+        /// [BorderStyle.none], or if they both have the same color and style.
+        ///
+        /// The arguments must not be null.
+        /// </Summary>
         public virtual bool CanMerge(FlutterSDK.Painting.Borders.BorderSide a, FlutterSDK.Painting.Borders.BorderSide b) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two border sides.
+        ///
+        /// The arguments must not be null.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.BorderSide Lerp(FlutterSDK.Painting.Borders.BorderSide a, FlutterSDK.Painting.Borders.BorderSide b, double t) { throw new NotImplementedException(); }
 
 
@@ -494,6 +606,22 @@ namespace FlutterSDK.Painting.Borders
     }
 
 
+    /// <Summary>
+    /// Base class for shape outlines.
+    ///
+    /// This class handles how to add multiple borders together. Subclasses define
+    /// various shapes, like circles ([CircleBorder]), rounded rectangles
+    /// ([RoundedRectangleBorder]), continuous rectangles
+    /// ([ContinuousRectangleBorder]), or beveled rectangles
+    /// ([BeveledRectangleBorder]).
+    ///
+    /// See also:
+    ///
+    ///  * [ShapeDecoration], which can be used with [DecoratedBox] to show a shape.
+    ///  * [Material] (and many other widgets in the Material library), which takes
+    ///    a [ShapeBorder] to define its shape.
+    ///  * [NotchedShape], which describes a shape with a hole in it.
+    /// </Summary>
     public class ShapeBorder
     {
         #region constructors
@@ -509,30 +637,189 @@ namespace FlutterSDK.Painting.Borders
 
         #region methods
 
+        /// <Summary>
+        /// Attempts to create a new object that represents the amalgamation of `this`
+        /// border and the `other` border.
+        ///
+        /// If the type of the other border isn't known, or the given instance cannot
+        /// be reasonably added to this instance, then this should return null.
+        ///
+        /// This method is used by the [operator +] implementation.
+        ///
+        /// The `reversed` argument is true if this object was the right operand of
+        /// the `+` operator, and false if it was the left operand.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Add(FlutterSDK.Painting.Borders.ShapeBorder other, bool reversed = false) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Creates a new border consisting of the two borders on either side of the
+        /// operator.
+        ///
+        /// If the borders belong to classes that know how to add themselves, then
+        /// this results in a new border that represents the intelligent addition of
+        /// those two borders (see [add]). Otherwise, an object is returned that
+        /// merely paints the two borders sequentially, with the left hand operand on
+        /// the inside and the right hand operand on the outside.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.ShapeBorder AddOperator(FlutterSDK.Painting.Borders.ShapeBorder other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Creates a copy of this border, scaled by the factor `t`.
+        ///
+        /// Typically this means scaling the width of the border's side, but it can
+        /// also include scaling other artifacts of the border, e.g. the border radius
+        /// of a [RoundedRectangleBorder].
+        ///
+        /// The `t` argument represents the multiplicand, or the position on the
+        /// timeline for an interpolation from nothing to `this`, with 0.0 meaning
+        /// that the object returned should be the nil variant of this object, 1.0
+        /// meaning that no change should be applied, returning `this` (or something
+        /// equivalent to `this`), and other values meaning that the object should be
+        /// multiplied by `t`. Negative values are allowed but may be meaningless
+        /// (they correspond to extrapolating the interpolation from this object to
+        /// nothing, and going beyond nothing)
+        ///
+        /// Values for `t` are usually obtained from an [Animation<double>], such as
+        /// an [AnimationController].
+        ///
+        /// See also:
+        ///
+        ///  * [BorderSide.scale], which most [ShapeBorder] subclasses defer to for
+        ///    the actual computation.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Scale(double t) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolates from another [ShapeBorder] (possibly of another
+        /// class) to `this`.
+        ///
+        /// When implementing this method in subclasses, return null if this class
+        /// cannot interpolate from `a`. In that case, [lerp] will try `a`'s [lerpTo]
+        /// method instead. If `a` is null, this must not return null.
+        ///
+        /// The base class implementation handles the case of `a` being null by
+        /// deferring to [scale].
+        ///
+        /// The `t` argument represents position on the timeline, with 0.0 meaning
+        /// that the interpolation has not started, returning `a` (or something
+        /// equivalent to `a`), 1.0 meaning that the interpolation has finished,
+        /// returning `this` (or something equivalent to `this`), and values in
+        /// between meaning that the interpolation is at the relevant point on the
+        /// timeline between `a` and `this`. The interpolation can be extrapolated
+        /// beyond 0.0 and 1.0, so negative values and values greater than 1.0 are
+        /// valid (and can easily be generated by curves such as
+        /// [Curves.elasticInOut]).
+        ///
+        /// Values for `t` are usually obtained from an [Animation<double>], such as
+        /// an [AnimationController].
+        ///
+        /// Instead of calling this directly, use [ShapeBorder.lerp].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolates from `this` to another [ShapeBorder] (possibly of
+        /// another class).
+        ///
+        /// This is called if `b`'s [lerpTo] did not know how to handle this class.
+        ///
+        /// When implementing this method in subclasses, return null if this class
+        /// cannot interpolate from `b`. In that case, [lerp] will apply a default
+        /// behavior instead. If `b` is null, this must not return null.
+        ///
+        /// The base class implementation handles the case of `b` being null by
+        /// deferring to [scale].
+        ///
+        /// The `t` argument represents position on the timeline, with 0.0 meaning
+        /// that the interpolation has not started, returning `this` (or something
+        /// equivalent to `this`), 1.0 meaning that the interpolation has finished,
+        /// returning `b` (or something equivalent to `b`), and values in between
+        /// meaning that the interpolation is at the relevant point on the timeline
+        /// between `this` and `b`. The interpolation can be extrapolated beyond 0.0
+        /// and 1.0, so negative values and values greater than 1.0 are valid (and can
+        /// easily be generated by curves such as [Curves.elasticInOut]).
+        ///
+        /// Values for `t` are usually obtained from an [Animation<double>], such as
+        /// an [AnimationController].
+        ///
+        /// Instead of calling this directly, use [ShapeBorder.lerp].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolates between two [ShapeBorder]s.
+        ///
+        /// This defers to `b`'s [lerpTo] function if `b` is not null. If `b` is
+        /// null or if its [lerpTo] returns null, it uses `a`'s [lerpFrom]
+        /// function instead. If both return null, it returns `a` before `t=0.5`
+        /// and `b` after `t=0.5`.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Lerp(FlutterSDK.Painting.Borders.ShapeBorder a, FlutterSDK.Painting.Borders.ShapeBorder b, double t) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Create a [Path] that describes the outer edge of the border.
+        ///
+        /// This path must not cross the path given by [getInnerPath] for the same
+        /// [Rect].
+        ///
+        /// To obtain a [Path] that describes the area of the border itself, set the
+        /// [Path.fillType] of the returned object to [PathFillType.evenOdd], and add
+        /// to this object the path returned from [getInnerPath] (using
+        /// [Path.addPath]).
+        ///
+        /// The `textDirection` argument must be provided non-null if the border
+        /// has a text direction dependency (for example if it is expressed in terms
+        /// of "start" and "end" instead of "left" and "right"). It may be null if
+        /// the border will not need the text direction to paint itself.
+        ///
+        /// See also:
+        ///
+        ///  * [getInnerPath], which creates the path for the inner edge.
+        ///  * [Path.contains], which can tell if an [Offset] is within a [Path].
+        /// </Summary>
         public virtual Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Create a [Path] that describes the inner edge of the border.
+        ///
+        /// This path must not cross the path given by [getOuterPath] for the same
+        /// [Rect].
+        ///
+        /// To obtain a [Path] that describes the area of the border itself, set the
+        /// [Path.fillType] of the returned object to [PathFillType.evenOdd], and add
+        /// to this object the path returned from [getOuterPath] (using
+        /// [Path.addPath]).
+        ///
+        /// The `textDirection` argument must be provided and non-null if the border
+        /// has a text direction dependency (for example if it is expressed in terms
+        /// of "start" and "end" instead of "left" and "right"). It may be null if
+        /// the border will not need the text direction to paint itself.
+        ///
+        /// See also:
+        ///
+        ///  * [getOuterPath], which creates the path for the outer edge.
+        ///  * [Path.contains], which can tell if an [Offset] is within a [Path].
+        /// </Summary>
         public virtual Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Paints the border within the given [Rect] on the given [Canvas].
+        ///
+        /// The `textDirection` argument must be provided and non-null if the border
+        /// has a text direction dependency (for example if it is expressed in terms
+        /// of "start" and "end" instead of "left" and "right"). It may be null if
+        /// the border will not need the text direction to paint itself.
+        /// </Summary>
         public virtual void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
 
@@ -540,6 +827,11 @@ namespace FlutterSDK.Painting.Borders
     }
 
 
+    /// <Summary>
+    /// Represents the addition of two otherwise-incompatible borders.
+    ///
+    /// The borders are listed from the outside to the inside.
+    /// </Summary>
     public class _CompoundBorder : FlutterSDK.Painting.Borders.ShapeBorder
     {
         #region constructors
@@ -589,10 +881,19 @@ namespace FlutterSDK.Painting.Borders
     }
 
 
+    /// <Summary>
+    /// The style of line to draw for a [BorderSide] in a [Border].
+    /// </Summary>
     public enum BorderStyle
     {
 
+        /// <Summary>
+        /// Skip the border.
+        /// </Summary>
         None,
+        /// <Summary>
+        /// Draw the border as a solid line.
+        /// </Summary>
         Solid,
     }
 

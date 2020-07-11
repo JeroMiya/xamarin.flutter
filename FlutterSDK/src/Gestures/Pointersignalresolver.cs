@@ -313,9 +313,19 @@ namespace FlutterSDK.Gestures.Pointersignalresolver
         internal virtual FlutterSDK.Gestures.Pointersignalresolver.PointerSignalResolvedCallback _FirstRegisteredCallback { get; set; }
         internal virtual FlutterSDK.Gestures.Events.PointerSignalEvent _CurrentEvent { get; set; }
 
+        /// <Summary>
+        /// Registers interest in handling [event].
+        /// </Summary>
         public virtual void Register(FlutterSDK.Gestures.Events.PointerSignalEvent @event, FlutterSDK.Gestures.Pointersignalresolver.PointerSignalResolvedCallback callback) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Resolves the event, calling the first registered callback if there was
+        /// one.
+        ///
+        /// Called after the framework has finished dispatching the pointer signal
+        /// event.
+        /// </Summary>
         public virtual void Resolve(FlutterSDK.Gestures.Events.PointerSignalEvent @event) { throw new NotImplementedException(); }
 
     }
