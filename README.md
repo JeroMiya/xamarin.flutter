@@ -1,10 +1,8 @@
-**ABANDONED: While this project is technically feasible, it's not feasible for a couple of developers in their spare time to finish. It was only meant as a proof of concept and has taken several months to reach its current status and it may even take several more to complete. As stated, this project was never expected to be commercially viable. Due to the effort remaining and no future for this project, it was decided it was not worth our time to complete. (Adam Pedley) - Personally I will now be focussing on the Flutter eco-system.**
+**INCOMPLETE: While this project is technically feasible, in its current state it is incomplete and not currently functional. It is perhaps several months away from being fully functional, per the original author's (Adam Pedley) estimates. It was abandoned by its original creator, Adam Pedley, as a proof of concept or experiment. I feel the project has value to the community, so I've since cloned the repository and I hope to tinker on it little by little on my own time. If you're interested in contributing to the project, I welcome you! If you're looking for a working version of Flutter for Xamarin, it's not here yet. But, please go ahead and bookmark, star, and follow this repository for future updates. Issues and comments are always welcome, so long as they follow the code of conduct, however note that as a hobby/side-project my capacity to respond to every request is limited. Note: I may close issues that are out of scope in the near term just to keep the issue tracker easier to manage, but I'll see if I can find a way to track long term backlog issues in another way.**
 
 # Flutter for Xamarin
 
 *This project has no affiliation with Microsoft, Google or the Xamarin or Flutter teams.*
-
-**This project is still under construction, and a full working version does not exist yet. We will let everyone know when we finally get things running end to end.**
 
 The project is designed to make the Flutter SDK available on the .NET Framework, initially with the supported platforms of:
 
