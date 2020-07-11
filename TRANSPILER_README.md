@@ -15,7 +15,7 @@ In the AST folder is `analyzer.dart`, which uses the Dart Analyzer to create a S
 
 4. Make sure there is a DART_SDK environment  variable pointing to `dart_sdk` directory. Optionally add its bin directory to PATH (if not already).
 
-5. In a terminal window or command prompt, run `dart analyzer`.
+5. In a terminal window or command prompt (except for git bash, which does not work at this time), run `dart analyzer.dart`.
 
 This will run through the Flutter SDK and create an equivalent *.cs files.
 
