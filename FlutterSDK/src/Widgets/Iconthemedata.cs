@@ -428,6 +428,16 @@ namespace FlutterSDK.Widgets.Iconthemedata
     {
     }
 
+    /// <Summary>
+    /// Defines the color, opacity, and size of icons.
+    ///
+    /// Used by [IconTheme] to control the color, opacity, and size of icons in a
+    /// widget subtree.
+    ///
+    /// To obtain the current icon theme, use [IconTheme.of]. To convert an icon
+    /// theme to a version with all the fields filled in, use [new
+    /// IconThemeData.fallback].
+    /// </Summary>
     public class IconThemeData : IDiagnosticable
     {
         #region constructors
@@ -454,15 +464,47 @@ namespace FlutterSDK.Widgets.Iconthemedata
 
         #region methods
 
+        /// <Summary>
+        /// Creates a copy of this icon theme but with the given fields replaced with
+        /// the new values.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double opacity = default(double), double size = default(double)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a new icon theme that matches this icon theme but with some values
+        /// replaced by the non-null parameters of the given icon theme. If the given
+        /// icon theme is null, simply returns this icon theme.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData Merge(FlutterSDK.Widgets.Iconthemedata.IconThemeData other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called by [IconTheme.of] to convert this instance to an [IconThemeData]
+        /// that fits the given [BuildContext].
+        ///
+        /// This method gives the ambient [IconThemeData] a chance to update itself,
+        /// after it's been retrieved by [IconTheme.of], and before being returned as
+        /// the final result. For instance, [CupertinoIconThemeData] overrides this method
+        /// to resolve [color], in case [color] is a [CupertinoDynamicColor] and needs
+        /// to be resolved against the given [BuildContext] before it can be used as a
+        /// regular [Color].
+        ///
+        /// The default implementation returns this [IconThemeData] as-is.
+        ///
+        /// See also:
+        ///
+        ///  * [CupertinoIconThemeData.resolve] an implementation that resolves
+        ///    [CupertinoIconThemeData.color] before returning.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData Resolve(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two icon theme data objects.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData Lerp(FlutterSDK.Widgets.Iconthemedata.IconThemeData a, FlutterSDK.Widgets.Iconthemedata.IconThemeData b, double t) { throw new NotImplementedException(); }
 
 

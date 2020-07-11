@@ -416,6 +416,46 @@ namespace FlutterSDK.Material.Refreshindicator
         public static TimeSpan _KIndicatorScaleDuration = default(TimeSpan);
     }
 
+    /// <Summary>
+    /// A widget that supports the Material "swipe to refresh" idiom.
+    ///
+    /// When the child's [Scrollable] descendant overscrolls, an animated circular
+    /// progress indicator is faded into view. When the scroll ends, if the
+    /// indicator has been dragged far enough for it to become completely opaque,
+    /// the [onRefresh] callback is called. The callback is expected to update the
+    /// scrollable's contents and then complete the [Future] it returns. The refresh
+    /// indicator disappears after the callback's [Future] has completed.
+    ///
+    /// ## Troubleshooting
+    ///
+    /// ### Refresh indicator does not show up
+    ///
+    /// The [RefreshIndicator] will appear if its scrollable descendant can be
+    /// overscrolled, i.e. if the scrollable's content is bigger than its viewport.
+    /// To ensure that the [RefreshIndicator] will always appear, even if the
+    /// scrollable's content fits within its viewport, set the scrollable's
+    /// [Scrollable.physics] property to [AlwaysScrollableScrollPhysics]:
+    ///
+    /// ```dart
+    /// ListView(
+    ///   physics: const AlwaysScrollableScrollPhysics(),
+    ///   children: ...
+    /// )
+    /// ```
+    ///
+    /// A [RefreshIndicator] can only be used with a vertical scroll view.
+    ///
+    /// See also:
+    ///
+    ///  * <https://material.io/design/platform-guidance/android-swipe-to-refresh.html>
+    ///  * [RefreshIndicatorState], can be used to programmatically show the refresh indicator.
+    ///  * [RefreshProgressIndicator], widget used by [RefreshIndicator] to show
+    ///    the inner circular progress spinner during refreshes.
+    ///  * [CupertinoSliverRefreshControl], an iOS equivalent of the pull-to-refresh pattern.
+    ///    Must be used as a sliver inside a [CustomScrollView] instead of wrapping
+    ///    around a [ScrollView] because it's a part of the scrollable instead of
+    ///    being overlaid on top of it.
+    /// </Summary>
     public class RefreshIndicator : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -454,6 +494,10 @@ namespace FlutterSDK.Material.Refreshindicator
     }
 
 
+    /// <Summary>
+    /// Contains the state for a [RefreshIndicator]. This class can be used to
+    /// programmatically show the refresh indicator, see the [show] method.
+    /// </Summary>
     public class RefreshIndicatorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Refreshindicator.RefreshIndicator>, ITickerProviderStateMixin<FlutterSDK.Material.Refreshindicator.RefreshIndicator>
     {
         #region constructors
@@ -506,6 +550,24 @@ namespace FlutterSDK.Material.Refreshindicator
         private void _Show() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Show the refresh indicator and run the refresh callback as if it had
+        /// been started interactively. If this method is called while the refresh
+        /// callback is running, it quietly does nothing.
+        ///
+        /// Creating the [RefreshIndicator] with a [GlobalKey<RefreshIndicatorState>]
+        /// makes it possible to refer to the [RefreshIndicatorState].
+        ///
+        /// The future returned from this method completes when the
+        /// [RefreshIndicator.onRefresh] callback's future completes.
+        ///
+        /// If you await the future returned by this function from a [State], you
+        /// should check that the state is still [mounted] before calling [setState].
+        ///
+        /// When initiated in this manner, the refresh indicator is independent of any
+        /// actual scroll view. It defaults to showing the indicator at the top. To
+        /// show it at the bottom, set `atTop` to false.
+        /// </Summary>
         public virtual Future<object> Show(bool atTop = true) { throw new NotImplementedException(); }
 
 

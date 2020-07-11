@@ -63,6 +63,149 @@ namespace FlutterSDK.Animation.Animationcontroller
         public static FlutterSDK.Physics.Tolerance.Tolerance _KFlingTolerance = default(FlutterSDK.Physics.Tolerance.Tolerance);
     }
 
+    /// <Summary>
+    /// A controller for an animation.
+    ///
+    /// This class lets you perform tasks such as:
+    ///
+    /// * Play an animation [forward] or in [reverse], or [stop] an animation.
+    /// * Set the animation to a specific [value].
+    /// * Define the [upperBound] and [lowerBound] values of an animation.
+    /// * Create a [fling] animation effect using a physics simulation.
+    ///
+    /// By default, an [AnimationController] linearly produces values that range
+    /// from 0.0 to 1.0, during a given duration. The animation controller generates
+    /// a new value whenever the device running your app is ready to display a new
+    /// frame (typically, this rate is around 60 values per second).
+    ///
+    /// ## Ticker providers
+    ///
+    /// An [AnimationController] needs a [TickerProvider], which is configured using
+    /// the `vsync` argument on the constructor.
+    ///
+    /// The [TickerProvider] interface describes a factory for [Ticker] objects. A
+    /// [Ticker] is an object that knows how to register itself with the
+    /// [SchedulerBinding] and fires a callback every frame. The
+    /// [AnimationController] class uses a [Ticker] to step through the animation
+    /// that it controls.
+    ///
+    /// If an [AnimationController] is being created from a [State], then the State
+    /// can use the [TickerProviderStateMixin] and [SingleTickerProviderStateMixin]
+    /// classes to implement the [TickerProvider] interface. The
+    /// [TickerProviderStateMixin] class always works for this purpose; the
+    /// [SingleTickerProviderStateMixin] is slightly more efficient in the case of
+    /// the class only ever needing one [Ticker] (e.g. if the class creates only a
+    /// single [AnimationController] during its entire lifetime).
+    ///
+    /// The widget test framework [WidgetTester] object can be used as a ticker
+    /// provider in the context of tests. In other contexts, you will have to either
+    /// pass a [TickerProvider] from a higher level (e.g. indirectly from a [State]
+    /// that mixes in [TickerProviderStateMixin]), or create a custom
+    /// [TickerProvider] subclass.
+    ///
+    /// ## Life cycle
+    ///
+    /// An [AnimationController] should be [dispose]d when it is no longer needed.
+    /// This reduces the likelihood of leaks. When used with a [StatefulWidget], it
+    /// is common for an [AnimationController] to be created in the
+    /// [State.initState] method and then disposed in the [State.dispose] method.
+    ///
+    /// ## Using [Future]s with [AnimationController]
+    ///
+    /// The methods that start animations return a [TickerFuture] object which
+    /// completes when the animation completes successfully, and never throws an
+    /// error; if the animation is canceled, the future never completes. This object
+    /// also has a [TickerFuture.orCancel] property which returns a future that
+    /// completes when the animation completes successfully, and completes with an
+    /// error when the animation is aborted.
+    ///
+    /// This can be used to write code such as the `fadeOutAndUpdateState` method
+    /// below.
+    ///
+    /// {@tool snippet}
+    ///
+    /// Here is a stateful `Foo` widget. Its [State] uses the
+    /// [SingleTickerProviderStateMixin] to implement the necessary
+    /// [TickerProvider], creating its controller in the [State.initState] method
+    /// and disposing of it in the [State.dispose] method. The duration of the
+    /// controller is configured from a property in the `Foo` widget; as that
+    /// changes, the [State.didUpdateWidget] method is used to update the
+    /// controller.
+    ///
+    /// ```dart
+    /// class Foo extends StatefulWidget {
+    ///   Foo({ Key key, this.duration }) : super(key: key);
+    ///
+    ///   final Duration duration;
+    ///
+    ///   @override
+    ///   _FooState createState() => _FooState();
+    /// }
+    ///
+    /// class _FooState extends State<Foo> with SingleTickerProviderStateMixin {
+    ///   AnimationController _controller;
+    ///
+    ///   @override
+    ///   void initState() {
+    ///     super.initState();
+    ///     _controller = AnimationController(
+    ///       vsync: this, // the SingleTickerProviderStateMixin
+    ///       duration: widget.duration,
+    ///     );
+    ///   }
+    ///
+    ///   @override
+    ///   void didUpdateWidget(Foo oldWidget) {
+    ///     super.didUpdateWidget(oldWidget);
+    ///     _controller.duration = widget.duration;
+    ///   }
+    ///
+    ///   @override
+    ///   void dispose() {
+    ///     _controller.dispose();
+    ///     super.dispose();
+    ///   }
+    ///
+    ///   @override
+    ///   Widget build(BuildContext context) {
+    ///     return Container(); // ...
+    ///   }
+    /// }
+    /// ```
+    /// {@end-tool}
+    /// {@tool snippet}
+    ///
+    /// The following method (for a [State] subclass) drives two animation
+    /// controllers using Dart's asynchronous syntax for awaiting [Future] objects:
+    ///
+    /// ```dart
+    /// Future<void> fadeOutAndUpdateState() async {
+    ///   try {
+    ///     await fadeAnimationController.forward().orCancel;
+    ///     await sizeAnimationController.forward().orCancel;
+    ///     setState(() {
+    ///       dismissed = true;
+    ///     });
+    ///   } on TickerCanceled {
+    ///     // the animation got canceled, probably because we were disposed
+    ///   }
+    /// }
+    /// ```
+    /// {@end-tool}
+    ///
+    /// The assumption in the code above is that the animation controllers are being
+    /// disposed in the [State] subclass' override of the [State.dispose] method.
+    /// Since disposing the controller cancels the animation (raising a
+    /// [TickerCanceled] exception), the code here can skip verifying whether
+    /// [State.mounted] is still true at each step. (Again, this assumes that the
+    /// controllers are created in [State.initState] and disposed in
+    /// [State.dispose], as described in the previous section.)
+    ///
+    /// See also:
+    ///
+    ///  * [Tween], the base class for converting an [AnimationController] to a
+    ///    range of values of other types.
+    /// </Summary>
     public class AnimationController : FlutterSDK.Animation.Animation.Animation<double>, IAnimationEagerListenerMixin, IAnimationLocalListenersMixin, IAnimationLocalStatusListenersMixin
     {
         #region constructors
@@ -109,48 +252,196 @@ namespace FlutterSDK.Animation.Animationcontroller
 
         #region methods
 
+        /// <Summary>
+        /// Recreates the [Ticker] with the new [TickerProvider].
+        /// </Summary>
         public virtual void Resync(FlutterSDK.Scheduler.Ticker.TickerProvider vsync) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Sets the controller's value to [lowerBound], stopping the animation (if
+        /// in progress), and resetting to its beginning point, or dismissed state.
+        ///
+        /// The most recently returned [TickerFuture], if any, is marked as having been
+        /// canceled, meaning the future never completes and its [TickerFuture.orCancel]
+        /// derivative future completes with a [TickerCanceled] error.
+        ///
+        /// See also:
+        ///
+        ///  * [value], which can be explicitly set to a specific value as desired.
+        ///  * [forward], which starts the animation in the forward direction.
+        ///  * [stop], which aborts the animation without changing its value or status
+        ///    and without dispatching any notifications other than completing or
+        ///    canceling the [TickerFuture].
+        /// </Summary>
         public virtual void Reset() { throw new NotImplementedException(); }
 
 
         private void _InternalSetValue(double newValue) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Starts running this animation forwards (towards the end).
+        ///
+        /// Returns a [TickerFuture] that completes when the animation is complete.
+        ///
+        /// The most recently returned [TickerFuture], if any, is marked as having been
+        /// canceled, meaning the future never completes and its [TickerFuture.orCancel]
+        /// derivative future completes with a [TickerCanceled] error.
+        ///
+        /// During the animation, [status] is reported as [AnimationStatus.forward],
+        /// which switches to [AnimationStatus.completed] when [upperBound] is
+        /// reached at the end of the animation.
+        /// </Summary>
         public virtual FlutterSDK.Scheduler.Ticker.TickerFuture Forward(double from = default(double)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Starts running this animation in reverse (towards the beginning).
+        ///
+        /// Returns a [TickerFuture] that completes when the animation is dismissed.
+        ///
+        /// The most recently returned [TickerFuture], if any, is marked as having been
+        /// canceled, meaning the future never completes and its [TickerFuture.orCancel]
+        /// derivative future completes with a [TickerCanceled] error.
+        ///
+        /// During the animation, [status] is reported as [AnimationStatus.reverse],
+        /// which switches to [AnimationStatus.dismissed] when [lowerBound] is
+        /// reached at the end of the animation.
+        /// </Summary>
         public virtual FlutterSDK.Scheduler.Ticker.TickerFuture Reverse(double from = default(double)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Drives the animation from its current value to target.
+        ///
+        /// Returns a [TickerFuture] that completes when the animation is complete.
+        ///
+        /// The most recently returned [TickerFuture], if any, is marked as having been
+        /// canceled, meaning the future never completes and its [TickerFuture.orCancel]
+        /// derivative future completes with a [TickerCanceled] error.
+        ///
+        /// During the animation, [status] is reported as [AnimationStatus.forward]
+        /// regardless of whether `target` > [value] or not. At the end of the
+        /// animation, when `target` is reached, [status] is reported as
+        /// [AnimationStatus.completed].
+        /// </Summary>
         public virtual FlutterSDK.Scheduler.Ticker.TickerFuture AnimateTo(double target, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Drives the animation from its current value to target.
+        ///
+        /// Returns a [TickerFuture] that completes when the animation is complete.
+        ///
+        /// The most recently returned [TickerFuture], if any, is marked as having been
+        /// canceled, meaning the future never completes and its [TickerFuture.orCancel]
+        /// derivative future completes with a [TickerCanceled] error.
+        ///
+        /// During the animation, [status] is reported as [AnimationStatus.reverse]
+        /// regardless of whether `target` < [value] or not. At the end of the
+        /// animation, when `target` is reached, [status] is reported as
+        /// [AnimationStatus.dismissed].
+        /// </Summary>
         public virtual FlutterSDK.Scheduler.Ticker.TickerFuture AnimateBack(double target, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)) { throw new NotImplementedException(); }
 
 
         private FlutterSDK.Scheduler.Ticker.TickerFuture _AnimateToInternal(double target, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Starts running this animation in the forward direction, and
+        /// restarts the animation when it completes.
+        ///
+        /// Defaults to repeating between the [lowerBound] and [upperBound] of the
+        /// [AnimationController] when no explicit value is set for [min] and [max].
+        ///
+        /// With [reverse] set to true, instead of always starting over at [min]
+        /// the starting value will alternate between [min] and [max] values on each
+        /// repeat. The [status] will be reported as [AnimationStatus.reverse] when
+        /// the animation runs from [max] to [min].
+        ///
+        /// Returns a [TickerFuture] that never completes. The [TickerFuture.orCancel] future
+        /// completes with an error when the animation is stopped (e.g. with [stop]).
+        ///
+        /// The most recently returned [TickerFuture], if any, is marked as having been
+        /// canceled, meaning the future never completes and its [TickerFuture.orCancel]
+        /// derivative future completes with a [TickerCanceled] error.
+        /// </Summary>
         public virtual FlutterSDK.Scheduler.Ticker.TickerFuture Repeat(double min = default(double), double max = default(double), bool reverse = false, TimeSpan period = default(TimeSpan)) { throw new NotImplementedException(); }
 
 
         private void _DirectionSetter(FlutterSDK.Animation.Animationcontroller._AnimationDirection direction) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Drives the animation with a critically damped spring (within [lowerBound]
+        /// and [upperBound]) and initial velocity.
+        ///
+        /// If velocity is positive, the animation will complete, otherwise it will
+        /// dismiss.
+        ///
+        /// Returns a [TickerFuture] that completes when the animation is complete.
+        ///
+        /// The most recently returned [TickerFuture], if any, is marked as having been
+        /// canceled, meaning the future never completes and its [TickerFuture.orCancel]
+        /// derivative future completes with a [TickerCanceled] error.
+        /// </Summary>
         public virtual FlutterSDK.Scheduler.Ticker.TickerFuture Fling(double velocity = 1.0, FlutterSDK.Animation.Animationcontroller.AnimationBehavior animationBehavior = default(FlutterSDK.Animation.Animationcontroller.AnimationBehavior)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Drives the animation according to the given simulation.
+        ///
+        /// The values from the simulation are clamped to the [lowerBound] and
+        /// [upperBound]. To avoid this, consider creating the [AnimationController]
+        /// using the [new AnimationController.unbounded] constructor.
+        ///
+        /// Returns a [TickerFuture] that completes when the animation is complete.
+        ///
+        /// The most recently returned [TickerFuture], if any, is marked as having been
+        /// canceled, meaning the future never completes and its [TickerFuture.orCancel]
+        /// derivative future completes with a [TickerCanceled] error.
+        ///
+        /// The [status] is always [AnimationStatus.forward] for the entire duration
+        /// of the simulation.
+        /// </Summary>
         public virtual FlutterSDK.Scheduler.Ticker.TickerFuture AnimateWith(FlutterSDK.Physics.Simulation.Simulation simulation) { throw new NotImplementedException(); }
 
 
         private FlutterSDK.Scheduler.Ticker.TickerFuture _StartSimulation(FlutterSDK.Physics.Simulation.Simulation simulation) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Stops running this animation.
+        ///
+        /// This does not trigger any notifications. The animation stops in its
+        /// current state.
+        ///
+        /// By default, the most recently returned [TickerFuture] is marked as having
+        /// been canceled, meaning the future never completes and its
+        /// [TickerFuture.orCancel] derivative future completes with a [TickerCanceled]
+        /// error. By passing the `canceled` argument with the value false, this is
+        /// reversed, and the futures complete successfully.
+        ///
+        /// See also:
+        ///
+        ///  * [reset], which stops the animation and resets it to the [lowerBound],
+        ///    and which does send notifications.
+        ///  * [forward], [reverse], [animateTo], [animateWith], [fling], and [repeat],
+        ///    which restart the animation controller.
+        /// </Summary>
         public virtual void Stop(bool canceled = true) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Release the resources used by this object. The object is no longer usable
+        /// after this method is called.
+        ///
+        /// The most recently returned [TickerFuture], if any, is marked as having been
+        /// canceled, meaning the future never completes and its [TickerFuture.orCancel]
+        /// derivative future completes with a [TickerCanceled] error.
+        /// </Summary>
         public new void Dispose() { throw new NotImplementedException(); }
 
 
@@ -235,18 +526,52 @@ namespace FlutterSDK.Animation.Animationcontroller
     }
 
 
+    /// <Summary>
+    /// The direction in which an animation is running.
+    /// </Summary>
     public enum _AnimationDirection
     {
 
+        /// <Summary>
+        /// The animation is running from beginning to end.
+        /// </Summary>
         Forward,
+        /// <Summary>
+        /// The animation is running backwards, from end to beginning.
+        /// </Summary>
         Reverse,
     }
 
 
+    /// <Summary>
+    /// Configures how an [AnimationController] behaves when animations are
+    /// disabled.
+    ///
+    /// When [AccessibilityFeatures.disableAnimations] is true, the device is asking
+    /// Flutter to reduce or disable animations as much as possible. To honor this,
+    /// we reduce the duration and the corresponding number of frames for
+    /// animations. This enum is used to allow certain [AnimationController]s to opt
+    /// out of this behavior.
+    ///
+    /// For example, the [AnimationController] which controls the physics simulation
+    /// for a scrollable list will have [AnimationBehavior.preserve], so that when
+    /// a user attempts to scroll it does not jump to the end/beginning too quickly.
+    /// </Summary>
     public enum AnimationBehavior
     {
 
+        /// <Summary>
+        /// The [AnimationController] will reduce its duration when
+        /// [AccessibilityFeatures.disableAnimations] is true.
+        /// </Summary>
         Normal,
+        /// <Summary>
+        /// The [AnimationController] will preserve its behavior.
+        ///
+        /// This is the default for repeating animations in order to prevent them from
+        /// flashing rapidly on the screen if the widget does not take the
+        /// [AccessibilityFeatures.disableAnimations] flag into account.
+        /// </Summary>
         Preserve,
     }
 

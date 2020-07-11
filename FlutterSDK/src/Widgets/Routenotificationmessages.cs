@@ -429,6 +429,9 @@ namespace FlutterSDK.Widgets.Routenotificationmessages
     {
     }
 
+    /// <Summary>
+    /// Messages for route change notifications.
+    /// </Summary>
     public class RouteNotificationMessages
     {
         #region constructors
@@ -443,9 +446,20 @@ namespace FlutterSDK.Widgets.Routenotificationmessages
 
         #region methods
 
+        /// <Summary>
+        /// When the engine is Web notify the platform for a route change.
+        /// </Summary>
         public virtual void MaybeNotifyRouteChange(string routeName, string previousRouteName) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Notifies the platform of a route change.
+        ///
+        /// See also:
+        ///
+        ///  * [SystemChannels.navigation], which handles subsequent navigation
+        ///    requests.
+        /// </Summary>
         private void _NotifyRouteChange(string routeName, string previousRouteName) { throw new NotImplementedException(); }
 
         #endregion

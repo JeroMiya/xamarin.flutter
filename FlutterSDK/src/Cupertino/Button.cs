@@ -298,6 +298,16 @@ namespace FlutterSDK.Cupertino.Button
         public static FlutterSDK.Painting.Edgeinsets.EdgeInsets _KBackgroundButtonPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets);
     }
 
+    /// <Summary>
+    /// An iOS-style button.
+    ///
+    /// Takes in a text or an icon that fades out and in on touch. May optionally have a
+    /// background.
+    ///
+    /// See also:
+    ///
+    ///  * <https://developer.apple.com/ios/human-interface-guidelines/controls/buttons/>
+    /// </Summary>
     public class CupertinoButton : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors

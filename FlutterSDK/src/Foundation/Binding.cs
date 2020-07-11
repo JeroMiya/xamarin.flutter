@@ -303,6 +303,23 @@ namespace FlutterSDK.Foundation.Binding
 
     }
 
+    /// <Summary>
+    /// Base class for mixins that provide singleton services (also known as
+    /// "bindings").
+    ///
+    /// To use this class in an `on` clause of a mixin, inherit from it and implement
+    /// [initInstances()]. The mixin is guaranteed to only be constructed once in
+    /// the lifetime of the app (more precisely, it will assert if constructed twice
+    /// in checked mode).
+    ///
+    /// The top-most layer used to write the application will have a concrete class
+    /// that inherits from [BindingBase] and uses all the various [BindingBase]
+    /// mixins (such as [ServicesBinding]). For example, the Widgets library in
+    /// Flutter introduces a binding called [WidgetsFlutterBinding]. The relevant
+    /// library defines how to create the binding. It could be implied (for example,
+    /// [WidgetsFlutterBinding] is automatically started from [runApp]), or the
+    /// application might be required to explicitly call the constructor.
+    /// </Summary>
     public interface IBindingBase
     {
         void InitInstances();
@@ -323,6 +340,23 @@ namespace FlutterSDK.Foundation.Binding
     }
 
 
+    /// <Summary>
+    /// Base class for mixins that provide singleton services (also known as
+    /// "bindings").
+    ///
+    /// To use this class in an `on` clause of a mixin, inherit from it and implement
+    /// [initInstances()]. The mixin is guaranteed to only be constructed once in
+    /// the lifetime of the app (more precisely, it will assert if constructed twice
+    /// in checked mode).
+    ///
+    /// The top-most layer used to write the application will have a concrete class
+    /// that inherits from [BindingBase] and uses all the various [BindingBase]
+    /// mixins (such as [ServicesBinding]). For example, the Widgets library in
+    /// Flutter introduces a binding called [WidgetsFlutterBinding]. The relevant
+    /// library defines how to create the binding. It could be implied (for example,
+    /// [WidgetsFlutterBinding] is automatically started from [runApp]), or the
+    /// application might be required to explicitly call the constructor.
+    /// </Summary>
     public class BindingBase
     {
         #region constructors
@@ -342,42 +376,245 @@ namespace FlutterSDK.Foundation.Binding
 
         #region methods
 
+        /// <Summary>
+        /// The initialization method. Subclasses override this method to hook into
+        /// the platform and otherwise configure their services. Subclasses must call
+        /// "super.initInstances()".
+        ///
+        /// By convention, if the service is to be provided as a singleton, it should
+        /// be exposed as `MixinClassName.instance`, a static getter that returns
+        /// `MixinClassName._instance`, a static field that is set by
+        /// `initInstances()`.
+        /// </Summary>
         public virtual void InitInstances() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called when the binding is initialized, to register service
+        /// extensions.
+        ///
+        /// Bindings that want to expose service extensions should overload
+        /// this method to register them using calls to
+        /// [registerSignalServiceExtension],
+        /// [registerBoolServiceExtension],
+        /// [registerNumericServiceExtension], and
+        /// [registerServiceExtension] (in increasing order of complexity).
+        ///
+        /// Implementations of this method must call their superclass
+        /// implementation.
+        ///
+        /// {@macro flutter.foundation.bindingBase.registerServiceExtension}
+        ///
+        /// See also:
+        ///
+        ///  * <https://github.com/dart-lang/sdk/blob/master/runtime/vm/service/service.md#rpcs-requests-and-responses>
+        /// </Summary>
         public virtual void InitServiceExtensions() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Locks the dispatching of asynchronous events and callbacks until the
+        /// callback's future completes.
+        ///
+        /// This causes input lag and should therefore be avoided when possible. It is
+        /// primarily intended for use during non-user-interactive time such as to
+        /// allow [reassembleApplication] to block input while it walks the tree
+        /// (which it partially does asynchronously).
+        ///
+        /// The [Future] returned by the `callback` argument is returned by [lockEvents].
+        /// </Summary>
         public virtual Future<object> LockEvents(Func<Future> callback) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called by [lockEvents] when events get unlocked.
+        ///
+        /// This should flush any events that were queued while [locked] was true.
+        /// </Summary>
         public virtual void Unlocked() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Cause the entire application to redraw, e.g. after a hot reload.
+        ///
+        /// This is used by development tools when the application code has changed,
+        /// to cause the application to pick up any changed code. It can be triggered
+        /// manually by sending the `ext.flutter.reassemble` service extension signal.
+        ///
+        /// This method is very computationally expensive and should not be used in
+        /// production code. There is never a valid reason to cause the entire
+        /// application to repaint in production. All aspects of the Flutter framework
+        /// know how to redraw when necessary. It is only necessary in development
+        /// when the code is literally changed on the fly (e.g. in hot reload) or when
+        /// debug flags are being toggled.
+        ///
+        /// While this method runs, events are locked (e.g. pointer events are not
+        /// dispatched).
+        ///
+        /// Subclasses (binding classes) should override [performReassemble] to react
+        /// to this method being called. This method itself should not be overridden.
+        /// </Summary>
         public virtual Future<object> ReassembleApplication() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// This method is called by [reassembleApplication] to actually cause the
+        /// application to reassemble, e.g. after a hot reload.
+        ///
+        /// Bindings are expected to use this method to re-register anything that uses
+        /// closures, so that they do not keep pointing to old code, and to flush any
+        /// caches of previously computed values, in case the new code would compute
+        /// them differently. For example, the rendering layer triggers the entire
+        /// application to repaint when this is called.
+        ///
+        /// Do not call this method directly. Instead, use [reassembleApplication].
+        /// </Summary>
         public virtual Future<object> PerformReassemble() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Registers a service extension method with the given name (full
+        /// name "ext.flutter.name"), which takes no arguments and returns
+        /// no value.
+        ///
+        /// Calls the `callback` callback when the service extension is called.
+        ///
+        /// {@macro flutter.foundation.bindingBase.registerServiceExtension}
+        /// </Summary>
         public virtual void RegisterSignalServiceExtension(string name = default(string), FlutterSDK.Foundation.Basictypes.AsyncCallback callback = default(FlutterSDK.Foundation.Basictypes.AsyncCallback)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Registers a service extension method with the given name (full
+        /// name "ext.flutter.name"), which takes a single argument
+        /// "enabled" which can have the value "true" or the value "false"
+        /// or can be omitted to read the current value. (Any value other
+        /// than "true" is considered equivalent to "false". Other arguments
+        /// are ignored.)
+        ///
+        /// Calls the `getter` callback to obtain the value when
+        /// responding to the service extension method being called.
+        ///
+        /// Calls the `setter` callback with the new value when the
+        /// service extension method is called with a new value.
+        ///
+        /// {@macro flutter.foundation.bindingBase.registerServiceExtension}
+        /// </Summary>
         public virtual void RegisterBoolServiceExtension(string name = default(string), FlutterSDK.Foundation.Basictypes.AsyncValueGetter<bool> getter = default(FlutterSDK.Foundation.Basictypes.AsyncValueGetter<bool>), FlutterSDK.Foundation.Basictypes.AsyncValueSetter<bool> setter = default(FlutterSDK.Foundation.Basictypes.AsyncValueSetter<bool>)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Registers a service extension method with the given name (full
+        /// name "ext.flutter.name"), which takes a single argument with the
+        /// same name as the method which, if present, must have a value
+        /// that can be parsed by [double.parse], and can be omitted to read
+        /// the current value. (Other arguments are ignored.)
+        ///
+        /// Calls the `getter` callback to obtain the value when
+        /// responding to the service extension method being called.
+        ///
+        /// Calls the `setter` callback with the new value when the
+        /// service extension method is called with a new value.
+        ///
+        /// {@macro flutter.foundation.bindingBase.registerServiceExtension}
+        /// </Summary>
         public virtual void RegisterNumericServiceExtension(string name = default(string), FlutterSDK.Foundation.Basictypes.AsyncValueGetter<double> getter = default(FlutterSDK.Foundation.Basictypes.AsyncValueGetter<double>), FlutterSDK.Foundation.Basictypes.AsyncValueSetter<double> setter = default(FlutterSDK.Foundation.Basictypes.AsyncValueSetter<double>)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Sends an event when a service extension's state is changed.
+        ///
+        /// Clients should listen for this event to stay aware of the current service
+        /// extension state. Any service extension that manages a state should call
+        /// this method on state change.
+        ///
+        /// `value` reflects the newly updated service extension value.
+        ///
+        /// This will be called automatically for service extensions registered via
+        /// [registerBoolServiceExtension], [registerNumericServiceExtension], or
+        /// [registerStringServiceExtension].
+        /// </Summary>
         private void _PostExtensionStateChangedEvent(string name, object value) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// All events dispatched by a [BindingBase] use this method instead of
+        /// calling [developer.postEvent] directly so that tests for [BindingBase]
+        /// can track which events were dispatched by overriding this method.
+        /// </Summary>
         public virtual void PostEvent(string eventKind, Dictionary<string, object> eventData) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Registers a service extension method with the given name (full name
+        /// "ext.flutter.name"), which optionally takes a single argument with the
+        /// name "value". If the argument is omitted, the value is to be read,
+        /// otherwise it is to be set. Returns the current value.
+        ///
+        /// Calls the `getter` callback to obtain the value when
+        /// responding to the service extension method being called.
+        ///
+        /// Calls the `setter` callback with the new value when the
+        /// service extension method is called with a new value.
+        ///
+        /// {@macro flutter.foundation.bindingBase.registerServiceExtension}
+        /// </Summary>
         public virtual void RegisterStringServiceExtension(string name = default(string), FlutterSDK.Foundation.Basictypes.AsyncValueGetter<string> getter = default(FlutterSDK.Foundation.Basictypes.AsyncValueGetter<string>), FlutterSDK.Foundation.Basictypes.AsyncValueSetter<string> setter = default(FlutterSDK.Foundation.Basictypes.AsyncValueSetter<string>)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Registers a service extension method with the given name (full name
+        /// "ext.flutter.name").
+        ///
+        /// The given callback is called when the extension method is called. The
+        /// callback must return a [Future] that either eventually completes to a
+        /// return value in the form of a name/value map where the values can all be
+        /// converted to JSON using `json.encode()` (see [JsonEncoder]), or fails. In
+        /// case of failure, the failure is reported to the remote caller and is
+        /// dumped to the logs.
+        ///
+        /// The returned map will be mutated.
+        ///
+        /// {@template flutter.foundation.bindingBase.registerServiceExtension}
+        /// A registered service extension can only be activated if the vm-service
+        /// is included in the build, which only happens in debug and profile mode.
+        /// Although a service extension cannot be used in release mode its code may
+        /// still be included in the Dart snapshot and blow up binary size if it is
+        /// not wrapped in a guard that allows the tree shaker to remove it (see
+        /// sample code below).
+        ///
+        /// {@tool snippet}
+        /// The following code registers a service extension that is only included in
+        /// debug builds.
+        ///
+        /// ```dart
+        /// void myRegistrationFunction() {
+        ///   assert(() {
+        ///     // Register your service extension here.
+        ///     return true;
+        ///   }());
+        /// }
+        /// ```
+        /// {@end-tool}
+        ///
+        /// {@tool snippet}
+        /// A service extension registered with the following code snippet is
+        /// available in debug and profile mode.
+        ///
+        /// ```dart
+        /// void myRegistrationFunction() {
+        ///   // kReleaseMode is defined in the 'flutter/foundation.dart' package.
+        ///   if (!kReleaseMode) {
+        ///     // Register your service extension here.
+        ///   }
+        /// }
+        /// ```
+        /// {@end-tool}
+        ///
+        /// Both guards ensure that Dart's tree shaker can remove the code for the
+        /// service extension in release builds.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual void RegisterServiceExtension(string name = default(string), FlutterSDK.Foundation.Binding.ServiceExtensionCallback callback = default(FlutterSDK.Foundation.Binding.ServiceExtensionCallback)) { throw new NotImplementedException(); }
 
 

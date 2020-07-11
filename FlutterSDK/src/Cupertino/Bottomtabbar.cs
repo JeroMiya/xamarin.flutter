@@ -299,6 +299,37 @@ namespace FlutterSDK.Cupertino.Bottomtabbar
         public static Color _KDefaultTabBarInactiveColor = default(Color);
     }
 
+    /// <Summary>
+    /// An iOS-styled bottom navigation tab bar.
+    ///
+    /// Displays multiple tabs using [BottomNavigationBarItem] with one tab being
+    /// active, the first tab by default.
+    ///
+    /// This [StatelessWidget] doesn't store the active tab itself. You must
+    /// listen to the [onTap] callbacks and call `setState` with a new [currentIndex]
+    /// for the new selection to reflect. This can also be done automatically
+    /// by wrapping this with a [CupertinoTabScaffold].
+    ///
+    /// Tab changes typically trigger a switch between [Navigator]s, each with its
+    /// own navigation stack, per standard iOS design. This can be done by using
+    /// [CupertinoTabView]s inside each tab builder in [CupertinoTabScaffold].
+    ///
+    /// If the given [backgroundColor]'s opacity is not 1.0 (which is the case by
+    /// default), it will produce a blurring effect to the content behind it.
+    ///
+    /// When used as [CupertinoTabScaffold.tabBar], by default `CupertinoTabBar` has
+    /// its text scale factor set to 1.0 and does not respond to text scale factor
+    /// changes from the operating system, to match the native iOS behavior. To override
+    /// this behavior, wrap each of the `navigationBar`'s components inside a [MediaQuery]
+    /// with the desired [MediaQueryData.textScaleFactor] value. The text scale factor
+    /// value from the operating system can be retrieved in many ways, such as querying
+    /// [MediaQuery.textScaleFactorOf] against [CupertinoApp]'s [BuildContext].
+    ///
+    /// See also:
+    ///
+    ///  * [CupertinoTabScaffold], which hosts the [CupertinoTabBar] at the bottom.
+    ///  * [BottomNavigationBarItem], an item in a [CupertinoTabBar].
+    /// </Summary>
     public class CupertinoTabBar : FlutterSDK.Widgets.Framework.StatelessWidget, IPreferredSizeWidget
     {
         #region constructors
@@ -330,6 +361,10 @@ namespace FlutterSDK.Cupertino.Bottomtabbar
 
         #region methods
 
+        /// <Summary>
+        /// Indicates whether the tab bar is fully opaque or can have contents behind
+        /// it show through it.
+        /// </Summary>
         public virtual bool Opaque(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
@@ -342,9 +377,16 @@ namespace FlutterSDK.Cupertino.Bottomtabbar
         private List<FlutterSDK.Widgets.Framework.Widget> _BuildSingleTabItem(FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem item, bool active) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Change the active tab item's icon and title colors to active.
+        /// </Summary>
         private FlutterSDK.Widgets.Framework.Widget _WrapActiveItem(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget item, bool active = default(bool)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Create a clone of the current [CupertinoTabBar] but with provided
+        /// parameters overridden.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Bottomtabbar.CupertinoTabBar CopyWith(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem> items = default(List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem>), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), double iconSize = default(double), FlutterSDK.Painting.Boxborder.Border border = default(FlutterSDK.Painting.Boxborder.Border), int currentIndex = default(int), FlutterSDK.Foundation.Basictypes.ValueChanged<int> onTap = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>)) { throw new NotImplementedException(); }
 
         #endregion

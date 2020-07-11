@@ -425,6 +425,50 @@ namespace FlutterSDK.Material.Typography
     {
     }
 
+    /// <Summary>
+    /// The color and geometry [TextThemes] for Material apps.
+    ///
+    /// The text themes provided by the overall [Theme], like
+    /// [ThemeData.textTheme], are based on the current locale's
+    /// [MaterialLocalizations.scriptCategory] and are created
+    /// by merging a color text theme, [black] or [white]
+    /// and a geometry text theme, one of [englishLike], [dense],
+    /// or [tall], depending on the locale.
+    ///
+    /// To lookup a localized text theme use
+    /// `Theme.of(context).textTheme` or
+    /// `Theme.of(context).primaryTextTheme` or
+    /// `Theme.of(context).accentTextTheme`.
+    ///
+    /// The color text themes are [blackMountainView], [whiteMountainView],
+    /// [blackCupertino], and [whiteCupertino]. The Mountain View theme [TextStyles]
+    /// are based on the Roboto fonts as used on Android. The Cupertino themes are
+    /// based on the [San Francisco
+    /// font](https://developer.apple.com/ios/human-interface-guidelines/visual-design/typography/)
+    /// fonts as used by Apple on iOS.
+    ///
+    /// Two sets of geometry themes are provided: 2014 and 2018. The 2014 themes
+    /// correspond to the original version of the Material Design spec and are
+    /// the defaults. The 2018 themes correspond the second iteration of the
+    /// specification and feature different font sizes, font weights, and
+    /// letter spacing values.
+    ///
+    /// By default, [ThemeData.typography] is `Typography.material2014(platform:
+    /// platform)` which uses [englishLike2014], [dense2014] and [tall2014]. To use
+    /// the 2018 text theme geometries, specify a value using the [material2018]
+    /// constructor:
+    ///
+    /// ```dart
+    /// typography: Typography.material2018(platform: platform)
+    /// ```
+    ///
+    /// See also:
+    ///
+    ///  * [ThemeData.typography], which can be used to configure the
+    ///    text themes used to create [ThemeData.textTheme],
+    ///    [ThemeData.primaryTextTheme], [ThemeData.accentTextTheme].
+    ///  * <https://material.io/design/typography/>
+    /// </Summary>
     public class Typography : IDiagnosticable
     {
         #region constructors
@@ -482,12 +526,24 @@ namespace FlutterSDK.Material.Typography
 
         #region methods
 
+        /// <Summary>
+        /// Returns one of [englishLike], [dense], or [tall].
+        /// </Summary>
         public virtual FlutterSDK.Material.Texttheme.TextTheme GeometryThemeFor(FlutterSDK.Material.Typography.ScriptCategory category) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Creates a copy of this [Typography] with the given fields
+        /// replaced by the non-null parameter values.
+        /// </Summary>
         public virtual FlutterSDK.Material.Typography.Typography CopyWith(FlutterSDK.Material.Texttheme.TextTheme black = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme white = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme englishLike = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme dense = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme tall = default(FlutterSDK.Material.Texttheme.TextTheme)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two [Typography] objects.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
         public virtual FlutterSDK.Material.Typography.Typography Lerp(FlutterSDK.Material.Typography.Typography a, FlutterSDK.Material.Typography.Typography b, double t) { throw new NotImplementedException(); }
 
 
@@ -500,11 +556,42 @@ namespace FlutterSDK.Material.Typography
     }
 
 
+    /// <Summary>
+    /// A characterization of the of a [TextTheme]'s glyphs that is used to define
+    /// its localized [TextStyle] geometry for [ThemeData.textTheme].
+    ///
+    /// The script category defines the overall geometry of a [TextTheme] for
+    /// the [Typography.geometryThemeFor] method in terms of the
+    /// three language categories defined in <https://material.io/go/design-typography>.
+    ///
+    /// Generally speaking, font sizes for [ScriptCategory.tall] and
+    /// [ScriptCategory.dense] scripts - for text styles that are smaller than the
+    /// title style - are one unit larger than they are for
+    /// [ScriptCategory.englishLike] scripts.
+    /// </Summary>
     public enum ScriptCategory
     {
 
+        /// <Summary>
+        /// The languages of Western, Central, and Eastern Europe and much of
+        /// Africa are typically written in the Latin alphabet. Vietnamese is a
+        /// notable exception in that, while it uses a localized form of the Latin
+        /// writing system, its accented glyphs can be much taller than those
+        /// found in Western European languages. The Greek and Cyrillic writing
+        /// systems are very similar to Latin.
+        /// </Summary>
         EnglishLike,
+        /// <Summary>
+        /// Language scripts that require extra line height to accommodate larger
+        /// glyphs, including Chinese, Japanese, and Korean.
+        /// </Summary>
         Dense,
+        /// <Summary>
+        /// Language scripts that require extra line height to accommodate
+        /// larger glyphs, including South and Southeast Asian and
+        /// Middle-Eastern languages, like Arabic, Hindi, Telugu, Thai, and
+        /// Vietnamese.
+        /// </Summary>
         Tall,
     }
 

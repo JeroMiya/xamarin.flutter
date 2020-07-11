@@ -421,6 +421,22 @@ namespace FlutterSDK.Material.Tabbartheme
     {
     }
 
+    /// <Summary>
+    /// Defines a theme for [TabBar] widgets.
+    ///
+    /// A tab bar theme describes the color of the tab label and the size/shape of
+    /// the [TabBar.indicator].
+    ///
+    /// Descendant widgets obtain the current theme's [TabBarTheme] object using
+    /// `TabBarTheme.of(context)`. Instances of [TabBarTheme] can be customized with
+    /// [TabBarTheme.copyWith].
+    ///
+    /// See also:
+    ///
+    ///  * [TabBar], a widget that displays a horizontal row of tabs.
+    ///  * [ThemeData], which describes the overall theme information for the
+    ///    application.
+    /// </Summary>
     public class TabBarTheme : IDiagnosticable
     {
         #region constructors
@@ -449,12 +465,26 @@ namespace FlutterSDK.Material.Tabbartheme
 
         #region methods
 
+        /// <Summary>
+        /// Creates a copy of this object but with the given fields replaced with the
+        /// new values.
+        /// </Summary>
         public virtual FlutterSDK.Material.Tabbartheme.TabBarTheme CopyWith(FlutterSDK.Painting.Decoration.Decoration indicator = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Material.Tabs.TabBarIndicatorSize indicatorSize = default(FlutterSDK.Material.Tabs.TabBarIndicatorSize), FlutterBinding.UI.Color labelColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterBinding.UI.Color unselectedLabelColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle unselectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The data from the closest [TabBarTheme] instance given the build context.
+        /// </Summary>
         public virtual FlutterSDK.Material.Tabbartheme.TabBarTheme Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two tab bar themes.
+        ///
+        /// The arguments must not be null.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
         public virtual FlutterSDK.Material.Tabbartheme.TabBarTheme Lerp(FlutterSDK.Material.Tabbartheme.TabBarTheme a, FlutterSDK.Material.Tabbartheme.TabBarTheme b, double t) { throw new NotImplementedException(); }
 
 

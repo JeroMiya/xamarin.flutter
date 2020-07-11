@@ -429,6 +429,9 @@ namespace FlutterSDK.Widgets.Sliverpersistentheader
     {
     }
 
+    /// <Summary>
+    /// Delegate for configuring a [SliverPersistentHeader].
+    /// </Summary>
     public interface ISliverPersistentHeaderDelegate
     {
         FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context, double shrinkOffset, bool overlapsContent);
@@ -482,6 +485,9 @@ namespace FlutterSDK.Widgets.Sliverpersistentheader
     }
 
 
+    /// <Summary>
+    /// Delegate for configuring a [SliverPersistentHeader].
+    /// </Summary>
     public class SliverPersistentHeaderDelegate
     {
         #region constructors
@@ -500,15 +506,58 @@ namespace FlutterSDK.Widgets.Sliverpersistentheader
 
         #region methods
 
+        /// <Summary>
+        /// The widget to place inside the [SliverPersistentHeader].
+        ///
+        /// The `context` is the [BuildContext] of the sliver.
+        ///
+        /// The `shrinkOffset` is a distance from [maxExtent] towards [minExtent]
+        /// representing the current amount by which the sliver has been shrunk. When
+        /// the `shrinkOffset` is zero, the contents will be rendered with a dimension
+        /// of [maxExtent] in the main axis. When `shrinkOffset` equals the difference
+        /// between [maxExtent] and [minExtent] (a positive number), the contents will
+        /// be rendered with a dimension of [minExtent] in the main axis. The
+        /// `shrinkOffset` will always be a positive number in that range.
+        ///
+        /// The `overlapsContent` argument is true if subsequent slivers (if any) will
+        /// be rendered beneath this one, and false if the sliver will not have any
+        /// contents below it. Typically this is used to decide whether to draw a
+        /// shadow to simulate the sliver being above the contents below it. Typically
+        /// this is true when `shrinkOffset` is at its greatest value and false
+        /// otherwise, but that is not guaranteed. See [NestedScrollView] for an
+        /// example of a case where `overlapsContent`'s value can be unrelated to
+        /// `shrinkOffset`.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context, double shrinkOffset, bool overlapsContent) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Whether this delegate is meaningfully different from the old delegate.
+        ///
+        /// If this returns false, then the header might not be rebuilt, even though
+        /// the instance of the delegate changed.
+        ///
+        /// This must return true if `oldDelegate` and this object would return
+        /// different values for [minExtent], [maxExtent], [snapConfiguration], or
+        /// would return a meaningfully different widget tree from [build] for the
+        /// same arguments.
+        /// </Summary>
         public virtual bool ShouldRebuild(FlutterSDK.Widgets.Sliverpersistentheader.SliverPersistentHeaderDelegate oldDelegate) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// A sliver whose size varies when the sliver is scrolled to the edge
+    /// of the viewport opposite the sliver's [GrowthDirection].
+    ///
+    /// In the normal case of a [CustomScrollView] with no centered sliver, this
+    /// sliver will vary its size when scrolled to the leading edge of the viewport.
+    ///
+    /// This is the layout primitive that [SliverAppBar] uses for its
+    /// shrinking/growing effect.
+    /// </Summary>
     public class SliverPersistentHeader : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors

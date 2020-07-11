@@ -506,6 +506,14 @@ namespace FlutterSDK.Widgets.Tickerprovider
     }
 
 
+    /// <Summary>
+    /// Enables or disables tickers (and thus animation controllers) in the widget
+    /// subtree.
+    ///
+    /// This only works if [AnimationController] objects are created using
+    /// widget-aware ticker providers. For example, using a
+    /// [TickerProviderStateMixin] or a [SingleTickerProviderStateMixin].
+    /// </Summary>
     public class TickerMode : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors
@@ -524,6 +532,21 @@ namespace FlutterSDK.Widgets.Tickerprovider
 
         #region methods
 
+        /// <Summary>
+        /// Whether tickers in the given subtree should be enabled or disabled.
+        ///
+        /// This is used automatically by [TickerProviderStateMixin] and
+        /// [SingleTickerProviderStateMixin] to decide if their tickers should be
+        /// enabled or disabled.
+        ///
+        /// In the absence of a [TickerMode] widget, this function defaults to true.
+        ///
+        /// Typical usage is as follows:
+        ///
+        /// ```dart
+        /// bool tickingEnabled = TickerMode.of(context);
+        /// ```
+        /// </Summary>
         public virtual bool Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 

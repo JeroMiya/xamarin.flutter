@@ -427,11 +427,31 @@ namespace FlutterSDK.Services.Keyboardkey
     {
     }
 
+    /// <Summary>
+    /// A base class for all keyboard key types.
+    ///
+    /// See also:
+    ///
+    ///  * [PhysicalKeyboardKey], a class with static values that describe the keys
+    ///    that are returned from [RawKeyEvent.physicalKey].
+    ///  * [LogicalKeyboardKey], a class with static values that describe the keys
+    ///    that are returned from [RawKeyEvent.logicalKey].
+    /// </Summary>
     public interface IKeyboardKey
     {
     }
 
 
+    /// <Summary>
+    /// A base class for all keyboard key types.
+    ///
+    /// See also:
+    ///
+    ///  * [PhysicalKeyboardKey], a class with static values that describe the keys
+    ///    that are returned from [RawKeyEvent.physicalKey].
+    ///  * [LogicalKeyboardKey], a class with static values that describe the keys
+    ///    that are returned from [RawKeyEvent.logicalKey].
+    /// </Summary>
     public class KeyboardKey : IDiagnosticable
     {
         #region constructors
@@ -449,6 +469,105 @@ namespace FlutterSDK.Services.Keyboardkey
     }
 
 
+    /// <Summary>
+    /// A class with static values that describe the keys that are returned from
+    /// [RawKeyEvent.logicalKey].
+    ///
+    /// These represent *logical* keys, which are keys which are interpreted in the
+    /// context of any modifiers, modes, or keyboard layouts which may be in effect.
+    ///
+    /// This is contrast to [PhysicalKeyboardKey], which represents a physical key
+    /// in a particular location on the keyboard, without regard for the modifier
+    /// state, mode, or keyboard layout.
+    ///
+    /// As an example, if you wanted to implement an app where the "Q" key "quit"
+    /// something, you'd want to look at the logical key to detect this, since you
+    /// would like to have it match the key with "Q" on it, instead of always
+    /// looking for "the key next next to the TAB key", since on a French keyboard,
+    /// the key next to the TAB key has an "A" on it.
+    ///
+    /// Conversely, if you wanted a game where the key next to the CAPS LOCK (the
+    /// "A" key on a QWERTY keyboard) moved the player to the left, you'd want to
+    /// look at the physical key to make sure that regardless of the character the
+    /// key produces, you got the key that is in that location on the keyboard.
+    ///
+    /// {@tool dartpad --template=stateful_widget_scaffold}
+    /// This example shows how to detect if the user has selected the logical "Q"
+    /// key.
+    ///
+    /// ```dart imports
+    /// import 'package:flutter/foundation.dart';
+    /// import 'package:flutter/services.dart';
+    /// ```
+    ///
+    /// ```dart
+    /// // The node used to request the keyboard focus.
+    /// final FocusNode _focusNode = FocusNode();
+    /// // The message to display.
+    /// String _message;
+    ///
+    /// // Focus nodes need to be disposed.
+    /// @override
+    /// void dispose() {
+    ///   _focusNode.dispose();
+    ///   super.dispose();
+    /// }
+    ///
+    /// // Handles the key events from the RawKeyboardListener and update the
+    /// // _message.
+    /// void _handleKeyEvent(RawKeyEvent event) {
+    ///   setState(() {
+    ///     if (event.logicalKey == LogicalKeyboardKey.keyQ) {
+    ///       _message = 'Pressed the "Q" key!';
+    ///     } else {
+    ///       if (kReleaseMode) {
+    ///         _message = 'Not a Q: Key label is "${event.logicalKey.keyLabel ?? '<none>'}"';
+    ///       } else {
+    ///         // This will only print useful information in debug mode.
+    ///         _message = 'Not a Q: Pressed ${event.logicalKey.debugName}';
+    ///       }
+    ///     }
+    ///   });
+    /// }
+    ///
+    /// @override
+    /// Widget build(BuildContext context) {
+    ///   final TextTheme textTheme = Theme.of(context).textTheme;
+    ///   return Container(
+    ///     color: Colors.white,
+    ///     alignment: Alignment.center,
+    ///     child: DefaultTextStyle(
+    ///       style: textTheme.headline4,
+    ///       child: RawKeyboardListener(
+    ///         focusNode: _focusNode,
+    ///         onKey: _handleKeyEvent,
+    ///         child: AnimatedBuilder(
+    ///           animation: _focusNode,
+    ///           builder: (BuildContext context, Widget child) {
+    ///             if (!_focusNode.hasFocus) {
+    ///               return GestureDetector(
+    ///                 onTap: () {
+    ///                   FocusScope.of(context).requestFocus(_focusNode);
+    ///                 },
+    ///                 child: const Text('Tap to focus'),
+    ///               );
+    ///             }
+    ///             return Text(_message ?? 'Press a key');
+    ///           },
+    ///         ),
+    ///       ),
+    ///     ),
+    ///   );
+    /// }
+    /// ```
+    /// {@end-tool}
+    /// See also:
+    ///
+    ///  * [RawKeyEvent], the keyboard event object received by widgets that listen
+    ///    to keyboard events.
+    ///  * [RawKeyboardListener], a widget used to listen to and supply handlers for
+    ///    keyboard events.
+    /// </Summary>
     public class LogicalKeyboardKey : FlutterSDK.Services.Keyboardkey.KeyboardKey
     {
         #region constructors
@@ -754,12 +873,35 @@ namespace FlutterSDK.Services.Keyboardkey
         public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the [LogicalKeyboardKey] constant that matches the given ID, or
+        /// null, if not found.
+        /// </Summary>
         public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey FindKeyByKeyId(int keyId) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns true if the given label represents a Unicode control character.
+        ///
+        /// Examples of control characters are characters like "U+000A LINE FEED (LF)"
+        /// or "U+001B ESCAPE (ESC)".
+        ///
+        /// See <https://en.wikipedia.org/wiki/Unicode_control_characters> for more
+        /// information.
+        ///
+        /// Used by [RawKeyEvent] subclasses to help construct IDs.
+        /// </Summary>
         public virtual bool IsControlCharacter(string label) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Takes a set of keys, and returns the same set, but with any keys that have
+        /// synonyms replaced.
+        ///
+        /// It is used, for example, to make sets of keys with members like
+        /// [controlRight] and [controlLeft] and convert that set to contain just
+        /// [control], so that the question "is any control key down?" can be asked.
+        /// </Summary>
         public virtual HashSet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> CollapseSynonyms(HashSet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> input) { throw new NotImplementedException(); }
 
 
@@ -769,6 +911,99 @@ namespace FlutterSDK.Services.Keyboardkey
     }
 
 
+    /// <Summary>
+    /// A class with static values that describe the keys that are returned from
+    /// [RawKeyEvent.physicalKey].
+    ///
+    /// These represent *physical* keys, which are keys which represent a particular
+    /// key location on a QWERTY keyboard. It ignores any modifiers, modes, or
+    /// keyboard layouts which may be in effect. This is contrast to
+    /// [LogicalKeyboardKey], which represents a logical key interpreted in the
+    /// context of modifiers, modes, and/or keyboard layouts.
+    ///
+    /// As an example, if you wanted a game where the key next to the CAPS LOCK (the
+    /// "A" key on a QWERTY keyboard) moved the player to the left, you'd want to
+    /// look at the physical key to make sure that regardless of the character the
+    /// key produces, you got the key that is in that location on the keyboard.
+    ///
+    /// Conversely, if you wanted to implement an app where the "Q" key "quit"
+    /// something, you'd want to look at the logical key to detect this, since you
+    /// would like to have it match the key with "Q" on it, instead of always
+    /// looking for "the key next next to the TAB key", since on a French keyboard,
+    /// the key next to the TAB key has an "A" on it.
+    ///
+    /// {@tool dartpad --template=stateful_widget_scaffold}
+    /// This example shows how to detect if the user has selected the physical key
+    /// to the right of the CAPS LOCK key.
+    ///
+    /// ```dart imports
+    /// import 'package:flutter/services.dart';
+    /// ```
+    ///
+    /// ```dart
+    /// // The node used to request the keyboard focus.
+    /// final FocusNode _focusNode = FocusNode();
+    /// // The message to display.
+    /// String _message;
+    ///
+    /// // Focus nodes need to be disposed.
+    /// @override
+    /// void dispose() {
+    ///   _focusNode.dispose();
+    ///   super.dispose();
+    /// }
+    ///
+    /// // Handles the key events from the RawKeyboardListener and update the
+    /// // _message.
+    /// void _handleKeyEvent(RawKeyEvent event) {
+    ///   setState(() {
+    ///     if (event.physicalKey == PhysicalKeyboardKey.keyA) {
+    ///       _message = 'Pressed the key next to CAPS LOCK!';
+    ///     } else {
+    ///       _message = 'Wrong key.';
+    ///     }
+    ///   });
+    /// }
+    ///
+    /// @override
+    /// Widget build(BuildContext context) {
+    ///   final TextTheme textTheme = Theme.of(context).textTheme;
+    ///   return Container(
+    ///     color: Colors.white,
+    ///     alignment: Alignment.center,
+    ///     child: DefaultTextStyle(
+    ///       style: textTheme.headline4,
+    ///       child: RawKeyboardListener(
+    ///         focusNode: _focusNode,
+    ///         onKey: _handleKeyEvent,
+    ///         child: AnimatedBuilder(
+    ///           animation: _focusNode,
+    ///           builder: (BuildContext context, Widget child) {
+    ///             if (!_focusNode.hasFocus) {
+    ///               return GestureDetector(
+    ///                 onTap: () {
+    ///                   FocusScope.of(context).requestFocus(_focusNode);
+    ///                 },
+    ///                 child: Text('Tap to focus'),
+    ///               );
+    ///             }
+    ///             return Text(_message ?? 'Press a key');
+    ///           },
+    ///         ),
+    ///       ),
+    ///     ),
+    ///   );
+    /// }
+    /// ```
+    /// {@end-tool}
+    ///
+    /// See also:
+    ///
+    ///  * [RawKeyEvent], the keyboard event object received by widgets that listen
+    ///    to keyboard events.
+    ///  * [RawKeyboardListener], a widget used to listen to and supply handlers for
+    ///    keyboard events.
+    /// </Summary>
     public class PhysicalKeyboardKey : FlutterSDK.Services.Keyboardkey.KeyboardKey
     {
         #region constructors
@@ -1056,6 +1291,10 @@ namespace FlutterSDK.Services.Keyboardkey
 
         #region methods
 
+        /// <Summary>
+        /// Finds a known [PhysicalKeyboardKey] that matches the given USB HID usage
+        /// code.
+        /// </Summary>
         public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey FindKeyByCode(int usageCode) { throw new NotImplementedException(); }
 
 

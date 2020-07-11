@@ -305,6 +305,10 @@ namespace FlutterSDK.Gestures.Multitap
     {
     }
 
+    /// <Summary>
+    /// CountdownZoned tracks whether the specified duration has elapsed since
+    /// creation, honoring [Zone].
+    /// </Summary>
     public class _CountdownZoned
     {
         #region constructors
@@ -328,6 +332,10 @@ namespace FlutterSDK.Gestures.Multitap
     }
 
 
+    /// <Summary>
+    /// TapTracker helps track individual tap sequences as part of a
+    /// larger gesture.
+    /// </Summary>
     public class _TapTracker
     {
         #region constructors
@@ -367,6 +375,14 @@ namespace FlutterSDK.Gestures.Multitap
     }
 
 
+    /// <Summary>
+    /// Recognizes when the user has tapped the screen at the same location twice in
+    /// quick succession.
+    ///
+    /// [DoubleTapGestureRecognizer] competes on pointer events of [kPrimaryButton]
+    /// only when it has a non-null callback. If it has no callbacks, it is a no-op.
+    ///
+    /// </Summary>
     public class DoubleTapGestureRecognizer : FlutterSDK.Gestures.Recognizer.GestureRecognizer
     {
         #region constructors
@@ -438,6 +454,11 @@ namespace FlutterSDK.Gestures.Multitap
     }
 
 
+    /// <Summary>
+    /// TapGesture represents a full gesture resulting from a single tap sequence,
+    /// as part of a [MultiTapGestureRecognizer]. Tap gestures are passive, meaning
+    /// that they will not preempt any other arena member in play.
+    /// </Summary>
     public class _TapGesture : FlutterSDK.Gestures.Multitap._TapTracker
     {
         #region constructors
@@ -479,6 +500,17 @@ namespace FlutterSDK.Gestures.Multitap
     }
 
 
+    /// <Summary>
+    /// Recognizes taps on a per-pointer basis.
+    ///
+    /// [MultiTapGestureRecognizer] considers each sequence of pointer events that
+    /// could constitute a tap independently of other pointers: For example, down-1,
+    /// down-2, up-1, up-2 produces two taps, on up-1 and up-2.
+    ///
+    /// See also:
+    ///
+    ///  * [TapGestureRecognizer]
+    /// </Summary>
     public class MultiTapGestureRecognizer : FlutterSDK.Gestures.Recognizer.GestureRecognizer
     {
         #region constructors

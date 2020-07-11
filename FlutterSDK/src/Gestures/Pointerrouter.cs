@@ -308,21 +308,62 @@ namespace FlutterSDK.Gestures.Pointerrouter
         internal virtual Dictionary<int, Dictionary<object, object>> _RouteMap { get; set; }
         internal virtual Dictionary<object, object> _GlobalRoutes { get; set; }
 
+        /// <Summary>
+        /// Adds a route to the routing table.
+        ///
+        /// Whenever this object routes a [PointerEvent] corresponding to
+        /// pointer, call route.
+        ///
+        /// Routes added reentrantly within [PointerRouter.route] will take effect when
+        /// routing the next event.
+        /// </Summary>
         public virtual void AddRoute(int pointer, FlutterSDK.Gestures.Pointerrouter.PointerRoute route, Matrix4 transform = default(Matrix4)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Removes a route from the routing table.
+        ///
+        /// No longer call route when routing a [PointerEvent] corresponding to
+        /// pointer. Requires that this route was previously added to the router.
+        ///
+        /// Routes removed reentrantly within [PointerRouter.route] will take effect
+        /// immediately.
+        /// </Summary>
         public virtual void RemoveRoute(int pointer, FlutterSDK.Gestures.Pointerrouter.PointerRoute route) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Adds a route to the global entry in the routing table.
+        ///
+        /// Whenever this object routes a [PointerEvent], call route.
+        ///
+        /// Routes added reentrantly within [PointerRouter.route] will take effect when
+        /// routing the next event.
+        /// </Summary>
         public virtual void AddGlobalRoute(FlutterSDK.Gestures.Pointerrouter.PointerRoute route, Matrix4 transform = default(Matrix4)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Removes a route from the global entry in the routing table.
+        ///
+        /// No longer call route when routing a [PointerEvent]. Requires that this
+        /// route was previously added via [addGlobalRoute].
+        ///
+        /// Routes removed reentrantly within [PointerRouter.route] will take effect
+        /// immediately.
+        /// </Summary>
         public virtual void RemoveGlobalRoute(FlutterSDK.Gestures.Pointerrouter.PointerRoute route) { throw new NotImplementedException(); }
 
 
         private void _Dispatch(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Pointerrouter.PointerRoute route, Matrix4 transform) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Calls the routes registered for this pointer event.
+        ///
+        /// Routes are called in the order in which they were added to the
+        /// PointerRouter object.
+        /// </Summary>
         public virtual void Route(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
 
 
@@ -349,6 +390,15 @@ namespace FlutterSDK.Gestures.Pointerrouter
     }
 
 
+    /// <Summary>
+    /// Variant of [FlutterErrorDetails] with extra fields for the gestures
+    /// library's pointer router ([PointerRouter]).
+    ///
+    /// See also:
+    ///
+    ///  * [FlutterErrorDetailsForPointerEventDispatcher], which is also used
+    ///    by the gestures library.
+    /// </Summary>
     public class FlutterErrorDetailsForPointerRouter : FlutterSDK.Foundation.Assertions.FlutterErrorDetails
     {
         #region constructors

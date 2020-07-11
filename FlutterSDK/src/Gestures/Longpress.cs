@@ -305,6 +305,15 @@ namespace FlutterSDK.Gestures.Longpress
     {
     }
 
+    /// <Summary>
+    /// Details for callbacks that use [GestureLongPressStartCallback].
+    ///
+    /// See also:
+    ///
+    ///  * [LongPressGestureRecognizer.onLongPressStart], which uses [GestureLongPressStartCallback].
+    ///  * [LongPressMoveUpdateDetails], the details for [GestureLongPressMoveUpdateCallback]
+    ///  * [LongPressEndDetails], the details for [GestureLongPressEndCallback].
+    /// </Summary>
     public class LongPressStartDetails
     {
         #region constructors
@@ -325,6 +334,15 @@ namespace FlutterSDK.Gestures.Longpress
     }
 
 
+    /// <Summary>
+    /// Details for callbacks that use [GestureLongPressMoveUpdateCallback].
+    ///
+    /// See also:
+    ///
+    ///  * [LongPressGestureRecognizer.onLongPressMoveUpdate], which uses [GestureLongPressMoveUpdateCallback].
+    ///  * [LongPressEndDetails], the details for [GestureLongPressEndCallback]
+    ///  * [LongPressStartDetails], the details for [GestureLongPressStartCallback].
+    /// </Summary>
     public class LongPressMoveUpdateDetails
     {
         #region constructors
@@ -348,6 +366,15 @@ namespace FlutterSDK.Gestures.Longpress
     }
 
 
+    /// <Summary>
+    /// Details for callbacks that use [GestureLongPressEndCallback].
+    ///
+    /// See also:
+    ///
+    ///  * [LongPressGestureRecognizer.onLongPressEnd], which uses [GestureLongPressEndCallback].
+    ///  * [LongPressMoveUpdateDetails], the details for [GestureLongPressMoveUpdateCallback]
+    ///  * [LongPressStartDetails], the details for [GestureLongPressStartCallback].
+    /// </Summary>
     public class LongPressEndDetails
     {
         #region constructors
@@ -370,6 +397,19 @@ namespace FlutterSDK.Gestures.Longpress
     }
 
 
+    /// <Summary>
+    /// Recognizes when the user has pressed down at the same location for a long
+    /// period of time.
+    ///
+    /// The gesture must not deviate in position from its touch down point for 500ms
+    /// until it's recognized. Once the gesture is accepted, the finger can be
+    /// moved, triggering [onLongPressMoveUpdate] callbacks, unless the
+    /// [postAcceptSlopTolerance] constructor argument is specified.
+    ///
+    /// [LongPressGestureRecognizer] competes on pointer events of [kPrimaryButton]
+    /// only when it has at least one non-null callback. If it has no callbacks, it
+    /// is a no-op.
+    /// </Summary>
     public class LongPressGestureRecognizer : FlutterSDK.Gestures.Recognizer.PrimaryPointerGestureRecognizer
     {
         #region constructors

@@ -428,6 +428,16 @@ namespace FlutterSDK.Widgets.Imageicon
     {
     }
 
+    /// <Summary>
+    /// An icon that comes from an [ImageProvider], e.g. an [AssetImage].
+    ///
+    /// See also:
+    ///
+    ///  * [IconButton], for interactive icons.
+    ///  * [IconTheme], which provides ambient configuration for icons.
+    ///  * [Icon], for icons based on glyphs from fonts instead of images.
+    ///  * [Icons], a predefined font based set of icons from the material design library.
+    /// </Summary>
     public class ImageIcon : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors

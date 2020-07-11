@@ -417,6 +417,25 @@ namespace FlutterSDK.Material.Snackbartheme
     {
     }
 
+    /// <Summary>
+    /// Customizes default property values for [SnackBar] widgets.
+    ///
+    /// Descendant widgets obtain the current [SnackBarThemeData] object using
+    /// `Theme.of(context).snackBarTheme`. Instances of [SnackBarThemeData] can be
+    /// customized with [SnackBarThemeData.copyWith].
+    ///
+    /// Typically a [SnackBarThemeData] is specified as part of the overall [Theme]
+    /// with [ThemeData.snackBarTheme]. The default for [ThemeData.snackBarTheme]
+    /// provides all `null` properties.
+    ///
+    /// All [SnackBarThemeData] properties are `null` by default. When null, the
+    /// [SnackBar] will provide its own defaults.
+    ///
+    /// See also:
+    ///
+    ///  * [ThemeData], which describes the overall theme information for the
+    ///    application.
+    /// </Summary>
     public class SnackBarThemeData : IDiagnosticable
     {
         #region constructors
@@ -446,9 +465,20 @@ namespace FlutterSDK.Material.Snackbartheme
 
         #region methods
 
+        /// <Summary>
+        /// Creates a copy of this object with the given fields replaced with the
+        /// new values.
+        /// </Summary>
         public virtual FlutterSDK.Material.Snackbartheme.SnackBarThemeData CopyWith(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color actionTextColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledActionTextColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Material.Snackbartheme.SnackBarBehavior behavior = default(FlutterSDK.Material.Snackbartheme.SnackBarBehavior)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two SnackBar Themes.
+        ///
+        /// The argument `t` must not be null.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
         public virtual FlutterSDK.Material.Snackbartheme.SnackBarThemeData Lerp(FlutterSDK.Material.Snackbartheme.SnackBarThemeData a, FlutterSDK.Material.Snackbartheme.SnackBarThemeData b, double t) { throw new NotImplementedException(); }
 
 
@@ -461,10 +491,30 @@ namespace FlutterSDK.Material.Snackbartheme
     }
 
 
+    /// <Summary>
+    /// Defines where a [SnackBar] should appear within a [Scaffold] and how its
+    /// location should be adjusted when the scaffold also includes a
+    /// [FloatingActionButton] or a [BottomNavigationBar].
+    /// </Summary>
     public enum SnackBarBehavior
     {
 
+        /// <Summary>
+        /// Fixes the [SnackBar] at the bottom of the [Scaffold].
+        ///
+        /// The exception is that the [SnackBar] will be shown above a
+        /// [BottomNavigationBar]. Additionally, the [SnackBar] will cause other
+        /// non-fixed widgets inside [Scaffold] to be pushed above (for example, the
+        /// [FloatingActionButton]).
+        /// </Summary>
         @Fixed,
+        /// <Summary>
+        /// This behavior will cause [SnackBar] to be shown above other widgets in the
+        /// [Scaffold]. This includes being displayed above a [BottomNavigationBar]
+        /// and a [FloatingActionButton].
+        ///
+        /// See <https://material.io/design/components/snackbars.html> for more details.
+        /// </Summary>
         Floating,
     }
 

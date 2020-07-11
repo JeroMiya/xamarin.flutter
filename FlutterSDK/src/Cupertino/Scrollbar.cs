@@ -314,6 +314,26 @@ namespace FlutterSDK.Cupertino.Scrollbar
 
     }
 
+    /// <Summary>
+    /// An iOS style scrollbar.
+    ///
+    /// A scrollbar indicates which portion of a [Scrollable] widget is actually
+    /// visible.
+    ///
+    /// To add a scrollbar to a [ScrollView], simply wrap the scroll view widget in
+    /// a [CupertinoScrollbar] widget.
+    ///
+    /// By default, the CupertinoScrollbar will be draggable (a feature introduced
+    /// in iOS 13), it uses the PrimaryScrollController. For multiple scrollbars, or
+    /// other more complicated situations, see the [controller] parameter.
+    ///
+    /// See also:
+    ///
+    ///  * [ListView], which display a linear, scrollable list of children.
+    ///  * [GridView], which display a 2 dimensional, scrollable array of children.
+    ///  * [Scrollbar], a Material Design scrollbar that dynamically adapts to the
+    ///    platform showing either an Android style or iOS style scrollbar.
+    /// </Summary>
     public class CupertinoScrollbar : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -375,6 +395,9 @@ namespace FlutterSDK.Cupertino.Scrollbar
         public new void DidUpdateWidget(FlutterSDK.Cupertino.Scrollbar.CupertinoScrollbar oldWidget) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a [ScrollbarPainter] visually styled like the iOS scrollbar.
+        /// </Summary>
         private FlutterSDK.Widgets.Scrollbar.ScrollbarPainter _BuildCupertinoScrollbarPainter(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 

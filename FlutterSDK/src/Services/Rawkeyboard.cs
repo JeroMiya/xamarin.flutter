@@ -427,6 +427,20 @@ namespace FlutterSDK.Services.Rawkeyboard
     {
     }
 
+    /// <Summary>
+    /// Base class for platform-specific key event data.
+    ///
+    /// This base class exists to have a common type to use for each of the
+    /// target platform's key event data structures.
+    ///
+    /// See also:
+    ///
+    ///  * [RawKeyEventDataAndroid], a specialization for Android.
+    ///  * [RawKeyEventDataFuchsia], a specialization for Fuchsia.
+    ///  * [RawKeyDownEvent] and [RawKeyUpEvent], the classes that hold the
+    ///    reference to [RawKeyEventData] subclasses.
+    ///  * [RawKeyboard], which uses these interfaces to expose key data.
+    /// </Summary>
     public interface IRawKeyEventData
     {
         bool IsModifierPressed(FlutterSDK.Services.Rawkeyboard.ModifierKey key, FlutterSDK.Services.Rawkeyboard.KeyboardSide side = default(FlutterSDK.Services.Rawkeyboard.KeyboardSide));
@@ -442,6 +456,31 @@ namespace FlutterSDK.Services.Rawkeyboard
     }
 
 
+    /// <Summary>
+    /// Defines the interface for raw key events.
+    ///
+    /// Raw key events pass through as much information as possible from the
+    /// underlying platform's key events, which allows them to provide a high level
+    /// of fidelity but a low level of portability.
+    ///
+    /// The event also provides an abstraction for the [physicalKey] and the
+    /// [logicalKey], describing the physical location of the key, and the logical
+    /// meaning of the key, respectively. These are more portable representations of
+    /// the key events, and should produce the same results regardless of platform.
+    ///
+    /// See also:
+    ///
+    ///  * [LogicalKeyboardKey], an object that describes the logical meaning of a
+    ///    key.
+    ///  * [PhysicalKeyboardKey], an object that describes the physical location of
+    ///    a key.
+    ///  * [RawKeyDownEvent], a specialization for events representing the user
+    ///    pressing a key.
+    ///  * [RawKeyUpEvent], a specialization for events representing the user
+    ///    releasing a key.
+    ///  * [RawKeyboard], which uses this interface to expose key data.
+    ///  * [RawKeyboardListener], a widget that listens for raw key events.
+    /// </Summary>
     public interface IRawKeyEvent
     {
         bool IsKeyPressed(FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey key);
@@ -457,6 +496,20 @@ namespace FlutterSDK.Services.Rawkeyboard
     }
 
 
+    /// <Summary>
+    /// Base class for platform-specific key event data.
+    ///
+    /// This base class exists to have a common type to use for each of the
+    /// target platform's key event data structures.
+    ///
+    /// See also:
+    ///
+    ///  * [RawKeyEventDataAndroid], a specialization for Android.
+    ///  * [RawKeyEventDataFuchsia], a specialization for Fuchsia.
+    ///  * [RawKeyDownEvent] and [RawKeyUpEvent], the classes that hold the
+    ///    reference to [RawKeyEventData] subclasses.
+    ///  * [RawKeyboard], which uses these interfaces to expose key data.
+    /// </Summary>
     public class RawKeyEventData
     {
         #region constructors
@@ -479,15 +532,58 @@ namespace FlutterSDK.Services.Rawkeyboard
 
         #region methods
 
+        /// <Summary>
+        /// Returns true if the given [ModifierKey] was pressed at the time of this
+        /// event.
+        ///
+        /// If [side] is specified, then this restricts its check to the specified
+        /// side of the keyboard. Defaults to checking for the key being down on
+        /// either side of the keyboard. If there is only one instance of the key on
+        /// the keyboard, then [side] is ignored.
+        /// </Summary>
         public virtual bool IsModifierPressed(FlutterSDK.Services.Rawkeyboard.ModifierKey key, FlutterSDK.Services.Rawkeyboard.KeyboardSide side = default(FlutterSDK.Services.Rawkeyboard.KeyboardSide)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a [KeyboardSide] enum value that describes which side or sides of
+        /// the given keyboard modifier key were pressed at the time of this event.
+        ///
+        /// If the modifier key wasn't pressed at the time of this event, returns
+        /// null. If the given key only appears in one place on the keyboard, returns
+        /// [KeyboardSide.all] if pressed. Never returns [KeyboardSide.any], because
+        /// that doesn't make sense in this context.
+        /// </Summary>
         public virtual FlutterSDK.Services.Rawkeyboard.KeyboardSide GetModifierSide(FlutterSDK.Services.Rawkeyboard.ModifierKey key) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// Defines the interface for raw key events.
+    ///
+    /// Raw key events pass through as much information as possible from the
+    /// underlying platform's key events, which allows them to provide a high level
+    /// of fidelity but a low level of portability.
+    ///
+    /// The event also provides an abstraction for the [physicalKey] and the
+    /// [logicalKey], describing the physical location of the key, and the logical
+    /// meaning of the key, respectively. These are more portable representations of
+    /// the key events, and should produce the same results regardless of platform.
+    ///
+    /// See also:
+    ///
+    ///  * [LogicalKeyboardKey], an object that describes the logical meaning of a
+    ///    key.
+    ///  * [PhysicalKeyboardKey], an object that describes the physical location of
+    ///    a key.
+    ///  * [RawKeyDownEvent], a specialization for events representing the user
+    ///    pressing a key.
+    ///  * [RawKeyUpEvent], a specialization for events representing the user
+    ///    releasing a key.
+    ///  * [RawKeyboard], which uses this interface to expose key data.
+    ///  * [RawKeyboardListener], a widget that listens for raw key events.
+    /// </Summary>
     public class RawKeyEvent : IDiagnosticable
     {
         #region constructors
@@ -515,6 +611,9 @@ namespace FlutterSDK.Services.Rawkeyboard
 
         #region methods
 
+        /// <Summary>
+        /// Returns true if the given [KeyboardKey] is pressed.
+        /// </Summary>
         public virtual bool IsKeyPressed(FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey key) { throw new NotImplementedException(); }
 
 
@@ -524,6 +623,13 @@ namespace FlutterSDK.Services.Rawkeyboard
     }
 
 
+    /// <Summary>
+    /// The user has pressed a key on the keyboard.
+    ///
+    /// See also:
+    ///
+    ///  * [RawKeyboard], which uses this interface to expose key data.
+    /// </Summary>
     public class RawKeyDownEvent : FlutterSDK.Services.Rawkeyboard.RawKeyEvent
     {
         #region constructors
@@ -542,6 +648,13 @@ namespace FlutterSDK.Services.Rawkeyboard
     }
 
 
+    /// <Summary>
+    /// The user has released a key on the keyboard.
+    ///
+    /// See also:
+    ///
+    ///  * [RawKeyboard], which uses this interface to expose key data.
+    /// </Summary>
     public class RawKeyUpEvent : FlutterSDK.Services.Rawkeyboard.RawKeyEvent
     {
         #region constructors
@@ -560,6 +673,25 @@ namespace FlutterSDK.Services.Rawkeyboard
     }
 
 
+    /// <Summary>
+    /// An interface for listening to raw key events.
+    ///
+    /// Raw key events pass through as much information as possible from the
+    /// underlying platform's key events, which makes them provide a high level of
+    /// fidelity but a low level of portability.
+    ///
+    /// A [RawKeyboard] is useful for listening to raw key events and hardware
+    /// buttons that are represented as keys. Typically used by games and other apps
+    /// that use keyboards for purposes other than text entry.
+    ///
+    /// See also:
+    ///
+    ///  * [RawKeyDownEvent] and [RawKeyUpEvent], the classes used to describe
+    ///    specific raw key events.
+    ///  * [RawKeyboardListener], a widget that listens for raw key events.
+    ///  * [SystemChannels.keyEvent], the low-level channel used for receiving
+    ///    events from the system.
+    /// </Summary>
     public class RawKeyboard
     {
         #region constructors
@@ -582,9 +714,19 @@ namespace FlutterSDK.Services.Rawkeyboard
 
         #region methods
 
+        /// <Summary>
+        /// Calls the listener every time the user presses or releases a key.
+        ///
+        /// Listeners can be removed with [removeListener].
+        /// </Summary>
         public virtual void AddListener(FlutterSDK.Foundation.Basictypes.ValueChanged<RawKeyEvent> listener) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Stop calling the listener every time the user presses or releases a key.
+        ///
+        /// Listeners can be added with [addListener].
+        /// </Summary>
         public virtual void RemoveListener(FlutterSDK.Foundation.Basictypes.ValueChanged<RawKeyEvent> listener) { throw new NotImplementedException(); }
 
 
@@ -594,6 +736,11 @@ namespace FlutterSDK.Services.Rawkeyboard
         private void _SynchronizeModifiers(FlutterSDK.Services.Rawkeyboard.RawKeyEvent @event) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Clears the list of keys returned from [keysPressed].
+        ///
+        /// This is used by the testing framework to make sure tests are hermetic.
+        /// </Summary>
         public virtual void ClearKeysPressed() { throw new NotImplementedException(); }
 
         #endregion
@@ -624,27 +771,110 @@ namespace FlutterSDK.Services.Rawkeyboard
     }
 
 
+    /// <Summary>
+    /// An enum describing the side of the keyboard that a key is on, to allow
+    /// discrimination between which key is pressed (e.g. the left or right SHIFT
+    /// key).
+    ///
+    /// See also:
+    ///
+    ///  * [RawKeyEventData.isModifierPressed], which accepts this enum as an
+    ///    argument.
+    /// </Summary>
     public enum KeyboardSide
     {
 
+        /// <Summary>
+        /// Matches if either the left, right or both versions of the key are pressed.
+        /// </Summary>
         Any,
+        /// <Summary>
+        /// Matches the left version of the key.
+        /// </Summary>
         Left,
+        /// <Summary>
+        /// Matches the right version of the key.
+        /// </Summary>
         Right,
+        /// <Summary>
+        /// Matches the left and right version of the key pressed simultaneously.
+        /// </Summary>
         All,
     }
 
 
+    /// <Summary>
+    /// An enum describing the type of modifier key that is being pressed.
+    ///
+    /// See also:
+    ///
+    ///  * [RawKeyEventData.isModifierPressed], which accepts this enum as an
+    ///    argument.
+    /// </Summary>
     public enum ModifierKey
     {
 
+        /// <Summary>
+        /// The CTRL modifier key.
+        ///
+        /// Typically, there are two of these.
+        /// </Summary>
         ControlModifier,
+        /// <Summary>
+        /// The SHIFT modifier key.
+        ///
+        /// Typically, there are two of these.
+        /// </Summary>
         ShiftModifier,
+        /// <Summary>
+        /// The ALT modifier key.
+        ///
+        /// Typically, there are two of these.
+        /// </Summary>
         AltModifier,
+        /// <Summary>
+        /// The META modifier key.
+        ///
+        /// Typically, there are two of these. This is, for example, the Windows key
+        /// on Windows (⊞), the Command (⌘) key on macOS and iOS, and the Search (🔍)
+        /// key on Android.
+        /// </Summary>
         MetaModifier,
+        /// <Summary>
+        /// The CAPS LOCK modifier key.
+        ///
+        /// Typically, there is one of these. Only shown as "pressed" when the caps
+        /// lock is on, so on a key up when the mode is turned on, on each key press
+        /// when it's enabled, and on a key down when it is turned off.
+        /// </Summary>
         CapsLockModifier,
+        /// <Summary>
+        /// The NUM LOCK modifier key.
+        ///
+        /// Typically, there is one of these. Only shown as "pressed" when the num
+        /// lock is on, so on a key up when the mode is turned on, on each key press
+        /// when it's enabled, and on a key down when it is turned off.
+        /// </Summary>
         NumLockModifier,
+        /// <Summary>
+        /// The SCROLL LOCK modifier key.
+        ///
+        /// Typically, there is one of these.  Only shown as "pressed" when the scroll
+        /// lock is on, so on a key up when the mode is turned on, on each key press
+        /// when it's enabled, and on a key down when it is turned off.
+        /// </Summary>
         ScrollLockModifier,
+        /// <Summary>
+        /// The FUNCTION (Fn) modifier key.
+        ///
+        /// Typically, there is one of these.
+        /// </Summary>
         FunctionModifier,
+        /// <Summary>
+        /// The SYMBOL modifier key.
+        ///
+        /// Typically, there is one of these.
+        /// </Summary>
         SymbolModifier,
     }
 

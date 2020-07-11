@@ -311,12 +311,32 @@ namespace FlutterSDK.Gestures.Velocitytracker
         internal virtual List<FlutterSDK.Gestures.Velocitytracker._PointAtTime> _Samples { get; set; }
         internal virtual int _Index { get; set; }
 
+        /// <Summary>
+        /// Adds a position as the given time to the tracker.
+        /// </Summary>
         public virtual void AddPosition(TimeSpan time, FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns an estimate of the velocity of the object being tracked by the
+        /// tracker given the current information available to the tracker.
+        ///
+        /// Information is added using [addPosition].
+        ///
+        /// Returns null if there is no data on which to base an estimate.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Velocitytracker.VelocityEstimate GetVelocityEstimate() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Computes the velocity of the pointer at the time of the last
+        /// provided data point.
+        ///
+        /// This can be expensive. Only call this when you need the velocity.
+        ///
+        /// Returns [Velocity.zero] if there is no data from which to compute an
+        /// estimate or if the estimated velocity is zero.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Velocitytracker.Velocity GetVelocity() { throw new NotImplementedException(); }
 
     }
@@ -338,6 +358,9 @@ namespace FlutterSDK.Gestures.Velocitytracker
     }
 
 
+    /// <Summary>
+    /// A velocity in two dimensions.
+    /// </Summary>
     public class Velocity
     {
         #region constructors
@@ -356,15 +379,36 @@ namespace FlutterSDK.Gestures.Velocitytracker
 
         #region methods
 
+        /// <Summary>
+        /// Return the negation of a velocity.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Velocitytracker.Velocity Unary() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Return the difference of two velocities.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Velocitytracker.Velocity SubtractOperator(FlutterSDK.Gestures.Velocitytracker.Velocity other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Return the sum of two velocities.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Velocitytracker.Velocity AddOperator(FlutterSDK.Gestures.Velocitytracker.Velocity other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Return a velocity whose magnitude has been clamped to [minValue]
+        /// and [maxValue].
+        ///
+        /// If the magnitude of this Velocity is less than minValue then return a new
+        /// Velocity with the same direction and with magnitude [minValue]. Similarly,
+        /// if the magnitude of this Velocity is greater than maxValue then return a
+        /// new Velocity with the same direction and magnitude [maxValue].
+        ///
+        /// If the magnitude of this Velocity is within the specified bounds then
+        /// just return this.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Velocitytracker.Velocity ClampMagnitude(double minValue, double maxValue) { throw new NotImplementedException(); }
 
 
@@ -375,6 +419,21 @@ namespace FlutterSDK.Gestures.Velocitytracker
     }
 
 
+    /// <Summary>
+    /// A two dimensional velocity estimate.
+    ///
+    /// VelocityEstimates are computed by [VelocityTracker.getVelocityEstimate]. An
+    /// estimate's [confidence] measures how well the velocity tracker's position
+    /// data fit a straight line, [duration] is the time that elapsed between the
+    /// first and last position sample used to compute the velocity, and [offset]
+    /// is similarly the difference between the first and last positions.
+    ///
+    /// See also:
+    ///
+    ///  * [VelocityTracker], which computes [VelocityEstimate]s.
+    ///  * [Velocity], which encapsulates (just) a velocity vector and provides some
+    ///    useful velocity operations.
+    /// </Summary>
     public class VelocityEstimate
     {
         #region constructors

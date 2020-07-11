@@ -427,6 +427,9 @@ namespace FlutterSDK.Rendering.View
     {
     }
 
+    /// <Summary>
+    /// The layout constraints for the root render object.
+    /// </Summary>
     public class ViewConfiguration
     {
         #region constructors
@@ -444,6 +447,9 @@ namespace FlutterSDK.Rendering.View
 
         #region methods
 
+        /// <Summary>
+        /// Creates a transformation matrix that applies the [devicePixelRatio].
+        /// </Summary>
         public virtual Matrix4 ToMatrix() { throw new NotImplementedException(); }
 
 
@@ -451,6 +457,13 @@ namespace FlutterSDK.Rendering.View
     }
 
 
+    /// <Summary>
+    /// The root of the render tree.
+    ///
+    /// The view represents the total output surface of the render tree and handles
+    /// bootstrapping the rendering pipeline. The view has a unique child
+    /// [RenderBox], which is required to fill the entire output surface.
+    /// </Summary>
     public class RenderView : FlutterSDK.Rendering.@object.RenderObject, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>
     {
         #region constructors
@@ -476,9 +489,25 @@ namespace FlutterSDK.Rendering.View
 
         #region methods
 
+        /// <Summary>
+        /// Bootstrap the rendering pipeline by scheduling the first frame.
+        ///
+        /// Deprecated. Call [prepareInitialFrame] followed by a call to
+        /// [PipelineOwner.requestVisualUpdate] on [owner] instead.
+        /// </Summary>
         public virtual void ScheduleInitialFrame() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Bootstrap the rendering pipeline by preparing the first frame.
+        ///
+        /// This should only be called once, and must be called before changing
+        /// [configuration]. It is typically called immediately after calling the
+        /// constructor.
+        ///
+        /// This does not actually schedule the first frame. Call
+        /// [PipelineOwner.requestVisualUpdate] on [owner] to do that.
+        /// </Summary>
         public virtual void PrepareInitialFrame() { throw new NotImplementedException(); }
 
 
@@ -497,9 +526,29 @@ namespace FlutterSDK.Rendering.View
         public new void Rotate(int oldAngle = default(int), int newAngle = default(int), TimeSpan time = default(TimeSpan)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Determines the set of render objects located at the given position.
+        ///
+        /// Returns true if the given point is contained in this render object or one
+        /// of its descendants. Adds any render objects that contain the point to the
+        /// given hit test result.
+        ///
+        /// The [position] argument is in the coordinate system of the render view,
+        /// which is to say, in logical pixels. This is not necessarily the same
+        /// coordinate system as that expected by the root [Layer], which will
+        /// normally be in physical (device) pixels.
+        /// </Summary>
         public virtual bool HitTest(FlutterSDK.Gestures.Hittest.HitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Determines the set of mouse tracker annotations at the given position.
+        ///
+        /// See also:
+        ///
+        ///  * [Layer.findAllAnnotations], which is used by this method to find all
+        ///    [AnnotatedRegionLayer]s annotated for mouse tracking.
+        /// </Summary>
         public virtual Iterable<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> HitTestMouseTrackers(FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
 
 
@@ -510,6 +559,11 @@ namespace FlutterSDK.Rendering.View
         public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Uploads the composited layer tree to the engine.
+        ///
+        /// Actually causes the output of the rendering pipeline to appear on screen.
+        /// </Summary>
         public virtual void CompositeFrame() { throw new NotImplementedException(); }
 
 

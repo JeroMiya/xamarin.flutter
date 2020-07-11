@@ -440,6 +440,11 @@ namespace FlutterSDK.Widgets.Automatickeepalive
         private void _ReleaseKeepAlive() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Ensures that any [AutomaticKeepAlive] ancestors are in a good state, by
+        /// firing a [KeepAliveNotification] or triggering the [KeepAliveHandle] as
+        /// appropriate.
+        /// </Summary>
         public virtual void UpdateKeepAlive() { throw new NotImplementedException(); }
 
 
@@ -472,6 +477,19 @@ namespace FlutterSDK.Widgets.Automatickeepalive
     }
 
 
+    /// <Summary>
+    /// Allows subtrees to request to be kept alive in lazy lists.
+    ///
+    /// This widget is like [KeepAlive] but instead of being explicitly configured,
+    /// it listens to [KeepAliveNotification] messages from the [child] and other
+    /// descendants.
+    ///
+    /// The subtree is kept alive whenever there is one or more descendant that has
+    /// sent a [KeepAliveNotification] and not yet triggered its
+    /// [KeepAliveNotification.handle].
+    ///
+    /// To send these notifications, consider using [AutomaticKeepAliveClientMixin].
+    /// </Summary>
     public class AutomaticKeepAlive : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -524,6 +542,12 @@ namespace FlutterSDK.Widgets.Automatickeepalive
         private bool _AddClient(FlutterSDK.Widgets.Automatickeepalive.KeepAliveNotification notification) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Get the [Element] for the only [KeepAlive] child.
+        ///
+        /// While this widget is guaranteed to have a child, this may return null if
+        /// the first build of that child has not completed yet.
+        /// </Summary>
         private FlutterSDK.Widgets.Framework.ParentDataElement<FlutterSDK.Rendering.Slivermultiboxadaptor.KeepAliveParentDataMixin> _GetChildElement() { throw new NotImplementedException(); }
 
 
@@ -542,6 +566,45 @@ namespace FlutterSDK.Widgets.Automatickeepalive
     }
 
 
+    /// <Summary>
+    /// Indicates that the subtree through which this notification bubbles must be
+    /// kept alive even if it would normally be discarded as an optimization.
+    ///
+    /// For example, a focused text field might fire this notification to indicate
+    /// that it should not be disposed even if the user scrolls the field off
+    /// screen.
+    ///
+    /// Each [KeepAliveNotification] is configured with a [handle] that consists of
+    /// a [Listenable] that is triggered when the subtree no longer needs to be kept
+    /// alive.
+    ///
+    /// The [handle] should be triggered any time the sending widget is removed from
+    /// the tree (in [State.deactivate]). If the widget is then rebuilt and still
+    /// needs to be kept alive, it should immediately send a new notification
+    /// (possible with the very same [Listenable]) during build.
+    ///
+    /// This notification is listened to by the [AutomaticKeepAlive] widget, which
+    /// is added to the tree automatically by [SliverList] (and [ListView]) and
+    /// [SliverGrid] (and [GridView]) widgets.
+    ///
+    /// Failure to trigger the [handle] in the manner described above will likely
+    /// cause the [AutomaticKeepAlive] to lose track of whether the widget should be
+    /// kept alive or not, leading to memory leaks or lost data. For example, if the
+    /// widget that requested keepalive is removed from the subtree but doesn't
+    /// trigger its [Listenable] on the way out, then the subtree will continue to
+    /// be kept alive until the list itself is disposed. Similarly, if the
+    /// [Listenable] is triggered while the widget needs to be kept alive, but a new
+    /// [KeepAliveNotification] is not immediately sent, then the widget risks being
+    /// garbage collected while it wants to be kept alive.
+    ///
+    /// It is an error to use the same [handle] in two [KeepAliveNotification]s
+    /// within the same [AutomaticKeepAlive] without triggering that [handle] before
+    /// the second notification is sent.
+    ///
+    /// For a more convenient way to interact with [AutomaticKeepAlive] widgets,
+    /// consider using [AutomaticKeepAliveClientMixin], which uses
+    /// [KeepAliveNotification] internally.
+    /// </Summary>
     public class KeepAliveNotification : FlutterSDK.Widgets.Notificationlistener.Notification
     {
         #region constructors
@@ -561,6 +624,16 @@ namespace FlutterSDK.Widgets.Automatickeepalive
     }
 
 
+    /// <Summary>
+    /// A [Listenable] which can be manually triggered.
+    ///
+    /// Used with [KeepAliveNotification] objects as their
+    /// [KeepAliveNotification.handle].
+    ///
+    /// For a more convenient way to interact with [AutomaticKeepAlive] widgets,
+    /// consider using [AutomaticKeepAliveClientMixin], which uses a
+    /// [KeepAliveHandle] internally.
+    /// </Summary>
     public class KeepAliveHandle : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
     {
         #region constructors
@@ -573,6 +646,10 @@ namespace FlutterSDK.Widgets.Automatickeepalive
 
         #region methods
 
+        /// <Summary>
+        /// Trigger the listeners to indicate that the widget
+        /// no longer needs to be kept alive.
+        /// </Summary>
         public virtual void Release() { throw new NotImplementedException(); }
 
         #endregion

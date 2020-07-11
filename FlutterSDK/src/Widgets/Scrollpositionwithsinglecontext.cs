@@ -429,6 +429,26 @@ namespace FlutterSDK.Widgets.Scrollpositionwithsinglecontext
     {
     }
 
+    /// <Summary>
+    /// A scroll position that manages scroll activities for a single
+    /// [ScrollContext].
+    ///
+    /// This class is a concrete subclass of [ScrollPosition] logic that handles a
+    /// single [ScrollContext], such as a [Scrollable]. An instance of this class
+    /// manages [ScrollActivity] instances, which change what content is visible in
+    /// the [Scrollable]'s [Viewport].
+    ///
+    /// See also:
+    ///
+    ///  * [ScrollPosition], which defines the underlying model for a position
+    ///    within a [Scrollable] but is agnostic as to how that position is
+    ///    changed.
+    ///  * [ScrollView] and its subclasses such as [ListView], which use
+    ///    [ScrollPositionWithSingleContext] to manage their scroll position.
+    ///  * [ScrollController], which can manipulate one or more [ScrollPosition]s,
+    ///    and which uses [ScrollPositionWithSingleContext] as its default class for
+    ///    scroll positions.
+    /// </Summary>
     public class ScrollPositionWithSingleContext : FlutterSDK.Widgets.Scrollposition.ScrollPosition, IScrollActivityDelegate
     {
         #region constructors
@@ -467,9 +487,25 @@ namespace FlutterSDK.Widgets.Scrollpositionwithsinglecontext
         public new void GoIdle() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Start a physics-driven simulation that settles the [pixels] position,
+        /// starting at a particular velocity.
+        ///
+        /// This method defers to [ScrollPhysics.createBallisticSimulation], which
+        /// typically provides a bounce simulation when the current position is out of
+        /// bounds and a friction simulation when the position is in bounds but has a
+        /// non-zero velocity.
+        ///
+        /// The velocity should be in logical pixels per second.
+        /// </Summary>
         public new void GoBallistic(double velocity) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Set [userScrollDirection] to the given value.
+        ///
+        /// If this changes the value, then a [UserScrollNotification] is dispatched.
+        /// </Summary>
         public virtual void UpdateUserScrollDirection(FlutterSDK.Rendering.Viewportoffset.ScrollDirection value) { throw new NotImplementedException(); }
 
 

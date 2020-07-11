@@ -427,6 +427,12 @@ namespace FlutterSDK.Services.Hapticfeedback
     {
     }
 
+    /// <Summary>
+    /// Allows access to the haptic feedback interface on the device.
+    ///
+    /// This API is intentionally terse since it calls default platform behavior. It
+    /// is not suitable for precise control of the system's haptic feedback module.
+    /// </Summary>
     public class HapticFeedback
     {
         #region constructors
@@ -441,18 +447,63 @@ namespace FlutterSDK.Services.Hapticfeedback
 
         #region methods
 
+        /// <Summary>
+        /// Provides vibration haptic feedback to the user for a short duration.
+        ///
+        /// On iOS devices that support haptic feedback, this uses the default system
+        /// vibration value (`kSystemSoundID_Vibrate`).
+        ///
+        /// On Android, this uses the platform haptic feedback API to simulate a
+        /// response to a long press (`HapticFeedbackConstants.LONG_PRESS`).
+        /// </Summary>
         public virtual Future<object> Vibrate() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Provides a haptic feedback corresponding a collision impact with a light mass.
+        ///
+        /// On iOS versions 10 and above, this uses a `UIImpactFeedbackGenerator` with
+        /// `UIImpactFeedbackStyleLight`. This call has no effects on iOS versions
+        /// below 10.
+        ///
+        /// On Android, this uses `HapticFeedbackConstants.VIRTUAL_KEY`.
+        /// </Summary>
         public virtual Future<object> LightImpact() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Provides a haptic feedback corresponding a collision impact with a medium mass.
+        ///
+        /// On iOS versions 10 and above, this uses a `UIImpactFeedbackGenerator` with
+        /// `UIImpactFeedbackStyleMedium`. This call has no effects on iOS versions
+        /// below 10.
+        ///
+        /// On Android, this uses `HapticFeedbackConstants.KEYBOARD_TAP`.
+        /// </Summary>
         public virtual Future<object> MediumImpact() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Provides a haptic feedback corresponding a collision impact with a heavy mass.
+        ///
+        /// On iOS versions 10 and above, this uses a `UIImpactFeedbackGenerator` with
+        /// `UIImpactFeedbackStyleHeavy`. This call has no effects on iOS versions
+        /// below 10.
+        ///
+        /// On Android, this uses `HapticFeedbackConstants.CONTEXT_CLICK` on API levels
+        /// 23 and above. This call has no effects on Android API levels below 23.
+        /// </Summary>
         public virtual Future<object> HeavyImpact() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Provides a haptic feedback indication selection changing through discrete values.
+        ///
+        /// On iOS versions 10 and above, this uses a `UISelectionFeedbackGenerator`.
+        /// This call has no effects on iOS versions below 10.
+        ///
+        /// On Android, this uses `HapticFeedbackConstants.CLOCK_TICK`.
+        /// </Summary>
         public virtual Future<object> SelectionClick() { throw new NotImplementedException(); }
 
         #endregion

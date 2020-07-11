@@ -524,75 +524,235 @@ namespace FlutterSDK.Widgets.Widgetinspector
         internal virtual FlutterSDK.Widgets.Widgetinspector._ElementLocationStatsTracker _RepaintStats { get; set; }
         public virtual FlutterSDK.Widgets.Widgetinspector.WidgetInspectorService Instance { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
+        /// <Summary>
+        /// Registers a service extension method with the given name (full
+        /// name "ext.flutter.inspector.name").
+        ///
+        /// The given callback is called when the extension method is called. The
+        /// callback must return a value that can be converted to JSON using
+        /// `json.encode()` (see [JsonEncoder]). The return value is stored as a
+        /// property named `result` in the JSON. In case of failure, the failure is
+        /// reported to the remote caller and is dumped to the logs.
+        /// </Summary>
         public virtual void RegisterServiceExtension(string name = default(string), FlutterSDK.Foundation.Binding.ServiceExtensionCallback callback = default(FlutterSDK.Foundation.Binding.ServiceExtensionCallback)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Registers a service extension method with the given name (full
+        /// name "ext.flutter.inspector.name"), which takes no arguments.
+        /// </Summary>
         private void _RegisterSignalServiceExtension(string name = default(string), Func<FutureOr<object>> callback = default(Func<FutureOr<object>>)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Registers a service extension method with the given name (full
+        /// name "ext.flutter.inspector.name"), which takes a single optional argument
+        /// "objectGroup" specifying what group is used to manage lifetimes of
+        /// object references in the returned JSON (see [disposeGroup]).
+        /// If "objectGroup" is omitted, the returned JSON will not include any object
+        /// references to avoid leaking memory.
+        /// </Summary>
         private void _RegisterObjectGroupServiceExtension(string name = default(string), Func<FutureOr<object>, string> callback = default(Func<FutureOr<object>, string>)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Registers a service extension method with the given name (full
+        /// name "ext.flutter.inspector.name"), which takes a single argument
+        /// "enabled" which can have the value "true" or the value "false"
+        /// or can be omitted to read the current value. (Any value other
+        /// than "true" is considered equivalent to "false". Other arguments
+        /// are ignored.)
+        ///
+        /// Calls the `getter` callback to obtain the value when
+        /// responding to the service extension method being called.
+        ///
+        /// Calls the `setter` callback with the new value when the
+        /// service extension method is called with a new value.
+        /// </Summary>
         private void _RegisterBoolServiceExtension(string name = default(string), FlutterSDK.Foundation.Basictypes.AsyncValueGetter<bool> getter = default(FlutterSDK.Foundation.Basictypes.AsyncValueGetter<bool>), FlutterSDK.Foundation.Basictypes.AsyncValueSetter<bool> setter = default(FlutterSDK.Foundation.Basictypes.AsyncValueSetter<bool>)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Sends an event when a service extension's state is changed.
+        ///
+        /// Clients should listen for this event to stay aware of the current service
+        /// extension state. Any service extension that manages a state should call
+        /// this method on state change.
+        ///
+        /// `value` reflects the newly updated service extension value.
+        ///
+        /// This will be called automatically for service extensions registered via
+        /// [registerBoolServiceExtension].
+        /// </Summary>
         private void _PostExtensionStateChangedEvent(string name, object value) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Registers a service extension method with the given name (full
+        /// name "ext.flutter.inspector.name") which takes an optional parameter named
+        /// "arg" and a required parameter named "objectGroup" used to control the
+        /// lifetimes of object references in the returned JSON (see [disposeGroup]).
+        /// </Summary>
         private void _RegisterServiceExtensionWithArg(string name = default(string), Func<FutureOr<object>, string, string> callback = default(Func<FutureOr<object>, string, string>)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Registers a service extension method with the given name (full
+        /// name "ext.flutter.inspector.name"), that takes arguments
+        /// "arg0", "arg1", "arg2", ..., "argn".
+        /// </Summary>
         private void _RegisterServiceExtensionVarArgs(string name = default(string), Func<FutureOr<object>, List<string>> callback = default(Func<FutureOr<object>, List<string>>)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Cause the entire tree to be rebuilt. This is used by development tools
+        /// when the application code has changed and is being hot-reloaded, to cause
+        /// the widget tree to pick up any changed implementations.
+        ///
+        /// This is expensive and should not be called except during development.
+        /// </Summary>
         public virtual Future<object> ForceRebuild() { throw new NotImplementedException(); }
 
 
         private void _ReportError(FlutterSDK.Foundation.Assertions.FlutterErrorDetails details) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Resets the count of errors since the last hot reload.
+        ///
+        /// This data is sent to clients as part of the 'Flutter.Error' service
+        /// protocol event. Clients may choose to display errors received after the
+        /// first error differently.
+        /// </Summary>
         private void _ResetErrorCount() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called to register service extensions.
+        ///
+        /// See also:
+        ///
+        ///  * <https://github.com/dart-lang/sdk/blob/master/runtime/vm/service/service.md#rpcs-requests-and-responses>
+        ///  * [BindingBase.initServiceExtensions], which explains when service
+        ///    extensions can be used.
+        /// </Summary>
         public virtual void InitServiceExtensions(FlutterSDK.Widgets.Widgetinspector._RegisterServiceExtensionCallback registerServiceExtensionCallback) { throw new NotImplementedException(); }
 
 
         private void _ClearStats() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Clear all InspectorService object references.
+        ///
+        /// Use this method only for testing to ensure that object references from one
+        /// test case do not impact other test cases.
+        /// </Summary>
         public virtual void DisposeAllGroups() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Free all references to objects in a group.
+        ///
+        /// Objects and their associated ids in the group may be kept alive by
+        /// references from a different group.
+        /// </Summary>
         public virtual void DisposeGroup(string name) { throw new NotImplementedException(); }
 
 
         private void _DecrementReferenceCount(FlutterSDK.Widgets.Widgetinspector._InspectorReferenceData reference) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a unique id for [object] that will remain live at least until
+        /// [disposeGroup] is called on [groupName] or [dispose] is called on the id
+        /// returned by this method.
+        /// </Summary>
         public virtual string ToId(@Object @object, string groupName) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns whether the application has rendered its first frame and it is
+        /// appropriate to display the Widget tree in the inspector.
+        /// </Summary>
         public virtual bool IsWidgetTreeReady(string groupName = default(string)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the Dart object associated with a reference id.
+        ///
+        /// The `groupName` parameter is not required by is added to regularize the
+        /// API surface of the methods in this class called from the Flutter IntelliJ
+        /// Plugin.
+        /// </Summary>
         public virtual @Object ToObject(string id, string groupName = default(string)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the object to introspect to determine the source location of an
+        /// object's class.
+        ///
+        /// The Dart object for the id is returned for all cases but [Element] objects
+        /// where the [Widget] configuring the [Element] is returned instead as the
+        /// class of the [Widget] is more relevant than the class of the [Element].
+        ///
+        /// The `groupName` parameter is not required by is added to regularize the
+        /// API surface of methods called from the Flutter IntelliJ Plugin.
+        /// </Summary>
         public virtual @Object ToObjectForSourceLocation(string id, string groupName = default(string)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Remove the object with the specified `id` from the specified object
+        /// group.
+        ///
+        /// If the object exists in other groups it will remain alive and the object
+        /// id will remain valid.
+        /// </Summary>
         public virtual void DisposeId(string id, string groupName) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Set the list of directories that should be considered part of the local
+        /// project.
+        ///
+        /// The local project directories are used to distinguish widgets created by
+        /// the local project over widgets created from inside the framework.
+        /// </Summary>
         public virtual void SetPubRootDirectories(List<string> pubRootDirectories) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Set the [WidgetInspector] selection to the object matching the specified
+        /// id if the object is valid object to set as the inspector selection.
+        ///
+        /// Returns true if the selection was changed.
+        ///
+        /// The `groupName` parameter is not required by is added to regularize the
+        /// API surface of methods called from the Flutter IntelliJ Plugin.
+        /// </Summary>
         public virtual bool SetSelectionById(string id, string groupName = default(string)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Set the [WidgetInspector] selection to the specified `object` if it is
+        /// a valid object to set as the inspector selection.
+        ///
+        /// Returns true if the selection was changed.
+        ///
+        /// The `groupName` parameter is not needed but is specified to regularize the
+        /// API surface of methods called from the Flutter IntelliJ Plugin.
+        /// </Summary>
         public virtual bool SetSelection(@Object @object, string groupName = default(string)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns JSON representing the chain of [DiagnosticsNode] instances from
+        /// root of thee tree to the [Element] or [RenderObject] matching `id`.
+        ///
+        /// The JSON contains all information required to display a tree view with
+        /// all nodes other than nodes along the path collapsed.
+        /// </Summary>
         public virtual string GetParentChain(string id, string groupName) { throw new NotImplementedException(); }
 
 
@@ -620,6 +780,13 @@ namespace FlutterSDK.Widgets.Widgetinspector
         private bool _IsLocalCreationLocation(FlutterSDK.Widgets.Widgetinspector._Location location) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Wrapper around `json.encode` that uses a ring of cached values to prevent
+        /// the Dart garbage collector from collecting objects between when
+        /// the value is returned over the Observatory protocol and when the
+        /// separate observatory protocol command has to be used to retrieve its full
+        /// contents.
+        /// </Summary>
         private string _SafeJsonEncode(@Object @object) { throw new NotImplementedException(); }
 
 
@@ -629,24 +796,54 @@ namespace FlutterSDK.Widgets.Widgetinspector
         private List<Dictionary<string, @Object>> _NodesToJson(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> nodes, FlutterSDK.Widgets.Widgetinspector.InspectorSerializationDelegate @delegate, FlutterSDK.Foundation.Diagnostics.DiagnosticsNode parent = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a JSON representation of the properties of the [DiagnosticsNode]
+        /// object that `diagnosticsNodeId` references.
+        /// </Summary>
         public virtual string GetProperties(string diagnosticsNodeId, string groupName) { throw new NotImplementedException(); }
 
 
         private List<@Object> _GetProperties(string diagnosticsNodeId, string groupName) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a JSON representation of the children of the [DiagnosticsNode]
+        /// object that `diagnosticsNodeId` references.
+        /// </Summary>
         public virtual string GetChildren(string diagnosticsNodeId, string groupName) { throw new NotImplementedException(); }
 
 
         private List<@Object> _GetChildren(string diagnosticsNodeId, string groupName) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a JSON representation of the children of the [DiagnosticsNode]
+        /// object that `diagnosticsNodeId` references only including children that
+        /// were created directly by user code.
+        ///
+        /// Requires [Widget] creation locations which are only available for debug
+        /// mode builds when the `--track-widget-creation` flag is passed to
+        /// `flutter_tool`.
+        ///
+        /// See also:
+        ///
+        ///  * [isWidgetCreationTracked] which indicates whether this method can be
+        ///    used.
+        /// </Summary>
         public virtual string GetChildrenSummaryTree(string diagnosticsNodeId, string groupName) { throw new NotImplementedException(); }
 
 
         private List<@Object> _GetChildrenSummaryTree(string diagnosticsNodeId, string groupName) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a JSON representation of the children of the [DiagnosticsNode]
+        /// object that `diagnosticsNodeId` references providing information needed
+        /// for the details subtree view.
+        ///
+        /// The details subtree shows properties inline and includes all children
+        /// rather than a filtered set of important children.
+        /// </Summary>
         public virtual string GetChildrenDetailsSubtree(string diagnosticsNodeId, string groupName) { throw new NotImplementedException(); }
 
 
@@ -662,51 +859,124 @@ namespace FlutterSDK.Widgets.Widgetinspector
         private List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> _FilterChildren(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> nodes, FlutterSDK.Widgets.Widgetinspector.InspectorSerializationDelegate @delegate) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a JSON representation of the [DiagnosticsNode] for the root
+        /// [Element].
+        /// </Summary>
         public virtual string GetRootWidget(string groupName) { throw new NotImplementedException(); }
 
 
         private Dictionary<string, @Object> _GetRootWidget(string groupName) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a JSON representation of the [DiagnosticsNode] for the root
+        /// [Element] showing only nodes that should be included in a summary tree.
+        /// </Summary>
         public virtual string GetRootWidgetSummaryTree(string groupName) { throw new NotImplementedException(); }
 
 
         private Dictionary<string, @Object> _GetRootWidgetSummaryTree(string groupName) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a JSON representation of the [DiagnosticsNode] for the root
+        /// [RenderObject].
+        /// </Summary>
         public virtual string GetRootRenderObject(string groupName) { throw new NotImplementedException(); }
 
 
         private Dictionary<string, @Object> _GetRootRenderObject(string groupName) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a JSON representation of the subtree rooted at the
+        /// [DiagnosticsNode] object that `diagnosticsNodeId` references providing
+        /// information needed for the details subtree view.
+        ///
+        /// The number of levels of the subtree that should be returned is specified
+        /// by the [subtreeDepth] parameter. This value defaults to 2 for backwards
+        /// compatibility.
+        ///
+        /// See also:
+        ///
+        ///  * [getChildrenDetailsSubtree], a method to get children of a node
+        ///    in the details subtree.
+        /// </Summary>
         public virtual string GetDetailsSubtree(string id, string groupName, int subtreeDepth = 2) { throw new NotImplementedException(); }
 
 
         private Dictionary<string, @Object> _GetDetailsSubtree(string id, string groupName, int subtreeDepth) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a [DiagnosticsNode] representing the currently selected
+        /// [RenderObject].
+        ///
+        /// If the currently selected [RenderObject] is identical to the
+        /// [RenderObject] referenced by `previousSelectionId` then the previous
+        /// [DiagnosticsNode] is reused.
+        /// </Summary>
         public virtual string GetSelectedRenderObject(string previousSelectionId, string groupName) { throw new NotImplementedException(); }
 
 
         private Dictionary<string, @Object> _GetSelectedRenderObject(string previousSelectionId, string groupName) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a [DiagnosticsNode] representing the currently selected [Element].
+        ///
+        /// If the currently selected [Element] is identical to the [Element]
+        /// referenced by `previousSelectionId` then the previous [DiagnosticsNode] is
+        /// reused.
+        /// </Summary>
         public virtual string GetSelectedWidget(string previousSelectionId, string groupName) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Captures an image of the current state of an [object] that is a
+        /// [RenderObject] or [Element].
+        ///
+        /// The returned [ui.Image] has uncompressed raw RGBA bytes and will be scaled
+        /// to be at most [width] pixels wide and [height] pixels tall. The returned
+        /// image will never have a scale between logical pixels and the
+        /// size of the output image larger than maxPixelRatio.
+        /// [margin] indicates the number of pixels relative to the un-scaled size of
+        /// the [object] to include as a margin to include around the bounds of the
+        /// [object] in the screenshot. Including a margin can be useful to capture
+        /// areas that are slightly outside of the normal bounds of an object such as
+        /// some debug paint information.
+        /// </Summary>
         public virtual Future<SKImage> Screenshot(@Object @object, double width = default(double), double height = default(double), double margin = 0.0, double maxPixelRatio = 1.0, bool debugPaint = false) { throw new NotImplementedException(); }
 
 
         private Dictionary<string, @Object> _GetSelectedWidget(string previousSelectionId, string groupName) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a [DiagnosticsNode] representing the currently selected [Element]
+        /// if the selected [Element] should be shown in the summary tree otherwise
+        /// returns the first ancestor of the selected [Element] shown in the summary
+        /// tree.
+        ///
+        /// If the currently selected [Element] is identical to the [Element]
+        /// referenced by `previousSelectionId` then the previous [DiagnosticsNode] is
+        /// reused.
+        /// </Summary>
         public virtual string GetSelectedSummaryWidget(string previousSelectionId, string groupName) { throw new NotImplementedException(); }
 
 
         private Dictionary<string, @Object> _GetSelectedSummaryWidget(string previousSelectionId, string groupName) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns whether [Widget] creation locations are available.
+        ///
+        /// [Widget] creation locations are only available for debug mode builds when
+        /// the `--track-widget-creation` flag is passed to `flutter_tool`. Dart 2.0
+        /// is required as injecting creation locations requires a
+        /// [Dart Kernel Transformer](https://github.com/dart-lang/sdk/wiki/Kernel-Documentation).
+        /// </Summary>
         public virtual bool IsWidgetCreationTracked() { throw new NotImplementedException(); }
 
 
@@ -719,6 +989,12 @@ namespace FlutterSDK.Widgets.Widgetinspector
         private void _PostStatsEvent(string eventName, FlutterSDK.Widgets.Widgetinspector._ElementLocationStatsTracker stats) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// All events dispatched by a [WidgetInspectorService] use this method
+        /// instead of calling [developer.postEvent] directly so that tests for
+        /// [WidgetInspectorService] can track which events were dispatched by
+        /// overriding this method.
+        /// </Summary>
         public virtual void PostEvent(string eventKind, Dictionary<@Object, @Object> eventData) { throw new NotImplementedException(); }
 
 
@@ -728,6 +1004,13 @@ namespace FlutterSDK.Widgets.Widgetinspector
         private void _OnPaint(FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// This method is called by [WidgetBinding.performReassemble] to flush caches
+        /// of obsolete values after a hot reload.
+        ///
+        /// Do not call this method directly. Instead, use
+        /// [BindingBase.reassembleApplication].
+        /// </Summary>
         public virtual void PerformReassemble() { throw new NotImplementedException(); }
 
     }
@@ -806,12 +1089,23 @@ namespace FlutterSDK.Widgets.Widgetinspector
         public virtual List<FlutterSDK.Widgets.Widgetinspector._LocationCount> Active { get; set; }
         public virtual List<FlutterSDK.Widgets.Widgetinspector._LocationCount> NewLocations { get; set; }
 
+        /// <Summary>
+        /// Increments the count associated with the creation location of [element] if
+        /// the creation location is local to the current project.
+        /// </Summary>
         public virtual void Add(FlutterSDK.Widgets.Framework.Element element) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Clear all aggregated statistics.
+        /// </Summary>
         public virtual void ResetCounts() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Exports the current counts and then resets the stats to prepare to track
+        /// the next frame of data.
+        /// </Summary>
         public virtual Dictionary<string, object> ExportToJson(TimeSpan startTime) { throw new NotImplementedException(); }
 
     }
@@ -849,6 +1143,9 @@ namespace FlutterSDK.Widgets.Widgetinspector
         public virtual FlutterSDK.Widgets.Framework.Element CurrentElement { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool Active { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
+        /// <Summary>
+        /// Set the selection to empty.
+        /// </Summary>
         public virtual void Clear() { throw new NotImplementedException(); }
 
 
@@ -897,6 +1194,12 @@ namespace FlutterSDK.Widgets.Widgetinspector
     }
 
 
+    /// <Summary>
+    /// A layer that mimics the behavior of another layer.
+    ///
+    /// A proxy layer is used for cases where a layer needs to be placed into
+    /// multiple trees of layers.
+    /// </Summary>
     public class _ProxyLayer : FlutterSDK.Rendering.Layer.Layer
     {
         #region constructors
@@ -921,6 +1224,11 @@ namespace FlutterSDK.Widgets.Widgetinspector
     }
 
 
+    /// <Summary>
+    /// A [Canvas] that multicasts all method calls to a main canvas and a
+    /// secondary screenshot canvas so that a screenshot can be recorded at the same
+    /// time as performing a normal paint.
+    /// </Summary>
     public class _MulticastCanvas : ICanvas
     {
         #region constructors
@@ -1040,6 +1348,10 @@ namespace FlutterSDK.Widgets.Widgetinspector
     }
 
 
+    /// <Summary>
+    /// A layer that omits its own offset when adding children to the scene so that
+    /// screenshots render to the scene in the local coordinate system of the layer.
+    /// </Summary>
     public class _ScreenshotContainerLayer : FlutterSDK.Rendering.Layer.OffsetLayer
     {
         #region constructors
@@ -1058,6 +1370,10 @@ namespace FlutterSDK.Widgets.Widgetinspector
     }
 
 
+    /// <Summary>
+    /// Data shared between nested [_ScreenshotPaintingContext] objects recording
+    /// a screenshot.
+    /// </Summary>
     public class _ScreenshotData
     {
         #region constructors
@@ -1082,6 +1398,18 @@ namespace FlutterSDK.Widgets.Widgetinspector
     }
 
 
+    /// <Summary>
+    /// A place to paint to build screenshots of [RenderObject]s.
+    ///
+    /// Requires that the render objects have already painted successfully as part
+    /// of the regular rendering pipeline.
+    /// This painting context behaves the same as standard [PaintingContext] with
+    /// instrumentation added to compute a screenshot of a specified [RenderObject]
+    /// added. To correctly mimic the behavior of the regular rendering pipeline, the
+    /// full subtree of the first [RepaintBoundary] ancestor of the specified
+    /// [RenderObject] will also be rendered rather than just the subtree of the
+    /// render object.
+    /// </Summary>
     public class _ScreenshotPaintingContext : FlutterSDK.Rendering.@object.PaintingContext
     {
         #region constructors
@@ -1122,12 +1450,48 @@ namespace FlutterSDK.Widgets.Widgetinspector
         public new void PaintChild(FlutterSDK.Rendering.@object.RenderObject child, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Captures an image of the current state of [renderObject] and its children.
+        ///
+        /// The returned [ui.Image] has uncompressed raw RGBA bytes, will be offset
+        /// by the top-left corner of [renderBounds], and have dimensions equal to the
+        /// size of [renderBounds] multiplied by [pixelRatio].
+        ///
+        /// To use [toImage], the render object must have gone through the paint phase
+        /// (i.e. [debugNeedsPaint] must be false).
+        ///
+        /// The [pixelRatio] describes the scale between the logical pixels and the
+        /// size of the output image. It is independent of the
+        /// [window.devicePixelRatio] for the device, so specifying 1.0 (the default)
+        /// will give you a 1:1 mapping between logical pixels and the output pixels
+        /// in the image.
+        ///
+        /// The [debugPaint] argument specifies whether the image should include the
+        /// output of [RenderObject.debugPaint] for [renderObject] with
+        /// [debugPaintSizeEnabled] set to true. Debug paint information is not
+        /// included for the children of [renderObject] so that it is clear precisely
+        /// which object the debug paint information references.
+        ///
+        /// See also:
+        ///
+        ///  * [RenderRepaintBoundary.toImage] for a similar API for [RenderObject]s
+        ///    that are repaint boundaries that can be used outside of the inspector.
+        ///  * [OffsetLayer.toImage] for a similar API at the layer level.
+        ///  * [dart:ui.Scene.toImage] for more information about the image returned.
+        /// </Summary>
         public virtual Future<SKImage> ToImage(FlutterSDK.Rendering.@object.RenderObject renderObject, FlutterBinding.UI.Rect renderBounds, double pixelRatio = 1.0, bool debugPaint = false) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// A class describing a step along a path through a tree of [DiagnosticsNode]
+    /// objects.
+    ///
+    /// This class is used to bundle all data required to display the tree with just
+    /// the nodes along a path expanded into a single JSON payload.
+    /// </Summary>
     public class _DiagnosticsPathNode
     {
         #region constructors
@@ -1151,6 +1515,10 @@ namespace FlutterSDK.Widgets.Widgetinspector
     }
 
 
+    /// <Summary>
+    /// Structure to help reference count Dart objects referenced by a GUI tool
+    /// using [WidgetInspectorService].
+    /// </Summary>
     public class _InspectorReferenceData
     {
         #region constructors
@@ -1170,6 +1538,12 @@ namespace FlutterSDK.Widgets.Widgetinspector
     }
 
 
+    /// <Summary>
+    /// Accumulator for a count associated with a specific source location.
+    ///
+    /// The accumulator stores whether the source location is [local] and what its
+    /// [id] for efficiency encoding terse JSON payloads describing counts.
+    /// </Summary>
     public class _LocationCount
     {
         #region constructors
@@ -1191,9 +1565,15 @@ namespace FlutterSDK.Widgets.Widgetinspector
 
         #region methods
 
+        /// <Summary>
+        /// Reset the count.
+        /// </Summary>
         public virtual void Reset() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Increment the count.
+        /// </Summary>
         public virtual void Increment() { throw new NotImplementedException(); }
 
         #endregion
@@ -1218,6 +1598,30 @@ namespace FlutterSDK.Widgets.Widgetinspector
     }
 
 
+    /// <Summary>
+    /// A widget that enables inspecting the child widget's structure.
+    ///
+    /// Select a location on your device or emulator and view what widgets and
+    /// render object that best matches the location. An outline of the selected
+    /// widget and terse summary information is shown on device with detailed
+    /// information is shown in the observatory or in IntelliJ when using the
+    /// Flutter Plugin.
+    ///
+    /// The inspector has a select mode and a view mode.
+    ///
+    /// In the select mode, tapping the device selects the widget that best matches
+    /// the location of the touch and switches to view mode. Dragging a finger on
+    /// the device selects the widget under the drag location but does not switch
+    /// modes. Touching the very edge of the bounding box of a widget triggers
+    /// selecting the widget even if another widget that also overlaps that
+    /// location would otherwise have priority.
+    ///
+    /// In the view mode, the previously selected widget is outlined, however,
+    /// touching the device has the same effect it would have if the inspector
+    /// wasn't present. This allows interacting with the application and viewing how
+    /// the selected widget changes position. Clicking on the select icon in the
+    /// bottom left corner of the application switches back to select mode.
+    /// </Summary>
     public class WidgetInspector : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -1272,6 +1676,15 @@ namespace FlutterSDK.Widgets.Widgetinspector
         private bool _HitTestHelper(List<FlutterSDK.Rendering.@object.RenderObject> hits, List<FlutterSDK.Rendering.@object.RenderObject> edgeHits, FlutterBinding.UI.Offset position, FlutterSDK.Rendering.@object.RenderObject @object, Matrix4 transform) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the list of render objects located at the given position ordered
+        /// by priority.
+        ///
+        /// All render objects that are not offstage that match the location are
+        /// included in the list of matches. Priority is given to matches that occur
+        /// on the edge of a render object's bounding box and to matches found by
+        /// [RenderBox.hitTest].
+        /// </Summary>
         public virtual List<FlutterSDK.Rendering.@object.RenderObject> HitTest(FlutterBinding.UI.Offset position, FlutterSDK.Rendering.@object.RenderObject root) { throw new NotImplementedException(); }
 
 
@@ -1377,6 +1790,12 @@ namespace FlutterSDK.Widgets.Widgetinspector
     }
 
 
+    /// <Summary>
+    /// State describing how the inspector overlay should be rendered.
+    ///
+    /// The equality operator can be used to determine whether the overlay needs to
+    /// be rendered again.
+    /// </Summary>
     public class _InspectorOverlayRenderState
     {
         #region constructors
@@ -1407,6 +1826,13 @@ namespace FlutterSDK.Widgets.Widgetinspector
     }
 
 
+    /// <Summary>
+    /// A layer that outlines the selected [RenderObject] and candidate render
+    /// objects that also match the last pointer location.
+    ///
+    /// This approach is horrific for performance and is only used here because this
+    /// is limited to debug mode. Do not duplicate the logic in production code.
+    /// </Summary>
     public class _InspectorOverlayLayer : FlutterSDK.Rendering.Layer.Layer
     {
         #region constructors
@@ -1444,6 +1870,10 @@ namespace FlutterSDK.Widgets.Widgetinspector
     }
 
 
+    /// <Summary>
+    /// A tuple with file, line, and column number, for displaying human-readable
+    /// file locations.
+    /// </Summary>
     public class _Location
     {
         #region constructors
@@ -1474,6 +1904,10 @@ namespace FlutterSDK.Widgets.Widgetinspector
     }
 
 
+    /// <Summary>
+    /// A delegate that configures how a hierarchy of [DiagnosticsNode]s are
+    /// serialized by the Flutter Inspector.
+    /// </Summary>
     public class InspectorSerializationDelegate : IDiagnosticsSerializationDelegate
     {
         #region constructors

@@ -434,6 +434,14 @@ namespace FlutterSDK.Widgets.Layoutbuilder
 
     }
 
+    /// <Summary>
+    /// An abstract superclass for widgets that defer their building until layout.
+    ///
+    /// Similar to the [Builder] widget except that the framework calls the [builder]
+    /// function at layout time and provides the constraints that this widget should
+    /// adhere to. This is useful when the parent constrains the child's size and layout,
+    /// and doesn't depend on the child's intrinsic size.
+    /// </Summary>
     public interface IConstrainedLayoutBuilder<ConstraintType>
     {
         _LayoutBuilderElement<ConstraintType> CreateElement();
@@ -447,9 +455,15 @@ namespace FlutterSDK.Widgets.Layoutbuilder
     {
         internal virtual FlutterSDK.Rendering.@object.LayoutCallback<ConstraintType> _Callback { get; set; }
 
+        /// <Summary>
+        /// Change the layout callback.
+        /// </Summary>
         public virtual void UpdateCallback(FlutterSDK.Rendering.@object.LayoutCallback<ConstraintType> value) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Invoke the layout callback.
+        /// </Summary>
         public virtual void LayoutAndBuildChild() { throw new NotImplementedException(); }
 
     }
@@ -470,6 +484,14 @@ namespace FlutterSDK.Widgets.Layoutbuilder
     }
 
 
+    /// <Summary>
+    /// An abstract superclass for widgets that defer their building until layout.
+    ///
+    /// Similar to the [Builder] widget except that the framework calls the [builder]
+    /// function at layout time and provides the constraints that this widget should
+    /// adhere to. This is useful when the parent constrains the child's size and layout,
+    /// and doesn't depend on the child's intrinsic size.
+    /// </Summary>
     public class ConstrainedLayoutBuilder<ConstraintType> : FlutterSDK.Widgets.Framework.RenderObjectWidget
     {
         #region constructors
@@ -544,6 +566,29 @@ namespace FlutterSDK.Widgets.Layoutbuilder
     }
 
 
+    /// <Summary>
+    /// Builds a widget tree that can depend on the parent widget's size.
+    ///
+    /// Similar to the [Builder] widget except that the framework calls the [builder]
+    /// function at layout time and provides the parent widget's constraints. This
+    /// is useful when the parent constrains the child's size and doesn't depend on
+    /// the child's intrinsic size. The [LayoutBuilder]'s final size will match its
+    /// child's size.
+    ///
+    /// {@youtube 560 315 https://www.youtube.com/watch?v=IYDVcriKjsw}
+    ///
+    /// If the child should be smaller than the parent, consider wrapping the child
+    /// in an [Align] widget. If the child might want to be bigger, consider
+    /// wrapping it in a [SingleChildScrollView].
+    ///
+    /// See also:
+    ///
+    ///  * [SliverLayoutBuilder], the sliver counterpart of this widget.
+    ///  * [Builder], which calls a `builder` function at build time.
+    ///  * [StatefulBuilder], which passes its `builder` function a `setState` callback.
+    ///  * [CustomSingleChildLayout], which positions its child during layout.
+    ///  * The [catalog of layout widgets](https://flutter.dev/widgets/layout/).
+    /// </Summary>
     public class LayoutBuilder : FlutterSDK.Widgets.Layoutbuilder.ConstrainedLayoutBuilder<FlutterSDK.Rendering.Box.BoxConstraints>
     {
         #region constructors

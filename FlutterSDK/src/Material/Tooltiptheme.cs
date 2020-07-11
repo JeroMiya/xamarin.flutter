@@ -425,6 +425,22 @@ namespace FlutterSDK.Material.Tooltiptheme
     {
     }
 
+    /// <Summary>
+    /// Defines the visual properties of [Tooltip] widgets.
+    ///
+    /// Used by [TooltipTheme] to control the visual properties of tooltips in a
+    /// widget subtree.
+    ///
+    /// To obtain this configuration, use [TooltipTheme.of] to access the closest
+    /// ancestor [TooltipTheme] of the current [BuildContext].
+    ///
+    /// See also:
+    ///
+    ///  * [TooltipTheme], an [InheritedWidget] that propagates the theme down its
+    ///    subtree.
+    ///  * [TooltipThemeData], which describes the actual configuration of a
+    ///    tooltip theme.
+    /// </Summary>
     public class TooltipThemeData : IDiagnosticable
     {
         #region constructors
@@ -459,9 +475,20 @@ namespace FlutterSDK.Material.Tooltiptheme
 
         #region methods
 
+        /// <Summary>
+        /// Creates a copy of this object but with the given fields replaced with the
+        /// new values.
+        /// </Summary>
         public virtual FlutterSDK.Material.Tooltiptheme.TooltipThemeData CopyWith(double height = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), double verticalOffset = default(double), bool preferBelow = default(bool), bool excludeFromSemantics = default(bool), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), TimeSpan waitDuration = default(TimeSpan), TimeSpan showDuration = default(TimeSpan)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two tooltip themes.
+        ///
+        /// If both arguments are null, then null is returned.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
         public virtual FlutterSDK.Material.Tooltiptheme.TooltipThemeData Lerp(FlutterSDK.Material.Tooltiptheme.TooltipThemeData a, FlutterSDK.Material.Tooltiptheme.TooltipThemeData b, double t) { throw new NotImplementedException(); }
 
 
@@ -474,6 +501,38 @@ namespace FlutterSDK.Material.Tooltiptheme
     }
 
 
+    /// <Summary>
+    /// An inherited widget that defines the configuration for
+    /// [Tooltip]s in this widget's subtree.
+    ///
+    /// Values specified here are used for [Tooltip] properties that are not
+    /// given an explicit non-null value.
+    ///
+    /// {@tool snippet}
+    ///
+    /// Here is an example of a tooltip theme that applies a blue foreground
+    /// with non-rounded corners.
+    ///
+    /// ```dart
+    /// TooltipTheme(
+    ///   data: TooltipThemeData(
+    ///     decoration: BoxDecoration(
+    ///       color: Colors.blue.withOpacity(0.9),
+    ///       borderRadius: BorderRadius.zero,
+    ///     ),
+    ///   ),
+    ///   child: Tooltip(
+    ///     message: 'Example tooltip',
+    ///     child: IconButton(
+    ///       iconSize: 36.0,
+    ///       icon: Icon(Icons.touch_app),
+    ///       onPressed: () {},
+    ///     ),
+    ///   ),
+    /// ),
+    /// ```
+    /// {@end-tool}
+    /// </Summary>
     public class TooltipTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
         #region constructors
@@ -490,6 +549,17 @@ namespace FlutterSDK.Material.Tooltiptheme
 
         #region methods
 
+        /// <Summary>
+        /// Returns the [data] from the closest [TooltipTheme] ancestor. If there is
+        /// no ancestor, it returns [ThemeData.tooltipTheme]. Applications can assume
+        /// that the returned value will not be null.
+        ///
+        /// Typical usage is as follows:
+        ///
+        /// ```dart
+        /// TooltipThemeData theme = TooltipTheme.of(context);
+        /// ```
+        /// </Summary>
         public virtual FlutterSDK.Material.Tooltiptheme.TooltipThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 

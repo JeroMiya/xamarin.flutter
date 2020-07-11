@@ -426,6 +426,16 @@ namespace FlutterSDK.Painting.Alignment
     {
     }
 
+    /// <Summary>
+    /// Base class for [Alignment] that allows for text-direction aware
+    /// resolution.
+    ///
+    /// A property or argument of this type accepts classes created either with [new
+    /// Alignment] and its variants, or [new AlignmentDirectional].
+    ///
+    /// To convert an [AlignmentGeometry] object of indeterminate type into an
+    /// [Alignment] object, call the [resolve] method.
+    /// </Summary>
     public interface IAlignmentGeometry
     {
         FlutterSDK.Painting.Alignment.AlignmentGeometry Add(FlutterSDK.Painting.Alignment.AlignmentGeometry other);
@@ -442,6 +452,16 @@ namespace FlutterSDK.Painting.Alignment
     }
 
 
+    /// <Summary>
+    /// Base class for [Alignment] that allows for text-direction aware
+    /// resolution.
+    ///
+    /// A property or argument of this type accepts classes created either with [new
+    /// Alignment] and its variants, or [new AlignmentDirectional].
+    ///
+    /// To convert an [AlignmentGeometry] object of indeterminate type into an
+    /// [Alignment] object, call the [resolve] method.
+    /// </Summary>
     public class AlignmentGeometry
     {
         #region constructors
@@ -460,27 +480,92 @@ namespace FlutterSDK.Painting.Alignment
 
         #region methods
 
+        /// <Summary>
+        /// Returns the sum of two [AlignmentGeometry] objects.
+        ///
+        /// If you know you are adding two [Alignment] or two [AlignmentDirectional]
+        /// objects, consider using the `+` operator instead, which always returns an
+        /// object of the same type as the operands, and is typed accordingly.
+        ///
+        /// If [add] is applied to two objects of the same type ([Alignment] or
+        /// [AlignmentDirectional]), an object of that type will be returned (though
+        /// this is not reflected in the type system). Otherwise, an object
+        /// representing a combination of both is returned. That object can be turned
+        /// into a concrete [Alignment] using [resolve].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Add(FlutterSDK.Painting.Alignment.AlignmentGeometry other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the negation of the given [AlignmentGeometry] object.
+        ///
+        /// This is the same as multiplying the object by -1.0.
+        ///
+        /// This operator returns an object of the same type as the operand.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Unary() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Scales the [AlignmentGeometry] object in each dimension by the given factor.
+        ///
+        /// This operator returns an object of the same type as the operand.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry MultiplyOperator(double other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Divides the [AlignmentGeometry] object in each dimension by the given factor.
+        ///
+        /// This operator returns an object of the same type as the operand.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry DivideOperator(double other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Integer divides the [AlignmentGeometry] object in each dimension by the given factor.
+        ///
+        /// This operator returns an object of the same type as the operand.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry DivideIntegerResultOperator(double other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Computes the remainder in each dimension by the given factor.
+        ///
+        /// This operator returns an object of the same type as the operand.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry ModuloOperator(double other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two [AlignmentGeometry] objects.
+        ///
+        /// If either is null, this function interpolates from [Alignment.center], and
+        /// the result is an object of the same type as the non-null argument.
+        ///
+        /// If [lerp] is applied to two objects of the same type ([Alignment] or
+        /// [AlignmentDirectional]), an object of that type will be returned (though
+        /// this is not reflected in the type system). Otherwise, an object
+        /// representing a combination of both is returned. That object can be turned
+        /// into a concrete [Alignment] using [resolve].
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Lerp(FlutterSDK.Painting.Alignment.AlignmentGeometry a, FlutterSDK.Painting.Alignment.AlignmentGeometry b, double t) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Convert this instance into an [Alignment], which uses literal
+        /// coordinates (the `x` coordinate being explicitly a distance from the
+        /// left).
+        ///
+        /// See also:
+        ///
+        ///  * [Alignment], for which this is a no-op (returns itself).
+        ///  * [AlignmentDirectional], which flips the horizontal direction
+        ///    based on the `direction` argument.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.Alignment Resolve(TextDirection direction) { throw new NotImplementedException(); }
 
 
@@ -491,6 +576,48 @@ namespace FlutterSDK.Painting.Alignment
     }
 
 
+    /// <Summary>
+    /// A point within a rectangle.
+    ///
+    /// `Alignment(0.0, 0.0)` represents the center of the rectangle. The distance
+    /// from -1.0 to +1.0 is the distance from one side of the rectangle to the
+    /// other side of the rectangle. Therefore, 2.0 units horizontally (or
+    /// vertically) is equivalent to the width (or height) of the rectangle.
+    ///
+    /// `Alignment(-1.0, -1.0)` represents the top left of the rectangle.
+    ///
+    /// `Alignment(1.0, 1.0)` represents the bottom right of the rectangle.
+    ///
+    /// `Alignment(0.0, 3.0)` represents a point that is horizontally centered with
+    /// respect to the rectangle and vertically below the bottom of the rectangle by
+    /// the height of the rectangle.
+    ///
+    /// `Alignment(0.0, -0.5)` represents a point that is horizontally centered with
+    /// respect to the rectangle and vertically half way between the top edge and
+    /// the center.
+    ///
+    /// `Alignment(x, y)` in a rectangle with height h and width w describes
+    /// the point (x * w/2 + w/2, y * h/2 + h/2) in the coordinate system of the
+    /// rectangle.
+    ///
+    /// [Alignment] uses visual coordinates, which means increasing [x] moves the
+    /// point from left to right. To support layouts with a right-to-left
+    /// [TextDirection], consider using [AlignmentDirectional], in which the
+    /// direction the point moves when increasing the horizontal value depends on
+    /// the [TextDirection].
+    ///
+    /// A variety of widgets use [Alignment] in their configuration, most
+    /// notably:
+    ///
+    ///  * [Align] positions a child according to an [Alignment].
+    ///
+    /// See also:
+    ///
+    ///  * [AlignmentDirectional], which has a horizontal coordinate orientation
+    ///    that depends on the [TextDirection].
+    ///  * [AlignmentGeometry], which is an abstract type that is agnostic as to
+    ///    whether the horizontal direction depends on the [TextDirection].
+    /// </Summary>
     public class Alignment : FlutterSDK.Painting.Alignment.AlignmentGeometry
     {
         #region constructors
@@ -524,39 +651,84 @@ namespace FlutterSDK.Painting.Alignment
         public new FlutterSDK.Painting.Alignment.AlignmentGeometry Add(FlutterSDK.Painting.Alignment.AlignmentGeometry other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the difference between two [Alignment]s.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.Alignment Unary(FlutterSDK.Painting.Alignment.Alignment other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the sum of two [Alignment]s.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.Alignment AddOperator(FlutterSDK.Painting.Alignment.Alignment other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the negation of the given [Alignment].
+        /// </Summary>
         public new FlutterSDK.Painting.Alignment.Alignment Unary() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Scales the [Alignment] in each dimension by the given factor.
+        /// </Summary>
         public new FlutterSDK.Painting.Alignment.Alignment MultiplyOperator(double other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Divides the [Alignment] in each dimension by the given factor.
+        /// </Summary>
         public new FlutterSDK.Painting.Alignment.Alignment DivideOperator(double other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Integer divides the [Alignment] in each dimension by the given factor.
+        /// </Summary>
         public new FlutterSDK.Painting.Alignment.Alignment DivideIntegerResultOperator(double other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Computes the remainder in each dimension by the given factor.
+        /// </Summary>
         public new FlutterSDK.Painting.Alignment.Alignment ModuloOperator(double other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the offset that is this fraction in the direction of the given offset.
+        /// </Summary>
         public virtual Offset AlongOffset(FlutterBinding.UI.Offset other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the offset that is this fraction within the given size.
+        /// </Summary>
         public virtual Offset AlongSize(Size other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the point that is this fraction within the given rect.
+        /// </Summary>
         public virtual Offset WithinRect(FlutterBinding.UI.Rect rect) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a rect of the given size, aligned within given rect as specified
+        /// by this alignment.
+        ///
+        /// For example, a 100×100 size inscribed on a 200×200 rect using
+        /// [Alignment.topLeft] would be the 100×100 rect at the top left of
+        /// the 200×200 rect.
+        /// </Summary>
         public virtual Rect Inscribe(Size size, FlutterBinding.UI.Rect rect) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two [Alignment]s.
+        ///
+        /// If either is null, this function interpolates from [Alignment.center].
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.Alignment Lerp(FlutterSDK.Painting.Alignment.Alignment a, FlutterSDK.Painting.Alignment.Alignment b, double t) { throw new NotImplementedException(); }
 
 
@@ -570,6 +742,19 @@ namespace FlutterSDK.Painting.Alignment
     }
 
 
+    /// <Summary>
+    /// An offset that's expressed as a fraction of a [Size], but whose horizontal
+    /// component is dependent on the writing direction.
+    ///
+    /// This can be used to indicate an offset from the left in [TextDirection.ltr]
+    /// text and an offset from the right in [TextDirection.rtl] text without having
+    /// to be aware of the current text direction.
+    ///
+    /// See also:
+    ///
+    ///  * [Alignment], a variant that is defined in physical terms (i.e.
+    ///    whose horizontal component does not depend on the text direction).
+    /// </Summary>
     public class AlignmentDirectional : FlutterSDK.Painting.Alignment.AlignmentGeometry
     {
         #region constructors
@@ -603,27 +788,55 @@ namespace FlutterSDK.Painting.Alignment
         public new FlutterSDK.Painting.Alignment.AlignmentGeometry Add(FlutterSDK.Painting.Alignment.AlignmentGeometry other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the difference between two [AlignmentDirectional]s.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional Unary(FlutterSDK.Painting.Alignment.AlignmentDirectional other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the sum of two [AlignmentDirectional]s.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional AddOperator(FlutterSDK.Painting.Alignment.AlignmentDirectional other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the negation of the given [AlignmentDirectional].
+        /// </Summary>
         public new FlutterSDK.Painting.Alignment.AlignmentDirectional Unary() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Scales the [AlignmentDirectional] in each dimension by the given factor.
+        /// </Summary>
         public new FlutterSDK.Painting.Alignment.AlignmentDirectional MultiplyOperator(double other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Divides the [AlignmentDirectional] in each dimension by the given factor.
+        /// </Summary>
         public new FlutterSDK.Painting.Alignment.AlignmentDirectional DivideOperator(double other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Integer divides the [AlignmentDirectional] in each dimension by the given factor.
+        /// </Summary>
         public new FlutterSDK.Painting.Alignment.AlignmentDirectional DivideIntegerResultOperator(double other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Computes the remainder in each dimension by the given factor.
+        /// </Summary>
         public new FlutterSDK.Painting.Alignment.AlignmentDirectional ModuloOperator(double other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two [AlignmentDirectional]s.
+        ///
+        /// If either is null, this function interpolates from [AlignmentDirectional.center].
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
         public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional Lerp(FlutterSDK.Painting.Alignment.AlignmentDirectional a, FlutterSDK.Painting.Alignment.AlignmentDirectional b, double t) { throw new NotImplementedException(); }
 
 
@@ -677,6 +890,23 @@ namespace FlutterSDK.Painting.Alignment
     }
 
 
+    /// <Summary>
+    /// The vertical alignment of text within an input box.
+    ///
+    /// A single [y] value that can range from -1.0 to 1.0. -1.0 aligns to the top
+    /// of an input box so that the top of the first line of text fits within the
+    /// box and its padding. 0.0 aligns to the center of the box. 1.0 aligns so that
+    /// the bottom of the last line of text aligns with the bottom interior edge of
+    /// the input box.
+    ///
+    /// See also:
+    ///
+    ///  * [TextField.textAlignVertical], which is passed on to the [InputDecorator].
+    ///  * [CupertinoTextField.textAlignVertical], which behaves in the same way as
+    ///    the parameter in TextField.
+    ///  * [InputDecorator.textAlignVertical], which defines the alignment of
+    ///    prefix, input, and suffix within an [InputDecorator].
+    /// </Summary>
     public class TextAlignVertical
     {
         #region constructors

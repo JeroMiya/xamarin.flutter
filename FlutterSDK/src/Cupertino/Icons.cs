@@ -297,6 +297,29 @@ namespace FlutterSDK.Cupertino.Icons
     {
     }
 
+    /// <Summary>
+    /// Identifiers for the supported Cupertino icons.
+    ///
+    /// Use with the [Icon] class to show specific icons.
+    ///
+    /// Icons are identified by their name as listed below.
+    ///
+    /// To use this class, make sure you add a dependency on `cupertino_icons` in your
+    /// project's `pubspec.yaml` file. This ensures that the CupertinoIcons font is
+    /// included in your application. This font is used to display the icons. For example:
+    ///
+    /// ```yaml
+    /// name: my_awesome_application
+    ///
+    /// dependencies:
+    ///   cupertino_icons: ^0.1.0
+    /// ```
+    ///
+    /// See also:
+    ///
+    ///  * [Icon], used to show these icons.
+    ///  * <https://github.com/flutter/cupertino_icons/blob/master/map.png>, a map of the icons in this icons font.
+    /// </Summary>
     public class CupertinoIcons
     {
         #region constructors

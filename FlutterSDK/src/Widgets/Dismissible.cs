@@ -434,6 +434,26 @@ namespace FlutterSDK.Widgets.Dismissible
         public static double _KDismissThreshold = default(double);
     }
 
+    /// <Summary>
+    /// A widget that can be dismissed by dragging in the indicated [direction].
+    ///
+    /// Dragging or flinging this widget in the [DismissDirection] causes the child
+    /// to slide out of view. Following the slide animation, if [resizeDuration] is
+    /// non-null, the Dismissible widget animates its height (or width, whichever is
+    /// perpendicular to the dismiss direction) to zero over the [resizeDuration].
+    ///
+    /// {@youtube 560 315 https://www.youtube.com/watch?v=iEMgjrfuc58}
+    ///
+    /// Backgrounds can be used to implement the "leave-behind" idiom. If a background
+    /// is specified it is stacked behind the Dismissible's child and is exposed when
+    /// the child moves.
+    ///
+    /// The widget calls the [onDismissed] callback either after its size has
+    /// collapsed to zero (if [resizeDuration] is non-null) or immediately after
+    /// the slide animation (if [resizeDuration] is null). If the Dismissible is a
+    /// list item, it must have a key that distinguishes it from the other items and
+    /// its [onDismissed] callback must remove the item from the list.
+    /// </Summary>
     public class Dismissible : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -574,14 +594,37 @@ namespace FlutterSDK.Widgets.Dismissible
     }
 
 
+    /// <Summary>
+    /// The direction in which a [Dismissible] can be dismissed.
+    /// </Summary>
     public enum DismissDirection
     {
 
+        /// <Summary>
+        /// The [Dismissible] can be dismissed by dragging either up or down.
+        /// </Summary>
         Vertical,
+        /// <Summary>
+        /// The [Dismissible] can be dismissed by dragging either left or right.
+        /// </Summary>
         Horizontal,
+        /// <Summary>
+        /// The [Dismissible] can be dismissed by dragging in the reverse of the
+        /// reading direction (e.g., from right to left in left-to-right languages).
+        /// </Summary>
         EndToStart,
+        /// <Summary>
+        /// The [Dismissible] can be dismissed by dragging in the reading direction
+        /// (e.g., from left to right in left-to-right languages).
+        /// </Summary>
         StartToEnd,
+        /// <Summary>
+        /// The [Dismissible] can be dismissed by dragging up only.
+        /// </Summary>
         Up,
+        /// <Summary>
+        /// The [Dismissible] can be dismissed by dragging down only.
+        /// </Summary>
         Down,
     }
 

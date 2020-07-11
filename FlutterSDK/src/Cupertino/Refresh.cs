@@ -359,6 +359,58 @@ namespace FlutterSDK.Cupertino.Refresh
     }
 
 
+    /// <Summary>
+    /// A sliver widget implementing the iOS-style pull to refresh content control.
+    ///
+    /// When inserted as the first sliver in a scroll view or behind other slivers
+    /// that still lets the scrollable overscroll in front of this sliver (such as
+    /// the [CupertinoSliverNavigationBar], this widget will:
+    ///
+    ///  * Let the user draw inside the overscrolled area via the passed in [builder].
+    ///  * Trigger the provided [onRefresh] function when overscrolled far enough to
+    ///    pass [refreshTriggerPullDistance].
+    ///  * Continue to hold [refreshIndicatorExtent] amount of space for the [builder]
+    ///    to keep drawing inside of as the [Future] returned by [onRefresh] processes.
+    ///  * Scroll away once the [onRefresh] [Future] completes.
+    ///
+    /// The [builder] function will be informed of the current [RefreshIndicatorMode]
+    /// when invoking it, except in the [RefreshIndicatorMode.inactive] state when
+    /// no space is available and nothing needs to be built. The [builder] function
+    /// will otherwise be continuously invoked as the amount of space available
+    /// changes from overscroll, as the sliver scrolls away after the [onRefresh]
+    /// task is done, etc.
+    ///
+    /// Only one refresh can be triggered until the previous refresh has completed
+    /// and the indicator sliver has retracted at least 90% of the way back.
+    ///
+    /// Can only be used in downward-scrolling vertical lists that overscrolls. In
+    /// other words, refreshes can't be triggered with [Scrollable]s using
+    /// [ClampingScrollPhysics] which is the default on Android. To allow overscroll
+    /// on Android, use an overscrolling physics such as [BouncingScrollPhysics].
+    /// This can be done via:
+    ///
+    ///  * Providing a [BouncingScrollPhysics] (possibly in combination with a
+    ///    [AlwaysScrollableScrollPhysics]) while constructing the scrollable.
+    ///  * By inserting a [ScrollConfiguration] with [BouncingScrollPhysics] above
+    ///    the scrollable.
+    ///  * By using [CupertinoApp], which always uses a [ScrollConfiguration]
+    ///    with [BouncingScrollPhysics] regardless of platform.
+    ///
+    /// In a typical application, this sliver should be inserted between the app bar
+    /// sliver such as [CupertinoSliverNavigationBar] and your main scrollable
+    /// content's sliver.
+    ///
+    /// See also:
+    ///
+    ///  * [CustomScrollView], a typical sliver holding scroll view this control
+    ///    should go into.
+    ///  * <https://developer.apple.com/ios/human-interface-guidelines/controls/refresh-content-controls/>
+    ///  * [RefreshIndicator], a Material Design version of the pull-to-refresh
+    ///    paradigm. This widget works differently than [RefreshIndicator] because
+    ///    instead of being an overlay on top of the scrollable, the
+    ///    [CupertinoSliverRefreshControl] is part of the scrollable and actively occupies
+    ///    scrollable space.
+    /// </Summary>
     public class CupertinoSliverRefreshControl : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -383,9 +435,19 @@ namespace FlutterSDK.Cupertino.Refresh
 
         #region methods
 
+        /// <Summary>
+        /// Retrieve the current state of the CupertinoSliverRefreshControl. The same as the
+        /// state that gets passed into the [builder] function. Used for testing.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Refresh.RefreshIndicatorMode State(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Builds a simple refresh indicator that fades in a bottom aligned down
+        /// arrow before the refresh is triggered, a [CupertinoActivityIndicator]
+        /// during the refresh and fades the [CupertinoActivityIndicator] away when
+        /// the refresh is done.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget BuildSimpleRefreshIndicator(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Cupertino.Refresh.RefreshIndicatorMode refreshState, double pulledExtent, double refreshTriggerPullDistance, double refreshIndicatorExtent) { throw new NotImplementedException(); }
 
 
@@ -424,13 +486,36 @@ namespace FlutterSDK.Cupertino.Refresh
     }
 
 
+    /// <Summary>
+    /// The current state of the refresh control.
+    ///
+    /// Passed into the [RefreshControlIndicatorBuilder] builder function so
+    /// users can show different UI in different modes.
+    /// </Summary>
     public enum RefreshIndicatorMode
     {
 
+        /// <Summary>
+        /// Initial state, when not being overscrolled into, or after the overscroll
+        /// is canceled or after done and the sliver retracted away.
+        /// </Summary>
         Inactive,
+        /// <Summary>
+        /// While being overscrolled but not far enough yet to trigger the refresh.
+        /// </Summary>
         Drag,
+        /// <Summary>
+        /// Dragged far enough that the onRefresh callback will run and the dragged
+        /// displacement is not yet at the final refresh resting state.
+        /// </Summary>
         Armed,
+        /// <Summary>
+        /// While the onRefresh task is running.
+        /// </Summary>
         Refresh,
+        /// <Summary>
+        /// While the indicator is animating away after refreshing.
+        /// </Summary>
         Done,
     }
 

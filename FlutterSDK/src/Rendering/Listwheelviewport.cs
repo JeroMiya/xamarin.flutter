@@ -434,12 +434,29 @@ namespace FlutterSDK.Rendering.Listwheelviewport
     {
         public virtual int ChildCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
+        /// <Summary>
+        /// Checks whether the delegate is able to provide a child widget at the given
+        /// index.
+        ///
+        /// This function is not about whether the child at the given index is
+        /// attached to the [RenderListWheelViewport] or not.
+        /// </Summary>
         public virtual bool ChildExistsAt(int index) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Creates a new child at the given index and updates it to the child list
+        /// of [RenderListWheelViewport]. If no child corresponds to `index`, then do
+        /// nothing.
+        ///
+        /// It is possible to create children with negative indices.
+        /// </Summary>
         public virtual void CreateChild(int index, FlutterSDK.Rendering.Box.RenderBox after = default(FlutterSDK.Rendering.Box.RenderBox)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Removes the child element corresponding with the given RenderBox.
+        /// </Summary>
         public virtual void RemoveChild(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
 
     }
@@ -462,6 +479,9 @@ namespace FlutterSDK.Rendering.Listwheelviewport
     }
 
 
+    /// <Summary>
+    /// [ParentData] for use with [RenderListWheelViewport].
+    /// </Summary>
     public class ListWheelParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
     {
         #region constructors
@@ -478,6 +498,79 @@ namespace FlutterSDK.Rendering.Listwheelviewport
     }
 
 
+    /// <Summary>
+    /// Render, onto a wheel, a bigger sequential set of objects inside this viewport.
+    ///
+    /// Takes a scrollable set of fixed sized [RenderBox]es and renders them
+    /// sequentially from top down on a vertical scrolling axis.
+    ///
+    /// It starts with the first scrollable item in the center of the main axis
+    /// and ends with the last scrollable item in the center of the main axis. This
+    /// is in contrast to typical lists that start with the first scrollable item
+    /// at the start of the main axis and ends with the last scrollable item at the
+    /// end of the main axis.
+    ///
+    /// Instead of rendering its children on a flat plane, it renders them
+    /// as if each child is broken into its own plane and that plane is
+    /// perpendicularly fixed onto a cylinder which rotates along the scrolling
+    /// axis.
+    ///
+    /// This class works in 3 coordinate systems:
+    ///
+    /// 1. The **scrollable layout coordinates**. This coordinate system is used to
+    ///    communicate with [ViewportOffset] and describes its children's abstract
+    ///    offset from the beginning of the scrollable list at (0.0, 0.0).
+    ///
+    ///    The list is scrollable from the start of the first child item to the
+    ///    start of the last child item.
+    ///
+    ///    Children's layout coordinates don't change as the viewport scrolls.
+    ///
+    /// 2. The **untransformed plane's viewport painting coordinates**. Children are
+    ///    not painted in this coordinate system. It's an abstract intermediary used
+    ///    before transforming into the next cylindrical coordinate system.
+    ///
+    ///    This system is the **scrollable layout coordinates** translated by the
+    ///    scroll offset such that (0.0, 0.0) is the top left corner of the
+    ///    viewport.
+    ///
+    ///    Because the viewport is centered at the scrollable list's scroll offset
+    ///    instead of starting at the scroll offset, there are paintable children
+    ///    ~1/2 viewport length before and after the scroll offset instead of ~1
+    ///    viewport length after the scroll offset.
+    ///
+    ///    Children's visibility inclusion in the viewport is determined in this
+    ///    system regardless of the cylinder's properties such as [diameterRatio]
+    ///    or [perspective]. In other words, a 100px long viewport will always
+    ///    paint 10-11 visible 10px children if there are enough children in the
+    ///    viewport.
+    ///
+    /// 3. The **transformed cylindrical space viewport painting coordinates**.
+    ///    Children from system 2 get their positions transformed into a cylindrical
+    ///    projection matrix instead of its Cartesian offset with respect to the
+    ///    scroll offset.
+    ///
+    ///    Children in this coordinate system are painted.
+    ///
+    ///    The wheel's size and the maximum and minimum visible angles are both
+    ///    controlled by [diameterRatio]. Children visible in the **untransformed
+    ///    plane's viewport painting coordinates**'s viewport will be radially
+    ///    evenly laid out between the maximum and minimum angles determined by
+    ///    intersecting the viewport's main axis length with a cylinder whose
+    ///    diameter is [diameterRatio] times longer, as long as those angles are
+    ///    between -pi/2 and pi/2.
+    ///
+    ///    For example, if [diameterRatio] is 2.0 and this [RenderListWheelViewport]
+    ///    is 100.0px in the main axis, then the diameter is 200.0. And children
+    ///    will be evenly laid out between that cylinder's -arcsin(1/2) and
+    ///    arcsin(1/2) angles.
+    ///
+    ///    The cylinder's 0 degree side is always centered in the
+    ///    [RenderListWheelViewport]. The transformation from **untransformed
+    ///    plane's viewport painting coordinates** is also done such that the child
+    ///    in the center of that plane will be mostly untransformed with children
+    ///    above and below it being transformed more as the angle increases.
+    /// </Summary>
     public class RenderListWheelViewport : FlutterSDK.Rendering.Box.RenderBox, IRenderAbstractViewport, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Listwheelviewport.ListWheelParentData>
     {
         #region constructors
@@ -541,6 +634,11 @@ namespace FlutterSDK.Rendering.Listwheelviewport
         public new void Detach() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Transforms a **scrollable layout coordinates**' y position to the
+        /// **untransformed plane's viewport painting coordinates**' y position given
+        /// the current scroll offset.
+        /// </Summary>
         private double _GetUntransformedPaintingCoordinateY(double layoutCoordinateY) { throw new NotImplementedException(); }
 
 
@@ -562,12 +660,21 @@ namespace FlutterSDK.Rendering.Listwheelviewport
         public new void PerformResize() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Gets the index of a child by looking at its parentData.
+        /// </Summary>
         public virtual int IndexOf(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the index of the child at the given offset.
+        /// </Summary>
         public virtual int ScrollOffsetToIndex(double scrollOffset) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the scroll offset of the child with the given index.
+        /// </Summary>
         public virtual double IndexToScrollOffset(int index) { throw new NotImplementedException(); }
 
 
@@ -580,6 +687,17 @@ namespace FlutterSDK.Rendering.Listwheelviewport
         private void _LayoutChild(FlutterSDK.Rendering.Box.RenderBox child, FlutterSDK.Rendering.Box.BoxConstraints constraints, int index) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Performs layout based on how [childManager] provides children.
+        ///
+        /// From the current scroll offset, the minimum index and maximum index that
+        /// is visible in the viewport can be calculated. The index range of the
+        /// currently active children can also be acquired by looking directly at
+        /// the current child list. This function has to modify the current index
+        /// range to match the target index range by removing children that are no
+        /// longer visible and creating those that are visible but not yet provided
+        /// by [childManager].
+        /// </Summary>
         public new void PerformLayout() { throw new NotImplementedException(); }
 
 
@@ -589,24 +707,47 @@ namespace FlutterSDK.Rendering.Listwheelviewport
         public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Paints all children visible in the current viewport.
+        /// </Summary>
         private void _PaintVisibleChildren(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Takes in a child with a **scrollable layout offset** and paints it in the
+        /// **transformed cylindrical space viewport painting coordinates**.
+        /// </Summary>
         private void _PaintTransformedChild(FlutterSDK.Rendering.Box.RenderBox child, FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset, FlutterBinding.UI.Offset layoutOffset) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Paint child with the magnifier active - the child will be rendered
+        /// differently if it intersects with the magnifier.
+        /// </Summary>
         private void _PaintChildWithMagnifier(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset, FlutterSDK.Rendering.Box.RenderBox child, Matrix4 cylindricalTransform, FlutterBinding.UI.Offset offsetToCenter, FlutterBinding.UI.Offset untransformedPaintingCoordinates) { throw new NotImplementedException(); }
 
 
         private void _PaintChildCylindrically(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset, FlutterSDK.Rendering.Box.RenderBox child, Matrix4 cylindricalTransform, FlutterBinding.UI.Offset offsetToCenter) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Return the Matrix4 transformation that would zoom in content in the
+        /// magnified area.
+        /// </Summary>
         private Matrix4 _MagnifyTransform() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Apply incoming transformation with the transformation's origin at the
+        /// viewport's center or horizontally off to the side based on offAxisFraction.
+        /// </Summary>
         private Matrix4 _CenterOriginTransform(Matrix4 originalMatrix) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// This returns the matrices relative to the **untransformed plane's viewport
+        /// painting coordinates** system.
+        /// </Summary>
         public new void ApplyPaintTransform(FlutterSDK.Rendering.Box.RenderBox child, Matrix4 transform) { throw new NotImplementedException(); }
         public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform) { throw new NotImplementedException(); }
 

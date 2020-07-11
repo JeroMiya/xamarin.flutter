@@ -436,6 +436,28 @@ namespace FlutterSDK.Painting.Colors
 
     }
 
+    /// <Summary>
+    /// A color represented using [alpha], [hue], [saturation], and [value].
+    ///
+    /// An [HSVColor] is represented in a parameter space that's based on human
+    /// perception of color in pigments (e.g. paint and printer's ink). The
+    /// representation is useful for some color computations (e.g. rotating the hue
+    /// through the colors), because interpolation and picking of
+    /// colors as red, green, and blue channels doesn't always produce intuitive
+    /// results.
+    ///
+    /// The HSV color space models the way that different pigments are perceived
+    /// when mixed. The hue describes which pigment is used, the saturation
+    /// describes which shade of the pigment, and the value resembles mixing the
+    /// pigment with different amounts of black or white pigment.
+    ///
+    /// See also:
+    ///
+    ///  * [HSLColor], a color that uses a color space based on human perception of
+    ///    colored light.
+    ///  * [HSV and HSL](https://en.wikipedia.org/wiki/HSL_and_HSV) Wikipedia
+    ///    article, which this implementation is based upon.
+    /// </Summary>
     public class HSVColor
     {
         #region constructors
@@ -462,24 +484,61 @@ namespace FlutterSDK.Painting.Colors
 
         #region methods
 
+        /// <Summary>
+        /// Returns a copy of this color with the [alpha] parameter replaced with the
+        /// given value.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Colors.HSVColor WithAlpha(double alpha) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a copy of this color with the [hue] parameter replaced with the
+        /// given value.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Colors.HSVColor WithHue(double hue) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a copy of this color with the [saturation] parameter replaced with
+        /// the given value.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Colors.HSVColor WithSaturation(double saturation) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a copy of this color with the [value] parameter replaced with the
+        /// given value.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Colors.HSVColor WithValue(double value) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns this color in RGB.
+        /// </Summary>
         public virtual Color ToColor() { throw new NotImplementedException(); }
 
 
         private FlutterSDK.Painting.Colors.HSVColor _ScaleAlpha(double factor) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two HSVColors.
+        ///
+        /// The colors are interpolated by interpolating the [alpha], [hue],
+        /// [saturation], and [value] channels separately, which usually leads to a
+        /// more pleasing effect than [Color.lerp] (which interpolates the red, green,
+        /// and blue channels separately).
+        ///
+        /// If either color is null, this function linearly interpolates from a
+        /// transparent instance of the other color. This is usually preferable to
+        /// interpolating from [Colors.transparent] (`const Color(0x00000000)`) since
+        /// that will interpolate from a transparent red and cycle through the hues to
+        /// match the target color, regardless of what that color's hue is.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        ///
+        /// Values outside of the valid range for each channel will be clamped.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Colors.HSVColor Lerp(FlutterSDK.Painting.Colors.HSVColor a, FlutterSDK.Painting.Colors.HSVColor b, double t) { throw new NotImplementedException(); }
 
 
@@ -490,6 +549,28 @@ namespace FlutterSDK.Painting.Colors
     }
 
 
+    /// <Summary>
+    /// A color represented using [alpha], [hue], [saturation], and [lightness].
+    ///
+    /// An [HSLColor] is represented in a parameter space that's based up human
+    /// perception of colored light. The representation is useful for some color
+    /// computations (e.g., combining colors of light), because interpolation and
+    /// picking of colors as red, green, and blue channels doesn't always produce
+    /// intuitive results.
+    ///
+    /// HSL is a perceptual color model, placing fully saturated colors around a
+    /// circle (conceptually) at a lightness of ​0.5, with a lightness of 0.0 being
+    /// completely black, and a lightness of 1.0 being completely white. As the
+    /// lightness increases or decreases from 0.5, the apparent saturation decreases
+    /// proportionally (even though the [saturation] parameter hasn't changed).
+    ///
+    /// See also:
+    ///
+    ///  * [HSVColor], a color that uses a color space based on human perception of
+    ///    pigments (e.g. paint and printer's ink).
+    ///  * [HSV and HSL](https://en.wikipedia.org/wiki/HSL_and_HSV) Wikipedia
+    ///    article, which this implementation is based upon.
+    /// </Summary>
     public class HSLColor
     {
         #region constructors
@@ -516,24 +597,71 @@ namespace FlutterSDK.Painting.Colors
 
         #region methods
 
+        /// <Summary>
+        /// Returns a copy of this color with the alpha parameter replaced with the
+        /// given value.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Colors.HSLColor WithAlpha(double alpha) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a copy of this color with the [hue] parameter replaced with the
+        /// given value.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Colors.HSLColor WithHue(double hue) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a copy of this color with the [saturation] parameter replaced with
+        /// the given value.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Colors.HSLColor WithSaturation(double saturation) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a copy of this color with the [lightness] parameter replaced with
+        /// the given value.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Colors.HSLColor WithLightness(double lightness) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns this HSL color in RGB.
+        /// </Summary>
         public virtual Color ToColor() { throw new NotImplementedException(); }
 
 
         private FlutterSDK.Painting.Colors.HSLColor _ScaleAlpha(double factor) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two HSLColors.
+        ///
+        /// The colors are interpolated by interpolating the [alpha], [hue],
+        /// [saturation], and [lightness] channels separately, which usually leads to
+        /// a more pleasing effect than [Color.lerp] (which interpolates the red,
+        /// green, and blue channels separately).
+        ///
+        /// If either color is null, this function linearly interpolates from a
+        /// transparent instance of the other color. This is usually preferable to
+        /// interpolating from [Colors.transparent] (`const Color(0x00000000)`) since
+        /// that will interpolate from a transparent red and cycle through the hues to
+        /// match the target color, regardless of what that color's hue is.
+        ///
+        /// The `t` argument represents position on the timeline, with 0.0 meaning
+        /// that the interpolation has not started, returning `a` (or something
+        /// equivalent to `a`), 1.0 meaning that the interpolation has finished,
+        /// returning `b` (or something equivalent to `b`), and values between them
+        /// meaning that the interpolation is at the relevant point on the timeline
+        /// between `a` and `b`. The interpolation can be extrapolated beyond 0.0 and
+        /// 1.0, so negative values and values greater than 1.0 are valid
+        /// (and can easily be generated by curves such as [Curves.elasticInOut]).
+        ///
+        /// Values outside of the valid range for each channel will be clamped.
+        ///
+        /// Values for `t` are usually obtained from an [Animation<double>], such as
+        /// an [AnimationController].
+        /// </Summary>
         public virtual FlutterSDK.Painting.Colors.HSLColor Lerp(FlutterSDK.Painting.Colors.HSLColor a, FlutterSDK.Painting.Colors.HSLColor b, double t) { throw new NotImplementedException(); }
 
 
@@ -544,6 +672,18 @@ namespace FlutterSDK.Painting.Colors
     }
 
 
+    /// <Summary>
+    /// A color that has a small table of related colors called a "swatch".
+    ///
+    /// The table is indexed by values of type `T`.
+    ///
+    /// See also:
+    ///
+    ///  * [MaterialColor] and [MaterialAccentColor], which define material design
+    ///    primary and accent color swatches.
+    ///  * [material.Colors], which defines all of the standard material design
+    ///    colors.
+    /// </Summary>
     public class ColorSwatch<T> : Color
     {
         #region constructors
@@ -561,6 +701,9 @@ namespace FlutterSDK.Painting.Colors
 
         #region methods
 
+        /// <Summary>
+        /// Returns an element of the swatch table.
+        /// </Summary>
         public virtual Color IndexOfOperator(T index) { throw new NotImplementedException(); }
 
 
@@ -571,6 +714,9 @@ namespace FlutterSDK.Painting.Colors
     }
 
 
+    /// <Summary>
+    /// [DiagnosticsProperty] that has an [Color] as value.
+    /// </Summary>
     public class ColorProperty : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<Color>
     {
         #region constructors

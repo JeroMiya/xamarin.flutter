@@ -428,6 +428,13 @@ namespace FlutterSDK.Rendering.Rotatedbox
         public static double _KQuarterTurnsInRadians = default(double);
     }
 
+    /// <Summary>
+    /// Rotates its child by a integral number of quarter turns.
+    ///
+    /// Unlike [RenderTransform], which applies a transform just prior to painting,
+    /// this object applies its rotation prior to layout, which means the entire
+    /// rotated box consumes only as much space as required by the rotated child.
+    /// </Summary>
     public class RenderRotatedBox : FlutterSDK.Rendering.Box.RenderBox, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>
     {
         #region constructors

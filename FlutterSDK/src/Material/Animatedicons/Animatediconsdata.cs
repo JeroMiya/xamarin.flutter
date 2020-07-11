@@ -315,6 +315,16 @@ namespace FlutterSDK.Material.Animatedicons.Animatediconsdata
     {
     }
 
+    /// <Summary>
+    /// Vector graphics data for icons used by [AnimatedIcon].
+    ///
+    /// Instances of this class are currently opaque because we have not committed to a specific
+    /// animated vector graphics format.
+    ///
+    /// See also:
+    ///
+    ///  * [AnimatedIcons], a class that contains constants that implement this interface.
+    /// </Summary>
     public interface IAnimatedIconData
     {
         bool MatchTextDirection { get; }
@@ -369,6 +379,16 @@ namespace FlutterSDK.Material.Animatedicons.Animatediconsdata
     }
 
 
+    /// <Summary>
+    /// Vector graphics data for icons used by [AnimatedIcon].
+    ///
+    /// Instances of this class are currently opaque because we have not committed to a specific
+    /// animated vector graphics format.
+    ///
+    /// See also:
+    ///
+    ///  * [AnimatedIcons], a class that contains constants that implement this interface.
+    /// </Summary>
     public class AnimatedIconData
     {
         #region constructors

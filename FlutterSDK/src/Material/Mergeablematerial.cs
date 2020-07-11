@@ -394,12 +394,22 @@ namespace FlutterSDK.Material.Mergeablematerial
     {
     }
 
+    /// <Summary>
+    /// The base type for [MaterialSlice] and [MaterialGap].
+    ///
+    /// All [MergeableMaterialItem] objects need a [LocalKey].
+    /// </Summary>
     public interface IMergeableMaterialItem
     {
         FlutterSDK.Foundation.Key.LocalKey Key { get; }
     }
 
 
+    /// <Summary>
+    /// The base type for [MaterialSlice] and [MaterialGap].
+    ///
+    /// All [MergeableMaterialItem] objects need a [LocalKey].
+    /// </Summary>
     public class MergeableMaterialItem
     {
         #region constructors
@@ -419,6 +429,12 @@ namespace FlutterSDK.Material.Mergeablematerial
     }
 
 
+    /// <Summary>
+    /// A class that can be used as a child to [MergeableMaterial]. It is a slice
+    /// of [Material] that animates merging with other slices.
+    ///
+    /// All [MaterialSlice] objects need a [LocalKey].
+    /// </Summary>
     public class MaterialSlice : FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem
     {
         #region constructors
@@ -439,6 +455,11 @@ namespace FlutterSDK.Material.Mergeablematerial
     }
 
 
+    /// <Summary>
+    /// A class that represents a gap within [MergeableMaterial].
+    ///
+    /// All [MaterialGap] objects need a [LocalKey].
+    /// </Summary>
     public class MaterialGap : FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem
     {
         #region constructors
@@ -459,6 +480,29 @@ namespace FlutterSDK.Material.Mergeablematerial
     }
 
 
+    /// <Summary>
+    /// Displays a list of [MergeableMaterialItem] children. The list contains
+    /// [MaterialSlice] items whose boundaries are either "merged" with adjacent
+    /// items or separated by a [MaterialGap]. The [children] are distributed along
+    /// the given [mainAxis] in the same way as the children of a [ListBody]. When
+    /// the list of children changes, gaps are automatically animated open or closed
+    /// as needed.
+    ///
+    /// To enable this widget to correlate its list of children with the previous
+    /// one, each child must specify a key.
+    ///
+    /// When a new gap is added to the list of children the adjacent items are
+    /// animated apart. Similarly when a gap is removed the adjacent items are
+    /// brought back together.
+    ///
+    /// When a new slice is added or removed, the app is responsible for animating
+    /// the transition of the slices, while the gaps will be animated automatically.
+    ///
+    /// See also:
+    ///
+    ///  * [Card], a piece of material that does not support splitting and merging
+    ///    but otherwise looks the same.
+    /// </Summary>
     public class MergeableMaterial : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors

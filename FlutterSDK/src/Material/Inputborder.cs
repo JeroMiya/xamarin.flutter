@@ -390,6 +390,28 @@ namespace FlutterSDK.Material.Inputborder
     {
     }
 
+    /// <Summary>
+    /// Defines the appearance of an [InputDecorator]'s border.
+    ///
+    /// An input decorator's border is specified by [InputDecoration.border].
+    ///
+    /// The border is drawn relative to the input decorator's "container" which
+    /// is the optionally filled area above the decorator's helper, error,
+    /// and counter.
+    ///
+    /// Input border's are decorated with a line whose weight and color are defined
+    /// by [borderSide]. The input decorator's renderer animates the input border's
+    /// appearance in response to state changes, like gaining or losing the focus,
+    /// by creating new copies of its input border with [copyWith].
+    ///
+    /// See also:
+    ///
+    ///  * [UnderlineInputBorder], the default [InputDecorator] border which
+    ///    draws a horizontal line at the bottom of the input decorator's container.
+    ///  * [OutlineInputBorder], an [InputDecorator] border which draws a
+    ///    rounded rectangle around the input decorator's container.
+    ///  * [InputDecoration], which is used to configure an [InputDecorator].
+    /// </Summary>
     public interface IInputBorder
     {
         FlutterSDK.Material.Inputborder.InputBorder CopyWith(FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide));
@@ -400,6 +422,28 @@ namespace FlutterSDK.Material.Inputborder
     }
 
 
+    /// <Summary>
+    /// Defines the appearance of an [InputDecorator]'s border.
+    ///
+    /// An input decorator's border is specified by [InputDecoration.border].
+    ///
+    /// The border is drawn relative to the input decorator's "container" which
+    /// is the optionally filled area above the decorator's helper, error,
+    /// and counter.
+    ///
+    /// Input border's are decorated with a line whose weight and color are defined
+    /// by [borderSide]. The input decorator's renderer animates the input border's
+    /// appearance in response to state changes, like gaining or losing the focus,
+    /// by creating new copies of its input border with [copyWith].
+    ///
+    /// See also:
+    ///
+    ///  * [UnderlineInputBorder], the default [InputDecorator] border which
+    ///    draws a horizontal line at the bottom of the input decorator's container.
+    ///  * [OutlineInputBorder], an [InputDecorator] border which draws a
+    ///    rounded rectangle around the input decorator's container.
+    ///  * [InputDecoration], which is used to configure an [InputDecorator].
+    /// </Summary>
     public class InputBorder : FlutterSDK.Painting.Borders.ShapeBorder
     {
         #region constructors
@@ -418,9 +462,23 @@ namespace FlutterSDK.Material.Inputborder
 
         #region methods
 
+        /// <Summary>
+        /// Creates a copy of this input border with the specified `borderSide`.
+        /// </Summary>
         public virtual FlutterSDK.Material.Inputborder.InputBorder CopyWith(FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Paint this input border on [canvas].
+        ///
+        /// The [rect] parameter bounds the [InputDecorator]'s container.
+        ///
+        /// The additional `gap` parameters reflect the state of the [InputDecorator]'s
+        /// floating label. When an input decorator gains the focus, its label
+        /// animates upwards, to make room for the input child. The [gapStart] and
+        /// [gapExtent] parameters define a floating label width interval, and
+        /// [gapPercentage] defines the animation's progress (0.0 to 1.0).
+        /// </Summary>
         public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, double gapStart = default(double), double gapExtent = 0.0, double gapPercentage = 0.0, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
         #endregion
@@ -462,6 +520,19 @@ namespace FlutterSDK.Material.Inputborder
     }
 
 
+    /// <Summary>
+    /// Draws a horizontal line at the bottom of an [InputDecorator]'s container and
+    /// defines the container's shape.
+    ///
+    /// The input decorator's "container" is the optionally filled area above the
+    /// decorator's helper, error, and counter.
+    ///
+    /// See also:
+    ///
+    ///  * [OutlineInputBorder], an [InputDecorator] border which draws a
+    ///    rounded rectangle around the input decorator's container.
+    ///  * [InputDecoration], which is used to configure an [InputDecorator].
+    /// </Summary>
     public class UnderlineInputBorder : FlutterSDK.Material.Inputborder.InputBorder
     {
         #region constructors
@@ -499,6 +570,12 @@ namespace FlutterSDK.Material.Inputborder
         public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Draw a horizontal line at the bottom of [rect].
+        ///
+        /// The [borderSide] defines the line's color and weight. The `textDirection`
+        /// `gap` and `textDirection` parameters are ignored.
+        /// </Summary>
         public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, double gapStart = default(double), double gapExtent = 0.0, double gapPercentage = 0.0, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
 
@@ -508,6 +585,21 @@ namespace FlutterSDK.Material.Inputborder
     }
 
 
+    /// <Summary>
+    /// Draws a rounded rectangle around an [InputDecorator]'s container.
+    ///
+    /// When the input decorator's label is floating, for example because its
+    /// input child has the focus, the label appears in a gap in the border outline.
+    ///
+    /// The input decorator's "container" is the optionally filled area above the
+    /// decorator's helper, error, and counter.
+    ///
+    /// See also:
+    ///
+    ///  * [UnderlineInputBorder], the default [InputDecorator] border which
+    ///    draws a horizontal line at the bottom of the input decorator's container.
+    ///  * [InputDecoration], which is used to configure an [InputDecorator].
+    /// </Summary>
     public class OutlineInputBorder : FlutterSDK.Material.Inputborder.InputBorder
     {
         #region constructors
@@ -553,6 +645,16 @@ namespace FlutterSDK.Material.Inputborder
         private Path _GapBorderPath(Canvas canvas, FlutterBinding.UI.RRect center, double start, double extent) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Draw a rounded rectangle around [rect] using [borderRadius].
+        ///
+        /// The [borderSide] defines the line's color and weight.
+        ///
+        /// The top side of the rounded rectangle may be interrupted by a single gap
+        /// if [gapExtent] is non-null. In that case the gap begins at
+        /// `gapStart - gapPadding` (assuming that the [textDirection] is [TextDirection.ltr]).
+        /// The gap's width is `(gapPadding + gapExtent + gapPadding) * gapPercentage`.
+        /// </Summary>
         public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, double gapStart = default(double), double gapExtent = 0.0, double gapPercentage = 0.0, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
 
 

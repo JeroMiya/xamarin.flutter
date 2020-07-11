@@ -370,6 +370,46 @@ namespace FlutterSDK.Material.Buttonbar
     {
     }
 
+    /// <Summary>
+    /// An end-aligned row of buttons, laying out into a column if there is not
+    /// enough horizontal space.
+    ///
+    /// Places the buttons horizontally according to the [buttonPadding]. The
+    /// children are laid out in a [Row] with [MainAxisAlignment.end]. When the
+    /// [Directionality] is [TextDirection.ltr], the button bar's children are
+    /// right justified and the last child becomes the rightmost child. When the
+    /// [Directionality] [TextDirection.rtl] the children are left justified and
+    /// the last child becomes the leftmost child.
+    ///
+    /// If the button bar's width exceeds the maximum width constraint on the
+    /// widget, it aligns its buttons in a column. The key difference here
+    /// is that the [MainAxisAlignment] will then be treated as a
+    /// cross-axis/horizontal alignment. For example, if the buttons overflow and
+    /// [ButtonBar.alignment] was set to [MainAxisAlignment.start], the buttons would
+    /// align to the horizontal start of the button bar.
+    ///
+    /// The [ButtonBar] can be configured with a [ButtonBarTheme]. For any null
+    /// property on the ButtonBar, the surrounding ButtonBarTheme's property
+    /// will be used instead. If the ButtonBarTheme's property is null
+    /// as well, the property will default to a value described in the field
+    /// documentation below.
+    ///
+    /// The [children] are wrapped in a [ButtonTheme] that is a copy of the
+    /// surrounding ButtonTheme with the button properties overridden by the
+    /// properties of the ButtonBar as described above. These properties include
+    /// [buttonTextTheme], [buttonMinWidth], [buttonHeight], [buttonPadding],
+    /// and [buttonAlignedDropdown].
+    ///
+    /// Used by [Dialog] to arrange the actions at the bottom of the dialog.
+    ///
+    /// See also:
+    ///
+    ///  * [RaisedButton], a kind of button.
+    ///  * [FlatButton], another kind of button.
+    ///  * [Card], at the bottom of which it is common to place a [ButtonBar].
+    ///  * [Dialog], which uses a [ButtonBar] for its actions.
+    ///  * [ButtonBarTheme], which configures the [ButtonBar].
+    /// </Summary>
     public class ButtonBar : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors
@@ -412,6 +452,22 @@ namespace FlutterSDK.Material.Buttonbar
     }
 
 
+    /// <Summary>
+    /// Attempts to display buttons in a row, but displays them in a column if
+    /// there is not enough horizontal space.
+    ///
+    /// It first attempts to lay out its buttons as though there were no
+    /// maximum width constraints on the widget. If the button bar's width is
+    /// less than the maximum width constraints of the widget, it then lays
+    /// out the widget as though it were placed in a [Row].
+    ///
+    /// However, if the button bar's width exceeds the maximum width constraint on
+    /// the widget, it then aligns its buttons in a column. The key difference here
+    /// is that the [MainAxisAlignment] will then be treated as a
+    /// cross-axis/horizontal alignment. For example, if the buttons overflow and
+    /// [ButtonBar.alignment] was set to [MainAxisAligment.start], the column of
+    /// buttons would align to the horizontal start of the button bar.
+    /// </Summary>
     public class _ButtonBarRow : FlutterSDK.Widgets.Basic.Flex
     {
         #region constructors
@@ -438,6 +494,22 @@ namespace FlutterSDK.Material.Buttonbar
     }
 
 
+    /// <Summary>
+    /// Attempts to display buttons in a row, but displays them in a column if
+    /// there is not enough horizontal space.
+    ///
+    /// It first attempts to lay out its buttons as though there were no
+    /// maximum width constraints on the widget. If the button bar's width is
+    /// less than the maximum width constraints of the widget, it then lays
+    /// out the widget as though it were placed in a [Row].
+    ///
+    /// However, if the button bar's width exceeds the maximum width constraint on
+    /// the widget, it then aligns its buttons in a column. The key difference here
+    /// is that the [MainAxisAlignment] will then be treated as a
+    /// cross-axis/horizontal alignment. For example, if the buttons overflow and
+    /// [ButtonBar.alignment] was set to [MainAxisAligment.start], the buttons would
+    /// align to the horizontal start of the button bar.
+    /// </Summary>
     public class _RenderButtonBarRow : FlutterSDK.Rendering.Flex.RenderFlex
     {
         #region constructors

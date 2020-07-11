@@ -431,6 +431,12 @@ namespace FlutterSDK.Widgets.Pageview
         public static FlutterSDK.Widgets.Pageview.PageScrollPhysics _KPagePhysics = default(FlutterSDK.Widgets.Pageview.PageScrollPhysics);
     }
 
+    /// <Summary>
+    /// Metrics for a [PageView].
+    ///
+    /// The metrics are available on [ScrollNotification]s generated from
+    /// [PageView]s.
+    /// </Summary>
     public interface IPageMetrics
     {
         FlutterSDK.Widgets.Pageview.PageMetrics CopyWith(double minScrollExtent = default(double), double maxScrollExtent = default(double), double pixels = default(double), double viewportDimension = default(double), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), double viewportFraction = default(double));
@@ -439,6 +445,99 @@ namespace FlutterSDK.Widgets.Pageview
     }
 
 
+    /// <Summary>
+    /// A controller for [PageView].
+    ///
+    /// A page controller lets you manipulate which page is visible in a [PageView].
+    /// In addition to being able to control the pixel offset of the content inside
+    /// the [PageView], a [PageController] also lets you control the offset in terms
+    /// of pages, which are increments of the viewport size.
+    ///
+    /// See also:
+    ///
+    ///  * [PageView], which is the widget this object controls.
+    ///
+    /// {@tool snippet}
+    ///
+    /// This widget introduces a [MaterialApp], [Scaffold] and [PageView] with two pages
+    /// using the default constructor. Both pages contain a [RaisedButton] allowing you
+    /// to animate the [PageView] using a [PageController].
+    ///
+    /// ```dart
+    /// class MyPageView extends StatefulWidget {
+    ///   MyPageView({Key key}) : super(key: key);
+    ///
+    ///   _MyPageViewState createState() => _MyPageViewState();
+    /// }
+    ///
+    /// class _MyPageViewState extends State<MyPageView> {
+    ///   PageController _pageController;
+    ///
+    ///   @override
+    ///   void initState() {
+    ///     super.initState();
+    ///     _pageController = PageController();
+    ///   }
+    ///
+    ///   @override
+    ///   void dispose() {
+    ///     _pageController.dispose();
+    ///     super.dispose();
+    ///   }
+    ///
+    ///   @override
+    ///   Widget build(BuildContext context) {
+    ///     return MaterialApp(
+    ///       home: Scaffold(
+    ///         body: PageView(
+    ///           controller: _pageController,
+    ///           children: [
+    ///             Container(
+    ///               color: Colors.red,
+    ///               child: Center(
+    ///                 child: RaisedButton(
+    ///                   color: Colors.white,
+    ///                   onPressed: () {
+    ///                     if (_pageController.hasClients) {
+    ///                       _pageController.animateToPage(
+    ///                         1,
+    ///                         duration: const Duration(milliseconds: 400),
+    ///                         curve: Curves.easeInOut,
+    ///                       );
+    ///                     }
+    ///                   },
+    ///                   child: Text('Next'),
+    ///                 ),
+    ///               ),
+    ///             ),
+    ///             Container(
+    ///               color: Colors.blue,
+    ///               child: Center(
+    ///                 child: RaisedButton(
+    ///                   color: Colors.white,
+    ///                   onPressed: () {
+    ///                     if (_pageController.hasClients) {
+    ///                       _pageController.animateToPage(
+    ///                         0,
+    ///                         duration: const Duration(milliseconds: 400),
+    ///                         curve: Curves.easeInOut,
+    ///                       );
+    ///                     }
+    ///                   },
+    ///                   child: Text('Previous'),
+    ///                 ),
+    ///               ),
+    ///             ),
+    ///           ],
+    ///         ),
+    ///       ),
+    ///     );
+    ///   }
+    /// }
+    ///
+    /// ```
+    /// {@end-tool}
+    /// </Summary>
     public class PageController : FlutterSDK.Widgets.Scrollcontroller.ScrollController
     {
         #region constructors
@@ -460,15 +559,45 @@ namespace FlutterSDK.Widgets.Pageview
 
         #region methods
 
+        /// <Summary>
+        /// Animates the controlled [PageView] from the current page to the given page.
+        ///
+        /// The animation lasts for the given duration and follows the given curve.
+        /// The returned [Future] resolves when the animation completes.
+        ///
+        /// The `duration` and `curve` arguments must not be null.
+        /// </Summary>
         public virtual Future<object> AnimateToPage(int page, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Changes which page is displayed in the controlled [PageView].
+        ///
+        /// Jumps the page position from its current value to the given value,
+        /// without animation, and without checking if the new value is in range.
+        /// </Summary>
         public virtual void JumpToPage(int page) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Animates the controlled [PageView] to the next page.
+        ///
+        /// The animation lasts for the given duration and follows the given curve.
+        /// The returned [Future] resolves when the animation completes.
+        ///
+        /// The `duration` and `curve` arguments must not be null.
+        /// </Summary>
         public virtual Future<object> NextPage(TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Animates the controlled [PageView] to the previous page.
+        ///
+        /// The animation lasts for the given duration and follows the given curve.
+        /// The returned [Future] resolves when the animation completes.
+        ///
+        /// The `duration` and `curve` arguments must not be null.
+        /// </Summary>
         public virtual Future<object> PreviousPage(TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)) { throw new NotImplementedException(); }
 
 
@@ -481,6 +610,12 @@ namespace FlutterSDK.Widgets.Pageview
     }
 
 
+    /// <Summary>
+    /// Metrics for a [PageView].
+    ///
+    /// The metrics are available on [ScrollNotification]s generated from
+    /// [PageView]s.
+    /// </Summary>
     public class PageMetrics : FlutterSDK.Widgets.Scrollmetrics.FixedScrollMetrics
     {
         #region constructors
@@ -571,6 +706,17 @@ namespace FlutterSDK.Widgets.Pageview
     }
 
 
+    /// <Summary>
+    /// Scroll physics used by a [PageView].
+    ///
+    /// These physics cause the page view to snap to page boundaries.
+    ///
+    /// See also:
+    ///
+    ///  * [ScrollPhysics], the base class which defines the API for scrolling
+    ///    physics.
+    ///  * [PageView.physics], which can override the physics used by a page view.
+    /// </Summary>
     public class PageScrollPhysics : FlutterSDK.Widgets.Scrollphysics.ScrollPhysics
     {
         #region constructors
@@ -605,6 +751,32 @@ namespace FlutterSDK.Widgets.Pageview
     }
 
 
+    /// <Summary>
+    /// A scrollable list that works page by page.
+    ///
+    /// Each child of a page view is forced to be the same size as the viewport.
+    ///
+    /// You can use a [PageController] to control which page is visible in the view.
+    /// In addition to being able to control the pixel offset of the content inside
+    /// the [PageView], a [PageController] also lets you control the offset in terms
+    /// of pages, which are increments of the viewport size.
+    ///
+    /// The [PageController] can also be used to control the
+    /// [PageController.initialPage], which determines which page is shown when the
+    /// [PageView] is first constructed, and the [PageController.viewportFraction],
+    /// which determines the size of the pages as a fraction of the viewport size.
+    ///
+    /// {@youtube 560 315 https://www.youtube.com/watch?v=J1gE9xvph-A}
+    ///
+    /// See also:
+    ///
+    ///  * [PageController], which controls which page is visible in the view.
+    ///  * [SingleChildScrollView], when you need to make a single child scrollable.
+    ///  * [ListView], for a scrollable list of boxes.
+    ///  * [GridView], for a scrollable grid of boxes.
+    ///  * [ScrollNotification] and [NotificationListener], which can be used to watch
+    ///    the scroll position without using a [ScrollController].
+    /// </Summary>
     public class PageView : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors

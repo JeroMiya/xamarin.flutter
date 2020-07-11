@@ -383,6 +383,35 @@ namespace FlutterSDK.Material.Bottomsheet
 
     }
 
+    /// <Summary>
+    /// A material design bottom sheet.
+    ///
+    /// There are two kinds of bottom sheets in material design:
+    ///
+    ///  * _Persistent_. A persistent bottom sheet shows information that
+    ///    supplements the primary content of the app. A persistent bottom sheet
+    ///    remains visible even when the user interacts with other parts of the app.
+    ///    Persistent bottom sheets can be created and displayed with the
+    ///    [ScaffoldState.showBottomSheet] function or by specifying the
+    ///    [Scaffold.bottomSheet] constructor parameter.
+    ///
+    ///  * _Modal_. A modal bottom sheet is an alternative to a menu or a dialog and
+    ///    prevents the user from interacting with the rest of the app. Modal bottom
+    ///    sheets can be created and displayed with the [showModalBottomSheet]
+    ///    function.
+    ///
+    /// The [BottomSheet] widget itself is rarely used directly. Instead, prefer to
+    /// create a persistent bottom sheet with [ScaffoldState.showBottomSheet] or
+    /// [Scaffold.bottomSheet], and a modal bottom sheet with [showModalBottomSheet].
+    ///
+    /// See also:
+    ///
+    ///  * [showBottomSheet] and [ScaffoldState.showBottomSheet], for showing
+    ///    non-modal "persistent" bottom sheets.
+    ///  * [showModalBottomSheet], which can be used to display a modal bottom
+    ///    sheet.
+    ///  * <https://material.io/design/components/sheets-bottom.html>
+    /// </Summary>
     public class BottomSheet : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -420,6 +449,14 @@ namespace FlutterSDK.Material.Bottomsheet
         public new FlutterSDK.Material.Bottomsheet._BottomSheetState CreateState() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Creates an [AnimationController] suitable for a
+        /// [BottomSheet.animationController].
+        ///
+        /// This API available as a convenience for a Material compliant bottom sheet
+        /// animation. If alternative animation durations are required, a different
+        /// animation controller could be provided.
+        /// </Summary>
         public virtual FlutterSDK.Animation.Animationcontroller.AnimationController CreateAnimationController(FlutterSDK.Scheduler.Ticker.TickerProvider vsync) { throw new NotImplementedException(); }
 
         #endregion
@@ -601,6 +638,24 @@ namespace FlutterSDK.Material.Bottomsheet
     }
 
 
+    /// <Summary>
+    /// A curve that progresses linearly until a specified [startingPoint], at which
+    /// point [curve] will begin. Unlike [Interval], [curve] will not start at zero,
+    /// but will use [startingPoint] as the Y position.
+    ///
+    /// For example, if [startingPoint] is set to `0.5`, and [curve] is set to
+    /// [Curves.easeOut], then the bottom-left quarter of the curve will be a
+    /// straight line, and the top-right quarter will contain the entire contents of
+    /// [Curves.easeOut].
+    ///
+    /// This is useful in situations where a widget must track the user's finger
+    /// (which requires a linear animation), and afterwards can be flung using a
+    /// curve specified with the [curve] argument, after the finger is released. In
+    /// such a case, the value of [startingPoint] would be the progress of the
+    /// animation at the time when the finger was released.
+    ///
+    /// The [startingPoint] and [curve] arguments must not be null.
+    /// </Summary>
     public class _BottomSheetSuspendedCurve : FlutterSDK.Animation.Curves.ParametricCurve<double>
     {
         #region constructors

@@ -431,6 +431,36 @@ namespace FlutterSDK.Widgets.Scrollbar
         public static double _KMinInteractiveSize = default(double);
     }
 
+    /// <Summary>
+    /// A [CustomPainter] for painting scrollbars.
+    ///
+    /// The size of the scrollbar along its scroll direction is typically
+    /// proportional to the percentage of content completely visible on screen,
+    /// as long as its size isn't less than [minLength] and it isn't overscrolling.
+    ///
+    /// Unlike [CustomPainter]s that subclasses [CustomPainter] and only repaint
+    /// when [shouldRepaint] returns true (which requires this [CustomPainter] to
+    /// be rebuilt), this painter has the added optimization of repainting and not
+    /// rebuilding when:
+    ///
+    ///  * the scroll position changes; and
+    ///  * when the scrollbar fades away.
+    ///
+    /// Calling [update] with the new [ScrollMetrics] will repaint the new scrollbar
+    /// position.
+    ///
+    /// Updating the value on the provided [fadeoutOpacityAnimation] will repaint
+    /// with the new opacity.
+    ///
+    /// You must call [dispose] on this [ScrollbarPainter] when it's no longer used.
+    ///
+    /// See also:
+    ///
+    ///  * [Scrollbar] for a widget showing a scrollbar around a [Scrollable] in the
+    ///    Material Design style.
+    ///  * [CupertinoScrollbar] for a widget showing a scrollbar around a
+    ///    [Scrollable] in the iOS style.
+    /// </Summary>
     public class ScrollbarPainter : FlutterSDK.Foundation.Changenotifier.ChangeNotifier, ICustomPainter
     {
         #region constructors
@@ -476,9 +506,18 @@ namespace FlutterSDK.Widgets.Scrollbar
 
         #region methods
 
+        /// <Summary>
+        /// Update with new [ScrollMetrics]. The scrollbar will show and redraw itself
+        /// based on these new metrics.
+        ///
+        /// The scrollbar will remain on screen.
+        /// </Summary>
         public virtual void Update(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Painting.Basictypes.AxisDirection axisDirection) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Update and redraw with new scrollbar thickness and radius.
+        /// </Summary>
         public virtual void UpdateThickness(double nextThickness, Radius nextRadius) { throw new NotImplementedException(); }
 
 
@@ -491,6 +530,12 @@ namespace FlutterSDK.Widgets.Scrollbar
         public new void Dispose() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Convert between a thumb track position and the corresponding scroll
+        /// position.
+        ///
+        /// thumbOffsetLocal is a position in the thumb track. Cannot be null.
+        /// </Summary>
         public virtual double GetTrackToScroll(double thumbOffsetLocal) { throw new NotImplementedException(); }
 
 
@@ -500,6 +545,10 @@ namespace FlutterSDK.Widgets.Scrollbar
         public new void Paint(Canvas canvas, Size size) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Same as hitTest, but includes some padding to make sure that the region
+        /// isn't too small to be interacted with by the user.
+        /// </Summary>
         public virtual bool HitTestInteractive(FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
 
 

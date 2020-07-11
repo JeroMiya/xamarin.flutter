@@ -310,6 +310,16 @@ namespace FlutterSDK.Cupertino.Textselection
         public static FlutterSDK.Widgets.Textselection.TextSelectionControls CupertinoTextSelectionControls = default(FlutterSDK.Widgets.Textselection.TextSelectionControls);
     }
 
+    /// <Summary>
+    /// An iOS-style toolbar that appears in response to text selection.
+    ///
+    /// Typically displays buttons for text manipulation, e.g. copying and pasting text.
+    ///
+    /// See also:
+    ///
+    ///  * [TextSelectionControls.buildToolbar], where [CupertinoTextSelectionToolbar]
+    ///    will be used to build an iOS-style toolbar.
+    /// </Summary>
     public class CupertinoTextSelectionToolbar : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
         #region constructors
@@ -399,6 +409,9 @@ namespace FlutterSDK.Cupertino.Textselection
     }
 
 
+    /// <Summary>
+    /// Draws a single text selection handle with a bar and a ball.
+    /// </Summary>
     public class _TextSelectionHandlePainter : FlutterSDK.Rendering.Custompaint.CustomPainter
     {
         #region constructors
@@ -436,15 +449,29 @@ namespace FlutterSDK.Cupertino.Textselection
 
         #region methods
 
+        /// <Summary>
+        /// Returns the size of the Cupertino handle.
+        /// </Summary>
         public new Size GetHandleSize(double textLineHeight) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Builder for iOS-style copy/paste text selection toolbar.
+        /// </Summary>
         public new FlutterSDK.Widgets.Framework.Widget BuildToolbar(FlutterSDK.Widgets.Framework.BuildContext context, FlutterBinding.UI.Rect globalEditableRegion, double textLineHeight, FlutterBinding.UI.Offset position, List<FlutterSDK.Rendering.Editable.TextSelectionPoint> endpoints, FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Builder for iOS text selection edges.
+        /// </Summary>
         public new FlutterSDK.Widgets.Framework.Widget BuildHandle(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Textselection.TextSelectionHandleType type, double textLineHeight) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Gets anchor for cupertino-style text selection handles.
+        ///
+        /// See [TextSelectionControls.getHandleAnchor].
+        /// </Summary>
         public new Offset GetHandleAnchor(FlutterSDK.Widgets.Textselection.TextSelectionHandleType type, double textLineHeight) { throw new NotImplementedException(); }
 
         #endregion

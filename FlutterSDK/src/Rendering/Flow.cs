@@ -427,6 +427,20 @@ namespace FlutterSDK.Rendering.Flow
     {
     }
 
+    /// <Summary>
+    /// A delegate that controls the appearance of a flow layout.
+    ///
+    /// Flow layouts are optimized for moving children around the screen using
+    /// transformation matrices. For optimal performance, construct the
+    /// [FlowDelegate] with an [Animation] that ticks whenever the delegate wishes
+    /// to change the transformation matrices for the children and avoid rebuilding
+    /// the [Flow] widget itself every animation frame.
+    ///
+    /// See also:
+    ///
+    ///  * [Flow]
+    ///  * [RenderFlow]
+    /// </Summary>
     public interface IFlowDelegate
     {
         Size GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints);
@@ -445,9 +459,24 @@ namespace FlutterSDK.Rendering.Flow
         public virtual Size Size { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int ChildCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
+        /// <Summary>
+        /// The size of the [i]th child.
+        ///
+        /// If [i] is negative or exceeds [childCount], returns null.
+        /// </Summary>
         public virtual Size GetChildSize(int i) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Paint the [i]th child using the given transform.
+        ///
+        /// The child will be painted in a coordinate system that concatenates the
+        /// container's coordinate system with the given transform. The origin of the
+        /// parent's coordinate system is the upper left corner of the parent, with
+        /// x increasing rightward and y increasing downward.
+        ///
+        /// The container will clip the children to its bounds.
+        /// </Summary>
         public virtual void PaintChild(int i, Matrix4 transform = default(Matrix4), double opacity = 1.0) { throw new NotImplementedException(); }
 
     }
@@ -470,6 +499,20 @@ namespace FlutterSDK.Rendering.Flow
     }
 
 
+    /// <Summary>
+    /// A delegate that controls the appearance of a flow layout.
+    ///
+    /// Flow layouts are optimized for moving children around the screen using
+    /// transformation matrices. For optimal performance, construct the
+    /// [FlowDelegate] with an [Animation] that ticks whenever the delegate wishes
+    /// to change the transformation matrices for the children and avoid rebuilding
+    /// the [Flow] widget itself every animation frame.
+    ///
+    /// See also:
+    ///
+    ///  * [Flow]
+    ///  * [RenderFlow]
+    /// </Summary>
     public class FlowDelegate
     {
         #region constructors
@@ -486,18 +529,84 @@ namespace FlutterSDK.Rendering.Flow
 
         #region methods
 
+        /// <Summary>
+        /// Override to control the size of the container for the children.
+        ///
+        /// By default, the flow will be as large as possible. If this function
+        /// returns a size that does not respect the given constraints, the size will
+        /// be adjusted to be as close to the returned size as possible while still
+        /// respecting the constraints.
+        ///
+        /// If this function depends on information other than the given constraints,
+        /// override [shouldRelayout] to indicate when when the container should
+        /// relayout.
+        /// </Summary>
         public virtual Size GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Override to control the layout constraints given to each child.
+        ///
+        /// By default, the children will receive the given constraints, which are the
+        /// constraints used to size the container. The children need
+        /// not respect the given constraints, but they are required to respect the
+        /// returned constraints. For example, the incoming constraints might require
+        /// the container to have a width of exactly 100.0 and a height of exactly
+        /// 100.0, but this function might give the children looser constraints that
+        /// let them be larger or smaller than 100.0 by 100.0.
+        ///
+        /// If this function depends on information other than the given constraints,
+        /// override [shouldRelayout] to indicate when when the container should
+        /// relayout.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(int i, FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Override to paint the children of the flow.
+        ///
+        /// Children can be painted in any order, but each child can be painted at
+        /// most once. Although the container clips the children to its own bounds, it
+        /// is more efficient to skip painting a child altogether rather than having
+        /// it paint entirely outside the container's clip.
+        ///
+        /// To paint a child, call [FlowPaintingContext.paintChild] on the given
+        /// [FlowPaintingContext] (the `context` argument). The given context is valid
+        /// only within the scope of this function call and contains information (such
+        /// as the size of the container) that is useful for picking transformation
+        /// matrices for the children.
+        ///
+        /// If this function depends on information other than the given context,
+        /// override [shouldRepaint] to indicate when when the container should
+        /// relayout.
+        /// </Summary>
         public virtual void PaintChildren(FlutterSDK.Rendering.Flow.FlowPaintingContext context) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Override this method to return true when the children need to be laid out.
+        /// This should compare the fields of the current delegate and the given
+        /// oldDelegate and return true if the fields are such that the layout would
+        /// be different.
+        /// </Summary>
         public virtual bool ShouldRelayout(FlutterSDK.Rendering.Flow.FlowDelegate oldDelegate) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Override this method to return true when the children need to be
+        /// repainted. This should compare the fields of the current delegate and the
+        /// given oldDelegate and return true if the fields are such that
+        /// paintChildren would act differently.
+        ///
+        /// The delegate can also trigger a repaint if the delegate provides the
+        /// repaint animation argument to this object's constructor and that animation
+        /// ticks. Triggering a repaint using this animation-based mechanism is more
+        /// efficient than rebuilding the [Flow] widget to change its delegate.
+        ///
+        /// The flow container might repaint even if this function returns false, for
+        /// example if layout triggers painting (e.g., if [shouldRelayout] returns
+        /// true).
+        /// </Summary>
         public virtual bool ShouldRepaint(FlutterSDK.Rendering.Flow.FlowDelegate oldDelegate) { throw new NotImplementedException(); }
 
 
@@ -505,6 +614,15 @@ namespace FlutterSDK.Rendering.Flow
     }
 
 
+    /// <Summary>
+    /// Parent data for use with [RenderFlow].
+    ///
+    /// The [offset] property is ignored by [RenderFlow] and is always set to
+    /// [Offset.zero]. Children of a [RenderFlow] are positioned using a
+    /// transformation matrix, which is private to the [RenderFlow]. To set the
+    /// matrix, use the [FlowPaintingContext.paintChild] function from an override
+    /// of the [FlowDelegate.paintChildren] function.
+    /// </Summary>
     public class FlowParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
     {
         #region constructors
@@ -521,6 +639,32 @@ namespace FlutterSDK.Rendering.Flow
     }
 
 
+    /// <Summary>
+    /// Implements the flow layout algorithm.
+    ///
+    /// Flow layouts are optimized for repositioning children using transformation
+    /// matrices.
+    ///
+    /// The flow container is sized independently from the children by the
+    /// [FlowDelegate.getSize] function of the delegate. The children are then sized
+    /// independently given the constraints from the
+    /// [FlowDelegate.getConstraintsForChild] function.
+    ///
+    /// Rather than positioning the children during layout, the children are
+    /// positioned using transformation matrices during the paint phase using the
+    /// matrices from the [FlowDelegate.paintChildren] function. The children can be
+    /// repositioned efficiently by simply repainting the flow.
+    ///
+    /// The most efficient way to trigger a repaint of the flow is to supply a
+    /// repaint argument to the constructor of the [FlowDelegate]. The flow will
+    /// listen to this animation and repaint whenever the animation ticks, avoiding
+    /// both the build and layout phases of the pipeline.
+    ///
+    /// See also:
+    ///
+    ///  * [FlowDelegate]
+    ///  * [RenderStack]
+    /// </Summary>
     public class RenderFlow : FlutterSDK.Rendering.Box.RenderBox, IFlowPaintingContext, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Flow.FlowParentData>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Flow.FlowParentData>
     {
         #region constructors

@@ -370,6 +370,22 @@ namespace FlutterSDK.Material.Buttonbartheme
     {
     }
 
+    /// <Summary>
+    /// Defines the visual properties of [ButtonBar] widgets.
+    ///
+    /// Used by [ButtonBarTheme] to control the visual properties of [ButtonBar]
+    /// instances in a widget subtree.
+    ///
+    /// To obtain this configuration, use [ButtonBarTheme.of] to access the closest
+    /// ancestor [ButtonBarTheme] of the current [BuildContext].
+    ///
+    /// See also:
+    ///
+    ///  * [ButtonBarTheme], an [InheritedWidget] that propagates the theme down
+    ///    its subtree.
+    ///  * [ButtonBar], which uses this to configure itself and its children
+    ///    button widgets.
+    /// </Summary>
     public class ButtonBarThemeData : IDiagnosticable
     {
         #region constructors
@@ -403,9 +419,20 @@ namespace FlutterSDK.Material.Buttonbartheme
 
         #region methods
 
+        /// <Summary>
+        /// Creates a copy of this object but with the given fields replaced with the
+        /// new values.
+        /// </Summary>
         public virtual FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData CopyWith(FlutterSDK.Rendering.Flex.MainAxisAlignment alignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment), FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize), FlutterSDK.Material.Buttontheme.ButtonTextTheme buttonTextTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme), double buttonMinWidth = default(double), double buttonHeight = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry buttonPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), bool buttonAlignedDropdown = default(bool), FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior layoutBehavior = default(FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior), FlutterSDK.Painting.Basictypes.VerticalDirection overflowDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two button bar themes.
+        ///
+        /// If both arguments are null, then null is returned.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
         public virtual FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData Lerp(FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData a, FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData b, double t) { throw new NotImplementedException(); }
 
 
@@ -418,6 +445,24 @@ namespace FlutterSDK.Material.Buttonbartheme
     }
 
 
+    /// <Summary>
+    /// Applies a button bar theme to descendant [ButtonBar] widgets.
+    ///
+    /// A button bar theme describes the layout and properties for the buttons
+    /// contained in a [ButtonBar].
+    ///
+    /// Descendant widgets obtain the current theme's [ButtonBarTheme] object using
+    /// [ButtonBarTheme.of]. When a widget uses [ButtonBarTheme.of], it is automatically
+    /// rebuilt if the theme later changes.
+    ///
+    /// A button bar theme can be specified as part of the overall Material theme
+    /// using [ThemeData.buttonBarTheme].
+    ///
+    /// See also:
+    ///
+    ///  * [ButtonBarThemeData], which describes the actual configuration of a button
+    ///    bar theme.
+    /// </Summary>
     public class ButtonBarTheme : FlutterSDK.Widgets.Framework.InheritedWidget
     {
         #region constructors
@@ -434,6 +479,17 @@ namespace FlutterSDK.Material.Buttonbartheme
 
         #region methods
 
+        /// <Summary>
+        /// Returns the configuration [data] from the closest [ButtonBarTheme]
+        /// ancestor. If there is no ancestor, it returns [ThemeData.buttonBarTheme].
+        /// Applications can assume that the returned value will not be null.
+        ///
+        /// Typical usage is as follows:
+        ///
+        /// ```dart
+        /// ButtonBarThemeData theme = ButtonBarTheme.of(context);
+        /// ```
+        /// </Summary>
         public virtual FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 

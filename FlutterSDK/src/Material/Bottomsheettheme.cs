@@ -366,6 +366,25 @@ namespace FlutterSDK.Material.Bottomsheettheme
     {
     }
 
+    /// <Summary>
+    /// Defines default property values for [BottomSheet]'s [Material].
+    ///
+    /// Descendant widgets obtain the current [BottomSheetThemeData] object
+    /// using `Theme.of(context).bottomSheetTheme`. Instances of
+    /// [BottomSheetThemeData] can be customized with
+    /// [BottomSheetThemeData.copyWith].
+    ///
+    /// Typically a [BottomSheetThemeData] is specified as part of the
+    /// overall [Theme] with [ThemeData.bottomSheetTheme].
+    ///
+    /// All [BottomSheetThemeData] properties are `null` by default.
+    /// When null, the [BottomSheet] will provide its own defaults.
+    ///
+    /// See also:
+    ///
+    ///  * [ThemeData], which describes the overall theme information for the
+    ///    application.
+    /// </Summary>
     public class BottomSheetThemeData : IDiagnosticable
     {
         #region constructors
@@ -392,9 +411,20 @@ namespace FlutterSDK.Material.Bottomsheettheme
 
         #region methods
 
+        /// <Summary>
+        /// Creates a copy of this object with the given fields replaced with the
+        /// new values.
+        /// </Summary>
         public virtual FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData CopyWith(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterBinding.UI.Color modalBackgroundColor = default(FlutterBinding.UI.Color), double modalElevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two bottom sheet themes.
+        ///
+        /// If both arguments are null then null is returned.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
         public virtual FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData Lerp(FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData a, FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData b, double t) { throw new NotImplementedException(); }
 
 

@@ -298,6 +298,27 @@ namespace FlutterSDK.Cupertino.Theme
         public static FlutterSDK.Cupertino.Theme._CupertinoThemeDefaults _KDefaultTheme = default(FlutterSDK.Cupertino.Theme._CupertinoThemeDefaults);
     }
 
+    /// <Summary>
+    /// Applies a visual styling theme to descendant Cupertino widgets.
+    ///
+    /// Affects the color and text styles of Cupertino widgets whose styling
+    /// are not overridden when constructing the respective widgets instances.
+    ///
+    /// Descendant widgets can retrieve the current [CupertinoThemeData] by calling
+    /// [CupertinoTheme.of]. An [InheritedWidget] dependency is created when
+    /// an ancestor [CupertinoThemeData] is retrieved via [CupertinoTheme.of].
+    ///
+    /// The [CupertinoTheme] widget implies an [IconTheme] widget, whose
+    /// [IconTheme.data] has the same color as [CupertinoThemeData.primaryColor]
+    ///
+    /// See also:
+    ///
+    ///  * [CupertinoThemeData], specifies the theme's visual styling.
+    ///  * [CupertinoApp], which will automatically add a [CupertinoTheme] based on the
+    ///    value of [CupertinoApp.theme].
+    ///  * [Theme], a Material theme which will automatically add a [CupertinoTheme]
+    ///    with a [CupertinoThemeData] derived from the Material [ThemeData].
+    /// </Summary>
     public class CupertinoTheme : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors
@@ -316,9 +337,32 @@ namespace FlutterSDK.Cupertino.Theme
 
         #region methods
 
+        /// <Summary>
+        /// Retrieves the [CupertinoThemeData] from the closest ancestor [CupertinoTheme]
+        /// widget, or a default [CupertinoThemeData] if no [CupertinoTheme] ancestor
+        /// exists.
+        ///
+        /// Resolves all the colors defined in that [CupertinoThemeData] against the
+        /// given [BuildContext] on a best-effort basis.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Theme.CupertinoThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Retrieves the [Brightness] to use for descendant Cupertino widgets, based
+        /// on the value of [CupertinoThemeData.brightness] in the given [context].
+        ///
+        /// If no [CupertinoTheme] can be found in the given [context], or its `brightness`
+        /// is null, it will fall back to [MediaQueryData.brightness].
+        ///
+        /// Throws an exception if no valid [CupertinoTheme] or [MediaQuery] widgets
+        /// exist in the ancestry tree, unless [nullOk] is set to true.
+        ///
+        /// See also:
+        ///
+        /// * [CupertinoThemeData.brightness], the property takes precedence over
+        ///   [MediaQueryData.platformBrightness] for descendant Cupertino widgets.
+        /// </Summary>
         public virtual Brightness BrightnessOf(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false) { throw new NotImplementedException(); }
 
 
@@ -354,6 +398,24 @@ namespace FlutterSDK.Cupertino.Theme
     }
 
 
+    /// <Summary>
+    /// Styling specifications for a [CupertinoTheme].
+    ///
+    /// All constructor parameters can be null, in which case a
+    /// [CupertinoColors.activeBlue] based default iOS theme styling is used.
+    ///
+    /// Parameters can also be partially specified, in which case some parameters
+    /// will cascade down to other dependent parameters to create a cohesive
+    /// visual effect. For instance, if a [primaryColor] is specified, it would
+    /// cascade down to affect some fonts in [textTheme] if [textTheme] is not
+    /// specified.
+    ///
+    /// See also:
+    ///
+    ///  * [CupertinoTheme], in which this [CupertinoThemeData] is inserted.
+    ///  * [ThemeData], a Material equivalent that also configures Cupertino
+    ///    styling via a [CupertinoThemeData] subclass [MaterialBasedCupertinoThemeData].
+    /// </Summary>
     public class CupertinoThemeData : IDiagnosticable
     {
         #region constructors
@@ -395,12 +457,35 @@ namespace FlutterSDK.Cupertino.Theme
 
         #region methods
 
+        /// <Summary>
+        /// Returns an instance of the [CupertinoThemeData] whose property getters
+        /// only return the construction time specifications with no derived values.
+        ///
+        /// Used in Material themes to let unspecified properties fallback to Material
+        /// theme properties instead of iOS defaults.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Theme.CupertinoThemeData NoDefault() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a new `CupertinoThemeData` with all its colors resolved against the
+        /// given [BuildContext].
+        ///
+        /// Called by [CupertinoTheme.of] to resolve colors defined in the retrieved
+        /// [CupertinoThemeData].
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Theme.CupertinoThemeData ResolveFrom(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Creates a copy of [CupertinoThemeData] with specified attributes overridden.
+        ///
+        /// Only the current instance's specified attributes are copied instead of
+        /// derived values. For instance, if the current [CupertinoThemeData.textTheme]
+        /// is implied from the current [primaryColor] because it was not specified,
+        /// copying with a different [primaryColor] will also change the copy's implied
+        /// [textTheme].
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Theme.CupertinoThemeData CopyWith(Brightness brightness = default(Brightness), FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryContrastingColor = default(FlutterBinding.UI.Color), FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData textTheme = default(FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData), FlutterBinding.UI.Color barBackgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color scaffoldBackgroundColor = default(FlutterBinding.UI.Color)) { throw new NotImplementedException(); }
 
 

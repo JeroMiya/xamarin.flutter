@@ -312,48 +312,164 @@ namespace FlutterSDK.Cupertino.Localizations
         public virtual string PasteButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual string SelectAllButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
+        /// <Summary>
+        /// Year that is shown in [CupertinoDatePicker] spinner corresponding to the
+        /// given year index.
+        ///
+        /// Examples: datePickerYear(1) in:
+        ///
+        ///  - US English: 2018
+        ///  - Korean: 2018년
+        /// </Summary>
         public virtual string DatePickerYear(int yearIndex) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Month that is shown in [CupertinoDatePicker] spinner corresponding to
+        /// the given month index.
+        ///
+        /// Examples: datePickerMonth(1) in:
+        ///
+        ///  - US English: January
+        ///  - Korean: 1월
+        /// </Summary>
         public virtual string DatePickerMonth(int monthIndex) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Day of month that is shown in [CupertinoDatePicker] spinner corresponding
+        /// to the given day index.
+        ///
+        /// Examples: datePickerDayOfMonth(1) in:
+        ///
+        ///  - US English: 1
+        ///  - Korean: 1일
+        /// </Summary>
         public virtual string DatePickerDayOfMonth(int dayIndex) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The medium-width date format that is shown in [CupertinoDatePicker]
+        /// spinner. Abbreviates month and days of week.
+        ///
+        /// Examples:
+        ///
+        /// - US English: Wed Sep 27
+        /// - Russian: ср сент. 27
+        /// </Summary>
         public virtual string DatePickerMediumDate(DateTime date) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Hour that is shown in [CupertinoDatePicker] spinner corresponding
+        /// to the given hour value.
+        ///
+        /// Examples: datePickerHour(1) in:
+        ///
+        ///  - US English: 1
+        ///  - Arabic: ٠١
+        /// </Summary>
         public virtual string DatePickerHour(int hour) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Semantics label for the given hour value in [CupertinoDatePicker].
+        /// </Summary>
         public virtual string DatePickerHourSemanticsLabel(int hour) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Minute that is shown in [CupertinoDatePicker] spinner corresponding
+        /// to the given minute value.
+        ///
+        /// Examples: datePickerMinute(1) in:
+        ///
+        ///  - US English: 01
+        ///  - Arabic: ٠١
+        /// </Summary>
         public virtual string DatePickerMinute(int minute) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Semantics label for the given minute value in [CupertinoDatePicker].
+        /// </Summary>
         public virtual string DatePickerMinuteSemanticsLabel(int minute) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Hour that is shown in [CupertinoTimerPicker] corresponding to
+        /// the given hour value.
+        ///
+        /// Examples: timerPickerHour(1) in:
+        ///
+        ///  - US English: 1
+        ///  - Arabic: ١
+        /// </Summary>
         public virtual string TimerPickerHour(int hour) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Minute that is shown in [CupertinoTimerPicker] corresponding to
+        /// the given minute value.
+        ///
+        /// Examples: timerPickerMinute(1) in:
+        ///
+        ///  - US English: 1
+        ///  - Arabic: ١
+        /// </Summary>
         public virtual string TimerPickerMinute(int minute) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Second that is shown in [CupertinoTimerPicker] corresponding to
+        /// the given second value.
+        ///
+        /// Examples: timerPickerSecond(1) in:
+        ///
+        ///  - US English: 1
+        ///  - Arabic: ١
+        /// </Summary>
         public virtual string TimerPickerSecond(int second) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Label that appears next to the hour picker in
+        /// [CupertinoTimerPicker] when selected hour value is `hour`.
+        /// This function will deal with pluralization based on the `hour` parameter.
+        /// </Summary>
         public virtual string TimerPickerHourLabel(int hour) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Label that appears next to the minute picker in
+        /// [CupertinoTimerPicker] when selected minute value is `minute`.
+        /// This function will deal with pluralization based on the `minute` parameter.
+        /// </Summary>
         public virtual string TimerPickerMinuteLabel(int minute) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Label that appears next to the minute picker in
+        /// [CupertinoTimerPicker] when selected minute value is `second`.
+        /// This function will deal with pluralization based on the `second` parameter.
+        /// </Summary>
         public virtual string TimerPickerSecondLabel(int second) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The `CupertinoLocalizations` from the closest [Localizations] instance
+        /// that encloses the given context.
+        ///
+        /// This method is just a convenient shorthand for:
+        /// `Localizations.of<CupertinoLocalizations>(context, CupertinoLocalizations)`.
+        ///
+        /// References to the localized resources defined by this class are typically
+        /// written in terms of this method. For example:
+        ///
+        /// ```dart
+        /// CupertinoLocalizations.of(context).anteMeridiemAbbreviation;
+        /// ```
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Localizations.CupertinoLocalizations Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
     }
@@ -424,6 +540,9 @@ namespace FlutterSDK.Cupertino.Localizations
     }
 
 
+    /// <Summary>
+    /// US English strings for the cupertino widgets.
+    /// </Summary>
     public class DefaultCupertinoLocalizations : ICupertinoLocalizations
     {
         #region constructors
@@ -494,28 +613,83 @@ namespace FlutterSDK.Cupertino.Localizations
         public new string TimerPickerSecondLabel(int second) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Creates an object that provides US English resource values for the
+        /// cupertino library widgets.
+        ///
+        /// The [locale] parameter is ignored.
+        ///
+        /// This method is typically used to create a [LocalizationsDelegate].
+        /// </Summary>
         public virtual Future<FlutterSDK.Cupertino.Localizations.CupertinoLocalizations> Load(Locale locale) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// Determines the order of the columns inside [CupertinoDatePicker] in
+    /// time and date time mode.
+    /// </Summary>
     public enum DatePickerDateTimeOrder
     {
 
+        /// <Summary>
+        /// Order of the columns, from left to right: date, hour, minute, am/pm.
+        ///
+        /// Example: Fri Aug 31 | 02 | 08 | PM.
+        /// </Summary>
         Date_time_dayPeriod,
+        /// <Summary>
+        /// Order of the columns, from left to right: date, am/pm, hour, minute.
+        ///
+        /// Example: Fri Aug 31 | PM | 02 | 08.
+        /// </Summary>
         Date_dayPeriod_time,
+        /// <Summary>
+        /// Order of the columns, from left to right: hour, minute, am/pm, date.
+        ///
+        /// Example: 02 | 08 | PM | Fri Aug 31.
+        /// </Summary>
         Time_dayPeriod_date,
+        /// <Summary>
+        /// Order of the columns, from left to right: am/pm, hour, minute, date.
+        ///
+        /// Example: PM | 02 | 08 | Fri Aug 31.
+        /// </Summary>
         DayPeriod_time_date,
     }
 
 
+    /// <Summary>
+    /// Determines the order of the columns inside [CupertinoDatePicker] in date mode.
+    /// </Summary>
     public enum DatePickerDateOrder
     {
 
+        /// <Summary>
+        /// Order of the columns, from left to right: day, month, year.
+        ///
+        /// Example: 12 | March | 1996
+        /// </Summary>
         Dmy,
+        /// <Summary>
+        /// Order of the columns, from left to right: month, day, year.
+        ///
+        /// Example: March | 12 | 1996
+        /// </Summary>
         Mdy,
+        /// <Summary>
+        /// Order of the columns, from left to right: year, month, day.
+        ///
+        /// Example: 1996 | March | 12
+        /// </Summary>
         Ymd,
+        /// <Summary>
+        /// Order of the columns, from left to right: year, day, month.
+        ///
+        /// Example: 1996 | 12 | March
+        /// </Summary>
         Ydm,
     }
 

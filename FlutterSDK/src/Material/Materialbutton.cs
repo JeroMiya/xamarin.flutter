@@ -411,6 +411,29 @@ namespace FlutterSDK.Material.Materialbutton
     }
 
 
+    /// <Summary>
+    /// A utility class for building Material buttons that depend on the
+    /// ambient [ButtonTheme] and [Theme].
+    ///
+    /// The button's size will expand to fit the child widget, if necessary.
+    ///
+    /// MaterialButtons whose [onPressed] and [onLongPress] callbacks are null will be disabled. To have
+    /// an enabled button, make sure to pass a non-null value for [onPressed] or [onLongPress].
+    ///
+    /// Rather than using this class directly, consider using [FlatButton],
+    /// [OutlineButton], or [RaisedButton], which configure this class with
+    /// appropriate defaults that match the material design specification.
+    ///
+    /// To create a button directly, without inheriting theme defaults, use
+    /// [RawMaterialButton].
+    ///
+    /// If you want an ink-splash effect for taps, but don't want to use a button,
+    /// consider using [InkWell] directly.
+    ///
+    /// See also:
+    ///
+    ///  * [IconButton], to create buttons that contain icons rather than text.
+    /// </Summary>
     public class MaterialButton : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors

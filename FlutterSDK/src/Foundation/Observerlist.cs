@@ -299,6 +299,26 @@ namespace FlutterSDK.Foundation.Observerlist
     {
     }
 
+    /// <Summary>
+    /// A list optimized for the observer pattern when there are small numbers of
+    /// observers.
+    ///
+    /// Consider using an [ObserverList] instead of a [List] when the number of
+    /// [contains] calls dominates the number of [add] and [remove] calls.
+    ///
+    /// This class will include in the [iterator] each added item in the order it
+    /// was added, as many times as it was added.
+    ///
+    /// If there will be a large number of observers, consider using
+    /// [HashedObserverList] instead. It has slightly different iteration semantics,
+    /// but serves a similar purpose, while being more efficient for large numbers
+    /// of observers.
+    ///
+    /// See also:
+    ///
+    ///  * [HashedObserverList] for a list that is optimized for larger numbers of
+    ///    observers.
+    /// </Summary>
     public class ObserverList<T> : Iterable<T>
     {
         #region constructors
@@ -317,9 +337,21 @@ namespace FlutterSDK.Foundation.Observerlist
 
         #region methods
 
+        /// <Summary>
+        /// Adds an item to the end of this list.
+        ///
+        /// This operation has constant time complexity.
+        /// </Summary>
         public virtual void Add(T item) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Removes an item from the list.
+        ///
+        /// This is O(N) in the number of items in the list.
+        ///
+        /// Returns whether the item was present in the list.
+        /// </Summary>
         public virtual bool Remove(T item) { throw new NotImplementedException(); }
 
 
@@ -329,6 +361,22 @@ namespace FlutterSDK.Foundation.Observerlist
     }
 
 
+    /// <Summary>
+    /// A list optimized for the observer pattern, but for larger numbers of observers.
+    ///
+    /// For small numbers of observers (e.g. less than 10), use [ObserverList] instead.
+    ///
+    /// The iteration semantics of the this class are slightly different from
+    /// [ObserverList]. This class will only return an item once in the [iterator],
+    /// no matter how many times it was added, although it does require that an item
+    /// be removed as many times as it was added for it to stop appearing in the
+    /// [iterator]. It will return them in the order the first instance of an item
+    /// was originally added.
+    ///
+    /// See also:
+    ///
+    ///  * [ObserverList] for a list that is fast for small numbers of observers.
+    /// </Summary>
     public class HashedObserverList<T> : Iterable<T>
     {
         #region constructors
@@ -345,9 +393,21 @@ namespace FlutterSDK.Foundation.Observerlist
 
         #region methods
 
+        /// <Summary>
+        /// Adds an item to the end of this list.
+        ///
+        /// This has constant time complexity.
+        /// </Summary>
         public virtual void Add(T item) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Removes an item from the list.
+        ///
+        /// This operation has constant time complexity.
+        ///
+        /// Returns whether the item was present in the list.
+        /// </Summary>
         public virtual bool Remove(T item) { throw new NotImplementedException(); }
 
 

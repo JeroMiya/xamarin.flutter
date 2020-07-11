@@ -435,12 +435,23 @@ namespace FlutterSDK.Services.Platformviews
     {
         public virtual int ViewId { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
+        /// <Summary>
+        /// Dispatches the `event` to the platform view.
+        /// </Summary>
         public virtual void DispatchPointerEvent(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Disposes the platform view.
+        ///
+        /// The [PlatformViewController] is unusable after calling dispose.
+        /// </Summary>
         public virtual void Dispose() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Clears the view's focus on the platform side.
+        /// </Summary>
         public virtual void ClearFocus() { throw new NotImplementedException(); }
 
     }
@@ -463,6 +474,12 @@ namespace FlutterSDK.Services.Platformviews
     }
 
 
+    /// <Summary>
+    /// A registry responsible for generating unique identifier for platform views.
+    ///
+    /// A Flutter application has a single [PlatformViewsRegistry] which can be accesses
+    /// through the [platformViewsRegistry] getter.
+    /// </Summary>
     public class PlatformViewsRegistry
     {
         #region constructors
@@ -478,12 +495,26 @@ namespace FlutterSDK.Services.Platformviews
 
         #region methods
 
+        /// <Summary>
+        /// Allocates a unique identifier for a platform view.
+        ///
+        /// A platform view identifier can refer to a platform view that was never created,
+        /// a platform view that was disposed, or a platform view that is alive.
+        ///
+        /// Typically a platform view identifier is passed to a [PlatformView] widget
+        /// which creates the platform view and manages its lifecycle.
+        /// </Summary>
         public virtual int GetNextPlatformViewId() { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// Provides access to the platform views service.
+    ///
+    /// This service allows creating and controlling platform-specific views.
+    /// </Summary>
     public class PlatformViewsService
     {
         #region constructors
@@ -504,15 +535,58 @@ namespace FlutterSDK.Services.Platformviews
         private Future<object> _OnMethodCall(FlutterSDK.Services.Messagecodec.MethodCall call) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Creates a controller for a new Android view.
+        ///
+        /// `id` is an unused unique identifier generated with [platformViewsRegistry].
+        ///
+        /// `viewType` is the identifier of the Android view type to be created, a
+        /// factory for this view type must have been registered on the platform side.
+        /// Platform view factories are typically registered by plugin code.
+        /// Plugins can register a platform view factory with
+        /// [PlatformViewRegistry#registerViewFactory](/javadoc/io/flutter/plugin/platform/PlatformViewRegistry.html#registerViewFactory-java.lang.String-io.flutter.plugin.platform.PlatformViewFactory-).
+        ///
+        /// `creationParams` will be passed as the args argument of [PlatformViewFactory#create](/javadoc/io/flutter/plugin/platform/PlatformViewFactory.html#create-android.content.Context-int-java.lang.Object-)
+        ///
+        /// `creationParamsCodec` is the codec used to encode `creationParams` before sending it to the
+        /// platform side. It should match the codec passed to the constructor of [PlatformViewFactory](/javadoc/io/flutter/plugin/platform/PlatformViewFactory.html#PlatformViewFactory-io.flutter.plugin.common.MessageCodec-).
+        /// This is typically one of: [StandardMessageCodec], [JSONMessageCodec], [StringCodec], or [BinaryCodec].
+        ///
+        /// `onFocus` is a callback that will be invoked when the Android View asks to get the
+        /// input focus.
+        ///
+        /// The Android view will only be created after [AndroidViewController.setSize] is called for the
+        /// first time.
+        ///
+        /// The `id, `viewType, and `layoutDirection` parameters must not be null.
+        /// If `creationParams` is non null then `cretaionParamsCodec` must not be null.
+        /// </Summary>
         public virtual FlutterSDK.Services.Platformviews.AndroidViewController InitAndroidView(int id = default(int), string viewType = default(string), TextDirection layoutDirection = default(TextDirection), object creationParams = default(object), FlutterSDK.Services.Messagecodec.MessageCodec<object> creationParamsCodec = default(FlutterSDK.Services.Messagecodec.MessageCodec<object>), VoidCallback onFocus = default(VoidCallback)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// This is work in progress, not yet ready to be used, and requires a custom engine build. Creates a controller for a new iOS UIView.
+        ///
+        /// `id` is an unused unique identifier generated with [platformViewsRegistry].
+        ///
+        /// `viewType` is the identifier of the iOS view type to be created, a
+        /// factory for this view type must have been registered on the platform side.
+        /// Platform view factories are typically registered by plugin code.
+        ///
+        /// The `id, `viewType, and `layoutDirection` parameters must not be null.
+        /// If `creationParams` is non null then `creationParamsCodec` must not be null.
+        /// </Summary>
         public virtual Future<FlutterSDK.Services.Platformviews.UiKitViewController> InitUiKitView(int id = default(int), string viewType = default(string), TextDirection layoutDirection = default(TextDirection), object creationParams = default(object), FlutterSDK.Services.Messagecodec.MessageCodec<object> creationParamsCodec = default(FlutterSDK.Services.Messagecodec.MessageCodec<object>)) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// Properties of an Android pointer.
+    ///
+    /// A Dart version of Android's [MotionEvent.PointerProperties](https://developer.android.com/reference/android/view/MotionEvent.PointerProperties).
+    /// </Summary>
     public class AndroidPointerProperties
     {
         #region constructors
@@ -543,6 +617,11 @@ namespace FlutterSDK.Services.Platformviews
     }
 
 
+    /// <Summary>
+    /// Position information for an Android pointer.
+    ///
+    /// A Dart version of Android's [MotionEvent.PointerCoords](https://developer.android.com/reference/android/view/MotionEvent.PointerCoords).
+    /// </Summary>
     public class AndroidPointerCoords
     {
         #region constructors
@@ -582,6 +661,9 @@ namespace FlutterSDK.Services.Platformviews
     }
 
 
+    /// <Summary>
+    /// A Dart version of Android's [MotionEvent](https://developer.android.com/reference/android/view/MotionEvent).
+    /// </Summary>
     public class AndroidMotionEvent
     {
         #region constructors
@@ -631,6 +713,11 @@ namespace FlutterSDK.Services.Platformviews
     }
 
 
+    /// <Summary>
+    /// Controls an Android view.
+    ///
+    /// Typically created with [PlatformViewsService.initAndroidView].
+    /// </Summary>
     public class AndroidViewController
     {
         #region constructors
@@ -664,30 +751,69 @@ namespace FlutterSDK.Services.Platformviews
 
         #region methods
 
+        /// <Summary>
+        /// Adds a callback that will get invoke after the platform view has been
+        /// created.
+        /// </Summary>
         public virtual void AddOnPlatformViewCreatedListener(FlutterSDK.Services.Platformviews.PlatformViewCreatedCallback listener) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Removes a callback added with [addOnPlatformViewCreatedListener].
+        /// </Summary>
         public virtual void RemoveOnPlatformViewCreatedListener(FlutterSDK.Services.Platformviews.PlatformViewCreatedCallback listener) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Disposes the Android view.
+        ///
+        /// The [AndroidViewController] object is unusable after calling this.
+        /// The identifier of the platform view cannot be reused after the view is
+        /// disposed.
+        /// </Summary>
         public virtual Future<object> Dispose() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Sizes the Android View.
+        ///
+        /// `size` is the view's new size in logical pixel, it must not be null and must
+        /// be bigger than zero.
+        ///
+        /// The first time a size is set triggers the creation of the Android view.
+        /// </Summary>
         public virtual Future<object> SetSize(Size size) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Sets the layout direction for the Android view.
+        /// </Summary>
         public virtual Future<object> SetLayoutDirection(TextDirection layoutDirection) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Clears the focus from the Android View if it is focused.
+        /// </Summary>
         public virtual Future<object> ClearFocus() { throw new NotImplementedException(); }
 
 
         private int _GetAndroidDirection(TextDirection direction) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Sends an Android [MotionEvent](https://developer.android.com/reference/android/view/MotionEvent)
+        /// to the view.
+        ///
+        /// The Android MotionEvent object is created with [MotionEvent.obtain](https://developer.android.com/reference/android/view/MotionEvent.html#obtain(long,%20long,%20int,%20float,%20float,%20float,%20float,%20int,%20float,%20float,%20int,%20int)).
+        /// See documentation of [MotionEvent.obtain](https://developer.android.com/reference/android/view/MotionEvent.html#obtain(long,%20long,%20int,%20float,%20float,%20float,%20float,%20int,%20float,%20float,%20int,%20int))
+        /// for description of the parameters.
+        /// </Summary>
         public virtual Future<object> SendMotionEvent(FlutterSDK.Services.Platformviews.AndroidMotionEvent @event) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Creates a masked Android MotionEvent action value for an indexed pointer.
+        /// </Summary>
         public virtual int PointerAction(int pointerId, int action) { throw new NotImplementedException(); }
 
 
@@ -697,6 +823,11 @@ namespace FlutterSDK.Services.Platformviews
     }
 
 
+    /// <Summary>
+    /// Controls an iOS UIView.
+    ///
+    /// Typically created with [PlatformViewsService.initUiKitView].
+    /// </Summary>
     public class UiKitViewController
     {
         #region constructors
@@ -715,15 +846,39 @@ namespace FlutterSDK.Services.Platformviews
 
         #region methods
 
+        /// <Summary>
+        /// Sets the layout direction for the iOS UIView.
+        /// </Summary>
         public virtual Future<object> SetLayoutDirection(TextDirection layoutDirection) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Accept an active gesture.
+        ///
+        /// When a touch sequence is happening on the embedded UIView all touch events are delayed.
+        /// Calling this method releases the delayed events to the embedded UIView and makes it consume
+        /// any following touch events for the pointers involved in the active gesture.
+        /// </Summary>
         public virtual Future<object> AcceptGesture() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Rejects an active gesture.
+        ///
+        /// When a touch sequence is happening on the embedded UIView all touch events are delayed.
+        /// Calling this method drops the buffered touch events and prevents any future touch events for
+        /// the pointers that are part of the active touch sequence from arriving to the embedded view.
+        /// </Summary>
         public virtual Future<object> RejectGesture() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Disposes the view.
+        ///
+        /// The [UiKitViewController] object is unusable after calling this.
+        /// The `id` of the platform view cannot be reused after the view is
+        /// disposed.
+        /// </Summary>
         public virtual Future<object> Dispose() { throw new NotImplementedException(); }
 
         #endregion

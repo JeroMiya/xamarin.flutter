@@ -427,6 +427,23 @@ namespace FlutterSDK.Widgets.Disposablebuildcontext
     {
     }
 
+    /// <Summary>
+    /// Provides non-leaking access to a [BuildContext].
+    ///
+    /// A [BuildContext] is only valid if it is pointing to an active [Element].
+    /// Once the [Element.dispose] method is called, the [BuildContext] should not
+    /// be accessed further. This class makes it possible for a [StatefulWidget] to
+    /// share its build context safely with other objects.
+    ///
+    /// Creators of this object must guarantee the following:
+    ///
+    ///   1. They create this object at or after [State.initState] but before
+    ///      [State.dispose]. In particular, do not attempt to create this from the
+    ///      constructor of a state.
+    ///   2. They call [dispose] from [State.dispose].
+    ///
+    /// This object will not hold on to the [State] after disposal.
+    /// </Summary>
     public class DisposableBuildContext<T>
     {
         #region constructors
@@ -444,9 +461,22 @@ namespace FlutterSDK.Widgets.Disposablebuildcontext
 
         #region methods
 
+        /// <Summary>
+        /// Called from asserts or tests to determine whether this object is in a
+        /// valid state.
+        ///
+        /// Always returns true, but will assert if [dispose] has not been called
+        /// but the state this is tracking is unmounted.
+        /// </Summary>
         private bool _DebugValidate() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Marks the [BuildContext] as disposed.
+        ///
+        /// Creators of this object must call [dispose] when their [Element] is
+        /// unmounted, i.e. when [State.dispose] is called.
+        /// </Summary>
         public virtual void Dispose() { throw new NotImplementedException(); }
 
         #endregion

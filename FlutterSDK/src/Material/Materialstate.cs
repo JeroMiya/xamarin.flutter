@@ -395,6 +395,52 @@ namespace FlutterSDK.Material.Materialstate
     {
     }
 
+    /// <Summary>
+    /// Defines a [Color] whose value depends on a set of [MaterialState]s which
+    /// represent the interactive state of a component.
+    ///
+    /// This is useful for improving the accessibility of text in different states
+    /// of a component. For example, in a [FlatButton] with blue text, the text will
+    /// become more difficult to read when the button is hovered, focused, or pressed,
+    /// because the contrast ratio between the button and the text will decrease. To
+    /// solve this, you can use [MaterialStateColor] to make the text darker when the
+    /// [FlatButton] is hovered, focused, or pressed.
+    ///
+    /// To use a [MaterialStateColor], you can either:
+    ///   1. Create a subclass of [MaterialStateColor] and implement the abstract `resolve` method.
+    ///   2. Use [MaterialStateColor.resolveWith] and pass in a callback that
+    ///      will be used to resolve the color in the given states.
+    ///
+    /// This should only be used as parameters when they are documented to take
+    /// [MaterialStateColor], otherwise only the default state will be used.
+    ///
+    /// {@tool snippet}
+    ///
+    /// This example shows how you could pass a `MaterialStateColor` to `FlatButton.textColor`.
+    /// Here, the text color will be `Colors.blue[900]` when the button is being
+    /// pressed, hovered, or focused. Otherwise, the text color will be `Colors.blue[600]`.
+    ///
+    /// ```dart
+    /// Color getTextColor(Set<MaterialState> states) {
+    ///   const Set<MaterialState> interactiveStates = <MaterialState>{
+    ///     MaterialState.pressed,
+    ///     MaterialState.hovered,
+    ///     MaterialState.focused,
+    ///   };
+    ///   if (states.any(interactiveStates.contains)) {
+    ///     return Colors.blue[900];
+    ///   }
+    ///   return Colors.blue[600];
+    /// }
+    ///
+    /// FlatButton(
+    ///   child: Text('FlatButton'),
+    ///   onPressed: () {},
+    ///   textColor: MaterialStateColor.resolveWith(getTextColor),
+    /// ),
+    /// ```
+    /// {@end-tool}
+    /// </Summary>
     public interface IMaterialStateColor
     {
         FlutterSDK.Material.Materialstate.MaterialStateColor ResolveWith<T>(FlutterSDK.Material.Materialstate.MaterialPropertyResolver<Color> callback);
@@ -407,12 +453,31 @@ namespace FlutterSDK.Material.Materialstate
     public class MaterialStateProperty<T>
     {
 
+        /// <Summary>
+        /// Returns a different value of type `T` depending on the given `states`.
+        ///
+        /// Some widgets (such as [RawMaterialButton]) keep track of their set of
+        /// [MaterialState]s, and will call `resolve` with the current states at build
+        /// time for specified properties (such as [RawMaterialButton.textStyle]'s color).
+        /// </Summary>
         public virtual T Resolve(HashSet<FlutterSDK.Material.Materialstate.MaterialState> states) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the value resolved in the given set of states if `value` is a
+        /// [MaterialStateProperty], otherwise returns the value itself.
+        ///
+        /// This is useful for widgets that have parameters which can optionally be a
+        /// [MaterialStateProperty]. For example, [RaisedButton.textColor] can be a
+        /// [Color] or a [MaterialStateProperty<Color>].
+        /// </Summary>
         public virtual T ResolveAs<T>(T value, HashSet<FlutterSDK.Material.Materialstate.MaterialState> states) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Convenience method for creating a [MaterialStateProperty] from a
+        /// [MaterialPropertyResolver] function alone.
+        /// </Summary>
         public virtual MaterialStateProperty<T> ResolveWith<T>(FlutterSDK.Material.Materialstate.MaterialPropertyResolver<T> callback) { throw new NotImplementedException(); }
 
     }
@@ -434,6 +499,52 @@ namespace FlutterSDK.Material.Materialstate
     }
 
 
+    /// <Summary>
+    /// Defines a [Color] whose value depends on a set of [MaterialState]s which
+    /// represent the interactive state of a component.
+    ///
+    /// This is useful for improving the accessibility of text in different states
+    /// of a component. For example, in a [FlatButton] with blue text, the text will
+    /// become more difficult to read when the button is hovered, focused, or pressed,
+    /// because the contrast ratio between the button and the text will decrease. To
+    /// solve this, you can use [MaterialStateColor] to make the text darker when the
+    /// [FlatButton] is hovered, focused, or pressed.
+    ///
+    /// To use a [MaterialStateColor], you can either:
+    ///   1. Create a subclass of [MaterialStateColor] and implement the abstract `resolve` method.
+    ///   2. Use [MaterialStateColor.resolveWith] and pass in a callback that
+    ///      will be used to resolve the color in the given states.
+    ///
+    /// This should only be used as parameters when they are documented to take
+    /// [MaterialStateColor], otherwise only the default state will be used.
+    ///
+    /// {@tool snippet}
+    ///
+    /// This example shows how you could pass a `MaterialStateColor` to `FlatButton.textColor`.
+    /// Here, the text color will be `Colors.blue[900]` when the button is being
+    /// pressed, hovered, or focused. Otherwise, the text color will be `Colors.blue[600]`.
+    ///
+    /// ```dart
+    /// Color getTextColor(Set<MaterialState> states) {
+    ///   const Set<MaterialState> interactiveStates = <MaterialState>{
+    ///     MaterialState.pressed,
+    ///     MaterialState.hovered,
+    ///     MaterialState.focused,
+    ///   };
+    ///   if (states.any(interactiveStates.contains)) {
+    ///     return Colors.blue[900];
+    ///   }
+    ///   return Colors.blue[600];
+    /// }
+    ///
+    /// FlatButton(
+    ///   child: Text('FlatButton'),
+    ///   onPressed: () {},
+    ///   textColor: MaterialStateColor.resolveWith(getTextColor),
+    /// ),
+    /// ```
+    /// {@end-tool}
+    /// </Summary>
     public class MaterialStateColor : Color, IMaterialStateProperty<Color>
     {
         #region constructors
@@ -449,15 +560,38 @@ namespace FlutterSDK.Material.Materialstate
 
         #region methods
 
+        /// <Summary>
+        /// Creates a [MaterialStateColor] from a [MaterialPropertyResolver<Color>]
+        /// callback function.
+        ///
+        /// If used as a regular color, the color resolved in the default state (the
+        /// empty set of states) will be used.
+        ///
+        /// The given callback parameter must return a non-null color in the default
+        /// state.
+        /// </Summary>
         public virtual FlutterSDK.Material.Materialstate.MaterialStateColor ResolveWith<T>(FlutterSDK.Material.Materialstate.MaterialPropertyResolver<Color> callback) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a [Color] that's to be used when a Material component is in the
+        /// specified state.
+        /// </Summary>
         public new Color Resolve(HashSet<FlutterSDK.Material.Materialstate.MaterialState> states) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// A [MaterialStateColor] created from a [MaterialPropertyResolver<Color>]
+    /// callback alone.
+    ///
+    /// If used as a regular color, the color resolved in the default state will
+    /// be used.
+    ///
+    /// Used by [MaterialStateColor.resolveWith].
+    /// </Summary>
     public class _MaterialStateColor : FlutterSDK.Material.Materialstate.MaterialStateColor
     {
         #region constructors
@@ -502,15 +636,74 @@ namespace FlutterSDK.Material.Materialstate
     }
 
 
+    /// <Summary>
+    /// Interactive states that some of the Material widgets can take on when
+    /// receiving input from the user.
+    ///
+    /// States are defined by https://material.io/design/interaction/states.html#usage.
+    ///
+    /// Some Material widgets track their current state in a `Set<MaterialState>`.
+    ///
+    /// See also:
+    ///
+    ///  * [MaterialStateColor], a color that has a `resolve` method that can
+    ///    return a different color depending on the state of the widget that it
+    ///    is used in.
+    /// </Summary>
     public enum MaterialState
     {
 
+        /// <Summary>
+        /// The state when the user drags their mouse cursor over the given widget.
+        ///
+        /// See: https://material.io/design/interaction/states.html#hover.
+        /// </Summary>
         Hovered,
+        /// <Summary>
+        /// The state when the user navigates with the keyboard to a given widget.
+        ///
+        /// This can also sometimes be triggered when a widget is tapped. For example,
+        /// when a [TextField] is tapped, it becomes [focused].
+        ///
+        /// See: https://material.io/design/interaction/states.html#focus.
+        /// </Summary>
         Focused,
+        /// <Summary>
+        /// The state when the user is actively pressing down on the given widget.
+        ///
+        /// See: https://material.io/design/interaction/states.html#pressed.
+        /// </Summary>
         Pressed,
+        /// <Summary>
+        /// The state when this widget is being dragged from one place to another by
+        /// the user.
+        ///
+        /// https://material.io/design/interaction/states.html#dragged.
+        /// </Summary>
         Dragged,
+        /// <Summary>
+        /// The state when this item has been selected.
+        ///
+        /// This applies to things that can be toggled (such as chips and checkboxes)
+        /// and things that are selected from a set of options (such as tabs and radio buttons).
+        ///
+        /// See: https://material.io/design/interaction/states.html#selected.
+        /// </Summary>
         Selected,
+        /// <Summary>
+        /// The state when this widget disabled and can not be interacted with.
+        ///
+        /// Disabled widgets should not respond to hover, focus, press, or drag
+        /// interactions.
+        ///
+        /// See: https://material.io/design/interaction/states.html#disabled.
+        /// </Summary>
         Disabled,
+        /// <Summary>
+        /// The state when the widget has entered some form of invalid state.
+        ///
+        /// See https://material.io/design/interaction/states.html#usage.
+        /// </Summary>
         Error,
     }
 

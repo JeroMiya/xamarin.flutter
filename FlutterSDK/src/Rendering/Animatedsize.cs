@@ -427,6 +427,17 @@ namespace FlutterSDK.Rendering.Animatedsize
     {
     }
 
+    /// <Summary>
+    /// A render object that animates its size to its child's size over a given
+    /// [duration] and with a given [curve]. If the child's size itself animates
+    /// (i.e. if it changes size two frames in a row, as opposed to abruptly
+    /// changing size in one frame then remaining that size in subsequent frames),
+    /// this render object sizes itself to fit the child instead of animating
+    /// itself.
+    ///
+    /// When the child overflows the current animated size of this render object, it
+    /// is clipped.
+    /// </Summary>
     public class RenderAnimatedSize : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
     {
         #region constructors
@@ -465,15 +476,41 @@ namespace FlutterSDK.Rendering.Animatedsize
         private void _RestartAnimation() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Laying out the child for the first time.
+        ///
+        /// We have the initial size to animate from, but we do not have the target
+        /// size to animate to, so we set both ends to child's size.
+        /// </Summary>
         private void _LayoutStart() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// At this state we're assuming the child size is stable and letting the
+        /// animation run its course.
+        ///
+        /// If during animation the size of the child changes we restart the
+        /// animation.
+        /// </Summary>
         private void _LayoutStable() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// This state indicates that the size of the child changed once after being
+        /// considered stable.
+        ///
+        /// If the child stabilizes immediately, we go back to stable state. If it
+        /// changes again, we match the child's size, restart animation and go to
+        /// unstable state.
+        /// </Summary>
         private void _LayoutChanged() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The child's size is not stable.
+        ///
+        /// Continue tracking the child's size until is stabilizes.
+        /// </Summary>
         private void _LayoutUnstable() { throw new NotImplementedException(); }
 
 
@@ -483,12 +520,51 @@ namespace FlutterSDK.Rendering.Animatedsize
     }
 
 
+    /// <Summary>
+    /// A [RenderAnimatedSize] can be in exactly one of these states.
+    /// </Summary>
     public enum RenderAnimatedSizeState
     {
 
+        /// <Summary>
+        /// The initial state, when we do not yet know what the starting and target
+        /// sizes are to animate.
+        ///
+        /// The next state is [stable].
+        /// </Summary>
         Start,
+        /// <Summary>
+        /// At this state the child's size is assumed to be stable and we are either
+        /// animating, or waiting for the child's size to change.
+        ///
+        /// If the child's size changes, the state will become [changed]. Otherwise,
+        /// it remains [stable].
+        /// </Summary>
         Stable,
+        /// <Summary>
+        /// At this state we know that the child has changed once after being assumed
+        /// [stable].
+        ///
+        /// The next state will be one of:
+        ///
+        /// * [stable] if the child's size stabilized immediately. This is a signal
+        ///   for the render object to begin animating the size towards the child's new
+        ///   size.
+        ///
+        /// * [unstable] if the child's size continues to change.
+        /// </Summary>
         Changed,
+        /// <Summary>
+        /// At this state the child's size is assumed to be unstable (changing each
+        /// frame).
+        ///
+        /// Instead of chasing the child's size in this state, the render object
+        /// tightly tracks the child's size until it stabilizes.
+        ///
+        /// The render object remains in this state until a frame where the child's
+        /// size remains the same as the previous frame. At that time, the next state
+        /// is [stable].
+        /// </Summary>
         Unstable,
     }
 

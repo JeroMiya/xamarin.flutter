@@ -438,6 +438,11 @@ namespace FlutterSDK.Rendering.Editable
 
     }
 
+    /// <Summary>
+    /// Represents the coordinates of the point in a selection, and the text
+    /// direction at that point, relative to top left of the [RenderEditable] that
+    /// holds the selection.
+    /// </Summary>
     public class TextSelectionPoint
     {
         #region constructors
@@ -460,6 +465,32 @@ namespace FlutterSDK.Rendering.Editable
     }
 
 
+    /// <Summary>
+    /// Displays some text in a scrollable container with a potentially blinking
+    /// cursor and with gesture recognizers.
+    ///
+    /// This is the renderer for an editable text field. It does not directly
+    /// provide affordances for editing the text, but it does handle text selection
+    /// and manipulation of the text cursor.
+    ///
+    /// The [text] is displayed, scrolled by the given [offset], aligned according
+    /// to [textAlign]. The [maxLines] property controls whether the text displays
+    /// on one line or many. The [selection], if it is not collapsed, is painted in
+    /// the [selectionColor]. If it _is_ collapsed, then it represents the cursor
+    /// position. The cursor is shown while [showCursor] is true. It is painted in
+    /// the [cursorColor].
+    ///
+    /// If, when the render object paints, the caret is found to have changed
+    /// location, [onCaretChanged] is called.
+    ///
+    /// The user may interact with the render object by tapping or long-pressing.
+    /// When the user does so, the selection is updated, and [onSelectionChanged] is
+    /// called.
+    ///
+    /// Keyboard handling, IME handling, scrolling, toggling the [showCursor] value
+    /// to actually blink the cursor, and other features not mentioned above are the
+    /// responsibility of higher layers and not handled by this object.
+    /// </Summary>
     public class RenderEditable : FlutterSDK.Rendering.Box.RenderBox, IRelayoutWhenSystemFontsChangeMixin
     {
         #region constructors
@@ -601,6 +632,12 @@ namespace FlutterSDK.Rendering.Editable
         private void _HandleDelete() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Marks the render object as needing to be laid out again and have its text
+        /// metrics recomputed.
+        ///
+        /// Implies [markNeedsLayout].
+        /// </Summary>
         public virtual void MarkNeedsTextLayout() { throw new NotImplementedException(); }
 
 
@@ -644,12 +681,49 @@ namespace FlutterSDK.Rendering.Editable
         private double _GetMaxScrollExtent(Size contentSize) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the local coordinates of the endpoints of the given selection.
+        ///
+        /// If the selection is collapsed (and therefore occupies a single point), the
+        /// returned list is of length one. Otherwise, the selection is not collapsed
+        /// and the returned list is of length two. In this case, however, the two
+        /// points might actually be co-located (e.g., because of a bidirectional
+        /// selection that contains some text but whose ends meet in the middle).
+        ///
+        /// See also:
+        ///
+        ///  * [getLocalRectForCaret], which is the equivalent but for
+        ///    a [TextPosition] rather than a [TextSelection].
+        /// </Summary>
         public virtual List<FlutterSDK.Rendering.Editable.TextSelectionPoint> GetEndpointsForSelection(FlutterSDK.Services.Textediting.TextSelection selection) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the position in the text for the given global coordinate.
+        ///
+        /// See also:
+        ///
+        ///  * [getLocalRectForCaret], which is the reverse operation, taking
+        ///    a [TextPosition] and returning a [Rect].
+        ///  * [TextPainter.getPositionForOffset], which is the equivalent method
+        ///    for a [TextPainter] object.
+        /// </Summary>
         public virtual TextPosition GetPositionForPoint(FlutterBinding.UI.Offset globalPosition) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the [Rect] in local coordinates for the caret at the given text
+        /// position.
+        ///
+        /// See also:
+        ///
+        ///  * [getPositionForPoint], which is the reverse operation, taking
+        ///    an [Offset] in global coordinates and returning a [TextPosition].
+        ///  * [getEndpointsForSelection], which is the equivalent but for
+        ///    a selection rather than a particular text position.
+        ///  * [TextPainter.getOffsetForCaret], the equivalent method for a
+        ///    [TextPainter] object.
+        /// </Summary>
         public virtual Rect GetLocalRectForCaret(TextPosition caretPosition) { throw new NotImplementedException(); }
 
 
@@ -677,39 +751,104 @@ namespace FlutterSDK.Rendering.Editable
         public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Rendering.Box.BoxHitTestEntry entry) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// If [ignorePointer] is false (the default) then this method is called by
+        /// the internal gesture recognizer's [TapGestureRecognizer.onTapDown]
+        /// callback.
+        ///
+        /// When [ignorePointer] is true, an ancestor widget must respond to tap
+        /// down events by calling this method.
+        /// </Summary>
         public virtual void HandleTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details) { throw new NotImplementedException(); }
 
 
         private void _HandleTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// If [ignorePointer] is false (the default) then this method is called by
+        /// the internal gesture recognizer's [TapGestureRecognizer.onTap]
+        /// callback.
+        ///
+        /// When [ignorePointer] is true, an ancestor widget must respond to tap
+        /// events by calling this method.
+        /// </Summary>
         public virtual void HandleTap() { throw new NotImplementedException(); }
 
 
         private void _HandleTap() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// If [ignorePointer] is false (the default) then this method is called by
+        /// the internal gesture recognizer's [DoubleTapGestureRecognizer.onDoubleTap]
+        /// callback.
+        ///
+        /// When [ignorePointer] is true, an ancestor widget must respond to double
+        /// tap events by calling this method.
+        /// </Summary>
         public virtual void HandleDoubleTap() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// If [ignorePointer] is false (the default) then this method is called by
+        /// the internal gesture recognizer's [LongPressGestureRecognizer.onLongPress]
+        /// callback.
+        ///
+        /// When [ignorePointer] is true, an ancestor widget must respond to long
+        /// press events by calling this method.
+        /// </Summary>
         public virtual void HandleLongPress() { throw new NotImplementedException(); }
 
 
         private void _HandleLongPress() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Move selection to the location of the last tap down.
+        ///
+        /// {@template flutter.rendering.editable.select}
+        /// This method is mainly used to translate user inputs in global positions
+        /// into a [TextSelection]. When used in conjunction with a [EditableText],
+        /// the selection change is fed back into [TextEditingController.selection].
+        ///
+        /// If you have a [TextEditingController], it's generally easier to
+        /// programmatically manipulate its `value` or `selection` directly.
+        /// {@endtemplate}
+        /// </Summary>
         public virtual void SelectPosition(FlutterSDK.Rendering.Editable.SelectionChangedCause cause = default(FlutterSDK.Rendering.Editable.SelectionChangedCause)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Select text between the global positions [from] and [to].
+        /// </Summary>
         public virtual void SelectPositionAt(FlutterBinding.UI.Offset from = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset to = default(FlutterBinding.UI.Offset), FlutterSDK.Rendering.Editable.SelectionChangedCause cause = default(FlutterSDK.Rendering.Editable.SelectionChangedCause)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Select a word around the location of the last tap down.
+        ///
+        /// {@macro flutter.rendering.editable.select}
+        /// </Summary>
         public virtual void SelectWord(FlutterSDK.Rendering.Editable.SelectionChangedCause cause = default(FlutterSDK.Rendering.Editable.SelectionChangedCause)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Selects the set words of a paragraph in a given range of global positions.
+        ///
+        /// The first and last endpoints of the selection will always be at the
+        /// beginning and end of a word respectively.
+        ///
+        /// {@macro flutter.rendering.editable.select}
+        /// </Summary>
         public virtual void SelectWordsInRange(FlutterBinding.UI.Offset from = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset to = default(FlutterBinding.UI.Offset), FlutterSDK.Rendering.Editable.SelectionChangedCause cause = default(FlutterSDK.Rendering.Editable.SelectionChangedCause)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Move the selection to the beginning or end of a word.
+        ///
+        /// {@macro flutter.rendering.editable.select}
+        /// </Summary>
         public virtual void SelectWordEdge(FlutterSDK.Rendering.Editable.SelectionChangedCause cause = default(FlutterSDK.Rendering.Editable.SelectionChangedCause)) { throw new NotImplementedException(); }
 
 
@@ -731,12 +870,19 @@ namespace FlutterSDK.Rendering.Editable
         private void _PaintCaret(Canvas canvas, FlutterBinding.UI.Offset effectiveOffset, TextPosition textPosition) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Sets the screen position of the floating cursor and the text position
+        /// closest to the cursor.
+        /// </Summary>
         public virtual void SetFloatingCursor(FlutterSDK.Services.Textinput.FloatingCursorDragState state, FlutterBinding.UI.Offset boundedOffset, TextPosition lastTextPosition, double resetLerpValue = default(double)) { throw new NotImplementedException(); }
 
 
         private void _PaintFloatingCaret(Canvas canvas, FlutterBinding.UI.Offset effectiveOffset) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the position within the text field closest to the raw cursor offset.
+        /// </Summary>
         public virtual Offset CalculateBoundedFloatingCursorOffset(FlutterBinding.UI.Offset rawCursorOffset) { throw new NotImplementedException(); }
 
 
@@ -764,14 +910,45 @@ namespace FlutterSDK.Rendering.Editable
     }
 
 
+    /// <Summary>
+    /// Indicates what triggered the change in selected text (including changes to
+    /// the cursor location).
+    /// </Summary>
     public enum SelectionChangedCause
     {
 
+        /// <Summary>
+        /// The user tapped on the text and that caused the selection (or the location
+        /// of the cursor) to change.
+        /// </Summary>
         Tap,
+        /// <Summary>
+        /// The user tapped twice in quick succession on the text and that caused
+        /// the selection (or the location of the cursor) to change.
+        /// </Summary>
         DoubleTap,
+        /// <Summary>
+        /// The user long-pressed the text and that caused the selection (or the
+        /// location of the cursor) to change.
+        /// </Summary>
         LongPress,
+        /// <Summary>
+        /// The user force-pressed the text and that caused the selection (or the
+        /// location of the cursor) to change.
+        /// </Summary>
         ForcePress,
+        /// <Summary>
+        /// The user used the keyboard to change the selection or the location of the
+        /// cursor.
+        ///
+        /// Keyboard-triggered selection changes may be caused by the IME as well as
+        /// by accessibility tools (e.g. TalkBack on Android).
+        /// </Summary>
         Keyboard,
+        /// <Summary>
+        /// The user used the mouse to change the selection by dragging over a piece
+        /// of text.
+        /// </Summary>
         Drag,
     }
 

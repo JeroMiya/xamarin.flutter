@@ -309,6 +309,9 @@ namespace FlutterSDK.Cupertino.Texttheme
 
     }
 
+    /// <Summary>
+    /// Cupertino typography theme in a [CupertinoThemeData].
+    /// </Summary>
     public class CupertinoTextThemeData : IDiagnosticable
     {
         #region constructors
@@ -355,9 +358,22 @@ namespace FlutterSDK.Cupertino.Texttheme
 
         #region methods
 
+        /// <Summary>
+        /// Returns a copy of the current [CupertinoTextThemeData] with all the colors
+        /// resolved against the given [BuildContext].
+        ///
+        /// Throws an exception if any of the [InheritedWidget]s required to resolve
+        /// this [CupertinoTextThemeData] is not found in [context], unless [nullOk] is
+        /// set to true, in which case [CupertinoDynamicColor]s that fail to resolve will
+        /// be used as-is.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData ResolveFrom(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a copy of the current [CupertinoTextThemeData] instance with
+        /// specified overrides.
+        /// </Summary>
         public virtual FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData CopyWith(FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle actionTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle tabLabelTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle navTitleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle navLargeTitleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle navActionTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle pickerTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle dateTimePickerTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle)) { throw new NotImplementedException(); }
 
 

@@ -430,6 +430,34 @@ namespace FlutterSDK.Material.Time
 
     }
 
+    /// <Summary>
+    /// A value representing a time during the day, independent of the date that
+    /// day might fall on or the time zone.
+    ///
+    /// The time is represented by [hour] and [minute] pair. Once created, both
+    /// values cannot be changed.
+    ///
+    /// You can create TimeOfDay using the constructor which requires both hour and
+    /// minute or using [DateTime] object.
+    /// Hours are specified between 0 and 23, as in a 24-hour clock.
+    ///
+    /// {@tool snippet}
+    ///
+    /// ```dart
+    /// TimeOfDay now = TimeOfDay.now();
+    /// TimeOfDay releaseTime = TimeOfDay(hour: 15, minute: 0); // 3:00pm
+    /// TimeOfDay roomBooked = TimeOfDay.fromDateTime(DateTime.parse('2018-10-20 16:30:04Z')); // 4:30pm
+    /// ```
+    /// {@end-tool}
+    ///
+    /// See also:
+    ///
+    ///  * [showTimePicker], which returns this type.
+    ///  * [MaterialLocalizations], which provides methods for formatting values of
+    ///    this type according to the chosen [Locale].
+    ///  * [DateTime], which represents date and time, and is subject to eras and
+    ///    time zones.
+    /// </Summary>
     public class TimeOfDay
     {
         #region constructors
@@ -462,9 +490,17 @@ namespace FlutterSDK.Material.Time
 
         #region methods
 
+        /// <Summary>
+        /// Returns a new TimeOfDay with the hour and/or minute replaced.
+        /// </Summary>
         public virtual FlutterSDK.Material.Time.TimeOfDay Replacing(int hour = default(int), int minute = default(int)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the localized string representation of this time of day.
+        ///
+        /// This is a shortcut for [MaterialLocalizations.formatTimeOfDay].
+        /// </Summary>
         public virtual string Format(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
@@ -475,31 +511,105 @@ namespace FlutterSDK.Material.Time
     }
 
 
+    /// <Summary>
+    /// Whether the [TimeOfDay] is before or after noon.
+    /// </Summary>
     public enum DayPeriod
     {
 
+        /// <Summary>
+        /// Ante meridiem (before noon).
+        /// </Summary>
         Am,
+        /// <Summary>
+        /// Post meridiem (after noon).
+        /// </Summary>
         Pm,
     }
 
 
+    /// <Summary>
+    /// Determines how the time picker invoked using [showTimePicker] formats and
+    /// lays out the time controls.
+    ///
+    /// The time picker provides layout configurations optimized for each of the
+    /// enum values.
+    /// </Summary>
     public enum TimeOfDayFormat
     {
 
+        /// <Summary>
+        /// Corresponds to the ICU 'HH:mm' pattern.
+        ///
+        /// This format uses 24-hour two-digit zero-padded hours. Controls are always
+        /// laid out horizontally. Hours are separated from minutes by one colon
+        /// character.
+        /// </Summary>
         HH_colon_mm,
+        /// <Summary>
+        /// Corresponds to the ICU 'HH.mm' pattern.
+        ///
+        /// This format uses 24-hour two-digit zero-padded hours. Controls are always
+        /// laid out horizontally. Hours are separated from minutes by one dot
+        /// character.
+        /// </Summary>
         HH_dot_mm,
+        /// <Summary>
+        /// Corresponds to the ICU "HH 'h' mm" pattern used in Canadian French.
+        ///
+        /// This format uses 24-hour two-digit zero-padded hours. Controls are always
+        /// laid out horizontally. Hours are separated from minutes by letter 'h'.
+        /// </Summary>
         FrenchCanadian,
+        /// <Summary>
+        /// Corresponds to the ICU 'H:mm' pattern.
+        ///
+        /// This format uses 24-hour non-padded variable-length hours. Controls are
+        /// always laid out horizontally. Hours are separated from minutes by one
+        /// colon character.
+        /// </Summary>
         H_colon_mm,
+        /// <Summary>
+        /// Corresponds to the ICU 'h:mm a' pattern.
+        ///
+        /// This format uses 12-hour non-padded variable-length hours with a day
+        /// period. Controls are laid out horizontally in portrait mode. In landscape
+        /// mode, the day period appears vertically after (consistent with the ambient
+        /// [TextDirection]) hour-minute indicator. Hours are separated from minutes
+        /// by one colon character.
+        /// </Summary>
         H_colon_mm_space_a,
+        /// <Summary>
+        /// Corresponds to the ICU 'a h:mm' pattern.
+        ///
+        /// This format uses 12-hour non-padded variable-length hours with a day
+        /// period. Controls are laid out horizontally in portrait mode. In landscape
+        /// mode, the day period appears vertically before (consistent with the
+        /// ambient [TextDirection]) hour-minute indicator. Hours are separated from
+        /// minutes by one colon character.
+        /// </Summary>
         A_space_h_colon_mm,
     }
 
 
+    /// <Summary>
+    /// Describes how hours are formatted.
+    /// </Summary>
     public enum HourFormat
     {
 
+        /// <Summary>
+        /// Zero-padded two-digit 24-hour format ranging from "00" to "23".
+        /// </Summary>
         HH,
+        /// <Summary>
+        /// Non-padded variable-length 24-hour format ranging from "0" to "23".
+        /// </Summary>
         H,
+        /// <Summary>
+        /// Non-padded variable-length hour in day period format ranging from "1" to
+        /// "12".
+        /// </Summary>
         h,
     }
 

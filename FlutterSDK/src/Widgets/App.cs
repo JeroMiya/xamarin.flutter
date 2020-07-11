@@ -432,6 +432,35 @@ namespace FlutterSDK.Widgets.App
     {
     }
 
+    /// <Summary>
+    /// A convenience widget that wraps a number of widgets that are commonly
+    /// required for an application.
+    ///
+    /// One of the primary roles that [WidgetsApp] provides is binding the system
+    /// back button to popping the [Navigator] or quitting the application.
+    ///
+    /// It is used by both [MaterialApp] and [CupertinoApp] to implement base
+    /// functionality for an app.
+    ///
+    /// Find references to many of the widgets that [WidgetsApp] wraps in the "See
+    /// also" section.
+    ///
+    /// See also:
+    ///
+    ///  * [CheckedModeBanner], which displays a [Banner] saying "DEBUG" when
+    ///    running in checked mode.
+    ///  * [DefaultTextStyle], the text style to apply to descendant [Text] widgets
+    ///    without an explicit style.
+    ///  * [MediaQuery], which establishes a subtree in which media queries resolve
+    ///    to a [MediaQueryData].
+    ///  * [Localizations], which defines the [Locale] for its `child`.
+    ///  * [Title], a widget that describes this app in the operating system.
+    ///  * [Navigator], a widget that manages a set of child widgets with a stack
+    ///    discipline.
+    ///  * [Overlay], a widget that manages a [Stack] of entries that can be managed
+    ///    independently.
+    ///  * [SemanticsDebugger], a widget that visualizes the semantics for the child.
+    /// </Summary>
     public class WidgetsApp : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -558,6 +587,50 @@ namespace FlutterSDK.Widgets.App
         private Locale _ResolveLocales(List<Locale> preferredLocales, Iterable<Locale> supportedLocales) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The default locale resolution algorithm.
+        ///
+        /// Custom resolution algorithms can be provided through
+        /// [WidgetsApp.localeListResolutionCallback] or
+        /// [WidgetsApp.localeResolutionCallback].
+        ///
+        /// When no custom locale resolution algorithms are provided or if both fail
+        /// to resolve, Flutter will default to calling this algorithm.
+        ///
+        /// This algorithm prioritizes speed at the cost of slightly less appropriate
+        /// resolutions for edge cases.
+        ///
+        /// This algorithm will resolve to the earliest preferred locale that
+        /// matches the most fields, prioritizing in the order of perfect match,
+        /// languageCode+countryCode, languageCode+scriptCode, languageCode-only.
+        ///
+        /// In the case where a locale is matched by languageCode-only and is not the
+        /// default (first) locale, the next preferred locale with a
+        /// perfect match can supersede the languageCode-only match if it exists.
+        ///
+        /// When a preferredLocale matches more than one supported locale, it will
+        /// resolve to the first matching locale listed in the supportedLocales.
+        ///
+        /// When all preferred locales have been exhausted without a match, the first
+        /// countryCode only match will be returned.
+        ///
+        /// When no match at all is found, the first (default) locale in
+        /// [supportedLocales] will be returned.
+        ///
+        /// To summarize, the main matching priority is:
+        ///
+        ///  1. [Locale.languageCode], [Locale.scriptCode], and [Locale.countryCode]
+        ///  1. [Locale.languageCode] and [Locale.scriptCode] only
+        ///  1. [Locale.languageCode] and [Locale.countryCode] only
+        ///  1. [Locale.languageCode] only (with caveats, see above)
+        ///  1. [Locale.countryCode] only when all [preferredLocales] fail to match
+        ///  1. Returns the first element of [supportedLocales] as a fallback
+        ///
+        /// This algorithm does not take language distance (how similar languages are to each other)
+        /// into account, and will not handle edge cases such as resolving `de` to `fr` rather than `zh`
+        /// when `de` is not supported and `zh` is listed before `fr` (German is closer to French
+        /// than Chinese).
+        /// </Summary>
         public virtual Locale BasicLocaleListResolution(List<Locale> preferredLocales, Iterable<Locale> supportedLocales) { throw new NotImplementedException(); }
 
 
@@ -573,6 +646,12 @@ namespace FlutterSDK.Widgets.App
     }
 
 
+    /// <Summary>
+    /// Builds [MediaQuery] from `window` by listening to [WidgetsBinding].
+    ///
+    /// It is performed in a standalone widget to rebuild **only** [MediaQuery] and
+    /// its dependents when `window` changes, instead of rebuilding the entire widget tree.
+    /// </Summary>
     public class _MediaQueryFromWindow : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors

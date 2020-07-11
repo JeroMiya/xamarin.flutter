@@ -451,6 +451,14 @@ namespace FlutterSDK.Rendering.Debugoverflowindicator
         private void _ReportOverflow(FlutterSDK.Rendering.Stack.RelativeRect overflow, List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> overflowHints) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// To be called when the overflow indicators should be painted.
+        ///
+        /// Typically only called if there is an overflow, and only from within a
+        /// debug build.
+        ///
+        /// See example code in [DebugOverflowIndicatorMixin] documentation.
+        /// </Summary>
         public virtual void PaintOverflowIndicator(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset, FlutterBinding.UI.Rect containerRect, FlutterBinding.UI.Rect childRect, List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> overflowHints = default(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode>)) { throw new NotImplementedException(); }
 
 

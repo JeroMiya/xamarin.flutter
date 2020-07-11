@@ -427,6 +427,9 @@ namespace FlutterSDK.Widgets.Colorfilter
     {
     }
 
+    /// <Summary>
+    /// Applies a [ColorFilter] to its child.
+    /// </Summary>
     public class ColorFiltered : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
         #region constructors

@@ -437,6 +437,9 @@ namespace FlutterSDK.Widgets.Routes
 
     }
 
+    /// <Summary>
+    /// A route that displays widgets in the [Navigator]'s [Overlay].
+    /// </Summary>
     public interface IOverlayRoute<T>
     {
         Iterable<FlutterSDK.Widgets.Overlay.OverlayEntry> CreateOverlayEntries();
@@ -448,6 +451,9 @@ namespace FlutterSDK.Widgets.Routes
     }
 
 
+    /// <Summary>
+    /// A route with entrance and exit transitions.
+    /// </Summary>
     public interface ITransitionRoute<T>
     {
         FlutterSDK.Animation.Animationcontroller.AnimationController CreateAnimationController();
@@ -475,6 +481,16 @@ namespace FlutterSDK.Widgets.Routes
     }
 
 
+    /// <Summary>
+    /// A route that blocks interaction with previous routes.
+    ///
+    /// [ModalRoute]s cover the entire [Navigator]. They are not necessarily
+    /// [opaque], however; for example, a pop-up menu uses a [ModalRoute] but only
+    /// shows the menu in a small box overlapping the previous route.
+    ///
+    /// The `T` type argument is the return value of the route. If there is no
+    /// return value, consider using `void` as the return value.
+    /// </Summary>
     public interface IModalRoute<T>
     {
         ModalRoute<T> Of<T>(FlutterSDK.Widgets.Framework.BuildContext context);
@@ -508,6 +524,9 @@ namespace FlutterSDK.Widgets.Routes
     }
 
 
+    /// <Summary>
+    /// A modal route that overlays a widget over the current route.
+    /// </Summary>
     public interface IPopupRoute<T>
     {
         bool Opaque { get; }
@@ -522,9 +541,144 @@ namespace FlutterSDK.Widgets.Routes
         internal virtual List<FlutterSDK.Widgets.Routes.LocalHistoryEntry> _LocalHistory { get; set; }
         public virtual bool WillHandlePopInternally { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
+        /// <Summary>
+        /// Adds a local history entry to this route.
+        ///
+        /// When asked to pop, if this route has any local history entries, this route
+        /// will handle the pop internally by removing the most recently added local
+        /// history entry.
+        ///
+        /// The given local history entry must not already be part of another local
+        /// history route.
+        ///
+        /// {@tool snippet}
+        ///
+        /// The following example is an app with 2 pages: `HomePage` and `SecondPage`.
+        /// The `HomePage` can navigate to the `SecondPage`.
+        ///
+        /// The `SecondPage` uses a [LocalHistoryEntry] to implement local navigation
+        /// within that page. Pressing 'show rectangle' displays a red rectangle and
+        /// adds a local history entry. At that point, pressing the '< back' button
+        /// pops the latest route, which is the local history entry, and the red
+        /// rectangle disappears. Pressing the '< back' button a second time
+        /// once again pops the latest route, which is the `SecondPage`, itself.
+        /// Therefore, the second press navigates back to the `HomePage`.
+        ///
+        /// ```dart
+        /// class App extends StatelessWidget {
+        ///   @override
+        ///   Widget build(BuildContext context) {
+        ///     return MaterialApp(
+        ///       initialRoute: '/',
+        ///       routes: {
+        ///         '/': (BuildContext context) => HomePage(),
+        ///         '/second_page': (BuildContext context) => SecondPage(),
+        ///       },
+        ///     );
+        ///   }
+        /// }
+        ///
+        /// class HomePage extends StatefulWidget {
+        ///   HomePage();
+        ///
+        ///   @override
+        ///   _HomePageState createState() => _HomePageState();
+        /// }
+        ///
+        /// class _HomePageState extends State<HomePage> {
+        ///   @override
+        ///   Widget build(BuildContext context) {
+        ///     return Scaffold(
+        ///       body: Center(
+        ///         child: Column(
+        ///           mainAxisSize: MainAxisSize.min,
+        ///           children: <Widget>[
+        ///             Text('HomePage'),
+        ///             // Press this button to open the SecondPage.
+        ///             RaisedButton(
+        ///               child: Text('Second Page >'),
+        ///               onPressed: () {
+        ///                 Navigator.pushNamed(context, '/second_page');
+        ///               },
+        ///             ),
+        ///           ],
+        ///         ),
+        ///       ),
+        ///     );
+        ///   }
+        /// }
+        ///
+        /// class SecondPage extends StatefulWidget {
+        ///   @override
+        ///   _SecondPageState createState() => _SecondPageState();
+        /// }
+        ///
+        /// class _SecondPageState extends State<SecondPage> {
+        ///
+        ///   bool _showRectangle = false;
+        ///
+        ///   void _navigateLocallyToShowRectangle() async {
+        ///     // This local history entry essentially represents the display of the red
+        ///     // rectangle. When this local history entry is removed, we hide the red
+        ///     // rectangle.
+        ///     setState(() => _showRectangle = true);
+        ///     ModalRoute.of(context).addLocalHistoryEntry(
+        ///         LocalHistoryEntry(
+        ///             onRemove: () {
+        ///               // Hide the red rectangle.
+        ///               setState(() => _showRectangle = false);
+        ///             }
+        ///         )
+        ///     );
+        ///   }
+        ///
+        ///   @override
+        ///   Widget build(BuildContext context) {
+        ///     final localNavContent = _showRectangle
+        ///       ? Container(
+        ///           width: 100.0,
+        ///           height: 100.0,
+        ///           color: Colors.red,
+        ///         )
+        ///       : RaisedButton(
+        ///           child: Text('Show Rectangle'),
+        ///           onPressed: _navigateLocallyToShowRectangle,
+        ///         );
+        ///
+        ///     return Scaffold(
+        ///       body: Center(
+        ///         child: Column(
+        ///           mainAxisAlignment: MainAxisAlignment.center,
+        ///           children: <Widget>[
+        ///             localNavContent,
+        ///             RaisedButton(
+        ///               child: Text('< Back'),
+        ///               onPressed: () {
+        ///                 // Pop a route. If this is pressed while the red rectangle is
+        ///                 // visible then it will will pop our local history entry, which
+        ///                 // will hide the red rectangle. Otherwise, the SecondPage will
+        ///                 // navigate back to the HomePage.
+        ///                 Navigator.of(context).pop();
+        ///               },
+        ///             ),
+        ///           ],
+        ///         ),
+        ///       ),
+        ///     );
+        ///   }
+        /// }
+        /// ```
+        /// {@end-tool}
+        /// </Summary>
         public virtual void AddLocalHistoryEntry(FlutterSDK.Widgets.Routes.LocalHistoryEntry entry) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Remove a local history entry from this route.
+        ///
+        /// The entry's [LocalHistoryEntry.onRemove] callback, if any, will be called
+        /// synchronously.
+        /// </Summary>
         public virtual void RemoveLocalHistoryEntry(FlutterSDK.Widgets.Routes.LocalHistoryEntry entry) { throw new NotImplementedException(); }
 
 
@@ -559,15 +713,29 @@ namespace FlutterSDK.Widgets.Routes
     public class RouteAware
     {
 
+        /// <Summary>
+        /// Called when the top route has been popped off, and the current route
+        /// shows up.
+        /// </Summary>
         public virtual void DidPopNext() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called when the current route has been pushed.
+        /// </Summary>
         public virtual void DidPush() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called when the current route has been popped off.
+        /// </Summary>
         public virtual void DidPop() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called when a new route has been pushed, and the current route is no
+        /// longer visible.
+        /// </Summary>
         public virtual void DidPushNext() { throw new NotImplementedException(); }
 
     }
@@ -590,6 +758,9 @@ namespace FlutterSDK.Widgets.Routes
     }
 
 
+    /// <Summary>
+    /// A route that displays widgets in the [Navigator]'s [Overlay].
+    /// </Summary>
     public class OverlayRoute<T> : FlutterSDK.Widgets.Navigator.Route<T>
     {
         #region constructors
@@ -608,6 +779,9 @@ namespace FlutterSDK.Widgets.Routes
 
         #region methods
 
+        /// <Summary>
+        /// Subclasses should override this getter to return the builders for the overlay.
+        /// </Summary>
         public virtual Iterable<FlutterSDK.Widgets.Overlay.OverlayEntry> CreateOverlayEntries() { throw new NotImplementedException(); }
 
 
@@ -623,6 +797,9 @@ namespace FlutterSDK.Widgets.Routes
     }
 
 
+    /// <Summary>
+    /// A route with entrance and exit transitions.
+    /// </Summary>
     public class TransitionRoute<T> : FlutterSDK.Widgets.Routes.OverlayRoute<T>
     {
         #region constructors
@@ -653,9 +830,19 @@ namespace FlutterSDK.Widgets.Routes
 
         #region methods
 
+        /// <Summary>
+        /// Called to create the animation controller that will drive the transitions to
+        /// this route from the previous one, and back to the previous route from this
+        /// one.
+        /// </Summary>
         public virtual FlutterSDK.Animation.Animationcontroller.AnimationController CreateAnimationController() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called to create the animation that exposes the current progress of
+        /// the transition controlled by the animation controller created by
+        /// [createAnimationController()].
+        /// </Summary>
         public virtual FlutterSDK.Animation.Animation.Animation<double> CreateAnimation() { throw new NotImplementedException(); }
 
 
@@ -692,9 +879,60 @@ namespace FlutterSDK.Widgets.Routes
         private void _SetSecondaryAnimation(FlutterSDK.Animation.Animation.Animation<double> animation, Future<object> disposed = default(Future<object>)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns true if this route supports a transition animation that runs
+        /// when [nextRoute] is pushed on top of it or when [nextRoute] is popped
+        /// off of it.
+        ///
+        /// Subclasses can override this method to restrict the set of routes they
+        /// need to coordinate transitions with.
+        ///
+        /// If true, and `nextRoute.canTransitionFrom()` is true, then the
+        /// [buildTransitions] `secondaryAnimation` will run from 0.0 - 1.0
+        /// when [nextRoute] is pushed on top of this one.  Similarly, if
+        /// the [nextRoute] is popped off of this route, the
+        /// `secondaryAnimation` will run from 1.0 - 0.0.
+        ///
+        /// If false, this route's [buildTransitions] `secondaryAnimation` parameter
+        /// value will be [kAlwaysDismissedAnimation]. In other words, this route
+        /// will not animate when when [nextRoute] is pushed on top of it or when
+        /// [nextRoute] is popped off of it.
+        ///
+        /// Returns true by default.
+        ///
+        /// See also:
+        ///
+        ///  * [canTransitionFrom], which must be true for [nextRoute] for the
+        ///    [buildTransitions] `secondaryAnimation` to run.
+        /// </Summary>
         public virtual bool CanTransitionTo(FlutterSDK.Widgets.Routes.TransitionRoute<object> nextRoute) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns true if [previousRoute] should animate when this route
+        /// is pushed on top of it or when then this route is popped off of it.
+        ///
+        /// Subclasses can override this method to restrict the set of routes they
+        /// need to coordinate transitions with.
+        ///
+        /// If true, and `previousRoute.canTransitionTo()` is true, then the
+        /// previous route's [buildTransitions] `secondaryAnimation` will
+        /// run from 0.0 - 1.0 when this route is pushed on top of
+        /// it. Similarly, if this route is popped off of [previousRoute]
+        /// the previous route's `secondaryAnimation` will run from 1.0 - 0.0.
+        ///
+        /// If false, then the previous route's [buildTransitions]
+        /// `secondaryAnimation` value will be kAlwaysDismissedAnimation. In
+        /// other words [previousRoute] will not animate when this route is
+        /// pushed on top of it or when then this route is popped off of it.
+        ///
+        /// Returns true by default.
+        ///
+        /// See also:
+        ///
+        ///  * [canTransitionTo], which must be true for [previousRoute] for its
+        ///    [buildTransitions] `secondaryAnimation` to run.
+        /// </Summary>
         public virtual bool CanTransitionFrom(FlutterSDK.Widgets.Routes.TransitionRoute<object> previousRoute) { throw new NotImplementedException(); }
 
 
@@ -705,6 +943,9 @@ namespace FlutterSDK.Widgets.Routes
     }
 
 
+    /// <Summary>
+    /// An entry in the history of a [LocalHistoryRoute].
+    /// </Summary>
     public class LocalHistoryEntry
     {
         #region constructors
@@ -721,6 +962,9 @@ namespace FlutterSDK.Widgets.Routes
 
         #region methods
 
+        /// <Summary>
+        /// Remove this entry from the history of its associated [LocalHistoryRoute].
+        /// </Summary>
         public virtual void Remove() { throw new NotImplementedException(); }
 
 
@@ -822,6 +1066,16 @@ namespace FlutterSDK.Widgets.Routes
     }
 
 
+    /// <Summary>
+    /// A route that blocks interaction with previous routes.
+    ///
+    /// [ModalRoute]s cover the entire [Navigator]. They are not necessarily
+    /// [opaque], however; for example, a pop-up menu uses a [ModalRoute] but only
+    /// shows the menu in a small box overlapping the previous route.
+    ///
+    /// The `T` type argument is the return value of the route. If there is no
+    /// return value, consider using `void` as the return value.
+    /// </Summary>
     public class ModalRoute<T> : FlutterSDK.Widgets.Routes.TransitionRoute<T>, ILocalHistoryRoute<T>
     {
         #region constructors
@@ -859,18 +1113,195 @@ namespace FlutterSDK.Widgets.Routes
 
         #region methods
 
+        /// <Summary>
+        /// Returns the modal route most closely associated with the given context.
+        ///
+        /// Returns null if the given context is not associated with a modal route.
+        ///
+        /// Typical usage is as follows:
+        ///
+        /// ```dart
+        /// ModalRoute route = ModalRoute.of(context);
+        /// ```
+        ///
+        /// The given [BuildContext] will be rebuilt if the state of the route changes
+        /// (specifically, if [isCurrent] or [canPop] change value).
+        /// </Summary>
         public virtual ModalRoute<T> Of<T>(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Schedule a call to [buildTransitions].
+        ///
+        /// Whenever you need to change internal state for a [ModalRoute] object, make
+        /// the change in a function that you pass to [setState], as in:
+        ///
+        /// ```dart
+        /// setState(() { myState = newValue });
+        /// ```
+        ///
+        /// If you just change the state directly without calling [setState], then the
+        /// route will not be scheduled for rebuilding, meaning that its rendering
+        /// will not be updated.
+        /// </Summary>
         public virtual void SetState(VoidCallback fn) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a predicate that's true if the route has the specified name and if
+        /// popping the route will not yield the same route, i.e. if the route's
+        /// [willHandlePopInternally] property is false.
+        ///
+        /// This function is typically used with [Navigator.popUntil()].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Navigator.RoutePredicate WithName(string name) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Override this method to build the primary content of this route.
+        ///
+        /// The arguments have the following meanings:
+        ///
+        ///  * `context`: The context in which the route is being built.
+        ///  * [animation]: The animation for this route's transition. When entering,
+        ///    the animation runs forward from 0.0 to 1.0. When exiting, this animation
+        ///    runs backwards from 1.0 to 0.0.
+        ///  * [secondaryAnimation]: The animation for the route being pushed on top of
+        ///    this route. This animation lets this route coordinate with the entrance
+        ///    and exit transition of routes pushed on top of this route.
+        ///
+        /// This method is only called when the route is first built, and rarely
+        /// thereafter. In particular, it is not automatically called again when the
+        /// route's state changes unless it uses [ModalRoute.of]. For a builder that
+        /// is called every time the route's state changes, consider
+        /// [buildTransitions]. For widgets that change their behavior when the
+        /// route's state changes, consider [ModalRoute.of] to obtain a reference to
+        /// the route; this will cause the widget to be rebuilt each time the route
+        /// changes state.
+        ///
+        /// In general, [buildPage] should be used to build the page contents, and
+        /// [buildTransitions] for the widgets that change as the page is brought in
+        /// and out of view. Avoid using [buildTransitions] for content that never
+        /// changes; building such content once from [buildPage] is more efficient.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget BuildPage(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Override this method to wrap the [child] with one or more transition
+        /// widgets that define how the route arrives on and leaves the screen.
+        ///
+        /// By default, the child (which contains the widget returned by [buildPage])
+        /// is not wrapped in any transition widgets.
+        ///
+        /// The [buildTransitions] method, in contrast to [buildPage], is called each
+        /// time the [Route]'s state changes (e.g. the value of [canPop]).
+        ///
+        /// The [buildTransitions] method is typically used to define transitions
+        /// that animate the new topmost route's comings and goings. When the
+        /// [Navigator] pushes a route on the top of its stack, the new route's
+        /// primary [animation] runs from 0.0 to 1.0. When the Navigator pops the
+        /// topmost route, e.g. because the use pressed the back button, the
+        /// primary animation runs from 1.0 to 0.0.
+        ///
+        /// The following example uses the primary animation to drive a
+        /// [SlideTransition] that translates the top of the new route vertically
+        /// from the bottom of the screen when it is pushed on the Navigator's
+        /// stack. When the route is popped the SlideTransition translates the
+        /// route from the top of the screen back to the bottom.
+        ///
+        /// ```dart
+        /// PageRouteBuilder(
+        ///   pageBuilder: (BuildContext context,
+        ///       Animation<double> animation,
+        ///       Animation<double> secondaryAnimation,
+        ///       Widget child,
+        ///   ) {
+        ///     return Scaffold(
+        ///       appBar: AppBar(title: Text('Hello')),
+        ///       body: Center(
+        ///         child: Text('Hello World'),
+        ///       ),
+        ///     );
+        ///   },
+        ///   transitionsBuilder: (
+        ///       BuildContext context,
+        ///       Animation<double> animation,
+        ///       Animation<double> secondaryAnimation,
+        ///       Widget child,
+        ///    ) {
+        ///     return SlideTransition(
+        ///       position: Tween<Offset>(
+        ///         begin: const Offset(0.0, 1.0),
+        ///         end: Offset.zero,
+        ///       ).animate(animation),
+        ///       child: child, // child is the value returned by pageBuilder
+        ///     );
+        ///   },
+        /// );
+        /// ```
+        ///
+        /// We've used [PageRouteBuilder] to demonstrate the [buildTransitions] method
+        /// here. The body of an override of the [buildTransitions] method would be
+        /// defined in the same way.
+        ///
+        /// When the [Navigator] pushes a route on the top of its stack, the
+        /// [secondaryAnimation] can be used to define how the route that was on
+        /// the top of the stack leaves the screen. Similarly when the topmost route
+        /// is popped, the secondaryAnimation can be used to define how the route
+        /// below it reappears on the screen. When the Navigator pushes a new route
+        /// on the top of its stack, the old topmost route's secondaryAnimation
+        /// runs from 0.0 to 1.0. When the Navigator pops the topmost route, the
+        /// secondaryAnimation for the route below it runs from 1.0 to 0.0.
+        ///
+        /// The example below adds a transition that's driven by the
+        /// [secondaryAnimation]. When this route disappears because a new route has
+        /// been pushed on top of it, it translates in the opposite direction of
+        /// the new route. Likewise when the route is exposed because the topmost
+        /// route has been popped off.
+        ///
+        /// ```dart
+        ///   transitionsBuilder: (
+        ///       BuildContext context,
+        ///       Animation<double> animation,
+        ///       Animation<double> secondaryAnimation,
+        ///       Widget child,
+        ///   ) {
+        ///     return SlideTransition(
+        ///       position: AlignmentTween(
+        ///         begin: const Offset(0.0, 1.0),
+        ///         end: Offset.zero,
+        ///       ).animate(animation),
+        ///       child: SlideTransition(
+        ///         position: TweenOffset(
+        ///           begin: Offset.zero,
+        ///           end: const Offset(0.0, 1.0),
+        ///         ).animate(secondaryAnimation),
+        ///         child: child,
+        ///       ),
+        ///     );
+        ///   }
+        /// ```
+        ///
+        /// In practice the `secondaryAnimation` is used pretty rarely.
+        ///
+        /// The arguments to this method are as follows:
+        ///
+        ///  * `context`: The context in which the route is being built.
+        ///  * [animation]: When the [Navigator] pushes a route on the top of its stack,
+        ///    the new route's primary [animation] runs from 0.0 to 1.0. When the [Navigator]
+        ///    pops the topmost route this animation runs from 1.0 to 0.0.
+        ///  * [secondaryAnimation]: When the Navigator pushes a new route
+        ///    on the top of its stack, the old topmost route's [secondaryAnimation]
+        ///    runs from 0.0 to 1.0. When the [Navigator] pops the topmost route, the
+        ///    [secondaryAnimation] for the route below it runs from 1.0 to 0.0.
+        ///  * `child`, the page contents, as returned by [buildPage].
+        ///
+        /// See also:
+        ///
+        ///  * [buildPage], which is used to describe the actual contents of the page,
+        ///    and whose result is passed to the `child` argument of this method.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget BuildTransitions(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
 
 
@@ -883,12 +1314,101 @@ namespace FlutterSDK.Widgets.Routes
         public new void DidAdd() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the value of the first callback added with
+        /// [addScopedWillPopCallback] that returns false. If they all return true,
+        /// returns the inherited method's result (see [Route.willPop]).
+        ///
+        /// Typically this method is not overridden because applications usually
+        /// don't create modal routes directly, they use higher level primitives
+        /// like [showDialog]. The scoped [WillPopCallback] list makes it possible
+        /// for ModalRoute descendants to collectively define the value of `willPop`.
+        ///
+        /// See also:
+        ///
+        ///  * [Form], which provides an `onWillPop` callback that uses this mechanism.
+        ///  * [addScopedWillPopCallback], which adds a callback to the list this
+        ///    method checks.
+        ///  * [removeScopedWillPopCallback], which removes a callback from the list
+        ///    this method checks.
+        /// </Summary>
         public new Future<FlutterSDK.Widgets.Navigator.RoutePopDisposition> WillPop() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Enables this route to veto attempts by the user to dismiss it.
+        ///
+        /// This callback is typically added using a [WillPopScope] widget. That
+        /// widget finds the enclosing [ModalRoute] and uses this function to register
+        /// this callback:
+        ///
+        /// ```dart
+        /// Widget build(BuildContext context) {
+        ///   return WillPopScope(
+        ///     onWillPop: askTheUserIfTheyAreSure,
+        ///     child: ...,
+        ///   );
+        /// }
+        /// ```
+        ///
+        /// This callback runs asynchronously and it's possible that it will be called
+        /// after its route has been disposed. The callback should check [State.mounted]
+        /// before doing anything.
+        ///
+        /// A typical application of this callback would be to warn the user about
+        /// unsaved [Form] data if the user attempts to back out of the form. In that
+        /// case, use the [Form.onWillPop] property to register the callback.
+        ///
+        /// To register a callback manually, look up the enclosing [ModalRoute] in a
+        /// [State.didChangeDependencies] callback:
+        ///
+        /// ```dart
+        /// ModalRoute<dynamic> _route;
+        ///
+        /// @override
+        /// void didChangeDependencies() {
+        ///  super.didChangeDependencies();
+        ///  _route?.removeScopedWillPopCallback(askTheUserIfTheyAreSure);
+        ///  _route = ModalRoute.of(context);
+        ///  _route?.addScopedWillPopCallback(askTheUserIfTheyAreSure);
+        /// }
+        /// ```
+        ///
+        /// If you register a callback manually, be sure to remove the callback with
+        /// [removeScopedWillPopCallback] by the time the widget has been disposed. A
+        /// stateful widget can do this in its dispose method (continuing the previous
+        /// example):
+        ///
+        /// ```dart
+        /// @override
+        /// void dispose() {
+        ///   _route?.removeScopedWillPopCallback(askTheUserIfTheyAreSure);
+        ///   _route = null;
+        ///   super.dispose();
+        /// }
+        /// ```
+        ///
+        /// See also:
+        ///
+        ///  * [WillPopScope], which manages the registration and unregistration
+        ///    process automatically.
+        ///  * [Form], which provides an `onWillPop` callback that uses this mechanism.
+        ///  * [willPop], which runs the callbacks added with this method.
+        ///  * [removeScopedWillPopCallback], which removes a callback from the list
+        ///    that [willPop] checks.
+        /// </Summary>
         public virtual void AddScopedWillPopCallback(FlutterSDK.Widgets.Navigator.WillPopCallback callback) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Remove one of the callbacks run by [willPop].
+        ///
+        /// See also:
+        ///
+        ///  * [Form], which provides an `onWillPop` callback that uses this mechanism.
+        ///  * [addScopedWillPopCallback], which adds callback to the list
+        ///    checked by [willPop].
+        /// </Summary>
         public virtual void RemoveScopedWillPopCallback(FlutterSDK.Widgets.Navigator.WillPopCallback callback) { throw new NotImplementedException(); }
 
 
@@ -914,6 +1434,9 @@ namespace FlutterSDK.Widgets.Routes
     }
 
 
+    /// <Summary>
+    /// A modal route that overlays a widget over the current route.
+    /// </Summary>
     public class PopupRoute<T> : FlutterSDK.Widgets.Routes.ModalRoute<T>
     {
         #region constructors
@@ -934,6 +1457,81 @@ namespace FlutterSDK.Widgets.Routes
     }
 
 
+    /// <Summary>
+    /// A [Navigator] observer that notifies [RouteAware]s of changes to the
+    /// state of their [Route].
+    ///
+    /// [RouteObserver] informs subscribers whenever a route of type `R` is pushed
+    /// on top of their own route of type `R` or popped from it. This is for example
+    /// useful to keep track of page transitions, e.g. a `RouteObserver<PageRoute>`
+    /// will inform subscribed [RouteAware]s whenever the user navigates away from
+    /// the current page route to another page route.
+    ///
+    /// To be informed about route changes of any type, consider instantiating a
+    /// `RouteObserver<Route>`.
+    ///
+    /// ## Type arguments
+    ///
+    /// When using more aggressive
+    /// [lints](http://dart-lang.github.io/linter/lints/), in particular lints such
+    /// as `always_specify_types`, the Dart analyzer will require that certain types
+    /// be given with their type arguments. Since the [Route] class and its
+    /// subclasses have a type argument, this includes the arguments passed to this
+    /// class. Consider using `dynamic` to specify the entire class of routes rather
+    /// than only specific subtypes. For example, to watch for all [PageRoute]
+    /// variants, the `RouteObserver<PageRoute<dynamic>>` type may be used.
+    ///
+    /// {@tool snippet}
+    ///
+    /// To make a [StatefulWidget] aware of its current [Route] state, implement
+    /// [RouteAware] in its [State] and subscribe it to a [RouteObserver]:
+    ///
+    /// ```dart
+    /// // Register the RouteObserver as a navigation observer.
+    /// final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
+    /// void main() {
+    ///   runApp(MaterialApp(
+    ///     home: Container(),
+    ///     navigatorObservers: [routeObserver],
+    ///   ));
+    /// }
+    ///
+    /// class RouteAwareWidget extends StatefulWidget {
+    ///   State<RouteAwareWidget> createState() => RouteAwareWidgetState();
+    /// }
+    ///
+    /// // Implement RouteAware in a widget's state and subscribe it to the RouteObserver.
+    /// class RouteAwareWidgetState extends State<RouteAwareWidget> with RouteAware {
+    ///
+    ///   @override
+    ///   void didChangeDependencies() {
+    ///     super.didChangeDependencies();
+    ///     routeObserver.subscribe(this, ModalRoute.of(context));
+    ///   }
+    ///
+    ///   @override
+    ///   void dispose() {
+    ///     routeObserver.unsubscribe(this);
+    ///     super.dispose();
+    ///   }
+    ///
+    ///   @override
+    ///   void didPush() {
+    ///     // Route was pushed onto navigator and is now topmost route.
+    ///   }
+    ///
+    ///   @override
+    ///   void didPopNext() {
+    ///     // Covering route was popped off the navigator.
+    ///   }
+    ///
+    ///   @override
+    ///   Widget build(BuildContext context) => Container();
+    ///
+    /// }
+    /// ```
+    /// {@end-tool}
+    /// </Summary>
     public class RouteObserver<R> : FlutterSDK.Widgets.Navigator.NavigatorObserver
     {
         #region constructors
@@ -947,9 +1545,22 @@ namespace FlutterSDK.Widgets.Routes
 
         #region methods
 
+        /// <Summary>
+        /// Subscribe [routeAware] to be informed about changes to [route].
+        ///
+        /// Going forward, [routeAware] will be informed about qualifying changes
+        /// to [route], e.g. when [route] is covered by another route or when [route]
+        /// is popped off the [Navigator] stack.
+        /// </Summary>
         public virtual void Subscribe(FlutterSDK.Widgets.Routes.RouteAware routeAware, R route) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Unsubscribe [routeAware].
+        ///
+        /// [routeAware] is no longer informed about changes to its route. If the given argument was
+        /// subscribed to multiple types, this will unregister it (once) from each type.
+        /// </Summary>
         public virtual void Unsubscribe(FlutterSDK.Widgets.Routes.RouteAware routeAware) { throw new NotImplementedException(); }
 
 

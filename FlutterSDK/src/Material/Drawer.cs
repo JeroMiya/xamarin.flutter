@@ -388,6 +388,92 @@ namespace FlutterSDK.Material.Drawer
         public static TimeSpan _KBaseSettleDuration = default(TimeSpan);
     }
 
+    /// <Summary>
+    /// A material design panel that slides in horizontally from the edge of a
+    /// [Scaffold] to show navigation links in an application.
+    ///
+    /// Drawers are typically used with the [Scaffold.drawer] property. The child of
+    /// the drawer is usually a [ListView] whose first child is a [DrawerHeader]
+    /// that displays status information about the current user. The remaining
+    /// drawer children are often constructed with [ListTile]s, often concluding
+    /// with an [AboutListTile].
+    ///
+    /// The [AppBar] automatically displays an appropriate [IconButton] to show the
+    /// [Drawer] when a [Drawer] is available in the [Scaffold]. The [Scaffold]
+    /// automatically handles the edge-swipe gesture to show the drawer.
+    ///
+    /// {@animation 350 622 https://flutter.github.io/assets-for-api-docs/assets/material/drawer.mp4}
+    ///
+    /// {@tool snippet}
+    /// This example shows how to create a [Scaffold] that contains an [AppBar] and
+    /// a [Drawer]. A user taps the "menu" icon in the [AppBar] to open the
+    /// [Drawer]. The [Drawer] displays four items: A header and three menu items.
+    /// The [Drawer] displays the four items using a [ListView], which allows the
+    /// user to scroll through the items if need be.
+    ///
+    /// ```dart
+    /// Scaffold(
+    ///   appBar: AppBar(
+    ///     title: const Text('Drawer Demo'),
+    ///   ),
+    ///   drawer: Drawer(
+    ///     child: ListView(
+    ///       padding: EdgeInsets.zero,
+    ///       children: const <Widget>[
+    ///         DrawerHeader(
+    ///           decoration: BoxDecoration(
+    ///             color: Colors.blue,
+    ///           ),
+    ///           child: Text(
+    ///             'Drawer Header',
+    ///             style: TextStyle(
+    ///               color: Colors.white,
+    ///               fontSize: 24,
+    ///             ),
+    ///           ),
+    ///         ),
+    ///         ListTile(
+    ///           leading: Icon(Icons.message),
+    ///           title: Text('Messages'),
+    ///         ),
+    ///         ListTile(
+    ///           leading: Icon(Icons.account_circle),
+    ///           title: Text('Profile'),
+    ///         ),
+    ///         ListTile(
+    ///           leading: Icon(Icons.settings),
+    ///           title: Text('Settings'),
+    ///         ),
+    ///       ],
+    ///     ),
+    ///   ),
+    /// )
+    /// ```
+    /// {@end-tool}
+    ///
+    /// An open drawer can be closed by calling [Navigator.pop]. For example
+    /// a drawer item might close the drawer when tapped:
+    ///
+    /// ```dart
+    /// ListTile(
+    ///   leading: Icon(Icons.change_history),
+    ///   title: Text('Change history'),
+    ///   onTap: () {
+    ///     // change app state...
+    ///     Navigator.pop(context); // close the drawer
+    ///   },
+    /// );
+    /// ```
+    ///
+    /// See also:
+    ///
+    ///  * [Scaffold.drawer], where one specifies a [Drawer] so that it can be
+    ///    shown.
+    ///  * [Scaffold.of], to obtain the current [ScaffoldState], which manages the
+    ///    display and animation of the drawer.
+    ///  * [ScaffoldState.openDrawer], which displays its [Drawer], if any.
+    ///  * <https://material.io/design/components/navigation-drawer.html>
+    /// </Summary>
     public class Drawer : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors
@@ -414,6 +500,22 @@ namespace FlutterSDK.Material.Drawer
     }
 
 
+    /// <Summary>
+    /// Provides interactive behavior for [Drawer] widgets.
+    ///
+    /// Rarely used directly. Drawer controllers are typically created automatically
+    /// by [Scaffold] widgets.
+    ///
+    /// The draw controller provides the ability to open and close a drawer, either
+    /// via an animation or via user interaction. When closed, the drawer collapses
+    /// to a translucent gesture detector that can be used to listen for edge
+    /// swipes.
+    ///
+    /// See also:
+    ///
+    ///  * [Drawer], a container with the default width of a drawer.
+    ///  * [Scaffold.drawer], the [Scaffold] slot for showing a drawer.
+    /// </Summary>
     public class DrawerController : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -448,6 +550,11 @@ namespace FlutterSDK.Material.Drawer
     }
 
 
+    /// <Summary>
+    /// State for a [DrawerController].
+    ///
+    /// Typically used by a [Scaffold] to [open] and [close] the drawer.
+    /// </Summary>
     public class DrawerControllerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Drawer.DrawerController>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
         #region constructors
@@ -503,9 +610,17 @@ namespace FlutterSDK.Material.Drawer
         private void _Settle(FlutterSDK.Gestures.Dragdetails.DragEndDetails details) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Starts an animation to open the drawer.
+        ///
+        /// Typically called by [ScaffoldState.openDrawer].
+        /// </Summary>
         public virtual void Open() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Starts an animation to close the drawer.
+        /// </Summary>
         public virtual void Close() { throw new NotImplementedException(); }
 
 
@@ -521,10 +636,25 @@ namespace FlutterSDK.Material.Drawer
     }
 
 
+    /// <Summary>
+    /// The possible alignments of a [Drawer].
+    /// </Summary>
     public enum DrawerAlignment
     {
 
+        /// <Summary>
+        /// Denotes that the [Drawer] is at the start side of the [Scaffold].
+        ///
+        /// This corresponds to the left side when the text direction is left-to-right
+        /// and the right side when the text direction is right-to-left.
+        /// </Summary>
         Start,
+        /// <Summary>
+        /// Denotes that the [Drawer] is at the end side of the [Scaffold].
+        ///
+        /// This corresponds to the right side when the text direction is left-to-right
+        /// and the left side when the text direction is right-to-left.
+        /// </Summary>
         End,
     }
 

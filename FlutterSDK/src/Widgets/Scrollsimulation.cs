@@ -429,6 +429,13 @@ namespace FlutterSDK.Widgets.Scrollsimulation
     {
     }
 
+    /// <Summary>
+    /// An implementation of scroll physics that matches iOS.
+    ///
+    /// See also:
+    ///
+    ///  * [ClampingScrollSimulation], which implements Android scroll physics.
+    /// </Summary>
     public class BouncingScrollSimulation : FlutterSDK.Physics.Simulation.Simulation
     {
         #region constructors
@@ -476,6 +483,13 @@ namespace FlutterSDK.Widgets.Scrollsimulation
     }
 
 
+    /// <Summary>
+    /// An implementation of scroll physics that matches Android.
+    ///
+    /// See also:
+    ///
+    ///  * [BouncingScrollSimulation], which implements iOS scroll physics.
+    /// </Summary>
     public class ClampingScrollSimulation : FlutterSDK.Physics.Simulation.Simulation
     {
         #region constructors

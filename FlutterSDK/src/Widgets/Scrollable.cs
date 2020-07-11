@@ -431,6 +431,49 @@ namespace FlutterSDK.Widgets.Scrollable
     {
     }
 
+    /// <Summary>
+    /// A widget that scrolls.
+    ///
+    /// [Scrollable] implements the interaction model for a scrollable widget,
+    /// including gesture recognition, but does not have an opinion about how the
+    /// viewport, which actually displays the children, is constructed.
+    ///
+    /// It's rare to construct a [Scrollable] directly. Instead, consider [ListView]
+    /// or [GridView], which combine scrolling, viewporting, and a layout model. To
+    /// combine layout models (or to use a custom layout mode), consider using
+    /// [CustomScrollView].
+    ///
+    /// The static [Scrollable.of] and [Scrollable.ensureVisible] functions are
+    /// often used to interact with the [Scrollable] widget inside a [ListView] or
+    /// a [GridView].
+    ///
+    /// To further customize scrolling behavior with a [Scrollable]:
+    ///
+    /// 1. You can provide a [viewportBuilder] to customize the child model. For
+    ///    example, [SingleChildScrollView] uses a viewport that displays a single
+    ///    box child whereas [CustomScrollView] uses a [Viewport] or a
+    ///    [ShrinkWrappingViewport], both of which display a list of slivers.
+    ///
+    /// 2. You can provide a custom [ScrollController] that creates a custom
+    ///    [ScrollPosition] subclass. For example, [PageView] uses a
+    ///    [PageController], which creates a page-oriented scroll position subclass
+    ///    that keeps the same page visible when the [Scrollable] resizes.
+    ///
+    /// See also:
+    ///
+    ///  * [ListView], which is a commonly used [ScrollView] that displays a
+    ///    scrolling, linear list of child widgets.
+    ///  * [PageView], which is a scrolling list of child widgets that are each the
+    ///    size of the viewport.
+    ///  * [GridView], which is a [ScrollView] that displays a scrolling, 2D array
+    ///    of child widgets.
+    ///  * [CustomScrollView], which is a [ScrollView] that creates custom scroll
+    ///    effects using slivers.
+    ///  * [SingleChildScrollView], which is a scrollable widget that has a single
+    ///    child.
+    ///  * [ScrollNotification] and [NotificationListener], which can be used to watch
+    ///    the scroll position without using a [ScrollController].
+    /// </Summary>
     public class Scrollable : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -468,12 +511,43 @@ namespace FlutterSDK.Widgets.Scrollable
         public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The state from the closest instance of this class that encloses the given context.
+        ///
+        /// Typical usage is as follows:
+        ///
+        /// ```dart
+        /// ScrollableState scrollable = Scrollable.of(context);
+        /// ```
+        ///
+        /// Calling this method will create a dependency on the closest [Scrollable]
+        /// in the [context], if there is one.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollable.ScrollableState Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Provides a heuristic to determine if expensive frame-bound tasks should be
+        /// deferred for the [context] at a specific point in time.
+        ///
+        /// Calling this method does _not_ create a dependency on any other widget.
+        /// This also means that the value returned is only good for the point in time
+        /// when it is called, and callers will not get updated if the value changes.
+        ///
+        /// The heuristic used is determined by the [physics] of this [Scrollable]
+        /// via [ScrollPhysics.recommendDeferredScrolling]. That method is called with
+        /// the current [activity]'s [ScrollActivity.velocity].
+        ///
+        /// If there is no [Scrollable] in the widget tree above the [context], this
+        /// method returns false.
+        /// </Summary>
         public virtual bool RecommendDeferredLoadingForContext(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Scrolls the scrollables that enclose the given context so as to make the
+        /// given context visible.
+        /// </Summary>
         public virtual Future<object> EnsureVisible(FlutterSDK.Widgets.Framework.BuildContext context, double alignment = 0.0, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Widgets.Scrollposition.ScrollPositionAlignmentPolicy alignmentPolicy = default(FlutterSDK.Widgets.Scrollposition.ScrollPositionAlignmentPolicy)) { throw new NotImplementedException(); }
 
         #endregion
@@ -505,6 +579,18 @@ namespace FlutterSDK.Widgets.Scrollable
     }
 
 
+    /// <Summary>
+    /// State object for a [Scrollable] widget.
+    ///
+    /// To manipulate a [Scrollable] widget's scroll position, use the object
+    /// obtained from the [position] property.
+    ///
+    /// To be informed of when a [Scrollable] widget is scrolling, use a
+    /// [NotificationListener] to listen for [ScrollNotification] notifications.
+    ///
+    /// This class is not intended to be subclassed. To specialize the behavior of a
+    /// [Scrollable], provide it with a [ScrollPhysics].
+    /// </Summary>
     public class ScrollableState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Scrollable.Scrollable>, IScrollContext, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
         #region constructors
@@ -597,6 +683,22 @@ namespace FlutterSDK.Widgets.Scrollable
     }
 
 
+    /// <Summary>
+    /// With [_ScrollSemantics] certain child [SemanticsNode]s can be
+    /// excluded from the scrollable area for semantics purposes.
+    ///
+    /// Nodes, that are to be excluded, have to be tagged with
+    /// [RenderViewport.excludeFromScrolling] and the [RenderAbstractViewport] in
+    /// use has to add the [RenderViewport.useTwoPaneSemantics] tag to its
+    /// [SemanticsConfiguration] by overriding
+    /// [RenderObject.describeSemanticsConfiguration].
+    ///
+    /// If the tag [RenderViewport.useTwoPaneSemantics] is present on the viewport,
+    /// two semantics nodes will be used to represent the [Scrollable]: The outer
+    /// node will contain all children, that are excluded from scrolling. The inner
+    /// node, which is annotated with the scrolling actions, will house the
+    /// scrollable children.
+    /// </Summary>
     public class _ScrollSemantics : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
         #region constructors
@@ -661,6 +763,11 @@ namespace FlutterSDK.Widgets.Scrollable
     }
 
 
+    /// <Summary>
+    /// A details object that describes the type of scroll increment being requested
+    /// of a [ScrollIncrementCalculator] function, as well as the current metrics
+    /// for the scrollable.
+    /// </Summary>
     public class ScrollIncrementDetails
     {
         #region constructors
@@ -682,6 +789,14 @@ namespace FlutterSDK.Widgets.Scrollable
     }
 
 
+    /// <Summary>
+    /// An [Intent] that represents scrolling the nearest scrollable by an amount
+    /// appropriate for the [type] specified.
+    ///
+    /// The actual amount of the scroll is determined by the
+    /// [Scrollable.incrementCalculator], or by its defaults if that is not
+    /// specified.
+    /// </Summary>
     public class ScrollIntent : FlutterSDK.Widgets.Actions.Intent
     {
         #region constructors
@@ -706,6 +821,15 @@ namespace FlutterSDK.Widgets.Scrollable
     }
 
 
+    /// <Summary>
+    /// An [Action] that scrolls the [Scrollable] that encloses the current
+    /// [primaryFocus] by the amount configured in the [ScrollIntent] given to it.
+    ///
+    /// If [Scrollable.incrementCalculator] is null for the scrollable, the default
+    /// for a [ScrollIntent.type] set to [ScrollIncrementType.page] is 80% of the
+    /// size of the scroll window, and for [ScrollIncrementType.line], 50 logical
+    /// pixels.
+    /// </Summary>
     public class ScrollAction : FlutterSDK.Widgets.Actions.Action
     {
         #region constructors
@@ -735,10 +859,45 @@ namespace FlutterSDK.Widgets.Scrollable
     }
 
 
+    /// <Summary>
+    /// Describes the type of scroll increment that will be performed by a
+    /// [ScrollAction] on a [Scrollable].
+    ///
+    /// This is used to configure a [ScrollIncrementDetails] object to pass to a
+    /// [ScrollIncrementCalculator] function on a [Scrollable].
+    ///
+    /// {@template flutter.widgets.scrollable.scroll_increment_type.intent}
+    /// This indicates the *intent* of the scroll, not necessarily the size. Not all
+    /// scrollable areas will have the concept of a "line" or "page", but they can
+    /// respond to the different standard key bindings that cause scrolling, which
+    /// are bound to keys that people use to indicate a "line" scroll (e.g.
+    /// control-arrowDown keys) or a "page" scroll (e.g. pageDown key). It is
+    /// recommended that at least the relative magnitudes of the scrolls match
+    /// expectations.
+    /// {@endtemplate}
+    /// </Summary>
     public enum ScrollIncrementType
     {
 
+        /// <Summary>
+        /// Indicates that the [ScrollIncrementCalculator] should return the scroll
+        /// distance it should move when the user requests to scroll by a "line".
+        ///
+        /// The distance a "line" scrolls refers to what should happen when the key
+        /// binding for "scroll down/up by a line" is triggered. It's up to the
+        /// [ScrollIncrementCalculator] function to decide what that means for a
+        /// particular scrollable.
+        /// </Summary>
         Line,
+        /// <Summary>
+        /// Indicates that the [ScrollIncrementCalculator] should return the scroll
+        /// distance it should move when the user requests to scroll by a "page".
+        ///
+        /// The distance a "page" scrolls refers to what should happen when the key
+        /// binding for "scroll down/up by a page" is triggered. It's up to the
+        /// [ScrollIncrementCalculator] function to decide what that means for a
+        /// particular scrollable.
+        /// </Summary>
         Page,
     }
 

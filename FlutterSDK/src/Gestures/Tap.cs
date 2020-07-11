@@ -304,6 +304,38 @@ namespace FlutterSDK.Gestures.Tap
     {
     }
 
+    /// <Summary>
+    /// A base class for gesture recognizers that recognize taps.
+    ///
+    /// Gesture recognizers take part in gesture arenas to enable potential gestures
+    /// to be disambiguated from each other. This process is managed by a
+    /// [GestureArenaManager].
+    ///
+    /// A tap is defined as a sequence of events that starts with a down, followed
+    /// by optional moves, then ends with an up. All move events must contain the
+    /// same `buttons` as the down event, and must not be too far from the initial
+    /// position. The gesture is rejected on any violation, a cancel event, or
+    /// if any other recognizers wins the arena. It is accepted only when it is the
+    /// last member of the arena.
+    ///
+    /// The [BaseTapGestureRecognizer] considers all the pointers involved in the
+    /// pointer event sequence as contributing to one gesture. For this reason,
+    /// extra pointer interactions during a tap sequence are not recognized as
+    /// additional taps. For example, down-1, down-2, up-1, up-2 produces only one
+    /// tap on up-1.
+    ///
+    /// The [BaseTapGestureRecognizer] can not be directly used, since it does not
+    /// define which buttons to accept, or what to do when a tap happens. If you
+    /// want to build a custom tap recognizer, extend this class by overriding
+    /// [isPointerAllowed] and the handler methods.
+    ///
+    /// See also:
+    ///
+    ///  * [TapGestureRecognizer], a ready-to-use tap recognizer that recognizes
+    ///    taps of the primary button and taps of the secondary button.
+    ///  * [ModalBarrier], a widget that uses a custom tap recognizer that accepts
+    ///    any buttons.
+    /// </Summary>
     public interface IBaseTapGestureRecognizer
     {
         void HandleTapDown(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent));
@@ -321,6 +353,14 @@ namespace FlutterSDK.Gestures.Tap
     }
 
 
+    /// <Summary>
+    /// Details for [GestureTapDownCallback], such as position
+    ///
+    /// See also:
+    ///
+    ///  * [GestureDetector.onTapDown], which receives this information.
+    ///  * [TapGestureRecognizer], which passes this information to one of its callbacks.
+    /// </Summary>
     public class TapDownDetails
     {
         #region constructors
@@ -343,6 +383,14 @@ namespace FlutterSDK.Gestures.Tap
     }
 
 
+    /// <Summary>
+    /// Details for [GestureTapUpCallback], such as position.
+    ///
+    /// See also:
+    ///
+    ///  * [GestureDetector.onTapUp], which receives this information.
+    ///  * [TapGestureRecognizer], which passes this information to one of its callbacks.
+    /// </Summary>
     public class TapUpDetails
     {
         #region constructors
@@ -363,6 +411,38 @@ namespace FlutterSDK.Gestures.Tap
     }
 
 
+    /// <Summary>
+    /// A base class for gesture recognizers that recognize taps.
+    ///
+    /// Gesture recognizers take part in gesture arenas to enable potential gestures
+    /// to be disambiguated from each other. This process is managed by a
+    /// [GestureArenaManager].
+    ///
+    /// A tap is defined as a sequence of events that starts with a down, followed
+    /// by optional moves, then ends with an up. All move events must contain the
+    /// same `buttons` as the down event, and must not be too far from the initial
+    /// position. The gesture is rejected on any violation, a cancel event, or
+    /// if any other recognizers wins the arena. It is accepted only when it is the
+    /// last member of the arena.
+    ///
+    /// The [BaseTapGestureRecognizer] considers all the pointers involved in the
+    /// pointer event sequence as contributing to one gesture. For this reason,
+    /// extra pointer interactions during a tap sequence are not recognized as
+    /// additional taps. For example, down-1, down-2, up-1, up-2 produces only one
+    /// tap on up-1.
+    ///
+    /// The [BaseTapGestureRecognizer] can not be directly used, since it does not
+    /// define which buttons to accept, or what to do when a tap happens. If you
+    /// want to build a custom tap recognizer, extend this class by overriding
+    /// [isPointerAllowed] and the handler methods.
+    ///
+    /// See also:
+    ///
+    ///  * [TapGestureRecognizer], a ready-to-use tap recognizer that recognizes
+    ///    taps of the primary button and taps of the secondary button.
+    ///  * [ModalBarrier], a widget that uses a custom tap recognizer that accepts
+    ///    any buttons.
+    /// </Summary>
     public class BaseTapGestureRecognizer : FlutterSDK.Gestures.Recognizer.PrimaryPointerGestureRecognizer
     {
         #region constructors
@@ -383,12 +463,51 @@ namespace FlutterSDK.Gestures.Tap
 
         #region methods
 
+        /// <Summary>
+        /// A pointer has contacted the screen, which might be the start of a tap.
+        ///
+        /// This triggers after the down event, once a short timeout ([deadline]) has
+        /// elapsed, or once the gesture has won the arena, whichever comes first.
+        ///
+        /// The parameter `down` is the down event of the primary pointer that started
+        /// the tap sequence.
+        ///
+        /// If this recognizer doesn't win the arena, [handleTapCancel] is called next.
+        /// Otherwise, [handleTapUp] is called next.
+        /// </Summary>
         public virtual void HandleTapDown(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// A pointer has stopped contacting the screen, which is recognized as a tap.
+        ///
+        /// This triggers on the up event, if the recognizer wins the arena with it
+        /// or has previously won.
+        ///
+        /// The parameter `down` is the down event of the primary pointer that started
+        /// the tap sequence, and `up` is the up event that ended the tap sequence.
+        ///
+        /// If this recognizer doesn't win the arena, [handleTapCancel] is called
+        /// instead.
+        /// </Summary>
         public virtual void HandleTapUp(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent), FlutterSDK.Gestures.Events.PointerUpEvent up = default(FlutterSDK.Gestures.Events.PointerUpEvent)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// A pointer that previously triggered [handleTapDown] will not end up
+        /// causing a tap.
+        ///
+        /// This triggers once the gesture loses the arena, if [handleTapDown] has
+        /// been previously triggered.
+        ///
+        /// The parameter `down` is the down event of the primary pointer that started
+        /// the tap sequence; `cancel` is the cancel event, which might be null;
+        /// `reason` is a short description of the cause if `cancel` is null, which
+        /// can be "forced" if other gestures won the arena, or "spontaneous"
+        /// otherwise.
+        ///
+        /// If this recognizer wins the arena, [handleTapUp] is called instead.
+        /// </Summary>
         public virtual void HandleTapCancel(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent), FlutterSDK.Gestures.Events.PointerCancelEvent cancel = default(FlutterSDK.Gestures.Events.PointerCancelEvent), string reason = default(string)) { throw new NotImplementedException(); }
 
 
@@ -431,6 +550,28 @@ namespace FlutterSDK.Gestures.Tap
     }
 
 
+    /// <Summary>
+    /// Recognizes taps.
+    ///
+    /// Gesture recognizers take part in gesture arenas to enable potential gestures
+    /// to be disambiguated from each other. This process is managed by a
+    /// [GestureArenaManager].
+    ///
+    /// [TapGestureRecognizer] considers all the pointers involved in the pointer
+    /// event sequence as contributing to one gesture. For this reason, extra
+    /// pointer interactions during a tap sequence are not recognized as additional
+    /// taps. For example, down-1, down-2, up-1, up-2 produces only one tap on up-1.
+    ///
+    /// [TapGestureRecognizer] competes on pointer events of [kPrimaryButton] only
+    /// when it has at least one non-null `onTap*` callback, and events of
+    /// [kSecondaryButton] only when it has at least one non-null `onSecondaryTap*`
+    /// callback. If it has no callbacks, it is a no-op.
+    ///
+    /// See also:
+    ///
+    ///  * [GestureDetector.onTap], which uses this recognizer.
+    ///  * [MultiTapGestureRecognizer]
+    /// </Summary>
     public class TapGestureRecognizer : FlutterSDK.Gestures.Tap.BaseTapGestureRecognizer
     {
         #region constructors

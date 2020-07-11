@@ -409,6 +409,18 @@ namespace FlutterSDK.Material.Pickers.Datepickerheader
         public static double _HeaderPaddingLandscape = default(double);
     }
 
+    /// <Summary>
+    /// Re-usable widget that displays the selected date (in large font) and the
+    /// help text above it.
+    ///
+    /// These types include:
+    ///
+    /// * Single Date picker with calendar mode.
+    /// * Single Date picker with manual input mode.
+    ///
+    /// [helpText], [orientation], [icon], [onIconPressed] are required and must be
+    /// non-null.
+    /// </Summary>
     public class DatePickerHeader : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors

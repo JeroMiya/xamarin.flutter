@@ -429,6 +429,9 @@ namespace FlutterSDK.Widgets.Statustransitions
     {
     }
 
+    /// <Summary>
+    /// A widget that rebuilds when the given animation changes status.
+    /// </Summary>
     public interface IStatusTransitionWidget
     {
         FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context);
@@ -437,6 +440,9 @@ namespace FlutterSDK.Widgets.Statustransitions
     }
 
 
+    /// <Summary>
+    /// A widget that rebuilds when the given animation changes status.
+    /// </Summary>
     public class StatusTransitionWidget : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -453,6 +459,10 @@ namespace FlutterSDK.Widgets.Statustransitions
 
         #region methods
 
+        /// <Summary>
+        /// Override this method to build widgets that depend on the current status
+        /// of the animation.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 

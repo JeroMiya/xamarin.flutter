@@ -321,6 +321,12 @@ namespace FlutterSDK.Gestures.Binding
         private void _HandlePointerDataPacket(PointerDataPacket packet) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Dispatch a [PointerCancelEvent] for the given pointer soon.
+        ///
+        /// The pointer event will be dispatched before the next pointer event and
+        /// before the end of the microtask but not within this function call.
+        /// </Summary>
         public virtual void CancelPointer(int pointer) { throw new NotImplementedException(); }
 
 
@@ -330,9 +336,20 @@ namespace FlutterSDK.Gestures.Binding
         private void _HandlePointerEvent(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Determine which [HitTestTarget] objects are located at a given position.
+        /// </Summary>
         public new void HitTest(FlutterSDK.Gestures.Hittest.HitTestResult result, FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Dispatch an event to a hit test result's path.
+        ///
+        /// This sends the given event to every [HitTestTarget] in the entries of the
+        /// given [HitTestResult], and catches exceptions that any of the handlers
+        /// might throw. The [hitTestResult] argument may only be null for
+        /// [PointerHoverEvent], [PointerAddedEvent], or [PointerRemovedEvent] events.
+        /// </Summary>
         public new void DispatchEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Hittest.HitTestResult hitTestResult) { throw new NotImplementedException(); }
 
 
@@ -364,6 +381,15 @@ namespace FlutterSDK.Gestures.Binding
     }
 
 
+    /// <Summary>
+    /// Variant of [FlutterErrorDetails] with extra fields for the gesture
+    /// library's binding's pointer event dispatcher ([GestureBinding.dispatchEvent]).
+    ///
+    /// See also:
+    ///
+    ///  * [FlutterErrorDetailsForPointerRouter], which is also used by the
+    ///    gesture library.
+    /// </Summary>
     public class FlutterErrorDetailsForPointerEventDispatcher : FlutterSDK.Foundation.Assertions.FlutterErrorDetails
     {
         #region constructors

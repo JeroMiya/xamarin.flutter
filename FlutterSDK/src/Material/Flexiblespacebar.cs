@@ -388,6 +388,110 @@ namespace FlutterSDK.Material.Flexiblespacebar
     {
     }
 
+    /// <Summary>
+    /// The part of a material design [AppBar] that expands, collapses, and
+    /// stretches.
+    ///
+    /// Most commonly used in in the [SliverAppBar.flexibleSpace] field, a flexible
+    /// space bar expands and contracts as the app scrolls so that the [AppBar]
+    /// reaches from the top of the app to the top of the scrolling contents of the
+    /// app. Furthermore is included functionality for stretch behavior. When
+    /// [SliverAppBar.stretch] is true, and your [ScrollPhysics] allow for
+    /// overscroll, this space will stretch with the overscroll.
+    ///
+    /// The widget that sizes the [AppBar] must wrap it in the widget returned by
+    /// [FlexibleSpaceBar.createSettings], to convey sizing information down to the
+    /// [FlexibleSpaceBar].
+    ///
+    /// {@tool dartpad --template=freeform}
+    /// This sample application demonstrates the different features of the
+    /// [FlexibleSpaceBar] when used in a [SliverAppBar]. This app bar is configured
+    /// to stretch into the overscroll space, and uses the
+    /// [FlexibleSpaceBar.stretchModes] to apply `fadeTitle`, `blurBackground` and
+    /// `zoomBackground`. The app bar also makes use of [CollapseMode.parallax] by
+    /// default.
+    ///
+    /// ```dart imports
+    /// import 'package:flutter/material.dart';
+    /// ```
+    /// ```dart
+    /// void main() => runApp(MaterialApp(home: MyApp()));
+    ///
+    /// class MyApp extends StatelessWidget {
+    ///   @override
+    ///   Widget build(BuildContext context) {
+    ///     return Scaffold(
+    ///       body: CustomScrollView(
+    ///         physics: const BouncingScrollPhysics(),
+    ///         slivers: <Widget>[
+    ///           SliverAppBar(
+    ///             stretch: true,
+    ///             onStretchTrigger: () {
+    ///               // Function callback for stretch
+    ///               return;
+    ///             },
+    ///             expandedHeight: 300.0,
+    ///             flexibleSpace: FlexibleSpaceBar(
+    ///               stretchModes: <StretchMode>[
+    ///                 StretchMode.zoomBackground,
+    ///                 StretchMode.blurBackground,
+    ///                 StretchMode.fadeTitle,
+    ///               ],
+    ///               centerTitle: true,
+    ///               title: const Text('Flight Report'),
+    ///               background: Stack(
+    ///                 fit: StackFit.expand,
+    ///                 children: [
+    ///                   Image.network(
+    ///                     'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
+    ///                     fit: BoxFit.cover,
+    ///                   ),
+    ///                   const DecoratedBox(
+    ///                     decoration: BoxDecoration(
+    ///                       gradient: LinearGradient(
+    ///                         begin: Alignment(0.0, 0.5),
+    ///                         end: Alignment(0.0, 0.0),
+    ///                         colors: <Color>[
+    ///                           Color(0x60000000),
+    ///                           Color(0x00000000),
+    ///                         ],
+    ///                       ),
+    ///                     ),
+    ///                   ),
+    ///                 ],
+    ///               ),
+    ///             ),
+    ///           ),
+    ///           SliverList(
+    ///             delegate: SliverChildListDelegate([
+    ///               ListTile(
+    ///                 leading: Icon(Icons.wb_sunny),
+    ///                 title: Text('Sunday'),
+    ///                 subtitle: Text('sunny, h: 80, l: 65'),
+    ///               ),
+    ///               ListTile(
+    ///                 leading: Icon(Icons.wb_sunny),
+    ///                 title: Text('Monday'),
+    ///                 subtitle: Text('sunny, h: 80, l: 65'),
+    ///               ),
+    ///               // ListTiles++
+    ///             ]),
+    ///           ),
+    ///         ],
+    ///       ),
+    ///     );
+    ///   }
+    /// }
+    ///
+    /// ```
+    /// {@end-tool}
+    ///
+    /// See also:
+    ///
+    ///  * [SliverAppBar], which implements the expanding and contracting.
+    ///  * [AppBar], which is used by [SliverAppBar].
+    ///  * <https://material.io/design/components/app-bars-top.html#behavior>
+    /// </Summary>
     public class FlexibleSpaceBar : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -414,6 +518,25 @@ namespace FlutterSDK.Material.Flexiblespacebar
 
         #region methods
 
+        /// <Summary>
+        /// Wraps a widget that contains an [AppBar] to convey sizing information down
+        /// to the [FlexibleSpaceBar].
+        ///
+        /// Used by [Scaffold] and [SliverAppBar].
+        ///
+        /// `toolbarOpacity` affects how transparent the text within the toolbar
+        /// appears. `minExtent` sets the minimum height of the resulting
+        /// [FlexibleSpaceBar] when fully collapsed. `maxExtent` sets the maximum
+        /// height of the resulting [FlexibleSpaceBar] when fully expanded.
+        /// `currentExtent` sets the scale of the [FlexibleSpaceBar.background] and
+        /// [FlexibleSpaceBar.title] widgets of [FlexibleSpaceBar] upon
+        /// initialization.
+        ///
+        /// See also:
+        ///
+        ///  * [FlexibleSpaceBarSettings] which creates a settings object that can be
+        ///    used to specify these settings to a [FlexibleSpaceBar].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget CreateSettings(double toolbarOpacity = default(double), double minExtent = default(double), double maxExtent = default(double), double currentExtent = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget)) { throw new NotImplementedException(); }
 
 
@@ -450,6 +573,13 @@ namespace FlutterSDK.Material.Flexiblespacebar
     }
 
 
+    /// <Summary>
+    /// Provides sizing and opacity information to a [FlexibleSpaceBar].
+    ///
+    /// See also:
+    ///
+    ///  * [FlexibleSpaceBar] which creates a flexible space bar.
+    /// </Summary>
     public class FlexibleSpaceBarSettings : FlutterSDK.Widgets.Framework.InheritedWidget
     {
         #region constructors
@@ -479,20 +609,44 @@ namespace FlutterSDK.Material.Flexiblespacebar
     }
 
 
+    /// <Summary>
+    /// The collapsing effect while the space bar collapses from its full size.
+    /// </Summary>
     public enum CollapseMode
     {
 
+        /// <Summary>
+        /// The background widget will scroll in a parallax fashion.
+        /// </Summary>
         Parallax,
+        /// <Summary>
+        /// The background widget pin in place until it reaches the min extent.
+        /// </Summary>
         Pin,
+        /// <Summary>
+        /// The background widget will act as normal with no collapsing effect.
+        /// </Summary>
         None,
     }
 
 
+    /// <Summary>
+    /// The stretching effect while the space bar stretches beyond its full size.
+    /// </Summary>
     public enum StretchMode
     {
 
+        /// <Summary>
+        /// The background widget will expand to fill the extra space.
+        /// </Summary>
         ZoomBackground,
+        /// <Summary>
+        /// The background will blur using a [ImageFilter.blur] effect.
+        /// </Summary>
         BlurBackground,
+        /// <Summary>
+        /// The title will fade away as the user over-scrolls.
+        /// </Summary>
         FadeTitle,
     }
 

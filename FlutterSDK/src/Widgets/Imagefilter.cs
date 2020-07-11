@@ -428,6 +428,9 @@ namespace FlutterSDK.Widgets.Imagefilter
     {
     }
 
+    /// <Summary>
+    /// Applies an [ImageFilter] to its child.
+    /// </Summary>
     public class ImageFiltered : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
         #region constructors

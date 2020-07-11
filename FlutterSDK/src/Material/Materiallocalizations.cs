@@ -445,60 +445,195 @@ namespace FlutterSDK.Material.Materiallocalizations
         public virtual string CollapsedIconTapHint { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual string RefreshIndicatorSemanticLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
+        /// <Summary>
+        /// The default title for [AboutListTile].
+        /// </Summary>
         public virtual string AboutListTileTitle(string applicationName) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Title for the [PaginatedDataTable]'s row info footer.
+        /// </Summary>
         public virtual string PageRowsInfoTitle(int firstRow, int lastRow, int rowCount, bool rowCountIsApproximate) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The accessibility label used on a tab in a [TabBar].
+        ///
+        /// This message describes the index of the selected tab and how many tabs
+        /// there are, e.g. 'Tab 1 of 2' in United States English.
+        ///
+        /// `tabIndex` and `tabCount` must be greater than or equal to one.
+        /// </Summary>
         public virtual string TabLabel(int tabIndex = default(int), int tabCount = default(int)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Title for the [PaginatedDataTable]'s selected row count header.
+        /// </Summary>
         public virtual string SelectedRowCountTitle(int selectedRowCount) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The format used to lay out the time picker.
+        ///
+        /// The documentation for [TimeOfDayFormat] enum values provides details on
+        /// each supported layout.
+        /// </Summary>
         public virtual FlutterSDK.Material.Time.TimeOfDayFormat TimeOfDayFormat(bool alwaysUse24HourFormat = false) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Formats [number] as a decimal, inserting locale-appropriate thousands
+        /// separators as necessary.
+        /// </Summary>
         public virtual string FormatDecimal(int number) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Formats [TimeOfDay.hour] in the given time of day according to the value
+        /// of [timeOfDayFormat].
+        ///
+        /// If [alwaysUse24HourFormat] is true, formats hour using [HourFormat.HH]
+        /// rather than the default for the current locale.
+        /// </Summary>
         public virtual string FormatHour(FlutterSDK.Material.Time.TimeOfDay timeOfDay, bool alwaysUse24HourFormat = false) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Formats [TimeOfDay.minute] in the given time of day according to the value
+        /// of [timeOfDayFormat].
+        /// </Summary>
         public virtual string FormatMinute(FlutterSDK.Material.Time.TimeOfDay timeOfDay) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Formats [timeOfDay] according to the value of [timeOfDayFormat].
+        ///
+        /// If [alwaysUse24HourFormat] is true, formats hour using [HourFormat.HH]
+        /// rather than the default for the current locale. This value is usually
+        /// passed from [MediaQueryData.alwaysUse24HourFormat], which has platform-
+        /// specific behavior.
+        /// </Summary>
         public virtual string FormatTimeOfDay(FlutterSDK.Material.Time.TimeOfDay timeOfDay, bool alwaysUse24HourFormat = false) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Full unabbreviated year format, e.g. 2017 rather than 17.
+        /// </Summary>
         public virtual string FormatYear(DateTime date) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Formats the date in a compact format.
+        ///
+        /// Usually just the numeric values for the for day, month and year are used.
+        ///
+        /// Examples:
+        ///
+        /// - US English: 02/21/2019
+        /// - Russian: 21.02.2019
+        ///
+        /// See also:
+        ///   * [parseCompactDate], which will convert a compact date string to a [DateTime].
+        /// </Summary>
         public virtual string FormatCompactDate(DateTime date) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Formats the date using a short-width format.
+        ///
+        /// Includes the abbreviation of the month, the day and year.
+        ///
+        /// Examples:
+        ///
+        /// - US English: Feb 21, 2019
+        /// - Russian: 21 февр. 2019 г.
+        /// </Summary>
         public virtual string FormatShortDate(DateTime date) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Formats the date using a medium-width format.
+        ///
+        /// Abbreviates month and days of week. This appears in the header of the date
+        /// picker invoked using [showDatePicker].
+        ///
+        /// Examples:
+        ///
+        /// - US English: Wed, Sep 27
+        /// - Russian: ср, сент. 27
+        /// </Summary>
         public virtual string FormatMediumDate(DateTime date) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Formats day of week, month, day of month and year in a long-width format.
+        ///
+        /// Does not abbreviate names. Appears in spoken announcements of the date
+        /// picker invoked using [showDatePicker], when accessibility mode is on.
+        ///
+        /// Examples:
+        ///
+        /// - US English: Wednesday, September 27, 2017
+        /// - Russian: Среда, Сентябрь 27, 2017
+        /// </Summary>
         public virtual string FormatFullDate(DateTime date) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Formats the month and the year of the given [date].
+        ///
+        /// The returned string does not contain the day of the month. This appears
+        /// in the date picker invoked using [showDatePicker].
+        /// </Summary>
         public virtual string FormatMonthYear(DateTime date) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Formats the month and day of the given [date].
+        ///
+        /// Examples:
+        ///
+        /// - US English: Feb 21
+        /// - Russian: 21 февр.
+        /// </Summary>
         public virtual string FormatShortMonthDay(DateTime date) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Converts the given compact date formatted string into a [DateTime].
+        ///
+        /// The format of the string must be a valid compact date format for the
+        /// given locale. If the text doesn't represent a valid date, `null` will be
+        /// returned.
+        ///
+        /// See also:
+        ///   * [formatCompactDate], which will convert a [DateTime] into a string in the compact format.
+        /// </Summary>
         public virtual DateTime ParseCompactDate(string inputString) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The label for the [TextField]'s character counter.
+        /// </Summary>
         public virtual string RemainingTextFieldCharacterCount(int remaining) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The `MaterialLocalizations` from the closest [Localizations] instance
+        /// that encloses the given context.
+        ///
+        /// This method is just a convenient shorthand for:
+        /// `Localizations.of<MaterialLocalizations>(context, MaterialLocalizations)`.
+        ///
+        /// References to the localized resources defined by this class are typically
+        /// written in terms of this method. For example:
+        ///
+        /// ```dart
+        /// tooltip: MaterialLocalizations.of(context).backButtonTooltip,
+        /// ```
+        /// </Summary>
         public virtual FlutterSDK.Material.Materiallocalizations.MaterialLocalizations Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
     }
@@ -609,6 +744,16 @@ namespace FlutterSDK.Material.Materiallocalizations
     }
 
 
+    /// <Summary>
+    /// US English strings for the material widgets.
+    ///
+    /// See also:
+    ///
+    ///  * [GlobalMaterialLocalizations], which provides material localizations for
+    ///    many languages.
+    ///  * [MaterialApp.localizationsDelegates], which automatically includes
+    ///    [DefaultMaterialLocalizations.delegate] by default.
+    /// </Summary>
     public class DefaultMaterialLocalizations : IMaterialLocalizations
     {
         #region constructors
@@ -675,12 +820,23 @@ namespace FlutterSDK.Material.Materiallocalizations
 
         #region methods
 
+        /// <Summary>
+        /// Returns the number of days in a month, according to the proleptic
+        /// Gregorian calendar.
+        ///
+        /// This applies the leap year logic introduced by the Gregorian reforms of
+        /// 1582. It will not give valid results for dates prior to that time.
+        /// </Summary>
         private int _GetDaysInMonth(int year, int month) { throw new NotImplementedException(); }
 
 
         public new string FormatHour(FlutterSDK.Material.Time.TimeOfDay timeOfDay, bool alwaysUse24HourFormat = false) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Formats [number] using two digits, assuming it's in the 0-99 inclusive
+        /// range. Not designed to format values outside this range.
+        /// </Summary>
         private string _FormatTwoDigitZeroPad(int number) { throw new NotImplementedException(); }
 
 
@@ -735,6 +891,15 @@ namespace FlutterSDK.Material.Materiallocalizations
         public new FlutterSDK.Material.Time.TimeOfDayFormat TimeOfDayFormat(bool alwaysUse24HourFormat = false) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Creates an object that provides US English resource values for the material
+        /// library widgets.
+        ///
+        /// The [locale] parameter is ignored.
+        ///
+        /// This method is typically used to create a [LocalizationsDelegate].
+        /// The [MaterialApp] does so by default.
+        /// </Summary>
         public virtual Future<FlutterSDK.Material.Materiallocalizations.MaterialLocalizations> Load(Locale locale) { throw new NotImplementedException(); }
 
 

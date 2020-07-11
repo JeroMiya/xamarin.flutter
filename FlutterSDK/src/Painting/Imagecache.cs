@@ -445,27 +445,119 @@ namespace FlutterSDK.Painting.Imagecache
         public virtual int LiveImageCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int PendingImageCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
+        /// <Summary>
+        /// Evicts all pending and keepAlive entries from the cache.
+        ///
+        /// This is useful if, for instance, the root asset bundle has been updated
+        /// and therefore new images must be obtained.
+        ///
+        /// Images which have not finished loading yet will not be removed from the
+        /// cache, and when they complete they will be inserted as normal.
+        ///
+        /// This method does not clear live references to images, since clearing those
+        /// would not reduce memory pressure. Such images still have listeners in the
+        /// application code, and will still remain resident in memory.
+        ///
+        /// To clear live references, use [clearLiveImages].
+        /// </Summary>
         public virtual void Clear() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Evicts a single entry from the cache, returning true if successful.
+        ///
+        /// Pending images waiting for completion are removed as well, returning true
+        /// if successful. When a pending image is removed the listener on it is
+        /// removed as well to prevent it from adding itself to the cache if it
+        /// eventually completes.
+        ///
+        /// If this method removes a pending image, it will also remove
+        /// the corresponding live tracking of the image, since it is no longer clear
+        /// if the image will ever complete or have any listeners, and failing to
+        /// remove the live reference could leave the cache in a state where all
+        /// subsequent calls to [putIfAbsent] will return an [ImageStreamCompleter]
+        /// that will never complete.
+        ///
+        /// If this method removes a completed image, it will _not_ remove the live
+        /// reference to the image, which will only be cleared when the listener
+        /// count on the completer drops to zero. To clear live image references,
+        /// whether completed or not, use [clearLiveImages].
+        ///
+        /// The `key` must be equal to an object used to cache an image in
+        /// [ImageCache.putIfAbsent].
+        ///
+        /// If the key is not immediately available, as is common, consider using
+        /// [ImageProvider.evict] to call this method indirectly instead.
+        ///
+        /// The `includeLive` argument determines whether images that still have
+        /// listeners in the tree should be evicted as well. This parameter should be
+        /// set to true in cases where the image may be corrupted and needs to be
+        /// completely discarded by the cache. It should be set to false when calls
+        /// to evict are trying to relieve memory pressure, since an image with a
+        /// listener will not actually be evicted from memory, and subsequent attempts
+        /// to load it will end up allocating more memory for the image again. The
+        /// argument must not be null.
+        ///
+        /// See also:
+        ///
+        ///  * [ImageProvider], for providing images to the [Image] widget.
+        /// </Summary>
         public virtual bool Evict(@Object key, bool includeLive = true) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Updates the least recently used image cache with this image, if it is
+        /// less than the [maximumSizeBytes] of this cache.
+        ///
+        /// Resizes the cache as appropriate to maintain the constraints of
+        /// [maximumSize] and [maximumSizeBytes].
+        /// </Summary>
         private void _Touch(@Object key, FlutterSDK.Painting.Imagecache._CachedImage image, TimelineTask timelineTask) { throw new NotImplementedException(); }
 
 
         private void _TrackLiveImage(@Object key, FlutterSDK.Painting.Imagecache._LiveImage image, bool debugPutOk = true) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the previously cached [ImageStream] for the given key, if available;
+        /// if not, calls the given callback to obtain it first. In either case, the
+        /// key is moved to the "most recently used" position.
+        ///
+        /// The arguments must not be null. The `loader` cannot return null.
+        ///
+        /// In the event that the loader throws an exception, it will be caught only if
+        /// `onError` is also provided. When an exception is caught resolving an image,
+        /// no completers are cached and `null` is returned instead of a new
+        /// completer.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Imagestream.ImageStreamCompleter PutIfAbsent(@Object key, Func<ImageStreamCompleter> loader, FlutterSDK.Painting.Imagestream.ImageErrorListener onError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The [ImageCacheStatus] information for the given `key`.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Imagecache.ImageCacheStatus StatusForKey(@Object key) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns whether this `key` has been previously added by [putIfAbsent].
+        /// </Summary>
         public virtual bool ContainsKey(@Object key) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Clears any live references to images in this cache.
+        ///
+        /// An image is considered live if its [ImageStreamCompleter] has never hit
+        /// zero listeners after adding at least one listener. The
+        /// [ImageStreamCompleter.addOnLastListenerRemovedCallback] is used to
+        /// determine when this has happened.
+        ///
+        /// This is called after a hot reload to evict any stale references to image
+        /// data for assets that have changed. Calling this method does not relieve
+        /// memory pressure, since the live image caching only tracks image instances
+        /// that are also being held by at least one other object.
+        /// </Summary>
         public virtual void ClearLiveImages() { throw new NotImplementedException(); }
 
 
@@ -499,6 +591,25 @@ namespace FlutterSDK.Painting.Imagecache
     }
 
 
+    /// <Summary>
+    /// Information about how the [ImageCache] is tracking an image.
+    ///
+    /// A [pending] image is one that has not completed yet. It may also be tracked
+    /// as [live] because something is listening to it.
+    ///
+    /// A [keepAlive] image is being held in the cache, which uses Least Recently
+    /// Used semantics to determine when to evict an image. These images are subject
+    /// to eviction based on [ImageCache.maximumSizeBytes] and
+    /// [ImageCache.maximumSize]. It may be [live], but not [pending].
+    ///
+    /// A [live] image is being held until its [ImageStreamCompleter] has no more
+    /// listeners. It may also be [pending] or [keepAlive].
+    ///
+    /// An [untracked] image is not being cached.
+    ///
+    /// To obtain an [ImageCacheStatus], use [ImageCache.statusForKey] or
+    /// [ImageProvider.obtainCacheStatus].
+    /// </Summary>
     public class ImageCacheStatus
     {
         #region constructors

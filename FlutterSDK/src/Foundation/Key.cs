@@ -299,11 +299,37 @@ namespace FlutterSDK.Foundation.Key
     {
     }
 
+    /// <Summary>
+    /// A [Key] is an identifier for [Widget]s, [Element]s and [SemanticsNode]s.
+    ///
+    /// A new widget will only be used to update an existing element if its key is
+    /// the same as the key of the current widget associated with the element.
+    ///
+    /// {@youtube 560 315 https://www.youtube.com/watch?v=kn0EOS-ZiIc}
+    ///
+    /// Keys must be unique amongst the [Element]s with the same parent.
+    ///
+    /// Subclasses of [Key] should either subclass [LocalKey] or [GlobalKey].
+    ///
+    /// See also:
+    ///
+    ///  * [Widget.key], which discusses how widgets use keys.
+    /// </Summary>
     public interface IKey
     {
     }
 
 
+    /// <Summary>
+    /// A key that is not a [GlobalKey].
+    ///
+    /// Keys must be unique amongst the [Element]s with the same parent. By
+    /// contrast, [GlobalKey]s must be unique across the entire app.
+    ///
+    /// See also:
+    ///
+    ///  * [Widget.key], which discusses how widgets use keys.
+    /// </Summary>
     public interface ILocalKey
     {
     }
@@ -331,6 +357,22 @@ namespace FlutterSDK.Foundation.Key
     }
 
 
+    /// <Summary>
+    /// A [Key] is an identifier for [Widget]s, [Element]s and [SemanticsNode]s.
+    ///
+    /// A new widget will only be used to update an existing element if its key is
+    /// the same as the key of the current widget associated with the element.
+    ///
+    /// {@youtube 560 315 https://www.youtube.com/watch?v=kn0EOS-ZiIc}
+    ///
+    /// Keys must be unique amongst the [Element]s with the same parent.
+    ///
+    /// Subclasses of [Key] should either subclass [LocalKey] or [GlobalKey].
+    ///
+    /// See also:
+    ///
+    ///  * [Widget.key], which discusses how widgets use keys.
+    /// </Summary>
     public class Key
     {
         #region constructors
@@ -353,6 +395,16 @@ namespace FlutterSDK.Foundation.Key
     }
 
 
+    /// <Summary>
+    /// A key that is not a [GlobalKey].
+    ///
+    /// Keys must be unique amongst the [Element]s with the same parent. By
+    /// contrast, [GlobalKey]s must be unique across the entire app.
+    ///
+    /// See also:
+    ///
+    ///  * [Widget.key], which discusses how widgets use keys.
+    /// </Summary>
     public class LocalKey : FlutterSDK.Foundation.Key.Key
     {
         #region constructors
@@ -371,6 +423,22 @@ namespace FlutterSDK.Foundation.Key
     }
 
 
+    /// <Summary>
+    /// A key that uses a value of a particular type to identify itself.
+    ///
+    /// A [ValueKey<T>] is equal to another [ValueKey<T>] if, and only if, their
+    /// values are [operator==].
+    ///
+    /// This class can be subclassed to create value keys that will not be equal to
+    /// other value keys that happen to use the same value. If the subclass is
+    /// private, this results in a value key type that cannot collide with keys from
+    /// other sources, which could be useful, for example, if the keys are being
+    /// used as fallbacks in the same scope as keys supplied from another widget.
+    ///
+    /// See also:
+    ///
+    ///  * [Widget.key], which discusses how widgets use keys.
+    /// </Summary>
     public class ValueKey<T> : FlutterSDK.Foundation.Key.LocalKey
     {
         #region constructors

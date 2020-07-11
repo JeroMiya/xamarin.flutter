@@ -430,6 +430,19 @@ namespace FlutterSDK.Material.Tabs
 
     }
 
+    /// <Summary>
+    /// A material design [TabBar] tab.
+    ///
+    /// If both [icon] and [text] are provided, the text is displayed below
+    /// the icon.
+    ///
+    /// See also:
+    ///
+    ///  * [TabBar], which displays a row of tabs.
+    ///  * [TabBarView], which displays a widget for the currently selected tab.
+    ///  * [TabController], which coordinates tab selection between a [TabBar] and a [TabBarView].
+    ///  * <https://material.io/design/components/tabs.html>
+    /// </Summary>
     public class Tab : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors
@@ -698,6 +711,27 @@ namespace FlutterSDK.Material.Tabs
     }
 
 
+    /// <Summary>
+    /// A material design widget that displays a horizontal row of tabs.
+    ///
+    /// Typically created as the [AppBar.bottom] part of an [AppBar] and in
+    /// conjunction with a [TabBarView].
+    ///
+    /// If a [TabController] is not provided, then a [DefaultTabController] ancestor
+    /// must be provided instead. The tab controller's [TabController.length] must
+    /// equal the length of the [tabs] list and the length of the
+    /// [TabBarView.children] list.
+    ///
+    /// Requires one of its ancestors to be a [Material] widget.
+    ///
+    /// Uses values from [TabBarTheme] if it is set in the current context.
+    ///
+    /// To see a sample implementation, visit the [TabController] documentation.
+    ///
+    /// See also:
+    ///
+    ///  * [TabBarView], which displays page views that correspond to each tab.
+    /// </Summary>
     public class TabBar : FlutterSDK.Widgets.Framework.StatefulWidget, IPreferredSizeWidget
     {
         #region constructors
@@ -824,6 +858,20 @@ namespace FlutterSDK.Material.Tabs
     }
 
 
+    /// <Summary>
+    /// A page view that displays the widget which corresponds to the currently
+    /// selected tab.
+    ///
+    /// This widget is typically used in conjunction with a [TabBar].
+    ///
+    /// If a [TabController] is not provided, then there must be a [DefaultTabController]
+    /// ancestor.
+    ///
+    /// The tab controller's [TabController.length] must equal the length of the
+    /// [children] list and the length of the [TabBar.tabs] list.
+    ///
+    /// To see a sample implementation, visit the [TabController] documentation.
+    /// </Summary>
     public class TabBarView : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -904,6 +952,11 @@ namespace FlutterSDK.Material.Tabs
     }
 
 
+    /// <Summary>
+    /// Displays a single circle with the specified border and background colors.
+    ///
+    /// Used by [TabPageSelector] to indicate the selected page.
+    /// </Summary>
     public class TabPageSelectorIndicator : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors
@@ -930,6 +983,15 @@ namespace FlutterSDK.Material.Tabs
     }
 
 
+    /// <Summary>
+    /// Displays a row of small circular indicators, one per tab.
+    ///
+    /// The selected tab's indicator is highlighted. Often used in conjunction with
+    /// a [TabBarView].
+    ///
+    /// If a [TabController] is not provided, then there must be a
+    /// [DefaultTabController] ancestor.
+    /// </Summary>
     public class TabPageSelector : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors
@@ -961,10 +1023,31 @@ namespace FlutterSDK.Material.Tabs
     }
 
 
+    /// <Summary>
+    /// Defines how the bounds of the selected tab indicator are computed.
+    ///
+    /// See also:
+    ///
+    ///  * [TabBar], which displays a row of tabs.
+    ///  * [TabBarView], which displays a widget for the currently selected tab.
+    ///  * [TabBar.indicator], which defines the appearance of the selected tab
+    ///    indicator relative to the tab's bounds.
+    /// </Summary>
     public enum TabBarIndicatorSize
     {
 
+        /// <Summary>
+        /// The tab indicator's bounds are as wide as the space occupied by the tab
+        /// in the tab bar: from the right edge of the previous tab to the left edge
+        /// of the next tab.
+        /// </Summary>
         Tab,
+        /// <Summary>
+        /// The tab's bounds are only as wide as the (centered) tab widget itself.
+        ///
+        /// This value is used to align the tab's label, typically a [Tab]
+        /// widget's text or icon, with the selected tab indicator.
+        /// </Summary>
         Label,
     }
 

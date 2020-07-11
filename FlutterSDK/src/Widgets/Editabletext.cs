@@ -432,6 +432,76 @@ namespace FlutterSDK.Widgets.Editabletext
         public static int _KObscureShowLatestCharCursorTicks = default(int);
     }
 
+    /// <Summary>
+    /// A controller for an editable text field.
+    ///
+    /// Whenever the user modifies a text field with an associated
+    /// [TextEditingController], the text field updates [value] and the controller
+    /// notifies its listeners. Listeners can then read the [text] and [selection]
+    /// properties to learn what the user has typed or how the selection has been
+    /// updated.
+    ///
+    /// Similarly, if you modify the [text] or [selection] properties, the text
+    /// field will be notified and will update itself appropriately.
+    ///
+    /// A [TextEditingController] can also be used to provide an initial value for a
+    /// text field. If you build a text field with a controller that already has
+    /// [text], the text field will use that text as its initial value.
+    ///
+    /// The [text] or [selection] properties can be set from within a listener
+    /// added to this controller. If both properties need to be changed then the
+    /// controller's [value] should be set instead.
+    ///
+    /// Remember to [dispose] of the [TextEditingController] when it is no longer needed.
+    /// This will ensure we discard any resources used by the object.
+    /// {@tool dartpad --template=stateful_widget_material}
+    /// This example creates a [TextField] with a [TextEditingController] whose
+    /// change listener forces the entered text to be lower case and keeps the
+    /// cursor at the end of the input.
+    ///
+    /// ```dart
+    /// final _controller = TextEditingController();
+    ///
+    /// void initState() {
+    ///   super.initState();
+    ///   _controller.addListener(() {
+    ///     final text = _controller.text.toLowerCase();
+    ///     _controller.value = _controller.value.copyWith(
+    ///       text: text,
+    ///       selection: TextSelection(baseOffset: text.length, extentOffset: text.length),
+    ///       composing: TextRange.empty,
+    ///     );
+    ///   });
+    /// }
+    ///
+    /// void dispose() {
+    ///   _controller.dispose();
+    ///   super.dispose();
+    /// }
+    ///
+    /// Widget build(BuildContext context) {
+    ///   return Scaffold(
+    ///     body: Container(
+    ///      alignment: Alignment.center,
+    ///       padding: const EdgeInsets.all(6),
+    ///       child: TextFormField(
+    ///         controller: _controller,
+    ///         decoration: InputDecoration(border: OutlineInputBorder()),
+    ///       ),
+    ///     ),
+    ///   );
+    /// }
+    /// ```
+    /// {@end-tool}
+    ///
+    /// See also:
+    ///
+    ///  * [TextField], which is a Material Design text field that can be controlled
+    ///    with a [TextEditingController].
+    ///  * [EditableText], which is a raw region of editable text that can be
+    ///    controlled with a [TextEditingController].
+    ///  * Learn how to use a [TextEditingController] in one of our [cookbook recipe]s.(https://flutter.dev/docs/cookbook/forms/text-field-changes#2-use-a-texteditingcontroller)
+    /// </Summary>
     public class TextEditingController : FlutterSDK.Foundation.Changenotifier.ValueNotifier<FlutterSDK.Services.Textinput.TextEditingValue>
     {
         #region constructors
@@ -453,21 +523,64 @@ namespace FlutterSDK.Widgets.Editabletext
 
         #region methods
 
+        /// <Summary>
+        /// Builds [TextSpan] from current editing value.
+        ///
+        /// By default makes text in composing range appear as underlined.
+        /// Descendants can override this method to customize appearance of text.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textspan.TextSpan BuildTextSpan(FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), bool withComposing = default(bool)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Set the [value] to empty.
+        ///
+        /// After calling this function, [text] will be the empty string and the
+        /// selection will be invalid.
+        ///
+        /// Calling this will notify all the listeners of this [TextEditingController]
+        /// that they need to update (it calls [notifyListeners]). For this reason,
+        /// this method should only be called between frames, e.g. in response to user
+        /// actions, not during the build, layout, or paint phases.
+        /// </Summary>
         public virtual void Clear() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Set the composing region to an empty range.
+        ///
+        /// The composing region is the range of text that is still being composed.
+        /// Calling this function indicates that the user is done composing that
+        /// region.
+        ///
+        /// Calling this will notify all the listeners of this [TextEditingController]
+        /// that they need to update (it calls [notifyListeners]). For this reason,
+        /// this method should only be called between frames, e.g. in response to user
+        /// actions, not during the build, layout, or paint phases.
+        /// </Summary>
         public virtual void ClearComposing() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Check that the [selection] is inside of the bounds of [text].
+        /// </Summary>
         public virtual bool IsSelectionWithinTextBounds(FlutterSDK.Services.Textediting.TextSelection selection) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// Toolbar configuration for [EditableText].
+    ///
+    /// Toolbar is a context menu that will show up when user right click or long
+    /// press the [EditableText]. It includes several options: cut, copy, paste,
+    /// and select all.
+    ///
+    /// [EditableText] and its derived widgets have their own default [ToolbarOptions].
+    /// Create a custom [ToolbarOptions] if you want explicit control over the toolbar
+    /// option.
+    /// </Summary>
     public class ToolbarOptions
     {
         #region constructors
@@ -493,6 +606,63 @@ namespace FlutterSDK.Widgets.Editabletext
     }
 
 
+    /// <Summary>
+    /// A basic text input field.
+    ///
+    /// This widget interacts with the [TextInput] service to let the user edit the
+    /// text it contains. It also provides scrolling, selection, and cursor
+    /// movement. This widget does not provide any focus management (e.g.,
+    /// tap-to-focus).
+    ///
+    /// ## Input Actions
+    ///
+    /// A [TextInputAction] can be provided to customize the appearance of the
+    /// action button on the soft keyboard for Android and iOS. The default action
+    /// is [TextInputAction.done].
+    ///
+    /// Many [TextInputAction]s are common between Android and iOS. However, if an
+    /// [inputAction] is provided that is not supported by the current
+    /// platform in debug mode, an error will be thrown when the corresponding
+    /// EditableText receives focus. For example, providing iOS's "emergencyCall"
+    /// action when running on an Android device will result in an error when in
+    /// debug mode. In release mode, incompatible [TextInputAction]s are replaced
+    /// either with "unspecified" on Android, or "default" on iOS. Appropriate
+    /// [inputAction]s can be chosen by checking the current platform and then
+    /// selecting the appropriate action.
+    ///
+    /// ## Lifecycle
+    ///
+    /// Upon completion of editing, like pressing the "done" button on the keyboard,
+    /// two actions take place:
+    ///
+    ///   1st: Editing is finalized. The default behavior of this step includes
+    ///   an invocation of [onChanged]. That default behavior can be overridden.
+    ///   See [onEditingComplete] for details.
+    ///
+    ///   2nd: [onSubmitted] is invoked with the user's input value.
+    ///
+    /// [onSubmitted] can be used to manually move focus to another input widget
+    /// when a user finishes with the currently focused input widget.
+    ///
+    /// Rather than using this widget directly, consider using [TextField], which
+    /// is a full-featured, material-design text input field with placeholder text,
+    /// labels, and [Form] integration.
+    ///
+    /// ## Gesture Events Handling
+    ///
+    /// This widget provides rudimentary, platform-agnostic gesture handling for
+    /// user actions such as tapping, long-pressing and scrolling when
+    /// [rendererIgnoresPointer] is false (false by default). To tightly conform
+    /// to the platform behavior with respect to input gestures in text fields, use
+    /// [TextField] or [CupertinoTextField]. For custom selection behavior, call
+    /// methods such as [RenderEditable.selectPosition],
+    /// [RenderEditable.selectWord], etc. programmatically.
+    ///
+    /// See also:
+    ///
+    ///  * [TextField], which is a full-featured, material-design text input field
+    ///    with placeholder text, labels, and [Form] integration.
+    /// </Summary>
     public class EditableText : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -613,6 +783,9 @@ namespace FlutterSDK.Widgets.Editabletext
     }
 
 
+    /// <Summary>
+    /// State for a [EditableText].
+    /// </Summary>
     public class EditableTextState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Editabletext.EditableText>, ITextInputClient, ITextSelectionDelegate, IAutomaticKeepAliveClientMixin<FlutterSDK.Widgets.Editabletext.EditableText>, IWidgetsBindingObserver, ITickerProviderStateMixin<FlutterSDK.Widgets.Editabletext.EditableText>
     {
         #region constructors
@@ -724,6 +897,15 @@ namespace FlutterSDK.Widgets.Editabletext
         public new void ConnectionClosed() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Express interest in interacting with the keyboard.
+        ///
+        /// If this control is already attached to the keyboard, this function will
+        /// request that the keyboard become visible. Otherwise, this function will
+        /// ask the focus system that it become focused. If successful in acquiring
+        /// focus, the control will then attach to the keyboard and request that the
+        /// keyboard become visible.
+        /// </Summary>
         public virtual void RequestKeyboard() { throw new NotImplementedException(); }
 
 
@@ -775,12 +957,21 @@ namespace FlutterSDK.Widgets.Editabletext
         public new void BringIntoView(TextPosition position) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Shows the selection toolbar at the location of the current cursor.
+        ///
+        /// Returns `false` if a toolbar couldn't be shown, such as when the toolbar
+        /// is already shown, or when no text selection currently exists.
+        /// </Summary>
         public virtual bool ShowToolbar() { throw new NotImplementedException(); }
 
 
         public new void HideToolbar() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Toggles the visibility of the toolbar.
+        /// </Summary>
         public virtual void ToggleToolbar() { throw new NotImplementedException(); }
 
 
@@ -796,6 +987,12 @@ namespace FlutterSDK.Widgets.Editabletext
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Builds [TextSpan] from current editing value.
+        ///
+        /// By default makes text in composing range appear as underlined.
+        /// Descendants can override this method to customize appearance of text.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Textspan.TextSpan BuildTextSpan() { throw new NotImplementedException(); }
 
         #endregion

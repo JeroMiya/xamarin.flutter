@@ -390,6 +390,23 @@ namespace FlutterSDK.Material.Inkhighlight
         public static TimeSpan _KDefaultHighlightFadeDuration = default(TimeSpan);
     }
 
+    /// <Summary>
+    /// A visual emphasis on a part of a [Material] receiving user interaction.
+    ///
+    /// This object is rarely created directly. Instead of creating an ink highlight
+    /// directly, consider using an [InkResponse] or [InkWell] widget, which uses
+    /// gestures (such as tap and long-press) to trigger ink highlights.
+    ///
+    /// See also:
+    ///
+    ///  * [InkResponse], which uses gestures to trigger ink highlights and ink
+    ///    splashes in the parent [Material].
+    ///  * [InkWell], which is a rectangular [InkResponse] (the most common type of
+    ///    ink response).
+    ///  * [Material], which is the widget on which the ink highlight is painted.
+    ///  * [InkSplash], which is an ink feature that shows a reaction to user input
+    ///    on a [Material].
+    /// </Summary>
     public class InkHighlight : FlutterSDK.Material.Inkwell.InteractiveInkFeature
     {
         #region constructors
@@ -414,9 +431,15 @@ namespace FlutterSDK.Material.Inkhighlight
 
         #region methods
 
+        /// <Summary>
+        /// Start visually emphasizing this part of the material.
+        /// </Summary>
         public virtual void Activate() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Stop visually emphasizing this part of the material.
+        /// </Summary>
         public virtual void Deactivate() { throw new NotImplementedException(); }
 
 

@@ -432,15 +432,29 @@ namespace FlutterSDK.Services.Rawkeyboardlinux
     public class KeyHelper
     {
 
+        /// <Summary>
+        /// Returns a [KeyboardSide] enum value that describes which side or sides of
+        /// the given keyboard modifier key were pressed at the time of this event.
+        /// </Summary>
         public virtual FlutterSDK.Services.Rawkeyboard.KeyboardSide GetModifierSide(FlutterSDK.Services.Rawkeyboard.ModifierKey key) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns true if the given [ModifierKey] was pressed at the time of this
+        /// event.
+        /// </Summary>
         public virtual bool IsModifierPressed(FlutterSDK.Services.Rawkeyboard.ModifierKey key, int modifiers, FlutterSDK.Services.Rawkeyboard.KeyboardSide side = default(FlutterSDK.Services.Rawkeyboard.KeyboardSide), int keyCode = default(int), bool isDown = default(bool)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The numpad key from the specific key code mapping.
+        /// </Summary>
         public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadKey(int keyCode) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The logical key key from the specific key code mapping.
+        /// </Summary>
         public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey(int keyCode) { throw new NotImplementedException(); }
 
     }
@@ -514,6 +528,16 @@ namespace FlutterSDK.Services.Rawkeyboardlinux
     }
 
 
+    /// <Summary>
+    /// Platform-specific key event data for Linux.
+    ///
+    /// Different window toolkit implementations can map to different key codes. This class
+    /// will use the correct mapping depending on the [toolkit] provided.
+    ///
+    /// See also:
+    ///
+    ///  * [RawKeyboard], which uses this interface to expose key data.
+    /// </Summary>
     public class RawKeyEventDataLinux : FlutterSDK.Services.Rawkeyboard.RawKeyEventData
     {
         #region constructors

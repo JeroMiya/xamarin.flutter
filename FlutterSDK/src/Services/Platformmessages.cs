@@ -427,6 +427,23 @@ namespace FlutterSDK.Services.Platformmessages
     {
     }
 
+    /// <Summary>
+    /// Sends binary messages to and receives binary messages from platform plugins.
+    ///
+    /// This class has been deprecated in favor of [defaultBinaryMessenger]. New
+    /// code should not use [BinaryMessages].
+    ///
+    /// See also:
+    ///
+    ///  * [BinaryMessenger], the interface which has replaced this class.
+    ///  * [BasicMessageChannel], which provides basic messaging services similar to
+    ///    `BinaryMessages`, but with pluggable message codecs in support of sending
+    ///    strings or semi-structured messages.
+    ///  * [MethodChannel], which provides platform communication using asynchronous
+    ///    method calls.
+    ///  * [EventChannel], which provides platform communication using event streams.
+    ///  * <https://flutter.dev/platform-channels/>
+    /// </Summary>
     public class BinaryMessages
     {
         #region constructors
@@ -442,15 +459,52 @@ namespace FlutterSDK.Services.Platformmessages
 
         #region methods
 
+        /// <Summary>
+        /// Calls the handler registered for the given channel.
+        ///
+        /// Typically called by [ServicesBinding] to handle platform messages received
+        /// from [Window.onPlatformMessage].
+        ///
+        /// To register a handler for a given message channel, see [setMessageHandler].
+        /// </Summary>
         public virtual Future<object> HandlePlatformMessage(string channel, ByteData data, PlatformMessageResponseCallback callback) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Send a binary message to the platform plugins on the given channel.
+        ///
+        /// Returns a [Future] which completes to the received response, undecoded, in
+        /// binary form.
+        /// </Summary>
         public virtual Future<ByteData> Send(string channel, ByteData message) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Set a callback for receiving messages from the platform plugins on the
+        /// given channel, without decoding them.
+        ///
+        /// The given callback will replace the currently registered callback for that
+        /// channel, if any. To remove the handler, pass null as the `handler`
+        /// argument.
+        ///
+        /// The handler's return value, if non-null, is sent as a response, unencoded.
+        /// </Summary>
         public virtual void SetMessageHandler(string channel, Func<Future<ByteData>, ByteData> handler) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Set a mock callback for intercepting messages from the `send*` methods on
+        /// this class, on the given channel, without decoding them.
+        ///
+        /// The given callback will replace the currently registered mock callback for
+        /// that channel, if any. To remove the mock handler, pass null as the
+        /// `handler` argument.
+        ///
+        /// The handler's return value, if non-null, is used as a response, unencoded.
+        ///
+        /// This is intended for testing. Messages intercepted in this manner are not
+        /// sent to platform plugins.
+        /// </Summary>
         public virtual void SetMockMessageHandler(string channel, Func<Future<ByteData>, ByteData> handler) { throw new NotImplementedException(); }
 
         #endregion

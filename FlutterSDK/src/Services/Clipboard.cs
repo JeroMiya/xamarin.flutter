@@ -427,6 +427,12 @@ namespace FlutterSDK.Services.Clipboard
     {
     }
 
+    /// <Summary>
+    /// Data stored on the system clipboard.
+    ///
+    /// The system clipboard can contain data of various media types. This data
+    /// structure currently supports only plain text data, in the [text] property.
+    /// </Summary>
     public class ClipboardData
     {
         #region constructors
@@ -445,6 +451,9 @@ namespace FlutterSDK.Services.Clipboard
     }
 
 
+    /// <Summary>
+    /// Utility methods for interacting with the system's clipboard.
+    /// </Summary>
     public class Clipboard
     {
         #region constructors
@@ -460,9 +469,21 @@ namespace FlutterSDK.Services.Clipboard
 
         #region methods
 
+        /// <Summary>
+        /// Stores the given clipboard data on the clipboard.
+        /// </Summary>
         public virtual Future<object> SetData(FlutterSDK.Services.Clipboard.ClipboardData data) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Retrieves data from the clipboard that matches the given format.
+        ///
+        /// The `format` argument specifies the media type, such as `text/plain`, of
+        /// the data to obtain.
+        ///
+        /// Returns a future which completes to null if the data could not be
+        /// obtained, and to a [ClipboardData] object if it could.
+        /// </Summary>
         public virtual Future<FlutterSDK.Services.Clipboard.ClipboardData> GetData(string format) { throw new NotImplementedException(); }
 
         #endregion

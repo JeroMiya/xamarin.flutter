@@ -422,6 +422,99 @@ namespace FlutterSDK.Material.Texttheme
     {
     }
 
+    /// <Summary>
+    /// Material design text theme.
+    ///
+    /// Definitions for the various typographical styles found in Material Design
+    /// (e.g., button, caption). Rather than creating a [TextTheme] directly,
+    /// you can obtain an instance as [Typography.black] or [Typography.white].
+    ///
+    /// To obtain the current text theme, call [Theme.of] with the current
+    /// [BuildContext] and read the [ThemeData.textTheme] property.
+    ///
+    /// The names of the TextTheme properties match this table from the
+    /// [Material Design spec](https://material.io/design/typography/the-type-system.html#type-scale)
+    /// with two exceptions: the styles called H1-H6 in the spec are
+    /// headline1-headline6 in the API, and body1,body2 are called
+    /// bodyText1 and bodyText2.
+    ///
+    /// ![](https://storage.googleapis.com/spec-host-backup/mio-design%2Fassets%2F1W8kyGVruuG_O8psvyiOaCf1lLFIMzB-N%2Ftypesystem-typescale.png)
+    ///
+    /// ## Migrating from the 2014 names
+    ///
+    /// The Material Design typography scheme was significantly changed in the
+    /// current (2018) version of the specification
+    /// (https://material.io/design/typography).
+    ///
+    /// The 2018 spec has thirteen text styles:
+    /// ```
+    /// NAME         SIZE  WEIGHT  SPACING
+    /// headline1    96.0  light   -1.5
+    /// headline2    60.0  light   -0.5
+    /// headline3    48.0  regular  0.0
+    /// headline4    34.0  regular  0.25
+    /// headline5    24.0  regular  0.0
+    /// headline6    20.0  medium   0.15
+    /// subtitle1    16.0  regular  0.15
+    /// subtitle2    14.0  medium   0.1
+    /// body1        16.0  regular  0.5   (bodyText1)
+    /// body2        14.0  regular  0.25  (bodyText2)
+    /// button       14.0  medium   1.25
+    /// caption      12.0  regular  0.4
+    /// overline     10.0  regular  1.5
+    /// ```
+    ///
+    /// ...where "light" is `FontWeight.w300`, "regular" is `FontWeight.w400` and
+    /// "medium" is `FontWeight.w500`.
+    ///
+    /// The [TextTheme] API was originally based on the original material (2014)
+    /// design spec, which used different text style names. For backwards
+    /// compatibility's sake, this API continues to expose the old names. The table
+    /// below should help with understanding the mapping of the API's old names and
+    /// the new names (those in terms of the 2018 material specification).
+    ///
+    /// Each of the [TextTheme] text styles corresponds to one of the
+    /// styles from 2018 spec. By default, the font sizes, font weights
+    /// and letter spacings have not changed from their original,
+    /// 2014, values.
+    ///
+    /// ```
+    /// NAME       SIZE   WEIGHT   SPACING  2018 NAME
+    /// display4   112.0  thin     0.0      headline1
+    /// display3   56.0   normal   0.0      headline2
+    /// display2   45.0   normal   0.0      headline3
+    /// display1   34.0   normal   0.0      headline4
+    /// headline   24.0   normal   0.0      headline5
+    /// title      20.0   medium   0.0      headline6
+    /// subhead    16.0   normal   0.0      subtitle1
+    /// body2      14.0   medium   0.0      body1 (bodyText1)
+    /// body1      14.0   normal   0.0      body2 (bodyText2)
+    /// caption    12.0   normal   0.0      caption
+    /// button     14.0   medium   0.0      button
+    /// subtitle   14.0   medium   0.0      subtitle2
+    /// overline   10.0   normal   0.0      overline
+    /// ```
+    ///
+    /// Where "thin" is `FontWeight.w100`, "normal" is `FontWeight.w400` and
+    /// "medium" is `FontWeight.w500`. Letter spacing for all of the original
+    /// text styles was 0.0.
+    ///
+    /// The old names are deprecated in this API.
+    ///
+    /// Since the names `body1` and `body2` are used in both specifications but with
+    /// different meanings, the API uses the terms `bodyText1` and `bodyText2` for
+    /// the new API.
+    ///
+    /// To configure a [Theme] for the new sizes, weights, and letter spacings,
+    /// initialize its [ThemeData.typography] value using [Typography.material2018].
+    ///
+    /// See also:
+    ///
+    ///  * [Typography], the class that generates [TextTheme]s appropriate for a platform.
+    ///  * [Theme], for other aspects of a material design application that can be
+    ///    globally adjusted, such as the color scheme.
+    ///  * <https://material.io/design/typography/>
+    /// </Summary>
     public class TextTheme : IDiagnosticable
     {
         #region constructors
@@ -463,15 +556,127 @@ namespace FlutterSDK.Material.Texttheme
 
         #region methods
 
+        /// <Summary>
+        /// Creates a copy of this text theme but with the given fields replaced with
+        /// the new values.
+        ///
+        /// Consider using [Typography.black] or [Typography.white], which implement
+        /// the typography styles in the material design specification, as a starting
+        /// point.
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// /// A Widget that sets the ambient theme's title text color for its
+        /// /// descendants, while leaving other ambient theme attributes alone.
+        /// class TitleColorThemeCopy extends StatelessWidget {
+        ///   TitleColorThemeCopy({Key key, this.child, this.titleColor}) : super(key: key);
+        ///
+        ///   final Color titleColor;
+        ///   final Widget child;
+        ///
+        ///   @override
+        ///   Widget build(BuildContext context) {
+        ///     final ThemeData theme = Theme.of(context);
+        ///     return Theme(
+        ///       data: theme.copyWith(
+        ///         textTheme: theme.textTheme.copyWith(
+        ///           headline6: theme.textTheme.headline6.copyWith(
+        ///             color: titleColor,
+        ///           ),
+        ///         ),
+        ///       ),
+        ///       child: child,
+        ///     );
+        ///   }
+        /// }
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [merge] is used instead of [copyWith] when you want to merge all
+        ///    of the fields of a TextTheme instead of individual fields.
+        /// </Summary>
         public virtual FlutterSDK.Material.Texttheme.TextTheme CopyWith(FlutterSDK.Painting.Textstyle.TextStyle headline1 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline2 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline3 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline4 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline5 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline6 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle subtitle1 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle subtitle2 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle bodyText1 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle bodyText2 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle caption = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle button = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle overline = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle display4 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle display3 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle display2 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle display1 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle title = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle subhead = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle subtitle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle body2 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle body1 = default(FlutterSDK.Painting.Textstyle.TextStyle)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Creates a new [TextTheme] where each text style from this object has been
+        /// merged with the matching text style from the `other` object.
+        ///
+        /// The merging is done by calling [TextStyle.merge] on each respective pair
+        /// of text styles from this and the [other] text themes and is subject to
+        /// the value of [TextStyle.inherit] flag. For more details, see the
+        /// documentation on [TextStyle.merge] and [TextStyle.inherit].
+        ///
+        /// If this theme, or the `other` theme has members that are null, then the
+        /// non-null one (if any) is used. If the `other` theme is itself null, then
+        /// this [TextTheme] is returned unchanged. If values in both are set, then
+        /// the values are merged using [TextStyle.merge].
+        ///
+        /// This is particularly useful if one [TextTheme] defines one set of
+        /// properties and another defines a different set, e.g. having colors
+        /// defined in one text theme and font sizes in another, or when one
+        /// [TextTheme] has only some fields defined, and you want to define the rest
+        /// by merging it with a default theme.
+        ///
+        /// {@tool snippet}
+        ///
+        /// ```dart
+        /// /// A Widget that sets the ambient theme's title text color for its
+        /// /// descendants, while leaving other ambient theme attributes alone.
+        /// class TitleColorTheme extends StatelessWidget {
+        ///   TitleColorTheme({Key key, this.child, this.titleColor}) : super(key: key);
+        ///
+        ///   final Color titleColor;
+        ///   final Widget child;
+        ///
+        ///   @override
+        ///   Widget build(BuildContext context) {
+        ///     ThemeData theme = Theme.of(context);
+        ///     // This partialTheme is incomplete: it only has the title style
+        ///     // defined. Just replacing theme.textTheme with partialTheme would
+        ///     // set the title, but everything else would be null. This isn't very
+        ///     // useful, so merge it with the existing theme to keep all of the
+        ///     // preexisting definitions for the other styles.
+        ///     TextTheme partialTheme = TextTheme(headline6: TextStyle(color: titleColor));
+        ///     theme = theme.copyWith(textTheme: theme.textTheme.merge(partialTheme));
+        ///     return Theme(data: theme, child: child);
+        ///   }
+        /// }
+        /// ```
+        /// {@end-tool}
+        ///
+        /// See also:
+        ///
+        ///  * [copyWith] is used instead of [merge] when you wish to override
+        ///    individual fields in the [TextTheme] instead of merging all of the
+        ///    fields of two [TextTheme]s.
+        /// </Summary>
         public virtual FlutterSDK.Material.Texttheme.TextTheme Merge(FlutterSDK.Material.Texttheme.TextTheme other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Creates a copy of this text theme but with the given field replaced in
+        /// each of the individual text styles.
+        ///
+        /// The `displayColor` is applied to [headline4], [headline3], [headline2],
+        /// [headline1], and [caption]. The `bodyColor` is applied to the remaining
+        /// text styles.
+        ///
+        /// Consider using [Typography.black] or [Typography.white], which implement
+        /// the typography styles in the material design specification, as a starting
+        /// point.
+        /// </Summary>
         public virtual FlutterSDK.Material.Texttheme.TextTheme Apply(string fontFamily = default(string), double fontSizeFactor = 1.0, double fontSizeDelta = 0.0, FlutterBinding.UI.Color displayColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color bodyColor = default(FlutterBinding.UI.Color), TextDecoration decoration = default(TextDecoration), FlutterBinding.UI.Color decorationColor = default(FlutterBinding.UI.Color), TextDecorationStyle decorationStyle = default(TextDecorationStyle)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two text themes.
+        ///
+        /// {@macro flutter.material.themeData.lerp}
+        /// </Summary>
         public virtual FlutterSDK.Material.Texttheme.TextTheme Lerp(FlutterSDK.Material.Texttheme.TextTheme a, FlutterSDK.Material.Texttheme.TextTheme b, double t) { throw new NotImplementedException(); }
 
 

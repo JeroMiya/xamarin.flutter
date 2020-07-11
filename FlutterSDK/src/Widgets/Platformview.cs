@@ -431,6 +431,50 @@ namespace FlutterSDK.Widgets.Platformview
     {
     }
 
+    /// <Summary>
+    /// Embeds an Android view in the Widget hierarchy.
+    ///
+    /// Requires Android API level 20 or greater.
+    ///
+    /// Embedding Android views is an expensive operation and should be avoided when a Flutter
+    /// equivalent is possible.
+    ///
+    /// The embedded Android view is painted just like any other Flutter widget and transformations
+    /// apply to it as well.
+    ///
+    /// {@template flutter.widgets.platformViews.layout}
+    /// The widget fills all available space, the parent of this object must provide bounded layout
+    /// constraints.
+    /// {@endtemplate}
+    ///
+    /// {@template flutter.widgets.platformViews.gestures}
+    /// The widget participates in Flutter's [GestureArena]s, and dispatches touch events to the
+    /// platform view iff it won the arena. Specific gestures that should be dispatched to the platform
+    /// view can be specified in the `gestureRecognizers` constructor parameter. If
+    /// the set of gesture recognizers is empty, a gesture will be dispatched to the platform
+    /// view iff it was not claimed by any other gesture recognizer.
+    /// {@endtemplate}
+    ///
+    /// The Android view object is created using a [PlatformViewFactory](/javadoc/io/flutter/plugin/platform/PlatformViewFactory.html).
+    /// Plugins can register platform view factories with [PlatformViewRegistry#registerViewFactory](/javadoc/io/flutter/plugin/platform/PlatformViewRegistry.html#registerViewFactory-java.lang.String-io.flutter.plugin.platform.PlatformViewFactory-).
+    ///
+    /// Registration is typically done in the plugin's registerWith method, e.g:
+    ///
+    /// ```java
+    ///   public static void registerWith(Registrar registrar) {
+    ///     registrar.platformViewRegistry().registerViewFactory("webview", WebViewFactory(registrar.messenger()));
+    ///   }
+    /// ```
+    ///
+    /// {@template flutter.widgets.platformViews.lifetime}
+    /// The platform view's lifetime is the same as the lifetime of the [State] object for this widget.
+    /// When the [State] is disposed the platform view (and auxiliary resources) are lazily
+    /// released (some resources are immediately released and some by platform garbage collector).
+    /// A stateful widget's state is disposed when the widget is removed from the tree or when it is
+    /// moved within the tree. If the stateful widget has a key and it's only moved relative to its siblings,
+    /// or it has a [GlobalKey] and it's moved within the tree, it will not be disposed.
+    /// {@endtemplate}
+    /// </Summary>
     public class AndroidView : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -465,6 +509,26 @@ namespace FlutterSDK.Widgets.Platformview
     }
 
 
+    /// <Summary>
+    /// Embeds an iOS view in the Widget hierarchy.
+    ///
+    /// {@macro flutter.rendering.platformView.preview}
+    ///
+    /// Embedding iOS views is an expensive operation and should be avoided when a Flutter
+    /// equivalent is possible.
+    ///
+    /// {@macro flutter.widgets.platformViews.layout}
+    ///
+    /// {@macro flutter.widgets.platformViews.gestures}
+    ///
+    /// {@macro flutter.widgets.platformViews.lifetime}
+    ///
+    /// Construction of UIViews is done asynchronously, before the UIView is ready this widget paints
+    /// nothing while maintaining the same layout constraints.
+    ///
+    /// If a conic path clipping is applied to a UIKitView,
+    /// a quad path is used to approximate the clip due to limitation of Quartz.
+    /// </Summary>
     public class UiKitView : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -499,6 +563,41 @@ namespace FlutterSDK.Widgets.Platformview
     }
 
 
+    /// <Summary>
+    /// Embeds an HTML element in the Widget hierarchy in Flutter Web.
+    ///
+    /// *NOTE*: This only works in Flutter Web. To embed web content on other
+    /// platforms, consider using the `flutter_webview` plugin.
+    ///
+    /// Embedding HTML is an expensive operation and should be avoided when a
+    /// Flutter equivalent is possible.
+    ///
+    /// The embedded HTML is painted just like any other Flutter widget and
+    /// transformations apply to it as well. This widget should only be used in
+    /// Flutter Web.
+    ///
+    /// {@macro flutter.widgets.platformViews.layout}
+    ///
+    /// Due to security restrictions with cross-origin `<iframe>` elements, Flutter
+    /// cannot dispatch pointer events to an HTML view. If an `<iframe>` is the
+    /// target of an event, the window containing the `<iframe>` is not notified
+    /// of the event. In particular, this means that any pointer events which land
+    /// on an `<iframe>` will not be seen by Flutter, and so the HTML view cannot
+    /// participate in gesture detection with other widgets.
+    ///
+    /// The way we enable accessibility on Flutter for web is to have a full-page
+    /// button which waits for a double tap. Placing this full-page button in front
+    /// of the scene would cause platform views not to receive pointer events. The
+    /// tradeoff is that by placing the scene in front of the semantics placeholder
+    /// will cause platform views to block pointer events from reaching the
+    /// placeholder. This means that in order to enable accessibility, you must
+    /// double tap the app *outside of a platform view*. As a consequence, a
+    /// full-screen platform view will make it impossible to enable accessibility.
+    /// Make sure that your HTML views are sized no larger than necessary, or you
+    /// may cause difficulty for users trying to enable accessibility.
+    ///
+    /// {@macro flutter.widgets.platformViews.lifetime}
+    /// </Summary>
     public class HtmlElementView : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors
@@ -518,6 +617,9 @@ namespace FlutterSDK.Widgets.Platformview
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Creates the controller and kicks off its initialization.
+        /// </Summary>
         private FlutterSDK.Widgets.Platformview._HtmlElementViewController _CreateHtmlElementView(FlutterSDK.Widgets.Platformview.PlatformViewCreationParams params) { throw new NotImplementedException(); }
 
         #endregion
@@ -702,6 +804,13 @@ namespace FlutterSDK.Widgets.Platformview
     }
 
 
+    /// <Summary>
+    /// The parameters used to create a [PlatformViewController].
+    ///
+    /// See also:
+    ///
+    ///  * [CreatePlatformViewCallback] which uses this object to create a [PlatformViewController].
+    /// </Summary>
     public class PlatformViewCreationParams
     {
         #region constructors
@@ -727,6 +836,38 @@ namespace FlutterSDK.Widgets.Platformview
     }
 
 
+    /// <Summary>
+    /// Links a platform view with the Flutter framework.
+    ///
+    /// Provides common functionality for embedding a platform view (e.g an android.view.View on Android)
+    /// with the Flutter framework.
+    ///
+    /// {@macro flutter.widgets.platformViews.lifetime}
+    ///
+    /// To implement a new platform view widget, return this widget in the `build` method.
+    /// For example:
+    /// ```dart
+    /// class FooPlatformView extends StatelessWidget {
+    ///   @override
+    ///   Widget build(BuildContext context) {
+    ///     return PlatformViewLink(
+    ///       viewType: 'webview',
+    ///       onCreatePlatformView: createFooWebView,
+    ///       surfaceFactory: (BuildContext context, PlatformViewController controller) {
+    ///        return PlatformViewSurface(
+    ///            gestureRecognizers: gestureRecognizers,
+    ///            controller: controller,
+    ///            hitTestBehavior: PlatformViewHitTestBehavior.opaque,
+    ///        );
+    ///       },
+    ///    );
+    ///   }
+    /// }
+    /// ```
+    ///
+    /// The `surfaceFactory` and the `onCreatePlatformView` are only called when the
+    /// state of this widget is initialized, or when the `viewType` changes.
+    /// </Summary>
     public class PlatformViewLink : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -795,6 +936,23 @@ namespace FlutterSDK.Widgets.Platformview
     }
 
 
+    /// <Summary>
+    /// Integrates a platform view with Flutter's compositor, touch, and semantics subsystems.
+    ///
+    /// The compositor integration is done by adding a [PlatformViewLayer] to the layer tree. [PlatformViewLayer]
+    /// isn't supported on all platforms (e.g on Android platform views are composited using a [TextureLayer]).
+    /// Custom Flutter embedders can support [PlatformViewLayer]s by implementing a SystemCompositor.
+    ///
+    /// The widget fills all available space, the parent of this object must provide bounded layout
+    /// constraints.
+    ///
+    /// If the associated platform view is not created the [PlatformViewSurface] does not paint any contents.
+    ///
+    /// See also:
+    ///
+    ///  * [AndroidView] which embeds an Android platform view in the widget hierarchy.
+    ///  * [UIKitView] which embeds an iOS platform view in the widget hierarchy.
+    /// </Summary>
     public class PlatformViewSurface : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
     {
         #region constructors

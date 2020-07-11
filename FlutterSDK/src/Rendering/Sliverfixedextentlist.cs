@@ -427,6 +427,32 @@ namespace FlutterSDK.Rendering.Sliverfixedextentlist
     {
     }
 
+    /// <Summary>
+    /// A sliver that contains multiple box children that have the same extent in
+    /// the main axis.
+    ///
+    /// [RenderSliverFixedExtentBoxAdaptor] places its children in a linear array
+    /// along the main axis. Each child is forced to have the [itemExtent] in the
+    /// main axis and the [SliverConstraints.crossAxisExtent] in the cross axis.
+    ///
+    /// Subclasses should override [itemExtent] to control the size of the children
+    /// in the main axis. For a concrete subclass with a configurable [itemExtent],
+    /// see [RenderSliverFixedExtentList].
+    ///
+    /// [RenderSliverFixedExtentBoxAdaptor] is more efficient than
+    /// [RenderSliverList] because [RenderSliverFixedExtentBoxAdaptor] does not need
+    /// to perform layout on its children to obtain their extent in the main axis.
+    ///
+    /// See also:
+    ///
+    ///  * [RenderSliverFixedExtentList], which has a configurable [itemExtent].
+    ///  * [RenderSliverFillViewport], which determines the [itemExtent] based on
+    ///    [SliverConstraints.viewportMainAxisExtent].
+    ///  * [RenderSliverFillRemaining], which determines the [itemExtent] based on
+    ///    [SliverConstraints.remainingPaintExtent].
+    ///  * [RenderSliverList], which does not require its children to have the same
+    ///    extent in the main axis.
+    /// </Summary>
     public interface IRenderSliverFixedExtentBoxAdaptor
     {
         double IndexToLayoutOffset(double itemExtent, int index);
@@ -439,6 +465,32 @@ namespace FlutterSDK.Rendering.Sliverfixedextentlist
     }
 
 
+    /// <Summary>
+    /// A sliver that contains multiple box children that have the same extent in
+    /// the main axis.
+    ///
+    /// [RenderSliverFixedExtentBoxAdaptor] places its children in a linear array
+    /// along the main axis. Each child is forced to have the [itemExtent] in the
+    /// main axis and the [SliverConstraints.crossAxisExtent] in the cross axis.
+    ///
+    /// Subclasses should override [itemExtent] to control the size of the children
+    /// in the main axis. For a concrete subclass with a configurable [itemExtent],
+    /// see [RenderSliverFixedExtentList].
+    ///
+    /// [RenderSliverFixedExtentBoxAdaptor] is more efficient than
+    /// [RenderSliverList] because [RenderSliverFixedExtentBoxAdaptor] does not need
+    /// to perform layout on its children to obtain their extent in the main axis.
+    ///
+    /// See also:
+    ///
+    ///  * [RenderSliverFixedExtentList], which has a configurable [itemExtent].
+    ///  * [RenderSliverFillViewport], which determines the [itemExtent] based on
+    ///    [SliverConstraints.viewportMainAxisExtent].
+    ///  * [RenderSliverFillRemaining], which determines the [itemExtent] based on
+    ///    [SliverConstraints.remainingPaintExtent].
+    ///  * [RenderSliverList], which does not require its children to have the same
+    ///    extent in the main axis.
+    /// </Summary>
     public class RenderSliverFixedExtentBoxAdaptor : FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverMultiBoxAdaptor
     {
         #region constructors
@@ -455,18 +507,81 @@ namespace FlutterSDK.Rendering.Sliverfixedextentlist
 
         #region methods
 
+        /// <Summary>
+        /// The layout offset for the child with the given index.
+        ///
+        /// This function is given the [itemExtent] as an argument to avoid
+        /// recomputing [itemExtent] repeatedly during layout.
+        ///
+        /// By default, places the children in order, without gaps, starting from
+        /// layout offset zero.
+        /// </Summary>
         public virtual double IndexToLayoutOffset(double itemExtent, int index) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The minimum child index that is visible at the given scroll offset.
+        ///
+        /// This function is given the [itemExtent] as an argument to avoid
+        /// recomputing [itemExtent] repeatedly during layout.
+        ///
+        /// By default, returns a value consistent with the children being placed in
+        /// order, without gaps, starting from layout offset zero.
+        /// </Summary>
         public virtual int GetMinChildIndexForScrollOffset(double scrollOffset, double itemExtent) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The maximum child index that is visible at the given scroll offset.
+        ///
+        /// This function is given the [itemExtent] as an argument to avoid
+        /// recomputing [itemExtent] repeatedly during layout.
+        ///
+        /// By default, returns a value consistent with the children being placed in
+        /// order, without gaps, starting from layout offset zero.
+        /// </Summary>
         public virtual int GetMaxChildIndexForScrollOffset(double scrollOffset, double itemExtent) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called to estimate the total scrollable extents of this object.
+        ///
+        /// Must return the total distance from the start of the child with the
+        /// earliest possible index to the end of the child with the last possible
+        /// index.
+        ///
+        /// By default, defers to [RenderSliverBoxChildManager.estimateMaxScrollOffset].
+        ///
+        /// See also:
+        ///
+        ///  * [computeMaxScrollOffset], which is similar but must provide a precise
+        ///    value.
+        /// </Summary>
         public virtual double EstimateMaxScrollOffset(FlutterSDK.Rendering.Sliver.SliverConstraints constraints, int firstIndex = default(int), int lastIndex = default(int), double leadingScrollOffset = default(double), double trailingScrollOffset = default(double)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called to obtain a precise measure of the total scrollable extents of this
+        /// object.
+        ///
+        /// Must return the precise total distance from the start of the child with
+        /// the earliest possible index to the end of the child with the last possible
+        /// index.
+        ///
+        /// This is used when no child is available for the index corresponding to the
+        /// current scroll offset, to determine the precise dimensions of the sliver.
+        /// It must return a precise value. It will not be called if the
+        /// [childManager] returns an infinite number of children for positive
+        /// indices.
+        ///
+        /// By default, multiplies the [itemExtent] by the number of children reported
+        /// by [RenderSliverBoxChildManager.childCount].
+        ///
+        /// See also:
+        ///
+        ///  * [estimateMaxScrollOffset], which is similar but may provide inaccurate
+        ///    values.
+        /// </Summary>
         public virtual double ComputeMaxScrollOffset(FlutterSDK.Rendering.Sliver.SliverConstraints constraints, double itemExtent) { throw new NotImplementedException(); }
 
 
@@ -482,6 +597,28 @@ namespace FlutterSDK.Rendering.Sliverfixedextentlist
     }
 
 
+    /// <Summary>
+    /// A sliver that places multiple box children with the same main axis extent in
+    /// a linear array.
+    ///
+    /// [RenderSliverFixedExtentList] places its children in a linear array along
+    /// the main axis starting at offset zero and without gaps. Each child is forced
+    /// to have the [itemExtent] in the main axis and the
+    /// [SliverConstraints.crossAxisExtent] in the cross axis.
+    ///
+    /// [RenderSliverFixedExtentList] is more efficient than [RenderSliverList]
+    /// because [RenderSliverFixedExtentList] does not need to perform layout on its
+    /// children to obtain their extent in the main axis.
+    ///
+    /// See also:
+    ///
+    ///  * [RenderSliverList], which does not require its children to have the same
+    ///    extent in the main axis.
+    ///  * [RenderSliverFillViewport], which determines the [itemExtent] based on
+    ///    [SliverConstraints.viewportMainAxisExtent].
+    ///  * [RenderSliverFillRemaining], which determines the [itemExtent] based on
+    ///    [SliverConstraints.remainingPaintExtent].
+    /// </Summary>
     public class RenderSliverFixedExtentList : FlutterSDK.Rendering.Sliverfixedextentlist.RenderSliverFixedExtentBoxAdaptor
     {
         #region constructors

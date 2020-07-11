@@ -61,6 +61,41 @@ namespace FlutterSDK.Animation.Tweensequence
     {
     }
 
+    /// <Summary>
+    /// Enables creating an [Animation] whose value is defined by a sequence of
+    /// [Tween]s.
+    ///
+    /// Each [TweenSequenceItem] has a weight that defines its percentage of the
+    /// animation's duration. Each tween defines the animation's value during the
+    /// interval indicated by its weight.
+    ///
+    /// {@tool snippet}
+    /// This example defines an animation that uses an easing curve to interpolate
+    /// between 5.0 and 10.0 during the first 40% of the animation, remains at 10.0
+    /// for the next 20%, and then returns to 5.0 for the final 40%.
+    ///
+    /// ```dart
+    /// final Animation<double> animation = TweenSequence(
+    ///   <TweenSequenceItem<double>>[
+    ///     TweenSequenceItem<double>(
+    ///       tween: Tween<double>(begin: 5.0, end: 10.0)
+    ///         .chain(CurveTween(curve: Curves.ease)),
+    ///       weight: 40.0,
+    ///     ),
+    ///     TweenSequenceItem<double>(
+    ///       tween: ConstantTween<double>(10.0),
+    ///       weight: 20.0,
+    ///     ),
+    ///     TweenSequenceItem<double>(
+    ///       tween: Tween<double>(begin: 10.0, end: 5.0)
+    ///         .chain(CurveTween(curve: Curves.ease)),
+    ///       weight: 40.0,
+    ///     ),
+    ///   ],
+    /// ).animate(myAnimationController);
+    /// ```
+    /// {@end-tool}
+    /// </Summary>
     public class TweenSequence<T> : FlutterSDK.Animation.Tween.Animatable<T>
     {
         #region constructors
@@ -88,6 +123,16 @@ namespace FlutterSDK.Animation.Tweensequence
     }
 
 
+    /// <Summary>
+    /// Enables creating a flipped [Animation] whose value is defined by a sequence
+    /// of [Tween]s.
+    ///
+    /// This creates a [TweenSequence] that evaluates to a result that flips the
+    /// tween both horizontally and vertically.
+    ///
+    /// This tween sequence assumes that the evaluated result has to be a double
+    /// between 0.0 and 1.0.
+    /// </Summary>
     public class FlippedTweenSequence : FlutterSDK.Animation.Tweensequence.TweenSequence<double>
     {
         #region constructors
@@ -109,6 +154,9 @@ namespace FlutterSDK.Animation.Tweensequence
     }
 
 
+    /// <Summary>
+    /// A simple holder for one element of a [TweenSequence].
+    /// </Summary>
     public class TweenSequenceItem<T>
     {
         #region constructors

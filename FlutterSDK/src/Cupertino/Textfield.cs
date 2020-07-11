@@ -328,6 +328,68 @@ namespace FlutterSDK.Cupertino.Textfield
     }
 
 
+    /// <Summary>
+    /// An iOS-style text field.
+    ///
+    /// A text field lets the user enter text, either with a hardware keyboard or with
+    /// an onscreen keyboard.
+    ///
+    /// This widget corresponds to both a `UITextField` and an editable `UITextView`
+    /// on iOS.
+    ///
+    /// The text field calls the [onChanged] callback whenever the user changes the
+    /// text in the field. If the user indicates that they are done typing in the
+    /// field (e.g., by pressing a button on the soft keyboard), the text field
+    /// calls the [onSubmitted] callback.
+    ///
+    /// To control the text that is displayed in the text field, use the
+    /// [controller]. For example, to set the initial value of the text field, use
+    /// a [controller] that already contains some text such as:
+    ///
+    /// {@tool snippet}
+    ///
+    /// ```dart
+    /// class MyPrefilledText extends StatefulWidget {
+    ///   @override
+    ///   _MyPrefilledTextState createState() => _MyPrefilledTextState();
+    /// }
+    ///
+    /// class _MyPrefilledTextState extends State<MyPrefilledText> {
+    ///   TextEditingController _textController;
+    ///
+    ///   @override
+    ///   void initState() {
+    ///     super.initState();
+    ///     _textController = TextEditingController(text: 'initial text');
+    ///   }
+    ///
+    ///   @override
+    ///   Widget build(BuildContext context) {
+    ///     return CupertinoTextField(controller: _textController);
+    ///   }
+    /// }
+    /// ```
+    /// {@end-tool}
+    ///
+    /// The [controller] can also control the selection and composing region (and to
+    /// observe changes to the text, selection, and composing region).
+    ///
+    /// The text field has an overridable [decoration] that, by default, draws a
+    /// rounded rectangle border around the text field. If you set the [decoration]
+    /// property to null, the decoration will be removed entirely.
+    ///
+    /// Remember to call [TextEditingController.dispose] when it is no longer
+    /// needed. This will ensure we discard any resources used by the object.
+    ///
+    /// See also:
+    ///
+    ///  * <https://developer.apple.com/documentation/uikit/uitextfield>
+    ///  * [TextField], an alternative text field widget that follows the Material
+    ///    Design UI conventions.
+    ///  * [EditableText], which is the raw text editing control at the heart of a
+    ///    [TextField].
+    ///  * Learn how to use a [TextEditingController] in one of our [cookbook recipes](https://flutter.dev/docs/cookbook/forms/text-field-changes#2-use-a-texteditingcontroller).
+    /// </Summary>
     public class CupertinoTextField : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -511,12 +573,36 @@ namespace FlutterSDK.Cupertino.Textfield
     }
 
 
+    /// <Summary>
+    /// Visibility of text field overlays based on the state of the current text entry.
+    ///
+    /// Used to toggle the visibility behavior of the optional decorating widgets
+    /// surrounding the [EditableText] such as the clear text button.
+    /// </Summary>
     public enum OverlayVisibilityMode
     {
 
+        /// <Summary>
+        /// Overlay will never appear regardless of the text entry state.
+        /// </Summary>
         Never,
+        /// <Summary>
+        /// Overlay will only appear when the current text entry is not empty.
+        ///
+        /// This includes prefilled text that the user did not type in manually. But
+        /// does not include text in placeholders.
+        /// </Summary>
         Editing,
+        /// <Summary>
+        /// Overlay will only appear when the current text entry is empty.
+        ///
+        /// This also includes not having prefilled text that the user did not type
+        /// in manually. Texts in placeholders are ignored.
+        /// </Summary>
         NotEditing,
+        /// <Summary>
+        /// Always show the overlay regardless of the text entry state.
+        /// </Summary>
         Always,
     }
 

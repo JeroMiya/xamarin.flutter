@@ -427,6 +427,50 @@ namespace FlutterSDK.Painting.Shaderwarmup
     {
     }
 
+    /// <Summary>
+    /// Interface for drawing an image to warm up Skia shader compilations.
+    ///
+    /// When Skia first sees a certain type of draw operation on the GPU, it needs
+    /// to compile the corresponding shader. The compilation can be slow (20ms-
+    /// 200ms). Having that time as startup latency is often better than having
+    /// jank in the middle of an animation.
+    ///
+    /// Therefore, we use this during the [PaintingBinding.initInstances] call to
+    /// move common shader compilations from animation time to startup time. By
+    /// default, a [DefaultShaderWarmUp] is used. If needed, app developers can
+    /// create a custom [ShaderWarmUp] subclass and hand it to
+    /// [PaintingBinding.shaderWarmUp] (so it replaces [DefaultShaderWarmUp])
+    /// before [PaintingBinding.initInstances] is called. Usually, that can be
+    /// done before calling [runApp].
+    ///
+    /// To determine whether a draw operation is useful for warming up shaders,
+    /// check whether it improves the slowest GPU frame. Also, tracing with
+    /// `flutter run --profile --trace-skia` may reveal whether there is shader-
+    /// compilation-related jank. If there is such jank, some long
+    /// `GrGLProgramBuilder::finalize` calls would appear in the middle of an
+    /// animation. Their parent calls, which look like `XyzOp` (e.g., `FillRecOp`,
+    /// `CircularRRectOp`) would suggest Xyz draw operations are causing the
+    /// shaders to be compiled. A useful shader warm-up draw operation would
+    /// eliminate such long compilation calls in the animation. To double-check
+    /// the warm-up, trace with
+    /// `flutter run --profile --trace-skia --start-paused`.
+    /// The `GrGLProgramBuilder` with the associated `XyzOp` should
+    /// appear during startup rather than in the middle of a later animation.
+    ///
+    /// This warm-up needs to be run on each individual device because the shader
+    /// compilation depends on the specific GPU hardware and driver a device has. It
+    /// can't be pre-computed during the Flutter engine compilation as the engine is
+    /// device-agnostic.
+    ///
+    /// If no warm-up is desired (e.g., when the startup latency is crucial), set
+    /// [PaintingBinding.shaderWarmUp] either to a custom ShaderWarmUp with an empty
+    /// [warmUpOnCanvas] or null.
+    ///
+    /// See also:
+    ///
+    ///  * [PaintingBinding.shaderWarmUp], the actual instance of [ShaderWarmUp]
+    ///    that's used to warm up the shaders.
+    /// </Summary>
     public interface IShaderWarmUp
     {
         Future<object> WarmUpOnCanvas(Canvas canvas);
@@ -435,6 +479,50 @@ namespace FlutterSDK.Painting.Shaderwarmup
     }
 
 
+    /// <Summary>
+    /// Interface for drawing an image to warm up Skia shader compilations.
+    ///
+    /// When Skia first sees a certain type of draw operation on the GPU, it needs
+    /// to compile the corresponding shader. The compilation can be slow (20ms-
+    /// 200ms). Having that time as startup latency is often better than having
+    /// jank in the middle of an animation.
+    ///
+    /// Therefore, we use this during the [PaintingBinding.initInstances] call to
+    /// move common shader compilations from animation time to startup time. By
+    /// default, a [DefaultShaderWarmUp] is used. If needed, app developers can
+    /// create a custom [ShaderWarmUp] subclass and hand it to
+    /// [PaintingBinding.shaderWarmUp] (so it replaces [DefaultShaderWarmUp])
+    /// before [PaintingBinding.initInstances] is called. Usually, that can be
+    /// done before calling [runApp].
+    ///
+    /// To determine whether a draw operation is useful for warming up shaders,
+    /// check whether it improves the slowest GPU frame. Also, tracing with
+    /// `flutter run --profile --trace-skia` may reveal whether there is shader-
+    /// compilation-related jank. If there is such jank, some long
+    /// `GrGLProgramBuilder::finalize` calls would appear in the middle of an
+    /// animation. Their parent calls, which look like `XyzOp` (e.g., `FillRecOp`,
+    /// `CircularRRectOp`) would suggest Xyz draw operations are causing the
+    /// shaders to be compiled. A useful shader warm-up draw operation would
+    /// eliminate such long compilation calls in the animation. To double-check
+    /// the warm-up, trace with
+    /// `flutter run --profile --trace-skia --start-paused`.
+    /// The `GrGLProgramBuilder` with the associated `XyzOp` should
+    /// appear during startup rather than in the middle of a later animation.
+    ///
+    /// This warm-up needs to be run on each individual device because the shader
+    /// compilation depends on the specific GPU hardware and driver a device has. It
+    /// can't be pre-computed during the Flutter engine compilation as the engine is
+    /// device-agnostic.
+    ///
+    /// If no warm-up is desired (e.g., when the startup latency is crucial), set
+    /// [PaintingBinding.shaderWarmUp] either to a custom ShaderWarmUp with an empty
+    /// [warmUpOnCanvas] or null.
+    ///
+    /// See also:
+    ///
+    ///  * [PaintingBinding.shaderWarmUp], the actual instance of [ShaderWarmUp]
+    ///    that's used to warm up the shaders.
+    /// </Summary>
     public class ShaderWarmUp
     {
         #region constructors
@@ -450,15 +538,39 @@ namespace FlutterSDK.Painting.Shaderwarmup
 
         #region methods
 
+        /// <Summary>
+        /// Trigger draw operations on a given canvas to warm up GPU shader
+        /// compilation cache.
+        ///
+        /// To decide which draw operations to be added to your custom warm up
+        /// process, try capture an skp using
+        /// `flutter screenshot --observatory-uri=<uri> --type=skia`
+        /// and analyze it with https://debugger.skia.org.
+        /// Alternatively, one may run the app with `flutter run --trace-skia` and
+        /// then examine the GPU thread in the observatory timeline to see which
+        /// Skia draw operations are commonly used, and which shader compilations
+        /// are causing jank.
+        /// </Summary>
         public virtual Future<object> WarmUpOnCanvas(Canvas canvas) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Construct an offscreen image of [size], and execute [warmUpOnCanvas] on a
+        /// canvas associated with that image.
+        /// </Summary>
         public virtual Future<object> Execute() { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// Default way of warming up Skia shader compilations.
+    ///
+    /// The draw operations being warmed up here are decided according to Flutter
+    /// engineers' observation and experience based on the apps and the performance
+    /// issues seen so far.
+    /// </Summary>
     public class DefaultShaderWarmUp : FlutterSDK.Painting.Shaderwarmup.ShaderWarmUp
     {
         #region constructors
@@ -477,6 +589,10 @@ namespace FlutterSDK.Painting.Shaderwarmup
 
         #region methods
 
+        /// <Summary>
+        /// Trigger common draw operations on a canvas to warm up GPU shader
+        /// compilation cache.
+        /// </Summary>
         public new Future<object> WarmUpOnCanvas(Canvas canvas) { throw new NotImplementedException(); }
 
         #endregion

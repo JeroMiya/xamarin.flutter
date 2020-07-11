@@ -437,9 +437,21 @@ namespace FlutterSDK.Widgets.Preferredsize
         public virtual FlutterSDK.Foundation.Key.Key Key { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
+        /// <Summary>
+        /// Inflates this configuration to a concrete instance.
+        ///
+        /// A given widget can be included in the tree zero or more times. In particular
+        /// a given widget can be placed in the tree multiple times. Each time a widget
+        /// is placed in the tree, it is inflated into an [Element], which means a
+        /// widget that is incorporated into the tree multiple times will be inflated
+        /// multiple times.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Element CreateElement() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// A short, textual description of this widget.
+        /// </Summary>
         public new string ToStringShort() { throw new NotImplementedException(); }
 
 
@@ -449,6 +461,18 @@ namespace FlutterSDK.Widgets.Preferredsize
         public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Whether the `newWidget` can be used to update an [Element] that currently
+        /// has the `oldWidget` as its configuration.
+        ///
+        /// An element that uses a given widget as its configuration can be updated to
+        /// use another widget as its configuration if, and only if, the two widgets
+        /// have [runtimeType] and [key] properties that are [operator==].
+        ///
+        /// If the widgets have no key (their key is null), then they are considered a
+        /// match if they have the same type, even if their children are completely
+        /// different.
+        /// </Summary>
         public virtual bool CanUpdate(FlutterSDK.Widgets.Framework.Widget oldWidget, FlutterSDK.Widgets.Framework.Widget newWidget) { throw new NotImplementedException(); }
 
 
@@ -471,6 +495,20 @@ namespace FlutterSDK.Widgets.Preferredsize
     }
 
 
+    /// <Summary>
+    /// A widget with a preferred size.
+    ///
+    /// This widget does not impose any constraints on its child, and it doesn't
+    /// affect the child's layout in any way. It just advertises a preferred size
+    /// which can be used by the parent.
+    ///
+    /// See also:
+    ///
+    ///  * [AppBar.bottom] and [Scaffold.appBar], which require preferred size widgets.
+    ///  * [PreferredSizeWidget], the interface which this widget implements to expose
+    ///    its preferred size.
+    ///  * [AppBar] and [TabBar], which implement PreferredSizeWidget.
+    /// </Summary>
     public class PreferredSize : FlutterSDK.Widgets.Framework.StatelessWidget, IPreferredSizeWidget
     {
         #region constructors

@@ -308,6 +308,9 @@ namespace FlutterSDK.Gestures.Scale
 
     }
 
+    /// <Summary>
+    /// Details for [GestureScaleStartCallback].
+    /// </Summary>
     public class ScaleStartDetails
     {
         #region constructors
@@ -329,6 +332,9 @@ namespace FlutterSDK.Gestures.Scale
     }
 
 
+    /// <Summary>
+    /// Details for [GestureScaleUpdateCallback].
+    /// </Summary>
     public class ScaleUpdateDetails
     {
         #region constructors
@@ -358,6 +364,9 @@ namespace FlutterSDK.Gestures.Scale
     }
 
 
+    /// <Summary>
+    /// Details for [GestureScaleEndCallback].
+    /// </Summary>
     public class ScaleEndDetails
     {
         #region constructors
@@ -378,6 +387,12 @@ namespace FlutterSDK.Gestures.Scale
     }
 
 
+    /// <Summary>
+    /// Defines a line between two pointers on screen.
+    ///
+    /// [_LineBetweenPointers] is an abstraction of a line between two pointers in
+    /// contact with the screen. Used to track the rotation of a scale gesture.
+    /// </Summary>
     public class _LineBetweenPointers
     {
         #region constructors
@@ -403,6 +418,15 @@ namespace FlutterSDK.Gestures.Scale
     }
 
 
+    /// <Summary>
+    /// Recognizes a scale gesture.
+    ///
+    /// [ScaleGestureRecognizer] tracks the pointers in contact with the screen and
+    /// calculates their focal point, indicated scale, and rotation. When a focal
+    /// pointer is established, the recognizer calls [onStart]. As the focal point,
+    /// scale, rotation change, the recognizer calls [onUpdate]. When the pointers
+    /// are no longer in contact with the screen, the recognizer calls [onEnd].
+    /// </Summary>
     public class ScaleGestureRecognizer : FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer
     {
         #region constructors
@@ -452,6 +476,10 @@ namespace FlutterSDK.Gestures.Scale
         private void _Update() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Updates [_initialLine] and [_currentLine] accordingly to the situation of
+        /// the registered pointers
+        /// </Summary>
         private void _UpdateLines() { throw new NotImplementedException(); }
 
 
@@ -479,12 +507,31 @@ namespace FlutterSDK.Gestures.Scale
     }
 
 
+    /// <Summary>
+    /// The possible states of a [ScaleGestureRecognizer].
+    /// </Summary>
     public enum _ScaleState
     {
 
+        /// <Summary>
+        /// The recognizer is ready to start recognizing a gesture.
+        /// </Summary>
         Ready,
+        /// <Summary>
+        /// The sequence of pointer events seen thus far is consistent with a scale
+        /// gesture but the gesture has not been accepted definitively.
+        /// </Summary>
         Possible,
+        /// <Summary>
+        /// The sequence of pointer events seen thus far has been accepted
+        /// definitively as a scale gesture.
+        /// </Summary>
         Accepted,
+        /// <Summary>
+        /// The sequence of pointer events seen thus far has been accepted
+        /// definitively as a scale gesture and the pointers established a focal point
+        /// and initial scale.
+        /// </Summary>
         Started,
     }
 

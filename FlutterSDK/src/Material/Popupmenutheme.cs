@@ -409,6 +409,28 @@ namespace FlutterSDK.Material.Popupmenutheme
     {
     }
 
+    /// <Summary>
+    /// Defines the visual properties of the routes used to display popup menus
+    /// as well as [PopupMenuItem] and [PopupMenuDivider] widgets.
+    ///
+    /// Descendant widgets obtain the current [PopupMenuThemeData] object
+    /// using `PopupMenuTheme.of(context)`. Instances of
+    /// [PopupMenuThemeData] can be customized with
+    /// [PopupMenuThemeData.copyWith].
+    ///
+    /// Typically, a [PopupMenuThemeData] is specified as part of the
+    /// overall [Theme] with [ThemeData.popupMenuTheme]. Otherwise,
+    /// [PopupMenuTheme] can be used to configure its own widget subtree.
+    ///
+    /// All [PopupMenuThemeData] properties are `null` by default.
+    /// If any of these properties are null, the popup menu will provide its
+    /// own defaults.
+    ///
+    /// See also:
+    ///
+    ///  * [ThemeData], which describes the overall theme information for the
+    ///    application.
+    /// </Summary>
     public class PopupMenuThemeData : IDiagnosticable
     {
         #region constructors
@@ -431,9 +453,20 @@ namespace FlutterSDK.Material.Popupmenutheme
 
         #region methods
 
+        /// <Summary>
+        /// Creates a copy of this object with the given fields replaced with the
+        /// new values.
+        /// </Summary>
         public virtual FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), double elevation = default(double), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two popup menu themes.
+        ///
+        /// If both arguments are null, then null is returned.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
         public virtual FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData Lerp(FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData a, FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData b, double t) { throw new NotImplementedException(); }
 
 
@@ -446,6 +479,13 @@ namespace FlutterSDK.Material.Popupmenutheme
     }
 
 
+    /// <Summary>
+    /// An inherited widget that defines the configuration for
+    /// popup menus in this widget's subtree.
+    ///
+    /// Values specified here are used for popup menu properties that are not
+    /// given an explicit non-null value.
+    /// </Summary>
     public class PopupMenuTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
         #region constructors
@@ -462,6 +502,17 @@ namespace FlutterSDK.Material.Popupmenutheme
 
         #region methods
 
+        /// <Summary>
+        /// The closest instance of this class's [data] value that encloses the given
+        /// context. If there is no ancestor, it returns [ThemeData.popupMenuTheme].
+        /// Applications can assume that the returned value will not be null.
+        ///
+        /// Typical usage is as follows:
+        ///
+        /// ```dart
+        /// PopupMenuThemeData theme = PopupMenuTheme.of(context);
+        /// ```
+        /// </Summary>
         public virtual FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 

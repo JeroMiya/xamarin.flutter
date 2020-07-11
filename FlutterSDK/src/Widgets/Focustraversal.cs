@@ -438,6 +438,34 @@ namespace FlutterSDK.Widgets.Focustraversal
 
     }
 
+    /// <Summary>
+    /// An object used to specify a focus traversal policy used for configuring a
+    /// [FocusTraversalGroup] widget.
+    ///
+    /// The focus traversal policy is what determines which widget is "next",
+    /// "previous", or in a direction from the currently focused [FocusNode].
+    ///
+    /// One of the pre-defined subclasses may be used, or define a custom policy to
+    /// create a unique focus order.
+    ///
+    /// When defining your own, your subclass should implement [sortDescendants] to
+    /// provide the order in which you would like the descendants to be traversed.
+    ///
+    /// See also:
+    ///
+    ///  * [FocusNode], for a description of the focus system.
+    ///  * [FocusTraversalGroup], a widget that groups together and imposes a
+    ///    traversal policy on the [Focus] nodes below it in the widget hierarchy.
+    ///  * [FocusNode], which is affected by the traversal policy.
+    ///  * [WidgetOrderTraversalPolicy], a policy that relies on the widget
+    ///    creation order to describe the order of traversal.
+    ///  * [ReadingOrderTraversalPolicy], a policy that describes the order as the
+    ///    natural "reading order" for the current [Directionality].
+    ///  * [OrderedTraversalPolicy], a policy that describes the order
+    ///    explicitly using [FocusTraversalOrder] widgets.
+    ///  * [DirectionalFocusTraversalPolicyMixin] a mixin class that implements
+    ///    focus traversal in a direction.
+    /// </Summary>
     public interface IFocusTraversalPolicy
     {
         FlutterSDK.Widgets.Focusmanager.FocusNode FindFirstFocus(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode);
@@ -451,6 +479,31 @@ namespace FlutterSDK.Widgets.Focustraversal
     }
 
 
+    /// <Summary>
+    /// Base class for all sort orders for [OrderedTraversalPolicy] traversal.
+    ///
+    /// {@template flutter.widgets.focusorder.comparable}
+    /// Only orders of the same type are comparable. If a set of widgets in the same
+    /// [FocusTraversalGroup] contains orders that are not comparable with each other, it
+    /// will assert, since the ordering between such keys is undefined. To avoid
+    /// collisions, use a [FocusTraversalGroup] to group similarly ordered widgets
+    /// together.
+    ///
+    /// When overriding, [doCompare] must be overridden instead of [compareTo],
+    /// which calls [doCompare] to do the actual comparison.
+    /// {@endtemplate}
+    ///
+    /// See also:
+    ///
+    ///  * [FocusTraversalGroup], a widget that groups together and imposes a
+    ///    traversal policy on the [Focus] nodes below it in the widget hierarchy.
+    ///  * [FocusTraversalOrder], a widget that assigns an order to a widget subtree
+    ///    for the [OrderedFocusTraversalPolicy] to use.
+    ///  * [NumericFocusOrder], for a focus order that describes its order with a
+    ///    `double`.
+    ///  * [LexicalFocusOrder], a focus order that assigns a string-based lexical
+    ///    traversal order to a [FocusTraversalOrder] widget.
+    /// </Summary>
     public interface IFocusOrder
     {
         int CompareTo(FlutterSDK.Widgets.Focustraversal.FocusOrder other);
@@ -488,6 +541,25 @@ namespace FlutterSDK.Widgets.Focustraversal
         private void _PushPolicyData(FlutterSDK.Widgets.Focustraversal.TraversalDirection direction, FlutterSDK.Widgets.Focusmanager.FocusScopeNode nearestScope, FlutterSDK.Widgets.Focusmanager.FocusNode focusedChild) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Focuses the next widget in the given [direction] in the [FocusScope] that
+        /// contains the [currentNode].
+        ///
+        /// This determines what the next node to receive focus in the given
+        /// [direction] will be by inspecting the node tree, and then calling
+        /// [FocusNode.requestFocus] on it.
+        ///
+        /// Returns true if it successfully found a node and requested focus.
+        ///
+        /// Maintains a stack of previous locations that have been visited on the
+        /// [policyData] for the affected [FocusScopeNode]. If the previous direction
+        /// was the opposite of the current direction, then the this policy will
+        /// request focus on the previously focused node. Change to another direction
+        /// other than the current one or its opposite will clear the stack.
+        ///
+        /// If this function returns true when called by a subclass, then the subclass
+        /// should return true and not request focus from any node.
+        /// </Summary>
         public new bool InDirection(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode, FlutterSDK.Widgets.Focustraversal.TraversalDirection direction) { throw new NotImplementedException(); }
 
     }
@@ -531,6 +603,34 @@ namespace FlutterSDK.Widgets.Focustraversal
     }
 
 
+    /// <Summary>
+    /// An object used to specify a focus traversal policy used for configuring a
+    /// [FocusTraversalGroup] widget.
+    ///
+    /// The focus traversal policy is what determines which widget is "next",
+    /// "previous", or in a direction from the currently focused [FocusNode].
+    ///
+    /// One of the pre-defined subclasses may be used, or define a custom policy to
+    /// create a unique focus order.
+    ///
+    /// When defining your own, your subclass should implement [sortDescendants] to
+    /// provide the order in which you would like the descendants to be traversed.
+    ///
+    /// See also:
+    ///
+    ///  * [FocusNode], for a description of the focus system.
+    ///  * [FocusTraversalGroup], a widget that groups together and imposes a
+    ///    traversal policy on the [Focus] nodes below it in the widget hierarchy.
+    ///  * [FocusNode], which is affected by the traversal policy.
+    ///  * [WidgetOrderTraversalPolicy], a policy that relies on the widget
+    ///    creation order to describe the order of traversal.
+    ///  * [ReadingOrderTraversalPolicy], a policy that describes the order as the
+    ///    natural "reading order" for the current [Directionality].
+    ///  * [OrderedTraversalPolicy], a policy that describes the order
+    ///    explicitly using [FocusTraversalOrder] widgets.
+    ///  * [DirectionalFocusTraversalPolicyMixin] a mixin class that implements
+    ///    focus traversal in a direction.
+    /// </Summary>
     public class FocusTraversalPolicy : IDiagnosticable
     {
         #region constructors
@@ -545,27 +645,126 @@ namespace FlutterSDK.Widgets.Focustraversal
 
         #region methods
 
+        /// <Summary>
+        /// Returns the node that should receive focus if there is no current focus
+        /// in the nearest [FocusScopeNode] that `currentNode` belongs to.
+        ///
+        /// This is used by [next]/[previous]/[inDirection] to determine which node to
+        /// focus if they are called when no node is currently focused.
+        ///
+        /// The `currentNode` argument must not be null.
+        ///
+        /// The default implementation returns the [FocusScopeNode.focusedChild], if
+        /// set, on the nearest scope of the `currentNode`, otherwise, returns the
+        /// first node from [sortDescendants], or the given `currentNode` if there are
+        /// no descendants.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FindFirstFocus(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the first node in the given `direction` that should receive focus
+        /// if there is no current focus in the scope to which the `currentNode`
+        /// belongs.
+        ///
+        /// This is typically used by [inDirection] to determine which node to focus
+        /// if it is called when no node is currently focused.
+        ///
+        /// All arguments must not be null.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FindFirstFocusInDirection(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode, FlutterSDK.Widgets.Focustraversal.TraversalDirection direction) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Clears the data associated with the given [FocusScopeNode] for this object.
+        ///
+        /// This is used to indicate that the focus policy has changed its mode, and
+        /// so any cached policy data should be invalidated. For example, changing the
+        /// direction in which focus is moving, or changing from directional to
+        /// next/previous navigation modes.
+        ///
+        /// The default implementation does nothing.
+        /// </Summary>
         public virtual void InvalidateScopeData(FlutterSDK.Widgets.Focusmanager.FocusScopeNode node) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// This is called whenever the given [node] is re-parented into a new scope,
+        /// so that the policy has a chance to update or invalidate any cached data
+        /// that it maintains per scope about the node.
+        ///
+        /// The [oldScope] is the previous scope that this node belonged to, if any.
+        ///
+        /// The default implementation does nothing.
+        /// </Summary>
         public virtual void ChangedScope(FlutterSDK.Widgets.Focusmanager.FocusNode node = default(FlutterSDK.Widgets.Focusmanager.FocusNode), FlutterSDK.Widgets.Focusmanager.FocusScopeNode oldScope = default(FlutterSDK.Widgets.Focusmanager.FocusScopeNode)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Focuses the next widget in the focus scope that contains the given
+        /// [currentNode].
+        ///
+        /// This should determine what the next node to receive focus should be by
+        /// inspecting the node tree, and then calling [FocusNode.requestFocus] on
+        /// the node that has been selected.
+        ///
+        /// Returns true if it successfully found a node and requested focus.
+        ///
+        /// The [currentNode] argument must not be null.
+        /// </Summary>
         public virtual bool Next(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Focuses the previous widget in the focus scope that contains the given
+        /// [currentNode].
+        ///
+        /// This should determine what the previous node to receive focus should be by
+        /// inspecting the node tree, and then calling [FocusNode.requestFocus] on
+        /// the node that has been selected.
+        ///
+        /// Returns true if it successfully found a node and requested focus.
+        ///
+        /// The [currentNode] argument must not be null.
+        /// </Summary>
         public virtual bool Previous(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Focuses the next widget in the given [direction] in the focus scope that
+        /// contains the given [currentNode].
+        ///
+        /// This should determine what the next node to receive focus in the given
+        /// [direction] should be by inspecting the node tree, and then calling
+        /// [FocusNode.requestFocus] on the node that has been selected.
+        ///
+        /// Returns true if it successfully found a node and requested focus.
+        ///
+        /// All arguments must not be null.
+        /// </Summary>
         public virtual bool InDirection(FlutterSDK.Widgets.Focusmanager.FocusNode currentNode, FlutterSDK.Widgets.Focustraversal.TraversalDirection direction) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Sorts the given `descendants` into focus order.
+        ///
+        /// Subclasses should override this to implement a different sort for [next]
+        /// and [previous] to use in their ordering. If the returned iterable omits a
+        /// node that is a descendant of the given scope, then the user will be unable
+        /// to use next/previous keyboard traversal to reach that node, and if that
+        /// node is used as the originator of a call to next/previous (i.e. supplied
+        /// as the argument to [next] or [previous]), then the next or previous node
+        /// will not be able to be determined and the focus will not change.
+        ///
+        /// This is not used for directional focus ([inDirection]), only for
+        /// determining the focus order for [next] and [previous].
+        ///
+        /// When implementing an override for this function, be sure to use
+        /// [mergeSort] instead of Dart's default list sorting algorithm when sorting
+        /// items, since the default algorithm is not stable (items deemed to be equal
+        /// can appear in arbitrary order, and change positions between sorts), whereas
+        /// [mergeSort] is stable.
+        /// </Summary>
         public virtual Iterable<FlutterSDK.Widgets.Focusmanager.FocusNode> SortDescendants(Iterable<FlutterSDK.Widgets.Focusmanager.FocusNode> descendants) { throw new NotImplementedException(); }
 
 
@@ -621,6 +820,25 @@ namespace FlutterSDK.Widgets.Focustraversal
     }
 
 
+    /// <Summary>
+    /// A [FocusTraversalPolicy] that traverses the focus order in widget hierarchy
+    /// order.
+    ///
+    /// This policy is used when the order desired is the order in which widgets are
+    /// created in the widget hierarchy.
+    ///
+    /// See also:
+    ///
+    ///  * [FocusNode], for a description of the focus system.
+    ///  * [FocusTraversalGroup], a widget that groups together and imposes a
+    ///    traversal policy on the [Focus] nodes below it in the widget hierarchy.
+    ///  * [ReadingOrderTraversalPolicy], a policy that describes the order as the
+    ///    natural "reading order" for the current [Directionality].
+    ///  * [DirectionalFocusTraversalPolicyMixin] a mixin class that implements
+    ///    focus traversal in a direction.
+    ///  * [OrderedTraversalPolicy], a policy that describes the order
+    ///    explicitly using [FocusTraversalOrder] widgets.
+    /// </Summary>
     public class WidgetOrderTraversalPolicy : FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy, IDirectionalFocusTraversalPolicyMixin
     {
         #region constructors
@@ -662,6 +880,9 @@ namespace FlutterSDK.Widgets.Focustraversal
         private TextDirection _FindDirectionality(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Finds the common Directional ancestor of an entire list of groups.
+        /// </Summary>
         public virtual TextDirection CommonDirectionalityOf(List<FlutterSDK.Widgets.Focustraversal._ReadingOrderSortData> list) { throw new NotImplementedException(); }
 
 
@@ -703,6 +924,33 @@ namespace FlutterSDK.Widgets.Focustraversal
     }
 
 
+    /// <Summary>
+    /// Traverses the focus order in "reading order".
+    ///
+    /// By default, reading order traversal goes in the reading direction, and then
+    /// down, using this algorithm:
+    ///
+    /// 1. Find the node rectangle that has the highest `top` on the screen.
+    /// 2. Find any other nodes that intersect the infinite horizontal band defined
+    ///    by the highest rectangle's top and bottom edges.
+    /// 3. Pick the closest to the beginning of the reading order from among the
+    ///    nodes discovered above.
+    ///
+    /// It uses the ambient [Directionality] in the context for the enclosing
+    /// [FocusTraversalGroup] to determine which direction is "reading order".
+    ///
+    /// See also:
+    ///
+    ///  * [FocusNode], for a description of the focus system.
+    ///  * [FocusTraversalGroup], a widget that groups together and imposes a
+    ///    traversal policy on the [Focus] nodes below it in the widget hierarchy.
+    ///  * [WidgetOrderTraversalPolicy], a policy that relies on the widget
+    ///    creation order to describe the order of traversal.
+    ///  * [DirectionalFocusTraversalPolicyMixin] a mixin class that implements
+    ///    focus traversal in a direction.
+    ///  * [OrderedTraversalPolicy], a policy that describes the order
+    ///    explicitly using [FocusTraversalOrder] widgets.
+    /// </Summary>
     public class ReadingOrderTraversalPolicy : FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy, IDirectionalFocusTraversalPolicyMixin
     {
         #region constructors
@@ -727,6 +975,31 @@ namespace FlutterSDK.Widgets.Focustraversal
     }
 
 
+    /// <Summary>
+    /// Base class for all sort orders for [OrderedTraversalPolicy] traversal.
+    ///
+    /// {@template flutter.widgets.focusorder.comparable}
+    /// Only orders of the same type are comparable. If a set of widgets in the same
+    /// [FocusTraversalGroup] contains orders that are not comparable with each other, it
+    /// will assert, since the ordering between such keys is undefined. To avoid
+    /// collisions, use a [FocusTraversalGroup] to group similarly ordered widgets
+    /// together.
+    ///
+    /// When overriding, [doCompare] must be overridden instead of [compareTo],
+    /// which calls [doCompare] to do the actual comparison.
+    /// {@endtemplate}
+    ///
+    /// See also:
+    ///
+    ///  * [FocusTraversalGroup], a widget that groups together and imposes a
+    ///    traversal policy on the [Focus] nodes below it in the widget hierarchy.
+    ///  * [FocusTraversalOrder], a widget that assigns an order to a widget subtree
+    ///    for the [OrderedFocusTraversalPolicy] to use.
+    ///  * [NumericFocusOrder], for a focus order that describes its order with a
+    ///    `double`.
+    ///  * [LexicalFocusOrder], a focus order that assigns a string-based lexical
+    ///    traversal order to a [FocusTraversalOrder] widget.
+    /// </Summary>
     public class FocusOrder : IComparable<FlutterSDK.Widgets.Focustraversal.FocusOrder>, IDiagnosticable
     {
         #region constructors
@@ -741,15 +1014,51 @@ namespace FlutterSDK.Widgets.Focustraversal
 
         #region methods
 
+        /// <Summary>
+        /// Compares this object to another [Comparable].
+        ///
+        /// When overriding [FocusOrder], implement [doCompare] instead of this
+        /// function to do the actual comparison.
+        ///
+        /// Returns a value like a [Comparator] when comparing `this` to [other].
+        /// That is, it returns a negative integer if `this` is ordered before [other],
+        /// a positive integer if `this` is ordered after [other],
+        /// and zero if `this` and [other] are ordered together.
+        ///
+        /// The [other] argument must be a value that is comparable to this object.
+        /// </Summary>
         public new int CompareTo(FlutterSDK.Widgets.Focustraversal.FocusOrder other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The subclass implementation called by [compareTo] to compare orders.
+        ///
+        /// The argument is guaranteed to be of the same [runtimeType] as this object.
+        ///
+        /// The method should return a negative number if this object comes earlier in
+        /// the sort order than the `other` argument; and a positive number if it
+        /// comes later in the sort order than `other`. Returning zero causes the
+        /// system to fall back to the secondary sort order defined by
+        /// [OrderedTraversalPolicy.secondary]
+        /// </Summary>
         public virtual int DoCompare(FlutterSDK.Widgets.Focustraversal.FocusOrder other) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// Can be given to a [FocusTraversalOrder] widget to assign a numerical order
+    /// to a widget subtree that is using a [OrderedTraversalPolicy] to define the
+    /// order in which widgets should be traversed with the keyboard.
+    ///
+    /// {@macro flutter.widgets.focusorder.comparable}
+    ///
+    /// See also:
+    ///
+    ///  * [FocusTraversalOrder], a widget that assigns an order to a widget subtree
+    ///    for the [OrderedFocusTraversalPolicy] to use.
+    /// </Summary>
     public class NumericFocusOrder : FlutterSDK.Widgets.Focustraversal.FocusOrder
     {
         #region constructors
@@ -776,6 +1085,22 @@ namespace FlutterSDK.Widgets.Focustraversal
     }
 
 
+    /// <Summary>
+    /// Can be given to a [FocusTraversalOrder] widget to use a String to assign a
+    /// lexical order to a widget subtree that is using a
+    /// [OrderedTraversalPolicy] to define the order in which widgets should be
+    /// traversed with the keyboard.
+    ///
+    /// This sorts strings using Dart's default string comparison, which is not
+    /// locale specific.
+    ///
+    /// {@macro flutter.widgets.focusorder.comparable}
+    ///
+    /// See also:
+    ///
+    ///  * [FocusTraversalOrder], a widget that assigns an order to a widget subtree
+    ///    for the [OrderedFocusTraversalPolicy] to use.
+    /// </Summary>
     public class LexicalFocusOrder : FlutterSDK.Widgets.Focustraversal.FocusOrder
     {
         #region constructors
@@ -823,6 +1148,95 @@ namespace FlutterSDK.Widgets.Focustraversal
     }
 
 
+    /// <Summary>
+    /// A [FocusTraversalPolicy] that orders nodes by an explicit order that resides
+    /// in the nearest [FocusTraversalOrder] widget ancestor.
+    ///
+    /// {@macro flutter.widgets.focusorder.comparable}
+    ///
+    /// {@tool dartpad --template=stateless_widget_scaffold_center}
+    /// This sample shows how to assign a traversal order to a widget. In the
+    /// example, the focus order goes from bottom right (the "One" button) to top
+    /// left (the "Six" button).
+    ///
+    /// ```dart preamble
+    /// class DemoButton extends StatelessWidget {
+    ///   const DemoButton({this.name, this.autofocus = false, this.order});
+    ///
+    ///   final String name;
+    ///   final bool autofocus;
+    ///   final double order;
+    ///
+    ///   void _handleOnPressed() {
+    ///     print('Button $name pressed.');
+    ///     debugDumpFocusTree();
+    ///   }
+    ///
+    ///   @override
+    ///   Widget build(BuildContext context) {
+    ///     return FocusTraversalOrder(
+    ///       order: NumericFocusOrder(order),
+    ///       child: FlatButton(
+    ///         autofocus: autofocus,
+    ///         focusColor: Colors.red,
+    ///         onPressed: () => _handleOnPressed(),
+    ///         child: Text(name),
+    ///       ),
+    ///     );
+    ///   }
+    /// }
+    /// ```
+    ///
+    /// ```dart
+    /// Widget build(BuildContext context) {
+    ///   return FocusTraversalGroup(
+    ///     policy: OrderedTraversalPolicy(),
+    ///     child: Column(
+    ///       mainAxisAlignment: MainAxisAlignment.center,
+    ///       children: <Widget>[
+    ///         Row(
+    ///           mainAxisAlignment: MainAxisAlignment.center,
+    ///           children: const <Widget>[
+    ///             DemoButton(name: 'Six', order: 6),
+    ///           ],
+    ///         ),
+    ///         Row(
+    ///           mainAxisAlignment: MainAxisAlignment.center,
+    ///           children: const <Widget>[
+    ///             DemoButton(name: 'Five', order: 5),
+    ///             DemoButton(name: 'Four', order: 4),
+    ///           ],
+    ///         ),
+    ///         Row(
+    ///           mainAxisAlignment: MainAxisAlignment.center,
+    ///           children: const <Widget>[
+    ///             DemoButton(name: 'Three', order: 3),
+    ///             DemoButton(name: 'Two', order: 2),
+    ///             DemoButton(name: 'One', order: 1, autofocus: true),
+    ///           ],
+    ///         ),
+    ///       ],
+    ///     ),
+    ///   );
+    /// }
+    /// ```
+    /// {@end-tool}
+    ///
+    /// See also:
+    ///
+    ///  * [FocusTraversalGroup], a widget that groups together and imposes a
+    ///    traversal policy on the [Focus] nodes below it in the widget hierarchy.
+    ///  * [WidgetOrderTraversalPolicy], a policy that relies on the widget
+    ///    creation order to describe the order of traversal.
+    ///  * [ReadingOrderTraversalPolicy], a policy that describes the order as the
+    ///    natural "reading order" for the current [Directionality].
+    ///  * [NumericFocusOrder], a focus order that assigns a numeric traversal order
+    ///    to a [FocusTraversalOrder] widget.
+    ///  * [LexicalFocusOrder], a focus order that assigns a string-based lexical
+    ///    traversal order to a [FocusTraversalOrder] widget.
+    ///  * [FocusOrder], an abstract base class for all types of focus traversal
+    ///    orderings.
+    /// </Summary>
     public class OrderedTraversalPolicy : FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy, IDirectionalFocusTraversalPolicyMixin
     {
         #region constructors
@@ -844,6 +1258,15 @@ namespace FlutterSDK.Widgets.Focustraversal
     }
 
 
+    /// <Summary>
+    /// An inherited widget that describes the order in which its child subtree
+    /// should be traversed.
+    ///
+    /// {@macro flutter.widgets.focusorder.comparable}
+    ///
+    /// The order for a widget is determined by the [FocusOrder] returned by
+    /// [FocusTraversalOrder.of] for a particular context.
+    /// </Summary>
     public class FocusTraversalOrder : FlutterSDK.Widgets.Framework.InheritedWidget
     {
         #region constructors
@@ -860,6 +1283,13 @@ namespace FlutterSDK.Widgets.Focustraversal
 
         #region methods
 
+        /// <Summary>
+        /// Finds the [FocusOrder] in the nearest ancestor [FocusTraversalOrder] widget.
+        ///
+        /// It does not create a rebuild dependency because changing the traversal
+        /// order doesn't change the widget tree, so nothing needs to be rebuilt as a
+        /// result of an order change.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Focustraversal.FocusOrder Of(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false) { throw new NotImplementedException(); }
 
 
@@ -872,6 +1302,180 @@ namespace FlutterSDK.Widgets.Focustraversal
     }
 
 
+    /// <Summary>
+    /// A widget that describes the inherited focus policy for focus traversal for
+    /// its descendants, grouping them into a separate traversal group.
+    ///
+    /// A traversal group is treated as one entity when sorted by the traversal
+    /// algorithm, so it can be used to segregate different parts of the widget tree
+    /// that need to be sorted using different algorithms and/or sort orders when
+    /// using an [OrderedTraversalPolicy].
+    ///
+    /// Within the group, it will use the given [policy] to order the elements. The
+    /// group itself will be ordered using the parent group's policy.
+    ///
+    /// By default, traverses in reading order using [ReadingOrderTraversalPolicy].
+    ///
+    /// {@tool dartpad --template=stateless_widget_material}
+    /// This sample shows three rows of buttons, each grouped by a
+    /// [FocusTraversalGroup], each with different traversal order policies. Use tab
+    /// traversal to see the order they are traversed in.  The first row follows a
+    /// numerical order, the second follows a lexical order (ordered to traverse
+    /// right to left), and the third ignores the numerical order assigned to it and
+    /// traverses in widget order.
+    ///
+    /// ```dart preamble
+    /// /// A button wrapper that adds either a numerical or lexical order, depending on
+    /// /// the type of T.
+    /// class OrderedButton<T> extends StatefulWidget {
+    ///   const OrderedButton({
+    ///     this.name,
+    ///     this.canRequestFocus = true,
+    ///     this.autofocus = false,
+    ///     this.order,
+    ///   });
+    ///
+    ///   final String name;
+    ///   final bool canRequestFocus;
+    ///   final bool autofocus;
+    ///   final T order;
+    ///
+    ///   @override
+    ///   _OrderedButtonState createState() => _OrderedButtonState();
+    /// }
+    ///
+    /// class _OrderedButtonState<T> extends State<OrderedButton<T>> {
+    ///   FocusNode focusNode;
+    ///
+    ///   @override
+    ///   void initState() {
+    ///     super.initState();
+    ///     focusNode = FocusNode(
+    ///       debugLabel: widget.name,
+    ///       canRequestFocus: widget.canRequestFocus,
+    ///     );
+    ///   }
+    ///
+    ///   @override
+    ///   void dispose() {
+    ///     focusNode?.dispose();
+    ///     super.dispose();
+    ///   }
+    ///
+    ///   @override
+    ///   void didUpdateWidget(OrderedButton oldWidget) {
+    ///     super.didUpdateWidget(oldWidget);
+    ///     focusNode.canRequestFocus = widget.canRequestFocus;
+    ///   }
+    ///
+    ///   void _handleOnPressed() {
+    ///     focusNode.requestFocus();
+    ///     print('Button ${widget.name} pressed.');
+    ///     debugDumpFocusTree();
+    ///   }
+    ///
+    ///   @override
+    ///   Widget build(BuildContext context) {
+    ///     FocusOrder order;
+    ///     if (widget.order is num) {
+    ///       order = NumericFocusOrder((widget.order as num).toDouble());
+    ///     } else {
+    ///       order = LexicalFocusOrder(widget.order.toString());
+    ///     }
+    ///
+    ///     return FocusTraversalOrder(
+    ///       order: order,
+    ///       child: Padding(
+    ///         padding: const EdgeInsets.all(8.0),
+    ///         child: OutlineButton(
+    ///           focusNode: focusNode,
+    ///           autofocus: widget.autofocus,
+    ///           focusColor: Colors.red,
+    ///           hoverColor: Colors.blue,
+    ///           onPressed: () => _handleOnPressed(),
+    ///           child: Text(widget.name),
+    ///         ),
+    ///       ),
+    ///     );
+    ///   }
+    /// }
+    /// ```
+    ///
+    /// ```dart
+    /// Widget build(BuildContext context) {
+    ///   return Container(
+    ///     color: Colors.white,
+    ///     child: FocusTraversalGroup(
+    ///       policy: OrderedTraversalPolicy(),
+    ///       child: Column(
+    ///         mainAxisAlignment: MainAxisAlignment.center,
+    ///         children: <Widget>[
+    ///           // A group that is ordered with a numerical order, from left to right.
+    ///           FocusTraversalGroup(
+    ///             policy: OrderedTraversalPolicy(),
+    ///             child: Row(
+    ///               mainAxisAlignment: MainAxisAlignment.center,
+    ///               children: List<Widget>.generate(3, (int index) {
+    ///                 return OrderedButton<num>(
+    ///                   name: 'num: $index',
+    ///                   // TRY THIS: change this to "3 - index" and see how the order changes.
+    ///                   order: index,
+    ///                 );
+    ///               }),
+    ///             ),
+    ///           ),
+    ///           // A group that is ordered with a lexical order, from right to left.
+    ///           FocusTraversalGroup(
+    ///             policy: OrderedTraversalPolicy(),
+    ///             child: Row(
+    ///               mainAxisAlignment: MainAxisAlignment.center,
+    ///               children: List<Widget>.generate(3, (int index) {
+    ///                 // Order as "C" "B", "A".
+    ///                 String order =
+    ///                     String.fromCharCode('A'.codeUnitAt(0) + (2 - index));
+    ///                 return OrderedButton<String>(
+    ///                   name: 'String: $order',
+    ///                   order: order,
+    ///                 );
+    ///               }),
+    ///             ),
+    ///           ),
+    ///           // A group that orders in widget order, regardless of what the order is set to.
+    ///           FocusTraversalGroup(
+    ///             // Note that because this is NOT an OrderedTraversalPolicy, the
+    ///             // assigned order of these OrderedButtons is ignored, and they
+    ///             // are traversed in widget order. TRY THIS: change this to
+    ///             // "OrderedTraversalPolicy()" and see that it now follows the
+    ///             // numeric order set on them instead of the widget order.
+    ///             policy: WidgetOrderTraversalPolicy(),
+    ///             child: Row(
+    ///               mainAxisAlignment: MainAxisAlignment.center,
+    ///               children: List<Widget>.generate(3, (int index) {
+    ///                 return OrderedButton<num>(
+    ///                   name: 'ignored num: ${3 - index}',
+    ///                   order: 3 - index,
+    ///                 );
+    ///               }),
+    ///             ),
+    ///           ),
+    ///         ],
+    ///       ),
+    ///     ),
+    ///   );
+    /// }
+    /// ```
+    /// {@end-tool}
+    ///
+    /// See also:
+    ///
+    ///  * [FocusNode], for a description of the focus system.
+    ///  * [WidgetOrderTraversalPolicy], a policy that relies on the widget
+    ///    creation order to describe the order of traversal.
+    ///  * [ReadingOrderTraversalPolicy], a policy that describes the order as the
+    ///    natural "reading order" for the current [Directionality].
+    ///  * [DirectionalFocusTraversalPolicyMixin] a mixin class that implements
+    ///    focus traversal in a direction.
+    /// </Summary>
     public class FocusTraversalGroup : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -889,6 +1493,19 @@ namespace FlutterSDK.Widgets.Focustraversal
 
         #region methods
 
+        /// <Summary>
+        /// Returns the focus policy set by the [FocusTraversalGroup] that most
+        /// tightly encloses the given [BuildContext].
+        ///
+        /// It does not create a rebuild dependency because changing the traversal
+        /// order doesn't change the widget tree, so nothing needs to be rebuilt as a
+        /// result of an order change.
+        ///
+        /// Will assert if no [FocusTraversalGroup] ancestor is found, and `nullOk` is false.
+        ///
+        /// If `nullOk` is true, then it will return null if it doesn't find a
+        /// [FocusTraversalGroup] ancestor.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy Of(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false) { throw new NotImplementedException(); }
 
 
@@ -975,6 +1592,29 @@ namespace FlutterSDK.Widgets.Focustraversal
     }
 
 
+    /// <Summary>
+    /// An [Action] that requests the focus on the node it is invoked on.
+    ///
+    /// This action can be used to request focus for a particular node, by calling
+    /// [Action.invoke] like so:
+    ///
+    /// ```dart
+    /// Actions.invoke(context, const Intent(RequestFocusAction.key), focusNode: _focusNode);
+    /// ```
+    ///
+    /// Where the `_focusNode` is the node for which the focus will be requested.
+    ///
+    /// The difference between requesting focus in this way versus calling
+    /// [_focusNode.requestFocus] directly is that it will use the [Action]
+    /// registered in the nearest [Actions] widget associated with [key] to make the
+    /// request, rather than just requesting focus directly. This allows the action
+    /// to have additional side effects, like logging, or undo and redo
+    /// functionality.
+    ///
+    /// However, this [RequestFocusAction] is the default action associated with the
+    /// [key] in the [WidgetsApp], and it simply requests focus and has no side
+    /// effects.
+    /// </Summary>
     public class RequestFocusAction : FlutterSDK.Widgets.Focustraversal._RequestFocusActionBase
     {
         #region constructors
@@ -997,6 +1637,13 @@ namespace FlutterSDK.Widgets.Focustraversal
     }
 
 
+    /// <Summary>
+    /// An [Action] that moves the focus to the next focusable node in the focus
+    /// order.
+    ///
+    /// This action is the default action registered for the [key], and by default
+    /// is bound to the [LogicalKeyboardKey.tab] key in the [WidgetsApp].
+    /// </Summary>
     public class NextFocusAction : FlutterSDK.Widgets.Focustraversal._RequestFocusActionBase
     {
         #region constructors
@@ -1019,6 +1666,14 @@ namespace FlutterSDK.Widgets.Focustraversal
     }
 
 
+    /// <Summary>
+    /// An [Action] that moves the focus to the previous focusable node in the focus
+    /// order.
+    ///
+    /// This action is the default action registered for the [key], and by default
+    /// is bound to a combination of the [LogicalKeyboardKey.tab] key and the
+    /// [LogicalKeyboardKey.shift] key in the [WidgetsApp].
+    /// </Summary>
     public class PreviousFocusAction : FlutterSDK.Widgets.Focustraversal._RequestFocusActionBase
     {
         #region constructors
@@ -1041,6 +1696,15 @@ namespace FlutterSDK.Widgets.Focustraversal
     }
 
 
+    /// <Summary>
+    /// An [Intent] that represents moving to the next focusable node in the given
+    /// [direction].
+    ///
+    /// This is the [Intent] bound by default to the [LogicalKeyboardKey.arrowUp],
+    /// [LogicalKeyboardKey.arrowDown], [LogicalKeyboardKey.arrowLeft], and
+    /// [LogicalKeyboardKey.arrowRight] keys in the [WidgetsApp], with the
+    /// appropriate associated directions.
+    /// </Summary>
     public class DirectionalFocusIntent : FlutterSDK.Widgets.Actions.Intent
     {
         #region constructors
@@ -1062,6 +1726,15 @@ namespace FlutterSDK.Widgets.Focustraversal
     }
 
 
+    /// <Summary>
+    /// An [Action] that moves the focus to the focusable node in the direction
+    /// configured by the associated [DirectionalFocusIntent.direction].
+    ///
+    /// This is the [Action] associated with the [key] and bound by default to the
+    /// [LogicalKeyboardKey.arrowUp], [LogicalKeyboardKey.arrowDown],
+    /// [LogicalKeyboardKey.arrowLeft], and [LogicalKeyboardKey.arrowRight] keys in
+    /// the [WidgetsApp], with the appropriate associated directions.
+    /// </Summary>
     public class DirectionalFocusAction : FlutterSDK.Widgets.Focustraversal._RequestFocusActionBase
     {
         #region constructors
@@ -1085,12 +1758,37 @@ namespace FlutterSDK.Widgets.Focustraversal
     }
 
 
+    /// <Summary>
+    /// A direction along either the horizontal or vertical axes.
+    ///
+    /// This is used by the [DirectionalFocusTraversalPolicyMixin], and
+    /// [Focus.focusInDirection] to indicate which direction to look in for the next
+    /// focus.
+    /// </Summary>
     public enum TraversalDirection
     {
 
+        /// <Summary>
+        /// Indicates a direction above the currently focused widget.
+        /// </Summary>
         Up,
+        /// <Summary>
+        /// Indicates a direction to the right of the currently focused widget.
+        ///
+        /// This direction is unaffected by the [Directionality] of the current
+        /// context.
+        /// </Summary>
         Right,
+        /// <Summary>
+        /// Indicates a direction below the currently focused widget.
+        /// </Summary>
         Down,
+        /// <Summary>
+        /// Indicates a direction to the left of the currently focused widget.
+        ///
+        /// This direction is unaffected by the [Directionality] of the current
+        /// context.
+        /// </Summary>
         Left,
     }
 

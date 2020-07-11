@@ -429,6 +429,80 @@ namespace FlutterSDK.Material.Themedata
         public static Color _KDarkThemeSplashColor = default(Color);
     }
 
+    /// <Summary>
+    /// Holds the color and typography values for a material design theme.
+    ///
+    /// Use this class to configure a [Theme] or [MaterialApp] widget.
+    ///
+    /// To obtain the current theme, use [Theme.of].
+    ///
+    /// {@tool snippet}
+    ///
+    /// This sample creates a [Theme] widget that stores the `ThemeData`. The
+    /// `ThemeData` can be accessed by descendant Widgets that use the correct
+    /// `context`. This example uses the [Builder] widget to gain access to a
+    /// descendant `context` that contains the `ThemeData`.
+    ///
+    /// The [Container] widget uses [Theme.of] to retrieve the [primaryColor] from
+    /// the `ThemeData` to draw an amber square.
+    ///
+    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/theme_data.png)
+    ///
+    /// ```dart
+    /// Theme(
+    ///   data: ThemeData(primaryColor: Colors.amber),
+    ///   child: Builder(
+    ///     builder: (BuildContext context) {
+    ///       return Container(
+    ///         width: 100,
+    ///         height: 100,
+    ///         color: Theme.of(context).primaryColor,
+    ///       );
+    ///     },
+    ///   ),
+    /// )
+    /// ```
+    /// {@end-tool}
+    ///
+    /// In addition to using the [Theme] widget, you can provide `ThemeData` to a
+    /// [MaterialApp]. The `ThemeData` will be used throughout the app to style
+    /// material design widgets.
+    ///
+    /// {@tool snippet}
+    ///
+    /// This sample creates a [MaterialApp] widget that stores `ThemeData` and
+    /// passes the `ThemeData` to descendant widgets. The [AppBar] widget uses the
+    /// [primaryColor] to create a blue background. The [Text] widget uses the
+    /// [TextTheme.bodyText2] to create purple text. The [FloatingActionButton] widget
+    /// uses the [accentColor] to create a green background.
+    ///
+    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/material_app_theme_data.png)
+    ///
+    /// ```dart
+    /// MaterialApp(
+    ///   theme: ThemeData(
+    ///     primaryColor: Colors.blue,
+    ///     accentColor: Colors.green,
+    ///     textTheme: TextTheme(bodyText2: TextStyle(color: Colors.purple)),
+    ///   ),
+    ///   home: Scaffold(
+    ///     appBar: AppBar(
+    ///       title: const Text('ThemeData Demo'),
+    ///     ),
+    ///     floatingActionButton: FloatingActionButton(
+    ///       child: const Icon(Icons.add),
+    ///       onPressed: () {},
+    ///     ),
+    ///     body: Center(
+    ///       child: Text(
+    ///         'Button pressed 0 times',
+    ///       ),
+    ///     ),
+    ///   ),
+    /// )
+    /// ```
+    /// {@end-tool}
+    /// </Summary>
     public class ThemeData : IDiagnosticable
     {
         #region constructors
@@ -593,15 +667,41 @@ namespace FlutterSDK.Material.Themedata
 
         #region methods
 
+        /// <Summary>
+        /// Creates a copy of this theme but with the given fields replaced with the new values.
+        /// </Summary>
         public virtual FlutterSDK.Material.Themedata.ThemeData CopyWith(Brightness brightness = default(Brightness), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color), Brightness primaryColorBrightness = default(Brightness), FlutterBinding.UI.Color primaryColorLight = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryColorDark = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color accentColor = default(FlutterBinding.UI.Color), Brightness accentColorBrightness = default(Brightness), FlutterBinding.UI.Color canvasColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color scaffoldBackgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color bottomAppBarColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color cardColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color dividerColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory splashFactory = default(FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory), FlutterBinding.UI.Color selectedRowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color unselectedWidgetColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Buttontheme.ButtonThemeData buttonTheme = default(FlutterSDK.Material.Buttontheme.ButtonThemeData), FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData toggleButtonsTheme = default(FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData), FlutterBinding.UI.Color buttonColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondaryHeaderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color textSelectionColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color textSelectionHandleColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color dialogBackgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color indicatorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hintColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color errorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color toggleableActiveColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme primaryTextTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme accentTextTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Inputdecorator.InputDecorationTheme inputDecorationTheme = default(FlutterSDK.Material.Inputdecorator.InputDecorationTheme), FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData primaryIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData accentIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Material.Tabbartheme.TabBarTheme tabBarTheme = default(FlutterSDK.Material.Tabbartheme.TabBarTheme), FlutterSDK.Material.Tooltiptheme.TooltipThemeData tooltipTheme = default(FlutterSDK.Material.Tooltiptheme.TooltipThemeData), FlutterSDK.Material.Cardtheme.CardTheme cardTheme = default(FlutterSDK.Material.Cardtheme.CardTheme), FlutterSDK.Material.Chiptheme.ChipThemeData chipTheme = default(FlutterSDK.Material.Chiptheme.ChipThemeData), FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), bool applyElevationOverlayColor = default(bool), FlutterSDK.Material.Pagetransitionstheme.PageTransitionsTheme pageTransitionsTheme = default(FlutterSDK.Material.Pagetransitionstheme.PageTransitionsTheme), FlutterSDK.Material.Appbartheme.AppBarTheme appBarTheme = default(FlutterSDK.Material.Appbartheme.AppBarTheme), FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme bottomAppBarTheme = default(FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme), FlutterSDK.Material.Colorscheme.ColorScheme colorScheme = default(FlutterSDK.Material.Colorscheme.ColorScheme), FlutterSDK.Material.Dialogtheme.DialogTheme dialogTheme = default(FlutterSDK.Material.Dialogtheme.DialogTheme), FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData floatingActionButtonTheme = default(FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData), FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData navigationRailTheme = default(FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData), FlutterSDK.Material.Typography.Typography typography = default(FlutterSDK.Material.Typography.Typography), FlutterSDK.Cupertino.Theme.CupertinoThemeData cupertinoOverrideTheme = default(FlutterSDK.Cupertino.Theme.CupertinoThemeData), FlutterSDK.Material.Snackbartheme.SnackBarThemeData snackBarTheme = default(FlutterSDK.Material.Snackbartheme.SnackBarThemeData), FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData bottomSheetTheme = default(FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData), FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData popupMenuTheme = default(FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData), FlutterSDK.Material.Bannertheme.MaterialBannerThemeData bannerTheme = default(FlutterSDK.Material.Bannertheme.MaterialBannerThemeData), FlutterSDK.Material.Dividertheme.DividerThemeData dividerTheme = default(FlutterSDK.Material.Dividertheme.DividerThemeData), FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData buttonBarTheme = default(FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a new theme built by merging the text geometry provided by the
+        /// [localTextGeometry] theme with the [baseTheme].
+        ///
+        /// For those text styles in the [baseTheme] whose [TextStyle.inherit] is set
+        /// to true, the returned theme's text styles inherit the geometric properties
+        /// of [localTextGeometry]. The resulting text styles' [TextStyle.inherit] is
+        /// set to those provided by [localTextGeometry].
+        /// </Summary>
         public virtual FlutterSDK.Material.Themedata.ThemeData Localize(FlutterSDK.Material.Themedata.ThemeData baseTheme, FlutterSDK.Material.Texttheme.TextTheme localTextGeometry) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Determines whether the given [Color] is [Brightness.light] or
+        /// [Brightness.dark].
+        ///
+        /// This compares the luminosity of the given color to a threshold value that
+        /// matches the material design specification.
+        /// </Summary>
         public virtual Brightness EstimateBrightnessForColor(FlutterBinding.UI.Color color) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two themes.
+        ///
+        /// The arguments must not be null.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
         public virtual FlutterSDK.Material.Themedata.ThemeData Lerp(FlutterSDK.Material.Themedata.ThemeData a, FlutterSDK.Material.Themedata.ThemeData b, double t) { throw new NotImplementedException(); }
 
 
@@ -614,6 +714,33 @@ namespace FlutterSDK.Material.Themedata
     }
 
 
+    /// <Summary>
+    /// A [CupertinoThemeData] that defers unspecified theme attributes to an
+    /// upstream Material [ThemeData].
+    ///
+    /// This type of [CupertinoThemeData] is used by the Material [Theme] to
+    /// harmonize the [CupertinoTheme] with the material theme's colors and text
+    /// styles.
+    ///
+    /// In the most basic case, [ThemeData]'s `cupertinoOverrideTheme` is null and
+    /// and descendant Cupertino widgets' styling is derived from the Material theme.
+    ///
+    /// To override individual parts of the Material-derived Cupertino styling,
+    /// `cupertinoOverrideTheme`'s construction parameters can be used.
+    ///
+    /// To completely decouple the Cupertino styling from Material theme derivation,
+    /// another [CupertinoTheme] widget can be inserted as a descendant of the
+    /// Material [Theme]. On a [MaterialApp], this can be done using the `builder`
+    /// parameter on the constructor.
+    ///
+    /// See also:
+    ///
+    ///  * [CupertinoThemeData], whose null constructor parameters default to
+    ///    reasonable iOS styling defaults rather than harmonizing with a Material
+    ///    theme.
+    ///  * [Theme], widget which inserts a [CupertinoTheme] with this
+    ///    [MaterialBasedCupertinoThemeData].
+    /// </Summary>
     public class MaterialBasedCupertinoThemeData : FlutterSDK.Cupertino.Theme.CupertinoThemeData
     {
         #region constructors
@@ -641,6 +768,19 @@ namespace FlutterSDK.Material.Themedata
 
         #region methods
 
+        /// <Summary>
+        /// Copies the [ThemeData]'s `cupertinoOverrideTheme`.
+        ///
+        /// Only the specified override attributes of the [ThemeData]'s
+        /// `cupertinoOverrideTheme` and the newly specified parameters are in the
+        /// returned [CupertinoThemeData]. No derived attributes from iOS defaults or
+        /// from cascaded Material theme attributes are copied.
+        ///
+        /// [MaterialBasedCupertinoThemeData.copyWith] cannot change the base
+        /// Material [ThemeData]. To change the base Material [ThemeData], create a
+        /// new Material [Theme] and use `copyWith` on the Material [ThemeData]
+        /// instead.
+        /// </Summary>
         public new FlutterSDK.Material.Themedata.MaterialBasedCupertinoThemeData CopyWith(Brightness brightness = default(Brightness), FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryContrastingColor = default(FlutterBinding.UI.Color), FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData textTheme = default(FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData), FlutterBinding.UI.Color barBackgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color scaffoldBackgroundColor = default(FlutterBinding.UI.Color)) { throw new NotImplementedException(); }
 
 
@@ -674,6 +814,13 @@ namespace FlutterSDK.Material.Themedata
     }
 
 
+    /// <Summary>
+    /// Cache of objects of limited size that uses the first in first out eviction
+    /// strategy (a.k.a least recently inserted).
+    ///
+    /// The key that was inserted before all other keys is evicted first, i.e. the
+    /// one inserted least recently.
+    /// </Summary>
     public class _FifoCache<K, V>
     {
         #region constructors
@@ -691,12 +838,41 @@ namespace FlutterSDK.Material.Themedata
 
         #region methods
 
+        /// <Summary>
+        /// Returns the previously cached value for the given key, if available;
+        /// if not, calls the given callback to obtain it first.
+        ///
+        /// The arguments must not be null.
+        /// </Summary>
         public virtual V PutIfAbsent(K key, Func<V> loader) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// Defines the visual density of user interface components.
+    ///
+    /// Density, in the context of a UI, is the vertical and horizontal
+    /// "compactness" of the components in the UI. It is unitless, since it means
+    /// different things to different UI components.
+    ///
+    /// The default for visual densities is zero for both vertical and horizontal
+    /// densities, which corresponds to the default visual density of components in
+    /// the Material Design specification. It does not affect text sizes, icon
+    /// sizes, or padding values.
+    ///
+    /// For example, for buttons, it affects the spacing around the child of the
+    /// button. For lists, it affects the distance between baselines of entries in
+    /// the list. For chips, it only affects the vertical size, not the horizontal
+    /// size.
+    ///
+    /// See also:
+    ///
+    ///  * [ThemeData.visualDensity], where this property is used to specify the base
+    ///    horizontal density of Material components.
+    ///  * [Material design guidance on density](https://material.io/design/layout/applying-density.html).
+    /// </Summary>
     public class VisualDensity : IDiagnosticable
     {
         #region constructors
@@ -723,12 +899,23 @@ namespace FlutterSDK.Material.Themedata
 
         #region methods
 
+        /// <Summary>
+        /// Copy the current [VisualDensity] with the given values replacing the
+        /// current values.
+        /// </Summary>
         public virtual FlutterSDK.Material.Themedata.VisualDensity CopyWith(double horizontal = default(double), double vertical = default(double)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two densities.
+        /// </Summary>
         public virtual FlutterSDK.Material.Themedata.VisualDensity Lerp(FlutterSDK.Material.Themedata.VisualDensity a, FlutterSDK.Material.Themedata.VisualDensity b, double t) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Return a copy of [constraints] whose minimum width and height have been
+        /// updated with the [baseSizeAdjustment].
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Box.BoxConstraints EffectiveConstraints(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
 
 
@@ -744,10 +931,46 @@ namespace FlutterSDK.Material.Themedata
     }
 
 
+    /// <Summary>
+    /// Configures the tap target and layout size of certain Material widgets.
+    ///
+    /// Changing the value in [ThemeData.materialTapTargetSize] will affect the
+    /// accessibility experience.
+    ///
+    /// Some of the impacted widgets include:
+    ///
+    ///   * [FloatingActionButton], only the mini tap target size is increased.
+    ///   * [MaterialButton]
+    ///   * [OutlineButton]
+    ///   * [FlatButton]
+    ///   * [RaisedButton]
+    ///   * [TimePicker]
+    ///   * [SnackBar]
+    ///   * [Chip]
+    ///   * [RawChip]
+    ///   * [InputChip]
+    ///   * [ChoiceChip]
+    ///   * [FilterChip]
+    ///   * [ActionChip]
+    ///   * [Radio]
+    ///   * [Switch]
+    ///   * [Checkbox]
+    /// </Summary>
     public enum MaterialTapTargetSize
     {
 
+        /// <Summary>
+        /// Expands the minimum tap target size to 48px by 48px.
+        ///
+        /// This is the default value of [ThemeData.materialHitTestSize] and the
+        /// recommended size to conform to Android accessibility scanner
+        /// recommendations.
+        /// </Summary>
         Padded,
+        /// <Summary>
+        /// Shrinks the tap target size to the minimum provided by the Material
+        /// specification.
+        /// </Summary>
         ShrinkWrap,
     }
 

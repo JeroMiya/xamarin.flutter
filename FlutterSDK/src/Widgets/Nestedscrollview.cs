@@ -431,6 +431,149 @@ namespace FlutterSDK.Widgets.Nestedscrollview
     {
     }
 
+    /// <Summary>
+    /// A scrolling view inside of which can be nested other scrolling views, with
+    /// their scroll positions being intrinsically linked.
+    ///
+    /// The most common use case for this widget is a scrollable view with a
+    /// flexible [SliverAppBar] containing a [TabBar] in the header (built by
+    /// [headerSliverBuilder], and with a [TabBarView] in the [body], such that the
+    /// scrollable view's contents vary based on which tab is visible.
+    ///
+    /// ## Motivation
+    ///
+    /// In a normal [ScrollView], there is one set of slivers (the components of the
+    /// scrolling view). If one of those slivers hosted a [TabBarView] which scrolls
+    /// in the opposite direction (e.g. allowing the user to swipe horizontally
+    /// between the pages represented by the tabs, while the list scrolls
+    /// vertically), then any list inside that [TabBarView] would not interact with
+    /// the outer [ScrollView]. For example, flinging the inner list to scroll to
+    /// the top would not cause a collapsed [SliverAppBar] in the outer [ScrollView]
+    /// to expand.
+    ///
+    /// [NestedScrollView] solves this problem by providing custom
+    /// [ScrollController]s for the outer [ScrollView] and the inner [ScrollView]s
+    /// (those inside the [TabBarView], hooking them together so that they appear,
+    /// to the user, as one coherent scroll view.
+    ///
+    /// {@tool snippet}
+    ///
+    /// This example shows a [NestedScrollView] whose header is the combination of a
+    /// [TabBar] in a [SliverAppBar] and whose body is a [TabBarView]. It uses a
+    /// [SliverOverlapAbsorber]/[SliverOverlapInjector] pair to make the inner lists
+    /// align correctly, and it uses [SafeArea] to avoid any horizontal disturbances
+    /// (e.g. the "notch" on iOS when the phone is horizontal). In addition,
+    /// [PageStorageKey]s are used to remember the scroll position of each tab's
+    /// list.
+    ///
+    /// In the example below, `_tabs` is a list of strings, one for each tab, giving
+    /// the tab labels. In a real application, it would be replaced by the actual
+    /// data model being represented.
+    ///
+    /// ```dart
+    /// DefaultTabController(
+    ///   length: _tabs.length, // This is the number of tabs.
+    ///   child: NestedScrollView(
+    ///     headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+    ///       // These are the slivers that show up in the "outer" scroll view.
+    ///       return <Widget>[
+    ///         SliverOverlapAbsorber(
+    ///           // This widget takes the overlapping behavior of the SliverAppBar,
+    ///           // and redirects it to the SliverOverlapInjector below. If it is
+    ///           // missing, then it is possible for the nested "inner" scroll view
+    ///           // below to end up under the SliverAppBar even when the inner
+    ///           // scroll view thinks it has not been scrolled.
+    ///           // This is not necessary if the "headerSliverBuilder" only builds
+    ///           // widgets that do not overlap the next sliver.
+    ///           handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+    ///           sliver: SliverAppBar(
+    ///             title: const Text('Books'), // This is the title in the app bar.
+    ///             pinned: true,
+    ///             expandedHeight: 150.0,
+    ///             // The "forceElevated" property causes the SliverAppBar to show
+    ///             // a shadow. The "innerBoxIsScrolled" parameter is true when the
+    ///             // inner scroll view is scrolled beyond its "zero" point, i.e.
+    ///             // when it appears to be scrolled below the SliverAppBar.
+    ///             // Without this, there are cases where the shadow would appear
+    ///             // or not appear inappropriately, because the SliverAppBar is
+    ///             // not actually aware of the precise position of the inner
+    ///             // scroll views.
+    ///             forceElevated: innerBoxIsScrolled,
+    ///             bottom: TabBar(
+    ///               // These are the widgets to put in each tab in the tab bar.
+    ///               tabs: _tabs.map((String name) => Tab(text: name)).toList(),
+    ///             ),
+    ///           ),
+    ///         ),
+    ///       ];
+    ///     },
+    ///     body: TabBarView(
+    ///       // These are the contents of the tab views, below the tabs.
+    ///       children: _tabs.map((String name) {
+    ///         return SafeArea(
+    ///           top: false,
+    ///           bottom: false,
+    ///           child: Builder(
+    ///             // This Builder is needed to provide a BuildContext that is
+    ///             // "inside" the NestedScrollView, so that
+    ///             // sliverOverlapAbsorberHandleFor() can find the
+    ///             // NestedScrollView.
+    ///             builder: (BuildContext context) {
+    ///               return CustomScrollView(
+    ///                 // The "controller" and "primary" members should be left
+    ///                 // unset, so that the NestedScrollView can control this
+    ///                 // inner scroll view.
+    ///                 // If the "controller" property is set, then this scroll
+    ///                 // view will not be associated with the NestedScrollView.
+    ///                 // The PageStorageKey should be unique to this ScrollView;
+    ///                 // it allows the list to remember its scroll position when
+    ///                 // the tab view is not on the screen.
+    ///                 key: PageStorageKey<String>(name),
+    ///                 slivers: <Widget>[
+    ///                   SliverOverlapInjector(
+    ///                     // This is the flip side of the SliverOverlapAbsorber
+    ///                     // above.
+    ///                     handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+    ///                   ),
+    ///                   SliverPadding(
+    ///                     padding: const EdgeInsets.all(8.0),
+    ///                     // In this example, the inner scroll view has
+    ///                     // fixed-height list items, hence the use of
+    ///                     // SliverFixedExtentList. However, one could use any
+    ///                     // sliver widget here, e.g. SliverList or SliverGrid.
+    ///                     sliver: SliverFixedExtentList(
+    ///                       // The items in this example are fixed to 48 pixels
+    ///                       // high. This matches the Material Design spec for
+    ///                       // ListTile widgets.
+    ///                       itemExtent: 48.0,
+    ///                       delegate: SliverChildBuilderDelegate(
+    ///                         (BuildContext context, int index) {
+    ///                           // This builder is called for each child.
+    ///                           // In this example, we just number each list item.
+    ///                           return ListTile(
+    ///                             title: Text('Item $index'),
+    ///                           );
+    ///                         },
+    ///                         // The childCount of the SliverChildBuilderDelegate
+    ///                         // specifies how many children this inner list
+    ///                         // has. In this example, each tab has a list of
+    ///                         // exactly 30 items, but this is arbitrary.
+    ///                         childCount: 30,
+    ///                       ),
+    ///                     ),
+    ///                   ),
+    ///                 ],
+    ///               );
+    ///             },
+    ///           ),
+    ///         );
+    ///       }).toList(),
+    ///     ),
+    ///   ),
+    /// )
+    /// ```
+    /// {@end-tool}
+    /// </Summary>
     public class NestedScrollView : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -459,6 +602,16 @@ namespace FlutterSDK.Widgets.Nestedscrollview
 
         #region methods
 
+        /// <Summary>
+        /// Returns the [SliverOverlapAbsorberHandle] of the nearest ancestor
+        /// [NestedScrollView].
+        ///
+        /// This is necessary to configure the [SliverOverlapAbsorber] and
+        /// [SliverOverlapInjector] widgets.
+        ///
+        /// For sample code showing how to use this method, see the [NestedScrollView]
+        /// documentation.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle SliverOverlapAbsorberHandleFor(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
@@ -471,6 +624,49 @@ namespace FlutterSDK.Widgets.Nestedscrollview
     }
 
 
+    /// <Summary>
+    /// The [State] for a [NestedScrollView].
+    ///
+    /// The [ScrollController]s, [innerController] and [outerController], of the
+    /// [NestedScrollView]'s children may be accessed through its state. This is
+    /// useful for obtaining respective scroll positions in the [NestedScrollView].
+    ///
+    /// If you want to access the inner or outer scroll controller of a
+    /// [NestedScrollView], you can get its [NestedScrollViewState] by supplying a
+    /// `GlobalKey<NestedScrollViewState>` to the [NestedScrollView.key] parameter).
+    ///
+    /// {@tool dartpad --template=stateless_widget_material}
+    /// [NestedScrollViewState] can be obtained using a [GlobalKey].
+    /// Using the following setup, you can access the inner scroll controller
+    /// using `globalKey.currentState.innerController`.
+    ///
+    /// ```dart preamble
+    /// final GlobalKey<NestedScrollViewState> globalKey = GlobalKey();
+    /// ```
+    /// ```dart
+    /// @override
+    /// Widget build(BuildContext context) {
+    ///   return NestedScrollView(
+    ///     key: globalKey,
+    ///     headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+    ///       return <Widget>[
+    ///         SliverAppBar(
+    ///           title: Text('NestedScrollViewState Demo!'),
+    ///         ),
+    ///       ];
+    ///     },
+    ///     body: CustomScrollView(
+    ///       // Body slivers go here!
+    ///     ),
+    ///   );
+    /// }
+    ///
+    /// ScrollController get innerController {
+    ///   return globalKey.currentState.innerController;
+    /// }
+    /// ```
+    /// {@end-tool}
+    /// </Summary>
     public class NestedScrollViewState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Nestedscrollview.NestedScrollView>
     {
         #region constructors
@@ -852,6 +1048,31 @@ namespace FlutterSDK.Widgets.Nestedscrollview
     }
 
 
+    /// <Summary>
+    /// Handle to provide to a [SliverOverlapAbsorber], a [SliverOverlapInjector],
+    /// and an [NestedScrollViewViewport], to shift overlap in a [NestedScrollView].
+    ///
+    /// A particular [SliverOverlapAbsorberHandle] can only be assigned to a single
+    /// [SliverOverlapAbsorber] at a time. It can also be (and normally is) assigned
+    /// to one or more [SliverOverlapInjector]s, which must be later descendants of
+    /// the same [NestedScrollViewViewport] as the [SliverOverlapAbsorber]. The
+    /// [SliverOverlapAbsorber] must be a direct descendant of the
+    /// [NestedScrollViewViewport], taking part in the same sliver layout. (The
+    /// [SliverOverlapInjector] can be a descendant that takes part in a nested
+    /// scroll view's sliver layout.)
+    ///
+    /// Whenever the [NestedScrollViewViewport] is marked dirty for layout, it will
+    /// cause its assigned [SliverOverlapAbsorberHandle] to fire notifications. It
+    /// is the responsibility of the [SliverOverlapInjector]s (and any other
+    /// clients) to mark themselves dirty when this happens, in case the geometry
+    /// subsequently changes during layout.
+    ///
+    /// See also:
+    ///
+    ///  * [NestedScrollView], which uses a [NestedScrollViewViewport] and a
+    ///    [SliverOverlapAbsorber] to align its children, and which shows sample
+    ///    usage for this class.
+    /// </Summary>
     public class SliverOverlapAbsorberHandle : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
     {
         #region constructors
@@ -879,6 +1100,20 @@ namespace FlutterSDK.Widgets.Nestedscrollview
     }
 
 
+    /// <Summary>
+    /// A sliver that wraps another, forcing its layout extent to be treated as
+    /// overlap.
+    ///
+    /// The difference between the overlap requested by the child [sliver] and the
+    /// overlap reported by this widget, called the _absorbed overlap_, is reported
+    /// to the [SliverOverlapAbsorberHandle], which is typically passed to a
+    /// [SliverOverlapInjector].
+    ///
+    /// See also:
+    ///
+    ///  * [NestedScrollView], whose documentation has sample code showing how to
+    ///    use this widget.
+    /// </Summary>
     public class SliverOverlapAbsorber : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
         #region constructors
@@ -908,6 +1143,15 @@ namespace FlutterSDK.Widgets.Nestedscrollview
     }
 
 
+    /// <Summary>
+    /// A sliver that wraps another, forcing its layout extent to be treated as
+    /// overlap.
+    ///
+    /// The difference between the overlap requested by the child [sliver] and the
+    /// overlap reported by this widget, called the _absorbed overlap_, is reported
+    /// to the [SliverOverlapAbsorberHandle], which is typically passed to a
+    /// [RenderSliverOverlapInjector].
+    /// </Summary>
     public class RenderSliverOverlapAbsorber : FlutterSDK.Rendering.Sliver.RenderSliver, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Sliver.RenderSliver>
     {
         #region constructors
@@ -950,6 +1194,19 @@ namespace FlutterSDK.Widgets.Nestedscrollview
     }
 
 
+    /// <Summary>
+    /// A sliver that has a sliver geometry based on the values stored in a
+    /// [SliverOverlapAbsorberHandle].
+    ///
+    /// The [SliverOverlapAbsorber] must be an earlier descendant of a common
+    /// ancestor [Viewport], so that it will always be laid out before the
+    /// [SliverOverlapInjector] during a particular frame.
+    ///
+    /// See also:
+    ///
+    ///  * [NestedScrollView], which uses a [SliverOverlapAbsorber] to align its
+    ///    children, and which shows sample usage for this class.
+    /// </Summary>
     public class SliverOverlapInjector : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
         #region constructors
@@ -979,6 +1236,15 @@ namespace FlutterSDK.Widgets.Nestedscrollview
     }
 
 
+    /// <Summary>
+    /// A sliver that has a sliver geometry based on the values stored in a
+    /// [SliverOverlapAbsorberHandle].
+    ///
+    /// The [RenderSliverOverlapAbsorber] must be an earlier descendant of a common
+    /// ancestor [RenderViewport] (probably a [RenderNestedScrollViewViewport]), so
+    /// that it will always be laid out before the [RenderSliverOverlapInjector]
+    /// during a particular frame.
+    /// </Summary>
     public class RenderSliverOverlapInjector : FlutterSDK.Rendering.Sliver.RenderSliver
     {
         #region constructors
@@ -1017,6 +1283,12 @@ namespace FlutterSDK.Widgets.Nestedscrollview
     }
 
 
+    /// <Summary>
+    /// The [Viewport] variant used by [NestedScrollView].
+    ///
+    /// This viewport takes a [SliverOverlapAbsorberHandle] and notifies it any time
+    /// the viewport needs to recompute its layout (e.g. when it is scrolled).
+    /// </Summary>
     public class NestedScrollViewViewport : FlutterSDK.Widgets.Viewport.Viewport
     {
         #region constructors
@@ -1046,6 +1318,12 @@ namespace FlutterSDK.Widgets.Nestedscrollview
     }
 
 
+    /// <Summary>
+    /// The [RenderViewport] variant used by [NestedScrollView].
+    ///
+    /// This viewport takes a [SliverOverlapAbsorberHandle] and notifies it any time
+    /// the viewport needs to recompute its layout (e.g. when it is scrolled).
+    /// </Summary>
     public class RenderNestedScrollViewViewport : FlutterSDK.Rendering.Viewport.RenderViewport
     {
         #region constructors

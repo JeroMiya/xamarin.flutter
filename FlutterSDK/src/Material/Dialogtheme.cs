@@ -382,6 +382,26 @@ namespace FlutterSDK.Material.Dialogtheme
     {
     }
 
+    /// <Summary>
+    /// Defines a theme for [Dialog] widgets.
+    ///
+    /// Descendant widgets obtain the current [DialogTheme] object using
+    /// `DialogTheme.of(context)`. Instances of [DialogTheme] can be customized with
+    /// [DialogTheme.copyWith].
+    ///
+    /// When Shape is `null`, the dialog defaults to a [RoundedRectangleBorder] with
+    /// a border radius of 2.0 on all corners.
+    ///
+    /// [titleTextStyle] and [contentTextStyle] are used in [AlertDialog]s.
+    /// If null, they default to [TextTheme.headline6] and [TextTheme.subtitle1],
+    /// respectively.
+    ///
+    /// See also:
+    ///
+    ///  * [Dialog], a material dialog that can be customized using this [DialogTheme].
+    ///  * [ThemeData], which describes the overall theme information for the
+    ///    application.
+    /// </Summary>
     public class DialogTheme : IDiagnosticable
     {
         #region constructors
@@ -406,12 +426,26 @@ namespace FlutterSDK.Material.Dialogtheme
 
         #region methods
 
+        /// <Summary>
+        /// Creates a copy of this object but with the given fields replaced with the
+        /// new values.
+        /// </Summary>
         public virtual FlutterSDK.Material.Dialogtheme.DialogTheme CopyWith(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Painting.Textstyle.TextStyle titleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The data from the closest [DialogTheme] instance given the build context.
+        /// </Summary>
         public virtual FlutterSDK.Material.Dialogtheme.DialogTheme Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two dialog themes.
+        ///
+        /// The arguments must not be null.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
         public virtual FlutterSDK.Material.Dialogtheme.DialogTheme Lerp(FlutterSDK.Material.Dialogtheme.DialogTheme a, FlutterSDK.Material.Dialogtheme.DialogTheme b, double t) { throw new NotImplementedException(); }
 
 

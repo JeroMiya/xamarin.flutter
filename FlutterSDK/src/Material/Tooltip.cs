@@ -425,6 +425,29 @@ namespace FlutterSDK.Material.Tooltip
     {
     }
 
+    /// <Summary>
+    /// A material design tooltip.
+    ///
+    /// Tooltips provide text labels that help explain the function of a button or
+    /// other user interface action. Wrap the button in a [Tooltip] widget to
+    /// show a label when the widget long pressed (or when the user takes some
+    /// other appropriate action).
+    ///
+    /// {@youtube 560 315 https://www.youtube.com/watch?v=EeEfD5fI-5Q}
+    ///
+    /// Many widgets, such as [IconButton], [FloatingActionButton], and
+    /// [PopupMenuButton] have a `tooltip` property that, when non-null, causes the
+    /// widget to include a [Tooltip] in its build.
+    ///
+    /// Tooltips improve the accessibility of visual widgets by proving a textual
+    /// representation of the widget, which, for example, can be vocalized by a
+    /// screen reader.
+    ///
+    /// See also:
+    ///
+    ///  * <https://material.io/design/components/tooltips.html>
+    ///  * [TooltipTheme] or [ThemeData.tooltipTheme]
+    /// </Summary>
     public class Tooltip : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -525,6 +548,11 @@ namespace FlutterSDK.Material.Tooltip
         private void _ShowTooltip(bool immediately = false) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Shows the tooltip if it is not already visible.
+        ///
+        /// Returns `false` when the tooltip was already visible.
+        /// </Summary>
         public virtual bool EnsureTooltipVisible() { throw new NotImplementedException(); }
 
 
@@ -552,6 +580,10 @@ namespace FlutterSDK.Material.Tooltip
     }
 
 
+    /// <Summary>
+    /// A delegate for computing the layout of a tooltip to be displayed above or
+    /// bellow a target specified in the global coordinate system.
+    /// </Summary>
     public class _TooltipPositionDelegate : FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate
     {
         #region constructors

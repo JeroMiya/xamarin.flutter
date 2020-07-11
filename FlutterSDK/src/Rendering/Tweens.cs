@@ -427,6 +427,18 @@ namespace FlutterSDK.Rendering.Tweens
     {
     }
 
+    /// <Summary>
+    /// An interpolation between two fractional offsets.
+    ///
+    /// This class specializes the interpolation of [Tween<FractionalOffset>] to be
+    /// appropriate for fractional offsets.
+    ///
+    /// See [Tween] for a discussion on how to use interpolation objects.
+    ///
+    /// See also:
+    ///
+    ///  * [AlignmentTween], which interpolates between to [Alignment] objects.
+    /// </Summary>
     public class FractionalOffsetTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Fractionaloffset.FractionalOffset>
     {
         #region constructors
@@ -442,12 +454,28 @@ namespace FlutterSDK.Rendering.Tweens
 
         #region methods
 
+        /// <Summary>
+        /// Returns the value this variable has at the given animation clock value.
+        /// </Summary>
         public new FlutterSDK.Painting.Fractionaloffset.FractionalOffset Lerp(double t) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// An interpolation between two alignments.
+    ///
+    /// This class specializes the interpolation of [Tween<Alignment>] to be
+    /// appropriate for alignments.
+    ///
+    /// See [Tween] for a discussion on how to use interpolation objects.
+    ///
+    /// See also:
+    ///
+    ///  * [AlignmentGeometryTween], which interpolates between two
+    ///    [AlignmentGeometry] objects.
+    /// </Summary>
     public class AlignmentTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Alignment.Alignment>
     {
         #region constructors
@@ -463,12 +491,27 @@ namespace FlutterSDK.Rendering.Tweens
 
         #region methods
 
+        /// <Summary>
+        /// Returns the value this variable has at the given animation clock value.
+        /// </Summary>
         public new FlutterSDK.Painting.Alignment.Alignment Lerp(double t) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// An interpolation between two [AlignmentGeometry].
+    ///
+    /// This class specializes the interpolation of [Tween<AlignmentGeometry>]
+    /// to be appropriate for alignments.
+    ///
+    /// See [Tween] for a discussion on how to use interpolation objects.
+    ///
+    /// See also:
+    ///
+    ///  * [AlignmentTween], which interpolates between two [Alignment] objects.
+    /// </Summary>
     public class AlignmentGeometryTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Alignment.AlignmentGeometry>
     {
         #region constructors
@@ -484,6 +527,9 @@ namespace FlutterSDK.Rendering.Tweens
 
         #region methods
 
+        /// <Summary>
+        /// Returns the value this variable has at the given animation clock value.
+        /// </Summary>
         public new FlutterSDK.Painting.Alignment.AlignmentGeometry Lerp(double t) { throw new NotImplementedException(); }
 
         #endregion

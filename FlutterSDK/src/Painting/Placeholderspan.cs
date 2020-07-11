@@ -427,6 +427,25 @@ namespace FlutterSDK.Painting.Placeholderspan
     {
     }
 
+    /// <Summary>
+    /// An immutable placeholder that is embedded inline within text.
+    ///
+    /// [PlaceholderSpan] represents a placeholder that acts as a stand-in for other
+    /// content. A [PlaceholderSpan] by itself does not contain useful
+    /// information to change a [TextSpan]. Instead, this class must be extended
+    /// to define contents.
+    ///
+    /// [WidgetSpan] from the widgets library extends [PlaceholderSpan] and may be
+    /// used instead to specify a widget as the contents of the placeholder.
+    ///
+    /// See also:
+    ///
+    ///  * [WidgetSpan], a leaf node that represents an embedded inline widget.
+    ///  * [TextSpan], a node that represents text in a [TextSpan] tree.
+    ///  * [Text], a widget for showing uniformly-styled text.
+    ///  * [RichText], a widget for finer control of text rendering.
+    ///  * [TextPainter], a class for painting [TextSpan] objects on a [Canvas].
+    /// </Summary>
     public interface IPlaceholderSpan
     {
         void ComputeToPlainText(StringBuffer buffer, bool includeSemanticsLabels = true, bool includePlaceholders = true);
@@ -439,6 +458,25 @@ namespace FlutterSDK.Painting.Placeholderspan
     }
 
 
+    /// <Summary>
+    /// An immutable placeholder that is embedded inline within text.
+    ///
+    /// [PlaceholderSpan] represents a placeholder that acts as a stand-in for other
+    /// content. A [PlaceholderSpan] by itself does not contain useful
+    /// information to change a [TextSpan]. Instead, this class must be extended
+    /// to define contents.
+    ///
+    /// [WidgetSpan] from the widgets library extends [PlaceholderSpan] and may be
+    /// used instead to specify a widget as the contents of the placeholder.
+    ///
+    /// See also:
+    ///
+    ///  * [WidgetSpan], a leaf node that represents an embedded inline widget.
+    ///  * [TextSpan], a node that represents text in a [TextSpan] tree.
+    ///  * [Text], a widget for showing uniformly-styled text.
+    ///  * [RichText], a widget for finer control of text rendering.
+    ///  * [TextPainter], a class for painting [TextSpan] objects on a [Canvas].
+    /// </Summary>
     public class PlaceholderSpan : FlutterSDK.Painting.Inlinespan.InlineSpan
     {
         #region constructors
@@ -457,15 +495,31 @@ namespace FlutterSDK.Painting.Placeholderspan
 
         #region methods
 
+        /// <Summary>
+        /// [PlaceholderSpan]s are flattened to a `0xFFFC` object replacement character in the
+        /// plain text representation when `includePlaceholders` is true.
+        /// </Summary>
         public new void ComputeToPlainText(StringBuffer buffer, bool includeSemanticsLabels = true, bool includePlaceholders = true) { throw new NotImplementedException(); }
 
 
         public new void ComputeSemanticsInformation(List<FlutterSDK.Painting.Inlinespan.InlineSpanSemanticsInformation> collector) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The [visitTextSpan] method is invalid on [PlaceholderSpan]s
+        /// </Summary>
         public new bool VisitTextSpan(Func<bool, TextSpan> visitor) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Populates the `semanticsOffsets` and `semanticsElements` with the appropriate data
+        /// to be able to construct a [SemanticsNode].
+        ///
+        /// [PlaceholderSpan]s have a text length of 1, which corresponds to the object
+        /// replacement character (0xFFFC) that is inserted to represent it.
+        ///
+        /// Null is added to `semanticsElements` for [PlaceholderSpan]s.
+        /// </Summary>
         public new void DescribeSemantics(FlutterSDK.Painting.Inlinespan.Accumulator offset, List<int> semanticsOffsets, List<object> semanticsElements) { throw new NotImplementedException(); }
 
 

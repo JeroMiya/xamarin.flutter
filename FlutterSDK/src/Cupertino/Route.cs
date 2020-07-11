@@ -323,6 +323,32 @@ namespace FlutterSDK.Cupertino.Route
 
     }
 
+    /// <Summary>
+    /// A modal route that replaces the entire screen with an iOS transition.
+    ///
+    /// The page slides in from the right and exits in reverse. The page also shifts
+    /// to the left in parallax when another page enters to cover it.
+    ///
+    /// The page slides in from the bottom and exits in reverse with no parallax
+    /// effect for fullscreen dialogs.
+    ///
+    /// By default, when a modal route is replaced by another, the previous route
+    /// remains in memory. To free all the resources when this is not necessary, set
+    /// [maintainState] to false.
+    ///
+    /// The type `T` specifies the return type of the route which can be supplied as
+    /// the route is popped from the stack via [Navigator.pop] when an optional
+    /// `result` can be provided.
+    ///
+    /// See also:
+    ///
+    ///  * [MaterialPageRoute], for an adaptive [PageRoute] that uses a
+    ///    platform-appropriate transition.
+    ///  * [CupertinoPageScaffold], for applications that have one page with a fixed
+    ///    navigation bar on top.
+    ///  * [CupertinoTabScaffold], for applications that have a tab bar at the
+    ///    bottom with multiple pages.
+    /// </Summary>
     public class CupertinoPageRoute<T> : FlutterSDK.Widgets.Pages.PageRoute<T>
     {
         #region constructors
@@ -357,6 +383,16 @@ namespace FlutterSDK.Cupertino.Route
         public new bool CanTransitionTo(FlutterSDK.Widgets.Routes.TransitionRoute<object> nextRoute) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// True if an iOS-style back swipe pop gesture is currently underway for [route].
+        ///
+        /// This just check the route's [NavigatorState.userGestureInProgress].
+        ///
+        /// See also:
+        ///
+        ///  * [popGestureEnabled], which returns true if a user-triggered pop gesture
+        ///    would be allowed.
+        /// </Summary>
         public virtual bool IsPopGestureInProgress(FlutterSDK.Widgets.Pages.PageRoute<object> route) { throw new NotImplementedException(); }
 
 
@@ -369,6 +405,22 @@ namespace FlutterSDK.Cupertino.Route
         private _CupertinoBackGestureController<T> _StartPopGesture<T>(FlutterSDK.Widgets.Pages.PageRoute<T> route) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a [CupertinoFullscreenDialogTransition] if [route] is a full
+        /// screen dialog, otherwise a [CupertinoPageTransition] is returned.
+        ///
+        /// Used by [CupertinoPageRoute.buildTransitions].
+        ///
+        /// This method can be applied to any [PageRoute], not just
+        /// [CupertinoPageRoute]. It's typically used to provide a Cupertino style
+        /// horizontal transition for material widgets when the target platform
+        /// is [TargetPlatform.iOS].
+        ///
+        /// See also:
+        ///
+        ///  * [CupertinoPageTransitionsBuilder], which uses this method to define a
+        ///    [PageTransitionsBuilder] for the [PageTransitionsTheme].
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget BuildPageTransitions<T>(FlutterSDK.Widgets.Pages.PageRoute<T> route, FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
 
 
@@ -378,6 +430,12 @@ namespace FlutterSDK.Cupertino.Route
     }
 
 
+    /// <Summary>
+    /// Provides an iOS-style page transition animation.
+    ///
+    /// The page slides in from the right and exits in reverse. It also shifts to the left in
+    /// a parallax motion when another page enters to cover it.
+    /// </Summary>
     public class CupertinoPageTransition : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors
@@ -403,6 +461,12 @@ namespace FlutterSDK.Cupertino.Route
     }
 
 
+    /// <Summary>
+    /// An iOS-style transition used for summoning fullscreen dialogs.
+    ///
+    /// For example, used when creating a new calendar event by bringing in the next
+    /// screen from the bottom.
+    /// </Summary>
     public class CupertinoFullscreenDialogTransition : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors
@@ -427,6 +491,19 @@ namespace FlutterSDK.Cupertino.Route
     }
 
 
+    /// <Summary>
+    /// This is the widget side of [_CupertinoBackGestureController].
+    ///
+    /// This widget provides a gesture recognizer which, when it determines the
+    /// route can be closed with a back gesture, creates the controller and
+    /// feeds it the input from the gesture recognizer.
+    ///
+    /// The gesture data is converted from absolute coordinates to logical
+    /// coordinates by this widget.
+    ///
+    /// The type `T` specifies the return type of the route with which this gesture
+    /// detector is associated.
+    /// </Summary>
     public class _CupertinoBackGestureDetector<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -497,6 +574,20 @@ namespace FlutterSDK.Cupertino.Route
     }
 
 
+    /// <Summary>
+    /// A controller for an iOS-style back gesture.
+    ///
+    /// This is created by a [CupertinoPageRoute] in response from a gesture caught
+    /// by a [_CupertinoBackGestureDetector] widget, which then also feeds it input
+    /// from the gesture. It controls the animation controller owned by the route,
+    /// based on the input provided by the gesture detector.
+    ///
+    /// This class works entirely in logical coordinates (0.0 is new page dismissed,
+    /// 1.0 is new page on top).
+    ///
+    /// The type `T` specifies the return type of the route with which this gesture
+    /// detector controller is associated.
+    /// </Summary>
     public class _CupertinoBackGestureController<T>
     {
         #region constructors
@@ -515,9 +606,17 @@ namespace FlutterSDK.Cupertino.Route
 
         #region methods
 
+        /// <Summary>
+        /// The drag gesture has changed by [fractionalDelta]. The total range of the
+        /// drag should be 0.0 to 1.0.
+        /// </Summary>
         public virtual void DragUpdate(double delta) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The drag gesture has ended with a horizontal motion of
+        /// [fractionalVelocity] as a fraction of screen width per second.
+        /// </Summary>
         public virtual void DragEnd(double velocity) { throw new NotImplementedException(); }
 
         #endregion
@@ -562,6 +661,9 @@ namespace FlutterSDK.Cupertino.Route
     }
 
 
+    /// <Summary>
+    /// A [BoxPainter] used to draw the page transition shadow using gradients.
+    /// </Summary>
     public class _CupertinoEdgeShadowPainter : FlutterSDK.Painting.Decoration.BoxPainter
     {
         #region constructors

@@ -301,6 +301,13 @@ namespace FlutterSDK.Cupertino.Activityindicator
         public static List<int> _AlphaValues = default(List<int>);
     }
 
+    /// <Summary>
+    /// An iOS-style activity indicator that spins clockwise.
+    ///
+    /// See also:
+    ///
+    ///  * <https://developer.apple.com/ios/human-interface-guidelines/controls/progress-indicators/#activity-indicators>
+    /// </Summary>
     public class CupertinoActivityIndicator : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors

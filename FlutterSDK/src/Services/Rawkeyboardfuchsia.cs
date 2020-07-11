@@ -427,6 +427,16 @@ namespace FlutterSDK.Services.Rawkeyboardfuchsia
     {
     }
 
+    /// <Summary>
+    /// Platform-specific key event data for Fuchsia.
+    ///
+    /// This object contains information about key events obtained from Fuchsia's
+    /// `KeyData` interface.
+    ///
+    /// See also:
+    ///
+    ///  * [RawKeyboard], which uses this interface to expose key data.
+    /// </Summary>
     public class RawKeyEventDataFuchsia : FlutterSDK.Services.Rawkeyboard.RawKeyEventData
     {
         #region constructors

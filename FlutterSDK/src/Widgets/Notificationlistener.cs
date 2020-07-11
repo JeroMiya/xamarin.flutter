@@ -430,6 +430,19 @@ namespace FlutterSDK.Widgets.Notificationlistener
     {
     }
 
+    /// <Summary>
+    /// A notification that can bubble up the widget tree.
+    ///
+    /// You can determine the type of a notification using the `is` operator to
+    /// check the [runtimeType] of the notification.
+    ///
+    /// To listen for notifications in a subtree, use a [NotificationListener].
+    ///
+    /// To send a notification, call [dispatch] on the notification you wish to
+    /// send. The notification will be delivered to any [NotificationListener]
+    /// widgets with the appropriate type parameters that are ancestors of the given
+    /// [BuildContext].
+    /// </Summary>
     public interface INotification
     {
         bool VisitAncestor(FlutterSDK.Widgets.Framework.Element element);
@@ -439,6 +452,19 @@ namespace FlutterSDK.Widgets.Notificationlistener
     }
 
 
+    /// <Summary>
+    /// A notification that can bubble up the widget tree.
+    ///
+    /// You can determine the type of a notification using the `is` operator to
+    /// check the [runtimeType] of the notification.
+    ///
+    /// To listen for notifications in a subtree, use a [NotificationListener].
+    ///
+    /// To send a notification, call [dispatch] on the notification you wish to
+    /// send. The notification will be delivered to any [NotificationListener]
+    /// widgets with the appropriate type parameters that are ancestors of the given
+    /// [BuildContext].
+    /// </Summary>
     public class Notification
     {
         #region constructors
@@ -453,19 +479,56 @@ namespace FlutterSDK.Widgets.Notificationlistener
 
         #region methods
 
+        /// <Summary>
+        /// Applied to each ancestor of the [dispatch] target.
+        ///
+        /// The [Notification] class implementation of this method dispatches the
+        /// given [Notification] to each ancestor [NotificationListener] widget.
+        ///
+        /// Subclasses can override this to apply additional filtering or to update
+        /// the notification as it is bubbled (for example, increasing a `depth` field
+        /// for each ancestor of a particular type).
+        /// </Summary>
         public virtual bool VisitAncestor(FlutterSDK.Widgets.Framework.Element element) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Start bubbling this notification at the given build context.
+        ///
+        /// The notification will be delivered to any [NotificationListener] widgets
+        /// with the appropriate type parameters that are ancestors of the given
+        /// [BuildContext]. If the [BuildContext] is null, the notification is not
+        /// dispatched.
+        /// </Summary>
         public virtual void Dispatch(FlutterSDK.Widgets.Framework.BuildContext target) { throw new NotImplementedException(); }
 
 
 
+        /// <Summary>
+        /// Add additional information to the given description for use by [toString].
+        ///
+        /// This method makes it easier for subclasses to coordinate to provide a
+        /// high-quality [toString] implementation. The [toString] implementation on
+        /// the [Notification] base class calls [debugFillDescription] to collect
+        /// useful information from subclasses to incorporate into its return value.
+        ///
+        /// If you override this, make sure to start your method with a call to
+        /// `super.debugFillDescription(description)`.
+        /// </Summary>
         public virtual void DebugFillDescription(List<string> description) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// A widget that listens for [Notification]s bubbling up the tree.
+    ///
+    /// Notifications will trigger the [onNotification] callback only if their
+    /// [runtimeType] is a subtype of `T`.
+    ///
+    /// To dispatch notifications, use the [Notification.dispatch] method.
+    /// </Summary>
     public class NotificationListener<T> : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors
@@ -493,6 +556,36 @@ namespace FlutterSDK.Widgets.Notificationlistener
     }
 
 
+    /// <Summary>
+    /// Indicates that the layout of one of the descendants of the object receiving
+    /// this notification has changed in some way, and that therefore any
+    /// assumptions about that layout are no longer valid.
+    ///
+    /// Useful if, for instance, you're trying to align multiple descendants.
+    ///
+    /// To listen for notifications in a subtree, use a
+    /// [NotificationListener<LayoutChangedNotification>].
+    ///
+    /// To send a notification, call [dispatch] on the notification you wish to
+    /// send. The notification will be delivered to any [NotificationListener]
+    /// widgets with the appropriate type parameters that are ancestors of the given
+    /// [BuildContext].
+    ///
+    /// In the widgets library, only the [SizeChangedLayoutNotifier] class and
+    /// [Scrollable] classes dispatch this notification (specifically, they dispatch
+    /// [SizeChangedLayoutNotification]s and [ScrollNotification]s respectively).
+    /// Transitions, in particular, do not. Changing one's layout in one's build
+    /// function does not cause this notification to be dispatched automatically. If
+    /// an ancestor expects to be notified for any layout change, make sure you
+    /// either only use widgets that never change layout, or that notify their
+    /// ancestors when appropriate, or alternatively, dispatch the notifications
+    /// yourself when appropriate.
+    ///
+    /// Also, since this notification is sent when the layout is changed, it is only
+    /// useful for paint effects that depend on the layout. If you were to use this
+    /// notification to change the build, for instance, you would always be one
+    /// frame behind, which would look really ugly and laggy.
+    /// </Summary>
     public class LayoutChangedNotification : FlutterSDK.Widgets.Notificationlistener.Notification
     {
         #region constructors

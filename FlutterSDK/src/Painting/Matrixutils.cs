@@ -432,6 +432,9 @@ namespace FlutterSDK.Painting.Matrixutils
 
     }
 
+    /// <Summary>
+    /// Utility functions for working with matrices.
+    /// </Summary>
     public class MatrixUtils
     {
         #region constructors
@@ -447,27 +450,68 @@ namespace FlutterSDK.Painting.Matrixutils
 
         #region methods
 
+        /// <Summary>
+        /// Returns the given [transform] matrix as an [Offset], if the matrix is
+        /// nothing but a 2D translation.
+        ///
+        /// Otherwise, returns null.
+        /// </Summary>
         public virtual Offset GetAsTranslation(Matrix4 transform) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the given [transform] matrix as a [double] describing a uniform
+        /// scale, if the matrix is nothing but a symmetric 2D scale transform.
+        ///
+        /// Otherwise, returns null.
+        /// </Summary>
         public virtual double GetAsScale(Matrix4 transform) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns true if the given matrices are exactly equal, and false
+        /// otherwise. Null values are assumed to be the identity matrix.
+        /// </Summary>
         public virtual bool MatrixEquals(Matrix4 a, Matrix4 b) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Whether the given matrix is the identity matrix.
+        /// </Summary>
         public virtual bool IsIdentity(Matrix4 a) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Applies the given matrix as a perspective transform to the given point.
+        ///
+        /// This function assumes the given point has a z-coordinate of 0.0. The
+        /// z-coordinate of the result is ignored.
+        /// </Summary>
         public virtual Offset TransformPoint(Matrix4 transform, FlutterBinding.UI.Offset point) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a rect that bounds the result of applying the given matrix as a
+        /// perspective transform to the given rect.
+        ///
+        /// This version of the operation is slower than the regular transformRect
+        /// method, but it avoids creating infinite values from large finite values
+        /// if it can.
+        /// </Summary>
         private Rect _SafeTransformRect(Matrix4 transform, FlutterBinding.UI.Rect rect) { throw new NotImplementedException(); }
 
 
         private void _Accumulate(List<float> m, double x, double y, bool first, bool isAffine) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a rect that bounds the result of applying the given matrix as a
+        /// perspective transform to the given rect.
+        ///
+        /// This function assumes the given rect is in the plane with z equals 0.0.
+        /// The transformed rect is then projected back into the plane with z equals
+        /// 0.0 before computing its bounding rect.
+        /// </Summary>
         public virtual Rect TransformRect(Matrix4 transform, FlutterBinding.UI.Rect rect) { throw new NotImplementedException(); }
 
 
@@ -477,18 +521,66 @@ namespace FlutterSDK.Painting.Matrixutils
         private double _Max4(double a, double b, double c, double d) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a rect that bounds the result of applying the inverse of the given
+        /// matrix as a perspective transform to the given rect.
+        ///
+        /// This function assumes the given rect is in the plane with z equals 0.0.
+        /// The transformed rect is then projected back into the plane with z equals
+        /// 0.0 before computing its bounding rect.
+        /// </Summary>
         public virtual Rect InverseTransformRect(Matrix4 transform, FlutterBinding.UI.Rect rect) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Create a transformation matrix which mimics the effects of tangentially
+        /// wrapping the plane on which this transform is applied around a cylinder
+        /// and then looking at the cylinder from a point outside the cylinder.
+        ///
+        /// The `radius` simulates the radius of the cylinder the plane is being
+        /// wrapped onto. If the transformation is applied to a 0-dimensional dot
+        /// instead of a plane, the dot would simply translate by +/- `radius` pixels
+        /// along the `orientation` [Axis] when rotating from 0 to +/- 90 degrees.
+        ///
+        /// A positive radius means the object is closest at 0 `angle` and a negative
+        /// radius means the object is closest at π `angle` or 180 degrees.
+        ///
+        /// The `angle` argument is the difference in angle in radians between the
+        /// object and the viewing point. A positive `angle` on a positive `radius`
+        /// moves the object up when `orientation` is vertical and right when
+        /// horizontal.
+        ///
+        /// The transformation is always done such that a 0 `angle` keeps the
+        /// transformed object at exactly the same size as before regardless of
+        /// `radius` and `perspective` when `radius` is positive.
+        ///
+        /// The `perspective` argument is a number between 0 and 1 where 0 means
+        /// looking at the object from infinitely far with an infinitely narrow field
+        /// of view and 1 means looking at the object from infinitely close with an
+        /// infinitely wide field of view. Defaults to a sane but arbitrary 0.001.
+        ///
+        /// The `orientation` is the direction of the rotation axis.
+        ///
+        /// Because the viewing position is a point, it's never possible to see the
+        /// outer side of the cylinder at or past +/- π / 2 or 90 degrees and it's
+        /// almost always possible to end up seeing the inner side of the cylinder
+        /// or the back side of the transformed plane before π / 2 when perspective > 0.
+        /// </Summary>
         public virtual Matrix4 CreateCylindricalProjectionTransform(double radius = default(double), double angle = default(double), double perspective = 0.001, FlutterSDK.Painting.Basictypes.Axis orientation = default(FlutterSDK.Painting.Basictypes.Axis)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a matrix that transforms every point to [offset].
+        /// </Summary>
         public virtual Matrix4 ForceToPoint(FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// Property which handles [Matrix4] that represent transforms.
+    /// </Summary>
     public class TransformProperty : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<object>
     {
         #region constructors

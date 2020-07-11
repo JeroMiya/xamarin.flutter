@@ -427,6 +427,14 @@ namespace FlutterSDK.Rendering.Viewport
     {
     }
 
+    /// <Summary>
+    /// An interface for render objects that are bigger on the inside.
+    ///
+    /// Some render objects, such as [RenderViewport], present a portion of their
+    /// content, which can be controlled by a [ViewportOffset]. This interface lets
+    /// the framework recognize such render objects and interact with them without
+    /// having specific knowledge of all the various types of viewports.
+    /// </Summary>
     public interface IRenderAbstractViewport
     {
         FlutterSDK.Rendering.Viewport.RenderAbstractViewport Of(FlutterSDK.Rendering.@object.RenderObject @object);
@@ -435,6 +443,27 @@ namespace FlutterSDK.Rendering.Viewport
     }
 
 
+    /// <Summary>
+    /// A base class for render objects that are bigger on the inside.
+    ///
+    /// This render object provides the shared code for render objects that host
+    /// [RenderSliver] render objects inside a [RenderBox]. The viewport establishes
+    /// an [axisDirection], which orients the sliver's coordinate system, which is
+    /// based on scroll offsets rather than Cartesian coordinates.
+    ///
+    /// The viewport also listens to an [offset], which determines the
+    /// [SliverConstraints.scrollOffset] input to the sliver layout protocol.
+    ///
+    /// Subclasses typically override [performLayout] and call
+    /// [layoutChildSequence], perhaps multiple times.
+    ///
+    /// See also:
+    ///
+    ///  * [RenderSliver], which explains more about the Sliver protocol.
+    ///  * [RenderBox], which explains more about the Box protocol.
+    ///  * [RenderSliverToBoxAdapter], which allows a [RenderBox] object to be
+    ///    placed inside a [RenderSliver] (the opposite of this class).
+    /// </Summary>
     public interface IRenderViewportBase<ParentDataClass>
     {
         void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config);
@@ -479,6 +508,14 @@ namespace FlutterSDK.Rendering.Viewport
     }
 
 
+    /// <Summary>
+    /// An interface for render objects that are bigger on the inside.
+    ///
+    /// Some render objects, such as [RenderViewport], present a portion of their
+    /// content, which can be controlled by a [ViewportOffset]. This interface lets
+    /// the framework recognize such render objects and interact with them without
+    /// having specific knowledge of all the various types of viewports.
+    /// </Summary>
     public class RenderAbstractViewport : FlutterSDK.Rendering.@object.RenderObject
     {
         #region constructors
@@ -494,15 +531,58 @@ namespace FlutterSDK.Rendering.Viewport
 
         #region methods
 
+        /// <Summary>
+        /// Returns the [RenderAbstractViewport] that most tightly encloses the given
+        /// render object.
+        ///
+        /// If the object does not have a [RenderAbstractViewport] as an ancestor,
+        /// this function returns null.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Viewport.RenderAbstractViewport Of(FlutterSDK.Rendering.@object.RenderObject @object) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the offset that would be needed to reveal the `target`
+        /// [RenderObject].
+        ///
+        /// The optional `rect` parameter describes which area of that `target` object
+        /// should be revealed in the viewport. If `rect` is null, the entire
+        /// `target` [RenderObject] (as defined by its [RenderObject.paintBounds])
+        /// will be revealed. If `rect` is provided it has to be given in the
+        /// coordinate system of the `target` object.
+        ///
+        /// The `alignment` argument describes where the target should be positioned
+        /// after applying the returned offset. If `alignment` is 0.0, the child must
+        /// be positioned as close to the leading edge of the viewport as possible. If
+        /// `alignment` is 1.0, the child must be positioned as close to the trailing
+        /// edge of the viewport as possible. If `alignment` is 0.5, the child must be
+        /// positioned as close to the center of the viewport as possible.
+        ///
+        /// The `target` might not be a direct child of this viewport but it must be a
+        /// descendant of the viewport. Other viewports in between this viewport and
+        /// the `target` will not be adjusted.
+        ///
+        /// This method assumes that the content of the viewport moves linearly, i.e.
+        /// when the offset of the viewport is changed by x then `target` also moves
+        /// by x within the viewport.
+        ///
+        /// See also:
+        ///
+        ///  * [RevealedOffset], which describes the return value of this method.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Viewport.RevealedOffset GetOffsetToReveal(FlutterSDK.Rendering.@object.RenderObject target, double alignment, FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect)) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// Return value for [RenderAbstractViewport.getOffsetToReveal].
+    ///
+    /// It indicates the [offset] required to reveal an element in a viewport and
+    /// the [rect] position said element would have in the viewport at that
+    /// [offset].
+    /// </Summary>
     public class RevealedOffset
     {
         #region constructors
@@ -525,6 +605,27 @@ namespace FlutterSDK.Rendering.Viewport
     }
 
 
+    /// <Summary>
+    /// A base class for render objects that are bigger on the inside.
+    ///
+    /// This render object provides the shared code for render objects that host
+    /// [RenderSliver] render objects inside a [RenderBox]. The viewport establishes
+    /// an [axisDirection], which orients the sliver's coordinate system, which is
+    /// based on scroll offsets rather than Cartesian coordinates.
+    ///
+    /// The viewport also listens to an [offset], which determines the
+    /// [SliverConstraints.scrollOffset] input to the sliver layout protocol.
+    ///
+    /// Subclasses typically override [performLayout] and call
+    /// [layoutChildSequence], perhaps multiple times.
+    ///
+    /// See also:
+    ///
+    ///  * [RenderSliver], which explains more about the Sliver protocol.
+    ///  * [RenderBox], which explains more about the Box protocol.
+    ///  * [RenderSliverToBoxAdapter], which allows a [RenderBox] object to be
+    ///    placed inside a [RenderSliver] (the opposite of this class).
+    /// </Summary>
     public class RenderViewportBase<ParentDataClass> : FlutterSDK.Rendering.Box.RenderBox, IRenderAbstractViewport, IContainerRenderObjectMixin<FlutterSDK.Rendering.Sliver.RenderSliver, ParentDataClass>
     {
         #region constructors
@@ -570,6 +671,15 @@ namespace FlutterSDK.Rendering.Viewport
         public new void Detach() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Throws an exception saying that the object does not support returning
+        /// intrinsic dimensions if, in checked mode, we are not in the
+        /// [RenderObject.debugCheckingIntrinsics] mode.
+        ///
+        /// This is used by [computeMinIntrinsicWidth] et al because viewports do not
+        /// generally support returning intrinsic dimensions. See the discussion at
+        /// [computeMinIntrinsicWidth].
+        /// </Summary>
         public virtual bool DebugThrowIfNotCheckingIntrinsics() { throw new NotImplementedException(); }
 
 
@@ -585,6 +695,38 @@ namespace FlutterSDK.Rendering.Viewport
         public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Determines the size and position of some of the children of the viewport.
+        ///
+        /// This function is the workhorse of `performLayout` implementations in
+        /// subclasses.
+        ///
+        /// Layout starts with `child`, proceeds according to the `advance` callback,
+        /// and stops once `advance` returns null.
+        ///
+        ///  * `scrollOffset` is the [SliverConstraints.scrollOffset] to pass the
+        ///    first child. The scroll offset is adjusted by
+        ///    [SliverGeometry.scrollExtent] for subsequent children.
+        ///  * `overlap` is the [SliverConstraints.overlap] to pass the first child.
+        ///    The overlay is adjusted by the [SliverGeometry.paintOrigin] and
+        ///    [SliverGeometry.paintExtent] for subsequent children.
+        ///  * `layoutOffset` is the layout offset at which to place the first child.
+        ///    The layout offset is updated by the [SliverGeometry.layoutExtent] for
+        ///    subsequent children.
+        ///  * `remainingPaintExtent` is [SliverConstraints.remainingPaintExtent] to
+        ///    pass the first child. The remaining paint extent is updated by the
+        ///    [SliverGeometry.layoutExtent] for subsequent children.
+        ///  * `mainAxisExtent` is the [SliverConstraints.viewportMainAxisExtent] to
+        ///    pass to each child.
+        ///  * `crossAxisExtent` is the [SliverConstraints.crossAxisExtent] to pass to
+        ///    each child.
+        ///  * `growthDirection` is the [SliverConstraints.growthDirection] to pass to
+        ///    each child.
+        ///
+        /// Returns the first non-zero [SliverGeometry.scrollOffsetCorrection]
+        /// encountered, if any. Otherwise returns 0.0. Typical callers will call this
+        /// function repeatedly until it returns 0.0.
+        /// </Summary>
         public virtual double LayoutChildSequence(FlutterSDK.Rendering.Sliver.RenderSliver child = default(FlutterSDK.Rendering.Sliver.RenderSliver), double scrollOffset = default(double), double overlap = default(double), double layoutOffset = default(double), double remainingPaintExtent = default(double), double mainAxisExtent = default(double), double crossAxisExtent = default(double), FlutterSDK.Rendering.Sliver.GrowthDirection growthDirection = default(FlutterSDK.Rendering.Sliver.GrowthDirection), Func<RenderSliver, RenderSliver> advance = default(Func<RenderSliver, RenderSliver>), double remainingCacheExtent = default(double), double cacheOrigin = default(double)) { throw new NotImplementedException(); }
 
 
@@ -611,6 +753,18 @@ namespace FlutterSDK.Rendering.Viewport
         public new FlutterSDK.Rendering.Viewport.RevealedOffset GetOffsetToReveal(FlutterSDK.Rendering.@object.RenderObject target, double alignment, FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The offset at which the given `child` should be painted.
+        ///
+        /// The returned offset is from the top left corner of the inside of the
+        /// viewport to the top left corner of the paint coordinate system of the
+        /// `child`.
+        ///
+        /// See also:
+        ///
+        ///  * [paintOffsetOf], which uses the layout offset and growth direction
+        ///    computed for the child during layout.
+        /// </Summary>
         public virtual Offset ComputeAbsolutePaintOffset(FlutterSDK.Rendering.Sliver.RenderSliver child, double layoutOffset, FlutterSDK.Rendering.Sliver.GrowthDirection growthDirection) { throw new NotImplementedException(); }
 
 
@@ -620,30 +774,120 @@ namespace FlutterSDK.Rendering.Viewport
         public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called during [layoutChildSequence] for each child.
+        ///
+        /// Typically used by subclasses to update any out-of-band data, such as the
+        /// max scroll extent, for each child.
+        /// </Summary>
         public virtual void UpdateOutOfBandData(FlutterSDK.Rendering.Sliver.GrowthDirection growthDirection, FlutterSDK.Rendering.Sliver.SliverGeometry childLayoutGeometry) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called during [layoutChildSequence] to store the layout offset for the
+        /// given child.
+        ///
+        /// Different subclasses using different representations for their children's
+        /// layout offset (e.g., logical or physical coordinates). This function lets
+        /// subclasses transform the child's layout offset before storing it in the
+        /// child's parent data.
+        /// </Summary>
         public virtual void UpdateChildLayoutOffset(FlutterSDK.Rendering.Sliver.RenderSliver child, double layoutOffset, FlutterSDK.Rendering.Sliver.GrowthDirection growthDirection) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The offset at which the given `child` should be painted.
+        ///
+        /// The returned offset is from the top left corner of the inside of the
+        /// viewport to the top left corner of the paint coordinate system of the
+        /// `child`.
+        ///
+        /// See also:
+        ///
+        ///  * [computeAbsolutePaintOffset], which computes the paint offset from an
+        ///    explicit layout offset and growth direction instead of using the values
+        ///    computed for the child during layout.
+        /// </Summary>
         public virtual Offset PaintOffsetOf(FlutterSDK.Rendering.Sliver.RenderSliver child) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the scroll offset within the viewport for the given
+        /// `scrollOffsetWithinChild` within the given `child`.
+        ///
+        /// The returned value is an estimate that assumes the slivers within the
+        /// viewport do not change the layout extent in response to changes in their
+        /// scroll offset.
+        /// </Summary>
         public virtual double ScrollOffsetOf(FlutterSDK.Rendering.Sliver.RenderSliver child, double scrollOffsetWithinChild) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the total scroll obstruction extent of all slivers in the viewport
+        /// before [child].
+        ///
+        /// This is the extent by which the actual area in which content can scroll
+        /// is reduced. For example, an app bar that is pinned at the top will reduce
+        /// the area in which content can actually scroll by the height of the app bar.
+        /// </Summary>
         public virtual double MaxScrollObstructionExtentBefore(FlutterSDK.Rendering.Sliver.RenderSliver child) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Converts the `parentMainAxisPosition` into the child's coordinate system.
+        ///
+        /// The `parentMainAxisPosition` is a distance from the top edge (for vertical
+        /// viewports) or left edge (for horizontal viewports) of the viewport bounds.
+        /// This describes a line, perpendicular to the viewport's main axis, heretofor
+        /// known as the target line.
+        ///
+        /// The child's coordinate system's origin in the main axis is at the leading
+        /// edge of the given child, as given by the child's
+        /// [SliverConstraints.axisDirection] and [SliverConstraints.growthDirection].
+        ///
+        /// This method returns the distance from the leading edge of the given child to
+        /// the target line described above.
+        ///
+        /// (The `parentMainAxisPosition` is not from the leading edge of the
+        /// viewport, it's always the top or left edge.)
+        /// </Summary>
         public virtual double ComputeChildMainAxisPosition(FlutterSDK.Rendering.Sliver.RenderSliver child, double parentMainAxisPosition) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// A short string to identify the child with the given index.
+        ///
+        /// Used by [debugDescribeChildren] to label the children.
+        /// </Summary>
         public virtual string LabelForChild(int index) { throw new NotImplementedException(); }
 
 
         public new void ShowOnScreen(FlutterSDK.Rendering.@object.RenderObject descendant = default(FlutterSDK.Rendering.@object.RenderObject), FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Make (a portion of) the given `descendant` of the given `viewport` fully
+        /// visible in the `viewport` by manipulating the provided [ViewportOffset]
+        /// `offset`.
+        ///
+        /// The optional `rect` parameter describes which area of the `descendant`
+        /// should be shown in the viewport. If `rect` is null, the entire
+        /// `descendant` will be revealed. The `rect` parameter is interpreted
+        /// relative to the coordinate system of `descendant`.
+        ///
+        /// The returned [Rect] describes the new location of `descendant` or `rect`
+        /// in the viewport after it has been revealed. See [RevealedOffset.rect]
+        /// for a full definition of this [Rect].
+        ///
+        /// The parameters `viewport` and `offset` are required and cannot be null.
+        /// If `descendant` is null, this is a no-op and `rect` is returned.
+        ///
+        /// If both `descendant` and `rect` are null, null is returned because there is
+        /// nothing to be shown in the viewport.
+        ///
+        /// The `duration` parameter can be set to a non-zero value to animate the
+        /// target object into the viewport with an animation defined by `curve`.
+        /// </Summary>
         public virtual Rect ShowInViewport(FlutterSDK.Rendering.@object.RenderObject descendant = default(FlutterSDK.Rendering.@object.RenderObject), FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), FlutterSDK.Rendering.Viewport.RenderAbstractViewport viewport = default(FlutterSDK.Rendering.Viewport.RenderAbstractViewport), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)) { throw new NotImplementedException(); }
 
         #endregion
@@ -653,6 +897,39 @@ namespace FlutterSDK.Rendering.Viewport
     }
 
 
+    /// <Summary>
+    /// A render object that is bigger on the inside.
+    ///
+    /// [RenderViewport] is the visual workhorse of the scrolling machinery. It
+    /// displays a subset of its children according to its own dimensions and the
+    /// given [offset]. As the offset varies, different children are visible through
+    /// the viewport.
+    ///
+    /// [RenderViewport] hosts a bidirectional list of slivers, anchored on a
+    /// [center] sliver, which is placed at the zero scroll offset. The center
+    /// widget is displayed in the viewport according to the [anchor] property.
+    ///
+    /// Slivers that are earlier in the child list than [center] are displayed in
+    /// reverse order in the reverse [axisDirection] starting from the [center]. For
+    /// example, if the [axisDirection] is [AxisDirection.down], the first sliver
+    /// before [center] is placed above the [center]. The slivers that are later in
+    /// the child list than [center] are placed in order in the [axisDirection]. For
+    /// example, in the preceding scenario, the first sliver after [center] is
+    /// placed below the [center].
+    ///
+    /// [RenderViewport] cannot contain [RenderBox] children directly. Instead, use
+    /// a [RenderSliverList], [RenderSliverFixedExtentList], [RenderSliverGrid], or
+    /// a [RenderSliverToBoxAdapter], for example.
+    ///
+    /// See also:
+    ///
+    ///  * [RenderSliver], which explains more about the Sliver protocol.
+    ///  * [RenderBox], which explains more about the Box protocol.
+    ///  * [RenderSliverToBoxAdapter], which allows a [RenderBox] object to be
+    ///    placed inside a [RenderSliver] (the opposite of this class).
+    ///  * [RenderShrinkWrappingViewport], a variant of [RenderViewport] that
+    ///    shrink-wraps its contents along the main axis.
+    /// </Summary>
     public class RenderViewport : FlutterSDK.Rendering.Viewport.RenderViewportBase<FlutterSDK.Rendering.Sliver.SliverPhysicalContainerParentData>
     {
         #region constructors
@@ -725,6 +1002,33 @@ namespace FlutterSDK.Rendering.Viewport
     }
 
 
+    /// <Summary>
+    /// A render object that is bigger on the inside and shrink wraps its children
+    /// in the main axis.
+    ///
+    /// [RenderShrinkWrappingViewport] displays a subset of its children according
+    /// to its own dimensions and the given [offset]. As the offset varies, different
+    /// children are visible through the viewport.
+    ///
+    /// [RenderShrinkWrappingViewport] differs from [RenderViewport] in that
+    /// [RenderViewport] expands to fill the main axis whereas
+    /// [RenderShrinkWrappingViewport] sizes itself to match its children in the
+    /// main axis. This shrink wrapping behavior is expensive because the children,
+    /// and hence the viewport, could potentially change size whenever the [offset]
+    /// changes (e.g., because of a collapsing header).
+    ///
+    /// [RenderShrinkWrappingViewport] cannot contain [RenderBox] children directly.
+    /// Instead, use a [RenderSliverList], [RenderSliverFixedExtentList],
+    /// [RenderSliverGrid], or a [RenderSliverToBoxAdapter], for example.
+    ///
+    /// See also:
+    ///
+    ///  * [RenderViewport], a viewport that does not shrink-wrap its contents.
+    ///  * [RenderSliver], which explains more about the Sliver protocol.
+    ///  * [RenderBox], which explains more about the Box protocol.
+    ///  * [RenderSliverToBoxAdapter], which allows a [RenderBox] object to be
+    ///    placed inside a [RenderSliver] (the opposite of this class).
+    /// </Summary>
     public class RenderShrinkWrappingViewport : FlutterSDK.Rendering.Viewport.RenderViewportBase<FlutterSDK.Rendering.Sliver.SliverLogicalContainerParentData>
     {
         #region constructors
@@ -786,10 +1090,19 @@ namespace FlutterSDK.Rendering.Viewport
     }
 
 
+    /// <Summary>
+    /// The unit of measurement for a [Viewport.cacheExtent].
+    /// </Summary>
     public enum CacheExtentStyle
     {
 
+        /// <Summary>
+        /// Treat the [Viewport.cacheExtent] as logical pixels.
+        /// </Summary>
         Pixel,
+        /// <Summary>
+        /// Treat the [Viewport.cacheExtent] as a multiplier of the main axis extent.
+        /// </Summary>
         Viewport,
     }
 

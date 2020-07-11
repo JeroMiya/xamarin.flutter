@@ -427,6 +427,33 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
     {
     }
 
+    /// <Summary>
+    /// A sliver with multiple box children.
+    ///
+    /// [RenderSliverMultiBoxAdaptor] is a base class for slivers that have multiple
+    /// box children. The children are managed by a [RenderSliverBoxChildManager],
+    /// which lets subclasses create children lazily during layout. Typically
+    /// subclasses will create only those children that are actually needed to fill
+    /// the [SliverConstraints.remainingPaintExtent].
+    ///
+    /// The contract for adding and removing children from this render object is
+    /// more strict than for normal render objects:
+    ///
+    /// * Children can be removed except during a layout pass if they have already
+    ///   been laid out during that layout pass.
+    /// * Children cannot be added except during a call to [childManager], and
+    ///   then only if there is no child corresponding to that index (or the child
+    ///   child corresponding to that index was first removed).
+    ///
+    /// See also:
+    ///
+    ///  * [RenderSliverToBoxAdapter], which has a single box child.
+    ///  * [RenderSliverList], which places its children in a linear
+    ///    array.
+    ///  * [RenderSliverFixedExtentList], which places its children in a linear
+    ///    array with a fixed extent in the main axis.
+    ///  * [RenderSliverGrid], which places its children in arbitrary positions.
+    /// </Summary>
     public interface IRenderSliverMultiBoxAdaptor
     {
         void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child);
@@ -466,6 +493,9 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
         public virtual bool KeepAlive { get; set; }
         public virtual bool KeptAlive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
+        /// <Summary>
+        /// Called when the RenderObject is removed from the tree.
+        /// </Summary>
         public virtual void Detach() { throw new NotImplementedException(); }
 
 
@@ -492,6 +522,10 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
     public class RenderSliverWithKeepAliveMixin : IRenderSliver
     {
 
+        /// <Summary>
+        /// Alerts the developer that the child's parentData needs to be of type
+        /// [KeepAliveParentDataMixin].
+        /// </Summary>
         public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
         internal virtual FlutterSDK.Rendering.Sliver.SliverGeometry _Geometry { get; set; }
@@ -510,36 +544,200 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
         public new void PerformResize() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Determines the set of render objects located at the given position.
+        ///
+        /// Returns true if the given point is contained in this render object or one
+        /// of its descendants. Adds any render objects that contain the point to the
+        /// given hit test result.
+        ///
+        /// The caller is responsible for providing the position in the local
+        /// coordinate space of the callee. The callee is responsible for checking
+        /// whether the given position is within its bounds.
+        ///
+        /// Hit testing requires layout to be up-to-date but does not require painting
+        /// to be up-to-date. That means a render object can rely upon [performLayout]
+        /// having been called in [hitTest] but cannot rely upon [paint] having been
+        /// called. For example, a render object might be a child of a [RenderOpacity]
+        /// object, which calls [hitTest] on its children when its opacity is zero
+        /// even through it does not [paint] its children.
+        ///
+        /// ## Coordinates for RenderSliver objects
+        ///
+        /// The `mainAxisPosition` is the distance in the [AxisDirection] (after
+        /// applying the [GrowthDirection]) from the edge of the sliver's painted
+        /// area. This can be an unusual direction, for example in the
+        /// [AxisDirection.up] case this is a distance from the _bottom_ of the
+        /// sliver's painted area.
+        ///
+        /// The `crossAxisPosition` is the distance in the other axis. If the cross
+        /// axis is horizontal (i.e. the [SliverConstraints.axisDirection] is either
+        /// [AxisDirection.down] or [AxisDirection.up]), then the `crossAxisPosition`
+        /// is a distance from the left edge of the sliver. If the cross axis is
+        /// vertical (i.e. the [SliverConstraints.axisDirection] is either
+        /// [AxisDirection.right] or [AxisDirection.left]), then the
+        /// `crossAxisPosition` is a distance from the top edge of the sliver.
+        ///
+        /// ## Implementing hit testing for slivers
+        ///
+        /// The most straight-forward way to implement hit testing for a new sliver
+        /// render object is to override its [hitTestSelf] and [hitTestChildren]
+        /// methods.
+        /// </Summary>
         public virtual bool HitTest(FlutterSDK.Rendering.Sliver.SliverHitTestResult result, double mainAxisPosition = default(double), double crossAxisPosition = default(double)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Override this method if this render object can be hit even if its
+        /// children were not hit.
+        ///
+        /// Used by [hitTest]. If you override [hitTest] and do not call this
+        /// function, then you don't need to implement this function.
+        ///
+        /// For a discussion of the semantics of the arguments, see [hitTest].
+        /// </Summary>
         public virtual bool HitTestSelf(double mainAxisPosition = default(double), double crossAxisPosition = default(double)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Override this method to check whether any children are located at the
+        /// given position.
+        ///
+        /// Typically children should be hit-tested in reverse paint order so that
+        /// hit tests at locations where children overlap hit the child that is
+        /// visually "on top" (i.e., paints later).
+        ///
+        /// Used by [hitTest]. If you override [hitTest] and do not call this
+        /// function, then you don't need to implement this function.
+        ///
+        /// For a discussion of the semantics of the arguments, see [hitTest].
+        /// </Summary>
         public virtual bool HitTestChildren(FlutterSDK.Rendering.Sliver.SliverHitTestResult result, double mainAxisPosition = default(double), double crossAxisPosition = default(double)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Computes the portion of the region from `from` to `to` that is visible,
+        /// assuming that only the region from the [SliverConstraints.scrollOffset]
+        /// that is [SliverConstraints.remainingPaintExtent] high is visible, and that
+        /// the relationship between scroll offsets and paint offsets is linear.
+        ///
+        /// For example, if the constraints have a scroll offset of 100 and a
+        /// remaining paint extent of 100, and the arguments to this method describe
+        /// the region 50..150, then the returned value would be 50 (from scroll
+        /// offset 100 to scroll offset 150).
+        ///
+        /// This method is not useful if there is not a 1:1 relationship between
+        /// consumed scroll offset and consumed paint extent. For example, if the
+        /// sliver always paints the same amount but consumes a scroll offset extent
+        /// that is proportional to the [SliverConstraints.scrollOffset], then this
+        /// function's results will not be consistent.
+        /// </Summary>
         public virtual double CalculatePaintOffset(FlutterSDK.Rendering.Sliver.SliverConstraints constraints, double from = default(double), double to = default(double)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Computes the portion of the region from `from` to `to` that is within
+        /// the cache extent of the viewport, assuming that only the region from the
+        /// [SliverConstraints.cacheOrigin] that is
+        /// [SliverConstraints.remainingCacheExtent] high is visible, and that
+        /// the relationship between scroll offsets and paint offsets is linear.
+        ///
+        /// This method is not useful if there is not a 1:1 relationship between
+        /// consumed scroll offset and consumed cache extent.
+        /// </Summary>
         public virtual double CalculateCacheOffset(FlutterSDK.Rendering.Sliver.SliverConstraints constraints, double from = default(double), double to = default(double)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the distance from the leading _visible_ edge of the sliver to the
+        /// side of the given child closest to that edge.
+        ///
+        /// For example, if the [constraints] describe this sliver as having an axis
+        /// direction of [AxisDirection.down], then this is the distance from the top
+        /// of the visible portion of the sliver to the top of the child. On the other
+        /// hand, if the [constraints] describe this sliver as having an axis
+        /// direction of [AxisDirection.up], then this is the distance from the bottom
+        /// of the visible portion of the sliver to the bottom of the child. In both
+        /// cases, this is the direction of increasing
+        /// [SliverConstraints.scrollOffset] and
+        /// [SliverLogicalParentData.layoutOffset].
+        ///
+        /// For children that are [RenderSliver]s, the leading edge of the _child_
+        /// will be the leading _visible_ edge of the child, not the part of the child
+        /// that would locally be a scroll offset 0.0. For children that are not
+        /// [RenderSliver]s, for example a [RenderBox] child, it's the actual distance
+        /// to the edge of the box, since those boxes do not know how to handle being
+        /// scrolled.
+        ///
+        /// This method differs from [childScrollOffset] in that
+        /// [childMainAxisPosition] gives the distance from the leading _visible_ edge
+        /// of the sliver whereas [childScrollOffset] gives the distance from the
+        /// sliver's zero scroll offset.
+        ///
+        /// Calling this for a child that is not visible is not valid.
+        /// </Summary>
         public virtual double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the distance along the cross axis from the zero of the cross axis
+        /// in this sliver's [paint] coordinate space to the nearest side of the given
+        /// child.
+        ///
+        /// For example, if the [constraints] describe this sliver as having an axis
+        /// direction of [AxisDirection.down], then this is the distance from the left
+        /// of the sliver to the left of the child. Similarly, if the [constraints]
+        /// describe this sliver as having an axis direction of [AxisDirection.up],
+        /// then this is value is the same. If the axis direction is
+        /// [AxisDirection.left] or [AxisDirection.right], then it is the distance
+        /// from the top of the sliver to the top of the child.
+        ///
+        /// Calling this for a child that is not visible is not valid.
+        /// </Summary>
         public virtual double ChildCrossAxisPosition(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the scroll offset for the leading edge of the given child.
+        ///
+        /// The `child` must be a child of this sliver.
+        ///
+        /// This method differs from [childMainAxisPosition] in that
+        /// [childMainAxisPosition] gives the distance from the leading _visible_ edge
+        /// of the sliver whereas [childScrollOffset] gives the distance from sliver's
+        /// zero scroll offset.
+        /// </Summary>
         public virtual double ChildScrollOffset(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
 
         public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// This returns a [Size] with dimensions relative to the leading edge of the
+        /// sliver, specifically the same offset that is given to the [paint] method.
+        /// This means that the dimensions may be negative.
+        ///
+        /// This is only valid after [layout] has completed.
+        ///
+        /// See also:
+        ///
+        ///  * [getAbsoluteSize], which returns absolute size.
+        /// </Summary>
         public virtual Size GetAbsoluteSizeRelativeToOrigin() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// This returns the absolute [Size] of the sliver.
+        ///
+        /// The dimensions are always positive and calling this is only valid after
+        /// [layout] has completed.
+        ///
+        /// See also:
+        ///
+        ///  * [getAbsoluteSizeRelativeToOrigin], which returns the size relative to
+        ///    the leading edge of the sliver.
+        /// </Summary>
         public virtual Size GetAbsoluteSize() { throw new NotImplementedException(); }
 
 
@@ -577,27 +775,114 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
     {
         public virtual int ChildCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
+        /// <Summary>
+        /// Called during layout when a new child is needed. The child should be
+        /// inserted into the child list in the appropriate position, after the
+        /// `after` child (at the start of the list if `after` is null). Its index and
+        /// scroll offsets will automatically be set appropriately.
+        ///
+        /// The `index` argument gives the index of the child to show. It is possible
+        /// for negative indices to be requested. For example: if the user scrolls
+        /// from child 0 to child 10, and then those children get much smaller, and
+        /// then the user scrolls back up again, this method will eventually be asked
+        /// to produce a child for index -1.
+        ///
+        /// If no child corresponds to `index`, then do nothing.
+        ///
+        /// Which child is indicated by index zero depends on the [GrowthDirection]
+        /// specified in the [RenderSliverMultiBoxAdaptor.constraints]. For example
+        /// if the children are the alphabet, then if
+        /// [SliverConstraints.growthDirection] is [GrowthDirection.forward] then
+        /// index zero is A, and index 25 is Z. On the other hand if
+        /// [SliverConstraints.growthDirection] is [GrowthDirection.reverse]
+        /// then index zero is Z, and index 25 is A.
+        ///
+        /// During a call to [createChild] it is valid to remove other children from
+        /// the [RenderSliverMultiBoxAdaptor] object if they were not created during
+        /// this frame and have not yet been updated during this frame. It is not
+        /// valid to add any other children to this render object.
+        ///
+        /// If this method does not create a child for a given `index` greater than or
+        /// equal to zero, then [computeMaxScrollOffset] must be able to return a
+        /// precise value.
+        /// </Summary>
         public virtual void CreateChild(int index, FlutterSDK.Rendering.Box.RenderBox after = default(FlutterSDK.Rendering.Box.RenderBox)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Remove the given child from the child list.
+        ///
+        /// Called by [RenderSliverMultiBoxAdaptor.collectGarbage], which itself is
+        /// called from [RenderSliverMultiBoxAdaptor.performLayout].
+        ///
+        /// The index of the given child can be obtained using the
+        /// [RenderSliverMultiBoxAdaptor.indexOf] method, which reads it from the
+        /// [SliverMultiBoxAdaptorParentData.index] field of the child's
+        /// [RenderObject.parentData].
+        /// </Summary>
         public virtual void RemoveChild(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called to estimate the total scrollable extents of this object.
+        ///
+        /// Must return the total distance from the start of the child with the
+        /// earliest possible index to the end of the child with the last possible
+        /// index.
+        /// </Summary>
         public virtual double EstimateMaxScrollOffset(FlutterSDK.Rendering.Sliver.SliverConstraints constraints, int firstIndex = default(int), int lastIndex = default(int), double leadingScrollOffset = default(double), double trailingScrollOffset = default(double)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called during [RenderSliverMultiBoxAdaptor.adoptChild] or
+        /// [RenderSliverMultiBoxAdaptor.move].
+        ///
+        /// Subclasses must ensure that the [SliverMultiBoxAdaptorParentData.index]
+        /// field of the child's [RenderObject.parentData] accurately reflects the
+        /// child's index in the child list after this function returns.
+        /// </Summary>
         public virtual void DidAdoptChild(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called during layout to indicate whether this object provided insufficient
+        /// children for the [RenderSliverMultiBoxAdaptor] to fill the
+        /// [SliverConstraints.remainingPaintExtent].
+        ///
+        /// Typically called unconditionally at the start of layout with false and
+        /// then later called with true when the [RenderSliverMultiBoxAdaptor]
+        /// fails to create a child required to fill the
+        /// [SliverConstraints.remainingPaintExtent].
+        ///
+        /// Useful for subclasses to determine whether newly added children could
+        /// affect the visible contents of the [RenderSliverMultiBoxAdaptor].
+        /// </Summary>
         public virtual void SetDidUnderflow(bool value) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called at the beginning of layout to indicate that layout is about to
+        /// occur.
+        /// </Summary>
         public virtual void DidStartLayout() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called at the end of layout to indicate that layout is now complete.
+        /// </Summary>
         public virtual void DidFinishLayout() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// In debug mode, asserts that this manager is not expecting any
+        /// modifications to the [RenderSliverMultiBoxAdaptor]'s child list.
+        ///
+        /// This function always returns true.
+        ///
+        /// The manager is not required to track whether it is expecting modifications
+        /// to the [RenderSliverMultiBoxAdaptor]'s child list and can simply return
+        /// true without making any assertions.
+        /// </Summary>
         public virtual bool DebugAssertChildListLocked() { throw new NotImplementedException(); }
 
     }
@@ -625,6 +910,9 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
     }
 
 
+    /// <Summary>
+    /// Parent data structure used by [RenderSliverMultiBoxAdaptor].
+    /// </Summary>
     public class SliverMultiBoxAdaptorParentData : FlutterSDK.Rendering.Sliver.SliverLogicalParentData, IContainerParentDataMixin<FlutterSDK.Rendering.Box.RenderBox>, IKeepAliveParentDataMixin
     {
         #region constructors
@@ -644,6 +932,33 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
     }
 
 
+    /// <Summary>
+    /// A sliver with multiple box children.
+    ///
+    /// [RenderSliverMultiBoxAdaptor] is a base class for slivers that have multiple
+    /// box children. The children are managed by a [RenderSliverBoxChildManager],
+    /// which lets subclasses create children lazily during layout. Typically
+    /// subclasses will create only those children that are actually needed to fill
+    /// the [SliverConstraints.remainingPaintExtent].
+    ///
+    /// The contract for adding and removing children from this render object is
+    /// more strict than for normal render objects:
+    ///
+    /// * Children can be removed except during a layout pass if they have already
+    ///   been laid out during that layout pass.
+    /// * Children cannot be added except during a call to [childManager], and
+    ///   then only if there is no child corresponding to that index (or the child
+    ///   child corresponding to that index was first removed).
+    ///
+    /// See also:
+    ///
+    ///  * [RenderSliverToBoxAdapter], which has a single box child.
+    ///  * [RenderSliverList], which places its children in a linear
+    ///    array.
+    ///  * [RenderSliverFixedExtentList], which places its children in a linear
+    ///    array with a fixed extent in the main axis.
+    ///  * [RenderSliverGrid], which places its children in arbitrary positions.
+    /// </Summary>
     public class RenderSliverMultiBoxAdaptor : FlutterSDK.Rendering.Sliver.RenderSliver, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Slivermultiboxadaptor.SliverMultiBoxAdaptorParentData>, IRenderSliverHelpers, IRenderSliverWithKeepAliveMixin
     {
         #region constructors
@@ -675,6 +990,11 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
         private bool _DebugAssertChildListLocked() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Verify that the child list index is in strictly increasing order.
+        ///
+        /// This has no effect in release builds.
+        /// </Summary>
         private bool _DebugVerifyChildOrder() { throw new NotImplementedException(); }
 
 
@@ -712,21 +1032,87 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
         public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called during layout to create and add the child with the given index and
+        /// scroll offset.
+        ///
+        /// Calls [RenderSliverBoxChildManager.createChild] to actually create and add
+        /// the child if necessary. The child may instead be obtained from a cache;
+        /// see [SliverMultiBoxAdaptorParentData.keepAlive].
+        ///
+        /// Returns false if there was no cached child and `createChild` did not add
+        /// any child, otherwise returns true.
+        ///
+        /// Does not layout the new child.
+        ///
+        /// When this is called, there are no visible children, so no children can be
+        /// removed during the call to `createChild`. No child should be added during
+        /// that call either, except for the one that is created and returned by
+        /// `createChild`.
+        /// </Summary>
         public virtual bool AddInitialChild(int index = 0, double layoutOffset = 0.0) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called during layout to create, add, and layout the child before
+        /// [firstChild].
+        ///
+        /// Calls [RenderSliverBoxChildManager.createChild] to actually create and add
+        /// the child if necessary. The child may instead be obtained from a cache;
+        /// see [SliverMultiBoxAdaptorParentData.keepAlive].
+        ///
+        /// Returns the new child or null if no child was obtained.
+        ///
+        /// The child that was previously the first child, as well as any subsequent
+        /// children, may be removed by this call if they have not yet been laid out
+        /// during this layout pass. No child should be added during that call except
+        /// for the one that is created and returned by `createChild`.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Box.RenderBox InsertAndLayoutLeadingChild(FlutterSDK.Rendering.Box.BoxConstraints childConstraints, bool parentUsesSize = false) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called during layout to create, add, and layout the child after
+        /// the given child.
+        ///
+        /// Calls [RenderSliverBoxChildManager.createChild] to actually create and add
+        /// the child if necessary. The child may instead be obtained from a cache;
+        /// see [SliverMultiBoxAdaptorParentData.keepAlive].
+        ///
+        /// Returns the new child. It is the responsibility of the caller to configure
+        /// the child's scroll offset.
+        ///
+        /// Children after the `after` child may be removed in the process. Only the
+        /// new child may be added.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Box.RenderBox InsertAndLayoutChild(FlutterSDK.Rendering.Box.BoxConstraints childConstraints, FlutterSDK.Rendering.Box.RenderBox after = default(FlutterSDK.Rendering.Box.RenderBox), bool parentUsesSize = false) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called after layout with the number of children that can be garbage
+        /// collected at the head and tail of the child list.
+        ///
+        /// Children whose [SliverMultiBoxAdaptorParentData.keepAlive] property is
+        /// set to true will be removed to a cache instead of being dropped.
+        ///
+        /// This method also collects any children that were previously kept alive but
+        /// are now no longer necessary. As such, it should be called every time
+        /// [performLayout] is run, even if the arguments are both zero.
+        /// </Summary>
         public virtual void CollectGarbage(int leadingGarbage, int trailingGarbage) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the index of the given child, as given by the
+        /// [SliverMultiBoxAdaptorParentData.index] field of the child's [parentData].
+        /// </Summary>
         public virtual int IndexOf(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the dimension of the given child in the main axis, as given by the
+        /// child's [RenderBox.size] property. This is only valid after layout.
+        /// </Summary>
         public virtual double PaintExtentOf(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
 
 
@@ -749,6 +1135,12 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
         public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Asserts that the reified child list is not empty and has a contiguous
+        /// sequence of indices.
+        ///
+        /// Always returns true.
+        /// </Summary>
         public virtual bool DebugAssertChildListIsNonEmptyAndContiguous() { throw new NotImplementedException(); }
 
 

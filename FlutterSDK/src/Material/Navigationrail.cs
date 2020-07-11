@@ -402,6 +402,93 @@ namespace FlutterSDK.Material.Navigationrail
         public static FlutterSDK.Widgets.Framework.Widget _VerticalSpacer = default(FlutterSDK.Widgets.Framework.Widget);
     }
 
+    /// <Summary>
+    /// A material widget that is meant to be displayed at the left or right of an
+    /// app to navigate between a small number of views, typically between three and
+    /// five.
+    ///
+    /// A navigation rail is usually used as the first or last element of a [Row]
+    /// which defines the app's [Scaffold] body.
+    ///
+    /// The appearance of all of the [NavigationRail]s within an app can be
+    /// specified with [NavigationRailTheme]. The default values for null theme
+    /// properties are based on the [Theme]'s [ThemeData.textTheme],
+    /// [ThemeData.iconTheme], and [ThemeData.colorScheme].
+    /// The navigation rail is meant for layouts with wide viewports, such as a
+    /// desktop web or tablet landscape layout. For smaller layouts, like mobile
+    /// portrait, a [BottomNavigationBar] should be used instead.
+    ///
+    /// Adaptive layouts can build different instances of the [Scaffold] in order to
+    /// have a navigation rail for more horizontal layouts and a bottom navigation
+    /// bar for more vertical layouts. See
+    /// [https://github.com/flutter/samples/blob/master/experimental/web_dashboard/lib/src/widgets/third_party/adaptive_scaffold.dart]
+    /// for an example.
+    ///
+    /// {@tool dartpad --template=stateful_widget_material}
+    ///
+    /// This example shows a [NavigationRail] used within a Scaffold with 3
+    /// [NavigationRailDestination]s. The main content is separated by a divider
+    /// (although elevation on the navigation rail can be used instead). The
+    /// `_selectedIndex` is updated by the `onDestinationSelected` callback.
+    ///
+    /// ```dart
+    /// int _selectedIndex = 0;
+    ///
+    ///  @override
+    ///  Widget build(BuildContext context) {
+    ///    return Scaffold(
+    ///      body: Row(
+    ///        children: <Widget>[
+    ///          NavigationRail(
+    ///            selectedIndex: _selectedIndex,
+    ///            onDestinationSelected: (int index) {
+    ///              setState(() {
+    ///                _selectedIndex = index;
+    ///              });
+    ///            },
+    ///            labelType: NavigationRailLabelType.selected,
+    ///            destinations: [
+    ///              NavigationRailDestination(
+    ///                icon: Icon(Icons.favorite_border),
+    ///                selectedIcon: Icon(Icons.favorite),
+    ///                label: Text('First'),
+    ///              ),
+    ///              NavigationRailDestination(
+    ///                icon: Icon(Icons.bookmark_border),
+    ///                selectedIcon: Icon(Icons.book),
+    ///                label: Text('Second'),
+    ///              ),
+    ///              NavigationRailDestination(
+    ///                icon: Icon(Icons.star_border),
+    ///                selectedIcon: Icon(Icons.star),
+    ///                label: Text('Third'),
+    ///              ),
+    ///            ],
+    ///          ),
+    ///          VerticalDivider(thickness: 1, width: 1),
+    ///          // This is the main content.
+    ///          Expanded(
+    ///            child: Center(
+    ///              child: Text('selectedIndex: $_selectedIndex'),
+    ///            ),
+    ///          )
+    ///        ],
+    ///      ),
+    ///    );
+    ///  }
+    /// ```
+    /// {@end-tool}
+    ///
+    /// See also:
+    ///
+    ///  * [Scaffold], which can display the navigation rail within a [Row] of the
+    ///    [Scaffold.body] slot.
+    ///  * [NavigationRailDestination], which is used as a model to create tappable
+    ///    destinations in the navigation rail.
+    ///  * [BottomNavigationBar], which is a similar navigation widget that's laid
+    ///     out horizontally.
+    ///  * [https://material.io/components/navigation-rail/]
+    /// </Summary>
     public class NavigationRail : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -448,6 +535,61 @@ namespace FlutterSDK.Material.Navigationrail
 
         #region methods
 
+        /// <Summary>
+        /// Returns the animation that controls the [NavigationRail.extended] state.
+        ///
+        /// This can be used to synchronize animations in the [leading] or [trailing]
+        /// widget, such as an animated menu or a [FloatingActionButton] animation.
+        ///
+        /// {@tool snippet}
+        ///
+        /// This example shows how to use this animation to create a
+        /// [FloatingActionButton] that animates itself between the normal and
+        /// extended states of the [NavigationRail].
+        ///
+        /// An instance of `ExtendableFab` would be created for
+        /// [NavigationRail.leading].
+        ///
+        /// ```dart
+        /// import 'dart:ui';
+        ///
+        /// @override
+        /// Widget build(BuildContext context) {
+        ///   final Animation<double> animation = NavigationRail.extendedAnimation(context);
+        ///   return AnimatedBuilder(
+        ///     animation: animation,
+        ///     builder: (BuildContext context, Widget child) {
+        ///       // The extended fab has a shorter height than the regular fab.
+        ///       return Container(
+        ///         height: 56,
+        ///         padding: EdgeInsets.symmetric(
+        ///           vertical: lerpDouble(0, 6, animation.value),
+        ///         ),
+        ///         child: animation.value == 0
+        ///           ? FloatingActionButton(
+        ///               child: Icon(Icons.add),
+        ///               onPressed: () {},
+        ///             )
+        ///           : Align(
+        ///               alignment: AlignmentDirectional.centerStart,
+        ///               widthFactor: animation.value,
+        ///               child: Padding(
+        ///                 padding: const EdgeInsetsDirectional.only(start: 8),
+        ///                 child: FloatingActionButton.extended(
+        ///                   icon: Icon(Icons.add),
+        ///                   label: Text('CREATE'),
+        ///                   onPressed: () {},
+        ///                 ),
+        ///               ),
+        ///             ),
+        ///       );
+        ///     },
+        ///   );
+        /// }
+        /// ```
+        ///
+        /// {@end-tool}
+        /// </Summary>
         public virtual FlutterSDK.Animation.Animation.Animation<double> ExtendedAnimation(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
@@ -554,6 +696,13 @@ namespace FlutterSDK.Material.Navigationrail
     }
 
 
+    /// <Summary>
+    /// Defines a [NavigationRail] button that represents one "destination" view.
+    ///
+    /// See also:
+    ///
+    ///  * [NavigationRail]
+    /// </Summary>
     public class NavigationRailDestination
     {
         #region constructors
@@ -599,11 +748,30 @@ namespace FlutterSDK.Material.Navigationrail
     }
 
 
+    /// <Summary>
+    /// Defines the behavior of the labels of a [NavigationRail].
+    ///
+    /// See also:
+    ///
+    ///   * [NavigationRail]
+    /// </Summary>
     public enum NavigationRailLabelType
     {
 
+        /// <Summary>
+        /// Only the [NavigationRailDestination]s are shown.
+        /// </Summary>
         None,
+        /// <Summary>
+        /// Only the selected [NavigationRailDestination] will show its label.
+        ///
+        /// The label will animate in and out as new [NavigationRailDestination]s are
+        /// selected.
+        /// </Summary>
         Selected,
+        /// <Summary>
+        /// All [NavigationRailDestination]s will show their label.
+        /// </Summary>
         All,
     }
 

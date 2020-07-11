@@ -445,6 +445,16 @@ namespace FlutterSDK.Widgets.Scrollmetrics
         public virtual double ExtentInside { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double ExtentAfter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
+        /// <Summary>
+        /// Creates a [ScrollMetrics] that has the same properties as this object.
+        ///
+        /// This is useful if this object is mutable, but you want to get a snapshot
+        /// of the current state.
+        ///
+        /// The named arguments allow the values to be adjusted in the process. This
+        /// is useful to examine hypothetical situations, for example "would applying
+        /// this delta unmodified take the position [outOfRange]?".
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics CopyWith(double minScrollExtent = default(double), double maxScrollExtent = default(double), double pixels = default(double), double viewportDimension = default(double), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection)) { throw new NotImplementedException(); }
 
     }
@@ -475,6 +485,11 @@ namespace FlutterSDK.Widgets.Scrollmetrics
     }
 
 
+    /// <Summary>
+    /// An immutable snapshot of values associated with a [Scrollable] viewport.
+    ///
+    /// For details, see [ScrollMetrics], which defines this object's interfaces.
+    /// </Summary>
     public class FixedScrollMetrics : FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics
     {
         #region constructors

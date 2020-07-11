@@ -427,6 +427,15 @@ namespace FlutterSDK.Rendering.Image
     {
     }
 
+    /// <Summary>
+    /// An image in the render tree.
+    ///
+    /// The render image attempts to find a size for itself that fits in the given
+    /// constraints and preserves the image's intrinsic aspect ratio.
+    ///
+    /// The image is painted using [paintImage], which describes the meanings of the
+    /// various fields on this class in more detail.
+    /// </Summary>
     public class RenderImage : FlutterSDK.Rendering.Box.RenderBox
     {
         #region constructors
@@ -482,6 +491,15 @@ namespace FlutterSDK.Rendering.Image
         private void _UpdateColorFilter() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Find a size for the render image within the given constraints.
+        ///
+        ///  - The dimensions of the RenderImage must fit within the constraints.
+        ///  - The aspect ratio of the RenderImage matches the intrinsic aspect
+        ///    ratio of the image.
+        ///  - The RenderImage's dimension are maximal subject to being smaller than
+        ///    the intrinsic size of the image.
+        /// </Summary>
         private Size _SizeForConstraints(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
 
 

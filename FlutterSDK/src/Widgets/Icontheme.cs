@@ -428,6 +428,11 @@ namespace FlutterSDK.Widgets.Icontheme
     {
     }
 
+    /// <Summary>
+    /// Controls the default color, opacity, and size of icons in a widget subtree.
+    ///
+    /// The icon theme is honored by [Icon] and [ImageIcon] widgets.
+    /// </Summary>
     public class IconTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
         #region constructors
@@ -444,9 +449,27 @@ namespace FlutterSDK.Widgets.Icontheme
 
         #region methods
 
+        /// <Summary>
+        /// Creates an icon theme that controls the color, opacity, and size of
+        /// descendant widgets, and merges in the current icon theme, if any.
+        ///
+        /// The [data] and [child] arguments must not be null.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget Merge(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Iconthemedata.IconThemeData data = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The data from the closest instance of this class that encloses the given
+        /// context.
+        ///
+        /// Defaults to the current [ThemeData.iconTheme].
+        ///
+        /// Typical usage is as follows:
+        ///
+        /// ```dart
+        /// IconThemeData theme = IconTheme.of(context);
+        /// ```
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 

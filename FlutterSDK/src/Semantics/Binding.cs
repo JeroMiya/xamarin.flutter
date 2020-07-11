@@ -440,6 +440,11 @@ namespace FlutterSDK.Semantics.Binding
         public new void InitInstances() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Called when the platform accessibility features change.
+        ///
+        /// See [Window.onAccessibilityFeaturesChanged].
+        /// </Summary>
         public virtual void HandleAccessibilityFeaturesChanged() { throw new NotImplementedException(); }
 
     }

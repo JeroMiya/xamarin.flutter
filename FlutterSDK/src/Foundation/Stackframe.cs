@@ -300,6 +300,19 @@ namespace FlutterSDK.Foundation.Stackframe
     {
     }
 
+    /// <Summary>
+    /// A object representation of a frame from a stack trace.
+    ///
+    /// {@tool snippet}
+    ///
+    /// This example creates a traversable list of parsed [StackFrame] objects from
+    /// the current [StackTrace].
+    ///
+    /// ```dart
+    /// final List<StackFrame> currentFrames = StackFrame.fromStackTrace(StackTrace.current);
+    /// ```
+    /// {@end-tool}
+    /// </Summary>
     public class StackFrame
     {
         #region constructors
@@ -338,9 +351,17 @@ namespace FlutterSDK.Foundation.Stackframe
 
         #region methods
 
+        /// <Summary>
+        /// Parses a list of [StackFrame]s from a [StackTrace] object.
+        ///
+        /// This is normally useful with [StackTrace.current].
+        /// </Summary>
         public virtual List<FlutterSDK.Foundation.Stackframe.StackFrame> FromStackTrace(StackTrace stack) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Parses a list of [StackFrame]s from the [StackTrace.toString] method.
+        /// </Summary>
         public virtual List<FlutterSDK.Foundation.Stackframe.StackFrame> FromStackString(string stack) { throw new NotImplementedException(); }
 
 
@@ -353,6 +374,9 @@ namespace FlutterSDK.Foundation.Stackframe
         private FlutterSDK.Foundation.Stackframe.StackFrame _ParseWebNonDebugFrame(string line) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Parses a single [StackFrame] from a single line of a [StackTrace].
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Stackframe.StackFrame FromStackTraceLine(string line) { throw new NotImplementedException(); }
 
 

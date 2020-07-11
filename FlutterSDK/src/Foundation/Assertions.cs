@@ -305,6 +305,10 @@ namespace FlutterSDK.Foundation.Assertions
 
     }
 
+    /// <Summary>
+    /// A class that filters stack frames for additional filtering on
+    /// [FlutterError.defaultStackFilter].
+    /// </Summary>
     public interface IStackFilter
     {
         void Filter(List<FlutterSDK.Foundation.Stackframe.StackFrame> stackFrames, List<string> reasons);
@@ -317,6 +321,13 @@ namespace FlutterSDK.Foundation.Assertions
     }
 
 
+    /// <Summary>
+    /// Partial information from a stack frame for stack filtering purposes.
+    ///
+    /// See also:
+    ///
+    ///  * [RepetitiveStackFrameFilter], which uses this class to compare against [StackFrame]s.
+    /// </Summary>
     public class PartialStackFrame
     {
         #region constructors
@@ -338,12 +349,20 @@ namespace FlutterSDK.Foundation.Assertions
 
         #region methods
 
+        /// <Summary>
+        /// Tests whether the [StackFrame] matches the information in this
+        /// [PartialStackFrame].
+        /// </Summary>
         public virtual bool Matches(FlutterSDK.Foundation.Stackframe.StackFrame stackFrame) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// A class that filters stack frames for additional filtering on
+    /// [FlutterError.defaultStackFilter].
+    /// </Summary>
     public class StackFilter
     {
         #region constructors
@@ -358,12 +377,30 @@ namespace FlutterSDK.Foundation.Assertions
 
         #region methods
 
+        /// <Summary>
+        /// Filters the list of [StackFrame]s by updating corrresponding indices in
+        /// `reasons`.
+        ///
+        /// To elide a frame or number of frames, set the string
+        /// </Summary>
         public virtual void Filter(List<FlutterSDK.Foundation.Stackframe.StackFrame> stackFrames, List<string> reasons) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// A [StackFilter] that filters based on repeating lists of
+    /// [PartialStackFrame]s.
+    ///
+    /// See also:
+    ///
+    ///   * [FlutterError.addDefaultStackFilter], a method to register additional
+    ///     stack filters for [FlutterError.defaultStackFilter].
+    ///   * [StackFrame], a class that can help with parsing stack frames.
+    ///   * [PartialStackFrame], a class that helps match partial method information
+    ///     to a stack frame.
+    /// </Summary>
     public class RepetitiveStackFrameFilter : FlutterSDK.Foundation.Assertions.StackFilter
     {
         #region constructors
@@ -418,6 +455,22 @@ namespace FlutterSDK.Foundation.Assertions
     }
 
 
+    /// <Summary>
+    /// An explanation of the problem and its cause, any information that may help
+    /// track down the problem, background information, etc.
+    ///
+    /// Use [ErrorDescription] for any part of an error message where neither
+    /// [ErrorSummary] or [ErrorHint] is appropriate.
+    ///
+    /// See also:
+    ///
+    ///  * [ErrorSummary], which provides a short (one line) description of the
+    ///    problem that was detected.
+    ///  * [ErrorHint], which provides specific, non-obvious advice that may be
+    ///    applicable.
+    ///  * [FlutterError], which is the most common place to use an
+    ///    [ErrorDescription].
+    /// </Summary>
     public class ErrorDescription : FlutterSDK.Foundation.Assertions._ErrorDiagnostic
     {
         #region constructors
@@ -440,6 +493,25 @@ namespace FlutterSDK.Foundation.Assertions
     }
 
 
+    /// <Summary>
+    /// A short (one line) description of the problem that was detected.
+    ///
+    /// Error summaries from the same source location should have little variance,
+    /// so that they can be recognized as related. For example, they shouldn't
+    /// include hash codes.
+    ///
+    /// A [FlutterError] must start with an [ErrorSummary] and may not contain
+    /// multiple summaries.
+    ///
+    /// See also:
+    ///
+    ///  * [ErrorDescription], which provides an explanation of the problem and its
+    ///    cause, any information that may help track down the problem, background
+    ///    information, etc.
+    ///  * [ErrorHint], which provides specific, non-obvious advice that may be
+    ///    applicable.
+    ///  * [FlutterError], which is the most common place to use an [ErrorSummary].
+    /// </Summary>
     public class ErrorSummary : FlutterSDK.Foundation.Assertions._ErrorDiagnostic
     {
         #region constructors
@@ -462,6 +534,21 @@ namespace FlutterSDK.Foundation.Assertions
     }
 
 
+    /// <Summary>
+    /// An [ErrorHint] provides specific, non-obvious advice that may be applicable.
+    ///
+    /// If your message provides obvious advice that is always applicable it is an
+    /// [ErrorDescription] not a hint.
+    ///
+    /// See also:
+    ///
+    ///  * [ErrorSummary], which provides a short (one line) description of the
+    ///    problem that was detected.
+    ///  * [ErrorDescription], which provides an explanation of the problem and its
+    ///    cause, any information that may help track down the problem, background
+    ///    information, etc.
+    ///  * [FlutterError], which is the most common place to use an [ErrorHint].
+    /// </Summary>
     public class ErrorHint : FlutterSDK.Foundation.Assertions._ErrorDiagnostic
     {
         #region constructors
@@ -484,6 +571,10 @@ namespace FlutterSDK.Foundation.Assertions
     }
 
 
+    /// <Summary>
+    /// An [ErrorSpacer] creates an empty [DiagnosticsNode], that can be used to
+    /// tune the spacing between other [DiagnosticsNode] objects.
+    /// </Summary>
     public class ErrorSpacer : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<object>
     {
         #region constructors
@@ -502,6 +593,11 @@ namespace FlutterSDK.Foundation.Assertions
     }
 
 
+    /// <Summary>
+    /// Class for information provided to [FlutterExceptionHandler] callbacks.
+    ///
+    /// See [FlutterError.onError].
+    /// </Summary>
     public class FlutterErrorDetails : IDiagnosticable
     {
         #region constructors
@@ -531,6 +627,13 @@ namespace FlutterSDK.Foundation.Assertions
 
         #region methods
 
+        /// <Summary>
+        /// Converts the [exception] to a string.
+        ///
+        /// This applies some additional logic to make [AssertionError] exceptions
+        /// prettier, to handle exceptions that stringify to empty strings, to handle
+        /// objects that don't inherit from [Exception] or [Error], and so forth.
+        /// </Summary>
         public virtual string ExceptionAsString() { throw new NotImplementedException(); }
 
 
@@ -550,6 +653,15 @@ namespace FlutterSDK.Foundation.Assertions
     }
 
 
+    /// <Summary>
+    /// Error class used to report Flutter-specific assertion failures and
+    /// contract violations.
+    ///
+    /// See also:
+    ///
+    ///  * <https://flutter.dev/docs/testing/errors>, more information about error
+    ///    handling in Flutter.
+    /// </Summary>
     public class FlutterError : Error, IAssertionError, IDiagnosticableTreeMixin
     {
         #region constructors
@@ -574,15 +686,57 @@ namespace FlutterSDK.Foundation.Assertions
 
         #region methods
 
+        /// <Summary>
+        /// Resets the count of errors used by [dumpErrorToConsole] to decide whether
+        /// to show a complete error message or an abbreviated one.
+        ///
+        /// After this is called, the next error message will be shown in full.
+        /// </Summary>
         public virtual void ResetErrorCount() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Prints the given exception details to the console.
+        ///
+        /// The first time this is called, it dumps a very verbose message to the
+        /// console using [debugPrint].
+        ///
+        /// Subsequent calls only dump the first line of the exception, unless
+        /// `forceReport` is set to true (in which case it dumps the verbose message).
+        ///
+        /// Call [resetErrorCount] to cause this method to go back to acting as if it
+        /// had not been called before (so the next message is verbose again).
+        ///
+        /// The default behavior for the [onError] handler is to call this function.
+        /// </Summary>
         public virtual void DumpErrorToConsole(FlutterSDK.Foundation.Assertions.FlutterErrorDetails details, bool forceReport = false) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Adds a stack filtering function to [defaultStackFilter].
+        ///
+        /// For example, the framework adds common patterns of element building to
+        /// elide tree-walking patterns in the stacktrace.
+        ///
+        /// Added filters are checked in order of addition. The first matching filter
+        /// wins, and subsequent filters will not be checked.
+        /// </Summary>
         public virtual void AddDefaultStackFilter(FlutterSDK.Foundation.Assertions.StackFilter filter) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Converts a stack to a string that is more readable by omitting stack
+        /// frames that correspond to Dart internals.
+        ///
+        /// This is the default filter used by [dumpErrorToConsole] if the
+        /// [FlutterErrorDetails] object has no [FlutterErrorDetails.stackFilter]
+        /// callback.
+        ///
+        /// This function expects its input to be in the format used by
+        /// [StackTrace.toString()]. The output of this function is similar to that
+        /// format but the frame numbers will not be consecutive (frames are elided)
+        /// and the final line may be prose rather than a stack frame.
+        /// </Summary>
         public virtual Iterable<string> DefaultStackFilter(Iterable<string> frames) { throw new NotImplementedException(); }
 
 
@@ -593,12 +747,19 @@ namespace FlutterSDK.Foundation.Assertions
 
 
 
+        /// <Summary>
+        /// Calls [onError] with the given details, unless it is null.
+        /// </Summary>
         public virtual void ReportError(FlutterSDK.Foundation.Assertions.FlutterErrorDetails details) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// Diagnostic with a [StackTrace] [value] suitable for displaying stack traces
+    /// as part of a [FlutterError] object.
+    /// </Summary>
     public class DiagnosticsStackTrace : FlutterSDK.Foundation.Diagnostics.DiagnosticsBlock
     {
         #region constructors

@@ -300,6 +300,14 @@ namespace FlutterSDK.Foundation.Licenses
     {
     }
 
+    /// <Summary>
+    /// A license that covers part of the application's software or assets, to show
+    /// in an interface such as the [LicensePage].
+    ///
+    /// For optimal performance, [LicenseEntry] objects should only be created on
+    /// demand in [LicenseEntryCollector] callbacks passed to
+    /// [LicenseRegistry.addLicense].
+    /// </Summary>
     public interface ILicenseEntry
     {
         Iterable<string> Packages { get; }
@@ -307,6 +315,11 @@ namespace FlutterSDK.Foundation.Licenses
     }
 
 
+    /// <Summary>
+    /// A string that represents one paragraph in a [LicenseEntry].
+    ///
+    /// See [LicenseEntry.paragraphs].
+    /// </Summary>
     public class LicenseParagraph
     {
         #region constructors
@@ -328,6 +341,14 @@ namespace FlutterSDK.Foundation.Licenses
     }
 
 
+    /// <Summary>
+    /// A license that covers part of the application's software or assets, to show
+    /// in an interface such as the [LicensePage].
+    ///
+    /// For optimal performance, [LicenseEntry] objects should only be created on
+    /// demand in [LicenseEntryCollector] callbacks passed to
+    /// [LicenseRegistry.addLicense].
+    /// </Summary>
     public class LicenseEntry
     {
         #region constructors
@@ -347,6 +368,64 @@ namespace FlutterSDK.Foundation.Licenses
     }
 
 
+    /// <Summary>
+    /// Variant of [LicenseEntry] for licenses that separate paragraphs with blank
+    /// lines and that hard-wrap text within paragraphs. Lines that begin with one
+    /// or more space characters are also assumed to introduce new paragraphs,
+    /// unless they start with the same number of spaces as the previous line, in
+    /// which case it's assumed they are a continuation of an indented paragraph.
+    ///
+    /// {@tool snippet}
+    ///
+    /// For example, the BSD license in this format could be encoded as follows:
+    ///
+    /// ```dart
+    /// void initMyLibrary() {
+    ///   LicenseRegistry.addLicense(() async* {
+    ///     yield LicenseEntryWithLineBreaks(<String>['my_library'], '''
+    /// Copyright 2016 The Sample Authors. All rights reserved.
+    ///
+    /// Redistribution and use in source and binary forms, with or without
+    /// modification, are permitted provided that the following conditions are
+    /// met:
+    ///
+    ///    * Redistributions of source code must retain the above copyright
+    /// notice, this list of conditions and the following disclaimer.
+    ///    * Redistributions in binary form must reproduce the above
+    /// copyright notice, this list of conditions and the following disclaimer
+    /// in the documentation and/or other materials provided with the
+    /// distribution.
+    ///    * Neither the name of Example Inc. nor the names of its
+    /// contributors may be used to endorse or promote products derived from
+    /// this software without specific prior written permission.
+    ///
+    /// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+    /// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+    /// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+    /// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+    /// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+    /// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+    /// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+    /// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+    /// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+    /// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+    /// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''');
+    ///   });
+    /// }
+    /// ```
+    /// {@end-tool}
+    ///
+    /// This would result in a license with six [paragraphs], the third, fourth, and
+    /// fifth being indented one level.
+    ///
+    /// ## Performance considerations
+    ///
+    /// Computing the paragraphs is relatively expensive. Doing the work for one
+    /// license per frame is reasonable; doing more at the same time is ill-advised.
+    /// Consider doing all the work at once using [compute] to move the work to
+    /// another thread, or spreading the work across multiple frames using
+    /// [SchedulerBinding.scheduleTask].
+    /// </Summary>
     public class LicenseEntryWithLineBreaks : FlutterSDK.Foundation.Licenses.LicenseEntry
     {
         #region constructors
@@ -368,6 +447,33 @@ namespace FlutterSDK.Foundation.Licenses
     }
 
 
+    /// <Summary>
+    /// A registry for packages to add licenses to, so that they can be displayed
+    /// together in an interface such as the [LicensePage].
+    ///
+    /// Packages can register their licenses using [addLicense]. User interfaces
+    /// that wish to show all the licenses can obtain them by calling [licenses].
+    ///
+    /// The flutter tool will automatically collect the contents of all the LICENSE
+    /// files found at the root of each package into a single LICENSE file in the
+    /// default asset bundle. Each license in that file is separated from the next
+    /// by a line of eighty hyphens (`-`), and begins with a list of package names
+    /// that the license applies to, one to a line, separated from the next by a
+    /// blank line. The `services` package registers a license collector that splits
+    /// that file and adds each entry to the registry.
+    ///
+    /// The LICENSE files in each package can either consist of a single license, or
+    /// can be in the format described above. In the latter case, each component
+    /// license and list of package names is merged independently.
+    ///
+    /// See also:
+    ///
+    ///  * [showAboutDialog], which shows a Material-style dialog with information
+    ///    about the application, including a button that shows a [LicensePage] that
+    ///    uses this API to select licenses to show.
+    ///  * [AboutListTile], which is a widget that can be added to a [Drawer]. When
+    ///    tapped it calls [showAboutDialog].
+    /// </Summary>
     public class LicenseRegistry
     {
         #region constructors
@@ -384,9 +490,22 @@ namespace FlutterSDK.Foundation.Licenses
 
         #region methods
 
+        /// <Summary>
+        /// Adds licenses to the registry.
+        ///
+        /// To avoid actually manipulating the licenses unless strictly necessary,
+        /// licenses are added by adding a closure that returns a list of
+        /// [LicenseEntry] objects. The closure is only called if [licenses] is itself
+        /// called; in normal operation, if the user does not request to see the
+        /// licenses, the closure will not be called.
+        /// </Summary>
         public virtual void AddLicense(FlutterSDK.Foundation.Licenses.LicenseEntryCollector collector) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Resets the internal state of [LicenseRegistry]. Intended for use in
+        /// testing.
+        /// </Summary>
         public virtual void Reset() { throw new NotImplementedException(); }
 
         #endregion

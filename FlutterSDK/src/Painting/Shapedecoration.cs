@@ -427,6 +427,48 @@ namespace FlutterSDK.Painting.Shapedecoration
     {
     }
 
+    /// <Summary>
+    /// An immutable description of how to paint an arbitrary shape.
+    ///
+    /// The [ShapeDecoration] class provides a way to draw a [ShapeBorder],
+    /// optionally filling it with a color or a gradient, optionally painting an
+    /// image into it, and optionally casting a shadow.
+    ///
+    /// {@tool snippet}
+    ///
+    /// The following example uses the [Container] widget from the widgets layer to
+    /// draw a white rectangle with a 24-pixel multicolor outline, with the text
+    /// "RGB" inside it:
+    ///
+    /// ```dart
+    /// Container(
+    ///   decoration: ShapeDecoration(
+    ///     color: Colors.white,
+    ///     shape: Border.all(
+    ///       color: Colors.red,
+    ///       width: 8.0,
+    ///     ) + Border.all(
+    ///       color: Colors.green,
+    ///       width: 8.0,
+    ///     ) + Border.all(
+    ///       color: Colors.blue,
+    ///       width: 8.0,
+    ///     ),
+    ///   ),
+    ///   child: const Text('RGB', textAlign: TextAlign.center),
+    /// )
+    /// ```
+    /// {@end-tool}
+    ///
+    /// See also:
+    ///
+    ///  * [DecoratedBox] and [Container], widgets that can be configured with
+    ///    [ShapeDecoration] objects.
+    ///  * [BoxDecoration], a similar [Decoration] that is optimized for rectangles
+    ///    specifically.
+    ///  * [ShapeBorder], the base class for the objects that are used in the
+    ///    [shape] property.
+    /// </Summary>
     public class ShapeDecoration : FlutterSDK.Painting.Decoration.Decoration
     {
         #region constructors
@@ -467,6 +509,26 @@ namespace FlutterSDK.Painting.Shapedecoration
         public new FlutterSDK.Painting.Shapedecoration.ShapeDecoration LerpTo(FlutterSDK.Painting.Decoration.Decoration b, double t) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two shapes.
+        ///
+        /// Interpolates each parameter of the decoration separately.
+        ///
+        /// If both values are null, this returns null. Otherwise, it returns a
+        /// non-null value, with null arguments treated like a [ShapeDecoration] whose
+        /// fields are all null (including the [shape], which cannot normally be
+        /// null).
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        ///
+        /// See also:
+        ///
+        ///  * [Decoration.lerp], which can interpolate between any two types of
+        ///    [Decoration]s, not just [ShapeDecoration]s.
+        ///  * [lerpFrom] and [lerpTo], which are used to implement [Decoration.lerp]
+        ///    and which use [ShapeDecoration.lerp] when interpolating two
+        ///    [ShapeDecoration]s or a [ShapeDecoration] to or from null.
+        /// </Summary>
         public virtual FlutterSDK.Painting.Shapedecoration.ShapeDecoration Lerp(FlutterSDK.Painting.Shapedecoration.ShapeDecoration a, FlutterSDK.Painting.Shapedecoration.ShapeDecoration b, double t) { throw new NotImplementedException(); }
 
 
@@ -485,6 +547,9 @@ namespace FlutterSDK.Painting.Shapedecoration
     }
 
 
+    /// <Summary>
+    /// An object that paints a [ShapeDecoration] into a canvas.
+    /// </Summary>
     public class _ShapeDecorationPainter : FlutterSDK.Painting.Decoration.BoxPainter
     {
         #region constructors

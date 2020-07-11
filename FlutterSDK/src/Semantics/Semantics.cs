@@ -451,6 +451,24 @@ namespace FlutterSDK.Semantics.Semantics
 
     }
 
+    /// <Summary>
+    /// Base class for all sort keys for [SemanticsProperties.sortKey] accessibility
+    /// traversal order sorting.
+    ///
+    /// Sort keys are sorted by [name], then by the comparison that the subclass
+    /// implements. If [SemanticsProperties.sortKey] is specified, sort keys within
+    /// the same semantic group must all be of the same type.
+    ///
+    /// Keys with no [name] are compared to other keys with no [name], and will
+    /// be traversed before those with a [name].
+    ///
+    /// If no sort key is applied to a semantics node, then it will be ordered using
+    /// a platform dependent default algorithm.
+    ///
+    /// See also:
+    ///
+    ///  * [OrdinalSortKey] for a sort key that sorts using an ordinal.
+    /// </Summary>
     public interface ISemanticsSortKey
     {
         int CompareTo(FlutterSDK.Semantics.Semantics.SemanticsSortKey other);
@@ -580,18 +598,56 @@ namespace FlutterSDK.Semantics.Semantics
         public virtual double ScrollExtentMin { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual Iterable<FlutterSDK.Semantics.Semantics.SemanticsTag> TagsForChildren { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
+        /// <Summary>
+        /// Adds an `action` to the semantics tree.
+        ///
+        /// The provided `handler` is called to respond to the user triggered
+        /// `action`.
+        /// </Summary>
         private void _AddAction(SemanticsAction action, FlutterSDK.Semantics.Semantics._SemanticsActionHandler handler) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Adds an `action` to the semantics tree, whose `handler` does not expect
+        /// any arguments.
+        ///
+        /// The provided `handler` is called to respond to the user triggered
+        /// `action`.
+        /// </Summary>
         private void _AddArgumentlessAction(SemanticsAction action, VoidCallback handler) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the action handler registered for [action] or null if none was
+        /// registered.
+        ///
+        /// See also:
+        ///
+        ///  * [addAction] to add an action.
+        /// </Summary>
         public virtual FlutterSDK.Semantics.Semantics._SemanticsActionHandler GetActionHandler(SemanticsAction action) { throw new NotImplementedException(); }
 
 
         private void _OnCustomSemanticsAction(object args) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Specifies a [SemanticsTag] that this configuration wants to apply to all
+        /// child [SemanticsNode]s.
+        ///
+        /// The tag is added to all [SemanticsNode] that pass through the
+        /// [RenderObject] owning this configuration while looking to be attached to a
+        /// parent [SemanticsNode].
+        ///
+        /// Tags are used to communicate to a parent [SemanticsNode] that a child
+        /// [SemanticsNode] was passed through a particular [RenderObject]. The parent
+        /// can use this information to determine the shape of the semantics tree.
+        ///
+        /// See also:
+        ///
+        ///  * [RenderSemanticsGestureHandler.excludeFromScrolling] for an example of
+        ///    how tags are used.
+        /// </Summary>
         public virtual void AddTagForChildren(FlutterSDK.Semantics.Semantics.SemanticsTag tag) { throw new NotImplementedException(); }
 
 
@@ -601,12 +657,35 @@ namespace FlutterSDK.Semantics.Semantics
         private bool _HasFlag(SemanticsFlag flag) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Whether this configuration is compatible with the provided `other`
+        /// configuration.
+        ///
+        /// Two configurations are said to be compatible if they can be added to the
+        /// same [SemanticsNode] without losing any semantics information.
+        /// </Summary>
         public virtual bool IsCompatibleWith(FlutterSDK.Semantics.Semantics.SemanticsConfiguration other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Absorb the semantic information from `child` into this configuration.
+        ///
+        /// This adds the semantic information of both configurations and saves the
+        /// result in this configuration.
+        ///
+        /// The [RenderObject] owning the `child` configuration must be a descendant
+        /// of the [RenderObject] that owns this configuration.
+        ///
+        /// Only configurations that have [explicitChildNodes] set to false can
+        /// absorb other configurations and it is recommended to only absorb compatible
+        /// configurations as determined by [isCompatibleWith].
+        /// </Summary>
         public virtual void Absorb(FlutterSDK.Semantics.Semantics.SemanticsConfiguration child) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns an exact copy of this configuration.
+        /// </Summary>
         public virtual FlutterSDK.Semantics.Semantics.SemanticsConfiguration Copy() { throw new NotImplementedException(); }
 
     }
@@ -697,6 +776,22 @@ namespace FlutterSDK.Semantics.Semantics
     }
 
 
+    /// <Summary>
+    /// A tag for a [SemanticsNode].
+    ///
+    /// Tags can be interpreted by the parent of a [SemanticsNode]
+    /// and depending on the presence of a tag the parent can for example decide
+    /// how to add the tagged node as a child. Tags are not sent to the engine.
+    ///
+    /// As an example, the [RenderSemanticsGestureHandler] uses tags to determine
+    /// if a child node should be excluded from the scrollable area for semantic
+    /// purposes.
+    ///
+    /// The provided [name] is only used for debugging. Two tags created with the
+    /// same [name] and the `new` operator are not considered identical. However,
+    /// two tags created with the same [name] and the `const` operator are always
+    /// identical.
+    /// </Summary>
     public class SemanticsTag
     {
         #region constructors
@@ -716,6 +811,30 @@ namespace FlutterSDK.Semantics.Semantics
     }
 
 
+    /// <Summary>
+    /// An identifier of a custom semantics action.
+    ///
+    /// Custom semantics actions can be provided to make complex user
+    /// interactions more accessible. For instance, if an application has a
+    /// drag-and-drop list that requires the user to press and hold an item
+    /// to move it, users interacting with the application using a hardware
+    /// switch may have difficulty. This can be made accessible by creating custom
+    /// actions and pairing them with handlers that move a list item up or down in
+    /// the list.
+    ///
+    /// In Android, these actions are presented in the local context menu. In iOS,
+    /// these are presented in the radial context menu.
+    ///
+    /// Localization and text direction do not automatically apply to the provided
+    /// label or hint.
+    ///
+    /// Instances of this class should either be instantiated with const or
+    /// new instances cached in static fields.
+    ///
+    /// See also:
+    ///
+    ///  * [SemanticsProperties], where the handler for a custom action is provided.
+    /// </Summary>
     public class CustomSemanticsAction
     {
         #region constructors
@@ -747,15 +866,31 @@ namespace FlutterSDK.Semantics.Semantics
 
 
 
+        /// <Summary>
+        /// Get the identifier for a given `action`.
+        /// </Summary>
         public virtual int GetIdentifier(FlutterSDK.Semantics.Semantics.CustomSemanticsAction action) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Get the `action` for a given identifier.
+        /// </Summary>
         public virtual FlutterSDK.Semantics.Semantics.CustomSemanticsAction GetAction(int id) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// Summary information about a [SemanticsNode] object.
+    ///
+    /// A semantics node might [SemanticsNode.mergeAllDescendantsIntoThisNode],
+    /// which means the individual fields on the semantics node don't fully describe
+    /// the semantics at that node. This data structure contains the full semantics
+    /// for the node.
+    ///
+    /// Typically obtained from [SemanticsNode.getSemanticsData].
+    /// </Summary>
     public class SemanticsData : IDiagnosticable
     {
         #region constructors
@@ -817,9 +952,15 @@ namespace FlutterSDK.Semantics.Semantics
 
         #region methods
 
+        /// <Summary>
+        /// Whether [flags] contains the given flag.
+        /// </Summary>
         public virtual bool HasFlag(SemanticsFlag flag) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Whether [actions] contains the given action.
+        /// </Summary>
         public virtual bool HasAction(SemanticsAction action) { throw new NotImplementedException(); }
 
 
@@ -860,6 +1001,12 @@ namespace FlutterSDK.Semantics.Semantics
     }
 
 
+    /// <Summary>
+    /// Provides hint values which override the default hints on supported
+    /// platforms.
+    ///
+    /// On iOS, these values are always ignored.
+    /// </Summary>
     public class SemanticsHintOverrides : FlutterSDK.Foundation.Diagnostics.DiagnosticableTree
     {
         #region constructors
@@ -889,6 +1036,13 @@ namespace FlutterSDK.Semantics.Semantics
     }
 
 
+    /// <Summary>
+    /// Contains properties used by assistive technologies to make the application
+    /// more accessible.
+    ///
+    /// The properties of this class are used to generate a [SemanticsNode]s in the
+    /// semantics tree.
+    /// </Summary>
     public class SemanticsProperties : FlutterSDK.Foundation.Diagnostics.DiagnosticableTree
     {
         #region constructors
@@ -1009,6 +1163,14 @@ namespace FlutterSDK.Semantics.Semantics
     }
 
 
+    /// <Summary>
+    /// A node that represents some semantic data.
+    ///
+    /// The semantics tree is maintained during the semantics phase of the pipeline
+    /// (i.e., during [PipelineOwner.flushSemantics]), which happens after
+    /// compositing. The semantics tree is then uploaded into the engine for use
+    /// by assistive technology.
+    /// </Summary>
     public class SemanticsNode : FlutterSDK.Foundation.Node.AbstractNode, IDiagnosticableTreeMixin
     {
         #region constructors
@@ -1110,9 +1272,23 @@ namespace FlutterSDK.Semantics.Semantics
         private void _ReplaceChildren(List<FlutterSDK.Semantics.Semantics.SemanticsNode> newChildren) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Visits the immediate children of this node.
+        ///
+        /// This function calls visitor for each immediate child until visitor returns
+        /// false. Returns true if all the visitor calls returned true, otherwise
+        /// returns false.
+        /// </Summary>
         public virtual void VisitChildren(FlutterSDK.Semantics.Semantics.SemanticsNodeVisitor visitor) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Visit all the descendants of this node.
+        ///
+        /// This function calls visitor for each descendant in a pre-order traversal
+        /// until visitor returns false. Returns true if all the visitor calls
+        /// returned true, otherwise returns false.
+        /// </Summary>
         private bool _VisitDescendants(FlutterSDK.Semantics.Semantics.SemanticsNodeVisitor visitor) { throw new NotImplementedException(); }
 
 
@@ -1132,18 +1308,42 @@ namespace FlutterSDK.Semantics.Semantics
         private bool _IsDifferentFromCurrentSemanticAnnotation(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Whether this node is tagged with `tag`.
+        /// </Summary>
         public virtual bool IsTagged(FlutterSDK.Semantics.Semantics.SemanticsTag tag) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Whether this node currently has a given [SemanticsFlag].
+        /// </Summary>
         public virtual bool HasFlag(SemanticsFlag flag) { throw new NotImplementedException(); }
 
 
         private bool _CanPerformAction(SemanticsAction action) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Reconfigures the properties of this object to describe the configuration
+        /// provided in the `config` argument and the children listed in the
+        /// `childrenInInversePaintOrder` argument.
+        ///
+        /// The arguments may be null; this represents an empty configuration (all
+        /// values at their defaults, no children).
+        ///
+        /// No reference is kept to the [SemanticsConfiguration] object, but the child
+        /// list is used as-is and should therefore not be changed after this call.
+        /// </Summary>
         public virtual void UpdateWith(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config = default(FlutterSDK.Semantics.Semantics.SemanticsConfiguration), List<FlutterSDK.Semantics.Semantics.SemanticsNode> childrenInInversePaintOrder = default(List<FlutterSDK.Semantics.Semantics.SemanticsNode>)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a summary of the semantics for this node.
+        ///
+        /// If this node has [mergeAllDescendantsIntoThisNode], then the returned data
+        /// includes the information from this node's descendants. Otherwise, the
+        /// returned data matches the data on this node.
+        /// </Summary>
         public virtual FlutterSDK.Semantics.Semantics.SemanticsData GetSemanticsData() { throw new NotImplementedException(); }
 
 
@@ -1153,9 +1353,24 @@ namespace FlutterSDK.Semantics.Semantics
         private void _AddToUpdate(SemanticsUpdateBuilder builder, HashSet<int> customSemanticsActionIdsUpdate) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Builds a new list made of [_children] sorted in semantic traversal order.
+        /// </Summary>
         private List<FlutterSDK.Semantics.Semantics.SemanticsNode> _ChildrenInTraversalOrder() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Sends a [SemanticsEvent] associated with this [SemanticsNode].
+        ///
+        /// Semantics events should be sent to inform interested parties (like
+        /// the accessibility system of the operating system) about changes to the UI.
+        ///
+        /// For example, if this semantics node represents a scrollable list, a
+        /// [ScrollCompletedSemanticsEvent] should be sent after a scroll action is completed.
+        /// That way, the operating system can give additional feedback to the user
+        /// about the state of the UI (e.g. on Android a ping sound is played to
+        /// indicate a successful scroll in accessibility mode).
+        /// </Summary>
         public virtual void SendEvent(FlutterSDK.Semantics.Semanticsevent.SemanticsEvent @event) { throw new NotImplementedException(); }
 
 
@@ -1165,6 +1380,12 @@ namespace FlutterSDK.Semantics.Semantics
         public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a string representation of this node and its descendants.
+        ///
+        /// The order in which the children of the [SemanticsNode] will be printed is
+        /// controlled by the [childOrder] parameter.
+        /// </Summary>
         public new string ToStringDeep(string prefixLineOne = default(string), string prefixOtherLines = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel minLevel = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel), FlutterSDK.Semantics.Semantics.DebugSemanticsDumpOrder childOrder = default(FlutterSDK.Semantics.Semantics.DebugSemanticsDumpOrder)) { throw new NotImplementedException(); }
 
 
@@ -1174,12 +1395,25 @@ namespace FlutterSDK.Semantics.Semantics
         public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren(FlutterSDK.Semantics.Semantics.DebugSemanticsDumpOrder childOrder = default(FlutterSDK.Semantics.Semantics.DebugSemanticsDumpOrder)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns the list of direct children of this node in the specified order.
+        /// </Summary>
         public virtual List<FlutterSDK.Semantics.Semantics.SemanticsNode> DebugListChildrenInOrder(FlutterSDK.Semantics.Semantics.DebugSemanticsDumpOrder childOrder) { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// An edge of a box, such as top, bottom, left or right, used to compute
+    /// [SemanticsNode]s that overlap vertically or horizontally.
+    ///
+    /// For computing horizontal overlap in an LTR setting we create two [_BoxEdge]
+    /// objects for each [SemanticsNode]: one representing the left edge (marked
+    /// with [isLeadingEdge] equal to true) and one for the right edge (with [isLeadingEdge]
+    /// equal to false). Similarly, for vertical overlap we also create two objects
+    /// for each [SemanticsNode], one for the top and one for the bottom edge.
+    /// </Summary>
     public class _BoxEdge : IComparable<FlutterSDK.Semantics.Semantics._BoxEdge>
     {
         #region constructors
@@ -1206,6 +1440,12 @@ namespace FlutterSDK.Semantics.Semantics
     }
 
 
+    /// <Summary>
+    /// A group of [nodes] that are disjoint vertically or horizontally from other
+    /// nodes that share the same [SemanticsNode] parent.
+    ///
+    /// The [nodes] are sorted among each other separately from other nodes.
+    /// </Summary>
     public class _SemanticsSortGroup : Comparable<FlutterSDK.Semantics.Semantics._SemanticsSortGroup>
     {
         #region constructors
@@ -1228,15 +1468,47 @@ namespace FlutterSDK.Semantics.Semantics
         public new int CompareTo(FlutterSDK.Semantics.Semantics._SemanticsSortGroup other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Sorts this group assuming that [nodes] belong to the same vertical group.
+        ///
+        /// This method breaks up this group into horizontal [_SemanticsSortGroup]s
+        /// then sorts them using [sortedWithinKnot].
+        /// </Summary>
         public virtual List<FlutterSDK.Semantics.Semantics.SemanticsNode> SortedWithinVerticalGroup() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Sorts [nodes] where nodes intersect both vertically and horizontally.
+        ///
+        /// In the special case when [nodes] contains one or less nodes, this method
+        /// returns [nodes] unchanged.
+        ///
+        /// This method constructs a graph, where vertices are [SemanticsNode]s and
+        /// edges are "traversed before" relation between pairs of nodes. The sort
+        /// order is the topological sorting of the graph, with the original order of
+        /// [nodes] used as the tie breaker.
+        ///
+        /// Whether a node is traversed before another node is determined by the
+        /// vector that connects the two nodes' centers. If the vector "points to the
+        /// right or down", defined as the [Offset.direction] being between `-pi/4`
+        /// and `3*pi/4`), then the semantics node whose center is at the end of the
+        /// vector is said to be traversed after.
+        /// </Summary>
         public virtual List<FlutterSDK.Semantics.Semantics.SemanticsNode> SortedWithinKnot() { throw new NotImplementedException(); }
 
         #endregion
     }
 
 
+    /// <Summary>
+    /// The implementation of [Comparable] that implements the ordering of
+    /// [SemanticsNode]s in the accessibility traversal.
+    ///
+    /// [SemanticsNode]s are sorted prior to sending them to the engine side.
+    ///
+    /// This implementation considers a [node]'s [sortKey] and its position within
+    /// the list of its siblings. [sortKey] takes precedence over position.
+    /// </Summary>
     public class _TraversalSortNode : IComparable<FlutterSDK.Semantics.Semantics._TraversalSortNode>
     {
         #region constructors
@@ -1263,6 +1535,14 @@ namespace FlutterSDK.Semantics.Semantics
     }
 
 
+    /// <Summary>
+    /// Owns [SemanticsNode] objects and notifies listeners of changes to the
+    /// render tree semantics.
+    ///
+    /// To listen for semantic updates, call [PipelineOwner.ensureSemantics] to
+    /// obtain a [SemanticsHandle]. This will create a [SemanticsOwner] if
+    /// necessary.
+    /// </Summary>
     public class SemanticsOwner : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
     {
         #region constructors
@@ -1282,18 +1562,39 @@ namespace FlutterSDK.Semantics.Semantics
         public new void Dispose() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Update the semantics using [Window.updateSemantics].
+        /// </Summary>
         public virtual void SendSemanticsUpdate() { throw new NotImplementedException(); }
 
 
         private FlutterSDK.Semantics.Semantics._SemanticsActionHandler _GetSemanticsActionHandlerForId(int id, SemanticsAction action) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Asks the [SemanticsNode] with the given id to perform the given action.
+        ///
+        /// If the [SemanticsNode] has not indicated that it can perform the action,
+        /// this function does nothing.
+        ///
+        /// If the given `action` requires arguments they need to be passed in via
+        /// the `args` parameter.
+        /// </Summary>
         public virtual void PerformAction(int id, SemanticsAction action, object args = default(object)) { throw new NotImplementedException(); }
 
 
         private FlutterSDK.Semantics.Semantics._SemanticsActionHandler _GetSemanticsActionHandlerForPosition(FlutterSDK.Semantics.Semantics.SemanticsNode node, FlutterBinding.UI.Offset position, SemanticsAction action) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Asks the [SemanticsNode] at the given position to perform the given action.
+        ///
+        /// If the [SemanticsNode] has not indicated that it can perform the action,
+        /// this function does nothing.
+        ///
+        /// If the given `action` requires arguments they need to be passed in via
+        /// the `args` parameter.
+        /// </Summary>
         public virtual void PerformActionAt(FlutterBinding.UI.Offset position, SemanticsAction action, object args = default(object)) { throw new NotImplementedException(); }
 
 
@@ -1301,6 +1602,24 @@ namespace FlutterSDK.Semantics.Semantics
     }
 
 
+    /// <Summary>
+    /// Base class for all sort keys for [SemanticsProperties.sortKey] accessibility
+    /// traversal order sorting.
+    ///
+    /// Sort keys are sorted by [name], then by the comparison that the subclass
+    /// implements. If [SemanticsProperties.sortKey] is specified, sort keys within
+    /// the same semantic group must all be of the same type.
+    ///
+    /// Keys with no [name] are compared to other keys with no [name], and will
+    /// be traversed before those with a [name].
+    ///
+    /// If no sort key is applied to a semantics node, then it will be ordered using
+    /// a platform dependent default algorithm.
+    ///
+    /// See also:
+    ///
+    ///  * [OrdinalSortKey] for a sort key that sorts using an ordinal.
+    /// </Summary>
     public class SemanticsSortKey : IComparable<FlutterSDK.Semantics.Semantics.SemanticsSortKey>, IDiagnosticable
     {
         #region constructors
@@ -1319,6 +1638,17 @@ namespace FlutterSDK.Semantics.Semantics
         public new int CompareTo(FlutterSDK.Semantics.Semantics.SemanticsSortKey other) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// The implementation of [compareTo].
+        ///
+        /// The argument is guaranteed to be of the same type as this object and have
+        /// the same [name].
+        ///
+        /// The method should return a negative number if this object comes earlier in
+        /// the sort order than the argument; and a positive number if it comes later
+        /// in the sort order. Returning zero causes the system to use default sort
+        /// order.
+        /// </Summary>
         public virtual int DoCompare(FlutterSDK.Semantics.Semantics.SemanticsSortKey other) { throw new NotImplementedException(); }
 
 
@@ -1328,6 +1658,26 @@ namespace FlutterSDK.Semantics.Semantics
     }
 
 
+    /// <Summary>
+    /// A [SemanticsSortKey] that sorts simply based on the `double` value it is
+    /// given.
+    ///
+    /// The [OrdinalSortKey] compares itself with other [OrdinalSortKey]s
+    /// to sort based on the order it is given.
+    ///
+    /// [OrdinalSortKey]s are sorted by the optional [name], then by their [order].
+    /// If [SemanticsProperties.sortKey] is a [OrdinalSortKey], then all the other
+    /// speficied sort keys in the same semantics group must also be
+    /// [OrdinalSortKey]s.
+    ///
+    /// Keys with no [name] are compared to other keys with no [name], and will
+    /// be traversed before those with a [name].
+    ///
+    /// The ordinal value [order] is typically a whole number, though it can be
+    /// fractional, e.g. in order to fit between two other consecutive whole
+    /// numbers. The value must be finite (it cannot be [double.nan],
+    /// [double.infinity], or [double.negativeInfinity]).
+    /// </Summary>
     public class OrdinalSortKey : FlutterSDK.Semantics.Semantics.SemanticsSortKey
     {
         #region constructors
@@ -1354,10 +1704,27 @@ namespace FlutterSDK.Semantics.Semantics
     }
 
 
+    /// <Summary>
+    /// Used by [debugDumpSemanticsTree] to specify the order in which child nodes
+    /// are printed.
+    /// </Summary>
     public enum DebugSemanticsDumpOrder
     {
 
+        /// <Summary>
+        /// Print nodes in inverse hit test order.
+        ///
+        /// In inverse hit test order, the last child of a [SemanticsNode] will be
+        /// asked first if it wants to respond to a user's interaction, followed by
+        /// the second last, etc. until a taker is found.
+        /// </Summary>
         InverseHitTest,
+        /// <Summary>
+        /// Print nodes in semantic traversal order.
+        ///
+        /// This is the order in which a user would navigate the UI using the "next"
+        /// and "previous" gestures.
+        /// </Summary>
         TraversalOrder,
     }
 

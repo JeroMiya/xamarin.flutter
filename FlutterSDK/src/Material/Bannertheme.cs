@@ -361,6 +361,24 @@ namespace FlutterSDK.Material.Bannertheme
     {
     }
 
+    /// <Summary>
+    /// Defines the visual properties of [MaterialBanner] widgets.
+    ///
+    /// Descendant widgets obtain the current [MaterialBannerThemeData] object using
+    /// `MaterialBannerTheme.of(context)`. Instances of [MaterialBannerThemeData]
+    /// can be customized with [MaterialBannerThemeData.copyWith].
+    ///
+    /// Typically a [MaterialBannerThemeData] is specified as part of the overall
+    /// [Theme] with [ThemeData.bannerTheme].
+    ///
+    /// All [MaterialBannerThemeData] properties are `null` by default. When null,
+    /// the [MaterialBanner] will provide its own defaults.
+    ///
+    /// See also:
+    ///
+    ///  * [ThemeData], which describes the overall theme information for the
+    ///    application.
+    /// </Summary>
     public class MaterialBannerThemeData : IDiagnosticable
     {
         #region constructors
@@ -383,9 +401,20 @@ namespace FlutterSDK.Material.Bannertheme
 
         #region methods
 
+        /// <Summary>
+        /// Creates a copy of this object with the given fields replaced with the
+        /// new values.
+        /// </Summary>
         public virtual FlutterSDK.Material.Bannertheme.MaterialBannerThemeData CopyWith(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry leadingPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two Banner themes.
+        ///
+        /// The argument `t` must not be null.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
         public virtual FlutterSDK.Material.Bannertheme.MaterialBannerThemeData Lerp(FlutterSDK.Material.Bannertheme.MaterialBannerThemeData a, FlutterSDK.Material.Bannertheme.MaterialBannerThemeData b, double t) { throw new NotImplementedException(); }
 
 
@@ -398,6 +427,13 @@ namespace FlutterSDK.Material.Bannertheme
     }
 
 
+    /// <Summary>
+    /// An inherited widget that defines the configuration for
+    /// [MaterialBanner]s in this widget's subtree.
+    ///
+    /// Values specified here are used for [MaterialBanner] properties that are not
+    /// given an explicit non-null value.
+    /// </Summary>
     public class MaterialBannerTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
         #region constructors
@@ -414,6 +450,19 @@ namespace FlutterSDK.Material.Bannertheme
 
         #region methods
 
+        /// <Summary>
+        /// The closest instance of this class's [data] value that encloses the given
+        /// context.
+        ///
+        /// If there is no ancestor, it returns [ThemeData.bannerTheme]. Applications
+        /// can assume that the returned value will not be null.
+        ///
+        /// Typical usage is as follows:
+        ///
+        /// ```dart
+        /// MaterialBannerThemeData theme = MaterialBannerTheme.of(context);
+        /// ```
+        /// </Summary>
         public virtual FlutterSDK.Material.Bannertheme.MaterialBannerThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 

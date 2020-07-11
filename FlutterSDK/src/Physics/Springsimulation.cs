@@ -457,6 +457,11 @@ namespace FlutterSDK.Physics.Springsimulation
     }
 
 
+    /// <Summary>
+    /// Structure that describes a spring's constants.
+    ///
+    /// Used to configure a [SpringSimulation].
+    /// </Summary>
     public class SpringDescription
     {
         #region constructors
@@ -485,6 +490,11 @@ namespace FlutterSDK.Physics.Springsimulation
     }
 
 
+    /// <Summary>
+    /// A spring simulation.
+    ///
+    /// Models a particle attached to a spring that follows Hooke's law.
+    /// </Summary>
     public class SpringSimulation : FlutterSDK.Physics.Simulation.Simulation
     {
         #region constructors
@@ -516,6 +526,10 @@ namespace FlutterSDK.Physics.Springsimulation
     }
 
 
+    /// <Summary>
+    /// A [SpringSimulation] where the value of [x] is guaranteed to have exactly the
+    /// end value when the simulation [isDone].
+    /// </Summary>
     public class ScrollSpringSimulation : FlutterSDK.Physics.Springsimulation.SpringSimulation
     {
         #region constructors
@@ -632,11 +646,27 @@ namespace FlutterSDK.Physics.Springsimulation
     }
 
 
+    /// <Summary>
+    /// The kind of spring solution that the [SpringSimulation] is using to simulate the spring.
+    ///
+    /// See [SpringSimulation.type].
+    /// </Summary>
     public enum SpringType
     {
 
+        /// <Summary>
+        /// A spring that does not bounce and returns to its rest position in the
+        /// shortest possible time.
+        /// </Summary>
         CriticallyDamped,
+        /// <Summary>
+        /// A spring that bounces.
+        /// </Summary>
         UnderDamped,
+        /// <Summary>
+        /// A spring that does not bounce but takes longer to return to its rest
+        /// position than a [criticallyDamped] one.
+        /// </Summary>
         OverDamped,
     }
 

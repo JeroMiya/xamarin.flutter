@@ -427,6 +427,14 @@ namespace FlutterSDK.Widgets.Annotatedregion
     {
     }
 
+    /// <Summary>
+    /// Annotates a region of the layer tree with a value.
+    ///
+    /// See also:
+    ///
+    ///  * [Layer.find], for an example of how this value is retrieved.
+    ///  * [AnnotatedRegionLayer], the layer pushed into the layer tree.
+    /// </Summary>
     public class AnnotatedRegion<T> : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
         #region constructors

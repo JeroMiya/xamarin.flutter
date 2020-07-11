@@ -427,6 +427,14 @@ namespace FlutterSDK.Rendering.Tableborder
     {
     }
 
+    /// <Summary>
+    /// Border specification for [Table] widgets.
+    ///
+    /// This is like [Border], with the addition of two sides: the inner horizontal
+    /// borders between rows and the inner vertical borders between columns.
+    ///
+    /// The sides are represented by [BorderSide] objects.
+    /// </Summary>
     public class TableBorder
     {
         #region constructors
@@ -463,12 +471,65 @@ namespace FlutterSDK.Rendering.Tableborder
 
         #region methods
 
+        /// <Summary>
+        /// Creates a copy of this border but with the widths scaled by the factor `t`.
+        ///
+        /// The `t` argument represents the multiplicand, or the position on the
+        /// timeline for an interpolation from nothing to `this`, with 0.0 meaning
+        /// that the object returned should be the nil variant of this object, 1.0
+        /// meaning that no change should be applied, returning `this` (or something
+        /// equivalent to `this`), and other values meaning that the object should be
+        /// multiplied by `t`. Negative values are treated like zero.
+        ///
+        /// Values for `t` are usually obtained from an [Animation<double>], such as
+        /// an [AnimationController].
+        ///
+        /// See also:
+        ///
+        ///  * [BorderSide.scale], which is used to implement this method.
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Tableborder.TableBorder Scale(double t) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two table borders.
+        ///
+        /// If a border is null, it is treated as having only [BorderSide.none]
+        /// borders.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
         public virtual FlutterSDK.Rendering.Tableborder.TableBorder Lerp(FlutterSDK.Rendering.Tableborder.TableBorder a, FlutterSDK.Rendering.Tableborder.TableBorder b, double t) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Paints the border around the given [Rect] on the given [Canvas], with the
+        /// given rows and columns.
+        ///
+        /// Uniform borders are more efficient to paint than more complex borders.
+        ///
+        /// The `rows` argument specifies the vertical positions between the rows,
+        /// relative to the given rectangle. For example, if the table contained two
+        /// rows of height 100.0 each, then `rows` would contain a single value,
+        /// 100.0, which is the vertical position between the two rows (relative to
+        /// the top edge of `rect`).
+        ///
+        /// The `columns` argument specifies the horizontal positions between the
+        /// columns, relative to the given rectangle. For example, if the table
+        /// contained two columns of height 100.0 each, then `columns` would contain a
+        /// single value, 100.0, which is the vertical position between the two
+        /// columns (relative to the left edge of `rect`).
+        ///
+        /// The [verticalInside] border is only drawn if there are at least two
+        /// columns. The [horizontalInside] border is only drawn if there are at least
+        /// two rows. The horizontal borders are drawn after the vertical borders.
+        ///
+        /// The outer borders (in the order [top], [right], [bottom], [left], with
+        /// [left] above the others) are painted after the inner borders.
+        ///
+        /// The paint order is particularly notable in the case of
+        /// partially-transparent borders.
+        /// </Summary>
         public virtual void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, Iterable<double> rows = default(Iterable<double>), Iterable<double> columns = default(Iterable<double>)) { throw new NotImplementedException(); }
 
 

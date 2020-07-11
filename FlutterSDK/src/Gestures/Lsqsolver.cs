@@ -366,6 +366,9 @@ namespace FlutterSDK.Gestures.Lsqsolver
     }
 
 
+    /// <Summary>
+    /// An nth degree polynomial fit to a dataset.
+    /// </Summary>
     public class PolynomialFit
     {
         #region constructors
@@ -386,6 +389,9 @@ namespace FlutterSDK.Gestures.Lsqsolver
     }
 
 
+    /// <Summary>
+    /// Uses the least-squares algorithm to fit a polynomial to a set of data.
+    /// </Summary>
     public class LeastSquaresSolver
     {
         #region constructors
@@ -406,6 +412,9 @@ namespace FlutterSDK.Gestures.Lsqsolver
 
         #region methods
 
+        /// <Summary>
+        /// Fits a polynomial of the given degree to the data points.
+        /// </Summary>
         public virtual FlutterSDK.Gestures.Lsqsolver.PolynomialFit Solve(int degree) { throw new NotImplementedException(); }
 
         #endregion

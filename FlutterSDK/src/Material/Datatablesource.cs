@@ -381,6 +381,21 @@ namespace FlutterSDK.Material.Datatablesource
     {
     }
 
+    /// <Summary>
+    /// A data source for obtaining row data for [PaginatedDataTable] objects.
+    ///
+    /// A data table source provides two main pieces of information:
+    ///
+    /// * The number of rows in the data table ([rowCount]).
+    /// * The data for each row (indexed from `0` to `rowCount - 1`).
+    ///
+    /// It also provides a listener API ([addListener]/[removeListener]) so that
+    /// consumers of the data can be notified when it changes. When the data
+    /// changes, call [notifyListeners] to send the notifications.
+    ///
+    /// DataTableSource objects are expected to be long-lived, not recreated with
+    /// each build.
+    /// </Summary>
     public interface IDataTableSource
     {
         FlutterSDK.Material.Datatable.DataRow GetRow(int index);
@@ -390,6 +405,21 @@ namespace FlutterSDK.Material.Datatablesource
     }
 
 
+    /// <Summary>
+    /// A data source for obtaining row data for [PaginatedDataTable] objects.
+    ///
+    /// A data table source provides two main pieces of information:
+    ///
+    /// * The number of rows in the data table ([rowCount]).
+    /// * The data for each row (indexed from `0` to `rowCount - 1`).
+    ///
+    /// It also provides a listener API ([addListener]/[removeListener]) so that
+    /// consumers of the data can be notified when it changes. When the data
+    /// changes, call [notifyListeners] to send the notifications.
+    ///
+    /// DataTableSource objects are expected to be long-lived, not recreated with
+    /// each build.
+    /// </Summary>
     public class DataTableSource : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
     {
         #region constructors
@@ -405,6 +435,22 @@ namespace FlutterSDK.Material.Datatablesource
 
         #region methods
 
+        /// <Summary>
+        /// Called to obtain the data about a particular row.
+        ///
+        /// The [new DataRow.byIndex] constructor provides a convenient way to construct
+        /// [DataRow] objects for this callback's purposes without having to worry about
+        /// independently keying each row.
+        ///
+        /// If the given index does not correspond to a row, or if no data is yet
+        /// available for a row, then return null. The row will be left blank and a
+        /// loading indicator will be displayed over the table. Once data is available
+        /// or once it is firmly established that the row index in question is beyond
+        /// the end of the table, call [notifyListeners].
+        ///
+        /// Data returned from this method must be consistent for the lifetime of the
+        /// object. If the row count changes, then a new delegate must be provided.
+        /// </Summary>
         public virtual FlutterSDK.Material.Datatable.DataRow GetRow(int index) { throw new NotImplementedException(); }
 
         #endregion

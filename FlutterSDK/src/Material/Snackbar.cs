@@ -423,6 +423,19 @@ namespace FlutterSDK.Material.Snackbar
         public static FlutterSDK.Animation.Curves.Curve _SnackBarFadeOutCurve = default(FlutterSDK.Animation.Curves.Curve);
     }
 
+    /// <Summary>
+    /// A button for a [SnackBar], known as an "action".
+    ///
+    /// Snack bar actions are always enabled. If you want to disable a snack bar
+    /// action, simply don't include it in the snack bar.
+    ///
+    /// Snack bar actions can only be pressed once. Subsequent presses are ignored.
+    ///
+    /// See also:
+    ///
+    ///  * [SnackBar]
+    ///  * <https://material.io/design/components/snackbars.html>
+    /// </Summary>
     public class SnackBarAction : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -473,6 +486,31 @@ namespace FlutterSDK.Material.Snackbar
     }
 
 
+    /// <Summary>
+    /// A lightweight message with an optional action which briefly displays at the
+    /// bottom of the screen.
+    ///
+    /// To display a snack bar, call `Scaffold.of(context).showSnackBar()`, passing
+    /// an instance of [SnackBar] that describes the message.
+    ///
+    /// To control how long the [SnackBar] remains visible, specify a [duration].
+    ///
+    /// A SnackBar with an action will not time out when TalkBack or VoiceOver are
+    /// enabled. This is controlled by [AccessibilityFeatures.accessibleNavigation].
+    ///
+    /// See also:
+    ///
+    ///  * [Scaffold.of], to obtain the current [ScaffoldState], which manages the
+    ///    display and animation of snack bars.
+    ///  * [ScaffoldState.showSnackBar], which displays a [SnackBar].
+    ///  * [ScaffoldState.removeCurrentSnackBar], which abruptly hides the currently
+    ///    displayed snack bar, if any, and allows the next to be displayed.
+    ///  * [SnackBarAction], which is used to specify an [action] button to show
+    ///    on the snack bar.
+    ///  * [SnackBarThemeData], to configure the default property values for
+    ///    [SnackBar] widgets.
+    ///  * <https://material.io/design/components/snackbars.html>
+    /// </Summary>
     public class SnackBar : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -505,9 +543,18 @@ namespace FlutterSDK.Material.Snackbar
 
         #region methods
 
+        /// <Summary>
+        /// Creates an animation controller useful for driving a snack bar's entrance and exit animation.
+        /// </Summary>
         public virtual FlutterSDK.Animation.Animationcontroller.AnimationController CreateAnimationController(FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Creates a copy of this snack bar but with the animation replaced with the given animation.
+        ///
+        /// If the original snack bar lacks a key, the newly created snack bar will
+        /// use the given fallback key.
+        /// </Summary>
         public virtual FlutterSDK.Material.Snackbar.SnackBar WithAnimation(FlutterSDK.Animation.Animation.Animation<double> newAnimation, FlutterSDK.Foundation.Key.Key fallbackKey = default(FlutterSDK.Foundation.Key.Key)) { throw new NotImplementedException(); }
 
 
@@ -548,14 +595,51 @@ namespace FlutterSDK.Material.Snackbar
     }
 
 
+    /// <Summary>
+    /// Specify how a [SnackBar] was closed.
+    ///
+    /// The [ScaffoldState.showSnackBar] function returns a
+    /// [ScaffoldFeatureController]. The value of the controller's closed property
+    /// is a Future that resolves to a SnackBarClosedReason. Applications that need
+    /// to know how a snackbar was closed can use this value.
+    ///
+    /// Example:
+    ///
+    /// ```dart
+    /// Scaffold.of(context).showSnackBar(
+    ///   SnackBar( ... )
+    /// ).closed.then((SnackBarClosedReason reason) {
+    ///    ...
+    /// });
+    /// ```
+    /// </Summary>
     public enum SnackBarClosedReason
     {
 
+        /// <Summary>
+        /// The snack bar was closed after the user tapped a [SnackBarAction].
+        /// </Summary>
         Action,
+        /// <Summary>
+        /// The snack bar was closed through a [SemanticAction.dismiss].
+        /// </Summary>
         Dismiss,
+        /// <Summary>
+        /// The snack bar was closed by a user's swipe.
+        /// </Summary>
         Swipe,
+        /// <Summary>
+        /// The snack bar was closed by the [ScaffoldFeatureController] close callback
+        /// or by calling [ScaffoldState.hideCurrentSnackBar] directly.
+        /// </Summary>
         Hide,
+        /// <Summary>
+        /// The snack bar was closed by an call to [ScaffoldState.removeCurrentSnackBar].
+        /// </Summary>
         Remove,
+        /// <Summary>
+        /// The snack bar was closed because its timer expired.
+        /// </Summary>
         Timeout,
     }
 

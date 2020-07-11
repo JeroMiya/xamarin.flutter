@@ -311,21 +311,62 @@ namespace FlutterSDK.Foundation.Node
         public virtual bool Attached { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Foundation.Node.AbstractNode Parent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
+        /// <Summary>
+        /// Adjust the [depth] of the given [child] to be greater than this node's own
+        /// [depth].
+        ///
+        /// Only call this method from overrides of [redepthChildren].
+        /// </Summary>
         public virtual void RedepthChild(FlutterSDK.Foundation.Node.AbstractNode child) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Adjust the [depth] of this node's children, if any.
+        ///
+        /// Override this method in subclasses with child nodes to call [redepthChild]
+        /// for each child. Do not call this method directly.
+        /// </Summary>
         public virtual void RedepthChildren() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Mark this node as attached to the given owner.
+        ///
+        /// Typically called only from the [parent]'s [attach] method, and by the
+        /// [owner] to mark the root of a tree as attached.
+        ///
+        /// Subclasses with children should override this method to first call their
+        /// inherited [attach] method, and then [attach] all their children to the
+        /// same [owner].
+        /// </Summary>
         public virtual void Attach(@Object owner) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Mark this node as detached.
+        ///
+        /// Typically called only from the [parent]'s [detach], and by the [owner] to
+        /// mark the root of a tree as detached.
+        ///
+        /// Subclasses with children should override this method to first call their
+        /// inherited [detach] method, and then [detach] all their children.
+        /// </Summary>
         public virtual void Detach() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Mark the given node as being a child of this node.
+        ///
+        /// Subclasses should call this function when they acquire a new child.
+        /// </Summary>
         public virtual void AdoptChild(FlutterSDK.Foundation.Node.AbstractNode child) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Disconnect the given node from this node.
+        ///
+        /// Subclasses should call this function when they lose a child.
+        /// </Summary>
         public virtual void DropChild(FlutterSDK.Foundation.Node.AbstractNode child) { throw new NotImplementedException(); }
 
     }

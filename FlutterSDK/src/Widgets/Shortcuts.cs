@@ -429,6 +429,21 @@ namespace FlutterSDK.Widgets.Shortcuts
     {
     }
 
+    /// <Summary>
+    /// A set of [KeyboardKey]s that can be used as the keys in a [Map].
+    ///
+    /// A key set contains the keys that are down simultaneously to represent a
+    /// shortcut.
+    ///
+    /// This is a thin wrapper around a [Set], but changes the equality comparison
+    /// from an identity comparison to a contents comparison so that non-identical
+    /// sets with the same keys in them will compare as equal.
+    ///
+    /// See also:
+    ///
+    ///  * [ShortcutManager], which uses [LogicalKeySet] (a [KeySet] subclass) to
+    ///    define its key map.
+    /// </Summary>
     public class KeySet<T>
     {
         #region constructors
@@ -460,6 +475,19 @@ namespace FlutterSDK.Widgets.Shortcuts
     }
 
 
+    /// <Summary>
+    /// A set of [LogicalKeyboardKey]s that can be used as the keys in a map.
+    ///
+    /// A key set contains the keys that are down simultaneously to represent a
+    /// shortcut.
+    ///
+    /// This is mainly used by [ShortcutManager] to allow the definition of shortcut
+    /// mappings.
+    ///
+    /// This is a thin wrapper around a [Set], but changes the equality comparison
+    /// from an identity comparison to a contents comparison so that non-identical
+    /// sets with the same keys in them will compare as equal.
+    /// </Summary>
     public class LogicalKeySet : FlutterSDK.Widgets.Shortcuts.KeySet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey>, IDiagnosticable
     {
         #region constructors
@@ -480,6 +508,11 @@ namespace FlutterSDK.Widgets.Shortcuts
 
         #region methods
 
+        /// <Summary>
+        /// Returns a description of the key set that is short and readable.
+        ///
+        /// Intended to be used in debug mode for logging purposes.
+        /// </Summary>
         public virtual string DebugDescribeKeys() { throw new NotImplementedException(); }
 
 
@@ -489,6 +522,10 @@ namespace FlutterSDK.Widgets.Shortcuts
     }
 
 
+    /// <Summary>
+    /// Diagnostics property which handles formatting a `Map<LogicalKeySet, Intent>`
+    /// (the same type as the [Shortcuts.shortcuts] property) so that it is human-readable.
+    /// </Summary>
     public class ShortcutMapProperty : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent>>
     {
         #region constructors
@@ -510,6 +547,12 @@ namespace FlutterSDK.Widgets.Shortcuts
     }
 
 
+    /// <Summary>
+    /// A manager of keyboard shortcut bindings.
+    ///
+    /// A [ShortcutManager] is obtained by calling [Shortcuts.of] on the context of
+    /// the widget that you want to find a manager for.
+    /// </Summary>
     public class ShortcutManager : FlutterSDK.Foundation.Changenotifier.ChangeNotifier, IDiagnosticable
     {
         #region constructors
@@ -528,6 +571,13 @@ namespace FlutterSDK.Widgets.Shortcuts
 
         #region methods
 
+        /// <Summary>
+        /// Handles a key pressed `event` in the given `context`.
+        ///
+        /// The optional `keysPressed` argument provides an override to keys that the
+        /// [RawKeyboard] reports. If not specified, uses [RawKeyboard.keysPressed]
+        /// instead.
+        /// </Summary>
         public virtual bool HandleKeypress(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Services.Rawkeyboard.RawKeyEvent @event, FlutterSDK.Widgets.Shortcuts.LogicalKeySet keysPressed = default(FlutterSDK.Widgets.Shortcuts.LogicalKeySet)) { throw new NotImplementedException(); }
 
 
@@ -537,6 +587,17 @@ namespace FlutterSDK.Widgets.Shortcuts
     }
 
 
+    /// <Summary>
+    /// A widget that establishes an [ShortcutManager] to be used by its descendants
+    /// when invoking an [Action] via a keyboard key combination that maps to an
+    /// [Intent].
+    ///
+    /// See also:
+    ///
+    ///  * [Intent], a class for containing a description of a user action to be
+    ///    invoked.
+    ///  * [Action], a class for defining an invocation of a user action.
+    /// </Summary>
     public class Shortcuts : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -559,6 +620,12 @@ namespace FlutterSDK.Widgets.Shortcuts
 
         #region methods
 
+        /// <Summary>
+        /// Returns the [ActionDispatcher] that most tightly encloses the given
+        /// [BuildContext].
+        ///
+        /// The [context] argument must not be null.
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Shortcuts.ShortcutManager Of(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false) { throw new NotImplementedException(); }
 
 

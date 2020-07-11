@@ -546,6 +546,16 @@ namespace FlutterSDK.Material.Useraccountsdrawerheader
     }
 
 
+    /// <Summary>
+    /// A material design [Drawer] header that identifies the app's user.
+    ///
+    /// Requires one of its ancestors to be a [Material] widget.
+    ///
+    /// See also:
+    ///
+    ///  * [DrawerHeader], for a drawer header that doesn't show user accounts.
+    ///  * <https://material.io/design/components/navigation-drawer.html#anatomy>
+    /// </Summary>
     public class UserAccountsDrawerHeader : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors

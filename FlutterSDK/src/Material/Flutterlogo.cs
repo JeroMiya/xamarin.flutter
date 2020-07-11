@@ -389,6 +389,16 @@ namespace FlutterSDK.Material.Flutterlogo
     {
     }
 
+    /// <Summary>
+    /// The Flutter logo, in widget form. This widget respects the [IconTheme].
+    /// For guidelines on using the Flutter logo, visit https://flutter.dev/brand.
+    ///
+    /// See also:
+    ///
+    ///  * [IconTheme], which provides ambient configuration for icons.
+    ///  * [Icon], for showing icons the Material design icon library.
+    ///  * [ImageIcon], for showing icons from [AssetImage]s or other [ImageProvider]s.
+    /// </Summary>
     public class FlutterLogo : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors

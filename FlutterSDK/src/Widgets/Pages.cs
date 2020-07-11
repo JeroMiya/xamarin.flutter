@@ -434,6 +434,9 @@ namespace FlutterSDK.Widgets.Pages
 
     }
 
+    /// <Summary>
+    /// A modal route that replaces the entire screen.
+    /// </Summary>
     public interface IPageRoute<T>
     {
         bool CanTransitionTo(FlutterSDK.Widgets.Routes.TransitionRoute<object> nextRoute);
@@ -444,6 +447,9 @@ namespace FlutterSDK.Widgets.Pages
     }
 
 
+    /// <Summary>
+    /// A modal route that replaces the entire screen.
+    /// </Summary>
     public class PageRoute<T> : FlutterSDK.Widgets.Routes.ModalRoute<T>
     {
         #region constructors
@@ -471,6 +477,12 @@ namespace FlutterSDK.Widgets.Pages
     }
 
 
+    /// <Summary>
+    /// A utility class for defining one-off page routes in terms of callbacks.
+    ///
+    /// Callers must define the [pageBuilder] function which creates the route's
+    /// primary contents. To add transitions define the [transitionsBuilder] function.
+    /// </Summary>
     public class PageRouteBuilder<T> : FlutterSDK.Widgets.Pages.PageRoute<T>
     {
         #region constructors

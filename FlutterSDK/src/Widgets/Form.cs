@@ -431,6 +431,71 @@ namespace FlutterSDK.Widgets.Form
     {
     }
 
+    /// <Summary>
+    /// An optional container for grouping together multiple form field widgets
+    /// (e.g. [TextField] widgets).
+    ///
+    /// Each individual form field should be wrapped in a [FormField] widget, with
+    /// the [Form] widget as a common ancestor of all of those. Call methods on
+    /// [FormState] to save, reset, or validate each [FormField] that is a
+    /// descendant of this [Form]. To obtain the [FormState], you may use [Form.of]
+    /// with a context whose ancestor is the [Form], or pass a [GlobalKey] to the
+    /// [Form] constructor and call [GlobalKey.currentState].
+    ///
+    /// {@tool dartpad --template=stateful_widget_scaffold}
+    /// This example shows a [Form] with one [TextFormField] to enter an email
+    /// address and a [RaisedButton] to submit the form. A [GlobalKey] is used here
+    /// to identify the [Form] and validate input.
+    ///
+    /// ![](https://flutter.github.io/assets-for-api-docs/assets/widgets/form.png)
+    ///
+    /// ```dart
+    /// final _formKey = GlobalKey<FormState>();
+    ///
+    /// @override
+    /// Widget build(BuildContext context) {
+    ///   return Form(
+    ///     key: _formKey,
+    ///     child: Column(
+    ///       crossAxisAlignment: CrossAxisAlignment.start,
+    ///       children: <Widget>[
+    ///         TextFormField(
+    ///           decoration: const InputDecoration(
+    ///             hintText: 'Enter your email',
+    ///           ),
+    ///           validator: (value) {
+    ///             if (value.isEmpty) {
+    ///               return 'Please enter some text';
+    ///             }
+    ///             return null;
+    ///           },
+    ///         ),
+    ///         Padding(
+    ///           padding: const EdgeInsets.symmetric(vertical: 16.0),
+    ///           child: RaisedButton(
+    ///             onPressed: () {
+    ///               // Validate will return true if the form is valid, or false if
+    ///               // the form is invalid.
+    ///               if (_formKey.currentState.validate()) {
+    ///                 // Process data.
+    ///               }
+    ///             },
+    ///             child: Text('Submit'),
+    ///           ),
+    ///         ),
+    ///       ],
+    ///     ),
+    ///   );
+    /// }
+    /// ```
+    /// {@end-tool}
+    ///
+    /// See also:
+    ///
+    ///  * [GlobalKey], a key that is unique across the entire app.
+    ///  * [FormField], a single form field widget that maintains the current state.
+    ///  * [TextFormField], a convenience widget that wraps a [TextField] widget in a [FormField].
+    /// </Summary>
     public class Form : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -453,6 +518,16 @@ namespace FlutterSDK.Widgets.Form
 
         #region methods
 
+        /// <Summary>
+        /// Returns the closest [FormState] which encloses the given context.
+        ///
+        /// Typical usage is as follows:
+        ///
+        /// ```dart
+        /// FormState form = Form.of(context);
+        /// form.save();
+        /// ```
+        /// </Summary>
         public virtual FlutterSDK.Widgets.Form.FormState Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
@@ -462,6 +537,14 @@ namespace FlutterSDK.Widgets.Form
     }
 
 
+    /// <Summary>
+    /// State associated with a [Form] widget.
+    ///
+    /// A [FormState] object can be used to [save], [reset], and [validate] every
+    /// [FormField] that is a descendant of the associated [Form].
+    ///
+    /// Typically obtained via [Form.of].
+    /// </Summary>
     public class FormState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Form.Form>
     {
         #region constructors
@@ -491,12 +574,30 @@ namespace FlutterSDK.Widgets.Form
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Saves every [FormField] that is a descendant of this [Form].
+        /// </Summary>
         public virtual void Save() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Resets every [FormField] that is a descendant of this [Form] back to its
+        /// [FormField.initialValue].
+        ///
+        /// The [Form.onChanged] callback will be called.
+        ///
+        /// If the form's [Form.autovalidate] property is true, the fields will all be
+        /// revalidated after being reset.
+        /// </Summary>
         public virtual void Reset() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Validates every [FormField] that is a descendant of this [Form], and
+        /// returns true if there are no errors.
+        ///
+        /// The form will rebuild to report the results.
+        /// </Summary>
         public virtual bool Validate() { throw new NotImplementedException(); }
 
 
@@ -531,6 +632,29 @@ namespace FlutterSDK.Widgets.Form
     }
 
 
+    /// <Summary>
+    /// A single form field.
+    ///
+    /// This widget maintains the current state of the form field, so that updates
+    /// and validation errors are visually reflected in the UI.
+    ///
+    /// When used inside a [Form], you can use methods on [FormState] to query or
+    /// manipulate the form data as a whole. For example, calling [FormState.save]
+    /// will invoke each [FormField]'s [onSaved] callback in turn.
+    ///
+    /// Use a [GlobalKey] with [FormField] if you want to retrieve its current
+    /// state, for example if you want one form field to depend on another.
+    ///
+    /// A [Form] ancestor is not required. The [Form] simply makes it easier to
+    /// save, reset, or validate multiple fields at once. To use without a [Form],
+    /// pass a [GlobalKey] to the constructor and use [GlobalKey.currentState] to
+    /// save or reset the form field.
+    ///
+    /// See also:
+    ///
+    ///  * [Form], which is the widget that aggregates the form fields.
+    ///  * [TextField], which is a commonly used form field for entering text.
+    /// </Summary>
     public class FormField<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -563,6 +687,10 @@ namespace FlutterSDK.Widgets.Form
     }
 
 
+    /// <Summary>
+    /// The current state of a [FormField]. Passed to the [FormFieldBuilder] method
+    /// for use in constructing the form field's widget.
+    /// </Summary>
     public class FormFieldState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Form.FormField<T>>
     {
         #region constructors
@@ -581,21 +709,52 @@ namespace FlutterSDK.Widgets.Form
 
         #region methods
 
+        /// <Summary>
+        /// Calls the [FormField]'s onSaved method with the current value.
+        /// </Summary>
         public virtual void Save() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Resets the field to its initial value.
+        /// </Summary>
         public virtual void Reset() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Calls [FormField.validator] to set the [errorText]. Returns true if there
+        /// were no errors.
+        ///
+        /// See also:
+        ///
+        ///  * [isValid], which passively gets the validity without setting
+        ///    [errorText] or [hasError].
+        /// </Summary>
         public virtual bool Validate() { throw new NotImplementedException(); }
 
 
         private void _Validate() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Updates this field's state to the new value. Useful for responding to
+        /// child widget changes, e.g. [Slider]'s [Slider.onChanged] argument.
+        ///
+        /// Triggers the [Form.onChanged] callback and, if the [Form.autovalidate]
+        /// field is set, revalidates all the fields of the form.
+        /// </Summary>
         public virtual void DidChange(T value) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Sets the value associated with this form field.
+        ///
+        /// This method should be only be called by subclasses that need to update
+        /// the form field value due to state changes identified during the widget
+        /// build phase, when calling `setState` is prohibited. In all other cases,
+        /// the value should be set by a call to [didChange], which ensures that
+        /// `setState` is called.
+        /// </Summary>
         public virtual void SetValue(T value) { throw new NotImplementedException(); }
 
 

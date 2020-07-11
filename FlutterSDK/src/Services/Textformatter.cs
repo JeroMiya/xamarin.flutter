@@ -438,9 +438,22 @@ namespace FlutterSDK.Services.Textformatter
     public class TextInputFormatter
     {
 
+        /// <Summary>
+        /// Called when text is being typed or cut/copy/pasted in the [EditableText].
+        ///
+        /// You can override the resulting text based on the previous text value and
+        /// the incoming new text value.
+        ///
+        /// When formatters are chained, `oldValue` reflects the initial value of
+        /// [TextEditingValue] at the beginning of the chain.
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(FlutterSDK.Services.Textinput.TextEditingValue oldValue, FlutterSDK.Services.Textinput.TextEditingValue newValue) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// A shorthand to creating a custom [TextInputFormatter] which formats
+        /// incoming text input changes with the given function.
+        /// </Summary>
         public virtual FlutterSDK.Services.Textformatter.TextInputFormatter WithFunction(FlutterSDK.Services.Textformatter.TextInputFormatFunction formatFunction) { throw new NotImplementedException(); }
 
     }
@@ -461,6 +474,9 @@ namespace FlutterSDK.Services.Textformatter
     }
 
 
+    /// <Summary>
+    /// Wiring for [TextInputFormatter.withFunction].
+    /// </Summary>
     public class _SimpleTextInputFormatter : FlutterSDK.Services.Textformatter.TextInputFormatter
     {
         #region constructors
@@ -483,6 +499,23 @@ namespace FlutterSDK.Services.Textformatter
     }
 
 
+    /// <Summary>
+    /// A [TextInputFormatter] that prevents the insertion of blacklisted
+    /// characters patterns.
+    ///
+    /// Instances of blacklisted characters found in the new [TextEditingValue]s
+    /// will be replaced with the [replacementString] which defaults to the empty
+    /// string.
+    ///
+    /// Since this formatter only removes characters from the text, it attempts to
+    /// preserve the existing [TextEditingValue.selection] to values it would now
+    /// fall at with the removed characters.
+    ///
+    /// See also:
+    ///
+    ///  * [WhitelistingTextInputFormatter], which uses a whitelist instead of a
+    ///    blacklist.
+    /// </Summary>
     public class BlacklistingTextInputFormatter : FlutterSDK.Services.Textformatter.TextInputFormatter
     {
         #region constructors
@@ -508,6 +541,16 @@ namespace FlutterSDK.Services.Textformatter
     }
 
 
+    /// <Summary>
+    /// A [TextInputFormatter] that prevents the insertion of more characters
+    /// (currently defined as Unicode scalar values) than allowed.
+    ///
+    /// Since this formatter only prevents new characters from being added to the
+    /// text, it preserves the existing [TextEditingValue.selection].
+    ///
+    ///  * [maxLength], which discusses the precise meaning of "number of
+    ///    characters" and how it may differ from the intuitive meaning.
+    /// </Summary>
     public class LengthLimitingTextInputFormatter : FlutterSDK.Services.Textformatter.TextInputFormatter
     {
         #region constructors
@@ -524,6 +567,9 @@ namespace FlutterSDK.Services.Textformatter
 
         #region methods
 
+        /// <Summary>
+        /// Truncate the given TextEditingValue to maxLength runes.
+        /// </Summary>
         public virtual FlutterSDK.Services.Textinput.TextEditingValue Truncate(FlutterSDK.Services.Textinput.TextEditingValue value, int maxLength) { throw new NotImplementedException(); }
 
 
@@ -533,6 +579,19 @@ namespace FlutterSDK.Services.Textformatter
     }
 
 
+    /// <Summary>
+    /// A [TextInputFormatter] that allows only the insertion of whitelisted
+    /// characters patterns.
+    ///
+    /// Since this formatter only removes characters from the text, it attempts to
+    /// preserve the existing [TextEditingValue.selection] to values it would now
+    /// fall at with the removed characters.
+    ///
+    /// See also:
+    ///
+    ///  * [BlacklistingTextInputFormatter], which uses a blacklist instead of a
+    ///    whitelist.
+    /// </Summary>
     public class WhitelistingTextInputFormatter : FlutterSDK.Services.Textformatter.TextInputFormatter
     {
         #region constructors

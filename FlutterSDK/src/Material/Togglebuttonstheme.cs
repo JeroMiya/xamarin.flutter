@@ -425,6 +425,22 @@ namespace FlutterSDK.Material.Togglebuttonstheme
     {
     }
 
+    /// <Summary>
+    /// Defines the color and border properties of [ToggleButtons] widgets.
+    ///
+    /// Used by [ToggleButtonsTheme] to control the color and border properties
+    /// of toggle buttons in a widget subtree.
+    ///
+    /// To obtain the current [ToggleButtonsTheme], use [ToggleButtonsTheme.of].
+    ///
+    /// Values specified here are used for [ToggleButtons] properties that are not
+    /// given an explicit non-null value.
+    ///
+    /// See also:
+    ///
+    ///  * [ToggleButtonsTheme], which describes the actual configuration of a
+    ///    toggle buttons theme.
+    /// </Summary>
     public class ToggleButtonsThemeData : IDiagnosticable
     {
         #region constructors
@@ -469,9 +485,16 @@ namespace FlutterSDK.Material.Togglebuttonstheme
 
         #region methods
 
+        /// <Summary>
+        /// Creates a copy of this object but with the given fields replaced with the
+        /// new values.
+        /// </Summary>
         public virtual FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData CopyWith(FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color fillColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color borderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedBorderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledBorderColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), double borderWidth = default(double)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two toggle buttons themes.
+        /// </Summary>
         public virtual FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData Lerp(FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData a, FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData b, double t) { throw new NotImplementedException(); }
 
 
@@ -484,6 +507,13 @@ namespace FlutterSDK.Material.Togglebuttonstheme
     }
 
 
+    /// <Summary>
+    /// An inherited widget that defines color and border parameters for
+    /// [ToggleButtons] in this widget's subtree.
+    ///
+    /// Values specified here are used for [ToggleButtons] properties that are not
+    /// given an explicit non-null value.
+    /// </Summary>
     public class ToggleButtonsTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
         #region constructors
@@ -500,6 +530,18 @@ namespace FlutterSDK.Material.Togglebuttonstheme
 
         #region methods
 
+        /// <Summary>
+        /// The closest instance of this class that encloses the given context.
+        ///
+        /// If there is no enclosing [ToggleButtonsTheme] widget, then
+        /// [ThemeData.toggleButtonsTheme] is used.
+        ///
+        /// Typical usage is as follows:
+        ///
+        /// ```dart
+        /// ToggleButtonsTheme theme = ToggleButtonsTheme.of(context);
+        /// ```
+        /// </Summary>
         public virtual FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 

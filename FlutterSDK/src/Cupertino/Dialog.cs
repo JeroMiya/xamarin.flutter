@@ -316,6 +316,33 @@ namespace FlutterSDK.Cupertino.Dialog
 
     }
 
+    /// <Summary>
+    /// An iOS-style alert dialog.
+    ///
+    /// An alert dialog informs the user about situations that require
+    /// acknowledgement. An alert dialog has an optional title, optional content,
+    /// and an optional list of actions. The title is displayed above the content
+    /// and the actions are displayed below the content.
+    ///
+    /// This dialog styles its title and content (typically a message) to match the
+    /// standard iOS title and message dialog text style. These default styles can
+    /// be overridden by explicitly defining [TextStyle]s for [Text] widgets that
+    /// are part of the title or content.
+    ///
+    /// To display action buttons that look like standard iOS dialog buttons,
+    /// provide [CupertinoDialogAction]s for the [actions] given to this dialog.
+    ///
+    /// Typically passed as the child widget to [showDialog], which displays the
+    /// dialog.
+    ///
+    /// See also:
+    ///
+    ///  * [CupertinoPopupSurface], which is a generic iOS-style popup surface that
+    ///    holds arbitrary content to create custom popups.
+    ///  * [CupertinoDialogAction], which is an iOS-style dialog button.
+    ///  * [AlertDialog], a Material Design alert dialog.
+    ///  * <https://developer.apple.com/ios/human-interface-guidelines/views/alerts/>
+    /// </Summary>
     public class CupertinoAlertDialog : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors
@@ -356,6 +383,22 @@ namespace FlutterSDK.Cupertino.Dialog
     }
 
 
+    /// <Summary>
+    /// An iOS-style dialog.
+    ///
+    /// This dialog widget does not have any opinion about the contents of the
+    /// dialog. Rather than using this widget directly, consider using
+    /// [CupertinoAlertDialog], which implement a specific kind of dialog.
+    ///
+    /// Push with `Navigator.of(..., rootNavigator: true)` when using with
+    /// [CupertinoTabScaffold] to ensure that the dialog appears above the tabs.
+    ///
+    /// See also:
+    ///
+    ///  * [CupertinoAlertDialog], which is a dialog with title, contents, and
+    ///    actions.
+    ///  * <https://developer.apple.com/ios/human-interface-guidelines/views/alerts/>
+    /// </Summary>
     public class CupertinoDialog : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors
@@ -378,6 +421,23 @@ namespace FlutterSDK.Cupertino.Dialog
     }
 
 
+    /// <Summary>
+    /// Rounded rectangle surface that looks like an iOS popup surface, e.g., alert dialog
+    /// and action sheet.
+    ///
+    /// A [CupertinoPopupSurface] can be configured to paint or not paint a white
+    /// color on top of its blurred area. Typical usage should paint white on top
+    /// of the blur. However, the white paint can be disabled for the purpose of
+    /// rendering divider gaps for a more complicated layout, e.g., [CupertinoAlertDialog].
+    /// Additionally, the white paint can be disabled to render a blurred rounded
+    /// rectangle without any color (similar to iOS's volume control popup).
+    ///
+    /// See also:
+    ///
+    ///  * [CupertinoAlertDialog], which is a dialog with a title, content, and
+    ///    actions.
+    ///  * <https://developer.apple.com/ios/human-interface-guidelines/views/alerts/>
+    /// </Summary>
     public class CupertinoPopupSurface : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors
@@ -706,6 +766,14 @@ namespace FlutterSDK.Cupertino.Dialog
     }
 
 
+    /// <Summary>
+    /// A button typically used in a [CupertinoAlertDialog].
+    ///
+    /// See also:
+    ///
+    ///  * [CupertinoAlertDialog], a dialog that informs the user about situations
+    ///    that require acknowledgement.
+    /// </Summary>
     public class CupertinoDialogAction : FlutterSDK.Widgets.Framework.StatelessWidget
     {
         #region constructors

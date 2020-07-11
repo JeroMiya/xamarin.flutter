@@ -389,6 +389,27 @@ namespace FlutterSDK.Material.Floatingactionbuttontheme
     {
     }
 
+    /// <Summary>
+    /// Defines default property values for descendant [FloatingActionButton]
+    /// widgets.
+    ///
+    /// Descendant widgets obtain the current [FloatingActionButtonThemeData] object
+    /// using `Theme.of(context).floatingActionButtonTheme`. Instances of
+    /// [FloatingActionButtonThemeData] can be customized with
+    /// [FloatingActionButtonThemeData.copyWith].
+    ///
+    /// Typically a [FloatingActionButtonThemeData] is specified as part of the
+    /// overall [Theme] with [ThemeData.floatingActionButtonTheme].
+    ///
+    /// All [FloatingActionButtonThemeData] properties are `null` by default.
+    /// When null, the [FloatingActionButton] will use the values from [ThemeData]
+    /// if they exist, otherwise it will provide its own defaults.
+    ///
+    /// See also:
+    ///
+    ///  * [ThemeData], which describes the overall theme information for the
+    ///    application.
+    /// </Summary>
     public class FloatingActionButtonThemeData : IDiagnosticable
     {
         #region constructors
@@ -425,9 +446,20 @@ namespace FlutterSDK.Material.Floatingactionbuttontheme
 
         #region methods
 
+        /// <Summary>
+        /// Creates a copy of this object with the given fields replaced with the
+        /// new values.
+        /// </Summary>
         public virtual FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData CopyWith(FlutterBinding.UI.Color foregroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), double elevation = default(double), double focusElevation = default(double), double hoverElevation = default(double), double disabledElevation = default(double), double highlightElevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Linearly interpolate between two floating action button themes.
+        ///
+        /// If both arguments are null then null is returned.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
         public virtual FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData Lerp(FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData a, FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData b, double t) { throw new NotImplementedException(); }
 
 

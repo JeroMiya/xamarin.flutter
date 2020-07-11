@@ -422,6 +422,17 @@ namespace FlutterSDK.Material.Scaffold
         public static double _KMaxBottomSheetScrimOpacity = default(double);
     }
 
+    /// <Summary>
+    /// The geometry of the [Scaffold] after all its contents have been laid out
+    /// except the [FloatingActionButton].
+    ///
+    /// The [Scaffold] passes this pre-layout geometry to its
+    /// [FloatingActionButtonLocation], which produces an [Offset] that the
+    /// [Scaffold] uses to position the [FloatingActionButton].
+    ///
+    /// For a description of the [Scaffold]'s geometry after it has
+    /// finished laying out, see the [ScaffoldGeometry].
+    /// </Summary>
     public class ScaffoldPrelayoutGeometry
     {
         #region constructors
@@ -454,6 +465,12 @@ namespace FlutterSDK.Material.Scaffold
     }
 
 
+    /// <Summary>
+    /// A snapshot of a transition between two [FloatingActionButtonLocation]s.
+    ///
+    /// [ScaffoldState] uses this to seamlessly change transition animations
+    /// when a running [FloatingActionButtonLocation] transition is interrupted by a new transition.
+    /// </Summary>
     public class _TransitionSnapshotFabLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
     {
         #region constructors
@@ -482,6 +499,22 @@ namespace FlutterSDK.Material.Scaffold
     }
 
 
+    /// <Summary>
+    /// Geometry information for [Scaffold] components after layout is finished.
+    ///
+    /// To get a [ValueNotifier] for the scaffold geometry of a given
+    /// [BuildContext], use [Scaffold.geometryOf].
+    ///
+    /// The ScaffoldGeometry is only available during the paint phase, because
+    /// its value is computed during the animation and layout phases prior to painting.
+    ///
+    /// For an example of using the [ScaffoldGeometry], see the [BottomAppBar],
+    /// which uses the [ScaffoldGeometry] to paint a notch around the
+    /// [FloatingActionButton].
+    ///
+    /// For information about the [Scaffold]'s geometry that is used while laying
+    /// out the [FloatingActionButton], see [ScaffoldPrelayoutGeometry].
+    /// </Summary>
     public class ScaffoldGeometry
     {
         #region constructors
@@ -502,6 +535,10 @@ namespace FlutterSDK.Material.Scaffold
         private FlutterSDK.Material.Scaffold.ScaffoldGeometry _ScaleFloatingActionButton(double scaleFactor) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Creates a copy of this [ScaffoldGeometry] but with the given fields replaced with
+        /// the new values.
+        /// </Summary>
         public virtual FlutterSDK.Material.Scaffold.ScaffoldGeometry CopyWith(double bottomNavigationBarTop = default(double), FlutterBinding.UI.Rect floatingActionButtonArea = default(FlutterBinding.UI.Rect)) { throw new NotImplementedException(); }
 
         #endregion
@@ -629,6 +666,16 @@ namespace FlutterSDK.Material.Scaffold
     }
 
 
+    /// <Summary>
+    /// Handler for scale and rotation animations in the [FloatingActionButton].
+    ///
+    /// Currently, there are two types of [FloatingActionButton] animations:
+    ///
+    /// * Entrance/Exit animations, which this widget triggers
+    ///   when the [FloatingActionButton] is added, updated, or removed.
+    /// * Motion animations, which are triggered by the [Scaffold]
+    ///   when its [FloatingActionButtonLocation] is updated.
+    /// </Summary>
     public class _FloatingActionButtonTransition : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -709,6 +756,187 @@ namespace FlutterSDK.Material.Scaffold
     }
 
 
+    /// <Summary>
+    /// Implements the basic material design visual layout structure.
+    ///
+    /// This class provides APIs for showing drawers, snack bars, and bottom sheets.
+    ///
+    /// To display a snackbar or a persistent bottom sheet, obtain the
+    /// [ScaffoldState] for the current [BuildContext] via [Scaffold.of] and use the
+    /// [ScaffoldState.showSnackBar] and [ScaffoldState.showBottomSheet] functions.
+    ///
+    /// {@tool dartpad --template=stateful_widget_material}
+    /// This example shows a [Scaffold] with a [body] and [FloatingActionButton].
+    /// The [body] is a [Text] placed in a [Center] in order to center the text
+    /// within the [Scaffold]. The [FloatingActionButton] is connected to a
+    /// callback that increments a counter.
+    ///
+    /// ![The Scaffold has a white background with a blue AppBar at the top. A blue FloatingActionButton is positioned at the bottom right corner of the Scaffold.](https://flutter.github.io/assets-for-api-docs/assets/material/scaffold.png)
+    ///
+    /// ```dart
+    /// int _count = 0;
+    ///
+    /// Widget build(BuildContext context) {
+    ///   return Scaffold(
+    ///     appBar: AppBar(
+    ///       title: const Text('Sample Code'),
+    ///     ),
+    ///     body: Center(
+    ///       child: Text('You have pressed the button $_count times.')
+    ///     ),
+    ///     floatingActionButton: FloatingActionButton(
+    ///       onPressed: () => setState(() => _count++),
+    ///       tooltip: 'Increment Counter',
+    ///       child: const Icon(Icons.add),
+    ///     ),
+    ///   );
+    /// }
+    /// ```
+    /// {@end-tool}
+    ///
+    /// {@tool dartpad --template=stateful_widget_material}
+    /// This example shows a [Scaffold] with a blueGrey [backgroundColor], [body]
+    /// and [FloatingActionButton]. The [body] is a [Text] placed in a [Center] in
+    /// order to center the text within the [Scaffold]. The [FloatingActionButton]
+    /// is connected to a callback that increments a counter.
+    ///
+    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/scaffold_background_color.png)
+    ///
+    /// ```dart
+    /// int _count = 0;
+    ///
+    /// Widget build(BuildContext context) {
+    ///   return Scaffold(
+    ///     appBar: AppBar(
+    ///       title: const Text('Sample Code'),
+    ///     ),
+    ///     body: Center(
+    ///       child: Text('You have pressed the button $_count times.')
+    ///     ),
+    ///     backgroundColor: Colors.blueGrey.shade200,
+    ///     floatingActionButton: FloatingActionButton(
+    ///       onPressed: () => setState(() => _count++),
+    ///       tooltip: 'Increment Counter',
+    ///       child: const Icon(Icons.add),
+    ///     ),
+    ///   );
+    /// }
+    /// ```
+    /// {@end-tool}
+    ///
+    /// {@tool dartpad --template=stateful_widget_material}
+    /// This example shows a [Scaffold] with an [AppBar], a [BottomAppBar] and a
+    /// [FloatingActionButton]. The [body] is a [Text] placed in a [Center] in order
+    /// to center the text within the [Scaffold]. The [FloatingActionButton] is
+    /// centered and docked within the [BottomAppBar] using
+    /// [FloatingActionButtonLocation.centerDocked]. The [FloatingActionButton] is
+    /// connected to a callback that increments a counter.
+    ///
+    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/scaffold_bottom_app_bar.png)
+    ///
+    /// ```dart
+    /// int _count = 0;
+    ///
+    /// Widget build(BuildContext context) {
+    ///   return Scaffold(
+    ///     appBar: AppBar(
+    ///       title: Text('Sample Code'),
+    ///     ),
+    ///     body: Center(
+    ///       child: Text('You have pressed the button $_count times.'),
+    ///     ),
+    ///     bottomNavigationBar: BottomAppBar(
+    ///       shape: const CircularNotchedRectangle(),
+    ///       child: Container(height: 50.0,),
+    ///     ),
+    ///     floatingActionButton: FloatingActionButton(
+    ///       onPressed: () => setState(() {
+    ///         _count++;
+    ///       }),
+    ///       tooltip: 'Increment Counter',
+    ///       child: Icon(Icons.add),
+    ///     ),
+    ///     floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+    ///   );
+    /// }
+    /// ```
+    /// {@end-tool}
+    ///
+    /// ## Scaffold layout, the keyboard, and display "notches"
+    ///
+    /// The scaffold will expand to fill the available space. That usually
+    /// means that it will occupy its entire window or device screen. When
+    /// the device's keyboard appears the Scaffold's ancestor [MediaQuery]
+    /// widget's [MediaQueryData.viewInsets] changes and the Scaffold will
+    /// be rebuilt. By default the scaffold's [body] is resized to make
+    /// room for the keyboard. To prevent the resize set
+    /// [resizeToAvoidBottomInset] to false. In either case the focused
+    /// widget will be scrolled into view if it's within a scrollable
+    /// container.
+    ///
+    /// The [MediaQueryData.padding] value defines areas that might
+    /// not be completely visible, like the display "notch" on the iPhone
+    /// X. The scaffold's [body] is not inset by this padding value
+    /// although an [appBar] or [bottomNavigationBar] will typically
+    /// cause the body to avoid the padding. The [SafeArea]
+    /// widget can be used within the scaffold's body to avoid areas
+    /// like display notches.
+    ///
+    /// ## Troubleshooting
+    ///
+    /// ### Nested Scaffolds
+    ///
+    /// The Scaffold was designed to be the single top level container for
+    /// a [MaterialApp] and it's typically not necessary to nest
+    /// scaffolds. For example in a tabbed UI, where the
+    /// [bottomNavigationBar] is a [TabBar] and the body is a
+    /// [TabBarView], you might be tempted to make each tab bar view a
+    /// scaffold with a differently titled AppBar. It would be better to add a
+    /// listener to the [TabController] that updates the AppBar.
+    ///
+    /// {@tool snippet}
+    /// Add a listener to the app's tab controller so that the [AppBar] title of the
+    /// app's one and only scaffold is reset each time a new tab is selected.
+    ///
+    /// ```dart
+    /// TabController(vsync: tickerProvider, length: tabCount)..addListener(() {
+    ///   if (!tabController.indexIsChanging) {
+    ///     setState(() {
+    ///       // Rebuild the enclosing scaffold with a new AppBar title
+    ///       appBarTitle = 'Tab ${tabController.index}';
+    ///     });
+    ///   }
+    /// })
+    /// ```
+    /// {@end-tool}
+    ///
+    /// Although there are some use cases, like a presentation app that
+    /// shows embedded flutter content, where nested scaffolds are
+    /// appropriate, it's best to avoid nesting scaffolds.
+    ///
+    /// See also:
+    ///
+    ///  * [AppBar], which is a horizontal bar typically shown at the top of an app
+    ///    using the [appBar] property.
+    ///  * [BottomAppBar], which is a horizontal bar typically shown at the bottom
+    ///    of an app using the [bottomNavigationBar] property.
+    ///  * [FloatingActionButton], which is a circular button typically shown in the
+    ///    bottom right corner of the app using the [floatingActionButton] property.
+    ///  * [Drawer], which is a vertical panel that is typically displayed to the
+    ///    left of the body (and often hidden on phones) using the [drawer]
+    ///    property.
+    ///  * [BottomNavigationBar], which is a horizontal array of buttons typically
+    ///    shown along the bottom of the app using the [bottomNavigationBar]
+    ///    property.
+    ///  * [SnackBar], which is a temporary notification typically shown near the
+    ///    bottom of the app using the [ScaffoldState.showSnackBar] method.
+    ///  * [BottomSheet], which is an overlay typically shown near the bottom of the
+    ///    app. A bottom sheet can either be persistent, in which case it is shown
+    ///    using the [ScaffoldState.showBottomSheet] method, or modal, in which case
+    ///    it is shown using the [showModalBottomSheet] function.
+    ///  * [ScaffoldState], which is the state associated with this widget.
+    ///  * <https://material.io/design/layout/responsive-layout-grid.html>
+    /// </Summary>
     public class Scaffold : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -766,12 +994,153 @@ namespace FlutterSDK.Material.Scaffold
 
         #region methods
 
+        /// <Summary>
+        /// The state from the closest instance of this class that encloses the given context.
+        ///
+        /// {@tool dartpad --template=freeform}
+        /// Typical usage of the [Scaffold.of] function is to call it from within the
+        /// `build` method of a child of a [Scaffold].
+        ///
+        /// ```dart imports
+        /// import 'package:flutter/material.dart';
+        /// ```
+        ///
+        /// ```dart main
+        /// void main() => runApp(MyApp());
+        /// ```
+        ///
+        /// ```dart preamble
+        /// class MyApp extends StatelessWidget {
+        ///   // This widget is the root of your application.
+        ///   @override
+        ///   Widget build(BuildContext context) {
+        ///     return MaterialApp(
+        ///       title: 'Flutter Code Sample for Scaffold.of.',
+        ///       theme: ThemeData(
+        ///         primarySwatch: Colors.blue,
+        ///       ),
+        ///       home: Scaffold(
+        ///         body: MyScaffoldBody(),
+        ///         appBar: AppBar(title: Text('Scaffold.of Example')),
+        ///       ),
+        ///       color: Colors.white,
+        ///     );
+        ///   }
+        /// }
+        /// ```
+        ///
+        /// ```dart
+        /// class MyScaffoldBody extends StatelessWidget {
+        ///   @override
+        ///   Widget build(BuildContext context) {
+        ///     return Center(
+        ///       child: RaisedButton(
+        ///         child: Text('SHOW A SNACKBAR'),
+        ///         onPressed: () {
+        ///           Scaffold.of(context).showSnackBar(
+        ///             SnackBar(
+        ///               content: Text('Have a snack!'),
+        ///             ),
+        ///           );
+        ///         },
+        ///       ),
+        ///     );
+        ///   }
+        /// }
+        /// ```
+        /// {@end-tool}
+        ///
+        /// {@tool dartpad --template=stateless_widget_material}
+        /// When the [Scaffold] is actually created in the same `build` function, the
+        /// `context` argument to the `build` function can't be used to find the
+        /// [Scaffold] (since it's "above" the widget being returned in the widget
+        /// tree). In such cases, the following technique with a [Builder] can be used
+        /// to provide a new scope with a [BuildContext] that is "under" the
+        /// [Scaffold]:
+        ///
+        /// ```dart
+        /// Widget build(BuildContext context) {
+        ///   return Scaffold(
+        ///     appBar: AppBar(
+        ///       title: Text('Demo')
+        ///     ),
+        ///     body: Builder(
+        ///       // Create an inner BuildContext so that the onPressed methods
+        ///       // can refer to the Scaffold with Scaffold.of().
+        ///       builder: (BuildContext context) {
+        ///         return Center(
+        ///           child: RaisedButton(
+        ///             child: Text('SHOW A SNACKBAR'),
+        ///             onPressed: () {
+        ///               Scaffold.of(context).showSnackBar(SnackBar(
+        ///                 content: Text('Have a snack!'),
+        ///               ));
+        ///             },
+        ///           ),
+        ///         );
+        ///       },
+        ///     ),
+        ///   );
+        /// }
+        /// ```
+        /// {@end-tool}
+        ///
+        /// A more efficient solution is to split your build function into several
+        /// widgets. This introduces a new context from which you can obtain the
+        /// [Scaffold]. In this solution, you would have an outer widget that creates
+        /// the [Scaffold] populated by instances of your new inner widgets, and then
+        /// in these inner widgets you would use [Scaffold.of].
+        ///
+        /// A less elegant but more expedient solution is assign a [GlobalKey] to the
+        /// [Scaffold], then use the `key.currentState` property to obtain the
+        /// [ScaffoldState] rather than using the [Scaffold.of] function.
+        ///
+        /// If there is no [Scaffold] in scope, then this will throw an exception.
+        /// To return null if there is no [Scaffold], then pass `nullOk: true`.
+        /// </Summary>
         public virtual FlutterSDK.Material.Scaffold.ScaffoldState Of(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a [ValueListenable] for the [ScaffoldGeometry] for the closest
+        /// [Scaffold] ancestor of the given context.
+        ///
+        /// The [ValueListenable.value] is only available at paint time.
+        ///
+        /// Notifications are guaranteed to be sent before the first paint pass
+        /// with the new geometry, but there is no guarantee whether a build or
+        /// layout passes are going to happen between the notification and the next
+        /// paint pass.
+        ///
+        /// The closest [Scaffold] ancestor for the context might change, e.g when
+        /// an element is moved from one scaffold to another. For [StatefulWidget]s
+        /// using this listenable, a change of the [Scaffold] ancestor will
+        /// trigger a [State.didChangeDependencies].
+        ///
+        /// A typical pattern for listening to the scaffold geometry would be to
+        /// call [Scaffold.geometryOf] in [State.didChangeDependencies], compare the
+        /// return value with the previous listenable, if it has changed, unregister
+        /// the listener, and register a listener to the new [ScaffoldGeometry]
+        /// listenable.
+        /// </Summary>
         public virtual FlutterSDK.Foundation.Changenotifier.ValueListenable<FlutterSDK.Material.Scaffold.ScaffoldGeometry> GeometryOf(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Whether the Scaffold that most tightly encloses the given context has a
+        /// drawer.
+        ///
+        /// If this is being used during a build (for example to decide whether to
+        /// show an "open drawer" button), set the `registerForUpdates` argument to
+        /// true. This will then set up an [InheritedWidget] relationship with the
+        /// [Scaffold] so that the client widget gets rebuilt whenever the [hasDrawer]
+        /// value changes.
+        ///
+        /// See also:
+        ///
+        ///  * [Scaffold.of], which provides access to the [ScaffoldState] object as a
+        ///    whole, from which you can show snackbars, bottom sheets, and so forth.
+        /// </Summary>
         public virtual bool HasDrawer(FlutterSDK.Widgets.Framework.BuildContext context, bool registerForUpdates = true) { throw new NotImplementedException(); }
 
 
@@ -781,6 +1150,12 @@ namespace FlutterSDK.Material.Scaffold
     }
 
 
+    /// <Summary>
+    /// State for a [Scaffold].
+    ///
+    /// Can display [SnackBar]s and [BottomSheet]s. Retrieve a [ScaffoldState] from
+    /// the current [BuildContext] using [Scaffold.of].
+    /// </Summary>
     public class ScaffoldState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Scaffold.Scaffold>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
         #region constructors
@@ -828,21 +1203,77 @@ namespace FlutterSDK.Material.Scaffold
         private void _EndDrawerOpenedCallback(bool isOpened) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Opens the [Drawer] (if any).
+        ///
+        /// If the scaffold has a non-null [Scaffold.drawer], this function will cause
+        /// the drawer to begin its entrance animation.
+        ///
+        /// Normally this is not needed since the [Scaffold] automatically shows an
+        /// appropriate [IconButton], and handles the edge-swipe gesture, to show the
+        /// drawer.
+        ///
+        /// To close the drawer once it is open, use [Navigator.pop].
+        ///
+        /// See [Scaffold.of] for information about how to obtain the [ScaffoldState].
+        /// </Summary>
         public virtual void OpenDrawer() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Opens the end side [Drawer] (if any).
+        ///
+        /// If the scaffold has a non-null [Scaffold.endDrawer], this function will cause
+        /// the end side drawer to begin its entrance animation.
+        ///
+        /// Normally this is not needed since the [Scaffold] automatically shows an
+        /// appropriate [IconButton], and handles the edge-swipe gesture, to show the
+        /// drawer.
+        ///
+        /// To close the end side drawer once it is open, use [Navigator.pop].
+        ///
+        /// See [Scaffold.of] for information about how to obtain the [ScaffoldState].
+        /// </Summary>
         public virtual void OpenEndDrawer() { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Shows a [SnackBar] at the bottom of the scaffold.
+        ///
+        /// A scaffold can show at most one snack bar at a time. If this function is
+        /// called while another snack bar is already visible, the given snack bar
+        /// will be added to a queue and displayed after the earlier snack bars have
+        /// closed.
+        ///
+        /// To control how long a [SnackBar] remains visible, use [SnackBar.duration].
+        ///
+        /// To remove the [SnackBar] with an exit animation, use [hideCurrentSnackBar]
+        /// or call [ScaffoldFeatureController.close] on the returned
+        /// [ScaffoldFeatureController]. To remove a [SnackBar] suddenly (without an
+        /// animation), use [removeCurrentSnackBar].
+        ///
+        /// See [Scaffold.of] for information about how to obtain the [ScaffoldState].
+        /// </Summary>
         public virtual FlutterSDK.Material.Scaffold.ScaffoldFeatureController<FlutterSDK.Material.Snackbar.SnackBar, FlutterSDK.Material.Snackbar.SnackBarClosedReason> ShowSnackBar(FlutterSDK.Material.Snackbar.SnackBar snackbar) { throw new NotImplementedException(); }
 
 
         private void _HandleSnackBarStatusChange(FlutterSDK.Animation.Animation.AnimationStatus status) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Removes the current [SnackBar] (if any) immediately.
+        ///
+        /// The removed snack bar does not run its normal exit animation. If there are
+        /// any queued snack bars, they begin their entrance animation immediately.
+        /// </Summary>
         public virtual void RemoveCurrentSnackBar(FlutterSDK.Material.Snackbar.SnackBarClosedReason reason = default(FlutterSDK.Material.Snackbar.SnackBarClosedReason)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Removes the current [SnackBar] by running its normal exit animation.
+        ///
+        /// The closed completer is called after the animation is complete.
+        /// </Summary>
         public virtual void HideCurrentSnackBar(FlutterSDK.Material.Snackbar.SnackBarClosedReason reason = default(FlutterSDK.Material.Snackbar.SnackBarClosedReason)) { throw new NotImplementedException(); }
 
 
@@ -855,9 +1286,89 @@ namespace FlutterSDK.Material.Scaffold
         private PersistentBottomSheetController<T> _BuildBottomSheet<T>(FlutterSDK.Widgets.Framework.WidgetBuilder builder, bool isPersistent, FlutterSDK.Animation.Animationcontroller.AnimationController animationController = default(FlutterSDK.Animation.Animationcontroller.AnimationController), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Shows a material design bottom sheet in the nearest [Scaffold]. To show
+        /// a persistent bottom sheet, use the [Scaffold.bottomSheet].
+        ///
+        /// Returns a controller that can be used to close and otherwise manipulate the
+        /// bottom sheet.
+        ///
+        /// To rebuild the bottom sheet (e.g. if it is stateful), call
+        /// [PersistentBottomSheetController.setState] on the controller returned by
+        /// this method.
+        ///
+        /// The new bottom sheet becomes a [LocalHistoryEntry] for the enclosing
+        /// [ModalRoute] and a back button is added to the app bar of the [Scaffold]
+        /// that closes the bottom sheet.
+        ///
+        /// To create a persistent bottom sheet that is not a [LocalHistoryEntry] and
+        /// does not add a back button to the enclosing Scaffold's app bar, use the
+        /// [Scaffold.bottomSheet] constructor parameter.
+        ///
+        /// A persistent bottom sheet shows information that supplements the primary
+        /// content of the app. A persistent bottom sheet remains visible even when
+        /// the user interacts with other parts of the app.
+        ///
+        /// A closely related widget is a modal bottom sheet, which is an alternative
+        /// to a menu or a dialog and prevents the user from interacting with the rest
+        /// of the app. Modal bottom sheets can be created and displayed with the
+        /// [showModalBottomSheet] function.
+        ///
+        /// {@tool dartpad --template=stateless_widget_scaffold}
+        ///
+        /// This example demonstrates how to use `showBottomSheet` to display a
+        /// bottom sheet when a user taps a button. It also demonstrates how to
+        /// close a bottom sheet using the Navigator.
+        ///
+        /// ```dart
+        /// Widget build(BuildContext context) {
+        ///   return Center(
+        ///     child: RaisedButton(
+        ///       child: const Text('showBottomSheet'),
+        ///       onPressed: () {
+        ///         Scaffold.of(context).showBottomSheet<void>(
+        ///           (BuildContext context) {
+        ///             return Container(
+        ///               height: 200,
+        ///               color: Colors.amber,
+        ///               child: Center(
+        ///                 child: Column(
+        ///                   mainAxisAlignment: MainAxisAlignment.center,
+        ///                   mainAxisSize: MainAxisSize.min,
+        ///                   children: <Widget>[
+        ///                     const Text('BottomSheet'),
+        ///                     RaisedButton(
+        ///                       child: const Text('Close BottomSheet'),
+        ///                       onPressed: () => Navigator.pop(context),
+        ///                     )
+        ///                   ],
+        ///                 ),
+        ///               ),
+        ///             );
+        ///           },
+        ///         );
+        ///       },
+        ///     ),
+        ///   );
+        /// }
+        /// ```
+        /// {@end-tool}
+        /// See also:
+        ///
+        ///  * [BottomSheet], which becomes the parent of the widget returned by the
+        ///    `builder`.
+        ///  * [showBottomSheet], which calls this method given a [BuildContext].
+        ///  * [showModalBottomSheet], which can be used to display a modal bottom
+        ///    sheet.
+        ///  * [Scaffold.of], for information about how to obtain the [ScaffoldState].
+        ///  * <https://material.io/design/components/sheets-bottom.html#standard-bottom-sheet>
+        /// </Summary>
         public virtual PersistentBottomSheetController<T> ShowBottomSheet<T>(FlutterSDK.Widgets.Framework.WidgetBuilder builder, FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip)) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Shows the [Scaffold.floatingActionButton].
+        /// </Summary>
         private FlutterSDK.Scheduler.Ticker.TickerFuture _ShowFloatingActionButton() { throw new NotImplementedException(); }
 
 
@@ -888,6 +1399,11 @@ namespace FlutterSDK.Material.Scaffold
         private void _BuildDrawer(List<FlutterSDK.Widgets.Basic.LayoutId> children, TextDirection textDirection) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Whether to show a [ModalBarrier] over the body of the scaffold.
+        ///
+        /// The `value` parameter must not be null.
+        /// </Summary>
         public virtual void ShowBodyScrim(bool value, double opacity) { throw new NotImplementedException(); }
 
 
@@ -897,6 +1413,11 @@ namespace FlutterSDK.Material.Scaffold
     }
 
 
+    /// <Summary>
+    /// An interface for controlling a feature of a [Scaffold].
+    ///
+    /// Commonly obtained from [ScaffoldState.showSnackBar] or [ScaffoldState.showBottomSheet].
+    /// </Summary>
     public class ScaffoldFeatureController<T, U>
     {
         #region constructors
@@ -922,6 +1443,24 @@ namespace FlutterSDK.Material.Scaffold
     }
 
 
+    /// <Summary>
+    /// A curve that progresses linearly until a specified [startingPoint], at which
+    /// point [curve] will begin. Unlike [Interval], [curve] will not start at zero,
+    /// but will use [startingPoint] as the Y position.
+    ///
+    /// For example, if [startingPoint] is set to `0.5`, and [curve] is set to
+    /// [Curves.easeOut], then the bottom-left quarter of the curve will be a
+    /// straight line, and the top-right quarter will contain the entire contents of
+    /// [Curves.easeOut].
+    ///
+    /// This is useful in situations where a widget must track the user's finger
+    /// (which requires a linear animation), and afterwards can be flung using a
+    /// curve specified with the [curve] argument, after the finger is released. In
+    /// such a case, the value of [startingPoint] would be the progress of the
+    /// animation at the time when the finger was released.
+    ///
+    /// The [startingPoint] and [curve] arguments must not be null.
+    /// </Summary>
     public class _BottomSheetSuspendedCurve : FlutterSDK.Animation.Curves.ParametricCurve<double>
     {
         #region constructors
@@ -1030,6 +1569,15 @@ namespace FlutterSDK.Material.Scaffold
     }
 
 
+    /// <Summary>
+    /// A [ScaffoldFeatureController] for standard bottom sheets.
+    ///
+    /// This is the type of objects returned by [ScaffoldState.showBottomSheet].
+    ///
+    /// This controller is used to display both standard and persistent bottom
+    /// sheets. A bottom sheet is only persistent if it is set as the
+    /// [Scaffold.bottomSheet].
+    /// </Summary>
     public class PersistentBottomSheetController<T> : FlutterSDK.Material.Scaffold.ScaffoldFeatureController<FlutterSDK.Material.Scaffold._StandardBottomSheet, T>
     {
         #region constructors

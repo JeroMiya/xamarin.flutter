@@ -428,6 +428,9 @@ namespace FlutterSDK.Material.Textselection
         public static FlutterSDK.Widgets.Textselection.TextSelectionControls MaterialTextSelectionControls = default(FlutterSDK.Widgets.Textselection.TextSelectionControls);
     }
 
+    /// <Summary>
+    /// Manages a copy/paste text selection toolbar.
+    /// </Summary>
     public class _TextSelectionToolbar : FlutterSDK.Widgets.Framework.StatefulWidget
     {
         #region constructors
@@ -664,6 +667,10 @@ namespace FlutterSDK.Material.Textselection
     }
 
 
+    /// <Summary>
+    /// Centers the toolbar around the given anchor, ensuring that it remains on
+    /// screen.
+    /// </Summary>
     public class _TextSelectionToolbarLayout : FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate
     {
         #region constructors
@@ -699,6 +706,9 @@ namespace FlutterSDK.Material.Textselection
     }
 
 
+    /// <Summary>
+    /// Draws a single text selection handle which points up and to the left.
+    /// </Summary>
     public class _TextSelectionHandlePainter : FlutterSDK.Rendering.Custompaint.CustomPainter
     {
         #region constructors
@@ -736,15 +746,29 @@ namespace FlutterSDK.Material.Textselection
 
         #region methods
 
+        /// <Summary>
+        /// Returns the size of the Material handle.
+        /// </Summary>
         public new Size GetHandleSize(double textLineHeight) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Builder for material-style copy/paste text selection toolbar.
+        /// </Summary>
         public new FlutterSDK.Widgets.Framework.Widget BuildToolbar(FlutterSDK.Widgets.Framework.BuildContext context, FlutterBinding.UI.Rect globalEditableRegion, double textLineHeight, FlutterBinding.UI.Offset selectionMidpoint, List<FlutterSDK.Rendering.Editable.TextSelectionPoint> endpoints, FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Builder for material-style text selection handles.
+        /// </Summary>
         public new FlutterSDK.Widgets.Framework.Widget BuildHandle(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Textselection.TextSelectionHandleType type, double textHeight) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Gets anchor for material-style text selection handles.
+        ///
+        /// See [TextSelectionControls.getHandleAnchor].
+        /// </Summary>
         public new Offset GetHandleAnchor(FlutterSDK.Widgets.Textselection.TextSelectionHandleType type, double textLineHeight) { throw new NotImplementedException(); }
 
 

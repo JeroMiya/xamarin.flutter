@@ -427,6 +427,9 @@ namespace FlutterSDK.Scheduler.Priority
     {
     }
 
+    /// <Summary>
+    /// A task priority, as passed to [SchedulerBinding.scheduleTask].
+    /// </Summary>
     public class Priority
     {
         #region constructors
@@ -447,9 +450,23 @@ namespace FlutterSDK.Scheduler.Priority
 
         #region methods
 
+        /// <Summary>
+        /// Returns a priority relative to this priority.
+        ///
+        /// A positive [offset] indicates a higher priority.
+        ///
+        /// The parameter [offset] is clamped to ±[kMaxOffset].
+        /// </Summary>
         public virtual FlutterSDK.Scheduler.Priority.Priority AddOperator(int offset) { throw new NotImplementedException(); }
 
 
+        /// <Summary>
+        /// Returns a priority relative to this priority.
+        ///
+        /// A positive offset indicates a lower priority.
+        ///
+        /// The parameter [offset] is clamped to ±[kMaxOffset].
+        /// </Summary>
         public virtual FlutterSDK.Scheduler.Priority.Priority SubtractOperator(int offset) { throw new NotImplementedException(); }
 
         #endregion
