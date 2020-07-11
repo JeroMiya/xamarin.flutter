@@ -1,5 +1,4 @@
-Write-Output "test"
-$url = "https://github.com/flutter/flutter/archive/master.zip"
+$url = "https://github.com/flutter/flutter/archive/stable.zip"
 $zip = "flutter.zip"
 $ScriptDir = Split-Path $script:MyInvocation.MyCommand.Path
 
@@ -8,7 +7,7 @@ Invoke-WebRequest -Uri $url -OutFile $zip
 Write-Output "finished download"
 
 Write-Output "unzipping file"  
-$subfolder = 'flutter-master\packages\flutter'  # path in the zip
+$subfolder = 'flutter-stable\packages\flutter'  # path in the zip
 $shellApp = New-Object -ComObject Shell.Application 
 $path = $shellApp.namespace("$PSScriptRoot\$zip\$subfolder") # complete subfolder path
 $destinationDirectory = (Get-Item $ScriptDir).Parent
