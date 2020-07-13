@@ -6,6 +6,7 @@ import 'package:analyzer/src/dart/element/element.dart';
 import 'package:front_end/src/scanner/token.dart';
 import '../naming.dart';
 import '../config.dart';
+import '../types.dart';
 import 'loops.dart';
 import 'exceptions.dart';
 import 'literals.dart';
@@ -224,20 +225,61 @@ class Implementation {
     } else if (entity is Annotation) {
       return ''; // Just ignoring these, because properties in the element determine these annotations, I don't need to parse them.
     } else if (entity is DefaultFormalParameter) {
-      return entity.toString();
-      //return processDefaultFormalParameter(entity);
-      // TODO: implement processDefaultFormalParameter properly.
+      return processDefaultFormalParameter(entity);
     } else if (entity is GenericFunctionType) {
-      return entity.toString();
-      //return processGenericFunctionType(entity);
-      // TODO: implement processGenericFunctionType properly.
+      return processGenericFunctionType(entity);
     } else if (entity is RethrowExpression) {
-      return "throw";
-      //return processRethrowExpression(entity);
-      // TODO: move this to processRethrowExpression();
+      return processRethrowExpression(entity);
     } else {
       throw new AssertionError('Unknown entity');
     }
+  }
+
+  static String processGenericFunctionType(GenericFunctionType entity) {
+    // HACK: this implementation only works for a limited set of cases
+    // as seen in the current Flutter framework:
+    // Func<R>
+    // Func<T, R>
+    // Action
+    // Action<T>
+    // Where R and T are simple types where .toString() produces the right
+    // C# type annotations. We're missing some function overloads for the
+    // element types involved here.
+    // TODO: Move this to Types
+    String ret = '';
+    String returnType = entity.returnType.toString();
+    if (returnType.contains('void')) {
+      if (entity.parameters.parameterElements.length == 0) {
+        ret = 'Action';
+      } else if (entity.parameters.parameterElements.length == 1) {
+        String paramType = entity.parameters.parameterElements[0].toString();
+        ret = 'Action<${paramType}>';
+      } else {
+        throw new AssertionError(
+            'Currently only Actions with 0 or 1 arguments are supported');
+      }
+    } else {
+      if (entity.parameters.parameterElements.length == 0) {
+        ret = 'Func<${returnType}>';
+      } else if (entity.parameters.parameterElements.length == 1) {
+        String paramType = entity.parameters.parameterElements[0].toString();
+        ret = 'Func<${paramType}, ${returnType}>';
+      } else {
+        throw new AssertionError(
+            'Currently only Funcs with 0 or 1 arguments are supported');
+      }
+    }
+
+    return ret;
+  }
+
+  static String processRethrowExpression(RethrowExpression entity) {
+    return "throw";
+  }
+
+  static String processDefaultFormalParameter(DefaultFormalParameter entity) {
+    // TODO: implement this properly
+    return entity.toString();
   }
 
   static String processPropertyAccess(PropertyAccess access) {
