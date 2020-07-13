@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -414,61 +414,86 @@ namespace FlutterSDK.Material.Floatingactionbuttontheme
     {
         #region constructors
         public FloatingActionButtonThemeData(FlutterBinding.UI.Color foregroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), double elevation = default(double), double focusElevation = default(double), double hoverElevation = default(double), double disabledElevation = default(double), double highlightElevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder))
-        {
-            this.ForegroundColor = foregroundColor;
-            this.BackgroundColor = backgroundColor;
-            this.FocusColor = focusColor;
-            this.HoverColor = hoverColor;
-            this.SplashColor = splashColor;
-            this.Elevation = elevation;
-            this.FocusElevation = focusElevation;
-            this.HoverElevation = hoverElevation;
-            this.DisabledElevation = disabledElevation;
-            this.HighlightElevation = highlightElevation;
-            this.Shape = shape; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterBinding.UI.Color ForegroundColor { get; set; }
-        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-        public virtual FlutterBinding.UI.Color FocusColor { get; set; }
-        public virtual FlutterBinding.UI.Color HoverColor { get; set; }
-        public virtual FlutterBinding.UI.Color SplashColor { get; set; }
-        public virtual double Elevation { get; set; }
-        public virtual double FocusElevation { get; set; }
-        public virtual double HoverElevation { get; set; }
-        public virtual double DisabledElevation { get; set; }
-        public virtual double HighlightElevation { get; set; }
-        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    public virtual FlutterBinding.UI.Color ForegroundColor { get; set; }
+    public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+    public virtual FlutterBinding.UI.Color FocusColor { get; set; }
+    public virtual FlutterBinding.UI.Color HoverColor { get; set; }
+    public virtual FlutterBinding.UI.Color SplashColor { get; set; }
+    public virtual double Elevation { get; set; }
+    public virtual double FocusElevation { get; set; }
+    public virtual double HoverElevation { get; set; }
+    public virtual double DisabledElevation { get; set; }
+    public virtual double HighlightElevation { get; set; }
+    public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        /// <Summary>
-        /// Creates a copy of this object with the given fields replaced with the
-        /// new values.
-        /// </Summary>
-        public virtual FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData CopyWith(FlutterBinding.UI.Color foregroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), double elevation = default(double), double focusElevation = default(double), double hoverElevation = default(double), double disabledElevation = default(double), double highlightElevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder)) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Linearly interpolate between two floating action button themes.
-        ///
-        /// If both arguments are null then null is returned.
-        ///
-        /// {@macro dart.ui.shadow.lerp}
-        /// </Summary>
-        public virtual FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData Lerp(FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData a, FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData b, double t) { throw new NotImplementedException(); }
-
-
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+    /// <Summary>
+    /// Creates a copy of this object with the given fields replaced with the
+    /// new values.
+    /// </Summary>
+    public virtual FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData CopyWith(FlutterBinding.UI.Color foregroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), double elevation = default(double), double focusElevation = default(double), double hoverElevation = default(double), double disabledElevation = default(double), double highlightElevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder))
+    {
+        return new FloatingActionButtonThemeData(foregroundColor: foregroundColor ?? this.ForegroundColor, backgroundColor: backgroundColor ?? this.BackgroundColor, focusColor: focusColor ?? this.FocusColor, hoverColor: hoverColor ?? this.HoverColor, splashColor: splashColor ?? this.SplashColor, elevation: elevation == default(double) ? this.elevation : elevation, focusElevation: focusElevation == default(double) ? this.focusElevation : focusElevation, hoverElevation: hoverElevation == default(double) ? this.hoverElevation : hoverElevation, disabledElevation: disabledElevation == default(double) ? this.disabledElevation : disabledElevation, highlightElevation: highlightElevation == default(double) ? this.highlightElevation : highlightElevation, shape: shape ?? this.Shape);
     }
+
+
+
+
+    /// <Summary>
+    /// Linearly interpolate between two floating action button themes.
+    ///
+    /// If both arguments are null then null is returned.
+    ///
+    /// {@macro dart.ui.shadow.lerp}
+    /// </Summary>
+    public virtual FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData Lerp(FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData a, FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData b, double t)
+    {
+
+        if (a == null && b == null) return null;
+        return new FloatingActionButtonThemeData(foregroundColor: Dart:uiDefaultClass.Color.Lerp(a?.ForegroundColor, b?.ForegroundColor, t), backgroundColor: Dart:uiDefaultClass.Color.Lerp(a?.BackgroundColor, b?.BackgroundColor, t), focusColor: Dart:uiDefaultClass.Color.Lerp(a?.FocusColor, b?.FocusColor, t), hoverColor: Dart:uiDefaultClass.Color.Lerp(a?.HoverColor, b?.HoverColor, t), splashColor: Dart:uiDefaultClass.Color.Lerp(a?.SplashColor, b?.SplashColor, t), elevation: Dart:uiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), focusElevation: Dart:uiDefaultClass.LerpDouble(a?.FocusElevation, b?.FocusElevation, t), hoverElevation: Dart:uiDefaultClass.LerpDouble(a?.HoverElevation, b?.HoverElevation, t), disabledElevation: Dart:uiDefaultClass.LerpDouble(a?.DisabledElevation, b?.DisabledElevation, t), highlightElevation: Dart:uiDefaultClass.LerpDouble(a?.HighlightElevation, b?.HighlightElevation, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t));
+    }
+
+
+
+
+    public new bool Equals(@Object other)
+    {
+        if (Dart:coreDefaultClass.Identical(this, other))return true;
+        if (other.GetType() != GetType()) return false;
+        return other is FloatingActionButtonThemeData && other.ForegroundColor == ForegroundColor && other.BackgroundColor == BackgroundColor && other.FocusColor == FocusColor && other.HoverColor == HoverColor && other.SplashColor == SplashColor && other.Elevation == Elevation && other.FocusElevation == FocusElevation && other.HoverElevation == HoverElevation && other.DisabledElevation == DisabledElevation && other.HighlightElevation == HighlightElevation && other.Shape == Shape;
+    }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        FloatingActionButtonThemeData defaultData = new FloatingActionButtonThemeData();
+        properties.Add(new ColorProperty("foregroundColor", ForegroundColor, defaultValue: defaultData.ForegroundColor));
+        properties.Add(new ColorProperty("backgroundColor", BackgroundColor, defaultValue: defaultData.BackgroundColor));
+        properties.Add(new ColorProperty("focusColor", FocusColor, defaultValue: defaultData.FocusColor));
+        properties.Add(new ColorProperty("hoverColor", HoverColor, defaultValue: defaultData.HoverColor));
+        properties.Add(new ColorProperty("splashColor", SplashColor, defaultValue: defaultData.SplashColor));
+        properties.Add(new DoubleProperty("elevation", Elevation, defaultValue: defaultData.Elevation));
+        properties.Add(new DoubleProperty("focusElevation", FocusElevation, defaultValue: defaultData.FocusElevation));
+        properties.Add(new DoubleProperty("hoverElevation", HoverElevation, defaultValue: defaultData.HoverElevation));
+        properties.Add(new DoubleProperty("disabledElevation", DisabledElevation, defaultValue: defaultData.DisabledElevation));
+        properties.Add(new DoubleProperty("highlightElevation", HighlightElevation, defaultValue: defaultData.HighlightElevation));
+        properties.Add(new DiagnosticsProperty<ShapeBorder>("shape", Shape, defaultValue: defaultData.Shape));
+    }
+
+
+
+    #endregion
+}
 
 }

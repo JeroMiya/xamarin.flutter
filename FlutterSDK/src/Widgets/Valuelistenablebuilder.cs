@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -527,55 +527,92 @@ namespace FlutterSDK.Widgets.Valuelistenablebuilder
         #region constructors
         public ValueListenableBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Foundation.Changenotifier.ValueListenable<T> valueListenable = default(FlutterSDK.Foundation.Changenotifier.ValueListenable<T>), FlutterSDK.Widgets.Valuelistenablebuilder.ValueWidgetBuilder<T> builder = default(FlutterSDK.Widgets.Valuelistenablebuilder.ValueWidgetBuilder<T>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
-        {
-            this.ValueListenable = valueListenable;
-            this.Builder = builder;
-            this.Child = child; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Foundation.Changenotifier.ValueListenable<T> ValueListenable { get; set; }
-        public virtual FlutterSDK.Widgets.Valuelistenablebuilder.ValueWidgetBuilder<T> Builder { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Foundation.Changenotifier.ValueListenable<T> ValueListenable { get; set; }
+    public virtual FlutterSDK.Widgets.Valuelistenablebuilder.ValueWidgetBuilder<T> Builder { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
+    public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() => new _ValueListenableBuilderState<T>();
 
 
-    public class _ValueListenableBuilderState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Valuelistenablebuilder.ValueListenableBuilder<T>>
+    #endregion
+}
+
+
+public class _ValueListenableBuilderState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Valuelistenablebuilder.ValueListenableBuilder<T>>
+{
+    #region constructors
+    public _ValueListenableBuilderState()
+    { }
+    #endregion
+
+    #region fields
+    public virtual T Value { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
     {
-        #region constructors
-        public _ValueListenableBuilderState()
-        { }
-        #endregion
-
-        #region fields
-        public virtual T Value { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Widgets.Valuelistenablebuilder.ValueListenableBuilder<T> oldWidget) { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        private void _ValueChanged() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        base.InitState();
+        Value = Widget.ValueListenable.Value;
+        Widget.ValueListenable.AddListener(_ValueChanged);
     }
+
+
+
+
+    public new void DidUpdateWidget(FlutterSDK.Widgets.Valuelistenablebuilder.ValueListenableBuilder<T> oldWidget)
+    {
+        if (oldWidget.ValueListenable != Widget.ValueListenable)
+        {
+            oldWidget.ValueListenable.RemoveListener(_ValueChanged);
+            Value = Widget.ValueListenable.Value;
+            Widget.ValueListenable.AddListener(_ValueChanged);
+        }
+
+        base.DidUpdateWidget(oldWidget);
+    }
+
+
+
+
+    public new void Dispose()
+    {
+        Widget.ValueListenable.RemoveListener(_ValueChanged);
+        base.Dispose();
+    }
+
+
+
+
+    private void _ValueChanged()
+    {
+        SetState(() =>
+        {
+            Value = Widget.ValueListenable.Value;
+        }
+        );
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        return Widget.Builder(context, Value, Widget.Child);
+    }
+
+
+
+    #endregion
+}
 
 }

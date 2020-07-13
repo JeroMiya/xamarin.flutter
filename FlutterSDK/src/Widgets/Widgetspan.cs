@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -486,68 +486,149 @@ namespace FlutterSDK.Widgets.Widgetspan
         #region constructors
         public WidgetSpan(FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), PlaceholderAlignment alignment = default(PlaceholderAlignment), TextBaseline baseline = default(TextBaseline), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle))
         : base(alignment: alignment, baseline: baseline, style: style)
+    
+}
+    #endregion
+
+    #region fields
+    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    /// <Summary>
+    /// Adds a placeholder box to the paragraph builder if a size has been
+    /// calculated for the widget.
+    ///
+    /// Sizes are provided through `dimensions`, which should contain a 1:1
+    /// in-order mapping of widget to laid-out dimensions. If no such dimension
+    /// is provided, the widget will be skipped.
+    ///
+    /// The `textScaleFactor` will be applied to the laid-out size of the widget.
+    /// </Summary>
+    public new void Build(ParagraphBuilder builder, double textScaleFactor = 1.0, List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions> dimensions = default(List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions>))
+    {
+
+
+        bool hasStyle = Style != null;
+        if (hasStyle)
         {
-            this.Child = child; throw new NotImplementedException();
+            builder.PushStyle(Style.GetTextStyle(textScaleFactor: textScaleFactor));
         }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Adds a placeholder box to the paragraph builder if a size has been
-        /// calculated for the widget.
-        ///
-        /// Sizes are provided through `dimensions`, which should contain a 1:1
-        /// in-order mapping of widget to laid-out dimensions. If no such dimension
-        /// is provided, the widget will be skipped.
-        ///
-        /// The `textScaleFactor` will be applied to the laid-out size of the widget.
-        /// </Summary>
-        public new void Build(ParagraphBuilder builder, double textScaleFactor = 1.0, List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions> dimensions = default(List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions>)) { throw new NotImplementedException(); }
 
 
-        /// <Summary>
-        /// Calls `visitor` on this [WidgetSpan]. There are no children spans to walk.
-        /// </Summary>
-        public new bool VisitChildren(FlutterSDK.Painting.Inlinespan.InlineSpanVisitor visitor) { throw new NotImplementedException(); }
+        PlaceholderDimensions currentDimensions = dimensions[builder.PlaceholderCount];
+        builder.AddPlaceholder(currentDimensions.Size.Width, currentDimensions.Size.Height, Alignment, scale: textScaleFactor, baseline: currentDimensions.Baseline, baselineOffset: currentDimensions.BaselineOffset);
+        if (hasStyle)
+        {
+            builder.Pop();
+        }
 
-
-        public new FlutterSDK.Painting.Inlinespan.InlineSpan GetSpanForPositionVisitor(TextPosition position, FlutterSDK.Painting.Inlinespan.Accumulator offset) { throw new NotImplementedException(); }
-
-
-        public new int CodeUnitAtVisitor(int index, FlutterSDK.Painting.Inlinespan.Accumulator offset) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Painting.Basictypes.RenderComparison CompareTo(FlutterSDK.Painting.Inlinespan.InlineSpan other) { throw new NotImplementedException(); }
-
-
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns the text span that contains the given position in the text.
-        /// </Summary>
-        public new FlutterSDK.Painting.Inlinespan.InlineSpan GetSpanForPosition(TextPosition position) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// In debug mode, throws an exception if the object is not in a
-        /// valid configuration. Otherwise, returns true.
-        ///
-        /// This is intended to be used as follows:
-        ///
-        /// ```dart
-        /// assert(myWidgetSpan.debugAssertIsValid());
-        /// ```
-        /// </Summary>
-        public new bool DebugAssertIsValid() { throw new NotImplementedException(); }
-
-        #endregion
     }
+
+
+
+
+    /// <Summary>
+    /// Calls `visitor` on this [WidgetSpan]. There are no children spans to walk.
+    /// </Summary>
+    public new bool VisitChildren(FlutterSDK.Painting.Inlinespan.InlineSpanVisitor visitor)
+    {
+        return visitor(this);
+    }
+
+
+
+
+    public new FlutterSDK.Painting.Inlinespan.InlineSpan GetSpanForPositionVisitor(TextPosition position, FlutterSDK.Painting.Inlinespan.Accumulator offset)
+    {
+        if (position.Offset == offset.Value)
+        {
+            return this;
+        }
+
+        offset.Increment(1);
+        return null;
+    }
+
+
+
+
+    public new int CodeUnitAtVisitor(int index, FlutterSDK.Painting.Inlinespan.Accumulator offset)
+    {
+        return null;
+    }
+
+
+
+
+    public new FlutterSDK.Painting.Basictypes.RenderComparison CompareTo(FlutterSDK.Painting.Inlinespan.InlineSpan other)
+    {
+        if (Dart:coreDefaultClass.Identical(this, other))return RenderComparison.Identical;
+        if (other.GetType() != GetType()) return RenderComparison.Layout;
+        if ((Style == null) != (other.Style == null)) return RenderComparison.Layout;
+        WidgetSpan typedOther = other as WidgetSpan;
+        if (Child != typedOther.Child || Alignment != typedOther.Alignment)
+        {
+            return RenderComparison.Layout;
+        }
+
+        RenderComparison result = RenderComparison.Identical;
+        if (Style != null)
+        {
+            RenderComparison candidate = Style.CompareTo(other.Style);
+            if (candidate.Index > result.Index) result = candidate;
+            if (result == RenderComparison.Layout) return result;
+        }
+
+        return result;
+    }
+
+
+
+
+    public new bool Equals(@Object other)
+    {
+        if (Dart:coreDefaultClass.Identical(this, other))return true;
+        if (other.GetType() != GetType()) return false;
+        if (base != other) return false;
+        return other is WidgetSpan && other.Child == Child && other.Alignment == Alignment && other.Baseline == Baseline;
+    }
+
+
+
+
+    /// <Summary>
+    /// Returns the text span that contains the given position in the text.
+    /// </Summary>
+    public new FlutterSDK.Painting.Inlinespan.InlineSpan GetSpanForPosition(TextPosition position)
+    {
+
+        return null;
+    }
+
+
+
+
+    /// <Summary>
+    /// In debug mode, throws an exception if the object is not in a
+    /// valid configuration. Otherwise, returns true.
+    ///
+    /// This is intended to be used as follows:
+    ///
+    /// ```dart
+    /// assert(myWidgetSpan.debugAssertIsValid());
+    /// ```
+    /// </Summary>
+    public new bool DebugAssertIsValid()
+    {
+        return true;
+    }
+
+
+
+    #endregion
+}
 
 }

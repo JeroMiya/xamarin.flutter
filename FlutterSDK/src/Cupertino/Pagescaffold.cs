@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 namespace FlutterSDK.Cupertino.Pagescaffold
 {
     internal static class PagescaffoldDefaultClass
@@ -308,7 +308,10 @@ namespace FlutterSDK.Cupertino.Pagescaffold
         ///
         /// If false, this widget partially obstructs.
         /// </Summary>
-        public virtual bool ShouldFullyObstruct(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+        public virtual bool ShouldFullyObstruct(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return default(bool);
+        }
 
         public virtual Size PreferredSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
     }
@@ -345,48 +348,83 @@ namespace FlutterSDK.Cupertino.Pagescaffold
         #region constructors
         public CupertinoPageScaffold(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Cupertino.Pagescaffold.ObstructingPreferredSizeWidget navigationBar = default(FlutterSDK.Cupertino.Pagescaffold.ObstructingPreferredSizeWidget), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), bool resizeToAvoidBottomInset = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
-        {
-            this.NavigationBar = navigationBar;
-            this.BackgroundColor = backgroundColor;
-            this.ResizeToAvoidBottomInset = resizeToAvoidBottomInset;
-            this.Child = child; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Cupertino.Pagescaffold.ObstructingPreferredSizeWidget NavigationBar { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-        public virtual bool ResizeToAvoidBottomInset { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Cupertino.Pagescaffold.ObstructingPreferredSizeWidget NavigationBar { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+    public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+    public virtual bool ResizeToAvoidBottomInset { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new FlutterSDK.Cupertino.Pagescaffold._CupertinoPageScaffoldState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
+    public new FlutterSDK.Cupertino.Pagescaffold._CupertinoPageScaffoldState CreateState() => new _CupertinoPageScaffoldState();
 
 
-    public class _CupertinoPageScaffoldState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Pagescaffold.CupertinoPageScaffold>
+    #endregion
+}
+
+
+public class _CupertinoPageScaffoldState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Pagescaffold.CupertinoPageScaffold>
+{
+    #region constructors
+    public _CupertinoPageScaffoldState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController _PrimaryScrollController { get; set; }
+    #endregion
+
+    #region methods
+
+    private void _HandleStatusBarTap()
     {
-        #region constructors
-        public _CupertinoPageScaffoldState()
-        { }
-        #endregion
+        if (_PrimaryScrollController.HasClients)
+        {
+            _PrimaryScrollController.AnimateTo(0.0, duration: new TimeSpan(milliseconds: 500), curve: CurvesDefaultClass.Curves.LinearToEaseOut);
+        }
 
-        #region fields
-        internal virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController _PrimaryScrollController { get; set; }
-        #endregion
-
-        #region methods
-
-        private void _HandleStatusBarTap() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
     }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        Widget paddedContent = Widget.Child;
+        MediaQueryData existingMediaQuery = MediaqueryDefaultClass.MediaQuery.Of(context);
+        if (Widget.NavigationBar != null)
+        {
+            double topPadding = Widget.NavigationBar.PreferredSize.Height + existingMediaQuery.Padding.Top;
+            double bottomPadding = Widget.ResizeToAvoidBottomInset ? existingMediaQuery.ViewInsets.Bottom : 0.0;
+            EdgeInsets newViewInsets = Widget.ResizeToAvoidBottomInset ? existingMediaQuery.ViewInsets.CopyWith(bottom: 0.0) : existingMediaQuery.ViewInsets;
+            bool fullObstruction = Widget.NavigationBar.ShouldFullyObstruct(context);
+            if (fullObstruction)
+            {
+                paddedContent = new MediaQuery(data: existingMediaQuery.RemovePadding(removeTop: true).CopyWith(viewInsets: newViewInsets), child: new Padding(padding: EdgeInsets.Only(top: topPadding, bottom: bottomPadding), child: paddedContent));
+            }
+            else
+            {
+                paddedContent = new MediaQuery(data: existingMediaQuery.CopyWith(padding: existingMediaQuery.Padding.CopyWith(top: topPadding), viewInsets: newViewInsets), child: new Padding(padding: EdgeInsets.Only(bottom: bottomPadding), child: paddedContent));
+            }
+
+        }
+        else
+        {
+            double bottomPadding = Widget.ResizeToAvoidBottomInset ? existingMediaQuery.ViewInsets.Bottom : 0.0;
+            paddedContent = new Padding(padding: EdgeInsets.Only(bottom: bottomPadding), child: paddedContent);
+        }
+
+        return new DecoratedBox(decoration: new BoxDecoration(color: ColorsDefaultClass.CupertinoDynamicColor.Resolve(Widget.BackgroundColor, context) ?? ThemeDefaultClass.CupertinoTheme.Of(context).ScaffoldBackgroundColor), child: new Stack(children: new List<Widget>() { new PrimaryScrollController(controller: _PrimaryScrollController, child: paddedContent), }));
+    }
+
+
+
+    #endregion
+}
 
 }

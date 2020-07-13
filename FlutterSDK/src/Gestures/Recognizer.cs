@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -405,410 +405,654 @@ namespace FlutterSDK.Gestures.Recognizer
         #region constructors
         public GestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
         : base()
+    
+}
+    #endregion
+
+    #region fields
+    public virtual @Object DebugOwner { get; set; }
+    internal virtual PointerDeviceKind _KindFilter { get; set; }
+    internal virtual Dictionary<int, PointerDeviceKind> _PointerToKind { get; set; }
+    public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    /// <Summary>
+    /// Registers a new pointer that might be relevant to this gesture
+    /// detector.
+    ///
+    /// The owner of this gesture recognizer calls addPointer() with the
+    /// PointerDownEvent of each pointer that should be considered for
+    /// this gesture.
+    ///
+    /// It's the GestureRecognizer's responsibility to then add itself
+    /// to the global pointer router (see [PointerRouter]) to receive
+    /// subsequent events for this pointer, and to add the pointer to
+    /// the global gesture arena manager (see [GestureArenaManager]) to track
+    /// that pointer.
+    ///
+    /// This method is called for each and all pointers being added. In
+    /// most cases, you want to override [addAllowedPointer] instead.
+    /// </Summary>
+    public virtual void AddPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event)
+    {
+        _PointerToKind[@event.Pointer] = @event.Kind;
+        if (IsPointerAllowed(@event))
         {
-            this.DebugOwner = debugOwner; throw new NotImplementedException();
+            AddAllowedPointer(@event);
         }
-        #endregion
+        else
+        {
+            HandleNonAllowedPointer(@event);
+        }
 
-        #region fields
-        public virtual @Object DebugOwner { get; set; }
-        internal virtual PointerDeviceKind _KindFilter { get; set; }
-        internal virtual Dictionary<int, PointerDeviceKind> _PointerToKind { get; set; }
-        public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Registers a new pointer that might be relevant to this gesture
-        /// detector.
-        ///
-        /// The owner of this gesture recognizer calls addPointer() with the
-        /// PointerDownEvent of each pointer that should be considered for
-        /// this gesture.
-        ///
-        /// It's the GestureRecognizer's responsibility to then add itself
-        /// to the global pointer router (see [PointerRouter]) to receive
-        /// subsequent events for this pointer, and to add the pointer to
-        /// the global gesture arena manager (see [GestureArenaManager]) to track
-        /// that pointer.
-        ///
-        /// This method is called for each and all pointers being added. In
-        /// most cases, you want to override [addAllowedPointer] instead.
-        /// </Summary>
-        public virtual void AddPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Registers a new pointer that's been checked to be allowed by this gesture
-        /// recognizer.
-        ///
-        /// Subclasses of [GestureRecognizer] are supposed to override this method
-        /// instead of [addPointer] because [addPointer] will be called for each
-        /// pointer being added while [addAllowedPointer] is only called for pointers
-        /// that are allowed by this recognizer.
-        /// </Summary>
-        public virtual void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Handles a pointer being added that's not allowed by this recognizer.
-        ///
-        /// Subclasses can override this method and reject the gesture.
-        ///
-        /// See:
-        /// - [OneSequenceGestureRecognizer.handleNonAllowedPointer].
-        /// </Summary>
-        public virtual void HandleNonAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Checks whether or not a pointer is allowed to be tracked by this recognizer.
-        /// </Summary>
-        public virtual bool IsPointerAllowed(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// For a given pointer ID, returns the device kind associated with it.
-        ///
-        /// The pointer ID is expected to be a valid one i.e. an event was received
-        /// with that pointer ID.
-        /// </Summary>
-        public virtual PointerDeviceKind GetKindForPointer(int pointer) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Releases any resources used by the object.
-        ///
-        /// This method is called by the owner of this gesture recognizer
-        /// when the object is no longer needed (e.g. when a gesture
-        /// recognizer is being unregistered from a [GestureDetector], the
-        /// GestureDetector widget calls this method).
-        /// </Summary>
-        public virtual void Dispose() { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Invoke a callback provided by the application, catching and logging any
-        /// exceptions.
-        ///
-        /// The `name` argument is ignored except when reporting exceptions.
-        ///
-        /// The `debugReport` argument is optional and is used when
-        /// [debugPrintRecognizerCallbacksTrace] is true. If specified, it must be a
-        /// callback that returns a string describing useful debugging information,
-        /// e.g. the arguments passed to the callback.
-        /// </Summary>
-        public virtual T InvokeCallback<T>(string name, FlutterSDK.Gestures.Recognizer.RecognizerCallback<T> callback, Func<String> debugReport = default(Func<String>)) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
     }
+
+
 
 
     /// <Summary>
-    /// Base class for gesture recognizers that can only recognize one
-    /// gesture at a time. For example, a single [TapGestureRecognizer]
-    /// can never recognize two taps happening simultaneously, even if
-    /// multiple pointers are placed on the same widget.
+    /// Registers a new pointer that's been checked to be allowed by this gesture
+    /// recognizer.
     ///
-    /// This is in contrast to, for instance, [MultiTapGestureRecognizer],
-    /// which manages each pointer independently and can consider multiple
-    /// simultaneous touches to each result in a separate tap.
+    /// Subclasses of [GestureRecognizer] are supposed to override this method
+    /// instead of [addPointer] because [addPointer] will be called for each
+    /// pointer being added while [addAllowedPointer] is only called for pointers
+    /// that are allowed by this recognizer.
     /// </Summary>
-    public class OneSequenceGestureRecognizer : FlutterSDK.Gestures.Recognizer.GestureRecognizer
+    public virtual void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event)
     {
-        #region constructors
-        public OneSequenceGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
-        : base(debugOwner: debugOwner, kind: kind)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual Dictionary<int, FlutterSDK.Gestures.Arena.GestureArenaEntry> _Entries { get; set; }
-        internal virtual HashSet<int> _TrackedPointers { get; set; }
-        internal virtual FlutterSDK.Gestures.Team.GestureArenaTeam _Team { get; set; }
-        public virtual FlutterSDK.Gestures.Team.GestureArenaTeam Team { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void HandleNonAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Called when a pointer event is routed to this recognizer.
-        /// </Summary>
-        public virtual void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
-
-
-        public new void AcceptGesture(int pointer) { throw new NotImplementedException(); }
-
-
-        public new void RejectGesture(int pointer) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Called when the number of pointers this recognizer is tracking changes from one to zero.
-        ///
-        /// The given pointer ID is the ID of the last pointer this recognizer was
-        /// tracking.
-        /// </Summary>
-        public virtual void DidStopTrackingLastPointer(int pointer) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Resolves this recognizer's participation in each gesture arena with the
-        /// given disposition.
-        /// </Summary>
-        public virtual void Resolve(FlutterSDK.Gestures.Arena.GestureDisposition disposition) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Resolves this recognizer's participation in the given gesture arena with
-        /// the given disposition.
-        /// </Summary>
-        public virtual void ResolvePointer(int pointer, FlutterSDK.Gestures.Arena.GestureDisposition disposition) { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Gestures.Arena.GestureArenaEntry _AddPointerToArena(int pointer) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Causes events related to the given pointer ID to be routed to this recognizer.
-        ///
-        /// The pointer events are transformed according to `transform` and then delivered
-        /// to [handleEvent]. The value for the `transform` argument is usually obtained
-        /// from [PointerDownEvent.transform] to transform the events from the global
-        /// coordinate space into the coordinate space of the event receiver. It may be
-        /// null if no transformation is necessary.
-        ///
-        /// Use [stopTrackingPointer] to remove the route added by this function.
-        /// </Summary>
-        public virtual void StartTrackingPointer(int pointer, Matrix4 transform = default(Matrix4)) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Stops events related to the given pointer ID from being routed to this recognizer.
-        ///
-        /// If this function reduces the number of tracked pointers to zero, it will
-        /// call [didStopTrackingLastPointer] synchronously.
-        ///
-        /// Use [startTrackingPointer] to add the routes in the first place.
-        /// </Summary>
-        public virtual void StopTrackingPointer(int pointer) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Stops tracking the pointer associated with the given event if the event is
-        /// a [PointerUpEvent] or a [PointerCancelEvent] event.
-        /// </Summary>
-        public virtual void StopTrackingIfPointerNoLongerDown(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
-
-        #endregion
     }
+
+
 
 
     /// <Summary>
-    /// A base class for gesture recognizers that track a single primary pointer.
+    /// Handles a pointer being added that's not allowed by this recognizer.
     ///
-    /// Gestures based on this class will stop tracking the gesture if the primary
-    /// pointer travels beyond [preAcceptSlopTolerance] or [postAcceptSlopTolerance]
-    /// pixels from the original contact point of the gesture.
+    /// Subclasses can override this method and reject the gesture.
     ///
-    /// If the [preAcceptSlopTolerance] was breached before the gesture was accepted
-    /// in the gesture arena, the gesture will be rejected.
+    /// See:
+    /// - [OneSequenceGestureRecognizer.handleNonAllowedPointer].
     /// </Summary>
-    public class PrimaryPointerGestureRecognizer : FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer
+    public virtual void HandleNonAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event)
     {
-        #region constructors
-        public PrimaryPointerGestureRecognizer(TimeSpan deadline = default(TimeSpan), double preAcceptSlopTolerance = default(double), double postAcceptSlopTolerance = default(double), @Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
-        : base(debugOwner: debugOwner, kind: kind)
-        {
-            this.Deadline = deadline;
-            this.PreAcceptSlopTolerance = preAcceptSlopTolerance;
-            this.PostAcceptSlopTolerance = postAcceptSlopTolerance; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual TimeSpan Deadline { get; set; }
-        public virtual double PreAcceptSlopTolerance { get; set; }
-        public virtual double PostAcceptSlopTolerance { get; set; }
-        public virtual FlutterSDK.Gestures.Recognizer.GestureRecognizerState State { get; set; }
-        public virtual int PrimaryPointer { get; set; }
-        public virtual FlutterSDK.Gestures.Recognizer.OffsetPair InitialPosition { get; set; }
-        internal virtual bool _GestureAccepted { get; set; }
-        internal virtual Timer _Timer { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
-
-
-        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Override to provide behavior for the primary pointer when the gesture is still possible.
-        /// </Summary>
-        public virtual void HandlePrimaryPointer(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Override to be notified when [deadline] is exceeded.
-        ///
-        /// You must override this method or [didExceedDeadlineWithEvent] if you
-        /// supply a [deadline].
-        /// </Summary>
-        public virtual void DidExceedDeadline() { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Same as [didExceedDeadline] but receives the [event] that initiated the
-        /// gesture.
-        ///
-        /// You must override this method or [didExceedDeadline] if you supply a
-        /// [deadline].
-        /// </Summary>
-        public virtual void DidExceedDeadlineWithEvent(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
-
-
-        public new void AcceptGesture(int pointer) { throw new NotImplementedException(); }
-
-
-        public new void RejectGesture(int pointer) { throw new NotImplementedException(); }
-
-
-        public new void DidStopTrackingLastPointer(int pointer) { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        private void _StopTimer() { throw new NotImplementedException(); }
-
-
-        private double _GetGlobalDistance(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
     }
+
+
 
 
     /// <Summary>
-    /// A container for a [local] and [global] [Offset] pair.
-    ///
-    /// Usually, the [global] [Offset] is in the coordinate space of the screen
-    /// after conversion to logical pixels and the [local] offset is the same
-    /// [Offset], but transformed to a local coordinate space.
+    /// Checks whether or not a pointer is allowed to be tracked by this recognizer.
     /// </Summary>
-    public class OffsetPair
+    public virtual bool IsPointerAllowed(FlutterSDK.Gestures.Events.PointerDownEvent @event)
     {
-        #region constructors
-        public OffsetPair(FlutterBinding.UI.Offset local = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset global = default(FlutterBinding.UI.Offset))
-        {
-            this.Local = local;
-            this.Global = global; throw new NotImplementedException();
-        }
-        public static OffsetPair FromEventPosition(FlutterSDK.Gestures.Events.PointerEvent @event)
-        {
-            var instance = new OffsetPair(); throw new NotImplementedException();
-        }
-        public static OffsetPair FromEventDelta(FlutterSDK.Gestures.Events.PointerEvent @event)
-        {
-            var instance = new OffsetPair(); throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Gestures.Recognizer.OffsetPair Zero { get; set; }
-        public virtual FlutterBinding.UI.Offset Local { get; set; }
-        public virtual FlutterBinding.UI.Offset Global { get; set; }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Adds the `other.global` to [global] and `other.local` to [local].
-        /// </Summary>
-        public virtual FlutterSDK.Gestures.Recognizer.OffsetPair AddOperator(FlutterSDK.Gestures.Recognizer.OffsetPair other) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Subtracts the `other.global` from [global] and `other.local` from [local].
-        /// </Summary>
-        public virtual FlutterSDK.Gestures.Recognizer.OffsetPair SubtractOperator(FlutterSDK.Gestures.Recognizer.OffsetPair other) { throw new NotImplementedException(); }
-
-
-        #endregion
+        return _KindFilter == null || _KindFilter == @event.Kind;
     }
+
+
 
 
     /// <Summary>
-    /// Configuration of offset passed to [DragStartDetails].
+    /// For a given pointer ID, returns the device kind associated with it.
     ///
-    /// The settings determines when a drag formally starts when the user
-    /// initiates a drag.
-    ///
-    /// See also:
-    ///
-    ///  * [DragGestureRecognizer.dragStartBehavior], which gives an example for the different behaviors.
+    /// The pointer ID is expected to be a valid one i.e. an event was received
+    /// with that pointer ID.
     /// </Summary>
-    public enum DragStartBehavior
+    public virtual PointerDeviceKind GetKindForPointer(int pointer)
     {
 
-        /// <Summary>
-        /// Set the initial offset, at the position where the first down event was
-        /// detected.
-        /// </Summary>
-        Down,
-        /// <Summary>
-        /// Set the initial position at the position where the drag start event was
-        /// detected.
-        /// </Summary>
-        Start,
+        return _PointerToKind[pointer];
     }
+
+
 
 
     /// <Summary>
-    /// The possible states of a [PrimaryPointerGestureRecognizer].
+    /// Releases any resources used by the object.
     ///
-    /// The recognizer advances from [ready] to [possible] when it starts tracking a
-    /// primary pointer. When the primary pointer is resolved in the gesture
-    /// arena (either accepted or rejected), the recognizers advances to [defunct].
-    /// Once the recognizer has stopped tracking any remaining pointers, the
-    /// recognizer returns to [ready].
+    /// This method is called by the owner of this gesture recognizer
+    /// when the object is no longer needed (e.g. when a gesture
+    /// recognizer is being unregistered from a [GestureDetector], the
+    /// GestureDetector widget calls this method).
     /// </Summary>
-    public enum GestureRecognizerState
+    public virtual void Dispose()
+    {
+    }
+
+
+
+
+    /// <Summary>
+    /// Invoke a callback provided by the application, catching and logging any
+    /// exceptions.
+    ///
+    /// The `name` argument is ignored except when reporting exceptions.
+    ///
+    /// The `debugReport` argument is optional and is used when
+    /// [debugPrintRecognizerCallbacksTrace] is true. If specified, it must be a
+    /// callback that returns a string describing useful debugging information,
+    /// e.g. the arguments passed to the callback.
+    /// </Summary>
+    public virtual T InvokeCallback<T>(string name, FlutterSDK.Gestures.Recognizer.RecognizerCallback<T> callback, Func<String> debugReport = default(Func<String>))
     {
 
-        /// <Summary>
-        /// The recognizer is ready to start recognizing a gesture.
-        /// </Summary>
-        Ready,
-        /// <Summary>
-        /// The sequence of pointer events seen thus far is consistent with the
-        /// gesture the recognizer is attempting to recognize but the gesture has not
-        /// been accepted definitively.
-        /// </Summary>
-        Possible,
-        /// <Summary>
-        /// Further pointer events cannot cause this recognizer to recognize the
-        /// gesture until the recognizer returns to the [ready] state (typically when
-        /// all the pointers the recognizer is tracking are removed from the screen).
-        /// </Summary>
-        Defunct,
+        T result = default(T);
+        try
+        {
+
+            result = callback();
+        }
+        catch (exception,stack){
+            InformationCollector collector = default(InformationCollector);
+
+            AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetails(exception: exception, stack: stack, library: "gesture", context: new ErrorDescription("while handling a gesture"), informationCollector: collector));
+        }
+
+        return result;
+        }
+
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new DiagnosticsProperty<object>("debugOwner", DebugOwner, defaultValue: null));
     }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Base class for gesture recognizers that can only recognize one
+/// gesture at a time. For example, a single [TapGestureRecognizer]
+/// can never recognize two taps happening simultaneously, even if
+/// multiple pointers are placed on the same widget.
+///
+/// This is in contrast to, for instance, [MultiTapGestureRecognizer],
+/// which manages each pointer independently and can consider multiple
+/// simultaneous touches to each result in a separate tap.
+/// </Summary>
+public class OneSequenceGestureRecognizer : FlutterSDK.Gestures.Recognizer.GestureRecognizer
+{
+    #region constructors
+    public OneSequenceGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
+    : base(debugOwner: debugOwner, kind: kind)
+
+}
+#endregion
+
+#region fields
+internal virtual Dictionary<int, FlutterSDK.Gestures.Arena.GestureArenaEntry> _Entries { get; set; }
+internal virtual HashSet<int> _TrackedPointers { get; set; }
+internal virtual FlutterSDK.Gestures.Team.GestureArenaTeam _Team { get; set; }
+public virtual FlutterSDK.Gestures.Team.GestureArenaTeam Team { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new void HandleNonAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event)
+{
+    Resolve(GestureDisposition.Rejected);
+}
+
+
+
+
+/// <Summary>
+/// Called when a pointer event is routed to this recognizer.
+/// </Summary>
+public virtual void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event)
+{
+}
+
+
+public new void AcceptGesture(int pointer)
+{
+}
+
+
+
+
+public new void RejectGesture(int pointer)
+{
+}
+
+
+
+
+/// <Summary>
+/// Called when the number of pointers this recognizer is tracking changes from one to zero.
+///
+/// The given pointer ID is the ID of the last pointer this recognizer was
+/// tracking.
+/// </Summary>
+public virtual void DidStopTrackingLastPointer(int pointer)
+{
+}
+
+
+/// <Summary>
+/// Resolves this recognizer's participation in each gesture arena with the
+/// given disposition.
+/// </Summary>
+public virtual void Resolve(FlutterSDK.Gestures.Arena.GestureDisposition disposition)
+{
+    List<GestureArenaEntry> localEntries = List<GestureArenaEntry>.From(_Entries.Values);
+    _Entries.Clear();
+    foreach (GestureArenaEntry entry in localEntries) entry.Resolve(disposition);
+}
+
+
+
+
+/// <Summary>
+/// Resolves this recognizer's participation in the given gesture arena with
+/// the given disposition.
+/// </Summary>
+public virtual void ResolvePointer(int pointer, FlutterSDK.Gestures.Arena.GestureDisposition disposition)
+{
+    GestureArenaEntry entry = _Entries[pointer];
+    if (entry != null)
+    {
+        entry.Resolve(disposition);
+        _Entries.Remove(pointer);
+    }
+
+}
+
+
+
+
+public new void Dispose()
+{
+    Resolve(GestureDisposition.Rejected);
+    foreach (int pointer in _TrackedPointers) BindingDefaultClass.GestureBinding.Instance.PointerRouter.RemoveRoute(pointer, HandleEvent);
+    _TrackedPointers.Clear();
+
+    base.Dispose();
+}
+
+
+
+
+private FlutterSDK.Gestures.Arena.GestureArenaEntry _AddPointerToArena(int pointer)
+{
+    if (_Team != null) return _Team.Add(pointer, this);
+    return BindingDefaultClass.GestureBinding.Instance.GestureArena.Add(pointer, this);
+}
+
+
+
+
+/// <Summary>
+/// Causes events related to the given pointer ID to be routed to this recognizer.
+///
+/// The pointer events are transformed according to `transform` and then delivered
+/// to [handleEvent]. The value for the `transform` argument is usually obtained
+/// from [PointerDownEvent.transform] to transform the events from the global
+/// coordinate space into the coordinate space of the event receiver. It may be
+/// null if no transformation is necessary.
+///
+/// Use [stopTrackingPointer] to remove the route added by this function.
+/// </Summary>
+public virtual void StartTrackingPointer(int pointer, Matrix4 transform = default(Matrix4))
+{
+    BindingDefaultClass.GestureBinding.Instance.PointerRouter.AddRoute(pointer, HandleEvent, transform);
+    _TrackedPointers.Add(pointer);
+
+    _Entries[pointer] = _AddPointerToArena(pointer);
+}
+
+
+
+
+/// <Summary>
+/// Stops events related to the given pointer ID from being routed to this recognizer.
+///
+/// If this function reduces the number of tracked pointers to zero, it will
+/// call [didStopTrackingLastPointer] synchronously.
+///
+/// Use [startTrackingPointer] to add the routes in the first place.
+/// </Summary>
+public virtual void StopTrackingPointer(int pointer)
+{
+    if (_TrackedPointers.Contains(pointer))
+    {
+        BindingDefaultClass.GestureBinding.Instance.PointerRouter.RemoveRoute(pointer, HandleEvent);
+        _TrackedPointers.Remove(pointer);
+        if (_TrackedPointers.IsEmpty()) DidStopTrackingLastPointer(pointer);
+    }
+
+}
+
+
+
+
+/// <Summary>
+/// Stops tracking the pointer associated with the given event if the event is
+/// a [PointerUpEvent] or a [PointerCancelEvent] event.
+/// </Summary>
+public virtual void StopTrackingIfPointerNoLongerDown(FlutterSDK.Gestures.Events.PointerEvent @event)
+{
+    if (@event is PointerUpEvent || @event is PointerCancelEvent) StopTrackingPointer(@event.Pointer);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A base class for gesture recognizers that track a single primary pointer.
+///
+/// Gestures based on this class will stop tracking the gesture if the primary
+/// pointer travels beyond [preAcceptSlopTolerance] or [postAcceptSlopTolerance]
+/// pixels from the original contact point of the gesture.
+///
+/// If the [preAcceptSlopTolerance] was breached before the gesture was accepted
+/// in the gesture arena, the gesture will be rejected.
+/// </Summary>
+public class PrimaryPointerGestureRecognizer : FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer
+{
+    #region constructors
+    public PrimaryPointerGestureRecognizer(TimeSpan deadline = default(TimeSpan), double preAcceptSlopTolerance = default(double), double postAcceptSlopTolerance = default(double), @Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
+    : base(debugOwner: debugOwner, kind: kind)
+
+}
+#endregion
+
+#region fields
+public virtual TimeSpan Deadline { get; set; }
+public virtual double PreAcceptSlopTolerance { get; set; }
+public virtual double PostAcceptSlopTolerance { get; set; }
+public virtual FlutterSDK.Gestures.Recognizer.GestureRecognizerState State { get; set; }
+public virtual int PrimaryPointer { get; set; }
+public virtual FlutterSDK.Gestures.Recognizer.OffsetPair InitialPosition { get; set; }
+internal virtual bool _GestureAccepted { get; set; }
+internal virtual Timer _Timer { get; set; }
+#endregion
+
+#region methods
+
+public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event)
+{
+    StartTrackingPointer(@event.Pointer, @event.Transform);
+    if (State == GestureRecognizerState.Ready)
+    {
+        State = GestureRecognizerState.Possible;
+        PrimaryPointer = ((PointerUpEvent)@event).Pointer;
+        InitialPosition = new OffsetPair(local: ((PointerUpEvent)@event).LocalPosition, global: ((PointerUpEvent)@event).Position);
+        if (Deadline != null) _Timer = new Timer(Deadline, () => =>DidExceedDeadlineWithEvent(((PointerUpEvent)@event)));
+    }
+
+}
+
+
+
+
+public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event)
+{
+
+    if (State == GestureRecognizerState.Possible && @event.Pointer == PrimaryPointer)
+    {
+        bool isPreAcceptSlopPastTolerance = !_GestureAccepted && PreAcceptSlopTolerance != null && _GetGlobalDistance(@event) > PreAcceptSlopTolerance;
+        bool isPostAcceptSlopPastTolerance = _GestureAccepted && PostAcceptSlopTolerance != null && _GetGlobalDistance(@event) > PostAcceptSlopTolerance;
+        if (((PointerMoveEvent)@event) is PointerMoveEvent && (isPreAcceptSlopPastTolerance || isPostAcceptSlopPastTolerance))
+        {
+            Resolve(GestureDisposition.Rejected);
+            StopTrackingPointer(PrimaryPointer);
+        }
+        else
+        {
+            HandlePrimaryPointer(@event);
+        }
+
+    }
+
+    StopTrackingIfPointerNoLongerDown(@event);
+}
+
+
+
+
+/// <Summary>
+/// Override to provide behavior for the primary pointer when the gesture is still possible.
+/// </Summary>
+public virtual void HandlePrimaryPointer(FlutterSDK.Gestures.Events.PointerEvent @event)
+{
+}
+
+
+/// <Summary>
+/// Override to be notified when [deadline] is exceeded.
+///
+/// You must override this method or [didExceedDeadlineWithEvent] if you
+/// supply a [deadline].
+/// </Summary>
+public virtual void DidExceedDeadline()
+{
+
+}
+
+
+
+
+/// <Summary>
+/// Same as [didExceedDeadline] but receives the [event] that initiated the
+/// gesture.
+///
+/// You must override this method or [didExceedDeadline] if you supply a
+/// [deadline].
+/// </Summary>
+public virtual void DidExceedDeadlineWithEvent(FlutterSDK.Gestures.Events.PointerDownEvent @event)
+{
+    DidExceedDeadline();
+}
+
+
+
+
+public new void AcceptGesture(int pointer)
+{
+    if (pointer == PrimaryPointer)
+    {
+        _StopTimer();
+        _GestureAccepted = true;
+    }
+
+}
+
+
+
+
+public new void RejectGesture(int pointer)
+{
+    if (pointer == PrimaryPointer && State == GestureRecognizerState.Possible)
+    {
+        _StopTimer();
+        State = GestureRecognizerState.Defunct;
+    }
+
+}
+
+
+
+
+public new void DidStopTrackingLastPointer(int pointer)
+{
+
+    _StopTimer();
+    State = GestureRecognizerState.Ready;
+}
+
+
+
+
+public new void Dispose()
+{
+    _StopTimer();
+    base.Dispose();
+}
+
+
+
+
+private void _StopTimer()
+{
+    if (_Timer != null)
+    {
+        _Timer.Cancel();
+        _Timer = null;
+    }
+
+}
+
+
+
+
+private double _GetGlobalDistance(FlutterSDK.Gestures.Events.PointerEvent @event)
+{
+    Offset offset = @event.Position - InitialPosition.Global;
+    return offset.Distance;
+}
+
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new EnumProperty<GestureRecognizerState>("state", State));
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A container for a [local] and [global] [Offset] pair.
+///
+/// Usually, the [global] [Offset] is in the coordinate space of the screen
+/// after conversion to logical pixels and the [local] offset is the same
+/// [Offset], but transformed to a local coordinate space.
+/// </Summary>
+public class OffsetPair
+{
+    #region constructors
+    public OffsetPair(FlutterBinding.UI.Offset local = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset global = default(FlutterBinding.UI.Offset))
+
+}
+public static OffsetPair FromEventPosition(FlutterSDK.Gestures.Events.PointerEvent @event)
+
+return new OffsetPair(local: @event.LocalPosition, global: @event.Position);
+}
+
+
+public static OffsetPair FromEventDelta(FlutterSDK.Gestures.Events.PointerEvent @event)
+
+return new OffsetPair(local: @event.LocalDelta, global: @event.Delta);
+}
+
+
+#endregion
+
+#region fields
+public virtual FlutterSDK.Gestures.Recognizer.OffsetPair Zero { get; set; }
+public virtual FlutterBinding.UI.Offset Local { get; set; }
+public virtual FlutterBinding.UI.Offset Global { get; set; }
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Adds the `other.global` to [global] and `other.local` to [local].
+/// </Summary>
+public virtual FlutterSDK.Gestures.Recognizer.OffsetPair AddOperator(FlutterSDK.Gestures.Recognizer.OffsetPair other)
+{
+    return new OffsetPair(local: Local + other.Local, global: Global + other.Global);
+}
+
+
+
+
+/// <Summary>
+/// Subtracts the `other.global` from [global] and `other.local` from [local].
+/// </Summary>
+public virtual FlutterSDK.Gestures.Recognizer.OffsetPair SubtractOperator(FlutterSDK.Gestures.Recognizer.OffsetPair other)
+{
+    return new OffsetPair(local: Local - other.Local, global: Global - other.Global);
+}
+
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Configuration of offset passed to [DragStartDetails].
+///
+/// The settings determines when a drag formally starts when the user
+/// initiates a drag.
+///
+/// See also:
+///
+///  * [DragGestureRecognizer.dragStartBehavior], which gives an example for the different behaviors.
+/// </Summary>
+public enum DragStartBehavior
+{
+
+    /// <Summary>
+    /// Set the initial offset, at the position where the first down event was
+    /// detected.
+    /// </Summary>
+    Down,
+    /// <Summary>
+    /// Set the initial position at the position where the drag start event was
+    /// detected.
+    /// </Summary>
+    Start,
+}
+
+
+/// <Summary>
+/// The possible states of a [PrimaryPointerGestureRecognizer].
+///
+/// The recognizer advances from [ready] to [possible] when it starts tracking a
+/// primary pointer. When the primary pointer is resolved in the gesture
+/// arena (either accepted or rejected), the recognizers advances to [defunct].
+/// Once the recognizer has stopped tracking any remaining pointers, the
+/// recognizer returns to [ready].
+/// </Summary>
+public enum GestureRecognizerState
+{
+
+    /// <Summary>
+    /// The recognizer is ready to start recognizing a gesture.
+    /// </Summary>
+    Ready,
+    /// <Summary>
+    /// The sequence of pointer events seen thus far is consistent with the
+    /// gesture the recognizer is attempting to recognize but the gesture has not
+    /// been accepted definitively.
+    /// </Summary>
+    Possible,
+    /// <Summary>
+    /// Further pointer events cannot cause this recognizer to recognize the
+    /// gesture until the recognizer returns to the [ready] state (typically when
+    /// all the pointers the recognizer is tracking are removed from the screen).
+    /// </Summary>
+    Defunct,
+}
 
 }

@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -493,115 +493,190 @@ namespace FlutterSDK.Material.Inkdecoration
         #region constructors
         public Ink(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), double width = default(double), double height = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
-        {
-            this.Padding = padding;
-            this.Width = width;
-            this.Height = height;
-            this.Child = child; throw new NotImplementedException();
-        }
-        public static Ink Image(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Imageprovider.ImageProvider<object> image = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imagestream.ImageErrorListener onImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener), ColorFilter colorFilter = default(ColorFilter), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterBinding.UI.Rect centerSlice = default(FlutterBinding.UI.Rect), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), bool matchTextDirection = false, double width = default(double), double height = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        {
-            var instance = new Ink(key: key); instance.Padding = padding;
-            instance.Width = width;
-            instance.Height = height;
-            instance.Child = child; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    public static Ink Image(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Imageprovider.ImageProvider<object> image = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imagestream.ImageErrorListener onImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener), ColorFilter colorFilter = default(ColorFilter), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterBinding.UI.Rect centerSlice = default(FlutterBinding.UI.Rect), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), bool matchTextDirection = false, double width = default(double), double height = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
-        public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
-        public virtual double Width { get; set; }
-        public virtual double Height { get; set; }
-        internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry _PaddingIncludingDecoration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+}
+#endregion
 
-        #region methods
+#region fields
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
+public virtual double Width { get; set; }
+public virtual double Height { get; set; }
+internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry _PaddingIncludingDecoration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
 
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+#region methods
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new DiagnosticsProperty<EdgeInsetsGeometry>("padding", Padding, defaultValue: null));
+    properties.Add(new DiagnosticsProperty<Decoration>("bg", Decoration, defaultValue: null));
+}
 
 
-        public new FlutterSDK.Material.Inkdecoration._InkState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
 
 
-    public class _InkState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Inkdecoration.Ink>
+public new FlutterSDK.Material.Inkdecoration._InkState CreateState() => new _InkState();
+
+
+#endregion
+}
+
+
+public class _InkState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Inkdecoration.Ink>
+{
+    #region constructors
+    public _InkState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Material.Inkdecoration.InkDecoration _Ink { get; set; }
+    #endregion
+
+    #region methods
+
+    private void _HandleRemoved()
     {
-        #region constructors
-        public _InkState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Material.Inkdecoration.InkDecoration _Ink { get; set; }
-        #endregion
-
-        #region methods
-
-        private void _HandleRemoved() { throw new NotImplementedException(); }
-
-
-        public new void Deactivate() { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Widgets.Framework.Widget _Build(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        _Ink = null;
     }
 
 
-    /// <Summary>
-    /// A decoration on a part of a [Material].
-    ///
-    /// This object is rarely created directly. Instead of creating an ink
-    /// decoration directly, consider using an [Ink] widget, which uses this class
-    /// in combination with [Padding] and [ConstrainedBox] to draw a decoration on a
-    /// [Material].
-    ///
-    /// See also:
-    ///
-    ///  * [Ink], the corresponding widget.
-    ///  * [InkResponse], which uses gestures to trigger ink highlights and ink
-    ///    splashes in the parent [Material].
-    ///  * [InkWell], which is a rectangular [InkResponse] (the most common type of
-    ///    ink response).
-    ///  * [Material], which is the widget on which the ink is painted.
-    /// </Summary>
-    public class InkDecoration : FlutterSDK.Material.Material.InkFeature
+
+
+    public new void Deactivate()
     {
-        #region constructors
-        public InkDecoration(FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration), FlutterSDK.Material.Material.MaterialInkController controller = default(FlutterSDK.Material.Material.MaterialInkController), FlutterSDK.Rendering.Box.RenderBox referenceBox = default(FlutterSDK.Rendering.Box.RenderBox), VoidCallback onRemoved = default(VoidCallback))
-        : base(controller: controller, referenceBox: referenceBox, onRemoved: onRemoved)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+        _Ink?.Dispose();
 
-        #region fields
-        internal virtual FlutterSDK.Painting.Decoration.BoxPainter _Painter { get; set; }
-        internal virtual FlutterSDK.Painting.Decoration.Decoration _Decoration { get; set; }
-        internal virtual FlutterSDK.Painting.Imageprovider.ImageConfiguration _Configuration { get; set; }
-        public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Painting.Imageprovider.ImageConfiguration Configuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        private void _HandleChanged() { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        public new void PaintFeature(Canvas canvas, Matrix4 transform) { throw new NotImplementedException(); }
-
-        #endregion
+        base.Deactivate();
     }
+
+
+
+
+    private FlutterSDK.Widgets.Framework.Widget _Build(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Box.BoxConstraints constraints)
+    {
+        if (_Ink == null)
+        {
+            _Ink = new InkDecoration(decoration: Widget.Decoration, configuration: ImageDefaultClass.CreateLocalImageConfiguration(context), controller: MaterialDefaultClass.Material.Of(context), referenceBox: context.FindRenderObject() as RenderBox, onRemoved: _HandleRemoved);
+        }
+        else
+        {
+            _Ink.Decoration = Widget.Decoration;
+            _Ink.Configuration = ImageDefaultClass.CreateLocalImageConfiguration(context);
+        }
+
+        Widget current = Widget.Child;
+        EdgeInsetsGeometry effectivePadding = Widget._PaddingIncludingDecoration;
+        if (effectivePadding != null) current = new Padding(padding: effectivePadding, child: current);
+        return current ?? new Container();
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+
+        Widget result = new LayoutBuilder(builder: _Build);
+        if (Widget.Width != null || Widget.Height != null)
+        {
+            result = new SizedBox(width: Widget.Width, height: Widget.Height, child: result);
+        }
+
+        return result;
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// A decoration on a part of a [Material].
+///
+/// This object is rarely created directly. Instead of creating an ink
+/// decoration directly, consider using an [Ink] widget, which uses this class
+/// in combination with [Padding] and [ConstrainedBox] to draw a decoration on a
+/// [Material].
+///
+/// See also:
+///
+///  * [Ink], the corresponding widget.
+///  * [InkResponse], which uses gestures to trigger ink highlights and ink
+///    splashes in the parent [Material].
+///  * [InkWell], which is a rectangular [InkResponse] (the most common type of
+///    ink response).
+///  * [Material], which is the widget on which the ink is painted.
+/// </Summary>
+public class InkDecoration : FlutterSDK.Material.Material.InkFeature
+{
+    #region constructors
+    public InkDecoration(FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration), FlutterSDK.Material.Material.MaterialInkController controller = default(FlutterSDK.Material.Material.MaterialInkController), FlutterSDK.Rendering.Box.RenderBox referenceBox = default(FlutterSDK.Rendering.Box.RenderBox), VoidCallback onRemoved = default(VoidCallback))
+    : base(controller: controller, referenceBox: referenceBox, onRemoved: onRemoved)
+
+this .Decoration=decoration;
+controller.AddInkFeature(this );
+    }
+
+
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Painting.Decoration.BoxPainter _Painter { get; set; }
+    internal virtual FlutterSDK.Painting.Decoration.Decoration _Decoration { get; set; }
+    internal virtual FlutterSDK.Painting.Imageprovider.ImageConfiguration _Configuration { get; set; }
+    public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Painting.Imageprovider.ImageConfiguration Configuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    private void _HandleChanged()
+    {
+        Controller.MarkNeedsPaint();
+    }
+
+
+
+
+    public new void Dispose()
+    {
+        _Painter?.Dispose();
+        base.Dispose();
+    }
+
+
+
+
+    public new void PaintFeature(Canvas canvas, Matrix4 transform)
+    {
+        if (_Painter == null) return;
+        Offset originOffset = MatrixutilsDefaultClass.MatrixUtils.GetAsTranslation(transform);
+        ImageConfiguration sizedConfiguration = Configuration.CopyWith(size: ReferenceBox.Size);
+        if (originOffset == null)
+        {
+            canvas.Save();
+            canvas.Transform(transform.Storage);
+            _Painter.Paint(canvas, Dart: uiDefaultClass.Offset.Zero, sizedConfiguration);
+            canvas.Restore();
+        }
+        else
+        {
+            _Painter.Paint(canvas, originOffset, sizedConfiguration);
+        }
+
+    }
+
+
+
+    #endregion
+}
 
 }

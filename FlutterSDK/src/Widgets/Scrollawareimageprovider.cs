@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -465,28 +465,54 @@ namespace FlutterSDK.Widgets.Scrollawareimageprovider
         #region constructors
         public ScrollAwareImageProvider(FlutterSDK.Widgets.Disposablebuildcontext.DisposableBuildContext<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> context = default(FlutterSDK.Widgets.Disposablebuildcontext.DisposableBuildContext<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>), FlutterSDK.Painting.Imageprovider.ImageProvider<T> imageProvider = default(FlutterSDK.Painting.Imageprovider.ImageProvider<T>))
         : base()
+    
+}
+    #endregion
+
+    #region fields
+    public virtual FlutterSDK.Widgets.Disposablebuildcontext.DisposableBuildContext<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> Context { get; set; }
+    public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<T> ImageProvider { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void ResolveStreamForKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration, FlutterSDK.Painting.Imagestream.ImageStream stream, T key, FlutterSDK.Painting.Imagestream.ImageErrorListener handleError)
+    {
+        if (stream.Completer != null || BindingDefaultClass.PaintingBinding.Instance.ImageCache.ContainsKey(key))
         {
-            this.Context = context;
-            this.ImageProvider = imageProvider; throw new NotImplementedException();
+            ImageProvider.ResolveStreamForKey(configuration, stream, key, handleError);
+            return;
         }
-        #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Disposablebuildcontext.DisposableBuildContext<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> Context { get; set; }
-        public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<T> ImageProvider { get; set; }
-        #endregion
+        if (Context.Context == null)
+        {
+            return;
+        }
 
-        #region methods
+        if (ScrollableDefaultClass.Scrollable.RecommendDeferredLoadingForContext(Context.Context))
+        {
+            BindingDefaultClass.SchedulerBinding.Instance.ScheduleFrameCallback((_) =>
+            {
+            Dart: asyncDefaultClass.ScheduleMicrotask(() => =>ResolveStreamForKey(configuration, stream, key, handleError));
+            }
+            );
+            return;
+        }
 
-        public new void ResolveStreamForKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration, FlutterSDK.Painting.Imagestream.ImageStream stream, T key, FlutterSDK.Painting.Imagestream.ImageErrorListener handleError) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(T key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode) { throw new NotImplementedException(); }
-
-
-        public new Future<T> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) { throw new NotImplementedException(); }
-
-        #endregion
+        ImageProvider.ResolveStreamForKey(configuration, stream, key, handleError);
     }
+
+
+
+
+    public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(T key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode) => ImageProvider.Load(key, decode);
+
+
+
+    public new Future<T> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) => ImageProvider.ObtainKey(configuration);
+
+
+    #endregion
+}
 
 }

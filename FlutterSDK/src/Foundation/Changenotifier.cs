@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 namespace FlutterSDK.Foundation.Changenotifier
 {
@@ -368,7 +368,13 @@ namespace FlutterSDK.Foundation.Changenotifier
         internal virtual FlutterSDK.Foundation.Observerlist.ObserverList<object> _Listeners { get; set; }
         public virtual bool HasListeners { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
-        private bool _DebugAssertNotDisposed() { throw new NotImplementedException(); }
+        private bool _DebugAssertNotDisposed()
+        {
+
+            return true;
+        }
+
+
 
 
         /// <Summary>
@@ -376,7 +382,13 @@ namespace FlutterSDK.Foundation.Changenotifier
         ///
         /// This method must not be called after [dispose] has been called.
         /// </Summary>
-        public new void AddListener(VoidCallback listener) { throw new NotImplementedException(); }
+        public new void AddListener(VoidCallback listener)
+        {
+
+            _Listeners.Add(listener);
+        }
+
+
 
 
         /// <Summary>
@@ -400,7 +412,13 @@ namespace FlutterSDK.Foundation.Changenotifier
         /// listener on two separate objects which are both forwarding all
         /// registrations to a common upstream object.
         /// </Summary>
-        public new void RemoveListener(VoidCallback listener) { throw new NotImplementedException(); }
+        public new void RemoveListener(VoidCallback listener)
+        {
+
+            _Listeners.Remove(listener);
+        }
+
+
 
 
         /// <Summary>
@@ -411,7 +429,13 @@ namespace FlutterSDK.Foundation.Changenotifier
         ///
         /// This method should only be called by the object's owner.
         /// </Summary>
-        public virtual void Dispose() { throw new NotImplementedException(); }
+        public virtual void Dispose()
+        {
+
+            _Listeners = null;
+        }
+
+
 
 
         /// <Summary>
@@ -431,7 +455,32 @@ namespace FlutterSDK.Foundation.Changenotifier
         /// in response to a notification) that has been registered multiple times.
         /// See the discussion at [removeListener].
         /// </Summary>
-        public virtual void NotifyListeners() { throw new NotImplementedException(); }
+        public virtual void NotifyListeners()
+        {
+
+            if (_Listeners != null)
+            {
+                List<VoidCallback> localListeners = List<VoidCallback>.From(_Listeners);
+                foreach (VoidCallback listener in localListeners)
+                {
+                    try
+                    {
+                        if (_Listeners.Contains(listener)) listener();
+                    }
+                    catch (exception,stack){
+                        AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetails(exception: exception, stack: stack, library: "foundation library", context: new ErrorDescription($"'while dispatching notifications for {GetType()}'"), informationCollector: () => sync *{
+yield new DiagnosticsProperty<ChangeNotifier>($"'The {GetType()} sending notification was'", this , style:DiagnosticsTreeStyle.ErrorProperty);
+                    }
+));
+                    }
+
+                }
+
+            }
+
+        }
+
+
 
     }
     public static class ChangeNotifierMixin
@@ -502,109 +551,126 @@ namespace FlutterSDK.Foundation.Changenotifier
     {
         #region constructors
         public Listenable()
-        {
-            throw new NotImplementedException();
-        }
-        public static Listenable Merge(List<FlutterSDK.Foundation.Changenotifier.Listenable> listenables)
-        {
-            var instance = new Listenable(); throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    public static Listenable Merge(List<FlutterSDK.Foundation.Changenotifier.Listenable> listenables)
 
-        #region fields
-        #endregion
+}
+#endregion
 
-        #region methods
+#region fields
+#endregion
 
-        /// <Summary>
-        /// Register a closure to be called when the object notifies its listeners.
-        /// </Summary>
-        public virtual void AddListener(VoidCallback listener) { throw new NotImplementedException(); }
+#region methods
 
-
-        /// <Summary>
-        /// Remove a previously registered closure from the list of closures that the
-        /// object notifies.
-        /// </Summary>
-        public virtual void RemoveListener(VoidCallback listener) { throw new NotImplementedException(); }
-
-        #endregion
-    }
+/// <Summary>
+/// Register a closure to be called when the object notifies its listeners.
+/// </Summary>
+public virtual void AddListener(VoidCallback listener)
+{
+}
 
 
-    /// <Summary>
-    /// An interface for subclasses of [Listenable] that expose a [value].
-    ///
-    /// This interface is implemented by [ValueNotifier<T>] and [Animation<T>], and
-    /// allows other APIs to accept either of those implementations interchangeably.
-    /// </Summary>
-    public class ValueListenable<T> : FlutterSDK.Foundation.Changenotifier.Listenable
+/// <Summary>
+/// Remove a previously registered closure from the list of closures that the
+/// object notifies.
+/// </Summary>
+public virtual void RemoveListener(VoidCallback listener)
+{
+}
+
+#endregion
+}
+
+
+/// <Summary>
+/// An interface for subclasses of [Listenable] that expose a [value].
+///
+/// This interface is implemented by [ValueNotifier<T>] and [Animation<T>], and
+/// allows other APIs to accept either of those implementations interchangeably.
+/// </Summary>
+public class ValueListenable<T> : FlutterSDK.Foundation.Changenotifier.Listenable
+{
+    #region constructors
+    public ValueListenable()
+
+}
+#endregion
+
+#region fields
+public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+#endregion
+}
+
+
+public class _MergingListenable : FlutterSDK.Foundation.Changenotifier.Listenable
+{
+    #region constructors
+    public _MergingListenable(List<FlutterSDK.Foundation.Changenotifier.Listenable> _children)
+
+}
+#endregion
+
+#region fields
+internal virtual List<FlutterSDK.Foundation.Changenotifier.Listenable> _Children { get; set; }
+#endregion
+
+#region methods
+
+public new void AddListener(VoidCallback listener)
+{
+    foreach (Listenable child in _Children)
     {
-        #region constructors
-        public ValueListenable()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-        #endregion
+        child?.AddListener(listener);
     }
 
+}
 
-    public class _MergingListenable : FlutterSDK.Foundation.Changenotifier.Listenable
+
+
+
+public new void RemoveListener(VoidCallback listener)
+{
+    foreach (Listenable child in _Children)
     {
-        #region constructors
-        public _MergingListenable(List<FlutterSDK.Foundation.Changenotifier.Listenable> _children)
-        {
-            this._Children = _children; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual List<FlutterSDK.Foundation.Changenotifier.Listenable> _Children { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void AddListener(VoidCallback listener) { throw new NotImplementedException(); }
-
-
-        public new void RemoveListener(VoidCallback listener) { throw new NotImplementedException(); }
-
-
-        #endregion
+        child?.RemoveListener(listener);
     }
 
+}
 
-    /// <Summary>
-    /// A [ChangeNotifier] that holds a single value.
-    ///
-    /// When [value] is replaced with something that is not equal to the old
-    /// value as evaluated by the equality operator ==, this class notifies its
-    /// listeners.
-    /// </Summary>
-    public class ValueNotifier<T> : FlutterSDK.Foundation.Changenotifier.ChangeNotifier, IValueListenable<T>
-    {
-        #region constructors
-        public ValueNotifier(T _value)
-        {
-            this._Value = _value; throw new NotImplementedException();
-        }
-        #endregion
 
-        #region fields
-        internal virtual T _Value { get; set; }
-        public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
 
-        #region methods
 
-        #endregion
-    }
+#endregion
+}
+
+
+/// <Summary>
+/// A [ChangeNotifier] that holds a single value.
+///
+/// When [value] is replaced with something that is not equal to the old
+/// value as evaluated by the equality operator ==, this class notifies its
+/// listeners.
+/// </Summary>
+public class ValueNotifier<T> : FlutterSDK.Foundation.Changenotifier.ChangeNotifier, IValueListenable<T>
+{
+    #region constructors
+    public ValueNotifier(T _value)
+
+}
+#endregion
+
+#region fields
+internal virtual T _Value { get; set; }
+public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+#endregion
+}
 
 }

@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -404,30 +404,32 @@ namespace FlutterSDK.Material.Flutterlogo
         #region constructors
         public FlutterLogo(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double size = default(double), FlutterSDK.Material.Colors.MaterialColor colors = default(FlutterSDK.Material.Colors.MaterialColor), FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Flutterlogo.FlutterLogoStyle style = default(FlutterSDK.Painting.Flutterlogo.FlutterLogoStyle), TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
         : base(key: key)
-        {
-            this.Size = size;
-            this.Colors = colors;
-            this.TextColor = textColor;
-            this.Style = style;
-            this.Duration = duration;
-            this.Curve = curve; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual double Size { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialColor Colors { get; set; }
-        public virtual FlutterBinding.UI.Color TextColor { get; set; }
-        public virtual FlutterSDK.Painting.Flutterlogo.FlutterLogoStyle Style { get; set; }
-        public virtual TimeSpan Duration { get; set; }
-        public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
-        #endregion
+    #region fields
+    public virtual double Size { get; set; }
+    public virtual FlutterSDK.Material.Colors.MaterialColor Colors { get; set; }
+    public virtual FlutterBinding.UI.Color TextColor { get; set; }
+    public virtual FlutterSDK.Painting.Flutterlogo.FlutterLogoStyle Style { get; set; }
+    public virtual TimeSpan Duration { get; set; }
+    public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        IconThemeData iconTheme = IconthemeDefaultClass.IconTheme.Of(context);
+        double iconSize = size == default(double) ? iconTheme.size : size;
+        MaterialColor logoColors = Colors ?? ColorsDefaultClass.Colors.Blue;
+        return new AnimatedContainer(width: iconSize, height: iconSize, duration: Duration, curve: Curve, decoration: new FlutterLogoDecoration(lightColor: logoColors.Shade400, darkColor: logoColors.Shade900, style: Style, textColor: TextColor));
     }
+
+
+
+    #endregion
+}
 
 }

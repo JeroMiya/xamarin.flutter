@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -450,45 +450,121 @@ namespace FlutterSDK.Rendering.Error
     {
         #region constructors
         public RenderErrorBox(string message = default(string))
+    
+try {
+if (Message!=""){
+Ui.Dart:uiDefaultClass.ParagraphBuilder builder = new Ui.ParagraphBuilder(ParagraphStyle);
+        builder.PushStyle(TextStyle);
+builder.AddText(Message);
+_Paragraph=builder.Build();
+}
+
+}
+catch (error)
+{
+}
+
+}
+
+
+#endregion
+
+#region fields
+public virtual string Message { get; set; }
+internal virtual FlutterBinding.UI.Paragraph _Paragraph { get; set; }
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Padding { get; set; }
+public virtual double MinimumWidth { get; set; }
+public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+public virtual FlutterBinding.UI.TextStyle TextStyle { get; set; }
+public virtual ParagraphStyle ParagraphStyle { get; set; }
+public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new double ComputeMaxIntrinsicWidth(double height)
+{
+    return ErrorDefaultClass._KMaxWidth;
+}
+
+
+
+
+public new double ComputeMaxIntrinsicHeight(double width)
+{
+    return ErrorDefaultClass._KMaxHeight;
+}
+
+
+
+
+public new bool HitTestSelf(FlutterBinding.UI.Offset position) => true;
+
+
+
+public new void PerformResize()
+{
+    Size = Constraints.Constrain(new Size(ErrorDefaultClass._KMaxWidth, ErrorDefaultClass._KMaxHeight));
+}
+
+
+
+
+private Color _InitBackgroundColor()
+{
+    Color result = new Color(0xF0C0C0C0);
+
+    return result;
+}
+
+
+
+
+private TextStyle _InitTextStyle()
+{
+    Ui.Dart:uiDefaultClass.TextStyle result = new Ui.TextStyle(color: new Color(0xFF303030), fontFamily: "sans-serif", fontSize: 18.0);
+
+return result;
+}
+
+
+
+
+public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+{
+    try
+    {
+        context.Canvas.DrawRect(offset & Size, new Paint()..Color = BackgroundColor);
+        if (_Paragraph != null)
         {
-            this.Message = message; throw new NotImplementedException();
+            double width = Size.Width;
+            double left = 0.0;
+            double top = 0.0;
+            if (width > Padding.Left + MinimumWidth + Padding.Right)
+            {
+                width -= Padding.Left + Padding.Right;
+                left += Padding.Left;
+            }
+
+            _Paragraph.Layout(new Ui.ParagraphConstraints(width: width));
+            if (Size.Height > Padding.Top + _Paragraph.Height + Padding.Bottom)
+            {
+                top += Padding.Top;
+            }
+
+            context.Canvas.DrawParagraph(_Paragraph, offset + new Offset(left, top));
         }
-        #endregion
 
-        #region fields
-        public virtual string Message { get; set; }
-        internal virtual FlutterBinding.UI.Paragraph _Paragraph { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Padding { get; set; }
-        public virtual double MinimumWidth { get; set; }
-        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-        public virtual FlutterBinding.UI.TextStyle TextStyle { get; set; }
-        public virtual ParagraphStyle ParagraphStyle { get; set; }
-        public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new bool HitTestSelf(FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
-
-
-        public new void PerformResize() { throw new NotImplementedException(); }
-
-
-        private Color _InitBackgroundColor() { throw new NotImplementedException(); }
-
-
-        private TextStyle _InitTextStyle() { throw new NotImplementedException(); }
-
-
-        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-        #endregion
     }
+    catch (e)
+    {
+    }
+
+}
+
+
+
+#endregion
+}
 
 }

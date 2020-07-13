@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -393,39 +393,35 @@ namespace FlutterSDK.Material.Animatedicons.Animatediconsdata
     {
         #region constructors
         public AnimatedIconData()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual bool MatchTextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    public virtual bool MatchTextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
-        #endregion
-    }
+    #region methods
+    #endregion
+}
 
 
-    public class _AnimatedIconData : FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData
-    {
-        #region constructors
-        public _AnimatedIconData(Size size, List<object> paths, bool matchTextDirection = false)
-        {
-            this.Size = size;
-            this.Paths = paths;
-            this.MatchTextDirection = matchTextDirection; throw new NotImplementedException();
-        }
-        #endregion
+public class _AnimatedIconData : FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData
+{
+    #region constructors
+    public _AnimatedIconData(Size size, List<object> paths, bool matchTextDirection = false)
 
-        #region fields
-        public virtual Size Size { get; set; }
-        public virtual List<object> Paths { get; set; }
-        public new bool MatchTextDirection { get; set; }
-        #endregion
+}
+#endregion
 
-        #region methods
-        #endregion
-    }
+#region fields
+public virtual Size Size { get; set; }
+public virtual List<object> Paths { get; set; }
+public new bool MatchTextDirection { get; set; }
+#endregion
+
+#region methods
+#endregion
+}
 
 }

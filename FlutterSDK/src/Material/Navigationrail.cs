@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 namespace FlutterSDK.Material.Navigationrail
 {
@@ -494,285 +494,431 @@ namespace FlutterSDK.Material.Navigationrail
         #region constructors
         public NavigationRail(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), bool extended = false, FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget trailing = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Material.Navigationrail.NavigationRailDestination> destinations = default(List<FlutterSDK.Material.Navigationrail.NavigationRailDestination>), int selectedIndex = default(int), FlutterSDK.Foundation.Basictypes.ValueChanged<int> onDestinationSelected = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), double elevation = default(double), double groupAlignment = default(double), FlutterSDK.Material.Navigationrail.NavigationRailLabelType labelType = default(FlutterSDK.Material.Navigationrail.NavigationRailLabelType), FlutterSDK.Painting.Textstyle.TextStyle unselectedLabelTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle selectedLabelTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Iconthemedata.IconThemeData unselectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData selectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), double minWidth = default(double), double minExtendedWidth = default(double))
         : base()
-        {
-            this.BackgroundColor = backgroundColor;
-            this.Extended = extended;
-            this.Leading = leading;
-            this.Trailing = trailing;
-            this.Destinations = destinations;
-            this.SelectedIndex = selectedIndex;
-            this.OnDestinationSelected = onDestinationSelected;
-            this.Elevation = elevation;
-            this.GroupAlignment = groupAlignment;
-            this.LabelType = labelType;
-            this.UnselectedLabelTextStyle = unselectedLabelTextStyle;
-            this.SelectedLabelTextStyle = selectedLabelTextStyle;
-            this.UnselectedIconTheme = unselectedIconTheme;
-            this.SelectedIconTheme = selectedIconTheme;
-            this.MinWidth = minWidth;
-            this.MinExtendedWidth = minExtendedWidth; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-        public virtual bool Extended { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Trailing { get; set; }
-        public virtual List<FlutterSDK.Material.Navigationrail.NavigationRailDestination> Destinations { get; set; }
-        public virtual int SelectedIndex { get; set; }
-        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnDestinationSelected { get; set; }
-        public virtual double Elevation { get; set; }
-        public virtual double GroupAlignment { get; set; }
-        public virtual FlutterSDK.Material.Navigationrail.NavigationRailLabelType LabelType { get; set; }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle UnselectedLabelTextStyle { get; set; }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle SelectedLabelTextStyle { get; set; }
-        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData UnselectedIconTheme { get; set; }
-        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData SelectedIconTheme { get; set; }
-        public virtual double MinWidth { get; set; }
-        public virtual double MinExtendedWidth { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+    public virtual bool Extended { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget Trailing { get; set; }
+    public virtual List<FlutterSDK.Material.Navigationrail.NavigationRailDestination> Destinations { get; set; }
+    public virtual int SelectedIndex { get; set; }
+    public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnDestinationSelected { get; set; }
+    public virtual double Elevation { get; set; }
+    public virtual double GroupAlignment { get; set; }
+    public virtual FlutterSDK.Material.Navigationrail.NavigationRailLabelType LabelType { get; set; }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle UnselectedLabelTextStyle { get; set; }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle SelectedLabelTextStyle { get; set; }
+    public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData UnselectedIconTheme { get; set; }
+    public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData SelectedIconTheme { get; set; }
+    public virtual double MinWidth { get; set; }
+    public virtual double MinExtendedWidth { get; set; }
+    #endregion
 
-        #region methods
-
-        /// <Summary>
-        /// Returns the animation that controls the [NavigationRail.extended] state.
-        ///
-        /// This can be used to synchronize animations in the [leading] or [trailing]
-        /// widget, such as an animated menu or a [FloatingActionButton] animation.
-        ///
-        /// {@tool snippet}
-        ///
-        /// This example shows how to use this animation to create a
-        /// [FloatingActionButton] that animates itself between the normal and
-        /// extended states of the [NavigationRail].
-        ///
-        /// An instance of `ExtendableFab` would be created for
-        /// [NavigationRail.leading].
-        ///
-        /// ```dart
-        /// import 'dart:ui';
-        ///
-        /// @override
-        /// Widget build(BuildContext context) {
-        ///   final Animation<double> animation = NavigationRail.extendedAnimation(context);
-        ///   return AnimatedBuilder(
-        ///     animation: animation,
-        ///     builder: (BuildContext context, Widget child) {
-        ///       // The extended fab has a shorter height than the regular fab.
-        ///       return Container(
-        ///         height: 56,
-        ///         padding: EdgeInsets.symmetric(
-        ///           vertical: lerpDouble(0, 6, animation.value),
-        ///         ),
-        ///         child: animation.value == 0
-        ///           ? FloatingActionButton(
-        ///               child: Icon(Icons.add),
-        ///               onPressed: () {},
-        ///             )
-        ///           : Align(
-        ///               alignment: AlignmentDirectional.centerStart,
-        ///               widthFactor: animation.value,
-        ///               child: Padding(
-        ///                 padding: const EdgeInsetsDirectional.only(start: 8),
-        ///                 child: FloatingActionButton.extended(
-        ///                   icon: Icon(Icons.add),
-        ///                   label: Text('CREATE'),
-        ///                   onPressed: () {},
-        ///                 ),
-        ///               ),
-        ///             ),
-        ///       );
-        ///     },
-        ///   );
-        /// }
-        /// ```
-        ///
-        /// {@end-tool}
-        /// </Summary>
-        public virtual FlutterSDK.Animation.Animation.Animation<double> ExtendedAnimation(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Material.Navigationrail._NavigationRailState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _NavigationRailState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Navigationrail.NavigationRail>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-    {
-        #region constructors
-        public _NavigationRailState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual List<FlutterSDK.Animation.Animationcontroller.AnimationController> _DestinationControllers { get; set; }
-        internal virtual List<FlutterSDK.Animation.Animation.Animation<double>> _DestinationAnimations { get; set; }
-        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _ExtendedController { get; set; }
-        internal virtual FlutterSDK.Animation.Animation.Animation<double> _ExtendedAnimation { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Material.Navigationrail.NavigationRail oldWidget) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        private void _DisposeControllers() { throw new NotImplementedException(); }
-
-
-        private void _InitControllers() { throw new NotImplementedException(); }
-
-
-        private void _ResetState() { throw new NotImplementedException(); }
-
-
-        private void _Rebuild() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _RailDestination : FlutterSDK.Widgets.Framework.StatelessWidget
-    {
-        #region constructors
-        public _RailDestination(double minWidth = default(double), double minExtendedWidth = default(double), FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Animation.Animation.Animation<double> destinationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> extendedTransitionAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Material.Navigationrail.NavigationRailLabelType labelType = default(FlutterSDK.Material.Navigationrail.NavigationRailLabelType), bool selected = default(bool), FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Painting.Textstyle.TextStyle labelTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), VoidCallback onTap = default(VoidCallback), string indexLabel = default(string))
-        : base()
-        {
-            this.MinWidth = minWidth;
-            this.MinExtendedWidth = minExtendedWidth;
-            this.Icon = icon;
-            this.Label = label;
-            this.DestinationAnimation = destinationAnimation;
-            this.ExtendedTransitionAnimation = extendedTransitionAnimation;
-            this.LabelType = labelType;
-            this.Selected = selected;
-            this.IconTheme = iconTheme;
-            this.LabelTextStyle = labelTextStyle;
-            this.OnTap = onTap;
-            this.IndexLabel = indexLabel; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual double MinWidth { get; set; }
-        public virtual double MinExtendedWidth { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Icon { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Label { get; set; }
-        public virtual FlutterSDK.Animation.Animation.Animation<double> DestinationAnimation { get; set; }
-        public virtual FlutterSDK.Material.Navigationrail.NavigationRailLabelType LabelType { get; set; }
-        public virtual bool Selected { get; set; }
-        public virtual FlutterSDK.Animation.Animation.Animation<double> ExtendedTransitionAnimation { get; set; }
-        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData IconTheme { get; set; }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle LabelTextStyle { get; set; }
-        public virtual VoidCallback OnTap { get; set; }
-        public virtual string IndexLabel { get; set; }
-        internal virtual FlutterSDK.Animation.Animation.Animation<double> _PositionAnimation { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        private double _NormalLabelFadeInValue() { throw new NotImplementedException(); }
-
-
-        private double _NormalLabelFadeOutValue() { throw new NotImplementedException(); }
-
-
-        private double _ExtendedLabelFadeValue() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
+    #region methods
 
     /// <Summary>
-    /// Defines a [NavigationRail] button that represents one "destination" view.
+    /// Returns the animation that controls the [NavigationRail.extended] state.
     ///
-    /// See also:
+    /// This can be used to synchronize animations in the [leading] or [trailing]
+    /// widget, such as an animated menu or a [FloatingActionButton] animation.
     ///
-    ///  * [NavigationRail]
+    /// {@tool snippet}
+    ///
+    /// This example shows how to use this animation to create a
+    /// [FloatingActionButton] that animates itself between the normal and
+    /// extended states of the [NavigationRail].
+    ///
+    /// An instance of `ExtendableFab` would be created for
+    /// [NavigationRail.leading].
+    ///
+    /// ```dart
+    /// import 'dart:ui';
+    ///
+    /// @override
+    /// Widget build(BuildContext context) {
+    ///   final Animation<double> animation = NavigationRail.extendedAnimation(context);
+    ///   return AnimatedBuilder(
+    ///     animation: animation,
+    ///     builder: (BuildContext context, Widget child) {
+    ///       // The extended fab has a shorter height than the regular fab.
+    ///       return Container(
+    ///         height: 56,
+    ///         padding: EdgeInsets.symmetric(
+    ///           vertical: lerpDouble(0, 6, animation.value),
+    ///         ),
+    ///         child: animation.value == 0
+    ///           ? FloatingActionButton(
+    ///               child: Icon(Icons.add),
+    ///               onPressed: () {},
+    ///             )
+    ///           : Align(
+    ///               alignment: AlignmentDirectional.centerStart,
+    ///               widthFactor: animation.value,
+    ///               child: Padding(
+    ///                 padding: const EdgeInsetsDirectional.only(start: 8),
+    ///                 child: FloatingActionButton.extended(
+    ///                   icon: Icon(Icons.add),
+    ///                   label: Text('CREATE'),
+    ///                   onPressed: () {},
+    ///                 ),
+    ///               ),
+    ///             ),
+    ///       );
+    ///     },
+    ///   );
+    /// }
+    /// ```
+    ///
+    /// {@end-tool}
     /// </Summary>
-    public class NavigationRailDestination
+    public virtual FlutterSDK.Animation.Animation.Animation<double> ExtendedAnimation(FlutterSDK.Widgets.Framework.BuildContext context)
     {
-        #region constructors
-        public NavigationRailDestination(FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget selectedIcon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget))
-        : base()
-        {
-            this.Icon = icon;
-            this.Label = label; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Icon { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget SelectedIcon { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Label { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
+        return context.DependOnInheritedWidgetOfExactType().Animation;
     }
 
 
-    public class _ExtendedNavigationRailAnimation : FlutterSDK.Widgets.Framework.InheritedWidget
+
+
+    public new FlutterSDK.Material.Navigationrail._NavigationRailState CreateState() => new _NavigationRailState();
+
+
+    #endregion
+}
+
+
+public class _NavigationRailState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Navigationrail.NavigationRail>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+{
+    #region constructors
+    public _NavigationRailState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual List<FlutterSDK.Animation.Animationcontroller.AnimationController> _DestinationControllers { get; set; }
+    internal virtual List<FlutterSDK.Animation.Animation.Animation<double>> _DestinationAnimations { get; set; }
+    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _ExtendedController { get; set; }
+    internal virtual FlutterSDK.Animation.Animation.Animation<double> _ExtendedAnimation { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
     {
-        #region constructors
-        public _ExtendedNavigationRailAnimation(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key, child: child)
-        {
-            this.Animation = animation; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
-        #endregion
-
-        #region methods
-
-        public new bool UpdateShouldNotify(FlutterSDK.Material.Navigationrail._ExtendedNavigationRailAnimation old) { throw new NotImplementedException(); }
-        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
-
-        #endregion
+        base.InitState();
+        _InitControllers();
     }
 
+
+
+
+    public new void Dispose()
+    {
+        _DisposeControllers();
+        base.Dispose();
+    }
+
+
+
+
+    public new void DidUpdateWidget(FlutterSDK.Material.Navigationrail.NavigationRail oldWidget)
+    {
+        base.DidUpdateWidget(oldWidget);
+        if (Widget.Extended != oldWidget.Extended)
+        {
+            if (Widget.Extended)
+            {
+                _ExtendedController.Forward();
+            }
+            else
+            {
+                _ExtendedController.Reverse();
+            }
+
+        }
+
+        if (Widget.Destinations.Count != oldWidget.Destinations.Count)
+        {
+            _ResetState();
+            return;
+        }
+
+        if (Widget.SelectedIndex != oldWidget.SelectedIndex)
+        {
+            _DestinationControllers[oldWidget.SelectedIndex].Reverse();
+            _DestinationControllers[Widget.SelectedIndex].Forward();
+            return;
+        }
+
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        ThemeData theme = ThemeDefaultClass.Theme.Of(context);
+        NavigationRailThemeData navigationRailTheme = NavigationrailthemeDefaultClass.NavigationRailTheme.Of(context);
+        MaterialLocalizations localizations = MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context);
+        Color backgroundColor = Widget.BackgroundColor ?? navigationRailTheme.BackgroundColor ?? theme.ColorScheme.Surface;
+        double elevation = Widget.Elevation ?? navigationRailTheme.Elevation ?? 0;
+        double minWidth = Widget.MinWidth ?? NavigationrailDefaultClass._MinRailWidth;
+        double minExtendedWidth = Widget.MinExtendedWidth ?? NavigationrailDefaultClass._MinExtendedRailWidth;
+        Color baseSelectedColor = theme.ColorScheme.Primary;
+        Color baseColor = theme.ColorScheme.OnSurface.WithOpacity(0.64);
+        IconThemeData defaultUnselectedIconTheme = Widget.UnselectedIconTheme ?? navigationRailTheme.UnselectedIconTheme;
+        IconThemeData unselectedIconTheme = new IconThemeData(size: defaultUnselectedIconTheme?.Size ?? 24.0, color: defaultUnselectedIconTheme?.Color ?? theme.ColorScheme.OnSurface, opacity: defaultUnselectedIconTheme?.Opacity ?? 1.0);
+        IconThemeData defaultSelectedIconTheme = Widget.SelectedIconTheme ?? navigationRailTheme.SelectedIconTheme;
+        IconThemeData selectedIconTheme = new IconThemeData(size: defaultSelectedIconTheme?.Size ?? 24.0, color: defaultSelectedIconTheme?.Color ?? theme.ColorScheme.Primary, opacity: defaultSelectedIconTheme?.Opacity ?? 0.64);
+        TextStyle unselectedLabelTextStyle = theme.TextTheme.BodyText1.CopyWith(color: baseColor).Merge(Widget.UnselectedLabelTextStyle ?? navigationRailTheme.UnselectedLabelTextStyle);
+        TextStyle selectedLabelTextStyle = theme.TextTheme.BodyText1.CopyWith(color: baseSelectedColor).Merge(Widget.SelectedLabelTextStyle ?? navigationRailTheme.SelectedLabelTextStyle);
+        double groupAlignment = Widget.GroupAlignment ?? navigationRailTheme.GroupAlignment ?? -1.0;
+        NavigationRailLabelType labelType = Widget.LabelType ?? navigationRailTheme.LabelType ?? NavigationRailLabelType.None;
+        return new _ExtendedNavigationRailAnimation(animation: _ExtendedAnimation, child: new Semantics(explicitChildNodes: true, child: new Material(elevation: elevation, color: backgroundColor, child: new Column(children: new List<Widget>() { NavigationrailDefaultClass._VerticalSpacer, }))));
+    }
+
+
+
+
+    private void _DisposeControllers()
+    {
+        foreach (AnimationController controller in _DestinationControllers)
+        {
+            controller.Dispose();
+        }
+
+        _ExtendedController.Dispose();
+    }
+
+
+
+
+    private void _InitControllers()
+    {
+        _DestinationControllers = List<AnimationController>.Generate(Widget.Destinations.Count, (int index) =>
+        {
+            return new AnimationController(duration: ThemeDefaultClass.KThemeAnimationDuration, vsync: this);
+            new AnimationController(duration: ThemeDefaultClass.KThemeAnimationDuration, vsync: this).AddListener(_Rebuild);
+        }
+        );
+        _DestinationAnimations = _DestinationControllers.Map((AnimationController controller) => =>controller.View).ToList();
+        _DestinationControllers[Widget.SelectedIndex].Value = 1.0;
+        _ExtendedController = new AnimationController(duration: ThemeDefaultClass.KThemeAnimationDuration, vsync: this, value: Widget.Extended ? 1.0 : 0.0);
+        _ExtendedAnimation = new CurvedAnimation(parent: _ExtendedController, curve: CurvesDefaultClass.Curves.EaseInOut);
+        _ExtendedController.AddListener(() =>
+        {
+            _Rebuild();
+        }
+        );
+    }
+
+
+
+
+    private void _ResetState()
+    {
+        _DisposeControllers();
+        _InitControllers();
+    }
+
+
+
+
+    private void _Rebuild()
+    {
+        SetState(() =>
+        {
+        }
+        );
+    }
+
+
+
+    #endregion
+}
+
+
+public class _RailDestination : FlutterSDK.Widgets.Framework.StatelessWidget
+{
+    #region constructors
+    public _RailDestination(double minWidth = default(double), double minExtendedWidth = default(double), FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Animation.Animation.Animation<double> destinationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> extendedTransitionAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Material.Navigationrail.NavigationRailLabelType labelType = default(FlutterSDK.Material.Navigationrail.NavigationRailLabelType), bool selected = default(bool), FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Painting.Textstyle.TextStyle labelTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), VoidCallback onTap = default(VoidCallback), string indexLabel = default(string))
+    : base()
+
+}
+#endregion
+
+#region fields
+public virtual double MinWidth { get; set; }
+public virtual double MinExtendedWidth { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget Icon { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget Label { get; set; }
+public virtual FlutterSDK.Animation.Animation.Animation<double> DestinationAnimation { get; set; }
+public virtual FlutterSDK.Material.Navigationrail.NavigationRailLabelType LabelType { get; set; }
+public virtual bool Selected { get; set; }
+public virtual FlutterSDK.Animation.Animation.Animation<double> ExtendedTransitionAnimation { get; set; }
+public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData IconTheme { get; set; }
+public virtual FlutterSDK.Painting.Textstyle.TextStyle LabelTextStyle { get; set; }
+public virtual VoidCallback OnTap { get; set; }
+public virtual string IndexLabel { get; set; }
+internal virtual FlutterSDK.Animation.Animation.Animation<double> _PositionAnimation { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    Widget themedIcon = new IconTheme(data: IconTheme, child: Icon);
+    Widget styledLabel = new DefaultTextStyle(style: LabelTextStyle, child: Label);
+    Widget content = default(Widget);
+    switch (LabelType)
+    {
+        case NavigationRailLabelType.None:
+            Widget iconPart = new SizedBox(width: MinWidth, height: MinWidth, child: new Align(alignment: AlignmentDefaultClass.Alignment.Center, child: themedIcon)); if (ExtendedTransitionAnimation.Value == 0)
+            {
+                content = new Stack(children: new List<Widget>() { iconPart, new SizedBox(width: 0, height: 0, child: new Opacity(alwaysIncludeSemantics: true, opacity: 0.0, child: Label)) });
+            }
+            else
+            {
+                content = new ConstrainedBox(constraints: new BoxConstraints(minWidth: Dart:uiDefaultClass.LerpDouble(MinWidth, MinExtendedWidth, ExtendedTransitionAnimation.Value)), child: new ClipRect(child: new Row(children: new List<Widget>() { iconPart, new Align(heightFactor: 1.0, widthFactor: ExtendedTransitionAnimation.Value, alignment: AlignmentDefaultClass.AlignmentDirectional.CenterStart, child: new Opacity(alwaysIncludeSemantics: true, opacity: _ExtendedLabelFadeValue(), child: styledLabel)), new SizedBox(width: NavigationrailDefaultClass._HorizontalDestinationPadding) })));
+            }
+            break;
+        case NavigationRailLabelType.Selected: double appearingAnimationValue = 1 - _PositionAnimation.Value; double verticalPadding = Dart:uiDefaultClass.LerpDouble(NavigationrailDefaultClass._VerticalDestinationPaddingNoLabel, NavigationrailDefaultClass._VerticalDestinationPaddingWithLabel, appearingAnimationValue); content = new Container(constraints: new BoxConstraints(minWidth: MinWidth, minHeight: MinWidth), padding: EdgeInsets.Symmetric(horizontal: NavigationrailDefaultClass._HorizontalDestinationPadding), child: new ClipRect(child: new Column(mainAxisSize: MainAxisSize.Min, mainAxisAlignment: MainAxisAlignment.Center, children: new List<Widget>() { new SizedBox(height: verticalPadding), themedIcon, new Align(alignment: AlignmentDefaultClass.Alignment.TopCenter, heightFactor: appearingAnimationValue, widthFactor: 1.0, child: new Opacity(alwaysIncludeSemantics: true, opacity: Selected ? _NormalLabelFadeInValue() : _NormalLabelFadeOutValue(), child: styledLabel)), new SizedBox(height: verticalPadding) }))); break;
+        case NavigationRailLabelType.All: content = new Container(constraints: new BoxConstraints(minWidth: MinWidth, minHeight: MinWidth), padding: EdgeInsets.Symmetric(horizontal: NavigationrailDefaultClass._HorizontalDestinationPadding), child: new Column(children: new List<Widget>() { new SizedBox(height: NavigationrailDefaultClass._VerticalDestinationPaddingWithLabel), themedIcon, styledLabel, new SizedBox(height: NavigationrailDefaultClass._VerticalDestinationPaddingWithLabel) })); break;
+    }
+    ColorScheme colors = ThemeDefaultClass.Theme.Of(context).ColorScheme;
+    return new Semantics(container: true, selected: Selected, child: new Stack(children: new List<Widget>(){new Material(type:MaterialType.Transparency, clipBehavior:Clip.None, child:new InkResponse(onTap:OnTap, onHover:(_) => {
+}
+, highlightShape:BoxShape.Rectangle, borderRadius:BorderRadius.All(Radius.Circular(MinWidth/2.0)), containedInkWell:true , splashColor:colors.Primary.WithOpacity(0.12), hoverColor:colors.Primary.WithOpacity(0.04), child:content)), new Semantics(label:IndexLabel)}));
+}
+
+
+
+
+private double _NormalLabelFadeInValue()
+{
+    if (DestinationAnimation.Value < 0.25)
+    {
+        return 0;
+    }
+    else if (DestinationAnimation.Value < 0.75)
+    {
+        return (DestinationAnimation.Value - 0.25) * 2;
+    }
+    else
+    {
+        return 1;
+    }
+
+}
+
+
+
+
+private double _NormalLabelFadeOutValue()
+{
+    if (DestinationAnimation.Value > 0.75)
+    {
+        return (DestinationAnimation.Value - 0.75) * 4.0;
+    }
+    else
+    {
+        return 0;
+    }
+
+}
+
+
+
+
+private double _ExtendedLabelFadeValue()
+{
+    return ExtendedTransitionAnimation.Value < 0.25 ? ExtendedTransitionAnimation.Value * 4.0 : 1.0;
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Defines a [NavigationRail] button that represents one "destination" view.
+///
+/// See also:
+///
+///  * [NavigationRail]
+/// </Summary>
+public class NavigationRailDestination
+{
+    #region constructors
+    public NavigationRailDestination(FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget selectedIcon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget))
+    : base()
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Framework.Widget Icon { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget SelectedIcon { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget Label { get; set; }
+#endregion
+
+#region methods
+#endregion
+}
+
+
+public class _ExtendedNavigationRailAnimation : FlutterSDK.Widgets.Framework.InheritedWidget
+{
+    #region constructors
+    public _ExtendedNavigationRailAnimation(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key, child: child)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
+#endregion
+
+#region methods
+
+public new bool UpdateShouldNotify(FlutterSDK.Material.Navigationrail._ExtendedNavigationRailAnimation old) => Animation != old.Animation;
+
+public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Animation != old.Animation;
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Defines the behavior of the labels of a [NavigationRail].
+///
+/// See also:
+///
+///   * [NavigationRail]
+/// </Summary>
+public enum NavigationRailLabelType
+{
 
     /// <Summary>
-    /// Defines the behavior of the labels of a [NavigationRail].
-    ///
-    /// See also:
-    ///
-    ///   * [NavigationRail]
+    /// Only the [NavigationRailDestination]s are shown.
     /// </Summary>
-    public enum NavigationRailLabelType
-    {
-
-        /// <Summary>
-        /// Only the [NavigationRailDestination]s are shown.
-        /// </Summary>
-        None,
-        /// <Summary>
-        /// Only the selected [NavigationRailDestination] will show its label.
-        ///
-        /// The label will animate in and out as new [NavigationRailDestination]s are
-        /// selected.
-        /// </Summary>
-        Selected,
-        /// <Summary>
-        /// All [NavigationRailDestination]s will show their label.
-        /// </Summary>
-        All,
-    }
+    None,
+    /// <Summary>
+    /// Only the selected [NavigationRailDestination] will show its label.
+    ///
+    /// The label will animate in and out as new [NavigationRailDestination]s are
+    /// selected.
+    /// </Summary>
+    Selected,
+    /// <Summary>
+    /// All [NavigationRailDestination]s will show their label.
+    /// </Summary>
+    All,
+}
 
 }

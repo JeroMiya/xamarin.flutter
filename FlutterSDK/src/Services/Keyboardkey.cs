@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -456,854 +456,908 @@ namespace FlutterSDK.Services.Keyboardkey
     {
         #region constructors
         public KeyboardKey()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        #endregion
+    #region fields
+    #endregion
 
-        #region methods
-        #endregion
-    }
+    #region methods
+    #endregion
+}
 
 
-    /// <Summary>
-    /// A class with static values that describe the keys that are returned from
-    /// [RawKeyEvent.logicalKey].
-    ///
-    /// These represent *logical* keys, which are keys which are interpreted in the
-    /// context of any modifiers, modes, or keyboard layouts which may be in effect.
-    ///
-    /// This is contrast to [PhysicalKeyboardKey], which represents a physical key
-    /// in a particular location on the keyboard, without regard for the modifier
-    /// state, mode, or keyboard layout.
-    ///
-    /// As an example, if you wanted to implement an app where the "Q" key "quit"
-    /// something, you'd want to look at the logical key to detect this, since you
-    /// would like to have it match the key with "Q" on it, instead of always
-    /// looking for "the key next next to the TAB key", since on a French keyboard,
-    /// the key next to the TAB key has an "A" on it.
-    ///
-    /// Conversely, if you wanted a game where the key next to the CAPS LOCK (the
-    /// "A" key on a QWERTY keyboard) moved the player to the left, you'd want to
-    /// look at the physical key to make sure that regardless of the character the
-    /// key produces, you got the key that is in that location on the keyboard.
-    ///
-    /// {@tool dartpad --template=stateful_widget_scaffold}
-    /// This example shows how to detect if the user has selected the logical "Q"
-    /// key.
-    ///
-    /// ```dart imports
-    /// import 'package:flutter/foundation.dart';
-    /// import 'package:flutter/services.dart';
-    /// ```
-    ///
-    /// ```dart
-    /// // The node used to request the keyboard focus.
-    /// final FocusNode _focusNode = FocusNode();
-    /// // The message to display.
-    /// String _message;
-    ///
-    /// // Focus nodes need to be disposed.
-    /// @override
-    /// void dispose() {
-    ///   _focusNode.dispose();
-    ///   super.dispose();
-    /// }
-    ///
-    /// // Handles the key events from the RawKeyboardListener and update the
-    /// // _message.
-    /// void _handleKeyEvent(RawKeyEvent event) {
-    ///   setState(() {
-    ///     if (event.logicalKey == LogicalKeyboardKey.keyQ) {
-    ///       _message = 'Pressed the "Q" key!';
-    ///     } else {
-    ///       if (kReleaseMode) {
-    ///         _message = 'Not a Q: Key label is "${event.logicalKey.keyLabel ?? '<none>'}"';
-    ///       } else {
-    ///         // This will only print useful information in debug mode.
-    ///         _message = 'Not a Q: Pressed ${event.logicalKey.debugName}';
-    ///       }
-    ///     }
-    ///   });
-    /// }
-    ///
-    /// @override
-    /// Widget build(BuildContext context) {
-    ///   final TextTheme textTheme = Theme.of(context).textTheme;
-    ///   return Container(
-    ///     color: Colors.white,
-    ///     alignment: Alignment.center,
-    ///     child: DefaultTextStyle(
-    ///       style: textTheme.headline4,
-    ///       child: RawKeyboardListener(
-    ///         focusNode: _focusNode,
-    ///         onKey: _handleKeyEvent,
-    ///         child: AnimatedBuilder(
-    ///           animation: _focusNode,
-    ///           builder: (BuildContext context, Widget child) {
-    ///             if (!_focusNode.hasFocus) {
-    ///               return GestureDetector(
-    ///                 onTap: () {
-    ///                   FocusScope.of(context).requestFocus(_focusNode);
-    ///                 },
-    ///                 child: const Text('Tap to focus'),
-    ///               );
-    ///             }
-    ///             return Text(_message ?? 'Press a key');
-    ///           },
-    ///         ),
-    ///       ),
-    ///     ),
-    ///   );
-    /// }
-    /// ```
-    /// {@end-tool}
-    /// See also:
-    ///
-    ///  * [RawKeyEvent], the keyboard event object received by widgets that listen
-    ///    to keyboard events.
-    ///  * [RawKeyboardListener], a widget used to listen to and supply handlers for
-    ///    keyboard events.
-    /// </Summary>
-    public class LogicalKeyboardKey : FlutterSDK.Services.Keyboardkey.KeyboardKey
+/// <Summary>
+/// A class with static values that describe the keys that are returned from
+/// [RawKeyEvent.logicalKey].
+///
+/// These represent *logical* keys, which are keys which are interpreted in the
+/// context of any modifiers, modes, or keyboard layouts which may be in effect.
+///
+/// This is contrast to [PhysicalKeyboardKey], which represents a physical key
+/// in a particular location on the keyboard, without regard for the modifier
+/// state, mode, or keyboard layout.
+///
+/// As an example, if you wanted to implement an app where the "Q" key "quit"
+/// something, you'd want to look at the logical key to detect this, since you
+/// would like to have it match the key with "Q" on it, instead of always
+/// looking for "the key next next to the TAB key", since on a French keyboard,
+/// the key next to the TAB key has an "A" on it.
+///
+/// Conversely, if you wanted a game where the key next to the CAPS LOCK (the
+/// "A" key on a QWERTY keyboard) moved the player to the left, you'd want to
+/// look at the physical key to make sure that regardless of the character the
+/// key produces, you got the key that is in that location on the keyboard.
+///
+/// {@tool dartpad --template=stateful_widget_scaffold}
+/// This example shows how to detect if the user has selected the logical "Q"
+/// key.
+///
+/// ```dart imports
+/// import 'package:flutter/foundation.dart';
+/// import 'package:flutter/services.dart';
+/// ```
+///
+/// ```dart
+/// // The node used to request the keyboard focus.
+/// final FocusNode _focusNode = FocusNode();
+/// // The message to display.
+/// String _message;
+///
+/// // Focus nodes need to be disposed.
+/// @override
+/// void dispose() {
+///   _focusNode.dispose();
+///   super.dispose();
+/// }
+///
+/// // Handles the key events from the RawKeyboardListener and update the
+/// // _message.
+/// void _handleKeyEvent(RawKeyEvent event) {
+///   setState(() {
+///     if (event.logicalKey == LogicalKeyboardKey.keyQ) {
+///       _message = 'Pressed the "Q" key!';
+///     } else {
+///       if (kReleaseMode) {
+///         _message = 'Not a Q: Key label is "${event.logicalKey.keyLabel ?? '<none>'}"';
+///       } else {
+///         // This will only print useful information in debug mode.
+///         _message = 'Not a Q: Pressed ${event.logicalKey.debugName}';
+///       }
+///     }
+///   });
+/// }
+///
+/// @override
+/// Widget build(BuildContext context) {
+///   final TextTheme textTheme = Theme.of(context).textTheme;
+///   return Container(
+///     color: Colors.white,
+///     alignment: Alignment.center,
+///     child: DefaultTextStyle(
+///       style: textTheme.headline4,
+///       child: RawKeyboardListener(
+///         focusNode: _focusNode,
+///         onKey: _handleKeyEvent,
+///         child: AnimatedBuilder(
+///           animation: _focusNode,
+///           builder: (BuildContext context, Widget child) {
+///             if (!_focusNode.hasFocus) {
+///               return GestureDetector(
+///                 onTap: () {
+///                   FocusScope.of(context).requestFocus(_focusNode);
+///                 },
+///                 child: const Text('Tap to focus'),
+///               );
+///             }
+///             return Text(_message ?? 'Press a key');
+///           },
+///         ),
+///       ),
+///     ),
+///   );
+/// }
+/// ```
+/// {@end-tool}
+/// See also:
+///
+///  * [RawKeyEvent], the keyboard event object received by widgets that listen
+///    to keyboard events.
+///  * [RawKeyboardListener], a widget used to listen to and supply handlers for
+///    keyboard events.
+/// </Summary>
+public class LogicalKeyboardKey : FlutterSDK.Services.Keyboardkey.KeyboardKey
+{
+    #region constructors
+    public LogicalKeyboardKey(int keyId, string debugName = default(string), string keyLabel = default(string))
+    : base()
+
+}
+#endregion
+
+#region fields
+public virtual int KeyId { get; set; }
+public virtual string DebugName { get; set; }
+public virtual string KeyLabel { get; set; }
+public virtual int ValueMask { get; set; }
+public virtual int PlatformMask { get; set; }
+public virtual int AutogeneratedMask { get; set; }
+public virtual int SynonymMask { get; set; }
+public virtual int UnicodePlane { get; set; }
+public virtual int HidPlane { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey None { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Hyper { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey SuperKey { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey FnLock { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Suspend { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Resume { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Turbo { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey PrivacyScreenToggle { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Sleep { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey WakeUp { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey DisplayToggleIntExt { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey UsbReserved { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey UsbErrorRollOver { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey UsbPostFail { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey UsbErrorUndefined { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyA { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyB { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyC { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyD { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyE { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyF { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyG { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyH { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyI { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyJ { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyK { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyL { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyM { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyN { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyO { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyP { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyQ { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyR { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyS { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyT { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyU { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyV { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyW { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyX { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyY { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyZ { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Digit1 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Digit2 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Digit3 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Digit4 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Digit5 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Digit6 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Digit7 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Digit8 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Digit9 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Digit0 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Enter { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Escape { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Backspace { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Tab { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Space { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Minus { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Equal { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey BracketLeft { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey BracketRight { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Backslash { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Semicolon { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Quote { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Backquote { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Comma { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Period { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Slash { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey CapsLock { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F1 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F2 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F3 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F4 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F5 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F6 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F7 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F8 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F9 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F10 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F11 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F12 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey PrintScreen { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ScrollLock { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Pause { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Insert { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Home { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey PageUp { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Delete { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey End { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey PageDown { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ArrowRight { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ArrowLeft { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ArrowDown { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ArrowUp { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumLock { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadDivide { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadMultiply { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadSubtract { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadAdd { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadEnter { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Numpad1 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Numpad2 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Numpad3 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Numpad4 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Numpad5 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Numpad6 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Numpad7 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Numpad8 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Numpad9 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Numpad0 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadDecimal { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey IntlBackslash { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ContextMenu { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Power { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadEqual { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F13 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F14 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F15 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F16 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F17 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F18 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F19 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F20 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F21 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F22 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F23 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F24 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Open { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Help { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Select { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Again { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Undo { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Cut { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Copy { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Paste { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Find { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey AudioVolumeMute { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey AudioVolumeUp { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey AudioVolumeDown { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadComma { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey IntlRo { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KanaMode { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey IntlYen { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Convert { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NonConvert { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Lang1 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Lang2 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Lang3 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Lang4 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Lang5 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Abort { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Props { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadParenLeft { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadParenRight { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadBackspace { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadMemoryStore { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadMemoryRecall { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadMemoryClear { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadMemoryAdd { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadMemorySubtract { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadSignChange { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadClear { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadClearEntry { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ControlLeft { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ShiftLeft { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey AltLeft { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey MetaLeft { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ControlRight { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ShiftRight { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey AltRight { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey MetaRight { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Info { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ClosedCaptionToggle { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey BrightnessUp { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey BrightnessDown { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey BrightnessToggle { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey BrightnessMinimum { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey BrightnessMaximum { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey BrightnessAuto { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey MediaLast { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LaunchPhone { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ProgramGuide { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Exit { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ChannelUp { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ChannelDown { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey MediaPlay { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey MediaPause { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey MediaRecord { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey MediaFastForward { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey MediaRewind { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey MediaTrackNext { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey MediaTrackPrevious { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey MediaStop { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Eject { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey MediaPlayPause { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey SpeechInputToggle { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey BassBoost { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey MediaSelect { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LaunchWordProcessor { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LaunchSpreadsheet { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LaunchMail { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LaunchContacts { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LaunchCalendar { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LaunchApp2 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LaunchApp1 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LaunchInternetBrowser { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogOff { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LockScreen { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LaunchControlPanel { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey SelectTask { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LaunchDocuments { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey SpellCheck { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LaunchKeyboardLayout { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LaunchScreenSaver { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LaunchAssistant { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LaunchAudioBrowser { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NewKey { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Close { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Save { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Print { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey BrowserSearch { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey BrowserHome { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey BrowserBack { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey BrowserForward { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey BrowserStop { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey BrowserRefresh { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey BrowserFavorites { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ZoomIn { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ZoomOut { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ZoomToggle { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Redo { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey MailReply { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey MailForward { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey MailSend { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyboardLayoutSelect { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ShowAllWindows { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButton1 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButton2 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButton3 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButton4 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButton5 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButton6 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButton7 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButton8 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButton9 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButton10 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButton11 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButton12 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButton13 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButton14 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButton15 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButton16 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButtonA { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButtonB { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButtonC { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButtonLeft1 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButtonLeft2 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButtonMode { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButtonRight1 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButtonRight2 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButtonSelect { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButtonStart { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButtonThumbLeft { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButtonThumbRight { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButtonX { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButtonY { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButtonZ { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Fn { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Shift { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Meta { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Alt { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Control { get; set; }
+internal virtual Dictionary<int, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> _KnownLogicalKeys { get; set; }
+internal virtual Dictionary<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> _Synonyms { get; set; }
+public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual bool IsAutogenerated { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual HashSet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> Synonyms { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new bool Equals(@Object other)
+{
+    if (other.GetType() != GetType())
     {
-        #region constructors
-        public LogicalKeyboardKey(int keyId, string debugName = default(string), string keyLabel = default(string))
-        : base()
-        {
-            this.KeyId = keyId;
-            this.DebugName = debugName;
-            this.KeyLabel = keyLabel; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual int KeyId { get; set; }
-        public virtual string DebugName { get; set; }
-        public virtual string KeyLabel { get; set; }
-        public virtual int ValueMask { get; set; }
-        public virtual int PlatformMask { get; set; }
-        public virtual int AutogeneratedMask { get; set; }
-        public virtual int SynonymMask { get; set; }
-        public virtual int UnicodePlane { get; set; }
-        public virtual int HidPlane { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey None { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Hyper { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey SuperKey { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey FnLock { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Suspend { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Resume { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Turbo { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey PrivacyScreenToggle { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Sleep { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey WakeUp { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey DisplayToggleIntExt { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey UsbReserved { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey UsbErrorRollOver { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey UsbPostFail { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey UsbErrorUndefined { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyA { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyB { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyC { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyD { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyE { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyF { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyG { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyH { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyI { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyJ { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyK { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyL { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyM { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyN { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyO { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyP { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyQ { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyR { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyS { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyT { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyU { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyV { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyW { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyX { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyY { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyZ { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Digit1 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Digit2 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Digit3 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Digit4 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Digit5 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Digit6 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Digit7 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Digit8 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Digit9 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Digit0 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Enter { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Escape { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Backspace { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Tab { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Space { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Minus { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Equal { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey BracketLeft { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey BracketRight { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Backslash { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Semicolon { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Quote { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Backquote { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Comma { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Period { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Slash { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey CapsLock { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F1 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F2 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F3 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F4 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F5 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F6 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F7 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F8 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F9 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F10 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F11 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F12 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey PrintScreen { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ScrollLock { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Pause { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Insert { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Home { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey PageUp { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Delete { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey End { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey PageDown { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ArrowRight { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ArrowLeft { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ArrowDown { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ArrowUp { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumLock { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadDivide { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadMultiply { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadSubtract { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadAdd { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadEnter { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Numpad1 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Numpad2 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Numpad3 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Numpad4 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Numpad5 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Numpad6 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Numpad7 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Numpad8 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Numpad9 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Numpad0 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadDecimal { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey IntlBackslash { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ContextMenu { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Power { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadEqual { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F13 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F14 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F15 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F16 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F17 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F18 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F19 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F20 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F21 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F22 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F23 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey F24 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Open { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Help { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Select { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Again { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Undo { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Cut { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Copy { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Paste { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Find { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey AudioVolumeMute { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey AudioVolumeUp { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey AudioVolumeDown { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadComma { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey IntlRo { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KanaMode { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey IntlYen { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Convert { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NonConvert { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Lang1 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Lang2 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Lang3 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Lang4 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Lang5 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Abort { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Props { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadParenLeft { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadParenRight { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadBackspace { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadMemoryStore { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadMemoryRecall { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadMemoryClear { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadMemoryAdd { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadMemorySubtract { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadSignChange { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadClear { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadClearEntry { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ControlLeft { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ShiftLeft { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey AltLeft { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey MetaLeft { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ControlRight { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ShiftRight { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey AltRight { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey MetaRight { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Info { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ClosedCaptionToggle { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey BrightnessUp { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey BrightnessDown { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey BrightnessToggle { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey BrightnessMinimum { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey BrightnessMaximum { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey BrightnessAuto { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey MediaLast { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LaunchPhone { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ProgramGuide { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Exit { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ChannelUp { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ChannelDown { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey MediaPlay { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey MediaPause { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey MediaRecord { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey MediaFastForward { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey MediaRewind { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey MediaTrackNext { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey MediaTrackPrevious { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey MediaStop { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Eject { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey MediaPlayPause { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey SpeechInputToggle { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey BassBoost { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey MediaSelect { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LaunchWordProcessor { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LaunchSpreadsheet { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LaunchMail { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LaunchContacts { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LaunchCalendar { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LaunchApp2 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LaunchApp1 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LaunchInternetBrowser { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogOff { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LockScreen { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LaunchControlPanel { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey SelectTask { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LaunchDocuments { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey SpellCheck { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LaunchKeyboardLayout { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LaunchScreenSaver { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LaunchAssistant { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LaunchAudioBrowser { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NewKey { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Close { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Save { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Print { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey BrowserSearch { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey BrowserHome { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey BrowserBack { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey BrowserForward { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey BrowserStop { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey BrowserRefresh { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey BrowserFavorites { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ZoomIn { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ZoomOut { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ZoomToggle { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Redo { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey MailReply { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey MailForward { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey MailSend { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey KeyboardLayoutSelect { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey ShowAllWindows { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButton1 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButton2 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButton3 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButton4 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButton5 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButton6 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButton7 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButton8 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButton9 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButton10 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButton11 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButton12 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButton13 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButton14 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButton15 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButton16 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButtonA { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButtonB { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButtonC { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButtonLeft1 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButtonLeft2 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButtonMode { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButtonRight1 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButtonRight2 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButtonSelect { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButtonStart { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButtonThumbLeft { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButtonThumbRight { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButtonX { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButtonY { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey GameButtonZ { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Fn { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Shift { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Meta { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Alt { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey Control { get; set; }
-        internal virtual Dictionary<int, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> _KnownLogicalKeys { get; set; }
-        internal virtual Dictionary<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> _Synonyms { get; set; }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool IsAutogenerated { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual HashSet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> Synonyms { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns the [LogicalKeyboardKey] constant that matches the given ID, or
-        /// null, if not found.
-        /// </Summary>
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey FindKeyByKeyId(int keyId) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns true if the given label represents a Unicode control character.
-        ///
-        /// Examples of control characters are characters like "U+000A LINE FEED (LF)"
-        /// or "U+001B ESCAPE (ESC)".
-        ///
-        /// See <https://en.wikipedia.org/wiki/Unicode_control_characters> for more
-        /// information.
-        ///
-        /// Used by [RawKeyEvent] subclasses to help construct IDs.
-        /// </Summary>
-        public virtual bool IsControlCharacter(string label) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Takes a set of keys, and returns the same set, but with any keys that have
-        /// synonyms replaced.
-        ///
-        /// It is used, for example, to make sets of keys with members like
-        /// [controlRight] and [controlLeft] and convert that set to contain just
-        /// [control], so that the question "is any control key down?" can be asked.
-        /// </Summary>
-        public virtual HashSet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> CollapseSynonyms(HashSet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> input) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+        return false;
     }
 
+    return other is LogicalKeyboardKey && other.KeyId == KeyId;
+}
 
-    /// <Summary>
-    /// A class with static values that describe the keys that are returned from
-    /// [RawKeyEvent.physicalKey].
-    ///
-    /// These represent *physical* keys, which are keys which represent a particular
-    /// key location on a QWERTY keyboard. It ignores any modifiers, modes, or
-    /// keyboard layouts which may be in effect. This is contrast to
-    /// [LogicalKeyboardKey], which represents a logical key interpreted in the
-    /// context of modifiers, modes, and/or keyboard layouts.
-    ///
-    /// As an example, if you wanted a game where the key next to the CAPS LOCK (the
-    /// "A" key on a QWERTY keyboard) moved the player to the left, you'd want to
-    /// look at the physical key to make sure that regardless of the character the
-    /// key produces, you got the key that is in that location on the keyboard.
-    ///
-    /// Conversely, if you wanted to implement an app where the "Q" key "quit"
-    /// something, you'd want to look at the logical key to detect this, since you
-    /// would like to have it match the key with "Q" on it, instead of always
-    /// looking for "the key next next to the TAB key", since on a French keyboard,
-    /// the key next to the TAB key has an "A" on it.
-    ///
-    /// {@tool dartpad --template=stateful_widget_scaffold}
-    /// This example shows how to detect if the user has selected the physical key
-    /// to the right of the CAPS LOCK key.
-    ///
-    /// ```dart imports
-    /// import 'package:flutter/services.dart';
-    /// ```
-    ///
-    /// ```dart
-    /// // The node used to request the keyboard focus.
-    /// final FocusNode _focusNode = FocusNode();
-    /// // The message to display.
-    /// String _message;
-    ///
-    /// // Focus nodes need to be disposed.
-    /// @override
-    /// void dispose() {
-    ///   _focusNode.dispose();
-    ///   super.dispose();
-    /// }
-    ///
-    /// // Handles the key events from the RawKeyboardListener and update the
-    /// // _message.
-    /// void _handleKeyEvent(RawKeyEvent event) {
-    ///   setState(() {
-    ///     if (event.physicalKey == PhysicalKeyboardKey.keyA) {
-    ///       _message = 'Pressed the key next to CAPS LOCK!';
-    ///     } else {
-    ///       _message = 'Wrong key.';
-    ///     }
-    ///   });
-    /// }
-    ///
-    /// @override
-    /// Widget build(BuildContext context) {
-    ///   final TextTheme textTheme = Theme.of(context).textTheme;
-    ///   return Container(
-    ///     color: Colors.white,
-    ///     alignment: Alignment.center,
-    ///     child: DefaultTextStyle(
-    ///       style: textTheme.headline4,
-    ///       child: RawKeyboardListener(
-    ///         focusNode: _focusNode,
-    ///         onKey: _handleKeyEvent,
-    ///         child: AnimatedBuilder(
-    ///           animation: _focusNode,
-    ///           builder: (BuildContext context, Widget child) {
-    ///             if (!_focusNode.hasFocus) {
-    ///               return GestureDetector(
-    ///                 onTap: () {
-    ///                   FocusScope.of(context).requestFocus(_focusNode);
-    ///                 },
-    ///                 child: Text('Tap to focus'),
-    ///               );
-    ///             }
-    ///             return Text(_message ?? 'Press a key');
-    ///           },
-    ///         ),
-    ///       ),
-    ///     ),
-    ///   );
-    /// }
-    /// ```
-    /// {@end-tool}
-    ///
-    /// See also:
-    ///
-    ///  * [RawKeyEvent], the keyboard event object received by widgets that listen
-    ///    to keyboard events.
-    ///  * [RawKeyboardListener], a widget used to listen to and supply handlers for
-    ///    keyboard events.
-    /// </Summary>
-    public class PhysicalKeyboardKey : FlutterSDK.Services.Keyboardkey.KeyboardKey
+
+
+
+/// <Summary>
+/// Returns the [LogicalKeyboardKey] constant that matches the given ID, or
+/// null, if not found.
+/// </Summary>
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey FindKeyByKeyId(int keyId) => _KnownLogicalKeys[keyId];
+
+
+
+/// <Summary>
+/// Returns true if the given label represents a Unicode control character.
+///
+/// Examples of control characters are characters like "U+000A LINE FEED (LF)"
+/// or "U+001B ESCAPE (ESC)".
+///
+/// See <https://en.wikipedia.org/wiki/Unicode_control_characters> for more
+/// information.
+///
+/// Used by [RawKeyEvent] subclasses to help construct IDs.
+/// </Summary>
+public virtual bool IsControlCharacter(string label)
+{
+    if (label.Length > 1)
     {
-        #region constructors
-        public PhysicalKeyboardKey(int usbHidUsage, string debugName = default(string))
-        : base()
-        {
-            this.UsbHidUsage = usbHidUsage;
-            this.DebugName = debugName; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual int UsbHidUsage { get; set; }
-        public virtual string DebugName { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey None { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Hyper { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey SuperKey { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey FnLock { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Suspend { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Resume { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Turbo { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PrivacyScreenToggle { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Sleep { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey WakeUp { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey DisplayToggleIntExt { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey UsbReserved { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey UsbErrorRollOver { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey UsbPostFail { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey UsbErrorUndefined { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyA { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyB { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyC { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyD { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyE { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyF { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyG { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyH { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyI { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyJ { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyK { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyL { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyM { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyN { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyO { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyP { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyQ { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyR { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyS { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyT { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyU { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyV { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyW { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyX { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyY { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyZ { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Digit1 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Digit2 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Digit3 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Digit4 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Digit5 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Digit6 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Digit7 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Digit8 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Digit9 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Digit0 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Enter { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Escape { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Backspace { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Tab { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Space { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Minus { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Equal { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey BracketLeft { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey BracketRight { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Backslash { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Semicolon { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Quote { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Backquote { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Comma { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Period { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Slash { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey CapsLock { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F1 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F2 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F3 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F4 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F5 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F6 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F7 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F8 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F9 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F10 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F11 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F12 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PrintScreen { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ScrollLock { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Pause { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Insert { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Home { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PageUp { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Delete { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey End { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PageDown { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ArrowRight { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ArrowLeft { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ArrowDown { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ArrowUp { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumLock { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadDivide { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadMultiply { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadSubtract { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadAdd { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadEnter { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Numpad1 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Numpad2 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Numpad3 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Numpad4 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Numpad5 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Numpad6 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Numpad7 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Numpad8 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Numpad9 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Numpad0 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadDecimal { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey IntlBackslash { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ContextMenu { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Power { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadEqual { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F13 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F14 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F15 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F16 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F17 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F18 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F19 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F20 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F21 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F22 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F23 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F24 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Open { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Help { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Select { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Again { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Undo { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Cut { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Copy { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Paste { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Find { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey AudioVolumeMute { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey AudioVolumeUp { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey AudioVolumeDown { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadComma { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey IntlRo { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KanaMode { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey IntlYen { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Convert { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NonConvert { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Lang1 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Lang2 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Lang3 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Lang4 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Lang5 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Abort { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Props { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadParenLeft { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadParenRight { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadBackspace { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadMemoryStore { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadMemoryRecall { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadMemoryClear { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadMemoryAdd { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadMemorySubtract { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadSignChange { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadClear { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadClearEntry { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ControlLeft { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ShiftLeft { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey AltLeft { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey MetaLeft { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ControlRight { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ShiftRight { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey AltRight { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey MetaRight { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Info { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ClosedCaptionToggle { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey BrightnessUp { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey BrightnessDown { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey BrightnessToggle { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey BrightnessMinimum { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey BrightnessMaximum { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey BrightnessAuto { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey MediaLast { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LaunchPhone { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ProgramGuide { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Exit { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ChannelUp { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ChannelDown { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey MediaPlay { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey MediaPause { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey MediaRecord { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey MediaFastForward { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey MediaRewind { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey MediaTrackNext { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey MediaTrackPrevious { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey MediaStop { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Eject { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey MediaPlayPause { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey SpeechInputToggle { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey BassBoost { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey MediaSelect { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LaunchWordProcessor { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LaunchSpreadsheet { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LaunchMail { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LaunchContacts { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LaunchCalendar { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LaunchApp2 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LaunchApp1 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LaunchInternetBrowser { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LogOff { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LockScreen { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LaunchControlPanel { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey SelectTask { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LaunchDocuments { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey SpellCheck { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LaunchKeyboardLayout { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LaunchScreenSaver { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LaunchAssistant { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LaunchAudioBrowser { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NewKey { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Close { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Save { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Print { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey BrowserSearch { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey BrowserHome { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey BrowserBack { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey BrowserForward { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey BrowserStop { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey BrowserRefresh { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey BrowserFavorites { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ZoomIn { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ZoomOut { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ZoomToggle { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Redo { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey MailReply { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey MailForward { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey MailSend { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyboardLayoutSelect { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ShowAllWindows { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButton1 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButton2 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButton3 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButton4 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButton5 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButton6 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButton7 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButton8 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButton9 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButton10 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButton11 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButton12 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButton13 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButton14 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButton15 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButton16 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButtonA { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButtonB { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButtonC { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButtonLeft1 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButtonLeft2 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButtonMode { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButtonRight1 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButtonRight2 { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButtonSelect { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButtonStart { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButtonThumbLeft { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButtonThumbRight { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButtonX { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButtonY { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButtonZ { get; set; }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Fn { get; set; }
-        internal virtual Dictionary<int, FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey> _KnownPhysicalKeys { get; set; }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Finds a known [PhysicalKeyboardKey] that matches the given USB HID usage
-        /// code.
-        /// </Summary>
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey FindKeyByCode(int usageCode) { throw new NotImplementedException(); }
-
-
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+        return false;
     }
+
+    int codeUnit = label.CodeUnitAt(0);
+    return (codeUnit <= 0x1f && codeUnit >= 0x00) || (codeUnit >= 0x7f && codeUnit <= 0x9f);
+}
+
+
+
+
+/// <Summary>
+/// Takes a set of keys, and returns the same set, but with any keys that have
+/// synonyms replaced.
+///
+/// It is used, for example, to make sets of keys with members like
+/// [controlRight] and [controlLeft] and convert that set to contain just
+/// [control], so that the question "is any control key down?" can be asked.
+/// </Summary>
+public virtual HashSet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> CollapseSynonyms(HashSet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> input)
+{
+    HashSet<LogicalKeyboardKey> result = new Dictionary<LogicalKeyboardKey> { };
+    foreach (LogicalKeyboardKey key in input)
+    {
+        LogicalKeyboardKey synonym = _Synonyms[key];
+        result.Add(synonym ?? key);
+    }
+
+    return result;
+}
+
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new StringProperty("keyId", $"'0x{KeyId.ToRadixString(16).PadLeft(8, '0')}'", showName: true));
+    properties.Add(new StringProperty("keyLabel", KeyLabel, showName: true));
+    properties.Add(new StringProperty("debugName", DebugName, showName: true, defaultValue: null));
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A class with static values that describe the keys that are returned from
+/// [RawKeyEvent.physicalKey].
+///
+/// These represent *physical* keys, which are keys which represent a particular
+/// key location on a QWERTY keyboard. It ignores any modifiers, modes, or
+/// keyboard layouts which may be in effect. This is contrast to
+/// [LogicalKeyboardKey], which represents a logical key interpreted in the
+/// context of modifiers, modes, and/or keyboard layouts.
+///
+/// As an example, if you wanted a game where the key next to the CAPS LOCK (the
+/// "A" key on a QWERTY keyboard) moved the player to the left, you'd want to
+/// look at the physical key to make sure that regardless of the character the
+/// key produces, you got the key that is in that location on the keyboard.
+///
+/// Conversely, if you wanted to implement an app where the "Q" key "quit"
+/// something, you'd want to look at the logical key to detect this, since you
+/// would like to have it match the key with "Q" on it, instead of always
+/// looking for "the key next next to the TAB key", since on a French keyboard,
+/// the key next to the TAB key has an "A" on it.
+///
+/// {@tool dartpad --template=stateful_widget_scaffold}
+/// This example shows how to detect if the user has selected the physical key
+/// to the right of the CAPS LOCK key.
+///
+/// ```dart imports
+/// import 'package:flutter/services.dart';
+/// ```
+///
+/// ```dart
+/// // The node used to request the keyboard focus.
+/// final FocusNode _focusNode = FocusNode();
+/// // The message to display.
+/// String _message;
+///
+/// // Focus nodes need to be disposed.
+/// @override
+/// void dispose() {
+///   _focusNode.dispose();
+///   super.dispose();
+/// }
+///
+/// // Handles the key events from the RawKeyboardListener and update the
+/// // _message.
+/// void _handleKeyEvent(RawKeyEvent event) {
+///   setState(() {
+///     if (event.physicalKey == PhysicalKeyboardKey.keyA) {
+///       _message = 'Pressed the key next to CAPS LOCK!';
+///     } else {
+///       _message = 'Wrong key.';
+///     }
+///   });
+/// }
+///
+/// @override
+/// Widget build(BuildContext context) {
+///   final TextTheme textTheme = Theme.of(context).textTheme;
+///   return Container(
+///     color: Colors.white,
+///     alignment: Alignment.center,
+///     child: DefaultTextStyle(
+///       style: textTheme.headline4,
+///       child: RawKeyboardListener(
+///         focusNode: _focusNode,
+///         onKey: _handleKeyEvent,
+///         child: AnimatedBuilder(
+///           animation: _focusNode,
+///           builder: (BuildContext context, Widget child) {
+///             if (!_focusNode.hasFocus) {
+///               return GestureDetector(
+///                 onTap: () {
+///                   FocusScope.of(context).requestFocus(_focusNode);
+///                 },
+///                 child: Text('Tap to focus'),
+///               );
+///             }
+///             return Text(_message ?? 'Press a key');
+///           },
+///         ),
+///       ),
+///     ),
+///   );
+/// }
+/// ```
+/// {@end-tool}
+///
+/// See also:
+///
+///  * [RawKeyEvent], the keyboard event object received by widgets that listen
+///    to keyboard events.
+///  * [RawKeyboardListener], a widget used to listen to and supply handlers for
+///    keyboard events.
+/// </Summary>
+public class PhysicalKeyboardKey : FlutterSDK.Services.Keyboardkey.KeyboardKey
+{
+    #region constructors
+    public PhysicalKeyboardKey(int usbHidUsage, string debugName = default(string))
+    : base()
+
+}
+#endregion
+
+#region fields
+public virtual int UsbHidUsage { get; set; }
+public virtual string DebugName { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey None { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Hyper { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey SuperKey { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey FnLock { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Suspend { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Resume { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Turbo { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PrivacyScreenToggle { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Sleep { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey WakeUp { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey DisplayToggleIntExt { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey UsbReserved { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey UsbErrorRollOver { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey UsbPostFail { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey UsbErrorUndefined { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyA { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyB { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyC { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyD { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyE { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyF { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyG { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyH { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyI { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyJ { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyK { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyL { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyM { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyN { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyO { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyP { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyQ { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyR { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyS { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyT { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyU { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyV { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyW { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyX { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyY { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyZ { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Digit1 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Digit2 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Digit3 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Digit4 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Digit5 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Digit6 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Digit7 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Digit8 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Digit9 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Digit0 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Enter { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Escape { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Backspace { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Tab { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Space { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Minus { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Equal { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey BracketLeft { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey BracketRight { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Backslash { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Semicolon { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Quote { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Backquote { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Comma { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Period { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Slash { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey CapsLock { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F1 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F2 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F3 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F4 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F5 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F6 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F7 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F8 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F9 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F10 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F11 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F12 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PrintScreen { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ScrollLock { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Pause { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Insert { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Home { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PageUp { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Delete { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey End { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PageDown { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ArrowRight { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ArrowLeft { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ArrowDown { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ArrowUp { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumLock { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadDivide { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadMultiply { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadSubtract { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadAdd { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadEnter { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Numpad1 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Numpad2 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Numpad3 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Numpad4 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Numpad5 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Numpad6 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Numpad7 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Numpad8 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Numpad9 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Numpad0 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadDecimal { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey IntlBackslash { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ContextMenu { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Power { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadEqual { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F13 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F14 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F15 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F16 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F17 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F18 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F19 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F20 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F21 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F22 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F23 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey F24 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Open { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Help { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Select { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Again { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Undo { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Cut { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Copy { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Paste { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Find { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey AudioVolumeMute { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey AudioVolumeUp { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey AudioVolumeDown { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadComma { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey IntlRo { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KanaMode { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey IntlYen { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Convert { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NonConvert { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Lang1 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Lang2 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Lang3 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Lang4 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Lang5 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Abort { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Props { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadParenLeft { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadParenRight { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadBackspace { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadMemoryStore { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadMemoryRecall { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadMemoryClear { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadMemoryAdd { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadMemorySubtract { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadSignChange { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadClear { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NumpadClearEntry { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ControlLeft { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ShiftLeft { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey AltLeft { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey MetaLeft { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ControlRight { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ShiftRight { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey AltRight { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey MetaRight { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Info { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ClosedCaptionToggle { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey BrightnessUp { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey BrightnessDown { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey BrightnessToggle { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey BrightnessMinimum { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey BrightnessMaximum { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey BrightnessAuto { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey MediaLast { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LaunchPhone { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ProgramGuide { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Exit { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ChannelUp { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ChannelDown { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey MediaPlay { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey MediaPause { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey MediaRecord { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey MediaFastForward { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey MediaRewind { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey MediaTrackNext { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey MediaTrackPrevious { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey MediaStop { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Eject { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey MediaPlayPause { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey SpeechInputToggle { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey BassBoost { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey MediaSelect { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LaunchWordProcessor { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LaunchSpreadsheet { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LaunchMail { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LaunchContacts { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LaunchCalendar { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LaunchApp2 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LaunchApp1 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LaunchInternetBrowser { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LogOff { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LockScreen { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LaunchControlPanel { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey SelectTask { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LaunchDocuments { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey SpellCheck { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LaunchKeyboardLayout { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LaunchScreenSaver { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LaunchAssistant { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey LaunchAudioBrowser { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey NewKey { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Close { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Save { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Print { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey BrowserSearch { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey BrowserHome { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey BrowserBack { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey BrowserForward { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey BrowserStop { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey BrowserRefresh { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey BrowserFavorites { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ZoomIn { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ZoomOut { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ZoomToggle { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Redo { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey MailReply { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey MailForward { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey MailSend { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey KeyboardLayoutSelect { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey ShowAllWindows { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButton1 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButton2 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButton3 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButton4 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButton5 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButton6 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButton7 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButton8 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButton9 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButton10 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButton11 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButton12 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButton13 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButton14 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButton15 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButton16 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButtonA { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButtonB { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButtonC { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButtonLeft1 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButtonLeft2 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButtonMode { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButtonRight1 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButtonRight2 { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButtonSelect { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButtonStart { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButtonThumbLeft { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButtonThumbRight { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButtonX { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButtonY { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey GameButtonZ { get; set; }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey Fn { get; set; }
+internal virtual Dictionary<int, FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey> _KnownPhysicalKeys { get; set; }
+public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Finds a known [PhysicalKeyboardKey] that matches the given USB HID usage
+/// code.
+/// </Summary>
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey FindKeyByCode(int usageCode) => _KnownPhysicalKeys[usageCode];
+
+
+
+public new bool Equals(@Object other)
+{
+    if (other.GetType() != GetType())
+    {
+        return false;
+    }
+
+    return other is PhysicalKeyboardKey && other.UsbHidUsage == UsbHidUsage;
+}
+
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new StringProperty("usbHidUsage", $"'0x{UsbHidUsage.ToRadixString(16).PadLeft(8, '0')}'", showName: true));
+    properties.Add(new StringProperty("debugName", DebugName, showName: true, defaultValue: null));
+}
+
+
+
+#endregion
+}
 
 }

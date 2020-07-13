@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -481,155 +481,179 @@ namespace FlutterSDK.Widgets.Fadeinimage
         #region constructors
         public FadeInImage(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Imageprovider.ImageProvider<object> placeholder = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder placeholderErrorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), FlutterSDK.Painting.Imageprovider.ImageProvider<object> image = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder imageErrorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), bool excludeFromSemantics = false, string imageSemanticLabel = default(string), TimeSpan fadeOutDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve fadeOutCurve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan fadeInDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve fadeInCurve = default(FlutterSDK.Animation.Curves.Curve), double width = default(double), double height = default(double), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), bool matchTextDirection = false)
         : base(key: key)
-        {
-            this.Placeholder = placeholder;
-            this.PlaceholderErrorBuilder = placeholderErrorBuilder;
-            this.Image = image;
-            this.ImageErrorBuilder = imageErrorBuilder;
-            this.ExcludeFromSemantics = excludeFromSemantics;
-            this.ImageSemanticLabel = imageSemanticLabel;
-            this.FadeOutDuration = fadeOutDuration;
-            this.FadeOutCurve = fadeOutCurve;
-            this.FadeInDuration = fadeInDuration;
-            this.FadeInCurve = fadeInCurve;
-            this.Width = width;
-            this.Height = height;
-            this.Fit = fit;
-            this.Alignment = alignment;
-            this.Repeat = repeat;
-            this.MatchTextDirection = matchTextDirection; throw new NotImplementedException();
-        }
-        public static FadeInImage MemoryNetwork(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Uint8List placeholder = default(Uint8List), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder placeholderErrorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), string image = default(string), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder imageErrorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), double placeholderScale = 1.0, double imageScale = 1.0, bool excludeFromSemantics = false, string imageSemanticLabel = default(string), TimeSpan fadeOutDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve fadeOutCurve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan fadeInDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve fadeInCurve = default(FlutterSDK.Animation.Curves.Curve), double width = default(double), double height = default(double), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), bool matchTextDirection = false, int placeholderCacheWidth = default(int), int placeholderCacheHeight = default(int), int imageCacheWidth = default(int), int imageCacheHeight = default(int))
-        {
-            var instance = new FadeInImage(key: key); instance.PlaceholderErrorBuilder = placeholderErrorBuilder;
-            instance.ImageErrorBuilder = imageErrorBuilder;
-            instance.ExcludeFromSemantics = excludeFromSemantics;
-            instance.ImageSemanticLabel = imageSemanticLabel;
-            instance.FadeOutDuration = fadeOutDuration;
-            instance.FadeOutCurve = fadeOutCurve;
-            instance.FadeInDuration = fadeInDuration;
-            instance.FadeInCurve = fadeInCurve;
-            instance.Width = width;
-            instance.Height = height;
-            instance.Fit = fit;
-            instance.Alignment = alignment;
-            instance.Repeat = repeat;
-            instance.MatchTextDirection = matchTextDirection; throw new NotImplementedException();
-        }
-        public static FadeInImage AssetNetwork(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string placeholder = default(string), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder placeholderErrorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), string image = default(string), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder imageErrorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle), double placeholderScale = default(double), double imageScale = 1.0, bool excludeFromSemantics = false, string imageSemanticLabel = default(string), TimeSpan fadeOutDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve fadeOutCurve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan fadeInDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve fadeInCurve = default(FlutterSDK.Animation.Curves.Curve), double width = default(double), double height = default(double), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), bool matchTextDirection = false, int placeholderCacheWidth = default(int), int placeholderCacheHeight = default(int), int imageCacheWidth = default(int), int imageCacheHeight = default(int))
-        {
-            var instance = new FadeInImage(key: key); instance.PlaceholderErrorBuilder = placeholderErrorBuilder;
-            instance.ImageErrorBuilder = imageErrorBuilder;
-            instance.ExcludeFromSemantics = excludeFromSemantics;
-            instance.ImageSemanticLabel = imageSemanticLabel;
-            instance.FadeOutDuration = fadeOutDuration;
-            instance.FadeOutCurve = fadeOutCurve;
-            instance.FadeInDuration = fadeInDuration;
-            instance.FadeInCurve = fadeInCurve;
-            instance.Width = width;
-            instance.Height = height;
-            instance.Fit = fit;
-            instance.Alignment = alignment;
-            instance.Repeat = repeat;
-            instance.MatchTextDirection = matchTextDirection; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    public static FadeInImage MemoryNetwork(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Uint8List placeholder = default(Uint8List), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder placeholderErrorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), string image = default(string), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder imageErrorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), double placeholderScale = 1.0, double imageScale = 1.0, bool excludeFromSemantics = false, string imageSemanticLabel = default(string), TimeSpan fadeOutDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve fadeOutCurve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan fadeInDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve fadeInCurve = default(FlutterSDK.Animation.Curves.Curve), double width = default(double), double height = default(double), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), bool matchTextDirection = false, int placeholderCacheWidth = default(int), int placeholderCacheHeight = default(int), int imageCacheWidth = default(int), int imageCacheHeight = default(int))
 
-        #region fields
-        public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> Placeholder { get; set; }
-        public virtual FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder PlaceholderErrorBuilder { get; set; }
-        public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> Image { get; set; }
-        public virtual FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder ImageErrorBuilder { get; set; }
-        public virtual TimeSpan FadeOutDuration { get; set; }
-        public virtual FlutterSDK.Animation.Curves.Curve FadeOutCurve { get; set; }
-        public virtual TimeSpan FadeInDuration { get; set; }
-        public virtual FlutterSDK.Animation.Curves.Curve FadeInCurve { get; set; }
-        public virtual double Width { get; set; }
-        public virtual double Height { get; set; }
-        public virtual FlutterSDK.Painting.Boxfit.BoxFit Fit { get; set; }
-        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
-        public virtual FlutterSDK.Painting.Decorationimage.ImageRepeat Repeat { get; set; }
-        public virtual bool MatchTextDirection { get; set; }
-        public virtual bool ExcludeFromSemantics { get; set; }
-        public virtual string ImageSemanticLabel { get; set; }
-        #endregion
+}
+public static FadeInImage AssetNetwork(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string placeholder = default(string), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder placeholderErrorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), string image = default(string), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder imageErrorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle), double placeholderScale = default(double), double imageScale = 1.0, bool excludeFromSemantics = false, string imageSemanticLabel = default(string), TimeSpan fadeOutDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve fadeOutCurve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan fadeInDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve fadeInCurve = default(FlutterSDK.Animation.Curves.Curve), double width = default(double), double height = default(double), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), bool matchTextDirection = false, int placeholderCacheWidth = default(int), int placeholderCacheHeight = default(int), int imageCacheWidth = default(int), int imageCacheHeight = default(int))
 
-        #region methods
+}
+#endregion
 
-        private FlutterSDK.Widgets.Image.Image _Image(FlutterSDK.Painting.Imageprovider.ImageProvider<object> image = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder errorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), FlutterSDK.Widgets.Image.ImageFrameBuilder frameBuilder = default(FlutterSDK.Widgets.Image.ImageFrameBuilder)) { throw new NotImplementedException(); }
+#region fields
+public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> Placeholder { get; set; }
+public virtual FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder PlaceholderErrorBuilder { get; set; }
+public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> Image { get; set; }
+public virtual FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder ImageErrorBuilder { get; set; }
+public virtual TimeSpan FadeOutDuration { get; set; }
+public virtual FlutterSDK.Animation.Curves.Curve FadeOutCurve { get; set; }
+public virtual TimeSpan FadeInDuration { get; set; }
+public virtual FlutterSDK.Animation.Curves.Curve FadeInCurve { get; set; }
+public virtual double Width { get; set; }
+public virtual double Height { get; set; }
+public virtual FlutterSDK.Painting.Boxfit.BoxFit Fit { get; set; }
+public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
+public virtual FlutterSDK.Painting.Decorationimage.ImageRepeat Repeat { get; set; }
+public virtual bool MatchTextDirection { get; set; }
+public virtual bool ExcludeFromSemantics { get; set; }
+public virtual string ImageSemanticLabel { get; set; }
+#endregion
+
+#region methods
+
+private FlutterSDK.Widgets.Image.Image _Image(FlutterSDK.Painting.Imageprovider.ImageProvider<object> image = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder errorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), FlutterSDK.Widgets.Image.ImageFrameBuilder frameBuilder = default(FlutterSDK.Widgets.Image.ImageFrameBuilder))
+{
+
+    return new Image(image: image, errorBuilder: errorBuilder, frameBuilder: frameBuilder, width: Width, height: Height, fit: Fit, alignment: Alignment, repeat: Repeat, matchTextDirection: MatchTextDirection, gaplessPlayback: true, excludeFromSemantics: true);
+}
 
 
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
 
 
-    public class _AnimatedFadeOutFadeIn : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    Widget result = _Image(image: Image, errorBuilder: ImageErrorBuilder, frameBuilder: (BuildContext context, Widget child, int frame, bool wasSynchronouslyLoaded) =>
     {
-        #region constructors
-        public _AnimatedFadeOutFadeIn(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget target = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget placeholder = default(FlutterSDK.Widgets.Framework.Widget), bool isTargetLoaded = default(bool), TimeSpan fadeOutDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve fadeOutCurve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan fadeInDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve fadeInCurve = default(FlutterSDK.Animation.Curves.Curve))
-        : base(key: key, duration: fadeInDuration + fadeOutDuration)
-        {
-            this.Target = target;
-            this.Placeholder = placeholder;
-            this.IsTargetLoaded = isTargetLoaded;
-            this.FadeOutDuration = fadeOutDuration;
-            this.FadeOutCurve = fadeOutCurve;
-            this.FadeInDuration = fadeInDuration;
-            this.FadeInCurve = fadeInCurve; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Target { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Placeholder { get; set; }
-        public virtual bool IsTargetLoaded { get; set; }
-        public virtual TimeSpan FadeInDuration { get; set; }
-        public virtual TimeSpan FadeOutDuration { get; set; }
-        public virtual FlutterSDK.Animation.Curves.Curve FadeInCurve { get; set; }
-        public virtual FlutterSDK.Animation.Curves.Curve FadeOutCurve { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Fadeinimage._AnimatedFadeOutFadeInState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
+        if (wasSynchronouslyLoaded) return child;
+        return new _AnimatedFadeOutFadeIn(target: child, placeholder: _Image(image: Placeholder, errorBuilder: PlaceholderErrorBuilder), isTargetLoaded: frame != null, fadeInDuration: FadeInDuration, fadeOutDuration: FadeOutDuration, fadeInCurve: FadeInCurve, fadeOutCurve: FadeOutCurve);
     }
-
-
-    public class _AnimatedFadeOutFadeInState : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidgetState<FlutterSDK.Widgets.Fadeinimage._AnimatedFadeOutFadeIn>
+    );
+    if (!ExcludeFromSemantics)
     {
-        #region constructors
-        public _AnimatedFadeOutFadeInState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Animation.Tween.Tween<double> _TargetOpacity { get; set; }
-        internal virtual FlutterSDK.Animation.Tween.Tween<double> _PlaceholderOpacity { get; set; }
-        internal virtual FlutterSDK.Animation.Animation.Animation<double> _TargetOpacityAnimation { get; set; }
-        internal virtual FlutterSDK.Animation.Animation.Animation<double> _PlaceholderOpacityAnimation { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor) { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateTweens() { throw new NotImplementedException(); }
-
-
-        private bool _IsValid(FlutterSDK.Animation.Tween.Tween<double> tween) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+        result = new Semantics(container: ImageSemanticLabel != null, image: true, label: ImageSemanticLabel ?? "", child: result);
     }
+
+    return result;
+}
+
+
+
+#endregion
+}
+
+
+public class _AnimatedFadeOutFadeIn : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
+{
+    #region constructors
+    public _AnimatedFadeOutFadeIn(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget target = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget placeholder = default(FlutterSDK.Widgets.Framework.Widget), bool isTargetLoaded = default(bool), TimeSpan fadeOutDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve fadeOutCurve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan fadeInDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve fadeInCurve = default(FlutterSDK.Animation.Curves.Curve))
+    : base(key: key, duration: fadeInDuration + fadeOutDuration)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Framework.Widget Target { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget Placeholder { get; set; }
+public virtual bool IsTargetLoaded { get; set; }
+public virtual TimeSpan FadeInDuration { get; set; }
+public virtual TimeSpan FadeOutDuration { get; set; }
+public virtual FlutterSDK.Animation.Curves.Curve FadeInCurve { get; set; }
+public virtual FlutterSDK.Animation.Curves.Curve FadeOutCurve { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Fadeinimage._AnimatedFadeOutFadeInState CreateState() => new _AnimatedFadeOutFadeInState();
+
+
+#endregion
+}
+
+
+public class _AnimatedFadeOutFadeInState : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidgetState<FlutterSDK.Widgets.Fadeinimage._AnimatedFadeOutFadeIn>
+{
+    #region constructors
+    public _AnimatedFadeOutFadeInState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Animation.Tween.Tween<double> _TargetOpacity { get; set; }
+    internal virtual FlutterSDK.Animation.Tween.Tween<double> _PlaceholderOpacity { get; set; }
+    internal virtual FlutterSDK.Animation.Animation.Animation<double> _TargetOpacityAnimation { get; set; }
+    internal virtual FlutterSDK.Animation.Animation.Animation<double> _PlaceholderOpacityAnimation { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor)
+    {
+        _TargetOpacity = visitor(_TargetOpacity, Widget.IsTargetLoaded ? 1.0 : 0.0, (object value) => =>new Tween<double>(begin: value as double)) as Tween<double>;
+        _PlaceholderOpacity = visitor(_PlaceholderOpacity, Widget.IsTargetLoaded ? 0.0 : 1.0, (object value) => =>new Tween<double>(begin: value as double)) as Tween<double>;
+    }
+
+
+
+
+    public new void DidUpdateTweens()
+    {
+        _PlaceholderOpacityAnimation = Animation.Drive(new TweenSequence<double>(new List<TweenSequenceItem<double>>() { new TweenSequenceItem<double>(tween: _PlaceholderOpacity.Chain(new CurveTween(curve: Widget.FadeOutCurve)), weight: Widget.FadeOutDuration.InMilliseconds.ToDouble()), new TweenSequenceItem<double>(tween: new ConstantTween<double>(0), weight: Widget.FadeInDuration.InMilliseconds.ToDouble()) }));
+        Animation.Drive(new TweenSequence<double>(new List<TweenSequenceItem<double>>() { new TweenSequenceItem<double>(tween: _PlaceholderOpacity.Chain(new CurveTween(curve: Widget.FadeOutCurve)), weight: Widget.FadeOutDuration.InMilliseconds.ToDouble()), new TweenSequenceItem<double>(tween: new ConstantTween<double>(0), weight: Widget.FadeInDuration.InMilliseconds.ToDouble()) })).AddStatusListener((AnimationStatus status) =>
+        {
+            if (_PlaceholderOpacityAnimation.IsCompleted)
+            {
+                SetState(() =>
+                {
+                }
+                );
+            }
+
+        }
+        );
+        _TargetOpacityAnimation = Animation.Drive(new TweenSequence<double>(new List<TweenSequenceItem<double>>() { new TweenSequenceItem<double>(tween: new ConstantTween<double>(0), weight: Widget.FadeOutDuration.InMilliseconds.ToDouble()), new TweenSequenceItem<double>(tween: _TargetOpacity.Chain(new CurveTween(curve: Widget.FadeInCurve)), weight: Widget.FadeInDuration.InMilliseconds.ToDouble()) }));
+        if (!Widget.IsTargetLoaded && _IsValid(_PlaceholderOpacity) && _IsValid(_TargetOpacity))
+        {
+            Controller.Value = Controller.UpperBound;
+        }
+
+    }
+
+
+
+
+    private bool _IsValid(FlutterSDK.Animation.Tween.Tween<double> tween)
+    {
+        return tween.Begin != null && tween.End != null;
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        Widget target = new FadeTransition(opacity: _TargetOpacityAnimation, child: Widget.Target);
+        if (_PlaceholderOpacityAnimation.IsCompleted)
+        {
+            return target;
+        }
+
+        return new Stack(fit: StackFit.Passthrough, alignment: AlignmentDefaultClass.AlignmentDirectional.Center, textDirection: TextDirection.Ltr, children: new List<Widget>() { target, new FadeTransition(opacity: _PlaceholderOpacityAnimation, child: Widget.Placeholder) });
+    }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new DiagnosticsProperty<Animation<double>>("targetOpacity", _TargetOpacityAnimation));
+        properties.Add(new DiagnosticsProperty<Animation<double>>("placeholderOpacity", _PlaceholderOpacityAnimation));
+    }
+
+
+
+    #endregion
+}
 
 }

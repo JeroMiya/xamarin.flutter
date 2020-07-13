@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -463,29 +463,31 @@ namespace FlutterSDK.Physics.Gravitysimulation
         #region constructors
         public GravitySimulation(double acceleration, double distance, double endDistance, double velocity)
         : base()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        internal virtual double _X { get; set; }
-        internal virtual double _V { get; set; }
-        internal virtual double _A { get; set; }
-        internal virtual double _End { get; set; }
-        #endregion
+    #region fields
+    internal virtual double _X { get; set; }
+    internal virtual double _V { get; set; }
+    internal virtual double _A { get; set; }
+    internal virtual double _End { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new double x(double time) { throw new NotImplementedException(); }
-
-
-        public new double Dx(double time) { throw new NotImplementedException(); }
+    public new double x(double time) => _X + _V * time + 0.5 * _A * time * time;
 
 
-        public new bool IsDone(double time) { throw new NotImplementedException(); }
 
-        #endregion
-    }
+    public new double Dx(double time) => _V + time * _A;
+
+
+
+    public new bool IsDone(double time) => x(time).Abs() >= _End;
+
+
+    #endregion
+}
 
 }

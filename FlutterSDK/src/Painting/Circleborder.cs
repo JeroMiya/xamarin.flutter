@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -446,41 +446,76 @@ namespace FlutterSDK.Painting.Circleborder
         #region constructors
         public CircleBorder(FlutterSDK.Painting.Borders.BorderSide side = default(FlutterSDK.Painting.Borders.BorderSide))
         : base()
-        {
-            this.Side = side; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Painting.Borders.BorderSide Side { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Painting.Borders.BorderSide Side { get; set; }
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new FlutterSDK.Painting.Borders.ShapeBorder Scale(double t) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t) { throw new NotImplementedException(); }
+    public new FlutterSDK.Painting.Borders.ShapeBorder Scale(double t) => new CircleBorder(side: Side.Scale(t));
 
 
-        public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t) { throw new NotImplementedException(); }
 
-
-        public new Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
-
-
-        public new Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
-
-
-        public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
-
-
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
-
-
-        #endregion
+    public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t)
+    {
+        if (a is CircleBorder) return new CircleBorder(side: BordersDefaultClass.BorderSide.Lerp(a.Side, Side, t));
+        return base.LerpFrom(a, t);
     }
+
+
+
+
+    public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t)
+    {
+        if (b is CircleBorder) return new CircleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, b.Side, t));
+        return base.LerpTo(b, t);
+    }
+
+
+
+
+    public new Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+    {
+        return new Path();
+        new Path().AddOval(Rect.FromCircle(center: rect.Center, radius: Math.Dart:mathDefaultClass.Max(0.0, rect.ShortestSide / 2.0 - Side.Width)));
+    }
+
+
+
+
+    public new Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+    {
+        return new Path();
+        new Path().AddOval(Rect.FromCircle(center: rect.Center, radius: rect.ShortestSide / 2.0));
+    }
+
+
+
+
+    public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+    {
+        switch (Side.Style) { case BorderStyle.None: break; case BorderStyle.Solid: canvas.DrawCircle(rect.Center, (rect.ShortestSide - Side.Width) / 2.0, Side.ToPaint()); }
+    }
+
+
+
+
+    public new bool Equals(@Object other)
+    {
+        if (other.GetType() != GetType()) return false;
+        return other is CircleBorder && other.Side == Side;
+    }
+
+
+
+
+    #endregion
+}
 
 }

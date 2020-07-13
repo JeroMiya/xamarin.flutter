@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -466,37 +466,34 @@ namespace FlutterSDK.Material.Card
         #region constructors
         public Card(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), bool borderOnForeground = true, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool semanticContainer = true)
         : base(key: key)
-        {
-            this.Color = color;
-            this.ShadowColor = shadowColor;
-            this.Elevation = elevation;
-            this.Shape = shape;
-            this.BorderOnForeground = borderOnForeground;
-            this.Margin = margin;
-            this.ClipBehavior = clipBehavior;
-            this.Child = child;
-            this.SemanticContainer = semanticContainer; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterBinding.UI.Color Color { get; set; }
-        public virtual FlutterBinding.UI.Color ShadowColor { get; set; }
-        public virtual double Elevation { get; set; }
-        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
-        public virtual bool BorderOnForeground { get; set; }
-        public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
-        public virtual bool SemanticContainer { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        internal virtual double _DefaultElevation { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterBinding.UI.Color Color { get; set; }
+    public virtual FlutterBinding.UI.Color ShadowColor { get; set; }
+    public virtual double Elevation { get; set; }
+    public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+    public virtual bool BorderOnForeground { get; set; }
+    public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
+    public virtual bool SemanticContainer { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+    internal virtual double _DefaultElevation { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        CardTheme cardTheme = CardthemeDefaultClass.CardTheme.Of(context);
+        return new Semantics(container: SemanticContainer, child: new Container(margin: Margin ?? cardTheme.Margin ?? EdgeInsets.All(4.0), child: new Material(type: MaterialType.Card, shadowColor: ShadowColor ?? cardTheme.ShadowColor ?? ColorsDefaultClass.Colors.Black, color: Color ?? cardTheme.Color ?? ThemeDefaultClass.Theme.Of(context).CardColor, elevation: elevation == default(double) ? cardTheme.elevation : elevation ?? _DefaultElevation, shape: Shape ?? cardTheme.Shape ?? new RoundedRectangleBorder(borderRadius: BorderRadius.All(Radius.Circular(4.0))), borderOnForeground: BorderOnForeground, clipBehavior: ClipBehavior ?? cardTheme.ClipBehavior ?? Clip.None, child: new Semantics(explicitChildNodes: !SemanticContainer, child: Child))));
     }
+
+
+
+    #endregion
+}
 
 }

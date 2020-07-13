@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -514,368 +514,465 @@ namespace FlutterSDK.Services.Rawkeyboard
     {
         #region constructors
         public RawKeyEventData()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual bool IsControlPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool IsShiftPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool IsAltPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool IsMetaPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual Dictionary<FlutterSDK.Services.Rawkeyboard.ModifierKey, FlutterSDK.Services.Rawkeyboard.KeyboardSide> ModifiersPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual string KeyLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    public virtual bool IsControlPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool IsShiftPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool IsAltPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool IsMetaPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual Dictionary<FlutterSDK.Services.Rawkeyboard.ModifierKey, FlutterSDK.Services.Rawkeyboard.KeyboardSide> ModifiersPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual string KeyLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        /// <Summary>
-        /// Returns true if the given [ModifierKey] was pressed at the time of this
-        /// event.
-        ///
-        /// If [side] is specified, then this restricts its check to the specified
-        /// side of the keyboard. Defaults to checking for the key being down on
-        /// either side of the keyboard. If there is only one instance of the key on
-        /// the keyboard, then [side] is ignored.
-        /// </Summary>
-        public virtual bool IsModifierPressed(FlutterSDK.Services.Rawkeyboard.ModifierKey key, FlutterSDK.Services.Rawkeyboard.KeyboardSide side = default(FlutterSDK.Services.Rawkeyboard.KeyboardSide)) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns a [KeyboardSide] enum value that describes which side or sides of
-        /// the given keyboard modifier key were pressed at the time of this event.
-        ///
-        /// If the modifier key wasn't pressed at the time of this event, returns
-        /// null. If the given key only appears in one place on the keyboard, returns
-        /// [KeyboardSide.all] if pressed. Never returns [KeyboardSide.any], because
-        /// that doesn't make sense in this context.
-        /// </Summary>
-        public virtual FlutterSDK.Services.Rawkeyboard.KeyboardSide GetModifierSide(FlutterSDK.Services.Rawkeyboard.ModifierKey key) { throw new NotImplementedException(); }
-
-        #endregion
+    /// <Summary>
+    /// Returns true if the given [ModifierKey] was pressed at the time of this
+    /// event.
+    ///
+    /// If [side] is specified, then this restricts its check to the specified
+    /// side of the keyboard. Defaults to checking for the key being down on
+    /// either side of the keyboard. If there is only one instance of the key on
+    /// the keyboard, then [side] is ignored.
+    /// </Summary>
+    public virtual bool IsModifierPressed(FlutterSDK.Services.Rawkeyboard.ModifierKey key, FlutterSDK.Services.Rawkeyboard.KeyboardSide side = default(FlutterSDK.Services.Rawkeyboard.KeyboardSide))
+    {
+        return default(bool);
     }
 
 
     /// <Summary>
-    /// Defines the interface for raw key events.
+    /// Returns a [KeyboardSide] enum value that describes which side or sides of
+    /// the given keyboard modifier key were pressed at the time of this event.
     ///
-    /// Raw key events pass through as much information as possible from the
-    /// underlying platform's key events, which allows them to provide a high level
-    /// of fidelity but a low level of portability.
-    ///
-    /// The event also provides an abstraction for the [physicalKey] and the
-    /// [logicalKey], describing the physical location of the key, and the logical
-    /// meaning of the key, respectively. These are more portable representations of
-    /// the key events, and should produce the same results regardless of platform.
-    ///
-    /// See also:
-    ///
-    ///  * [LogicalKeyboardKey], an object that describes the logical meaning of a
-    ///    key.
-    ///  * [PhysicalKeyboardKey], an object that describes the physical location of
-    ///    a key.
-    ///  * [RawKeyDownEvent], a specialization for events representing the user
-    ///    pressing a key.
-    ///  * [RawKeyUpEvent], a specialization for events representing the user
-    ///    releasing a key.
-    ///  * [RawKeyboard], which uses this interface to expose key data.
-    ///  * [RawKeyboardListener], a widget that listens for raw key events.
+    /// If the modifier key wasn't pressed at the time of this event, returns
+    /// null. If the given key only appears in one place on the keyboard, returns
+    /// [KeyboardSide.all] if pressed. Never returns [KeyboardSide.any], because
+    /// that doesn't make sense in this context.
     /// </Summary>
-    public class RawKeyEvent : IDiagnosticable
+    public virtual FlutterSDK.Services.Rawkeyboard.KeyboardSide GetModifierSide(FlutterSDK.Services.Rawkeyboard.ModifierKey key)
     {
-        #region constructors
-        public RawKeyEvent(FlutterSDK.Services.Rawkeyboard.RawKeyEventData data = default(FlutterSDK.Services.Rawkeyboard.RawKeyEventData), string character = default(string))
-        {
-            this.Data = data;
-            this.Character = character; throw new NotImplementedException();
-        }
-        public static RawKeyEvent FromMessage(Dictionary<string, object> message)
-        {
-            var instance = new RawKeyEvent(); throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual string Character { get; set; }
-        public virtual FlutterSDK.Services.Rawkeyboard.RawKeyEventData Data { get; set; }
-        public virtual bool IsControlPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool IsShiftPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool IsAltPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool IsMetaPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Returns true if the given [KeyboardKey] is pressed.
-        /// </Summary>
-        public virtual bool IsKeyPressed(FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey key) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+        return default(KeyboardSide);
     }
 
+    #endregion
+}
+
+
+/// <Summary>
+/// Defines the interface for raw key events.
+///
+/// Raw key events pass through as much information as possible from the
+/// underlying platform's key events, which allows them to provide a high level
+/// of fidelity but a low level of portability.
+///
+/// The event also provides an abstraction for the [physicalKey] and the
+/// [logicalKey], describing the physical location of the key, and the logical
+/// meaning of the key, respectively. These are more portable representations of
+/// the key events, and should produce the same results regardless of platform.
+///
+/// See also:
+///
+///  * [LogicalKeyboardKey], an object that describes the logical meaning of a
+///    key.
+///  * [PhysicalKeyboardKey], an object that describes the physical location of
+///    a key.
+///  * [RawKeyDownEvent], a specialization for events representing the user
+///    pressing a key.
+///  * [RawKeyUpEvent], a specialization for events representing the user
+///    releasing a key.
+///  * [RawKeyboard], which uses this interface to expose key data.
+///  * [RawKeyboardListener], a widget that listens for raw key events.
+/// </Summary>
+public class RawKeyEvent : IDiagnosticable
+{
+    #region constructors
+    public RawKeyEvent(FlutterSDK.Services.Rawkeyboard.RawKeyEventData data = default(FlutterSDK.Services.Rawkeyboard.RawKeyEventData), string character = default(string))
+
+}
+public static RawKeyEvent FromMessage(Dictionary<string, object> message)
+
+RawKeyEventData data = default(RawKeyEventData);
+string keymap = message["keymap"] as string;
+switch (keymap) { case "android": data = new RawKeyEventDataAndroid(flags: message["flags"] as int ?? 0, codePoint: message["codePoint"] as int ?? 0, keyCode: message["keyCode"] as int ?? 0, plainCodePoint: message["plainCodePoint"] as int ?? 0, scanCode: message["scanCode"] as int ?? 0, metaState: message["metaState"] as int ?? 0, eventSource: message["source"] as int ?? 0, vendorId: message["vendorId"] as int ?? 0, productId: message["productId"] as int ?? 0, deviceId: message["deviceId"] as int ?? 0, repeatCount: message["repeatCount"] as int ?? 0); break; case "fuchsia": data = new RawKeyEventDataFuchsia(hidUsage: message["hidUsage"] as int ?? 0, codePoint: message["codePoint"] as int ?? 0, modifiers: message["modifiers"] as int ?? 0); break; case "macos": data = new RawKeyEventDataMacOs(characters: message["characters"] as string ?? "", charactersIgnoringModifiers: message["charactersIgnoringModifiers"] as string ?? "", keyCode: message["keyCode"] as int ?? 0, modifiers: message["modifiers"] as int ?? 0); break; case "linux": data = new RawKeyEventDataLinux(keyHelper: new KeyHelper(message["toolkit"] as string ?? ""), unicodeScalarValues: message["unicodeScalarValues"] as int ?? 0, keyCode: message["keyCode"] as int ?? 0, scanCode: message["scanCode"] as int ?? 0, modifiers: message["modifiers"] as int ?? 0, isDown: message["type"] == "keydown"); break; case "web": data = new RawKeyEventDataWeb(code: message["code"] as string, key: message["key"] as string, metaState: message["metaState"] as int); break; default: throw new FlutterError($"'Unknown keymap for key events: {keymap}'"); }
+string type = message["type"] as string;
+switch (type) { case "keydown": return new RawKeyDownEvent(data: data, character: message["character"] as string); case "keyup": return new RawKeyUpEvent(data: data); default: throw new FlutterError($"'Unknown key event type: {type}'"); }
+}
+
+
+#endregion
+
+#region fields
+public virtual string Character { get; set; }
+public virtual FlutterSDK.Services.Rawkeyboard.RawKeyEventData Data { get; set; }
+public virtual bool IsControlPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual bool IsShiftPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual bool IsAltPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual bool IsMetaPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Returns true if the given [KeyboardKey] is pressed.
+/// </Summary>
+public virtual bool IsKeyPressed(FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey key) => RawkeyboardDefaultClass.RawKeyboard.Instance.KeysPressed.Contains(key);
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new DiagnosticsProperty<LogicalKeyboardKey>("logicalKey", LogicalKey));
+    properties.Add(new DiagnosticsProperty<PhysicalKeyboardKey>("physicalKey", PhysicalKey));
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// The user has pressed a key on the keyboard.
+///
+/// See also:
+///
+///  * [RawKeyboard], which uses this interface to expose key data.
+/// </Summary>
+public class RawKeyDownEvent : FlutterSDK.Services.Rawkeyboard.RawKeyEvent
+{
+    #region constructors
+    public RawKeyDownEvent(FlutterSDK.Services.Rawkeyboard.RawKeyEventData data = default(FlutterSDK.Services.Rawkeyboard.RawKeyEventData), string character = default(string))
+    : base(data: data, character: character)
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+#endregion
+}
+
+
+/// <Summary>
+/// The user has released a key on the keyboard.
+///
+/// See also:
+///
+///  * [RawKeyboard], which uses this interface to expose key data.
+/// </Summary>
+public class RawKeyUpEvent : FlutterSDK.Services.Rawkeyboard.RawKeyEvent
+{
+    #region constructors
+    public RawKeyUpEvent(FlutterSDK.Services.Rawkeyboard.RawKeyEventData data = default(FlutterSDK.Services.Rawkeyboard.RawKeyEventData), string character = default(string))
+    : base(data: data, character: character)
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+#endregion
+}
+
+
+/// <Summary>
+/// An interface for listening to raw key events.
+///
+/// Raw key events pass through as much information as possible from the
+/// underlying platform's key events, which makes them provide a high level of
+/// fidelity but a low level of portability.
+///
+/// A [RawKeyboard] is useful for listening to raw key events and hardware
+/// buttons that are represented as keys. Typically used by games and other apps
+/// that use keyboards for purposes other than text entry.
+///
+/// See also:
+///
+///  * [RawKeyDownEvent] and [RawKeyUpEvent], the classes used to describe
+///    specific raw key events.
+///  * [RawKeyboardListener], a widget that listens for raw key events.
+///  * [SystemChannels.keyEvent], the low-level channel used for receiving
+///    events from the system.
+/// </Summary>
+public class RawKeyboard
+{
+    #region constructors
+    internal RawKeyboard()
+
+SystemchannelsDefaultClass.SystemChannels.KeyEvent.SetMessageHandler(_HandleKeyEvent);
+}
+
+
+#endregion
+
+#region fields
+public virtual FlutterSDK.Services.Rawkeyboard.RawKeyboard Instance { get; set; }
+internal virtual List<object> _Listeners { get; set; }
+internal virtual Dictionary<FlutterSDK.Services.Rawkeyboard._ModifierSidePair, HashSet<FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey>> _ModifierKeyMap { get; set; }
+internal virtual Dictionary<FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> _AllModifiersExceptFn { get; set; }
+internal virtual Dictionary<FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> _AllModifiers { get; set; }
+internal virtual Dictionary<FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> _KeysPressed { get; set; }
+public virtual HashSet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> KeysPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual HashSet<FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey> PhysicalKeysPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Calls the listener every time the user presses or releases a key.
+///
+/// Listeners can be removed with [removeListener].
+/// </Summary>
+public virtual void AddListener(FlutterSDK.Foundation.Basictypes.ValueChanged<RawKeyEvent> listener)
+{
+    _Listeners.Add(listener);
+}
+
+
+
+
+/// <Summary>
+/// Stop calling the listener every time the user presses or releases a key.
+///
+/// Listeners can be added with [addListener].
+/// </Summary>
+public virtual void RemoveListener(FlutterSDK.Foundation.Basictypes.ValueChanged<RawKeyEvent> listener)
+{
+    _Listeners.Remove(listener);
+}
+
+
+
+
+private Future<object> _HandleKeyEvent(object message)
+async
+{
+    RawKeyEvent @event = RawKeyEvent.FromMessage(message as Dictionary<string, object>);
+    if (@event == null)
+    {
+        return;
+    }
+
+    if (@event.Data is RawKeyEventDataMacOs && @event.LogicalKey == KeyboardkeyDefaultClass.LogicalKeyboardKey.Fn)
+    {
+        return;
+    }
+
+    if (@event is RawKeyDownEvent)
+    {
+        _KeysPressed[((RawKeyDownEvent)@event).PhysicalKey] = ((RawKeyDownEvent)@event).LogicalKey;
+    }
+
+    if (@event is RawKeyUpEvent)
+    {
+        _KeysPressed.Remove(((RawKeyUpEvent)@event).PhysicalKey);
+    }
+
+    _SynchronizeModifiers(@event);
+    if (_Listeners.IsEmpty())
+    {
+        return;
+    }
+
+    foreach (ValueChanged<RawKeyEvent> listener in List<ValueChanged<RawKeyEvent>>.From(_Listeners))
+    {
+        if (_Listeners.Contains(listener))
+        {
+            listener(@event);
+        }
+
+    }
+
+}
+
+
+
+
+private void _SynchronizeModifiers(FlutterSDK.Services.Rawkeyboard.RawKeyEvent @event)
+{
+    Dictionary<ModifierKey, KeyboardSide> modifiersPressed = @event.Data.ModifiersPressed;
+    Dictionary<PhysicalKeyboardKey, LogicalKeyboardKey> modifierKeys = new Dictionary<PhysicalKeyboardKey, LogicalKeyboardKey> { };
+    foreach (ModifierKey key in modifiersPressed.Keys)
+    {
+        HashSet<PhysicalKeyboardKey> mappedKeys = _ModifierKeyMap[new _ModifierSidePair(key, modifiersPressed[key])];
+
+        foreach (PhysicalKeyboardKey physicalModifier in mappedKeys)
+        {
+            modifierKeys[physicalModifier] = _AllModifiers[physicalModifier];
+        }
+
+    }
+
+    _AllModifiersExceptFn.Keys.ForEach(_KeysPressed.Remove);
+    if (!(@event.Data is RawKeyEventDataFuchsia) && !(@event.Data is RawKeyEventDataMacOs))
+    {
+        _KeysPressed.Remove(KeyboardkeyDefaultClass.PhysicalKeyboardKey.Fn);
+    }
+
+    _KeysPressed.AddAll(modifierKeys);
+}
+
+
+
+
+/// <Summary>
+/// Clears the list of keys returned from [keysPressed].
+///
+/// This is used by the testing framework to make sure tests are hermetic.
+/// </Summary>
+public virtual void ClearKeysPressed() => _KeysPressed.Clear();
+
+
+#endregion
+}
+
+
+public class _ModifierSidePair
+{
+    #region constructors
+    public _ModifierSidePair(FlutterSDK.Services.Rawkeyboard.ModifierKey modifier, FlutterSDK.Services.Rawkeyboard.KeyboardSide side)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Services.Rawkeyboard.ModifierKey Modifier { get; set; }
+public virtual FlutterSDK.Services.Rawkeyboard.KeyboardSide Side { get; set; }
+public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new bool Equals(@Object other)
+{
+    if (other.GetType() != GetType()) return false;
+    return other is _ModifierSidePair && other.Modifier == Modifier && other.Side == Side;
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// An enum describing the side of the keyboard that a key is on, to allow
+/// discrimination between which key is pressed (e.g. the left or right SHIFT
+/// key).
+///
+/// See also:
+///
+///  * [RawKeyEventData.isModifierPressed], which accepts this enum as an
+///    argument.
+/// </Summary>
+public enum KeyboardSide
+{
 
     /// <Summary>
-    /// The user has pressed a key on the keyboard.
-    ///
-    /// See also:
-    ///
-    ///  * [RawKeyboard], which uses this interface to expose key data.
+    /// Matches if either the left, right or both versions of the key are pressed.
     /// </Summary>
-    public class RawKeyDownEvent : FlutterSDK.Services.Rawkeyboard.RawKeyEvent
-    {
-        #region constructors
-        public RawKeyDownEvent(FlutterSDK.Services.Rawkeyboard.RawKeyEventData data = default(FlutterSDK.Services.Rawkeyboard.RawKeyEventData), string character = default(string))
-        : base(data: data, character: character)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    Any,
+    /// <Summary>
+    /// Matches the left version of the key.
+    /// </Summary>
+    Left,
+    /// <Summary>
+    /// Matches the right version of the key.
+    /// </Summary>
+    Right,
+    /// <Summary>
+    /// Matches the left and right version of the key pressed simultaneously.
+    /// </Summary>
+    All,
+}
 
-        #region fields
-        #endregion
 
-        #region methods
-        #endregion
-    }
-
+/// <Summary>
+/// An enum describing the type of modifier key that is being pressed.
+///
+/// See also:
+///
+///  * [RawKeyEventData.isModifierPressed], which accepts this enum as an
+///    argument.
+/// </Summary>
+public enum ModifierKey
+{
 
     /// <Summary>
-    /// The user has released a key on the keyboard.
+    /// The CTRL modifier key.
     ///
-    /// See also:
-    ///
-    ///  * [RawKeyboard], which uses this interface to expose key data.
+    /// Typically, there are two of these.
     /// </Summary>
-    public class RawKeyUpEvent : FlutterSDK.Services.Rawkeyboard.RawKeyEvent
-    {
-        #region constructors
-        public RawKeyUpEvent(FlutterSDK.Services.Rawkeyboard.RawKeyEventData data = default(FlutterSDK.Services.Rawkeyboard.RawKeyEventData), string character = default(string))
-        : base(data: data, character: character)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
-    }
-
-
+    ControlModifier,
     /// <Summary>
-    /// An interface for listening to raw key events.
+    /// The SHIFT modifier key.
     ///
-    /// Raw key events pass through as much information as possible from the
-    /// underlying platform's key events, which makes them provide a high level of
-    /// fidelity but a low level of portability.
-    ///
-    /// A [RawKeyboard] is useful for listening to raw key events and hardware
-    /// buttons that are represented as keys. Typically used by games and other apps
-    /// that use keyboards for purposes other than text entry.
-    ///
-    /// See also:
-    ///
-    ///  * [RawKeyDownEvent] and [RawKeyUpEvent], the classes used to describe
-    ///    specific raw key events.
-    ///  * [RawKeyboardListener], a widget that listens for raw key events.
-    ///  * [SystemChannels.keyEvent], the low-level channel used for receiving
-    ///    events from the system.
+    /// Typically, there are two of these.
     /// </Summary>
-    public class RawKeyboard
-    {
-        #region constructors
-        internal RawKeyboard()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Services.Rawkeyboard.RawKeyboard Instance { get; set; }
-        internal virtual List<object> _Listeners { get; set; }
-        internal virtual Dictionary<FlutterSDK.Services.Rawkeyboard._ModifierSidePair, HashSet<FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey>> _ModifierKeyMap { get; set; }
-        internal virtual Dictionary<FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> _AllModifiersExceptFn { get; set; }
-        internal virtual Dictionary<FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> _AllModifiers { get; set; }
-        internal virtual Dictionary<FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> _KeysPressed { get; set; }
-        public virtual HashSet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> KeysPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual HashSet<FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey> PhysicalKeysPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Calls the listener every time the user presses or releases a key.
-        ///
-        /// Listeners can be removed with [removeListener].
-        /// </Summary>
-        public virtual void AddListener(FlutterSDK.Foundation.Basictypes.ValueChanged<RawKeyEvent> listener) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Stop calling the listener every time the user presses or releases a key.
-        ///
-        /// Listeners can be added with [addListener].
-        /// </Summary>
-        public virtual void RemoveListener(FlutterSDK.Foundation.Basictypes.ValueChanged<RawKeyEvent> listener) { throw new NotImplementedException(); }
-
-
-        private Future<object> _HandleKeyEvent(object message) { throw new NotImplementedException(); }
-
-
-        private void _SynchronizeModifiers(FlutterSDK.Services.Rawkeyboard.RawKeyEvent @event) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Clears the list of keys returned from [keysPressed].
-        ///
-        /// This is used by the testing framework to make sure tests are hermetic.
-        /// </Summary>
-        public virtual void ClearKeysPressed() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _ModifierSidePair
-    {
-        #region constructors
-        public _ModifierSidePair(FlutterSDK.Services.Rawkeyboard.ModifierKey modifier, FlutterSDK.Services.Rawkeyboard.KeyboardSide side)
-        {
-            this.Modifier = modifier;
-            this.Side = side; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Services.Rawkeyboard.ModifierKey Modifier { get; set; }
-        public virtual FlutterSDK.Services.Rawkeyboard.KeyboardSide Side { get; set; }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
+    ShiftModifier,
     /// <Summary>
-    /// An enum describing the side of the keyboard that a key is on, to allow
-    /// discrimination between which key is pressed (e.g. the left or right SHIFT
-    /// key).
+    /// The ALT modifier key.
     ///
-    /// See also:
-    ///
-    ///  * [RawKeyEventData.isModifierPressed], which accepts this enum as an
-    ///    argument.
+    /// Typically, there are two of these.
     /// </Summary>
-    public enum KeyboardSide
-    {
-
-        /// <Summary>
-        /// Matches if either the left, right or both versions of the key are pressed.
-        /// </Summary>
-        Any,
-        /// <Summary>
-        /// Matches the left version of the key.
-        /// </Summary>
-        Left,
-        /// <Summary>
-        /// Matches the right version of the key.
-        /// </Summary>
-        Right,
-        /// <Summary>
-        /// Matches the left and right version of the key pressed simultaneously.
-        /// </Summary>
-        All,
-    }
-
-
+    AltModifier,
     /// <Summary>
-    /// An enum describing the type of modifier key that is being pressed.
+    /// The META modifier key.
     ///
-    /// See also:
-    ///
-    ///  * [RawKeyEventData.isModifierPressed], which accepts this enum as an
-    ///    argument.
+    /// Typically, there are two of these. This is, for example, the Windows key
+    /// on Windows (⊞), the Command (⌘) key on macOS and iOS, and the Search (🔍)
+    /// key on Android.
     /// </Summary>
-    public enum ModifierKey
-    {
-
-        /// <Summary>
-        /// The CTRL modifier key.
-        ///
-        /// Typically, there are two of these.
-        /// </Summary>
-        ControlModifier,
-        /// <Summary>
-        /// The SHIFT modifier key.
-        ///
-        /// Typically, there are two of these.
-        /// </Summary>
-        ShiftModifier,
-        /// <Summary>
-        /// The ALT modifier key.
-        ///
-        /// Typically, there are two of these.
-        /// </Summary>
-        AltModifier,
-        /// <Summary>
-        /// The META modifier key.
-        ///
-        /// Typically, there are two of these. This is, for example, the Windows key
-        /// on Windows (⊞), the Command (⌘) key on macOS and iOS, and the Search (🔍)
-        /// key on Android.
-        /// </Summary>
-        MetaModifier,
-        /// <Summary>
-        /// The CAPS LOCK modifier key.
-        ///
-        /// Typically, there is one of these. Only shown as "pressed" when the caps
-        /// lock is on, so on a key up when the mode is turned on, on each key press
-        /// when it's enabled, and on a key down when it is turned off.
-        /// </Summary>
-        CapsLockModifier,
-        /// <Summary>
-        /// The NUM LOCK modifier key.
-        ///
-        /// Typically, there is one of these. Only shown as "pressed" when the num
-        /// lock is on, so on a key up when the mode is turned on, on each key press
-        /// when it's enabled, and on a key down when it is turned off.
-        /// </Summary>
-        NumLockModifier,
-        /// <Summary>
-        /// The SCROLL LOCK modifier key.
-        ///
-        /// Typically, there is one of these.  Only shown as "pressed" when the scroll
-        /// lock is on, so on a key up when the mode is turned on, on each key press
-        /// when it's enabled, and on a key down when it is turned off.
-        /// </Summary>
-        ScrollLockModifier,
-        /// <Summary>
-        /// The FUNCTION (Fn) modifier key.
-        ///
-        /// Typically, there is one of these.
-        /// </Summary>
-        FunctionModifier,
-        /// <Summary>
-        /// The SYMBOL modifier key.
-        ///
-        /// Typically, there is one of these.
-        /// </Summary>
-        SymbolModifier,
-    }
+    MetaModifier,
+    /// <Summary>
+    /// The CAPS LOCK modifier key.
+    ///
+    /// Typically, there is one of these. Only shown as "pressed" when the caps
+    /// lock is on, so on a key up when the mode is turned on, on each key press
+    /// when it's enabled, and on a key down when it is turned off.
+    /// </Summary>
+    CapsLockModifier,
+    /// <Summary>
+    /// The NUM LOCK modifier key.
+    ///
+    /// Typically, there is one of these. Only shown as "pressed" when the num
+    /// lock is on, so on a key up when the mode is turned on, on each key press
+    /// when it's enabled, and on a key down when it is turned off.
+    /// </Summary>
+    NumLockModifier,
+    /// <Summary>
+    /// The SCROLL LOCK modifier key.
+    ///
+    /// Typically, there is one of these.  Only shown as "pressed" when the scroll
+    /// lock is on, so on a key up when the mode is turned on, on each key press
+    /// when it's enabled, and on a key down when it is turned off.
+    /// </Summary>
+    ScrollLockModifier,
+    /// <Summary>
+    /// The FUNCTION (Fn) modifier key.
+    ///
+    /// Typically, there is one of these.
+    /// </Summary>
+    FunctionModifier,
+    /// <Summary>
+    /// The SYMBOL modifier key.
+    ///
+    /// Typically, there is one of these.
+    /// </Summary>
+    SymbolModifier,
+}
 
 }

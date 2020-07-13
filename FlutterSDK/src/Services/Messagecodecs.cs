@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -441,344 +441,587 @@ namespace FlutterSDK.Services.Messagecodecs
     {
         #region constructors
         public BinaryCodec()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        #endregion
+    #region fields
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new ByteData DecodeMessage(ByteData message) { throw new NotImplementedException(); }
-
-
-        public new ByteData EncodeMessage(ByteData message) { throw new NotImplementedException(); }
-
-        #endregion
-    }
+    public new ByteData DecodeMessage(ByteData message) => message;
 
 
-    /// <Summary>
-    /// [MessageCodec] with UTF-8 encoded String messages.
-    ///
-    /// On Android, messages will be represented using `java.util.String`.
-    /// On iOS, messages will be represented using `NSString`.
-    /// </Summary>
-    public class StringCodec : IMessageCodec<string>
+
+    public new ByteData EncodeMessage(ByteData message) => message;
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// [MessageCodec] with UTF-8 encoded String messages.
+///
+/// On Android, messages will be represented using `java.util.String`.
+/// On iOS, messages will be represented using `NSString`.
+/// </Summary>
+public class StringCodec : IMessageCodec<string>
+{
+    #region constructors
+    public StringCodec()
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public new string DecodeMessage(ByteData message)
+{
+    if (message == null) return null;
+    return Dart:convertDefaultClass.Utf8.Decoder.Convert(message.Buffer.AsUint8List(message.OffsetInBytes, message.LengthInBytes));
+}
+
+
+
+
+public new ByteData EncodeMessage(string message)
+{
+    if (message == null) return null;
+    Uint8List encoded = Dart:convertDefaultClass.Utf8.Encoder.Convert(message);
+    return encoded.Buffer.AsByteData();
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// [MessageCodec] with UTF-8 encoded JSON messages.
+///
+/// Supported messages are acyclic values of these forms:
+///
+///  * null
+///  * [bool]s
+///  * [num]s
+///  * [String]s
+///  * [List]s of supported values
+///  * [Map]s from strings to supported values
+///
+/// On Android, messages are decoded using the `org.json` library.
+/// On iOS, messages are decoded using the `NSJSONSerialization` library.
+/// In both cases, the use of top-level simple messages (null, [bool], [num],
+/// and [String]) is supported (by the Flutter SDK). The decoded value will be
+/// null/nil for null, and identical to what would result from decoding a
+/// singleton JSON array with a Boolean, number, or string value, and then
+/// extracting its single element.
+/// </Summary>
+public class JSONMessageCodec : IMessageCodec<object>
+{
+    #region constructors
+    public JSONMessageCodec()
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public new ByteData EncodeMessage(object message)
+{
+    if (message == null) return null;
+    return new StringCodec().EncodeMessage(Dart: convertDefaultClass.Json.Encode(message));
+}
+
+
+
+
+public new object DecodeMessage(ByteData message)
+{
+    if (message == null) return message;
+    return Dart:convertDefaultClass.Json.Decode(new StringCodec().DecodeMessage(message));
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// [MethodCodec] with UTF-8 encoded JSON method calls and result envelopes.
+///
+/// Values supported as method arguments and result payloads are those supported
+/// by [JSONMessageCodec].
+/// </Summary>
+public class JSONMethodCodec : IMethodCodec
+{
+    #region constructors
+    public JSONMethodCodec()
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public new ByteData EncodeMethodCall(FlutterSDK.Services.Messagecodec.MethodCall call)
+{
+    return new JSONMessageCodec().EncodeMessage(new Dictionary<string, object> { { "method", call.Method }{ "args", call.Arguments } });
+}
+
+
+
+
+public new FlutterSDK.Services.Messagecodec.MethodCall DecodeMethodCall(ByteData methodCall)
+{
+    object decoded = new JSONMessageCodec().DecodeMessage(methodCall);
+    if (!(decoded is Dictionary)) throw new FormatException($"'Expected method call Map, got {decoded}'");
+    object method = decoded["method"];
+    object arguments = decoded["args"];
+    if (method is string) return new MethodCall(method, arguments);
+    throw new FormatException($"'Invalid method call: {decoded}'");
+}
+
+
+
+
+public new object DecodeEnvelope(ByteData envelope)
+{
+    object decoded = new JSONMessageCodec().DecodeMessage(envelope);
+    if (!(decoded is List)) throw new FormatException($"'Expected envelope List, got {decoded}'");
+    if (decoded.Length == 1) return decoded[0];
+    if (decoded.Length == 3 && decoded[0] is string && (decoded[1] == null || decoded[1] is string)) throw new PlatformException(code: decoded[0] as string, message: decoded[1] as string, details: decoded[2]);
+    throw new FormatException($"'Invalid envelope: {decoded}'");
+}
+
+
+
+
+public new ByteData EncodeSuccessEnvelope(object result)
+{
+    return new JSONMessageCodec().EncodeMessage(new List<object>() { result });
+}
+
+
+
+
+public new ByteData EncodeErrorEnvelope(string code = default(string), string message = default(string), object details = default(object))
+{
+
+    return new JSONMessageCodec().EncodeMessage(new List<object>() { code, message, details });
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// [MessageCodec] using the Flutter standard binary encoding.
+///
+/// Supported messages are acyclic values of these forms:
+///
+///  * null
+///  * [bool]s
+///  * [num]s
+///  * [String]s
+///  * [Uint8List]s, [Int32List]s, [Int64List]s, [Float64List]s
+///  * [List]s of supported values
+///  * [Map]s from supported values to supported values
+///
+/// Decoded values will use `List<dynamic>` and `Map<dynamic, dynamic>`
+/// irrespective of content.
+///
+/// On Android, messages are represented as follows:
+///
+///  * null: null
+///  * [bool]\: `java.lang.Boolean`
+///  * [int]\: `java.lang.Integer` for values that are representable using 32-bit
+///    two's complement; `java.lang.Long` otherwise
+///  * [double]\: `java.lang.Double`
+///  * [String]\: `java.lang.String`
+///  * [Uint8List]\: `byte[]`
+///  * [Int32List]\: `int[]`
+///  * [Int64List]\: `long[]`
+///  * [Float64List]\: `double[]`
+///  * [List]\: `java.util.ArrayList`
+///  * [Map]\: `java.util.HashMap`
+///
+/// On iOS, messages are represented as follows:
+///
+///  * null: nil
+///  * [bool]\: `NSNumber numberWithBool:`
+///  * [int]\: `NSNumber numberWithInt:` for values that are representable using
+///    32-bit two's complement; `NSNumber numberWithLong:` otherwise
+///  * [double]\: `NSNumber numberWithDouble:`
+///  * [String]\: `NSString`
+///  * [Uint8List], [Int32List], [Int64List], [Float64List]\:
+///    `FlutterStandardTypedData`
+///  * [List]\: `NSArray`
+///  * [Map]\: `NSDictionary`
+///
+/// When sending a `java.math.BigInteger` from Java, it is converted into a
+/// [String] with the hexadecimal representation of the integer. (The value is
+/// tagged as being a big integer; subclasses of this class could be made to
+/// support it natively; see the discussion at [writeValue].) This codec does
+/// not support sending big integers from Dart.
+///
+/// The codec is extensible by subclasses overriding [writeValue] and
+/// [readValueOfType].
+/// </Summary>
+public class StandardMessageCodec : IMessageCodec<object>
+{
+    #region constructors
+    public StandardMessageCodec()
+
+}
+#endregion
+
+#region fields
+internal virtual int _ValueNull { get; set; }
+internal virtual int _ValueTrue { get; set; }
+internal virtual int _ValueFalse { get; set; }
+internal virtual int _ValueInt32 { get; set; }
+internal virtual int _ValueInt64 { get; set; }
+internal virtual int _ValueLargeInt { get; set; }
+internal virtual int _ValueFloat64 { get; set; }
+internal virtual int _ValueString { get; set; }
+internal virtual int _ValueUint8List { get; set; }
+internal virtual int _ValueInt32List { get; set; }
+internal virtual int _ValueInt64List { get; set; }
+internal virtual int _ValueFloat64List { get; set; }
+internal virtual int _ValueList { get; set; }
+internal virtual int _ValueMap { get; set; }
+#endregion
+
+#region methods
+
+public new ByteData EncodeMessage(object message)
+{
+    if (message == null) return null;
+    WriteBuffer buffer = new WriteBuffer();
+    WriteValue(buffer, message);
+    return buffer.Done();
+}
+
+
+
+
+public new object DecodeMessage(ByteData message)
+{
+    if (message == null) return null;
+    ReadBuffer buffer = new ReadBuffer(message);
+    object result = ReadValue(buffer);
+    if (buffer.HasRemaining) throw new FormatException("Message corrupted");
+    return result;
+}
+
+
+
+
+/// <Summary>
+/// Writes [value] to [buffer] by first writing a type discriminator
+/// byte, then the value itself.
+///
+/// This method may be called recursively to serialize container values.
+///
+/// Type discriminators 0 through 127 inclusive are reserved for use by the
+/// base class, as follows:
+///
+///  * null = 0
+///  * true = 1
+///  * false = 2
+///  * 32 bit integer = 3
+///  * 64 bit integer = 4
+///  * larger integers = 5 (see below)
+///  * 64 bit floating-point number = 6
+///  * String = 7
+///  * Uint8List = 8
+///  * Int32List = 9
+///  * Int64List = 10
+///  * Float64List = 11
+///  * List = 12
+///  * Map = 13
+///  * Reserved for future expansion: 14..127
+///
+/// The codec can be extended by overriding this method, calling super
+/// for values that the extension does not handle. Type discriminators
+/// used by extensions must be greater than or equal to 128 in order to avoid
+/// clashes with any later extensions to the base class.
+///
+/// The "larger integers" type, 5, is never used by [writeValue]. A subclass
+/// could represent big integers from another package using that type. The
+/// format is first the type byte (0x05), then the actual number as an ASCII
+/// string giving the hexadecimal representation of the integer, with the
+/// string's length as encoded by [writeSize] followed by the string bytes. On
+/// Android, that would get converted to a `java.math.BigInteger` object. On
+/// iOS, the string representation is returned.
+/// </Summary>
+public virtual void WriteValue(FlutterSDK.Foundation.Serialization.WriteBuffer buffer, object value)
+{
+    if (value == null)
     {
-        #region constructors
-        public StringCodec()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        public new string DecodeMessage(ByteData message) { throw new NotImplementedException(); }
-
-
-        public new ByteData EncodeMessage(string message) { throw new NotImplementedException(); }
-
-        #endregion
+        buffer.PutUint8(_ValueNull);
     }
-
-
-    /// <Summary>
-    /// [MessageCodec] with UTF-8 encoded JSON messages.
-    ///
-    /// Supported messages are acyclic values of these forms:
-    ///
-    ///  * null
-    ///  * [bool]s
-    ///  * [num]s
-    ///  * [String]s
-    ///  * [List]s of supported values
-    ///  * [Map]s from strings to supported values
-    ///
-    /// On Android, messages are decoded using the `org.json` library.
-    /// On iOS, messages are decoded using the `NSJSONSerialization` library.
-    /// In both cases, the use of top-level simple messages (null, [bool], [num],
-    /// and [String]) is supported (by the Flutter SDK). The decoded value will be
-    /// null/nil for null, and identical to what would result from decoding a
-    /// singleton JSON array with a Boolean, number, or string value, and then
-    /// extracting its single element.
-    /// </Summary>
-    public class JSONMessageCodec : IMessageCodec<object>
+    else if (value is bool)
     {
-        #region constructors
-        public JSONMessageCodec()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        public new ByteData EncodeMessage(object message) { throw new NotImplementedException(); }
-
-
-        public new object DecodeMessage(ByteData message) { throw new NotImplementedException(); }
-
-        #endregion
+        buffer.PutUint8(((Bool)value) ? _ValueTrue : _ValueFalse);
     }
-
-
-    /// <Summary>
-    /// [MethodCodec] with UTF-8 encoded JSON method calls and result envelopes.
-    ///
-    /// Values supported as method arguments and result payloads are those supported
-    /// by [JSONMessageCodec].
-    /// </Summary>
-    public class JSONMethodCodec : IMethodCodec
+    else if (value is double)
     {
-        #region constructors
-        public JSONMethodCodec()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        public new ByteData EncodeMethodCall(FlutterSDK.Services.Messagecodec.MethodCall call) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Services.Messagecodec.MethodCall DecodeMethodCall(ByteData methodCall) { throw new NotImplementedException(); }
-
-
-        public new object DecodeEnvelope(ByteData envelope) { throw new NotImplementedException(); }
-
-
-        public new ByteData EncodeSuccessEnvelope(object result) { throw new NotImplementedException(); }
-
-
-        public new ByteData EncodeErrorEnvelope(string code = default(string), string message = default(string), object details = default(object)) { throw new NotImplementedException(); }
-
-        #endregion
+        buffer.PutUint8(_ValueFloat64);
+        buffer.PutFloat64(((Double)value));
     }
-
-
-    /// <Summary>
-    /// [MessageCodec] using the Flutter standard binary encoding.
-    ///
-    /// Supported messages are acyclic values of these forms:
-    ///
-    ///  * null
-    ///  * [bool]s
-    ///  * [num]s
-    ///  * [String]s
-    ///  * [Uint8List]s, [Int32List]s, [Int64List]s, [Float64List]s
-    ///  * [List]s of supported values
-    ///  * [Map]s from supported values to supported values
-    ///
-    /// Decoded values will use `List<dynamic>` and `Map<dynamic, dynamic>`
-    /// irrespective of content.
-    ///
-    /// On Android, messages are represented as follows:
-    ///
-    ///  * null: null
-    ///  * [bool]\: `java.lang.Boolean`
-    ///  * [int]\: `java.lang.Integer` for values that are representable using 32-bit
-    ///    two's complement; `java.lang.Long` otherwise
-    ///  * [double]\: `java.lang.Double`
-    ///  * [String]\: `java.lang.String`
-    ///  * [Uint8List]\: `byte[]`
-    ///  * [Int32List]\: `int[]`
-    ///  * [Int64List]\: `long[]`
-    ///  * [Float64List]\: `double[]`
-    ///  * [List]\: `java.util.ArrayList`
-    ///  * [Map]\: `java.util.HashMap`
-    ///
-    /// On iOS, messages are represented as follows:
-    ///
-    ///  * null: nil
-    ///  * [bool]\: `NSNumber numberWithBool:`
-    ///  * [int]\: `NSNumber numberWithInt:` for values that are representable using
-    ///    32-bit two's complement; `NSNumber numberWithLong:` otherwise
-    ///  * [double]\: `NSNumber numberWithDouble:`
-    ///  * [String]\: `NSString`
-    ///  * [Uint8List], [Int32List], [Int64List], [Float64List]\:
-    ///    `FlutterStandardTypedData`
-    ///  * [List]\: `NSArray`
-    ///  * [Map]\: `NSDictionary`
-    ///
-    /// When sending a `java.math.BigInteger` from Java, it is converted into a
-    /// [String] with the hexadecimal representation of the integer. (The value is
-    /// tagged as being a big integer; subclasses of this class could be made to
-    /// support it natively; see the discussion at [writeValue].) This codec does
-    /// not support sending big integers from Dart.
-    ///
-    /// The codec is extensible by subclasses overriding [writeValue] and
-    /// [readValueOfType].
-    /// </Summary>
-    public class StandardMessageCodec : IMessageCodec<object>
+    else if (value is int)
     {
-        #region constructors
-        public StandardMessageCodec()
+        if (-0x7fffffff - 1 <= ((Int)value) && ((Int)value) <= 0x7fffffff)
         {
-            throw new NotImplementedException();
+            buffer.PutUint8(_ValueInt32);
+            buffer.PutInt32(((Int)value));
         }
-        #endregion
+        else
+        {
+            buffer.PutUint8(_ValueInt64);
+            buffer.PutInt64(value);
+        }
 
-        #region fields
-        internal virtual int _ValueNull { get; set; }
-        internal virtual int _ValueTrue { get; set; }
-        internal virtual int _ValueFalse { get; set; }
-        internal virtual int _ValueInt32 { get; set; }
-        internal virtual int _ValueInt64 { get; set; }
-        internal virtual int _ValueLargeInt { get; set; }
-        internal virtual int _ValueFloat64 { get; set; }
-        internal virtual int _ValueString { get; set; }
-        internal virtual int _ValueUint8List { get; set; }
-        internal virtual int _ValueInt32List { get; set; }
-        internal virtual int _ValueInt64List { get; set; }
-        internal virtual int _ValueFloat64List { get; set; }
-        internal virtual int _ValueList { get; set; }
-        internal virtual int _ValueMap { get; set; }
-        #endregion
-
-        #region methods
-
-        public new ByteData EncodeMessage(object message) { throw new NotImplementedException(); }
-
-
-        public new object DecodeMessage(ByteData message) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Writes [value] to [buffer] by first writing a type discriminator
-        /// byte, then the value itself.
-        ///
-        /// This method may be called recursively to serialize container values.
-        ///
-        /// Type discriminators 0 through 127 inclusive are reserved for use by the
-        /// base class, as follows:
-        ///
-        ///  * null = 0
-        ///  * true = 1
-        ///  * false = 2
-        ///  * 32 bit integer = 3
-        ///  * 64 bit integer = 4
-        ///  * larger integers = 5 (see below)
-        ///  * 64 bit floating-point number = 6
-        ///  * String = 7
-        ///  * Uint8List = 8
-        ///  * Int32List = 9
-        ///  * Int64List = 10
-        ///  * Float64List = 11
-        ///  * List = 12
-        ///  * Map = 13
-        ///  * Reserved for future expansion: 14..127
-        ///
-        /// The codec can be extended by overriding this method, calling super
-        /// for values that the extension does not handle. Type discriminators
-        /// used by extensions must be greater than or equal to 128 in order to avoid
-        /// clashes with any later extensions to the base class.
-        ///
-        /// The "larger integers" type, 5, is never used by [writeValue]. A subclass
-        /// could represent big integers from another package using that type. The
-        /// format is first the type byte (0x05), then the actual number as an ASCII
-        /// string giving the hexadecimal representation of the integer, with the
-        /// string's length as encoded by [writeSize] followed by the string bytes. On
-        /// Android, that would get converted to a `java.math.BigInteger` object. On
-        /// iOS, the string representation is returned.
-        /// </Summary>
-        public virtual void WriteValue(FlutterSDK.Foundation.Serialization.WriteBuffer buffer, object value) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Reads a value from [buffer] as written by [writeValue].
-        ///
-        /// This method is intended for use by subclasses overriding
-        /// [readValueOfType].
-        /// </Summary>
-        public virtual object ReadValue(FlutterSDK.Foundation.Serialization.ReadBuffer buffer) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Reads a value of the indicated [type] from [buffer].
-        ///
-        /// The codec can be extended by overriding this method, calling super for
-        /// types that the extension does not handle. See the discussion at
-        /// [writeValue].
-        /// </Summary>
-        public virtual object ReadValueOfType(int type, FlutterSDK.Foundation.Serialization.ReadBuffer buffer) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Writes a non-negative 32-bit integer [value] to [buffer]
-        /// using an expanding 1-5 byte encoding that optimizes for small values.
-        ///
-        /// This method is intended for use by subclasses overriding
-        /// [writeValue].
-        /// </Summary>
-        public virtual void WriteSize(FlutterSDK.Foundation.Serialization.WriteBuffer buffer, int value) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Reads a non-negative int from [buffer] as written by [writeSize].
-        ///
-        /// This method is intended for use by subclasses overriding
-        /// [readValueOfType].
-        /// </Summary>
-        public virtual int ReadSize(FlutterSDK.Foundation.Serialization.ReadBuffer buffer) { throw new NotImplementedException(); }
-
-        #endregion
     }
-
-
-    /// <Summary>
-    /// [MethodCodec] using the Flutter standard binary encoding.
-    ///
-    /// The standard codec is guaranteed to be compatible with the corresponding
-    /// standard codec for FlutterMethodChannels on the host platform. These parts
-    /// of the Flutter SDK are evolved synchronously.
-    ///
-    /// Values supported as method arguments and result payloads are those supported
-    /// by [StandardMessageCodec].
-    /// </Summary>
-    public class StandardMethodCodec : IMethodCodec
+    else if (value is string)
     {
-        #region constructors
-        public StandardMethodCodec(FlutterSDK.Services.Messagecodecs.StandardMessageCodec messageCodec = default(FlutterSDK.Services.Messagecodecs.StandardMessageCodec))
-        {
-            this.MessageCodec = messageCodec; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Services.Messagecodecs.StandardMessageCodec MessageCodec { get; set; }
-        #endregion
-
-        #region methods
-
-        public new ByteData EncodeMethodCall(FlutterSDK.Services.Messagecodec.MethodCall call) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Services.Messagecodec.MethodCall DecodeMethodCall(ByteData methodCall) { throw new NotImplementedException(); }
-
-
-        public new ByteData EncodeSuccessEnvelope(object result) { throw new NotImplementedException(); }
-
-
-        public new ByteData EncodeErrorEnvelope(string code = default(string), string message = default(string), object details = default(object)) { throw new NotImplementedException(); }
-
-
-        public new object DecodeEnvelope(ByteData envelope) { throw new NotImplementedException(); }
-
-        #endregion
+        buffer.PutUint8(_ValueString);
+        Uint8List bytes = Dart:convertDefaultClass.Utf8.Encoder.Convert(((String)value));
+        WriteSize(buffer, bytes.Count);
+        buffer.PutUint8List(bytes);
     }
+    else if (value is Uint8List)
+    {
+        buffer.PutUint8(_ValueUint8List);
+        WriteSize(buffer, ((Uint8List)value).Count);
+        buffer.PutUint8List(((Uint8List)value));
+    }
+    else if (value is List<uint>)
+    {
+        buffer.PutUint8(_ValueInt32List);
+        WriteSize(buffer, ((Int32List)value).Count);
+        buffer.PutInt32List(((Int32List)value));
+    }
+    else if (value is Int64List)
+    {
+        buffer.PutUint8(_ValueInt64List);
+        WriteSize(buffer, ((Int64List)value).Count);
+        buffer.PutInt64List(((Int64List)value));
+    }
+    else if (value is List<float>)
+    {
+        buffer.PutUint8(_ValueFloat64List);
+        WriteSize(buffer, ((Float64List)value).Count);
+        buffer.PutFloat64List(((Float64List)value));
+    }
+    else if (value is List)
+    {
+        buffer.PutUint8(_ValueList);
+        WriteSize(buffer, ((List)value).Count);
+        foreach (object item in ((List)value))
+        {
+            WriteValue(buffer, item);
+        }
+
+    }
+    else if (value is Dictionary)
+    {
+        buffer.PutUint8(_ValueMap);
+        WriteSize(buffer, ((Map)value).Length);
+        ((Map)value).ForEach((object key, object((Map)value)) => {
+            WriteValue(buffer, key);
+            WriteValue(buffer, ((Map)value));
+        }
+);
+    }
+    else
+    {
+        throw ArgumentError.Value(value);
+    }
+
+}
+
+
+
+
+/// <Summary>
+/// Reads a value from [buffer] as written by [writeValue].
+///
+/// This method is intended for use by subclasses overriding
+/// [readValueOfType].
+/// </Summary>
+public virtual object ReadValue(FlutterSDK.Foundation.Serialization.ReadBuffer buffer)
+{
+    if (!buffer.HasRemaining) throw new FormatException("Message corrupted");
+    int type = buffer.GetUint8();
+    return ReadValueOfType(type, buffer);
+}
+
+
+
+
+/// <Summary>
+/// Reads a value of the indicated [type] from [buffer].
+///
+/// The codec can be extended by overriding this method, calling super for
+/// types that the extension does not handle. See the discussion at
+/// [writeValue].
+/// </Summary>
+public virtual object ReadValueOfType(int type, FlutterSDK.Foundation.Serialization.ReadBuffer buffer)
+{
+    switch (type) { case _ValueNull: return null; case _ValueTrue: return true; case _ValueFalse: return false; case _ValueInt32: return buffer.GetInt32(); case _ValueInt64: return buffer.GetInt64(); case _ValueFloat64: return buffer.GetFloat64(); case _ValueLargeInt: case _ValueString: int length = ReadSize(buffer); return Dart:convertDefaultClass.Utf8.Decoder.Convert(buffer.GetUint8List(length)); case _ValueUint8List: int length = ReadSize(buffer); return buffer.GetUint8List(length); case _ValueInt32List: int length = ReadSize(buffer); return buffer.GetInt32List(length); case _ValueInt64List: int length = ReadSize(buffer); return buffer.GetInt64List(length); case _ValueFloat64List: int length = ReadSize(buffer); return buffer.GetFloat64List(length); case _ValueList: int length = ReadSize(buffer); object result = new List<object>(length); for (int i = 0; i < length; i++) result[i] = ReadValue(buffer); return result; case _ValueMap: int length = ReadSize(buffer); object result = new Dictionary<object, object> { }; for (int i = 0; i < length; i++) result[ReadValue(buffer)] = ReadValue(buffer); return result; default: throw new FormatException("Message corrupted"); }
+}
+
+
+
+
+/// <Summary>
+/// Writes a non-negative 32-bit integer [value] to [buffer]
+/// using an expanding 1-5 byte encoding that optimizes for small values.
+///
+/// This method is intended for use by subclasses overriding
+/// [writeValue].
+/// </Summary>
+public virtual void WriteSize(FlutterSDK.Foundation.Serialization.WriteBuffer buffer, int value)
+{
+
+    if (value < 254)
+    {
+        buffer.PutUint8(value);
+    }
+    else if (value <= 0xffff)
+    {
+        buffer.PutUint8(254);
+        buffer.PutUint16(value);
+    }
+    else
+    {
+        buffer.PutUint8(255);
+        buffer.PutUint32(value);
+    }
+
+}
+
+
+
+
+/// <Summary>
+/// Reads a non-negative int from [buffer] as written by [writeSize].
+///
+/// This method is intended for use by subclasses overriding
+/// [readValueOfType].
+/// </Summary>
+public virtual int ReadSize(FlutterSDK.Foundation.Serialization.ReadBuffer buffer)
+{
+    int value = buffer.GetUint8();
+    switch (value) { case 254: return buffer.GetUint16(); case 255: return buffer.GetUint32(); default: return value; }
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// [MethodCodec] using the Flutter standard binary encoding.
+///
+/// The standard codec is guaranteed to be compatible with the corresponding
+/// standard codec for FlutterMethodChannels on the host platform. These parts
+/// of the Flutter SDK are evolved synchronously.
+///
+/// Values supported as method arguments and result payloads are those supported
+/// by [StandardMessageCodec].
+/// </Summary>
+public class StandardMethodCodec : IMethodCodec
+{
+    #region constructors
+    public StandardMethodCodec(FlutterSDK.Services.Messagecodecs.StandardMessageCodec messageCodec = default(FlutterSDK.Services.Messagecodecs.StandardMessageCodec))
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Services.Messagecodecs.StandardMessageCodec MessageCodec { get; set; }
+#endregion
+
+#region methods
+
+public new ByteData EncodeMethodCall(FlutterSDK.Services.Messagecodec.MethodCall call)
+{
+    WriteBuffer buffer = new WriteBuffer();
+    MessageCodec.WriteValue(buffer, call.Method);
+    MessageCodec.WriteValue(buffer, call.Arguments);
+    return buffer.Done();
+}
+
+
+
+
+public new FlutterSDK.Services.Messagecodec.MethodCall DecodeMethodCall(ByteData methodCall)
+{
+    ReadBuffer buffer = new ReadBuffer(methodCall);
+    object method = MessageCodec.ReadValue(buffer);
+    object arguments = MessageCodec.ReadValue(buffer);
+    if (method is string && !buffer.HasRemaining) return new MethodCall(method, arguments); else throw new FormatException("Invalid method call");
+}
+
+
+
+
+public new ByteData EncodeSuccessEnvelope(object result)
+{
+    WriteBuffer buffer = new WriteBuffer();
+    buffer.PutUint8(0);
+    MessageCodec.WriteValue(buffer, result);
+    return buffer.Done();
+}
+
+
+
+
+public new ByteData EncodeErrorEnvelope(string code = default(string), string message = default(string), object details = default(object))
+{
+    WriteBuffer buffer = new WriteBuffer();
+    buffer.PutUint8(1);
+    MessageCodec.WriteValue(buffer, code);
+    MessageCodec.WriteValue(buffer, message);
+    MessageCodec.WriteValue(buffer, details);
+    return buffer.Done();
+}
+
+
+
+
+public new object DecodeEnvelope(ByteData envelope)
+{
+    if (envelope.LengthInBytes == 0) throw new FormatException("Expected envelope, got nothing");
+    ReadBuffer buffer = new ReadBuffer(envelope);
+    if (buffer.GetUint8() == 0) return MessageCodec.ReadValue(buffer);
+    object errorCode = MessageCodec.ReadValue(buffer);
+    object errorMessage = MessageCodec.ReadValue(buffer);
+    object errorDetails = MessageCodec.ReadValue(buffer);
+    if (errorCode is string && (errorMessage == null || errorMessage is string) && !buffer.HasRemaining) throw new PlatformException(code: errorCode, message: errorMessage as string, details: errorDetails); else throw new FormatException("Invalid envelope");
+}
+
+
+
+#endregion
+}
 
 }

@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -428,39 +428,51 @@ namespace FlutterSDK.Material.Circleavatar
         #region constructors
         public CircleAvatar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Imageprovider.ImageProvider<object> backgroundImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imagestream.ImageErrorListener onBackgroundImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener), FlutterBinding.UI.Color foregroundColor = default(FlutterBinding.UI.Color), double radius = default(double), double minRadius = default(double), double maxRadius = default(double))
         : base(key: key)
+    
+}
+    #endregion
+
+    #region fields
+    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+    public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+    public virtual FlutterBinding.UI.Color ForegroundColor { get; set; }
+    public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> BackgroundImage { get; set; }
+    public virtual FlutterSDK.Painting.Imagestream.ImageErrorListener OnBackgroundImageError { get; set; }
+    public virtual double Radius { get; set; }
+    public virtual double MinRadius { get; set; }
+    public virtual double MaxRadius { get; set; }
+    internal virtual double _DefaultRadius { get; set; }
+    internal virtual double _DefaultMinRadius { get; set; }
+    internal virtual double _DefaultMaxRadius { get; set; }
+    internal virtual double _MinDiameter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    internal virtual double _MaxDiameter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+
+        ThemeData theme = ThemeDefaultClass.Theme.Of(context);
+        TextStyle textStyle = theme.PrimaryTextTheme.Subtitle1.CopyWith(color: ForegroundColor);
+        Color effectiveBackgroundColor = BackgroundColor;
+        if (effectiveBackgroundColor == null)
         {
-            this.Child = child;
-            this.BackgroundColor = backgroundColor;
-            this.BackgroundImage = backgroundImage;
-            this.OnBackgroundImageError = onBackgroundImageError;
-            this.ForegroundColor = foregroundColor;
-            this.Radius = radius;
-            this.MinRadius = minRadius;
-            this.MaxRadius = maxRadius; throw new NotImplementedException();
+            switch (ThemedataDefaultClass.ThemeData.EstimateBrightnessForColor(textStyle.Color)) { case Brightness.Dark: effectiveBackgroundColor = theme.PrimaryColorLight; break; case Brightness.Light: effectiveBackgroundColor = theme.PrimaryColorDark; break; }
         }
-        #endregion
+        else if (ForegroundColor == null)
+        {
+            switch (ThemedataDefaultClass.ThemeData.EstimateBrightnessForColor(BackgroundColor)) { case Brightness.Dark: textStyle = textStyle.CopyWith(color: theme.PrimaryColorLight); break; case Brightness.Light: textStyle = textStyle.CopyWith(color: theme.PrimaryColorDark); break; }
+        }
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-        public virtual FlutterBinding.UI.Color ForegroundColor { get; set; }
-        public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> BackgroundImage { get; set; }
-        public virtual FlutterSDK.Painting.Imagestream.ImageErrorListener OnBackgroundImageError { get; set; }
-        public virtual double Radius { get; set; }
-        public virtual double MinRadius { get; set; }
-        public virtual double MaxRadius { get; set; }
-        internal virtual double _DefaultRadius { get; set; }
-        internal virtual double _DefaultMinRadius { get; set; }
-        internal virtual double _DefaultMaxRadius { get; set; }
-        internal virtual double _MinDiameter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual double _MaxDiameter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        double minDiameter = _MinDiameter;
+        double maxDiameter = _MaxDiameter;
+        return new AnimatedContainer(constraints: new BoxConstraints(minHeight: minDiameter, minWidth: minDiameter, maxWidth: maxDiameter, maxHeight: maxDiameter), duration: ConstantsDefaultClass.KThemeChangeDuration, decoration: new BoxDecoration(color: effectiveBackgroundColor, image: BackgroundImage != null ? new DecorationImage(image: BackgroundImage, onError: OnBackgroundImageError, fit: BoxFit.Cover) : null, shape: BoxShape.Circle), child: Child == null ? null : new Center(child: new MediaQuery(data: MediaqueryDefaultClass.MediaQuery.Of(context).CopyWith(textScaleFactor: 1.0), child: new IconTheme(data: theme.IconTheme.CopyWith(color: textStyle.Color), child: new DefaultTextStyle(style: textStyle, child: Child)))));
     }
+
+
+
+    #endregion
+}
 
 }

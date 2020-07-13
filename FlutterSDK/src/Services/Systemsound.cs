@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -435,36 +435,41 @@ namespace FlutterSDK.Services.Systemsound
     {
         #region constructors
         internal SystemSound()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        #endregion
+    #region fields
+    #endregion
 
-        #region methods
-
-        /// <Summary>
-        /// Play the specified system sound. If that sound is not present on the
-        /// system, the call is ignored.
-        /// </Summary>
-        public virtual Future<object> Play(FlutterSDK.Services.Systemsound.SystemSoundType type) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
+    #region methods
 
     /// <Summary>
-    /// A sound provided by the system.
+    /// Play the specified system sound. If that sound is not present on the
+    /// system, the call is ignored.
     /// </Summary>
-    public enum SystemSoundType
-    {
+    public virtual Future<object> Play(FlutterSDK.Services.Systemsound.SystemSoundType type)
+async
+{
+await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("SystemSound.play", type.ToString());
+}
 
-        /// <Summary>
-        /// A short indication that a button was pressed.
-        /// </Summary>
-        Click,
-    }
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A sound provided by the system.
+/// </Summary>
+public enum SystemSoundType
+{
+
+    /// <Summary>
+    /// A short indication that a button was pressed.
+    /// </Summary>
+    Click,
+}
 
 }

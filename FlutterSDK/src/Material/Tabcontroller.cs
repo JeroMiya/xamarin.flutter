@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -500,198 +500,290 @@ namespace FlutterSDK.Material.Tabcontroller
         #region constructors
         public TabController(int initialIndex = 0, int length = default(int), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider))
         : base()
-        {
-            this.Length = length; throw new NotImplementedException();
-        }
-        internal TabController(int index = default(int), int previousIndex = default(int), FlutterSDK.Animation.Animationcontroller.AnimationController animationController = default(FlutterSDK.Animation.Animationcontroller.AnimationController), int length = default(int))
-        : base()
-        {
-            this.Length = length; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    internal TabController(int index = default(int), int previousIndex = default(int), FlutterSDK.Animation.Animationcontroller.AnimationController animationController = default(FlutterSDK.Animation.Animationcontroller.AnimationController), int length = default(int))
+    : base()
 
-        #region fields
-        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _AnimationController { get; set; }
-        public virtual int Length { get; set; }
-        internal virtual int _Index { get; set; }
-        internal virtual int _PreviousIndex { get; set; }
-        internal virtual int _IndexIsChangingCount { get; set; }
-        public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual int Index { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual int PreviousIndex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool IndexIsChanging { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual double Offset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+}
+#endregion
 
-        #region methods
+#region fields
+internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _AnimationController { get; set; }
+public virtual int Length { get; set; }
+internal virtual int _Index { get; set; }
+internal virtual int _PreviousIndex { get; set; }
+internal virtual int _IndexIsChangingCount { get; set; }
+public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual int Index { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual int PreviousIndex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual bool IndexIsChanging { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual double Offset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
 
-        /// <Summary>
-        /// Creates a new [TabController] with `index`, `previousIndex`, and `length`
-        /// if they are non-null.
-        ///
-        /// This method is used by [DefaultTabController].
-        ///
-        /// When [DefaultTabController.length] is updated, this method is called to
-        /// create a new [TabController] without creating a new [AnimationController].
-        /// </Summary>
-        private FlutterSDK.Material.Tabcontroller.TabController _CopyWith(int index = default(int), int length = default(int), int previousIndex = default(int)) { throw new NotImplementedException(); }
+#region methods
 
-
-        private void _ChangeIndex(int value, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)) { throw new NotImplementedException(); }
+/// <Summary>
+/// Creates a new [TabController] with `index`, `previousIndex`, and `length`
+/// if they are non-null.
+///
+/// This method is used by [DefaultTabController].
+///
+/// When [DefaultTabController.length] is updated, this method is called to
+/// create a new [TabController] without creating a new [AnimationController].
+/// </Summary>
+private FlutterSDK.Material.Tabcontroller.TabController _CopyWith(int index = default(int), int length = default(int), int previousIndex = default(int))
+{
+    return TabController._(index: index ?? _Index, length: length ?? this.Length, animationController: _AnimationController, previousIndex: previousIndex ?? _PreviousIndex);
+}
 
 
-        /// <Summary>
-        /// Immediately sets [index] and [previousIndex] and then plays the
-        /// [animation] from its current value to [index].
-        ///
-        /// While the animation is running [indexIsChanging] is true. When the
-        /// animation completes [offset] will be 0.0.
-        /// </Summary>
-        public virtual void AnimateTo(int value, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)) { throw new NotImplementedException(); }
 
 
-        public new void Dispose() { throw new NotImplementedException(); }
-
-        #endregion
-    }
+private void _ChangeIndex(int value, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
+{
 
 
-    public class _TabControllerScope : FlutterSDK.Widgets.Framework.InheritedWidget
+
+
+    if (value == _Index || Length < 2) return;
+    _PreviousIndex = Index;
+    _Index = value;
+    if (duration != null)
     {
-        #region constructors
-        public _TabControllerScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Tabcontroller.TabController controller = default(FlutterSDK.Material.Tabcontroller.TabController), bool enabled = default(bool), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key, child: child)
+        _IndexIsChangingCount += 1;
+        NotifyListeners();
+        _AnimationController.AnimateTo(_Index.ToDouble(), duration: duration, curve: curve).WhenCompleteOrCancel(() =>
         {
-            this.Controller = controller;
-            this.Enabled = enabled; throw new NotImplementedException();
+            _IndexIsChangingCount -= 1;
+            NotifyListeners();
         }
-        #endregion
+        );
+    }
+    else
+    {
+        _IndexIsChangingCount += 1;
+        _AnimationController.Value = _Index.ToDouble();
+        _IndexIsChangingCount -= 1;
+        NotifyListeners();
+    }
 
-        #region fields
-        public virtual FlutterSDK.Material.Tabcontroller.TabController Controller { get; set; }
-        public virtual bool Enabled { get; set; }
-        #endregion
+}
 
-        #region methods
 
-        public new bool UpdateShouldNotify(FlutterSDK.Material.Tabcontroller._TabControllerScope old) { throw new NotImplementedException(); }
-        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
 
-        #endregion
+
+/// <Summary>
+/// Immediately sets [index] and [previousIndex] and then plays the
+/// [animation] from its current value to [index].
+///
+/// While the animation is running [indexIsChanging] is true. When the
+/// animation completes [offset] will be 0.0.
+/// </Summary>
+public virtual void AnimateTo(int value, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
+{
+    _ChangeIndex(value, duration: duration, curve: curve);
+}
+
+
+
+
+public new void Dispose()
+{
+    _AnimationController?.Dispose();
+    _AnimationController = null;
+    base.Dispose();
+}
+
+
+
+#endregion
+}
+
+
+public class _TabControllerScope : FlutterSDK.Widgets.Framework.InheritedWidget
+{
+    #region constructors
+    public _TabControllerScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Tabcontroller.TabController controller = default(FlutterSDK.Material.Tabcontroller.TabController), bool enabled = default(bool), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key, child: child)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Material.Tabcontroller.TabController Controller { get; set; }
+public virtual bool Enabled { get; set; }
+#endregion
+
+#region methods
+
+public new bool UpdateShouldNotify(FlutterSDK.Material.Tabcontroller._TabControllerScope old)
+{
+    return Enabled != old.Enabled || Controller != old.Controller;
+}
+
+
+public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget)
+{
+    return Enabled != old.Enabled || Controller != old.Controller;
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// The [TabController] for descendant widgets that don't specify one
+/// explicitly.
+///
+/// [DefaultTabController] is an inherited widget that is used to share a
+/// [TabController] with a [TabBar] or a [TabBarView]. It's used when sharing an
+/// explicitly created [TabController] isn't convenient because the tab bar
+/// widgets are created by a stateless parent widget or by different parent
+/// widgets.
+///
+/// {@animation 700 540 https://flutter.github.io/assets-for-api-docs/assets/material/tabs.mp4}
+///
+/// ```dart
+/// class MyDemo extends StatelessWidget {
+///   final List<Tab> myTabs = <Tab>[
+///     Tab(text: 'LEFT'),
+///     Tab(text: 'RIGHT'),
+///   ];
+///
+///   @override
+///   Widget build(BuildContext context) {
+///     return DefaultTabController(
+///       length: myTabs.length,
+///       child: Scaffold(
+///         appBar: AppBar(
+///           bottom: TabBar(
+///             tabs: myTabs,
+///           ),
+///         ),
+///         body: TabBarView(
+///           children: myTabs.map((Tab tab) {
+///             final String label = tab.text.toLowerCase();
+///             return Center(
+///               child: Text(
+///                 'This is the $label tab',
+///                 style: const TextStyle(fontSize: 36),
+///               ),
+///             );
+///           }).toList(),
+///         ),
+///       ),
+///     );
+///   }
+/// }
+/// ```
+/// </Summary>
+public class DefaultTabController : FlutterSDK.Widgets.Framework.StatefulWidget
+{
+    #region constructors
+    public DefaultTabController(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), int length = default(int), int initialIndex = 0, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual int Length { get; set; }
+public virtual int InitialIndex { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+#endregion
+
+#region methods
+
+/// <Summary>
+/// The closest instance of this class that encloses the given context.
+///
+/// {@tool snippet}
+/// Typical usage is as follows:
+///
+/// ```dart
+/// TabController controller = DefaultTabController.of(context);
+/// ```
+/// {@end-tool}
+/// </Summary>
+public virtual FlutterSDK.Material.Tabcontroller.TabController Of(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    _TabControllerScope scope = context.DependOnInheritedWidgetOfExactType();
+    return scope?.Controller;
+}
+
+
+
+
+public new FlutterSDK.Material.Tabcontroller._DefaultTabControllerState CreateState() => new _DefaultTabControllerState();
+
+
+#endregion
+}
+
+
+public class _DefaultTabControllerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Tabcontroller.DefaultTabController>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+{
+    #region constructors
+    public _DefaultTabControllerState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Material.Tabcontroller.TabController _Controller { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
+    {
+        base.InitState();
+        _Controller = new TabController(vsync: this, length: Widget.Length, initialIndex: Widget.InitialIndex);
     }
 
 
-    /// <Summary>
-    /// The [TabController] for descendant widgets that don't specify one
-    /// explicitly.
-    ///
-    /// [DefaultTabController] is an inherited widget that is used to share a
-    /// [TabController] with a [TabBar] or a [TabBarView]. It's used when sharing an
-    /// explicitly created [TabController] isn't convenient because the tab bar
-    /// widgets are created by a stateless parent widget or by different parent
-    /// widgets.
-    ///
-    /// {@animation 700 540 https://flutter.github.io/assets-for-api-docs/assets/material/tabs.mp4}
-    ///
-    /// ```dart
-    /// class MyDemo extends StatelessWidget {
-    ///   final List<Tab> myTabs = <Tab>[
-    ///     Tab(text: 'LEFT'),
-    ///     Tab(text: 'RIGHT'),
-    ///   ];
-    ///
-    ///   @override
-    ///   Widget build(BuildContext context) {
-    ///     return DefaultTabController(
-    ///       length: myTabs.length,
-    ///       child: Scaffold(
-    ///         appBar: AppBar(
-    ///           bottom: TabBar(
-    ///             tabs: myTabs,
-    ///           ),
-    ///         ),
-    ///         body: TabBarView(
-    ///           children: myTabs.map((Tab tab) {
-    ///             final String label = tab.text.toLowerCase();
-    ///             return Center(
-    ///               child: Text(
-    ///                 'This is the $label tab',
-    ///                 style: const TextStyle(fontSize: 36),
-    ///               ),
-    ///             );
-    ///           }).toList(),
-    ///         ),
-    ///       ),
-    ///     );
-    ///   }
-    /// }
-    /// ```
-    /// </Summary>
-    public class DefaultTabController : FlutterSDK.Widgets.Framework.StatefulWidget
+
+
+    public new void Dispose()
     {
-        #region constructors
-        public DefaultTabController(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), int length = default(int), int initialIndex = 0, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key)
+        _Controller.Dispose();
+        base.Dispose();
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        return new _TabControllerScope(controller: _Controller, enabled: TickerproviderDefaultClass.TickerMode.Of(context), child: Widget.Child);
+    }
+
+
+
+
+    public new void DidUpdateWidget(FlutterSDK.Material.Tabcontroller.DefaultTabController oldWidget)
+    {
+        base.DidUpdateWidget(oldWidget);
+        if (oldWidget.Length != Widget.Length)
         {
-            this.Length = length;
-            this.InitialIndex = initialIndex;
-            this.Child = child; throw new NotImplementedException();
+            int newIndex = default(int);
+            int previousIndex = _Controller.PreviousIndex;
+            if (_Controller.Index >= Widget.Length)
+            {
+                newIndex = Math.Dart:mathDefaultClass.Max(0, Widget.Length - 1);
+                previousIndex = _Controller.Index;
+            }
+
+            _Controller = _Controller._CopyWith(length: Widget.Length, index: newIndex, previousIndex: previousIndex);
         }
-        #endregion
 
-        #region fields
-        public virtual int Length { get; set; }
-        public virtual int InitialIndex { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// The closest instance of this class that encloses the given context.
-        ///
-        /// {@tool snippet}
-        /// Typical usage is as follows:
-        ///
-        /// ```dart
-        /// TabController controller = DefaultTabController.of(context);
-        /// ```
-        /// {@end-tool}
-        /// </Summary>
-        public virtual FlutterSDK.Material.Tabcontroller.TabController Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Material.Tabcontroller._DefaultTabControllerState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
     }
 
 
-    public class _DefaultTabControllerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Tabcontroller.DefaultTabController>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-    {
-        #region constructors
-        public _DefaultTabControllerState()
-        { }
-        #endregion
 
-        #region fields
-        internal virtual FlutterSDK.Material.Tabcontroller.TabController _Controller { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Material.Tabcontroller.DefaultTabController oldWidget) { throw new NotImplementedException(); }
-
-        #endregion
-    }
+    #endregion
+}
 
 }

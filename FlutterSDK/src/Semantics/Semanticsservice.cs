@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -440,37 +440,50 @@ namespace FlutterSDK.Semantics.Semanticsservice
     {
         #region constructors
         internal SemanticsService()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        #endregion
+    #region fields
+    #endregion
 
-        #region methods
+    #region methods
 
-        /// <Summary>
-        /// Sends a semantic announcement.
-        ///
-        /// This should be used for announcement that are not seamlessly announced by
-        /// the system as a result of a UI state change.
-        ///
-        /// For example a camera application can use this method to make accessibility
-        /// announcements regarding objects in the viewfinder.
-        /// </Summary>
-        public virtual Future<object> Announce(string message, TextDirection textDirection) { throw new NotImplementedException(); }
+    /// <Summary>
+    /// Sends a semantic announcement.
+    ///
+    /// This should be used for announcement that are not seamlessly announced by
+    /// the system as a result of a UI state change.
+    ///
+    /// For example a camera application can use this method to make accessibility
+    /// announcements regarding objects in the viewfinder.
+    /// </Summary>
+    public virtual Future<object> Announce(string message, TextDirection textDirection)
+async
+{
+AnnounceSemanticsEvent @event = new AnnounceSemanticsEvent(message, textDirection);
+    await SystemchannelsDefaultClass.SystemChannels.Accessibility.Send(@event.ToMap());
+}
 
 
-        /// <Summary>
-        /// Sends a semantic announcement of a tooltip.
-        ///
-        /// Currently only honored on Android. The contents of [message] will be
-        /// read by TalkBack.
-        /// </Summary>
-        public virtual Future<object> Tooltip(string message) { throw new NotImplementedException(); }
 
-        #endregion
-    }
+
+/// <Summary>
+/// Sends a semantic announcement of a tooltip.
+///
+/// Currently only honored on Android. The contents of [message] will be
+/// read by TalkBack.
+/// </Summary>
+public virtual Future<object> Tooltip(string message)
+async
+{
+    TooltipSemanticsEvent @event = new TooltipSemanticsEvent(message);
+    await SystemchannelsDefaultClass.SystemChannels.Accessibility.Send(@event.ToMap());
+}
+
+
+
+#endregion
+}
 
 }

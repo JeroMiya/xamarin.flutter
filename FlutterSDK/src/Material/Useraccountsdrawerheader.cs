@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -432,185 +432,299 @@ namespace FlutterSDK.Material.Useraccountsdrawerheader
         #region constructors
         public _AccountPictures(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget currentAccountPicture = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Widgets.Framework.Widget> otherAccountsPictures = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(key: key)
+    
+}
+    #endregion
+
+    #region fields
+    public virtual FlutterSDK.Widgets.Framework.Widget CurrentAccountPicture { get; set; }
+    public virtual List<FlutterSDK.Widgets.Framework.Widget> OtherAccountsPictures { get; set; }
+    #endregion
+
+    #region methods
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        return new Stack(children: new List<Widget>(){new PositionedDirectional(top:0.0, end:0.0, child:new Row(children:(OtherAccountsPictures??new List<Widget>(){}).Take(3).Map((Widget picture) => {
+return new Padding(padding:EdgeInsetsDirectional.Only(start:8.0), child:new Semantics(container:true , child:new Container(padding:EdgeInsets.Only(left:8.0, bottom:8.0), width:48.0, height:48.0, child:picture)));
+}
+).ToList())), new Positioned(top:0.0, child:new Semantics(explicitChildNodes:true , child:new SizedBox(width:72.0, height:72.0, child:CurrentAccountPicture)))});
+    }
+
+
+
+    #endregion
+}
+
+
+public class _AccountDetails : FlutterSDK.Widgets.Framework.StatefulWidget
+{
+    #region constructors
+    public _AccountDetails(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget accountName = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget accountEmail = default(FlutterSDK.Widgets.Framework.Widget), VoidCallback onTap = default(VoidCallback), bool isOpen = default(bool), FlutterBinding.UI.Color arrowColor = default(FlutterBinding.UI.Color))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Framework.Widget AccountName { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget AccountEmail { get; set; }
+public virtual VoidCallback OnTap { get; set; }
+public virtual bool IsOpen { get; set; }
+public virtual FlutterBinding.UI.Color ArrowColor { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Material.Useraccountsdrawerheader._AccountDetailsState CreateState() => new _AccountDetailsState();
+
+
+#endregion
+}
+
+
+public class _AccountDetailsState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Useraccountsdrawerheader._AccountDetails>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+{
+    #region constructors
+    public _AccountDetailsState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Animation.Animation.Animation<double> _Animation { get; set; }
+    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
+    {
+        base.InitState();
+        _Controller = new AnimationController(value: Widget.IsOpen ? 1.0 : 0.0, duration: new TimeSpan(milliseconds: 200), vsync: this);
+        _Animation = new CurvedAnimation(parent: _Controller, curve: CurvesDefaultClass.Curves.FastOutSlowIn, reverseCurve: CurvesDefaultClass.Curves.FastOutSlowIn.Flipped);
+        new CurvedAnimation(parent: _Controller, curve: CurvesDefaultClass.Curves.FastOutSlowIn, reverseCurve: CurvesDefaultClass.Curves.FastOutSlowIn.Flipped).AddListener(() => =>SetState(() =>
         {
-            this.CurrentAccountPicture = currentAccountPicture;
-            this.OtherAccountsPictures = otherAccountsPictures; throw new NotImplementedException();
         }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget CurrentAccountPicture { get; set; }
-        public virtual List<FlutterSDK.Widgets.Framework.Widget> OtherAccountsPictures { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        ));
     }
 
 
-    public class _AccountDetails : FlutterSDK.Widgets.Framework.StatefulWidget
+
+
+    public new void Dispose()
     {
-        #region constructors
-        public _AccountDetails(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget accountName = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget accountEmail = default(FlutterSDK.Widgets.Framework.Widget), VoidCallback onTap = default(VoidCallback), bool isOpen = default(bool), FlutterBinding.UI.Color arrowColor = default(FlutterBinding.UI.Color))
-        : base(key: key)
+        _Controller.Dispose();
+        base.Dispose();
+    }
+
+
+
+
+    public new void DidUpdateWidget(FlutterSDK.Material.Useraccountsdrawerheader._AccountDetails oldWidget)
+    {
+        base.DidUpdateWidget(oldWidget);
+        if (oldWidget.IsOpen == Widget.IsOpen)
         {
-            this.AccountName = accountName;
-            this.AccountEmail = accountEmail;
-            this.OnTap = onTap;
-            this.IsOpen = isOpen;
-            this.ArrowColor = arrowColor; throw new NotImplementedException();
+            return;
         }
-        #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget AccountName { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget AccountEmail { get; set; }
-        public virtual VoidCallback OnTap { get; set; }
-        public virtual bool IsOpen { get; set; }
-        public virtual FlutterBinding.UI.Color ArrowColor { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Material.Useraccountsdrawerheader._AccountDetailsState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _AccountDetailsState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Useraccountsdrawerheader._AccountDetails>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-    {
-        #region constructors
-        public _AccountDetailsState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Animation.Animation.Animation<double> _Animation { get; set; }
-        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Material.Useraccountsdrawerheader._AccountDetails oldWidget) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _AccountDetailsLayout : FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate
-    {
-        #region constructors
-        public _AccountDetailsLayout(TextDirection textDirection = default(TextDirection))
+        if (Widget.IsOpen)
         {
-            this.TextDirection = textDirection; throw new NotImplementedException();
+            _Controller.Forward();
         }
-        #endregion
-
-        #region fields
-        public virtual string AccountName { get; set; }
-        public virtual string AccountEmail { get; set; }
-        public virtual string DropdownIcon { get; set; }
-        public virtual TextDirection TextDirection { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void PerformLayout(Size size) { throw new NotImplementedException(); }
-
-
-        public new bool ShouldRelayout(FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate oldDelegate) { throw new NotImplementedException(); }
-
-
-        private Offset _OffsetForIcon(Size size, Size iconSize) { throw new NotImplementedException(); }
-
-
-        private Offset _OffsetForBottomLine(Size size, Size iconSize, Size bottomLineSize) { throw new NotImplementedException(); }
-
-
-        private Offset _OffsetForName(Size size, Size nameSize, FlutterBinding.UI.Offset bottomLineOffset) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// A material design [Drawer] header that identifies the app's user.
-    ///
-    /// Requires one of its ancestors to be a [Material] widget.
-    ///
-    /// See also:
-    ///
-    ///  * [DrawerHeader], for a drawer header that doesn't show user accounts.
-    ///  * <https://material.io/design/components/navigation-drawer.html#anatomy>
-    /// </Summary>
-    public class UserAccountsDrawerHeader : FlutterSDK.Widgets.Framework.StatefulWidget
-    {
-        #region constructors
-        public UserAccountsDrawerHeader(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget currentAccountPicture = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Widgets.Framework.Widget> otherAccountsPictures = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Framework.Widget accountName = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget accountEmail = default(FlutterSDK.Widgets.Framework.Widget), VoidCallback onDetailsPressed = default(VoidCallback), FlutterBinding.UI.Color arrowColor = default(FlutterBinding.UI.Color))
-        : base(key: key)
+        else
         {
-            this.Decoration = decoration;
-            this.Margin = margin;
-            this.CurrentAccountPicture = currentAccountPicture;
-            this.OtherAccountsPictures = otherAccountsPictures;
-            this.AccountName = accountName;
-            this.AccountEmail = accountEmail;
-            this.OnDetailsPressed = onDetailsPressed;
-            this.ArrowColor = arrowColor; throw new NotImplementedException();
+            _Controller.Reverse();
         }
-        #endregion
 
-        #region fields
-        public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget CurrentAccountPicture { get; set; }
-        public virtual List<FlutterSDK.Widgets.Framework.Widget> OtherAccountsPictures { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget AccountName { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget AccountEmail { get; set; }
-        public virtual VoidCallback OnDetailsPressed { get; set; }
-        public virtual FlutterBinding.UI.Color ArrowColor { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Material.Useraccountsdrawerheader._UserAccountsDrawerHeaderState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
     }
 
 
-    public class _UserAccountsDrawerHeaderState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Useraccountsdrawerheader.UserAccountsDrawerHeader>
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
     {
-        #region constructors
-        public _UserAccountsDrawerHeaderState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual bool _IsOpen { get; set; }
-        #endregion
-
-        #region methods
-
-        private void _HandleDetailsPressed() { throw new NotImplementedException(); }
 
 
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
-        #endregion
+        ThemeData theme = ThemeDefaultClass.Theme.Of(context);
+        MaterialLocalizations localizations = MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context);
+        Widget accountDetails = new CustomMultiChildLayout(@delegate: new _AccountDetailsLayout(textDirection: BasicDefaultClass.Directionality.Of(context)), children: new List<Widget>() { });
+        if (Widget.OnTap != null)
+        {
+            accountDetails = new InkWell(onTap: Widget.OnTap, child: accountDetails, excludeFromSemantics: true);
+        }
+
+        return new SizedBox(height: UseraccountsdrawerheaderDefaultClass._KAccountDetailsHeight, child: accountDetails);
     }
+
+
+
+    #endregion
+}
+
+
+public class _AccountDetailsLayout : FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate
+{
+    #region constructors
+    public _AccountDetailsLayout(TextDirection textDirection = default(TextDirection))
+
+}
+#endregion
+
+#region fields
+public virtual string AccountName { get; set; }
+public virtual string AccountEmail { get; set; }
+public virtual string DropdownIcon { get; set; }
+public virtual TextDirection TextDirection { get; set; }
+#endregion
+
+#region methods
+
+public new void PerformLayout(Size size)
+{
+    Size iconSize = default(Size);
+    if (HasChild(DropdownIcon))
+    {
+        iconSize = LayoutChild(DropdownIcon, BoxConstraints.Loose(size));
+        PositionChild(DropdownIcon, _OffsetForIcon(size, iconSize));
+    }
+
+    string bottomLine = HasChild(AccountEmail) ? AccountEmail : (HasChild(AccountName) ? AccountName : null);
+    if (bottomLine != null)
+    {
+        Size constraintSize = iconSize == null ? size : new Size(size.Width - iconSize.Width, size.Height);
+        iconSize = (iconSize == null ? new Size(UseraccountsdrawerheaderDefaultClass._KAccountDetailsHeight, UseraccountsdrawerheaderDefaultClass._KAccountDetailsHeight) : iconSize);
+        Size bottomLineSize = LayoutChild(bottomLine, BoxConstraints.Loose(constraintSize));
+        Offset bottomLineOffset = _OffsetForBottomLine(size, iconSize, bottomLineSize);
+        PositionChild(bottomLine, bottomLineOffset);
+        if (bottomLine == AccountEmail && HasChild(AccountName))
+        {
+            Size nameSize = LayoutChild(AccountName, BoxConstraints.Loose(constraintSize));
+            PositionChild(AccountName, _OffsetForName(size, nameSize, bottomLineOffset));
+        }
+
+    }
+
+}
+
+
+
+
+public new bool ShouldRelayout(FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate oldDelegate) => true;
+
+
+
+private Offset _OffsetForIcon(Size size, Size iconSize)
+{
+    switch (TextDirection) { case TextDirection.Ltr: return new Offset(size.Width - iconSize.Width, size.Height - iconSize.Height); case TextDirection.Rtl: return new Offset(0.0, size.Height - iconSize.Height); }
+
+    return null;
+}
+
+
+
+
+private Offset _OffsetForBottomLine(Size size, Size iconSize, Size bottomLineSize)
+{
+    double y = size.Height - 0.5 * iconSize.Height - 0.5 * bottomLineSize.Height;
+    switch (TextDirection) { case TextDirection.Ltr: return new Offset(0.0, y); case TextDirection.Rtl: return new Offset(size.Width - bottomLineSize.Width, y); }
+
+    return null;
+}
+
+
+
+
+private Offset _OffsetForName(Size size, Size nameSize, FlutterBinding.UI.Offset bottomLineOffset)
+{
+    double y = bottomLineOffset.Dy - nameSize.Height;
+    switch (TextDirection) { case TextDirection.Ltr: return new Offset(0.0, y); case TextDirection.Rtl: return new Offset(size.Width - nameSize.Width, y); }
+
+    return null;
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A material design [Drawer] header that identifies the app's user.
+///
+/// Requires one of its ancestors to be a [Material] widget.
+///
+/// See also:
+///
+///  * [DrawerHeader], for a drawer header that doesn't show user accounts.
+///  * <https://material.io/design/components/navigation-drawer.html#anatomy>
+/// </Summary>
+public class UserAccountsDrawerHeader : FlutterSDK.Widgets.Framework.StatefulWidget
+{
+    #region constructors
+    public UserAccountsDrawerHeader(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget currentAccountPicture = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Widgets.Framework.Widget> otherAccountsPictures = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Framework.Widget accountName = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget accountEmail = default(FlutterSDK.Widgets.Framework.Widget), VoidCallback onDetailsPressed = default(VoidCallback), FlutterBinding.UI.Color arrowColor = default(FlutterBinding.UI.Color))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget CurrentAccountPicture { get; set; }
+public virtual List<FlutterSDK.Widgets.Framework.Widget> OtherAccountsPictures { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget AccountName { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget AccountEmail { get; set; }
+public virtual VoidCallback OnDetailsPressed { get; set; }
+public virtual FlutterBinding.UI.Color ArrowColor { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Material.Useraccountsdrawerheader._UserAccountsDrawerHeaderState CreateState() => new _UserAccountsDrawerHeaderState();
+
+
+#endregion
+}
+
+
+public class _UserAccountsDrawerHeaderState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Useraccountsdrawerheader.UserAccountsDrawerHeader>
+{
+    #region constructors
+    public _UserAccountsDrawerHeaderState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual bool _IsOpen { get; set; }
+    #endregion
+
+    #region methods
+
+    private void _HandleDetailsPressed()
+    {
+        SetState(() =>
+        {
+            _IsOpen = !_IsOpen;
+        }
+        );
+        Widget.OnDetailsPressed();
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+
+
+        return new Semantics(container: true, label: MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context).SignedInLabel, child: new DrawerHeader(decoration: Widget.Decoration ?? new BoxDecoration(color: ThemeDefaultClass.Theme.Of(context).PrimaryColor), margin: Widget.Margin, padding: EdgeInsetsDirectional.Only(top: 16.0, start: 16.0), child: new SafeArea(bottom: false, child: new Column(crossAxisAlignment: CrossAxisAlignment.Stretch, children: new List<Widget>() { new Expanded(child: new Padding(padding: EdgeInsetsDirectional.Only(end: 16.0), child: new _AccountPictures(currentAccountPicture: Widget.CurrentAccountPicture, otherAccountsPictures: Widget.OtherAccountsPictures))), new _AccountDetails(accountName: Widget.AccountName, accountEmail: Widget.AccountEmail, isOpen: _IsOpen, onTap: Widget.OnDetailsPressed == null ? null : _HandleDetailsPressed, arrowColor: Widget.ArrowColor) }))));
+    }
+
+
+
+    #endregion
+}
 
 }

@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -435,16 +435,47 @@ namespace FlutterSDK.Widgets.Tickerprovider
     {
         internal virtual FlutterSDK.Scheduler.Ticker.Ticker _Ticker { get; set; }
 
-        public new FlutterSDK.Scheduler.Ticker.Ticker CreateTicker(FlutterSDK.Scheduler.Ticker.TickerCallback onTick) { throw new NotImplementedException(); }
+        public new FlutterSDK.Scheduler.Ticker.Ticker CreateTicker(FlutterSDK.Scheduler.Ticker.TickerCallback onTick)
+        {
+
+            _Ticker = new Ticker(onTick, debugLabel: ConstantsDefaultClass.KDebugMode ? $"'created by {this }'" : null);
+            return _Ticker;
+        }
 
 
-        public new void Dispose() { throw new NotImplementedException(); }
 
 
-        public new void DidChangeDependencies() { throw new NotImplementedException(); }
+        public new void Dispose()
+        {
+
+            base.Dispose();
+        }
 
 
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+
+        public new void DidChangeDependencies()
+        {
+            if (_Ticker != null) _Ticker.Muted = !TickerproviderDefaultClass.TickerMode.Of(Context);
+            base.DidChangeDependencies();
+        }
+
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            string tickerDescription = default(string);
+            if (_Ticker != null)
+            {
+                if (_Ticker.IsActive && _Ticker.Muted) tickerDescription = "active but muted"; else if (_Ticker.IsActive) tickerDescription = "active"; else if (_Ticker.Muted) tickerDescription = "inactive and muted"; else tickerDescription = "inactive";
+            }
+
+            properties.Add(new DiagnosticsProperty<Ticker>("ticker", _Ticker, description: tickerDescription, showSeparator: false, defaultValue: null));
+        }
+
+
 
     }
     public static class SingleTickerProviderStateMixinMixin
@@ -472,19 +503,61 @@ namespace FlutterSDK.Widgets.Tickerprovider
     {
         internal virtual HashSet<FlutterSDK.Scheduler.Ticker.Ticker> _Tickers { get; set; }
 
-        public new FlutterSDK.Scheduler.Ticker.Ticker CreateTicker(FlutterSDK.Scheduler.Ticker.TickerCallback onTick) { throw new NotImplementedException(); }
+        public new FlutterSDK.Scheduler.Ticker.Ticker CreateTicker(FlutterSDK.Scheduler.Ticker.TickerCallback onTick)
+        {
+            _Tickers = (_Tickers == null ? new Dictionary<_WidgetTicker> { } : _Tickers);
+            _WidgetTicker result = new _WidgetTicker(onTick, this, debugLabel: $"'created by {this }'");
+            _Tickers.Add(result);
+            return result;
+        }
 
 
-        private void _RemoveTicker(FlutterSDK.Widgets.Tickerprovider._WidgetTicker ticker) { throw new NotImplementedException(); }
 
 
-        public new void Dispose() { throw new NotImplementedException(); }
+        private void _RemoveTicker(FlutterSDK.Widgets.Tickerprovider._WidgetTicker ticker)
+        {
 
 
-        public new void DidChangeDependencies() { throw new NotImplementedException(); }
+            _Tickers.Remove(ticker);
+        }
 
 
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+
+        public new void Dispose()
+        {
+
+            base.Dispose();
+        }
+
+
+
+
+        public new void DidChangeDependencies()
+        {
+            bool muted = !TickerproviderDefaultClass.TickerMode.Of(Context);
+            if (_Tickers != null)
+            {
+                foreach (Ticker ticker in _Tickers)
+                {
+                    ticker.Muted = muted;
+                }
+
+            }
+
+            base.DidChangeDependencies();
+        }
+
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new DiagnosticsProperty<HashSet<Ticker>>("tickers", _Tickers, description: _Tickers != null ? $"'tracking {_Tickers.Length} ticker{_Tickers.Length == 1 ? "":'s'}'" : null, defaultValue: null));
+        }
+
+
 
     }
     public static class TickerProviderStateMixinMixin
@@ -519,91 +592,118 @@ namespace FlutterSDK.Widgets.Tickerprovider
         #region constructors
         public TickerMode(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool enabled = default(bool), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
-        {
-            this.Enabled = enabled;
-            this.Child = child; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual bool Enabled { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
+    #region fields
+    public virtual bool Enabled { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        /// <Summary>
-        /// Whether tickers in the given subtree should be enabled or disabled.
-        ///
-        /// This is used automatically by [TickerProviderStateMixin] and
-        /// [SingleTickerProviderStateMixin] to decide if their tickers should be
-        /// enabled or disabled.
-        ///
-        /// In the absence of a [TickerMode] widget, this function defaults to true.
-        ///
-        /// Typical usage is as follows:
-        ///
-        /// ```dart
-        /// bool tickingEnabled = TickerMode.of(context);
-        /// ```
-        /// </Summary>
-        public virtual bool Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _EffectiveTickerMode : FlutterSDK.Widgets.Framework.InheritedWidget
+    /// <Summary>
+    /// Whether tickers in the given subtree should be enabled or disabled.
+    ///
+    /// This is used automatically by [TickerProviderStateMixin] and
+    /// [SingleTickerProviderStateMixin] to decide if their tickers should be
+    /// enabled or disabled.
+    ///
+    /// In the absence of a [TickerMode] widget, this function defaults to true.
+    ///
+    /// Typical usage is as follows:
+    ///
+    /// ```dart
+    /// bool tickingEnabled = TickerMode.of(context);
+    /// ```
+    /// </Summary>
+    public virtual bool Of(FlutterSDK.Widgets.Framework.BuildContext context)
     {
-        #region constructors
-        public _EffectiveTickerMode(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool enabled = default(bool), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key, child: child)
-        {
-            this.Enabled = enabled; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual bool Enabled { get; set; }
-        #endregion
-
-        #region methods
-
-        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Tickerprovider._EffectiveTickerMode oldWidget) { throw new NotImplementedException(); }
-        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+        _EffectiveTickerMode widget = context.DependOnInheritedWidgetOfExactType();
+        return widget?.Enabled ?? true;
     }
 
 
-    public class _WidgetTicker : FlutterSDK.Scheduler.Ticker.Ticker
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
     {
-        #region constructors
-        public _WidgetTicker(FlutterSDK.Scheduler.Ticker.TickerCallback onTick, FlutterSDK.Widgets.Tickerprovider.TickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget> _creator, string debugLabel = default(string))
-        : base(onTick, debugLabel: debugLabel)
-        {
-            this._Creator = _creator; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Widgets.Tickerprovider.TickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget> _Creator { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-        #endregion
+        return new _EffectiveTickerMode(enabled: Enabled && TickerproviderDefaultClass.TickerMode.Of(context), child: Child);
     }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new FlagProperty("requested mode", value: Enabled, ifTrue: "enabled", ifFalse: "disabled", showName: true));
+    }
+
+
+
+    #endregion
+}
+
+
+public class _EffectiveTickerMode : FlutterSDK.Widgets.Framework.InheritedWidget
+{
+    #region constructors
+    public _EffectiveTickerMode(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool enabled = default(bool), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key, child: child)
+
+}
+#endregion
+
+#region fields
+public virtual bool Enabled { get; set; }
+#endregion
+
+#region methods
+
+public new bool UpdateShouldNotify(FlutterSDK.Widgets.Tickerprovider._EffectiveTickerMode oldWidget) => Enabled != oldWidget.Enabled;
+
+public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Enabled != oldWidget.Enabled;
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new FlagProperty("effective mode", value: Enabled, ifTrue: "enabled", ifFalse: "disabled", showName: true));
+}
+
+
+
+#endregion
+}
+
+
+public class _WidgetTicker : FlutterSDK.Scheduler.Ticker.Ticker
+{
+    #region constructors
+    public _WidgetTicker(FlutterSDK.Scheduler.Ticker.TickerCallback onTick, FlutterSDK.Widgets.Tickerprovider.TickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget> _creator, string debugLabel = default(string))
+    : base(onTick, debugLabel: debugLabel)
+
+}
+#endregion
+
+#region fields
+internal virtual FlutterSDK.Widgets.Tickerprovider.TickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget> _Creator { get; set; }
+#endregion
+
+#region methods
+
+public new void Dispose()
+{
+    _Creator._RemoveTicker(this);
+    base.Dispose();
+}
+
+
+
+#endregion
+}
 
 }

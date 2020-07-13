@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -317,7 +317,14 @@ namespace FlutterSDK.Gestures.Pointerrouter
         /// Routes added reentrantly within [PointerRouter.route] will take effect when
         /// routing the next event.
         /// </Summary>
-        public virtual void AddRoute(int pointer, FlutterSDK.Gestures.Pointerrouter.PointerRoute route, Matrix4 transform = default(Matrix4)) { throw new NotImplementedException(); }
+        public virtual void AddRoute(int pointer, FlutterSDK.Gestures.Pointerrouter.PointerRoute route, Matrix4 transform = default(Matrix4))
+        {
+            Dictionary<PointerRoute, Matrix4> routes = _RouteMap.PutIfAbsent(pointer, () => =>new Dictionary<PointerRoute, Matrix4> { });
+
+            routes[route] = transform;
+        }
+
+
 
 
         /// <Summary>
@@ -329,7 +336,16 @@ namespace FlutterSDK.Gestures.Pointerrouter
         /// Routes removed reentrantly within [PointerRouter.route] will take effect
         /// immediately.
         /// </Summary>
-        public virtual void RemoveRoute(int pointer, FlutterSDK.Gestures.Pointerrouter.PointerRoute route) { throw new NotImplementedException(); }
+        public virtual void RemoveRoute(int pointer, FlutterSDK.Gestures.Pointerrouter.PointerRoute route)
+        {
+
+            Dictionary<PointerRoute, Matrix4> routes = _RouteMap[pointer];
+
+            routes.Remove(route);
+            if (routes.IsEmpty()) _RouteMap.Remove(pointer);
+        }
+
+
 
 
         /// <Summary>
@@ -340,7 +356,13 @@ namespace FlutterSDK.Gestures.Pointerrouter
         /// Routes added reentrantly within [PointerRouter.route] will take effect when
         /// routing the next event.
         /// </Summary>
-        public virtual void AddGlobalRoute(FlutterSDK.Gestures.Pointerrouter.PointerRoute route, Matrix4 transform = default(Matrix4)) { throw new NotImplementedException(); }
+        public virtual void AddGlobalRoute(FlutterSDK.Gestures.Pointerrouter.PointerRoute route, Matrix4 transform = default(Matrix4))
+        {
+
+            _GlobalRoutes[route] = transform;
+        }
+
+
 
 
         /// <Summary>
@@ -352,22 +374,68 @@ namespace FlutterSDK.Gestures.Pointerrouter
         /// Routes removed reentrantly within [PointerRouter.route] will take effect
         /// immediately.
         /// </Summary>
-        public virtual void RemoveGlobalRoute(FlutterSDK.Gestures.Pointerrouter.PointerRoute route) { throw new NotImplementedException(); }
+        public virtual void RemoveGlobalRoute(FlutterSDK.Gestures.Pointerrouter.PointerRoute route)
+        {
+
+            _GlobalRoutes.Remove(route);
+        }
 
 
-        private void _Dispatch(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Pointerrouter.PointerRoute route, Matrix4 transform) { throw new NotImplementedException(); }
 
 
-        /// <Summary>
-        /// Calls the routes registered for this pointer event.
-        ///
-        /// Routes are called in the order in which they were added to the
-        /// PointerRouter object.
-        /// </Summary>
-        public virtual void Route(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
+        private void _Dispatch(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Pointerrouter.PointerRoute route, Matrix4 transform)
+        {
+            try
+            {
+                @event = @event.Transformed(transform);
+                route(@event);
+            }
+            catch (exception,stack){
+                InformationCollector collector = default(InformationCollector);
+
+                AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetailsForPointerRouter(exception: exception, stack: stack, library: "gesture library", context: new ErrorDescription("while routing a pointer event"), router: this, route: route, @event: @event, informationCollector: collector));
+            }
+
+            }
 
 
-        private void _DispatchEventToRoutes(FlutterSDK.Gestures.Events.PointerEvent @event, Dictionary<object, object> referenceRoutes, Dictionary<object, object> copiedRoutes) { throw new NotImplementedException(); }
+
+
+/// <Summary>
+/// Calls the routes registered for this pointer event.
+///
+/// Routes are called in the order in which they were added to the
+/// PointerRouter object.
+/// </Summary>
+        public virtual void Route(FlutterSDK.Gestures.Events.PointerEvent @event)
+        {
+            Dictionary<PointerRoute, Matrix4> routes = _RouteMap[@event.Pointer];
+            Dictionary<PointerRoute, Matrix4> copiedGlobalRoutes = Dictionary<PointerRoute, Matrix4>.From(_GlobalRoutes);
+            if (routes != null)
+            {
+                _DispatchEventToRoutes(@event, routes, Dictionary<PointerRoute, Matrix4>.From(routes));
+            }
+
+            _DispatchEventToRoutes(@event, _GlobalRoutes, copiedGlobalRoutes);
+        }
+
+
+
+
+        private void _DispatchEventToRoutes(FlutterSDK.Gestures.Events.PointerEvent @event, Dictionary<object, object> referenceRoutes, Dictionary<object, object> copiedRoutes)
+        {
+            copiedRoutes.ForEach((PointerRoute route, Matrix4 transform) =>
+            {
+                if (referenceRoutes.ContainsKey(route))
+                {
+                    _Dispatch(@event, route, transform);
+                }
+
+            }
+            );
+        }
+
+
 
     }
     public static class PointerRouterMixin
@@ -404,21 +472,18 @@ namespace FlutterSDK.Gestures.Pointerrouter
         #region constructors
         public FlutterErrorDetailsForPointerRouter(object exception = default(object), StackTrace stack = default(StackTrace), string library = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsNode context = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode), FlutterSDK.Gestures.Pointerrouter.PointerRouter router = default(FlutterSDK.Gestures.Pointerrouter.PointerRouter), FlutterSDK.Gestures.Pointerrouter.PointerRoute route = default(FlutterSDK.Gestures.Pointerrouter.PointerRoute), FlutterSDK.Gestures.Events.PointerEvent @event = default(FlutterSDK.Gestures.Events.PointerEvent), FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector), bool silent = false)
         : base(exception: exception, stack: stack, library: library, context: context, informationCollector: informationCollector, silent: silent)
-        {
-            this.Router = router;
-            this.Route = route;
-            this.@event = @event; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Gestures.Pointerrouter.PointerRouter Router { get; set; }
-        public virtual FlutterSDK.Gestures.Pointerrouter.PointerRoute Route { get; set; }
-        public virtual FlutterSDK.Gestures.Events.PointerEvent @event { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Gestures.Pointerrouter.PointerRouter Router { get; set; }
+    public virtual FlutterSDK.Gestures.Pointerrouter.PointerRoute Route { get; set; }
+    public virtual FlutterSDK.Gestures.Events.PointerEvent @event { get; set; }
+    #endregion
 
-        #region methods
-        #endregion
-    }
+    #region methods
+    #endregion
+}
 
 }

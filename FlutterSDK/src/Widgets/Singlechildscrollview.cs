@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -629,156 +629,363 @@ namespace FlutterSDK.Widgets.Singlechildscrollview
         #region constructors
         public SingleChildScrollView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
         : base(key: key)
-        {
-            this.ScrollDirection = scrollDirection;
-            this.Reverse = reverse;
-            this.Padding = padding;
-            this.Physics = physics;
-            this.Controller = controller;
-            this.Child = child;
-            this.DragStartBehavior = dragStartBehavior; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Painting.Basictypes.Axis ScrollDirection { get; set; }
-        public virtual bool Reverse { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
-        public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller { get; set; }
-        public virtual bool Primary { get; set; }
-        public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Painting.Basictypes.Axis ScrollDirection { get; set; }
+    public virtual bool Reverse { get; set; }
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+    public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller { get; set; }
+    public virtual bool Primary { get; set; }
+    public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+    public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        private FlutterSDK.Painting.Basictypes.AxisDirection _GetDirection(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _SingleChildViewport : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
+    private FlutterSDK.Painting.Basictypes.AxisDirection _GetDirection(FlutterSDK.Widgets.Framework.BuildContext context)
     {
-        #region constructors
-        public _SingleChildViewport(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key, child: child)
-        {
-            this.AxisDirection = axisDirection;
-            this.Offset = offset; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get; set; }
-        public virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset Offset { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Singlechildscrollview._RenderSingleChildViewport CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Singlechildscrollview._RenderSingleChildViewport renderObject) { throw new NotImplementedException(); }
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
-
-        #endregion
+        return BasicDefaultClass.GetAxisDirectionFromAxisReverseAndDirectionality(context, ScrollDirection, Reverse);
     }
 
 
-    public class _RenderSingleChildViewport : FlutterSDK.Rendering.Box.RenderBox, IRenderAbstractViewport, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
     {
-        #region constructors
-        public _RenderSingleChildViewport(FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), double cacheExtent = default(double), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-        : base()
+        AxisDirection axisDirection = _GetDirection(context);
+        Widget contents = Child;
+        if (Padding != null) contents = new Padding(padding: Padding, child: contents);
+        ScrollController scrollController = Primary ? PrimaryscrollcontrollerDefaultClass.PrimaryScrollController.Of(context) : Controller;
+        Scrollable scrollable = new Scrollable(dragStartBehavior: DragStartBehavior, axisDirection: axisDirection, controller: scrollController, physics: Physics, viewportBuilder: (BuildContext context, ViewportOffset offset) =>
         {
-            throw new NotImplementedException();
+            return new _SingleChildViewport(axisDirection: axisDirection, offset: offset, child: contents);
         }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Painting.Basictypes.AxisDirection _AxisDirection { get; set; }
-        internal virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset _Offset { get; set; }
-        internal virtual double _CacheExtent { get; set; }
-        public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Painting.Basictypes.Axis Axis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset Offset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual double CacheExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool IsRepaintBoundary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual double _ViewportExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual double _MinScrollExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual double _MaxScrollExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual FlutterBinding.UI.Offset _PaintOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        private void _HasScrolled() { throw new NotImplementedException(); }
-
-
-        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
-
-
-        public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner) { throw new NotImplementedException(); }
-        public new void Attach(@Object owner) { throw new NotImplementedException(); }
-
-
-        public new void Detach() { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Rendering.Box.BoxConstraints _GetInnerConstraints(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new void PerformLayout() { throw new NotImplementedException(); }
-
-
-        private Offset _PaintOffsetForPosition(double position) { throw new NotImplementedException(); }
-
-
-        private bool _ShouldClipAtPaintOffset(FlutterBinding.UI.Offset paintOffset) { throw new NotImplementedException(); }
-
-
-        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        public new void ApplyPaintTransform(FlutterSDK.Rendering.Box.RenderBox child, Matrix4 transform) { throw new NotImplementedException(); }
-        public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform) { throw new NotImplementedException(); }
-
-
-        public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
-
-
-        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Rendering.Viewport.RevealedOffset GetOffsetToReveal(FlutterSDK.Rendering.@object.RenderObject target, double alignment, FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect)) { throw new NotImplementedException(); }
-
-
-        public new void ShowOnScreen(FlutterSDK.Rendering.@object.RenderObject descendant = default(FlutterSDK.Rendering.@object.RenderObject), FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)) { throw new NotImplementedException(); }
-
-
-        public new Rect DescribeSemanticsClip(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
-
-        #endregion
-        RenderAbstractViewport _RenderAbstractViewportInstance = new RenderAbstractViewport();
-        public FlutterSDK.Rendering.Viewport.RenderAbstractViewport Of(FlutterSDK.Rendering.@object.RenderObject @object) => _RenderAbstractViewportInstance.Of(@object);
-        public double DefaultCacheExtent => _RenderAbstractViewportInstance.DefaultCacheExtent;
+        );
+        return Primary && scrollController != null ? PrimaryScrollController.None(child: scrollable) : scrollable;
     }
+
+
+
+    #endregion
+}
+
+
+public class _SingleChildViewport : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
+{
+    #region constructors
+    public _SingleChildViewport(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key, child: child)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get; set; }
+public virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset Offset { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Singlechildscrollview._RenderSingleChildViewport CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    return new _RenderSingleChildViewport(axisDirection: AxisDirection, offset: Offset);
+}
+
+
+
+
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Singlechildscrollview._RenderSingleChildViewport renderObject)
+{
+    ..AxisDirection = AxisDirection..Offset = Offset;
+}
+
+
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+{
+    ..AxisDirection = AxisDirection..Offset = Offset;
+}
+
+
+
+#endregion
+}
+
+
+public class _RenderSingleChildViewport : FlutterSDK.Rendering.Box.RenderBox, IRenderAbstractViewport, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>
+{
+    #region constructors
+    public _RenderSingleChildViewport(FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), double cacheExtent = default(double), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+    : base()
+
+this .Child=child;
+}
+
+
+#endregion
+
+#region fields
+internal virtual FlutterSDK.Painting.Basictypes.AxisDirection _AxisDirection { get; set; }
+internal virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset _Offset { get; set; }
+internal virtual double _CacheExtent { get; set; }
+public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterSDK.Painting.Basictypes.Axis Axis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset Offset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual double CacheExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual bool IsRepaintBoundary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+internal virtual double _ViewportExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+internal virtual double _MinScrollExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+internal virtual double _MaxScrollExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+internal virtual FlutterBinding.UI.Offset _PaintOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+private void _HasScrolled()
+{
+    MarkNeedsPaint();
+    MarkNeedsSemanticsUpdate();
+}
+
+
+
+
+public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
+{
+    if (!(child.ParentData is ParentData)) child.ParentData = new ParentData();
+}
+
+
+
+
+public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner)
+{
+    base.Attach(owner);
+    _Offset.AddListener(_HasScrolled);
+}
+
+
+public new void Attach(@Object owner)
+{
+    base.Attach(owner);
+    _Offset.AddListener(_HasScrolled);
+}
+
+
+
+
+public new void Detach()
+{
+    _Offset.RemoveListener(_HasScrolled);
+    base.Detach();
+}
+
+
+
+
+private FlutterSDK.Rendering.Box.BoxConstraints _GetInnerConstraints(FlutterSDK.Rendering.Box.BoxConstraints constraints)
+{
+    switch (Axis) { case Axis.Horizontal: return constraints.HeightConstraints(); case Axis.Vertical: return constraints.WidthConstraints(); }
+    return null;
+}
+
+
+
+
+public new double ComputeMinIntrinsicWidth(double height)
+{
+    if (Child != null) return Child.GetMinIntrinsicWidth(height);
+    return 0.0;
+}
+
+
+
+
+public new double ComputeMaxIntrinsicWidth(double height)
+{
+    if (Child != null) return Child.GetMaxIntrinsicWidth(height);
+    return 0.0;
+}
+
+
+
+
+public new double ComputeMinIntrinsicHeight(double width)
+{
+    if (Child != null) return Child.GetMinIntrinsicHeight(width);
+    return 0.0;
+}
+
+
+
+
+public new double ComputeMaxIntrinsicHeight(double width)
+{
+    if (Child != null) return Child.GetMaxIntrinsicHeight(width);
+    return 0.0;
+}
+
+
+
+
+public new void PerformLayout()
+{
+    BoxConstraints constraints = this.Constraints;
+    if (Child == null)
+    {
+        Size = constraints.Smallest;
+    }
+    else
+    {
+        Child.Layout(_GetInnerConstraints(constraints), parentUsesSize: true);
+        Size = constraints.Constrain(Child.Size);
+    }
+
+    Offset.ApplyViewportDimension(_ViewportExtent);
+    Offset.ApplyContentDimensions(_MinScrollExtent, _MaxScrollExtent);
+}
+
+
+
+
+private Offset _PaintOffsetForPosition(double position)
+{
+
+    switch (AxisDirection) { case AxisDirection.Up: return new Offset(0.0, position - Child.Size.Height + Size.Height); case AxisDirection.Down: return new Offset(0.0, -position); case AxisDirection.Left: return new Offset(position - Child.Size.Width + Size.Width, 0.0); case AxisDirection.Right: return new Offset(-position, 0.0); }
+    return null;
+}
+
+
+
+
+private bool _ShouldClipAtPaintOffset(FlutterBinding.UI.Offset paintOffset)
+{
+
+    return paintOffset < Dart:uiDefaultClass.Offset.Zero || !(Dart: uiDefaultClass.Offset.Zero & Size).Contains((paintOffset & Child.Size).BottomRight);
+}
+
+
+
+
+public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+{
+    if (Child != null)
+    {
+        Offset paintOffset = _PaintOffset;
+        void PaintContents(PaintingContext context, Offset offset) => {
+            context.PaintChild(Child, offset + paintOffset);
+        }
+
+        if (_ShouldClipAtPaintOffset(paintOffset))
+        {
+            context.PushClipRect(NeedsCompositing, offset, Dart: uiDefaultClass.Offset.Zero & Size, PaintContents);
+        }
+        else
+        {
+            PaintContents(context, offset);
+        }
+
+    }
+
+}
+
+
+
+
+public new void ApplyPaintTransform(FlutterSDK.Rendering.Box.RenderBox child, Matrix4 transform)
+{
+    Offset paintOffset = _PaintOffset;
+    transform.Translate(paintOffset.Dx, paintOffset.Dy);
+}
+
+
+public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform)
+{
+    Offset paintOffset = _PaintOffset;
+    transform.Translate(paintOffset.Dx, paintOffset.Dy);
+}
+
+
+
+
+public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child)
+{
+    if (child != null && _ShouldClipAtPaintOffset(_PaintOffset)) return Dart:uiDefaultClass.Offset.Zero & Size;
+    return null;
+}
+
+
+
+
+public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
+{
+    if (Child != null)
+    {
+        return result.AddWithPaintOffset(offset: _PaintOffset, position: position, hitTest: (BoxHitTestResult result, Offset transformed) =>
+        {
+
+            return Child.HitTest(result, position: transformed);
+        }
+        );
+    }
+
+    return false;
+}
+
+
+
+
+public new FlutterSDK.Rendering.Viewport.RevealedOffset GetOffsetToReveal(FlutterSDK.Rendering.@object.RenderObject target, double alignment, FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect))
+{
+    rect = (rect == null ? target.PaintBounds : rect);
+    if (!(target is RenderBox)) return new RevealedOffset(offset: Offset.Pixels, rect: rect);
+    RenderBox targetBox = target as RenderBox;
+    Matrix4 transform = targetBox.GetTransformTo(Child);
+    Rect bounds = MatrixutilsDefaultClass.MatrixUtils.TransformRect(transform, rect);
+    Size contentSize = Child.Size;
+    double leadingScrollOffset = default(double);
+    double targetMainAxisExtent = default(double);
+    double mainAxisExtent = default(double);
+
+    switch (AxisDirection) { case AxisDirection.Up: mainAxisExtent = Size.Height; leadingScrollOffset = contentSize.Height - bounds.Bottom; targetMainAxisExtent = bounds.Height; break; case AxisDirection.Right: mainAxisExtent = Size.Width; leadingScrollOffset = bounds.Left; targetMainAxisExtent = bounds.Width; break; case AxisDirection.Down: mainAxisExtent = Size.Height; leadingScrollOffset = bounds.Top; targetMainAxisExtent = bounds.Height; break; case AxisDirection.Left: mainAxisExtent = Size.Width; leadingScrollOffset = contentSize.Width - bounds.Right; targetMainAxisExtent = bounds.Width; break; }
+    double targetOffset = leadingScrollOffset - (mainAxisExtent - targetMainAxisExtent) * alignment;
+    Rect targetRect = bounds.Shift(_PaintOffsetForPosition(targetOffset));
+    return new RevealedOffset(offset: targetOffset, rect: targetRect);
+}
+
+
+
+
+public new void ShowOnScreen(FlutterSDK.Rendering.@object.RenderObject descendant = default(FlutterSDK.Rendering.@object.RenderObject), FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
+{
+    if (!Offset.AllowImplicitScrolling)
+    {
+        return base.ShowOnScreen(descendant: descendant, rect: rect, duration: duration, curve: curve);
+    }
+
+    Rect newRect = ViewportDefaultClass.RenderViewportBase.ShowInViewport(descendant: descendant, viewport: this, offset: Offset, rect: rect, duration: duration, curve: curve);
+    base.ShowOnScreen(rect: newRect, duration: duration, curve: curve);
+}
+
+
+
+
+public new Rect DescribeSemanticsClip(FlutterSDK.Rendering.@object.RenderObject child)
+{
+
+    switch (Axis) { case Axis.Vertical: return Rect.FromLTRB(SemanticBounds.Left, SemanticBounds.Top - CacheExtent, SemanticBounds.Right, SemanticBounds.Bottom + CacheExtent); case Axis.Horizontal: return Rect.FromLTRB(SemanticBounds.Left - CacheExtent, SemanticBounds.Top, SemanticBounds.Right + CacheExtent, SemanticBounds.Bottom); }
+    return null;
+}
+
+
+
+#endregion
+RenderAbstractViewport _RenderAbstractViewportInstance = new RenderAbstractViewport();
+public FlutterSDK.Rendering.Viewport.RenderAbstractViewport Of(FlutterSDK.Rendering.@object.RenderObject @object) => _RenderAbstractViewportInstance.Of(@object);
+public double DefaultCacheExtent => _RenderAbstractViewportInstance.DefaultCacheExtent;
+}
 
 }

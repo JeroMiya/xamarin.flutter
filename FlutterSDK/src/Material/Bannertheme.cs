@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -383,96 +383,132 @@ namespace FlutterSDK.Material.Bannertheme
     {
         #region constructors
         public MaterialBannerThemeData(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry leadingPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry))
-        {
-            this.BackgroundColor = backgroundColor;
-            this.ContentTextStyle = contentTextStyle;
-            this.Padding = padding;
-            this.LeadingPadding = leadingPadding; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle ContentTextStyle { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry LeadingPadding { get; set; }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle ContentTextStyle { get; set; }
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry LeadingPadding { get; set; }
+    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        /// <Summary>
-        /// Creates a copy of this object with the given fields replaced with the
-        /// new values.
-        /// </Summary>
-        public virtual FlutterSDK.Material.Bannertheme.MaterialBannerThemeData CopyWith(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry leadingPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry)) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Linearly interpolate between two Banner themes.
-        ///
-        /// The argument `t` must not be null.
-        ///
-        /// {@macro dart.ui.shadow.lerp}
-        /// </Summary>
-        public virtual FlutterSDK.Material.Bannertheme.MaterialBannerThemeData Lerp(FlutterSDK.Material.Bannertheme.MaterialBannerThemeData a, FlutterSDK.Material.Bannertheme.MaterialBannerThemeData b, double t) { throw new NotImplementedException(); }
-
-
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+    /// <Summary>
+    /// Creates a copy of this object with the given fields replaced with the
+    /// new values.
+    /// </Summary>
+    public virtual FlutterSDK.Material.Bannertheme.MaterialBannerThemeData CopyWith(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry leadingPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry))
+    {
+        return new MaterialBannerThemeData(backgroundColor: backgroundColor ?? this.BackgroundColor, contentTextStyle: contentTextStyle ?? this.ContentTextStyle, padding: padding ?? this.Padding, leadingPadding: leadingPadding ?? this.LeadingPadding);
     }
+
+
 
 
     /// <Summary>
-    /// An inherited widget that defines the configuration for
-    /// [MaterialBanner]s in this widget's subtree.
+    /// Linearly interpolate between two Banner themes.
     ///
-    /// Values specified here are used for [MaterialBanner] properties that are not
-    /// given an explicit non-null value.
+    /// The argument `t` must not be null.
+    ///
+    /// {@macro dart.ui.shadow.lerp}
     /// </Summary>
-    public class MaterialBannerTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
+    public virtual FlutterSDK.Material.Bannertheme.MaterialBannerThemeData Lerp(FlutterSDK.Material.Bannertheme.MaterialBannerThemeData a, FlutterSDK.Material.Bannertheme.MaterialBannerThemeData b, double t)
     {
-        #region constructors
-        public MaterialBannerTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Bannertheme.MaterialBannerThemeData data = default(FlutterSDK.Material.Bannertheme.MaterialBannerThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key, child: child)
-        {
-            this.Data = data; throw new NotImplementedException();
-        }
-        #endregion
 
-        #region fields
-        public virtual FlutterSDK.Material.Bannertheme.MaterialBannerThemeData Data { get; set; }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// The closest instance of this class's [data] value that encloses the given
-        /// context.
-        ///
-        /// If there is no ancestor, it returns [ThemeData.bannerTheme]. Applications
-        /// can assume that the returned value will not be null.
-        ///
-        /// Typical usage is as follows:
-        ///
-        /// ```dart
-        /// MaterialBannerThemeData theme = MaterialBannerTheme.of(context);
-        /// ```
-        /// </Summary>
-        public virtual FlutterSDK.Material.Bannertheme.MaterialBannerThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
-
-
-        public new bool UpdateShouldNotify(FlutterSDK.Material.Bannertheme.MaterialBannerTheme oldWidget) { throw new NotImplementedException(); }
-        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
-
-        #endregion
+        return new MaterialBannerThemeData(backgroundColor: Dart:uiDefaultClass.Color.Lerp(a?.BackgroundColor, b?.BackgroundColor, t), contentTextStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.ContentTextStyle, b?.ContentTextStyle, t), padding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.Padding, b?.Padding, t), leadingPadding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.LeadingPadding, b?.LeadingPadding, t));
     }
+
+
+
+
+    public new bool Equals(@Object other)
+    {
+        if (Dart:coreDefaultClass.Identical(this, other))return true;
+        if (other.GetType() != GetType()) return false;
+        return other is MaterialBannerThemeData && other.BackgroundColor == BackgroundColor && other.ContentTextStyle == ContentTextStyle && other.Padding == Padding && other.LeadingPadding == LeadingPadding;
+    }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new ColorProperty("backgroundColor", BackgroundColor, defaultValue: null));
+        properties.Add(new DiagnosticsProperty<TextStyle>("contentTextStyle", ContentTextStyle, defaultValue: null));
+        properties.Add(new DiagnosticsProperty<EdgeInsetsGeometry>("padding", Padding, defaultValue: null));
+        properties.Add(new DiagnosticsProperty<EdgeInsetsGeometry>("leadingPadding", LeadingPadding, defaultValue: null));
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// An inherited widget that defines the configuration for
+/// [MaterialBanner]s in this widget's subtree.
+///
+/// Values specified here are used for [MaterialBanner] properties that are not
+/// given an explicit non-null value.
+/// </Summary>
+public class MaterialBannerTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
+{
+    #region constructors
+    public MaterialBannerTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Bannertheme.MaterialBannerThemeData data = default(FlutterSDK.Material.Bannertheme.MaterialBannerThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key, child: child)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Material.Bannertheme.MaterialBannerThemeData Data { get; set; }
+#endregion
+
+#region methods
+
+/// <Summary>
+/// The closest instance of this class's [data] value that encloses the given
+/// context.
+///
+/// If there is no ancestor, it returns [ThemeData.bannerTheme]. Applications
+/// can assume that the returned value will not be null.
+///
+/// Typical usage is as follows:
+///
+/// ```dart
+/// MaterialBannerThemeData theme = MaterialBannerTheme.of(context);
+/// ```
+/// </Summary>
+public virtual FlutterSDK.Material.Bannertheme.MaterialBannerThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    MaterialBannerTheme bannerTheme = context.DependOnInheritedWidgetOfExactType();
+    return bannerTheme?.Data ?? ThemeDefaultClass.Theme.Of(context).BannerTheme;
+}
+
+
+
+
+public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
+{
+    MaterialBannerTheme ancestorTheme = context.FindAncestorWidgetOfExactType();
+    return Dart:coreDefaultClass.Identical(this, ancestorTheme) ? child : new MaterialBannerTheme(data: Data, child: child);
+}
+
+
+
+
+public new bool UpdateShouldNotify(FlutterSDK.Material.Bannertheme.MaterialBannerTheme oldWidget) => Data != oldWidget.Data;
+
+public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Data != oldWidget.Data;
+
+
+#endregion
+}
 
 }

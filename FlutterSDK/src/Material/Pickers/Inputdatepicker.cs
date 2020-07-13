@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -436,105 +436,208 @@ namespace FlutterSDK.Material.Pickers.Inputdatepicker
         #region constructors
         public InputDatePickerFormField(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), DateTime initialDate = default(DateTime), DateTime firstDate = default(DateTime), DateTime lastDate = default(DateTime), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onDateSubmitted = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onDateSaved = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate selectableDayPredicate = default(FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate), string errorFormatText = default(string), string errorInvalidText = default(string), string fieldHintText = default(string), string fieldLabelText = default(string), bool autofocus = false)
         : base(key: key)
-        {
-            this.OnDateSubmitted = onDateSubmitted;
-            this.OnDateSaved = onDateSaved;
-            this.SelectableDayPredicate = selectableDayPredicate;
-            this.ErrorFormatText = errorFormatText;
-            this.ErrorInvalidText = errorInvalidText;
-            this.FieldHintText = fieldHintText;
-            this.FieldLabelText = fieldLabelText;
-            this.Autofocus = autofocus; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual DateTime InitialDate { get; set; }
-        public virtual DateTime FirstDate { get; set; }
-        public virtual DateTime LastDate { get; set; }
-        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnDateSubmitted { get; set; }
-        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnDateSaved { get; set; }
-        public virtual FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate SelectableDayPredicate { get; set; }
-        public virtual string ErrorFormatText { get; set; }
-        public virtual string ErrorInvalidText { get; set; }
-        public virtual string FieldHintText { get; set; }
-        public virtual string FieldLabelText { get; set; }
-        public virtual bool Autofocus { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Material.Pickers.Inputdatepicker._InputDatePickerFormFieldState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
+    
 
 
-    public class _InputDatePickerFormFieldState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Pickers.Inputdatepicker.InputDatePickerFormField>
+
+
+}
+
+
+    #endregion
+
+    #region fields
+    public virtual DateTime InitialDate { get; set; }
+    public virtual DateTime FirstDate { get; set; }
+    public virtual DateTime LastDate { get; set; }
+    public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnDateSubmitted { get; set; }
+    public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnDateSaved { get; set; }
+    public virtual FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate SelectableDayPredicate { get; set; }
+    public virtual string ErrorFormatText { get; set; }
+    public virtual string ErrorInvalidText { get; set; }
+    public virtual string FieldHintText { get; set; }
+    public virtual string FieldLabelText { get; set; }
+    public virtual bool Autofocus { get; set; }
+    #endregion
+
+    #region methods
+
+    public new FlutterSDK.Material.Pickers.Inputdatepicker._InputDatePickerFormFieldState CreateState() => new _InputDatePickerFormFieldState();
+
+
+    #endregion
+}
+
+
+public class _InputDatePickerFormFieldState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Pickers.Inputdatepicker.InputDatePickerFormField>
+{
+    #region constructors
+    public _InputDatePickerFormFieldState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Widgets.Editabletext.TextEditingController _Controller { get; set; }
+    internal virtual DateTime _SelectedDate { get; set; }
+    internal virtual string _InputText { get; set; }
+    internal virtual bool _AutoSelected { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
     {
-        #region constructors
-        public _InputDatePickerFormFieldState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Widgets.Editabletext.TextEditingController _Controller { get; set; }
-        internal virtual DateTime _SelectedDate { get; set; }
-        internal virtual string _InputText { get; set; }
-        internal virtual bool _AutoSelected { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        public new void DidChangeDependencies() { throw new NotImplementedException(); }
-
-
-        private DateTime _ParseDate(string text) { throw new NotImplementedException(); }
-
-
-        private bool _IsValidAcceptableDate(DateTime date) { throw new NotImplementedException(); }
-
-
-        private string _ValidateDate(string text) { throw new NotImplementedException(); }
-
-
-        private void _HandleSaved(string text) { throw new NotImplementedException(); }
-
-
-        private void _HandleSubmitted(string text) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        base.InitState();
+        _SelectedDate = Widget.InitialDate;
     }
 
 
-    public class _DateTextInputFormatter : FlutterSDK.Services.Textformatter.TextInputFormatter
+
+
+    public new void Dispose()
     {
-        #region constructors
-        public _DateTextInputFormatter(string separator)
-        {
-            this.Separator = separator; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual string Separator { get; set; }
-        internal virtual FlutterSDK.Services.Textformatter.WhitelistingTextInputFormatter _FilterFormatter { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(FlutterSDK.Services.Textinput.TextEditingValue oldValue, FlutterSDK.Services.Textinput.TextEditingValue newValue) { throw new NotImplementedException(); }
-
-        #endregion
+        _Controller.Dispose();
+        base.Dispose();
     }
+
+
+
+
+    public new void DidChangeDependencies()
+    {
+        base.DidChangeDependencies();
+        if (_SelectedDate != null)
+        {
+            MaterialLocalizations localizations = MateriallocalizationsDefaultClass.MaterialLocalizations.Of(Context);
+            _InputText = localizations.FormatCompactDate(_SelectedDate);
+            TextEditingValue textEditingValue = _Controller.Value.CopyWith(text: _InputText);
+            if (Widget.Autofocus && !_AutoSelected)
+            {
+                textEditingValue = textEditingValue.CopyWith(selection: new TextSelection(baseOffset: 0, extentOffset: _InputText.Length));
+                _AutoSelected = true;
+            }
+
+            _Controller.Value = textEditingValue;
+        }
+
+    }
+
+
+
+
+    private DateTime _ParseDate(string text)
+    {
+        MaterialLocalizations localizations = MateriallocalizationsDefaultClass.MaterialLocalizations.Of(Context);
+        return localizations.ParseCompactDate(text);
+    }
+
+
+
+
+    private bool _IsValidAcceptableDate(DateTime date)
+    {
+        return date != null && !date.IsBefore(Widget.FirstDate) && !date.IsAfter(Widget.LastDate) && (Widget.SelectableDayPredicate == null || Widget.SelectableDayPredicate(date));
+    }
+
+
+
+
+    private string _ValidateDate(string text)
+    {
+        DateTime date = _ParseDate(text);
+        if (date == null)
+        {
+            return Widget.ErrorFormatText ?? "Invalid format.";
+        }
+        else if (!_IsValidAcceptableDate(date))
+        {
+            return Widget.ErrorInvalidText ?? "Out of range.";
+        }
+
+        return null;
+    }
+
+
+
+
+    private void _HandleSaved(string text)
+    {
+        if (Widget.OnDateSaved != null)
+        {
+            DateTime date = _ParseDate(text);
+            if (_IsValidAcceptableDate(date))
+            {
+                _SelectedDate = date;
+                _InputText = text;
+                Widget.OnDateSaved(date);
+            }
+
+        }
+
+    }
+
+
+
+
+    private void _HandleSubmitted(string text)
+    {
+        if (Widget.OnDateSubmitted != null)
+        {
+            DateTime date = _ParseDate(text);
+            if (_IsValidAcceptableDate(date))
+            {
+                _SelectedDate = date;
+                _InputText = text;
+                Widget.OnDateSubmitted(date);
+            }
+
+        }
+
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        return new OrientationBuilder(builder: (BuildContext context, Orientation orientation) =>
+        {
+
+            return new Container(padding: EdgeInsets.Symmetric(horizontal: 24), height: orientation == Orientation.Portrait ? InputdatepickerDefaultClass._InputPortraitHeight : InputdatepickerDefaultClass._InputLandscapeHeight, child: new Column(children: new List<Widget>() { new Spacer(), new TextFormField(decoration: new InputDecoration(border: new UnderlineInputBorder(), filled: true, hintText: Widget.FieldHintText ?? "mm/dd/yyyy", labelText: Widget.FieldLabelText ?? "Enter Date"), validator: _ValidateDate, inputFormatters: new List<TextInputFormatter>() { new _DateTextInputFormatter('/') }, keyboardType: TextinputDefaultClass.TextInputType.Datetime, onSaved: _HandleSaved, onFieldSubmitted: _HandleSubmitted, autofocus: Widget.Autofocus, controller: _Controller), new Spacer() }));
+        }
+        );
+    }
+
+
+
+    #endregion
+}
+
+
+public class _DateTextInputFormatter : FlutterSDK.Services.Textformatter.TextInputFormatter
+{
+    #region constructors
+    public _DateTextInputFormatter(string separator)
+
+}
+#endregion
+
+#region fields
+public virtual string Separator { get; set; }
+internal virtual FlutterSDK.Services.Textformatter.WhitelistingTextInputFormatter _FilterFormatter { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(FlutterSDK.Services.Textinput.TextEditingValue oldValue, FlutterSDK.Services.Textinput.TextEditingValue newValue)
+{
+    TextEditingValue filteredValue = _FilterFormatter.FormatEditUpdate(oldValue, newValue);
+    return filteredValue.CopyWith(text: filteredValue.Text.ReplaceAll(new RegExp("'[\D]"), Separator));
+}
+
+
+
+#endregion
+}
 
 }

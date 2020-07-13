@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -387,34 +387,40 @@ namespace FlutterSDK.Material.Banner
         #region constructors
         public MaterialBanner(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget content = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry leadingPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), bool forceActionsBelow = false)
         : base(key: key)
-        {
-            this.Content = content;
-            this.ContentTextStyle = contentTextStyle;
-            this.Actions = actions;
-            this.Leading = leading;
-            this.BackgroundColor = backgroundColor;
-            this.Padding = padding;
-            this.LeadingPadding = leadingPadding;
-            this.ForceActionsBelow = forceActionsBelow; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Content { get; set; }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle ContentTextStyle { get; set; }
-        public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
-        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry LeadingPadding { get; set; }
-        public virtual bool ForceActionsBelow { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Widgets.Framework.Widget Content { get; set; }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle ContentTextStyle { get; set; }
+    public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
+    public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry LeadingPadding { get; set; }
+    public virtual bool ForceActionsBelow { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
 
-        #endregion
+        ThemeData theme = ThemeDefaultClass.Theme.Of(context);
+        MaterialBannerThemeData bannerTheme = BannerthemeDefaultClass.MaterialBannerTheme.Of(context);
+        bool isSingleRow = Actions.Count == 1 && !ForceActionsBelow;
+        EdgeInsetsGeometry padding = this.Padding ?? bannerTheme.Padding ?? (isSingleRow ? EdgeInsetsDirectional.Only(start: 16.0, top: 2.0) : EdgeInsetsDirectional.Only(start: 16.0, top: 24.0, end: 16.0, bottom: 4.0));
+        EdgeInsetsGeometry leadingPadding = this.LeadingPadding ?? bannerTheme.Padding ?? EdgeInsetsDirectional.Only(end: 16.0);
+        Widget buttonBar = new ButtonBar(layoutBehavior: ButtonBarLayoutBehavior.Constrained, children: Actions);
+        Color backgroundColor = this.BackgroundColor ?? bannerTheme.BackgroundColor ?? theme.ColorScheme.Surface;
+        TextStyle textStyle = ContentTextStyle ?? bannerTheme.ContentTextStyle ?? theme.TextTheme.BodyText2;
+        return new Container(color: backgroundColor, child: new Column(children: new List<Widget>() { new Padding(padding: padding, child: new Row(children: new List<Widget>() { })), }));
     }
+
+
+
+    #endregion
+}
 
 }

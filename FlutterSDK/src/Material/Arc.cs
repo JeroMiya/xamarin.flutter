@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,171 +388,286 @@ namespace FlutterSDK.Material.Arc
         #region constructors
         public MaterialPointArcTween(FlutterBinding.UI.Offset begin = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset end = default(FlutterBinding.UI.Offset))
         : base(begin: begin, end: end)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        internal virtual bool _Dirty { get; set; }
-        internal virtual FlutterBinding.UI.Offset _Center { get; set; }
-        internal virtual double _Radius { get; set; }
-        internal virtual double _BeginAngle { get; set; }
-        internal virtual double _EndAngle { get; set; }
-        public virtual FlutterBinding.UI.Offset Center { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual double Radius { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual double BeginAngle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual double EndAngle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterBinding.UI.Offset Begin { set { throw new NotImplementedException(); } }
-        public virtual FlutterBinding.UI.Offset End { set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    internal virtual bool _Dirty { get; set; }
+    internal virtual FlutterBinding.UI.Offset _Center { get; set; }
+    internal virtual double _Radius { get; set; }
+    internal virtual double _BeginAngle { get; set; }
+    internal virtual double _EndAngle { get; set; }
+    public virtual FlutterBinding.UI.Offset Center { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual double Radius { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual double BeginAngle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual double EndAngle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterBinding.UI.Offset Begin { set { throw new NotImplementedException(); } }
+    public virtual FlutterBinding.UI.Offset End { set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        private void _Initialize() { throw new NotImplementedException(); }
-
-
-        public new Offset Lerp(double t) { throw new NotImplementedException(); }
-
-
-        #endregion
-    }
-
-
-    public class _Diagonal
-    {
-        #region constructors
-        public _Diagonal(FlutterSDK.Material.Arc._CornerId beginId, FlutterSDK.Material.Arc._CornerId endId)
-        {
-            this.BeginId = beginId;
-            this.EndId = endId; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Material.Arc._CornerId BeginId { get; set; }
-        public virtual FlutterSDK.Material.Arc._CornerId EndId { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// A [Tween] that interpolates a [Rect] by having its opposite corners follow
-    /// circular arcs.
-    ///
-    /// This class specializes the interpolation of [Tween<Rect>] so that instead of
-    /// growing or shrinking linearly, opposite corners of the rectangle follow arcs
-    /// in a manner consistent with material design principles.
-    ///
-    /// Specifically, the rectangle corners whose diagonals are closest to the overall
-    /// direction of the animation follow arcs defined with [MaterialPointArcTween].
-    ///
-    /// See also:
-    ///
-    ///  * [MaterialRectCenterArcTween], which interpolates a rect along a circular
-    ///    arc between the begin and end [Rect]'s centers.
-    ///  * [Tween], for a discussion on how to use interpolation objects.
-    ///  * [MaterialPointArcTween], the analog for [Offset] interpolation.
-    ///  * [RectTween], which does a linear rectangle interpolation.
-    ///  * [Hero.createRectTween], which can be used to specify the tween that defines
-    ///    a hero's path.
-    /// </Summary>
-    public class MaterialRectArcTween : FlutterSDK.Animation.Tween.RectTween
-    {
-        #region constructors
-        public MaterialRectArcTween(FlutterBinding.UI.Rect begin = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Rect end = default(FlutterBinding.UI.Rect))
-        : base(begin: begin, end: end)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual bool _Dirty { get; set; }
-        internal virtual FlutterSDK.Material.Arc.MaterialPointArcTween _BeginArc { get; set; }
-        internal virtual FlutterSDK.Material.Arc.MaterialPointArcTween _EndArc { get; set; }
-        public virtual FlutterSDK.Material.Arc.MaterialPointArcTween BeginArc { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Material.Arc.MaterialPointArcTween EndArc { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterBinding.UI.Rect Begin { set { throw new NotImplementedException(); } }
-        public virtual FlutterBinding.UI.Rect End { set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        private void _Initialize() { throw new NotImplementedException(); }
-
-
-        private double _DiagonalSupport(FlutterBinding.UI.Offset centersVector, FlutterSDK.Material.Arc._Diagonal diagonal) { throw new NotImplementedException(); }
-
-
-        private Offset _CornerFor(FlutterBinding.UI.Rect rect, FlutterSDK.Material.Arc._CornerId id) { throw new NotImplementedException(); }
-
-
-        public new Rect Lerp(double t) { throw new NotImplementedException(); }
-
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// A [Tween] that interpolates a [Rect] by moving it along a circular arc from
-    /// [begin]'s [Rect.center] to [end]'s [Rect.center] while interpolating the
-    /// rectangle's width and height.
-    ///
-    /// The arc that defines that center of the interpolated rectangle as it morphs
-    /// from [begin] to [end] is a [MaterialPointArcTween].
-    ///
-    /// See also:
-    ///
-    ///  * [MaterialRectArcTween], A [Tween] that interpolates a [Rect] by having
-    ///    its opposite corners follow circular arcs.
-    ///  * [Tween], for a discussion on how to use interpolation objects.
-    ///  * [MaterialPointArcTween], the analog for [Offset] interpolation.
-    ///  * [RectTween], which does a linear rectangle interpolation.
-    ///  * [Hero.createRectTween], which can be used to specify the tween that defines
-    ///    a hero's path.
-    /// </Summary>
-    public class MaterialRectCenterArcTween : FlutterSDK.Animation.Tween.RectTween
-    {
-        #region constructors
-        public MaterialRectCenterArcTween(FlutterBinding.UI.Rect begin = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Rect end = default(FlutterBinding.UI.Rect))
-        : base(begin: begin, end: end)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual bool _Dirty { get; set; }
-        internal virtual FlutterSDK.Material.Arc.MaterialPointArcTween _CenterArc { get; set; }
-        public virtual FlutterSDK.Material.Arc.MaterialPointArcTween CenterArc { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterBinding.UI.Rect Begin { set { throw new NotImplementedException(); } }
-        public virtual FlutterBinding.UI.Rect End { set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        private void _Initialize() { throw new NotImplementedException(); }
-
-
-        public new Rect Lerp(double t) { throw new NotImplementedException(); }
-
-
-        #endregion
-    }
-
-
-    public enum _CornerId
+    private void _Initialize()
     {
 
-        TopLeft,
-        TopRight,
-        BottomLeft,
-        BottomRight,
+
+        Offset delta = End - Begin;
+        double deltaX = delta.Dx.Abs();
+        double deltaY = delta.Dy.Abs();
+        double distanceFromAtoB = delta.Distance;
+        Offset c = new Offset(End.Dx, Begin.Dy);
+        double SweepAngle() => =>2.0 * Math.Dart:mathDefaultClass.Asin(distanceFromAtoB / (2.0 * _Radius));
+        if (deltaX > ArcDefaultClass._KOnAxisDelta && deltaY > ArcDefaultClass._KOnAxisDelta)
+        {
+            if (deltaX < deltaY)
+            {
+                _Radius = distanceFromAtoB * distanceFromAtoB / (c - Begin).Distance / 2.0;
+                _Center = new Offset(End.Dx + _Radius * (Begin.Dx - End.Dx).Sign, End.Dy);
+                if (Begin.Dx < End.Dx)
+                {
+                    _BeginAngle = SweepAngle() * (Begin.Dy - End.Dy).Sign;
+                    _EndAngle = 0.0;
+                }
+                else
+                {
+                    _BeginAngle = Math.Dart:mathDefaultClass.Pi + SweepAngle() * (End.Dy - Begin.Dy).Sign;
+                    _EndAngle = Math.Dart:mathDefaultClass.Pi;
+                }
+
+            }
+            else
+            {
+                _Radius = distanceFromAtoB * distanceFromAtoB / (c - End).Distance / 2.0;
+                _Center = new Offset(Begin.Dx, Begin.Dy + (End.Dy - Begin.Dy).Sign * _Radius);
+                if (Begin.Dy < End.Dy)
+                {
+                    _BeginAngle = -Math.Dart:mathDefaultClass.Pi / 2.0;
+                    _EndAngle = _BeginAngle + SweepAngle() * (End.Dx - Begin.Dx).Sign;
+                }
+                else
+                {
+                    _BeginAngle = Math.Dart:mathDefaultClass.Pi / 2.0;
+                    _EndAngle = _BeginAngle + SweepAngle() * (Begin.Dx - End.Dx).Sign;
+                }
+
+            }
+
+
+
+        }
+        else
+        {
+            _BeginAngle = null;
+            _EndAngle = null;
+        }
+
+        _Dirty = false;
     }
+
+
+
+
+    public new Offset Lerp(double t)
+    {
+        if (_Dirty) _Initialize();
+        if (t == 0.0) return Begin;
+        if (t == 1.0) return End;
+        if (_BeginAngle == null || _EndAngle == null) return Dart:uiDefaultClass.Offset.Lerp(Begin, End, t);
+        double angle = Dart:uiDefaultClass.LerpDouble(_BeginAngle, _EndAngle, t);
+        double x = Math.Dart:mathDefaultClass.Cos(angle) * _Radius;
+        double y = Math.Dart:mathDefaultClass.Sin(angle) * _Radius;
+        return _Center + new Offset(x, y);
+    }
+
+
+
+
+    #endregion
+}
+
+
+public class _Diagonal
+{
+    #region constructors
+    public _Diagonal(FlutterSDK.Material.Arc._CornerId beginId, FlutterSDK.Material.Arc._CornerId endId)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Material.Arc._CornerId BeginId { get; set; }
+public virtual FlutterSDK.Material.Arc._CornerId EndId { get; set; }
+#endregion
+
+#region methods
+#endregion
+}
+
+
+/// <Summary>
+/// A [Tween] that interpolates a [Rect] by having its opposite corners follow
+/// circular arcs.
+///
+/// This class specializes the interpolation of [Tween<Rect>] so that instead of
+/// growing or shrinking linearly, opposite corners of the rectangle follow arcs
+/// in a manner consistent with material design principles.
+///
+/// Specifically, the rectangle corners whose diagonals are closest to the overall
+/// direction of the animation follow arcs defined with [MaterialPointArcTween].
+///
+/// See also:
+///
+///  * [MaterialRectCenterArcTween], which interpolates a rect along a circular
+///    arc between the begin and end [Rect]'s centers.
+///  * [Tween], for a discussion on how to use interpolation objects.
+///  * [MaterialPointArcTween], the analog for [Offset] interpolation.
+///  * [RectTween], which does a linear rectangle interpolation.
+///  * [Hero.createRectTween], which can be used to specify the tween that defines
+///    a hero's path.
+/// </Summary>
+public class MaterialRectArcTween : FlutterSDK.Animation.Tween.RectTween
+{
+    #region constructors
+    public MaterialRectArcTween(FlutterBinding.UI.Rect begin = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Rect end = default(FlutterBinding.UI.Rect))
+    : base(begin: begin, end: end)
+
+}
+#endregion
+
+#region fields
+internal virtual bool _Dirty { get; set; }
+internal virtual FlutterSDK.Material.Arc.MaterialPointArcTween _BeginArc { get; set; }
+internal virtual FlutterSDK.Material.Arc.MaterialPointArcTween _EndArc { get; set; }
+public virtual FlutterSDK.Material.Arc.MaterialPointArcTween BeginArc { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterSDK.Material.Arc.MaterialPointArcTween EndArc { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterBinding.UI.Rect Begin { set { throw new NotImplementedException(); } }
+public virtual FlutterBinding.UI.Rect End { set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+private void _Initialize()
+{
+
+
+    Offset centersVector = End.Center - Begin.Center;
+    _Diagonal diagonal = ArcDefaultClass._MaxBy(ArcDefaultClass._AllDiagonals, (_Diagonal d) => =>_DiagonalSupport(centersVector, d));
+    _BeginArc = new MaterialPointArcTween(begin: _CornerFor(Begin, diagonal.BeginId), end: _CornerFor(End, diagonal.BeginId));
+    _EndArc = new MaterialPointArcTween(begin: _CornerFor(Begin, diagonal.EndId), end: _CornerFor(End, diagonal.EndId));
+    _Dirty = false;
+}
+
+
+
+
+private double _DiagonalSupport(FlutterBinding.UI.Offset centersVector, FlutterSDK.Material.Arc._Diagonal diagonal)
+{
+    Offset delta = _CornerFor(Begin, diagonal.EndId) - _CornerFor(Begin, diagonal.BeginId);
+    double length = delta.Distance;
+    return centersVector.Dx * delta.Dx / length + centersVector.Dy * delta.Dy / length;
+}
+
+
+
+
+private Offset _CornerFor(FlutterBinding.UI.Rect rect, FlutterSDK.Material.Arc._CornerId id)
+{
+    switch (id) { case _CornerId.TopLeft: return rect.TopLeft; case _CornerId.TopRight: return rect.TopRight; case _CornerId.BottomLeft: return rect.BottomLeft; case _CornerId.BottomRight: return rect.BottomRight; }
+    return Dart:uiDefaultClass.Offset.Zero;
+}
+
+
+
+
+public new Rect Lerp(double t)
+{
+    if (_Dirty) _Initialize();
+    if (t == 0.0) return Begin;
+    if (t == 1.0) return End;
+    return Rect.FromPoints(_BeginArc.Lerp(t), _EndArc.Lerp(t));
+}
+
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A [Tween] that interpolates a [Rect] by moving it along a circular arc from
+/// [begin]'s [Rect.center] to [end]'s [Rect.center] while interpolating the
+/// rectangle's width and height.
+///
+/// The arc that defines that center of the interpolated rectangle as it morphs
+/// from [begin] to [end] is a [MaterialPointArcTween].
+///
+/// See also:
+///
+///  * [MaterialRectArcTween], A [Tween] that interpolates a [Rect] by having
+///    its opposite corners follow circular arcs.
+///  * [Tween], for a discussion on how to use interpolation objects.
+///  * [MaterialPointArcTween], the analog for [Offset] interpolation.
+///  * [RectTween], which does a linear rectangle interpolation.
+///  * [Hero.createRectTween], which can be used to specify the tween that defines
+///    a hero's path.
+/// </Summary>
+public class MaterialRectCenterArcTween : FlutterSDK.Animation.Tween.RectTween
+{
+    #region constructors
+    public MaterialRectCenterArcTween(FlutterBinding.UI.Rect begin = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Rect end = default(FlutterBinding.UI.Rect))
+    : base(begin: begin, end: end)
+
+}
+#endregion
+
+#region fields
+internal virtual bool _Dirty { get; set; }
+internal virtual FlutterSDK.Material.Arc.MaterialPointArcTween _CenterArc { get; set; }
+public virtual FlutterSDK.Material.Arc.MaterialPointArcTween CenterArc { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterBinding.UI.Rect Begin { set { throw new NotImplementedException(); } }
+public virtual FlutterBinding.UI.Rect End { set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+private void _Initialize()
+{
+
+
+    _CenterArc = new MaterialPointArcTween(begin: Begin.Center, end: End.Center);
+    _Dirty = false;
+}
+
+
+
+
+public new Rect Lerp(double t)
+{
+    if (_Dirty) _Initialize();
+    if (t == 0.0) return Begin;
+    if (t == 1.0) return End;
+    Offset center = _CenterArc.Lerp(t);
+    double width = Dart:uiDefaultClass.LerpDouble(Begin.Width, End.Width, t);
+    double height = Dart:uiDefaultClass.LerpDouble(Begin.Height, End.Height, t);
+    return Rect.FromLTWH(center.Dx - width / 2.0, center.Dy - height / 2.0, width, height);
+}
+
+
+
+
+#endregion
+}
+
+
+public enum _CornerId
+{
+
+    TopLeft,
+    TopRight,
+    BottomLeft,
+    BottomRight,
+}
 
 }

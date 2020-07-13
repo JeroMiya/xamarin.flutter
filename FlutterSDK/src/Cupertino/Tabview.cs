@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 namespace FlutterSDK.Cupertino.Tabview
 {
     internal static class TabviewDefaultClass
@@ -335,67 +335,125 @@ namespace FlutterSDK.Cupertino.Tabview
         #region constructors
         public CupertinoTabView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> navigatorKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState>), string defaultTitle = default(string), Dictionary<string, object> routes = default(Dictionary<string, object>), FlutterSDK.Widgets.Navigator.RouteFactory onGenerateRoute = default(FlutterSDK.Widgets.Navigator.RouteFactory), FlutterSDK.Widgets.Navigator.RouteFactory onUnknownRoute = default(FlutterSDK.Widgets.Navigator.RouteFactory), List<FlutterSDK.Widgets.Navigator.NavigatorObserver> navigatorObservers = default(List<FlutterSDK.Widgets.Navigator.NavigatorObserver>))
         : base(key: key)
-        {
-            this.Builder = builder;
-            this.NavigatorKey = navigatorKey;
-            this.DefaultTitle = defaultTitle;
-            this.Routes = routes;
-            this.OnGenerateRoute = onGenerateRoute;
-            this.OnUnknownRoute = onUnknownRoute;
-            this.NavigatorObservers = navigatorObservers; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> NavigatorKey { get; set; }
-        public virtual string DefaultTitle { get; set; }
-        public virtual Dictionary<string, object> Routes { get; set; }
-        public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnGenerateRoute { get; set; }
-        public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnUnknownRoute { get; set; }
-        public virtual List<FlutterSDK.Widgets.Navigator.NavigatorObserver> NavigatorObservers { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> NavigatorKey { get; set; }
+    public virtual string DefaultTitle { get; set; }
+    public virtual Dictionary<string, object> Routes { get; set; }
+    public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnGenerateRoute { get; set; }
+    public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnUnknownRoute { get; set; }
+    public virtual List<FlutterSDK.Widgets.Navigator.NavigatorObserver> NavigatorObservers { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new FlutterSDK.Cupertino.Tabview._CupertinoTabViewState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _CupertinoTabViewState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Tabview.CupertinoTabView>
+    public new FlutterSDK.Cupertino.Tabview._CupertinoTabViewState CreateState()
     {
-        #region constructors
-        public _CupertinoTabViewState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Widgets.Heroes.HeroController _HeroController { get; set; }
-        internal virtual List<FlutterSDK.Widgets.Navigator.NavigatorObserver> _NavigatorObservers { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Cupertino.Tabview.CupertinoTabView oldWidget) { throw new NotImplementedException(); }
-
-
-        private void _UpdateObservers() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Widgets.Navigator.Route<object> _OnGenerateRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Widgets.Navigator.Route<object> _OnUnknownRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings) { throw new NotImplementedException(); }
-
-        #endregion
+        return new _CupertinoTabViewState();
     }
+
+
+
+    #endregion
+}
+
+
+public class _CupertinoTabViewState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Tabview.CupertinoTabView>
+{
+    #region constructors
+    public _CupertinoTabViewState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Widgets.Heroes.HeroController _HeroController { get; set; }
+    internal virtual List<FlutterSDK.Widgets.Navigator.NavigatorObserver> _NavigatorObservers { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
+    {
+        base.InitState();
+        _HeroController = AppDefaultClass.CupertinoApp.CreateCupertinoHeroController();
+        _UpdateObservers();
+    }
+
+
+
+
+    public new void DidUpdateWidget(FlutterSDK.Cupertino.Tabview.CupertinoTabView oldWidget)
+    {
+        base.DidUpdateWidget(oldWidget);
+        if (Widget.NavigatorKey != oldWidget.NavigatorKey || Widget.NavigatorObservers != oldWidget.NavigatorObservers)
+        {
+            _UpdateObservers();
+        }
+
+    }
+
+
+
+
+    private void _UpdateObservers()
+    {
+        _NavigatorObservers = List<NavigatorObserver>.From(Widget.NavigatorObservers);
+        List<NavigatorObserver>.From(Widget.NavigatorObservers).Add(_HeroController);
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        return new Navigator(key: Widget.NavigatorKey, onGenerateRoute: _OnGenerateRoute, onUnknownRoute: _OnUnknownRoute, observers: _NavigatorObservers);
+    }
+
+
+
+
+    private FlutterSDK.Widgets.Navigator.Route<object> _OnGenerateRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings)
+    {
+        string name = settings.Name;
+        WidgetBuilder routeBuilder = default(WidgetBuilder);
+        string title = default(string);
+        if (name == NavigatorDefaultClass.Navigator.DefaultRouteName && Widget.Builder != null)
+        {
+            routeBuilder = Widget.Builder;
+            title = Widget.DefaultTitle;
+        }
+        else if (Widget.Routes != null)
+        {
+            routeBuilder = Widget.Routes[name];
+        }
+
+        if (routeBuilder != null)
+        {
+            return new CupertinoPageRoute<object>(builder: routeBuilder, title: title, settings: settings);
+        }
+
+        if (Widget.OnGenerateRoute != null) return Widget.OnGenerateRoute(settings);
+        return null;
+    }
+
+
+
+
+    private FlutterSDK.Widgets.Navigator.Route<object> _OnUnknownRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings)
+    {
+
+        Route<object> result = Widget.OnUnknownRoute(settings);
+
+        return result;
+    }
+
+
+
+    #endregion
+}
 
 }

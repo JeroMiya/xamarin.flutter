@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -412,9 +412,16 @@ namespace FlutterSDK.Material.Inkhighlight
         #region constructors
         public InkHighlight(FlutterSDK.Material.Material.MaterialInkController controller = default(FlutterSDK.Material.Material.MaterialInkController), FlutterSDK.Rendering.Box.RenderBox referenceBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Painting.Borders.ShapeBorder customBorder = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Material.Material.RectCallback rectCallback = default(FlutterSDK.Material.Material.RectCallback), VoidCallback onRemoved = default(VoidCallback), TimeSpan fadeDuration = default(TimeSpan))
         : base(controller: controller, referenceBox: referenceBox, color: color, onRemoved: onRemoved)
-        {
-            throw new NotImplementedException();
+    
+_AlphaController=new AnimationController(duration:fadeDuration, vsync:controller.Vsync);
+        new AnimationController(duration:fadeDuration, vsync:controller.Vsync).AddListener(controller.MarkNeedsPaint);
+        new AnimationController(duration:fadeDuration, vsync:controller.Vsync).AddStatusListener(_HandleAlphaStatusChanged);
+        new AnimationController(duration:fadeDuration, vsync:controller.Vsync).Forward();
+        _Alpha=_AlphaController.Drive(new IntTween(begin:0, end:color.Alpha));
+controller.AddInkFeature(this );
         }
+
+
         #endregion
 
         #region fields
@@ -434,25 +441,94 @@ namespace FlutterSDK.Material.Inkhighlight
         /// <Summary>
         /// Start visually emphasizing this part of the material.
         /// </Summary>
-        public virtual void Activate() { throw new NotImplementedException(); }
+        public virtual void Activate()
+        {
+            _Active = true;
+            _AlphaController.Forward();
+        }
+
+
 
 
         /// <Summary>
         /// Stop visually emphasizing this part of the material.
         /// </Summary>
-        public virtual void Deactivate() { throw new NotImplementedException(); }
+        public virtual void Deactivate()
+        {
+            _Active = false;
+            _AlphaController.Reverse();
+        }
 
 
-        private void _HandleAlphaStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status) { throw new NotImplementedException(); }
 
 
-        public new void Dispose() { throw new NotImplementedException(); }
+        private void _HandleAlphaStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status)
+        {
+            if (status == AnimationStatus.Dismissed && !_Active) Dispose();
+        }
 
 
-        private void _PaintHighlight(Canvas canvas, FlutterBinding.UI.Rect rect, SKPaint paint) { throw new NotImplementedException(); }
 
 
-        public new void PaintFeature(Canvas canvas, Matrix4 transform) { throw new NotImplementedException(); }
+        public new void Dispose()
+        {
+            _AlphaController.Dispose();
+            base.Dispose();
+        }
+
+
+
+
+        private void _PaintHighlight(Canvas canvas, FlutterBinding.UI.Rect rect, SKPaint paint)
+        {
+
+            canvas.Save();
+            if (_CustomBorder != null)
+            {
+                canvas.ClipPath(_CustomBorder.GetOuterPath(rect, textDirection: _TextDirection));
+            }
+
+            switch (_Shape)
+            {
+                case BoxShape.Circle: canvas.DrawCircle(rect.Center, MaterialDefaultClass.Material.DefaultSplashRadius, paint); break;
+                case BoxShape.Rectangle:
+                    if (_BorderRadius != BorderradiusDefaultClass.BorderRadius.Zero)
+                    {
+                        RRect clipRRect = RRect.FromRectAndCorners(rect, topLeft: _BorderRadius.TopLeft, topRight: _BorderRadius.TopRight, bottomLeft: _BorderRadius.BottomLeft, bottomRight: _BorderRadius.BottomRight);
+                        canvas.DrawRRect(clipRRect, paint);
+                    }
+                    else
+                    {
+                        canvas.DrawRect(rect, paint);
+                    }
+                    break;
+            }
+            canvas.Restore();
+        }
+
+
+
+
+        public new void PaintFeature(Canvas canvas, Matrix4 transform)
+        {
+            Paint paint = new Paint()..Color = Color.WithAlpha(_Alpha.Value);
+            Offset originOffset = MatrixutilsDefaultClass.MatrixUtils.GetAsTranslation(transform);
+            Rect rect = _RectCallback != null ? _RectCallback() : Dart:uiDefaultClass.Offset.Zero & ReferenceBox.Size;
+            if (originOffset == null)
+            {
+                canvas.Save();
+                canvas.Transform(transform.Storage);
+                _PaintHighlight(canvas, rect, paint);
+                canvas.Restore();
+            }
+            else
+            {
+                _PaintHighlight(canvas, rect.Shift(originOffset), paint);
+            }
+
+        }
+
+
 
         #endregion
     }

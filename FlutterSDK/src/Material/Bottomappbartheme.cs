@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -385,51 +385,79 @@ namespace FlutterSDK.Material.Bottomappbartheme
     {
         #region constructors
         public BottomAppBarTheme(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Notchedshapes.NotchedShape shape = default(FlutterSDK.Painting.Notchedshapes.NotchedShape))
-        {
-            this.Color = color;
-            this.Elevation = elevation;
-            this.Shape = shape; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterBinding.UI.Color Color { get; set; }
-        public virtual double Elevation { get; set; }
-        public virtual FlutterSDK.Painting.Notchedshapes.NotchedShape Shape { get; set; }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    public virtual FlutterBinding.UI.Color Color { get; set; }
+    public virtual double Elevation { get; set; }
+    public virtual FlutterSDK.Painting.Notchedshapes.NotchedShape Shape { get; set; }
+    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        /// <Summary>
-        /// Creates a copy of this object but with the given fields replaced with the
-        /// new values.
-        /// </Summary>
-        public virtual FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Notchedshapes.NotchedShape shape = default(FlutterSDK.Painting.Notchedshapes.NotchedShape)) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// The [ThemeData.bottomAppBarTheme] property of the ambient [Theme].
-        /// </Summary>
-        public virtual FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Linearly interpolate between two BAB themes.
-        ///
-        /// The argument `t` must not be null.
-        ///
-        /// {@macro dart.ui.shadow.lerp}
-        /// </Summary>
-        public virtual FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme Lerp(FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme a, FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme b, double t) { throw new NotImplementedException(); }
-
-
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+    /// <Summary>
+    /// Creates a copy of this object but with the given fields replaced with the
+    /// new values.
+    /// </Summary>
+    public virtual FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Notchedshapes.NotchedShape shape = default(FlutterSDK.Painting.Notchedshapes.NotchedShape))
+    {
+        return new BottomAppBarTheme(color: color ?? this.Color, elevation: elevation == default(double) ? this.elevation : elevation, shape: shape ?? this.Shape);
     }
+
+
+
+
+    /// <Summary>
+    /// The [ThemeData.bottomAppBarTheme] property of the ambient [Theme].
+    /// </Summary>
+    public virtual FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme Of(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        return ThemeDefaultClass.Theme.Of(context).BottomAppBarTheme;
+    }
+
+
+
+
+    /// <Summary>
+    /// Linearly interpolate between two BAB themes.
+    ///
+    /// The argument `t` must not be null.
+    ///
+    /// {@macro dart.ui.shadow.lerp}
+    /// </Summary>
+    public virtual FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme Lerp(FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme a, FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme b, double t)
+    {
+
+        return new BottomAppBarTheme(color: Dart:uiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), elevation: Dart:uiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), shape: t < 0.5 ? a?.Shape : b?.Shape);
+    }
+
+
+
+
+    public new bool Equals(@Object other)
+    {
+        if (Dart:coreDefaultClass.Identical(this, other))return true;
+        if (other.GetType() != GetType()) return false;
+        return other is BottomAppBarTheme && other.Color == Color && other.Elevation == Elevation && other.Shape == Shape;
+    }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new ColorProperty("color", Color, defaultValue: null));
+        properties.Add(new DiagnosticsProperty<double>("elevation", Elevation, defaultValue: null));
+        properties.Add(new DiagnosticsProperty<NotchedShape>("shape", Shape, defaultValue: null));
+    }
+
+
+
+    #endregion
+}
 
 }

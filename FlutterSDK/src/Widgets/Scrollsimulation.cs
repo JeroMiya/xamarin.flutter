@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -441,100 +441,201 @@ namespace FlutterSDK.Widgets.Scrollsimulation
         #region constructors
         public BouncingScrollSimulation(double position = default(double), double velocity = default(double), double leadingExtent = default(double), double trailingExtent = default(double), FlutterSDK.Physics.Springsimulation.SpringDescription spring = default(FlutterSDK.Physics.Springsimulation.SpringDescription), FlutterSDK.Physics.Tolerance.Tolerance tolerance = default(FlutterSDK.Physics.Tolerance.Tolerance))
         : base(tolerance: tolerance)
-        {
-            this.LeadingExtent = leadingExtent;
-            this.TrailingExtent = trailingExtent;
-            this.Spring = spring; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual double MaxSpringTransferVelocity { get; set; }
-        public virtual double LeadingExtent { get; set; }
-        public virtual double TrailingExtent { get; set; }
-        public virtual FlutterSDK.Physics.Springsimulation.SpringDescription Spring { get; set; }
-        internal virtual FlutterSDK.Physics.Frictionsimulation.FrictionSimulation _FrictionSimulation { get; set; }
-        internal virtual FlutterSDK.Physics.Simulation.Simulation _SpringSimulation { get; set; }
-        internal virtual double _SpringTime { get; set; }
-        internal virtual double _TimeOffset { get; set; }
-        #endregion
-
-        #region methods
-
-        private FlutterSDK.Physics.Simulation.Simulation _UnderscrollSimulation(double x, double dx) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Physics.Simulation.Simulation _OverscrollSimulation(double x, double dx) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Physics.Simulation.Simulation _Simulation(double time) { throw new NotImplementedException(); }
-
-
-        public new double x(double time) { throw new NotImplementedException(); }
-
-
-        public new double Dx(double time) { throw new NotImplementedException(); }
-
-
-        public new bool IsDone(double time) { throw new NotImplementedException(); }
-
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// An implementation of scroll physics that matches Android.
-    ///
-    /// See also:
-    ///
-    ///  * [BouncingScrollSimulation], which implements iOS scroll physics.
-    /// </Summary>
-    public class ClampingScrollSimulation : FlutterSDK.Physics.Simulation.Simulation
+    
+if (position<LeadingExtent){
+_SpringSimulation=_UnderscrollSimulation(position, velocity);
+        _SpringTime=Dart:coreDefaultClass.Double.NegativeInfinity;
+}
+else if (position>TrailingExtent){
+_SpringSimulation=_OverscrollSimulation(position, velocity);
+    _SpringTime=Dart:coreDefaultClass.Double.NegativeInfinity;
+}
+else
+{
+    _FrictionSimulation = new FrictionSimulation(0.135, position, velocity);
+    double finalX = _FrictionSimulation.FinalX;
+    if (velocity > 0.0 && finalX > TrailingExtent)
     {
-        #region constructors
-        public ClampingScrollSimulation(double position = default(double), double velocity = default(double), double friction = 0.015, FlutterSDK.Physics.Tolerance.Tolerance tolerance = default(FlutterSDK.Physics.Tolerance.Tolerance))
-        : base(tolerance: tolerance)
-        {
-            this.Position = position;
-            this.Velocity = velocity;
-            this.Friction = friction; throw new NotImplementedException();
-        }
-        #endregion
+        _SpringTime = _FrictionSimulation.TimeAtX(TrailingExtent);
+        _SpringSimulation = _OverscrollSimulation(TrailingExtent, Math.Dart:mathDefaultClass.Min(_FrictionSimulation.Dx(_SpringTime), MaxSpringTransferVelocity));
 
-        #region fields
-        public virtual double Position { get; set; }
-        public virtual double Velocity { get; set; }
-        public virtual double Friction { get; set; }
-        internal virtual double _Duration { get; set; }
-        internal virtual double _Distance { get; set; }
-        internal virtual double _KDecelerationRate { get; set; }
-        internal virtual double _InitialVelocityPenetration { get; set; }
-        #endregion
-
-        #region methods
-
-        private double _DecelerationForFriction(double friction) { throw new NotImplementedException(); }
-
-
-        private double _FlingDuration(double velocity) { throw new NotImplementedException(); }
-
-
-        private double _FlingDistancePenetration(double t) { throw new NotImplementedException(); }
-
-
-        private double _FlingVelocityPenetration(double t) { throw new NotImplementedException(); }
-
-
-        public new double x(double time) { throw new NotImplementedException(); }
-
-
-        public new double Dx(double time) { throw new NotImplementedException(); }
-
-
-        public new bool IsDone(double time) { throw new NotImplementedException(); }
-
-        #endregion
     }
+    else if (velocity < 0.0 && finalX < LeadingExtent)
+    {
+        _SpringTime = _FrictionSimulation.TimeAtX(LeadingExtent);
+        _SpringSimulation = _UnderscrollSimulation(LeadingExtent, Math.Dart:mathDefaultClass.Min(_FrictionSimulation.Dx(_SpringTime), MaxSpringTransferVelocity));
+
+    }
+    else
+    {
+        _SpringTime = Dart:coreDefaultClass.Double.Infinity;
+    }
+
+}
+
+
+}
+
+
+#endregion
+
+#region fields
+public virtual double MaxSpringTransferVelocity { get; set; }
+public virtual double LeadingExtent { get; set; }
+public virtual double TrailingExtent { get; set; }
+public virtual FlutterSDK.Physics.Springsimulation.SpringDescription Spring { get; set; }
+internal virtual FlutterSDK.Physics.Frictionsimulation.FrictionSimulation _FrictionSimulation { get; set; }
+internal virtual FlutterSDK.Physics.Simulation.Simulation _SpringSimulation { get; set; }
+internal virtual double _SpringTime { get; set; }
+internal virtual double _TimeOffset { get; set; }
+#endregion
+
+#region methods
+
+private FlutterSDK.Physics.Simulation.Simulation _UnderscrollSimulation(double x, double dx)
+{
+    return new ScrollSpringSimulation(Spring, x, LeadingExtent, dx);
+}
+
+
+
+
+private FlutterSDK.Physics.Simulation.Simulation _OverscrollSimulation(double x, double dx)
+{
+    return new ScrollSpringSimulation(Spring, x, TrailingExtent, dx);
+}
+
+
+
+
+private FlutterSDK.Physics.Simulation.Simulation _Simulation(double time)
+{
+    Simulation simulation = default(Simulation);
+    if (time > _SpringTime)
+    {
+        _TimeOffset = _SpringTime.IsFinite() ? _SpringTime : 0.0;
+        simulation = _SpringSimulation;
+    }
+    else
+    {
+        _TimeOffset = 0.0;
+        simulation = _FrictionSimulation;
+    }
+
+    return ..Tolerance = Tolerance;
+}
+
+
+
+
+public new double x(double time) => _Simulation(time).x(time - _TimeOffset);
+
+
+
+public new double Dx(double time) => _Simulation(time).Dx(time - _TimeOffset);
+
+
+
+public new bool IsDone(double time) => _Simulation(time).IsDone(time - _TimeOffset);
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// An implementation of scroll physics that matches Android.
+///
+/// See also:
+///
+///  * [BouncingScrollSimulation], which implements iOS scroll physics.
+/// </Summary>
+public class ClampingScrollSimulation : FlutterSDK.Physics.Simulation.Simulation
+{
+    #region constructors
+    public ClampingScrollSimulation(double position = default(double), double velocity = default(double), double friction = 0.015, FlutterSDK.Physics.Tolerance.Tolerance tolerance = default(FlutterSDK.Physics.Tolerance.Tolerance))
+    : base(tolerance: tolerance)
+
+_Duration=_FlingDuration(Velocity);
+    _Distance=(Velocity* _Duration/_InitialVelocityPenetration).Abs();
+}
+
+
+#endregion
+
+#region fields
+public virtual double Position { get; set; }
+public virtual double Velocity { get; set; }
+public virtual double Friction { get; set; }
+internal virtual double _Duration { get; set; }
+internal virtual double _Distance { get; set; }
+internal virtual double _KDecelerationRate { get; set; }
+internal virtual double _InitialVelocityPenetration { get; set; }
+#endregion
+
+#region methods
+
+private double _DecelerationForFriction(double friction)
+{
+    return friction * 61774.04968;
+}
+
+
+
+
+private double _FlingDuration(double velocity)
+{
+    double scaledFriction = Friction * _DecelerationForFriction(0.84);
+    double deceleration = Math.Dart:mathDefaultClass.Log(0.35 * velocity.Abs() / scaledFriction);
+return Math.Dart:mathDefaultClass.Exp(deceleration / (_KDecelerationRate - 1.0));
+}
+
+
+
+
+private double _FlingDistancePenetration(double t)
+{
+    return (1.2 * t * t * t) - (3.27 * t * t) + (_InitialVelocityPenetration * t);
+}
+
+
+
+
+private double _FlingVelocityPenetration(double t)
+{
+    return (3.6 * t * t) - (6.54 * t) + _InitialVelocityPenetration;
+}
+
+
+
+
+public new double x(double time)
+{
+    double t = (time / _Duration).Clamp(0.0, 1.0) as double;
+    return Position + _Distance * _FlingDistancePenetration(t) * Velocity.Sign;
+}
+
+
+
+
+public new double Dx(double time)
+{
+    double t = (time / _Duration).Clamp(0.0, 1.0) as double;
+    return _Distance * _FlingVelocityPenetration(t) * Velocity.Sign / _Duration;
+}
+
+
+
+
+public new bool IsDone(double time)
+{
+    return time >= _Duration;
+}
+
+
+
+#endregion
+}
 
 }

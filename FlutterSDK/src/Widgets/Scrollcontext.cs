@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -451,19 +451,25 @@ namespace FlutterSDK.Widgets.Scrollcontext
         /// widget as it animates. The user will still be able to touch the widget,
         /// potentially stopping the animation.
         /// </Summary>
-        public virtual void SetIgnorePointer(bool value) { throw new NotImplementedException(); }
+        public virtual void SetIgnorePointer(bool value)
+        {
+        }
 
 
         /// <Summary>
         /// Whether the user can drag the widget, for example to initiate a scroll.
         /// </Summary>
-        public virtual void SetCanDrag(bool value) { throw new NotImplementedException(); }
+        public virtual void SetCanDrag(bool value)
+        {
+        }
 
 
         /// <Summary>
         /// Set the [SemanticsAction]s that should be expose to the semantics tree.
         /// </Summary>
-        public virtual void SetSemanticsActions(HashSet<SemanticsAction> actions) { throw new NotImplementedException(); }
+        public virtual void SetSemanticsActions(HashSet<SemanticsAction> actions)
+        {
+        }
 
     }
     public static class ScrollContextMixin

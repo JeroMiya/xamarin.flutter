@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -433,70 +433,91 @@ namespace FlutterSDK.Widgets.Placeholder
     {
         #region constructors
         public _PlaceholderPainter(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double strokeWidth = default(double))
-        {
-            this.Color = color;
-            this.StrokeWidth = strokeWidth; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterBinding.UI.Color Color { get; set; }
-        public virtual double StrokeWidth { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterBinding.UI.Color Color { get; set; }
+    public virtual double StrokeWidth { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new void Paint(Canvas canvas, Size size) { throw new NotImplementedException(); }
-
-
-        public new bool ShouldRepaint(FlutterSDK.Widgets.Placeholder._PlaceholderPainter oldPainter) { throw new NotImplementedException(); }
-        public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate) { throw new NotImplementedException(); }
-
-
-        public new bool HitTest(FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// A widget that draws a box that represents where other widgets will one day
-    /// be added.
-    ///
-    /// This widget is useful during development to indicate that the interface is
-    /// not yet complete.
-    ///
-    /// By default, the placeholder is sized to fit its container. If the
-    /// placeholder is in an unbounded space, it will size itself according to the
-    /// given [fallbackWidth] and [fallbackHeight].
-    ///
-    /// {@youtube 560 315 https://www.youtube.com/watch?v=LPe56fezmoo}
-    /// </Summary>
-    public class Placeholder : FlutterSDK.Widgets.Framework.StatelessWidget
+    public new void Paint(Canvas canvas, Size size)
     {
-        #region constructors
-        public Placeholder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double strokeWidth = 2.0, double fallbackWidth = 400.0, double fallbackHeight = 400.0)
-        : base(key: key)
-        {
-            this.Color = color;
-            this.StrokeWidth = strokeWidth;
-            this.FallbackWidth = fallbackWidth;
-            this.FallbackHeight = fallbackHeight; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterBinding.UI.Color Color { get; set; }
-        public virtual double StrokeWidth { get; set; }
-        public virtual double FallbackWidth { get; set; }
-        public virtual double FallbackHeight { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        Paint paint = new Paint()..Color = Color..Style = PaintingStyle.Stroke..StrokeWidth = StrokeWidth;
+        Rect rect = Dart:uiDefaultClass.Offset.Zero & size;
+        Path path = new Path();
+        new Path().AddRect(rect);
+        new Path().AddPolygon(new List<Offset>() { rect.TopRight, rect.BottomLeft }, false);
+        new Path().AddPolygon(new List<Offset>() { rect.TopLeft, rect.BottomRight }, false);
+        canvas.DrawPath(path, paint);
     }
+
+
+
+
+    public new bool ShouldRepaint(FlutterSDK.Widgets.Placeholder._PlaceholderPainter oldPainter)
+    {
+        return oldPainter.Color != Color || oldPainter.StrokeWidth != StrokeWidth;
+    }
+
+
+    public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate)
+    {
+        return oldPainter.Color != Color || oldPainter.StrokeWidth != StrokeWidth;
+    }
+
+
+
+
+    public new bool HitTest(FlutterBinding.UI.Offset position) => false;
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// A widget that draws a box that represents where other widgets will one day
+/// be added.
+///
+/// This widget is useful during development to indicate that the interface is
+/// not yet complete.
+///
+/// By default, the placeholder is sized to fit its container. If the
+/// placeholder is in an unbounded space, it will size itself according to the
+/// given [fallbackWidth] and [fallbackHeight].
+///
+/// {@youtube 560 315 https://www.youtube.com/watch?v=LPe56fezmoo}
+/// </Summary>
+public class Placeholder : FlutterSDK.Widgets.Framework.StatelessWidget
+{
+    #region constructors
+    public Placeholder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double strokeWidth = 2.0, double fallbackWidth = 400.0, double fallbackHeight = 400.0)
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterBinding.UI.Color Color { get; set; }
+public virtual double StrokeWidth { get; set; }
+public virtual double FallbackWidth { get; set; }
+public virtual double FallbackHeight { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    return new LimitedBox(maxWidth: FallbackWidth, maxHeight: FallbackHeight, child: new CustomPaint(size: Dart:uiDefaultClass.Size.Infinite, foregroundPainter: new _PlaceholderPainter(color: Color, strokeWidth: StrokeWidth)));
+}
+
+
+
+#endregion
+}
 
 }

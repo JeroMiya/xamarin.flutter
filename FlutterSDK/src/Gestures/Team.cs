@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -316,7 +316,13 @@ namespace FlutterSDK.Gestures.Team
         /// To assign a gesture recognizer to a team, see
         /// [OneSequenceGestureRecognizer.team].
         /// </Summary>
-        public virtual FlutterSDK.Gestures.Arena.GestureArenaEntry Add(int pointer, FlutterSDK.Gestures.Arena.GestureArenaMember member) { throw new NotImplementedException(); }
+        public virtual FlutterSDK.Gestures.Arena.GestureArenaEntry Add(int pointer, FlutterSDK.Gestures.Arena.GestureArenaMember member)
+        {
+            _CombiningGestureArenaMember combiner = _Combiners.PutIfAbsent(pointer, () => =>new _CombiningGestureArenaMember(this, pointer));
+            return combiner._Add(pointer, member);
+        }
+
+
 
     }
     public static class GestureArenaTeamMixin
@@ -340,61 +346,118 @@ namespace FlutterSDK.Gestures.Team
     {
         #region constructors
         public _CombiningGestureArenaEntry(FlutterSDK.Gestures.Team._CombiningGestureArenaMember _combiner, FlutterSDK.Gestures.Arena.GestureArenaMember _member)
-        {
-            this._Combiner = _combiner;
-            this._Member = _member; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        internal virtual FlutterSDK.Gestures.Team._CombiningGestureArenaMember _Combiner { get; set; }
-        internal virtual FlutterSDK.Gestures.Arena.GestureArenaMember _Member { get; set; }
-        #endregion
+    #region fields
+    internal virtual FlutterSDK.Gestures.Team._CombiningGestureArenaMember _Combiner { get; set; }
+    internal virtual FlutterSDK.Gestures.Arena.GestureArenaMember _Member { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new void Resolve(FlutterSDK.Gestures.Arena.GestureDisposition disposition) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _CombiningGestureArenaMember : FlutterSDK.Gestures.Arena.GestureArenaMember
+    public new void Resolve(FlutterSDK.Gestures.Arena.GestureDisposition disposition)
     {
-        #region constructors
-        public _CombiningGestureArenaMember(FlutterSDK.Gestures.Team.GestureArenaTeam _owner, int _pointer)
-        {
-            this._Owner = _owner;
-            this._Pointer = _pointer; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Gestures.Team.GestureArenaTeam _Owner { get; set; }
-        internal virtual List<FlutterSDK.Gestures.Arena.GestureArenaMember> _Members { get; set; }
-        internal virtual int _Pointer { get; set; }
-        internal virtual bool _Resolved { get; set; }
-        internal virtual FlutterSDK.Gestures.Arena.GestureArenaMember _Winner { get; set; }
-        internal virtual FlutterSDK.Gestures.Arena.GestureArenaEntry _Entry { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void AcceptGesture(int pointer) { throw new NotImplementedException(); }
-
-
-        public new void RejectGesture(int pointer) { throw new NotImplementedException(); }
-
-
-        private void _Close() { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Gestures.Arena.GestureArenaEntry _Add(int pointer, FlutterSDK.Gestures.Arena.GestureArenaMember member) { throw new NotImplementedException(); }
-
-
-        private void _Resolve(FlutterSDK.Gestures.Arena.GestureArenaMember member, FlutterSDK.Gestures.Arena.GestureDisposition disposition) { throw new NotImplementedException(); }
-
-        #endregion
+        _Combiner._Resolve(_Member, disposition);
     }
+
+
+
+    #endregion
+}
+
+
+public class _CombiningGestureArenaMember : FlutterSDK.Gestures.Arena.GestureArenaMember
+{
+    #region constructors
+    public _CombiningGestureArenaMember(FlutterSDK.Gestures.Team.GestureArenaTeam _owner, int _pointer)
+
+}
+#endregion
+
+#region fields
+internal virtual FlutterSDK.Gestures.Team.GestureArenaTeam _Owner { get; set; }
+internal virtual List<FlutterSDK.Gestures.Arena.GestureArenaMember> _Members { get; set; }
+internal virtual int _Pointer { get; set; }
+internal virtual bool _Resolved { get; set; }
+internal virtual FlutterSDK.Gestures.Arena.GestureArenaMember _Winner { get; set; }
+internal virtual FlutterSDK.Gestures.Arena.GestureArenaEntry _Entry { get; set; }
+#endregion
+
+#region methods
+
+public new void AcceptGesture(int pointer)
+{
+
+
+    _Close();
+    _Winner = (_Winner == null ? _Owner.Captain ?? _Members[0] : _Winner);
+    foreach (GestureArenaMember member in _Members)
+    {
+        if (member != _Winner) member.RejectGesture(pointer);
+    }
+
+    _Winner.AcceptGesture(pointer);
+}
+
+
+
+
+public new void RejectGesture(int pointer)
+{
+
+    _Close();
+    foreach (GestureArenaMember member in _Members) member.RejectGesture(pointer);
+}
+
+
+
+
+private void _Close()
+{
+
+    _Resolved = true;
+    _CombiningGestureArenaMember combiner = _Owner._Combiners.Remove(_Pointer);
+
+}
+
+
+
+
+private FlutterSDK.Gestures.Arena.GestureArenaEntry _Add(int pointer, FlutterSDK.Gestures.Arena.GestureArenaMember member)
+{
+
+
+    _Members.Add(member);
+    _Entry = (_Entry == null ? BindingDefaultClass.GestureBinding.Instance.GestureArena.Add(pointer, this) : _Entry);
+    return new _CombiningGestureArenaEntry(this, member);
+}
+
+
+
+
+private void _Resolve(FlutterSDK.Gestures.Arena.GestureArenaMember member, FlutterSDK.Gestures.Arena.GestureDisposition disposition)
+{
+    if (_Resolved) return;
+    if (disposition == GestureDisposition.Rejected)
+    {
+        _Members.Remove(member);
+        member.RejectGesture(_Pointer);
+        if (_Members.IsEmpty()) _Entry.Resolve(disposition);
+    }
+    else
+    {
+
+        _Winner = (_Winner == null ? _Owner.Captain ?? member : _Winner);
+        _Entry.Resolve(disposition);
+    }
+
+}
+
+
+
+#endregion
+}
 
 }

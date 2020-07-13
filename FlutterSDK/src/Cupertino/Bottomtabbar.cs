@@ -335,61 +335,111 @@ namespace FlutterSDK.Cupertino.Bottomtabbar
         #region constructors
         public CupertinoTabBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem> items = default(List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem>), FlutterSDK.Foundation.Basictypes.ValueChanged<int> onTap = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), int currentIndex = 0, FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), double iconSize = 30.0, FlutterSDK.Painting.Boxborder.Border border = default(FlutterSDK.Painting.Boxborder.Border))
         : base(key: key)
-        {
-            this.Items = items;
-            this.OnTap = onTap;
-            this.CurrentIndex = currentIndex;
-            this.BackgroundColor = backgroundColor;
-            this.ActiveColor = activeColor;
-            this.InactiveColor = inactiveColor;
-            this.IconSize = iconSize;
-            this.Border = border; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem> Items { get; set; }
-        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnTap { get; set; }
-        public virtual int CurrentIndex { get; set; }
-        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-        public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
-        public virtual FlutterBinding.UI.Color InactiveColor { get; set; }
-        public virtual double IconSize { get; set; }
-        public virtual FlutterSDK.Painting.Boxborder.Border Border { get; set; }
-        public virtual Size PreferredSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    public virtual List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem> Items { get; set; }
+    public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnTap { get; set; }
+    public virtual int CurrentIndex { get; set; }
+    public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+    public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
+    public virtual FlutterBinding.UI.Color InactiveColor { get; set; }
+    public virtual double IconSize { get; set; }
+    public virtual FlutterSDK.Painting.Boxborder.Border Border { get; set; }
+    public virtual Size PreferredSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        /// <Summary>
-        /// Indicates whether the tab bar is fully opaque or can have contents behind
-        /// it show through it.
-        /// </Summary>
-        public virtual bool Opaque(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        private List<FlutterSDK.Widgets.Framework.Widget> _BuildTabItems(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        private List<FlutterSDK.Widgets.Framework.Widget> _BuildSingleTabItem(FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem item, bool active) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Change the active tab item's icon and title colors to active.
-        /// </Summary>
-        private FlutterSDK.Widgets.Framework.Widget _WrapActiveItem(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget item, bool active = default(bool)) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Create a clone of the current [CupertinoTabBar] but with provided
-        /// parameters overridden.
-        /// </Summary>
-        public virtual FlutterSDK.Cupertino.Bottomtabbar.CupertinoTabBar CopyWith(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem> items = default(List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem>), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), double iconSize = default(double), FlutterSDK.Painting.Boxborder.Border border = default(FlutterSDK.Painting.Boxborder.Border), int currentIndex = default(int), FlutterSDK.Foundation.Basictypes.ValueChanged<int> onTap = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>)) { throw new NotImplementedException(); }
-
-        #endregion
+    /// <Summary>
+    /// Indicates whether the tab bar is fully opaque or can have contents behind
+    /// it show through it.
+    /// </Summary>
+    public virtual bool Opaque(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        Color backgroundColor = this.BackgroundColor ?? ThemeDefaultClass.CupertinoTheme.Of(context).BarBackgroundColor;
+        return ColorsDefaultClass.CupertinoDynamicColor.Resolve(backgroundColor, context).Alpha == 0xFF;
     }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        double bottomPadding = MediaqueryDefaultClass.MediaQuery.Of(context).Padding.Bottom;
+        Color backgroundColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(this.BackgroundColor ?? ThemeDefaultClass.CupertinoTheme.Of(context).BarBackgroundColor, context);
+        BorderSide ResolveBorderSide(BorderSide side) => {
+            return side == BordersDefaultClass.BorderSide.None ? side : side.CopyWith(color: ColorsDefaultClass.CupertinoDynamicColor.Resolve(side.Color, context));
+        }
+
+        Border resolvedBorder = Border == null || Border.GetType() != BoxborderDefaultClass.Border ? Border : new Border(top: ResolveBorderSide(Border.Top), left: ResolveBorderSide(Border.Left), bottom: ResolveBorderSide(Border.Bottom), right: ResolveBorderSide(Border.Right));
+        Color inactive = ColorsDefaultClass.CupertinoDynamicColor.Resolve(InactiveColor, context);
+        Widget result = new DecoratedBox(decoration: new BoxDecoration(border: resolvedBorder, color: backgroundColor), child: new SizedBox(height: BottomtabbarDefaultClass._KTabBarHeight + bottomPadding, child: IconthemeDefaultClass.IconTheme.Merge(data: new IconThemeData(color: inactive, size: IconSize), child: new DefaultTextStyle(style: ThemeDefaultClass.CupertinoTheme.Of(context).TextTheme.TabLabelTextStyle.CopyWith(color: inactive), child: new Padding(padding: EdgeInsets.Only(bottom: bottomPadding), child: new Row(crossAxisAlignment: CrossAxisAlignment.End, children: _BuildTabItems(context)))))));
+        if (!Opaque(context))
+        {
+            result = new ClipRect(child: new BackdropFilter(filter: ImageFilter.Blur(sigmaX: 10.0, sigmaY: 10.0), child: result));
+        }
+
+        return result;
+    }
+
+
+
+
+    private List<FlutterSDK.Widgets.Framework.Widget> _BuildTabItems(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        List<Widget> result = new List<Widget>() { };
+        for (int index = 0; index < Items.Count; index += 1)
+        {
+            bool active = index == CurrentIndex;
+            result.Add(_WrapActiveItem(context, new Expanded(child: new Semantics(selected: active, hint: $"'tab, {index + 1} of {Items.Count}'", child: new GestureDetector(behavior: HitTestBehavior.Opaque, onTap: OnTap == null ? null : () =>
+            {
+                OnTap(index);
+            }
+            , child: new Padding(padding: EdgeInsets.Only(bottom: 4.0), child: new Column(mainAxisAlignment: MainAxisAlignment.End, children: _BuildSingleTabItem(Items[index], active)))))), active: active));
+        }
+
+        return result;
+    }
+
+
+
+
+    private List<FlutterSDK.Widgets.Framework.Widget> _BuildSingleTabItem(FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem item, bool active)
+    {
+        return new List<Widget>() { new Expanded(child: new Center(child: active ? item.ActiveIcon : item.Icon)), };
+    }
+
+
+
+
+    /// <Summary>
+    /// Change the active tab item's icon and title colors to active.
+    /// </Summary>
+    private FlutterSDK.Widgets.Framework.Widget _WrapActiveItem(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget item, bool active = default(bool))
+    {
+        if (!active) return item;
+        Color activeColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(this.ActiveColor ?? ThemeDefaultClass.CupertinoTheme.Of(context).PrimaryColor, context);
+        return IconthemeDefaultClass.IconTheme.Merge(data: new IconThemeData(color: activeColor), child: TextDefaultClass.DefaultTextStyle.Merge(style: new TextStyle(color: activeColor), child: item));
+    }
+
+
+
+
+    /// <Summary>
+    /// Create a clone of the current [CupertinoTabBar] but with provided
+    /// parameters overridden.
+    /// </Summary>
+    public virtual FlutterSDK.Cupertino.Bottomtabbar.CupertinoTabBar CopyWith(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem> items = default(List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem>), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), double iconSize = default(double), FlutterSDK.Painting.Boxborder.Border border = default(FlutterSDK.Painting.Boxborder.Border), int currentIndex = default(int), FlutterSDK.Foundation.Basictypes.ValueChanged<int> onTap = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>))
+    {
+        return new CupertinoTabBar(key: key ?? this.Key, items: items ?? this.Items, backgroundColor: backgroundColor ?? this.BackgroundColor, activeColor: activeColor ?? this.ActiveColor, inactiveColor: inactiveColor ?? this.InactiveColor, iconSize: iconSize == default(double) ? this.iconSize : iconSize, border: border ?? this.Border, currentIndex: currentIndex ?? this.CurrentIndex, onTap: onTap ?? this.OnTap);
+    }
+
+
+
+    #endregion
+}
 
 }

@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -491,149 +491,235 @@ namespace FlutterSDK.Material.Radio
         #region constructors
         public Radio(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), T value = default(T), T groupValue = default(T), FlutterSDK.Foundation.Basictypes.ValueChanged<T> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<T>), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false)
         : base(key: key)
-        {
-            this.Value = value;
-            this.GroupValue = groupValue;
-            this.OnChanged = onChanged;
-            this.ActiveColor = activeColor;
-            this.FocusColor = focusColor;
-            this.HoverColor = hoverColor;
-            this.MaterialTapTargetSize = materialTapTargetSize;
-            this.VisualDensity = visualDensity;
-            this.FocusNode = focusNode;
-            this.Autofocus = autofocus; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual T Value { get; set; }
-        public virtual T GroupValue { get; set; }
-        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<T> OnChanged { get; set; }
-        public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
-        public virtual FlutterSDK.Material.Themedata.MaterialTapTargetSize MaterialTapTargetSize { get; set; }
-        public virtual FlutterSDK.Material.Themedata.VisualDensity VisualDensity { get; set; }
-        public virtual FlutterBinding.UI.Color FocusColor { get; set; }
-        public virtual FlutterBinding.UI.Color HoverColor { get; set; }
-        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
-        public virtual bool Autofocus { get; set; }
-        #endregion
+    #region fields
+    public virtual T Value { get; set; }
+    public virtual T GroupValue { get; set; }
+    public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<T> OnChanged { get; set; }
+    public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
+    public virtual FlutterSDK.Material.Themedata.MaterialTapTargetSize MaterialTapTargetSize { get; set; }
+    public virtual FlutterSDK.Material.Themedata.VisualDensity VisualDensity { get; set; }
+    public virtual FlutterBinding.UI.Color FocusColor { get; set; }
+    public virtual FlutterBinding.UI.Color HoverColor { get; set; }
+    public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+    public virtual bool Autofocus { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new _RadioState<T> CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
+    public new _RadioState<T> CreateState() => new _RadioState<T>();
 
 
-    public class _RadioState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Radio.Radio<T>>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    #endregion
+}
+
+
+public class _RadioState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Radio.Radio<T>>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+{
+    #region constructors
+    public _RadioState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> _ActionMap { get; set; }
+    internal virtual bool _Focused { get; set; }
+    internal virtual bool _Hovering { get; set; }
+    public virtual bool Enabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
     {
-        #region constructors
-        public _RadioState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> _ActionMap { get; set; }
-        internal virtual bool _Focused { get; set; }
-        internal virtual bool _Hovering { get; set; }
-        public virtual bool Enabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        private void _ActionHandler(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Widgets.Actions.Intent intent) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Widgets.Actions.Action _CreateAction() { throw new NotImplementedException(); }
-
-
-        private void _HandleHighlightChanged(bool focused) { throw new NotImplementedException(); }
-
-
-        private void _HandleHoverChanged(bool hovering) { throw new NotImplementedException(); }
-
-
-        private Color _GetInactiveColor(FlutterSDK.Material.Themedata.ThemeData themeData) { throw new NotImplementedException(); }
-
-
-        private void _HandleChanged(bool selected) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        base.InitState();
+        _ActionMap = new Dictionary<LocalKey, ActionFactory> { { ActionsDefaultClass.ActivateAction.Key, _CreateAction } };
     }
 
 
-    public class _RadioRenderObjectWidget : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
+
+
+    private void _ActionHandler(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Widgets.Actions.Intent intent)
     {
-        #region constructors
-        public _RadioRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool selected = default(bool), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Rendering.Box.BoxConstraints additionalConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), bool hasFocus = default(bool), bool hovering = default(bool))
-        : base(key: key)
+        if (Widget.OnChanged != null)
         {
-            this.Selected = selected;
-            this.ActiveColor = activeColor;
-            this.InactiveColor = inactiveColor;
-            this.FocusColor = focusColor;
-            this.HoverColor = hoverColor;
-            this.AdditionalConstraints = additionalConstraints;
-            this.OnChanged = onChanged;
-            this.Vsync = vsync;
-            this.HasFocus = hasFocus;
-            this.Hovering = hovering; throw new NotImplementedException();
+            Widget.OnChanged(Widget.Value);
         }
-        #endregion
 
-        #region fields
-        public virtual bool Selected { get; set; }
-        public virtual bool HasFocus { get; set; }
-        public virtual bool Hovering { get; set; }
-        public virtual FlutterBinding.UI.Color InactiveColor { get; set; }
-        public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
-        public virtual FlutterBinding.UI.Color FocusColor { get; set; }
-        public virtual FlutterBinding.UI.Color HoverColor { get; set; }
-        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged { get; set; }
-        public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get; set; }
-        public virtual FlutterSDK.Rendering.Box.BoxConstraints AdditionalConstraints { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Material.Radio._RenderRadio CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Material.Radio._RenderRadio renderObject) { throw new NotImplementedException(); }
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
-
-        #endregion
+        RenderObject renderObject = node.Context.FindRenderObject();
+        renderObject.SendSemanticsEvent(new TapSemanticEvent());
     }
 
 
-    public class _RenderRadio : FlutterSDK.Material.Toggleable.RenderToggleable
+
+
+    private FlutterSDK.Widgets.Actions.Action _CreateAction()
     {
-        #region constructors
-        public _RenderRadio(bool value = default(bool), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Rendering.Box.BoxConstraints additionalConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), bool hasFocus = default(bool), bool hovering = default(bool))
-        : base(value: value, tristate: false, activeColor: activeColor, inactiveColor: inactiveColor, focusColor: focusColor, hoverColor: hoverColor, onChanged: onChanged, additionalConstraints: additionalConstraints, vsync: vsync, hasFocus: hasFocus, hovering: hovering)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config) { throw new NotImplementedException(); }
-
-        #endregion
+        return new CallbackAction(ActionsDefaultClass.ActivateAction.Key, onInvoke: _ActionHandler);
     }
+
+
+
+
+    private void _HandleHighlightChanged(bool focused)
+    {
+        if (_Focused != focused)
+        {
+            SetState(() =>
+            {
+                _Focused = focused;
+            }
+            );
+        }
+
+    }
+
+
+
+
+    private void _HandleHoverChanged(bool hovering)
+    {
+        if (_Hovering != hovering)
+        {
+            SetState(() =>
+            {
+                _Hovering = hovering;
+            }
+            );
+        }
+
+    }
+
+
+
+
+    private Color _GetInactiveColor(FlutterSDK.Material.Themedata.ThemeData themeData)
+    {
+        return Enabled ? themeData.UnselectedWidgetColor : themeData.DisabledColor;
+    }
+
+
+
+
+    private void _HandleChanged(bool selected)
+    {
+        if (selected) Widget.OnChanged(Widget.Value);
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+
+        ThemeData themeData = ThemeDefaultClass.Theme.Of(context);
+        Size size = default(Size);
+        switch (Widget.MaterialTapTargetSize ?? themeData.MaterialTapTargetSize) { case MaterialTapTargetSize.Padded: size = new Size(2 * ConstantsDefaultClass.KRadialReactionRadius + 8.0, 2 * ConstantsDefaultClass.KRadialReactionRadius + 8.0); break; case MaterialTapTargetSize.ShrinkWrap: size = new Size(2 * ConstantsDefaultClass.KRadialReactionRadius, 2 * ConstantsDefaultClass.KRadialReactionRadius); break; }
+        size += (Widget.VisualDensity ?? themeData.VisualDensity).BaseSizeAdjustment;
+        BoxConstraints additionalConstraints = BoxConstraints.Tight(size);
+        return new FocusableActionDetector(actions: _ActionMap, focusNode: Widget.FocusNode, autofocus: Widget.Autofocus, enabled: Enabled, onShowFocusHighlight: _HandleHighlightChanged, onShowHoverHighlight: _HandleHoverChanged, child: new Builder(builder: (BuildContext context) =>
+        {
+            return new _RadioRenderObjectWidget(selected: Widget.Value == Widget.GroupValue, activeColor: Widget.ActiveColor ?? themeData.ToggleableActiveColor, inactiveColor: _GetInactiveColor(themeData), focusColor: Widget.FocusColor ?? themeData.FocusColor, hoverColor: Widget.HoverColor ?? themeData.HoverColor, onChanged: Enabled ? _HandleChanged : null, additionalConstraints: additionalConstraints, vsync: this, hasFocus: _Focused, hovering: _Hovering);
+        }
+        ));
+    }
+
+
+
+    #endregion
+}
+
+
+public class _RadioRenderObjectWidget : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
+{
+    #region constructors
+    public _RadioRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool selected = default(bool), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Rendering.Box.BoxConstraints additionalConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), bool hasFocus = default(bool), bool hovering = default(bool))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual bool Selected { get; set; }
+public virtual bool HasFocus { get; set; }
+public virtual bool Hovering { get; set; }
+public virtual FlutterBinding.UI.Color InactiveColor { get; set; }
+public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
+public virtual FlutterBinding.UI.Color FocusColor { get; set; }
+public virtual FlutterBinding.UI.Color HoverColor { get; set; }
+public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged { get; set; }
+public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get; set; }
+public virtual FlutterSDK.Rendering.Box.BoxConstraints AdditionalConstraints { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Material.Radio._RenderRadio CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new _RenderRadio(value: Selected, activeColor: ActiveColor, inactiveColor: InactiveColor, focusColor: FocusColor, hoverColor: HoverColor, onChanged: OnChanged, vsync: Vsync, additionalConstraints: AdditionalConstraints, hasFocus: HasFocus, hovering: Hovering);
+
+
+
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Material.Radio._RenderRadio renderObject)
+{
+    ..Value = Selected..ActiveColor = ActiveColor..InactiveColor = InactiveColor..FocusColor = FocusColor..HoverColor = HoverColor..OnChanged = OnChanged..AdditionalConstraints = AdditionalConstraints..Vsync = Vsync..HasFocus = HasFocus..Hovering = Hovering;
+}
+
+
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+{
+    ..Value = Selected..ActiveColor = ActiveColor..InactiveColor = InactiveColor..FocusColor = FocusColor..HoverColor = HoverColor..OnChanged = OnChanged..AdditionalConstraints = AdditionalConstraints..Vsync = Vsync..HasFocus = HasFocus..Hovering = Hovering;
+}
+
+
+
+#endregion
+}
+
+
+public class _RenderRadio : FlutterSDK.Material.Toggleable.RenderToggleable
+{
+    #region constructors
+    public _RenderRadio(bool value = default(bool), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Rendering.Box.BoxConstraints additionalConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), bool hasFocus = default(bool), bool hovering = default(bool))
+    : base(value: value, tristate: false, activeColor: activeColor, inactiveColor: inactiveColor, focusColor: focusColor, hoverColor: hoverColor, onChanged: onChanged, additionalConstraints: additionalConstraints, vsync: vsync, hasFocus: hasFocus, hovering: hovering)
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+{
+    Canvas canvas = context.Canvas;
+    PaintRadialReaction(canvas, offset, Size.Center(Dart: uiDefaultClass.Offset.Zero));
+    Offset center = (offset & Size).Center;
+    Color radioColor = OnChanged != null ? ActiveColor : InactiveColor;
+    Paint paint = new Paint()..Color = Dart:uiDefaultClass.Color.Lerp(InactiveColor, radioColor, Position.Value)..Style = PaintingStyle.Stroke..StrokeWidth = 2.0;
+    canvas.DrawCircle(center, RadioDefaultClass._KOuterRadius, paint);
+    if (!Position.IsDismissed)
+    {
+        paint.Style = PaintingStyle.Fill;
+        canvas.DrawCircle(center, RadioDefaultClass._KInnerRadius * Position.Value, paint);
+    }
+
+}
+
+
+
+
+public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config)
+{
+    base.DescribeSemanticsConfiguration(config);
+    ..IsInMutuallyExclusiveGroup = true..IsChecked = Value == true;
+}
+
+
+
+#endregion
+}
 
 }

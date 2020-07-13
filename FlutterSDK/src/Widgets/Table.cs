@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -441,185 +441,370 @@ namespace FlutterSDK.Widgets.Table
     {
         #region constructors
         public TableRow(FlutterSDK.Foundation.Key.LocalKey key = default(FlutterSDK.Foundation.Key.LocalKey), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
-        {
-            this.Key = key;
-            this.Decoration = decoration;
-            this.Children = children; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
-        public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
-        public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
+    public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
+    public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        #endregion
-    }
+    #endregion
+}
 
 
-    public class _TableElementRow
+public class _TableElementRow
+{
+    #region constructors
+    public _TableElementRow(FlutterSDK.Foundation.Key.LocalKey key = default(FlutterSDK.Foundation.Key.LocalKey), List<FlutterSDK.Widgets.Framework.Element> children = default(List<FlutterSDK.Widgets.Framework.Element>))
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
+public virtual List<FlutterSDK.Widgets.Framework.Element> Children { get; set; }
+#endregion
+
+#region methods
+#endregion
+}
+
+
+/// <Summary>
+/// A widget that uses the table layout algorithm for its children.
+///
+/// {@youtube 560 315 https://www.youtube.com/watch?v=_lbE0wsVZSw}
+///
+/// If you only have one row, the [Row] widget is more appropriate. If you only
+/// have one column, the [SliverList] or [Column] widgets will be more
+/// appropriate.
+///
+/// Rows size vertically based on their contents. To control the column widths,
+/// use the [columnWidths] property.
+///
+/// For more details about the table layout algorithm, see [RenderTable].
+/// To control the alignment of children, see [TableCell].
+///
+/// See also:
+///
+///  * The [catalog of layout widgets](https://flutter.dev/widgets/layout/).
+/// </Summary>
+public class Table : FlutterSDK.Widgets.Framework.RenderObjectWidget
+{
+    #region constructors
+    public Table(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Table.TableRow> children = default(List<FlutterSDK.Widgets.Table.TableRow>), Dictionary<int, FlutterSDK.Rendering.Table.TableColumnWidth> columnWidths = default(Dictionary<int, FlutterSDK.Rendering.Table.TableColumnWidth>), FlutterSDK.Rendering.Table.TableColumnWidth defaultColumnWidth = default(FlutterSDK.Rendering.Table.TableColumnWidth), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Tableborder.TableBorder border = default(FlutterSDK.Rendering.Tableborder.TableBorder), FlutterSDK.Rendering.Table.TableCellVerticalAlignment defaultVerticalAlignment = default(FlutterSDK.Rendering.Table.TableCellVerticalAlignment), TextBaseline textBaseline = default(TextBaseline))
+    : base(key: key)
+
+
+}
+
+
+#endregion
+
+#region fields
+public virtual List<FlutterSDK.Widgets.Table.TableRow> Children { get; set; }
+public virtual Dictionary<int, FlutterSDK.Rendering.Table.TableColumnWidth> ColumnWidths { get; set; }
+public virtual FlutterSDK.Rendering.Table.TableColumnWidth DefaultColumnWidth { get; set; }
+public virtual TextDirection TextDirection { get; set; }
+public virtual FlutterSDK.Rendering.Tableborder.TableBorder Border { get; set; }
+public virtual FlutterSDK.Rendering.Table.TableCellVerticalAlignment DefaultVerticalAlignment { get; set; }
+public virtual TextBaseline TextBaseline { get; set; }
+internal virtual List<FlutterSDK.Painting.Decoration.Decoration> _RowDecorations { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Table._TableElement CreateElement() => new _TableElement(this);
+
+
+
+public new FlutterSDK.Rendering.Table.RenderTable CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+
+    return new RenderTable(columns: Children.IsNotEmpty ? Children[0].Children.Count : 0, rows: Children.Count, columnWidths: ColumnWidths, defaultColumnWidth: DefaultColumnWidth, textDirection: TextDirection ?? BasicDefaultClass.Directionality.Of(context), border: Border, rowDecorations: _RowDecorations, configuration: ImageDefaultClass.CreateLocalImageConfiguration(context), defaultVerticalAlignment: DefaultVerticalAlignment, textBaseline: TextBaseline);
+}
+
+
+
+
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Table.RenderTable renderObject)
+{
+
+
+
+    ..ColumnWidths = ColumnWidths..DefaultColumnWidth = DefaultColumnWidth..TextDirection = TextDirection ?? BasicDefaultClass.Directionality.Of(context)..Border = Border..RowDecorations = _RowDecorations..Configuration = ImageDefaultClass.CreateLocalImageConfiguration(context)..DefaultVerticalAlignment = DefaultVerticalAlignment..TextBaseline = TextBaseline;
+}
+
+
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+{
+
+
+
+    ..ColumnWidths = ColumnWidths..DefaultColumnWidth = DefaultColumnWidth..TextDirection = TextDirection ?? BasicDefaultClass.Directionality.Of(context)..Border = Border..RowDecorations = _RowDecorations..Configuration = ImageDefaultClass.CreateLocalImageConfiguration(context)..DefaultVerticalAlignment = DefaultVerticalAlignment..TextBaseline = TextBaseline;
+}
+
+
+
+#endregion
+}
+
+
+public class _TableElement : FlutterSDK.Widgets.Framework.RenderObjectElement
+{
+    #region constructors
+    public _TableElement(FlutterSDK.Widgets.Table.Table widget)
+    : base(widget)
+
+}
+#endregion
+
+#region fields
+internal virtual List<FlutterSDK.Widgets.Table._TableElementRow> _Children { get; set; }
+internal virtual HashSet<FlutterSDK.Widgets.Framework.Element> _ForgottenChildren { get; set; }
+public virtual FlutterSDK.Widgets.Table.Table Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterSDK.Rendering.Table.RenderTable RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new void Mount(FlutterSDK.Widgets.Framework.Element parent, object newSlot)
+{
+    base.Mount(parent, newSlot);
+    _Children = Widget.Children.Map((TableRow row) =>
     {
-        #region constructors
-        public _TableElementRow(FlutterSDK.Foundation.Key.LocalKey key = default(FlutterSDK.Foundation.Key.LocalKey), List<FlutterSDK.Widgets.Framework.Element> children = default(List<FlutterSDK.Widgets.Framework.Element>))
+        return new _TableElementRow(key: row.Key, children: row.Children.Map((Widget child) =>
         {
-            this.Key = key;
-            this.Children = children; throw new NotImplementedException();
+
+            return InflateWidget(child, null);
         }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
-        public virtual List<FlutterSDK.Widgets.Framework.Element> Children { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
+        ).ToList(growable: false));
     }
+    ).ToList(growable: false);
+    _UpdateRenderObjectChildren();
+}
 
 
-    /// <Summary>
-    /// A widget that uses the table layout algorithm for its children.
-    ///
-    /// {@youtube 560 315 https://www.youtube.com/watch?v=_lbE0wsVZSw}
-    ///
-    /// If you only have one row, the [Row] widget is more appropriate. If you only
-    /// have one column, the [SliverList] or [Column] widgets will be more
-    /// appropriate.
-    ///
-    /// Rows size vertically based on their contents. To control the column widths,
-    /// use the [columnWidths] property.
-    ///
-    /// For more details about the table layout algorithm, see [RenderTable].
-    /// To control the alignment of children, see [TableCell].
-    ///
-    /// See also:
-    ///
-    ///  * The [catalog of layout widgets](https://flutter.dev/widgets/layout/).
-    /// </Summary>
-    public class Table : FlutterSDK.Widgets.Framework.RenderObjectWidget
+
+
+public new void InsertChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, FlutterSDK.Widgets.Framework.IndexedSlot<FlutterSDK.Widgets.Framework.Element> slot)
+{
+    RenderObject.SetupParentData(child);
+}
+
+
+public new void InsertChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slot)
+{
+    RenderObject.SetupParentData(child);
+}
+
+
+
+
+public new void MoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slot)
+{
+}
+
+
+
+
+public new void RemoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child)
+{
+    TableCellParentData childParentData = child.ParentData as TableCellParentData;
+    RenderObject.SetChild(childParentData.x, childParentData.y, null);
+}
+
+
+
+
+public new void Update(FlutterSDK.Widgets.Table.Table newWidget)
+{
+    Dictionary<LocalKey, List<Element>> oldKeyedRows = new Dictionary<LocalKey, List<Element>> { };
+    foreach (_TableElementRow row in _Children)
     {
-        #region constructors
-        public Table(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Table.TableRow> children = default(List<FlutterSDK.Widgets.Table.TableRow>), Dictionary<int, FlutterSDK.Rendering.Table.TableColumnWidth> columnWidths = default(Dictionary<int, FlutterSDK.Rendering.Table.TableColumnWidth>), FlutterSDK.Rendering.Table.TableColumnWidth defaultColumnWidth = default(FlutterSDK.Rendering.Table.TableColumnWidth), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Tableborder.TableBorder border = default(FlutterSDK.Rendering.Tableborder.TableBorder), FlutterSDK.Rendering.Table.TableCellVerticalAlignment defaultVerticalAlignment = default(FlutterSDK.Rendering.Table.TableCellVerticalAlignment), TextBaseline textBaseline = default(TextBaseline))
-        : base(key: key)
+        if (row.Key != null)
         {
-            this.Children = children;
-            this.ColumnWidths = columnWidths;
-            this.DefaultColumnWidth = defaultColumnWidth;
-            this.TextDirection = textDirection;
-            this.Border = border;
-            this.DefaultVerticalAlignment = defaultVerticalAlignment;
-            this.TextBaseline = textBaseline; throw new NotImplementedException();
+            oldKeyedRows[row.Key] = row.Children;
         }
-        #endregion
 
-        #region fields
-        public virtual List<FlutterSDK.Widgets.Table.TableRow> Children { get; set; }
-        public virtual Dictionary<int, FlutterSDK.Rendering.Table.TableColumnWidth> ColumnWidths { get; set; }
-        public virtual FlutterSDK.Rendering.Table.TableColumnWidth DefaultColumnWidth { get; set; }
-        public virtual TextDirection TextDirection { get; set; }
-        public virtual FlutterSDK.Rendering.Tableborder.TableBorder Border { get; set; }
-        public virtual FlutterSDK.Rendering.Table.TableCellVerticalAlignment DefaultVerticalAlignment { get; set; }
-        public virtual TextBaseline TextBaseline { get; set; }
-        internal virtual List<FlutterSDK.Painting.Decoration.Decoration> _RowDecorations { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Table._TableElement CreateElement() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Rendering.Table.RenderTable CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Table.RenderTable renderObject) { throw new NotImplementedException(); }
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
-
-        #endregion
     }
 
-
-    public class _TableElement : FlutterSDK.Widgets.Framework.RenderObjectElement
+    Iterator<_TableElementRow> oldUnkeyedRows = _Children.Where((_TableElementRow row) => =>row.Key == null).Iterator;
+    List<_TableElementRow> newChildren = new List<_TableElementRow>() { };
+    HashSet<List<Element>> taken = new Dictionary<List<Element>> { };
+    foreach (TableRow row in newWidget.Children)
     {
-        #region constructors
-        public _TableElement(FlutterSDK.Widgets.Table.Table widget)
-        : base(widget)
+        List<Element> oldChildren = default(List<Element>);
+        if (row.Key != null && oldKeyedRows.ContainsKey(row.Key))
         {
-            throw new NotImplementedException();
+            oldChildren = oldKeyedRows[row.Key];
+            taken.Add(oldChildren);
         }
-        #endregion
-
-        #region fields
-        internal virtual List<FlutterSDK.Widgets.Table._TableElementRow> _Children { get; set; }
-        internal virtual HashSet<FlutterSDK.Widgets.Framework.Element> _ForgottenChildren { get; set; }
-        public virtual FlutterSDK.Widgets.Table.Table Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Rendering.Table.RenderTable RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void Mount(FlutterSDK.Widgets.Framework.Element parent, object newSlot) { throw new NotImplementedException(); }
-
-
-        public new void InsertChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, FlutterSDK.Widgets.Framework.IndexedSlot<FlutterSDK.Widgets.Framework.Element> slot) { throw new NotImplementedException(); }
-        public new void InsertChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slot) { throw new NotImplementedException(); }
-
-
-        public new void MoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slot) { throw new NotImplementedException(); }
-
-
-        public new void RemoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
-
-
-        public new void Update(FlutterSDK.Widgets.Table.Table newWidget) { throw new NotImplementedException(); }
-        public new void Update(FlutterSDK.Widgets.Framework.Widget newWidget) { throw new NotImplementedException(); }
-
-
-        private void _UpdateRenderObjectChildren() { throw new NotImplementedException(); }
-
-
-        public new void VisitChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor) { throw new NotImplementedException(); }
-
-
-        public new bool ForgetChild(FlutterSDK.Widgets.Framework.Element child) { throw new NotImplementedException(); }
-
-        #endregion
+        else if (row.Key == null && oldUnkeyedRows.MoveNext())
+        {
+            oldChildren = oldUnkeyedRows.Current.Children;
+        }
+        else
+        {
+            oldChildren = new List, < Element > (};
     }
 
+    newChildren.Add(new _TableElementRow(key: row.Key, children: UpdateChildren(oldChildren, row.Children, forgottenChildren: _ForgottenChildren)));
+}
 
-    /// <Summary>
-    /// A widget that controls how a child of a [Table] is aligned.
-    ///
-    /// A [TableCell] widget must be a descendant of a [Table], and the path from
-    /// the [TableCell] widget to its enclosing [Table] must contain only
-    /// [TableRow]s, [StatelessWidget]s, or [StatefulWidget]s (not
-    /// other kinds of widgets, like [RenderObjectWidget]s).
-    /// </Summary>
-    public class TableCell : FlutterSDK.Widgets.Framework.ParentDataWidget<FlutterSDK.Rendering.Table.TableCellParentData>
+while (oldUnkeyedRows.MoveNext()) UpdateChildren(oldUnkeyedRows.Current.Children, new List, < Widget > (}, forgottenChildren: _ForgottenChildren);
+foreach (List<Element> oldChildren in oldKeyedRows.Values.Where((List<Element> list) => =>!taken.Contains(list))) UpdateChildren(oldChildren, new List, < Widget > (}, forgottenChildren: _ForgottenChildren);
+_Children = newChildren;
+_UpdateRenderObjectChildren();
+_ForgottenChildren.Clear();
+base.Update(newWidget);
+
+}
+
+
+public new void Update(FlutterSDK.Widgets.Framework.Widget newWidget)
+{
+    Dictionary<LocalKey, List<Element>> oldKeyedRows = new Dictionary<LocalKey, List<Element>> { };
+    foreach (_TableElementRow row in _Children)
     {
-        #region constructors
-        public TableCell(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Table.TableCellVerticalAlignment verticalAlignment = default(FlutterSDK.Rendering.Table.TableCellVerticalAlignment), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key, child: child)
+        if (row.Key != null)
         {
-            this.VerticalAlignment = verticalAlignment; throw new NotImplementedException();
+            oldKeyedRows[row.Key] = row.Children;
         }
-        #endregion
 
-        #region fields
-        public virtual FlutterSDK.Rendering.Table.TableCellVerticalAlignment VerticalAlignment { get; set; }
-        public virtual Type DebugTypicalAncestorWidgetClass { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void ApplyParentData(FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
     }
+
+    Iterator<_TableElementRow> oldUnkeyedRows = _Children.Where((_TableElementRow row) => =>row.Key == null).Iterator;
+    List<_TableElementRow> newChildren = new List<_TableElementRow>() { };
+    HashSet<List<Element>> taken = new Dictionary<List<Element>> { };
+    foreach (TableRow row in newWidget.Children)
+    {
+        List<Element> oldChildren = default(List<Element>);
+        if (row.Key != null && oldKeyedRows.ContainsKey(row.Key))
+        {
+            oldChildren = oldKeyedRows[row.Key];
+            taken.Add(oldChildren);
+        }
+        else if (row.Key == null && oldUnkeyedRows.MoveNext())
+        {
+            oldChildren = oldUnkeyedRows.Current.Children;
+        }
+        else
+        {
+            oldChildren = new List, < Element > (};
+    }
+
+    newChildren.Add(new _TableElementRow(key: row.Key, children: UpdateChildren(oldChildren, row.Children, forgottenChildren: _ForgottenChildren)));
+}
+
+while (oldUnkeyedRows.MoveNext()) UpdateChildren(oldUnkeyedRows.Current.Children, new List, < Widget > (}, forgottenChildren: _ForgottenChildren);
+foreach (List<Element> oldChildren in oldKeyedRows.Values.Where((List<Element> list) => =>!taken.Contains(list))) UpdateChildren(oldChildren, new List, < Widget > (}, forgottenChildren: _ForgottenChildren);
+_Children = newChildren;
+_UpdateRenderObjectChildren();
+_ForgottenChildren.Clear();
+base.Update(newWidget);
+
+}
+
+
+
+
+private void _UpdateRenderObjectChildren()
+{
+
+    RenderObject.SetFlatChildren(_Children.IsNotEmpty ? _Children[0].Children.Count : 0, _Children.Expand((_TableElementRow row) =>
+    {
+        return row.Children.Map((Element child) =>
+        {
+            RenderBox box = child.RenderObject as RenderBox;
+            return box;
+        }
+        );
+    }
+    ).ToList());
+}
+
+
+
+
+public new void VisitChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor)
+{
+    foreach (Element child in _Children.Expand((_TableElementRow row) => =>row.Children))
+    {
+        if (!_ForgottenChildren.Contains(child)) visitor(child);
+    }
+
+}
+
+
+
+
+public new bool ForgetChild(FlutterSDK.Widgets.Framework.Element child)
+{
+    _ForgottenChildren.Add(child);
+    base.ForgetChild(child);
+    return true;
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A widget that controls how a child of a [Table] is aligned.
+///
+/// A [TableCell] widget must be a descendant of a [Table], and the path from
+/// the [TableCell] widget to its enclosing [Table] must contain only
+/// [TableRow]s, [StatelessWidget]s, or [StatefulWidget]s (not
+/// other kinds of widgets, like [RenderObjectWidget]s).
+/// </Summary>
+public class TableCell : FlutterSDK.Widgets.Framework.ParentDataWidget<FlutterSDK.Rendering.Table.TableCellParentData>
+{
+    #region constructors
+    public TableCell(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Table.TableCellVerticalAlignment verticalAlignment = default(FlutterSDK.Rendering.Table.TableCellVerticalAlignment), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key, child: child)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Rendering.Table.TableCellVerticalAlignment VerticalAlignment { get; set; }
+public virtual Type DebugTypicalAncestorWidgetClass { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new void ApplyParentData(FlutterSDK.Rendering.@object.RenderObject renderObject)
+{
+    TableCellParentData parentData = renderObject.ParentData as TableCellParentData;
+    if (parentData.VerticalAlignment != VerticalAlignment)
+    {
+        parentData.VerticalAlignment = VerticalAlignment;
+        AbstractNode targetParent = renderObject.Parent;
+        if (((RenderObject)targetParent) is RenderObject) ((RenderObject)targetParent).MarkNeedsLayout();
+    }
+
+}
+
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new EnumProperty<TableCellVerticalAlignment>("verticalAlignment", VerticalAlignment));
+}
+
+
+
+#endregion
+}
 
 }

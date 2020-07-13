@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -434,25 +434,24 @@ namespace FlutterSDK.Services.Systemchannels
     {
         #region constructors
         internal SystemChannels()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Services.Platformchannel.MethodChannel Navigation { get; set; }
-        public virtual FlutterSDK.Services.Platformchannel.MethodChannel Platform { get; set; }
-        public virtual FlutterSDK.Services.Platformchannel.MethodChannel TextInput { get; set; }
-        public virtual FlutterSDK.Services.Platformchannel.BasicMessageChannel<object> KeyEvent { get; set; }
-        public virtual FlutterSDK.Services.Platformchannel.BasicMessageChannel<string> Lifecycle { get; set; }
-        public virtual FlutterSDK.Services.Platformchannel.BasicMessageChannel<object> System { get; set; }
-        public virtual FlutterSDK.Services.Platformchannel.BasicMessageChannel<object> Accessibility { get; set; }
-        public virtual FlutterSDK.Services.Platformchannel.MethodChannel Platformviews { get; set; }
-        public virtual FlutterSDK.Services.Platformchannel.MethodChannel Skia { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Services.Platformchannel.MethodChannel Navigation { get; set; }
+    public virtual FlutterSDK.Services.Platformchannel.MethodChannel Platform { get; set; }
+    public virtual FlutterSDK.Services.Platformchannel.MethodChannel TextInput { get; set; }
+    public virtual FlutterSDK.Services.Platformchannel.BasicMessageChannel<object> KeyEvent { get; set; }
+    public virtual FlutterSDK.Services.Platformchannel.BasicMessageChannel<string> Lifecycle { get; set; }
+    public virtual FlutterSDK.Services.Platformchannel.BasicMessageChannel<object> System { get; set; }
+    public virtual FlutterSDK.Services.Platformchannel.BasicMessageChannel<object> Accessibility { get; set; }
+    public virtual FlutterSDK.Services.Platformchannel.MethodChannel Platformviews { get; set; }
+    public virtual FlutterSDK.Services.Platformchannel.MethodChannel Skia { get; set; }
+    #endregion
 
-        #region methods
-        #endregion
-    }
+    #region methods
+    #endregion
+}
 
 }

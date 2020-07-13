@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -437,56 +437,68 @@ namespace FlutterSDK.Services.Clipboard
     {
         #region constructors
         public ClipboardData(string text = default(string))
-        {
-            this.Text = text; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual string Text { get; set; }
-        #endregion
+    #region fields
+    public virtual string Text { get; set; }
+    #endregion
 
-        #region methods
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// Utility methods for interacting with the system's clipboard.
-    /// </Summary>
-    public class Clipboard
-    {
-        #region constructors
-        internal Clipboard()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual string KTextPlain { get; set; }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Stores the given clipboard data on the clipboard.
-        /// </Summary>
-        public virtual Future<object> SetData(FlutterSDK.Services.Clipboard.ClipboardData data) { throw new NotImplementedException(); }
+    #region methods
+    #endregion
+}
 
 
-        /// <Summary>
-        /// Retrieves data from the clipboard that matches the given format.
-        ///
-        /// The `format` argument specifies the media type, such as `text/plain`, of
-        /// the data to obtain.
-        ///
-        /// Returns a future which completes to null if the data could not be
-        /// obtained, and to a [ClipboardData] object if it could.
-        /// </Summary>
-        public virtual Future<FlutterSDK.Services.Clipboard.ClipboardData> GetData(string format) { throw new NotImplementedException(); }
+/// <Summary>
+/// Utility methods for interacting with the system's clipboard.
+/// </Summary>
+public class Clipboard
+{
+    #region constructors
+    internal Clipboard()
 
-        #endregion
-    }
+}
+#endregion
+
+#region fields
+public virtual string KTextPlain { get; set; }
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Stores the given clipboard data on the clipboard.
+/// </Summary>
+public virtual Future<object> SetData(FlutterSDK.Services.Clipboard.ClipboardData data)
+async
+{
+    await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("Clipboard.setData", new Dictionary<string, object> { { "text", data.Text } });
+}
+
+
+
+
+/// <Summary>
+/// Retrieves data from the clipboard that matches the given format.
+///
+/// The `format` argument specifies the media type, such as `text/plain`, of
+/// the data to obtain.
+///
+/// Returns a future which completes to null if the data could not be
+/// obtained, and to a [ClipboardData] object if it could.
+/// </Summary>
+public virtual Future<FlutterSDK.Services.Clipboard.ClipboardData> GetData(string format)
+async
+{
+    Dictionary<string, object> result = await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("Clipboard.getData", format);
+    if (result == null) return null;
+    return new ClipboardData(text: result["text"] as string);
+}
+
+
+
+#endregion
+}
 
 }

@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -389,51 +389,75 @@ namespace FlutterSDK.Material.Bottomsheettheme
     {
         #region constructors
         public BottomSheetThemeData(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterBinding.UI.Color modalBackgroundColor = default(FlutterBinding.UI.Color), double modalElevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
-        {
-            this.BackgroundColor = backgroundColor;
-            this.Elevation = elevation;
-            this.ModalBackgroundColor = modalBackgroundColor;
-            this.ModalElevation = modalElevation;
-            this.Shape = shape;
-            this.ClipBehavior = clipBehavior; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-        public virtual double Elevation { get; set; }
-        public virtual FlutterBinding.UI.Color ModalBackgroundColor { get; set; }
-        public virtual double ModalElevation { get; set; }
-        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
-        public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+    public virtual double Elevation { get; set; }
+    public virtual FlutterBinding.UI.Color ModalBackgroundColor { get; set; }
+    public virtual double ModalElevation { get; set; }
+    public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+    public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        /// <Summary>
-        /// Creates a copy of this object with the given fields replaced with the
-        /// new values.
-        /// </Summary>
-        public virtual FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData CopyWith(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterBinding.UI.Color modalBackgroundColor = default(FlutterBinding.UI.Color), double modalElevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip)) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Linearly interpolate between two bottom sheet themes.
-        ///
-        /// If both arguments are null then null is returned.
-        ///
-        /// {@macro dart.ui.shadow.lerp}
-        /// </Summary>
-        public virtual FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData Lerp(FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData a, FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData b, double t) { throw new NotImplementedException(); }
-
-
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+    /// <Summary>
+    /// Creates a copy of this object with the given fields replaced with the
+    /// new values.
+    /// </Summary>
+    public virtual FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData CopyWith(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterBinding.UI.Color modalBackgroundColor = default(FlutterBinding.UI.Color), double modalElevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
+    {
+        return new BottomSheetThemeData(backgroundColor: backgroundColor ?? this.BackgroundColor, elevation: elevation == default(double) ? this.elevation : elevation, modalBackgroundColor: modalBackgroundColor ?? this.ModalBackgroundColor, modalElevation: modalElevation == default(double) ? this.modalElevation : modalElevation, shape: shape ?? this.Shape, clipBehavior: clipBehavior ?? this.ClipBehavior);
     }
+
+
+
+
+    /// <Summary>
+    /// Linearly interpolate between two bottom sheet themes.
+    ///
+    /// If both arguments are null then null is returned.
+    ///
+    /// {@macro dart.ui.shadow.lerp}
+    /// </Summary>
+    public virtual FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData Lerp(FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData a, FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData b, double t)
+    {
+
+        if (a == null && b == null) return null;
+        return new BottomSheetThemeData(backgroundColor: Dart:uiDefaultClass.Color.Lerp(a?.BackgroundColor, b?.BackgroundColor, t), elevation: Dart:uiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), modalBackgroundColor: Dart:uiDefaultClass.Color.Lerp(a?.ModalBackgroundColor, b?.ModalBackgroundColor, t), modalElevation: Dart:uiDefaultClass.LerpDouble(a?.ModalElevation, b?.ModalElevation, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t), clipBehavior: t < 0.5 ? a?.ClipBehavior : b?.ClipBehavior);
+    }
+
+
+
+
+    public new bool Equals(@Object other)
+    {
+        if (Dart:coreDefaultClass.Identical(this, other))return true;
+        if (other.GetType() != GetType()) return false;
+        return other is BottomSheetThemeData && other.BackgroundColor == BackgroundColor && other.Elevation == Elevation && other.ModalBackgroundColor == ModalBackgroundColor && other.ModalElevation == ModalElevation && other.Shape == Shape && other.ClipBehavior == ClipBehavior;
+    }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new ColorProperty("backgroundColor", BackgroundColor, defaultValue: null));
+        properties.Add(new DoubleProperty("elevation", Elevation, defaultValue: null));
+        properties.Add(new ColorProperty("modalBackgroundColor", ModalBackgroundColor, defaultValue: null));
+        properties.Add(new DoubleProperty("modalElevation", ModalElevation, defaultValue: null));
+        properties.Add(new DiagnosticsProperty<ShapeBorder>("shape", Shape, defaultValue: null));
+        properties.Add(new DiagnosticsProperty<FlutterBinding.UI.Clip>("clipBehavior", ClipBehavior, defaultValue: null));
+    }
+
+
+
+    #endregion
+}
 
 }

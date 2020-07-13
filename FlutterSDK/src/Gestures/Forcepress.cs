@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -321,103 +321,224 @@ namespace FlutterSDK.Gestures.Forcepress
         #region constructors
         public ForcePressDetails(FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), double pressure = default(double))
         : base()
-        {
-            this.GlobalPosition = globalPosition;
-            this.Pressure = pressure; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterBinding.UI.Offset GlobalPosition { get; set; }
-        public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
-        public virtual double Pressure { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterBinding.UI.Offset GlobalPosition { get; set; }
+    public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
+    public virtual double Pressure { get; set; }
+    #endregion
 
-        #region methods
-        #endregion
-    }
+    #region methods
+    #endregion
+}
 
 
-    /// <Summary>
-    /// Recognizes a force press on devices that have force sensors.
-    ///
-    /// Only the force from a single pointer is used to invoke events. A tap
-    /// recognizer will win against this recognizer on pointer up as long as the
-    /// pointer has not pressed with a force greater than
-    /// [ForcePressGestureRecognizer.startPressure]. A long press recognizer will
-    /// win when the press down time exceeds the threshold time as long as the
-    /// pointer's pressure was never greater than
-    /// [ForcePressGestureRecognizer.startPressure] in that duration.
-    ///
-    /// As of November, 2018 iPhone devices of generation 6S and higher have
-    /// force touch functionality, with the exception of the iPhone XR. In addition,
-    /// a small handful of Android devices have this functionality as well.
-    ///
-    /// Devices with faux screen pressure sensors like the Pixel 2 and 3 will not
-    /// send any force press related callbacks.
-    ///
-    /// Reported pressure will always be in the range 0.0 to 1.0, where 1.0 is
-    /// maximum pressure and 0.0 is minimum pressure. If using a custom
-    /// [interpolation] callback, the pressure reported will correspond to that
-    /// custom curve.
-    /// </Summary>
-    public class ForcePressGestureRecognizer : FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer
+/// <Summary>
+/// Recognizes a force press on devices that have force sensors.
+///
+/// Only the force from a single pointer is used to invoke events. A tap
+/// recognizer will win against this recognizer on pointer up as long as the
+/// pointer has not pressed with a force greater than
+/// [ForcePressGestureRecognizer.startPressure]. A long press recognizer will
+/// win when the press down time exceeds the threshold time as long as the
+/// pointer's pressure was never greater than
+/// [ForcePressGestureRecognizer.startPressure] in that duration.
+///
+/// As of November, 2018 iPhone devices of generation 6S and higher have
+/// force touch functionality, with the exception of the iPhone XR. In addition,
+/// a small handful of Android devices have this functionality as well.
+///
+/// Devices with faux screen pressure sensors like the Pixel 2 and 3 will not
+/// send any force press related callbacks.
+///
+/// Reported pressure will always be in the range 0.0 to 1.0, where 1.0 is
+/// maximum pressure and 0.0 is minimum pressure. If using a custom
+/// [interpolation] callback, the pressure reported will correspond to that
+/// custom curve.
+/// </Summary>
+public class ForcePressGestureRecognizer : FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer
+{
+    #region constructors
+    public ForcePressGestureRecognizer(double startPressure = 0.4, double peakPressure = 0.85, FlutterSDK.Gestures.Forcepress.GestureForceInterpolation interpolation = default(FlutterSDK.Gestures.Forcepress.GestureForceInterpolation), @Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
+    : base(debugOwner: debugOwner, kind: kind)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressStartCallback OnStart { get; set; }
+public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressUpdateCallback OnUpdate { get; set; }
+public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressPeakCallback OnPeak { get; set; }
+public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressEndCallback OnEnd { get; set; }
+public virtual double StartPressure { get; set; }
+public virtual double PeakPressure { get; set; }
+public virtual FlutterSDK.Gestures.Forcepress.GestureForceInterpolation Interpolation { get; set; }
+internal virtual FlutterSDK.Gestures.Recognizer.OffsetPair _LastPosition { get; set; }
+internal virtual double _LastPressure { get; set; }
+internal virtual FlutterSDK.Gestures.Forcepress._ForceState _State { get; set; }
+public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerEvent @event)
+{
+    if (!(@event is PointerUpEvent) && @event.PressureMax <= 1.0)
     {
-        #region constructors
-        public ForcePressGestureRecognizer(double startPressure = 0.4, double peakPressure = 0.85, FlutterSDK.Gestures.Forcepress.GestureForceInterpolation interpolation = default(FlutterSDK.Gestures.Forcepress.GestureForceInterpolation), @Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
-        : base(debugOwner: debugOwner, kind: kind)
-        {
-            this.StartPressure = startPressure;
-            this.PeakPressure = peakPressure;
-            this.Interpolation = interpolation; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressStartCallback OnStart { get; set; }
-        public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressUpdateCallback OnUpdate { get; set; }
-        public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressPeakCallback OnPeak { get; set; }
-        public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressEndCallback OnEnd { get; set; }
-        public virtual double StartPressure { get; set; }
-        public virtual double PeakPressure { get; set; }
-        public virtual FlutterSDK.Gestures.Forcepress.GestureForceInterpolation Interpolation { get; set; }
-        internal virtual FlutterSDK.Gestures.Recognizer.OffsetPair _LastPosition { get; set; }
-        internal virtual double _LastPressure { get; set; }
-        internal virtual FlutterSDK.Gestures.Forcepress._ForceState _State { get; set; }
-        public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
-
-
-        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
-
-
-        public new void AcceptGesture(int pointer) { throw new NotImplementedException(); }
-
-
-        public new void DidStopTrackingLastPointer(int pointer) { throw new NotImplementedException(); }
-
-
-        public new void RejectGesture(int pointer) { throw new NotImplementedException(); }
-
-
-        private double _InverseLerp(double min, double max, double t) { throw new NotImplementedException(); }
-
-        #endregion
+        Resolve(GestureDisposition.Rejected);
     }
-
-
-    public enum _ForceState
+    else
     {
+        StartTrackingPointer(@event.Pointer, @event.Transform);
+        if (_State == _ForceState.Ready)
+        {
+            _State = _ForceState.Possible;
+            _LastPosition = OffsetPair.FromEventPosition(@event);
+        }
 
-        Ready,
-        Possible,
-        Accepted,
-        Started,
-        Peaked,
     }
+
+}
+
+
+
+
+public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event)
+{
+
+    if (@event is PointerMoveEvent || @event is PointerDownEvent)
+    {
+        if (((PointerMoveEvent)@event).Pressure > ((PointerMoveEvent)@event).PressureMax || ((PointerMoveEvent)@event).Pressure < ((PointerMoveEvent)@event).PressureMin)
+        {
+            PrintDefaultClass.DebugPrint("The reported device pressure " + ((PointerMoveEvent)@event).Pressure.ToString() + " is outside of the device pressure range where: " + ((PointerMoveEvent)@event).PressureMin.ToString() + " <= pressure <= " + ((PointerMoveEvent)@event).PressureMax.ToString());
+        }
+
+        double pressure = Interpolation(@event.PressureMin, @event.PressureMax, @event.Pressure);
+
+        _LastPosition = OffsetPair.FromEventPosition(@event);
+        _LastPressure = pressure;
+        if (_State == _ForceState.Possible)
+        {
+            if (pressure > StartPressure)
+            {
+                _State = _ForceState.Started;
+                Resolve(GestureDisposition.Accepted);
+            }
+            else if (@event.Delta.DistanceSquared > ConstantsDefaultClass.KTouchSlop)
+            {
+                Resolve(GestureDisposition.Rejected);
+            }
+
+        }
+
+        if (pressure > StartPressure && _State == _ForceState.Accepted)
+        {
+            _State = _ForceState.Started;
+            if (OnStart != null)
+            {
+                InvokeCallback("onStart", () => =>OnStart(new ForcePressDetails(pressure: pressure, globalPosition: _LastPosition.Global, localPosition: _LastPosition.Local)));
+            }
+
+        }
+
+        if (OnPeak != null && pressure > PeakPressure && (_State == _ForceState.Started))
+        {
+            _State = _ForceState.Peaked;
+            if (OnPeak != null)
+            {
+                InvokeCallback("onPeak", () => =>OnPeak(new ForcePressDetails(pressure: pressure, globalPosition: @event.Position, localPosition: @event.LocalPosition)));
+            }
+
+        }
+
+        if (OnUpdate != null && !pressure.IsNaN && (_State == _ForceState.Started || _State == _ForceState.Peaked))
+        {
+            if (OnUpdate != null)
+            {
+                InvokeCallback("onUpdate", () => =>OnUpdate(new ForcePressDetails(pressure: pressure, globalPosition: @event.Position, localPosition: @event.LocalPosition)));
+            }
+
+        }
+
+    }
+
+    StopTrackingIfPointerNoLongerDown(@event);
+}
+
+
+
+
+public new void AcceptGesture(int pointer)
+{
+    if (_State == _ForceState.Possible) _State = _ForceState.Accepted;
+    if (OnStart != null && _State == _ForceState.Started)
+    {
+        InvokeCallback("onStart", () => =>OnStart(new ForcePressDetails(pressure: _LastPressure, globalPosition: _LastPosition.Global, localPosition: _LastPosition.Local)));
+    }
+
+}
+
+
+
+
+public new void DidStopTrackingLastPointer(int pointer)
+{
+    bool wasAccepted = _State == _ForceState.Started || _State == _ForceState.Peaked;
+    if (_State == _ForceState.Possible)
+    {
+        Resolve(GestureDisposition.Rejected);
+        return;
+    }
+
+    if (wasAccepted && OnEnd != null)
+    {
+        if (OnEnd != null)
+        {
+            InvokeCallback("onEnd", () => =>OnEnd(new ForcePressDetails(pressure: 0.0, globalPosition: _LastPosition.Global, localPosition: _LastPosition.Local)));
+        }
+
+    }
+
+    _State = _ForceState.Ready;
+}
+
+
+
+
+public new void RejectGesture(int pointer)
+{
+    StopTrackingPointer(pointer);
+    DidStopTrackingLastPointer(pointer);
+}
+
+
+
+
+private double _InverseLerp(double min, double max, double t)
+{
+
+    double value = (t - min) / (max - min);
+    if (!value.IsNaN) value = value.Clamp(0.0, 1.0) as double;
+    return value;
+}
+
+
+
+#endregion
+}
+
+
+public enum _ForceState
+{
+
+    Ready,
+    Possible,
+    Accepted,
+    Started,
+    Peaked,
+}
 
 }

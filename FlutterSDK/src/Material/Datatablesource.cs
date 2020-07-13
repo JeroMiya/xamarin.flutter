@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -451,7 +451,10 @@ namespace FlutterSDK.Material.Datatablesource
         /// Data returned from this method must be consistent for the lifetime of the
         /// object. If the row count changes, then a new delegate must be provided.
         /// </Summary>
-        public virtual FlutterSDK.Material.Datatable.DataRow GetRow(int index) { throw new NotImplementedException(); }
+        public virtual FlutterSDK.Material.Datatable.DataRow GetRow(int index)
+        {
+            return default(DataRow);
+        }
 
         #endregion
     }

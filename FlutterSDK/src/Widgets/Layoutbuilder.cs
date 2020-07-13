@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -458,13 +458,26 @@ namespace FlutterSDK.Widgets.Layoutbuilder
         /// <Summary>
         /// Change the layout callback.
         /// </Summary>
-        public virtual void UpdateCallback(FlutterSDK.Rendering.@object.LayoutCallback<ConstraintType> value) { throw new NotImplementedException(); }
+        public virtual void UpdateCallback(FlutterSDK.Rendering.@object.LayoutCallback<ConstraintType> value)
+        {
+            if (value == _Callback) return;
+            _Callback = value;
+            MarkNeedsLayout();
+        }
+
+
 
 
         /// <Summary>
         /// Invoke the layout callback.
         /// </Summary>
-        public virtual void LayoutAndBuildChild() { throw new NotImplementedException(); }
+        public virtual void LayoutAndBuildChild()
+        {
+
+            InvokeLayoutCallback(_Callback);
+        }
+
+
 
     }
     public static class RenderConstrainedLayoutBuilderMixin
@@ -497,156 +510,319 @@ namespace FlutterSDK.Widgets.Layoutbuilder
         #region constructors
         public ConstrainedLayoutBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Func<Widget, BuildContext, ConstraintType> builder = default(Func<Widget, BuildContext, ConstraintType>))
         : base(key: key)
-        {
-            this.Builder = builder; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual Func<Widget, BuildContext, ConstraintType> Builder { get; set; }
-        #endregion
+    #region fields
+    public virtual Func<Widget, BuildContext, ConstraintType> Builder { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new _LayoutBuilderElement<ConstraintType> CreateElement() { throw new NotImplementedException(); }
-
-        #endregion
-    }
+    public new _LayoutBuilderElement<ConstraintType> CreateElement() => new _LayoutBuilderElement<ConstraintType>(this);
 
 
-    public class _LayoutBuilderElement<ConstraintType> : FlutterSDK.Widgets.Framework.RenderObjectElement
+    #endregion
+}
+
+
+public class _LayoutBuilderElement<ConstraintType> : FlutterSDK.Widgets.Framework.RenderObjectElement
+{
+    #region constructors
+    public _LayoutBuilderElement(FlutterSDK.Widgets.Layoutbuilder.ConstrainedLayoutBuilder<ConstraintType> widget)
+    : base(widget)
+
+}
+#endregion
+
+#region fields
+internal virtual FlutterSDK.Widgets.Framework.Element _Child { get; set; }
+public virtual FlutterSDK.Widgets.Layoutbuilder.ConstrainedLayoutBuilder<ConstraintType> Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterSDK.Widgets.Layoutbuilder.RenderConstrainedLayoutBuilder<ConstraintType, FlutterSDK.Rendering.@object.RenderObject> RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new void VisitChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor)
+{
+    if (_Child != null) visitor(_Child);
+}
+
+
+
+
+public new void ForgetChild(FlutterSDK.Widgets.Framework.Element child)
+{
+
+    _Child = null;
+    base.ForgetChild(child);
+}
+
+
+
+
+public new void Mount(FlutterSDK.Widgets.Framework.Element parent, object newSlot)
+{
+    base.Mount(parent, newSlot);
+    RenderObject.UpdateCallback(_Layout);
+}
+
+
+
+
+public new void Update(FlutterSDK.Widgets.Layoutbuilder.ConstrainedLayoutBuilder<ConstraintType> newWidget)
+{
+
+    base.Update(newWidget);
+
+    RenderObject.UpdateCallback(_Layout);
+    RenderObject.MarkNeedsLayout();
+}
+
+
+public new void Update(FlutterSDK.Widgets.Framework.Widget newWidget)
+{
+
+    base.Update(newWidget);
+
+    RenderObject.UpdateCallback(_Layout);
+    RenderObject.MarkNeedsLayout();
+}
+
+
+
+
+public new void PerformRebuild()
+{
+    RenderObject.MarkNeedsLayout();
+    base.PerformRebuild();
+}
+
+
+
+
+public new void Unmount()
+{
+    RenderObject.UpdateCallback(null);
+    base.Unmount();
+}
+
+
+
+
+private void _Layout(ConstraintType constraints)
+{
+    Owner.BuildScope(this, () =>
     {
-        #region constructors
-        public _LayoutBuilderElement(FlutterSDK.Widgets.Layoutbuilder.ConstrainedLayoutBuilder<ConstraintType> widget)
-        : base(widget)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Widgets.Framework.Element _Child { get; set; }
-        public virtual FlutterSDK.Widgets.Layoutbuilder.ConstrainedLayoutBuilder<ConstraintType> Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Widgets.Layoutbuilder.RenderConstrainedLayoutBuilder<ConstraintType, FlutterSDK.Rendering.@object.RenderObject> RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void VisitChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor) { throw new NotImplementedException(); }
-
-
-        public new void ForgetChild(FlutterSDK.Widgets.Framework.Element child) { throw new NotImplementedException(); }
-
-
-        public new void Mount(FlutterSDK.Widgets.Framework.Element parent, object newSlot) { throw new NotImplementedException(); }
-
-
-        public new void Update(FlutterSDK.Widgets.Layoutbuilder.ConstrainedLayoutBuilder<ConstraintType> newWidget) { throw new NotImplementedException(); }
-        public new void Update(FlutterSDK.Widgets.Framework.Widget newWidget) { throw new NotImplementedException(); }
-
-
-        public new void PerformRebuild() { throw new NotImplementedException(); }
-
-
-        public new void Unmount() { throw new NotImplementedException(); }
-
-
-        private void _Layout(ConstraintType constraints) { throw new NotImplementedException(); }
-
-
-        public new void InsertChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slot) { throw new NotImplementedException(); }
-
-
-        public new void MoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slot) { throw new NotImplementedException(); }
-
-
-        public new void RemoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// Builds a widget tree that can depend on the parent widget's size.
-    ///
-    /// Similar to the [Builder] widget except that the framework calls the [builder]
-    /// function at layout time and provides the parent widget's constraints. This
-    /// is useful when the parent constrains the child's size and doesn't depend on
-    /// the child's intrinsic size. The [LayoutBuilder]'s final size will match its
-    /// child's size.
-    ///
-    /// {@youtube 560 315 https://www.youtube.com/watch?v=IYDVcriKjsw}
-    ///
-    /// If the child should be smaller than the parent, consider wrapping the child
-    /// in an [Align] widget. If the child might want to be bigger, consider
-    /// wrapping it in a [SingleChildScrollView].
-    ///
-    /// See also:
-    ///
-    ///  * [SliverLayoutBuilder], the sliver counterpart of this widget.
-    ///  * [Builder], which calls a `builder` function at build time.
-    ///  * [StatefulBuilder], which passes its `builder` function a `setState` callback.
-    ///  * [CustomSingleChildLayout], which positions its child during layout.
-    ///  * The [catalog of layout widgets](https://flutter.dev/widgets/layout/).
-    /// </Summary>
-    public class LayoutBuilder : FlutterSDK.Widgets.Layoutbuilder.ConstrainedLayoutBuilder<FlutterSDK.Rendering.Box.BoxConstraints>
+    Widget built = default(Widget);
+    if (Widget.Builder != null)
     {
-        #region constructors
-        public LayoutBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Layoutbuilder.LayoutWidgetBuilder builder = default(FlutterSDK.Widgets.Layoutbuilder.LayoutWidgetBuilder))
-        : base(key: key, builder: builder)
+        try
         {
-            throw new NotImplementedException();
+            built = Widget.Builder(this, constraints);
+            DebugDefaultClass.DebugWidgetBuilderValue(Widget, built);
         }
-        #endregion
+        catch (e,stack){
+        built = FrameworkDefaultClass.ErrorWidget.Builder(LayoutbuilderDefaultClass._DebugReportException(new ErrorDescription($"'building {Widget}'"), e, stack, informationCollector: () => sync *{
+            yield new DiagnosticsDebugCreator(new DebugCreator(this));
+        }
+));
+}
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Layoutbuilder.LayoutWidgetBuilder Builder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+}
 
-        #region methods
+try
+{
+    _Child = UpdateChild(_Child, built, null);
 
-        public new FlutterSDK.Widgets.Layoutbuilder._RenderLayoutBuilder CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+}
+catch (e,stack){
+    built = FrameworkDefaultClass.ErrorWidget.Builder(LayoutbuilderDefaultClass._DebugReportException(new ErrorDescription($"'building {Widget}'"), e, stack, informationCollector: () => sync *{
+        yield new DiagnosticsDebugCreator(new DebugCreator(this));
     }
+));
+    _Child = UpdateChild(null, built, Slot);
+}
+
+}
+);
+}
 
 
-    public class _RenderLayoutBuilder : FlutterSDK.Rendering.Box.RenderBox, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>, IRenderConstrainedLayoutBuilder<FlutterSDK.Rendering.Box.BoxConstraints, FlutterSDK.Rendering.Box.RenderBox>
+
+
+public new void InsertChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slot)
+{
+    RenderObjectWithChildMixin<RenderObject> renderObject = this.RenderObject;
+
+
+    renderObject.Child = child;
+
+}
+
+
+
+
+public new void MoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slot)
+{
+
+}
+
+
+
+
+public new void RemoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child)
+{
+    RenderConstrainedLayoutBuilder<ConstraintType, RenderObject> renderObject = this.RenderObject;
+
+    renderObject.Child = null;
+
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Builds a widget tree that can depend on the parent widget's size.
+///
+/// Similar to the [Builder] widget except that the framework calls the [builder]
+/// function at layout time and provides the parent widget's constraints. This
+/// is useful when the parent constrains the child's size and doesn't depend on
+/// the child's intrinsic size. The [LayoutBuilder]'s final size will match its
+/// child's size.
+///
+/// {@youtube 560 315 https://www.youtube.com/watch?v=IYDVcriKjsw}
+///
+/// If the child should be smaller than the parent, consider wrapping the child
+/// in an [Align] widget. If the child might want to be bigger, consider
+/// wrapping it in a [SingleChildScrollView].
+///
+/// See also:
+///
+///  * [SliverLayoutBuilder], the sliver counterpart of this widget.
+///  * [Builder], which calls a `builder` function at build time.
+///  * [StatefulBuilder], which passes its `builder` function a `setState` callback.
+///  * [CustomSingleChildLayout], which positions its child during layout.
+///  * The [catalog of layout widgets](https://flutter.dev/widgets/layout/).
+/// </Summary>
+public class LayoutBuilder : FlutterSDK.Widgets.Layoutbuilder.ConstrainedLayoutBuilder<FlutterSDK.Rendering.Box.BoxConstraints>
+{
+    #region constructors
+    public LayoutBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Layoutbuilder.LayoutWidgetBuilder builder = default(FlutterSDK.Widgets.Layoutbuilder.LayoutWidgetBuilder))
+    : base(key: key, builder: builder)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Layoutbuilder.LayoutWidgetBuilder Builder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Layoutbuilder._RenderLayoutBuilder CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new _RenderLayoutBuilder();
+
+
+#endregion
+}
+
+
+public class _RenderLayoutBuilder : FlutterSDK.Rendering.Box.RenderBox, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>, IRenderConstrainedLayoutBuilder<FlutterSDK.Rendering.Box.BoxConstraints, FlutterSDK.Rendering.Box.RenderBox>
+{
+    #region constructors
+    public _RenderLayoutBuilder()
+    { }
+    #endregion
+
+    #region fields
+    #endregion
+
+    #region methods
+
+    public new double ComputeMinIntrinsicWidth(double height)
     {
-        #region constructors
-        public _RenderLayoutBuilder()
-        { }
-        #endregion
 
-        #region fields
-        #endregion
-
-        #region methods
-
-        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new void PerformLayout() { throw new NotImplementedException(); }
-
-
-        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
-
-
-        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        private bool _DebugThrowIfNotCheckingIntrinsics() { throw new NotImplementedException(); }
-
-        #endregion
+        return 0.0;
     }
+
+
+
+
+    public new double ComputeMaxIntrinsicWidth(double height)
+    {
+
+        return 0.0;
+    }
+
+
+
+
+    public new double ComputeMinIntrinsicHeight(double width)
+    {
+
+        return 0.0;
+    }
+
+
+
+
+    public new double ComputeMaxIntrinsicHeight(double width)
+    {
+
+        return 0.0;
+    }
+
+
+
+
+    public new void PerformLayout()
+    {
+        BoxConstraints constraints = this.Constraints;
+        LayoutAndBuildChild();
+        if (Child != null)
+        {
+            Child.Layout(constraints, parentUsesSize: true);
+            Size = constraints.Constrain(Child.Size);
+        }
+        else
+        {
+            Size = constraints.Biggest;
+        }
+
+    }
+
+
+
+
+    public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
+    {
+        return Child?.HitTest(result, position: position) ?? false;
+    }
+
+
+
+
+    public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+    {
+        if (Child != null) context.PaintChild(Child, offset);
+    }
+
+
+
+
+    private bool _DebugThrowIfNotCheckingIntrinsics()
+    {
+
+        return true;
+    }
+
+
+
+    #endregion
+}
 
 }

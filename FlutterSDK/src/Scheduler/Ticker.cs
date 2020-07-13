@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -468,260 +468,411 @@ namespace FlutterSDK.Scheduler.Ticker
     {
         #region constructors
         public TickerProvider()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        #endregion
+    #region fields
+    #endregion
 
-        #region methods
-
-        /// <Summary>
-        /// Creates a ticker with the given callback.
-        ///
-        /// The kind of ticker provided depends on the kind of ticker provider.
-        /// </Summary>
-        public virtual FlutterSDK.Scheduler.Ticker.Ticker CreateTicker(FlutterSDK.Scheduler.Ticker.TickerCallback onTick) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
+    #region methods
 
     /// <Summary>
-    /// Calls its callback once per animation frame.
+    /// Creates a ticker with the given callback.
     ///
-    /// When created, a ticker is initially disabled. Call [start] to
-    /// enable the ticker.
-    ///
-    /// A [Ticker] can be silenced by setting [muted] to true. While silenced, time
-    /// still elapses, and [start] and [stop] can still be called, but no callbacks
-    /// are called.
-    ///
-    /// By convention, the [start] and [stop] methods are used by the ticker's
-    /// consumer, and the [muted] property is controlled by the [TickerProvider]
-    /// that created the ticker.
-    ///
-    /// Tickers are driven by the [SchedulerBinding]. See
-    /// [SchedulerBinding.scheduleFrameCallback].
+    /// The kind of ticker provided depends on the kind of ticker provider.
     /// </Summary>
-    public class Ticker
+    public virtual FlutterSDK.Scheduler.Ticker.Ticker CreateTicker(FlutterSDK.Scheduler.Ticker.TickerCallback onTick)
     {
-        #region constructors
-        public Ticker(FlutterSDK.Scheduler.Ticker.TickerCallback _onTick, string debugLabel = default(string))
-        {
-            this._OnTick = _onTick;
-            this.DebugLabel = debugLabel; throw new NotImplementedException();
-        }
-        #endregion
+        return default(Ticker);
+    }
 
-        #region fields
-        internal virtual FlutterSDK.Scheduler.Ticker.TickerFuture _Future { get; set; }
-        internal virtual bool _Muted { get; set; }
-        internal virtual TimeSpan _StartTime { get; set; }
-        internal virtual FlutterSDK.Scheduler.Ticker.TickerCallback _OnTick { get; set; }
-        internal virtual int _AnimationId { get; set; }
-        public virtual string DebugLabel { get; set; }
-        internal virtual StackTrace _DebugCreationStack { get; set; }
-        public virtual bool Muted { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool IsTicking { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool IsActive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool Scheduled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool ShouldScheduleTick { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Starts the clock for this [Ticker]. If the ticker is not [muted], then this
-        /// also starts calling the ticker's callback once per animation frame.
-        ///
-        /// The returned future resolves once the ticker [stop]s ticking. If the
-        /// ticker is disposed, the future does not resolve. A derivative future is
-        /// available from the returned [TickerFuture] object that resolves with an
-        /// error in that case, via [TickerFuture.orCancel].
-        ///
-        /// Calling this sets [isActive] to true.
-        ///
-        /// This method cannot be called while the ticker is active. To restart the
-        /// ticker, first [stop] it.
-        ///
-        /// By convention, this method is used by the object that receives the ticks
-        /// (as opposed to the [TickerProvider] which created the ticker).
-        /// </Summary>
-        public virtual FlutterSDK.Scheduler.Ticker.TickerFuture Start() { throw new NotImplementedException(); }
+    #endregion
+}
 
 
-        /// <Summary>
-        /// Adds a debug representation of a [Ticker] optimized for including in error
-        /// messages.
-        /// </Summary>
-        public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticsNode DescribeForError(string name) { throw new NotImplementedException(); }
+/// <Summary>
+/// Calls its callback once per animation frame.
+///
+/// When created, a ticker is initially disabled. Call [start] to
+/// enable the ticker.
+///
+/// A [Ticker] can be silenced by setting [muted] to true. While silenced, time
+/// still elapses, and [start] and [stop] can still be called, but no callbacks
+/// are called.
+///
+/// By convention, the [start] and [stop] methods are used by the ticker's
+/// consumer, and the [muted] property is controlled by the [TickerProvider]
+/// that created the ticker.
+///
+/// Tickers are driven by the [SchedulerBinding]. See
+/// [SchedulerBinding.scheduleFrameCallback].
+/// </Summary>
+public class Ticker
+{
+    #region constructors
+    public Ticker(FlutterSDK.Scheduler.Ticker.TickerCallback _onTick, string debugLabel = default(string))
 
 
-        /// <Summary>
-        /// Stops calling this [Ticker]'s callback.
-        ///
-        /// If called with the `canceled` argument set to false (the default), causes
-        /// the future returned by [start] to resolve. If called with the `canceled`
-        /// argument set to true, the future does not resolve, and the future obtained
-        /// from [TickerFuture.orCancel], if any, resolves with a [TickerCanceled]
-        /// error.
-        ///
-        /// Calling this sets [isActive] to false.
-        ///
-        /// This method does nothing if called when the ticker is inactive.
-        ///
-        /// By convention, this method is used by the object that receives the ticks
-        /// (as opposed to the [TickerProvider] which created the ticker).
-        /// </Summary>
-        public virtual void Stop(bool canceled = false) { throw new NotImplementedException(); }
+}
 
 
-        private void _Tick(TimeSpan timeStamp) { throw new NotImplementedException(); }
+#endregion
+
+#region fields
+internal virtual FlutterSDK.Scheduler.Ticker.TickerFuture _Future { get; set; }
+internal virtual bool _Muted { get; set; }
+internal virtual TimeSpan _StartTime { get; set; }
+internal virtual FlutterSDK.Scheduler.Ticker.TickerCallback _OnTick { get; set; }
+internal virtual int _AnimationId { get; set; }
+public virtual string DebugLabel { get; set; }
+internal virtual StackTrace _DebugCreationStack { get; set; }
+public virtual bool Muted { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual bool IsTicking { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual bool IsActive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual bool Scheduled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual bool ShouldScheduleTick { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Starts the clock for this [Ticker]. If the ticker is not [muted], then this
+/// also starts calling the ticker's callback once per animation frame.
+///
+/// The returned future resolves once the ticker [stop]s ticking. If the
+/// ticker is disposed, the future does not resolve. A derivative future is
+/// available from the returned [TickerFuture] object that resolves with an
+/// error in that case, via [TickerFuture.orCancel].
+///
+/// Calling this sets [isActive] to true.
+///
+/// This method cannot be called while the ticker is active. To restart the
+/// ticker, first [stop] it.
+///
+/// By convention, this method is used by the object that receives the ticks
+/// (as opposed to the [TickerProvider] which created the ticker).
+/// </Summary>
+public virtual FlutterSDK.Scheduler.Ticker.TickerFuture Start()
+{
 
 
-        /// <Summary>
-        /// Schedules a tick for the next frame.
-        ///
-        /// This should only be called if [shouldScheduleTick] is true.
-        /// </Summary>
-        public virtual void ScheduleTick(bool rescheduling = false) { throw new NotImplementedException(); }
+    _Future = TickerFuture._();
+    if (ShouldScheduleTick)
+    {
+        ScheduleTick();
+    }
+
+    if (BindingDefaultClass.SchedulerBinding.Instance.SchedulerPhase.Index > SchedulerPhase.Idle.Index && BindingDefaultClass.SchedulerBinding.Instance.SchedulerPhase.Index < SchedulerPhase.PostFrameCallbacks.Index) _StartTime = BindingDefaultClass.SchedulerBinding.Instance.CurrentFrameTimeStamp;
+    return _Future;
+}
 
 
-        /// <Summary>
-        /// Cancels the frame callback that was requested by [scheduleTick], if any.
-        ///
-        /// Calling this method when no tick is [scheduled] is harmless.
-        ///
-        /// This method should not be called when [shouldScheduleTick] would return
-        /// true if no tick was scheduled.
-        /// </Summary>
-        public virtual void UnscheduleTick() { throw new NotImplementedException(); }
 
 
-        /// <Summary>
-        /// Makes this [Ticker] take the state of another ticker, and disposes the
-        /// other ticker.
-        ///
-        /// This is useful if an object with a [Ticker] is given a new
-        /// [TickerProvider] but needs to maintain continuity. In particular, this
-        /// maintains the identity of the [TickerFuture] returned by the [start]
-        /// function of the original [Ticker] if the original ticker is active.
-        ///
-        /// This ticker must not be active when this method is called.
-        /// </Summary>
-        public virtual void AbsorbTicker(FlutterSDK.Scheduler.Ticker.Ticker originalTicker) { throw new NotImplementedException(); }
+/// <Summary>
+/// Adds a debug representation of a [Ticker] optimized for including in error
+/// messages.
+/// </Summary>
+public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticsNode DescribeForError(string name)
+{
+    return new DiagnosticsProperty<Ticker>(name, this, description: ToString(debugIncludeStack: true));
+}
 
 
-        /// <Summary>
-        /// Release the resources used by this object. The object is no longer usable
-        /// after this method is called.
-        /// </Summary>
-        public virtual void Dispose() { throw new NotImplementedException(); }
 
 
-        #endregion
+/// <Summary>
+/// Stops calling this [Ticker]'s callback.
+///
+/// If called with the `canceled` argument set to false (the default), causes
+/// the future returned by [start] to resolve. If called with the `canceled`
+/// argument set to true, the future does not resolve, and the future obtained
+/// from [TickerFuture.orCancel], if any, resolves with a [TickerCanceled]
+/// error.
+///
+/// Calling this sets [isActive] to false.
+///
+/// This method does nothing if called when the ticker is inactive.
+///
+/// By convention, this method is used by the object that receives the ticks
+/// (as opposed to the [TickerProvider] which created the ticker).
+/// </Summary>
+public virtual void Stop(bool canceled = false)
+{
+    if (!IsActive) return;
+    TickerFuture localFuture = _Future;
+    _Future = null;
+    _StartTime = null;
+
+    UnscheduleTick();
+    if (canceled)
+    {
+        localFuture._Cancel(this);
+    }
+    else
+    {
+        localFuture._Complete();
+    }
+
+}
+
+
+
+
+private void _Tick(TimeSpan timeStamp)
+{
+
+
+    _AnimationId = null;
+    _StartTime = (_StartTime == null ? timeStamp : _StartTime);
+    _OnTick(timeStamp - _StartTime);
+    if (ShouldScheduleTick) ScheduleTick(rescheduling: true);
+}
+
+
+
+
+/// <Summary>
+/// Schedules a tick for the next frame.
+///
+/// This should only be called if [shouldScheduleTick] is true.
+/// </Summary>
+public virtual void ScheduleTick(bool rescheduling = false)
+{
+
+
+    _AnimationId = BindingDefaultClass.SchedulerBinding.Instance.ScheduleFrameCallback(_Tick, rescheduling: rescheduling);
+}
+
+
+
+
+/// <Summary>
+/// Cancels the frame callback that was requested by [scheduleTick], if any.
+///
+/// Calling this method when no tick is [scheduled] is harmless.
+///
+/// This method should not be called when [shouldScheduleTick] would return
+/// true if no tick was scheduled.
+/// </Summary>
+public virtual void UnscheduleTick()
+{
+    if (Scheduled)
+    {
+        BindingDefaultClass.SchedulerBinding.Instance.CancelFrameCallbackWithId(_AnimationId);
+        _AnimationId = null;
     }
 
 
-    /// <Summary>
-    /// An object representing an ongoing [Ticker] sequence.
-    ///
-    /// The [Ticker.start] method returns a [TickerFuture]. The [TickerFuture] will
-    /// complete successfully if the [Ticker] is stopped using [Ticker.stop] with
-    /// the `canceled` argument set to false (the default).
-    ///
-    /// If the [Ticker] is disposed without being stopped, or if it is stopped with
-    /// `canceled` set to true, then this Future will never complete.
-    ///
-    /// This class works like a normal [Future], but has an additional property,
-    /// [orCancel], which returns a derivative [Future] that completes with an error
-    /// if the [Ticker] that returned the [TickerFuture] was stopped with `canceled`
-    /// set to true, or if it was disposed without being stopped.
-    ///
-    /// To run a callback when either this future resolves or when the ticker is
-    /// canceled, use [whenCompleteOrCancel].
-    /// </Summary>
-    public class TickerFuture : IFuture<object>
+}
+
+
+
+
+/// <Summary>
+/// Makes this [Ticker] take the state of another ticker, and disposes the
+/// other ticker.
+///
+/// This is useful if an object with a [Ticker] is given a new
+/// [TickerProvider] but needs to maintain continuity. In particular, this
+/// maintains the identity of the [TickerFuture] returned by the [start]
+/// function of the original [Ticker] if the original ticker is active.
+///
+/// This ticker must not be active when this method is called.
+/// </Summary>
+public virtual void AbsorbTicker(FlutterSDK.Scheduler.Ticker.Ticker originalTicker)
+{
+
+
+
+
+
+    if (originalTicker._Future != null)
     {
-        #region constructors
-        internal TickerFuture()
-        {
-            throw new NotImplementedException();
-        }
-        public static TickerFuture Complete()
-        {
-            var instance = new TickerFuture(); throw new NotImplementedException();
-        }
-        #endregion
+        _Future = originalTicker._Future;
+        _StartTime = originalTicker._StartTime;
+        if (ShouldScheduleTick) ScheduleTick();
+        originalTicker._Future = null;
+        originalTicker.UnscheduleTick();
+    }
 
-        #region fields
-        internal virtual Completer<object> _PrimaryCompleter { get; set; }
-        internal virtual Completer<object> _SecondaryCompleter { get; set; }
-        internal virtual bool _Completed { get; set; }
-        public virtual Future<object> OrCancel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        private void _Complete() { throw new NotImplementedException(); }
+    originalTicker.Dispose();
+}
 
 
-        private void _Cancel(FlutterSDK.Scheduler.Ticker.Ticker ticker) { throw new NotImplementedException(); }
 
 
-        /// <Summary>
-        /// Calls `callback` either when this future resolves or when the ticker is
-        /// canceled.
-        ///
-        /// Calling this method registers an exception handler for the [orCancel]
-        /// future, so even if the [orCancel] property is accessed, canceling the
-        /// ticker will not cause an uncaught exception in the current zone.
-        /// </Summary>
-        public virtual void WhenCompleteOrCancel(VoidCallback callback) { throw new NotImplementedException(); }
+/// <Summary>
+/// Release the resources used by this object. The object is no longer usable
+/// after this method is called.
+/// </Summary>
+public virtual void Dispose()
+{
+    if (_Future != null)
+    {
+        TickerFuture localFuture = _Future;
+        _Future = null;
 
-
-        public new Stream<object> AsStream() { throw new NotImplementedException(); }
-
-
-        public new Future<object> CatchError(Function onError, Func<bool, object> test = default(Func<bool, object>)) { throw new NotImplementedException(); }
-
-
-        public new Future<R> Then<R>(Func<FutureOr<R>> onValue, Function onError = default(Function)) { throw new NotImplementedException(); }
-
-
-        public new Future<object> Timeout(TimeSpan timeLimit, Func<dynamic> onTimeout = default(Func<dynamic>)) { throw new NotImplementedException(); }
-
-
-        public new Future<object> WhenComplete(Func<dynamic> action) { throw new NotImplementedException(); }
-
-
-        #endregion
+        UnscheduleTick();
+        localFuture._Cancel(this);
     }
 
 
-    /// <Summary>
-    /// Exception thrown by [Ticker] objects on the [TickerFuture.orCancel] future
-    /// when the ticker is canceled.
-    /// </Summary>
-    public class TickerCanceled : IException
-    {
-        #region constructors
-        public TickerCanceled(FlutterSDK.Scheduler.Ticker.Ticker ticker = default(FlutterSDK.Scheduler.Ticker.Ticker))
-        {
-            this.Ticker = ticker; throw new NotImplementedException();
-        }
-        #endregion
+}
 
-        #region fields
-        public virtual FlutterSDK.Scheduler.Ticker.Ticker Ticker { get; set; }
-        #endregion
 
-        #region methods
 
-        #endregion
+
+#endregion
+}
+
+
+/// <Summary>
+/// An object representing an ongoing [Ticker] sequence.
+///
+/// The [Ticker.start] method returns a [TickerFuture]. The [TickerFuture] will
+/// complete successfully if the [Ticker] is stopped using [Ticker.stop] with
+/// the `canceled` argument set to false (the default).
+///
+/// If the [Ticker] is disposed without being stopped, or if it is stopped with
+/// `canceled` set to true, then this Future will never complete.
+///
+/// This class works like a normal [Future], but has an additional property,
+/// [orCancel], which returns a derivative [Future] that completes with an error
+/// if the [Ticker] that returned the [TickerFuture] was stopped with `canceled`
+/// set to true, or if it was disposed without being stopped.
+///
+/// To run a callback when either this future resolves or when the ticker is
+/// canceled, use [whenCompleteOrCancel].
+/// </Summary>
+public class TickerFuture : IFuture<object>
+{
+    #region constructors
+    internal TickerFuture()
+
+}
+public static TickerFuture Complete()
+
+_Complete();
+}
+
+
+#endregion
+
+#region fields
+internal virtual Completer<object> _PrimaryCompleter { get; set; }
+internal virtual Completer<object> _SecondaryCompleter { get; set; }
+internal virtual bool _Completed { get; set; }
+public virtual Future<object> OrCancel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+private void _Complete()
+{
+
+    _Completed = true;
+    _PrimaryCompleter.Complete(null);
+    _SecondaryCompleter?.Complete(null);
+}
+
+
+
+
+private void _Cancel(FlutterSDK.Scheduler.Ticker.Ticker ticker)
+{
+
+    _Completed = false;
+    _SecondaryCompleter?.CompleteError(new TickerCanceled(ticker));
+}
+
+
+
+
+/// <Summary>
+/// Calls `callback` either when this future resolves or when the ticker is
+/// canceled.
+///
+/// Calling this method registers an exception handler for the [orCancel]
+/// future, so even if the [orCancel] property is accessed, canceling the
+/// ticker will not cause an uncaught exception in the current zone.
+/// </Summary>
+public virtual void WhenCompleteOrCancel(VoidCallback callback)
+{
+    void Thunk(object value) => {
+        callback();
     }
+
+    OrCancel.Then(Thunk, onError: Thunk);
+}
+
+
+
+
+public new Stream<object> AsStream()
+{
+    return _PrimaryCompleter.Future.AsStream();
+}
+
+
+
+
+public new Future<object> CatchError(Function onError, Func<bool, object> test = default(Func<bool, object>))
+{
+    return _PrimaryCompleter.Future.CatchError(onError, test: test);
+}
+
+
+
+
+public new Future<R> Then<R>(Func<FutureOr<R>> onValue, Function onError = default(Function))
+{
+    return _PrimaryCompleter.Future.Then(onValue, onError: onError);
+}
+
+
+
+
+public new Future<object> Timeout(TimeSpan timeLimit, Func<dynamic> onTimeout = default(Func<dynamic>))
+{
+    return _PrimaryCompleter.Future.Timeout(timeLimit, onTimeout: onTimeout);
+}
+
+
+
+
+public new Future<object> WhenComplete(Func<dynamic> action)
+{
+    return _PrimaryCompleter.Future.WhenComplete(action);
+}
+
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Exception thrown by [Ticker] objects on the [TickerFuture.orCancel] future
+/// when the ticker is canceled.
+/// </Summary>
+public class TickerCanceled : IException
+{
+    #region constructors
+    public TickerCanceled(FlutterSDK.Scheduler.Ticker.Ticker ticker = default(FlutterSDK.Scheduler.Ticker.Ticker))
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Scheduler.Ticker.Ticker Ticker { get; set; }
+#endregion
+
+#region methods
+
+#endregion
+}
 
 }

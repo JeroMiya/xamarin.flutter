@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -412,86 +412,135 @@ namespace FlutterSDK.Material.Inksplash
     {
         #region constructors
         public _InkSplashFactory()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        #endregion
+    #region fields
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new FlutterSDK.Material.Inkwell.InteractiveInkFeature Create(FlutterSDK.Material.Material.MaterialInkController controller = default(FlutterSDK.Material.Material.MaterialInkController), FlutterSDK.Rendering.Box.RenderBox referenceBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), TextDirection textDirection = default(TextDirection), bool containedInkWell = false, FlutterSDK.Material.Material.RectCallback rectCallback = default(FlutterSDK.Material.Material.RectCallback), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Painting.Borders.ShapeBorder customBorder = default(FlutterSDK.Painting.Borders.ShapeBorder), double radius = default(double), VoidCallback onRemoved = default(VoidCallback)) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// A visual reaction on a piece of [Material] to user input.
-    ///
-    /// A circular ink feature whose origin starts at the input touch point
-    /// and whose radius expands from zero.
-    ///
-    /// This object is rarely created directly. Instead of creating an ink splash
-    /// directly, consider using an [InkResponse] or [InkWell] widget, which uses
-    /// gestures (such as tap and long-press) to trigger ink splashes.
-    ///
-    /// See also:
-    ///
-    ///  * [InkRipple], which is an ink splash feature that expands more
-    ///    aggressively than this class does.
-    ///  * [InkResponse], which uses gestures to trigger ink highlights and ink
-    ///    splashes in the parent [Material].
-    ///  * [InkWell], which is a rectangular [InkResponse] (the most common type of
-    ///    ink response).
-    ///  * [Material], which is the widget on which the ink splash is painted.
-    ///  * [InkHighlight], which is an ink feature that emphasizes a part of a
-    ///    [Material].
-    /// </Summary>
-    public class InkSplash : FlutterSDK.Material.Inkwell.InteractiveInkFeature
+    public new FlutterSDK.Material.Inkwell.InteractiveInkFeature Create(FlutterSDK.Material.Material.MaterialInkController controller = default(FlutterSDK.Material.Material.MaterialInkController), FlutterSDK.Rendering.Box.RenderBox referenceBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), TextDirection textDirection = default(TextDirection), bool containedInkWell = false, FlutterSDK.Material.Material.RectCallback rectCallback = default(FlutterSDK.Material.Material.RectCallback), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Painting.Borders.ShapeBorder customBorder = default(FlutterSDK.Painting.Borders.ShapeBorder), double radius = default(double), VoidCallback onRemoved = default(VoidCallback))
     {
-        #region constructors
-        public InkSplash(FlutterSDK.Material.Material.MaterialInkController controller = default(FlutterSDK.Material.Material.MaterialInkController), FlutterSDK.Rendering.Box.RenderBox referenceBox = default(FlutterSDK.Rendering.Box.RenderBox), TextDirection textDirection = default(TextDirection), FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), bool containedInkWell = false, FlutterSDK.Material.Material.RectCallback rectCallback = default(FlutterSDK.Material.Material.RectCallback), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Painting.Borders.ShapeBorder customBorder = default(FlutterSDK.Painting.Borders.ShapeBorder), double radius = default(double), VoidCallback onRemoved = default(VoidCallback))
-        : base(controller: controller, referenceBox: referenceBox, color: color, onRemoved: onRemoved)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual FlutterBinding.UI.Offset _Position { get; set; }
-        internal virtual FlutterSDK.Painting.Borderradius.BorderRadius _BorderRadius { get; set; }
-        internal virtual FlutterSDK.Painting.Borders.ShapeBorder _CustomBorder { get; set; }
-        internal virtual double _TargetRadius { get; set; }
-        internal virtual FlutterSDK.Material.Material.RectCallback _ClipCallback { get; set; }
-        internal virtual bool _RepositionToReferenceBox { get; set; }
-        internal virtual TextDirection _TextDirection { get; set; }
-        internal virtual FlutterSDK.Animation.Animation.Animation<double> _Radius { get; set; }
-        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _RadiusController { get; set; }
-        internal virtual FlutterSDK.Animation.Animation.Animation<int> _Alpha { get; set; }
-        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _AlphaController { get; set; }
-        public virtual FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory SplashFactory { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void Confirm() { throw new NotImplementedException(); }
-
-
-        public new void Cancel() { throw new NotImplementedException(); }
-
-
-        private void _HandleAlphaStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status) { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        public new void PaintFeature(Canvas canvas, Matrix4 transform) { throw new NotImplementedException(); }
-
-        #endregion
+        return new InkSplash(controller: controller, referenceBox: referenceBox, position: position, color: color, containedInkWell: containedInkWell, rectCallback: rectCallback, borderRadius: borderRadius, customBorder: customBorder, radius: radius, onRemoved: onRemoved, textDirection: textDirection);
     }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// A visual reaction on a piece of [Material] to user input.
+///
+/// A circular ink feature whose origin starts at the input touch point
+/// and whose radius expands from zero.
+///
+/// This object is rarely created directly. Instead of creating an ink splash
+/// directly, consider using an [InkResponse] or [InkWell] widget, which uses
+/// gestures (such as tap and long-press) to trigger ink splashes.
+///
+/// See also:
+///
+///  * [InkRipple], which is an ink splash feature that expands more
+///    aggressively than this class does.
+///  * [InkResponse], which uses gestures to trigger ink highlights and ink
+///    splashes in the parent [Material].
+///  * [InkWell], which is a rectangular [InkResponse] (the most common type of
+///    ink response).
+///  * [Material], which is the widget on which the ink splash is painted.
+///  * [InkHighlight], which is an ink feature that emphasizes a part of a
+///    [Material].
+/// </Summary>
+public class InkSplash : FlutterSDK.Material.Inkwell.InteractiveInkFeature
+{
+    #region constructors
+    public InkSplash(FlutterSDK.Material.Material.MaterialInkController controller = default(FlutterSDK.Material.Material.MaterialInkController), FlutterSDK.Rendering.Box.RenderBox referenceBox = default(FlutterSDK.Rendering.Box.RenderBox), TextDirection textDirection = default(TextDirection), FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), bool containedInkWell = false, FlutterSDK.Material.Material.RectCallback rectCallback = default(FlutterSDK.Material.Material.RectCallback), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Painting.Borders.ShapeBorder customBorder = default(FlutterSDK.Painting.Borders.ShapeBorder), double radius = default(double), VoidCallback onRemoved = default(VoidCallback))
+    : base(controller: controller, referenceBox: referenceBox, color: color, onRemoved: onRemoved)
+
+
+_RadiusController=new AnimationController(duration:InksplashDefaultClass._KUnconfirmedSplashDuration, vsync:controller.Vsync);
+    new AnimationController(duration:InksplashDefaultClass._KUnconfirmedSplashDuration, vsync:controller.Vsync).AddListener(controller.MarkNeedsPaint);
+    new AnimationController(duration:InksplashDefaultClass._KUnconfirmedSplashDuration, vsync:controller.Vsync).Forward();
+    _Radius=_RadiusController.Drive(new Tween<double>(begin:InksplashDefaultClass._KSplashInitialSize, end:_TargetRadius));
+_AlphaController=new AnimationController(duration:InksplashDefaultClass._KSplashFadeDuration, vsync:controller.Vsync);
+    new AnimationController(duration:InksplashDefaultClass._KSplashFadeDuration, vsync:controller.Vsync).AddListener(controller.MarkNeedsPaint);
+    new AnimationController(duration:InksplashDefaultClass._KSplashFadeDuration, vsync:controller.Vsync).AddStatusListener(_HandleAlphaStatusChanged);
+    _Alpha=_AlphaController.Drive(new IntTween(begin:color.Alpha, end:0));
+controller.AddInkFeature(this );
+    }
+
+
+    #endregion
+
+    #region fields
+    internal virtual FlutterBinding.UI.Offset _Position { get; set; }
+    internal virtual FlutterSDK.Painting.Borderradius.BorderRadius _BorderRadius { get; set; }
+    internal virtual FlutterSDK.Painting.Borders.ShapeBorder _CustomBorder { get; set; }
+    internal virtual double _TargetRadius { get; set; }
+    internal virtual FlutterSDK.Material.Material.RectCallback _ClipCallback { get; set; }
+    internal virtual bool _RepositionToReferenceBox { get; set; }
+    internal virtual TextDirection _TextDirection { get; set; }
+    internal virtual FlutterSDK.Animation.Animation.Animation<double> _Radius { get; set; }
+    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _RadiusController { get; set; }
+    internal virtual FlutterSDK.Animation.Animation.Animation<int> _Alpha { get; set; }
+    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _AlphaController { get; set; }
+    public virtual FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory SplashFactory { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void Confirm()
+    {
+        int duration = (_TargetRadius / InksplashDefaultClass._KSplashConfirmedVelocity).Floor();
+        ..Duration = new TimeSpan(milliseconds: duration);
+        _RadiusController.Forward();
+        _AlphaController.Forward();
+    }
+
+
+
+
+    public new void Cancel()
+    {
+        _AlphaController?.Forward();
+    }
+
+
+
+
+    private void _HandleAlphaStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status)
+    {
+        if (status == AnimationStatus.Completed) Dispose();
+    }
+
+
+
+
+    public new void Dispose()
+    {
+        _RadiusController.Dispose();
+        _AlphaController.Dispose();
+        _AlphaController = null;
+        base.Dispose();
+    }
+
+
+
+
+    public new void PaintFeature(Canvas canvas, Matrix4 transform)
+    {
+        Paint paint = new Paint()..Color = Color.WithAlpha(_Alpha.Value);
+        Offset center = _Position;
+        if (_RepositionToReferenceBox) center = Dart:uiDefaultClass.Offset.Lerp(center, ReferenceBox.Size.Center(Dart: uiDefaultClass.Offset.Zero), _RadiusController.Value);
+        PaintInkCircle(canvas: canvas, transform: transform, paint: paint, center: center, textDirection: _TextDirection, radius: _Radius.Value, customBorder: _CustomBorder, borderRadius: _BorderRadius, clipCallback: _ClipCallback);
+    }
+
+
+
+    #endregion
+}
 
 }

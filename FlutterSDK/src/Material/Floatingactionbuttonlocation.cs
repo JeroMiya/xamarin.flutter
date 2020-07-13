@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -506,376 +506,467 @@ namespace FlutterSDK.Material.Floatingactionbuttonlocation
     {
         #region constructors
         public FloatingActionButtonLocation()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation EndFloat { get; set; }
-        public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation CenterFloat { get; set; }
-        public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation EndDocked { get; set; }
-        public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation CenterDocked { get; set; }
-        public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation StartTop { get; set; }
-        public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation MiniStartTop { get; set; }
-        public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation EndTop { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation EndFloat { get; set; }
+    public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation CenterFloat { get; set; }
+    public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation EndDocked { get; set; }
+    public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation CenterDocked { get; set; }
+    public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation StartTop { get; set; }
+    public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation MiniStartTop { get; set; }
+    public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation EndTop { get; set; }
+    #endregion
 
-        #region methods
-
-        /// <Summary>
-        /// Places the [FloatingActionButton] based on the [Scaffold]'s layout.
-        ///
-        /// This uses a [ScaffoldPrelayoutGeometry], which the [Scaffold] constructs
-        /// during its layout phase after it has laid out every widget it can lay out
-        /// except the [FloatingActionButton]. The [Scaffold] uses the [Offset]
-        /// returned from this method to position the [FloatingActionButton] and
-        /// complete its layout.
-        /// </Summary>
-        public virtual Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry) { throw new NotImplementedException(); }
-
-
-        #endregion
-    }
-
-
-    public class _CenterFloatFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
-    {
-        #region constructors
-        public _CenterFloatFloatingActionButtonLocation()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry) { throw new NotImplementedException(); }
-
-
-        #endregion
-    }
-
-
-    public class _EndFloatFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
-    {
-        #region constructors
-        public _EndFloatFloatingActionButtonLocation()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry) { throw new NotImplementedException(); }
-
-
-        #endregion
-    }
-
-
-    public class _DockedFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
-    {
-        #region constructors
-        public _DockedFloatingActionButtonLocation()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        public virtual double GetDockedY(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _EndDockedFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation._DockedFloatingActionButtonLocation
-    {
-        #region constructors
-        public _EndDockedFloatingActionButtonLocation()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry) { throw new NotImplementedException(); }
-
-
-        #endregion
-    }
-
-
-    public class _CenterDockedFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation._DockedFloatingActionButtonLocation
-    {
-        #region constructors
-        public _CenterDockedFloatingActionButtonLocation()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry) { throw new NotImplementedException(); }
-
-
-        #endregion
-    }
-
-
-    public class _StartTopFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
-    {
-        #region constructors
-        public _StartTopFloatingActionButtonLocation()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry) { throw new NotImplementedException(); }
-
-
-        #endregion
-    }
-
-
-    public class _MiniStartTopFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
-    {
-        #region constructors
-        public _MiniStartTopFloatingActionButtonLocation()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry) { throw new NotImplementedException(); }
-
-
-        #endregion
-    }
-
-
-    public class _EndTopFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
-    {
-        #region constructors
-        public _EndTopFloatingActionButtonLocation()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry) { throw new NotImplementedException(); }
-
-
-        #endregion
-    }
-
+    #region methods
 
     /// <Summary>
-    /// Provider of animations to move the [FloatingActionButton] between [FloatingActionButtonLocation]s.
+    /// Places the [FloatingActionButton] based on the [Scaffold]'s layout.
     ///
-    /// The [Scaffold] uses [Scaffold.floatingActionButtonAnimator] to define:
-    ///
-    ///  * The [Offset] of the [FloatingActionButton] between the old and new
-    ///    [FloatingActionButtonLocation]s as part of the transition animation.
-    ///  * An [Animation] to scale the [FloatingActionButton] during the transition.
-    ///  * An [Animation] to rotate the [FloatingActionButton] during the transition.
-    ///  * Where to start a new animation from if an animation is interrupted.
-    ///
-    /// See also:
-    ///
-    ///  * [FloatingActionButton], which is a circular button typically shown in the
-    ///    bottom right corner of the app.
-    ///  * [FloatingActionButtonLocation], which the [Scaffold] uses to place the
-    ///    [Scaffold.floatingActionButton] within the [Scaffold]'s layout.
+    /// This uses a [ScaffoldPrelayoutGeometry], which the [Scaffold] constructs
+    /// during its layout phase after it has laid out every widget it can lay out
+    /// except the [FloatingActionButton]. The [Scaffold] uses the [Offset]
+    /// returned from this method to position the [FloatingActionButton] and
+    /// complete its layout.
     /// </Summary>
-    public class FloatingActionButtonAnimator
+    public virtual Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry)
     {
-        #region constructors
-        public FloatingActionButtonAnimator()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator Scaling { get; set; }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Gets the [FloatingActionButton]'s position relative to the origin of the
-        /// [Scaffold] based on [progress].
-        ///
-        /// [begin] is the [Offset] provided by the previous
-        /// [FloatingActionButtonLocation].
-        ///
-        /// [end] is the [Offset] provided by the new
-        /// [FloatingActionButtonLocation].
-        ///
-        /// [progress] is the current progress of the transition animation.
-        /// When [progress] is 0.0, the returned [Offset] should be equal to [begin].
-        /// when [progress] is 1.0, the returned [Offset] should be equal to [end].
-        /// </Summary>
-        public virtual Offset GetOffset(FlutterBinding.UI.Offset begin = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset end = default(FlutterBinding.UI.Offset), double progress = default(double)) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Animates the scale of the [FloatingActionButton].
-        ///
-        /// The animation should both start and end with a value of 1.0.
-        ///
-        /// For example, to create an animation that linearly scales out and then back in,
-        /// you could join animations that pass each other:
-        ///
-        /// ```dart
-        ///   @override
-        ///   Animation<double> getScaleAnimation({@required Animation<double> parent}) {
-        ///     // The animations will cross at value 0, and the train will return to 1.0.
-        ///     return TrainHoppingAnimation(
-        ///       Tween<double>(begin: 1.0, end: -1.0).animate(parent),
-        ///       Tween<double>(begin: -1.0, end: 1.0).animate(parent),
-        ///     );
-        ///   }
-        /// ```
-        /// </Summary>
-        public virtual FlutterSDK.Animation.Animation.Animation<double> GetScaleAnimation(FlutterSDK.Animation.Animation.Animation<double> parent = default(FlutterSDK.Animation.Animation.Animation<double>)) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Animates the rotation of [Scaffold.floatingActionButton].
-        ///
-        /// The animation should both start and end with a value of 0.0 or 1.0.
-        ///
-        /// The animation values are a fraction of a full circle, with 0.0 and 1.0
-        /// corresponding to 0 and 360 degrees, while 0.5 corresponds to 180 degrees.
-        ///
-        /// For example, to create a rotation animation that rotates the
-        /// [FloatingActionButton] through a full circle:
-        ///
-        /// ```dart
-        /// @override
-        /// Animation<double> getRotationAnimation({@required Animation<double> parent}) {
-        ///   return Tween<double>(begin: 0.0, end: 1.0).animate(parent);
-        /// }
-        /// ```
-        /// </Summary>
-        public virtual FlutterSDK.Animation.Animation.Animation<double> GetRotationAnimation(FlutterSDK.Animation.Animation.Animation<double> parent = default(FlutterSDK.Animation.Animation.Animation<double>)) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Gets the progress value to restart a motion animation from when the animation is interrupted.
-        ///
-        /// [previousValue] is the value of the animation before it was interrupted.
-        ///
-        /// The restart of the animation will affect all three parts of the motion animation:
-        /// offset animation, scale animation, and rotation animation.
-        ///
-        /// An interruption triggers if the [Scaffold] is given a new [FloatingActionButtonLocation]
-        /// while it is still animating a transition between two previous [FloatingActionButtonLocation]s.
-        ///
-        /// A sensible default is usually 0.0, which is the same as restarting
-        /// the animation from the beginning, regardless of the original state of the animation.
-        /// </Summary>
-        public virtual double GetAnimationRestart(double previousValue) { throw new NotImplementedException(); }
-
-
-        #endregion
+        return default(Offset);
     }
 
 
-    public class _ScalingFabMotionAnimator : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator
+    #endregion
+}
+
+
+public class _CenterFloatFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
+{
+    #region constructors
+    public _CenterFloatFloatingActionButtonLocation()
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry)
+{
+    double fabX = (scaffoldGeometry.ScaffoldSize.Width - scaffoldGeometry.FloatingActionButtonSize.Width) / 2.0;
+    double contentBottom = scaffoldGeometry.ContentBottom;
+    double bottomSheetHeight = scaffoldGeometry.BottomSheetSize.Height;
+    double fabHeight = scaffoldGeometry.FloatingActionButtonSize.Height;
+    double snackBarHeight = scaffoldGeometry.SnackBarSize.Height;
+    double fabY = contentBottom - fabHeight - FloatingactionbuttonlocationDefaultClass.KFloatingActionButtonMargin;
+    if (snackBarHeight > 0.0) fabY = Math.Dart:mathDefaultClass.Min(fabY, contentBottom - snackBarHeight - fabHeight - FloatingactionbuttonlocationDefaultClass.KFloatingActionButtonMargin);
+    if (bottomSheetHeight > 0.0) fabY = Math.Dart:mathDefaultClass.Min(fabY, contentBottom - bottomSheetHeight - fabHeight / 2.0);
+    return new Offset(fabX, fabY);
+}
+
+
+
+
+#endregion
+}
+
+
+public class _EndFloatFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
+{
+    #region constructors
+    public _EndFloatFloatingActionButtonLocation()
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry)
+{
+    double fabX = FloatingactionbuttonlocationDefaultClass._EndOffset(scaffoldGeometry);
+    double contentBottom = scaffoldGeometry.ContentBottom;
+    double bottomSheetHeight = scaffoldGeometry.BottomSheetSize.Height;
+    double fabHeight = scaffoldGeometry.FloatingActionButtonSize.Height;
+    double snackBarHeight = scaffoldGeometry.SnackBarSize.Height;
+    double fabY = contentBottom - fabHeight - FloatingactionbuttonlocationDefaultClass.KFloatingActionButtonMargin;
+    if (snackBarHeight > 0.0) fabY = Math.Dart:mathDefaultClass.Min(fabY, contentBottom - snackBarHeight - fabHeight - FloatingactionbuttonlocationDefaultClass.KFloatingActionButtonMargin);
+    if (bottomSheetHeight > 0.0) fabY = Math.Dart:mathDefaultClass.Min(fabY, contentBottom - bottomSheetHeight - fabHeight / 2.0);
+    return new Offset(fabX, fabY);
+}
+
+
+
+
+#endregion
+}
+
+
+public class _DockedFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
+{
+    #region constructors
+    public _DockedFloatingActionButtonLocation()
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public virtual double GetDockedY(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry)
+{
+    double contentBottom = scaffoldGeometry.ContentBottom;
+    double bottomSheetHeight = scaffoldGeometry.BottomSheetSize.Height;
+    double fabHeight = scaffoldGeometry.FloatingActionButtonSize.Height;
+    double snackBarHeight = scaffoldGeometry.SnackBarSize.Height;
+    double fabY = contentBottom - fabHeight / 2.0;
+    if (snackBarHeight > 0.0) fabY = Math.Dart:mathDefaultClass.Min(fabY, contentBottom - snackBarHeight - fabHeight - FloatingactionbuttonlocationDefaultClass.KFloatingActionButtonMargin);
+    if (bottomSheetHeight > 0.0) fabY = Math.Dart:mathDefaultClass.Min(fabY, contentBottom - bottomSheetHeight - fabHeight / 2.0);
+    double maxFabY = scaffoldGeometry.ScaffoldSize.Height - fabHeight;
+    return Math.Dart:mathDefaultClass.Min(maxFabY, fabY);
+}
+
+
+
+#endregion
+}
+
+
+public class _EndDockedFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation._DockedFloatingActionButtonLocation
+{
+    #region constructors
+    public _EndDockedFloatingActionButtonLocation()
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry)
+{
+    double fabX = FloatingactionbuttonlocationDefaultClass._EndOffset(scaffoldGeometry);
+    return new Offset(fabX, GetDockedY(scaffoldGeometry));
+}
+
+
+
+
+#endregion
+}
+
+
+public class _CenterDockedFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation._DockedFloatingActionButtonLocation
+{
+    #region constructors
+    public _CenterDockedFloatingActionButtonLocation()
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry)
+{
+    double fabX = (scaffoldGeometry.ScaffoldSize.Width - scaffoldGeometry.FloatingActionButtonSize.Width) / 2.0;
+    return new Offset(fabX, GetDockedY(scaffoldGeometry));
+}
+
+
+
+
+#endregion
+}
+
+
+public class _StartTopFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
+{
+    #region constructors
+    public _StartTopFloatingActionButtonLocation()
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry)
+{
+    return new Offset(FloatingactionbuttonlocationDefaultClass._StartOffset(scaffoldGeometry), FloatingactionbuttonlocationDefaultClass._StraddleAppBar(scaffoldGeometry));
+}
+
+
+
+
+#endregion
+}
+
+
+public class _MiniStartTopFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
+{
+    #region constructors
+    public _MiniStartTopFloatingActionButtonLocation()
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry)
+{
+    return new Offset(FloatingactionbuttonlocationDefaultClass._StartOffset(scaffoldGeometry, offset: 4.0), FloatingactionbuttonlocationDefaultClass._StraddleAppBar(scaffoldGeometry));
+}
+
+
+
+
+#endregion
+}
+
+
+public class _EndTopFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
+{
+    #region constructors
+    public _EndTopFloatingActionButtonLocation()
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry)
+{
+    return new Offset(FloatingactionbuttonlocationDefaultClass._EndOffset(scaffoldGeometry), FloatingactionbuttonlocationDefaultClass._StraddleAppBar(scaffoldGeometry));
+}
+
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Provider of animations to move the [FloatingActionButton] between [FloatingActionButtonLocation]s.
+///
+/// The [Scaffold] uses [Scaffold.floatingActionButtonAnimator] to define:
+///
+///  * The [Offset] of the [FloatingActionButton] between the old and new
+///    [FloatingActionButtonLocation]s as part of the transition animation.
+///  * An [Animation] to scale the [FloatingActionButton] during the transition.
+///  * An [Animation] to rotate the [FloatingActionButton] during the transition.
+///  * Where to start a new animation from if an animation is interrupted.
+///
+/// See also:
+///
+///  * [FloatingActionButton], which is a circular button typically shown in the
+///    bottom right corner of the app.
+///  * [FloatingActionButtonLocation], which the [Scaffold] uses to place the
+///    [Scaffold.floatingActionButton] within the [Scaffold]'s layout.
+/// </Summary>
+public class FloatingActionButtonAnimator
+{
+    #region constructors
+    public FloatingActionButtonAnimator()
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator Scaling { get; set; }
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Gets the [FloatingActionButton]'s position relative to the origin of the
+/// [Scaffold] based on [progress].
+///
+/// [begin] is the [Offset] provided by the previous
+/// [FloatingActionButtonLocation].
+///
+/// [end] is the [Offset] provided by the new
+/// [FloatingActionButtonLocation].
+///
+/// [progress] is the current progress of the transition animation.
+/// When [progress] is 0.0, the returned [Offset] should be equal to [begin].
+/// when [progress] is 1.0, the returned [Offset] should be equal to [end].
+/// </Summary>
+public virtual Offset GetOffset(FlutterBinding.UI.Offset begin = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset end = default(FlutterBinding.UI.Offset), double progress = default(double))
+{
+    return default(Offset);
+}
+
+
+/// <Summary>
+/// Animates the scale of the [FloatingActionButton].
+///
+/// The animation should both start and end with a value of 1.0.
+///
+/// For example, to create an animation that linearly scales out and then back in,
+/// you could join animations that pass each other:
+///
+/// ```dart
+///   @override
+///   Animation<double> getScaleAnimation({@required Animation<double> parent}) {
+///     // The animations will cross at value 0, and the train will return to 1.0.
+///     return TrainHoppingAnimation(
+///       Tween<double>(begin: 1.0, end: -1.0).animate(parent),
+///       Tween<double>(begin: -1.0, end: 1.0).animate(parent),
+///     );
+///   }
+/// ```
+/// </Summary>
+public virtual FlutterSDK.Animation.Animation.Animation<double> GetScaleAnimation(FlutterSDK.Animation.Animation.Animation<double> parent = default(FlutterSDK.Animation.Animation.Animation<double>))
+{
+    return default(Animation<double>);
+}
+
+
+/// <Summary>
+/// Animates the rotation of [Scaffold.floatingActionButton].
+///
+/// The animation should both start and end with a value of 0.0 or 1.0.
+///
+/// The animation values are a fraction of a full circle, with 0.0 and 1.0
+/// corresponding to 0 and 360 degrees, while 0.5 corresponds to 180 degrees.
+///
+/// For example, to create a rotation animation that rotates the
+/// [FloatingActionButton] through a full circle:
+///
+/// ```dart
+/// @override
+/// Animation<double> getRotationAnimation({@required Animation<double> parent}) {
+///   return Tween<double>(begin: 0.0, end: 1.0).animate(parent);
+/// }
+/// ```
+/// </Summary>
+public virtual FlutterSDK.Animation.Animation.Animation<double> GetRotationAnimation(FlutterSDK.Animation.Animation.Animation<double> parent = default(FlutterSDK.Animation.Animation.Animation<double>))
+{
+    return default(Animation<double>);
+}
+
+
+/// <Summary>
+/// Gets the progress value to restart a motion animation from when the animation is interrupted.
+///
+/// [previousValue] is the value of the animation before it was interrupted.
+///
+/// The restart of the animation will affect all three parts of the motion animation:
+/// offset animation, scale animation, and rotation animation.
+///
+/// An interruption triggers if the [Scaffold] is given a new [FloatingActionButtonLocation]
+/// while it is still animating a transition between two previous [FloatingActionButtonLocation]s.
+///
+/// A sensible default is usually 0.0, which is the same as restarting
+/// the animation from the beginning, regardless of the original state of the animation.
+/// </Summary>
+public virtual double GetAnimationRestart(double previousValue) => 0.0;
+
+
+
+#endregion
+}
+
+
+public class _ScalingFabMotionAnimator : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator
+{
+    #region constructors
+    public _ScalingFabMotionAnimator()
+
+}
+#endregion
+
+#region fields
+internal virtual FlutterSDK.Animation.Tween.Animatable<double> _RotationTween { get; set; }
+internal virtual FlutterSDK.Animation.Tween.Animatable<double> _ThresholdCenterTween { get; set; }
+#endregion
+
+#region methods
+
+public new Offset GetOffset(FlutterBinding.UI.Offset begin = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset end = default(FlutterBinding.UI.Offset), double progress = default(double))
+{
+    if (progress < 0.5)
     {
-        #region constructors
-        public _ScalingFabMotionAnimator()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Animation.Tween.Animatable<double> _RotationTween { get; set; }
-        internal virtual FlutterSDK.Animation.Tween.Animatable<double> _ThresholdCenterTween { get; set; }
-        #endregion
-
-        #region methods
-
-        public new Offset GetOffset(FlutterBinding.UI.Offset begin = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset end = default(FlutterBinding.UI.Offset), double progress = default(double)) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Animation.Animation.Animation<double> GetScaleAnimation(FlutterSDK.Animation.Animation.Animation<double> parent = default(FlutterSDK.Animation.Animation.Animation<double>)) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Animation.Animation.Animation<double> GetRotationAnimation(FlutterSDK.Animation.Animation.Animation<double> parent = default(FlutterSDK.Animation.Animation.Animation<double>)) { throw new NotImplementedException(); }
-
-
-        public new double GetAnimationRestart(double previousValue) { throw new NotImplementedException(); }
-
-        #endregion
+        return begin;
+    }
+    else
+    {
+        return end;
     }
 
+}
 
-    /// <Summary>
-    /// An animation that swaps from one animation to the next when the [parent] passes [swapThreshold].
-    ///
-    /// The [value] of this animation is the value of [first] when [parent.value] < [swapThreshold]
-    /// and the value of [next] otherwise.
-    /// </Summary>
-    public class _AnimationSwap<T> : FlutterSDK.Animation.Animations.CompoundAnimation<T>
-    {
-        #region constructors
-        public _AnimationSwap(FlutterSDK.Animation.Animation.Animation<T> first, FlutterSDK.Animation.Animation.Animation<T> next, FlutterSDK.Animation.Animation.Animation<double> parent, double swapThreshold)
-        : base(first: first, next: next)
-        {
-            this.Parent = parent;
-            this.SwapThreshold = swapThreshold; throw new NotImplementedException();
-        }
-        #endregion
 
-        #region fields
-        public virtual FlutterSDK.Animation.Animation.Animation<double> Parent { get; set; }
-        public virtual double SwapThreshold { get; set; }
-        public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
 
-        #region methods
-        #endregion
-    }
+
+public new FlutterSDK.Animation.Animation.Animation<double> GetScaleAnimation(FlutterSDK.Animation.Animation.Animation<double> parent = default(FlutterSDK.Animation.Animation.Animation<double>))
+{
+    Curve curve = new Interval(0.5, 1.0, curve: CurvesDefaultClass.Curves.Ease);
+    return new _AnimationSwap<double>(new ReverseAnimation(parent.Drive(new CurveTween(curve: curve.Flipped))), parent.Drive(new CurveTween(curve: curve)), parent, 0.5);
+}
+
+
+
+
+public new FlutterSDK.Animation.Animation.Animation<double> GetRotationAnimation(FlutterSDK.Animation.Animation.Animation<double> parent = default(FlutterSDK.Animation.Animation.Animation<double>))
+{
+    return new _AnimationSwap<double>(parent.Drive(_RotationTween), new ReverseAnimation(parent.Drive(_ThresholdCenterTween)), parent, 0.5);
+}
+
+
+
+
+public new double GetAnimationRestart(double previousValue) => Math.Dart:mathDefaultClass.Min(1.0 - previousValue, previousValue);
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// An animation that swaps from one animation to the next when the [parent] passes [swapThreshold].
+///
+/// The [value] of this animation is the value of [first] when [parent.value] < [swapThreshold]
+/// and the value of [next] otherwise.
+/// </Summary>
+public class _AnimationSwap<T> : FlutterSDK.Animation.Animations.CompoundAnimation<T>
+{
+    #region constructors
+    public _AnimationSwap(FlutterSDK.Animation.Animation.Animation<T> first, FlutterSDK.Animation.Animation.Animation<T> next, FlutterSDK.Animation.Animation.Animation<double> parent, double swapThreshold)
+    : base(first: first, next: next)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Animation.Animation.Animation<double> Parent { get; set; }
+public virtual double SwapThreshold { get; set; }
+public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+#endregion
+}
 
 }

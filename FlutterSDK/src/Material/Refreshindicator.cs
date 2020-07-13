@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -461,131 +461,317 @@ namespace FlutterSDK.Material.Refreshindicator
         #region constructors
         public RefreshIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), double displacement = 40.0, FlutterSDK.Material.Refreshindicator.RefreshCallback onRefresh = default(FlutterSDK.Material.Refreshindicator.RefreshCallback), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Scrollnotification.ScrollNotificationPredicate notificationPredicate = default(FlutterSDK.Widgets.Scrollnotification.ScrollNotificationPredicate), string semanticsLabel = default(string), string semanticsValue = default(string), double strokeWidth = 2.0)
         : base(key: key)
+    
+}
+    #endregion
+
+    #region fields
+    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+    public virtual double Displacement { get; set; }
+    public virtual FlutterSDK.Material.Refreshindicator.RefreshCallback OnRefresh { get; set; }
+    public virtual FlutterBinding.UI.Color Color { get; set; }
+    public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+    public virtual FlutterSDK.Widgets.Scrollnotification.ScrollNotificationPredicate NotificationPredicate { get; set; }
+    public virtual string SemanticsLabel { get; set; }
+    public virtual string SemanticsValue { get; set; }
+    public virtual double StrokeWidth { get; set; }
+    #endregion
+
+    #region methods
+
+    public new FlutterSDK.Material.Refreshindicator.RefreshIndicatorState CreateState() => new RefreshIndicatorState();
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Contains the state for a [RefreshIndicator]. This class can be used to
+/// programmatically show the refresh indicator, see the [show] method.
+/// </Summary>
+public class RefreshIndicatorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Refreshindicator.RefreshIndicator>, ITickerProviderStateMixin<FlutterSDK.Material.Refreshindicator.RefreshIndicator>
+{
+    #region constructors
+    public RefreshIndicatorState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _PositionController { get; set; }
+    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _ScaleController { get; set; }
+    internal virtual FlutterSDK.Animation.Animation.Animation<double> _PositionFactor { get; set; }
+    internal virtual FlutterSDK.Animation.Animation.Animation<double> _ScaleFactor { get; set; }
+    internal virtual FlutterSDK.Animation.Animation.Animation<double> _Value { get; set; }
+    internal virtual FlutterSDK.Animation.Animation.Animation<Color> _ValueColor { get; set; }
+    internal virtual FlutterSDK.Material.Refreshindicator._RefreshIndicatorMode _Mode { get; set; }
+    internal virtual Future<object> _PendingRefreshFuture { get; set; }
+    internal virtual bool _IsIndicatorAtTop { get; set; }
+    internal virtual double _DragOffset { get; set; }
+    internal virtual FlutterSDK.Animation.Tween.Animatable<double> _ThreeQuarterTween { get; set; }
+    internal virtual FlutterSDK.Animation.Tween.Animatable<double> _KDragSizeFactorLimitTween { get; set; }
+    internal virtual FlutterSDK.Animation.Tween.Animatable<double> _OneToZeroTween { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
+    {
+        base.InitState();
+        _PositionController = new AnimationController(vsync: this);
+        _PositionFactor = _PositionController.Drive(_KDragSizeFactorLimitTween);
+        _Value = _PositionController.Drive(_ThreeQuarterTween);
+        _ScaleController = new AnimationController(vsync: this);
+        _ScaleFactor = _ScaleController.Drive(_OneToZeroTween);
+    }
+
+
+
+
+    public new void DidChangeDependencies()
+    {
+        ThemeData theme = ThemeDefaultClass.Theme.Of(Context);
+        _ValueColor = _PositionController.Drive(new ColorTween(begin: (Widget.Color ?? theme.AccentColor).WithOpacity(0.0), end: (Widget.Color ?? theme.AccentColor).WithOpacity(1.0)).Chain(new CurveTween(curve: new Interval(0.0, 1.0 / RefreshindicatorDefaultClass._KDragSizeFactorLimit))));
+        base.DidChangeDependencies();
+    }
+
+
+
+
+    public new void Dispose()
+    {
+        _PositionController.Dispose();
+        _ScaleController.Dispose();
+        base.Dispose();
+    }
+
+
+
+
+    private bool _HandleScrollNotification(FlutterSDK.Widgets.Scrollnotification.ScrollNotification notification)
+    {
+        if (!Widget.NotificationPredicate(notification)) return false;
+        if (notification is ScrollStartNotification && notification.Metrics.ExtentBefore == 0.0 && _Mode == null && _Start(notification.Metrics.AxisDirection))
         {
-            this.Child = child;
-            this.Displacement = displacement;
-            this.OnRefresh = onRefresh;
-            this.Color = color;
-            this.BackgroundColor = backgroundColor;
-            this.NotificationPredicate = notificationPredicate;
-            this.SemanticsLabel = semanticsLabel;
-            this.SemanticsValue = semanticsValue;
-            this.StrokeWidth = strokeWidth; throw new NotImplementedException();
+            SetState(() =>
+            {
+                _Mode = _RefreshIndicatorMode.Drag;
+            }
+            );
+            return false;
         }
-        #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual double Displacement { get; set; }
-        public virtual FlutterSDK.Material.Refreshindicator.RefreshCallback OnRefresh { get; set; }
-        public virtual FlutterBinding.UI.Color Color { get; set; }
-        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-        public virtual FlutterSDK.Widgets.Scrollnotification.ScrollNotificationPredicate NotificationPredicate { get; set; }
-        public virtual string SemanticsLabel { get; set; }
-        public virtual string SemanticsValue { get; set; }
-        public virtual double StrokeWidth { get; set; }
-        #endregion
+        bool indicatorAtTopNow = default(bool);
+        switch (notification.Metrics.AxisDirection) { case AxisDirection.Down: indicatorAtTopNow = true; break; case AxisDirection.Up: indicatorAtTopNow = false; break; case AxisDirection.Left: case AxisDirection.Right: indicatorAtTopNow = null; break; }
+        if (indicatorAtTopNow != _IsIndicatorAtTop)
+        {
+            if (_Mode == _RefreshIndicatorMode.Drag || _Mode == _RefreshIndicatorMode.Armed) _Dismiss(_RefreshIndicatorMode.Canceled);
+        }
+        else if (notification is ScrollUpdateNotification)
+        {
+            if (_Mode == _RefreshIndicatorMode.Drag || _Mode == _RefreshIndicatorMode.Armed)
+            {
+                if (((ScrollUpdateNotification)notification).Metrics.ExtentBefore > 0.0)
+                {
+                    _Dismiss(_RefreshIndicatorMode.Canceled);
+                }
+                else
+                {
+                    _DragOffset -= notification.ScrollDelta;
+                    _CheckDragOffset(notification.Metrics.ViewportDimension);
+                }
 
-        #region methods
+            }
 
-        public new FlutterSDK.Material.Refreshindicator.RefreshIndicatorState CreateState() { throw new NotImplementedException(); }
+            if (_Mode == _RefreshIndicatorMode.Armed && notification.DragDetails == null)
+            {
+                _Show();
+            }
 
-        #endregion
+        }
+        else if (notification is OverscrollNotification)
+        {
+            if (_Mode == _RefreshIndicatorMode.Drag || _Mode == _RefreshIndicatorMode.Armed)
+            {
+                _DragOffset -= ((OverscrollNotification)notification).Overscroll / 2.0;
+                _CheckDragOffset(((OverscrollNotification)notification).Metrics.ViewportDimension);
+            }
+
+        }
+        else if (notification is ScrollEndNotification)
+        {
+            switch (_Mode) { case _RefreshIndicatorMode.Armed: _Show(); break; case _RefreshIndicatorMode.Drag: _Dismiss(_RefreshIndicatorMode.Canceled); break; default: break; }
+        }
+
+        return false;
     }
 
 
-    /// <Summary>
-    /// Contains the state for a [RefreshIndicator]. This class can be used to
-    /// programmatically show the refresh indicator, see the [show] method.
-    /// </Summary>
-    public class RefreshIndicatorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Refreshindicator.RefreshIndicator>, ITickerProviderStateMixin<FlutterSDK.Material.Refreshindicator.RefreshIndicator>
+
+
+    private bool _HandleGlowNotification(FlutterSDK.Widgets.Overscrollindicator.OverscrollIndicatorNotification notification)
     {
-        #region constructors
-        public RefreshIndicatorState()
-        { }
-        #endregion
+        if (notification.Depth != 0 || !notification.Leading) return false;
+        if (_Mode == _RefreshIndicatorMode.Drag)
+        {
+            notification.DisallowGlow();
+            return true;
+        }
 
-        #region fields
-        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _PositionController { get; set; }
-        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _ScaleController { get; set; }
-        internal virtual FlutterSDK.Animation.Animation.Animation<double> _PositionFactor { get; set; }
-        internal virtual FlutterSDK.Animation.Animation.Animation<double> _ScaleFactor { get; set; }
-        internal virtual FlutterSDK.Animation.Animation.Animation<double> _Value { get; set; }
-        internal virtual FlutterSDK.Animation.Animation.Animation<Color> _ValueColor { get; set; }
-        internal virtual FlutterSDK.Material.Refreshindicator._RefreshIndicatorMode _Mode { get; set; }
-        internal virtual Future<object> _PendingRefreshFuture { get; set; }
-        internal virtual bool _IsIndicatorAtTop { get; set; }
-        internal virtual double _DragOffset { get; set; }
-        internal virtual FlutterSDK.Animation.Tween.Animatable<double> _ThreeQuarterTween { get; set; }
-        internal virtual FlutterSDK.Animation.Tween.Animatable<double> _KDragSizeFactorLimitTween { get; set; }
-        internal virtual FlutterSDK.Animation.Tween.Animatable<double> _OneToZeroTween { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void DidChangeDependencies() { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        private bool _HandleScrollNotification(FlutterSDK.Widgets.Scrollnotification.ScrollNotification notification) { throw new NotImplementedException(); }
-
-
-        private bool _HandleGlowNotification(FlutterSDK.Widgets.Overscrollindicator.OverscrollIndicatorNotification notification) { throw new NotImplementedException(); }
-
-
-        private bool _Start(FlutterSDK.Painting.Basictypes.AxisDirection direction) { throw new NotImplementedException(); }
-
-
-        private void _CheckDragOffset(double containerExtent) { throw new NotImplementedException(); }
-
-
-        private Future<object> _Dismiss(FlutterSDK.Material.Refreshindicator._RefreshIndicatorMode newMode) { throw new NotImplementedException(); }
-
-
-        private void _Show() { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Show the refresh indicator and run the refresh callback as if it had
-        /// been started interactively. If this method is called while the refresh
-        /// callback is running, it quietly does nothing.
-        ///
-        /// Creating the [RefreshIndicator] with a [GlobalKey<RefreshIndicatorState>]
-        /// makes it possible to refer to the [RefreshIndicatorState].
-        ///
-        /// The future returned from this method completes when the
-        /// [RefreshIndicator.onRefresh] callback's future completes.
-        ///
-        /// If you await the future returned by this function from a [State], you
-        /// should check that the state is still [mounted] before calling [setState].
-        ///
-        /// When initiated in this manner, the refresh indicator is independent of any
-        /// actual scroll view. It defaults to showing the indicator at the top. To
-        /// show it at the bottom, set `atTop` to false.
-        /// </Summary>
-        public virtual Future<object> Show(bool atTop = true) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        return false;
     }
 
 
-    public enum _RefreshIndicatorMode
+
+
+    private bool _Start(FlutterSDK.Painting.Basictypes.AxisDirection direction)
     {
 
-        Drag,
-        Armed,
-        Snap,
-        Refresh,
-        Done,
-        Canceled,
+
+
+        switch (direction) { case AxisDirection.Down: _IsIndicatorAtTop = true; break; case AxisDirection.Up: _IsIndicatorAtTop = false; break; case AxisDirection.Left: case AxisDirection.Right: _IsIndicatorAtTop = null; return false; }
+        _DragOffset = 0.0;
+        _ScaleController.Value = 0.0;
+        _PositionController.Value = 0.0;
+        return true;
     }
+
+
+
+
+    private void _CheckDragOffset(double containerExtent)
+    {
+
+        double newValue = _DragOffset / (containerExtent * RefreshindicatorDefaultClass._KDragContainerExtentPercentage);
+        if (_Mode == _RefreshIndicatorMode.Armed) newValue = Math.Dart:mathDefaultClass.Max(newValue, 1.0 / RefreshindicatorDefaultClass._KDragSizeFactorLimit);
+        _PositionController.Value = newValue.Clamp(0.0, 1.0) as double;
+        if (_Mode == _RefreshIndicatorMode.Drag && _ValueColor.Value.Alpha == 0xFF) _Mode = _RefreshIndicatorMode.Armed;
+    }
+
+
+
+
+    private Future<object> _Dismiss(FlutterSDK.Material.Refreshindicator._RefreshIndicatorMode newMode)
+async
+{
+await Future<void>.Value();
+
+    SetState(() => {
+        _Mode = newMode;
+    }
+);
+switch (_Mode){case _RefreshIndicatorMode.Done:await _ScaleController.AnimateTo(1.0, duration:RefreshindicatorDefaultClass._KIndicatorScaleDuration);break;case _RefreshIndicatorMode.Canceled:await _PositionController.AnimateTo(0.0, duration:RefreshindicatorDefaultClass._KIndicatorScaleDuration);break;default :}
+if (Mounted && _Mode == newMode)
+{
+    _DragOffset = null;
+    _IsIndicatorAtTop = null;
+    SetState(() =>
+    {
+        _Mode = null;
+    }
+    );
+}
+
+}
+
+
+
+
+private void _Show()
+{
+
+
+    Completer<void> completer = new Completer<void>();
+    _PendingRefreshFuture = completer.Future;
+    _Mode = _RefreshIndicatorMode.Snap;
+    _PositionController.AnimateTo(1.0 / RefreshindicatorDefaultClass._KDragSizeFactorLimit, duration: RefreshindicatorDefaultClass._KIndicatorSnapDuration).Then((void value) =>
+    {
+        if (Mounted && _Mode == _RefreshIndicatorMode.Snap)
+        {
+
+            SetState(() =>
+            {
+                _Mode = _RefreshIndicatorMode.Refresh;
+            }
+            );
+            Future<void> refreshResult = Widget.OnRefresh();
+
+            if (refreshResult == null) return;
+            refreshResult.WhenComplete(() =>
+            {
+                if (Mounted && _Mode == _RefreshIndicatorMode.Refresh)
+                {
+                    completer.Complete();
+                    _Dismiss(_RefreshIndicatorMode.Done);
+                }
+
+            }
+            );
+        }
+
+    }
+    );
+}
+
+
+
+
+/// <Summary>
+/// Show the refresh indicator and run the refresh callback as if it had
+/// been started interactively. If this method is called while the refresh
+/// callback is running, it quietly does nothing.
+///
+/// Creating the [RefreshIndicator] with a [GlobalKey<RefreshIndicatorState>]
+/// makes it possible to refer to the [RefreshIndicatorState].
+///
+/// The future returned from this method completes when the
+/// [RefreshIndicator.onRefresh] callback's future completes.
+///
+/// If you await the future returned by this function from a [State], you
+/// should check that the state is still [mounted] before calling [setState].
+///
+/// When initiated in this manner, the refresh indicator is independent of any
+/// actual scroll view. It defaults to showing the indicator at the top. To
+/// show it at the bottom, set `atTop` to false.
+/// </Summary>
+public virtual Future<object> Show(bool atTop = true)
+{
+    if (_Mode != _RefreshIndicatorMode.Refresh && _Mode != _RefreshIndicatorMode.Snap)
+    {
+        if (_Mode == null) _Start(atTop ? AxisDirection.Down : AxisDirection.Up);
+        _Show();
+    }
+
+    return _PendingRefreshFuture;
+}
+
+
+
+
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+
+    Widget child = new NotificationListener<ScrollNotification>(onNotification: _HandleScrollNotification, child: new NotificationListener<OverscrollIndicatorNotification>(onNotification: _HandleGlowNotification, child: Widget.Child));
+
+    bool showIndeterminateIndicator = _Mode == _RefreshIndicatorMode.Refresh || _Mode == _RefreshIndicatorMode.Done;
+    return new Stack(children: new List<Widget>() { child, });
+}
+
+
+
+#endregion
+}
+
+
+public enum _RefreshIndicatorMode
+{
+
+    Drag,
+    Armed,
+    Snap,
+    Refresh,
+    Done,
+    Canceled,
+}
 
 }

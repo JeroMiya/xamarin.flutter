@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -316,223 +316,425 @@ namespace FlutterSDK.Gestures.Scale
         #region constructors
         public ScaleStartDetails(FlutterBinding.UI.Offset focalPoint = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localFocalPoint = default(FlutterBinding.UI.Offset))
         : base()
-        {
-            this.FocalPoint = focalPoint; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterBinding.UI.Offset FocalPoint { get; set; }
-        public virtual FlutterBinding.UI.Offset LocalFocalPoint { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterBinding.UI.Offset FocalPoint { get; set; }
+    public virtual FlutterBinding.UI.Offset LocalFocalPoint { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        #endregion
+    #endregion
+}
+
+
+/// <Summary>
+/// Details for [GestureScaleUpdateCallback].
+/// </Summary>
+public class ScaleUpdateDetails
+{
+    #region constructors
+    public ScaleUpdateDetails(FlutterBinding.UI.Offset focalPoint = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localFocalPoint = default(FlutterBinding.UI.Offset), double scale = 1.0, double horizontalScale = 1.0, double verticalScale = 1.0, double rotation = 0.0)
+    : base()
+
+}
+#endregion
+
+#region fields
+public virtual FlutterBinding.UI.Offset FocalPoint { get; set; }
+public virtual FlutterBinding.UI.Offset LocalFocalPoint { get; set; }
+public virtual double Scale { get; set; }
+public virtual double HorizontalScale { get; set; }
+public virtual double VerticalScale { get; set; }
+public virtual double Rotation { get; set; }
+#endregion
+
+#region methods
+
+#endregion
+}
+
+
+/// <Summary>
+/// Details for [GestureScaleEndCallback].
+/// </Summary>
+public class ScaleEndDetails
+{
+    #region constructors
+    public ScaleEndDetails(FlutterSDK.Gestures.Velocitytracker.Velocity velocity = default(FlutterSDK.Gestures.Velocitytracker.Velocity))
+    : base()
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Gestures.Velocitytracker.Velocity Velocity { get; set; }
+#endregion
+
+#region methods
+
+#endregion
+}
+
+
+/// <Summary>
+/// Defines a line between two pointers on screen.
+///
+/// [_LineBetweenPointers] is an abstraction of a line between two pointers in
+/// contact with the screen. Used to track the rotation of a scale gesture.
+/// </Summary>
+public class _LineBetweenPointers
+{
+    #region constructors
+    public _LineBetweenPointers(FlutterBinding.UI.Offset pointerStartLocation = default(FlutterBinding.UI.Offset), int pointerStartId = 0, FlutterBinding.UI.Offset pointerEndLocation = default(FlutterBinding.UI.Offset), int pointerEndId = 1)
+    : base()
+
+}
+#endregion
+
+#region fields
+public virtual FlutterBinding.UI.Offset PointerStartLocation { get; set; }
+public virtual int PointerStartId { get; set; }
+public virtual FlutterBinding.UI.Offset PointerEndLocation { get; set; }
+public virtual int PointerEndId { get; set; }
+#endregion
+
+#region methods
+#endregion
+}
+
+
+/// <Summary>
+/// Recognizes a scale gesture.
+///
+/// [ScaleGestureRecognizer] tracks the pointers in contact with the screen and
+/// calculates their focal point, indicated scale, and rotation. When a focal
+/// pointer is established, the recognizer calls [onStart]. As the focal point,
+/// scale, rotation change, the recognizer calls [onUpdate]. When the pointers
+/// are no longer in contact with the screen, the recognizer calls [onEnd].
+/// </Summary>
+public class ScaleGestureRecognizer : FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer
+{
+    #region constructors
+    public ScaleGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
+    : base(debugOwner: debugOwner, kind: kind)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Gestures.Scale.GestureScaleStartCallback OnStart { get; set; }
+public virtual FlutterSDK.Gestures.Scale.GestureScaleUpdateCallback OnUpdate { get; set; }
+public virtual FlutterSDK.Gestures.Scale.GestureScaleEndCallback OnEnd { get; set; }
+internal virtual FlutterSDK.Gestures.Scale._ScaleState _State { get; set; }
+internal virtual Matrix4 _LastTransform { get; set; }
+internal virtual FlutterBinding.UI.Offset _InitialFocalPoint { get; set; }
+internal virtual FlutterBinding.UI.Offset _CurrentFocalPoint { get; set; }
+internal virtual double _InitialSpan { get; set; }
+internal virtual double _CurrentSpan { get; set; }
+internal virtual double _InitialHorizontalSpan { get; set; }
+internal virtual double _CurrentHorizontalSpan { get; set; }
+internal virtual double _InitialVerticalSpan { get; set; }
+internal virtual double _CurrentVerticalSpan { get; set; }
+internal virtual FlutterSDK.Gestures.Scale._LineBetweenPointers _InitialLine { get; set; }
+internal virtual FlutterSDK.Gestures.Scale._LineBetweenPointers _CurrentLine { get; set; }
+internal virtual Dictionary<int, Offset> _PointerLocations { get; set; }
+internal virtual List<int> _PointerQueue { get; set; }
+internal virtual Dictionary<int, FlutterSDK.Gestures.Velocitytracker.VelocityTracker> _VelocityTrackers { get; set; }
+internal virtual double _ScaleFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+internal virtual double _HorizontalScaleFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+internal virtual double _VerticalScaleFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+private double _ComputeRotationFactor()
+{
+    if (_InitialLine == null || _CurrentLine == null)
+    {
+        return 0.0;
     }
 
+    double fx = _InitialLine.PointerStartLocation.Dx;
+    double fy = _InitialLine.PointerStartLocation.Dy;
+    double sx = _InitialLine.PointerEndLocation.Dx;
+    double sy = _InitialLine.PointerEndLocation.Dy;
+    double nfx = _CurrentLine.PointerStartLocation.Dx;
+    double nfy = _CurrentLine.PointerStartLocation.Dy;
+    double nsx = _CurrentLine.PointerEndLocation.Dx;
+    double nsy = _CurrentLine.PointerEndLocation.Dy;
+    double angle1 = Math.Dart:mathDefaultClass.Atan2(fy - sy, fx - sx);
+double angle2 = Math.Dart:mathDefaultClass.Atan2(nfy - nsy, nfx - nsx);
+return angle2 - angle1;
+}
+
+
+
+
+public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerEvent @event)
+{
+    StartTrackingPointer(@event.Pointer, @event.Transform);
+    _VelocityTrackers[@event.Pointer] = new VelocityTracker();
+    if (_State == _ScaleState.Ready)
+    {
+        _State = _ScaleState.Possible;
+        _InitialSpan = 0.0;
+        _CurrentSpan = 0.0;
+        _InitialHorizontalSpan = 0.0;
+        _CurrentHorizontalSpan = 0.0;
+        _InitialVerticalSpan = 0.0;
+        _CurrentVerticalSpan = 0.0;
+        _PointerLocations = new Dictionary<int, Offset> { };
+        _PointerQueue = new List<int>() { };
+    }
+
+}
+
+
+
+
+public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event)
+{
+
+    bool didChangeConfiguration = false;
+    bool shouldStartIfAccepted = false;
+    if (@event is PointerMoveEvent)
+    {
+        VelocityTracker tracker = _VelocityTrackers[((PointerMoveEvent)@event).Pointer];
+
+        if (!((PointerMoveEvent)@event).Synthesized) tracker.AddPosition(((PointerMoveEvent)@event).TimeStamp, ((PointerMoveEvent)@event).Position);
+        _PointerLocations[((PointerMoveEvent)@event).Pointer] = ((PointerMoveEvent)@event).Position;
+        shouldStartIfAccepted = true;
+        _LastTransform = ((PointerMoveEvent)@event).Transform;
+    }
+    else if (@event is PointerDownEvent)
+    {
+        _PointerLocations[((PointerDownEvent)@event).Pointer] = ((PointerDownEvent)@event).Position;
+        _PointerQueue.Add(((PointerDownEvent)@event).Pointer);
+        didChangeConfiguration = true;
+        shouldStartIfAccepted = true;
+        _LastTransform = ((PointerDownEvent)@event).Transform;
+    }
+    else if (@event is PointerUpEvent || @event is PointerCancelEvent)
+    {
+        _PointerLocations.Remove(((PointerUpEvent)@event).Pointer);
+        _PointerQueue.Remove(((PointerUpEvent)@event).Pointer);
+        didChangeConfiguration = true;
+        _LastTransform = ((PointerUpEvent)@event).Transform;
+    }
+
+    _UpdateLines();
+    _Update();
+    if (!didChangeConfiguration || _Reconfigure(@event.Pointer)) _AdvanceStateMachine(shouldStartIfAccepted);
+    StopTrackingIfPointerNoLongerDown(@event);
+}
+
+
+
+
+private void _Update()
+{
+    int count = _PointerLocations.Keys.Length;
+    Offset focalPoint = Dart:uiDefaultClass.Offset.Zero;
+foreach (int pointer in _PointerLocations.Keys) focalPoint += _PointerLocations[pointer];
+_CurrentFocalPoint = count > 0 ? focalPoint / count.ToDouble() : Dart:uiDefaultClass.Offset.Zero;
+double totalDeviation = 0.0;
+double totalHorizontalDeviation = 0.0;
+double totalVerticalDeviation = 0.0;
+foreach (int pointer in _PointerLocations.Keys)
+{
+    totalDeviation += (_CurrentFocalPoint - _PointerLocations[pointer]).Distance;
+    totalHorizontalDeviation += (_CurrentFocalPoint.Dx - _PointerLocations[pointer].Dx).Abs();
+    totalVerticalDeviation += (_CurrentFocalPoint.Dy - _PointerLocations[pointer].Dy).Abs();
+}
+
+_CurrentSpan = count > 0 ? totalDeviation / count : 0.0;
+_CurrentHorizontalSpan = count > 0 ? totalHorizontalDeviation / count : 0.0;
+_CurrentVerticalSpan = count > 0 ? totalVerticalDeviation / count : 0.0;
+}
+
+
+
+
+/// <Summary>
+/// Updates [_initialLine] and [_currentLine] accordingly to the situation of
+/// the registered pointers
+/// </Summary>
+private void _UpdateLines()
+{
+    int count = _PointerLocations.Keys.Length;
+
+    if (count < 2)
+    {
+        _InitialLine = _CurrentLine;
+    }
+    else if (_InitialLine != null && _InitialLine.PointerStartId == _PointerQueue[0] && _InitialLine.PointerEndId == _PointerQueue[1])
+    {
+        _CurrentLine = new _LineBetweenPointers(pointerStartId: _PointerQueue[0], pointerStartLocation: _PointerLocations[_PointerQueue[0]], pointerEndId: _PointerQueue[1], pointerEndLocation: _PointerLocations[_PointerQueue[1]]);
+    }
+    else
+    {
+        _InitialLine = new _LineBetweenPointers(pointerStartId: _PointerQueue[0], pointerStartLocation: _PointerLocations[_PointerQueue[0]], pointerEndId: _PointerQueue[1], pointerEndLocation: _PointerLocations[_PointerQueue[1]]);
+        _CurrentLine = null;
+    }
+
+}
+
+
+
+
+private bool _Reconfigure(int pointer)
+{
+    _InitialFocalPoint = _CurrentFocalPoint;
+    _InitialSpan = _CurrentSpan;
+    _InitialLine = _CurrentLine;
+    _InitialHorizontalSpan = _CurrentHorizontalSpan;
+    _InitialVerticalSpan = _CurrentVerticalSpan;
+    if (_State == _ScaleState.Started)
+    {
+        if (OnEnd != null)
+        {
+            VelocityTracker tracker = _VelocityTrackers[pointer];
+
+            Velocity velocity = tracker.GetVelocity();
+            if (ScaleDefaultClass._IsFlingGesture(velocity))
+            {
+                Offset pixelsPerSecond = velocity.PixelsPerSecond;
+                if (pixelsPerSecond.DistanceSquared > ConstantsDefaultClass.KMaxFlingVelocity * ConstantsDefaultClass.KMaxFlingVelocity) velocity = new Velocity(pixelsPerSecond: (pixelsPerSecond / pixelsPerSecond.Distance) * ConstantsDefaultClass.KMaxFlingVelocity);
+                InvokeCallback("onEnd", () => =>OnEnd(new ScaleEndDetails(velocity: velocity)));
+            }
+            else
+            {
+                InvokeCallback("onEnd", () => =>OnEnd(new ScaleEndDetails(velocity: VelocitytrackerDefaultClass.Velocity.Zero)));
+            }
+
+        }
+
+        _State = _ScaleState.Accepted;
+        return false;
+    }
+
+    return true;
+}
+
+
+
+
+private void _AdvanceStateMachine(bool shouldStartIfAccepted)
+{
+    if (_State == _ScaleState.Ready) _State = _ScaleState.Possible;
+    if (_State == _ScaleState.Possible)
+    {
+        double spanDelta = (_CurrentSpan - _InitialSpan).Abs();
+        double focalPointDelta = (_CurrentFocalPoint - _InitialFocalPoint).Distance;
+        if (spanDelta > ConstantsDefaultClass.KScaleSlop || focalPointDelta > ConstantsDefaultClass.KPanSlop) Resolve(GestureDisposition.Accepted);
+    }
+    else if (_State.Index >= _ScaleState.Accepted.Index)
+    {
+        Resolve(GestureDisposition.Accepted);
+    }
+
+    if (_State == _ScaleState.Accepted && shouldStartIfAccepted)
+    {
+        _State = _ScaleState.Started;
+        _DispatchOnStartCallbackIfNeeded();
+    }
+
+    if (_State == _ScaleState.Started && OnUpdate != null) InvokeCallback("onUpdate", () =>
+    {
+        OnUpdate(new ScaleUpdateDetails(scale: _ScaleFactor, horizontalScale: _HorizontalScaleFactor, verticalScale: _VerticalScaleFactor, focalPoint: _CurrentFocalPoint, localFocalPoint: EventsDefaultClass.PointerEvent.TransformPosition(_LastTransform, _CurrentFocalPoint), rotation: _ComputeRotationFactor()));
+    }
+          );
+}
+
+
+
+
+private void _DispatchOnStartCallbackIfNeeded()
+{
+
+    if (OnStart != null) InvokeCallback("onStart", () =>
+    {
+        OnStart(new ScaleStartDetails(focalPoint: _CurrentFocalPoint, localFocalPoint: EventsDefaultClass.PointerEvent.TransformPosition(_LastTransform, _CurrentFocalPoint)));
+    }
+      );
+}
+
+
+
+
+public new void AcceptGesture(int pointer)
+{
+    if (_State == _ScaleState.Possible)
+    {
+        _State = _ScaleState.Started;
+        _DispatchOnStartCallbackIfNeeded();
+    }
+
+}
+
+
+
+
+public new void RejectGesture(int pointer)
+{
+    StopTrackingPointer(pointer);
+}
+
+
+
+
+public new void DidStopTrackingLastPointer(int pointer)
+{
+    switch (_State) { case _ScaleState.Possible: Resolve(GestureDisposition.Rejected); break; case _ScaleState.Ready: break; case _ScaleState.Accepted: break; case _ScaleState.Started: break; }
+    _State = _ScaleState.Ready;
+}
+
+
+
+
+public new void Dispose()
+{
+    _VelocityTrackers.Clear();
+    base.Dispose();
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// The possible states of a [ScaleGestureRecognizer].
+/// </Summary>
+public enum _ScaleState
+{
 
     /// <Summary>
-    /// Details for [GestureScaleUpdateCallback].
+    /// The recognizer is ready to start recognizing a gesture.
     /// </Summary>
-    public class ScaleUpdateDetails
-    {
-        #region constructors
-        public ScaleUpdateDetails(FlutterBinding.UI.Offset focalPoint = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localFocalPoint = default(FlutterBinding.UI.Offset), double scale = 1.0, double horizontalScale = 1.0, double verticalScale = 1.0, double rotation = 0.0)
-        : base()
-        {
-            this.FocalPoint = focalPoint;
-            this.Scale = scale;
-            this.HorizontalScale = horizontalScale;
-            this.VerticalScale = verticalScale;
-            this.Rotation = rotation; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterBinding.UI.Offset FocalPoint { get; set; }
-        public virtual FlutterBinding.UI.Offset LocalFocalPoint { get; set; }
-        public virtual double Scale { get; set; }
-        public virtual double HorizontalScale { get; set; }
-        public virtual double VerticalScale { get; set; }
-        public virtual double Rotation { get; set; }
-        #endregion
-
-        #region methods
-
-        #endregion
-    }
-
-
+    Ready,
     /// <Summary>
-    /// Details for [GestureScaleEndCallback].
+    /// The sequence of pointer events seen thus far is consistent with a scale
+    /// gesture but the gesture has not been accepted definitively.
     /// </Summary>
-    public class ScaleEndDetails
-    {
-        #region constructors
-        public ScaleEndDetails(FlutterSDK.Gestures.Velocitytracker.Velocity velocity = default(FlutterSDK.Gestures.Velocitytracker.Velocity))
-        : base()
-        {
-            this.Velocity = velocity; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Gestures.Velocitytracker.Velocity Velocity { get; set; }
-        #endregion
-
-        #region methods
-
-        #endregion
-    }
-
-
+    Possible,
     /// <Summary>
-    /// Defines a line between two pointers on screen.
-    ///
-    /// [_LineBetweenPointers] is an abstraction of a line between two pointers in
-    /// contact with the screen. Used to track the rotation of a scale gesture.
+    /// The sequence of pointer events seen thus far has been accepted
+    /// definitively as a scale gesture.
     /// </Summary>
-    public class _LineBetweenPointers
-    {
-        #region constructors
-        public _LineBetweenPointers(FlutterBinding.UI.Offset pointerStartLocation = default(FlutterBinding.UI.Offset), int pointerStartId = 0, FlutterBinding.UI.Offset pointerEndLocation = default(FlutterBinding.UI.Offset), int pointerEndId = 1)
-        : base()
-        {
-            this.PointerStartLocation = pointerStartLocation;
-            this.PointerStartId = pointerStartId;
-            this.PointerEndLocation = pointerEndLocation;
-            this.PointerEndId = pointerEndId; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterBinding.UI.Offset PointerStartLocation { get; set; }
-        public virtual int PointerStartId { get; set; }
-        public virtual FlutterBinding.UI.Offset PointerEndLocation { get; set; }
-        public virtual int PointerEndId { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
-    }
-
-
+    Accepted,
     /// <Summary>
-    /// Recognizes a scale gesture.
-    ///
-    /// [ScaleGestureRecognizer] tracks the pointers in contact with the screen and
-    /// calculates their focal point, indicated scale, and rotation. When a focal
-    /// pointer is established, the recognizer calls [onStart]. As the focal point,
-    /// scale, rotation change, the recognizer calls [onUpdate]. When the pointers
-    /// are no longer in contact with the screen, the recognizer calls [onEnd].
+    /// The sequence of pointer events seen thus far has been accepted
+    /// definitively as a scale gesture and the pointers established a focal point
+    /// and initial scale.
     /// </Summary>
-    public class ScaleGestureRecognizer : FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer
-    {
-        #region constructors
-        public ScaleGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
-        : base(debugOwner: debugOwner, kind: kind)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Gestures.Scale.GestureScaleStartCallback OnStart { get; set; }
-        public virtual FlutterSDK.Gestures.Scale.GestureScaleUpdateCallback OnUpdate { get; set; }
-        public virtual FlutterSDK.Gestures.Scale.GestureScaleEndCallback OnEnd { get; set; }
-        internal virtual FlutterSDK.Gestures.Scale._ScaleState _State { get; set; }
-        internal virtual Matrix4 _LastTransform { get; set; }
-        internal virtual FlutterBinding.UI.Offset _InitialFocalPoint { get; set; }
-        internal virtual FlutterBinding.UI.Offset _CurrentFocalPoint { get; set; }
-        internal virtual double _InitialSpan { get; set; }
-        internal virtual double _CurrentSpan { get; set; }
-        internal virtual double _InitialHorizontalSpan { get; set; }
-        internal virtual double _CurrentHorizontalSpan { get; set; }
-        internal virtual double _InitialVerticalSpan { get; set; }
-        internal virtual double _CurrentVerticalSpan { get; set; }
-        internal virtual FlutterSDK.Gestures.Scale._LineBetweenPointers _InitialLine { get; set; }
-        internal virtual FlutterSDK.Gestures.Scale._LineBetweenPointers _CurrentLine { get; set; }
-        internal virtual Dictionary<int, Offset> _PointerLocations { get; set; }
-        internal virtual List<int> _PointerQueue { get; set; }
-        internal virtual Dictionary<int, FlutterSDK.Gestures.Velocitytracker.VelocityTracker> _VelocityTrackers { get; set; }
-        internal virtual double _ScaleFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual double _HorizontalScaleFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual double _VerticalScaleFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        private double _ComputeRotationFactor() { throw new NotImplementedException(); }
-
-
-        public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
-
-
-        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
-
-
-        private void _Update() { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Updates [_initialLine] and [_currentLine] accordingly to the situation of
-        /// the registered pointers
-        /// </Summary>
-        private void _UpdateLines() { throw new NotImplementedException(); }
-
-
-        private bool _Reconfigure(int pointer) { throw new NotImplementedException(); }
-
-
-        private void _AdvanceStateMachine(bool shouldStartIfAccepted) { throw new NotImplementedException(); }
-
-
-        private void _DispatchOnStartCallbackIfNeeded() { throw new NotImplementedException(); }
-
-
-        public new void AcceptGesture(int pointer) { throw new NotImplementedException(); }
-
-
-        public new void RejectGesture(int pointer) { throw new NotImplementedException(); }
-
-
-        public new void DidStopTrackingLastPointer(int pointer) { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// The possible states of a [ScaleGestureRecognizer].
-    /// </Summary>
-    public enum _ScaleState
-    {
-
-        /// <Summary>
-        /// The recognizer is ready to start recognizing a gesture.
-        /// </Summary>
-        Ready,
-        /// <Summary>
-        /// The sequence of pointer events seen thus far is consistent with a scale
-        /// gesture but the gesture has not been accepted definitively.
-        /// </Summary>
-        Possible,
-        /// <Summary>
-        /// The sequence of pointer events seen thus far has been accepted
-        /// definitively as a scale gesture.
-        /// </Summary>
-        Accepted,
-        /// <Summary>
-        /// The sequence of pointer events seen thus far has been accepted
-        /// definitively as a scale gesture and the pointers established a focal point
-        /// and initial scale.
-        /// </Summary>
-        Started,
-    }
+    Started,
+}
 
 }

@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -464,7 +464,10 @@ namespace FlutterSDK.Rendering.Flow
         ///
         /// If [i] is negative or exceeds [childCount], returns null.
         /// </Summary>
-        public virtual Size GetChildSize(int i) { throw new NotImplementedException(); }
+        public virtual Size GetChildSize(int i)
+        {
+            return default(Size);
+        }
 
 
         /// <Summary>
@@ -477,7 +480,9 @@ namespace FlutterSDK.Rendering.Flow
         ///
         /// The container will clip the children to its bounds.
         /// </Summary>
-        public virtual void PaintChild(int i, Matrix4 transform = default(Matrix4), double opacity = 1.0) { throw new NotImplementedException(); }
+        public virtual void PaintChild(int i, Matrix4 transform = default(Matrix4), double opacity = 1.0)
+        {
+        }
 
     }
     public static class FlowPaintingContextMixin
@@ -518,223 +523,414 @@ namespace FlutterSDK.Rendering.Flow
         #region constructors
         public FlowDelegate(FlutterSDK.Foundation.Changenotifier.Listenable repaint = default(FlutterSDK.Foundation.Changenotifier.Listenable))
         : base()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        internal virtual FlutterSDK.Foundation.Changenotifier.Listenable _Repaint { get; set; }
-        #endregion
+    #region fields
+    internal virtual FlutterSDK.Foundation.Changenotifier.Listenable _Repaint { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        /// <Summary>
-        /// Override to control the size of the container for the children.
-        ///
-        /// By default, the flow will be as large as possible. If this function
-        /// returns a size that does not respect the given constraints, the size will
-        /// be adjusted to be as close to the returned size as possible while still
-        /// respecting the constraints.
-        ///
-        /// If this function depends on information other than the given constraints,
-        /// override [shouldRelayout] to indicate when when the container should
-        /// relayout.
-        /// </Summary>
-        public virtual Size GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Override to control the layout constraints given to each child.
-        ///
-        /// By default, the children will receive the given constraints, which are the
-        /// constraints used to size the container. The children need
-        /// not respect the given constraints, but they are required to respect the
-        /// returned constraints. For example, the incoming constraints might require
-        /// the container to have a width of exactly 100.0 and a height of exactly
-        /// 100.0, but this function might give the children looser constraints that
-        /// let them be larger or smaller than 100.0 by 100.0.
-        ///
-        /// If this function depends on information other than the given constraints,
-        /// override [shouldRelayout] to indicate when when the container should
-        /// relayout.
-        /// </Summary>
-        public virtual FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(int i, FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
+    /// <Summary>
+    /// Override to control the size of the container for the children.
+    ///
+    /// By default, the flow will be as large as possible. If this function
+    /// returns a size that does not respect the given constraints, the size will
+    /// be adjusted to be as close to the returned size as possible while still
+    /// respecting the constraints.
+    ///
+    /// If this function depends on information other than the given constraints,
+    /// override [shouldRelayout] to indicate when when the container should
+    /// relayout.
+    /// </Summary>
+    public virtual Size GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints) => constraints.Biggest;
 
 
-        /// <Summary>
-        /// Override to paint the children of the flow.
-        ///
-        /// Children can be painted in any order, but each child can be painted at
-        /// most once. Although the container clips the children to its own bounds, it
-        /// is more efficient to skip painting a child altogether rather than having
-        /// it paint entirely outside the container's clip.
-        ///
-        /// To paint a child, call [FlowPaintingContext.paintChild] on the given
-        /// [FlowPaintingContext] (the `context` argument). The given context is valid
-        /// only within the scope of this function call and contains information (such
-        /// as the size of the container) that is useful for picking transformation
-        /// matrices for the children.
-        ///
-        /// If this function depends on information other than the given context,
-        /// override [shouldRepaint] to indicate when when the container should
-        /// relayout.
-        /// </Summary>
-        public virtual void PaintChildren(FlutterSDK.Rendering.Flow.FlowPaintingContext context) { throw new NotImplementedException(); }
+
+    /// <Summary>
+    /// Override to control the layout constraints given to each child.
+    ///
+    /// By default, the children will receive the given constraints, which are the
+    /// constraints used to size the container. The children need
+    /// not respect the given constraints, but they are required to respect the
+    /// returned constraints. For example, the incoming constraints might require
+    /// the container to have a width of exactly 100.0 and a height of exactly
+    /// 100.0, but this function might give the children looser constraints that
+    /// let them be larger or smaller than 100.0 by 100.0.
+    ///
+    /// If this function depends on information other than the given constraints,
+    /// override [shouldRelayout] to indicate when when the container should
+    /// relayout.
+    /// </Summary>
+    public virtual FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(int i, FlutterSDK.Rendering.Box.BoxConstraints constraints) => constraints;
 
 
-        /// <Summary>
-        /// Override this method to return true when the children need to be laid out.
-        /// This should compare the fields of the current delegate and the given
-        /// oldDelegate and return true if the fields are such that the layout would
-        /// be different.
-        /// </Summary>
-        public virtual bool ShouldRelayout(FlutterSDK.Rendering.Flow.FlowDelegate oldDelegate) { throw new NotImplementedException(); }
 
-
-        /// <Summary>
-        /// Override this method to return true when the children need to be
-        /// repainted. This should compare the fields of the current delegate and the
-        /// given oldDelegate and return true if the fields are such that
-        /// paintChildren would act differently.
-        ///
-        /// The delegate can also trigger a repaint if the delegate provides the
-        /// repaint animation argument to this object's constructor and that animation
-        /// ticks. Triggering a repaint using this animation-based mechanism is more
-        /// efficient than rebuilding the [Flow] widget to change its delegate.
-        ///
-        /// The flow container might repaint even if this function returns false, for
-        /// example if layout triggers painting (e.g., if [shouldRelayout] returns
-        /// true).
-        /// </Summary>
-        public virtual bool ShouldRepaint(FlutterSDK.Rendering.Flow.FlowDelegate oldDelegate) { throw new NotImplementedException(); }
-
-
-        #endregion
+    /// <Summary>
+    /// Override to paint the children of the flow.
+    ///
+    /// Children can be painted in any order, but each child can be painted at
+    /// most once. Although the container clips the children to its own bounds, it
+    /// is more efficient to skip painting a child altogether rather than having
+    /// it paint entirely outside the container's clip.
+    ///
+    /// To paint a child, call [FlowPaintingContext.paintChild] on the given
+    /// [FlowPaintingContext] (the `context` argument). The given context is valid
+    /// only within the scope of this function call and contains information (such
+    /// as the size of the container) that is useful for picking transformation
+    /// matrices for the children.
+    ///
+    /// If this function depends on information other than the given context,
+    /// override [shouldRepaint] to indicate when when the container should
+    /// relayout.
+    /// </Summary>
+    public virtual void PaintChildren(FlutterSDK.Rendering.Flow.FlowPaintingContext context)
+    {
     }
 
 
     /// <Summary>
-    /// Parent data for use with [RenderFlow].
-    ///
-    /// The [offset] property is ignored by [RenderFlow] and is always set to
-    /// [Offset.zero]. Children of a [RenderFlow] are positioned using a
-    /// transformation matrix, which is private to the [RenderFlow]. To set the
-    /// matrix, use the [FlowPaintingContext.paintChild] function from an override
-    /// of the [FlowDelegate.paintChildren] function.
+    /// Override this method to return true when the children need to be laid out.
+    /// This should compare the fields of the current delegate and the given
+    /// oldDelegate and return true if the fields are such that the layout would
+    /// be different.
     /// </Summary>
-    public class FlowParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
-    {
-        #region constructors
-        public FlowParentData()
-        { }
-        #endregion
+    public virtual bool ShouldRelayout(FlutterSDK.Rendering.Flow.FlowDelegate oldDelegate) => false;
 
-        #region fields
-        internal virtual Matrix4 _Transform { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
-    }
 
 
     /// <Summary>
-    /// Implements the flow layout algorithm.
+    /// Override this method to return true when the children need to be
+    /// repainted. This should compare the fields of the current delegate and the
+    /// given oldDelegate and return true if the fields are such that
+    /// paintChildren would act differently.
     ///
-    /// Flow layouts are optimized for repositioning children using transformation
-    /// matrices.
+    /// The delegate can also trigger a repaint if the delegate provides the
+    /// repaint animation argument to this object's constructor and that animation
+    /// ticks. Triggering a repaint using this animation-based mechanism is more
+    /// efficient than rebuilding the [Flow] widget to change its delegate.
     ///
-    /// The flow container is sized independently from the children by the
-    /// [FlowDelegate.getSize] function of the delegate. The children are then sized
-    /// independently given the constraints from the
-    /// [FlowDelegate.getConstraintsForChild] function.
-    ///
-    /// Rather than positioning the children during layout, the children are
-    /// positioned using transformation matrices during the paint phase using the
-    /// matrices from the [FlowDelegate.paintChildren] function. The children can be
-    /// repositioned efficiently by simply repainting the flow.
-    ///
-    /// The most efficient way to trigger a repaint of the flow is to supply a
-    /// repaint argument to the constructor of the [FlowDelegate]. The flow will
-    /// listen to this animation and repaint whenever the animation ticks, avoiding
-    /// both the build and layout phases of the pipeline.
-    ///
-    /// See also:
-    ///
-    ///  * [FlowDelegate]
-    ///  * [RenderStack]
+    /// The flow container might repaint even if this function returns false, for
+    /// example if layout triggers painting (e.g., if [shouldRelayout] returns
+    /// true).
     /// </Summary>
-    public class RenderFlow : FlutterSDK.Rendering.Box.RenderBox, IFlowPaintingContext, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Flow.FlowParentData>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Flow.FlowParentData>
+    public virtual bool ShouldRepaint(FlutterSDK.Rendering.Flow.FlowDelegate oldDelegate)
     {
-        #region constructors
-        public RenderFlow(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Rendering.Flow.FlowDelegate @delegate = default(FlutterSDK.Rendering.Flow.FlowDelegate))
-        : base()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Rendering.Flow.FlowDelegate _Delegate { get; set; }
-        internal virtual List<FlutterSDK.Rendering.Box.RenderBox> _RandomAccessChildren { get; set; }
-        internal virtual List<int> _LastPaintOrder { get; set; }
-        internal virtual FlutterSDK.Rendering.@object.PaintingContext _PaintingContext { get; set; }
-        internal virtual FlutterBinding.UI.Offset _PaintingOffset { get; set; }
-        public virtual FlutterSDK.Rendering.Flow.FlowDelegate @delegate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool IsRepaintBoundary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
-        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
-
-
-        public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner) { throw new NotImplementedException(); }
-        public new void Attach(@Object owner) { throw new NotImplementedException(); }
-
-
-        public new void Detach() { throw new NotImplementedException(); }
-
-
-        private Size _GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new void PerformLayout() { throw new NotImplementedException(); }
-
-
-        public new Size GetChildSize(int i) { throw new NotImplementedException(); }
-
-
-        public new void PaintChild(int i, Matrix4 transform = default(Matrix4), double opacity = 1.0) { throw new NotImplementedException(); }
-
-
-        private void _PaintWithDelegate(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
-
-
-        public new void ApplyPaintTransform(FlutterSDK.Rendering.Box.RenderBox child, Matrix4 transform) { throw new NotImplementedException(); }
-        public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform) { throw new NotImplementedException(); }
-
-        #endregion
+        return default(bool);
     }
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Parent data for use with [RenderFlow].
+///
+/// The [offset] property is ignored by [RenderFlow] and is always set to
+/// [Offset.zero]. Children of a [RenderFlow] are positioned using a
+/// transformation matrix, which is private to the [RenderFlow]. To set the
+/// matrix, use the [FlowPaintingContext.paintChild] function from an override
+/// of the [FlowDelegate.paintChildren] function.
+/// </Summary>
+public class FlowParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
+{
+    #region constructors
+    public FlowParentData()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual Matrix4 _Transform { get; set; }
+    #endregion
+
+    #region methods
+    #endregion
+}
+
+
+/// <Summary>
+/// Implements the flow layout algorithm.
+///
+/// Flow layouts are optimized for repositioning children using transformation
+/// matrices.
+///
+/// The flow container is sized independently from the children by the
+/// [FlowDelegate.getSize] function of the delegate. The children are then sized
+/// independently given the constraints from the
+/// [FlowDelegate.getConstraintsForChild] function.
+///
+/// Rather than positioning the children during layout, the children are
+/// positioned using transformation matrices during the paint phase using the
+/// matrices from the [FlowDelegate.paintChildren] function. The children can be
+/// repositioned efficiently by simply repainting the flow.
+///
+/// The most efficient way to trigger a repaint of the flow is to supply a
+/// repaint argument to the constructor of the [FlowDelegate]. The flow will
+/// listen to this animation and repaint whenever the animation ticks, avoiding
+/// both the build and layout phases of the pipeline.
+///
+/// See also:
+///
+///  * [FlowDelegate]
+///  * [RenderStack]
+/// </Summary>
+public class RenderFlow : FlutterSDK.Rendering.Box.RenderBox, IFlowPaintingContext, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Flow.FlowParentData>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Flow.FlowParentData>
+{
+    #region constructors
+    public RenderFlow(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Rendering.Flow.FlowDelegate @delegate = default(FlutterSDK.Rendering.Flow.FlowDelegate))
+    : base()
+
+AddAll(children);
+}
+
+
+#endregion
+
+#region fields
+internal virtual FlutterSDK.Rendering.Flow.FlowDelegate _Delegate { get; set; }
+internal virtual List<FlutterSDK.Rendering.Box.RenderBox> _RandomAccessChildren { get; set; }
+internal virtual List<int> _LastPaintOrder { get; set; }
+internal virtual FlutterSDK.Rendering.@object.PaintingContext _PaintingContext { get; set; }
+internal virtual FlutterBinding.UI.Offset _PaintingOffset { get; set; }
+public virtual FlutterSDK.Rendering.Flow.FlowDelegate @delegate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual bool IsRepaintBoundary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child)
+{
+    ParentData childParentData = child.ParentData;
+    if (childParentData is FlowParentData) childParentData._Transform = null; else child.ParentData = new FlowParentData();
+}
+
+
+public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
+{
+    ParentData childParentData = child.ParentData;
+    if (childParentData is FlowParentData) childParentData._Transform = null; else child.ParentData = new FlowParentData();
+}
+
+
+
+
+public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner)
+{
+    base.Attach(owner);
+    _Delegate._Repaint?.AddListener(MarkNeedsPaint);
+}
+
+
+public new void Attach(@Object owner)
+{
+    base.Attach(owner);
+    _Delegate._Repaint?.AddListener(MarkNeedsPaint);
+}
+
+
+
+
+public new void Detach()
+{
+    _Delegate._Repaint?.RemoveListener(MarkNeedsPaint);
+    base.Detach();
+}
+
+
+
+
+private Size _GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints)
+{
+
+    return constraints.Constrain(_Delegate.GetSize(constraints));
+}
+
+
+
+
+public new double ComputeMinIntrinsicWidth(double height)
+{
+    double width = _GetSize(BoxConstraints.TightForFinite(height: height)).Width;
+    if (width.IsFinite()) return width;
+    return 0.0;
+}
+
+
+
+
+public new double ComputeMaxIntrinsicWidth(double height)
+{
+    double width = _GetSize(BoxConstraints.TightForFinite(height: height)).Width;
+    if (width.IsFinite()) return width;
+    return 0.0;
+}
+
+
+
+
+public new double ComputeMinIntrinsicHeight(double width)
+{
+    double height = _GetSize(BoxConstraints.TightForFinite(width: width)).Height;
+    if (height.IsFinite()) return height;
+    return 0.0;
+}
+
+
+
+
+public new double ComputeMaxIntrinsicHeight(double width)
+{
+    double height = _GetSize(BoxConstraints.TightForFinite(width: width)).Height;
+    if (height.IsFinite()) return height;
+    return 0.0;
+}
+
+
+
+
+public new void PerformLayout()
+{
+    BoxConstraints constraints = this.Constraints;
+    Size = _GetSize(constraints);
+    int i = 0;
+    _RandomAccessChildren.Clear();
+    RenderBox child = FirstChild;
+    while (child != null)
+    {
+        _RandomAccessChildren.Add(child);
+        BoxConstraints innerConstraints = _Delegate.GetConstraintsForChild(i, constraints);
+        child.Layout(innerConstraints, parentUsesSize: true);
+        FlowParentData childParentData = child.ParentData as FlowParentData;
+        childParentData.Offset = Dart:uiDefaultClass.Offset.Zero;
+        child = childParentData.NextSibling;
+        i += 1;
+    }
+
+}
+
+
+
+
+public new Size GetChildSize(int i)
+{
+    if (i < 0 || i >= _RandomAccessChildren.Count) return null;
+    return _RandomAccessChildren[i].Size;
+}
+
+
+
+
+public new void PaintChild(int i, Matrix4 transform = default(Matrix4), double opacity = 1.0)
+{
+    transform = (transform == null ? Matrix4.Identity() : transform);
+    RenderBox child = _RandomAccessChildren[i];
+    FlowParentData childParentData = child.ParentData as FlowParentData;
+
+    _LastPaintOrder.Add(i);
+    childParentData._Transform = transform;
+    if (opacity == 0.0) return;
+    void Painter(PaintingContext context, Offset offset) => {
+        context.PaintChild(child, offset);
+    }
+
+    if (opacity == 1.0)
+    {
+        _PaintingContext.PushTransform(NeedsCompositing, _PaintingOffset, transform, Painter);
+    }
+    else
+    {
+        _PaintingContext.PushOpacity(_PaintingOffset, Ui.Dart:uiDefaultClass.Color.GetAlphaFromOpacity(opacity), (PaintingContext context, Offset offset) =>
+        {
+            context.PushTransform(NeedsCompositing, offset, transform, Painter);
+        }
+        );
+    }
+
+}
+
+
+
+
+private void _PaintWithDelegate(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+{
+    _LastPaintOrder.Clear();
+    _PaintingContext = context;
+    _PaintingOffset = offset;
+    foreach (RenderBox child in _RandomAccessChildren)
+    {
+        FlowParentData childParentData = child.ParentData as FlowParentData;
+        childParentData._Transform = null;
+    }
+
+    try
+    {
+        _Delegate.PaintChildren(this);
+    }
+    finally
+    {
+        _PaintingContext = null;
+        _PaintingOffset = null;
+    }
+
+}
+
+
+
+
+public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+{
+    context.PushClipRect(NeedsCompositing, offset, Dart: uiDefaultClass.Offset.Zero & Size, _PaintWithDelegate);
+}
+
+
+
+
+public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
+{
+    List<RenderBox> children = GetChildrenAsList();
+    for (int i = _LastPaintOrder.Count - 1; i >= 0; --i)
+    {
+        int childIndex = _LastPaintOrder[i];
+        if (childIndex >= children.Count) continue;
+        RenderBox child = children[childIndex];
+        FlowParentData childParentData = child.ParentData as FlowParentData;
+        Matrix4 transform = childParentData._Transform;
+        if (transform == null) continue;
+        bool absorbed = result.AddWithPaintTransform(transform: transform, position: position, hitTest: (BoxHitTestResult result, Offset position) =>
+        {
+            return child.HitTest(result, position: position);
+        }
+        );
+        if (absorbed) return true;
+    }
+
+    return false;
+}
+
+
+
+
+public new void ApplyPaintTransform(FlutterSDK.Rendering.Box.RenderBox child, Matrix4 transform)
+{
+    FlowParentData childParentData = child.ParentData as FlowParentData;
+    if (childParentData._Transform != null) transform.Multiply(childParentData._Transform);
+    base.ApplyPaintTransform(child, transform);
+}
+
+
+public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform)
+{
+    FlowParentData childParentData = child.ParentData as FlowParentData;
+    if (childParentData._Transform != null) transform.Multiply(childParentData._Transform);
+    base.ApplyPaintTransform(child, transform);
+}
+
+
+
+#endregion
+}
 
 }

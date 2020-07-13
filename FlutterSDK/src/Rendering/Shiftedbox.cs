@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -501,637 +501,1173 @@ namespace FlutterSDK.Rendering.Shiftedbox
     {
         #region constructors
         public RenderShiftedBox(FlutterSDK.Rendering.Box.RenderBox child)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
+    
+this .Child=child;
+}
 
 
-        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
+    #endregion
 
+    #region fields
+    #endregion
 
-        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
+    #region methods
 
-
-        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new double ComputeDistanceToActualBaseline(TextBaseline baseline) { throw new NotImplementedException(); }
-
-
-        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// Insets its child by the given padding.
-    ///
-    /// When passing layout constraints to its child, padding shrinks the
-    /// constraints by the given padding, causing the child to layout at a smaller
-    /// size. Padding then sizes itself to its child's size, inflated by the
-    /// padding, effectively creating empty space around the child.
-    /// </Summary>
-    public class RenderPadding : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
+    public new double ComputeMinIntrinsicWidth(double height)
     {
-        #region constructors
-        public RenderPadding(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-        : base(child)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets _ResolvedPadding { get; set; }
-        internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry _Padding { get; set; }
-        internal virtual TextDirection _TextDirection { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        private void _Resolve() { throw new NotImplementedException(); }
-
-
-        private void _MarkNeedResolution() { throw new NotImplementedException(); }
-
-
-        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new void PerformLayout() { throw new NotImplementedException(); }
-
-
-        public new void DebugPaintSize(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+        if (Child != null) return Child.GetMinIntrinsicWidth(height);
+        return 0.0;
     }
 
 
-    /// <Summary>
-    /// Abstract class for one-child-layout render boxes that use a
-    /// [AlignmentGeometry] to align their children.
-    /// </Summary>
-    public class RenderAligningShiftedBox : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
+
+
+    public new double ComputeMaxIntrinsicWidth(double height)
     {
-        #region constructors
-        public RenderAligningShiftedBox(FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-        : base(child)
-        {
-            throw new NotImplementedException();
-        }
-        public static RenderAligningShiftedBox Mixin(FlutterSDK.Painting.Alignment.AlignmentGeometry alignment, TextDirection textDirection, FlutterSDK.Rendering.Box.RenderBox child)
-        {
-            var instance = new RenderAligningShiftedBox(); throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Painting.Alignment.Alignment _ResolvedAlignment { get; set; }
-        internal virtual FlutterSDK.Painting.Alignment.AlignmentGeometry _Alignment { get; set; }
-        internal virtual TextDirection _TextDirection { get; set; }
-        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        private void _Resolve() { throw new NotImplementedException(); }
-
-
-        private void _MarkNeedResolution() { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Apply the current [alignment] to the [child].
-        ///
-        /// Subclasses should call this method if they have a child, to have
-        /// this class perform the actual alignment. If there is no child,
-        /// do not call this method.
-        ///
-        /// This method must be called after the child has been laid out and
-        /// this object's own size has been set.
-        /// </Summary>
-        public virtual void AlignChild() { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+        if (Child != null) return Child.GetMaxIntrinsicWidth(height);
+        return 0.0;
     }
 
 
-    /// <Summary>
-    /// Positions its child using an [AlignmentGeometry].
-    ///
-    /// For example, to align a box at the bottom right, you would pass this box a
-    /// tight constraint that is bigger than the child's natural size,
-    /// with an alignment of [Alignment.bottomRight].
-    ///
-    /// By default, sizes to be as big as possible in both axes. If either axis is
-    /// unconstrained, then in that direction it will be sized to fit the child's
-    /// dimensions. Using widthFactor and heightFactor you can force this latter
-    /// behavior in all cases.
-    /// </Summary>
-    public class RenderPositionedBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
+
+
+    public new double ComputeMinIntrinsicHeight(double width)
     {
-        #region constructors
-        public RenderPositionedBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), double widthFactor = default(double), double heightFactor = default(double), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection))
-        : base(child: child, alignment: alignment, textDirection: textDirection)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual double _WidthFactor { get; set; }
-        internal virtual double _HeightFactor { get; set; }
-        public virtual double WidthFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual double HeightFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void PerformLayout() { throw new NotImplementedException(); }
-
-
-        public new void DebugPaintSize(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+        if (Child != null) return Child.GetMinIntrinsicHeight(width);
+        return 0.0;
     }
 
 
-    /// <Summary>
-    /// A render object that imposes different constraints on its child than it gets
-    /// from its parent, possibly allowing the child to overflow the parent.
-    ///
-    /// A render overflow box proxies most functions in the render box protocol to
-    /// its child, except that when laying out its child, it passes constraints
-    /// based on the minWidth, maxWidth, minHeight, and maxHeight fields instead of
-    /// just passing the parent's constraints in. Specifically, it overrides any of
-    /// the equivalent fields on the constraints given by the parent with the
-    /// constraints given by these fields for each such field that is not null. It
-    /// then sizes itself based on the parent's constraints' maxWidth and maxHeight,
-    /// ignoring the child's dimensions.
-    ///
-    /// For example, if you wanted a box to always render 50 pixels high, regardless
-    /// of where it was rendered, you would wrap it in a
-    /// RenderConstrainedOverflowBox with minHeight and maxHeight set to 50.0.
-    /// Generally speaking, to avoid confusing behavior around hit testing, a
-    /// RenderConstrainedOverflowBox should usually be wrapped in a RenderClipRect.
-    ///
-    /// The child is positioned according to [alignment]. To position a smaller
-    /// child inside a larger parent, use [RenderPositionedBox] and
-    /// [RenderConstrainedBox] rather than RenderConstrainedOverflowBox.
-    ///
-    /// See also:
-    ///
-    ///  * [RenderUnconstrainedBox] for a render object that allows its children
-    ///    to render themselves unconstrained, expands to fit them, and considers
-    ///    overflow to be an error.
-    ///  * [RenderSizedOverflowBox], a render object that is a specific size but
-    ///    passes its original constraints through to its child, which it allows to
-    ///    overflow.
-    /// </Summary>
-    public class RenderConstrainedOverflowBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
+
+
+    public new double ComputeMaxIntrinsicHeight(double width)
     {
-        #region constructors
-        public RenderConstrainedOverflowBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), double minWidth = default(double), double maxWidth = default(double), double minHeight = default(double), double maxHeight = default(double), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection))
-        : base(child: child, alignment: alignment, textDirection: textDirection)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual double _MinWidth { get; set; }
-        internal virtual double _MaxWidth { get; set; }
-        internal virtual double _MinHeight { get; set; }
-        internal virtual double _MaxHeight { get; set; }
-        public virtual double MinWidth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual double MaxWidth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual double MinHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual double MaxHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        private FlutterSDK.Rendering.Box.BoxConstraints _GetInnerConstraints(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
-
-
-        public new void PerformResize() { throw new NotImplementedException(); }
-
-
-        public new void PerformLayout() { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+        if (Child != null) return Child.GetMaxIntrinsicHeight(width);
+        return 0.0;
     }
 
 
-    /// <Summary>
-    /// Renders a box, imposing no constraints on its child, allowing the child to
-    /// render at its "natural" size.
-    ///
-    /// This allows a child to render at the size it would render if it were alone
-    /// on an infinite canvas with no constraints. This box will then attempt to
-    /// adopt the same size, within the limits of its own constraints. If it ends
-    /// up with a different size, it will align the child based on [alignment].
-    /// If the box cannot expand enough to accommodate the entire child, the
-    /// child will be clipped.
-    ///
-    /// In debug mode, if the child overflows the box, a warning will be printed on
-    /// the console, and black and yellow striped areas will appear where the
-    /// overflow occurs.
-    ///
-    /// See also:
-    ///
-    ///  * [RenderConstrainedBox], which renders a box which imposes constraints
-    ///    on its child.
-    ///  * [RenderConstrainedOverflowBox], which renders a box that imposes different
-    ///    constraints on its child than it gets from its parent, possibly allowing
-    ///    the child to overflow the parent.
-    ///  * [RenderSizedOverflowBox], a render object that is a specific size but
-    ///    passes its original constraints through to its child, which it allows to
-    ///    overflow.
-    /// </Summary>
-    public class RenderUnconstrainedBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox, IDebugOverflowIndicatorMixin
+
+
+    public new double ComputeDistanceToActualBaseline(TextBaseline baseline)
     {
-        #region constructors
-        public RenderUnconstrainedBox(FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Basictypes.Axis constrainedAxis = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-        : base(alignment, textDirection, child)
+        double result = default(double);
+        if (Child != null)
         {
-            throw new NotImplementedException();
+
+            result = Child.GetDistanceToActualBaseline(baseline);
+            BoxParentData childParentData = Child.ParentData as BoxParentData;
+            if (result != null) result += childParentData.Offset.Dy;
         }
-        #endregion
+        else
+        {
+            result = base.ComputeDistanceToActualBaseline(baseline);
+        }
 
-        #region fields
-        internal virtual FlutterSDK.Painting.Basictypes.Axis _ConstrainedAxis { get; set; }
-        internal virtual FlutterBinding.UI.Rect _OverflowContainerRect { get; set; }
-        internal virtual FlutterBinding.UI.Rect _OverflowChildRect { get; set; }
-        internal virtual bool _IsOverflowing { get; set; }
-        public virtual FlutterSDK.Painting.Basictypes.Axis ConstrainedAxis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void PerformLayout() { throw new NotImplementedException(); }
-
-
-        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
-
-
-        public new string ToStringShort() { throw new NotImplementedException(); }
-
-        #endregion
+        return result;
     }
 
 
-    /// <Summary>
-    /// A render object that is a specific size but passes its original constraints
-    /// through to its child, which it allows to overflow.
-    ///
-    /// If the child's resulting size differs from this render object's size, then
-    /// the child is aligned according to the [alignment] property.
-    ///
-    /// See also:
-    ///
-    ///  * [RenderUnconstrainedBox] for a render object that allows its children
-    ///    to render themselves unconstrained, expands to fit them, and considers
-    ///    overflow to be an error.
-    ///  * [RenderConstrainedOverflowBox] for a render object that imposes
-    ///    different constraints on its child than it gets from its parent,
-    ///    possibly allowing the child to overflow the parent.
-    /// </Summary>
-    public class RenderSizedOverflowBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
+
+
+    public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
     {
-        #region constructors
-        public RenderSizedOverflowBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), Size requestedSize = default(Size), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection))
-        : base(child: child, alignment: alignment, textDirection: textDirection)
+        if (Child != null)
         {
-            throw new NotImplementedException();
+            BoxParentData childParentData = Child.ParentData as BoxParentData;
+            context.PaintChild(Child, childParentData.Offset + offset);
         }
-        #endregion
 
-        #region fields
-        internal virtual Size _RequestedSize { get; set; }
-        public virtual Size RequestedSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new double ComputeDistanceToActualBaseline(TextBaseline baseline) { throw new NotImplementedException(); }
-
-
-        public new void PerformLayout() { throw new NotImplementedException(); }
-
-        #endregion
     }
 
 
-    /// <Summary>
-    /// Sizes its child to a fraction of the total available space.
-    ///
-    /// For both its width and height, this render object imposes a tight
-    /// constraint on its child that is a multiple (typically less than 1.0) of the
-    /// maximum constraint it received from its parent on that axis. If the factor
-    /// for a given axis is null, then the constraints from the parent are just
-    /// passed through instead.
-    ///
-    /// It then tries to size itself to the size of its child. Where this is not
-    /// possible (e.g. if the constraints from the parent are themselves tight), the
-    /// child is aligned according to [alignment].
-    /// </Summary>
-    public class RenderFractionallySizedOverflowBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
+
+
+    public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
     {
-        #region constructors
-        public RenderFractionallySizedOverflowBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), double widthFactor = default(double), double heightFactor = default(double), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection))
-        : base(child: child, alignment: alignment, textDirection: textDirection)
+        if (Child != null)
         {
-            throw new NotImplementedException();
+            BoxParentData childParentData = Child.ParentData as BoxParentData;
+            return result.AddWithPaintOffset(offset: childParentData.Offset, position: position, hitTest: (BoxHitTestResult result, Offset transformed) =>
+            {
+
+                return Child.HitTest(result, position: transformed);
+            }
+            );
         }
-        #endregion
 
-        #region fields
-        internal virtual double _WidthFactor { get; set; }
-        internal virtual double _HeightFactor { get; set; }
-        public virtual double WidthFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual double HeightFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        private FlutterSDK.Rendering.Box.BoxConstraints _GetInnerConstraints(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new void PerformLayout() { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+        return false;
     }
 
 
-    /// <Summary>
-    /// A delegate for computing the layout of a render object with a single child.
-    ///
-    /// Used by [CustomSingleChildLayout] (in the widgets library) and
-    /// [RenderCustomSingleChildLayoutBox] (in the rendering library).
-    ///
-    /// When asked to layout, [CustomSingleChildLayout] first calls [getSize] with
-    /// its incoming constraints to determine its size. It then calls
-    /// [getConstraintsForChild] to determine the constraints to apply to the child.
-    /// After the child completes its layout, [RenderCustomSingleChildLayoutBox]
-    /// calls [getPositionForChild] to determine the child's position.
-    ///
-    /// The [shouldRelayout] method is called when a new instance of the class
-    /// is provided, to check if the new instance actually represents different
-    /// information.
-    ///
-    /// The most efficient way to trigger a relayout is to supply a `relayout`
-    /// argument to the constructor of the [SingleChildLayoutDelegate]. The custom
-    /// layout will listen to this value and relayout whenever the Listenable
-    /// notifies its listeners, such as when an [Animation] ticks. This allows
-    /// the custom layout to avoid the build phase of the pipeline.
-    ///
-    /// See also:
-    ///
-    ///  * [CustomSingleChildLayout], the widget that uses this delegate.
-    ///  * [RenderCustomSingleChildLayoutBox], render object that uses this
-    ///    delegate.
-    /// </Summary>
-    public class SingleChildLayoutDelegate
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Insets its child by the given padding.
+///
+/// When passing layout constraints to its child, padding shrinks the
+/// constraints by the given padding, causing the child to layout at a smaller
+/// size. Padding then sizes itself to its child's size, inflated by the
+/// padding, effectively creating empty space around the child.
+/// </Summary>
+public class RenderPadding : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
+{
+    #region constructors
+    public RenderPadding(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+    : base(child)
+
+}
+#endregion
+
+#region fields
+internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets _ResolvedPadding { get; set; }
+internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry _Padding { get; set; }
+internal virtual TextDirection _TextDirection { get; set; }
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+private void _Resolve()
+{
+    if (_ResolvedPadding != null) return;
+    _ResolvedPadding = Padding.Resolve(TextDirection);
+
+}
+
+
+
+
+private void _MarkNeedResolution()
+{
+    _ResolvedPadding = null;
+    MarkNeedsLayout();
+}
+
+
+
+
+public new double ComputeMinIntrinsicWidth(double height)
+{
+    _Resolve();
+    double totalHorizontalPadding = _ResolvedPadding.Left + _ResolvedPadding.Right;
+    double totalVerticalPadding = _ResolvedPadding.Top + _ResolvedPadding.Bottom;
+    if (Child != null) return Child.GetMinIntrinsicWidth(Math.Dart:mathDefaultClass.Max(0.0, height - totalVerticalPadding)) + totalHorizontalPadding;
+    return totalHorizontalPadding;
+}
+
+
+
+
+public new double ComputeMaxIntrinsicWidth(double height)
+{
+    _Resolve();
+    double totalHorizontalPadding = _ResolvedPadding.Left + _ResolvedPadding.Right;
+    double totalVerticalPadding = _ResolvedPadding.Top + _ResolvedPadding.Bottom;
+    if (Child != null) return Child.GetMaxIntrinsicWidth(Math.Dart:mathDefaultClass.Max(0.0, height - totalVerticalPadding)) + totalHorizontalPadding;
+    return totalHorizontalPadding;
+}
+
+
+
+
+public new double ComputeMinIntrinsicHeight(double width)
+{
+    _Resolve();
+    double totalHorizontalPadding = _ResolvedPadding.Left + _ResolvedPadding.Right;
+    double totalVerticalPadding = _ResolvedPadding.Top + _ResolvedPadding.Bottom;
+    if (Child != null) return Child.GetMinIntrinsicHeight(Math.Dart:mathDefaultClass.Max(0.0, width - totalHorizontalPadding)) + totalVerticalPadding;
+    return totalVerticalPadding;
+}
+
+
+
+
+public new double ComputeMaxIntrinsicHeight(double width)
+{
+    _Resolve();
+    double totalHorizontalPadding = _ResolvedPadding.Left + _ResolvedPadding.Right;
+    double totalVerticalPadding = _ResolvedPadding.Top + _ResolvedPadding.Bottom;
+    if (Child != null) return Child.GetMaxIntrinsicHeight(Math.Dart:mathDefaultClass.Max(0.0, width - totalHorizontalPadding)) + totalVerticalPadding;
+    return totalVerticalPadding;
+}
+
+
+
+
+public new void PerformLayout()
+{
+    BoxConstraints constraints = this.Constraints;
+    _Resolve();
+
+    if (Child == null)
     {
-        #region constructors
-        public SingleChildLayoutDelegate(FlutterSDK.Foundation.Changenotifier.Listenable relayout = default(FlutterSDK.Foundation.Changenotifier.Listenable))
-        : base()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Foundation.Changenotifier.Listenable _Relayout { get; set; }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// The size of this object given the incoming constraints.
-        ///
-        /// Defaults to the biggest size that satisfies the given constraints.
-        /// </Summary>
-        public virtual Size GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// The constraints for the child given the incoming constraints.
-        ///
-        /// During layout, the child is given the layout constraints returned by this
-        /// function. The child is required to pick a size for itself that satisfies
-        /// these constraints.
-        ///
-        /// Defaults to the given constraints.
-        /// </Summary>
-        public virtual FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// The position where the child should be placed.
-        ///
-        /// The `size` argument is the size of the parent, which might be different
-        /// from the value returned by [getSize] if that size doesn't satisfy the
-        /// constraints passed to [getSize]. The `childSize` argument is the size of
-        /// the child, which will satisfy the constraints returned by
-        /// [getConstraintsForChild].
-        ///
-        /// Defaults to positioning the child in the upper left corner of the parent.
-        /// </Summary>
-        public virtual Offset GetPositionForChild(Size size, Size childSize) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Called whenever a new instance of the custom layout delegate class is
-        /// provided to the [RenderCustomSingleChildLayoutBox] object, or any time
-        /// that a new [CustomSingleChildLayout] object is created with a new instance
-        /// of the custom layout delegate class (which amounts to the same thing,
-        /// because the latter is implemented in terms of the former).
-        ///
-        /// If the new instance represents different information than the old
-        /// instance, then the method should return true, otherwise it should return
-        /// false.
-        ///
-        /// If the method returns false, then the [getSize],
-        /// [getConstraintsForChild], and [getPositionForChild] calls might be
-        /// optimized away.
-        ///
-        /// It's possible that the layout methods will get called even if
-        /// [shouldRelayout] returns false (e.g. if an ancestor changed its layout).
-        /// It's also possible that the layout method will get called
-        /// without [shouldRelayout] being called at all (e.g. if the parent changes
-        /// size).
-        /// </Summary>
-        public virtual bool ShouldRelayout(FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate oldDelegate) { throw new NotImplementedException(); }
-
-        #endregion
+        Size = constraints.Constrain(new Size(_ResolvedPadding.Left + _ResolvedPadding.Right, _ResolvedPadding.Top + _ResolvedPadding.Bottom));
+        return;
     }
 
+    BoxConstraints innerConstraints = constraints.Deflate(_ResolvedPadding);
+    Child.Layout(innerConstraints, parentUsesSize: true);
+    BoxParentData childParentData = Child.ParentData as BoxParentData;
+    childParentData.Offset = new Offset(_ResolvedPadding.Left, _ResolvedPadding.Top);
+    Size = constraints.Constrain(new Size(_ResolvedPadding.Left + Child.Size.Width + _ResolvedPadding.Right, _ResolvedPadding.Top + Child.Size.Height + _ResolvedPadding.Bottom));
+}
 
-    /// <Summary>
-    /// Defers the layout of its single child to a delegate.
-    ///
-    /// The delegate can determine the layout constraints for the child and can
-    /// decide where to position the child. The delegate can also determine the size
-    /// of the parent, but the size of the parent cannot depend on the size of the
-    /// child.
-    /// </Summary>
-    public class RenderCustomSingleChildLayoutBox : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
+
+
+
+public new void DebugPaintSize(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+{
+    base.DebugPaintSize(context, offset);
+
+}
+
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new DiagnosticsProperty<EdgeInsetsGeometry>("padding", Padding));
+    properties.Add(new EnumProperty<TextDirection>("textDirection", TextDirection, defaultValue: null));
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Abstract class for one-child-layout render boxes that use a
+/// [AlignmentGeometry] to align their children.
+/// </Summary>
+public class RenderAligningShiftedBox : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
+{
+    #region constructors
+    public RenderAligningShiftedBox(FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+    : base(child)
+
+}
+public static RenderAligningShiftedBox Mixin(FlutterSDK.Painting.Alignment.AlignmentGeometry alignment, TextDirection textDirection, FlutterSDK.Rendering.Box.RenderBox child)
+
+}
+#endregion
+
+#region fields
+internal virtual FlutterSDK.Painting.Alignment.Alignment _ResolvedAlignment { get; set; }
+internal virtual FlutterSDK.Painting.Alignment.AlignmentGeometry _Alignment { get; set; }
+internal virtual TextDirection _TextDirection { get; set; }
+public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+private void _Resolve()
+{
+    if (_ResolvedAlignment != null) return;
+    _ResolvedAlignment = Alignment.Resolve(TextDirection);
+}
+
+
+
+
+private void _MarkNeedResolution()
+{
+    _ResolvedAlignment = null;
+    MarkNeedsLayout();
+}
+
+
+
+
+/// <Summary>
+/// Apply the current [alignment] to the [child].
+///
+/// Subclasses should call this method if they have a child, to have
+/// this class perform the actual alignment. If there is no child,
+/// do not call this method.
+///
+/// This method must be called after the child has been laid out and
+/// this object's own size has been set.
+/// </Summary>
+public virtual void AlignChild()
+{
+    _Resolve();
+
+
+
+
+
+    BoxParentData childParentData = Child.ParentData as BoxParentData;
+    childParentData.Offset = _ResolvedAlignment.AlongOffset(Size - Child.Size as Offset);
+}
+
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new DiagnosticsProperty<AlignmentGeometry>("alignment", Alignment));
+    properties.Add(new EnumProperty<TextDirection>("textDirection", TextDirection, defaultValue: null));
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Positions its child using an [AlignmentGeometry].
+///
+/// For example, to align a box at the bottom right, you would pass this box a
+/// tight constraint that is bigger than the child's natural size,
+/// with an alignment of [Alignment.bottomRight].
+///
+/// By default, sizes to be as big as possible in both axes. If either axis is
+/// unconstrained, then in that direction it will be sized to fit the child's
+/// dimensions. Using widthFactor and heightFactor you can force this latter
+/// behavior in all cases.
+/// </Summary>
+public class RenderPositionedBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
+{
+    #region constructors
+    public RenderPositionedBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), double widthFactor = default(double), double heightFactor = default(double), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection))
+    : base(child: child, alignment: alignment, textDirection: textDirection)
+
+}
+#endregion
+
+#region fields
+internal virtual double _WidthFactor { get; set; }
+internal virtual double _HeightFactor { get; set; }
+public virtual double WidthFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual double HeightFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new void PerformLayout()
+{
+    BoxConstraints constraints = this.Constraints;
+    bool shrinkWrapWidth = _WidthFactor != null || constraints.MaxWidth == Dart:coreDefaultClass.Double.Infinity;
+    bool shrinkWrapHeight = _HeightFactor != null || constraints.MaxHeight == Dart:coreDefaultClass.Double.Infinity;
+    if (Child != null)
     {
-        #region constructors
-        public RenderCustomSingleChildLayoutBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate @delegate = default(FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate))
-        : base(child)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate _Delegate { get; set; }
-        public virtual FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate @delegate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner) { throw new NotImplementedException(); }
-        public new void Attach(@Object owner) { throw new NotImplementedException(); }
-
-
-        public new void Detach() { throw new NotImplementedException(); }
-
-
-        private Size _GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new void PerformLayout() { throw new NotImplementedException(); }
-
-        #endregion
+        Child.Layout(constraints.Loosen(), parentUsesSize: true);
+        Size = constraints.Constrain(new Size(shrinkWrapWidth ? Child.Size.Width * (_widthFactor == default(double) ? 1.0 : _widthFactor) : Dart:coreDefaultClass.Double.Infinity, shrinkWrapHeight ? Child.Size.Height * (_heightFactor == default(double) ? 1.0 : _heightFactor) : Dart:coreDefaultClass.Double.Infinity));
+        AlignChild();
     }
-
-
-    /// <Summary>
-    /// Shifts the child down such that the child's baseline (or the
-    /// bottom of the child, if the child has no baseline) is [baseline]
-    /// logical pixels below the top of this box, then sizes this box to
-    /// contain the child.
-    ///
-    /// If [baseline] is less than the distance from the top of the child
-    /// to the baseline of the child, then the child will overflow the top
-    /// of the box. This is typically not desirable, in particular, that
-    /// part of the child will not be found when doing hit tests, so the
-    /// user cannot interact with that part of the child.
-    ///
-    /// This box will be sized so that its bottom is coincident with the
-    /// bottom of the child. This means if this box shifts the child down,
-    /// there will be space between the top of this box and the top of the
-    /// child, but there is never space between the bottom of the child
-    /// and the bottom of the box.
-    /// </Summary>
-    public class RenderBaseline : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
+    else
     {
-        #region constructors
-        public RenderBaseline(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), double baseline = default(double), TextBaseline baselineType = default(TextBaseline))
-        : base(child)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual double _Baseline { get; set; }
-        internal virtual TextBaseline _BaselineType { get; set; }
-        public virtual double Baseline { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual TextBaseline BaselineType { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void PerformLayout() { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+        Size = constraints.Constrain(new Size(shrinkWrapWidth ? 0.0 : Dart:coreDefaultClass.Double.Infinity, shrinkWrapHeight ? 0.0 : Dart:coreDefaultClass.Double.Infinity));
     }
+
+}
+
+
+
+
+public new void DebugPaintSize(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+{
+    base.DebugPaintSize(context, offset);
+
+}
+
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new DoubleProperty("widthFactor", _WidthFactor, ifNull: "expand"));
+    properties.Add(new DoubleProperty("heightFactor", _HeightFactor, ifNull: "expand"));
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A render object that imposes different constraints on its child than it gets
+/// from its parent, possibly allowing the child to overflow the parent.
+///
+/// A render overflow box proxies most functions in the render box protocol to
+/// its child, except that when laying out its child, it passes constraints
+/// based on the minWidth, maxWidth, minHeight, and maxHeight fields instead of
+/// just passing the parent's constraints in. Specifically, it overrides any of
+/// the equivalent fields on the constraints given by the parent with the
+/// constraints given by these fields for each such field that is not null. It
+/// then sizes itself based on the parent's constraints' maxWidth and maxHeight,
+/// ignoring the child's dimensions.
+///
+/// For example, if you wanted a box to always render 50 pixels high, regardless
+/// of where it was rendered, you would wrap it in a
+/// RenderConstrainedOverflowBox with minHeight and maxHeight set to 50.0.
+/// Generally speaking, to avoid confusing behavior around hit testing, a
+/// RenderConstrainedOverflowBox should usually be wrapped in a RenderClipRect.
+///
+/// The child is positioned according to [alignment]. To position a smaller
+/// child inside a larger parent, use [RenderPositionedBox] and
+/// [RenderConstrainedBox] rather than RenderConstrainedOverflowBox.
+///
+/// See also:
+///
+///  * [RenderUnconstrainedBox] for a render object that allows its children
+///    to render themselves unconstrained, expands to fit them, and considers
+///    overflow to be an error.
+///  * [RenderSizedOverflowBox], a render object that is a specific size but
+///    passes its original constraints through to its child, which it allows to
+///    overflow.
+/// </Summary>
+public class RenderConstrainedOverflowBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
+{
+    #region constructors
+    public RenderConstrainedOverflowBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), double minWidth = default(double), double maxWidth = default(double), double minHeight = default(double), double maxHeight = default(double), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection))
+    : base(child: child, alignment: alignment, textDirection: textDirection)
+
+}
+#endregion
+
+#region fields
+internal virtual double _MinWidth { get; set; }
+internal virtual double _MaxWidth { get; set; }
+internal virtual double _MinHeight { get; set; }
+internal virtual double _MaxHeight { get; set; }
+public virtual double MinWidth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual double MaxWidth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual double MinHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual double MaxHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+private FlutterSDK.Rendering.Box.BoxConstraints _GetInnerConstraints(FlutterSDK.Rendering.Box.BoxConstraints constraints)
+{
+    return new BoxConstraints(minWidth: _minWidth == default(double) ? constraints.minWidth : _minWidth, maxWidth: _maxWidth == default(double) ? constraints.maxWidth : _maxWidth, minHeight: _minHeight == default(double) ? constraints.minHeight : _minHeight, maxHeight: _maxHeight == default(double) ? constraints.maxHeight : _maxHeight);
+}
+
+
+
+
+public new void PerformResize()
+{
+    Size = Constraints.Biggest;
+}
+
+
+
+
+public new void PerformLayout()
+{
+    if (Child != null)
+    {
+        Child.Layout(_GetInnerConstraints(Constraints), parentUsesSize: true);
+        AlignChild();
+    }
+
+}
+
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new DoubleProperty("minWidth", MinWidth, ifNull: "use parent minWidth constraint"));
+    properties.Add(new DoubleProperty("maxWidth", MaxWidth, ifNull: "use parent maxWidth constraint"));
+    properties.Add(new DoubleProperty("minHeight", MinHeight, ifNull: "use parent minHeight constraint"));
+    properties.Add(new DoubleProperty("maxHeight", MaxHeight, ifNull: "use parent maxHeight constraint"));
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Renders a box, imposing no constraints on its child, allowing the child to
+/// render at its "natural" size.
+///
+/// This allows a child to render at the size it would render if it were alone
+/// on an infinite canvas with no constraints. This box will then attempt to
+/// adopt the same size, within the limits of its own constraints. If it ends
+/// up with a different size, it will align the child based on [alignment].
+/// If the box cannot expand enough to accommodate the entire child, the
+/// child will be clipped.
+///
+/// In debug mode, if the child overflows the box, a warning will be printed on
+/// the console, and black and yellow striped areas will appear where the
+/// overflow occurs.
+///
+/// See also:
+///
+///  * [RenderConstrainedBox], which renders a box which imposes constraints
+///    on its child.
+///  * [RenderConstrainedOverflowBox], which renders a box that imposes different
+///    constraints on its child than it gets from its parent, possibly allowing
+///    the child to overflow the parent.
+///  * [RenderSizedOverflowBox], a render object that is a specific size but
+///    passes its original constraints through to its child, which it allows to
+///    overflow.
+/// </Summary>
+public class RenderUnconstrainedBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox, IDebugOverflowIndicatorMixin
+{
+    #region constructors
+    public RenderUnconstrainedBox(FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Basictypes.Axis constrainedAxis = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+    : base(alignment, textDirection, child)
+
+}
+#endregion
+
+#region fields
+internal virtual FlutterSDK.Painting.Basictypes.Axis _ConstrainedAxis { get; set; }
+internal virtual FlutterBinding.UI.Rect _OverflowContainerRect { get; set; }
+internal virtual FlutterBinding.UI.Rect _OverflowChildRect { get; set; }
+internal virtual bool _IsOverflowing { get; set; }
+public virtual FlutterSDK.Painting.Basictypes.Axis ConstrainedAxis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new void PerformLayout()
+{
+    BoxConstraints constraints = this.Constraints;
+    if (Child != null)
+    {
+        BoxConstraints childConstraints = default(BoxConstraints);
+        if (ConstrainedAxis != null)
+        {
+            switch (ConstrainedAxis) { case Axis.Horizontal: childConstraints = new BoxConstraints(maxWidth: constraints.MaxWidth, minWidth: constraints.MinWidth); break; case Axis.Vertical: childConstraints = new BoxConstraints(maxHeight: constraints.MaxHeight, minHeight: constraints.MinHeight); break; }
+        }
+        else
+        {
+            childConstraints = new BoxConstraints();
+        }
+
+        Child.Layout(childConstraints, parentUsesSize: true);
+        Size = constraints.Constrain(Child.Size);
+        AlignChild();
+        BoxParentData childParentData = Child.ParentData as BoxParentData;
+        _OverflowContainerRect = Dart:uiDefaultClass.Offset.Zero & Size;
+        _OverflowChildRect = childParentData.Offset & Child.Size;
+    }
+    else
+    {
+        Size = constraints.Smallest;
+        _OverflowContainerRect = Dart:uiDefaultClass.Rect.Zero;
+        _OverflowChildRect = Dart:uiDefaultClass.Rect.Zero;
+    }
+
+    _IsOverflowing = RelativeRect.FromRect(_OverflowContainerRect, _OverflowChildRect).HasInsets;
+}
+
+
+
+
+public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+{
+    if (Child == null || Size.IsEmpty()) return;
+    if (!_IsOverflowing)
+    {
+        base.Paint(context, offset);
+        return;
+    }
+
+    context.PushClipRect(NeedsCompositing, offset, Dart: uiDefaultClass.Offset.Zero & Size, base.Paint);
+
+}
+
+
+
+
+public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child)
+{
+    return _IsOverflowing ? Dart : uiDefaultClass.Offset.Zero & Size:null;
+}
+
+
+
+
+public new string ToStringShort()
+{
+    string header = base.ToStringShort();
+    if (_IsOverflowing) header += " OVERFLOWING";
+    return header;
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A render object that is a specific size but passes its original constraints
+/// through to its child, which it allows to overflow.
+///
+/// If the child's resulting size differs from this render object's size, then
+/// the child is aligned according to the [alignment] property.
+///
+/// See also:
+///
+///  * [RenderUnconstrainedBox] for a render object that allows its children
+///    to render themselves unconstrained, expands to fit them, and considers
+///    overflow to be an error.
+///  * [RenderConstrainedOverflowBox] for a render object that imposes
+///    different constraints on its child than it gets from its parent,
+///    possibly allowing the child to overflow the parent.
+/// </Summary>
+public class RenderSizedOverflowBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
+{
+    #region constructors
+    public RenderSizedOverflowBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), Size requestedSize = default(Size), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection))
+    : base(child: child, alignment: alignment, textDirection: textDirection)
+
+}
+#endregion
+
+#region fields
+internal virtual Size _RequestedSize { get; set; }
+public virtual Size RequestedSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new double ComputeMinIntrinsicWidth(double height)
+{
+    return _RequestedSize.Width;
+}
+
+
+
+
+public new double ComputeMaxIntrinsicWidth(double height)
+{
+    return _RequestedSize.Width;
+}
+
+
+
+
+public new double ComputeMinIntrinsicHeight(double width)
+{
+    return _RequestedSize.Height;
+}
+
+
+
+
+public new double ComputeMaxIntrinsicHeight(double width)
+{
+    return _RequestedSize.Height;
+}
+
+
+
+
+public new double ComputeDistanceToActualBaseline(TextBaseline baseline)
+{
+    if (Child != null) return Child.GetDistanceToActualBaseline(baseline);
+    return base.ComputeDistanceToActualBaseline(baseline);
+}
+
+
+
+
+public new void PerformLayout()
+{
+    Size = Constraints.Constrain(_RequestedSize);
+    if (Child != null)
+    {
+        Child.Layout(Constraints, parentUsesSize: true);
+        AlignChild();
+    }
+
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Sizes its child to a fraction of the total available space.
+///
+/// For both its width and height, this render object imposes a tight
+/// constraint on its child that is a multiple (typically less than 1.0) of the
+/// maximum constraint it received from its parent on that axis. If the factor
+/// for a given axis is null, then the constraints from the parent are just
+/// passed through instead.
+///
+/// It then tries to size itself to the size of its child. Where this is not
+/// possible (e.g. if the constraints from the parent are themselves tight), the
+/// child is aligned according to [alignment].
+/// </Summary>
+public class RenderFractionallySizedOverflowBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
+{
+    #region constructors
+    public RenderFractionallySizedOverflowBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), double widthFactor = default(double), double heightFactor = default(double), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection))
+    : base(child: child, alignment: alignment, textDirection: textDirection)
+
+
+
+}
+
+
+#endregion
+
+#region fields
+internal virtual double _WidthFactor { get; set; }
+internal virtual double _HeightFactor { get; set; }
+public virtual double WidthFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual double HeightFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+private FlutterSDK.Rendering.Box.BoxConstraints _GetInnerConstraints(FlutterSDK.Rendering.Box.BoxConstraints constraints)
+{
+    double minWidth = constraints.MinWidth;
+    double maxWidth = constraints.MaxWidth;
+    if (_WidthFactor != null)
+    {
+        double width = maxWidth * _WidthFactor;
+        minWidth = width;
+        maxWidth = width;
+    }
+
+    double minHeight = constraints.MinHeight;
+    double maxHeight = constraints.MaxHeight;
+    if (_HeightFactor != null)
+    {
+        double height = maxHeight * _HeightFactor;
+        minHeight = height;
+        maxHeight = height;
+    }
+
+    return new BoxConstraints(minWidth: minWidth, maxWidth: maxWidth, minHeight: minHeight, maxHeight: maxHeight);
+}
+
+
+
+
+public new double ComputeMinIntrinsicWidth(double height)
+{
+    double result = default(double);
+    if (Child == null)
+    {
+        result = base.ComputeMinIntrinsicWidth(height);
+    }
+    else
+    {
+        result = Child.GetMinIntrinsicWidth(height * (_heightFactor == default(double) ? 1.0 : _heightFactor));
+    }
+
+
+    return result / (_widthFactor == default(double) ? 1.0 : _widthFactor);
+}
+
+
+
+
+public new double ComputeMaxIntrinsicWidth(double height)
+{
+    double result = default(double);
+    if (Child == null)
+    {
+        result = base.ComputeMaxIntrinsicWidth(height);
+    }
+    else
+    {
+        result = Child.GetMaxIntrinsicWidth(height * (_heightFactor == default(double) ? 1.0 : _heightFactor));
+    }
+
+
+    return result / (_widthFactor == default(double) ? 1.0 : _widthFactor);
+}
+
+
+
+
+public new double ComputeMinIntrinsicHeight(double width)
+{
+    double result = default(double);
+    if (Child == null)
+    {
+        result = base.ComputeMinIntrinsicHeight(width);
+    }
+    else
+    {
+        result = Child.GetMinIntrinsicHeight(width * (_widthFactor == default(double) ? 1.0 : _widthFactor));
+    }
+
+
+    return result / (_heightFactor == default(double) ? 1.0 : _heightFactor);
+}
+
+
+
+
+public new double ComputeMaxIntrinsicHeight(double width)
+{
+    double result = default(double);
+    if (Child == null)
+    {
+        result = base.ComputeMaxIntrinsicHeight(width);
+    }
+    else
+    {
+        result = Child.GetMaxIntrinsicHeight(width * (_widthFactor == default(double) ? 1.0 : _widthFactor));
+    }
+
+
+    return result / (_heightFactor == default(double) ? 1.0 : _heightFactor);
+}
+
+
+
+
+public new void PerformLayout()
+{
+    if (Child != null)
+    {
+        Child.Layout(_GetInnerConstraints(Constraints), parentUsesSize: true);
+        Size = Constraints.Constrain(Child.Size);
+        AlignChild();
+    }
+    else
+    {
+        Size = Constraints.Constrain(_GetInnerConstraints(Constraints).Constrain(Dart: uiDefaultClass.Size.Zero));
+    }
+
+}
+
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new DoubleProperty("widthFactor", _WidthFactor, ifNull: "pass-through"));
+    properties.Add(new DoubleProperty("heightFactor", _HeightFactor, ifNull: "pass-through"));
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A delegate for computing the layout of a render object with a single child.
+///
+/// Used by [CustomSingleChildLayout] (in the widgets library) and
+/// [RenderCustomSingleChildLayoutBox] (in the rendering library).
+///
+/// When asked to layout, [CustomSingleChildLayout] first calls [getSize] with
+/// its incoming constraints to determine its size. It then calls
+/// [getConstraintsForChild] to determine the constraints to apply to the child.
+/// After the child completes its layout, [RenderCustomSingleChildLayoutBox]
+/// calls [getPositionForChild] to determine the child's position.
+///
+/// The [shouldRelayout] method is called when a new instance of the class
+/// is provided, to check if the new instance actually represents different
+/// information.
+///
+/// The most efficient way to trigger a relayout is to supply a `relayout`
+/// argument to the constructor of the [SingleChildLayoutDelegate]. The custom
+/// layout will listen to this value and relayout whenever the Listenable
+/// notifies its listeners, such as when an [Animation] ticks. This allows
+/// the custom layout to avoid the build phase of the pipeline.
+///
+/// See also:
+///
+///  * [CustomSingleChildLayout], the widget that uses this delegate.
+///  * [RenderCustomSingleChildLayoutBox], render object that uses this
+///    delegate.
+/// </Summary>
+public class SingleChildLayoutDelegate
+{
+    #region constructors
+    public SingleChildLayoutDelegate(FlutterSDK.Foundation.Changenotifier.Listenable relayout = default(FlutterSDK.Foundation.Changenotifier.Listenable))
+    : base()
+
+}
+#endregion
+
+#region fields
+internal virtual FlutterSDK.Foundation.Changenotifier.Listenable _Relayout { get; set; }
+#endregion
+
+#region methods
+
+/// <Summary>
+/// The size of this object given the incoming constraints.
+///
+/// Defaults to the biggest size that satisfies the given constraints.
+/// </Summary>
+public virtual Size GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints) => constraints.Biggest;
+
+
+
+/// <Summary>
+/// The constraints for the child given the incoming constraints.
+///
+/// During layout, the child is given the layout constraints returned by this
+/// function. The child is required to pick a size for itself that satisfies
+/// these constraints.
+///
+/// Defaults to the given constraints.
+/// </Summary>
+public virtual FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(FlutterSDK.Rendering.Box.BoxConstraints constraints) => constraints;
+
+
+
+/// <Summary>
+/// The position where the child should be placed.
+///
+/// The `size` argument is the size of the parent, which might be different
+/// from the value returned by [getSize] if that size doesn't satisfy the
+/// constraints passed to [getSize]. The `childSize` argument is the size of
+/// the child, which will satisfy the constraints returned by
+/// [getConstraintsForChild].
+///
+/// Defaults to positioning the child in the upper left corner of the parent.
+/// </Summary>
+public virtual Offset GetPositionForChild(Size size, Size childSize) => Dart:uiDefaultClass.Offset.Zero;
+
+
+
+/// <Summary>
+/// Called whenever a new instance of the custom layout delegate class is
+/// provided to the [RenderCustomSingleChildLayoutBox] object, or any time
+/// that a new [CustomSingleChildLayout] object is created with a new instance
+/// of the custom layout delegate class (which amounts to the same thing,
+/// because the latter is implemented in terms of the former).
+///
+/// If the new instance represents different information than the old
+/// instance, then the method should return true, otherwise it should return
+/// false.
+///
+/// If the method returns false, then the [getSize],
+/// [getConstraintsForChild], and [getPositionForChild] calls might be
+/// optimized away.
+///
+/// It's possible that the layout methods will get called even if
+/// [shouldRelayout] returns false (e.g. if an ancestor changed its layout).
+/// It's also possible that the layout method will get called
+/// without [shouldRelayout] being called at all (e.g. if the parent changes
+/// size).
+/// </Summary>
+public virtual bool ShouldRelayout(FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate oldDelegate)
+{
+    return default(bool);
+}
+
+#endregion
+}
+
+
+/// <Summary>
+/// Defers the layout of its single child to a delegate.
+///
+/// The delegate can determine the layout constraints for the child and can
+/// decide where to position the child. The delegate can also determine the size
+/// of the parent, but the size of the parent cannot depend on the size of the
+/// child.
+/// </Summary>
+public class RenderCustomSingleChildLayoutBox : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
+{
+    #region constructors
+    public RenderCustomSingleChildLayoutBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate @delegate = default(FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate))
+    : base(child)
+
+}
+#endregion
+
+#region fields
+internal virtual FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate _Delegate { get; set; }
+public virtual FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate @delegate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner)
+{
+    base.Attach(owner);
+    _Delegate?._Relayout?.AddListener(MarkNeedsLayout);
+}
+
+
+public new void Attach(@Object owner)
+{
+    base.Attach(owner);
+    _Delegate?._Relayout?.AddListener(MarkNeedsLayout);
+}
+
+
+
+
+public new void Detach()
+{
+    _Delegate?._Relayout?.RemoveListener(MarkNeedsLayout);
+    base.Detach();
+}
+
+
+
+
+private Size _GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints)
+{
+    return constraints.Constrain(_Delegate.GetSize(constraints));
+}
+
+
+
+
+public new double ComputeMinIntrinsicWidth(double height)
+{
+    double width = _GetSize(BoxConstraints.TightForFinite(height: height)).Width;
+    if (width.IsFinite()) return width;
+    return 0.0;
+}
+
+
+
+
+public new double ComputeMaxIntrinsicWidth(double height)
+{
+    double width = _GetSize(BoxConstraints.TightForFinite(height: height)).Width;
+    if (width.IsFinite()) return width;
+    return 0.0;
+}
+
+
+
+
+public new double ComputeMinIntrinsicHeight(double width)
+{
+    double height = _GetSize(BoxConstraints.TightForFinite(width: width)).Height;
+    if (height.IsFinite()) return height;
+    return 0.0;
+}
+
+
+
+
+public new double ComputeMaxIntrinsicHeight(double width)
+{
+    double height = _GetSize(BoxConstraints.TightForFinite(width: width)).Height;
+    if (height.IsFinite()) return height;
+    return 0.0;
+}
+
+
+
+
+public new void PerformLayout()
+{
+    Size = _GetSize(Constraints);
+    if (Child != null)
+    {
+        BoxConstraints childConstraints = Delegate.GetConstraintsForChild(Constraints);
+
+        Child.Layout(childConstraints, parentUsesSize: !childConstraints.IsTight);
+        BoxParentData childParentData = Child.ParentData as BoxParentData;
+        childParentData.Offset = Delegate.GetPositionForChild(Size, childConstraints.IsTight ? childConstraints.Smallest : Child.Size);
+    }
+
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Shifts the child down such that the child's baseline (or the
+/// bottom of the child, if the child has no baseline) is [baseline]
+/// logical pixels below the top of this box, then sizes this box to
+/// contain the child.
+///
+/// If [baseline] is less than the distance from the top of the child
+/// to the baseline of the child, then the child will overflow the top
+/// of the box. This is typically not desirable, in particular, that
+/// part of the child will not be found when doing hit tests, so the
+/// user cannot interact with that part of the child.
+///
+/// This box will be sized so that its bottom is coincident with the
+/// bottom of the child. This means if this box shifts the child down,
+/// there will be space between the top of this box and the top of the
+/// child, but there is never space between the bottom of the child
+/// and the bottom of the box.
+/// </Summary>
+public class RenderBaseline : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
+{
+    #region constructors
+    public RenderBaseline(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), double baseline = default(double), TextBaseline baselineType = default(TextBaseline))
+    : base(child)
+
+}
+#endregion
+
+#region fields
+internal virtual double _Baseline { get; set; }
+internal virtual TextBaseline _BaselineType { get; set; }
+public virtual double Baseline { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual TextBaseline BaselineType { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new void PerformLayout()
+{
+    if (Child != null)
+    {
+        BoxConstraints constraints = this.Constraints;
+        Child.Layout(constraints.Loosen(), parentUsesSize: true);
+        double childBaseline = Child.GetDistanceToBaseline(BaselineType);
+        double actualBaseline = Baseline;
+        double top = actualBaseline - childBaseline;
+        BoxParentData childParentData = Child.ParentData as BoxParentData;
+        childParentData.Offset = new Offset(0.0, top);
+        Size childSize = Child.Size;
+        Size = constraints.Constrain(new Size(childSize.Width, top + childSize.Height));
+    }
+    else
+    {
+        PerformResize();
+    }
+
+}
+
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new DoubleProperty("baseline", Baseline));
+    properties.Add(new EnumProperty<TextBaseline>("baselineType", BaselineType));
+}
+
+
+
+#endregion
+}
 
 }

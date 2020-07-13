@@ -223,6 +223,18 @@ class Implementation {
       return Literals.processMapLiteralEntry(entity);
     } else if (entity is Annotation) {
       return ''; // Just ignoring these, because properties in the element determine these annotations, I don't need to parse them.
+    } else if (entity is DefaultFormalParameter) {
+      return entity.toString();
+      //return processDefaultFormalParameter(entity);
+      // TODO: implement processDefaultFormalParameter properly.
+    } else if (entity is GenericFunctionType) {
+      return entity.toString();
+      //return processGenericFunctionType(entity);
+      // TODO: implement processGenericFunctionType properly.
+    } else if (entity is RethrowExpression) {
+      return "throw";
+      //return processRethrowExpression(entity);
+      // TODO: move this to processRethrowExpression();
     } else {
       throw new AssertionError('Unknown entity');
     }
@@ -328,8 +340,8 @@ class Implementation {
     var csharp = "";
     for (var entity in label.childEntities) {
       if (entity is SimpleIdentifier)
-csharp += Naming.escapeFixedWords(processEntity(entity));
-      else 
+        csharp += Naming.escapeFixedWords(processEntity(entity));
+      else
         csharp += processEntity(entity);
     }
     return csharp;
@@ -522,10 +534,10 @@ csharp += Naming.escapeFixedWords(processEntity(entity));
     for (var entity in expression.childEntities) {
       csharp += processEntity(entity);
     }
-    
+
     // TODO: No such thing as named constructors in C#
     // Will need to look at Static Method calls without the new.
-    if (!csharp.startsWith('new ') && !isNamedConstructor) 
+    if (!csharp.startsWith('new ') && !isNamedConstructor)
       csharp = 'new ' + csharp;
     return csharp;
   }
@@ -545,7 +557,8 @@ csharp += Naming.escapeFixedWords(processEntity(entity));
         expression.childEntities.elementAt(1).toString() == '??') {
       var first = expression.childEntities.elementAt(0);
       var second = expression.childEntities.elementAt(2);
-      if (first is SimpleIdentifier && first.staticType != null &&
+      if (first is SimpleIdentifier &&
+          first.staticType != null &&
           first.staticType.displayName ==
               'double') //TODO: Should cover all non-nullable value types
         return '$first == default(${first.staticType.displayName}) ? $second : $first';
@@ -573,12 +586,11 @@ csharp += Naming.escapeFixedWords(processEntity(entity));
 
       while (parentEntity != null &&
           (parentEntity is! VariableDeclaration &&
-              parentEntity is! AssignmentExpression 
-              && parentEntity is! CascadeExpression))
+              parentEntity is! AssignmentExpression &&
+              parentEntity is! CascadeExpression))
         parentEntity = parentEntity.parent;
 
-      if (parentEntity == null)
-      parentEntity.toString();
+      if (parentEntity == null) parentEntity.toString();
 
       String processedEntity =
           processEntity(parentEntity.childEntities.toList()[0]);
@@ -604,9 +616,12 @@ csharp += Naming.escapeFixedWords(processEntity(entity));
     var csharp = '';
 
     // Check if this is directly inside the namespace and was mapped inside the namespace default class
-    if(identifier.staticElement != null && identifier.staticElement.enclosingElement is CompilationUnitElement && !(identifier.staticElement is EnumElementImpl)) {
+    if (identifier.staticElement != null &&
+        identifier.staticElement.enclosingElement is CompilationUnitElement &&
+        !(identifier.staticElement is EnumElementImpl)) {
       // add the default class to the call
-      var defaultClass = Naming.DefaultClassName(identifier.staticElement.enclosingElement);
+      var defaultClass =
+          Naming.DefaultClassName(identifier.staticElement.enclosingElement);
       csharp += defaultClass + ".";
     }
 
@@ -784,8 +799,7 @@ csharp += Naming.escapeFixedWords(processEntity(entity));
 
   static String processTypeName(TypeName name) {
     var csharp = '';
-    if (name.toString().toLowerCase().contains('valuechanged'))
-    name = name;
+    if (name.toString().toLowerCase().contains('valuechanged')) name = name;
     for (var entity in name.childEntities) csharp += processEntity(entity);
     return csharp;
   }
@@ -793,7 +807,7 @@ csharp += Naming.escapeFixedWords(processEntity(entity));
   static String fieldBody(PropertyAccessorElement element) {
     if (Config.includeFieldImplementations && element != null) {
       // TODO: this is all messed up anyway
-     
+
       var body = element.computeNode();
       var bodyLines = Naming.tokenToText(body.beginToken, false).split("\n");
       var rawBody = bodyLines.map((l) => "${l}\n").join();

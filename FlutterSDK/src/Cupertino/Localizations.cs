@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 namespace FlutterSDK.Cupertino.Localizations
 {
     internal static class LocalizationsDefaultClass
@@ -321,7 +321,10 @@ namespace FlutterSDK.Cupertino.Localizations
         ///  - US English: 2018
         ///  - Korean: 2018년
         /// </Summary>
-        public virtual string DatePickerYear(int yearIndex) { throw new NotImplementedException(); }
+        public virtual string DatePickerYear(int yearIndex)
+        {
+            return default(string);
+        }
 
 
         /// <Summary>
@@ -333,7 +336,10 @@ namespace FlutterSDK.Cupertino.Localizations
         ///  - US English: January
         ///  - Korean: 1월
         /// </Summary>
-        public virtual string DatePickerMonth(int monthIndex) { throw new NotImplementedException(); }
+        public virtual string DatePickerMonth(int monthIndex)
+        {
+            return default(string);
+        }
 
 
         /// <Summary>
@@ -345,7 +351,10 @@ namespace FlutterSDK.Cupertino.Localizations
         ///  - US English: 1
         ///  - Korean: 1일
         /// </Summary>
-        public virtual string DatePickerDayOfMonth(int dayIndex) { throw new NotImplementedException(); }
+        public virtual string DatePickerDayOfMonth(int dayIndex)
+        {
+            return default(string);
+        }
 
 
         /// <Summary>
@@ -357,7 +366,10 @@ namespace FlutterSDK.Cupertino.Localizations
         /// - US English: Wed Sep 27
         /// - Russian: ср сент. 27
         /// </Summary>
-        public virtual string DatePickerMediumDate(DateTime date) { throw new NotImplementedException(); }
+        public virtual string DatePickerMediumDate(DateTime date)
+        {
+            return default(string);
+        }
 
 
         /// <Summary>
@@ -369,13 +381,19 @@ namespace FlutterSDK.Cupertino.Localizations
         ///  - US English: 1
         ///  - Arabic: ٠١
         /// </Summary>
-        public virtual string DatePickerHour(int hour) { throw new NotImplementedException(); }
+        public virtual string DatePickerHour(int hour)
+        {
+            return default(string);
+        }
 
 
         /// <Summary>
         /// Semantics label for the given hour value in [CupertinoDatePicker].
         /// </Summary>
-        public virtual string DatePickerHourSemanticsLabel(int hour) { throw new NotImplementedException(); }
+        public virtual string DatePickerHourSemanticsLabel(int hour)
+        {
+            return default(string);
+        }
 
 
         /// <Summary>
@@ -387,13 +405,19 @@ namespace FlutterSDK.Cupertino.Localizations
         ///  - US English: 01
         ///  - Arabic: ٠١
         /// </Summary>
-        public virtual string DatePickerMinute(int minute) { throw new NotImplementedException(); }
+        public virtual string DatePickerMinute(int minute)
+        {
+            return default(string);
+        }
 
 
         /// <Summary>
         /// Semantics label for the given minute value in [CupertinoDatePicker].
         /// </Summary>
-        public virtual string DatePickerMinuteSemanticsLabel(int minute) { throw new NotImplementedException(); }
+        public virtual string DatePickerMinuteSemanticsLabel(int minute)
+        {
+            return default(string);
+        }
 
 
         /// <Summary>
@@ -405,7 +429,10 @@ namespace FlutterSDK.Cupertino.Localizations
         ///  - US English: 1
         ///  - Arabic: ١
         /// </Summary>
-        public virtual string TimerPickerHour(int hour) { throw new NotImplementedException(); }
+        public virtual string TimerPickerHour(int hour)
+        {
+            return default(string);
+        }
 
 
         /// <Summary>
@@ -417,7 +444,10 @@ namespace FlutterSDK.Cupertino.Localizations
         ///  - US English: 1
         ///  - Arabic: ١
         /// </Summary>
-        public virtual string TimerPickerMinute(int minute) { throw new NotImplementedException(); }
+        public virtual string TimerPickerMinute(int minute)
+        {
+            return default(string);
+        }
 
 
         /// <Summary>
@@ -429,7 +459,10 @@ namespace FlutterSDK.Cupertino.Localizations
         ///  - US English: 1
         ///  - Arabic: ١
         /// </Summary>
-        public virtual string TimerPickerSecond(int second) { throw new NotImplementedException(); }
+        public virtual string TimerPickerSecond(int second)
+        {
+            return default(string);
+        }
 
 
         /// <Summary>
@@ -437,7 +470,10 @@ namespace FlutterSDK.Cupertino.Localizations
         /// [CupertinoTimerPicker] when selected hour value is `hour`.
         /// This function will deal with pluralization based on the `hour` parameter.
         /// </Summary>
-        public virtual string TimerPickerHourLabel(int hour) { throw new NotImplementedException(); }
+        public virtual string TimerPickerHourLabel(int hour)
+        {
+            return default(string);
+        }
 
 
         /// <Summary>
@@ -445,7 +481,10 @@ namespace FlutterSDK.Cupertino.Localizations
         /// [CupertinoTimerPicker] when selected minute value is `minute`.
         /// This function will deal with pluralization based on the `minute` parameter.
         /// </Summary>
-        public virtual string TimerPickerMinuteLabel(int minute) { throw new NotImplementedException(); }
+        public virtual string TimerPickerMinuteLabel(int minute)
+        {
+            return default(string);
+        }
 
 
         /// <Summary>
@@ -453,7 +492,10 @@ namespace FlutterSDK.Cupertino.Localizations
         /// [CupertinoTimerPicker] when selected minute value is `second`.
         /// This function will deal with pluralization based on the `second` parameter.
         /// </Summary>
-        public virtual string TimerPickerSecondLabel(int second) { throw new NotImplementedException(); }
+        public virtual string TimerPickerSecondLabel(int second)
+        {
+            return default(string);
+        }
 
 
         /// <Summary>
@@ -470,7 +512,12 @@ namespace FlutterSDK.Cupertino.Localizations
         /// CupertinoLocalizations.of(context).anteMeridiemAbbreviation;
         /// ```
         /// </Summary>
-        public virtual FlutterSDK.Cupertino.Localizations.CupertinoLocalizations Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+        public virtual FlutterSDK.Cupertino.Localizations.CupertinoLocalizations Of(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return LocalizationsDefaultClass.Localizations.Of(context, LocalizationsDefaultClass.CupertinoLocalizations);
+        }
+
+
 
     }
     public static class CupertinoLocalizationsMixin
@@ -517,180 +564,209 @@ namespace FlutterSDK.Cupertino.Localizations
     {
         #region constructors
         public _CupertinoLocalizationsDelegate()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        #endregion
+    #region fields
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new bool IsSupported(Locale locale) { throw new NotImplementedException(); }
-
-
-        public new Future<FlutterSDK.Cupertino.Localizations.CupertinoLocalizations> Load(Locale locale) { throw new NotImplementedException(); }
+    public new bool IsSupported(Locale locale) => locale.LanguageCode == "en";
 
 
-        public new bool ShouldReload(FlutterSDK.Cupertino.Localizations._CupertinoLocalizationsDelegate old) { throw new NotImplementedException(); }
+
+    public new Future<FlutterSDK.Cupertino.Localizations.CupertinoLocalizations> Load(Locale locale) => LocalizationsDefaultClass.DefaultCupertinoLocalizations.Load(locale);
 
 
-        #endregion
-    }
 
+    public new bool ShouldReload(FlutterSDK.Cupertino.Localizations._CupertinoLocalizationsDelegate old) => false;
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// US English strings for the cupertino widgets.
+/// </Summary>
+public class DefaultCupertinoLocalizations : ICupertinoLocalizations
+{
+    #region constructors
+    public DefaultCupertinoLocalizations()
+
+}
+#endregion
+
+#region fields
+internal virtual List<string> _ShortWeekdays { get; set; }
+internal virtual List<string> _ShortMonths { get; set; }
+internal virtual List<string> _Months { get; set; }
+public virtual FlutterSDK.Widgets.Localizations.LocalizationsDelegate<FlutterSDK.Cupertino.Localizations.CupertinoLocalizations> @delegate { get; set; }
+public virtual FlutterSDK.Cupertino.Localizations.DatePickerDateOrder DatePickerDateOrder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterSDK.Cupertino.Localizations.DatePickerDateTimeOrder DatePickerDateTimeOrder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual string AnteMeridiemAbbreviation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual string PostMeridiemAbbreviation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual string TodayLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual string AlertDialogLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual string CutButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual string CopyButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual string PasteButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual string SelectAllButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new string DatePickerYear(int yearIndex) => yearIndex.ToString();
+
+
+
+public new string DatePickerMonth(int monthIndex) => _Months[monthIndex - 1];
+
+
+
+public new string DatePickerDayOfMonth(int dayIndex) => dayIndex.ToString();
+
+
+
+public new string DatePickerHour(int hour) => hour.ToString();
+
+
+
+public new string DatePickerHourSemanticsLabel(int hour) => hour.ToString() + " o'clock";
+
+
+
+public new string DatePickerMinute(int minute) => minute.ToString().PadLeft(2, '0');
+
+
+
+public new string DatePickerMinuteSemanticsLabel(int minute)
+{
+    if (minute == 1) return "1 minute";
+    return minute.ToString() + " minutes";
+}
+
+
+
+
+public new string DatePickerMediumDate(DateTime date)
+{
+    return $"'{_ShortWeekdays[date.Weekday - Dart:coreDefaultClass.DateTime.Monday]} '" + $"'{_ShortMonths[date.Month - Dart:coreDefaultClass.DateTime.January]} '" + $"'{date.Day.ToString().PadRight(2)}'";
+}
+
+
+
+
+public new string TimerPickerHour(int hour) => hour.ToString();
+
+
+
+public new string TimerPickerMinute(int minute) => minute.ToString();
+
+
+
+public new string TimerPickerSecond(int second) => second.ToString();
+
+
+
+public new string TimerPickerHourLabel(int hour) => hour == 1 ? "hour" : "hours";
+
+
+
+public new string TimerPickerMinuteLabel(int minute) => "min.";
+
+
+
+public new string TimerPickerSecondLabel(int second) => "sec.";
+
+
+
+/// <Summary>
+/// Creates an object that provides US English resource values for the
+/// cupertino library widgets.
+///
+/// The [locale] parameter is ignored.
+///
+/// This method is typically used to create a [LocalizationsDelegate].
+/// </Summary>
+public virtual Future<FlutterSDK.Cupertino.Localizations.CupertinoLocalizations> Load(Locale locale)
+{
+    return new SynchronousFuture<CupertinoLocalizations>(new DefaultCupertinoLocalizations());
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Determines the order of the columns inside [CupertinoDatePicker] in
+/// time and date time mode.
+/// </Summary>
+public enum DatePickerDateTimeOrder
+{
 
     /// <Summary>
-    /// US English strings for the cupertino widgets.
+    /// Order of the columns, from left to right: date, hour, minute, am/pm.
+    ///
+    /// Example: Fri Aug 31 | 02 | 08 | PM.
     /// </Summary>
-    public class DefaultCupertinoLocalizations : ICupertinoLocalizations
-    {
-        #region constructors
-        public DefaultCupertinoLocalizations()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual List<string> _ShortWeekdays { get; set; }
-        internal virtual List<string> _ShortMonths { get; set; }
-        internal virtual List<string> _Months { get; set; }
-        public virtual FlutterSDK.Widgets.Localizations.LocalizationsDelegate<FlutterSDK.Cupertino.Localizations.CupertinoLocalizations> @delegate { get; set; }
-        public virtual FlutterSDK.Cupertino.Localizations.DatePickerDateOrder DatePickerDateOrder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Cupertino.Localizations.DatePickerDateTimeOrder DatePickerDateTimeOrder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual string AnteMeridiemAbbreviation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual string PostMeridiemAbbreviation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual string TodayLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual string AlertDialogLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual string CutButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual string CopyButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual string PasteButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual string SelectAllButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new string DatePickerYear(int yearIndex) { throw new NotImplementedException(); }
+    Date_time_dayPeriod,
+    /// <Summary>
+    /// Order of the columns, from left to right: date, am/pm, hour, minute.
+    ///
+    /// Example: Fri Aug 31 | PM | 02 | 08.
+    /// </Summary>
+    Date_dayPeriod_time,
+    /// <Summary>
+    /// Order of the columns, from left to right: hour, minute, am/pm, date.
+    ///
+    /// Example: 02 | 08 | PM | Fri Aug 31.
+    /// </Summary>
+    Time_dayPeriod_date,
+    /// <Summary>
+    /// Order of the columns, from left to right: am/pm, hour, minute, date.
+    ///
+    /// Example: PM | 02 | 08 | Fri Aug 31.
+    /// </Summary>
+    DayPeriod_time_date,
+}
 
 
-        public new string DatePickerMonth(int monthIndex) { throw new NotImplementedException(); }
-
-
-        public new string DatePickerDayOfMonth(int dayIndex) { throw new NotImplementedException(); }
-
-
-        public new string DatePickerHour(int hour) { throw new NotImplementedException(); }
-
-
-        public new string DatePickerHourSemanticsLabel(int hour) { throw new NotImplementedException(); }
-
-
-        public new string DatePickerMinute(int minute) { throw new NotImplementedException(); }
-
-
-        public new string DatePickerMinuteSemanticsLabel(int minute) { throw new NotImplementedException(); }
-
-
-        public new string DatePickerMediumDate(DateTime date) { throw new NotImplementedException(); }
-
-
-        public new string TimerPickerHour(int hour) { throw new NotImplementedException(); }
-
-
-        public new string TimerPickerMinute(int minute) { throw new NotImplementedException(); }
-
-
-        public new string TimerPickerSecond(int second) { throw new NotImplementedException(); }
-
-
-        public new string TimerPickerHourLabel(int hour) { throw new NotImplementedException(); }
-
-
-        public new string TimerPickerMinuteLabel(int minute) { throw new NotImplementedException(); }
-
-
-        public new string TimerPickerSecondLabel(int second) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Creates an object that provides US English resource values for the
-        /// cupertino library widgets.
-        ///
-        /// The [locale] parameter is ignored.
-        ///
-        /// This method is typically used to create a [LocalizationsDelegate].
-        /// </Summary>
-        public virtual Future<FlutterSDK.Cupertino.Localizations.CupertinoLocalizations> Load(Locale locale) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
+/// <Summary>
+/// Determines the order of the columns inside [CupertinoDatePicker] in date mode.
+/// </Summary>
+public enum DatePickerDateOrder
+{
 
     /// <Summary>
-    /// Determines the order of the columns inside [CupertinoDatePicker] in
-    /// time and date time mode.
+    /// Order of the columns, from left to right: day, month, year.
+    ///
+    /// Example: 12 | March | 1996
     /// </Summary>
-    public enum DatePickerDateTimeOrder
-    {
-
-        /// <Summary>
-        /// Order of the columns, from left to right: date, hour, minute, am/pm.
-        ///
-        /// Example: Fri Aug 31 | 02 | 08 | PM.
-        /// </Summary>
-        Date_time_dayPeriod,
-        /// <Summary>
-        /// Order of the columns, from left to right: date, am/pm, hour, minute.
-        ///
-        /// Example: Fri Aug 31 | PM | 02 | 08.
-        /// </Summary>
-        Date_dayPeriod_time,
-        /// <Summary>
-        /// Order of the columns, from left to right: hour, minute, am/pm, date.
-        ///
-        /// Example: 02 | 08 | PM | Fri Aug 31.
-        /// </Summary>
-        Time_dayPeriod_date,
-        /// <Summary>
-        /// Order of the columns, from left to right: am/pm, hour, minute, date.
-        ///
-        /// Example: PM | 02 | 08 | Fri Aug 31.
-        /// </Summary>
-        DayPeriod_time_date,
-    }
-
-
+    Dmy,
     /// <Summary>
-    /// Determines the order of the columns inside [CupertinoDatePicker] in date mode.
+    /// Order of the columns, from left to right: month, day, year.
+    ///
+    /// Example: March | 12 | 1996
     /// </Summary>
-    public enum DatePickerDateOrder
-    {
-
-        /// <Summary>
-        /// Order of the columns, from left to right: day, month, year.
-        ///
-        /// Example: 12 | March | 1996
-        /// </Summary>
-        Dmy,
-        /// <Summary>
-        /// Order of the columns, from left to right: month, day, year.
-        ///
-        /// Example: March | 12 | 1996
-        /// </Summary>
-        Mdy,
-        /// <Summary>
-        /// Order of the columns, from left to right: year, month, day.
-        ///
-        /// Example: 1996 | March | 12
-        /// </Summary>
-        Ymd,
-        /// <Summary>
-        /// Order of the columns, from left to right: year, day, month.
-        ///
-        /// Example: 1996 | 12 | March
-        /// </Summary>
-        Ydm,
-    }
+    Mdy,
+    /// <Summary>
+    /// Order of the columns, from left to right: year, month, day.
+    ///
+    /// Example: 1996 | March | 12
+    /// </Summary>
+    Ymd,
+    /// <Summary>
+    /// Order of the columns, from left to right: year, day, month.
+    ///
+    /// Example: 1996 | 12 | March
+    /// </Summary>
+    Ydm,
+}
 
 }

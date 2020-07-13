@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 namespace FlutterSDK.Cupertino.Tabscaffold
 {
     internal static class TabscaffoldDefaultClass
@@ -357,252 +357,427 @@ namespace FlutterSDK.Cupertino.Tabscaffold
         #region constructors
         public CupertinoTabController(int initialIndex = 0)
         : base()
+    
+}
+    #endregion
+
+    #region fields
+    internal virtual bool _IsDisposed { get; set; }
+    internal virtual int _Index { get; set; }
+    public virtual int Index { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new void Dispose()
+    {
+        base.Dispose();
+        _IsDisposed = true;
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Implements a tabbed iOS application's root layout and behavior structure.
+///
+/// The scaffold lays out the tab bar at the bottom and the content between or
+/// behind the tab bar.
+///
+/// A [tabBar] and a [tabBuilder] are required. The [CupertinoTabScaffold]
+/// will automatically listen to the provided [CupertinoTabBar]'s tap callbacks
+/// to change the active tab.
+///
+/// A [controller] can be used to provide an initially selected tab index and manage
+/// subsequent tab changes. If a controller is not specified, the scaffold will
+/// create its own [CupertinoTabController] and manage it internally. Otherwise
+/// it's up to the owner of [controller] to call `dispose` on it after finish
+/// using it.
+///
+/// Tabs' contents are built with the provided [tabBuilder] at the active
+/// tab index. The [tabBuilder] must be able to build the same number of
+/// pages as there are [tabBar] items. Inactive tabs will be moved [Offstage]
+/// and their animations disabled.
+///
+/// Adding/removing tabs, or changing the order of tabs is supported but not
+/// recommended. Doing so is against the iOS human interface guidelines, and
+/// [CupertinoTabScaffold] may lose some tabs' state in the process.
+///
+/// Use [CupertinoTabView] as the root widget of each tab to support tabs with
+/// parallel navigation state and history. Since each [CupertinoTabView] contains
+/// a [Navigator], rebuilding the [CupertinoTabView] with a different
+/// [WidgetBuilder] instance in [CupertinoTabView.builder] will not recreate
+/// the [CupertinoTabView]'s navigation stack or update its UI. To update the
+/// contents of the [CupertinoTabView] after it's built, trigger a rebuild
+/// (via [State.setState], for instance) from its descendant rather than from
+/// its ancestor.
+///
+/// {@tool snippet}
+///
+/// A sample code implementing a typical iOS information architecture with tabs.
+///
+/// ```dart
+/// CupertinoTabScaffold(
+///   tabBar: CupertinoTabBar(
+///     items: <BottomNavigationBarItem> [
+///       // ...
+///     ],
+///   ),
+///   tabBuilder: (BuildContext context, int index) {
+///     return CupertinoTabView(
+///       builder: (BuildContext context) {
+///         return CupertinoPageScaffold(
+///           navigationBar: CupertinoNavigationBar(
+///             middle: Text('Page 1 of tab $index'),
+///           ),
+///           child: Center(
+///             child: CupertinoButton(
+///               child: const Text('Next page'),
+///               onPressed: () {
+///                 Navigator.of(context).push(
+///                   CupertinoPageRoute<void>(
+///                     builder: (BuildContext context) {
+///                       return CupertinoPageScaffold(
+///                         navigationBar: CupertinoNavigationBar(
+///                           middle: Text('Page 2 of tab $index'),
+///                         ),
+///                         child: Center(
+///                           child: CupertinoButton(
+///                             child: const Text('Back'),
+///                             onPressed: () { Navigator.of(context).pop(); },
+///                           ),
+///                         ),
+///                       );
+///                     },
+///                   ),
+///                 );
+///               },
+///             ),
+///           ),
+///         );
+///       },
+///     );
+///   },
+/// )
+/// ```
+/// {@end-tool}
+///
+/// To push a route above all tabs instead of inside the currently selected one
+/// (such as when showing a dialog on top of this scaffold), use
+/// `Navigator.of(rootNavigator: true)` from inside the [BuildContext] of a
+/// [CupertinoTabView].
+///
+/// See also:
+///
+///  * [CupertinoTabBar], the bottom tab bar inserted in the scaffold.
+///  * [CupertinoTabController], the selection state of this widget
+///  * [CupertinoTabView], the typical root content of each tab that holds its own
+///    [Navigator] stack.
+///  * [CupertinoPageRoute], a route hosting modal pages with iOS style transitions.
+///  * [CupertinoPageScaffold], typical contents of an iOS modal page implementing
+///    layout with a navigation bar on top.
+///  * [iOS human interface guidelines](https://developer.apple.com/design/human-interface-guidelines/ios/bars/tab-bars/).
+/// </Summary>
+public class CupertinoTabScaffold : FlutterSDK.Widgets.Framework.StatefulWidget
+{
+    #region constructors
+    public CupertinoTabScaffold(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Cupertino.Bottomtabbar.CupertinoTabBar tabBar = default(FlutterSDK.Cupertino.Bottomtabbar.CupertinoTabBar), FlutterSDK.Widgets.Framework.IndexedWidgetBuilder tabBuilder = default(FlutterSDK.Widgets.Framework.IndexedWidgetBuilder), FlutterSDK.Cupertino.Tabscaffold.CupertinoTabController controller = default(FlutterSDK.Cupertino.Tabscaffold.CupertinoTabController), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), bool resizeToAvoidBottomInset = true)
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Cupertino.Bottomtabbar.CupertinoTabBar TabBar { get; set; }
+public virtual FlutterSDK.Cupertino.Tabscaffold.CupertinoTabController Controller { get; set; }
+public virtual FlutterSDK.Widgets.Framework.IndexedWidgetBuilder TabBuilder { get; set; }
+public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+public virtual bool ResizeToAvoidBottomInset { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Cupertino.Tabscaffold._CupertinoTabScaffoldState CreateState() => new _CupertinoTabScaffoldState();
+
+
+#endregion
+}
+
+
+public class _CupertinoTabScaffoldState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Tabscaffold.CupertinoTabScaffold>
+{
+    #region constructors
+    public _CupertinoTabScaffoldState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Cupertino.Tabscaffold.CupertinoTabController _Controller { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
+    {
+        base.InitState();
+        _UpdateTabController();
+    }
+
+
+
+
+    private void _UpdateTabController(bool shouldDisposeOldController = false)
+    {
+        CupertinoTabController newController = Widget.Controller ?? new CupertinoTabController(initialIndex: Widget.TabBar.CurrentIndex);
+        if (newController == _Controller)
         {
-            throw new NotImplementedException();
+            return;
         }
-        #endregion
 
-        #region fields
-        internal virtual bool _IsDisposed { get; set; }
-        internal virtual int _Index { get; set; }
-        public virtual int Index { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// Implements a tabbed iOS application's root layout and behavior structure.
-    ///
-    /// The scaffold lays out the tab bar at the bottom and the content between or
-    /// behind the tab bar.
-    ///
-    /// A [tabBar] and a [tabBuilder] are required. The [CupertinoTabScaffold]
-    /// will automatically listen to the provided [CupertinoTabBar]'s tap callbacks
-    /// to change the active tab.
-    ///
-    /// A [controller] can be used to provide an initially selected tab index and manage
-    /// subsequent tab changes. If a controller is not specified, the scaffold will
-    /// create its own [CupertinoTabController] and manage it internally. Otherwise
-    /// it's up to the owner of [controller] to call `dispose` on it after finish
-    /// using it.
-    ///
-    /// Tabs' contents are built with the provided [tabBuilder] at the active
-    /// tab index. The [tabBuilder] must be able to build the same number of
-    /// pages as there are [tabBar] items. Inactive tabs will be moved [Offstage]
-    /// and their animations disabled.
-    ///
-    /// Adding/removing tabs, or changing the order of tabs is supported but not
-    /// recommended. Doing so is against the iOS human interface guidelines, and
-    /// [CupertinoTabScaffold] may lose some tabs' state in the process.
-    ///
-    /// Use [CupertinoTabView] as the root widget of each tab to support tabs with
-    /// parallel navigation state and history. Since each [CupertinoTabView] contains
-    /// a [Navigator], rebuilding the [CupertinoTabView] with a different
-    /// [WidgetBuilder] instance in [CupertinoTabView.builder] will not recreate
-    /// the [CupertinoTabView]'s navigation stack or update its UI. To update the
-    /// contents of the [CupertinoTabView] after it's built, trigger a rebuild
-    /// (via [State.setState], for instance) from its descendant rather than from
-    /// its ancestor.
-    ///
-    /// {@tool snippet}
-    ///
-    /// A sample code implementing a typical iOS information architecture with tabs.
-    ///
-    /// ```dart
-    /// CupertinoTabScaffold(
-    ///   tabBar: CupertinoTabBar(
-    ///     items: <BottomNavigationBarItem> [
-    ///       // ...
-    ///     ],
-    ///   ),
-    ///   tabBuilder: (BuildContext context, int index) {
-    ///     return CupertinoTabView(
-    ///       builder: (BuildContext context) {
-    ///         return CupertinoPageScaffold(
-    ///           navigationBar: CupertinoNavigationBar(
-    ///             middle: Text('Page 1 of tab $index'),
-    ///           ),
-    ///           child: Center(
-    ///             child: CupertinoButton(
-    ///               child: const Text('Next page'),
-    ///               onPressed: () {
-    ///                 Navigator.of(context).push(
-    ///                   CupertinoPageRoute<void>(
-    ///                     builder: (BuildContext context) {
-    ///                       return CupertinoPageScaffold(
-    ///                         navigationBar: CupertinoNavigationBar(
-    ///                           middle: Text('Page 2 of tab $index'),
-    ///                         ),
-    ///                         child: Center(
-    ///                           child: CupertinoButton(
-    ///                             child: const Text('Back'),
-    ///                             onPressed: () { Navigator.of(context).pop(); },
-    ///                           ),
-    ///                         ),
-    ///                       );
-    ///                     },
-    ///                   ),
-    ///                 );
-    ///               },
-    ///             ),
-    ///           ),
-    ///         );
-    ///       },
-    ///     );
-    ///   },
-    /// )
-    /// ```
-    /// {@end-tool}
-    ///
-    /// To push a route above all tabs instead of inside the currently selected one
-    /// (such as when showing a dialog on top of this scaffold), use
-    /// `Navigator.of(rootNavigator: true)` from inside the [BuildContext] of a
-    /// [CupertinoTabView].
-    ///
-    /// See also:
-    ///
-    ///  * [CupertinoTabBar], the bottom tab bar inserted in the scaffold.
-    ///  * [CupertinoTabController], the selection state of this widget
-    ///  * [CupertinoTabView], the typical root content of each tab that holds its own
-    ///    [Navigator] stack.
-    ///  * [CupertinoPageRoute], a route hosting modal pages with iOS style transitions.
-    ///  * [CupertinoPageScaffold], typical contents of an iOS modal page implementing
-    ///    layout with a navigation bar on top.
-    ///  * [iOS human interface guidelines](https://developer.apple.com/design/human-interface-guidelines/ios/bars/tab-bars/).
-    /// </Summary>
-    public class CupertinoTabScaffold : FlutterSDK.Widgets.Framework.StatefulWidget
-    {
-        #region constructors
-        public CupertinoTabScaffold(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Cupertino.Bottomtabbar.CupertinoTabBar tabBar = default(FlutterSDK.Cupertino.Bottomtabbar.CupertinoTabBar), FlutterSDK.Widgets.Framework.IndexedWidgetBuilder tabBuilder = default(FlutterSDK.Widgets.Framework.IndexedWidgetBuilder), FlutterSDK.Cupertino.Tabscaffold.CupertinoTabController controller = default(FlutterSDK.Cupertino.Tabscaffold.CupertinoTabController), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), bool resizeToAvoidBottomInset = true)
-        : base(key: key)
+        if (shouldDisposeOldController)
         {
-            this.TabBar = tabBar;
-            this.TabBuilder = tabBuilder;
-            this.Controller = controller;
-            this.BackgroundColor = backgroundColor;
-            this.ResizeToAvoidBottomInset = resizeToAvoidBottomInset; throw new NotImplementedException();
+            _Controller?.Dispose();
         }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Cupertino.Bottomtabbar.CupertinoTabBar TabBar { get; set; }
-        public virtual FlutterSDK.Cupertino.Tabscaffold.CupertinoTabController Controller { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.IndexedWidgetBuilder TabBuilder { get; set; }
-        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-        public virtual bool ResizeToAvoidBottomInset { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Cupertino.Tabscaffold._CupertinoTabScaffoldState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _CupertinoTabScaffoldState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Tabscaffold.CupertinoTabScaffold>
-    {
-        #region constructors
-        public _CupertinoTabScaffoldState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Cupertino.Tabscaffold.CupertinoTabController _Controller { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        private void _UpdateTabController(bool shouldDisposeOldController = false) { throw new NotImplementedException(); }
-
-
-        private void _OnCurrentIndexChange() { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Cupertino.Tabscaffold.CupertinoTabScaffold oldWidget) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// A widget laying out multiple tabs with only one active tab being built
-    /// at a time and on stage. Off stage tabs' animations are stopped.
-    /// </Summary>
-    public class _TabSwitchingView : FlutterSDK.Widgets.Framework.StatefulWidget
-    {
-        #region constructors
-        public _TabSwitchingView(int currentTabIndex = default(int), int tabCount = default(int), FlutterSDK.Widgets.Framework.IndexedWidgetBuilder tabBuilder = default(FlutterSDK.Widgets.Framework.IndexedWidgetBuilder))
-        : base()
+        else if (_Controller?._IsDisposed == false)
         {
-            this.CurrentTabIndex = currentTabIndex;
-            this.TabCount = tabCount;
-            this.TabBuilder = tabBuilder; throw new NotImplementedException();
+            _Controller.RemoveListener(_OnCurrentIndexChange);
         }
-        #endregion
 
-        #region fields
-        public virtual int CurrentTabIndex { get; set; }
-        public virtual int TabCount { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.IndexedWidgetBuilder TabBuilder { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Cupertino.Tabscaffold._TabSwitchingViewState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
+        newController.AddListener(_OnCurrentIndexChange);
+        _Controller = newController;
     }
 
 
-    public class _TabSwitchingViewState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Tabscaffold._TabSwitchingView>
+
+
+    private void _OnCurrentIndexChange()
     {
-        #region constructors
-        public _TabSwitchingViewState()
-        { }
-        #endregion
 
-        #region fields
-        public virtual List<bool> ShouldBuildTab { get; set; }
-        public virtual List<FlutterSDK.Widgets.Focusmanager.FocusScopeNode> TabFocusNodes { get; set; }
-        public virtual List<FlutterSDK.Widgets.Focusmanager.FocusScopeNode> DiscardedNodes { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void DidChangeDependencies() { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Cupertino.Tabscaffold._TabSwitchingView oldWidget) { throw new NotImplementedException(); }
-
-
-        private void _FocusActiveTab() { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        SetState(() =>
+        {
+        }
+        );
     }
+
+
+
+
+    public new void DidUpdateWidget(FlutterSDK.Cupertino.Tabscaffold.CupertinoTabScaffold oldWidget)
+    {
+        base.DidUpdateWidget(oldWidget);
+        if (Widget.Controller != oldWidget.Controller)
+        {
+            _UpdateTabController(shouldDisposeOldController: oldWidget.Controller == null);
+        }
+        else if (_Controller.Index >= Widget.TabBar.Items.Count)
+        {
+            _Controller.Index = Widget.TabBar.Items.Count - 1;
+        }
+
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        MediaQueryData existingMediaQuery = MediaqueryDefaultClass.MediaQuery.Of(context);
+        MediaQueryData newMediaQuery = MediaqueryDefaultClass.MediaQuery.Of(context);
+        Widget content = new _TabSwitchingView(currentTabIndex: _Controller.Index, tabCount: Widget.TabBar.Items.Count, tabBuilder: Widget.TabBuilder);
+        EdgeInsets contentPadding = EdgeinsetsDefaultClass.EdgeInsets.Zero;
+        if (Widget.ResizeToAvoidBottomInset)
+        {
+            newMediaQuery = newMediaQuery.RemoveViewInsets(removeBottom: true);
+            contentPadding = EdgeInsets.Only(bottom: existingMediaQuery.ViewInsets.Bottom);
+        }
+
+        if (Widget.TabBar != null && (!Widget.ResizeToAvoidBottomInset || Widget.TabBar.PreferredSize.Height > existingMediaQuery.ViewInsets.Bottom))
+        {
+            double bottomPadding = Widget.TabBar.PreferredSize.Height + existingMediaQuery.Padding.Bottom;
+            if (Widget.TabBar.Opaque(context))
+            {
+                contentPadding = EdgeInsets.Only(bottom: bottomPadding);
+                newMediaQuery = newMediaQuery.RemovePadding(removeBottom: true);
+            }
+            else
+            {
+                newMediaQuery = newMediaQuery.CopyWith(padding: newMediaQuery.Padding.CopyWith(bottom: bottomPadding));
+            }
+
+        }
+
+        content = new MediaQuery(data: newMediaQuery, child: new Padding(padding: contentPadding, child: content));
+        return new DecoratedBox(decoration: new BoxDecoration(color: ColorsDefaultClass.CupertinoDynamicColor.Resolve(Widget.BackgroundColor, context) ?? ThemeDefaultClass.CupertinoTheme.Of(context).ScaffoldBackgroundColor), child: new Stack(children: new List<Widget>(){content, new MediaQuery(data:existingMediaQuery.CopyWith(textScaleFactor:1), child:new Align(alignment:AlignmentDefaultClass.Alignment.BottomCenter, child:Widget.TabBar.CopyWith(currentIndex:_Controller.Index, onTap:(int newIndex) => {
+_Controller.Index=newIndex;
+if (Widget.TabBar.OnTap!=null )Widget.TabBar.OnTap(newIndex);
+}
+)))}));
+    }
+
+
+
+
+    public new void Dispose()
+    {
+        if (Widget.Controller == null)
+        {
+            _Controller?.Dispose();
+        }
+        else if (_Controller?._IsDisposed == false)
+        {
+            _Controller.RemoveListener(_OnCurrentIndexChange);
+        }
+
+        base.Dispose();
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// A widget laying out multiple tabs with only one active tab being built
+/// at a time and on stage. Off stage tabs' animations are stopped.
+/// </Summary>
+public class _TabSwitchingView : FlutterSDK.Widgets.Framework.StatefulWidget
+{
+    #region constructors
+    public _TabSwitchingView(int currentTabIndex = default(int), int tabCount = default(int), FlutterSDK.Widgets.Framework.IndexedWidgetBuilder tabBuilder = default(FlutterSDK.Widgets.Framework.IndexedWidgetBuilder))
+    : base()
+
+}
+#endregion
+
+#region fields
+public virtual int CurrentTabIndex { get; set; }
+public virtual int TabCount { get; set; }
+public virtual FlutterSDK.Widgets.Framework.IndexedWidgetBuilder TabBuilder { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Cupertino.Tabscaffold._TabSwitchingViewState CreateState() => new _TabSwitchingViewState();
+
+
+#endregion
+}
+
+
+public class _TabSwitchingViewState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Tabscaffold._TabSwitchingView>
+{
+    #region constructors
+    public _TabSwitchingViewState()
+    { }
+    #endregion
+
+    #region fields
+    public virtual List<bool> ShouldBuildTab { get; set; }
+    public virtual List<FlutterSDK.Widgets.Focusmanager.FocusScopeNode> TabFocusNodes { get; set; }
+    public virtual List<FlutterSDK.Widgets.Focusmanager.FocusScopeNode> DiscardedNodes { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
+    {
+        base.InitState();
+        ShouldBuildTab.AddAll(List<bool>.Filled(Widget.TabCount, false));
+    }
+
+
+
+
+    public new void DidChangeDependencies()
+    {
+        base.DidChangeDependencies();
+        _FocusActiveTab();
+    }
+
+
+
+
+    public new void DidUpdateWidget(FlutterSDK.Cupertino.Tabscaffold._TabSwitchingView oldWidget)
+    {
+        base.DidUpdateWidget(oldWidget);
+        int lengthDiff = Widget.TabCount - ShouldBuildTab.Count;
+        if (lengthDiff > 0)
+        {
+            ShouldBuildTab.AddAll(List<bool>.Filled(lengthDiff, false));
+        }
+        else if (lengthDiff < 0)
+        {
+            ShouldBuildTab.RemoveRange(Widget.TabCount, ShouldBuildTab.Count);
+        }
+
+        _FocusActiveTab();
+    }
+
+
+
+
+    private void _FocusActiveTab()
+    {
+        if (TabFocusNodes.Count != Widget.TabCount)
+        {
+            if (TabFocusNodes.Count > Widget.TabCount)
+            {
+                DiscardedNodes.AddAll(TabFocusNodes.Sublist(Widget.TabCount));
+                TabFocusNodes.RemoveRange(Widget.TabCount, TabFocusNodes.Count);
+            }
+            else
+            {
+                TabFocusNodes.AddAll(List<FocusScopeNode>.Generate(Widget.TabCount - TabFocusNodes.Count, (int index) => =>new FocusScopeNode(debugLabel: $"'{TabscaffoldDefaultClass.CupertinoTabScaffold} Tab {index + TabFocusNodes.Count}'")));
+            }
+
+        }
+
+        FocusscopeDefaultClass.FocusScope.Of(Context).SetFirstFocus(TabFocusNodes[Widget.CurrentTabIndex]);
+    }
+
+
+
+
+    public new void Dispose()
+    {
+        foreach (FocusScopeNode focusScopeNode in TabFocusNodes)
+        {
+            focusScopeNode.Dispose();
+        }
+
+        foreach (FocusScopeNode focusScopeNode in DiscardedNodes)
+        {
+            focusScopeNode.Dispose();
+        }
+
+        base.Dispose();
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        return new Stack(fit: StackFit.Expand, children: List<Widget>.Generate(Widget.TabCount, (int index) =>
+        {
+            bool active = index == Widget.CurrentTabIndex;
+            ShouldBuildTab[index] = active || ShouldBuildTab[index];
+            return new Offstage(offstage: !active, child: new TickerMode(enabled: active, child: new FocusScope(node: TabFocusNodes[index], child: new Builder(builder: (BuildContext context) =>
+            {
+                return ShouldBuildTab[index] ? Widget.TabBuilder(context, index) : new Container();
+            }
+            ))));
+        }
+        ));
+    }
+
+
+
+    #endregion
+}
 
 }

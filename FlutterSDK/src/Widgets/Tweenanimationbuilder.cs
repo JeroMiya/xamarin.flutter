@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -539,49 +539,79 @@ namespace FlutterSDK.Widgets.Tweenanimationbuilder
         #region constructors
         public TweenAnimationBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Tween.Tween<T> tween = default(FlutterSDK.Animation.Tween.Tween<T>), TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Widgets.Valuelistenablebuilder.ValueWidgetBuilder<T> builder = default(FlutterSDK.Widgets.Valuelistenablebuilder.ValueWidgetBuilder<T>), VoidCallback onEnd = default(VoidCallback), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, duration: duration, curve: curve, onEnd: onEnd)
-        {
-            this.Tween = tween;
-            this.Builder = builder;
-            this.Child = child; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Animation.Tween.Tween<T> Tween { get; set; }
-        public virtual FlutterSDK.Widgets.Valuelistenablebuilder.ValueWidgetBuilder<T> Builder { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Animation.Tween.Tween<T> Tween { get; set; }
+    public virtual FlutterSDK.Widgets.Valuelistenablebuilder.ValueWidgetBuilder<T> Builder { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidgetState<FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget> CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _TweenAnimationBuilderState<T> : FlutterSDK.Widgets.Implicitanimations.AnimatedWidgetBaseState<FlutterSDK.Widgets.Tweenanimationbuilder.TweenAnimationBuilder<T>>
+    public new FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidgetState<FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget> CreateState()
     {
-        #region constructors
-        public _TweenAnimationBuilderState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Animation.Tween.Tween<T> _CurrentTween { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        return new _TweenAnimationBuilderState<T>();
     }
+
+
+
+    #endregion
+}
+
+
+public class _TweenAnimationBuilderState<T> : FlutterSDK.Widgets.Implicitanimations.AnimatedWidgetBaseState<FlutterSDK.Widgets.Tweenanimationbuilder.TweenAnimationBuilder<T>>
+{
+    #region constructors
+    public _TweenAnimationBuilderState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Animation.Tween.Tween<T> _CurrentTween { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
+    {
+        _CurrentTween = Widget.Tween;
+        _CurrentTween.Begin = (_CurrentTween.Begin == null ? _CurrentTween.End : _CurrentTween.Begin);
+        base.InitState();
+        if (_CurrentTween.Begin != _CurrentTween.End)
+        {
+            Controller.Forward();
+        }
+
+    }
+
+
+
+
+    public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor)
+    {
+
+        _CurrentTween = visitor(_CurrentTween, Widget.Tween.End, (object value) =>
+        {
+
+            return null;
+        }
+        ) as Tween<T>;
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        return Widget.Builder(context, _CurrentTween.Evaluate(Animation), Widget.Child);
+    }
+
+
+
+    #endregion
+}
 
 }

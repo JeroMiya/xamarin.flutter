@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -454,23 +454,87 @@ namespace FlutterSDK.Rendering.Platformview
         /// Any active gesture arena the `PlatformView` participates in is rejected when the
         /// set of gesture recognizers is changed.
         /// </Summary>
-        private void _UpdateGestureRecognizersWithCallBack(HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizers, FlutterSDK.Rendering.Platformview._HandlePointerEvent handlePointerEvent) { throw new NotImplementedException(); }
+        private void _UpdateGestureRecognizersWithCallBack(HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizers, FlutterSDK.Rendering.Platformview._HandlePointerEvent handlePointerEvent)
+        {
 
 
-        public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
+            if (PlatformviewDefaultClass._FactoryTypesSetEquals(gestureRecognizers, _GestureRecognizer?.GestureRecognizerFactories))
+            {
+                return;
+            }
+
+            _GestureRecognizer?.Dispose();
+            _GestureRecognizer = new _PlatformViewGestureRecognizer(handlePointerEvent, gestureRecognizers);
+            _HandlePointerEvent = handlePointerEvent;
+        }
 
 
-        public new bool HitTestSelf(FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
 
 
-        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Hittest.HitTestEntry entry) { throw new NotImplementedException(); }
+        public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
+        {
+            if (HitTestBehavior == PlatformViewHitTestBehavior.Transparent || !Size.Contains(position))
+            {
+                return false;
+            }
+
+            result.Add(new BoxHitTestEntry(this, position));
+            return HitTestBehavior == PlatformViewHitTestBehavior.Opaque;
+        }
 
 
-        public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner) { throw new NotImplementedException(); }
-        public new void Attach(@Object owner) { throw new NotImplementedException(); }
 
 
-        public new void Detach() { throw new NotImplementedException(); }
+        public new bool HitTestSelf(FlutterBinding.UI.Offset position) => HitTestBehavior != PlatformViewHitTestBehavior.Transparent;
+
+
+
+        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Hittest.HitTestEntry entry)
+        {
+            if (@event is PointerDownEvent)
+            {
+                _GestureRecognizer.AddPointer(((PointerDownEvent)@event));
+            }
+
+        }
+
+
+
+
+        public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner)
+        {
+            base.Attach(owner);
+
+            _HoverAnnotation = new MouseTrackerAnnotation(onHover: (PointerHoverEvent @event) =>
+            {
+                if (_HandlePointerEvent != null) _HandlePointerEvent(@event);
+            }
+            );
+        }
+
+
+        public new void Attach(@Object owner)
+        {
+            base.Attach(owner);
+
+            _HoverAnnotation = new MouseTrackerAnnotation(onHover: (PointerHoverEvent @event) =>
+            {
+                if (_HandlePointerEvent != null) _HandlePointerEvent(@event);
+            }
+            );
+        }
+
+
+
+
+        public new void Detach()
+        {
+            _GestureRecognizer.Reset();
+            _HoverAnnotation = null;
+            base.Detach();
+        }
+
+
 
     }
     public static class _PlatformViewGestureMixinMixin
@@ -525,360 +589,722 @@ namespace FlutterSDK.Rendering.Platformview
         #region constructors
         public RenderAndroidView(FlutterSDK.Services.Platformviews.AndroidViewController viewController = default(FlutterSDK.Services.Platformviews.AndroidViewController), FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior hitTestBehavior = default(FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior), HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizers = default(HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>>))
         : base()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Rendering.Platformview._PlatformViewState _State { get; set; }
-        internal virtual FlutterSDK.Services.Platformviews.AndroidViewController _ViewController { get; set; }
-        internal virtual FlutterSDK.Rendering.Platformview._MotionEventsDispatcher _MotionEventsDispatcher { get; set; }
-        internal virtual Size _CurrentAndroidViewSize { get; set; }
-        public virtual FlutterSDK.Services.Platformviews.AndroidViewController Viewcontroller { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Services.Platformviews.AndroidViewController ViewController { set { throw new NotImplementedException(); } }
-        public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool IsRepaintBoundary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        private void _OnPlatformViewCreated(int id) { throw new NotImplementedException(); }
+    
+_MotionEventsDispatcher=new _MotionEventsDispatcher(GlobalToLocal, viewController);
+        UpdateGestureRecognizers(gestureRecognizers);
+        _ViewController.AddOnPlatformViewCreatedListener(_OnPlatformViewCreated);
+this .HitTestBehavior=hitTestBehavior;
+}
 
 
-        /// <Summary>
-        /// {@template flutter.rendering.platformView.updateGestureRecognizers}
-        /// Updates which gestures should be forwarded to the platform view.
-        ///
-        /// Gesture recognizers created by factories in this set participate in the gesture arena for each
-        /// pointer that was put down on the render box. If any of the recognizers on this list wins the
-        /// gesture arena, the entire pointer event sequence starting from the pointer down event
-        /// will be dispatched to the Android view.
-        ///
-        /// The `gestureRecognizers` property must not contain more than one factory with the same [Factory.type].
-        ///
-        /// Setting a new set of gesture recognizer factories with the same [Factory.type]s as the current
-        /// set has no effect, because the factories' constructors would have already been called with the previous set.
-        /// {@endtemplate}
-        ///
-        /// Any active gesture arena the Android view participates in is rejected when the
-        /// set of gesture recognizers is changed.
-        /// </Summary>
-        public virtual void UpdateGestureRecognizers(HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizers) { throw new NotImplementedException(); }
+    #endregion
 
+    #region fields
+    internal virtual FlutterSDK.Rendering.Platformview._PlatformViewState _State { get; set; }
+    internal virtual FlutterSDK.Services.Platformviews.AndroidViewController _ViewController { get; set; }
+    internal virtual FlutterSDK.Rendering.Platformview._MotionEventsDispatcher _MotionEventsDispatcher { get; set; }
+    internal virtual Size _CurrentAndroidViewSize { get; set; }
+    public virtual FlutterSDK.Services.Platformviews.AndroidViewController Viewcontroller { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Services.Platformviews.AndroidViewController ViewController { set { throw new NotImplementedException(); } }
+    public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool IsRepaintBoundary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        public new void PerformResize() { throw new NotImplementedException(); }
+    #region methods
 
-
-        private Future<object> _SizePlatformView() { throw new NotImplementedException(); }
-
-
-        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        private void _PaintTexture(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config) { throw new NotImplementedException(); }
-
-        #endregion
+    private void _OnPlatformViewCreated(int id)
+    {
+        MarkNeedsSemanticsUpdate();
     }
 
 
+
+
     /// <Summary>
-    /// A render object for an iOS UIKit UIView.
+    /// {@template flutter.rendering.platformView.updateGestureRecognizers}
+    /// Updates which gestures should be forwarded to the platform view.
     ///
-    /// {@template flutter.rendering.platformView.preview}
-    /// Embedding UIViews is still in release preview, to enable the preview for an iOS app add a boolean
-    /// field with the key 'io.flutter.embedded_views_preview' and the value set to 'YES' to the
-    /// application's Info.plist file. A list of open issued with embedding UIViews is available on
-    /// [Github](https://github.com/flutter/flutter/issues?q=is%3Aopen+is%3Aissue+label%3A%22a%3A+platform-views%22+label%3A%22%E2%8C%BA%E2%80%AC+platform-ios%22)
+    /// Gesture recognizers created by factories in this set participate in the gesture arena for each
+    /// pointer that was put down on the render box. If any of the recognizers on this list wins the
+    /// gesture arena, the entire pointer event sequence starting from the pointer down event
+    /// will be dispatched to the Android view.
+    ///
+    /// The `gestureRecognizers` property must not contain more than one factory with the same [Factory.type].
+    ///
+    /// Setting a new set of gesture recognizer factories with the same [Factory.type]s as the current
+    /// set has no effect, because the factories' constructors would have already been called with the previous set.
     /// {@endtemplate}
     ///
-    /// [RenderUiKitView] is responsible for sizing and displaying an iOS
-    /// [UIView](https://developer.apple.com/documentation/uikit/uiview).
-    ///
-    /// UIViews are added as sub views of the FlutterView and are composited by Quartz.
-    ///
-    /// {@macro flutter.rendering.platformView.layout}
-    ///
-    /// {@macro flutter.rendering.platformView.gestures}
-    ///
-    /// See also:
-    ///
-    ///  * [UiKitView] which is a widget that is used to show a UIView.
-    ///  * [PlatformViewsService] which is a service for controlling platform views.
+    /// Any active gesture arena the Android view participates in is rejected when the
+    /// set of gesture recognizers is changed.
     /// </Summary>
-    public class RenderUiKitView : FlutterSDK.Rendering.Box.RenderBox
+    public virtual void UpdateGestureRecognizers(HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizers)
     {
-        #region constructors
-        public RenderUiKitView(FlutterSDK.Services.Platformviews.UiKitViewController viewController = default(FlutterSDK.Services.Platformviews.UiKitViewController), FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior hitTestBehavior = default(FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior), HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizers = default(HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>>))
-        : base()
-        {
-            this.HitTestBehavior = hitTestBehavior; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Services.Platformviews.UiKitViewController _ViewController { get; set; }
-        public virtual FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior HitTestBehavior { get; set; }
-        internal virtual FlutterSDK.Rendering.Platformview._UiKitViewGestureRecognizer _GestureRecognizer { get; set; }
-        internal virtual FlutterSDK.Gestures.Events.PointerEvent _LastPointerDownEvent { get; set; }
-        public virtual FlutterSDK.Services.Platformviews.UiKitViewController ViewController { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool IsRepaintBoundary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// {@macro flutter.rendering.platformView.updateGestureRecognizers}
-        /// </Summary>
-        public virtual void UpdateGestureRecognizers(HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizers) { throw new NotImplementedException(); }
-
-
-        public new void PerformResize() { throw new NotImplementedException(); }
-
-
-        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
-
-
-        public new bool HitTestSelf(FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
-
-
-        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Hittest.HitTestEntry entry) { throw new NotImplementedException(); }
-
-
-        private void _HandleGlobalPointerEvent(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
-
-
-        public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config) { throw new NotImplementedException(); }
-
-
-        public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner) { throw new NotImplementedException(); }
-        public new void Attach(@Object owner) { throw new NotImplementedException(); }
-
-
-        public new void Detach() { throw new NotImplementedException(); }
-
-        #endregion
+        _UpdateGestureRecognizersWithCallBack(gestureRecognizers, _MotionEventsDispatcher.HandlePointerEvent);
     }
 
 
-    public class _UiKitViewGestureRecognizer : FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer
+
+
+    public new void PerformResize()
     {
-        #region constructors
-        public _UiKitViewGestureRecognizer(FlutterSDK.Services.Platformviews.UiKitViewController controller, HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizerFactories, PointerDeviceKind kind = default(PointerDeviceKind))
-        : base(kind: kind)
-        {
-            this.Controller = controller;
-            this.GestureRecognizerFactories = gestureRecognizerFactories; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> GestureRecognizerFactories { get; set; }
-        internal virtual HashSet<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer> _GestureRecognizers { get; set; }
-        public virtual FlutterSDK.Services.Platformviews.UiKitViewController Controller { get; set; }
-        public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
-
-
-        public new void DidStopTrackingLastPointer(int pointer) { throw new NotImplementedException(); }
-
-
-        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
-
-
-        public new void AcceptGesture(int pointer) { throw new NotImplementedException(); }
-
-
-        public new void RejectGesture(int pointer) { throw new NotImplementedException(); }
-
-
-        public virtual void Reset() { throw new NotImplementedException(); }
-
-        #endregion
+        Size = Constraints.Biggest;
+        _SizePlatformView();
     }
 
 
-    public class _PlatformViewGestureRecognizer : FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer
+
+
+    private Future<object> _SizePlatformView()
+async
+{
+if (_State==_PlatformViewState.Resizing||Size.IsEmpty()){
+return ;
+}
+
+_State = _PlatformViewState.Resizing;
+MarkNeedsPaint();
+Size targetSize = default(Size);
+do
+{
+    targetSize = Size;
+    await _ViewController.SetSize(targetSize);
+    _CurrentAndroidViewSize = targetSize;
+}
+while (Size != targetSize);
+_State = _PlatformViewState.Ready;
+MarkNeedsPaint();
+}
+
+
+
+
+public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+{
+    if (_ViewController.TextureId == null) return;
+    if (Size.Width < _CurrentAndroidViewSize.Width || Size.Height < _CurrentAndroidViewSize.Height)
     {
-        #region constructors
-        public _PlatformViewGestureRecognizer(FlutterSDK.Rendering.Platformview._HandlePointerEvent handlePointerEvent, HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizerFactories, PointerDeviceKind kind = default(PointerDeviceKind))
-        : base(kind: kind)
-        {
-            this.GestureRecognizerFactories = gestureRecognizerFactories; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Rendering.Platformview._HandlePointerEvent _HandlePointerEvent { get; set; }
-        public virtual Dictionary<int, List<FlutterSDK.Gestures.Events.PointerEvent>> CachedEvents { get; set; }
-        public virtual HashSet<int> ForwardedPointers { get; set; }
-        public virtual HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> GestureRecognizerFactories { get; set; }
-        internal virtual HashSet<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer> _GestureRecognizers { get; set; }
-        public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
-
-
-        public new void DidStopTrackingLastPointer(int pointer) { throw new NotImplementedException(); }
-
-
-        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
-
-
-        public new void AcceptGesture(int pointer) { throw new NotImplementedException(); }
-
-
-        public new void RejectGesture(int pointer) { throw new NotImplementedException(); }
-
-
-        private void _CacheEvent(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
-
-
-        private void _FlushPointerCache(int pointer) { throw new NotImplementedException(); }
-
-
-        public new void StopTrackingPointer(int pointer) { throw new NotImplementedException(); }
-
-
-        public virtual void Reset() { throw new NotImplementedException(); }
-
-        #endregion
+        context.PushClipRect(true, offset, offset & Size, _PaintTexture);
+        return;
     }
 
+    _PaintTexture(context, offset);
+}
 
-    public class _MotionEventsDispatcher
+
+
+
+private void _PaintTexture(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+{
+    context.AddLayer(new TextureLayer(rect: offset & _CurrentAndroidViewSize, textureId: _ViewController.TextureId, freeze: _State == _PlatformViewState.Resizing));
+}
+
+
+
+
+public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config)
+{
+    base.DescribeSemanticsConfiguration(config);
+    config.IsSemanticBoundary = true;
+    if (_ViewController.IsCreated)
     {
-        #region constructors
-        public _MotionEventsDispatcher(FlutterSDK.Rendering.Platformview._GlobalToLocal globalToLocal, FlutterSDK.Services.Platformviews.AndroidViewController viewController)
-        {
-            this.GlobalToLocal = globalToLocal;
-            this.ViewController = viewController; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual Dictionary<int, FlutterSDK.Services.Platformviews.AndroidPointerCoords> PointerPositions { get; set; }
-        public virtual Dictionary<int, FlutterSDK.Services.Platformviews.AndroidPointerProperties> PointerProperties { get; set; }
-        public virtual FlutterSDK.Rendering.Platformview._GlobalToLocal GlobalToLocal { get; set; }
-        public virtual FlutterSDK.Services.Platformviews.AndroidViewController ViewController { get; set; }
-        public virtual int NextPointerId { get; set; }
-        public virtual int DownTimeMillis { get; set; }
-        #endregion
-
-        #region methods
-
-        public virtual void HandlePointerEvent(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
-
-
-        public virtual void DispatchPointerEvent(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
-
-
-        public virtual FlutterSDK.Services.Platformviews.AndroidPointerCoords CoordsFor(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
-
-
-        public virtual FlutterSDK.Services.Platformviews.AndroidPointerProperties PropertiesFor(FlutterSDK.Gestures.Events.PointerEvent @event, int pointerId) { throw new NotImplementedException(); }
-
-
-        public virtual bool IsSinglePointerAction(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
-
-        #endregion
+        config.PlatformViewId = _ViewController.Id;
     }
 
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A render object for an iOS UIKit UIView.
+///
+/// {@template flutter.rendering.platformView.preview}
+/// Embedding UIViews is still in release preview, to enable the preview for an iOS app add a boolean
+/// field with the key 'io.flutter.embedded_views_preview' and the value set to 'YES' to the
+/// application's Info.plist file. A list of open issued with embedding UIViews is available on
+/// [Github](https://github.com/flutter/flutter/issues?q=is%3Aopen+is%3Aissue+label%3A%22a%3A+platform-views%22+label%3A%22%E2%8C%BA%E2%80%AC+platform-ios%22)
+/// {@endtemplate}
+///
+/// [RenderUiKitView] is responsible for sizing and displaying an iOS
+/// [UIView](https://developer.apple.com/documentation/uikit/uiview).
+///
+/// UIViews are added as sub views of the FlutterView and are composited by Quartz.
+///
+/// {@macro flutter.rendering.platformView.layout}
+///
+/// {@macro flutter.rendering.platformView.gestures}
+///
+/// See also:
+///
+///  * [UiKitView] which is a widget that is used to show a UIView.
+///  * [PlatformViewsService] which is a service for controlling platform views.
+/// </Summary>
+public class RenderUiKitView : FlutterSDK.Rendering.Box.RenderBox
+{
+    #region constructors
+    public RenderUiKitView(FlutterSDK.Services.Platformviews.UiKitViewController viewController = default(FlutterSDK.Services.Platformviews.UiKitViewController), FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior hitTestBehavior = default(FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior), HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizers = default(HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>>))
+    : base()
+
+UpdateGestureRecognizers(gestureRecognizers);
+}
+
+
+#endregion
+
+#region fields
+internal virtual FlutterSDK.Services.Platformviews.UiKitViewController _ViewController { get; set; }
+public virtual FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior HitTestBehavior { get; set; }
+internal virtual FlutterSDK.Rendering.Platformview._UiKitViewGestureRecognizer _GestureRecognizer { get; set; }
+internal virtual FlutterSDK.Gestures.Events.PointerEvent _LastPointerDownEvent { get; set; }
+public virtual FlutterSDK.Services.Platformviews.UiKitViewController ViewController { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual bool IsRepaintBoundary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+/// <Summary>
+/// {@macro flutter.rendering.platformView.updateGestureRecognizers}
+/// </Summary>
+public virtual void UpdateGestureRecognizers(HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizers)
+{
+
+
+    if (PlatformviewDefaultClass._FactoryTypesSetEquals(gestureRecognizers, _GestureRecognizer?.GestureRecognizerFactories))
+    {
+        return;
+    }
+
+    _GestureRecognizer?.Dispose();
+    _GestureRecognizer = new _UiKitViewGestureRecognizer(ViewController, gestureRecognizers);
+}
+
+
+
+
+public new void PerformResize()
+{
+    Size = Constraints.Biggest;
+}
+
+
+
+
+public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+{
+    context.AddLayer(new PlatformViewLayer(rect: offset & Size, viewId: _ViewController.Id));
+}
+
+
+
+
+public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
+{
+    if (HitTestBehavior == PlatformViewHitTestBehavior.Transparent || !Size.Contains(position)) return false;
+    result.Add(new BoxHitTestEntry(this, position));
+    return HitTestBehavior == PlatformViewHitTestBehavior.Opaque;
+}
+
+
+
+
+public new bool HitTestSelf(FlutterBinding.UI.Offset position) => HitTestBehavior != PlatformViewHitTestBehavior.Transparent;
+
+
+
+public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Hittest.HitTestEntry entry)
+{
+    if (!(@event is PointerDownEvent))
+    {
+        return;
+    }
+
+    _GestureRecognizer.AddPointer(@event as PointerDownEvent);
+    _LastPointerDownEvent = @event.Original ?? @event;
+}
+
+
+
+
+private void _HandleGlobalPointerEvent(FlutterSDK.Gestures.Events.PointerEvent @event)
+{
+    if (!(@event is PointerDownEvent))
+    {
+        return;
+    }
+
+    if (!(Dart: uiDefaultClass.Offset.Zero & Size).Contains(GlobalToLocal(@event.Position)))
+    {
+        return;
+    }
+
+    if ((@event.Original ?? @event) != _LastPointerDownEvent)
+    {
+        _ViewController.RejectGesture();
+    }
+
+    _LastPointerDownEvent = null;
+}
+
+
+
+
+public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config)
+{
+    base.DescribeSemanticsConfiguration(config);
+    config.IsSemanticBoundary = true;
+    config.PlatformViewId = _ViewController.Id;
+}
+
+
+
+
+public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner)
+{
+    base.Attach(owner);
+    BindingDefaultClass.GestureBinding.Instance.PointerRouter.AddGlobalRoute(_HandleGlobalPointerEvent);
+}
+
+
+public new void Attach(@Object owner)
+{
+    base.Attach(owner);
+    BindingDefaultClass.GestureBinding.Instance.PointerRouter.AddGlobalRoute(_HandleGlobalPointerEvent);
+}
+
+
+
+
+public new void Detach()
+{
+    BindingDefaultClass.GestureBinding.Instance.PointerRouter.RemoveGlobalRoute(_HandleGlobalPointerEvent);
+    _GestureRecognizer.Reset();
+    base.Detach();
+}
+
+
+
+#endregion
+}
+
+
+public class _UiKitViewGestureRecognizer : FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer
+{
+    #region constructors
+    public _UiKitViewGestureRecognizer(FlutterSDK.Services.Platformviews.UiKitViewController controller, HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizerFactories, PointerDeviceKind kind = default(PointerDeviceKind))
+    : base(kind: kind)
+
+Team=new GestureArenaTeam();
+    Team.Captain=this ;
+_GestureRecognizers=GestureRecognizerFactories.Map((Factory<OneSequenceGestureRecognizer> recognizerFactory) => {
+return recognizerFactory.Constructor()..Team=Team;
+}
+).ToSet();
+}
+
+
+#endregion
+
+#region fields
+public virtual HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> GestureRecognizerFactories { get; set; }
+internal virtual HashSet<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer> _GestureRecognizers { get; set; }
+public virtual FlutterSDK.Services.Platformviews.UiKitViewController Controller { get; set; }
+public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event)
+{
+    StartTrackingPointer(@event.Pointer, @event.Transform);
+    foreach (OneSequenceGestureRecognizer recognizer in _GestureRecognizers)
+    {
+        recognizer.AddPointer(@event);
+    }
+
+}
+
+
+
+
+public new void DidStopTrackingLastPointer(int pointer)
+{
+}
+
+
+
+
+public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event)
+{
+    StopTrackingIfPointerNoLongerDown(@event);
+}
+
+
+
+
+public new void AcceptGesture(int pointer)
+{
+    Controller.AcceptGesture();
+}
+
+
+
+
+public new void RejectGesture(int pointer)
+{
+    Controller.RejectGesture();
+}
+
+
+
+
+public virtual void Reset()
+{
+    Resolve(GestureDisposition.Rejected);
+}
+
+
+
+#endregion
+}
+
+
+public class _PlatformViewGestureRecognizer : FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer
+{
+    #region constructors
+    public _PlatformViewGestureRecognizer(FlutterSDK.Rendering.Platformview._HandlePointerEvent handlePointerEvent, HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizerFactories, PointerDeviceKind kind = default(PointerDeviceKind))
+    : base(kind: kind)
+
+Team=new GestureArenaTeam();
+    Team.Captain=this ;
+_GestureRecognizers=GestureRecognizerFactories.Map((Factory<OneSequenceGestureRecognizer> recognizerFactory) => {
+return recognizerFactory.Constructor()..Team=Team;
+}
+).ToSet();
+_HandlePointerEvent = handlePointerEvent;
+}
+
+
+#endregion
+
+#region fields
+internal virtual FlutterSDK.Rendering.Platformview._HandlePointerEvent _HandlePointerEvent { get; set; }
+public virtual Dictionary<int, List<FlutterSDK.Gestures.Events.PointerEvent>> CachedEvents { get; set; }
+public virtual HashSet<int> ForwardedPointers { get; set; }
+public virtual HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> GestureRecognizerFactories { get; set; }
+internal virtual HashSet<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer> _GestureRecognizers { get; set; }
+public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event)
+{
+    StartTrackingPointer(@event.Pointer, @event.Transform);
+    foreach (OneSequenceGestureRecognizer recognizer in _GestureRecognizers)
+    {
+        recognizer.AddPointer(@event);
+    }
+
+}
+
+
+
+
+public new void DidStopTrackingLastPointer(int pointer)
+{
+}
+
+
+
+
+public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event)
+{
+    if (!ForwardedPointers.Contains(@event.Pointer))
+    {
+        _CacheEvent(@event);
+    }
+    else
+    {
+        _HandlePointerEvent(@event);
+    }
+
+    StopTrackingIfPointerNoLongerDown(@event);
+}
+
+
+
+
+public new void AcceptGesture(int pointer)
+{
+    _FlushPointerCache(pointer);
+    ForwardedPointers.Add(pointer);
+}
+
+
+
+
+public new void RejectGesture(int pointer)
+{
+    StopTrackingPointer(pointer);
+    CachedEvents.Remove(pointer);
+}
+
+
+
+
+private void _CacheEvent(FlutterSDK.Gestures.Events.PointerEvent @event)
+{
+    if (!CachedEvents.ContainsKey(@event.Pointer))
+    {
+        CachedEvents[@event.Pointer] = new List<PointerEvent>() { };
+    }
+
+    CachedEvents[@event.Pointer].Add(@event);
+}
+
+
+
+
+private void _FlushPointerCache(int pointer)
+{
+    CachedEvents.Remove(pointer)?.ForEach(_HandlePointerEvent);
+}
+
+
+
+
+public new void StopTrackingPointer(int pointer)
+{
+    base.StopTrackingPointer(pointer);
+    ForwardedPointers.Remove(pointer);
+}
+
+
+
+
+public virtual void Reset()
+{
+    ForwardedPointers.ForEach(base.StopTrackingPointer);
+    ForwardedPointers.Clear();
+    CachedEvents.Keys.ForEach(base.StopTrackingPointer);
+    CachedEvents.Clear();
+    Resolve(GestureDisposition.Rejected);
+}
+
+
+
+#endregion
+}
+
+
+public class _MotionEventsDispatcher
+{
+    #region constructors
+    public _MotionEventsDispatcher(FlutterSDK.Rendering.Platformview._GlobalToLocal globalToLocal, FlutterSDK.Services.Platformviews.AndroidViewController viewController)
+
+}
+#endregion
+
+#region fields
+public virtual Dictionary<int, FlutterSDK.Services.Platformviews.AndroidPointerCoords> PointerPositions { get; set; }
+public virtual Dictionary<int, FlutterSDK.Services.Platformviews.AndroidPointerProperties> PointerProperties { get; set; }
+public virtual FlutterSDK.Rendering.Platformview._GlobalToLocal GlobalToLocal { get; set; }
+public virtual FlutterSDK.Services.Platformviews.AndroidViewController ViewController { get; set; }
+public virtual int NextPointerId { get; set; }
+public virtual int DownTimeMillis { get; set; }
+#endregion
+
+#region methods
+
+public virtual void HandlePointerEvent(FlutterSDK.Gestures.Events.PointerEvent @event)
+{
+    if (@event is PointerDownEvent)
+    {
+        if (NextPointerId == 0) DownTimeMillis = ((PointerDownEvent)@event).TimeStamp.InMilliseconds;
+        PointerProperties[((PointerDownEvent)@event).Pointer] = PropertiesFor(((PointerDownEvent)@event), NextPointerId++);
+    }
+
+    PointerPositions[@event.Pointer] = CoordsFor(@event);
+    DispatchPointerEvent(@event);
+    if (@event is PointerUpEvent)
+    {
+        PointerPositions.Remove(((PointerUpEvent)@event).Pointer);
+        PointerProperties.Remove(((PointerUpEvent)@event).Pointer);
+        if (PointerProperties.IsEmpty())
+        {
+            NextPointerId = 0;
+            DownTimeMillis = null;
+        }
+
+    }
+
+    if (@event is PointerCancelEvent)
+    {
+        PointerPositions.Clear();
+        PointerProperties.Clear();
+        NextPointerId = 0;
+        DownTimeMillis = null;
+    }
+
+}
+
+
+
+
+public virtual void DispatchPointerEvent(FlutterSDK.Gestures.Events.PointerEvent @event)
+{
+    List<int> pointers = PointerPositions.Keys.ToList();
+    int pointerIdx = pointers.IndexOf(@event.Pointer);
+    int numPointers = pointers.Count;
+    int kPointerDataFlagBatched = 1;
+    if (@event.PlatformData == kPointerDataFlagBatched || (IsSinglePointerAction(@event) && pointerIdx < numPointers - 1)) return;
+    int action = default(int);
+    switch (@event.GetType()) { case EventsDefaultClass.PointerDownEvent: action = numPointers == 1 ? PlatformviewsDefaultClass.AndroidViewController.KActionDown : PlatformviewsDefaultClass.AndroidViewController.PointerAction(pointerIdx, PlatformviewsDefaultClass.AndroidViewController.KActionPointerDown); break; case EventsDefaultClass.PointerUpEvent: action = numPointers == 1 ? PlatformviewsDefaultClass.AndroidViewController.KActionUp : PlatformviewsDefaultClass.AndroidViewController.PointerAction(pointerIdx, PlatformviewsDefaultClass.AndroidViewController.KActionPointerUp); break; case EventsDefaultClass.PointerMoveEvent: action = PlatformviewsDefaultClass.AndroidViewController.KActionMove; break; case EventsDefaultClass.PointerCancelEvent: action = PlatformviewsDefaultClass.AndroidViewController.KActionCancel; break; default: return; }
+    AndroidMotionEvent androidMotionEvent = new AndroidMotionEvent(downTime: DownTimeMillis, eventTime: @event.TimeStamp.InMilliseconds, action: action, pointerCount: PointerPositions.Length, pointerProperties: pointers.Map((int i) => =>PointerProperties[i]).ToList(), pointerCoords: pointers.Map((int i) => =>PointerPositions[i]).ToList(), metaState: 0, buttonState: 0, xPrecision: 1.0, yPrecision: 1.0, deviceId: 0, edgeFlags: 0, source: 0, flags: 0);
+    ViewController.SendMotionEvent(androidMotionEvent);
+}
+
+
+
+
+public virtual FlutterSDK.Services.Platformviews.AndroidPointerCoords CoordsFor(FlutterSDK.Gestures.Events.PointerEvent @event)
+{
+    Offset position = GlobalToLocal(@event.Position);
+    return new AndroidPointerCoords(orientation: @event.Orientation, pressure: @event.Pressure, size: @event.Size, toolMajor: @event.RadiusMajor, toolMinor: @event.RadiusMinor, touchMajor: @event.RadiusMajor, touchMinor: @event.RadiusMinor, x: position.Dx, y: position.Dy);
+}
+
+
+
+
+public virtual FlutterSDK.Services.Platformviews.AndroidPointerProperties PropertiesFor(FlutterSDK.Gestures.Events.PointerEvent @event, int pointerId)
+{
+    int toolType = PlatformviewsDefaultClass.AndroidPointerProperties.KToolTypeUnknown;
+    switch (@event.Kind) { case PointerDeviceKind.Touch: toolType = PlatformviewsDefaultClass.AndroidPointerProperties.KToolTypeFinger; break; case PointerDeviceKind.Mouse: toolType = PlatformviewsDefaultClass.AndroidPointerProperties.KToolTypeMouse; break; case PointerDeviceKind.Stylus: toolType = PlatformviewsDefaultClass.AndroidPointerProperties.KToolTypeStylus; break; case PointerDeviceKind.InvertedStylus: toolType = PlatformviewsDefaultClass.AndroidPointerProperties.KToolTypeEraser; break; case PointerDeviceKind.Unknown: toolType = PlatformviewsDefaultClass.AndroidPointerProperties.KToolTypeUnknown; break; }
+    return new AndroidPointerProperties(id: pointerId, toolType: toolType);
+}
+
+
+
+
+public virtual bool IsSinglePointerAction(FlutterSDK.Gestures.Events.PointerEvent @event) => !(@event is PointerDownEvent) && !(@event is PointerUpEvent);
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A render object for embedding a platform view.
+///
+/// [PlatformViewRenderBox] presents a platform view by adding a [PlatformViewLayer] layer,
+/// integrates it with the gesture arenas system and adds relevant semantic nodes to the semantics tree.
+/// </Summary>
+public class PlatformViewRenderBox : FlutterSDK.Rendering.Box.RenderBox, I_PlatformViewGestureMixin
+{
+    #region constructors
+    public PlatformViewRenderBox(FlutterSDK.Services.Platformviews.PlatformViewController controller = default(FlutterSDK.Services.Platformviews.PlatformViewController), FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior hitTestBehavior = default(FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior), HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizers = default(HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>>))
+    : base()
+
+this .HitTestBehavior=hitTestBehavior;
+UpdateGestureRecognizers(gestureRecognizers);
+}
+
+
+#endregion
+
+#region fields
+internal virtual FlutterSDK.Services.Platformviews.PlatformViewController _Controller { get; set; }
+public virtual FlutterSDK.Services.Platformviews.PlatformViewController Controller { set { throw new NotImplementedException(); } }
+public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual bool IsRepaintBoundary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+/// <Summary>
+/// {@macro  flutter.rendering.platformView.updateGestureRecognizers}
+///
+/// Any active gesture arena the `PlatformView` participates in is rejected when the
+/// set of gesture recognizers is changed.
+/// </Summary>
+public virtual void UpdateGestureRecognizers(HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizers)
+{
+    _UpdateGestureRecognizersWithCallBack(gestureRecognizers, _Controller.DispatchPointerEvent);
+}
+
+
+
+
+public new void PerformResize()
+{
+    Size = Constraints.Biggest;
+}
+
+
+
+
+public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+{
+
+    context.AddLayer(new PlatformViewLayer(rect: offset & Size, viewId: _Controller.ViewId, hoverAnnotation: _HoverAnnotation));
+}
+
+
+
+
+public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config)
+{
+    base.DescribeSemanticsConfiguration(config);
+
+    config.IsSemanticBoundary = true;
+    config.PlatformViewId = _Controller.ViewId;
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// How an embedded platform view behave during hit tests.
+/// </Summary>
+public enum PlatformViewHitTestBehavior
+{
 
     /// <Summary>
-    /// A render object for embedding a platform view.
-    ///
-    /// [PlatformViewRenderBox] presents a platform view by adding a [PlatformViewLayer] layer,
-    /// integrates it with the gesture arenas system and adds relevant semantic nodes to the semantics tree.
+    /// Opaque targets can be hit by hit tests, causing them to both receive
+    /// events within their bounds and prevent targets visually behind them from
+    /// also receiving events.
     /// </Summary>
-    public class PlatformViewRenderBox : FlutterSDK.Rendering.Box.RenderBox, I_PlatformViewGestureMixin
-    {
-        #region constructors
-        public PlatformViewRenderBox(FlutterSDK.Services.Platformviews.PlatformViewController controller = default(FlutterSDK.Services.Platformviews.PlatformViewController), FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior hitTestBehavior = default(FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior), HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizers = default(HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>>))
-        : base()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Services.Platformviews.PlatformViewController _Controller { get; set; }
-        public virtual FlutterSDK.Services.Platformviews.PlatformViewController Controller { set { throw new NotImplementedException(); } }
-        public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool IsRepaintBoundary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// {@macro  flutter.rendering.platformView.updateGestureRecognizers}
-        ///
-        /// Any active gesture arena the `PlatformView` participates in is rejected when the
-        /// set of gesture recognizers is changed.
-        /// </Summary>
-        public virtual void UpdateGestureRecognizers(HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizers) { throw new NotImplementedException(); }
-
-
-        public new void PerformResize() { throw new NotImplementedException(); }
-
-
-        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
+    Opaque,
     /// <Summary>
-    /// How an embedded platform view behave during hit tests.
+    /// Translucent targets both receive events within their bounds and permit
+    /// targets visually behind them to also receive events.
     /// </Summary>
-    public enum PlatformViewHitTestBehavior
-    {
-
-        /// <Summary>
-        /// Opaque targets can be hit by hit tests, causing them to both receive
-        /// events within their bounds and prevent targets visually behind them from
-        /// also receiving events.
-        /// </Summary>
-        Opaque,
-        /// <Summary>
-        /// Translucent targets both receive events within their bounds and permit
-        /// targets visually behind them to also receive events.
-        /// </Summary>
-        Translucent,
-        /// <Summary>
-        /// Transparent targets don't receive events within their bounds and permit
-        /// targets visually behind them to receive events.
-        /// </Summary>
-        Transparent,
-    }
+    Translucent,
+    /// <Summary>
+    /// Transparent targets don't receive events within their bounds and permit
+    /// targets visually behind them to receive events.
+    /// </Summary>
+    Transparent,
+}
 
 
-    public enum _PlatformViewState
-    {
+public enum _PlatformViewState
+{
 
-        Uninitialized,
-        Resizing,
-        Ready,
-    }
+    Uninitialized,
+    Resizing,
+    Ready,
+}
 
 }

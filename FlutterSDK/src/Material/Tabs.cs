@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -448,607 +448,1193 @@ namespace FlutterSDK.Material.Tabs
         #region constructors
         public Tab(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string text = default(string), FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry iconMargin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
-        {
-            this.Text = text;
-            this.Icon = icon;
-            this.IconMargin = iconMargin;
-            this.Child = child; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual string Text { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Icon { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry IconMargin { get; set; }
-        #endregion
+    #region fields
+    public virtual string Text { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget Icon { get; set; }
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry IconMargin { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        private FlutterSDK.Widgets.Framework.Widget _BuildLabelText() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _TabStyle : FlutterSDK.Widgets.Transitions.AnimatedWidget
+    private FlutterSDK.Widgets.Framework.Widget _BuildLabelText()
     {
-        #region constructors
-        public _TabStyle(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>), bool selected = default(bool), FlutterBinding.UI.Color labelColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color unselectedLabelColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle unselectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key, listenable: animation)
-        {
-            this.Selected = selected;
-            this.LabelColor = labelColor;
-            this.UnselectedLabelColor = unselectedLabelColor;
-            this.LabelStyle = labelStyle;
-            this.UnselectedLabelStyle = unselectedLabelStyle;
-            this.Child = child; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle LabelStyle { get; set; }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle UnselectedLabelStyle { get; set; }
-        public virtual bool Selected { get; set; }
-        public virtual FlutterBinding.UI.Color LabelColor { get; set; }
-        public virtual FlutterBinding.UI.Color UnselectedLabelColor { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        return Child ?? new Text(Text, softWrap: false, overflow: TextOverflow.Fade);
     }
 
 
-    public class _TabLabelBarRenderer : FlutterSDK.Rendering.Flex.RenderFlex
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
     {
-        #region constructors
-        public _TabLabelBarRenderer(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Painting.Basictypes.Axis direction = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize), FlutterSDK.Rendering.Flex.MainAxisAlignment mainAxisAlignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment), FlutterSDK.Rendering.Flex.CrossAxisAlignment crossAxisAlignment = default(FlutterSDK.Rendering.Flex.CrossAxisAlignment), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Basictypes.VerticalDirection verticalDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection), FlutterSDK.Material.Tabs._LayoutCallback onPerformLayout = default(FlutterSDK.Material.Tabs._LayoutCallback))
-        : base(children: children, direction: direction, mainAxisSize: mainAxisSize, mainAxisAlignment: mainAxisAlignment, crossAxisAlignment: crossAxisAlignment, textDirection: textDirection, verticalDirection: verticalDirection)
+
+        double height = default(double);
+        Widget label = default(Widget);
+        if (Icon == null)
         {
-            this.OnPerformLayout = onPerformLayout; throw new NotImplementedException();
+            height = TabsDefaultClass._KTabHeight;
+            label = _BuildLabelText();
         }
-        #endregion
+        else if (Text == null && Child == null)
+        {
+            height = TabsDefaultClass._KTabHeight;
+            label = Icon;
+        }
+        else
+        {
+            height = TabsDefaultClass._KTextAndIconTabHeight;
+            label = new Column(mainAxisAlignment: MainAxisAlignment.Center, crossAxisAlignment: CrossAxisAlignment.Center, children: new List<Widget>() { new Container(child: Icon, margin: IconMargin), _BuildLabelText() });
+        }
 
-        #region fields
-        public virtual FlutterSDK.Material.Tabs._LayoutCallback OnPerformLayout { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void PerformLayout() { throw new NotImplementedException(); }
-
-        #endregion
+        return new SizedBox(height: height, child: new Center(child: label, widthFactor: 1.0));
     }
 
 
-    public class _TabLabelBar : FlutterSDK.Widgets.Basic.Flex
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
     {
-        #region constructors
-        public _TabLabelBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Material.Tabs._LayoutCallback onPerformLayout = default(FlutterSDK.Material.Tabs._LayoutCallback))
-        : base(key: key, children: children, direction: Axis.Horizontal, mainAxisSize: MainAxisSize.Max, mainAxisAlignment: MainAxisAlignment.Start, crossAxisAlignment: CrossAxisAlignment.Center, verticalDirection: VerticalDirection.Down)
-        {
-            this.OnPerformLayout = onPerformLayout; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Material.Tabs._LayoutCallback OnPerformLayout { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Rendering.Flex.RenderFlex CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Material.Tabs._TabLabelBarRenderer renderObject) { throw new NotImplementedException(); }
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
-
-        #endregion
+        base.DebugFillProperties(properties);
+        properties.Add(new StringProperty("text", Text, defaultValue: null));
+        properties.Add(new DiagnosticsProperty<Widget>("icon", Icon, defaultValue: null));
     }
 
 
-    public class _IndicatorPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
+
+    #endregion
+}
+
+
+public class _TabStyle : FlutterSDK.Widgets.Transitions.AnimatedWidget
+{
+    #region constructors
+    public _TabStyle(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>), bool selected = default(bool), FlutterBinding.UI.Color labelColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color unselectedLabelColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle unselectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key, listenable: animation)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Painting.Textstyle.TextStyle LabelStyle { get; set; }
+public virtual FlutterSDK.Painting.Textstyle.TextStyle UnselectedLabelStyle { get; set; }
+public virtual bool Selected { get; set; }
+public virtual FlutterBinding.UI.Color LabelColor { get; set; }
+public virtual FlutterBinding.UI.Color UnselectedLabelColor { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    ThemeData themeData = ThemeDefaultClass.Theme.Of(context);
+    TabBarTheme tabBarTheme = TabbarthemeDefaultClass.TabBarTheme.Of(context);
+    Animation<double> animation = Listenable as Animation<double>;
+    TextStyle defaultStyle = (LabelStyle ?? tabBarTheme.LabelStyle ?? themeData.PrimaryTextTheme.BodyText1).CopyWith(inherit: true);
+    TextStyle defaultUnselectedStyle = (UnselectedLabelStyle ?? tabBarTheme.UnselectedLabelStyle ?? LabelStyle ?? themeData.PrimaryTextTheme.BodyText1).CopyWith(inherit: true);
+    TextStyle textStyle = Selected ? TextstyleDefaultClass.TextStyle.Lerp(defaultStyle, defaultUnselectedStyle, animation.Value) : TextstyleDefaultClass.TextStyle.Lerp(defaultUnselectedStyle, defaultStyle, animation.Value);
+    Color selectedColor = LabelColor ?? tabBarTheme.LabelColor ?? themeData.PrimaryTextTheme.BodyText1.Color;
+    Color unselectedColor = UnselectedLabelColor ?? tabBarTheme.UnselectedLabelColor ?? selectedColor.WithAlpha(0xB2);
+    Color color = Selected ? Dart : uiDefaultClass.Color.Lerp(selectedColor, unselectedColor, animation.Value):Dart: uiDefaultClass.Color.Lerp(unselectedColor, selectedColor, animation.Value);
+    return new DefaultTextStyle(style: textStyle.CopyWith(color: color), child: IconthemeDefaultClass.IconTheme.Merge(data: new IconThemeData(size: 24.0, color: color), child: Child));
+}
+
+
+
+#endregion
+}
+
+
+public class _TabLabelBarRenderer : FlutterSDK.Rendering.Flex.RenderFlex
+{
+    #region constructors
+    public _TabLabelBarRenderer(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Painting.Basictypes.Axis direction = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize), FlutterSDK.Rendering.Flex.MainAxisAlignment mainAxisAlignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment), FlutterSDK.Rendering.Flex.CrossAxisAlignment crossAxisAlignment = default(FlutterSDK.Rendering.Flex.CrossAxisAlignment), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Basictypes.VerticalDirection verticalDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection), FlutterSDK.Material.Tabs._LayoutCallback onPerformLayout = default(FlutterSDK.Material.Tabs._LayoutCallback))
+    : base(children: children, direction: direction, mainAxisSize: mainAxisSize, mainAxisAlignment: mainAxisAlignment, crossAxisAlignment: crossAxisAlignment, textDirection: textDirection, verticalDirection: verticalDirection)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Material.Tabs._LayoutCallback OnPerformLayout { get; set; }
+#endregion
+
+#region methods
+
+public new void PerformLayout()
+{
+    base.PerformLayout();
+    RenderBox child = FirstChild;
+    List<double> xOffsets = new List<double>() { };
+    while (child != null)
     {
-        #region constructors
-        public _IndicatorPainter(FlutterSDK.Material.Tabcontroller.TabController controller = default(FlutterSDK.Material.Tabcontroller.TabController), FlutterSDK.Painting.Decoration.Decoration indicator = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Material.Tabs.TabBarIndicatorSize indicatorSize = default(FlutterSDK.Material.Tabs.TabBarIndicatorSize), List<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>> tabKeys = default(List<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>>), FlutterSDK.Material.Tabs._IndicatorPainter old = default(FlutterSDK.Material.Tabs._IndicatorPainter))
-        : base(repaint: controller.Animation)
-        {
-            this.Controller = controller;
-            this.Indicator = indicator;
-            this.IndicatorSize = indicatorSize;
-            this.TabKeys = tabKeys; throw new NotImplementedException();
-        }
-        #endregion
+        FlexParentData childParentData = child.ParentData as FlexParentData;
+        xOffsets.Add(childParentData.Offset.Dx);
 
-        #region fields
-        public virtual FlutterSDK.Material.Tabcontroller.TabController Controller { get; set; }
-        public virtual FlutterSDK.Painting.Decoration.Decoration Indicator { get; set; }
-        public virtual FlutterSDK.Material.Tabs.TabBarIndicatorSize IndicatorSize { get; set; }
-        public virtual List<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>> TabKeys { get; set; }
-        internal virtual List<double> _CurrentTabOffsets { get; set; }
-        internal virtual TextDirection _CurrentTextDirection { get; set; }
-        internal virtual FlutterBinding.UI.Rect _CurrentRect { get; set; }
-        internal virtual FlutterSDK.Painting.Decoration.BoxPainter _Painter { get; set; }
-        internal virtual bool _NeedsPaint { get; set; }
-        public virtual int MaxTabIndex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public virtual void MarkNeedsPaint() { throw new NotImplementedException(); }
-
-
-        public virtual void Dispose() { throw new NotImplementedException(); }
-
-
-        public virtual void SaveTabOffsets(List<double> tabOffsets, TextDirection textDirection) { throw new NotImplementedException(); }
-
-
-        public virtual double CenterOf(int tabIndex) { throw new NotImplementedException(); }
-
-
-        public virtual Rect IndicatorRect(Size tabBarSize, int tabIndex) { throw new NotImplementedException(); }
-
-
-        public new void Paint(Canvas canvas, Size size) { throw new NotImplementedException(); }
-
-
-        private bool _TabOffsetsEqual(List<double> a, List<double> b) { throw new NotImplementedException(); }
-
-
-        public new bool ShouldRepaint(FlutterSDK.Material.Tabs._IndicatorPainter old) { throw new NotImplementedException(); }
-        public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate) { throw new NotImplementedException(); }
-
-        #endregion
+        child = childParentData.NextSibling;
     }
 
 
-    public class _ChangeAnimation : FlutterSDK.Animation.Animation.Animation<double>, IAnimationWithParentMixin<double>
+    switch (TextDirection) { case TextDirection.Rtl: xOffsets.Insert(0, Size.Width); break; case TextDirection.Ltr: xOffsets.Add(Size.Width); break; }
+    OnPerformLayout(xOffsets, TextDirection, Size.Width);
+}
+
+
+
+#endregion
+}
+
+
+public class _TabLabelBar : FlutterSDK.Widgets.Basic.Flex
+{
+    #region constructors
+    public _TabLabelBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Material.Tabs._LayoutCallback onPerformLayout = default(FlutterSDK.Material.Tabs._LayoutCallback))
+    : base(key: key, children: children, direction: Axis.Horizontal, mainAxisSize: MainAxisSize.Max, mainAxisAlignment: MainAxisAlignment.Start, crossAxisAlignment: CrossAxisAlignment.Center, verticalDirection: VerticalDirection.Down)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Material.Tabs._LayoutCallback OnPerformLayout { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Rendering.Flex.RenderFlex CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    return new _TabLabelBarRenderer(direction: Direction, mainAxisAlignment: MainAxisAlignment, mainAxisSize: MainAxisSize, crossAxisAlignment: CrossAxisAlignment, textDirection: GetEffectiveTextDirection(context), verticalDirection: VerticalDirection, onPerformLayout: OnPerformLayout);
+}
+
+
+
+
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Material.Tabs._TabLabelBarRenderer renderObject)
+{
+    base.UpdateRenderObject(context, renderObject);
+    renderObject.OnPerformLayout = OnPerformLayout;
+}
+
+
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+{
+    base.UpdateRenderObject(context, renderObject);
+    renderObject.OnPerformLayout = OnPerformLayout;
+}
+
+
+
+#endregion
+}
+
+
+public class _IndicatorPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
+{
+    #region constructors
+    public _IndicatorPainter(FlutterSDK.Material.Tabcontroller.TabController controller = default(FlutterSDK.Material.Tabcontroller.TabController), FlutterSDK.Painting.Decoration.Decoration indicator = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Material.Tabs.TabBarIndicatorSize indicatorSize = default(FlutterSDK.Material.Tabs.TabBarIndicatorSize), List<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>> tabKeys = default(List<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>>), FlutterSDK.Material.Tabs._IndicatorPainter old = default(FlutterSDK.Material.Tabs._IndicatorPainter))
+    : base(repaint: controller.Animation)
+
+if (old!=null )SaveTabOffsets(old._CurrentTabOffsets, old._CurrentTextDirection);
+}
+
+
+#endregion
+
+#region fields
+public virtual FlutterSDK.Material.Tabcontroller.TabController Controller { get; set; }
+public virtual FlutterSDK.Painting.Decoration.Decoration Indicator { get; set; }
+public virtual FlutterSDK.Material.Tabs.TabBarIndicatorSize IndicatorSize { get; set; }
+public virtual List<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>> TabKeys { get; set; }
+internal virtual List<double> _CurrentTabOffsets { get; set; }
+internal virtual TextDirection _CurrentTextDirection { get; set; }
+internal virtual FlutterBinding.UI.Rect _CurrentRect { get; set; }
+internal virtual FlutterSDK.Painting.Decoration.BoxPainter _Painter { get; set; }
+internal virtual bool _NeedsPaint { get; set; }
+public virtual int MaxTabIndex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public virtual void MarkNeedsPaint()
+{
+    _NeedsPaint = true;
+}
+
+
+
+
+public virtual void Dispose()
+{
+    _Painter?.Dispose();
+}
+
+
+
+
+public virtual void SaveTabOffsets(List<double> tabOffsets, TextDirection textDirection)
+{
+    _CurrentTabOffsets = tabOffsets;
+    _CurrentTextDirection = textDirection;
+}
+
+
+
+
+public virtual double CenterOf(int tabIndex)
+{
+
+
+
+
+    return (_CurrentTabOffsets[tabIndex] + _CurrentTabOffsets[tabIndex + 1]) / 2.0;
+}
+
+
+
+
+public virtual Rect IndicatorRect(Size tabBarSize, int tabIndex)
+{
+
+
+
+
+
+    double tabLeft tabRight = default(double);
+    switch (_CurrentTextDirection) { case TextDirection.Rtl: tabLeft = _CurrentTabOffsets[tabIndex + 1]; tabRight = _CurrentTabOffsets[tabIndex]; break; case TextDirection.Ltr: tabLeft = _CurrentTabOffsets[tabIndex]; tabRight = _CurrentTabOffsets[tabIndex + 1]; break; }
+    if (IndicatorSize == TabBarIndicatorSize.Label)
     {
-        #region constructors
-        public _ChangeAnimation(FlutterSDK.Material.Tabcontroller.TabController controller)
-        {
-            this.Controller = controller; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Material.Tabcontroller.TabController Controller { get; set; }
-        public virtual FlutterSDK.Animation.Animation.Animation<double> Parent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual double Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void RemoveStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener) { throw new NotImplementedException(); }
-
-
-        public new void RemoveListener(VoidCallback listener) { throw new NotImplementedException(); }
-
-        #endregion
+        double tabWidth = TabKeys[tabIndex].CurrentContext.Size.Width;
+        double delta = ((tabRight - tabLeft) - tabWidth) / 2.0;
+        tabLeft += delta;
+        tabRight -= delta;
     }
 
+    return Rect.FromLTWH(tabLeft, 0.0, tabRight - tabLeft, tabBarSize.Height);
+}
 
-    public class _DragAnimation : FlutterSDK.Animation.Animation.Animation<double>, IAnimationWithParentMixin<double>
+
+
+
+public new void Paint(Canvas canvas, Size size)
+{
+    _NeedsPaint = false;
+    _Painter = (_Painter == null ? Indicator.CreateBoxPainter(MarkNeedsPaint) : _Painter);
+    if (Controller.IndexIsChanging)
     {
-        #region constructors
-        public _DragAnimation(FlutterSDK.Material.Tabcontroller.TabController controller, int index)
-        {
-            this.Controller = controller;
-            this.Index = index; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Material.Tabcontroller.TabController Controller { get; set; }
-        public virtual int Index { get; set; }
-        public virtual FlutterSDK.Animation.Animation.Animation<double> Parent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual double Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void RemoveStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener) { throw new NotImplementedException(); }
-
-
-        public new void RemoveListener(VoidCallback listener) { throw new NotImplementedException(); }
-
-        #endregion
+        Rect targetRect = IndicatorRect(size, Controller.Index);
+        _CurrentRect = Dart:uiDefaultClass.Rect.Lerp(targetRect, _CurrentRect ?? targetRect, TabsDefaultClass._IndexChangeProgress(Controller));
     }
-
-
-    public class _TabBarScrollPosition : FlutterSDK.Widgets.Scrollpositionwithsinglecontext.ScrollPositionWithSingleContext
+    else
     {
-        #region constructors
-        public _TabBarScrollPosition(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Widgets.Scrollcontext.ScrollContext context = default(FlutterSDK.Widgets.Scrollcontext.ScrollContext), FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition = default(FlutterSDK.Widgets.Scrollposition.ScrollPosition), FlutterSDK.Material.Tabs._TabBarState tabBar = default(FlutterSDK.Material.Tabs._TabBarState))
-        : base(physics: physics, context: context, initialPixels: null, oldPosition: oldPosition)
-        {
-            this.TabBar = tabBar; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Material.Tabs._TabBarState TabBar { get; set; }
-        internal virtual bool _InitialViewportDimensionWasZero { get; set; }
-        #endregion
-
-        #region methods
-
-        public new bool ApplyContentDimensions(double minScrollExtent, double maxScrollExtent) { throw new NotImplementedException(); }
-
-        #endregion
+        int currentIndex = Controller.Index;
+        Rect previous = currentIndex > 0 ? IndicatorRect(size, currentIndex - 1) : null;
+        Rect middle = IndicatorRect(size, currentIndex);
+        Rect next = currentIndex < MaxTabIndex ? IndicatorRect(size, currentIndex + 1) : null;
+        double index = Controller.Index.ToDouble();
+        double value = Controller.Animation.Value;
+        if (value == index - 1.0) _CurrentRect = previous ?? middle; else if (value == index + 1.0) _CurrentRect = next ?? middle; else if (value == index) _CurrentRect = middle; else if (value < index) _CurrentRect = previous == null ? middle : Dart:uiDefaultClass.Rect.Lerp(middle, previous, index - value);else _CurrentRect = next == null ? middle : Dart:uiDefaultClass.Rect.Lerp(middle, next, value - index);
     }
 
 
-    public class _TabBarScrollController : FlutterSDK.Widgets.Scrollcontroller.ScrollController
+    ImageConfiguration configuration = new ImageConfiguration(size: _CurrentRect.Size, textDirection: _CurrentTextDirection);
+    _Painter.Paint(canvas, _CurrentRect.TopLeft, configuration);
+}
+
+
+
+
+private bool _TabOffsetsEqual(List<double> a, List<double> b)
+{
+    if (a == null || b == null || a.Count != b.Count) return false;
+    for (int i = 0; i < a.Count; i += 1)
     {
-        #region constructors
-        public _TabBarScrollController(FlutterSDK.Material.Tabs._TabBarState tabBar)
-        {
-            this.TabBar = tabBar; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Material.Tabs._TabBarState TabBar { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Scrollposition.ScrollPosition CreateScrollPosition(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics, FlutterSDK.Widgets.Scrollcontext.ScrollContext context, FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition) { throw new NotImplementedException(); }
-
-        #endregion
+        if (a[i] != b[i]) return false;
     }
 
+    return true;
+}
+
+
+
+
+public new bool ShouldRepaint(FlutterSDK.Material.Tabs._IndicatorPainter old)
+{
+    return _NeedsPaint || Controller != old.Controller || Indicator != old.Indicator || TabKeys.Count != old.TabKeys.Count || (!_TabOffsetsEqual(_CurrentTabOffsets, old._CurrentTabOffsets)) || _CurrentTextDirection != old._CurrentTextDirection;
+}
+
+
+public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate)
+{
+    return _NeedsPaint || Controller != old.Controller || Indicator != old.Indicator || TabKeys.Count != old.TabKeys.Count || (!_TabOffsetsEqual(_CurrentTabOffsets, old._CurrentTabOffsets)) || _CurrentTextDirection != old._CurrentTextDirection;
+}
+
+
+
+#endregion
+}
+
+
+public class _ChangeAnimation : FlutterSDK.Animation.Animation.Animation<double>, IAnimationWithParentMixin<double>
+{
+    #region constructors
+    public _ChangeAnimation(FlutterSDK.Material.Tabcontroller.TabController controller)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Material.Tabcontroller.TabController Controller { get; set; }
+public virtual FlutterSDK.Animation.Animation.Animation<double> Parent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual double Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new void RemoveStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener)
+{
+    if (Parent != null) base.RemoveStatusListener(listener);
+}
+
+
+
+
+public new void RemoveListener(VoidCallback listener)
+{
+    if (Parent != null) base.RemoveListener(listener);
+}
+
+
+
+#endregion
+}
+
+
+public class _DragAnimation : FlutterSDK.Animation.Animation.Animation<double>, IAnimationWithParentMixin<double>
+{
+    #region constructors
+    public _DragAnimation(FlutterSDK.Material.Tabcontroller.TabController controller, int index)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Material.Tabcontroller.TabController Controller { get; set; }
+public virtual int Index { get; set; }
+public virtual FlutterSDK.Animation.Animation.Animation<double> Parent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual double Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new void RemoveStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener)
+{
+    if (Parent != null) base.RemoveStatusListener(listener);
+}
+
+
+
+
+public new void RemoveListener(VoidCallback listener)
+{
+    if (Parent != null) base.RemoveListener(listener);
+}
+
+
+
+#endregion
+}
+
+
+public class _TabBarScrollPosition : FlutterSDK.Widgets.Scrollpositionwithsinglecontext.ScrollPositionWithSingleContext
+{
+    #region constructors
+    public _TabBarScrollPosition(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Widgets.Scrollcontext.ScrollContext context = default(FlutterSDK.Widgets.Scrollcontext.ScrollContext), FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition = default(FlutterSDK.Widgets.Scrollposition.ScrollPosition), FlutterSDK.Material.Tabs._TabBarState tabBar = default(FlutterSDK.Material.Tabs._TabBarState))
+    : base(physics: physics, context: context, initialPixels: null, oldPosition: oldPosition)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Material.Tabs._TabBarState TabBar { get; set; }
+internal virtual bool _InitialViewportDimensionWasZero { get; set; }
+#endregion
+
+#region methods
+
+public new bool ApplyContentDimensions(double minScrollExtent, double maxScrollExtent)
+{
+    bool result = true;
+    if (_InitialViewportDimensionWasZero != true)
+    {
+
+        _InitialViewportDimensionWasZero = ViewportDimension != 0.0;
+        CorrectPixels(TabBar._InitialScrollOffset(ViewportDimension, minScrollExtent, maxScrollExtent));
+        result = false;
+    }
+
+    return base.ApplyContentDimensions(minScrollExtent, maxScrollExtent) && result;
+}
+
+
+
+#endregion
+}
+
+
+public class _TabBarScrollController : FlutterSDK.Widgets.Scrollcontroller.ScrollController
+{
+    #region constructors
+    public _TabBarScrollController(FlutterSDK.Material.Tabs._TabBarState tabBar)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Material.Tabs._TabBarState TabBar { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Scrollposition.ScrollPosition CreateScrollPosition(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics, FlutterSDK.Widgets.Scrollcontext.ScrollContext context, FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition)
+{
+    return new _TabBarScrollPosition(physics: physics, context: context, oldPosition: oldPosition, tabBar: TabBar);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A material design widget that displays a horizontal row of tabs.
+///
+/// Typically created as the [AppBar.bottom] part of an [AppBar] and in
+/// conjunction with a [TabBarView].
+///
+/// If a [TabController] is not provided, then a [DefaultTabController] ancestor
+/// must be provided instead. The tab controller's [TabController.length] must
+/// equal the length of the [tabs] list and the length of the
+/// [TabBarView.children] list.
+///
+/// Requires one of its ancestors to be a [Material] widget.
+///
+/// Uses values from [TabBarTheme] if it is set in the current context.
+///
+/// To see a sample implementation, visit the [TabController] documentation.
+///
+/// See also:
+///
+///  * [TabBarView], which displays page views that correspond to each tab.
+/// </Summary>
+public class TabBar : FlutterSDK.Widgets.Framework.StatefulWidget, IPreferredSizeWidget
+{
+    #region constructors
+    public TabBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> tabs = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Material.Tabcontroller.TabController controller = default(FlutterSDK.Material.Tabcontroller.TabController), bool isScrollable = false, FlutterBinding.UI.Color indicatorColor = default(FlutterBinding.UI.Color), double indicatorWeight = 2.0, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry indicatorPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Decoration.Decoration indicator = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Material.Tabs.TabBarIndicatorSize indicatorSize = default(FlutterSDK.Material.Tabs.TabBarIndicatorSize), FlutterBinding.UI.Color labelColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color unselectedLabelColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle unselectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), FlutterSDK.Foundation.Basictypes.ValueChanged<int> onTap = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual List<FlutterSDK.Widgets.Framework.Widget> Tabs { get; set; }
+public virtual FlutterSDK.Material.Tabcontroller.TabController Controller { get; set; }
+public virtual bool IsScrollable { get; set; }
+public virtual FlutterBinding.UI.Color IndicatorColor { get; set; }
+public virtual double IndicatorWeight { get; set; }
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry IndicatorPadding { get; set; }
+public virtual FlutterSDK.Painting.Decoration.Decoration Indicator { get; set; }
+public virtual FlutterSDK.Material.Tabs.TabBarIndicatorSize IndicatorSize { get; set; }
+public virtual FlutterBinding.UI.Color LabelColor { get; set; }
+public virtual FlutterBinding.UI.Color UnselectedLabelColor { get; set; }
+public virtual FlutterSDK.Painting.Textstyle.TextStyle LabelStyle { get; set; }
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry LabelPadding { get; set; }
+public virtual FlutterSDK.Painting.Textstyle.TextStyle UnselectedLabelStyle { get; set; }
+public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
+public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnTap { get; set; }
+public virtual Size PreferredSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Material.Tabs._TabBarState CreateState() => new _TabBarState();
+
+
+#endregion
+}
+
+
+public class _TabBarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Tabs.TabBar>
+{
+    #region constructors
+    public _TabBarState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController _ScrollController { get; set; }
+    internal virtual FlutterSDK.Material.Tabcontroller.TabController _Controller { get; set; }
+    internal virtual FlutterSDK.Material.Tabs._IndicatorPainter _IndicatorPainter { get; set; }
+    internal virtual int _CurrentIndex { get; set; }
+    internal virtual double _TabStripWidth { get; set; }
+    internal virtual List<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>> _TabKeys { get; set; }
+    internal virtual FlutterSDK.Painting.Decoration.Decoration _Indicator { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    internal virtual bool _ControllerIsValid { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual int MaxTabIndex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
+    {
+        base.InitState();
+        _TabKeys = Widget.Tabs.Map((Widget tab) => =>new GlobalKey()).ToList();
+    }
+
+
+
+
+    private void _UpdateTabController()
+    {
+        TabController newController = Widget.Controller ?? TabcontrollerDefaultClass.DefaultTabController.Of(Context);
+
+        if (newController == _Controller) return;
+        if (_ControllerIsValid)
+        {
+            _Controller.Animation.RemoveListener(_HandleTabControllerAnimationTick);
+            _Controller.RemoveListener(_HandleTabControllerTick);
+        }
+
+        _Controller = newController;
+        if (_Controller != null)
+        {
+            _Controller.Animation.AddListener(_HandleTabControllerAnimationTick);
+            _Controller.AddListener(_HandleTabControllerTick);
+            _CurrentIndex = _Controller.Index;
+        }
+
+    }
+
+
+
+
+    private void _InitIndicatorPainter()
+    {
+        _IndicatorPainter = !_ControllerIsValid ? null : new _IndicatorPainter(controller: _Controller, indicator: _Indicator, indicatorSize: Widget.IndicatorSize ?? TabbarthemeDefaultClass.TabBarTheme.Of(Context).IndicatorSize, tabKeys: _TabKeys, old: _IndicatorPainter);
+    }
+
+
+
+
+    public new void DidChangeDependencies()
+    {
+        base.DidChangeDependencies();
+
+        _UpdateTabController();
+        _InitIndicatorPainter();
+    }
+
+
+
+
+    public new void DidUpdateWidget(FlutterSDK.Material.Tabs.TabBar oldWidget)
+    {
+        base.DidUpdateWidget(oldWidget);
+        if (Widget.Controller != oldWidget.Controller)
+        {
+            _UpdateTabController();
+            _InitIndicatorPainter();
+        }
+        else if (Widget.IndicatorColor != oldWidget.IndicatorColor || Widget.IndicatorWeight != oldWidget.IndicatorWeight || Widget.IndicatorSize != oldWidget.IndicatorSize || Widget.Indicator != oldWidget.Indicator)
+        {
+            _InitIndicatorPainter();
+        }
+
+        if (Widget.Tabs.Count > oldWidget.Tabs.Count)
+        {
+            int delta = Widget.Tabs.Count - oldWidget.Tabs.Count;
+            _TabKeys.AddAll(List<GlobalKey>.Generate(delta, (int n) => =>new GlobalKey()));
+        }
+        else if (Widget.Tabs.Count < oldWidget.Tabs.Count)
+        {
+            _TabKeys.RemoveRange(Widget.Tabs.Count, oldWidget.Tabs.Count);
+        }
+
+    }
+
+
+
+
+    public new void Dispose()
+    {
+        _IndicatorPainter.Dispose();
+        if (_ControllerIsValid)
+        {
+            _Controller.Animation.RemoveListener(_HandleTabControllerAnimationTick);
+            _Controller.RemoveListener(_HandleTabControllerTick);
+        }
+
+        _Controller = null;
+        base.Dispose();
+    }
+
+
+
+
+    private double _TabScrollOffset(int index, double viewportWidth, double minExtent, double maxExtent)
+    {
+        if (!Widget.IsScrollable) return 0.0;
+        double tabCenter = _IndicatorPainter.CenterOf(index);
+        switch (BasicDefaultClass.Directionality.Of(Context)) { case TextDirection.Rtl: tabCenter = _TabStripWidth - tabCenter; break; case TextDirection.Ltr: break; }
+        return (tabCenter - viewportWidth / 2.0).Clamp(minExtent, maxExtent) as double;
+    }
+
+
+
+
+    private double _TabCenteredScrollOffset(int index)
+    {
+        ScrollPosition position = _ScrollController.Position;
+        return _TabScrollOffset(index, position.ViewportDimension, position.MinScrollExtent, position.MaxScrollExtent);
+    }
+
+
+
+
+    private double _InitialScrollOffset(double viewportWidth, double minExtent, double maxExtent)
+    {
+        return _TabScrollOffset(_CurrentIndex, viewportWidth, minExtent, maxExtent);
+    }
+
+
+
+
+    private void _ScrollToCurrentIndex()
+    {
+        double offset = _TabCenteredScrollOffset(_CurrentIndex);
+        _ScrollController.AnimateTo(offset, duration: ConstantsDefaultClass.KTabScrollDuration, curve: CurvesDefaultClass.Curves.Ease);
+    }
+
+
+
+
+    private void _ScrollToControllerValue()
+    {
+        double leadingPosition = _CurrentIndex > 0 ? _TabCenteredScrollOffset(_CurrentIndex - 1) : null;
+        double middlePosition = _TabCenteredScrollOffset(_CurrentIndex);
+        double trailingPosition = _CurrentIndex < MaxTabIndex ? _TabCenteredScrollOffset(_CurrentIndex + 1) : null;
+        double index = _Controller.Index.ToDouble();
+        double value = _Controller.Animation.Value;
+        double offset = default(double);
+        if (value == index - 1.0) offset = leadingPosition == default(double) ? middlePosition : leadingPosition; else if (value == index + 1.0) offset = trailingPosition == default(double) ? middlePosition : trailingPosition; else if (value == index) offset = middlePosition; else if (value < index) offset = leadingPosition == null ? middlePosition : Dart:uiDefaultClass.LerpDouble(middlePosition, leadingPosition, index - value);else offset = trailingPosition == null ? middlePosition : Dart:uiDefaultClass.LerpDouble(middlePosition, trailingPosition, value - index);
+        _ScrollController.JumpTo(offset);
+    }
+
+
+
+
+    private void _HandleTabControllerAnimationTick()
+    {
+
+        if (!_Controller.IndexIsChanging && Widget.IsScrollable)
+        {
+            _CurrentIndex = _Controller.Index;
+            _ScrollToControllerValue();
+        }
+
+    }
+
+
+
+
+    private void _HandleTabControllerTick()
+    {
+        if (_Controller.Index != _CurrentIndex)
+        {
+            _CurrentIndex = _Controller.Index;
+            if (Widget.IsScrollable) _ScrollToCurrentIndex();
+        }
+
+        SetState(() =>
+        {
+        }
+        );
+    }
+
+
+
+
+    private void _SaveTabOffsets(List<double> tabOffsets, TextDirection textDirection, double width)
+    {
+        _TabStripWidth = width;
+        _IndicatorPainter?.SaveTabOffsets(tabOffsets, textDirection);
+    }
+
+
+
+
+    private void _HandleTap(int index)
+    {
+
+        _Controller.AnimateTo(index);
+        if (Widget.OnTap != null)
+        {
+            Widget.OnTap(index);
+        }
+
+    }
+
+
+
+
+    private FlutterSDK.Widgets.Framework.Widget _BuildStyledTab(FlutterSDK.Widgets.Framework.Widget child, bool selected, FlutterSDK.Animation.Animation.Animation<double> animation)
+    {
+        return new _TabStyle(animation: animation, selected: selected, labelColor: Widget.LabelColor, unselectedLabelColor: Widget.UnselectedLabelColor, labelStyle: Widget.LabelStyle, unselectedLabelStyle: Widget.UnselectedLabelStyle, child: child);
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+
+
+        MaterialLocalizations localizations = MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context);
+        if (_Controller.Length == 0)
+        {
+            return new Container(height: TabsDefaultClass._KTabHeight + Widget.IndicatorWeight);
+        }
+
+        TabBarTheme tabBarTheme = TabbarthemeDefaultClass.TabBarTheme.Of(context);
+        List<Widget> wrappedTabs = new List<Widget>(Widget.Tabs.Count);
+        for (int i = 0; i < Widget.Tabs.Count; i += 1)
+        {
+            wrappedTabs[i] = new Center(heightFactor: 1.0, child: new Padding(padding: Widget.LabelPadding ?? tabBarTheme.LabelPadding ?? ConstantsDefaultClass.KTabLabelPadding, child: new KeyedSubtree(key: _TabKeys[i], child: Widget.Tabs[i])));
+        }
+
+        if (_Controller != null)
+        {
+            int previousIndex = _Controller.PreviousIndex;
+            if (_Controller.IndexIsChanging)
+            {
+
+                Animation<double> animation = new _ChangeAnimation(_Controller);
+                wrappedTabs[_CurrentIndex] = _BuildStyledTab(wrappedTabs[_CurrentIndex], true, animation);
+                wrappedTabs[previousIndex] = _BuildStyledTab(wrappedTabs[previousIndex], false, animation);
+            }
+            else
+            {
+                int tabIndex = _CurrentIndex;
+                Animation<double> centerAnimation = new _DragAnimation(_Controller, tabIndex);
+                wrappedTabs[tabIndex] = _BuildStyledTab(wrappedTabs[tabIndex], true, centerAnimation);
+                if (_CurrentIndex > 0)
+                {
+                    int tabIndex = _CurrentIndex - 1;
+                    Animation<double> previousAnimation = new ReverseAnimation(new _DragAnimation(_Controller, tabIndex));
+                    wrappedTabs[tabIndex] = _BuildStyledTab(wrappedTabs[tabIndex], false, previousAnimation);
+                }
+
+                if (_CurrentIndex < Widget.Tabs.Count - 1)
+                {
+                    int tabIndex = _CurrentIndex + 1;
+                    Animation<double> nextAnimation = new ReverseAnimation(new _DragAnimation(_Controller, tabIndex));
+                    wrappedTabs[tabIndex] = _BuildStyledTab(wrappedTabs[tabIndex], false, nextAnimation);
+                }
+
+            }
+
+        }
+
+        int tabCount = Widget.Tabs.Count;
+        for (int index = 0; index < tabCount; index += 1)
+        {
+            wrappedTabs[index] = new InkWell(onTap: () =>
+            {
+                _HandleTap(index);
+            }
+            , child: new Padding(padding: EdgeInsets.Only(bottom: Widget.IndicatorWeight), child: new Stack(children: new List<Widget>() { wrappedTabs[index], new Semantics(selected: index == _CurrentIndex, label: localizations.TabLabel(tabIndex: index + 1, tabCount: tabCount)) })));
+            if (!Widget.IsScrollable) wrappedTabs[index] = new Expanded(child: wrappedTabs[index]);
+        }
+
+        Widget tabBar = new CustomPaint(painter: _IndicatorPainter, child: new _TabStyle(animation: AnimationsDefaultClass.KAlwaysDismissedAnimation, selected: false, labelColor: Widget.LabelColor, unselectedLabelColor: Widget.UnselectedLabelColor, labelStyle: Widget.LabelStyle, unselectedLabelStyle: Widget.UnselectedLabelStyle, child: new _TabLabelBar(onPerformLayout: _SaveTabOffsets, children: wrappedTabs)));
+        if (Widget.IsScrollable)
+        {
+            _ScrollController = (_ScrollController == null ? new _TabBarScrollController(this) : _ScrollController);
+            tabBar = new SingleChildScrollView(dragStartBehavior: Widget.DragStartBehavior, scrollDirection: Axis.Horizontal, controller: _ScrollController, child: tabBar);
+        }
+
+        return tabBar;
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// A page view that displays the widget which corresponds to the currently
+/// selected tab.
+///
+/// This widget is typically used in conjunction with a [TabBar].
+///
+/// If a [TabController] is not provided, then there must be a [DefaultTabController]
+/// ancestor.
+///
+/// The tab controller's [TabController.length] must equal the length of the
+/// [children] list and the length of the [TabBar.tabs] list.
+///
+/// To see a sample implementation, visit the [TabController] documentation.
+/// </Summary>
+public class TabBarView : FlutterSDK.Widgets.Framework.StatefulWidget
+{
+    #region constructors
+    public TabBarView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Material.Tabcontroller.TabController controller = default(FlutterSDK.Material.Tabcontroller.TabController), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Material.Tabcontroller.TabController Controller { get; set; }
+public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
+public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics { get; set; }
+public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Material.Tabs._TabBarViewState CreateState() => new _TabBarViewState();
+
+
+#endregion
+}
+
+
+public class _TabBarViewState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Tabs.TabBarView>
+{
+    #region constructors
+    public _TabBarViewState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Material.Tabcontroller.TabController _Controller { get; set; }
+    internal virtual FlutterSDK.Widgets.Pageview.PageController _PageController { get; set; }
+    internal virtual List<FlutterSDK.Widgets.Framework.Widget> _Children { get; set; }
+    internal virtual List<FlutterSDK.Widgets.Framework.Widget> _ChildrenWithKey { get; set; }
+    internal virtual int _CurrentIndex { get; set; }
+    internal virtual int _WarpUnderwayCount { get; set; }
+    internal virtual bool _ControllerIsValid { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    private void _UpdateTabController()
+    {
+        TabController newController = Widget.Controller ?? TabcontrollerDefaultClass.DefaultTabController.Of(Context);
+
+        if (newController == _Controller) return;
+        if (_ControllerIsValid) _Controller.Animation.RemoveListener(_HandleTabControllerAnimationTick);
+        _Controller = newController;
+        if (_Controller != null) _Controller.Animation.AddListener(_HandleTabControllerAnimationTick);
+    }
+
+
+
+
+    public new void InitState()
+    {
+        base.InitState();
+        _UpdateChildren();
+    }
+
+
+
+
+    public new void DidChangeDependencies()
+    {
+        base.DidChangeDependencies();
+        _UpdateTabController();
+        _CurrentIndex = _Controller?.Index;
+        _PageController = new PageController(initialPage: _CurrentIndex ?? 0);
+    }
+
+
+
+
+    public new void DidUpdateWidget(FlutterSDK.Material.Tabs.TabBarView oldWidget)
+    {
+        base.DidUpdateWidget(oldWidget);
+        if (Widget.Controller != oldWidget.Controller) _UpdateTabController();
+        if (Widget.Children != oldWidget.Children && _WarpUnderwayCount == 0) _UpdateChildren();
+    }
+
+
+
+
+    public new void Dispose()
+    {
+        if (_ControllerIsValid) _Controller.Animation.RemoveListener(_HandleTabControllerAnimationTick);
+        _Controller = null;
+        base.Dispose();
+    }
+
+
+
+
+    private void _UpdateChildren()
+    {
+        _Children = Widget.Children;
+        _ChildrenWithKey = BasicDefaultClass.KeyedSubtree.EnsureUniqueKeysForList(Widget.Children);
+    }
+
+
+
+
+    private void _HandleTabControllerAnimationTick()
+    {
+        if (_WarpUnderwayCount > 0 || !_Controller.IndexIsChanging) return;
+        if (_Controller.Index != _CurrentIndex)
+        {
+            _CurrentIndex = _Controller.Index;
+            _WarpToCurrentIndex();
+        }
+
+    }
+
+
+
+
+    private Future<object> _WarpToCurrentIndex()
+async
+{
+if (!Mounted)return Future<void>.Value();
+if (_PageController.Page==_CurrentIndex.ToDouble())return Future<void>.Value();
+int previousIndex = _Controller.PreviousIndex;
+if ((_CurrentIndex-previousIndex).Abs()==1)return _PageController.AnimateToPage(_CurrentIndex, duration:ConstantsDefaultClass.KTabScrollDuration, curve:CurvesDefaultClass.Curves.Ease);
+
+int initialPage = _CurrentIndex > previousIndex ? _CurrentIndex - 1 : _CurrentIndex + 1;
+    List<Widget> originalChildren = _ChildrenWithKey;
+    SetState(() => {
+        _WarpUnderwayCount += 1;
+        _ChildrenWithKey = List<Widget>.From(_ChildrenWithKey, growable: false);
+        Widget temp = _ChildrenWithKey[initialPage];
+        _ChildrenWithKey[initialPage] = _ChildrenWithKey[previousIndex];
+        _ChildrenWithKey[previousIndex] = temp;
+    }
+);
+_PageController.JumpToPage(initialPage);
+await _PageController.AnimateToPage(_CurrentIndex, duration:ConstantsDefaultClass.KTabScrollDuration, curve:CurvesDefaultClass.Curves.Ease);
+if (!Mounted)return Future<void>.Value();
+SetState(() => {
+        _WarpUnderwayCount -= 1;
+        if (Widget.Children != _Children)
+        {
+            _UpdateChildren();
+        }
+        else
+        {
+            _ChildrenWithKey = originalChildren;
+        }
+
+    }
+);
+}
+
+
+
+
+private bool _HandleScrollNotification(FlutterSDK.Widgets.Scrollnotification.ScrollNotification notification)
+{
+    if (_WarpUnderwayCount > 0) return false;
+    if (notification.Depth != 0) return false;
+    _WarpUnderwayCount += 1;
+    if (notification is ScrollUpdateNotification && !_Controller.IndexIsChanging)
+    {
+        if ((_PageController.Page - _Controller.Index).Abs() > 1.0)
+        {
+            _Controller.Index = _PageController.Page.Floor();
+            _CurrentIndex = _Controller.Index;
+        }
+
+        _Controller.Offset = (_PageController.Page - _Controller.Index).Clamp(-1.0, 1.0) as double;
+    }
+    else if (notification is ScrollEndNotification)
+    {
+        _Controller.Index = _PageController.Page.Round();
+        _CurrentIndex = _Controller.Index;
+    }
+
+    _WarpUnderwayCount -= 1;
+    return false;
+}
+
+
+
+
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+
+    return new NotificationListener<ScrollNotification>(onNotification: _HandleScrollNotification, child: new PageView(dragStartBehavior: Widget.DragStartBehavior, controller: _PageController, physics: Widget.Physics == null ? TabsDefaultClass._KTabBarViewPhysics : TabsDefaultClass._KTabBarViewPhysics.ApplyTo(Widget.Physics), children: _ChildrenWithKey));
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Displays a single circle with the specified border and background colors.
+///
+/// Used by [TabPageSelector] to indicate the selected page.
+/// </Summary>
+public class TabPageSelectorIndicator : FlutterSDK.Widgets.Framework.StatelessWidget
+{
+    #region constructors
+    public TabPageSelectorIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color borderColor = default(FlutterBinding.UI.Color), double size = default(double))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+public virtual FlutterBinding.UI.Color BorderColor { get; set; }
+public virtual double Size { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    return new Container(width: Size, height: Size, margin: EdgeInsets.All(4.0), decoration: new BoxDecoration(color: BackgroundColor, border: Border.All(color: BorderColor), shape: BoxShape.Circle));
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Displays a row of small circular indicators, one per tab.
+///
+/// The selected tab's indicator is highlighted. Often used in conjunction with
+/// a [TabBarView].
+///
+/// If a [TabController] is not provided, then there must be a
+/// [DefaultTabController] ancestor.
+/// </Summary>
+public class TabPageSelector : FlutterSDK.Widgets.Framework.StatelessWidget
+{
+    #region constructors
+    public TabPageSelector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Tabcontroller.TabController controller = default(FlutterSDK.Material.Tabcontroller.TabController), double indicatorSize = 12.0, FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Material.Tabcontroller.TabController Controller { get; set; }
+public virtual double IndicatorSize { get; set; }
+public virtual FlutterBinding.UI.Color Color { get; set; }
+public virtual FlutterBinding.UI.Color SelectedColor { get; set; }
+#endregion
+
+#region methods
+
+private FlutterSDK.Widgets.Framework.Widget _BuildTabIndicator(int tabIndex, FlutterSDK.Material.Tabcontroller.TabController tabController, FlutterSDK.Animation.Tween.ColorTween selectedColorTween, FlutterSDK.Animation.Tween.ColorTween previousColorTween)
+{
+    Color background = default(Color);
+    if (tabController.IndexIsChanging)
+    {
+        double t = 1.0 - TabsDefaultClass._IndexChangeProgress(tabController);
+        if (tabController.Index == tabIndex) background = selectedColorTween.Lerp(t); else if (tabController.PreviousIndex == tabIndex) background = previousColorTween.Lerp(t); else background = selectedColorTween.Begin;
+    }
+    else
+    {
+        double offset = tabController.Offset;
+        if (tabController.Index == tabIndex)
+        {
+            background = selectedColorTween.Lerp(1.0 - offset.Abs());
+        }
+        else if (tabController.Index == tabIndex - 1 && offset > 0.0)
+        {
+            background = selectedColorTween.Lerp(offset);
+        }
+        else if (tabController.Index == tabIndex + 1 && offset < 0.0)
+        {
+            background = selectedColorTween.Lerp(-offset);
+        }
+        else
+        {
+            background = selectedColorTween.Begin;
+        }
+
+    }
+
+    return new TabPageSelectorIndicator(backgroundColor: background, borderColor: selectedColorTween.End, size: IndicatorSize);
+}
+
+
+
+
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    Color fixColor = Color ?? ColorsDefaultClass.Colors.Transparent;
+    Color fixSelectedColor = SelectedColor ?? ThemeDefaultClass.Theme.Of(context).AccentColor;
+    ColorTween selectedColorTween = new ColorTween(begin: fixColor, end: fixSelectedColor);
+    ColorTween previousColorTween = new ColorTween(begin: fixSelectedColor, end: fixColor);
+    TabController tabController = Controller ?? TabcontrollerDefaultClass.DefaultTabController.Of(context);
+
+    Animation<double> animation = new CurvedAnimation(parent: tabController.Animation, curve: CurvesDefaultClass.Curves.FastOutSlowIn);
+    return new AnimatedBuilder(animation: animation, builder: (BuildContext context, Widget child) =>
+    {
+        return new Semantics(label: $"'Page {tabController.Index + 1} of {tabController.Length}'", child: new Row(mainAxisSize: MainAxisSize.Min, children: List<Widget>.Generate(tabController.Length, (int tabIndex) =>
+        {
+            return _BuildTabIndicator(tabIndex, tabController, selectedColorTween, previousColorTween);
+        }
+        ).ToList()));
+    }
+    );
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Defines how the bounds of the selected tab indicator are computed.
+///
+/// See also:
+///
+///  * [TabBar], which displays a row of tabs.
+///  * [TabBarView], which displays a widget for the currently selected tab.
+///  * [TabBar.indicator], which defines the appearance of the selected tab
+///    indicator relative to the tab's bounds.
+/// </Summary>
+public enum TabBarIndicatorSize
+{
 
     /// <Summary>
-    /// A material design widget that displays a horizontal row of tabs.
-    ///
-    /// Typically created as the [AppBar.bottom] part of an [AppBar] and in
-    /// conjunction with a [TabBarView].
-    ///
-    /// If a [TabController] is not provided, then a [DefaultTabController] ancestor
-    /// must be provided instead. The tab controller's [TabController.length] must
-    /// equal the length of the [tabs] list and the length of the
-    /// [TabBarView.children] list.
-    ///
-    /// Requires one of its ancestors to be a [Material] widget.
-    ///
-    /// Uses values from [TabBarTheme] if it is set in the current context.
-    ///
-    /// To see a sample implementation, visit the [TabController] documentation.
-    ///
-    /// See also:
-    ///
-    ///  * [TabBarView], which displays page views that correspond to each tab.
+    /// The tab indicator's bounds are as wide as the space occupied by the tab
+    /// in the tab bar: from the right edge of the previous tab to the left edge
+    /// of the next tab.
     /// </Summary>
-    public class TabBar : FlutterSDK.Widgets.Framework.StatefulWidget, IPreferredSizeWidget
-    {
-        #region constructors
-        public TabBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> tabs = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Material.Tabcontroller.TabController controller = default(FlutterSDK.Material.Tabcontroller.TabController), bool isScrollable = false, FlutterBinding.UI.Color indicatorColor = default(FlutterBinding.UI.Color), double indicatorWeight = 2.0, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry indicatorPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Decoration.Decoration indicator = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Material.Tabs.TabBarIndicatorSize indicatorSize = default(FlutterSDK.Material.Tabs.TabBarIndicatorSize), FlutterBinding.UI.Color labelColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color unselectedLabelColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle unselectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), FlutterSDK.Foundation.Basictypes.ValueChanged<int> onTap = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>))
-        : base(key: key)
-        {
-            this.Tabs = tabs;
-            this.Controller = controller;
-            this.IsScrollable = isScrollable;
-            this.IndicatorColor = indicatorColor;
-            this.IndicatorWeight = indicatorWeight;
-            this.IndicatorPadding = indicatorPadding;
-            this.Indicator = indicator;
-            this.IndicatorSize = indicatorSize;
-            this.LabelColor = labelColor;
-            this.LabelStyle = labelStyle;
-            this.LabelPadding = labelPadding;
-            this.UnselectedLabelColor = unselectedLabelColor;
-            this.UnselectedLabelStyle = unselectedLabelStyle;
-            this.DragStartBehavior = dragStartBehavior;
-            this.OnTap = onTap; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual List<FlutterSDK.Widgets.Framework.Widget> Tabs { get; set; }
-        public virtual FlutterSDK.Material.Tabcontroller.TabController Controller { get; set; }
-        public virtual bool IsScrollable { get; set; }
-        public virtual FlutterBinding.UI.Color IndicatorColor { get; set; }
-        public virtual double IndicatorWeight { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry IndicatorPadding { get; set; }
-        public virtual FlutterSDK.Painting.Decoration.Decoration Indicator { get; set; }
-        public virtual FlutterSDK.Material.Tabs.TabBarIndicatorSize IndicatorSize { get; set; }
-        public virtual FlutterBinding.UI.Color LabelColor { get; set; }
-        public virtual FlutterBinding.UI.Color UnselectedLabelColor { get; set; }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle LabelStyle { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry LabelPadding { get; set; }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle UnselectedLabelStyle { get; set; }
-        public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
-        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnTap { get; set; }
-        public virtual Size PreferredSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Material.Tabs._TabBarState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _TabBarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Tabs.TabBar>
-    {
-        #region constructors
-        public _TabBarState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController _ScrollController { get; set; }
-        internal virtual FlutterSDK.Material.Tabcontroller.TabController _Controller { get; set; }
-        internal virtual FlutterSDK.Material.Tabs._IndicatorPainter _IndicatorPainter { get; set; }
-        internal virtual int _CurrentIndex { get; set; }
-        internal virtual double _TabStripWidth { get; set; }
-        internal virtual List<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>> _TabKeys { get; set; }
-        internal virtual FlutterSDK.Painting.Decoration.Decoration _Indicator { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual bool _ControllerIsValid { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual int MaxTabIndex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        private void _UpdateTabController() { throw new NotImplementedException(); }
-
-
-        private void _InitIndicatorPainter() { throw new NotImplementedException(); }
-
-
-        public new void DidChangeDependencies() { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Material.Tabs.TabBar oldWidget) { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        private double _TabScrollOffset(int index, double viewportWidth, double minExtent, double maxExtent) { throw new NotImplementedException(); }
-
-
-        private double _TabCenteredScrollOffset(int index) { throw new NotImplementedException(); }
-
-
-        private double _InitialScrollOffset(double viewportWidth, double minExtent, double maxExtent) { throw new NotImplementedException(); }
-
-
-        private void _ScrollToCurrentIndex() { throw new NotImplementedException(); }
-
-
-        private void _ScrollToControllerValue() { throw new NotImplementedException(); }
-
-
-        private void _HandleTabControllerAnimationTick() { throw new NotImplementedException(); }
-
-
-        private void _HandleTabControllerTick() { throw new NotImplementedException(); }
-
-
-        private void _SaveTabOffsets(List<double> tabOffsets, TextDirection textDirection, double width) { throw new NotImplementedException(); }
-
-
-        private void _HandleTap(int index) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Widgets.Framework.Widget _BuildStyledTab(FlutterSDK.Widgets.Framework.Widget child, bool selected, FlutterSDK.Animation.Animation.Animation<double> animation) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
+    Tab,
     /// <Summary>
-    /// A page view that displays the widget which corresponds to the currently
-    /// selected tab.
+    /// The tab's bounds are only as wide as the (centered) tab widget itself.
     ///
-    /// This widget is typically used in conjunction with a [TabBar].
-    ///
-    /// If a [TabController] is not provided, then there must be a [DefaultTabController]
-    /// ancestor.
-    ///
-    /// The tab controller's [TabController.length] must equal the length of the
-    /// [children] list and the length of the [TabBar.tabs] list.
-    ///
-    /// To see a sample implementation, visit the [TabController] documentation.
+    /// This value is used to align the tab's label, typically a [Tab]
+    /// widget's text or icon, with the selected tab indicator.
     /// </Summary>
-    public class TabBarView : FlutterSDK.Widgets.Framework.StatefulWidget
-    {
-        #region constructors
-        public TabBarView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Material.Tabcontroller.TabController controller = default(FlutterSDK.Material.Tabcontroller.TabController), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
-        : base(key: key)
-        {
-            this.Children = children;
-            this.Controller = controller;
-            this.Physics = physics;
-            this.DragStartBehavior = dragStartBehavior; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Material.Tabcontroller.TabController Controller { get; set; }
-        public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
-        public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics { get; set; }
-        public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Material.Tabs._TabBarViewState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _TabBarViewState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Tabs.TabBarView>
-    {
-        #region constructors
-        public _TabBarViewState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Material.Tabcontroller.TabController _Controller { get; set; }
-        internal virtual FlutterSDK.Widgets.Pageview.PageController _PageController { get; set; }
-        internal virtual List<FlutterSDK.Widgets.Framework.Widget> _Children { get; set; }
-        internal virtual List<FlutterSDK.Widgets.Framework.Widget> _ChildrenWithKey { get; set; }
-        internal virtual int _CurrentIndex { get; set; }
-        internal virtual int _WarpUnderwayCount { get; set; }
-        internal virtual bool _ControllerIsValid { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        private void _UpdateTabController() { throw new NotImplementedException(); }
-
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void DidChangeDependencies() { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Material.Tabs.TabBarView oldWidget) { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        private void _UpdateChildren() { throw new NotImplementedException(); }
-
-
-        private void _HandleTabControllerAnimationTick() { throw new NotImplementedException(); }
-
-
-        private Future<object> _WarpToCurrentIndex() { throw new NotImplementedException(); }
-
-
-        private bool _HandleScrollNotification(FlutterSDK.Widgets.Scrollnotification.ScrollNotification notification) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// Displays a single circle with the specified border and background colors.
-    ///
-    /// Used by [TabPageSelector] to indicate the selected page.
-    /// </Summary>
-    public class TabPageSelectorIndicator : FlutterSDK.Widgets.Framework.StatelessWidget
-    {
-        #region constructors
-        public TabPageSelectorIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color borderColor = default(FlutterBinding.UI.Color), double size = default(double))
-        : base(key: key)
-        {
-            this.BackgroundColor = backgroundColor;
-            this.BorderColor = borderColor;
-            this.Size = size; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-        public virtual FlutterBinding.UI.Color BorderColor { get; set; }
-        public virtual double Size { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// Displays a row of small circular indicators, one per tab.
-    ///
-    /// The selected tab's indicator is highlighted. Often used in conjunction with
-    /// a [TabBarView].
-    ///
-    /// If a [TabController] is not provided, then there must be a
-    /// [DefaultTabController] ancestor.
-    /// </Summary>
-    public class TabPageSelector : FlutterSDK.Widgets.Framework.StatelessWidget
-    {
-        #region constructors
-        public TabPageSelector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Tabcontroller.TabController controller = default(FlutterSDK.Material.Tabcontroller.TabController), double indicatorSize = 12.0, FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color))
-        : base(key: key)
-        {
-            this.Controller = controller;
-            this.IndicatorSize = indicatorSize;
-            this.Color = color;
-            this.SelectedColor = selectedColor; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Material.Tabcontroller.TabController Controller { get; set; }
-        public virtual double IndicatorSize { get; set; }
-        public virtual FlutterBinding.UI.Color Color { get; set; }
-        public virtual FlutterBinding.UI.Color SelectedColor { get; set; }
-        #endregion
-
-        #region methods
-
-        private FlutterSDK.Widgets.Framework.Widget _BuildTabIndicator(int tabIndex, FlutterSDK.Material.Tabcontroller.TabController tabController, FlutterSDK.Animation.Tween.ColorTween selectedColorTween, FlutterSDK.Animation.Tween.ColorTween previousColorTween) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// Defines how the bounds of the selected tab indicator are computed.
-    ///
-    /// See also:
-    ///
-    ///  * [TabBar], which displays a row of tabs.
-    ///  * [TabBarView], which displays a widget for the currently selected tab.
-    ///  * [TabBar.indicator], which defines the appearance of the selected tab
-    ///    indicator relative to the tab's bounds.
-    /// </Summary>
-    public enum TabBarIndicatorSize
-    {
-
-        /// <Summary>
-        /// The tab indicator's bounds are as wide as the space occupied by the tab
-        /// in the tab bar: from the right edge of the previous tab to the left edge
-        /// of the next tab.
-        /// </Summary>
-        Tab,
-        /// <Summary>
-        /// The tab's bounds are only as wide as the (centered) tab widget itself.
-        ///
-        /// This value is used to align the tab's label, typically a [Tab]
-        /// widget's text or icon, with the selected tab indicator.
-        /// </Summary>
-        Label,
-    }
+    Label,
+}
 
 }

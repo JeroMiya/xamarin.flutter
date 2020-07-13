@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -436,33 +436,49 @@ namespace FlutterSDK.Widgets.Routenotificationmessages
     {
         #region constructors
         internal RouteNotificationMessages()
+    
+}
+    #endregion
+
+    #region fields
+    #endregion
+
+    #region methods
+
+    /// <Summary>
+    /// When the engine is Web notify the platform for a route change.
+    /// </Summary>
+    public virtual void MaybeNotifyRouteChange(string routeName, string previousRouteName)
+    {
+        if (ConstantsDefaultClass.KIsWeb)
         {
-            throw new NotImplementedException();
+            _NotifyRouteChange(routeName, previousRouteName);
         }
-        #endregion
+        else
+        {
+        }
 
-        #region fields
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// When the engine is Web notify the platform for a route change.
-        /// </Summary>
-        public virtual void MaybeNotifyRouteChange(string routeName, string previousRouteName) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Notifies the platform of a route change.
-        ///
-        /// See also:
-        ///
-        ///  * [SystemChannels.navigation], which handles subsequent navigation
-        ///    requests.
-        /// </Summary>
-        private void _NotifyRouteChange(string routeName, string previousRouteName) { throw new NotImplementedException(); }
-
-        #endregion
     }
+
+
+
+
+    /// <Summary>
+    /// Notifies the platform of a route change.
+    ///
+    /// See also:
+    ///
+    ///  * [SystemChannels.navigation], which handles subsequent navigation
+    ///    requests.
+    /// </Summary>
+    private void _NotifyRouteChange(string routeName, string previousRouteName)
+    {
+        SystemchannelsDefaultClass.SystemChannels.Navigation.InvokeMethod("routeUpdated", new Dictionary<string, object> { { "previousRouteName", previousRouteName }{ "routeName", routeName } });
+    }
+
+
+
+    #endregion
+}
 
 }

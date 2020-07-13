@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -454,49 +454,127 @@ namespace FlutterSDK.Painting.Continuousrectangleborder
         #region constructors
         public ContinuousRectangleBorder(FlutterSDK.Painting.Borders.BorderSide side = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadiusGeometry borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry))
         : base()
-        {
-            this.Side = side;
-            this.BorderRadius = borderRadius; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry BorderRadius { get; set; }
-        public virtual FlutterSDK.Painting.Borders.BorderSide Side { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry BorderRadius { get; set; }
+    public virtual FlutterSDK.Painting.Borders.BorderSide Side { get; set; }
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new FlutterSDK.Painting.Borders.ShapeBorder Scale(double t) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t) { throw new NotImplementedException(); }
-
-
-        private double _ClampToShortest(FlutterBinding.UI.RRect rrect, double value) { throw new NotImplementedException(); }
-
-
-        private Path _GetPath(FlutterBinding.UI.RRect rrect) { throw new NotImplementedException(); }
-
-
-        public new Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
-
-
-        public new Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
-
-
-        public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
-
-
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
-
-
-        #endregion
+    public new FlutterSDK.Painting.Borders.ShapeBorder Scale(double t)
+    {
+        return new ContinuousRectangleBorder(side: Side.Scale(t), borderRadius: BorderRadius * t);
     }
+
+
+
+
+    public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t)
+    {
+
+        if (a is ContinuousRectangleBorder)
+        {
+            return new ContinuousRectangleBorder(side: BordersDefaultClass.BorderSide.Lerp(((ContinuousRectangleBorder)a).Side, Side, t), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(((ContinuousRectangleBorder)a).BorderRadius, BorderRadius, t));
+        }
+
+        return base.LerpFrom(a, t);
+    }
+
+
+
+
+    public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t)
+    {
+
+        if (b is ContinuousRectangleBorder)
+        {
+            return new ContinuousRectangleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((ContinuousRectangleBorder)b).Side, t), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(BorderRadius, ((ContinuousRectangleBorder)b).BorderRadius, t));
+        }
+
+        return base.LerpTo(b, t);
+    }
+
+
+
+
+    private double _ClampToShortest(FlutterBinding.UI.RRect rrect, double value)
+    {
+        return value > rrect.ShortestSide ? rrect.ShortestSide : value;
+    }
+
+
+
+
+    private Path _GetPath(FlutterBinding.UI.RRect rrect)
+    {
+        double left = rrect.Left;
+        double right = rrect.Right;
+        double top = rrect.Top;
+        double bottom = rrect.Bottom;
+        double tlRadiusX = Math.Dart:mathDefaultClass.Max(0.0, _ClampToShortest(rrect, rrect.TlRadiusX));
+        double tlRadiusY = Math.Dart:mathDefaultClass.Max(0.0, _ClampToShortest(rrect, rrect.TlRadiusY));
+        double trRadiusX = Math.Dart:mathDefaultClass.Max(0.0, _ClampToShortest(rrect, rrect.TrRadiusX));
+        double trRadiusY = Math.Dart:mathDefaultClass.Max(0.0, _ClampToShortest(rrect, rrect.TrRadiusY));
+        double blRadiusX = Math.Dart:mathDefaultClass.Max(0.0, _ClampToShortest(rrect, rrect.BlRadiusX));
+        double blRadiusY = Math.Dart:mathDefaultClass.Max(0.0, _ClampToShortest(rrect, rrect.BlRadiusY));
+        double brRadiusX = Math.Dart:mathDefaultClass.Max(0.0, _ClampToShortest(rrect, rrect.BrRadiusX));
+        double brRadiusY = Math.Dart:mathDefaultClass.Max(0.0, _ClampToShortest(rrect, rrect.BrRadiusY));
+        return new Path();
+        new Path().MoveTo(left, top + tlRadiusX);
+        new Path().CubicTo(left, top, left, top, left + tlRadiusY, top);
+        new Path().LineTo(right - trRadiusX, top);
+        new Path().CubicTo(right, top, right, top, right, top + trRadiusY);
+        new Path().LineTo(right, bottom - brRadiusX);
+        new Path().CubicTo(right, bottom, right, bottom, right - brRadiusY, bottom);
+        new Path().LineTo(left + blRadiusX, bottom);
+        new Path().CubicTo(left, bottom, left, bottom, left, bottom - blRadiusY);
+        new Path().Close();
+    }
+
+
+
+
+    public new Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+    {
+        return _GetPath(BorderRadius.Resolve(textDirection).ToRRect(rect).Deflate(Side.Width));
+    }
+
+
+
+
+    public new Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+    {
+        return _GetPath(BorderRadius.Resolve(textDirection).ToRRect(rect));
+    }
+
+
+
+
+    public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+    {
+        if (rect.IsEmpty()) return;
+        switch (Side.Style) { case BorderStyle.None: break; case BorderStyle.Solid: Path path = GetOuterPath(rect, textDirection: textDirection); Paint paint = Side.ToPaint(); canvas.DrawPath(path, paint); break; }
+    }
+
+
+
+
+    public new bool Equals(@Object other)
+    {
+        if (other.GetType() != GetType()) return false;
+        return other is ContinuousRectangleBorder && other.Side == Side && other.BorderRadius == BorderRadius;
+    }
+
+
+
+
+    #endregion
+}
 
 }

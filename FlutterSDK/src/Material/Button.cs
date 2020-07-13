@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -385,181 +385,309 @@ namespace FlutterSDK.Material.Button
         #region constructors
         public RawMaterialButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback onPressed = default(VoidCallback), VoidCallback onLongPress = default(VoidCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onHighlightChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterBinding.UI.Color fillColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), double elevation = 2.0, double focusElevation = 4.0, double hoverElevation = 4.0, double highlightElevation = 8.0, double disabledElevation = 0.0, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), TimeSpan animationDuration = default(TimeSpan), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool enableFeedback = true)
         : base(key: key)
-        {
-            this.OnPressed = onPressed;
-            this.OnLongPress = onLongPress;
-            this.OnHighlightChanged = onHighlightChanged;
-            this.TextStyle = textStyle;
-            this.FillColor = fillColor;
-            this.FocusColor = focusColor;
-            this.HoverColor = hoverColor;
-            this.HighlightColor = highlightColor;
-            this.SplashColor = splashColor;
-            this.Elevation = elevation;
-            this.FocusElevation = focusElevation;
-            this.HoverElevation = hoverElevation;
-            this.HighlightElevation = highlightElevation;
-            this.DisabledElevation = disabledElevation;
-            this.Padding = padding;
-            this.VisualDensity = visualDensity;
-            this.Constraints = constraints;
-            this.Shape = shape;
-            this.AnimationDuration = animationDuration;
-            this.ClipBehavior = clipBehavior;
-            this.FocusNode = focusNode;
-            this.Autofocus = autofocus;
-            this.Child = child;
-            this.EnableFeedback = enableFeedback; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual VoidCallback OnPressed { get; set; }
-        public virtual VoidCallback OnLongPress { get; set; }
-        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnHighlightChanged { get; set; }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
-        public virtual FlutterBinding.UI.Color FillColor { get; set; }
-        public virtual FlutterBinding.UI.Color FocusColor { get; set; }
-        public virtual FlutterBinding.UI.Color HoverColor { get; set; }
-        public virtual FlutterBinding.UI.Color HighlightColor { get; set; }
-        public virtual FlutterBinding.UI.Color SplashColor { get; set; }
-        public virtual double Elevation { get; set; }
-        public virtual double HoverElevation { get; set; }
-        public virtual double FocusElevation { get; set; }
-        public virtual double HighlightElevation { get; set; }
-        public virtual double DisabledElevation { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
-        public virtual FlutterSDK.Material.Themedata.VisualDensity VisualDensity { get; set; }
-        public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get; set; }
-        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
-        public virtual TimeSpan AnimationDuration { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual FlutterSDK.Material.Themedata.MaterialTapTargetSize MaterialTapTargetSize { get; set; }
-        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
-        public virtual bool Autofocus { get; set; }
-        public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
-        public virtual bool EnableFeedback { get; set; }
-        public virtual bool Enabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    public virtual VoidCallback OnPressed { get; set; }
+    public virtual VoidCallback OnLongPress { get; set; }
+    public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnHighlightChanged { get; set; }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
+    public virtual FlutterBinding.UI.Color FillColor { get; set; }
+    public virtual FlutterBinding.UI.Color FocusColor { get; set; }
+    public virtual FlutterBinding.UI.Color HoverColor { get; set; }
+    public virtual FlutterBinding.UI.Color HighlightColor { get; set; }
+    public virtual FlutterBinding.UI.Color SplashColor { get; set; }
+    public virtual double Elevation { get; set; }
+    public virtual double HoverElevation { get; set; }
+    public virtual double FocusElevation { get; set; }
+    public virtual double HighlightElevation { get; set; }
+    public virtual double DisabledElevation { get; set; }
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+    public virtual FlutterSDK.Material.Themedata.VisualDensity VisualDensity { get; set; }
+    public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get; set; }
+    public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+    public virtual TimeSpan AnimationDuration { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+    public virtual FlutterSDK.Material.Themedata.MaterialTapTargetSize MaterialTapTargetSize { get; set; }
+    public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+    public virtual bool Autofocus { get; set; }
+    public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+    public virtual bool EnableFeedback { get; set; }
+    public virtual bool Enabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new FlutterSDK.Material.Button._RawMaterialButtonState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
+    public new FlutterSDK.Material.Button._RawMaterialButtonState CreateState() => new _RawMaterialButtonState();
 
 
-    public class _RawMaterialButtonState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Button.RawMaterialButton>
+    #endregion
+}
+
+
+public class _RawMaterialButtonState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Button.RawMaterialButton>
+{
+    #region constructors
+    public _RawMaterialButtonState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual HashSet<FlutterSDK.Material.Materialstate.MaterialState> _States { get; set; }
+    internal virtual bool _Hovered { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    internal virtual bool _Focused { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    internal virtual bool _Pressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    internal virtual bool _Disabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    internal virtual double _EffectiveElevation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    private void _UpdateState(FlutterSDK.Material.Materialstate.MaterialState state, bool value)
     {
-        #region constructors
-        public _RawMaterialButtonState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual HashSet<FlutterSDK.Material.Materialstate.MaterialState> _States { get; set; }
-        internal virtual bool _Hovered { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual bool _Focused { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual bool _Pressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual bool _Disabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual double _EffectiveElevation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        private void _UpdateState(FlutterSDK.Material.Materialstate.MaterialState state, bool value) { throw new NotImplementedException(); }
-
-
-        private void _HandleHighlightChanged(bool value) { throw new NotImplementedException(); }
-
-
-        private void _HandleHoveredChanged(bool value) { throw new NotImplementedException(); }
-
-
-        private void _HandleFocusedChanged(bool value) { throw new NotImplementedException(); }
-
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Material.Button.RawMaterialButton oldWidget) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        value? _States.Add(state):_States.Remove(state);
     }
 
 
-    /// <Summary>
-    /// A widget to pad the area around a [MaterialButton]'s inner [Material].
-    ///
-    /// Redirect taps that occur in the padded area around the child to the center
-    /// of the child. This increases the size of the button and the button's
-    /// "tap target", but not its material or its ink splashes.
-    /// </Summary>
-    public class _InputPadding : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
+
+
+    private void _HandleHighlightChanged(bool value)
     {
-        #region constructors
-        public _InputPadding(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), Size minSize = default(Size))
-        : base(key: key, child: child)
+        if (_Pressed != value)
         {
-            this.MinSize = minSize; throw new NotImplementedException();
+            SetState(() =>
+            {
+                _UpdateState(MaterialState.Pressed, value);
+                if (Widget.OnHighlightChanged != null)
+                {
+                    Widget.OnHighlightChanged(value);
+                }
+
+            }
+            );
         }
-        #endregion
 
-        #region fields
-        public virtual Size MinSize { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Material.Button._RenderInputPadding renderObject) { throw new NotImplementedException(); }
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
-
-        #endregion
     }
 
 
-    public class _RenderInputPadding : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
+
+
+    private void _HandleHoveredChanged(bool value)
     {
-        #region constructors
-        public _RenderInputPadding(Size _minSize, FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-        : base(child)
+        if (_Hovered != value)
         {
-            this._MinSize = _minSize; throw new NotImplementedException();
+            SetState(() =>
+            {
+                _UpdateState(MaterialState.Hovered, value);
+            }
+            );
         }
-        #endregion
 
-        #region fields
-        internal virtual Size _MinSize { get; set; }
-        public virtual Size MinSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new void PerformLayout() { throw new NotImplementedException(); }
-
-
-        public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
-
-        #endregion
     }
+
+
+
+
+    private void _HandleFocusedChanged(bool value)
+    {
+        if (_Focused != value)
+        {
+            SetState(() =>
+            {
+                _UpdateState(MaterialState.Focused, value);
+            }
+            );
+        }
+
+    }
+
+
+
+
+    public new void InitState()
+    {
+        base.InitState();
+        _UpdateState(MaterialState.Disabled, !Widget.Enabled);
+    }
+
+
+
+
+    public new void DidUpdateWidget(FlutterSDK.Material.Button.RawMaterialButton oldWidget)
+    {
+        base.DidUpdateWidget(oldWidget);
+        _UpdateState(MaterialState.Disabled, !Widget.Enabled);
+        if (_Disabled && _Pressed)
+        {
+            _HandleHighlightChanged(false);
+        }
+
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        Color effectiveTextColor = MaterialstateDefaultClass.MaterialStateProperty.ResolveAs(Widget.TextStyle?.Color, _States);
+        ShapeBorder effectiveShape = MaterialstateDefaultClass.MaterialStateProperty.ResolveAs(Widget.Shape, _States);
+        Offset densityAdjustment = Widget.VisualDensity.BaseSizeAdjustment;
+        BoxConstraints effectiveConstraints = Widget.VisualDensity.EffectiveConstraints(Widget.Constraints);
+        EdgeInsetsGeometry padding = Widget.Padding.Add(EdgeInsets.Only(left: densityAdjustment.Dx, top: densityAdjustment.Dy, right: densityAdjustment.Dx, bottom: densityAdjustment.Dy)).Clamp(EdgeinsetsDefaultClass.EdgeInsets.Zero, EdgeinsetsDefaultClass.EdgeInsetsGeometry.Infinity);
+        Widget result = new ConstrainedBox(constraints: effectiveConstraints, child: new Material(elevation: _EffectiveElevation, textStyle: Widget.TextStyle?.CopyWith(color: effectiveTextColor), shape: effectiveShape, color: Widget.FillColor, type: Widget.FillColor == null ? MaterialType.Transparency : MaterialType.Button, animationDuration: Widget.AnimationDuration, clipBehavior: Widget.ClipBehavior, child: new InkWell(focusNode: Widget.FocusNode, canRequestFocus: Widget.Enabled, onFocusChange: _HandleFocusedChanged, autofocus: Widget.Autofocus, onHighlightChanged: _HandleHighlightChanged, splashColor: Widget.SplashColor, highlightColor: Widget.HighlightColor, focusColor: Widget.FocusColor, hoverColor: Widget.HoverColor, onHover: _HandleHoveredChanged, onTap: Widget.OnPressed, onLongPress: Widget.OnLongPress, enableFeedback: Widget.EnableFeedback, customBorder: effectiveShape, child: IconthemeDefaultClass.IconTheme.Merge(data: new IconThemeData(color: effectiveTextColor), child: new Container(padding: padding, child: new Center(widthFactor: 1.0, heightFactor: 1.0, child: Widget.Child))))));
+        Size minSize = default(Size);
+        switch (Widget.MaterialTapTargetSize) { case MaterialTapTargetSize.Padded: minSize = new Size(ConstantsDefaultClass.KMinInteractiveDimension + densityAdjustment.Dx, ConstantsDefaultClass.KMinInteractiveDimension + densityAdjustment.Dy); break; case MaterialTapTargetSize.ShrinkWrap: minSize = Dart:uiDefaultClass.Size.Zero; break; }
+        return new Semantics(container: true, button: true, enabled: Widget.Enabled, child: new _InputPadding(minSize: minSize, child: result));
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// A widget to pad the area around a [MaterialButton]'s inner [Material].
+///
+/// Redirect taps that occur in the padded area around the child to the center
+/// of the child. This increases the size of the button and the button's
+/// "tap target", but not its material or its ink splashes.
+/// </Summary>
+public class _InputPadding : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
+{
+    #region constructors
+    public _InputPadding(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), Size minSize = default(Size))
+    : base(key: key, child: child)
+
+}
+#endregion
+
+#region fields
+public virtual Size MinSize { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    return new _RenderInputPadding(MinSize);
+}
+
+
+
+
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Material.Button._RenderInputPadding renderObject)
+{
+    renderObject.MinSize = MinSize;
+}
+
+
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+{
+    renderObject.MinSize = MinSize;
+}
+
+
+
+#endregion
+}
+
+
+public class _RenderInputPadding : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
+{
+    #region constructors
+    public _RenderInputPadding(Size _minSize, FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+    : base(child)
+
+}
+#endregion
+
+#region fields
+internal virtual Size _MinSize { get; set; }
+public virtual Size MinSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new double ComputeMinIntrinsicWidth(double height)
+{
+    if (Child != null) return Math.Dart:mathDefaultClass.Max(Child.GetMinIntrinsicWidth(height), MinSize.Width);
+    return 0.0;
+}
+
+
+
+
+public new double ComputeMinIntrinsicHeight(double width)
+{
+    if (Child != null) return Math.Dart:mathDefaultClass.Max(Child.GetMinIntrinsicHeight(width), MinSize.Height);
+    return 0.0;
+}
+
+
+
+
+public new double ComputeMaxIntrinsicWidth(double height)
+{
+    if (Child != null) return Math.Dart:mathDefaultClass.Max(Child.GetMaxIntrinsicWidth(height), MinSize.Width);
+    return 0.0;
+}
+
+
+
+
+public new double ComputeMaxIntrinsicHeight(double width)
+{
+    if (Child != null) return Math.Dart:mathDefaultClass.Max(Child.GetMaxIntrinsicHeight(width), MinSize.Height);
+    return 0.0;
+}
+
+
+
+
+public new void PerformLayout()
+{
+    BoxConstraints constraints = this.Constraints;
+    if (Child != null)
+    {
+        Child.Layout(constraints, parentUsesSize: true);
+        double height = Math.Dart:mathDefaultClass.Max(Child.Size.Width, MinSize.Width);
+        double width = Math.Dart:mathDefaultClass.Max(Child.Size.Height, MinSize.Height);
+        Size = constraints.Constrain(new Size(height, width));
+        BoxParentData childParentData = Child.ParentData as BoxParentData;
+        childParentData.Offset = AlignmentDefaultClass.Alignment.Center.AlongOffset(Size - Child.Size as Offset);
+    }
+    else
+    {
+        Size = Dart:uiDefaultClass.Size.Zero;
+    }
+
+}
+
+
+
+
+public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
+{
+    if (base.HitTest(result, position: position))
+    {
+        return true;
+    }
+
+    Offset center = Child.Size.Center(Dart: uiDefaultClass.Offset.Zero);
+    return result.AddWithRawTransform(transform: MatrixutilsDefaultClass.MatrixUtils.ForceToPoint(center), position: center, hitTest: (BoxHitTestResult result, Offset position) =>
+    {
+
+        return Child.HitTest(result, position: center);
+    }
+    );
+}
+
+
+
+#endregion
+}
 
 }

@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -309,34 +309,51 @@ namespace FlutterSDK.Foundation._Bitfieldio
         #region constructors
         public BitField(int _length)
         : base()
-        {
-            this._Length = _length; throw new NotImplementedException();
-        }
-        public static BitField<T> Filled(int _length, bool value)
-        {
-            var instance = new BitField<T>(); instance._Length = _length; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    public static BitField<T> Filled(int _length, bool value)
 
-        #region fields
-        internal virtual int _Length { get; set; }
-        internal virtual int _Bits { get; set; }
-        internal virtual int _SmiBits { get; set; }
-        internal virtual int _AllZeros { get; set; }
-        internal virtual int _AllOnes { get; set; }
-        #endregion
+}
+#endregion
 
-        #region methods
+#region fields
+internal virtual int _Length { get; set; }
+internal virtual int _Bits { get; set; }
+internal virtual int _SmiBits { get; set; }
+internal virtual int _AllZeros { get; set; }
+internal virtual int _AllOnes { get; set; }
+#endregion
 
-        public new bool IndexOfOperator(T index) { throw new NotImplementedException(); }
+#region methods
+
+public new bool IndexOfOperator(T index)
+{
+    int _index = index.Index as int;
+
+    return (_Bits & 1 << _index) > 0;
+}
 
 
-        public new void InsertAtOperator(T index, bool value) { throw new NotImplementedException(); }
 
 
-        public new void Reset(bool value = false) { throw new NotImplementedException(); }
+public new void InsertAtOperator(T index, bool value)
+{
+    int _index = index.Index as int;
 
-        #endregion
-    }
+    if (value) _Bits = _Bits | (1 << _index); else _Bits = _Bits & ~(1 << _index);
+}
+
+
+
+
+public new void Reset(bool value = false)
+{
+    _Bits = value ? _AllOnes : _AllZeros;
+}
+
+
+
+#endregion
+}
 
 }

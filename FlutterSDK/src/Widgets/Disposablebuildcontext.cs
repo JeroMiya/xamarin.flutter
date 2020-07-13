@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -449,37 +449,47 @@ namespace FlutterSDK.Widgets.Disposablebuildcontext
         #region constructors
         public DisposableBuildContext(T _state)
         : base()
-        {
-            this._State = _state; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        internal virtual T _State { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.BuildContext Context { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    internal virtual T _State { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.BuildContext Context { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        /// <Summary>
-        /// Called from asserts or tests to determine whether this object is in a
-        /// valid state.
-        ///
-        /// Always returns true, but will assert if [dispose] has not been called
-        /// but the state this is tracking is unmounted.
-        /// </Summary>
-        private bool _DebugValidate() { throw new NotImplementedException(); }
+    /// <Summary>
+    /// Called from asserts or tests to determine whether this object is in a
+    /// valid state.
+    ///
+    /// Always returns true, but will assert if [dispose] has not been called
+    /// but the state this is tracking is unmounted.
+    /// </Summary>
+    private bool _DebugValidate()
+    {
 
-
-        /// <Summary>
-        /// Marks the [BuildContext] as disposed.
-        ///
-        /// Creators of this object must call [dispose] when their [Element] is
-        /// unmounted, i.e. when [State.dispose] is called.
-        /// </Summary>
-        public virtual void Dispose() { throw new NotImplementedException(); }
-
-        #endregion
+        return true;
     }
+
+
+
+
+    /// <Summary>
+    /// Marks the [BuildContext] as disposed.
+    ///
+    /// Creators of this object must call [dispose] when their [Element] is
+    /// unmounted, i.e. when [State.dispose] is called.
+    /// </Summary>
+    public virtual void Dispose()
+    {
+        _State = null;
+    }
+
+
+
+    #endregion
+}
 
 }

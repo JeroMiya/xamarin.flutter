@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -691,392 +691,578 @@ namespace FlutterSDK.Widgets.Focusscope
         #region constructors
         public Focus(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onFocusChange = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback onKey = default(FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback), string debugLabel = default(string), bool canRequestFocus = default(bool), bool skipTraversal = default(bool), bool includeSemantics = true)
         : base(key: key)
-        {
-            this.Child = child;
-            this.FocusNode = focusNode;
-            this.Autofocus = autofocus;
-            this.OnFocusChange = onFocusChange;
-            this.OnKey = onKey;
-            this.DebugLabel = debugLabel;
-            this.CanRequestFocus = canRequestFocus;
-            this.SkipTraversal = skipTraversal;
-            this.IncludeSemantics = includeSemantics; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual string DebugLabel { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback OnKey { get; set; }
-        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnFocusChange { get; set; }
-        public virtual bool Autofocus { get; set; }
-        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
-        public virtual bool SkipTraversal { get; set; }
-        public virtual bool IncludeSemantics { get; set; }
-        public virtual bool CanRequestFocus { get; set; }
-        #endregion
+    #region fields
+    public virtual string DebugLabel { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+    public virtual FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback OnKey { get; set; }
+    public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnFocusChange { get; set; }
+    public virtual bool Autofocus { get; set; }
+    public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+    public virtual bool SkipTraversal { get; set; }
+    public virtual bool IncludeSemantics { get; set; }
+    public virtual bool CanRequestFocus { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        /// <Summary>
-        /// Returns the [focusNode] of the [Focus] that most tightly encloses the
-        /// given [BuildContext].
-        ///
-        /// If no [Focus] node is found before reaching the nearest [FocusScope]
-        /// widget, or there is no [Focus] widget in scope, then this method will
-        /// throw an exception. To return null instead of throwing, pass true for
-        /// [nullOk].
-        ///
-        /// The [context] and [nullOk] arguments must not be null.
-        ///
-        /// Calling this function creates a dependency that will rebuild the given
-        /// context when the focus changes.
-        /// </Summary>
-        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode Of(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false, bool scopeOk = false) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns true if the nearest enclosing [Focus] widget's node is focused.
-        ///
-        /// A convenience method to allow build methods to write:
-        /// `Focus.isAt(context)` to get whether or not the nearest [Focus] above them
-        /// in the widget hierarchy currently has the input focus.
-        ///
-        /// Returns false if no [Focus] widget is found before reaching the nearest
-        /// [FocusScope], or if the root of the focus tree is reached without finding
-        /// a [Focus] widget.
-        ///
-        /// Calling this function creates a dependency that will rebuild the given
-        /// context when the focus changes.
-        /// </Summary>
-        public virtual bool IsAt(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Focusscope._FocusState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _FocusState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Focusscope.Focus>
+    /// <Summary>
+    /// Returns the [focusNode] of the [Focus] that most tightly encloses the
+    /// given [BuildContext].
+    ///
+    /// If no [Focus] node is found before reaching the nearest [FocusScope]
+    /// widget, or there is no [Focus] widget in scope, then this method will
+    /// throw an exception. To return null instead of throwing, pass true for
+    /// [nullOk].
+    ///
+    /// The [context] and [nullOk] arguments must not be null.
+    ///
+    /// Calling this function creates a dependency that will rebuild the given
+    /// context when the focus changes.
+    /// </Summary>
+    public virtual FlutterSDK.Widgets.Focusmanager.FocusNode Of(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false, bool scopeOk = false)
     {
-        #region constructors
-        public _FocusState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Widgets.Focusmanager.FocusNode _InternalNode { get; set; }
-        internal virtual bool _HasPrimaryFocus { get; set; }
-        internal virtual bool _CanRequestFocus { get; set; }
-        internal virtual bool _DidAutofocus { get; set; }
-        internal virtual FlutterSDK.Widgets.Focusmanager.FocusAttachment _FocusAttachment { get; set; }
-        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
 
 
-        private void _InitNode() { throw new NotImplementedException(); }
 
+        _FocusMarker marker = context.DependOnInheritedWidgetOfExactType();
+        FocusNode node = marker?.Notifier;
+        if (node == null)
+        {
+            if (!nullOk)
+            {
+                throw new FlutterError("Focus.of() was called with a context that does not contain a Focus widget.\n" + "No Focus widget ancestor could be found starting from the context that was passed to " + "Focus.of(). This can happen because you are using a widget that looks for a Focus " + "ancestor, and do not have a Focus widget descendant in the nearest FocusScope.\n" + "The context used was:\n" + $"'  {context}'");
+            }
 
-        private FlutterSDK.Widgets.Focusmanager.FocusNode _CreateNode() { throw new NotImplementedException(); }
+            return null;
+        }
 
+        if (!scopeOk && node is FocusScopeNode)
+        {
+            if (!nullOk)
+            {
+                throw new FlutterError("Focus.of() was called with a context that does not contain a Focus between the given " + "context and the nearest FocusScope widget.\n" + "No Focus ancestor could be found starting from the context that was passed to " + "Focus.of() to the point where it found the nearest FocusScope widget. This can happen " + "because you are using a widget that looks for a Focus ancestor, and do not have a " + "Focus widget ancestor in the current FocusScope.\n" + "The context used was:\n" + $"'  {context}'");
+            }
 
-        public new void Dispose() { throw new NotImplementedException(); }
+            return null;
+        }
 
-
-        public new void DidChangeDependencies() { throw new NotImplementedException(); }
-
-
-        private void _HandleAutofocus() { throw new NotImplementedException(); }
-
-
-        public new void Deactivate() { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Widgets.Focusscope.Focus oldWidget) { throw new NotImplementedException(); }
-
-
-        private void _HandleFocusChanged() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        return node;
     }
+
+
 
 
     /// <Summary>
-    /// A [FocusScope] is similar to a [Focus], but also serves as a scope for its
-    /// descendants, restricting focus traversal to the scoped controls.
+    /// Returns true if the nearest enclosing [Focus] widget's node is focused.
     ///
-    /// For example a new [FocusScope] is created automatically when a route is
-    /// pushed, keeping the focus traversal from moving to a control in a previous
-    /// route.
+    /// A convenience method to allow build methods to write:
+    /// `Focus.isAt(context)` to get whether or not the nearest [Focus] above them
+    /// in the widget hierarchy currently has the input focus.
     ///
-    /// If you just want to group widgets together in a group so that they are
-    /// traversed in a particular order, but the focus can still leave the group,
-    /// use a [FocusTraversalGroup].
+    /// Returns false if no [Focus] widget is found before reaching the nearest
+    /// [FocusScope], or if the root of the focus tree is reached without finding
+    /// a [Focus] widget.
     ///
-    /// Like [Focus], [FocusScope] provides an [onFocusChange] as a way to be
-    /// notified when the focus is given to or removed from this widget.
-    ///
-    /// The [onKey] argument allows specification of a key event handler that is
-    /// invoked when this node or one of its children has focus. Keys are handed to
-    /// the primary focused widget first, and then they propagate through the
-    /// ancestors of that node, stopping if one of them returns true from [onKey],
-    /// indicating that it has handled the event.
-    ///
-    /// Managing a [FocusScopeNode] means managing its lifecycle, listening for
-    /// changes in focus, and re-parenting it when needed to keep the focus
-    /// hierarchy in sync with the widget hierarchy. This widget does all of those
-    /// things for you. See [FocusScopeNode] for more information about the details
-    /// of what node management entails if you are not using a [FocusScope] widget
-    /// and you need to do it yourself.
-    ///
-    /// [FocusScopeNode]s remember the last [FocusNode] that was focused within
-    /// their descendants, and can move that focus to the next/previous node, or a
-    /// node in a particular direction when the [FocusNode.nextFocus],
-    /// [FocusNode.previousFocus], or [FocusNode.focusInDirection] are called on a
-    /// [FocusNode] or [FocusScopeNode].
-    ///
-    /// To move the focus, use methods on [FocusNode] by getting the [FocusNode]
-    /// through the [of] method. For instance, to move the focus to the next node in
-    /// the focus traversal order, call `Focus.of(context).nextFocus()`. To unfocus
-    /// a widget, call `Focus.of(context).unfocus()`.
-    ///
-    /// {@tool dartpad --template=stateful_widget_material}
-    /// This example demonstrates using a [FocusScope] to restrict focus to a particular
-    /// portion of the app. In this case, restricting focus to the visible part of a
-    /// Stack.
-    ///
-    /// ```dart preamble
-    /// /// A demonstration pane.
-    /// ///
-    /// /// This is just a separate widget to simplify the example.
-    /// class Pane extends StatelessWidget {
-    ///   const Pane({
-    ///     Key key,
-    ///     this.focusNode,
-    ///     this.onPressed,
-    ///     this.child,
-    ///     this.backgroundColor,
-    ///     this.icon,
-    ///   }) : super(key: key);
-    ///
-    ///   final FocusNode focusNode;
-    ///   final VoidCallback onPressed;
-    ///   final Widget child;
-    ///   final Color backgroundColor;
-    ///   final Widget icon;
-    ///
-    ///   @override
-    ///   Widget build(BuildContext context) {
-    ///     return Material(
-    ///       color: backgroundColor,
-    ///       child: Stack(
-    ///         fit: StackFit.expand,
-    ///         children: <Widget>[
-    ///           Center(
-    ///             child: child,
-    ///           ),
-    ///           Align(
-    ///             alignment: Alignment.topLeft,
-    ///             child: IconButton(
-    ///               autofocus: true,
-    ///               focusNode: focusNode,
-    ///               onPressed: onPressed,
-    ///               icon: icon,
-    ///             ),
-    ///           ),
-    ///         ],
-    ///       ),
-    ///     );
-    ///   }
-    /// }
-    /// ```
-    ///
-    /// ```dart
-    ///   bool backdropIsVisible = false;
-    ///   FocusNode backdropNode = FocusNode(debugLabel: 'Close Backdrop Button');
-    ///   FocusNode foregroundNode = FocusNode(debugLabel: 'Option Button');
-    ///
-    ///   @override
-    ///   void dispose() {
-    ///     super.dispose();
-    ///     backdropNode.dispose();
-    ///     foregroundNode.dispose();
-    ///   }
-    ///
-    ///   Widget _buildStack(BuildContext context, BoxConstraints constraints) {
-    ///     Size stackSize = constraints.biggest;
-    ///     return Stack(
-    ///       fit: StackFit.expand,
-    ///       // The backdrop is behind the front widget in the Stack, but the widgets
-    ///       // would still be active and traversable without the FocusScope.
-    ///       children: <Widget>[
-    ///         // TRY THIS: Try removing this FocusScope entirely to see how it affects
-    ///         // the behavior. Without this FocusScope, the "ANOTHER BUTTON TO FOCUS"
-    ///         // button, and the IconButton in the backdrop Pane would be focusable
-    ///         // even when the backdrop wasn't visible.
-    ///         FocusScope(
-    ///           // TRY THIS: Try commenting out this line. Notice that the focus
-    ///           // starts on the backdrop and is stuck there? It seems like the app is
-    ///           // non-responsive, but it actually isn't. This line makes sure that
-    ///           // this focus scope and its children can't be focused when they're not
-    ///           // visible. It might help to make the background color of the
-    ///           // foreground pane semi-transparent to see it clearly.
-    ///           canRequestFocus: backdropIsVisible,
-    ///           child: Pane(
-    ///             icon: Icon(Icons.close),
-    ///             focusNode: backdropNode,
-    ///             backgroundColor: Colors.lightBlue,
-    ///             onPressed: () => setState(() => backdropIsVisible = false),
-    ///             child: Column(
-    ///               mainAxisAlignment: MainAxisAlignment.center,
-    ///               children: <Widget>[
-    ///                 // This button would be not visible, but still focusable from
-    ///                 // the foreground pane without the FocusScope.
-    ///                 RaisedButton(
-    ///                   onPressed: () => print('You pressed the other button!'),
-    ///                   child: Text('ANOTHER BUTTON TO FOCUS'),
-    ///                 ),
-    ///                 DefaultTextStyle(
-    ///                     style: Theme.of(context).textTheme.headline2,
-    ///                     child: Text('BACKDROP')),
-    ///               ],
-    ///             ),
-    ///           ),
-    ///         ),
-    ///         AnimatedPositioned(
-    ///           curve: Curves.easeInOut,
-    ///           duration: const Duration(milliseconds: 300),
-    ///           top: backdropIsVisible ? stackSize.height * 0.9 : 0.0,
-    ///           width: stackSize.width,
-    ///           height: stackSize.height,
-    ///           onEnd: () {
-    ///             if (backdropIsVisible) {
-    ///               backdropNode.requestFocus();
-    ///             } else {
-    ///               foregroundNode.requestFocus();
-    ///             }
-    ///           },
-    ///           child: Pane(
-    ///             icon: Icon(Icons.menu),
-    ///             focusNode: foregroundNode,
-    ///             // TRY THIS: Try changing this to Colors.green.withOpacity(0.8) to see for
-    ///             // yourself that the hidden components do/don't get focus.
-    ///             backgroundColor: Colors.green,
-    ///             onPressed: backdropIsVisible
-    ///                 ? null
-    ///                 : () => setState(() => backdropIsVisible = true),
-    ///             child: DefaultTextStyle(
-    ///                 style: Theme.of(context).textTheme.headline2,
-    ///                 child: Text('FOREGROUND')),
-    ///           ),
-    ///         ),
-    ///       ],
-    ///     );
-    ///   }
-    ///
-    ///   @override
-    ///   Widget build(BuildContext context) {
-    ///     // Use a LayoutBuilder so that we can base the size of the stack on the size
-    ///     // of its parent.
-    ///     return LayoutBuilder(builder: _buildStack);
-    ///   }
-    /// ```
-    /// {@end-tool}
-    ///
-    /// See also:
-    ///
-    ///  * [FocusScopeNode], which represents a scope node in the focus hierarchy.
-    ///  * [FocusNode], which represents a node in the focus hierarchy and has an
-    ///    explanation of the focus system.
-    ///  * [Focus], a widget that manages a [FocusNode] and allows easy access to
-    ///    managing focus without having to manage the node.
-    ///  * [FocusManager], a singleton that manages the focus and distributes key
-    ///    events to focused nodes.
-    ///  * [FocusTraversalPolicy], an object used to determine how to move the focus
-    ///    to other nodes.
-    ///  * [FocusTraversalGroup], a widget used to configure the focus traversal
-    ///    policy for a widget subtree.
+    /// Calling this function creates a dependency that will rebuild the given
+    /// context when the focus changes.
     /// </Summary>
-    public class FocusScope : FlutterSDK.Widgets.Focusscope.Focus
+    public virtual bool IsAt(FlutterSDK.Widgets.Framework.BuildContext context) => FocusscopeDefaultClass.Focus.Of(context, nullOk: true)?.HasFocus ?? false;
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
     {
-        #region constructors
-        public FocusScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Focusmanager.FocusScopeNode node = default(FlutterSDK.Widgets.Focusmanager.FocusScopeNode), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool autofocus = false, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onFocusChange = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), bool canRequestFocus = default(bool), bool skipTraversal = default(bool), FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback onKey = default(FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback), string debugLabel = default(string))
-        : base(key: key, child: child, focusNode: node, autofocus: autofocus, onFocusChange: onFocusChange, canRequestFocus: canRequestFocus, skipTraversal: skipTraversal, onKey: onKey, debugLabel: debugLabel)
+        base.DebugFillProperties(properties);
+        properties.Add(new StringProperty("debugLabel", DebugLabel, defaultValue: null));
+        properties.Add(new FlagProperty("autofocus", value: Autofocus, ifTrue: "AUTOFOCUS", defaultValue: false));
+        properties.Add(new DiagnosticsProperty<FocusNode>("node", FocusNode, defaultValue: null));
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Focusscope._FocusState CreateState() => new _FocusState();
+
+
+    #endregion
+}
+
+
+public class _FocusState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Focusscope.Focus>
+{
+    #region constructors
+    public _FocusState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Widgets.Focusmanager.FocusNode _InternalNode { get; set; }
+    internal virtual bool _HasPrimaryFocus { get; set; }
+    internal virtual bool _CanRequestFocus { get; set; }
+    internal virtual bool _DidAutofocus { get; set; }
+    internal virtual FlutterSDK.Widgets.Focusmanager.FocusAttachment _FocusAttachment { get; set; }
+    public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
+    {
+        base.InitState();
+        _InitNode();
+    }
+
+
+
+
+    private void _InitNode()
+    {
+        if (Widget.FocusNode == null)
         {
-            throw new NotImplementedException();
+            _InternalNode = (_InternalNode == null ? _CreateNode() : _InternalNode);
         }
-        #endregion
 
-        #region fields
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Returns the [FocusScopeNode] of the [FocusScope] that most tightly
-        /// encloses the given [context].
-        ///
-        /// If this node doesn't have a [Focus] widget ancestor, then the
-        /// [FocusManager.rootScope] is returned.
-        ///
-        /// The [context] argument must not be null.
-        /// </Summary>
-        public virtual FlutterSDK.Widgets.Focusmanager.FocusScopeNode Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Focusscope._FocusScopeState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _FocusScopeState : FlutterSDK.Widgets.Focusscope._FocusState
-    {
-        #region constructors
-        public _FocusScopeState()
-        { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        protected new FlutterSDK.Widgets.Focusmanager.FocusScopeNode _CreateNode() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _FocusMarker : FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<FlutterSDK.Widgets.Focusmanager.FocusNode>
-    {
-        #region constructors
-        public _FocusMarker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Focusmanager.FocusNode node = default(FlutterSDK.Widgets.Focusmanager.FocusNode), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key, notifier: node, child: child)
+        if (Widget.SkipTraversal != null)
         {
-            throw new NotImplementedException();
+            FocusNode.SkipTraversal = Widget.SkipTraversal;
         }
-        #endregion
 
-        #region fields
-        #endregion
+        if (Widget.CanRequestFocus != null)
+        {
+            FocusNode.CanRequestFocus = Widget.CanRequestFocus;
+        }
 
-        #region methods
-        #endregion
+        _CanRequestFocus = FocusNode.CanRequestFocus;
+        _HasPrimaryFocus = FocusNode.HasPrimaryFocus;
+        _FocusAttachment = FocusNode.Attach(Context, onKey: Widget.OnKey);
+        FocusNode.AddListener(_HandleFocusChanged);
     }
+
+
+
+
+    private FlutterSDK.Widgets.Focusmanager.FocusNode _CreateNode()
+    {
+        return new FocusNode(debugLabel: Widget.DebugLabel, canRequestFocus: Widget.CanRequestFocus ?? true, skipTraversal: Widget.SkipTraversal ?? false);
+    }
+
+
+
+
+    public new void Dispose()
+    {
+        FocusNode.RemoveListener(_HandleFocusChanged);
+        _FocusAttachment.Detach();
+        _InternalNode?.Dispose();
+        base.Dispose();
+    }
+
+
+
+
+    public new void DidChangeDependencies()
+    {
+        base.DidChangeDependencies();
+        _FocusAttachment?.Reparent();
+        _HandleAutofocus();
+    }
+
+
+
+
+    private void _HandleAutofocus()
+    {
+        if (!_DidAutofocus && Widget.Autofocus)
+        {
+            FocusscopeDefaultClass.FocusScope.Of(Context).Autofocus(FocusNode);
+            _DidAutofocus = true;
+        }
+
+    }
+
+
+
+
+    public new void Deactivate()
+    {
+        base.Deactivate();
+        _FocusAttachment?.Reparent();
+        _DidAutofocus = false;
+    }
+
+
+
+
+    public new void DidUpdateWidget(FlutterSDK.Widgets.Focusscope.Focus oldWidget)
+    {
+        base.DidUpdateWidget(oldWidget);
+
+        if (oldWidget.FocusNode == Widget.FocusNode)
+        {
+            if (Widget.SkipTraversal != null)
+            {
+                FocusNode.SkipTraversal = Widget.SkipTraversal;
+            }
+
+            if (Widget.CanRequestFocus != null)
+            {
+                FocusNode.CanRequestFocus = Widget.CanRequestFocus;
+            }
+
+        }
+        else
+        {
+            _FocusAttachment.Detach();
+            FocusNode.RemoveListener(_HandleFocusChanged);
+            _InitNode();
+        }
+
+        if (oldWidget.Autofocus != Widget.Autofocus)
+        {
+            _HandleAutofocus();
+        }
+
+    }
+
+
+
+
+    private void _HandleFocusChanged()
+    {
+        bool hasPrimaryFocus = FocusNode.HasPrimaryFocus;
+        bool canRequestFocus = FocusNode.CanRequestFocus;
+        if (Widget.OnFocusChange != null)
+        {
+            Widget.OnFocusChange(FocusNode.HasFocus);
+        }
+
+        if (_HasPrimaryFocus != hasPrimaryFocus)
+        {
+            SetState(() =>
+            {
+                _HasPrimaryFocus = hasPrimaryFocus;
+            }
+            );
+        }
+
+        if (_CanRequestFocus != canRequestFocus)
+        {
+            SetState(() =>
+            {
+                _CanRequestFocus = canRequestFocus;
+            }
+            );
+        }
+
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        _FocusAttachment.Reparent();
+        Widget child = Widget.Child;
+        if (Widget.IncludeSemantics)
+        {
+            child = new Semantics(focusable: _CanRequestFocus, focused: _HasPrimaryFocus, child: Widget.Child);
+        }
+
+        return new _FocusMarker(node: FocusNode, child: child);
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// A [FocusScope] is similar to a [Focus], but also serves as a scope for its
+/// descendants, restricting focus traversal to the scoped controls.
+///
+/// For example a new [FocusScope] is created automatically when a route is
+/// pushed, keeping the focus traversal from moving to a control in a previous
+/// route.
+///
+/// If you just want to group widgets together in a group so that they are
+/// traversed in a particular order, but the focus can still leave the group,
+/// use a [FocusTraversalGroup].
+///
+/// Like [Focus], [FocusScope] provides an [onFocusChange] as a way to be
+/// notified when the focus is given to or removed from this widget.
+///
+/// The [onKey] argument allows specification of a key event handler that is
+/// invoked when this node or one of its children has focus. Keys are handed to
+/// the primary focused widget first, and then they propagate through the
+/// ancestors of that node, stopping if one of them returns true from [onKey],
+/// indicating that it has handled the event.
+///
+/// Managing a [FocusScopeNode] means managing its lifecycle, listening for
+/// changes in focus, and re-parenting it when needed to keep the focus
+/// hierarchy in sync with the widget hierarchy. This widget does all of those
+/// things for you. See [FocusScopeNode] for more information about the details
+/// of what node management entails if you are not using a [FocusScope] widget
+/// and you need to do it yourself.
+///
+/// [FocusScopeNode]s remember the last [FocusNode] that was focused within
+/// their descendants, and can move that focus to the next/previous node, or a
+/// node in a particular direction when the [FocusNode.nextFocus],
+/// [FocusNode.previousFocus], or [FocusNode.focusInDirection] are called on a
+/// [FocusNode] or [FocusScopeNode].
+///
+/// To move the focus, use methods on [FocusNode] by getting the [FocusNode]
+/// through the [of] method. For instance, to move the focus to the next node in
+/// the focus traversal order, call `Focus.of(context).nextFocus()`. To unfocus
+/// a widget, call `Focus.of(context).unfocus()`.
+///
+/// {@tool dartpad --template=stateful_widget_material}
+/// This example demonstrates using a [FocusScope] to restrict focus to a particular
+/// portion of the app. In this case, restricting focus to the visible part of a
+/// Stack.
+///
+/// ```dart preamble
+/// /// A demonstration pane.
+/// ///
+/// /// This is just a separate widget to simplify the example.
+/// class Pane extends StatelessWidget {
+///   const Pane({
+///     Key key,
+///     this.focusNode,
+///     this.onPressed,
+///     this.child,
+///     this.backgroundColor,
+///     this.icon,
+///   }) : super(key: key);
+///
+///   final FocusNode focusNode;
+///   final VoidCallback onPressed;
+///   final Widget child;
+///   final Color backgroundColor;
+///   final Widget icon;
+///
+///   @override
+///   Widget build(BuildContext context) {
+///     return Material(
+///       color: backgroundColor,
+///       child: Stack(
+///         fit: StackFit.expand,
+///         children: <Widget>[
+///           Center(
+///             child: child,
+///           ),
+///           Align(
+///             alignment: Alignment.topLeft,
+///             child: IconButton(
+///               autofocus: true,
+///               focusNode: focusNode,
+///               onPressed: onPressed,
+///               icon: icon,
+///             ),
+///           ),
+///         ],
+///       ),
+///     );
+///   }
+/// }
+/// ```
+///
+/// ```dart
+///   bool backdropIsVisible = false;
+///   FocusNode backdropNode = FocusNode(debugLabel: 'Close Backdrop Button');
+///   FocusNode foregroundNode = FocusNode(debugLabel: 'Option Button');
+///
+///   @override
+///   void dispose() {
+///     super.dispose();
+///     backdropNode.dispose();
+///     foregroundNode.dispose();
+///   }
+///
+///   Widget _buildStack(BuildContext context, BoxConstraints constraints) {
+///     Size stackSize = constraints.biggest;
+///     return Stack(
+///       fit: StackFit.expand,
+///       // The backdrop is behind the front widget in the Stack, but the widgets
+///       // would still be active and traversable without the FocusScope.
+///       children: <Widget>[
+///         // TRY THIS: Try removing this FocusScope entirely to see how it affects
+///         // the behavior. Without this FocusScope, the "ANOTHER BUTTON TO FOCUS"
+///         // button, and the IconButton in the backdrop Pane would be focusable
+///         // even when the backdrop wasn't visible.
+///         FocusScope(
+///           // TRY THIS: Try commenting out this line. Notice that the focus
+///           // starts on the backdrop and is stuck there? It seems like the app is
+///           // non-responsive, but it actually isn't. This line makes sure that
+///           // this focus scope and its children can't be focused when they're not
+///           // visible. It might help to make the background color of the
+///           // foreground pane semi-transparent to see it clearly.
+///           canRequestFocus: backdropIsVisible,
+///           child: Pane(
+///             icon: Icon(Icons.close),
+///             focusNode: backdropNode,
+///             backgroundColor: Colors.lightBlue,
+///             onPressed: () => setState(() => backdropIsVisible = false),
+///             child: Column(
+///               mainAxisAlignment: MainAxisAlignment.center,
+///               children: <Widget>[
+///                 // This button would be not visible, but still focusable from
+///                 // the foreground pane without the FocusScope.
+///                 RaisedButton(
+///                   onPressed: () => print('You pressed the other button!'),
+///                   child: Text('ANOTHER BUTTON TO FOCUS'),
+///                 ),
+///                 DefaultTextStyle(
+///                     style: Theme.of(context).textTheme.headline2,
+///                     child: Text('BACKDROP')),
+///               ],
+///             ),
+///           ),
+///         ),
+///         AnimatedPositioned(
+///           curve: Curves.easeInOut,
+///           duration: const Duration(milliseconds: 300),
+///           top: backdropIsVisible ? stackSize.height * 0.9 : 0.0,
+///           width: stackSize.width,
+///           height: stackSize.height,
+///           onEnd: () {
+///             if (backdropIsVisible) {
+///               backdropNode.requestFocus();
+///             } else {
+///               foregroundNode.requestFocus();
+///             }
+///           },
+///           child: Pane(
+///             icon: Icon(Icons.menu),
+///             focusNode: foregroundNode,
+///             // TRY THIS: Try changing this to Colors.green.withOpacity(0.8) to see for
+///             // yourself that the hidden components do/don't get focus.
+///             backgroundColor: Colors.green,
+///             onPressed: backdropIsVisible
+///                 ? null
+///                 : () => setState(() => backdropIsVisible = true),
+///             child: DefaultTextStyle(
+///                 style: Theme.of(context).textTheme.headline2,
+///                 child: Text('FOREGROUND')),
+///           ),
+///         ),
+///       ],
+///     );
+///   }
+///
+///   @override
+///   Widget build(BuildContext context) {
+///     // Use a LayoutBuilder so that we can base the size of the stack on the size
+///     // of its parent.
+///     return LayoutBuilder(builder: _buildStack);
+///   }
+/// ```
+/// {@end-tool}
+///
+/// See also:
+///
+///  * [FocusScopeNode], which represents a scope node in the focus hierarchy.
+///  * [FocusNode], which represents a node in the focus hierarchy and has an
+///    explanation of the focus system.
+///  * [Focus], a widget that manages a [FocusNode] and allows easy access to
+///    managing focus without having to manage the node.
+///  * [FocusManager], a singleton that manages the focus and distributes key
+///    events to focused nodes.
+///  * [FocusTraversalPolicy], an object used to determine how to move the focus
+///    to other nodes.
+///  * [FocusTraversalGroup], a widget used to configure the focus traversal
+///    policy for a widget subtree.
+/// </Summary>
+public class FocusScope : FlutterSDK.Widgets.Focusscope.Focus
+{
+    #region constructors
+    public FocusScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Focusmanager.FocusScopeNode node = default(FlutterSDK.Widgets.Focusmanager.FocusScopeNode), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool autofocus = false, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onFocusChange = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), bool canRequestFocus = default(bool), bool skipTraversal = default(bool), FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback onKey = default(FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback), string debugLabel = default(string))
+    : base(key: key, child: child, focusNode: node, autofocus: autofocus, onFocusChange: onFocusChange, canRequestFocus: canRequestFocus, skipTraversal: skipTraversal, onKey: onKey, debugLabel: debugLabel)
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Returns the [FocusScopeNode] of the [FocusScope] that most tightly
+/// encloses the given [context].
+///
+/// If this node doesn't have a [Focus] widget ancestor, then the
+/// [FocusManager.rootScope] is returned.
+///
+/// The [context] argument must not be null.
+/// </Summary>
+public virtual FlutterSDK.Widgets.Focusmanager.FocusScopeNode Of(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+
+    _FocusMarker marker = context.DependOnInheritedWidgetOfExactType();
+    return marker?.Notifier?.NearestScope ?? context.Owner.FocusManager.RootScope;
+}
+
+
+
+
+public new FlutterSDK.Widgets.Focusscope._FocusScopeState CreateState() => new _FocusScopeState();
+
+
+#endregion
+}
+
+
+public class _FocusScopeState : FlutterSDK.Widgets.Focusscope._FocusState
+{
+    #region constructors
+    public _FocusScopeState()
+    { }
+    #endregion
+
+    #region fields
+    #endregion
+
+    #region methods
+
+    protected new FlutterSDK.Widgets.Focusmanager.FocusScopeNode _CreateNode()
+    {
+        return new FocusScopeNode(debugLabel: Widget.DebugLabel, canRequestFocus: Widget.CanRequestFocus ?? true, skipTraversal: Widget.SkipTraversal ?? false);
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        _FocusAttachment.Reparent();
+        return new Semantics(explicitChildNodes: true, child: new _FocusMarker(node: FocusNode, child: Widget.Child));
+    }
+
+
+
+    #endregion
+}
+
+
+public class _FocusMarker : FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<FlutterSDK.Widgets.Focusmanager.FocusNode>
+{
+    #region constructors
+    public _FocusMarker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Focusmanager.FocusNode node = default(FlutterSDK.Widgets.Focusmanager.FocusNode), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key, notifier: node, child: child)
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+#endregion
+}
 
 }

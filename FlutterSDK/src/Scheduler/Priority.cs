@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -434,42 +434,52 @@ namespace FlutterSDK.Scheduler.Priority
     {
         #region constructors
         internal Priority(int _value)
+    
+}
+    #endregion
+
+    #region fields
+    internal virtual int _Value { get; set; }
+    public virtual FlutterSDK.Scheduler.Priority.Priority Idle { get; set; }
+    public virtual FlutterSDK.Scheduler.Priority.Priority Animation { get; set; }
+    public virtual FlutterSDK.Scheduler.Priority.Priority Touch { get; set; }
+    public virtual int KMaxOffset { get; set; }
+    public virtual int Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    /// <Summary>
+    /// Returns a priority relative to this priority.
+    ///
+    /// A positive [offset] indicates a higher priority.
+    ///
+    /// The parameter [offset] is clamped to ±[kMaxOffset].
+    /// </Summary>
+    public virtual FlutterSDK.Scheduler.Priority.Priority AddOperator(int offset)
+    {
+        if (offset.Abs() > KMaxOffset)
         {
-            this._Value = _value; throw new NotImplementedException();
+            offset = KMaxOffset * offset.Sign;
         }
-        #endregion
 
-        #region fields
-        internal virtual int _Value { get; set; }
-        public virtual FlutterSDK.Scheduler.Priority.Priority Idle { get; set; }
-        public virtual FlutterSDK.Scheduler.Priority.Priority Animation { get; set; }
-        public virtual FlutterSDK.Scheduler.Priority.Priority Touch { get; set; }
-        public virtual int KMaxOffset { get; set; }
-        public virtual int Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Returns a priority relative to this priority.
-        ///
-        /// A positive [offset] indicates a higher priority.
-        ///
-        /// The parameter [offset] is clamped to ±[kMaxOffset].
-        /// </Summary>
-        public virtual FlutterSDK.Scheduler.Priority.Priority AddOperator(int offset) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns a priority relative to this priority.
-        ///
-        /// A positive offset indicates a lower priority.
-        ///
-        /// The parameter [offset] is clamped to ±[kMaxOffset].
-        /// </Summary>
-        public virtual FlutterSDK.Scheduler.Priority.Priority SubtractOperator(int offset) { throw new NotImplementedException(); }
-
-        #endregion
+        return Priority._(_Value + offset);
     }
+
+
+
+
+    /// <Summary>
+    /// Returns a priority relative to this priority.
+    ///
+    /// A positive offset indicates a lower priority.
+    ///
+    /// The parameter [offset] is clamped to ±[kMaxOffset].
+    /// </Summary>
+    public virtual FlutterSDK.Scheduler.Priority.Priority SubtractOperator(int offset) => this + (-offset);
+
+
+    #endregion
+}
 
 }

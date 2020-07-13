@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -436,26 +436,38 @@ namespace FlutterSDK.Services.Rawkeyboardlinux
         /// Returns a [KeyboardSide] enum value that describes which side or sides of
         /// the given keyboard modifier key were pressed at the time of this event.
         /// </Summary>
-        public virtual FlutterSDK.Services.Rawkeyboard.KeyboardSide GetModifierSide(FlutterSDK.Services.Rawkeyboard.ModifierKey key) { throw new NotImplementedException(); }
+        public virtual FlutterSDK.Services.Rawkeyboard.KeyboardSide GetModifierSide(FlutterSDK.Services.Rawkeyboard.ModifierKey key)
+        {
+            return default(KeyboardSide);
+        }
 
 
         /// <Summary>
         /// Returns true if the given [ModifierKey] was pressed at the time of this
         /// event.
         /// </Summary>
-        public virtual bool IsModifierPressed(FlutterSDK.Services.Rawkeyboard.ModifierKey key, int modifiers, FlutterSDK.Services.Rawkeyboard.KeyboardSide side = default(FlutterSDK.Services.Rawkeyboard.KeyboardSide), int keyCode = default(int), bool isDown = default(bool)) { throw new NotImplementedException(); }
+        public virtual bool IsModifierPressed(FlutterSDK.Services.Rawkeyboard.ModifierKey key, int modifiers, FlutterSDK.Services.Rawkeyboard.KeyboardSide side = default(FlutterSDK.Services.Rawkeyboard.KeyboardSide), int keyCode = default(int), bool isDown = default(bool))
+        {
+            return default(bool);
+        }
 
 
         /// <Summary>
         /// The numpad key from the specific key code mapping.
         /// </Summary>
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadKey(int keyCode) { throw new NotImplementedException(); }
+        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadKey(int keyCode)
+        {
+            return default(LogicalKeyboardKey);
+        }
 
 
         /// <Summary>
         /// The logical key key from the specific key code mapping.
         /// </Summary>
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey(int keyCode) { throw new NotImplementedException(); }
+        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey(int keyCode)
+        {
+            return default(LogicalKeyboardKey);
+        }
 
     }
     public static class KeyHelperMixin
@@ -488,19 +500,60 @@ namespace FlutterSDK.Services.Rawkeyboardlinux
         public virtual int ModifierMeta { get; set; }
         public virtual int ModifierNumericPad { get; set; }
 
-        private int _MergeModifiers(int modifiers = default(int), int keyCode = default(int), bool isDown = default(bool)) { throw new NotImplementedException(); }
+        private int _MergeModifiers(int modifiers = default(int), int keyCode = default(int), bool isDown = default(bool))
+        {
+            int shiftLeftKeyCode = 340;
+            int shiftRightKeyCode = 344;
+            int controlLeftKeyCode = 341;
+            int controlRightKeyCode = 345;
+            int altLeftKeyCode = 342;
+            int altRightKeyCode = 346;
+            int metaLeftKeyCode = 343;
+            int metaRightKeyCode = 347;
+            int capsLockKeyCode = 280;
+            int numLockKeyCode = 282;
+            int modifierChange = 0;
+            switch (keyCode) { case shiftLeftKeyCode: case shiftRightKeyCode: modifierChange = ModifierShift; break; case controlLeftKeyCode: case controlRightKeyCode: modifierChange = ModifierControl; break; case altLeftKeyCode: case altRightKeyCode: modifierChange = ModifierAlt; break; case metaLeftKeyCode: case metaRightKeyCode: modifierChange = ModifierMeta; break; case capsLockKeyCode: modifierChange = ModifierCapsLock; break; case numLockKeyCode: modifierChange = ModifierNumericPad; break; default: break; }
+            return isDown ? modifiers | modifierChange : modifiers & ~modifierChange;
+        }
 
 
-        public new bool IsModifierPressed(FlutterSDK.Services.Rawkeyboard.ModifierKey key, int modifiers, FlutterSDK.Services.Rawkeyboard.KeyboardSide side = default(FlutterSDK.Services.Rawkeyboard.KeyboardSide), int keyCode = default(int), bool isDown = default(bool)) { throw new NotImplementedException(); }
 
 
-        public new FlutterSDK.Services.Rawkeyboard.KeyboardSide GetModifierSide(FlutterSDK.Services.Rawkeyboard.ModifierKey key) { throw new NotImplementedException(); }
+        public new bool IsModifierPressed(FlutterSDK.Services.Rawkeyboard.ModifierKey key, int modifiers, FlutterSDK.Services.Rawkeyboard.KeyboardSide side = default(FlutterSDK.Services.Rawkeyboard.KeyboardSide), int keyCode = default(int), bool isDown = default(bool))
+        {
+            modifiers = _MergeModifiers(modifiers: modifiers, keyCode: keyCode, isDown: isDown);
+            switch (key) { case ModifierKey.ControlModifier: return modifiers & ModifierControl != 0; case ModifierKey.ShiftModifier: return modifiers & ModifierShift != 0; case ModifierKey.AltModifier: return modifiers & ModifierAlt != 0; case ModifierKey.MetaModifier: return modifiers & ModifierMeta != 0; case ModifierKey.CapsLockModifier: return modifiers & ModifierCapsLock != 0; case ModifierKey.NumLockModifier: return modifiers & ModifierNumericPad != 0; case ModifierKey.FunctionModifier: case ModifierKey.SymbolModifier: case ModifierKey.ScrollLockModifier: return false; }
+            return false;
+        }
 
 
-        public new FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadKey(int keyCode) { throw new NotImplementedException(); }
 
 
-        public new FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey(int keyCode) { throw new NotImplementedException(); }
+        public new FlutterSDK.Services.Rawkeyboard.KeyboardSide GetModifierSide(FlutterSDK.Services.Rawkeyboard.ModifierKey key)
+        {
+            switch (key) { case ModifierKey.ControlModifier: case ModifierKey.ShiftModifier: case ModifierKey.AltModifier: case ModifierKey.MetaModifier: return KeyboardSide.Any; case ModifierKey.CapsLockModifier: case ModifierKey.NumLockModifier: case ModifierKey.FunctionModifier: case ModifierKey.SymbolModifier: case ModifierKey.ScrollLockModifier: return KeyboardSide.All; }
+
+            return null;
+        }
+
+
+
+
+        public new FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey NumpadKey(int keyCode)
+        {
+            return KeyboardmapsDefaultClass.KGlfwNumpadMap[keyCode];
+        }
+
+
+
+
+        public new FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey(int keyCode)
+        {
+            return KeyboardmapsDefaultClass.KGlfwToLogicalKey[keyCode];
+        }
+
+
 
     }
     public static class GLFWKeyHelperMixin
@@ -543,37 +596,41 @@ namespace FlutterSDK.Services.Rawkeyboardlinux
         #region constructors
         public RawKeyEventDataLinux(FlutterSDK.Services.Rawkeyboardlinux.KeyHelper keyHelper = default(FlutterSDK.Services.Rawkeyboardlinux.KeyHelper), int unicodeScalarValues = 0, int scanCode = 0, int keyCode = 0, int modifiers = 0, bool isDown = default(bool))
         : base()
-        {
-            this.KeyHelper = keyHelper;
-            this.UnicodeScalarValues = unicodeScalarValues;
-            this.ScanCode = scanCode;
-            this.KeyCode = keyCode;
-            this.Modifiers = modifiers;
-            this.IsDown = isDown; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Services.Rawkeyboardlinux.KeyHelper KeyHelper { get; set; }
-        public virtual int UnicodeScalarValues { get; set; }
-        public virtual int ScanCode { get; set; }
-        public virtual int KeyCode { get; set; }
-        public virtual int Modifiers { get; set; }
-        public virtual bool IsDown { get; set; }
-        public virtual string KeyLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Services.Rawkeyboardlinux.KeyHelper KeyHelper { get; set; }
+    public virtual int UnicodeScalarValues { get; set; }
+    public virtual int ScanCode { get; set; }
+    public virtual int KeyCode { get; set; }
+    public virtual int Modifiers { get; set; }
+    public virtual bool IsDown { get; set; }
+    public virtual string KeyLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new bool IsModifierPressed(FlutterSDK.Services.Rawkeyboard.ModifierKey key, FlutterSDK.Services.Rawkeyboard.KeyboardSide side = default(FlutterSDK.Services.Rawkeyboard.KeyboardSide)) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Services.Rawkeyboard.KeyboardSide GetModifierSide(FlutterSDK.Services.Rawkeyboard.ModifierKey key) { throw new NotImplementedException(); }
-
-
-        #endregion
+    public new bool IsModifierPressed(FlutterSDK.Services.Rawkeyboard.ModifierKey key, FlutterSDK.Services.Rawkeyboard.KeyboardSide side = default(FlutterSDK.Services.Rawkeyboard.KeyboardSide))
+    {
+        return KeyHelper.IsModifierPressed(key, Modifiers, side: side, keyCode: KeyCode, isDown: IsDown);
     }
+
+
+
+
+    public new FlutterSDK.Services.Rawkeyboard.KeyboardSide GetModifierSide(FlutterSDK.Services.Rawkeyboard.ModifierKey key)
+    {
+        return KeyHelper.GetModifierSide(key);
+    }
+
+
+
+
+    #endregion
+}
 
 }

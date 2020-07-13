@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -466,7 +466,10 @@ namespace FlutterSDK.Widgets.Listwheelscrollview
         /// Return the child at the given index. If the child at the given
         /// index does not exist, return null.
         /// </Summary>
-        public virtual FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context, int index) { throw new NotImplementedException(); }
+        public virtual FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context, int index)
+        {
+            return default(Widget);
+        }
 
 
         /// <Summary>
@@ -478,14 +481,18 @@ namespace FlutterSDK.Widgets.Listwheelscrollview
         /// Example: [ListWheelChildLoopingListDelegate] is built by looping a list of
         /// length 8. Then, trueIndexOf(10) = 2 and trueIndexOf(-5) = 3.
         /// </Summary>
-        public virtual int TrueIndexOf(int index) { throw new NotImplementedException(); }
+        public virtual int TrueIndexOf(int index) => index;
+
 
 
         /// <Summary>
         /// Called to check whether this and the old delegate are actually 'different',
         /// so that the caller can decide to rebuild or not.
         /// </Summary>
-        public virtual bool ShouldRebuild(FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate oldDelegate) { throw new NotImplementedException(); }
+        public virtual bool ShouldRebuild(FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate oldDelegate)
+        {
+            return default(bool);
+        }
 
     }
     public static class ListWheelChildDelegateMixin
@@ -534,558 +541,851 @@ namespace FlutterSDK.Widgets.Listwheelscrollview
         #region constructors
         public ListWheelChildListDelegate(List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base()
-        {
-            this.Children = children; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
-        public virtual int EstimatedChildCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
+    public virtual int EstimatedChildCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context, int index) { throw new NotImplementedException(); }
-
-
-        public new bool ShouldRebuild(FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildListDelegate oldDelegate) { throw new NotImplementedException(); }
-        public new bool ShouldRebuild(FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate oldDelegate) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// A delegate that supplies infinite children for [ListWheelScrollView] by
-    /// looping an explicit list.
-    ///
-    /// [ListWheelScrollView] lazily constructs its children to avoid creating more
-    /// children than are visible through the [Viewport]. This delegate provides
-    /// children using an explicit list, which is convenient but reduces the benefit
-    /// of building children lazily.
-    ///
-    /// In general building all the widgets in advance is not efficient. It is
-    /// better to create a delegate that builds them on demand using
-    /// [ListWheelChildBuilderDelegate] or by subclassing [ListWheelChildDelegate]
-    /// directly.
-    ///
-    /// This class is provided for the cases where either the list of children is
-    /// known well in advance (ideally the children are themselves compile-time
-    /// constants, for example), and therefore will not be built each time the
-    /// delegate itself is created, or the list is small, such that it's likely
-    /// always visible (and thus there is nothing to be gained by building it on
-    /// demand). For example, the body of a dialog box might fit both of these
-    /// conditions.
-    /// </Summary>
-    public class ListWheelChildLoopingListDelegate : FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context, int index)
     {
-        #region constructors
-        public ListWheelChildLoopingListDelegate(List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
-        : base()
-        {
-            this.Children = children; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
-        public virtual int EstimatedChildCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new int TrueIndexOf(int index) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context, int index) { throw new NotImplementedException(); }
-
-
-        public new bool ShouldRebuild(FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildLoopingListDelegate oldDelegate) { throw new NotImplementedException(); }
-        public new bool ShouldRebuild(FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate oldDelegate) { throw new NotImplementedException(); }
-
-        #endregion
+        if (index < 0 || index >= Children.Count) return null;
+        return new IndexedSemantics(child: Children[index], index: index);
     }
 
 
-    /// <Summary>
-    /// A delegate that supplies children for [ListWheelScrollView] using a builder
-    /// callback.
-    ///
-    /// [ListWheelScrollView] lazily constructs its children to avoid creating more
-    /// children than are visible through the [Viewport]. This delegate provides
-    /// children using an [IndexedWidgetBuilder] callback, so that the children do
-    /// not have to be built until they are displayed.
-    /// </Summary>
-    public class ListWheelChildBuilderDelegate : FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate
+
+
+    public new bool ShouldRebuild(FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildListDelegate oldDelegate)
     {
-        #region constructors
-        public ListWheelChildBuilderDelegate(FlutterSDK.Widgets.Framework.IndexedWidgetBuilder builder = default(FlutterSDK.Widgets.Framework.IndexedWidgetBuilder), int childCount = default(int))
-        : base()
-        {
-            this.Builder = builder;
-            this.ChildCount = childCount; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.IndexedWidgetBuilder Builder { get; set; }
-        public virtual int ChildCount { get; set; }
-        public virtual int EstimatedChildCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context, int index) { throw new NotImplementedException(); }
-
-
-        public new bool ShouldRebuild(FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildBuilderDelegate oldDelegate) { throw new NotImplementedException(); }
-        public new bool ShouldRebuild(FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate oldDelegate) { throw new NotImplementedException(); }
-
-        #endregion
+        return Children != oldDelegate.Children;
     }
 
 
-    /// <Summary>
-    /// A controller for scroll views whose items have the same size.
-    ///
-    /// Similar to a standard [ScrollController] but with the added convenience
-    /// mechanisms to read and go to item indices rather than a raw pixel scroll
-    /// offset.
-    ///
-    /// See also:
-    ///
-    ///  * [ListWheelScrollView], a scrollable view widget with fixed size items
-    ///    that this widget controls.
-    ///  * [FixedExtentMetrics], the `metrics` property exposed by
-    ///    [ScrollNotification] from [ListWheelScrollView] which can be used
-    ///    to listen to the current item index on a push basis rather than polling
-    ///    the [FixedExtentScrollController].
-    /// </Summary>
-    public class FixedExtentScrollController : FlutterSDK.Widgets.Scrollcontroller.ScrollController
+    public new bool ShouldRebuild(FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate oldDelegate)
     {
-        #region constructors
-        public FixedExtentScrollController(int initialItem = 0)
-        : base()
-        {
-            this.InitialItem = initialItem; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual int InitialItem { get; set; }
-        public virtual int SelectedItem { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Animates the controlled scroll view to the given item index.
-        ///
-        /// The animation lasts for the given duration and follows the given curve.
-        /// The returned [Future] resolves when the animation completes.
-        ///
-        /// The `duration` and `curve` arguments must not be null.
-        /// </Summary>
-        public virtual Future<object> AnimateToItem(int itemIndex, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Changes which item index is centered in the controlled scroll view.
-        ///
-        /// Jumps the item index position from its current value to the given value,
-        /// without animation, and without checking if the new value is in range.
-        /// </Summary>
-        public virtual void JumpToItem(int itemIndex) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Scrollposition.ScrollPosition CreateScrollPosition(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics, FlutterSDK.Widgets.Scrollcontext.ScrollContext context, FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition) { throw new NotImplementedException(); }
-
-        #endregion
+        return Children != oldDelegate.Children;
     }
 
 
-    /// <Summary>
-    /// Metrics for a [ScrollPosition] to a scroll view with fixed item sizes.
-    ///
-    /// The metrics are available on [ScrollNotification]s generated from a scroll
-    /// views such as [ListWheelScrollView]s with a [FixedExtentScrollController] and
-    /// exposes the current [itemIndex] and the scroll view's [itemExtent].
-    ///
-    /// `FixedExtent` refers to the fact that the scrollable items have the same size.
-    /// This is distinct from `Fixed` in the parent class name's [FixedScrollMetric]
-    /// which refers to its immutability.
-    /// </Summary>
-    public class FixedExtentMetrics : FlutterSDK.Widgets.Scrollmetrics.FixedScrollMetrics
+
+    #endregion
+}
+
+
+/// <Summary>
+/// A delegate that supplies infinite children for [ListWheelScrollView] by
+/// looping an explicit list.
+///
+/// [ListWheelScrollView] lazily constructs its children to avoid creating more
+/// children than are visible through the [Viewport]. This delegate provides
+/// children using an explicit list, which is convenient but reduces the benefit
+/// of building children lazily.
+///
+/// In general building all the widgets in advance is not efficient. It is
+/// better to create a delegate that builds them on demand using
+/// [ListWheelChildBuilderDelegate] or by subclassing [ListWheelChildDelegate]
+/// directly.
+///
+/// This class is provided for the cases where either the list of children is
+/// known well in advance (ideally the children are themselves compile-time
+/// constants, for example), and therefore will not be built each time the
+/// delegate itself is created, or the list is small, such that it's likely
+/// always visible (and thus there is nothing to be gained by building it on
+/// demand). For example, the body of a dialog box might fit both of these
+/// conditions.
+/// </Summary>
+public class ListWheelChildLoopingListDelegate : FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate
+{
+    #region constructors
+    public ListWheelChildLoopingListDelegate(List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
+    : base()
+
+}
+#endregion
+
+#region fields
+public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
+public virtual int EstimatedChildCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new int TrueIndexOf(int index) => index % Children.Count;
+
+
+
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context, int index)
+{
+    if (Children.IsEmpty()) return null;
+    return new IndexedSemantics(child: Children[index % Children.Count], index: index);
+}
+
+
+
+
+public new bool ShouldRebuild(FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildLoopingListDelegate oldDelegate)
+{
+    return Children != oldDelegate.Children;
+}
+
+
+public new bool ShouldRebuild(FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate oldDelegate)
+{
+    return Children != oldDelegate.Children;
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A delegate that supplies children for [ListWheelScrollView] using a builder
+/// callback.
+///
+/// [ListWheelScrollView] lazily constructs its children to avoid creating more
+/// children than are visible through the [Viewport]. This delegate provides
+/// children using an [IndexedWidgetBuilder] callback, so that the children do
+/// not have to be built until they are displayed.
+/// </Summary>
+public class ListWheelChildBuilderDelegate : FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate
+{
+    #region constructors
+    public ListWheelChildBuilderDelegate(FlutterSDK.Widgets.Framework.IndexedWidgetBuilder builder = default(FlutterSDK.Widgets.Framework.IndexedWidgetBuilder), int childCount = default(int))
+    : base()
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Framework.IndexedWidgetBuilder Builder { get; set; }
+public virtual int ChildCount { get; set; }
+public virtual int EstimatedChildCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context, int index)
+{
+    if (ChildCount == null)
     {
-        #region constructors
-        public FixedExtentMetrics(double minScrollExtent = default(double), double maxScrollExtent = default(double), double pixels = default(double), double viewportDimension = default(double), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), int itemIndex = default(int))
-        : base(minScrollExtent: minScrollExtent, maxScrollExtent: maxScrollExtent, pixels: pixels, viewportDimension: viewportDimension, axisDirection: axisDirection)
-        {
-            this.ItemIndex = itemIndex; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual int ItemIndex { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Listwheelscrollview.FixedExtentMetrics CopyWith(double minScrollExtent = default(double), double maxScrollExtent = default(double), double pixels = default(double), double viewportDimension = default(double), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), int itemIndex = default(int)) { throw new NotImplementedException(); }
-
-        #endregion
+        Widget child = Builder(context, index);
+        return child == null ? null : new IndexedSemantics(child: child, index: index);
     }
 
+    if (index < 0 || index >= ChildCount) return null;
+    return new IndexedSemantics(child: Builder(context, index), index: index);
+}
 
-    /// <Summary>
-    /// A [ScrollPositionWithSingleContext] that can only be created based on
-    /// [_FixedExtentScrollable] and can access its `itemExtent` to derive [itemIndex].
-    /// </Summary>
-    public class _FixedExtentScrollPosition : FlutterSDK.Widgets.Scrollpositionwithsinglecontext.ScrollPositionWithSingleContext, IFixedExtentMetrics
+
+
+
+public new bool ShouldRebuild(FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildBuilderDelegate oldDelegate)
+{
+    return Builder != oldDelegate.Builder || ChildCount != oldDelegate.ChildCount;
+}
+
+
+public new bool ShouldRebuild(FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate oldDelegate)
+{
+    return Builder != oldDelegate.Builder || ChildCount != oldDelegate.ChildCount;
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A controller for scroll views whose items have the same size.
+///
+/// Similar to a standard [ScrollController] but with the added convenience
+/// mechanisms to read and go to item indices rather than a raw pixel scroll
+/// offset.
+///
+/// See also:
+///
+///  * [ListWheelScrollView], a scrollable view widget with fixed size items
+///    that this widget controls.
+///  * [FixedExtentMetrics], the `metrics` property exposed by
+///    [ScrollNotification] from [ListWheelScrollView] which can be used
+///    to listen to the current item index on a push basis rather than polling
+///    the [FixedExtentScrollController].
+/// </Summary>
+public class FixedExtentScrollController : FlutterSDK.Widgets.Scrollcontroller.ScrollController
+{
+    #region constructors
+    public FixedExtentScrollController(int initialItem = 0)
+    : base()
+
+}
+#endregion
+
+#region fields
+public virtual int InitialItem { get; set; }
+public virtual int SelectedItem { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Animates the controlled scroll view to the given item index.
+///
+/// The animation lasts for the given duration and follows the given curve.
+/// The returned [Future] resolves when the animation completes.
+///
+/// The `duration` and `curve` arguments must not be null.
+/// </Summary>
+public virtual Future<object> AnimateToItem(int itemIndex, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
+async
+{
+    if (!HasClients)
     {
-        #region constructors
-        public _FixedExtentScrollPosition(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Widgets.Scrollcontext.ScrollContext context = default(FlutterSDK.Widgets.Scrollcontext.ScrollContext), int initialItem = default(int), bool keepScrollOffset = true, FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition = default(FlutterSDK.Widgets.Scrollposition.ScrollPosition), string debugLabel = default(string))
-        : base(physics: physics, context: context, initialPixels: _GetItemExtentFromScrollContext(context) * initialItem, keepScrollOffset: keepScrollOffset, oldPosition: oldPosition, debugLabel: debugLabel)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual double ItemExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual int ItemIndex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        private double _GetItemExtentFromScrollContext(FlutterSDK.Widgets.Scrollcontext.ScrollContext context) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Listwheelscrollview.FixedExtentMetrics CopyWith(double minScrollExtent = default(double), double maxScrollExtent = default(double), double pixels = default(double), double viewportDimension = default(double), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), int itemIndex = default(int)) { throw new NotImplementedException(); }
-
-        #endregion
+        return;
     }
 
+    await Dart:asyncDefaultClass.Future.Wait(new List<Future<void>>() { });
+}
 
-    /// <Summary>
-    /// A [Scrollable] which must be given its viewport children's item extent
-    /// size so it can pass it on ultimately to the [FixedExtentScrollController].
-    /// </Summary>
-    public class _FixedExtentScrollable : FlutterSDK.Widgets.Scrollable.Scrollable
+
+
+
+/// <Summary>
+/// Changes which item index is centered in the controlled scroll view.
+///
+/// Jumps the item index position from its current value to the given value,
+/// without animation, and without checking if the new value is in range.
+/// </Summary>
+public virtual void JumpToItem(int itemIndex)
+{
+    foreach (_FixedExtentScrollPosition position in Positions.Cast())
     {
-        #region constructors
-        public _FixedExtentScrollable(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), double itemExtent = default(double), FlutterSDK.Widgets.Scrollable.ViewportBuilder viewportBuilder = default(FlutterSDK.Widgets.Scrollable.ViewportBuilder))
-        : base(key: key, axisDirection: axisDirection, controller: controller, physics: physics, viewportBuilder: viewportBuilder)
-        {
-            this.ItemExtent = itemExtent; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual double ItemExtent { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Listwheelscrollview._FixedExtentScrollableState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
+        position.JumpTo(itemIndex * position.ItemExtent);
     }
 
+}
 
-    /// <Summary>
-    /// This [ScrollContext] is used by [_FixedExtentScrollPosition] to read the
-    /// prescribed [itemExtent].
-    /// </Summary>
-    public class _FixedExtentScrollableState : FlutterSDK.Widgets.Scrollable.ScrollableState
+
+
+
+public new FlutterSDK.Widgets.Scrollposition.ScrollPosition CreateScrollPosition(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics, FlutterSDK.Widgets.Scrollcontext.ScrollContext context, FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition)
+{
+    return new _FixedExtentScrollPosition(physics: physics, context: context, initialItem: InitialItem, oldPosition: oldPosition);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Metrics for a [ScrollPosition] to a scroll view with fixed item sizes.
+///
+/// The metrics are available on [ScrollNotification]s generated from a scroll
+/// views such as [ListWheelScrollView]s with a [FixedExtentScrollController] and
+/// exposes the current [itemIndex] and the scroll view's [itemExtent].
+///
+/// `FixedExtent` refers to the fact that the scrollable items have the same size.
+/// This is distinct from `Fixed` in the parent class name's [FixedScrollMetric]
+/// which refers to its immutability.
+/// </Summary>
+public class FixedExtentMetrics : FlutterSDK.Widgets.Scrollmetrics.FixedScrollMetrics
+{
+    #region constructors
+    public FixedExtentMetrics(double minScrollExtent = default(double), double maxScrollExtent = default(double), double pixels = default(double), double viewportDimension = default(double), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), int itemIndex = default(int))
+    : base(minScrollExtent: minScrollExtent, maxScrollExtent: maxScrollExtent, pixels: pixels, viewportDimension: viewportDimension, axisDirection: axisDirection)
+
+}
+#endregion
+
+#region fields
+public virtual int ItemIndex { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Listwheelscrollview.FixedExtentMetrics CopyWith(double minScrollExtent = default(double), double maxScrollExtent = default(double), double pixels = default(double), double viewportDimension = default(double), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), int itemIndex = default(int))
+{
+    return new FixedExtentMetrics(minScrollExtent: minScrollExtent == default(double) ? this.minScrollExtent : minScrollExtent, maxScrollExtent: maxScrollExtent == default(double) ? this.maxScrollExtent : maxScrollExtent, pixels: pixels == default(double) ? this.pixels : pixels, viewportDimension: viewportDimension == default(double) ? this.viewportDimension : viewportDimension, axisDirection: axisDirection ?? this.AxisDirection, itemIndex: itemIndex ?? this.ItemIndex);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A [ScrollPositionWithSingleContext] that can only be created based on
+/// [_FixedExtentScrollable] and can access its `itemExtent` to derive [itemIndex].
+/// </Summary>
+public class _FixedExtentScrollPosition : FlutterSDK.Widgets.Scrollpositionwithsinglecontext.ScrollPositionWithSingleContext, IFixedExtentMetrics
+{
+    #region constructors
+    public _FixedExtentScrollPosition(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Widgets.Scrollcontext.ScrollContext context = default(FlutterSDK.Widgets.Scrollcontext.ScrollContext), int initialItem = default(int), bool keepScrollOffset = true, FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition = default(FlutterSDK.Widgets.Scrollposition.ScrollPosition), string debugLabel = default(string))
+    : base(physics: physics, context: context, initialPixels: _GetItemExtentFromScrollContext(context) * initialItem, keepScrollOffset: keepScrollOffset, oldPosition: oldPosition, debugLabel: debugLabel)
+
+}
+#endregion
+
+#region fields
+public virtual double ItemExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual int ItemIndex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+private double _GetItemExtentFromScrollContext(FlutterSDK.Widgets.Scrollcontext.ScrollContext context)
+{
+    _FixedExtentScrollableState scrollable = context as _FixedExtentScrollableState;
+    return scrollable.ItemExtent;
+}
+
+
+
+
+public new FlutterSDK.Widgets.Listwheelscrollview.FixedExtentMetrics CopyWith(double minScrollExtent = default(double), double maxScrollExtent = default(double), double pixels = default(double), double viewportDimension = default(double), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), int itemIndex = default(int))
+{
+    return new FixedExtentMetrics(minScrollExtent: minScrollExtent == default(double) ? this.minScrollExtent : minScrollExtent, maxScrollExtent: maxScrollExtent == default(double) ? this.maxScrollExtent : maxScrollExtent, pixels: pixels == default(double) ? this.pixels : pixels, viewportDimension: viewportDimension == default(double) ? this.viewportDimension : viewportDimension, axisDirection: axisDirection ?? this.AxisDirection, itemIndex: itemIndex ?? this.ItemIndex);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A [Scrollable] which must be given its viewport children's item extent
+/// size so it can pass it on ultimately to the [FixedExtentScrollController].
+/// </Summary>
+public class _FixedExtentScrollable : FlutterSDK.Widgets.Scrollable.Scrollable
+{
+    #region constructors
+    public _FixedExtentScrollable(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), double itemExtent = default(double), FlutterSDK.Widgets.Scrollable.ViewportBuilder viewportBuilder = default(FlutterSDK.Widgets.Scrollable.ViewportBuilder))
+    : base(key: key, axisDirection: axisDirection, controller: controller, physics: physics, viewportBuilder: viewportBuilder)
+
+}
+#endregion
+
+#region fields
+public virtual double ItemExtent { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Listwheelscrollview._FixedExtentScrollableState CreateState() => new _FixedExtentScrollableState();
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// This [ScrollContext] is used by [_FixedExtentScrollPosition] to read the
+/// prescribed [itemExtent].
+/// </Summary>
+public class _FixedExtentScrollableState : FlutterSDK.Widgets.Scrollable.ScrollableState
+{
+    #region constructors
+    public _FixedExtentScrollableState()
+    { }
+    #endregion
+
+    #region fields
+    public virtual double ItemExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+    #endregion
+}
+
+
+/// <Summary>
+/// A snapping physics that always lands directly on items instead of anywhere
+/// within the scroll extent.
+///
+/// Behaves similarly to a slot machine wheel except the ballistics simulation
+/// never overshoots and rolls back within a single item if it's to settle on
+/// that item.
+///
+/// Must be used with a scrollable that uses a [FixedExtentScrollController].
+///
+/// Defers back to the parent beyond the scroll extents.
+/// </Summary>
+public class FixedExtentScrollPhysics : FlutterSDK.Widgets.Scrollphysics.ScrollPhysics
+{
+    #region constructors
+    public FixedExtentScrollPhysics(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics parent = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
+    : base(parent: parent)
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollPhysics ApplyTo(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ancestor)
+{
+    return new FixedExtentScrollPhysics(parent: BuildParent(ancestor));
+}
+
+
+
+
+public new FlutterSDK.Physics.Simulation.Simulation CreateBallisticSimulation(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics position, double velocity)
+{
+
+    _FixedExtentScrollPosition metrics = position as _FixedExtentScrollPosition;
+    if ((velocity <= 0.0 && metrics.Pixels <= metrics.MinScrollExtent) || (velocity >= 0.0 && metrics.Pixels >= metrics.MaxScrollExtent))
     {
-        #region constructors
-        public _FixedExtentScrollableState()
-        { }
-        #endregion
-
-        #region fields
-        public virtual double ItemExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-        #endregion
+        return base.CreateBallisticSimulation(metrics, velocity);
     }
 
-
-    /// <Summary>
-    /// A snapping physics that always lands directly on items instead of anywhere
-    /// within the scroll extent.
-    ///
-    /// Behaves similarly to a slot machine wheel except the ballistics simulation
-    /// never overshoots and rolls back within a single item if it's to settle on
-    /// that item.
-    ///
-    /// Must be used with a scrollable that uses a [FixedExtentScrollController].
-    ///
-    /// Defers back to the parent beyond the scroll extents.
-    /// </Summary>
-    public class FixedExtentScrollPhysics : FlutterSDK.Widgets.Scrollphysics.ScrollPhysics
+    Simulation testFrictionSimulation = base.CreateBallisticSimulation(metrics, velocity);
+    if (testFrictionSimulation != null && (testFrictionSimulation.x(Dart: coreDefaultClass.Double.Infinity) == metrics.MinScrollExtent || testFrictionSimulation.x(Dart: coreDefaultClass.Double.Infinity) == metrics.MaxScrollExtent))
     {
-        #region constructors
-        public FixedExtentScrollPhysics(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics parent = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
-        : base(parent: parent)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollPhysics ApplyTo(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ancestor) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Physics.Simulation.Simulation CreateBallisticSimulation(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics position, double velocity) { throw new NotImplementedException(); }
-
-        #endregion
+        return base.CreateBallisticSimulation(metrics, velocity);
     }
 
-
-    /// <Summary>
-    /// A box in which children on a wheel can be scrolled.
-    ///
-    /// This widget is similar to a [ListView] but with the restriction that all
-    /// children must be the same size along the scrolling axis.
-    ///
-    /// When the list is at the zero scroll offset, the first child is aligned with
-    /// the middle of the viewport. When the list is at the final scroll offset,
-    /// the last child is aligned with the middle of the viewport
-    ///
-    /// The children are rendered as if rotating on a wheel instead of scrolling on
-    /// a plane.
-    /// </Summary>
-    public class ListWheelScrollView : FlutterSDK.Widgets.Framework.StatefulWidget
+    int settlingItemIndex = ListwheelscrollviewDefaultClass._GetItemFromOffset(offset: testFrictionSimulation?.x(Dart: coreDefaultClass.Double.Infinity) ?? metrics.Pixels, itemExtent: metrics.ItemExtent, minScrollExtent: metrics.MinScrollExtent, maxScrollExtent: metrics.MaxScrollExtent);
+    double settlingPixels = settlingItemIndex * metrics.ItemExtent;
+    if (velocity.Abs() < Tolerance.Velocity && (settlingPixels - metrics.Pixels).Abs() < Tolerance.Distance)
     {
-        #region constructors
-        public ListWheelScrollView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), double diameterRatio = default(double), double perspective = default(double), double offAxisFraction = 0.0, bool useMagnifier = false, double magnification = 1.0, double overAndUnderCenterOpacity = 1.0, double itemExtent = default(double), double squeeze = 1.0, FlutterSDK.Foundation.Basictypes.ValueChanged<int> onSelectedItemChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), bool clipToSize = true, bool renderChildrenOutsideViewport = false, List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
-        : base(key: key)
-        {
-            this.Controller = controller;
-            this.Physics = physics;
-            this.DiameterRatio = diameterRatio;
-            this.Perspective = perspective;
-            this.OffAxisFraction = offAxisFraction;
-            this.UseMagnifier = useMagnifier;
-            this.Magnification = magnification;
-            this.OverAndUnderCenterOpacity = overAndUnderCenterOpacity;
-            this.ItemExtent = itemExtent;
-            this.Squeeze = squeeze;
-            this.OnSelectedItemChanged = onSelectedItemChanged;
-            this.ClipToSize = clipToSize;
-            this.RenderChildrenOutsideViewport = renderChildrenOutsideViewport; throw new NotImplementedException();
-        }
-        public static ListWheelScrollView UseDelegate(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), double diameterRatio = default(double), double perspective = default(double), double offAxisFraction = 0.0, bool useMagnifier = false, double magnification = 1.0, double overAndUnderCenterOpacity = 1.0, double itemExtent = default(double), double squeeze = 1.0, FlutterSDK.Foundation.Basictypes.ValueChanged<int> onSelectedItemChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), bool clipToSize = true, bool renderChildrenOutsideViewport = false, FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate childDelegate = default(FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate))
-        {
-            var instance = new ListWheelScrollView(key: key); instance.Controller = controller;
-            instance.Physics = physics;
-            instance.DiameterRatio = diameterRatio;
-            instance.Perspective = perspective;
-            instance.OffAxisFraction = offAxisFraction;
-            instance.UseMagnifier = useMagnifier;
-            instance.Magnification = magnification;
-            instance.OverAndUnderCenterOpacity = overAndUnderCenterOpacity;
-            instance.ItemExtent = itemExtent;
-            instance.Squeeze = squeeze;
-            instance.OnSelectedItemChanged = onSelectedItemChanged;
-            instance.ClipToSize = clipToSize;
-            instance.RenderChildrenOutsideViewport = renderChildrenOutsideViewport;
-            instance.ChildDelegate = childDelegate; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller { get; set; }
-        public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics { get; set; }
-        public virtual double DiameterRatio { get; set; }
-        public virtual double Perspective { get; set; }
-        public virtual double OffAxisFraction { get; set; }
-        public virtual bool UseMagnifier { get; set; }
-        public virtual double Magnification { get; set; }
-        public virtual double OverAndUnderCenterOpacity { get; set; }
-        public virtual double ItemExtent { get; set; }
-        public virtual double Squeeze { get; set; }
-        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnSelectedItemChanged { get; set; }
-        public virtual bool ClipToSize { get; set; }
-        public virtual bool RenderChildrenOutsideViewport { get; set; }
-        public virtual FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate ChildDelegate { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Listwheelscrollview._ListWheelScrollViewState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
+        return null;
     }
 
-
-    public class _ListWheelScrollViewState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Listwheelscrollview.ListWheelScrollView>
+    if (settlingItemIndex == metrics.ItemIndex)
     {
-        #region constructors
-        public _ListWheelScrollViewState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual int _LastReportedItemIndex { get; set; }
-        public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController ScrollController { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Widgets.Listwheelscrollview.ListWheelScrollView oldWidget) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        return new SpringSimulation(Spring, metrics.Pixels, settlingPixels, velocity, tolerance: Tolerance);
     }
 
+    return FrictionSimulation.Through(metrics.Pixels, settlingPixels, velocity, Tolerance.Velocity * velocity.Sign);
+}
 
-    /// <Summary>
-    /// Element that supports building children lazily for [ListWheelViewport].
-    /// </Summary>
-    public class ListWheelElement : FlutterSDK.Widgets.Framework.RenderObjectElement, IListWheelChildManager
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A box in which children on a wheel can be scrolled.
+///
+/// This widget is similar to a [ListView] but with the restriction that all
+/// children must be the same size along the scrolling axis.
+///
+/// When the list is at the zero scroll offset, the first child is aligned with
+/// the middle of the viewport. When the list is at the final scroll offset,
+/// the last child is aligned with the middle of the viewport
+///
+/// The children are rendered as if rotating on a wheel instead of scrolling on
+/// a plane.
+/// </Summary>
+public class ListWheelScrollView : FlutterSDK.Widgets.Framework.StatefulWidget
+{
+    #region constructors
+    public ListWheelScrollView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), double diameterRatio = default(double), double perspective = default(double), double offAxisFraction = 0.0, bool useMagnifier = false, double magnification = 1.0, double overAndUnderCenterOpacity = 1.0, double itemExtent = default(double), double squeeze = 1.0, FlutterSDK.Foundation.Basictypes.ValueChanged<int> onSelectedItemChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), bool clipToSize = true, bool renderChildrenOutsideViewport = false, List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
+    : base(key: key)
+
+}
+public static ListWheelScrollView UseDelegate(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), double diameterRatio = default(double), double perspective = default(double), double offAxisFraction = 0.0, bool useMagnifier = false, double magnification = 1.0, double overAndUnderCenterOpacity = 1.0, double itemExtent = default(double), double squeeze = 1.0, FlutterSDK.Foundation.Basictypes.ValueChanged<int> onSelectedItemChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), bool clipToSize = true, bool renderChildrenOutsideViewport = false, FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate childDelegate = default(FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate))
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller { get; set; }
+public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics { get; set; }
+public virtual double DiameterRatio { get; set; }
+public virtual double Perspective { get; set; }
+public virtual double OffAxisFraction { get; set; }
+public virtual bool UseMagnifier { get; set; }
+public virtual double Magnification { get; set; }
+public virtual double OverAndUnderCenterOpacity { get; set; }
+public virtual double ItemExtent { get; set; }
+public virtual double Squeeze { get; set; }
+public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnSelectedItemChanged { get; set; }
+public virtual bool ClipToSize { get; set; }
+public virtual bool RenderChildrenOutsideViewport { get; set; }
+public virtual FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate ChildDelegate { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Listwheelscrollview._ListWheelScrollViewState CreateState() => new _ListWheelScrollViewState();
+
+
+#endregion
+}
+
+
+public class _ListWheelScrollViewState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Listwheelscrollview.ListWheelScrollView>
+{
+    #region constructors
+    public _ListWheelScrollViewState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual int _LastReportedItemIndex { get; set; }
+    public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController ScrollController { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
     {
-        #region constructors
-        public ListWheelElement(FlutterSDK.Widgets.Listwheelscrollview.ListWheelViewport widget)
-        : base(widget)
+        base.InitState();
+        ScrollController = Widget.Controller ?? new FixedExtentScrollController();
+        if (Widget.Controller is FixedExtentScrollController)
         {
-            throw new NotImplementedException();
+            FixedExtentScrollController controller = ((FixedExtentScrollController)Widget.Controller) as FixedExtentScrollController;
+            _LastReportedItemIndex = controller.InitialItem;
         }
-        #endregion
 
-        #region fields
-        internal virtual Dictionary<int, FlutterSDK.Widgets.Framework.Widget> _ChildWidgets { get; set; }
-        internal virtual SplayTreeMap<int, FlutterSDK.Widgets.Framework.Element> _ChildElements { get; set; }
-        public virtual FlutterSDK.Widgets.Listwheelscrollview.ListWheelViewport Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Rendering.Listwheelviewport.RenderListWheelViewport RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual int ChildCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void Update(FlutterSDK.Widgets.Listwheelscrollview.ListWheelViewport newWidget) { throw new NotImplementedException(); }
-        public new void Update(FlutterSDK.Widgets.Framework.Widget newWidget) { throw new NotImplementedException(); }
-
-
-        public new void PerformRebuild() { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Asks the underlying delegate for a widget at the given index.
-        ///
-        /// Normally the builder is only called once for each index and the result
-        /// will be cached. However when the element is rebuilt, the cache will be
-        /// cleared.
-        /// </Summary>
-        public virtual FlutterSDK.Widgets.Framework.Widget RetrieveWidget(int index) { throw new NotImplementedException(); }
-
-
-        public new bool ChildExistsAt(int index) { throw new NotImplementedException(); }
-
-
-        public new void CreateChild(int index, FlutterSDK.Rendering.Box.RenderBox after = default(FlutterSDK.Rendering.Box.RenderBox)) { throw new NotImplementedException(); }
-
-
-        public new void RemoveChild(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Element UpdateChild(FlutterSDK.Widgets.Framework.Element child, FlutterSDK.Widgets.Framework.Widget newWidget, object newSlot) { throw new NotImplementedException(); }
-
-
-        public new void InsertChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, int slot) { throw new NotImplementedException(); }
-        public new void InsertChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slot) { throw new NotImplementedException(); }
-
-
-        public new void MoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slot) { throw new NotImplementedException(); }
-
-
-        public new void RemoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
-
-
-        public new void VisitChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor) { throw new NotImplementedException(); }
-
-
-        public new void ForgetChild(FlutterSDK.Widgets.Framework.Element child) { throw new NotImplementedException(); }
-
-        #endregion
     }
 
 
-    /// <Summary>
-    /// A viewport showing a subset of children on a wheel.
-    ///
-    /// Typically used with [ListWheelScrollView], this viewport is similar to
-    /// [Viewport] in that it shows a subset of children in a scrollable based
-    /// on the scrolling offset and the children's dimensions. But uses
-    /// [RenderListWheelViewport] to display the children on a wheel.
-    ///
-    /// See also:
-    ///
-    ///  * [ListWheelScrollView], widget that combines this viewport with a scrollable.
-    ///  * [RenderListWheelViewport], the render object that renders the children
-    ///    on a wheel.
-    /// </Summary>
-    public class ListWheelViewport : FlutterSDK.Widgets.Framework.RenderObjectWidget
+
+
+    public new void DidUpdateWidget(FlutterSDK.Widgets.Listwheelscrollview.ListWheelScrollView oldWidget)
     {
-        #region constructors
-        public ListWheelViewport(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double diameterRatio = default(double), double perspective = default(double), double offAxisFraction = 0.0, bool useMagnifier = false, double magnification = 1.0, double overAndUnderCenterOpacity = 1.0, double itemExtent = default(double), double squeeze = 1.0, bool clipToSize = true, bool renderChildrenOutsideViewport = false, FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate childDelegate = default(FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate))
-        : base(key: key)
+        base.DidUpdateWidget(oldWidget);
+        if (Widget.Controller != null && Widget.Controller != ScrollController)
         {
-            this.DiameterRatio = diameterRatio;
-            this.Perspective = perspective;
-            this.OffAxisFraction = offAxisFraction;
-            this.UseMagnifier = useMagnifier;
-            this.Magnification = magnification;
-            this.OverAndUnderCenterOpacity = overAndUnderCenterOpacity;
-            this.ItemExtent = itemExtent;
-            this.Squeeze = squeeze;
-            this.ClipToSize = clipToSize;
-            this.RenderChildrenOutsideViewport = renderChildrenOutsideViewport;
-            this.Offset = offset;
-            this.ChildDelegate = childDelegate; throw new NotImplementedException();
+            ScrollController oldScrollController = ScrollController;
+            BindingDefaultClass.SchedulerBinding.Instance.AddPostFrameCallback((_) =>
+            {
+                oldScrollController.Dispose();
+            }
+            );
+            ScrollController = Widget.Controller;
         }
-        #endregion
 
-        #region fields
-        public virtual double DiameterRatio { get; set; }
-        public virtual double Perspective { get; set; }
-        public virtual double OffAxisFraction { get; set; }
-        public virtual bool UseMagnifier { get; set; }
-        public virtual double Magnification { get; set; }
-        public virtual double OverAndUnderCenterOpacity { get; set; }
-        public virtual double ItemExtent { get; set; }
-        public virtual double Squeeze { get; set; }
-        public virtual bool ClipToSize { get; set; }
-        public virtual bool RenderChildrenOutsideViewport { get; set; }
-        public virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset Offset { get; set; }
-        public virtual FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate ChildDelegate { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Listwheelscrollview.ListWheelElement CreateElement() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Rendering.Listwheelviewport.RenderListWheelViewport CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Listwheelviewport.RenderListWheelViewport renderObject) { throw new NotImplementedException(); }
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
-
-        #endregion
     }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        return new NotificationListener<ScrollNotification>(onNotification: (ScrollNotification notification) =>
+        {
+            if (notification.Depth == 0 && Widget.OnSelectedItemChanged != null && notification is ScrollUpdateNotification && notification.Metrics is FixedExtentMetrics)
+            {
+                FixedExtentMetrics metrics = ((FixedExtentMetrics)notification.Metrics) as FixedExtentMetrics;
+                int currentItemIndex = metrics.ItemIndex;
+                if (currentItemIndex != _LastReportedItemIndex)
+                {
+                    _LastReportedItemIndex = currentItemIndex;
+                    int trueIndex = Widget.ChildDelegate.TrueIndexOf(currentItemIndex);
+                    Widget.OnSelectedItemChanged(trueIndex);
+                }
+
+            }
+
+            return false;
+        }
+        , child: new _FixedExtentScrollable(controller: ScrollController, physics: Widget.Physics, itemExtent: Widget.ItemExtent, viewportBuilder: (BuildContext context, ViewportOffset offset) =>
+        {
+            return new ListWheelViewport(diameterRatio: Widget.DiameterRatio, perspective: Widget.Perspective, offAxisFraction: Widget.OffAxisFraction, useMagnifier: Widget.UseMagnifier, magnification: Widget.Magnification, overAndUnderCenterOpacity: Widget.OverAndUnderCenterOpacity, itemExtent: Widget.ItemExtent, squeeze: Widget.Squeeze, clipToSize: Widget.ClipToSize, renderChildrenOutsideViewport: Widget.RenderChildrenOutsideViewport, offset: offset, childDelegate: Widget.ChildDelegate);
+        }
+        ));
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Element that supports building children lazily for [ListWheelViewport].
+/// </Summary>
+public class ListWheelElement : FlutterSDK.Widgets.Framework.RenderObjectElement, IListWheelChildManager
+{
+    #region constructors
+    public ListWheelElement(FlutterSDK.Widgets.Listwheelscrollview.ListWheelViewport widget)
+    : base(widget)
+
+}
+#endregion
+
+#region fields
+internal virtual Dictionary<int, FlutterSDK.Widgets.Framework.Widget> _ChildWidgets { get; set; }
+internal virtual SplayTreeMap<int, FlutterSDK.Widgets.Framework.Element> _ChildElements { get; set; }
+public virtual FlutterSDK.Widgets.Listwheelscrollview.ListWheelViewport Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterSDK.Rendering.Listwheelviewport.RenderListWheelViewport RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual int ChildCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new void Update(FlutterSDK.Widgets.Listwheelscrollview.ListWheelViewport newWidget)
+{
+    ListWheelViewport oldWidget = Widget;
+    base.Update(newWidget);
+    ListWheelChildDelegate newDelegate = newWidget.ChildDelegate;
+    ListWheelChildDelegate oldDelegate = oldWidget.ChildDelegate;
+    if (newDelegate != oldDelegate && (newDelegate.GetType() != oldDelegate.GetType() || newDelegate.ShouldRebuild(oldDelegate))) PerformRebuild();
+}
+
+
+public new void Update(FlutterSDK.Widgets.Framework.Widget newWidget)
+{
+    ListWheelViewport oldWidget = Widget;
+    base.Update(newWidget);
+    ListWheelChildDelegate newDelegate = newWidget.ChildDelegate;
+    ListWheelChildDelegate oldDelegate = oldWidget.ChildDelegate;
+    if (newDelegate != oldDelegate && (newDelegate.GetType() != oldDelegate.GetType() || newDelegate.ShouldRebuild(oldDelegate))) PerformRebuild();
+}
+
+
+
+
+public new void PerformRebuild()
+{
+    _ChildWidgets.Clear();
+    base.PerformRebuild();
+    if (_ChildElements.IsEmpty()) return;
+    int firstIndex = _ChildElements.FirstKey();
+    int lastIndex = _ChildElements.LastKey();
+    for (int index = firstIndex; index <= lastIndex; ++index)
+    {
+        Element newChild = UpdateChild(_ChildElements[index], RetrieveWidget(index), index);
+        if (newChild != null)
+        {
+            _ChildElements[index] = newChild;
+        }
+        else
+        {
+            _ChildElements.Remove(index);
+        }
+
+    }
+
+}
+
+
+
+
+/// <Summary>
+/// Asks the underlying delegate for a widget at the given index.
+///
+/// Normally the builder is only called once for each index and the result
+/// will be cached. However when the element is rebuilt, the cache will be
+/// cleared.
+/// </Summary>
+public virtual FlutterSDK.Widgets.Framework.Widget RetrieveWidget(int index)
+{
+    return _ChildWidgets.PutIfAbsent(index, () => =>Widget.ChildDelegate.Build(this, index));
+}
+
+
+
+
+public new bool ChildExistsAt(int index) => RetrieveWidget(index) != null;
+
+
+
+public new void CreateChild(int index, FlutterSDK.Rendering.Box.RenderBox after = default(FlutterSDK.Rendering.Box.RenderBox))
+{
+    Owner.BuildScope(this, () =>
+    {
+        bool insertFirst = after == null;
+
+        Element newChild = UpdateChild(_ChildElements[index], RetrieveWidget(index), index);
+        if (newChild != null)
+        {
+            _ChildElements[index] = newChild;
+        }
+        else
+        {
+            _ChildElements.Remove(index);
+        }
+
+    }
+    );
+}
+
+
+
+
+public new void RemoveChild(FlutterSDK.Rendering.Box.RenderBox child)
+{
+    int index = RenderObject.IndexOf(child);
+    Owner.BuildScope(this, () =>
+    {
+
+        Element result = UpdateChild(_ChildElements[index], null, index);
+
+        _ChildElements.Remove(index);
+
+    }
+    );
+}
+
+
+
+
+public new FlutterSDK.Widgets.Framework.Element UpdateChild(FlutterSDK.Widgets.Framework.Element child, FlutterSDK.Widgets.Framework.Widget newWidget, object newSlot)
+{
+    ListWheelParentData oldParentData = child?.RenderObject?.ParentData as ListWheelParentData;
+    Element newChild = base.UpdateChild(child, newWidget, newSlot);
+    ListWheelParentData newParentData = newChild?.RenderObject?.ParentData as ListWheelParentData;
+    if (newParentData != null)
+    {
+        newParentData.Index = newSlot as int;
+        if (oldParentData != null) newParentData.Offset = oldParentData.Offset;
+    }
+
+    return newChild;
+}
+
+
+
+
+public new void InsertChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, int slot)
+{
+    RenderListWheelViewport renderObject = this.RenderObject;
+
+    renderObject.Insert(child as RenderBox, after: _ChildElements[slot - 1]?.RenderObject as RenderBox);
+
+}
+
+
+public new void InsertChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slot)
+{
+    RenderListWheelViewport renderObject = this.RenderObject;
+
+    renderObject.Insert(child as RenderBox, after: _ChildElements[slot - 1]?.RenderObject as RenderBox);
+
+}
+
+
+
+
+public new void MoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slot)
+{
+    string moveChildRenderObjectErrorMessage = "Currently we maintain the list in contiguous increasing order, so " + "moving children around is not allowed.";
+
+}
+
+
+
+
+public new void RemoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child)
+{
+
+    RenderObject.Remove(child as RenderBox);
+}
+
+
+
+
+public new void VisitChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor)
+{
+    _ChildElements.ForEach((int key, Element child) =>
+    {
+        visitor(child);
+    }
+    );
+}
+
+
+
+
+public new void ForgetChild(FlutterSDK.Widgets.Framework.Element child)
+{
+    _ChildElements.Remove(child.Slot);
+    base.ForgetChild(child);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A viewport showing a subset of children on a wheel.
+///
+/// Typically used with [ListWheelScrollView], this viewport is similar to
+/// [Viewport] in that it shows a subset of children in a scrollable based
+/// on the scrolling offset and the children's dimensions. But uses
+/// [RenderListWheelViewport] to display the children on a wheel.
+///
+/// See also:
+///
+///  * [ListWheelScrollView], widget that combines this viewport with a scrollable.
+///  * [RenderListWheelViewport], the render object that renders the children
+///    on a wheel.
+/// </Summary>
+public class ListWheelViewport : FlutterSDK.Widgets.Framework.RenderObjectWidget
+{
+    #region constructors
+    public ListWheelViewport(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double diameterRatio = default(double), double perspective = default(double), double offAxisFraction = 0.0, bool useMagnifier = false, double magnification = 1.0, double overAndUnderCenterOpacity = 1.0, double itemExtent = default(double), double squeeze = 1.0, bool clipToSize = true, bool renderChildrenOutsideViewport = false, FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate childDelegate = default(FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual double DiameterRatio { get; set; }
+public virtual double Perspective { get; set; }
+public virtual double OffAxisFraction { get; set; }
+public virtual bool UseMagnifier { get; set; }
+public virtual double Magnification { get; set; }
+public virtual double OverAndUnderCenterOpacity { get; set; }
+public virtual double ItemExtent { get; set; }
+public virtual double Squeeze { get; set; }
+public virtual bool ClipToSize { get; set; }
+public virtual bool RenderChildrenOutsideViewport { get; set; }
+public virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset Offset { get; set; }
+public virtual FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate ChildDelegate { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Listwheelscrollview.ListWheelElement CreateElement() => new ListWheelElement(this);
+
+
+
+public new FlutterSDK.Rendering.Listwheelviewport.RenderListWheelViewport CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    ListWheelElement childManager = context as ListWheelElement;
+    return new RenderListWheelViewport(childManager: childManager, offset: Offset, diameterRatio: DiameterRatio, perspective: Perspective, offAxisFraction: OffAxisFraction, useMagnifier: UseMagnifier, magnification: Magnification, overAndUnderCenterOpacity: OverAndUnderCenterOpacity, itemExtent: ItemExtent, squeeze: Squeeze, clipToSize: ClipToSize, renderChildrenOutsideViewport: RenderChildrenOutsideViewport);
+}
+
+
+
+
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Listwheelviewport.RenderListWheelViewport renderObject)
+{
+    ..Offset = Offset..DiameterRatio = DiameterRatio..Perspective = Perspective..OffAxisFraction = OffAxisFraction..UseMagnifier = UseMagnifier..Magnification = Magnification..OverAndUnderCenterOpacity = OverAndUnderCenterOpacity..ItemExtent = ItemExtent..Squeeze = Squeeze..ClipToSize = ClipToSize..RenderChildrenOutsideViewport = RenderChildrenOutsideViewport;
+}
+
+
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+{
+    ..Offset = Offset..DiameterRatio = DiameterRatio..Perspective = Perspective..OffAxisFraction = OffAxisFraction..UseMagnifier = UseMagnifier..Magnification = Magnification..OverAndUnderCenterOpacity = OverAndUnderCenterOpacity..ItemExtent = ItemExtent..Squeeze = Squeeze..ClipToSize = ClipToSize..RenderChildrenOutsideViewport = RenderChildrenOutsideViewport;
+}
+
+
+
+#endregion
+}
 
 }

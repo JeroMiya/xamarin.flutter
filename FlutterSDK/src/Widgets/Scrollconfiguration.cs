@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -440,100 +440,136 @@ namespace FlutterSDK.Widgets.Scrollconfiguration
     {
         #region constructors
         public ScrollBehavior()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        #endregion
+    #region fields
+    #endregion
 
-        #region methods
+    #region methods
 
-        /// <Summary>
-        /// The platform whose scroll physics should be implemented.
-        ///
-        /// Defaults to the current platform.
-        /// </Summary>
-        public virtual FlutterSDK.Foundation.Platform.TargetPlatform GetPlatform(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+    /// <Summary>
+    /// The platform whose scroll physics should be implemented.
+    ///
+    /// Defaults to the current platform.
+    /// </Summary>
+    public virtual FlutterSDK.Foundation.Platform.TargetPlatform GetPlatform(FlutterSDK.Widgets.Framework.BuildContext context) => PlatformDefaultClass.DefaultTargetPlatform;
 
-
-        /// <Summary>
-        /// Wraps the given widget, which scrolls in the given [AxisDirection].
-        ///
-        /// For example, on Android, this method wraps the given widget with a
-        /// [GlowingOverscrollIndicator] to provide visual feedback when the user
-        /// overscrolls.
-        /// </Summary>
-        public virtual FlutterSDK.Widgets.Framework.Widget BuildViewportChrome(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child, FlutterSDK.Painting.Basictypes.AxisDirection axisDirection) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// The scroll physics to use for the platform given by [getPlatform].
-        ///
-        /// Defaults to [BouncingScrollPhysics] on iOS and [ClampingScrollPhysics] on
-        /// Android.
-        /// </Summary>
-        public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics GetScrollPhysics(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Called whenever a [ScrollConfiguration] is rebuilt with a new
-        /// [ScrollBehavior] of the same [runtimeType].
-        ///
-        /// If the new instance represents different information than the old
-        /// instance, then the method should return true, otherwise it should return
-        /// false.
-        ///
-        /// If this method returns true, all the widgets that inherit from the
-        /// [ScrollConfiguration] will rebuild using the new [ScrollBehavior]. If this
-        /// method returns false, the rebuilds might be optimized away.
-        /// </Summary>
-        public virtual bool ShouldNotify(FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior oldDelegate) { throw new NotImplementedException(); }
-
-
-        #endregion
-    }
 
 
     /// <Summary>
-    /// Controls how [Scrollable] widgets behave in a subtree.
+    /// Wraps the given widget, which scrolls in the given [AxisDirection].
     ///
-    /// The scroll configuration determines the [ScrollPhysics] and viewport
-    /// decorations used by descendants of [child].
+    /// For example, on Android, this method wraps the given widget with a
+    /// [GlowingOverscrollIndicator] to provide visual feedback when the user
+    /// overscrolls.
     /// </Summary>
-    public class ScrollConfiguration : FlutterSDK.Widgets.Framework.InheritedWidget
+    public virtual FlutterSDK.Widgets.Framework.Widget BuildViewportChrome(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child, FlutterSDK.Painting.Basictypes.AxisDirection axisDirection)
     {
-        #region constructors
-        public ScrollConfiguration(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior behavior = default(FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key, child: child)
-        {
-            this.Behavior = behavior; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior Behavior { get; set; }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// The [ScrollBehavior] for [Scrollable] widgets in the given [BuildContext].
-        ///
-        /// If no [ScrollConfiguration] widget is in scope of the given `context`,
-        /// a default [ScrollBehavior] instance is returned.
-        /// </Summary>
-        public virtual FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Scrollconfiguration.ScrollConfiguration oldWidget) { throw new NotImplementedException(); }
-        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+        switch (GetPlatform(context)) { case TargetPlatform.IOS: case TargetPlatform.Linux: case TargetPlatform.MacOS: case TargetPlatform.Windows: return child; case TargetPlatform.Android: case TargetPlatform.Fuchsia: return new GlowingOverscrollIndicator(child: child, axisDirection: axisDirection, color: ScrollconfigurationDefaultClass._KDefaultGlowColor); }
+        return null;
     }
+
+
+
+
+    /// <Summary>
+    /// The scroll physics to use for the platform given by [getPlatform].
+    ///
+    /// Defaults to [BouncingScrollPhysics] on iOS and [ClampingScrollPhysics] on
+    /// Android.
+    /// </Summary>
+    public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics GetScrollPhysics(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        switch (GetPlatform(context)) { case TargetPlatform.IOS: case TargetPlatform.MacOS: return new BouncingScrollPhysics(); case TargetPlatform.Android: case TargetPlatform.Fuchsia: case TargetPlatform.Linux: case TargetPlatform.Windows: return new ClampingScrollPhysics(); }
+        return null;
+    }
+
+
+
+
+    /// <Summary>
+    /// Called whenever a [ScrollConfiguration] is rebuilt with a new
+    /// [ScrollBehavior] of the same [runtimeType].
+    ///
+    /// If the new instance represents different information than the old
+    /// instance, then the method should return true, otherwise it should return
+    /// false.
+    ///
+    /// If this method returns true, all the widgets that inherit from the
+    /// [ScrollConfiguration] will rebuild using the new [ScrollBehavior]. If this
+    /// method returns false, the rebuilds might be optimized away.
+    /// </Summary>
+    public virtual bool ShouldNotify(FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior oldDelegate) => false;
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Controls how [Scrollable] widgets behave in a subtree.
+///
+/// The scroll configuration determines the [ScrollPhysics] and viewport
+/// decorations used by descendants of [child].
+/// </Summary>
+public class ScrollConfiguration : FlutterSDK.Widgets.Framework.InheritedWidget
+{
+    #region constructors
+    public ScrollConfiguration(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior behavior = default(FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key, child: child)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior Behavior { get; set; }
+#endregion
+
+#region methods
+
+/// <Summary>
+/// The [ScrollBehavior] for [Scrollable] widgets in the given [BuildContext].
+///
+/// If no [ScrollConfiguration] widget is in scope of the given `context`,
+/// a default [ScrollBehavior] instance is returned.
+/// </Summary>
+public virtual FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior Of(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    ScrollConfiguration configuration = context.DependOnInheritedWidgetOfExactType();
+    return configuration?.Behavior ?? new ScrollBehavior();
+}
+
+
+
+
+public new bool UpdateShouldNotify(FlutterSDK.Widgets.Scrollconfiguration.ScrollConfiguration oldWidget)
+{
+
+    return Behavior.GetType() != oldWidget.Behavior.GetType() || (Behavior != oldWidget.Behavior && Behavior.ShouldNotify(oldWidget.Behavior));
+}
+
+
+public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget)
+{
+
+    return Behavior.GetType() != oldWidget.Behavior.GetType() || (Behavior != oldWidget.Behavior && Behavior.ShouldNotify(oldWidget.Behavior));
+}
+
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new DiagnosticsProperty<ScrollBehavior>("behavior", Behavior));
+}
+
+
+
+#endregion
+}
 
 }

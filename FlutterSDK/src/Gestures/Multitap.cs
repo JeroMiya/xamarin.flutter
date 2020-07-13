@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -314,247 +314,554 @@ namespace FlutterSDK.Gestures.Multitap
         #region constructors
         public _CountdownZoned(TimeSpan duration = default(TimeSpan))
         : base()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual bool _Timeout { get; set; }
-        public virtual bool Timeout { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        private void _OnTimeout() { throw new NotImplementedException(); }
-
-        #endregion
+    
+new Timer(duration, _OnTimeout);
     }
 
 
-    /// <Summary>
-    /// TapTracker helps track individual tap sequences as part of a
-    /// larger gesture.
-    /// </Summary>
-    public class _TapTracker
+    #endregion
+
+    #region fields
+    internal virtual bool _Timeout { get; set; }
+    public virtual bool Timeout { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    private void _OnTimeout()
     {
-        #region constructors
-        public _TapTracker(FlutterSDK.Gestures.Events.PointerDownEvent @event = default(FlutterSDK.Gestures.Events.PointerDownEvent), FlutterSDK.Gestures.Arena.GestureArenaEntry entry = default(FlutterSDK.Gestures.Arena.GestureArenaEntry), TimeSpan doubleTapMinTime = default(TimeSpan))
-        : base()
-        {
-            this.Entry = entry; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual int Pointer { get; set; }
-        public virtual FlutterSDK.Gestures.Arena.GestureArenaEntry Entry { get; set; }
-        internal virtual FlutterBinding.UI.Offset _InitialGlobalPosition { get; set; }
-        public virtual int InitialButtons { get; set; }
-        internal virtual FlutterSDK.Gestures.Multitap._CountdownZoned _DoubleTapMinTimeCountdown { get; set; }
-        internal virtual bool _IsTrackingPointer { get; set; }
-        #endregion
-
-        #region methods
-
-        public virtual void StartTrackingPointer(FlutterSDK.Gestures.Pointerrouter.PointerRoute route, Matrix4 transform) { throw new NotImplementedException(); }
-
-
-        public virtual void StopTrackingPointer(FlutterSDK.Gestures.Pointerrouter.PointerRoute route) { throw new NotImplementedException(); }
-
-
-        public virtual bool IsWithinGlobalTolerance(FlutterSDK.Gestures.Events.PointerEvent @event, double tolerance) { throw new NotImplementedException(); }
-
-
-        public virtual bool HasElapsedMinTime() { throw new NotImplementedException(); }
-
-
-        public virtual bool HasSameButton(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
-
-        #endregion
+        _Timeout = true;
     }
 
 
-    /// <Summary>
-    /// Recognizes when the user has tapped the screen at the same location twice in
-    /// quick succession.
-    ///
-    /// [DoubleTapGestureRecognizer] competes on pointer events of [kPrimaryButton]
-    /// only when it has a non-null callback. If it has no callbacks, it is a no-op.
-    ///
-    /// </Summary>
-    public class DoubleTapGestureRecognizer : FlutterSDK.Gestures.Recognizer.GestureRecognizer
+
+    #endregion
+}
+
+
+/// <Summary>
+/// TapTracker helps track individual tap sequences as part of a
+/// larger gesture.
+/// </Summary>
+public class _TapTracker
+{
+    #region constructors
+    public _TapTracker(FlutterSDK.Gestures.Events.PointerDownEvent @event = default(FlutterSDK.Gestures.Events.PointerDownEvent), FlutterSDK.Gestures.Arena.GestureArenaEntry entry = default(FlutterSDK.Gestures.Arena.GestureArenaEntry), TimeSpan doubleTapMinTime = default(TimeSpan))
+    : base()
+
+}
+#endregion
+
+#region fields
+public virtual int Pointer { get; set; }
+public virtual FlutterSDK.Gestures.Arena.GestureArenaEntry Entry { get; set; }
+internal virtual FlutterBinding.UI.Offset _InitialGlobalPosition { get; set; }
+public virtual int InitialButtons { get; set; }
+internal virtual FlutterSDK.Gestures.Multitap._CountdownZoned _DoubleTapMinTimeCountdown { get; set; }
+internal virtual bool _IsTrackingPointer { get; set; }
+#endregion
+
+#region methods
+
+public virtual void StartTrackingPointer(FlutterSDK.Gestures.Pointerrouter.PointerRoute route, Matrix4 transform)
+{
+    if (!_IsTrackingPointer)
     {
-        #region constructors
-        public DoubleTapGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
-        : base(debugOwner: debugOwner, kind: kind)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Gestures.Multitap.GestureDoubleTapCallback OnDoubleTap { get; set; }
-        internal virtual Timer _DoubleTapTimer { get; set; }
-        internal virtual FlutterSDK.Gestures.Multitap._TapTracker _FirstTap { get; set; }
-        internal virtual Dictionary<int, FlutterSDK.Gestures.Multitap._TapTracker> _Trackers { get; set; }
-        public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new bool IsPointerAllowed(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
-
-
-        public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
-
-
-        private void _TrackFirstTap(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
-
-
-        private void _HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
-
-
-        public new void AcceptGesture(int pointer) { throw new NotImplementedException(); }
-
-
-        public new void RejectGesture(int pointer) { throw new NotImplementedException(); }
-
-
-        private void _Reject(FlutterSDK.Gestures.Multitap._TapTracker tracker) { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        private void _Reset() { throw new NotImplementedException(); }
-
-
-        private void _RegisterFirstTap(FlutterSDK.Gestures.Multitap._TapTracker tracker) { throw new NotImplementedException(); }
-
-
-        private void _RegisterSecondTap(FlutterSDK.Gestures.Multitap._TapTracker tracker) { throw new NotImplementedException(); }
-
-
-        private void _ClearTrackers() { throw new NotImplementedException(); }
-
-
-        private void _FreezeTracker(FlutterSDK.Gestures.Multitap._TapTracker tracker) { throw new NotImplementedException(); }
-
-
-        private void _StartDoubleTapTimer() { throw new NotImplementedException(); }
-
-
-        private void _StopDoubleTapTimer() { throw new NotImplementedException(); }
-
-
-        private void _CheckUp(int buttons) { throw new NotImplementedException(); }
-
-        #endregion
+        _IsTrackingPointer = true;
+        BindingDefaultClass.GestureBinding.Instance.PointerRouter.AddRoute(Pointer, route, transform);
     }
 
+}
 
-    /// <Summary>
-    /// TapGesture represents a full gesture resulting from a single tap sequence,
-    /// as part of a [MultiTapGestureRecognizer]. Tap gestures are passive, meaning
-    /// that they will not preempt any other arena member in play.
-    /// </Summary>
-    public class _TapGesture : FlutterSDK.Gestures.Multitap._TapTracker
+
+
+
+public virtual void StopTrackingPointer(FlutterSDK.Gestures.Pointerrouter.PointerRoute route)
+{
+    if (_IsTrackingPointer)
     {
-        #region constructors
-        public _TapGesture(FlutterSDK.Gestures.Multitap.MultiTapGestureRecognizer gestureRecognizer = default(FlutterSDK.Gestures.Multitap.MultiTapGestureRecognizer), FlutterSDK.Gestures.Events.PointerEvent @event = default(FlutterSDK.Gestures.Events.PointerEvent), TimeSpan longTapDelay = default(TimeSpan))
-        : base(@event: @event as PointerDownEvent, entry: BindingDefaultClass.GestureBinding.Instance.GestureArena.Add(@event.Pointer, gestureRecognizer), doubleTapMinTime: ConstantsDefaultClass.KDoubleTapMinTime)
-        {
-            this.GestureRecognizer = gestureRecognizer; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Gestures.Multitap.MultiTapGestureRecognizer GestureRecognizer { get; set; }
-        internal virtual bool _WonArena { get; set; }
-        internal virtual Timer _Timer { get; set; }
-        internal virtual FlutterSDK.Gestures.Recognizer.OffsetPair _LastPosition { get; set; }
-        internal virtual FlutterSDK.Gestures.Recognizer.OffsetPair _FinalPosition { get; set; }
-        #endregion
-
-        #region methods
-
-        public virtual void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
-
-
-        public new void StopTrackingPointer(FlutterSDK.Gestures.Pointerrouter.PointerRoute route) { throw new NotImplementedException(); }
-
-
-        public virtual void Accept() { throw new NotImplementedException(); }
-
-
-        public virtual void Reject() { throw new NotImplementedException(); }
-
-
-        public virtual void Cancel() { throw new NotImplementedException(); }
-
-
-        private void _Check() { throw new NotImplementedException(); }
-
-        #endregion
+        _IsTrackingPointer = false;
+        BindingDefaultClass.GestureBinding.Instance.PointerRouter.RemoveRoute(Pointer, route);
     }
 
+}
 
-    /// <Summary>
-    /// Recognizes taps on a per-pointer basis.
-    ///
-    /// [MultiTapGestureRecognizer] considers each sequence of pointer events that
-    /// could constitute a tap independently of other pointers: For example, down-1,
-    /// down-2, up-1, up-2 produces two taps, on up-1 and up-2.
-    ///
-    /// See also:
-    ///
-    ///  * [TapGestureRecognizer]
-    /// </Summary>
-    public class MultiTapGestureRecognizer : FlutterSDK.Gestures.Recognizer.GestureRecognizer
+
+
+
+public virtual bool IsWithinGlobalTolerance(FlutterSDK.Gestures.Events.PointerEvent @event, double tolerance)
+{
+    Offset offset = @event.Position - _InitialGlobalPosition;
+    return offset.Distance <= tolerance;
+}
+
+
+
+
+public virtual bool HasElapsedMinTime()
+{
+    return _DoubleTapMinTimeCountdown.Timeout;
+}
+
+
+
+
+public virtual bool HasSameButton(FlutterSDK.Gestures.Events.PointerDownEvent @event)
+{
+    return @event.Buttons == InitialButtons;
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Recognizes when the user has tapped the screen at the same location twice in
+/// quick succession.
+///
+/// [DoubleTapGestureRecognizer] competes on pointer events of [kPrimaryButton]
+/// only when it has a non-null callback. If it has no callbacks, it is a no-op.
+///
+/// </Summary>
+public class DoubleTapGestureRecognizer : FlutterSDK.Gestures.Recognizer.GestureRecognizer
+{
+    #region constructors
+    public DoubleTapGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
+    : base(debugOwner: debugOwner, kind: kind)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Gestures.Multitap.GestureDoubleTapCallback OnDoubleTap { get; set; }
+internal virtual Timer _DoubleTapTimer { get; set; }
+internal virtual FlutterSDK.Gestures.Multitap._TapTracker _FirstTap { get; set; }
+internal virtual Dictionary<int, FlutterSDK.Gestures.Multitap._TapTracker> _Trackers { get; set; }
+public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new bool IsPointerAllowed(FlutterSDK.Gestures.Events.PointerEvent @event)
+{
+    if (_FirstTap == null)
     {
-        #region constructors
-        public MultiTapGestureRecognizer(TimeSpan longTapDelay = default(TimeSpan), @Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
-        : base(debugOwner: debugOwner, kind: kind)
-        {
-            this.LongTapDelay = longTapDelay; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Gestures.Multitap.GestureMultiTapDownCallback OnTapDown { get; set; }
-        public virtual FlutterSDK.Gestures.Multitap.GestureMultiTapUpCallback OnTapUp { get; set; }
-        public virtual FlutterSDK.Gestures.Multitap.GestureMultiTapCallback OnTap { get; set; }
-        public virtual FlutterSDK.Gestures.Multitap.GestureMultiTapCancelCallback OnTapCancel { get; set; }
-        public virtual TimeSpan LongTapDelay { get; set; }
-        public virtual FlutterSDK.Gestures.Multitap.GestureMultiTapDownCallback OnLongTapDown { get; set; }
-        internal virtual Dictionary<int, FlutterSDK.Gestures.Multitap._TapGesture> _GestureMap { get; set; }
-        public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
-
-
-        public new void AcceptGesture(int pointer) { throw new NotImplementedException(); }
-
-
-        public new void RejectGesture(int pointer) { throw new NotImplementedException(); }
-
-
-        private void _DispatchCancel(int pointer) { throw new NotImplementedException(); }
-
-
-        private void _DispatchTap(int pointer, FlutterSDK.Gestures.Recognizer.OffsetPair position) { throw new NotImplementedException(); }
-
-
-        private void _DispatchLongTap(int pointer, FlutterSDK.Gestures.Recognizer.OffsetPair lastPosition) { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-        #endregion
+        switch (@event.Buttons) { case EventsDefaultClass.KPrimaryButton: if (OnDoubleTap == null) return false; break; default: return false; }
     }
+
+    return base.IsPointerAllowed(@event as PointerDownEvent);
+}
+
+
+
+
+public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerEvent @event)
+{
+    if (_FirstTap != null)
+    {
+        if (!_FirstTap.IsWithinGlobalTolerance(@event, ConstantsDefaultClass.KDoubleTapSlop))
+        {
+            return;
+        }
+        else if (!_FirstTap.HasElapsedMinTime() || !_FirstTap.HasSameButton(@event as PointerDownEvent))
+        {
+            _Reset();
+            return _TrackFirstTap(@event);
+        }
+
+    }
+
+    _TrackFirstTap(@event);
+}
+
+
+
+
+private void _TrackFirstTap(FlutterSDK.Gestures.Events.PointerEvent @event)
+{
+    _StopDoubleTapTimer();
+    _TapTracker tracker = new _TapTracker(@event: @event as PointerDownEvent, entry: BindingDefaultClass.GestureBinding.Instance.GestureArena.Add(@event.Pointer, this), doubleTapMinTime: ConstantsDefaultClass.KDoubleTapMinTime);
+    _Trackers[@event.Pointer] = tracker;
+    tracker.StartTrackingPointer(_HandleEvent, @event.Transform);
+}
+
+
+
+
+private void _HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event)
+{
+    _TapTracker tracker = _Trackers[@event.Pointer];
+
+    if (@event is PointerUpEvent)
+    {
+        if (_FirstTap == null) _RegisterFirstTap(tracker); else _RegisterSecondTap(tracker);
+    }
+    else if (@event is PointerMoveEvent)
+    {
+        if (!tracker.IsWithinGlobalTolerance(((PointerMoveEvent)@event), ConstantsDefaultClass.KDoubleTapTouchSlop)) _Reject(tracker);
+    }
+    else if (@event is PointerCancelEvent)
+    {
+        _Reject(tracker);
+    }
+
+}
+
+
+
+
+public new void AcceptGesture(int pointer)
+{
+}
+
+
+
+
+public new void RejectGesture(int pointer)
+{
+    _TapTracker tracker = _Trackers[pointer];
+    if (tracker == null && _FirstTap != null && _FirstTap.Pointer == pointer) tracker = _FirstTap;
+    if (tracker != null) _Reject(tracker);
+}
+
+
+
+
+private void _Reject(FlutterSDK.Gestures.Multitap._TapTracker tracker)
+{
+    _Trackers.Remove(tracker.Pointer);
+    tracker.Entry.Resolve(GestureDisposition.Rejected);
+    _FreezeTracker(tracker);
+    if (_FirstTap != null && (_Trackers.IsEmpty() || tracker == _FirstTap)) _Reset();
+}
+
+
+
+
+public new void Dispose()
+{
+    _Reset();
+    base.Dispose();
+}
+
+
+
+
+private void _Reset()
+{
+    _StopDoubleTapTimer();
+    if (_FirstTap != null)
+    {
+        _TapTracker tracker = _FirstTap;
+        _FirstTap = null;
+        _Reject(tracker);
+        BindingDefaultClass.GestureBinding.Instance.GestureArena.Release(tracker.Pointer);
+    }
+
+    _ClearTrackers();
+}
+
+
+
+
+private void _RegisterFirstTap(FlutterSDK.Gestures.Multitap._TapTracker tracker)
+{
+    _StartDoubleTapTimer();
+    BindingDefaultClass.GestureBinding.Instance.GestureArena.Hold(tracker.Pointer);
+    _FreezeTracker(tracker);
+    _Trackers.Remove(tracker.Pointer);
+    _ClearTrackers();
+    _FirstTap = tracker;
+}
+
+
+
+
+private void _RegisterSecondTap(FlutterSDK.Gestures.Multitap._TapTracker tracker)
+{
+    _FirstTap.Entry.Resolve(GestureDisposition.Accepted);
+    tracker.Entry.Resolve(GestureDisposition.Accepted);
+    _FreezeTracker(tracker);
+    _Trackers.Remove(tracker.Pointer);
+    _CheckUp(tracker.InitialButtons);
+    _Reset();
+}
+
+
+
+
+private void _ClearTrackers()
+{
+    _Trackers.Values.ToList().ForEach(_Reject);
+
+}
+
+
+
+
+private void _FreezeTracker(FlutterSDK.Gestures.Multitap._TapTracker tracker)
+{
+    tracker.StopTrackingPointer(_HandleEvent);
+}
+
+
+
+
+private void _StartDoubleTapTimer()
+{
+    _DoubleTapTimer = (_DoubleTapTimer == null ? new Timer(ConstantsDefaultClass.KDoubleTapTimeout, _Reset) : _DoubleTapTimer);
+}
+
+
+
+
+private void _StopDoubleTapTimer()
+{
+    if (_DoubleTapTimer != null)
+    {
+        _DoubleTapTimer.Cancel();
+        _DoubleTapTimer = null;
+    }
+
+}
+
+
+
+
+private void _CheckUp(int buttons)
+{
+
+    if (OnDoubleTap != null) InvokeCallback("onDoubleTap", OnDoubleTap);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// TapGesture represents a full gesture resulting from a single tap sequence,
+/// as part of a [MultiTapGestureRecognizer]. Tap gestures are passive, meaning
+/// that they will not preempt any other arena member in play.
+/// </Summary>
+public class _TapGesture : FlutterSDK.Gestures.Multitap._TapTracker
+{
+    #region constructors
+    public _TapGesture(FlutterSDK.Gestures.Multitap.MultiTapGestureRecognizer gestureRecognizer = default(FlutterSDK.Gestures.Multitap.MultiTapGestureRecognizer), FlutterSDK.Gestures.Events.PointerEvent @event = default(FlutterSDK.Gestures.Events.PointerEvent), TimeSpan longTapDelay = default(TimeSpan))
+    : base(@event: @event as PointerDownEvent, entry: BindingDefaultClass.GestureBinding.Instance.GestureArena.Add(@event.Pointer, gestureRecognizer), doubleTapMinTime: ConstantsDefaultClass.KDoubleTapMinTime)
+
+StartTrackingPointer(HandleEvent, @event.Transform);
+if (longTapDelay>Dart:coreDefaultClass.Duration.Zero){
+_Timer=new Timer(longTapDelay, () => {
+        _Timer = null;
+        GestureRecognizer._DispatchLongTap(@event.Pointer, _LastPosition);
+    }
+);
+}
+
+}
+
+
+#endregion
+
+#region fields
+public virtual FlutterSDK.Gestures.Multitap.MultiTapGestureRecognizer GestureRecognizer { get; set; }
+internal virtual bool _WonArena { get; set; }
+internal virtual Timer _Timer { get; set; }
+internal virtual FlutterSDK.Gestures.Recognizer.OffsetPair _LastPosition { get; set; }
+internal virtual FlutterSDK.Gestures.Recognizer.OffsetPair _FinalPosition { get; set; }
+#endregion
+
+#region methods
+
+public virtual void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event)
+{
+
+    if (@event is PointerMoveEvent)
+    {
+        if (!IsWithinGlobalTolerance(((PointerMoveEvent)@event), ConstantsDefaultClass.KTouchSlop)) Cancel(); else _LastPosition = OffsetPair.FromEventPosition(((PointerMoveEvent)@event));
+    }
+    else if (@event is PointerCancelEvent)
+    {
+        Cancel();
+    }
+    else if (@event is PointerUpEvent)
+    {
+        StopTrackingPointer(HandleEvent);
+        _FinalPosition = OffsetPair.FromEventPosition(((PointerUpEvent)@event));
+        _Check();
+    }
+
+}
+
+
+
+
+public new void StopTrackingPointer(FlutterSDK.Gestures.Pointerrouter.PointerRoute route)
+{
+    _Timer?.Cancel();
+    _Timer = null;
+    base.StopTrackingPointer(route);
+}
+
+
+
+
+public virtual void Accept()
+{
+    _WonArena = true;
+    _Check();
+}
+
+
+
+
+public virtual void Reject()
+{
+    StopTrackingPointer(HandleEvent);
+    GestureRecognizer._DispatchCancel(Pointer);
+}
+
+
+
+
+public virtual void Cancel()
+{
+    if (_WonArena) Reject(); else Entry.Resolve(GestureDisposition.Rejected);
+}
+
+
+
+
+private void _Check()
+{
+    if (_WonArena && _FinalPosition != null) GestureRecognizer._DispatchTap(Pointer, _FinalPosition);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Recognizes taps on a per-pointer basis.
+///
+/// [MultiTapGestureRecognizer] considers each sequence of pointer events that
+/// could constitute a tap independently of other pointers: For example, down-1,
+/// down-2, up-1, up-2 produces two taps, on up-1 and up-2.
+///
+/// See also:
+///
+///  * [TapGestureRecognizer]
+/// </Summary>
+public class MultiTapGestureRecognizer : FlutterSDK.Gestures.Recognizer.GestureRecognizer
+{
+    #region constructors
+    public MultiTapGestureRecognizer(TimeSpan longTapDelay = default(TimeSpan), @Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
+    : base(debugOwner: debugOwner, kind: kind)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Gestures.Multitap.GestureMultiTapDownCallback OnTapDown { get; set; }
+public virtual FlutterSDK.Gestures.Multitap.GestureMultiTapUpCallback OnTapUp { get; set; }
+public virtual FlutterSDK.Gestures.Multitap.GestureMultiTapCallback OnTap { get; set; }
+public virtual FlutterSDK.Gestures.Multitap.GestureMultiTapCancelCallback OnTapCancel { get; set; }
+public virtual TimeSpan LongTapDelay { get; set; }
+public virtual FlutterSDK.Gestures.Multitap.GestureMultiTapDownCallback OnLongTapDown { get; set; }
+internal virtual Dictionary<int, FlutterSDK.Gestures.Multitap._TapGesture> _GestureMap { get; set; }
+public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerEvent @event)
+{
+
+    _GestureMap[@event.Pointer] = new _TapGesture(gestureRecognizer: this, @event: @event, longTapDelay: LongTapDelay);
+    if (OnTapDown != null) InvokeCallback("onTapDown", () =>
+    {
+        OnTapDown(@event.Pointer, new TapDownDetails(globalPosition: @event.Position, localPosition: @event.LocalPosition, kind: @event.Kind));
+    }
+      );
+}
+
+
+
+
+public new void AcceptGesture(int pointer)
+{
+
+    _GestureMap[pointer].Accept();
+}
+
+
+
+
+public new void RejectGesture(int pointer)
+{
+
+    _GestureMap[pointer].Reject();
+
+}
+
+
+
+
+private void _DispatchCancel(int pointer)
+{
+
+    _GestureMap.Remove(pointer);
+    if (OnTapCancel != null) InvokeCallback("onTapCancel", () => =>OnTapCancel(pointer));
+}
+
+
+
+
+private void _DispatchTap(int pointer, FlutterSDK.Gestures.Recognizer.OffsetPair position)
+{
+
+    _GestureMap.Remove(pointer);
+    if (OnTapUp != null) InvokeCallback("onTapUp", () =>
+    {
+        OnTapUp(pointer, new TapUpDetails(localPosition: position.Local, globalPosition: position.Global));
+    }
+      );
+    if (OnTap != null) InvokeCallback("onTap", () => =>OnTap(pointer));
+}
+
+
+
+
+private void _DispatchLongTap(int pointer, FlutterSDK.Gestures.Recognizer.OffsetPair lastPosition)
+{
+
+    if (OnLongTapDown != null) InvokeCallback("onLongTapDown", () =>
+    {
+        OnLongTapDown(pointer, new TapDownDetails(globalPosition: lastPosition.Global, localPosition: lastPosition.Local, kind: GetKindForPointer(pointer)));
+    }
+      );
+}
+
+
+
+
+public new void Dispose()
+{
+    List<_TapGesture> localGestures = List<_TapGesture>.From(_GestureMap.Values);
+    foreach (_TapGesture gesture in localGestures) gesture.Cancel();
+
+    base.Dispose();
+}
+
+
+
+#endregion
+}
 
 }

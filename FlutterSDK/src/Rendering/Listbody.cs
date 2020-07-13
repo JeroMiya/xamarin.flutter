@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -463,56 +463,216 @@ namespace FlutterSDK.Rendering.Listbody
         #region constructors
         public RenderListBody(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection))
         : base()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Painting.Basictypes.AxisDirection _AxisDirection { get; set; }
-        public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Painting.Basictypes.Axis MainAxis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
-        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
-
-
-        public new void PerformLayout() { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-
-        private double _GetIntrinsicCrossAxis(FlutterSDK.Rendering.Listbody._ChildSizingFunction childSize) { throw new NotImplementedException(); }
-
-
-        private double _GetIntrinsicMainAxis(FlutterSDK.Rendering.Listbody._ChildSizingFunction childSize) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new double ComputeDistanceToActualBaseline(TextBaseline baseline) { throw new NotImplementedException(); }
-
-
-        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
-
-        #endregion
+    
+AddAll(children);
     }
+
+
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Painting.Basictypes.AxisDirection _AxisDirection { get; set; }
+    public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Painting.Basictypes.Axis MainAxis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child)
+    {
+        if (!(child.ParentData is ListBodyParentData)) child.ParentData = new ListBodyParentData();
+    }
+
+
+    public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
+    {
+        if (!(child.ParentData is ListBodyParentData)) child.ParentData = new ListBodyParentData();
+    }
+
+
+
+
+    public new void PerformLayout()
+    {
+        BoxConstraints constraints = this.Constraints;
+
+
+        double mainAxisExtent = 0.0;
+        RenderBox child = FirstChild;
+        switch (AxisDirection)
+        {
+            case AxisDirection.Right:
+                BoxConstraints innerConstraints = BoxConstraints.TightFor(height: constraints.MaxHeight); while (child != null)
+                {
+                    child.Layout(innerConstraints, parentUsesSize: true);
+                    ListBodyParentData childParentData = child.ParentData as ListBodyParentData;
+                    childParentData.Offset = new Offset(mainAxisExtent, 0.0);
+                    mainAxisExtent += child.Size.Width;
+
+                    child = childParentData.NextSibling;
+                }
+                Size = constraints.Constrain(new Size(mainAxisExtent, constraints.MaxHeight)); break;
+            case AxisDirection.Left:
+                BoxConstraints innerConstraints = BoxConstraints.TightFor(height: constraints.MaxHeight); while (child != null)
+                {
+                    child.Layout(innerConstraints, parentUsesSize: true);
+                    ListBodyParentData childParentData = child.ParentData as ListBodyParentData;
+                    mainAxisExtent += child.Size.Width;
+
+                    child = childParentData.NextSibling;
+                }
+                double position = 0.0; child = FirstChild; while (child != null)
+                {
+                    ListBodyParentData childParentData = child.ParentData as ListBodyParentData;
+                    position += child.Size.Width;
+                    childParentData.Offset = new Offset(mainAxisExtent - position, 0.0);
+
+                    child = childParentData.NextSibling;
+                }
+                Size = constraints.Constrain(new Size(mainAxisExtent, constraints.MaxHeight)); break;
+            case AxisDirection.Down:
+                BoxConstraints innerConstraints = BoxConstraints.TightFor(width: constraints.MaxWidth); while (child != null)
+                {
+                    child.Layout(innerConstraints, parentUsesSize: true);
+                    ListBodyParentData childParentData = child.ParentData as ListBodyParentData;
+                    childParentData.Offset = new Offset(0.0, mainAxisExtent);
+                    mainAxisExtent += child.Size.Height;
+
+                    child = childParentData.NextSibling;
+                }
+                Size = constraints.Constrain(new Size(constraints.MaxWidth, mainAxisExtent)); break;
+            case AxisDirection.Up:
+                BoxConstraints innerConstraints = BoxConstraints.TightFor(width: constraints.MaxWidth); while (child != null)
+                {
+                    child.Layout(innerConstraints, parentUsesSize: true);
+                    ListBodyParentData childParentData = child.ParentData as ListBodyParentData;
+                    mainAxisExtent += child.Size.Height;
+
+                    child = childParentData.NextSibling;
+                }
+                double position = 0.0; child = FirstChild; while (child != null)
+                {
+                    ListBodyParentData childParentData = child.ParentData as ListBodyParentData;
+                    position += child.Size.Height;
+                    childParentData.Offset = new Offset(0.0, mainAxisExtent - position);
+
+                    child = childParentData.NextSibling;
+                }
+                Size = constraints.Constrain(new Size(constraints.MaxWidth, mainAxisExtent)); break;
+        }
+
+    }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new EnumProperty<AxisDirection>("axisDirection", AxisDirection));
+    }
+
+
+
+
+    private double _GetIntrinsicCrossAxis(FlutterSDK.Rendering.Listbody._ChildSizingFunction childSize)
+    {
+        double extent = 0.0;
+        RenderBox child = FirstChild;
+        while (child != null)
+        {
+            extent = Math.Dart:mathDefaultClass.Max(extent, childSize(child));
+            ListBodyParentData childParentData = child.ParentData as ListBodyParentData;
+            child = childParentData.NextSibling;
+        }
+
+        return extent;
+    }
+
+
+
+
+    private double _GetIntrinsicMainAxis(FlutterSDK.Rendering.Listbody._ChildSizingFunction childSize)
+    {
+        double extent = 0.0;
+        RenderBox child = FirstChild;
+        while (child != null)
+        {
+            extent += childSize(child);
+            ListBodyParentData childParentData = child.ParentData as ListBodyParentData;
+            child = childParentData.NextSibling;
+        }
+
+        return extent;
+    }
+
+
+
+
+    public new double ComputeMinIntrinsicWidth(double height)
+    {
+
+        switch (MainAxis) { case Axis.Horizontal: return _GetIntrinsicMainAxis((RenderBox child) => =>child.GetMinIntrinsicWidth(height)); case Axis.Vertical: return _GetIntrinsicCrossAxis((RenderBox child) => =>child.GetMinIntrinsicWidth(height)); }
+        return null;
+    }
+
+
+
+
+    public new double ComputeMaxIntrinsicWidth(double height)
+    {
+
+        switch (MainAxis) { case Axis.Horizontal: return _GetIntrinsicMainAxis((RenderBox child) => =>child.GetMaxIntrinsicWidth(height)); case Axis.Vertical: return _GetIntrinsicCrossAxis((RenderBox child) => =>child.GetMaxIntrinsicWidth(height)); }
+        return null;
+    }
+
+
+
+
+    public new double ComputeMinIntrinsicHeight(double width)
+    {
+
+        switch (MainAxis) { case Axis.Horizontal: return _GetIntrinsicMainAxis((RenderBox child) => =>child.GetMinIntrinsicHeight(width)); case Axis.Vertical: return _GetIntrinsicCrossAxis((RenderBox child) => =>child.GetMinIntrinsicHeight(width)); }
+        return null;
+    }
+
+
+
+
+    public new double ComputeMaxIntrinsicHeight(double width)
+    {
+
+        switch (MainAxis) { case Axis.Horizontal: return _GetIntrinsicMainAxis((RenderBox child) => =>child.GetMaxIntrinsicHeight(width)); case Axis.Vertical: return _GetIntrinsicCrossAxis((RenderBox child) => =>child.GetMaxIntrinsicHeight(width)); }
+        return null;
+    }
+
+
+
+
+    public new double ComputeDistanceToActualBaseline(TextBaseline baseline)
+    {
+        return DefaultComputeDistanceToFirstActualBaseline(baseline);
+    }
+
+
+
+
+    public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+    {
+        DefaultPaint(context, offset);
+    }
+
+
+
+
+    public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
+    {
+        return DefaultHitTestChildren(result, position: position);
+    }
+
+
+
+    #endregion
+}
 
 }

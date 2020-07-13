@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -455,70 +455,73 @@ namespace FlutterSDK.Widgets.Pages
         #region constructors
         public PageRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings), bool fullscreenDialog = false)
         : base(settings: settings)
-        {
-            this.FullscreenDialog = fullscreenDialog; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual bool FullscreenDialog { get; set; }
-        public virtual bool Opaque { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool BarrierDismissible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    public virtual bool FullscreenDialog { get; set; }
+    public virtual bool Opaque { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool BarrierDismissible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new bool CanTransitionTo(FlutterSDK.Widgets.Routes.TransitionRoute<object> nextRoute) { throw new NotImplementedException(); }
-
-
-        public new bool CanTransitionFrom(FlutterSDK.Widgets.Routes.TransitionRoute<object> previousRoute) { throw new NotImplementedException(); }
-
-        #endregion
-    }
+    public new bool CanTransitionTo(FlutterSDK.Widgets.Routes.TransitionRoute<object> nextRoute) => nextRoute is PageRoute;
 
 
-    /// <Summary>
-    /// A utility class for defining one-off page routes in terms of callbacks.
-    ///
-    /// Callers must define the [pageBuilder] function which creates the route's
-    /// primary contents. To add transitions define the [transitionsBuilder] function.
-    /// </Summary>
-    public class PageRouteBuilder<T> : FlutterSDK.Widgets.Pages.PageRoute<T>
-    {
-        #region constructors
-        public PageRouteBuilder(FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings), FlutterSDK.Widgets.Routes.RoutePageBuilder pageBuilder = default(FlutterSDK.Widgets.Routes.RoutePageBuilder), FlutterSDK.Widgets.Routes.RouteTransitionsBuilder transitionsBuilder = default(FlutterSDK.Widgets.Routes.RouteTransitionsBuilder), TimeSpan transitionDuration = default(TimeSpan), bool opaque = true, bool barrierDismissible = false, FlutterBinding.UI.Color barrierColor = default(FlutterBinding.UI.Color), string barrierLabel = default(string), bool maintainState = true, bool fullscreenDialog = false)
-        : base(settings: settings, fullscreenDialog: fullscreenDialog)
-        {
-            this.PageBuilder = pageBuilder;
-            this.TransitionsBuilder = transitionsBuilder;
-            this.TransitionDuration = transitionDuration;
-            this.Opaque = opaque;
-            this.BarrierDismissible = barrierDismissible;
-            this.BarrierColor = barrierColor;
-            this.BarrierLabel = barrierLabel;
-            this.MaintainState = maintainState; throw new NotImplementedException();
-        }
-        #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Routes.RoutePageBuilder PageBuilder { get; set; }
-        public virtual FlutterSDK.Widgets.Routes.RouteTransitionsBuilder TransitionsBuilder { get; set; }
-        public new TimeSpan TransitionDuration { get; set; }
-        public new bool Opaque { get; set; }
-        public new bool BarrierDismissible { get; set; }
-        public new FlutterBinding.UI.Color BarrierColor { get; set; }
-        public new string BarrierLabel { get; set; }
-        public new bool MaintainState { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget BuildPage(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation) { throw new NotImplementedException(); }
+    public new bool CanTransitionFrom(FlutterSDK.Widgets.Routes.TransitionRoute<object> previousRoute) => previousRoute is PageRoute;
 
 
-        public new FlutterSDK.Widgets.Framework.Widget BuildTransitions(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
+    #endregion
+}
 
-        #endregion
-    }
+
+/// <Summary>
+/// A utility class for defining one-off page routes in terms of callbacks.
+///
+/// Callers must define the [pageBuilder] function which creates the route's
+/// primary contents. To add transitions define the [transitionsBuilder] function.
+/// </Summary>
+public class PageRouteBuilder<T> : FlutterSDK.Widgets.Pages.PageRoute<T>
+{
+    #region constructors
+    public PageRouteBuilder(FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings), FlutterSDK.Widgets.Routes.RoutePageBuilder pageBuilder = default(FlutterSDK.Widgets.Routes.RoutePageBuilder), FlutterSDK.Widgets.Routes.RouteTransitionsBuilder transitionsBuilder = default(FlutterSDK.Widgets.Routes.RouteTransitionsBuilder), TimeSpan transitionDuration = default(TimeSpan), bool opaque = true, bool barrierDismissible = false, FlutterBinding.UI.Color barrierColor = default(FlutterBinding.UI.Color), string barrierLabel = default(string), bool maintainState = true, bool fullscreenDialog = false)
+    : base(settings: settings, fullscreenDialog: fullscreenDialog)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Routes.RoutePageBuilder PageBuilder { get; set; }
+public virtual FlutterSDK.Widgets.Routes.RouteTransitionsBuilder TransitionsBuilder { get; set; }
+public new TimeSpan TransitionDuration { get; set; }
+public new bool Opaque { get; set; }
+public new bool BarrierDismissible { get; set; }
+public new FlutterBinding.UI.Color BarrierColor { get; set; }
+public new string BarrierLabel { get; set; }
+public new bool MaintainState { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.Widget BuildPage(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation)
+{
+    return PageBuilder(context, animation, secondaryAnimation);
+}
+
+
+
+
+public new FlutterSDK.Widgets.Framework.Widget BuildTransitions(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child)
+{
+    return TransitionsBuilder(context, animation, secondaryAnimation, child);
+}
+
+
+
+#endregion
+}
 
 }

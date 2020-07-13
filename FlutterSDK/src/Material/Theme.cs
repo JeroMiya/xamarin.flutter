@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -448,212 +448,257 @@ namespace FlutterSDK.Material.Theme
         #region constructors
         public Theme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Themedata.ThemeData data = default(FlutterSDK.Material.Themedata.ThemeData), bool isMaterialAppTheme = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
-        {
-            this.Data = data;
-            this.IsMaterialAppTheme = isMaterialAppTheme;
-            this.Child = child; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Material.Themedata.ThemeData Data { get; set; }
-        public virtual bool IsMaterialAppTheme { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        internal virtual FlutterSDK.Material.Themedata.ThemeData _KFallbackTheme { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Material.Themedata.ThemeData Data { get; set; }
+    public virtual bool IsMaterialAppTheme { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+    internal virtual FlutterSDK.Material.Themedata.ThemeData _KFallbackTheme { get; set; }
+    #endregion
 
-        #region methods
-
-        /// <Summary>
-        /// The data from the closest [Theme] instance that encloses the given
-        /// context.
-        ///
-        /// If the given context is enclosed in a [Localizations] widget providing
-        /// [MaterialLocalizations], the returned data is localized according to the
-        /// nearest available [MaterialLocalizations].
-        ///
-        /// Defaults to [new ThemeData.fallback] if there is no [Theme] in the given
-        /// build context.
-        ///
-        /// If [shadowThemeOnly] is true and the closest [Theme] ancestor was
-        /// installed by the [MaterialApp] — in other words if the closest [Theme]
-        /// ancestor does not shadow the application's theme — then this returns null.
-        /// This argument should be used in situations where its useful to wrap a
-        /// route's widgets with a [Theme], but only when the application's overall
-        /// theme is being shadowed by a [Theme] widget that is deeper in the tree.
-        /// See [isMaterialAppTheme].
-        ///
-        /// Typical usage is as follows:
-        ///
-        /// ```dart
-        /// @override
-        /// Widget build(BuildContext context) {
-        ///   return Text(
-        ///     'Example',
-        ///     style: Theme.of(context).textTheme.headline6,
-        ///   );
-        /// }
-        /// ```
-        ///
-        /// When the [Theme] is actually created in the same `build` function
-        /// (possibly indirectly, e.g. as part of a [MaterialApp]), the `context`
-        /// argument to the `build` function can't be used to find the [Theme] (since
-        /// it's "above" the widget being returned). In such cases, the following
-        /// technique with a [Builder] can be used to provide a new scope with a
-        /// [BuildContext] that is "under" the [Theme]:
-        ///
-        /// ```dart
-        /// @override
-        /// Widget build(BuildContext context) {
-        ///   return MaterialApp(
-        ///     theme: ThemeData.light(),
-        ///     body: Builder(
-        ///       // Create an inner BuildContext so that we can refer to
-        ///       // the Theme with Theme.of().
-        ///       builder: (BuildContext context) {
-        ///         return Center(
-        ///           child: Text(
-        ///             'Example',
-        ///             style: Theme.of(context).textTheme.headline6,
-        ///           ),
-        ///         );
-        ///       },
-        ///     ),
-        ///   );
-        /// }
-        /// ```
-        /// </Summary>
-        public virtual FlutterSDK.Material.Themedata.ThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context, bool shadowThemeOnly = false) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _InheritedTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
-    {
-        #region constructors
-        public _InheritedTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Theme.Theme theme = default(FlutterSDK.Material.Theme.Theme), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key, child: child)
-        {
-            this.Theme = theme; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Material.Theme.Theme Theme { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
-
-
-        public new bool UpdateShouldNotify(FlutterSDK.Material.Theme._InheritedTheme old) { throw new NotImplementedException(); }
-        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
+    #region methods
 
     /// <Summary>
-    /// An interpolation between two [ThemeData]s.
+    /// The data from the closest [Theme] instance that encloses the given
+    /// context.
     ///
-    /// This class specializes the interpolation of [Tween<ThemeData>] to call the
-    /// [ThemeData.lerp] method.
+    /// If the given context is enclosed in a [Localizations] widget providing
+    /// [MaterialLocalizations], the returned data is localized according to the
+    /// nearest available [MaterialLocalizations].
     ///
-    /// See [Tween] for a discussion on how to use interpolation objects.
+    /// Defaults to [new ThemeData.fallback] if there is no [Theme] in the given
+    /// build context.
+    ///
+    /// If [shadowThemeOnly] is true and the closest [Theme] ancestor was
+    /// installed by the [MaterialApp] — in other words if the closest [Theme]
+    /// ancestor does not shadow the application's theme — then this returns null.
+    /// This argument should be used in situations where its useful to wrap a
+    /// route's widgets with a [Theme], but only when the application's overall
+    /// theme is being shadowed by a [Theme] widget that is deeper in the tree.
+    /// See [isMaterialAppTheme].
+    ///
+    /// Typical usage is as follows:
+    ///
+    /// ```dart
+    /// @override
+    /// Widget build(BuildContext context) {
+    ///   return Text(
+    ///     'Example',
+    ///     style: Theme.of(context).textTheme.headline6,
+    ///   );
+    /// }
+    /// ```
+    ///
+    /// When the [Theme] is actually created in the same `build` function
+    /// (possibly indirectly, e.g. as part of a [MaterialApp]), the `context`
+    /// argument to the `build` function can't be used to find the [Theme] (since
+    /// it's "above" the widget being returned). In such cases, the following
+    /// technique with a [Builder] can be used to provide a new scope with a
+    /// [BuildContext] that is "under" the [Theme]:
+    ///
+    /// ```dart
+    /// @override
+    /// Widget build(BuildContext context) {
+    ///   return MaterialApp(
+    ///     theme: ThemeData.light(),
+    ///     body: Builder(
+    ///       // Create an inner BuildContext so that we can refer to
+    ///       // the Theme with Theme.of().
+    ///       builder: (BuildContext context) {
+    ///         return Center(
+    ///           child: Text(
+    ///             'Example',
+    ///             style: Theme.of(context).textTheme.headline6,
+    ///           ),
+    ///         );
+    ///       },
+    ///     ),
+    ///   );
+    /// }
+    /// ```
     /// </Summary>
-    public class ThemeDataTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Material.Themedata.ThemeData>
+    public virtual FlutterSDK.Material.Themedata.ThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context, bool shadowThemeOnly = false)
     {
-        #region constructors
-        public ThemeDataTween(FlutterSDK.Material.Themedata.ThemeData begin = default(FlutterSDK.Material.Themedata.ThemeData), FlutterSDK.Material.Themedata.ThemeData end = default(FlutterSDK.Material.Themedata.ThemeData))
-        : base(begin: begin, end: end)
+        _InheritedTheme inheritedTheme = context.DependOnInheritedWidgetOfExactType();
+        if (shadowThemeOnly)
         {
-            throw new NotImplementedException();
+            if (inheritedTheme == null || inheritedTheme.Theme.IsMaterialAppTheme) return null;
+            return inheritedTheme.Theme.Data;
         }
-        #endregion
 
-        #region fields
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Material.Themedata.ThemeData Lerp(double t) { throw new NotImplementedException(); }
-
-        #endregion
+        MaterialLocalizations localizations = MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context);
+        ScriptCategory category = localizations?.ScriptCategory ?? ScriptCategory.EnglishLike;
+        ThemeData theme = inheritedTheme?.Theme?.Data ?? _KFallbackTheme;
+        return ThemedataDefaultClass.ThemeData.Localize(theme, theme.Typography.GeometryThemeFor(category));
     }
 
 
-    /// <Summary>
-    /// Animated version of [Theme] which automatically transitions the colors,
-    /// etc, over a given duration whenever the given theme changes.
-    ///
-    /// Here's an illustration of what using this widget looks like, using a [curve]
-    /// of [Curves.elasticInOut].
-    /// {@animation 250 266 https://flutter.github.io/assets-for-api-docs/assets/widgets/animated_theme.mp4}
-    ///
-    /// See also:
-    ///
-    ///  * [Theme], which [AnimatedTheme] uses to actually apply the interpolated
-    ///    theme.
-    ///  * [ThemeData], which describes the actual configuration of a theme.
-    ///  * [MaterialApp], which includes an [AnimatedTheme] widget configured via
-    ///    the [MaterialApp.theme] argument.
-    /// </Summary>
-    public class AnimatedTheme : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
     {
-        #region constructors
-        public AnimatedTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Themedata.ThemeData data = default(FlutterSDK.Material.Themedata.ThemeData), bool isMaterialAppTheme = false, FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
-        {
-            this.Data = data;
-            this.IsMaterialAppTheme = isMaterialAppTheme;
-            this.Child = child; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Material.Themedata.ThemeData Data { get; set; }
-        public virtual bool IsMaterialAppTheme { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Material.Theme._AnimatedThemeState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
+        return new _InheritedTheme(theme: this, child: new CupertinoTheme(data: new MaterialBasedCupertinoThemeData(materialTheme: Data), child: new IconTheme(data: Data.IconTheme, child: Child)));
     }
 
 
-    public class _AnimatedThemeState : FlutterSDK.Widgets.Implicitanimations.AnimatedWidgetBaseState<FlutterSDK.Material.Theme.AnimatedTheme>
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
     {
-        #region constructors
-        public _AnimatedThemeState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Material.Theme.ThemeDataTween _Data { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description) { throw new NotImplementedException(); }
-
-        #endregion
+        base.DebugFillProperties(properties);
+        properties.Add(new DiagnosticsProperty<ThemeData>("data", Data, showName: false));
     }
+
+
+
+    #endregion
+}
+
+
+public class _InheritedTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
+{
+    #region constructors
+    public _InheritedTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Theme.Theme theme = default(FlutterSDK.Material.Theme.Theme), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key, child: child)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Material.Theme.Theme Theme { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
+{
+    _InheritedTheme ancestorTheme = context.FindAncestorWidgetOfExactType();
+    return Dart:coreDefaultClass.Identical(this, ancestorTheme) ? child : new Theme(data: Theme.Data, child: child);
+}
+
+
+
+
+public new bool UpdateShouldNotify(FlutterSDK.Material.Theme._InheritedTheme old) => Theme.Data != old.Theme.Data;
+
+public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Theme.Data != old.Theme.Data;
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// An interpolation between two [ThemeData]s.
+///
+/// This class specializes the interpolation of [Tween<ThemeData>] to call the
+/// [ThemeData.lerp] method.
+///
+/// See [Tween] for a discussion on how to use interpolation objects.
+/// </Summary>
+public class ThemeDataTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Material.Themedata.ThemeData>
+{
+    #region constructors
+    public ThemeDataTween(FlutterSDK.Material.Themedata.ThemeData begin = default(FlutterSDK.Material.Themedata.ThemeData), FlutterSDK.Material.Themedata.ThemeData end = default(FlutterSDK.Material.Themedata.ThemeData))
+    : base(begin: begin, end: end)
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public new FlutterSDK.Material.Themedata.ThemeData Lerp(double t) => ThemedataDefaultClass.ThemeData.Lerp(Begin, End, t);
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Animated version of [Theme] which automatically transitions the colors,
+/// etc, over a given duration whenever the given theme changes.
+///
+/// Here's an illustration of what using this widget looks like, using a [curve]
+/// of [Curves.elasticInOut].
+/// {@animation 250 266 https://flutter.github.io/assets-for-api-docs/assets/widgets/animated_theme.mp4}
+///
+/// See also:
+///
+///  * [Theme], which [AnimatedTheme] uses to actually apply the interpolated
+///    theme.
+///  * [ThemeData], which describes the actual configuration of a theme.
+///  * [MaterialApp], which includes an [AnimatedTheme] widget configured via
+///    the [MaterialApp.theme] argument.
+/// </Summary>
+public class AnimatedTheme : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
+{
+    #region constructors
+    public AnimatedTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Themedata.ThemeData data = default(FlutterSDK.Material.Themedata.ThemeData), bool isMaterialAppTheme = false, FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Material.Themedata.ThemeData Data { get; set; }
+public virtual bool IsMaterialAppTheme { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Material.Theme._AnimatedThemeState CreateState() => new _AnimatedThemeState();
+
+
+#endregion
+}
+
+
+public class _AnimatedThemeState : FlutterSDK.Widgets.Implicitanimations.AnimatedWidgetBaseState<FlutterSDK.Material.Theme.AnimatedTheme>
+{
+    #region constructors
+    public _AnimatedThemeState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Material.Theme.ThemeDataTween _Data { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor)
+    {
+        _Data = visitor(_Data, Widget.Data, (object value) => =>new ThemeDataTween(begin: value as ThemeData)) as ThemeDataTween;
+
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        return new Theme(isMaterialAppTheme: Widget.IsMaterialAppTheme, child: Widget.Child, data: _Data.Evaluate(Animation));
+    }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description)
+    {
+        base.DebugFillProperties(description);
+        description.Add(new DiagnosticsProperty<ThemeDataTween>("data", _Data, showName: false, defaultValue: null));
+    }
+
+
+
+    #endregion
+}
 
 }

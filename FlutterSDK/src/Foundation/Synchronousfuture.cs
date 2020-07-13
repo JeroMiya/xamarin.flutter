@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -316,30 +316,64 @@ namespace FlutterSDK.Foundation.Synchronousfuture
     {
         #region constructors
         public SynchronousFuture(T _value)
+    
+}
+    #endregion
+
+    #region fields
+    internal virtual T _Value { get; set; }
+    #endregion
+
+    #region methods
+
+    public new Stream<T> AsStream()
+    {
+        StreamController<T> controller = new StreamController<T>();
+        controller.Add(_Value);
+        controller.Close();
+        return controller.Stream;
+    }
+
+
+
+
+    public new Future<T> CatchError(Function onError, Func<bool, object> test = default(Func<bool, object>)) => new Completer<T>().Future;
+
+
+
+    public new Future<E> Then<E>(Func<FutureOr<E>, T> f, Function onError = default(Function))
+    {
+        object result = f(_Value);
+        if (result is Future<E>) return result;
+        return new SynchronousFuture<E>(result as E);
+    }
+
+
+
+
+    public new Future<T> Timeout(TimeSpan timeLimit, Func<FutureOr<T>> onTimeout = default(Func<FutureOr<T>>))
+    {
+        return Future<T>.Value(_Value).Timeout(timeLimit, onTimeout: onTimeout);
+    }
+
+
+
+
+    public new Future<T> WhenComplete(Func<FutureOr<object>> action)
+    {
+        try
         {
-            this._Value = _value; throw new NotImplementedException();
+            FutureOr<object> result = action();
+            if (result is Future) return result.Then((object value) => =>_Value);
+            return this;
         }
-        #endregion
+        catch (e,stack){
+            return Future<T>.Error(e, stack);
+        }
 
-        #region fields
-        internal virtual T _Value { get; set; }
-        #endregion
-
-        #region methods
-
-        public new Stream<T> AsStream() { throw new NotImplementedException(); }
+        }
 
 
-        public new Future<T> CatchError(Function onError, Func<bool, object> test = default(Func<bool, object>)) { throw new NotImplementedException(); }
-
-
-        public new Future<E> Then<E>(Func<FutureOr<E>, T> f, Function onError = default(Function)) { throw new NotImplementedException(); }
-
-
-        public new Future<T> Timeout(TimeSpan timeLimit, Func<FutureOr<T>> onTimeout = default(Func<FutureOr<T>>)) { throw new NotImplementedException(); }
-
-
-        public new Future<T> WhenComplete(Func<FutureOr<object>> action) { throw new NotImplementedException(); }
 
         #endregion
     }

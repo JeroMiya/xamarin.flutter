@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -437,7 +437,14 @@ namespace FlutterSDK.Semantics.Binding
         public virtual AccessibilityFeatures AccessibilityFeatures { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool DisableAnimations { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
-        public new void InitInstances() { throw new NotImplementedException(); }
+        public new void InitInstances()
+        {
+            base.InitInstances();
+            _Instance = this;
+            _AccessibilityFeatures = Window.AccessibilityFeatures;
+        }
+
+
 
 
         /// <Summary>
@@ -445,7 +452,12 @@ namespace FlutterSDK.Semantics.Binding
         ///
         /// See [Window.onAccessibilityFeaturesChanged].
         /// </Summary>
-        public virtual void HandleAccessibilityFeaturesChanged() { throw new NotImplementedException(); }
+        public virtual void HandleAccessibilityFeaturesChanged()
+        {
+            _AccessibilityFeatures = Window.AccessibilityFeatures;
+        }
+
+
 
     }
     public static class SemanticsBindingMixin

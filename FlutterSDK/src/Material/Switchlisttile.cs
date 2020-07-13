@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -652,75 +652,56 @@ namespace FlutterSDK.Material.Switchlisttile
         #region constructors
         public SwitchListTile(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool value = default(bool), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color activeTrackColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveThumbColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveTrackColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Imageprovider.ImageProvider<object> activeThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imageprovider.ImageProvider<object> inactiveThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget), bool isThreeLine = false, bool dense = default(bool), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget secondary = default(FlutterSDK.Widgets.Framework.Widget), bool selected = false)
         : base(key: key)
-        {
-            this.Value = value;
-            this.OnChanged = onChanged;
-            this.ActiveColor = activeColor;
-            this.ActiveTrackColor = activeTrackColor;
-            this.InactiveThumbColor = inactiveThumbColor;
-            this.InactiveTrackColor = inactiveTrackColor;
-            this.ActiveThumbImage = activeThumbImage;
-            this.InactiveThumbImage = inactiveThumbImage;
-            this.Title = title;
-            this.Subtitle = subtitle;
-            this.IsThreeLine = isThreeLine;
-            this.Dense = dense;
-            this.ContentPadding = contentPadding;
-            this.Secondary = secondary;
-            this.Selected = selected; throw new NotImplementedException();
-        }
-        public static SwitchListTile Adaptive(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool value = default(bool), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color activeTrackColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveThumbColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveTrackColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Imageprovider.ImageProvider<object> activeThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imageprovider.ImageProvider<object> inactiveThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget), bool isThreeLine = false, bool dense = default(bool), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget secondary = default(FlutterSDK.Widgets.Framework.Widget), bool selected = false)
-        {
-            var instance = new SwitchListTile(key: key); instance.Value = value;
-            instance.OnChanged = onChanged;
-            instance.ActiveColor = activeColor;
-            instance.ActiveTrackColor = activeTrackColor;
-            instance.InactiveThumbColor = inactiveThumbColor;
-            instance.InactiveTrackColor = inactiveTrackColor;
-            instance.ActiveThumbImage = activeThumbImage;
-            instance.InactiveThumbImage = inactiveThumbImage;
-            instance.Title = title;
-            instance.Subtitle = subtitle;
-            instance.IsThreeLine = isThreeLine;
-            instance.Dense = dense;
-            instance.ContentPadding = contentPadding;
-            instance.Secondary = secondary;
-            instance.Selected = selected; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    public static SwitchListTile Adaptive(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool value = default(bool), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color activeTrackColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveThumbColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveTrackColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Imageprovider.ImageProvider<object> activeThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imageprovider.ImageProvider<object> inactiveThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget), bool isThreeLine = false, bool dense = default(bool), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget secondary = default(FlutterSDK.Widgets.Framework.Widget), bool selected = false)
 
-        #region fields
-        public virtual bool Value { get; set; }
-        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged { get; set; }
-        public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
-        public virtual FlutterBinding.UI.Color ActiveTrackColor { get; set; }
-        public virtual FlutterBinding.UI.Color InactiveThumbColor { get; set; }
-        public virtual FlutterBinding.UI.Color InactiveTrackColor { get; set; }
-        public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> ActiveThumbImage { get; set; }
-        public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> InactiveThumbImage { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Subtitle { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Secondary { get; set; }
-        public virtual bool IsThreeLine { get; set; }
-        public virtual bool Dense { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ContentPadding { get; set; }
-        public virtual bool Selected { get; set; }
-        internal virtual FlutterSDK.Material.Switchlisttile._SwitchListTileType _SwitchListTileType { get; set; }
-        #endregion
+}
+#endregion
 
-        #region methods
+#region fields
+public virtual bool Value { get; set; }
+public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged { get; set; }
+public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
+public virtual FlutterBinding.UI.Color ActiveTrackColor { get; set; }
+public virtual FlutterBinding.UI.Color InactiveThumbColor { get; set; }
+public virtual FlutterBinding.UI.Color InactiveTrackColor { get; set; }
+public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> ActiveThumbImage { get; set; }
+public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> InactiveThumbImage { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget Subtitle { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget Secondary { get; set; }
+public virtual bool IsThreeLine { get; set; }
+public virtual bool Dense { get; set; }
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ContentPadding { get; set; }
+public virtual bool Selected { get; set; }
+internal virtual FlutterSDK.Material.Switchlisttile._SwitchListTileType _SwitchListTileType { get; set; }
+#endregion
 
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+#region methods
 
-        #endregion
-    }
-
-
-    public enum _SwitchListTileType
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    Widget control = default(Widget);
+    switch (_SwitchListTileType) { case _SwitchListTileType.Adaptive: control = Switch.Adaptive(value: Value, onChanged: OnChanged, activeColor: ActiveColor, activeThumbImage: ActiveThumbImage, inactiveThumbImage: InactiveThumbImage, materialTapTargetSize: MaterialTapTargetSize.ShrinkWrap, activeTrackColor: ActiveTrackColor, inactiveTrackColor: InactiveTrackColor, inactiveThumbColor: InactiveThumbColor); break; case _SwitchListTileType.Material: control = new Switch(value: Value, onChanged: OnChanged, activeColor: ActiveColor, activeThumbImage: ActiveThumbImage, inactiveThumbImage: InactiveThumbImage, materialTapTargetSize: MaterialTapTargetSize.ShrinkWrap, activeTrackColor: ActiveTrackColor, inactiveTrackColor: InactiveTrackColor, inactiveThumbColor: InactiveThumbColor); }
+    return new MergeSemantics(child: ListtileDefaultClass.ListTileTheme.Merge(selectedColor: ActiveColor ?? ThemeDefaultClass.Theme.Of(context).AccentColor, child: new ListTile(leading: Secondary, title: Title, subtitle: Subtitle, trailing: control, isThreeLine: IsThreeLine, dense: Dense, contentPadding: ContentPadding, enabled: OnChanged != null, onTap: OnChanged != null ? () =>
     {
-
-        Material,
-        Adaptive,
+        OnChanged(!Value);
     }
+    : null, selected: Selected)));
+}
+
+
+
+#endregion
+}
+
+
+public enum _SwitchListTileType
+{
+
+    Material,
+    Adaptive,
+}
 
 }

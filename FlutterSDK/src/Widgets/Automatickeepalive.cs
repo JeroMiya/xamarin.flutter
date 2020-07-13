@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -434,10 +434,23 @@ namespace FlutterSDK.Widgets.Automatickeepalive
         internal virtual FlutterSDK.Widgets.Automatickeepalive.KeepAliveHandle _KeepAliveHandle { get; set; }
         public virtual bool WantKeepAlive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
-        private void _EnsureKeepAlive() { throw new NotImplementedException(); }
+        private void _EnsureKeepAlive()
+        {
+
+            _KeepAliveHandle = new KeepAliveHandle();
+            new KeepAliveNotification(_KeepAliveHandle).Dispatch(Context);
+        }
 
 
-        private void _ReleaseKeepAlive() { throw new NotImplementedException(); }
+
+
+        private void _ReleaseKeepAlive()
+        {
+            _KeepAliveHandle.Release();
+            _KeepAliveHandle = null;
+        }
+
+
 
 
         /// <Summary>
@@ -445,16 +458,47 @@ namespace FlutterSDK.Widgets.Automatickeepalive
         /// firing a [KeepAliveNotification] or triggering the [KeepAliveHandle] as
         /// appropriate.
         /// </Summary>
-        public virtual void UpdateKeepAlive() { throw new NotImplementedException(); }
+        public virtual void UpdateKeepAlive()
+        {
+            if (WantKeepAlive)
+            {
+                if (_KeepAliveHandle == null) _EnsureKeepAlive();
+            }
+            else
+            {
+                if (_KeepAliveHandle != null) _ReleaseKeepAlive();
+            }
+
+        }
 
 
-        public new void InitState() { throw new NotImplementedException(); }
 
 
-        public new void Deactivate() { throw new NotImplementedException(); }
+        public new void InitState()
+        {
+            base.InitState();
+            if (WantKeepAlive) _EnsureKeepAlive();
+        }
 
 
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+
+
+        public new void Deactivate()
+        {
+            if (_KeepAliveHandle != null) _ReleaseKeepAlive();
+            base.Deactivate();
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            if (WantKeepAlive && _KeepAliveHandle == null) _EnsureKeepAlive();
+            return null;
+        }
+
+
 
     }
     public static class AutomaticKeepAliveClientMixinMixin
@@ -495,164 +539,303 @@ namespace FlutterSDK.Widgets.Automatickeepalive
         #region constructors
         public AutomaticKeepAlive(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
-        {
-            this.Child = child; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new FlutterSDK.Widgets.Automatickeepalive._AutomaticKeepAliveState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
+    public new FlutterSDK.Widgets.Automatickeepalive._AutomaticKeepAliveState CreateState() => new _AutomaticKeepAliveState();
 
 
-    public class _AutomaticKeepAliveState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Automatickeepalive.AutomaticKeepAlive>
+    #endregion
+}
+
+
+public class _AutomaticKeepAliveState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Automatickeepalive.AutomaticKeepAlive>
+{
+    #region constructors
+    public _AutomaticKeepAliveState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual Dictionary<FlutterSDK.Foundation.Changenotifier.Listenable, object> _Handles { get; set; }
+    internal virtual FlutterSDK.Widgets.Framework.Widget _Child { get; set; }
+    internal virtual bool _KeepingAlive { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
     {
-        #region constructors
-        public _AutomaticKeepAliveState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual Dictionary<FlutterSDK.Foundation.Changenotifier.Listenable, object> _Handles { get; set; }
-        internal virtual FlutterSDK.Widgets.Framework.Widget _Child { get; set; }
-        internal virtual bool _KeepingAlive { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Widgets.Automatickeepalive.AutomaticKeepAlive oldWidget) { throw new NotImplementedException(); }
-
-
-        private void _UpdateChild() { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        private bool _AddClient(FlutterSDK.Widgets.Automatickeepalive.KeepAliveNotification notification) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Get the [Element] for the only [KeepAlive] child.
-        ///
-        /// While this widget is guaranteed to have a child, this may return null if
-        /// the first build of that child has not completed yet.
-        /// </Summary>
-        private FlutterSDK.Widgets.Framework.ParentDataElement<FlutterSDK.Rendering.Slivermultiboxadaptor.KeepAliveParentDataMixin> _GetChildElement() { throw new NotImplementedException(); }
-
-
-        private void _UpdateParentDataOfChild(FlutterSDK.Widgets.Framework.ParentDataElement<FlutterSDK.Rendering.Slivermultiboxadaptor.KeepAliveParentDataMixin> childElement) { throw new NotImplementedException(); }
-
-
-        private VoidCallback _CreateCallback(FlutterSDK.Foundation.Changenotifier.Listenable handle) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description) { throw new NotImplementedException(); }
-
-        #endregion
+        base.InitState();
+        _UpdateChild();
     }
+
+
+
+
+    public new void DidUpdateWidget(FlutterSDK.Widgets.Automatickeepalive.AutomaticKeepAlive oldWidget)
+    {
+        base.DidUpdateWidget(oldWidget);
+        _UpdateChild();
+    }
+
+
+
+
+    private void _UpdateChild()
+    {
+        _Child = new NotificationListener<KeepAliveNotification>(onNotification: _AddClient, child: Widget.Child);
+    }
+
+
+
+
+    public new void Dispose()
+    {
+        if (_Handles != null)
+        {
+            foreach (Listenable handle in _Handles.Keys) handle.RemoveListener(_Handles[handle]);
+        }
+
+        base.Dispose();
+    }
+
+
+
+
+    private bool _AddClient(FlutterSDK.Widgets.Automatickeepalive.KeepAliveNotification notification)
+    {
+        Listenable handle = notification.Handle;
+        _Handles = (_Handles == null ? new Dictionary<Listenable, VoidCallback> { } : _Handles);
+
+        _Handles[handle] = _CreateCallback(handle);
+        handle.AddListener(_Handles[handle]);
+        if (!_KeepingAlive)
+        {
+            _KeepingAlive = true;
+            ParentDataElement<KeepAliveParentDataMixin> childElement = _GetChildElement();
+            if (childElement != null)
+            {
+                _UpdateParentDataOfChild(childElement);
+            }
+            else
+            {
+                BindingDefaultClass.SchedulerBinding.Instance.AddPostFrameCallback((TimeSpan timeStamp) =>
+                {
+                    if (!Mounted)
+                    {
+                        return;
+                    }
+
+                    ParentDataElement<KeepAliveParentDataMixin> childElement = _GetChildElement();
+
+                    _UpdateParentDataOfChild(childElement);
+                }
+                );
+            }
+
+        }
+
+        return false;
+    }
+
+
 
 
     /// <Summary>
-    /// Indicates that the subtree through which this notification bubbles must be
-    /// kept alive even if it would normally be discarded as an optimization.
+    /// Get the [Element] for the only [KeepAlive] child.
     ///
-    /// For example, a focused text field might fire this notification to indicate
-    /// that it should not be disposed even if the user scrolls the field off
-    /// screen.
-    ///
-    /// Each [KeepAliveNotification] is configured with a [handle] that consists of
-    /// a [Listenable] that is triggered when the subtree no longer needs to be kept
-    /// alive.
-    ///
-    /// The [handle] should be triggered any time the sending widget is removed from
-    /// the tree (in [State.deactivate]). If the widget is then rebuilt and still
-    /// needs to be kept alive, it should immediately send a new notification
-    /// (possible with the very same [Listenable]) during build.
-    ///
-    /// This notification is listened to by the [AutomaticKeepAlive] widget, which
-    /// is added to the tree automatically by [SliverList] (and [ListView]) and
-    /// [SliverGrid] (and [GridView]) widgets.
-    ///
-    /// Failure to trigger the [handle] in the manner described above will likely
-    /// cause the [AutomaticKeepAlive] to lose track of whether the widget should be
-    /// kept alive or not, leading to memory leaks or lost data. For example, if the
-    /// widget that requested keepalive is removed from the subtree but doesn't
-    /// trigger its [Listenable] on the way out, then the subtree will continue to
-    /// be kept alive until the list itself is disposed. Similarly, if the
-    /// [Listenable] is triggered while the widget needs to be kept alive, but a new
-    /// [KeepAliveNotification] is not immediately sent, then the widget risks being
-    /// garbage collected while it wants to be kept alive.
-    ///
-    /// It is an error to use the same [handle] in two [KeepAliveNotification]s
-    /// within the same [AutomaticKeepAlive] without triggering that [handle] before
-    /// the second notification is sent.
-    ///
-    /// For a more convenient way to interact with [AutomaticKeepAlive] widgets,
-    /// consider using [AutomaticKeepAliveClientMixin], which uses
-    /// [KeepAliveNotification] internally.
+    /// While this widget is guaranteed to have a child, this may return null if
+    /// the first build of that child has not completed yet.
     /// </Summary>
-    public class KeepAliveNotification : FlutterSDK.Widgets.Notificationlistener.Notification
+    private FlutterSDK.Widgets.Framework.ParentDataElement<FlutterSDK.Rendering.Slivermultiboxadaptor.KeepAliveParentDataMixin> _GetChildElement()
     {
-        #region constructors
-        public KeepAliveNotification(FlutterSDK.Foundation.Changenotifier.Listenable handle)
-        : base()
+
+        Element element = Context as Element;
+        Element childElement = default(Element);
+        element.VisitChildren((Element child) =>
         {
-            this.Handle = handle; throw new NotImplementedException();
+            childElement = child;
         }
-        #endregion
+        );
 
-        #region fields
-        public virtual FlutterSDK.Foundation.Changenotifier.Listenable Handle { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
+        return childElement as ParentDataElement<KeepAliveParentDataMixin>;
     }
 
+
+
+
+    private void _UpdateParentDataOfChild(FlutterSDK.Widgets.Framework.ParentDataElement<FlutterSDK.Rendering.Slivermultiboxadaptor.KeepAliveParentDataMixin> childElement)
+    {
+        childElement.ApplyWidgetOutOfTurn(Build(Context) as ParentDataWidget<KeepAliveParentDataMixin>);
+    }
+
+
+
+
+    private VoidCallback _CreateCallback(FlutterSDK.Foundation.Changenotifier.Listenable handle)
+    {
+        return () =>
+        {
+
+            _Handles.Remove(handle);
+            if (_Handles.IsEmpty())
+            {
+                if (BindingDefaultClass.SchedulerBinding.Instance.SchedulerPhase.Index < SchedulerPhase.PersistentCallbacks.Index)
+                {
+                    SetState(() =>
+                    {
+                        _KeepingAlive = false;
+                    }
+                    );
+                }
+                else
+                {
+                    _KeepingAlive = false;
+                Dart: asyncDefaultClass.ScheduleMicrotask(() =>
+                {
+                    if (Mounted && _Handles.IsEmpty())
+                    {
+                        SetState(() =>
+                        {
+
+                        }
+                        );
+                    }
+
+                }
+                 );
+                }
+
+            }
+
+        }
+        ;
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+
+        return new KeepAlive(keepAlive: _KeepingAlive, child: _Child);
+    }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description)
+    {
+        base.DebugFillProperties(description);
+        description.Add(new FlagProperty("_keepingAlive", value: _KeepingAlive, ifTrue: "keeping subtree alive"));
+        description.Add(new DiagnosticsProperty<Dictionary<Listenable, VoidCallback>>("handles", _Handles, description: _Handles != null ? $"'{_Handles.Length} active client{_Handles.Length == 1 ? "":'s'}'" : null, ifNull: "no notifications ever received"));
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Indicates that the subtree through which this notification bubbles must be
+/// kept alive even if it would normally be discarded as an optimization.
+///
+/// For example, a focused text field might fire this notification to indicate
+/// that it should not be disposed even if the user scrolls the field off
+/// screen.
+///
+/// Each [KeepAliveNotification] is configured with a [handle] that consists of
+/// a [Listenable] that is triggered when the subtree no longer needs to be kept
+/// alive.
+///
+/// The [handle] should be triggered any time the sending widget is removed from
+/// the tree (in [State.deactivate]). If the widget is then rebuilt and still
+/// needs to be kept alive, it should immediately send a new notification
+/// (possible with the very same [Listenable]) during build.
+///
+/// This notification is listened to by the [AutomaticKeepAlive] widget, which
+/// is added to the tree automatically by [SliverList] (and [ListView]) and
+/// [SliverGrid] (and [GridView]) widgets.
+///
+/// Failure to trigger the [handle] in the manner described above will likely
+/// cause the [AutomaticKeepAlive] to lose track of whether the widget should be
+/// kept alive or not, leading to memory leaks or lost data. For example, if the
+/// widget that requested keepalive is removed from the subtree but doesn't
+/// trigger its [Listenable] on the way out, then the subtree will continue to
+/// be kept alive until the list itself is disposed. Similarly, if the
+/// [Listenable] is triggered while the widget needs to be kept alive, but a new
+/// [KeepAliveNotification] is not immediately sent, then the widget risks being
+/// garbage collected while it wants to be kept alive.
+///
+/// It is an error to use the same [handle] in two [KeepAliveNotification]s
+/// within the same [AutomaticKeepAlive] without triggering that [handle] before
+/// the second notification is sent.
+///
+/// For a more convenient way to interact with [AutomaticKeepAlive] widgets,
+/// consider using [AutomaticKeepAliveClientMixin], which uses
+/// [KeepAliveNotification] internally.
+/// </Summary>
+public class KeepAliveNotification : FlutterSDK.Widgets.Notificationlistener.Notification
+{
+    #region constructors
+    public KeepAliveNotification(FlutterSDK.Foundation.Changenotifier.Listenable handle)
+    : base()
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Foundation.Changenotifier.Listenable Handle { get; set; }
+#endregion
+
+#region methods
+#endregion
+}
+
+
+/// <Summary>
+/// A [Listenable] which can be manually triggered.
+///
+/// Used with [KeepAliveNotification] objects as their
+/// [KeepAliveNotification.handle].
+///
+/// For a more convenient way to interact with [AutomaticKeepAlive] widgets,
+/// consider using [AutomaticKeepAliveClientMixin], which uses a
+/// [KeepAliveHandle] internally.
+/// </Summary>
+public class KeepAliveHandle : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
+{
+    #region constructors
+    public KeepAliveHandle()
+    { }
+    #endregion
+
+    #region fields
+    #endregion
+
+    #region methods
 
     /// <Summary>
-    /// A [Listenable] which can be manually triggered.
-    ///
-    /// Used with [KeepAliveNotification] objects as their
-    /// [KeepAliveNotification.handle].
-    ///
-    /// For a more convenient way to interact with [AutomaticKeepAlive] widgets,
-    /// consider using [AutomaticKeepAliveClientMixin], which uses a
-    /// [KeepAliveHandle] internally.
+    /// Trigger the listeners to indicate that the widget
+    /// no longer needs to be kept alive.
     /// </Summary>
-    public class KeepAliveHandle : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
+    public virtual void Release()
     {
-        #region constructors
-        public KeepAliveHandle()
-        { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Trigger the listeners to indicate that the widget
-        /// no longer needs to be kept alive.
-        /// </Summary>
-        public virtual void Release() { throw new NotImplementedException(); }
-
-        #endregion
+        NotifyListeners();
     }
+
+
+
+    #endregion
+}
 
 }

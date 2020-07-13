@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -447,61 +447,98 @@ namespace FlutterSDK.Painting.Boxshadow
         #region constructors
         public BoxShadow(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), double blurRadius = 0.0, double spreadRadius = 0.0)
         : base(color: color, offset: offset, blurRadius: blurRadius)
-        {
-            this.SpreadRadius = spreadRadius; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual double SpreadRadius { get; set; }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    public virtual double SpreadRadius { get; set; }
+    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        /// <Summary>
-        /// Create the [Paint] object that corresponds to this shadow description.
-        ///
-        /// The [offset] and [spreadRadius] are not represented in the [Paint] object.
-        /// To honor those as well, the shape should be inflated by [spreadRadius] pixels
-        /// in every direction and then translated by [offset] before being filled using
-        /// this [Paint].
-        /// </Summary>
-        public new Paint ToPaint() { throw new NotImplementedException(); }
+    /// <Summary>
+    /// Create the [Paint] object that corresponds to this shadow description.
+    ///
+    /// The [offset] and [spreadRadius] are not represented in the [Paint] object.
+    /// To honor those as well, the shape should be inflated by [spreadRadius] pixels
+    /// in every direction and then translated by [offset] before being filled using
+    /// this [Paint].
+    /// </Summary>
+    public new Paint ToPaint()
+    {
+        Paint result = new Paint()..Color = Color..MaskFilter = MaskFilter.Blur(BlurStyle.Normal, BlurSigma);
 
-
-        /// <Summary>
-        /// Returns a new box shadow with its offset, blurRadius, and spreadRadius scaled by the given factor.
-        /// </Summary>
-        public new FlutterSDK.Painting.Boxshadow.BoxShadow Scale(double factor) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Linearly interpolate between two box shadows.
-        ///
-        /// If either box shadow is null, this function linearly interpolates from a
-        /// a box shadow that matches the other box shadow in color but has a zero
-        /// offset and a zero blurRadius.
-        ///
-        /// {@macro dart.ui.shadow.lerp}
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Boxshadow.BoxShadow Lerp(FlutterSDK.Painting.Boxshadow.BoxShadow a, FlutterSDK.Painting.Boxshadow.BoxShadow b, double t) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Linearly interpolate between two lists of box shadows.
-        ///
-        /// If the lists differ in length, excess items are lerped with null.
-        ///
-        /// {@macro dart.ui.shadow.lerp}
-        /// </Summary>
-        public virtual List<FlutterSDK.Painting.Boxshadow.BoxShadow> LerpList(List<FlutterSDK.Painting.Boxshadow.BoxShadow> a, List<FlutterSDK.Painting.Boxshadow.BoxShadow> b, double t) { throw new NotImplementedException(); }
-
-
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
-
-
-        #endregion
+        return result;
     }
+
+
+
+
+    /// <Summary>
+    /// Returns a new box shadow with its offset, blurRadius, and spreadRadius scaled by the given factor.
+    /// </Summary>
+    public new FlutterSDK.Painting.Boxshadow.BoxShadow Scale(double factor)
+    {
+        return new BoxShadow(color: Color, offset: Offset * factor, blurRadius: BlurRadius * factor, spreadRadius: SpreadRadius * factor);
+    }
+
+
+
+
+    /// <Summary>
+    /// Linearly interpolate between two box shadows.
+    ///
+    /// If either box shadow is null, this function linearly interpolates from a
+    /// a box shadow that matches the other box shadow in color but has a zero
+    /// offset and a zero blurRadius.
+    ///
+    /// {@macro dart.ui.shadow.lerp}
+    /// </Summary>
+    public virtual FlutterSDK.Painting.Boxshadow.BoxShadow Lerp(FlutterSDK.Painting.Boxshadow.BoxShadow a, FlutterSDK.Painting.Boxshadow.BoxShadow b, double t)
+    {
+
+        if (a == null && b == null) return null;
+        if (a == null) return b.Scale(t);
+        if (b == null) return a.Scale(1.0 - t);
+        return new BoxShadow(color: Dart:uiDefaultClass.Color.Lerp(a.Color, b.Color, t), offset: Dart:uiDefaultClass.Offset.Lerp(a.Offset, b.Offset, t), blurRadius: Ui.Dart:uiDefaultClass.LerpDouble(a.BlurRadius, b.BlurRadius, t), spreadRadius: Ui.Dart:uiDefaultClass.LerpDouble(a.SpreadRadius, b.SpreadRadius, t));
+    }
+
+
+
+
+    /// <Summary>
+    /// Linearly interpolate between two lists of box shadows.
+    ///
+    /// If the lists differ in length, excess items are lerped with null.
+    ///
+    /// {@macro dart.ui.shadow.lerp}
+    /// </Summary>
+    public virtual List<FlutterSDK.Painting.Boxshadow.BoxShadow> LerpList(List<FlutterSDK.Painting.Boxshadow.BoxShadow> a, List<FlutterSDK.Painting.Boxshadow.BoxShadow> b, double t)
+    {
+
+        if (a == null && b == null) return null;
+        a = (a == null ? new List<BoxShadow>() { } : a);
+        b = (b == null ? new List<BoxShadow>() { } : b);
+        int commonLength = Math.Dart:mathDefaultClass.Min(a.Count, b.Count);
+        return new List<BoxShadow>() { };
+    }
+
+
+
+
+    public new bool Equals(@Object other)
+    {
+        if (Dart:coreDefaultClass.Identical(this, other))return true;
+        if (other.GetType() != GetType()) return false;
+        return other is BoxShadow && other.Color == Color && other.Offset == Offset && other.BlurRadius == BlurRadius && other.SpreadRadius == SpreadRadius;
+    }
+
+
+
+
+    #endregion
+}
 
 }

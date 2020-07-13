@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -443,50 +443,76 @@ namespace FlutterSDK.Widgets.Willpopscope
         #region constructors
         public WillPopScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Navigator.WillPopCallback onWillPop = default(FlutterSDK.Widgets.Navigator.WillPopCallback))
         : base(key: key)
-        {
-            this.Child = child;
-            this.OnWillPop = onWillPop; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual FlutterSDK.Widgets.Navigator.WillPopCallback OnWillPop { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+    public virtual FlutterSDK.Widgets.Navigator.WillPopCallback OnWillPop { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new FlutterSDK.Widgets.Willpopscope._WillPopScopeState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
+    public new FlutterSDK.Widgets.Willpopscope._WillPopScopeState CreateState() => new _WillPopScopeState();
 
 
-    public class _WillPopScopeState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Willpopscope.WillPopScope>
+    #endregion
+}
+
+
+public class _WillPopScopeState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Willpopscope.WillPopScope>
+{
+    #region constructors
+    public _WillPopScopeState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Widgets.Routes.ModalRoute<object> _Route { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void DidChangeDependencies()
     {
-        #region constructors
-        public _WillPopScopeState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Widgets.Routes.ModalRoute<object> _Route { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void DidChangeDependencies() { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Widgets.Willpopscope.WillPopScope oldWidget) { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        base.DidChangeDependencies();
+        if (Widget.OnWillPop != null) _Route?.RemoveScopedWillPopCallback(Widget.OnWillPop);
+        _Route = RoutesDefaultClass.ModalRoute.Of(Context);
+        if (Widget.OnWillPop != null) _Route?.AddScopedWillPopCallback(Widget.OnWillPop);
     }
+
+
+
+
+    public new void DidUpdateWidget(FlutterSDK.Widgets.Willpopscope.WillPopScope oldWidget)
+    {
+        base.DidUpdateWidget(oldWidget);
+
+        if (Widget.OnWillPop != oldWidget.OnWillPop && _Route != null)
+        {
+            if (oldWidget.OnWillPop != null) _Route.RemoveScopedWillPopCallback(oldWidget.OnWillPop);
+            if (Widget.OnWillPop != null) _Route.AddScopedWillPopCallback(Widget.OnWillPop);
+        }
+
+    }
+
+
+
+
+    public new void Dispose()
+    {
+        if (Widget.OnWillPop != null) _Route?.RemoveScopedWillPopCallback(Widget.OnWillPop);
+        base.Dispose();
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) => Widget.Child;
+
+
+    #endregion
+}
 
 }

@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 namespace FlutterSDK.Material.Outlinebutton
@@ -439,205 +439,312 @@ namespace FlutterSDK.Material.Outlinebutton
         #region constructors
         public OutlineButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback onPressed = default(VoidCallback), VoidCallback onLongPress = default(VoidCallback), FlutterSDK.Material.Buttontheme.ButtonTextTheme textTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme), FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledTextColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), double highlightElevation = default(double), FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterBinding.UI.Color disabledBorderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightedBorderColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, onPressed: onPressed, onLongPress: onLongPress, textTheme: textTheme, textColor: textColor, disabledTextColor: disabledTextColor, color: color, focusColor: focusColor, hoverColor: hoverColor, highlightColor: highlightColor, splashColor: splashColor, highlightElevation: highlightElevation, padding: padding, visualDensity: visualDensity, shape: shape, clipBehavior: clipBehavior, focusNode: focusNode, autofocus: autofocus, child: child)
-        {
-            this.BorderSide = borderSide;
-            this.DisabledBorderColor = disabledBorderColor;
-            this.HighlightedBorderColor = highlightedBorderColor; throw new NotImplementedException();
-        }
-        public static OutlineButton Icon(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback onPressed = default(VoidCallback), VoidCallback onLongPress = default(VoidCallback), FlutterSDK.Material.Buttontheme.ButtonTextTheme textTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme), FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledTextColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), double highlightElevation = default(double), FlutterBinding.UI.Color highlightedBorderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledBorderColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = default(bool), FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget))
-        {
-            var instance = new OutlineButton(); throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    public static OutlineButton Icon(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback onPressed = default(VoidCallback), VoidCallback onLongPress = default(VoidCallback), FlutterSDK.Material.Buttontheme.ButtonTextTheme textTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme), FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledTextColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), double highlightElevation = default(double), FlutterBinding.UI.Color highlightedBorderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledBorderColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = default(bool), FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget))
 
-        #region fields
-        public virtual FlutterBinding.UI.Color HighlightedBorderColor { get; set; }
-        public virtual FlutterBinding.UI.Color DisabledBorderColor { get; set; }
-        public virtual FlutterSDK.Painting.Borders.BorderSide BorderSide { get; set; }
-        #endregion
+}
+#endregion
 
-        #region methods
+#region fields
+public virtual FlutterBinding.UI.Color HighlightedBorderColor { get; set; }
+public virtual FlutterBinding.UI.Color DisabledBorderColor { get; set; }
+public virtual FlutterSDK.Painting.Borders.BorderSide BorderSide { get; set; }
+#endregion
 
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+#region methods
 
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
-    }
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    ButtonThemeData buttonTheme = ButtonthemeDefaultClass.ButtonTheme.Of(context);
+    return new _OutlineButton(onPressed: OnPressed, onLongPress: OnLongPress, brightness: buttonTheme.GetBrightness(this), textTheme: TextTheme, textColor: buttonTheme.GetTextColor(this), disabledTextColor: buttonTheme.GetDisabledTextColor(this), color: Color, focusColor: buttonTheme.GetFocusColor(this), hoverColor: buttonTheme.GetHoverColor(this), highlightColor: buttonTheme.GetHighlightColor(this), splashColor: buttonTheme.GetSplashColor(this), highlightElevation: buttonTheme.GetHighlightElevation(this), borderSide: BorderSide, disabledBorderColor: DisabledBorderColor, highlightedBorderColor: HighlightedBorderColor ?? buttonTheme.ColorScheme.Primary, padding: buttonTheme.GetPadding(this), visualDensity: VisualDensity, shape: buttonTheme.GetShape(this), clipBehavior: ClipBehavior, focusNode: FocusNode, child: Child);
+}
 
 
-    public class _OutlineButtonWithIcon : FlutterSDK.Material.Outlinebutton.OutlineButton, IMaterialButtonWithIconMixin
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new DiagnosticsProperty<BorderSide>("borderSide", BorderSide, defaultValue: null));
+    properties.Add(new ColorProperty("disabledBorderColor", DisabledBorderColor, defaultValue: null));
+    properties.Add(new ColorProperty("highlightedBorderColor", HighlightedBorderColor, defaultValue: null));
+}
+
+
+
+#endregion
+}
+
+
+public class _OutlineButtonWithIcon : FlutterSDK.Material.Outlinebutton.OutlineButton, IMaterialButtonWithIconMixin
+{
+    #region constructors
+    public _OutlineButtonWithIcon(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback onPressed = default(VoidCallback), VoidCallback onLongPress = default(VoidCallback), FlutterSDK.Material.Buttontheme.ButtonTextTheme textTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme), FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledTextColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), double highlightElevation = default(double), FlutterBinding.UI.Color highlightedBorderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledBorderColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key, onPressed: onPressed, onLongPress: onLongPress, textTheme: textTheme, textColor: textColor, disabledTextColor: disabledTextColor, color: color, focusColor: focusColor, hoverColor: hoverColor, highlightColor: highlightColor, splashColor: splashColor, highlightElevation: highlightElevation, disabledBorderColor: disabledBorderColor, highlightedBorderColor: highlightedBorderColor, borderSide: borderSide, padding: padding, visualDensity: visualDensity, shape: shape, clipBehavior: clipBehavior, focusNode: focusNode, autofocus: autofocus, child: new Row(mainAxisSize: MainAxisSize.Min, children: new List<Widget>() { icon, new SizedBox(width: 8.0), label }))
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+#endregion
+}
+
+
+public class _OutlineButton : FlutterSDK.Widgets.Framework.StatefulWidget
+{
+    #region constructors
+    public _OutlineButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback onPressed = default(VoidCallback), VoidCallback onLongPress = default(VoidCallback), Brightness brightness = default(Brightness), FlutterSDK.Material.Buttontheme.ButtonTextTheme textTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme), FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledTextColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), double highlightElevation = default(double), FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterBinding.UI.Color disabledBorderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightedBorderColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual VoidCallback OnPressed { get; set; }
+public virtual VoidCallback OnLongPress { get; set; }
+public virtual Brightness Brightness { get; set; }
+public virtual FlutterSDK.Material.Buttontheme.ButtonTextTheme TextTheme { get; set; }
+public virtual FlutterBinding.UI.Color TextColor { get; set; }
+public virtual FlutterBinding.UI.Color DisabledTextColor { get; set; }
+public virtual FlutterBinding.UI.Color Color { get; set; }
+public virtual FlutterBinding.UI.Color SplashColor { get; set; }
+public virtual FlutterBinding.UI.Color FocusColor { get; set; }
+public virtual FlutterBinding.UI.Color HoverColor { get; set; }
+public virtual FlutterBinding.UI.Color HighlightColor { get; set; }
+public virtual double HighlightElevation { get; set; }
+public virtual FlutterSDK.Painting.Borders.BorderSide BorderSide { get; set; }
+public virtual FlutterBinding.UI.Color DisabledBorderColor { get; set; }
+public virtual FlutterBinding.UI.Color HighlightedBorderColor { get; set; }
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+public virtual FlutterSDK.Material.Themedata.VisualDensity VisualDensity { get; set; }
+public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+public virtual bool Autofocus { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+public virtual bool Enabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Material.Outlinebutton._OutlineButtonState CreateState() => new _OutlineButtonState();
+
+
+#endregion
+}
+
+
+public class _OutlineButtonState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Outlinebutton._OutlineButton>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+{
+    #region constructors
+    public _OutlineButtonState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
+    internal virtual FlutterSDK.Animation.Animation.Animation<double> _FillAnimation { get; set; }
+    internal virtual FlutterSDK.Animation.Animation.Animation<double> _ElevationAnimation { get; set; }
+    internal virtual bool _Pressed { get; set; }
+    internal virtual FlutterBinding.UI.Color _OutlineColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
     {
-        #region constructors
-        public _OutlineButtonWithIcon(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback onPressed = default(VoidCallback), VoidCallback onLongPress = default(VoidCallback), FlutterSDK.Material.Buttontheme.ButtonTextTheme textTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme), FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledTextColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), double highlightElevation = default(double), FlutterBinding.UI.Color highlightedBorderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledBorderColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key, onPressed: onPressed, onLongPress: onLongPress, textTheme: textTheme, textColor: textColor, disabledTextColor: disabledTextColor, color: color, focusColor: focusColor, hoverColor: hoverColor, highlightColor: highlightColor, splashColor: splashColor, highlightElevation: highlightElevation, disabledBorderColor: disabledBorderColor, highlightedBorderColor: highlightedBorderColor, borderSide: borderSide, padding: padding, visualDensity: visualDensity, shape: shape, clipBehavior: clipBehavior, focusNode: focusNode, autofocus: autofocus, child: new Row(mainAxisSize: MainAxisSize.Min, children: new List<Widget>() { icon, new SizedBox(width: 8.0), label }))
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
+        base.InitState();
+        _Controller = new AnimationController(duration: OutlinebuttonDefaultClass._KPressDuration, vsync: this);
+        _FillAnimation = new CurvedAnimation(parent: _Controller, curve: new Interval(0.0, 0.5, curve: CurvesDefaultClass.Curves.FastOutSlowIn));
+        _ElevationAnimation = new CurvedAnimation(parent: _Controller, curve: new Interval(0.5, 0.5), reverseCurve: new Interval(1.0, 1.0));
     }
 
 
-    public class _OutlineButton : FlutterSDK.Widgets.Framework.StatefulWidget
+
+
+    public new void DidUpdateWidget(FlutterSDK.Material.Outlinebutton._OutlineButton oldWidget)
     {
-        #region constructors
-        public _OutlineButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback onPressed = default(VoidCallback), VoidCallback onLongPress = default(VoidCallback), Brightness brightness = default(Brightness), FlutterSDK.Material.Buttontheme.ButtonTextTheme textTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme), FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledTextColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), double highlightElevation = default(double), FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterBinding.UI.Color disabledBorderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightedBorderColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key)
+        base.DidUpdateWidget(oldWidget);
+        if (_Pressed && !Widget.Enabled)
         {
-            this.OnPressed = onPressed;
-            this.OnLongPress = onLongPress;
-            this.Brightness = brightness;
-            this.TextTheme = textTheme;
-            this.TextColor = textColor;
-            this.DisabledTextColor = disabledTextColor;
-            this.Color = color;
-            this.FocusColor = focusColor;
-            this.HoverColor = hoverColor;
-            this.HighlightColor = highlightColor;
-            this.SplashColor = splashColor;
-            this.HighlightElevation = highlightElevation;
-            this.BorderSide = borderSide;
-            this.DisabledBorderColor = disabledBorderColor;
-            this.HighlightedBorderColor = highlightedBorderColor;
-            this.Padding = padding;
-            this.VisualDensity = visualDensity;
-            this.Shape = shape;
-            this.ClipBehavior = clipBehavior;
-            this.FocusNode = focusNode;
-            this.Autofocus = autofocus;
-            this.Child = child; throw new NotImplementedException();
+            _Pressed = false;
+            _Controller.Reverse();
         }
-        #endregion
 
-        #region fields
-        public virtual VoidCallback OnPressed { get; set; }
-        public virtual VoidCallback OnLongPress { get; set; }
-        public virtual Brightness Brightness { get; set; }
-        public virtual FlutterSDK.Material.Buttontheme.ButtonTextTheme TextTheme { get; set; }
-        public virtual FlutterBinding.UI.Color TextColor { get; set; }
-        public virtual FlutterBinding.UI.Color DisabledTextColor { get; set; }
-        public virtual FlutterBinding.UI.Color Color { get; set; }
-        public virtual FlutterBinding.UI.Color SplashColor { get; set; }
-        public virtual FlutterBinding.UI.Color FocusColor { get; set; }
-        public virtual FlutterBinding.UI.Color HoverColor { get; set; }
-        public virtual FlutterBinding.UI.Color HighlightColor { get; set; }
-        public virtual double HighlightElevation { get; set; }
-        public virtual FlutterSDK.Painting.Borders.BorderSide BorderSide { get; set; }
-        public virtual FlutterBinding.UI.Color DisabledBorderColor { get; set; }
-        public virtual FlutterBinding.UI.Color HighlightedBorderColor { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
-        public virtual FlutterSDK.Material.Themedata.VisualDensity VisualDensity { get; set; }
-        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
-        public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
-        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
-        public virtual bool Autofocus { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual bool Enabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Material.Outlinebutton._OutlineButtonState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
     }
 
 
-    public class _OutlineButtonState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Outlinebutton._OutlineButton>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+
+
+    private void _HandleHighlightChanged(bool value)
     {
-        #region constructors
-        public _OutlineButtonState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
-        internal virtual FlutterSDK.Animation.Animation.Animation<double> _FillAnimation { get; set; }
-        internal virtual FlutterSDK.Animation.Animation.Animation<double> _ElevationAnimation { get; set; }
-        internal virtual bool _Pressed { get; set; }
-        internal virtual FlutterBinding.UI.Color _OutlineColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Material.Outlinebutton._OutlineButton oldWidget) { throw new NotImplementedException(); }
-
-
-        private void _HandleHighlightChanged(bool value) { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        private Color _GetFillColor() { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Painting.Borders.BorderSide _GetOutline() { throw new NotImplementedException(); }
-
-
-        private double _GetHighlightElevation() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _OutlineBorder : FlutterSDK.Painting.Borders.ShapeBorder, IMaterialStateProperty<FlutterSDK.Painting.Borders.ShapeBorder>
-    {
-        #region constructors
-        public _OutlineBorder(FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Painting.Borders.BorderSide side = default(FlutterSDK.Painting.Borders.BorderSide))
-        : base()
+        if (_Pressed == value) return;
+        SetState(() =>
         {
-            this.Shape = shape;
-            this.Side = side; throw new NotImplementedException();
+            _Pressed = value;
+            if (value) _Controller.Forward(); else _Controller.Reverse();
         }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
-        public virtual FlutterSDK.Painting.Borders.BorderSide Side { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Painting.Borders.ShapeBorder Scale(double t) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t) { throw new NotImplementedException(); }
-
-
-        public new Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
-
-
-        public new Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
-
-
-        public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
-
-
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Painting.Borders.ShapeBorder Resolve(HashSet<FlutterSDK.Material.Materialstate.MaterialState> states) { throw new NotImplementedException(); }
-
-        #endregion
+        );
     }
+
+
+
+
+    public new void Dispose()
+    {
+        _Controller.Dispose();
+        base.Dispose();
+    }
+
+
+
+
+    private Color _GetFillColor()
+    {
+        if (Widget.HighlightElevation == null || Widget.HighlightElevation == 0.0) return ColorsDefaultClass.Colors.Transparent;
+        Color color = Widget.Color ?? ThemeDefaultClass.Theme.Of(Context).CanvasColor;
+        Tween<Color> colorTween = new ColorTween(begin: color.WithAlpha(0x00), end: color.WithAlpha(0xFF));
+        return colorTween.Evaluate(_FillAnimation);
+    }
+
+
+
+
+    private FlutterSDK.Painting.Borders.BorderSide _GetOutline()
+    {
+        if (Widget.BorderSide?.Style == BorderStyle.None) return Widget.BorderSide;
+        Color themeColor = ThemeDefaultClass.Theme.Of(Context).ColorScheme.OnSurface.WithOpacity(0.12);
+        return new BorderSide(color: _OutlineColor ?? themeColor, width: Widget.BorderSide?.Width ?? 1.0);
+    }
+
+
+
+
+    private double _GetHighlightElevation()
+    {
+        if (Widget.HighlightElevation == null || Widget.HighlightElevation == 0.0) return 0.0;
+        return new Tween<double>(begin: 0.0, end: Widget.HighlightElevation).Evaluate(_ElevationAnimation);
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        ThemeData theme = ThemeDefaultClass.Theme.Of(context);
+        return new AnimatedBuilder(animation: _Controller, builder: (BuildContext context, Widget child) =>
+        {
+            return new RaisedButton(textColor: Widget.TextColor, disabledTextColor: Widget.DisabledTextColor, color: _GetFillColor(), splashColor: Widget.SplashColor, focusColor: Widget.FocusColor, hoverColor: Widget.HoverColor, highlightColor: Widget.HighlightColor, disabledColor: ColorsDefaultClass.Colors.Transparent, onPressed: Widget.OnPressed, onLongPress: Widget.OnLongPress, elevation: 0.0, disabledElevation: 0.0, focusElevation: 0.0, hoverElevation: 0.0, highlightElevation: _GetHighlightElevation(), onHighlightChanged: _HandleHighlightChanged, padding: Widget.Padding, visualDensity: Widget.VisualDensity ?? theme.VisualDensity, shape: new _OutlineBorder(shape: Widget.Shape, side: _GetOutline()), clipBehavior: Widget.ClipBehavior, focusNode: Widget.FocusNode, animationDuration: OutlinebuttonDefaultClass._KElevationDuration, child: Widget.Child);
+        }
+        );
+    }
+
+
+
+    #endregion
+}
+
+
+public class _OutlineBorder : FlutterSDK.Painting.Borders.ShapeBorder, IMaterialStateProperty<FlutterSDK.Painting.Borders.ShapeBorder>
+{
+    #region constructors
+    public _OutlineBorder(FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Painting.Borders.BorderSide side = default(FlutterSDK.Painting.Borders.BorderSide))
+    : base()
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+public virtual FlutterSDK.Painting.Borders.BorderSide Side { get; set; }
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Painting.Borders.ShapeBorder Scale(double t)
+{
+    return new _OutlineBorder(shape: Shape.Scale(t), side: Side.Scale(t));
+}
+
+
+
+
+public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t)
+{
+
+    if (a is _OutlineBorder)
+    {
+        return new _OutlineBorder(side: BordersDefaultClass.BorderSide.Lerp(((_OutlineBorder)a).Side, Side, t), shape: BordersDefaultClass.ShapeBorder.Lerp(((_OutlineBorder)a).Shape, Shape, t));
+    }
+
+    return base.LerpFrom(a, t);
+}
+
+
+
+
+public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t)
+{
+
+    if (b is _OutlineBorder)
+    {
+        return new _OutlineBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((_OutlineBorder)b).Side, t), shape: BordersDefaultClass.ShapeBorder.Lerp(Shape, ((_OutlineBorder)b).Shape, t));
+    }
+
+    return base.LerpTo(b, t);
+}
+
+
+
+
+public new Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+{
+    return Shape.GetInnerPath(rect.Deflate(Side.Width), textDirection: textDirection);
+}
+
+
+
+
+public new Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+{
+    return Shape.GetOuterPath(rect, textDirection: textDirection);
+}
+
+
+
+
+public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+{
+    switch (Side.Style) { case BorderStyle.None: break; case BorderStyle.Solid: canvas.DrawPath(Shape.GetOuterPath(rect, textDirection: textDirection), Side.ToPaint()); }
+}
+
+
+
+
+public new bool Equals(@Object other)
+{
+    if (Dart:coreDefaultClass.Identical(this, other))return true;
+    if (other.GetType() != GetType()) return false;
+    return other is _OutlineBorder && other.Side == Side && other.Shape == Shape;
+}
+
+
+
+
+public new FlutterSDK.Painting.Borders.ShapeBorder Resolve(HashSet<FlutterSDK.Material.Materialstate.MaterialState> states)
+{
+    return new _OutlineBorder(shape: Shape, side: Side.CopyWith(color: MaterialstateDefaultClass.MaterialStateProperty.ResolveAs(Side.Color, states)));
+}
+
+
+
+#endregion
+}
 
 }

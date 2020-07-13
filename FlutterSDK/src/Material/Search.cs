@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -497,274 +497,431 @@ namespace FlutterSDK.Material.Search
     {
         #region constructors
         public SearchDelegate(string searchFieldLabel = default(string), FlutterSDK.Services.Textinput.TextInputType keyboardType = default(FlutterSDK.Services.Textinput.TextInputType), FlutterSDK.Services.Textinput.TextInputAction textInputAction = default(FlutterSDK.Services.Textinput.TextInputAction))
-        {
-            this.SearchFieldLabel = searchFieldLabel;
-            this.KeyboardType = keyboardType;
-            this.TextInputAction = textInputAction; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual string SearchFieldLabel { get; set; }
-        public virtual FlutterSDK.Services.Textinput.TextInputType KeyboardType { get; set; }
-        public virtual FlutterSDK.Services.Textinput.TextInputAction TextInputAction { get; set; }
-        internal virtual FlutterSDK.Widgets.Focusmanager.FocusNode _FocusNode { get; set; }
-        internal virtual FlutterSDK.Widgets.Editabletext.TextEditingController _QueryTextController { get; set; }
-        internal virtual FlutterSDK.Animation.Animations.ProxyAnimation _ProxyAnimation { get; set; }
-        internal virtual FlutterSDK.Foundation.Changenotifier.ValueNotifier<FlutterSDK.Material.Search._SearchBody> _CurrentBodyNotifier { get; set; }
-        internal virtual FlutterSDK.Material.Search._SearchPageRoute<T> _Route { get; set; }
-        public virtual string Query { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Animation.Animation.Animation<double> TransitionAnimation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual FlutterSDK.Material.Search._SearchBody _CurrentBody { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    public virtual string SearchFieldLabel { get; set; }
+    public virtual FlutterSDK.Services.Textinput.TextInputType KeyboardType { get; set; }
+    public virtual FlutterSDK.Services.Textinput.TextInputAction TextInputAction { get; set; }
+    internal virtual FlutterSDK.Widgets.Focusmanager.FocusNode _FocusNode { get; set; }
+    internal virtual FlutterSDK.Widgets.Editabletext.TextEditingController _QueryTextController { get; set; }
+    internal virtual FlutterSDK.Animation.Animations.ProxyAnimation _ProxyAnimation { get; set; }
+    internal virtual FlutterSDK.Foundation.Changenotifier.ValueNotifier<FlutterSDK.Material.Search._SearchBody> _CurrentBodyNotifier { get; set; }
+    internal virtual FlutterSDK.Material.Search._SearchPageRoute<T> _Route { get; set; }
+    public virtual string Query { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Animation.Animation.Animation<double> TransitionAnimation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    internal virtual FlutterSDK.Material.Search._SearchBody _CurrentBody { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        /// <Summary>
-        /// Suggestions shown in the body of the search page while the user types a
-        /// query into the search field.
-        ///
-        /// The delegate method is called whenever the content of [query] changes.
-        /// The suggestions should be based on the current [query] string. If the query
-        /// string is empty, it is good practice to show suggested queries based on
-        /// past queries or the current context.
-        ///
-        /// Usually, this method will return a [ListView] with one [ListTile] per
-        /// suggestion. When [ListTile.onTap] is called, [query] should be updated
-        /// with the corresponding suggestion and the results page should be shown
-        /// by calling [showResults].
-        /// </Summary>
-        public virtual FlutterSDK.Widgets.Framework.Widget BuildSuggestions(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// The results shown after the user submits a search from the search page.
-        ///
-        /// The current value of [query] can be used to determine what the user
-        /// searched for.
-        ///
-        /// This method might be applied more than once to the same query.
-        /// If your [buildResults] method is computationally expensive, you may want
-        /// to cache the search results for one or more queries.
-        ///
-        /// Typically, this method returns a [ListView] with the search results.
-        /// When the user taps on a particular search result, [close] should be called
-        /// with the selected result as argument. This will close the search page and
-        /// communicate the result back to the initial caller of [showSearch].
-        /// </Summary>
-        public virtual FlutterSDK.Widgets.Framework.Widget BuildResults(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// A widget to display before the current query in the [AppBar].
-        ///
-        /// Typically an [IconButton] configured with a [BackButtonIcon] that exits
-        /// the search with [close]. One can also use an [AnimatedIcon] driven by
-        /// [transitionAnimation], which animates from e.g. a hamburger menu to the
-        /// back button as the search overlay fades in.
-        ///
-        /// Returns null if no widget should be shown.
-        ///
-        /// See also:
-        ///
-        ///  * [AppBar.leading], the intended use for the return value of this method.
-        /// </Summary>
-        public virtual FlutterSDK.Widgets.Framework.Widget BuildLeading(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Widgets to display after the search query in the [AppBar].
-        ///
-        /// If the [query] is not empty, this should typically contain a button to
-        /// clear the query and show the suggestions again (via [showSuggestions]) if
-        /// the results are currently shown.
-        ///
-        /// Returns null if no widget should be shown
-        ///
-        /// See also:
-        ///
-        ///  * [AppBar.actions], the intended use for the return value of this method.
-        /// </Summary>
-        public virtual List<FlutterSDK.Widgets.Framework.Widget> BuildActions(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// The theme used to style the [AppBar].
-        ///
-        /// By default, a white theme is used.
-        ///
-        /// See also:
-        ///
-        ///  * [AppBar.backgroundColor], which is set to [ThemeData.primaryColor].
-        ///  * [AppBar.iconTheme], which is set to [ThemeData.primaryIconTheme].
-        ///  * [AppBar.textTheme], which is set to [ThemeData.primaryTextTheme].
-        ///  * [AppBar.brightness], which is set to [ThemeData.primaryColorBrightness].
-        /// </Summary>
-        public virtual FlutterSDK.Material.Themedata.ThemeData AppBarTheme(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Transition from the suggestions returned by [buildSuggestions] to the
-        /// [query] results returned by [buildResults].
-        ///
-        /// If the user taps on a suggestion provided by [buildSuggestions] the
-        /// screen should typically transition to the page showing the search
-        /// results for the suggested query. This transition can be triggered
-        /// by calling this method.
-        ///
-        /// See also:
-        ///
-        ///  * [showSuggestions] to show the search suggestions again.
-        /// </Summary>
-        public virtual void ShowResults(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Transition from showing the results returned by [buildResults] to showing
-        /// the suggestions returned by [buildSuggestions].
-        ///
-        /// Calling this method will also put the input focus back into the search
-        /// field of the [AppBar].
-        ///
-        /// If the results are currently shown this method can be used to go back
-        /// to showing the search suggestions.
-        ///
-        /// See also:
-        ///
-        ///  * [showResults] to show the search results.
-        /// </Summary>
-        public virtual void ShowSuggestions(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Closes the search page and returns to the underlying route.
-        ///
-        /// The value provided for `result` is used as the return value of the call
-        /// to [showSearch] that launched the search initially.
-        /// </Summary>
-        public virtual void Close(FlutterSDK.Widgets.Framework.BuildContext context, T result) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _SearchPageRoute<T> : FlutterSDK.Widgets.Pages.PageRoute<T>
+    /// <Summary>
+    /// Suggestions shown in the body of the search page while the user types a
+    /// query into the search field.
+    ///
+    /// The delegate method is called whenever the content of [query] changes.
+    /// The suggestions should be based on the current [query] string. If the query
+    /// string is empty, it is good practice to show suggested queries based on
+    /// past queries or the current context.
+    ///
+    /// Usually, this method will return a [ListView] with one [ListTile] per
+    /// suggestion. When [ListTile.onTap] is called, [query] should be updated
+    /// with the corresponding suggestion and the results page should be shown
+    /// by calling [showResults].
+    /// </Summary>
+    public virtual FlutterSDK.Widgets.Framework.Widget BuildSuggestions(FlutterSDK.Widgets.Framework.BuildContext context)
     {
-        #region constructors
-        public _SearchPageRoute(FlutterSDK.Material.Search.SearchDelegate<T> @delegate = default(FlutterSDK.Material.Search.SearchDelegate<T>))
-        : base()
-        {
-            this.@delegate = @delegate; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Material.Search.SearchDelegate<T> @delegate { get; set; }
-        public virtual FlutterBinding.UI.Color BarrierColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual string BarrierLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual TimeSpan TransitionDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool MaintainState { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget BuildTransitions(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Animation.Animation.Animation<double> CreateAnimation() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget BuildPage(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation) { throw new NotImplementedException(); }
-
-
-        public new void DidComplete(T result) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _SearchPage<T> : FlutterSDK.Widgets.Framework.StatefulWidget
-    {
-        #region constructors
-        public _SearchPage(FlutterSDK.Material.Search.SearchDelegate<T> @delegate = default(FlutterSDK.Material.Search.SearchDelegate<T>), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>))
-        {
-            this.@delegate = @delegate;
-            this.Animation = animation; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Material.Search.SearchDelegate<T> @delegate { get; set; }
-        public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _SearchPageState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Search._SearchPage<T>>
-    {
-        #region constructors
-        public _SearchPageState()
-        { }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        private void _OnAnimationStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status) { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Material.Search._SearchPage<T> oldWidget) { throw new NotImplementedException(); }
-
-
-        private void _OnFocusChanged() { throw new NotImplementedException(); }
-
-
-        private void _OnQueryChanged() { throw new NotImplementedException(); }
-
-
-        private void _OnSearchBodyChanged() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        return default(Widget);
     }
 
 
     /// <Summary>
-    /// Describes the body that is currently shown under the [AppBar] in the
-    /// search page.
+    /// The results shown after the user submits a search from the search page.
+    ///
+    /// The current value of [query] can be used to determine what the user
+    /// searched for.
+    ///
+    /// This method might be applied more than once to the same query.
+    /// If your [buildResults] method is computationally expensive, you may want
+    /// to cache the search results for one or more queries.
+    ///
+    /// Typically, this method returns a [ListView] with the search results.
+    /// When the user taps on a particular search result, [close] should be called
+    /// with the selected result as argument. This will close the search page and
+    /// communicate the result back to the initial caller of [showSearch].
     /// </Summary>
-    public enum _SearchBody
+    public virtual FlutterSDK.Widgets.Framework.Widget BuildResults(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        return default(Widget);
+    }
+
+
+    /// <Summary>
+    /// A widget to display before the current query in the [AppBar].
+    ///
+    /// Typically an [IconButton] configured with a [BackButtonIcon] that exits
+    /// the search with [close]. One can also use an [AnimatedIcon] driven by
+    /// [transitionAnimation], which animates from e.g. a hamburger menu to the
+    /// back button as the search overlay fades in.
+    ///
+    /// Returns null if no widget should be shown.
+    ///
+    /// See also:
+    ///
+    ///  * [AppBar.leading], the intended use for the return value of this method.
+    /// </Summary>
+    public virtual FlutterSDK.Widgets.Framework.Widget BuildLeading(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        return default(Widget);
+    }
+
+
+    /// <Summary>
+    /// Widgets to display after the search query in the [AppBar].
+    ///
+    /// If the [query] is not empty, this should typically contain a button to
+    /// clear the query and show the suggestions again (via [showSuggestions]) if
+    /// the results are currently shown.
+    ///
+    /// Returns null if no widget should be shown
+    ///
+    /// See also:
+    ///
+    ///  * [AppBar.actions], the intended use for the return value of this method.
+    /// </Summary>
+    public virtual List<FlutterSDK.Widgets.Framework.Widget> BuildActions(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        return default(List<Widget>);
+    }
+
+
+    /// <Summary>
+    /// The theme used to style the [AppBar].
+    ///
+    /// By default, a white theme is used.
+    ///
+    /// See also:
+    ///
+    ///  * [AppBar.backgroundColor], which is set to [ThemeData.primaryColor].
+    ///  * [AppBar.iconTheme], which is set to [ThemeData.primaryIconTheme].
+    ///  * [AppBar.textTheme], which is set to [ThemeData.primaryTextTheme].
+    ///  * [AppBar.brightness], which is set to [ThemeData.primaryColorBrightness].
+    /// </Summary>
+    public virtual FlutterSDK.Material.Themedata.ThemeData AppBarTheme(FlutterSDK.Widgets.Framework.BuildContext context)
     {
 
-        /// <Summary>
-        /// Suggested queries are shown in the body.
-        ///
-        /// The suggested queries are generated by [SearchDelegate.buildSuggestions].
-        /// </Summary>
-        Suggestions,
-        /// <Summary>
-        /// Search results are currently shown in the body.
-        ///
-        /// The search results are generated by [SearchDelegate.buildResults].
-        /// </Summary>
-        Results,
+        ThemeData theme = ThemeDefaultClass.Theme.Of(context);
+
+        return theme.CopyWith(primaryColor: ColorsDefaultClass.Colors.White, primaryIconTheme: theme.PrimaryIconTheme.CopyWith(color: ColorsDefaultClass.Colors.Grey), primaryColorBrightness: Brightness.Light, primaryTextTheme: theme.TextTheme);
     }
+
+
+
+
+    /// <Summary>
+    /// Transition from the suggestions returned by [buildSuggestions] to the
+    /// [query] results returned by [buildResults].
+    ///
+    /// If the user taps on a suggestion provided by [buildSuggestions] the
+    /// screen should typically transition to the page showing the search
+    /// results for the suggested query. This transition can be triggered
+    /// by calling this method.
+    ///
+    /// See also:
+    ///
+    ///  * [showSuggestions] to show the search suggestions again.
+    /// </Summary>
+    public virtual void ShowResults(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        _FocusNode?.Unfocus();
+        _CurrentBody = _SearchBody.Results;
+    }
+
+
+
+
+    /// <Summary>
+    /// Transition from showing the results returned by [buildResults] to showing
+    /// the suggestions returned by [buildSuggestions].
+    ///
+    /// Calling this method will also put the input focus back into the search
+    /// field of the [AppBar].
+    ///
+    /// If the results are currently shown this method can be used to go back
+    /// to showing the search suggestions.
+    ///
+    /// See also:
+    ///
+    ///  * [showResults] to show the search results.
+    /// </Summary>
+    public virtual void ShowSuggestions(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+
+        _FocusNode.RequestFocus();
+        _CurrentBody = _SearchBody.Suggestions;
+    }
+
+
+
+
+    /// <Summary>
+    /// Closes the search page and returns to the underlying route.
+    ///
+    /// The value provided for `result` is used as the return value of the call
+    /// to [showSearch] that launched the search initially.
+    /// </Summary>
+    public virtual void Close(FlutterSDK.Widgets.Framework.BuildContext context, T result)
+    {
+        _CurrentBody = null;
+        _FocusNode?.Unfocus();
+        NavigatorDefaultClass.Navigator.Of(context);
+        NavigatorDefaultClass.Navigator.Of(context).PopUntil((Route<object> route) => =>route == _Route);
+        NavigatorDefaultClass.Navigator.Of(context).Pop(result);
+    }
+
+
+
+    #endregion
+}
+
+
+public class _SearchPageRoute<T> : FlutterSDK.Widgets.Pages.PageRoute<T>
+{
+    #region constructors
+    public _SearchPageRoute(FlutterSDK.Material.Search.SearchDelegate<T> @delegate = default(FlutterSDK.Material.Search.SearchDelegate<T>))
+    : base()
+
+
+Delegate._Route=this ;
+}
+
+
+#endregion
+
+#region fields
+public virtual FlutterSDK.Material.Search.SearchDelegate<T> @delegate { get; set; }
+public virtual FlutterBinding.UI.Color BarrierColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual string BarrierLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual TimeSpan TransitionDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual bool MaintainState { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.Widget BuildTransitions(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child)
+{
+    return new FadeTransition(opacity: animation, child: child);
+}
+
+
+
+
+public new FlutterSDK.Animation.Animation.Animation<double> CreateAnimation()
+{
+    Animation<double> animation = base.CreateAnimation();
+    Delegate._ProxyAnimation.Parent = animation;
+    return animation;
+}
+
+
+
+
+public new FlutterSDK.Widgets.Framework.Widget BuildPage(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation)
+{
+    return new _SearchPage<T>(@delegate: @Delegate, animation: animation);
+}
+
+
+
+
+public new void DidComplete(T result)
+{
+    base.DidComplete(result);
+
+    Delegate._Route = null;
+    Delegate._CurrentBody = null;
+}
+
+
+
+#endregion
+}
+
+
+public class _SearchPage<T> : FlutterSDK.Widgets.Framework.StatefulWidget
+{
+    #region constructors
+    public _SearchPage(FlutterSDK.Material.Search.SearchDelegate<T> @delegate = default(FlutterSDK.Material.Search.SearchDelegate<T>), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>))
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Material.Search.SearchDelegate<T> @delegate { get; set; }
+public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() => new _SearchPageState<T>();
+
+
+#endregion
+}
+
+
+public class _SearchPageState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Search._SearchPage<T>>
+{
+    #region constructors
+    public _SearchPageState()
+    { }
+    #endregion
+
+    #region fields
+    public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
+    {
+        base.InitState();
+        Widget.Delegate._QueryTextController.AddListener(_OnQueryChanged);
+        Widget.Animation.AddStatusListener(_OnAnimationStatusChanged);
+        Widget.Delegate._CurrentBodyNotifier.AddListener(_OnSearchBodyChanged);
+        FocusNode.AddListener(_OnFocusChanged);
+        Widget.Delegate._FocusNode = FocusNode;
+    }
+
+
+
+
+    public new void Dispose()
+    {
+        base.Dispose();
+        Widget.Delegate._QueryTextController.RemoveListener(_OnQueryChanged);
+        Widget.Animation.RemoveStatusListener(_OnAnimationStatusChanged);
+        Widget.Delegate._CurrentBodyNotifier.RemoveListener(_OnSearchBodyChanged);
+        Widget.Delegate._FocusNode = null;
+        FocusNode.Dispose();
+    }
+
+
+
+
+    private void _OnAnimationStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status)
+    {
+        if (status != AnimationStatus.Completed)
+        {
+            return;
+        }
+
+        Widget.Animation.RemoveStatusListener(_OnAnimationStatusChanged);
+        if (Widget.Delegate._CurrentBody == _SearchBody.Suggestions)
+        {
+            FocusNode.RequestFocus();
+        }
+
+    }
+
+
+
+
+    public new void DidUpdateWidget(FlutterSDK.Material.Search._SearchPage<T> oldWidget)
+    {
+        base.DidUpdateWidget(oldWidget);
+        if (Widget.Delegate != oldWidget.Delegate)
+        {
+            oldWidget.Delegate._QueryTextController.RemoveListener(_OnQueryChanged);
+            Widget.Delegate._QueryTextController.AddListener(_OnQueryChanged);
+            oldWidget.Delegate._CurrentBodyNotifier.RemoveListener(_OnSearchBodyChanged);
+            Widget.Delegate._CurrentBodyNotifier.AddListener(_OnSearchBodyChanged);
+            oldWidget.Delegate._FocusNode = null;
+            Widget.Delegate._FocusNode = FocusNode;
+        }
+
+    }
+
+
+
+
+    private void _OnFocusChanged()
+    {
+        if (FocusNode.HasFocus && Widget.Delegate._CurrentBody != _SearchBody.Suggestions)
+        {
+            Widget.Delegate.ShowSuggestions(Context);
+        }
+
+    }
+
+
+
+
+    private void _OnQueryChanged()
+    {
+        SetState(() =>
+        {
+        }
+        );
+    }
+
+
+
+
+    private void _OnSearchBodyChanged()
+    {
+        SetState(() =>
+        {
+        }
+        );
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+
+        ThemeData theme = Widget.Delegate.AppBarTheme(context);
+        string searchFieldLabel = Widget.Delegate.SearchFieldLabel ?? MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context).SearchFieldLabel;
+        Widget body = default(Widget);
+        switch (Widget.Delegate._CurrentBody) { case _SearchBody.Suggestions: body = new KeyedSubtree(key: new ValueKey<_SearchBody>(_SearchBody.Suggestions), child: Widget.Delegate.BuildSuggestions(context)); break; case _SearchBody.Results: body = new KeyedSubtree(key: new ValueKey<_SearchBody>(_SearchBody.Results), child: Widget.Delegate.BuildResults(context)); break; }
+        string routeName = default(string);
+        switch (theme.Platform) { case TargetPlatform.IOS: case TargetPlatform.MacOS: routeName = ""; break; case TargetPlatform.Android: case TargetPlatform.Fuchsia: case TargetPlatform.Linux: case TargetPlatform.Windows: routeName = searchFieldLabel; }
+        return new Semantics(explicitChildNodes: true, scopesRoute: true, namesRoute: true, label: routeName, child: new Scaffold(appBar: new AppBar(backgroundColor: theme.PrimaryColor, iconTheme: theme.PrimaryIconTheme, textTheme: theme.PrimaryTextTheme, brightness: theme.PrimaryColorBrightness, leading: Widget.Delegate.BuildLeading(context), title: new TextField(controller: Widget.Delegate._QueryTextController, focusNode: FocusNode, style: theme.TextTheme.Headline6, textInputAction: Widget.Delegate.TextInputAction, keyboardType: Widget.Delegate.KeyboardType, onSubmitted: (string _) =>
+        {
+            Widget.Delegate.ShowResults(context);
+        }
+        , decoration: new InputDecoration(border: InputborderDefaultClass.InputBorder.None, hintText: searchFieldLabel, hintStyle: theme.InputDecorationTheme.HintStyle)), actions: Widget.Delegate.BuildActions(context)), body: new AnimatedSwitcher(duration: new TimeSpan(milliseconds: 300), child: body)));
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Describes the body that is currently shown under the [AppBar] in the
+/// search page.
+/// </Summary>
+public enum _SearchBody
+{
+
+    /// <Summary>
+    /// Suggested queries are shown in the body.
+    ///
+    /// The suggested queries are generated by [SearchDelegate.buildSuggestions].
+    /// </Summary>
+    Suggestions,
+    /// <Summary>
+    /// Search results are currently shown in the body.
+    ///
+    /// The search results are generated by [SearchDelegate.buildResults].
+    /// </Summary>
+    Results,
+}
 
 }

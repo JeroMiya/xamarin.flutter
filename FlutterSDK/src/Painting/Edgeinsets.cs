@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -487,568 +487,780 @@ namespace FlutterSDK.Painting.Edgeinsets
     {
         #region constructors
         public EdgeInsetsGeometry()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Infinity { get; set; }
-        internal virtual double _Bottom { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual double _End { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual double _Left { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual double _Right { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual double _Start { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual double _Top { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool IsNonNegative { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual double Horizontal { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual double Vertical { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual Size CollapsedSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Flipped { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Infinity { get; set; }
+    internal virtual double _Bottom { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    internal virtual double _End { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    internal virtual double _Left { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    internal virtual double _Right { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    internal virtual double _Start { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    internal virtual double _Top { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool IsNonNegative { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual double Horizontal { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual double Vertical { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual Size CollapsedSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Flipped { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        /// <Summary>
-        /// The total offset in the given direction.
-        /// </Summary>
-        public virtual double Along(FlutterSDK.Painting.Basictypes.Axis axis) { throw new NotImplementedException(); }
+    /// <Summary>
+    /// The total offset in the given direction.
+    /// </Summary>
+    public virtual double Along(FlutterSDK.Painting.Basictypes.Axis axis)
+    {
 
-
-        /// <Summary>
-        /// Returns a new size that is bigger than the given size by the amount of
-        /// inset in the horizontal and vertical directions.
-        ///
-        /// See also:
-        ///
-        ///  * [EdgeInsets.inflateRect], to inflate a [Rect] rather than a [Size] (for
-        ///    [EdgeInsetsDirectional], requires first calling [resolve] to establish
-        ///    how the start and end map to the left or right).
-        ///  * [deflateSize], to deflate a [Size] rather than inflating it.
-        /// </Summary>
-        public virtual Size InflateSize(Size size) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns a new size that is smaller than the given size by the amount of
-        /// inset in the horizontal and vertical directions.
-        ///
-        /// If the argument is smaller than [collapsedSize], then the resulting size
-        /// will have negative dimensions.
-        ///
-        /// See also:
-        ///
-        ///  * [EdgeInsets.deflateRect], to deflate a [Rect] rather than a [Size]. (for
-        ///    [EdgeInsetsDirectional], requires first calling [resolve] to establish
-        ///    how the start and end map to the left or right).
-        ///  * [inflateSize], to inflate a [Size] rather than deflating it.
-        /// </Summary>
-        public virtual Size DeflateSize(Size size) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns the difference between two [EdgeInsetsGeometry] objects.
-        ///
-        /// If you know you are applying this to two [EdgeInsets] or two
-        /// [EdgeInsetsDirectional] objects, consider using the binary infix `-`
-        /// operator instead, which always returns an object of the same type as the
-        /// operands, and is typed accordingly.
-        ///
-        /// If [subtract] is applied to two objects of the same type ([EdgeInsets] or
-        /// [EdgeInsetsDirectional]), an object of that type will be returned (though
-        /// this is not reflected in the type system). Otherwise, an object
-        /// representing a combination of both is returned. That object can be turned
-        /// into a concrete [EdgeInsets] using [resolve].
-        ///
-        /// This method returns the same result as [add] applied to the result of
-        /// negating the argument (using the prefix unary `-` operator or multiplying
-        /// the argument by -1.0 using the `*` operator).
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Subtract(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry other) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns the sum of two [EdgeInsetsGeometry] objects.
-        ///
-        /// If you know you are adding two [EdgeInsets] or two [EdgeInsetsDirectional]
-        /// objects, consider using the `+` operator instead, which always returns an
-        /// object of the same type as the operands, and is typed accordingly.
-        ///
-        /// If [add] is applied to two objects of the same type ([EdgeInsets] or
-        /// [EdgeInsetsDirectional]), an object of that type will be returned (though
-        /// this is not reflected in the type system). Otherwise, an object
-        /// representing a combination of both is returned. That object can be turned
-        /// into a concrete [EdgeInsets] using [resolve].
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Add(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry other) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns the a new [EdgeInsetsGeometry] object with all values greater than
-        /// or equal to `min`, and less than or equal to `max`.
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Clamp(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry min, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry max) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns the [EdgeInsetsGeometry] object with each dimension negated.
-        ///
-        /// This is the same as multiplying the object by -1.0.
-        ///
-        /// This operator returns an object of the same type as the operand.
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Unary() { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Scales the [EdgeInsetsGeometry] object in each dimension by the given factor.
-        ///
-        /// This operator returns an object of the same type as the operand.
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry MultiplyOperator(double other) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Divides the [EdgeInsetsGeometry] object in each dimension by the given factor.
-        ///
-        /// This operator returns an object of the same type as the operand.
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry DivideOperator(double other) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Integer divides the [EdgeInsetsGeometry] object in each dimension by the given factor.
-        ///
-        /// This operator returns an object of the same type as the operand.
-        ///
-        /// This operator may have unexpected results when applied to a mixture of
-        /// [EdgeInsets] and [EdgeInsetsDirectional] objects.
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry DivideIntegerResultOperator(double other) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Computes the remainder in each dimension by the given factor.
-        ///
-        /// This operator returns an object of the same type as the operand.
-        ///
-        /// This operator may have unexpected results when applied to a mixture of
-        /// [EdgeInsets] and [EdgeInsetsDirectional] objects.
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ModuloOperator(double other) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Linearly interpolate between two [EdgeInsetsGeometry] objects.
-        ///
-        /// If either is null, this function interpolates from [EdgeInsets.zero], and
-        /// the result is an object of the same type as the non-null argument.
-        ///
-        /// If [lerp] is applied to two objects of the same type ([EdgeInsets] or
-        /// [EdgeInsetsDirectional]), an object of that type will be returned (though
-        /// this is not reflected in the type system). Otherwise, an object
-        /// representing a combination of both is returned. That object can be turned
-        /// into a concrete [EdgeInsets] using [resolve].
-        ///
-        /// {@macro dart.ui.shadow.lerp}
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Lerp(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry a, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry b, double t) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Convert this instance into an [EdgeInsets], which uses literal coordinates
-        /// (i.e. the `left` coordinate being explicitly a distance from the left, and
-        /// the `right` coordinate being explicitly a distance from the right).
-        ///
-        /// See also:
-        ///
-        ///  * [EdgeInsets], for which this is a no-op (returns itself).
-        ///  * [EdgeInsetsDirectional], which flips the horizontal direction
-        ///    based on the `direction` argument.
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Resolve(TextDirection direction) { throw new NotImplementedException(); }
+        switch (axis) { case Axis.Horizontal: return Horizontal; case Axis.Vertical: return Vertical; }
+        return null;
+    }
 
 
 
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
-        #endregion
+    /// <Summary>
+    /// Returns a new size that is bigger than the given size by the amount of
+    /// inset in the horizontal and vertical directions.
+    ///
+    /// See also:
+    ///
+    ///  * [EdgeInsets.inflateRect], to inflate a [Rect] rather than a [Size] (for
+    ///    [EdgeInsetsDirectional], requires first calling [resolve] to establish
+    ///    how the start and end map to the left or right).
+    ///  * [deflateSize], to deflate a [Size] rather than inflating it.
+    /// </Summary>
+    public virtual Size InflateSize(Size size)
+    {
+        return new Size(size.Width + Horizontal, size.Height + Vertical);
+    }
+
+
+
+
+    /// <Summary>
+    /// Returns a new size that is smaller than the given size by the amount of
+    /// inset in the horizontal and vertical directions.
+    ///
+    /// If the argument is smaller than [collapsedSize], then the resulting size
+    /// will have negative dimensions.
+    ///
+    /// See also:
+    ///
+    ///  * [EdgeInsets.deflateRect], to deflate a [Rect] rather than a [Size]. (for
+    ///    [EdgeInsetsDirectional], requires first calling [resolve] to establish
+    ///    how the start and end map to the left or right).
+    ///  * [inflateSize], to inflate a [Size] rather than deflating it.
+    /// </Summary>
+    public virtual Size DeflateSize(Size size)
+    {
+        return new Size(size.Width - Horizontal, size.Height - Vertical);
+    }
+
+
+
+
+    /// <Summary>
+    /// Returns the difference between two [EdgeInsetsGeometry] objects.
+    ///
+    /// If you know you are applying this to two [EdgeInsets] or two
+    /// [EdgeInsetsDirectional] objects, consider using the binary infix `-`
+    /// operator instead, which always returns an object of the same type as the
+    /// operands, and is typed accordingly.
+    ///
+    /// If [subtract] is applied to two objects of the same type ([EdgeInsets] or
+    /// [EdgeInsetsDirectional]), an object of that type will be returned (though
+    /// this is not reflected in the type system). Otherwise, an object
+    /// representing a combination of both is returned. That object can be turned
+    /// into a concrete [EdgeInsets] using [resolve].
+    ///
+    /// This method returns the same result as [add] applied to the result of
+    /// negating the argument (using the prefix unary `-` operator or multiplying
+    /// the argument by -1.0 using the `*` operator).
+    /// </Summary>
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Subtract(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry other)
+    {
+        return _MixedEdgeInsets.FromLRSETB(_Left - other._Left, _Right - other._Right, _Start - other._Start, _End - other._End, _Top - other._Top, _Bottom - other._Bottom);
+    }
+
+
+
+
+    /// <Summary>
+    /// Returns the sum of two [EdgeInsetsGeometry] objects.
+    ///
+    /// If you know you are adding two [EdgeInsets] or two [EdgeInsetsDirectional]
+    /// objects, consider using the `+` operator instead, which always returns an
+    /// object of the same type as the operands, and is typed accordingly.
+    ///
+    /// If [add] is applied to two objects of the same type ([EdgeInsets] or
+    /// [EdgeInsetsDirectional]), an object of that type will be returned (though
+    /// this is not reflected in the type system). Otherwise, an object
+    /// representing a combination of both is returned. That object can be turned
+    /// into a concrete [EdgeInsets] using [resolve].
+    /// </Summary>
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Add(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry other)
+    {
+        return _MixedEdgeInsets.FromLRSETB(_Left + other._Left, _Right + other._Right, _Start + other._Start, _End + other._End, _Top + other._Top, _Bottom + other._Bottom);
+    }
+
+
+
+
+    /// <Summary>
+    /// Returns the a new [EdgeInsetsGeometry] object with all values greater than
+    /// or equal to `min`, and less than or equal to `max`.
+    /// </Summary>
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Clamp(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry min, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry max)
+    {
+        return _MixedEdgeInsets.FromLRSETB(_Left.Clamp(min._Left, max._Left) as double, _Right.Clamp(min._Right, max._Right) as double, _Start.Clamp(min._Start, max._Start) as double, _End.Clamp(min._End, max._End) as double, _Top.Clamp(min._Top, max._Top) as double, _Bottom.Clamp(min._Bottom, max._Bottom) as double);
+    }
+
+
+
+
+    /// <Summary>
+    /// Returns the [EdgeInsetsGeometry] object with each dimension negated.
+    ///
+    /// This is the same as multiplying the object by -1.0.
+    ///
+    /// This operator returns an object of the same type as the operand.
+    /// </Summary>
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Unary()
+    {
+        return default(EdgeInsetsGeometry);
     }
 
 
     /// <Summary>
-    /// An immutable set of offsets in each of the four cardinal directions.
+    /// Scales the [EdgeInsetsGeometry] object in each dimension by the given factor.
     ///
-    /// Typically used for an offset from each of the four sides of a box. For
-    /// example, the padding inside a box can be represented using this class.
-    ///
-    /// The [EdgeInsets] class specifies offsets in terms of visual edges, left,
-    /// top, right, and bottom. These values are not affected by the
-    /// [TextDirection]. To support both left-to-right and right-to-left layouts,
-    /// consider using [EdgeInsetsDirectional], which is expressed in terms of
-    /// _start_, top, _end_, and bottom, where start and end are resolved in terms
-    /// of a [TextDirection] (typically obtained from the ambient [Directionality]).
-    ///
-    /// {@tool snippet}
-    ///
-    /// Here are some examples of how to create [EdgeInsets] instances:
-    ///
-    /// Typical eight-pixel margin on all sides:
-    ///
-    /// ```dart
-    /// const EdgeInsets.all(8.0)
-    /// ```
-    /// {@end-tool}
-    /// {@tool snippet}
-    ///
-    /// Eight pixel margin above and below, no horizontal margins:
-    ///
-    /// ```dart
-    /// const EdgeInsets.symmetric(vertical: 8.0)
-    /// ```
-    /// {@end-tool}
-    /// {@tool snippet}
-    ///
-    /// Left margin indent of 40 pixels:
-    ///
-    /// ```dart
-    /// const EdgeInsets.only(left: 40.0)
-    /// ```
-    /// {@end-tool}
-    ///
-    /// See also:
-    ///
-    ///  * [Padding], a widget that accepts [EdgeInsets] to describe its margins.
-    ///  * [EdgeInsetsDirectional], which (for properties and arguments that accept
-    ///    the type [EdgeInsetsGeometry]) allows the horizontal insets to be
-    ///    specified in a [TextDirection]-aware manner.
+    /// This operator returns an object of the same type as the operand.
     /// </Summary>
-    public class EdgeInsets : FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry MultiplyOperator(double other)
     {
-        #region constructors
-        public static EdgeInsets FromLTRB(double left, double top, double right, double bottom)
-        {
-            var instance = new EdgeInsets(); instance.Left = left;
-            instance.Top = top;
-            instance.Right = right;
-            instance.Bottom = bottom; throw new NotImplementedException();
-        }
-        public static EdgeInsets All(double value)
-        {
-            var instance = new EdgeInsets(); throw new NotImplementedException();
-        }
-        public static EdgeInsets Only(double left = 0.0, double top = 0.0, double right = 0.0, double bottom = 0.0)
-        {
-            var instance = new EdgeInsets(); instance.Left = left;
-            instance.Top = top;
-            instance.Right = right;
-            instance.Bottom = bottom; throw new NotImplementedException();
-        }
-        public static EdgeInsets Symmetric(double vertical = 0.0, double horizontal = 0.0)
-        {
-            var instance = new EdgeInsets(); throw new NotImplementedException();
-        }
-        public static EdgeInsets FromWindowPadding(WindowPadding padding, double devicePixelRatio)
-        {
-            var instance = new EdgeInsets(); throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Zero { get; set; }
-        public virtual double Left { get; set; }
-        public virtual double Top { get; set; }
-        public virtual double Right { get; set; }
-        public virtual double Bottom { get; set; }
-        internal virtual double _Left { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual double _Top { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual double _Right { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual double _Bottom { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual double _Start { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual double _End { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterBinding.UI.Offset TopLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterBinding.UI.Offset TopRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterBinding.UI.Offset BottomLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterBinding.UI.Offset BottomRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Flipped { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Returns a new rect that is bigger than the given rect in each direction by
-        /// the amount of inset in each direction. Specifically, the left edge of the
-        /// rect is moved left by [left], the top edge of the rect is moved up by
-        /// [top], the right edge of the rect is moved right by [right], and the
-        /// bottom edge of the rect is moved down by [bottom].
-        ///
-        /// See also:
-        ///
-        ///  * [inflateSize], to inflate a [Size] rather than a [Rect].
-        ///  * [deflateRect], to deflate a [Rect] rather than inflating it.
-        /// </Summary>
-        public virtual Rect InflateRect(FlutterBinding.UI.Rect rect) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns a new rect that is smaller than the given rect in each direction by
-        /// the amount of inset in each direction. Specifically, the left edge of the
-        /// rect is moved right by [left], the top edge of the rect is moved down by
-        /// [top], the right edge of the rect is moved left by [right], and the
-        /// bottom edge of the rect is moved up by [bottom].
-        ///
-        /// If the argument's [Rect.size] is smaller than [collapsedSize], then the
-        /// resulting rectangle will have negative dimensions.
-        ///
-        /// See also:
-        ///
-        ///  * [deflateSize], to deflate a [Size] rather than a [Rect].
-        ///  * [inflateRect], to inflate a [Rect] rather than deflating it.
-        /// </Summary>
-        public virtual Rect DeflateRect(FlutterBinding.UI.Rect rect) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Subtract(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry other) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Add(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry other) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Clamp(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry min, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry max) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns the difference between two [EdgeInsets].
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Unary(FlutterSDK.Painting.Edgeinsets.EdgeInsets other) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns the sum of two [EdgeInsets].
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets AddOperator(FlutterSDK.Painting.Edgeinsets.EdgeInsets other) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns the [EdgeInsets] object with each dimension negated.
-        ///
-        /// This is the same as multiplying the object by -1.0.
-        /// </Summary>
-        public new FlutterSDK.Painting.Edgeinsets.EdgeInsets Unary() { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Scales the [EdgeInsets] in each dimension by the given factor.
-        /// </Summary>
-        public new FlutterSDK.Painting.Edgeinsets.EdgeInsets MultiplyOperator(double other) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Divides the [EdgeInsets] in each dimension by the given factor.
-        /// </Summary>
-        public new FlutterSDK.Painting.Edgeinsets.EdgeInsets DivideOperator(double other) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Integer divides the [EdgeInsets] in each dimension by the given factor.
-        /// </Summary>
-        public new FlutterSDK.Painting.Edgeinsets.EdgeInsets DivideIntegerResultOperator(double other) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Computes the remainder in each dimension by the given factor.
-        /// </Summary>
-        public new FlutterSDK.Painting.Edgeinsets.EdgeInsets ModuloOperator(double other) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Linearly interpolate between two [EdgeInsets].
-        ///
-        /// If either is null, this function interpolates from [EdgeInsets.zero].
-        ///
-        /// {@macro dart.ui.shadow.lerp}
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Lerp(FlutterSDK.Painting.Edgeinsets.EdgeInsets a, FlutterSDK.Painting.Edgeinsets.EdgeInsets b, double t) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Painting.Edgeinsets.EdgeInsets Resolve(TextDirection direction) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Creates a copy of this EdgeInsets but with the given fields replaced
-        /// with the new values.
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets CopyWith(double left = default(double), double top = default(double), double right = default(double), double bottom = default(double)) { throw new NotImplementedException(); }
-
-        #endregion
+        return default(EdgeInsetsGeometry);
     }
 
 
     /// <Summary>
-    /// An immutable set of offsets in each of the four cardinal directions, but
-    /// whose horizontal components are dependent on the writing direction.
+    /// Divides the [EdgeInsetsGeometry] object in each dimension by the given factor.
     ///
-    /// This can be used to indicate padding from the left in [TextDirection.ltr]
-    /// text and padding from the right in [TextDirection.rtl] text without having
-    /// to be aware of the current text direction.
+    /// This operator returns an object of the same type as the operand.
+    /// </Summary>
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry DivideOperator(double other)
+    {
+        return default(EdgeInsetsGeometry);
+    }
+
+
+    /// <Summary>
+    /// Integer divides the [EdgeInsetsGeometry] object in each dimension by the given factor.
+    ///
+    /// This operator returns an object of the same type as the operand.
+    ///
+    /// This operator may have unexpected results when applied to a mixture of
+    /// [EdgeInsets] and [EdgeInsetsDirectional] objects.
+    /// </Summary>
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry DivideIntegerResultOperator(double other)
+    {
+        return default(EdgeInsetsGeometry);
+    }
+
+
+    /// <Summary>
+    /// Computes the remainder in each dimension by the given factor.
+    ///
+    /// This operator returns an object of the same type as the operand.
+    ///
+    /// This operator may have unexpected results when applied to a mixture of
+    /// [EdgeInsets] and [EdgeInsetsDirectional] objects.
+    /// </Summary>
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ModuloOperator(double other)
+    {
+        return default(EdgeInsetsGeometry);
+    }
+
+
+    /// <Summary>
+    /// Linearly interpolate between two [EdgeInsetsGeometry] objects.
+    ///
+    /// If either is null, this function interpolates from [EdgeInsets.zero], and
+    /// the result is an object of the same type as the non-null argument.
+    ///
+    /// If [lerp] is applied to two objects of the same type ([EdgeInsets] or
+    /// [EdgeInsetsDirectional]), an object of that type will be returned (though
+    /// this is not reflected in the type system). Otherwise, an object
+    /// representing a combination of both is returned. That object can be turned
+    /// into a concrete [EdgeInsets] using [resolve].
+    ///
+    /// {@macro dart.ui.shadow.lerp}
+    /// </Summary>
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Lerp(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry a, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry b, double t)
+    {
+
+        if (a == null && b == null) return null;
+        if (a == null) return b * t;
+        if (b == null) return a * (1.0 - t);
+        if (a is EdgeInsets && b is EdgeInsets) return EdgeinsetsDefaultClass.EdgeInsets.Lerp(a, b, t);
+        if (a is EdgeInsetsDirectional && b is EdgeInsetsDirectional) return EdgeinsetsDefaultClass.EdgeInsetsDirectional.Lerp(a, b, t);
+        return _MixedEdgeInsets.FromLRSETB(Ui.Dart:uiDefaultClass.LerpDouble(a._Left, b._Left, t), Ui.Dart:uiDefaultClass.LerpDouble(a._Right, b._Right, t), Ui.Dart:uiDefaultClass.LerpDouble(a._Start, b._Start, t), Ui.Dart:uiDefaultClass.LerpDouble(a._End, b._End, t), Ui.Dart:uiDefaultClass.LerpDouble(a._Top, b._Top, t), Ui.Dart:uiDefaultClass.LerpDouble(a._Bottom, b._Bottom, t));
+    }
+
+
+
+
+    /// <Summary>
+    /// Convert this instance into an [EdgeInsets], which uses literal coordinates
+    /// (i.e. the `left` coordinate being explicitly a distance from the left, and
+    /// the `right` coordinate being explicitly a distance from the right).
     ///
     /// See also:
     ///
-    ///  * [EdgeInsets], a variant that uses physical labels (left and right instead
-    ///    of start and end).
+    ///  * [EdgeInsets], for which this is a no-op (returns itself).
+    ///  * [EdgeInsetsDirectional], which flips the horizontal direction
+    ///    based on the `direction` argument.
     /// </Summary>
-    public class EdgeInsetsDirectional : FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Resolve(TextDirection direction)
     {
-        #region constructors
-        public static EdgeInsetsDirectional FromSTEB(double start, double top, double end, double bottom)
-        {
-            var instance = new EdgeInsetsDirectional(); instance.Start = start;
-            instance.Top = top;
-            instance.End = end;
-            instance.Bottom = bottom; throw new NotImplementedException();
-        }
-        public static EdgeInsetsDirectional Only(double start = 0.0, double top = 0.0, double end = 0.0, double bottom = 0.0)
-        {
-            var instance = new EdgeInsetsDirectional(); instance.Start = start;
-            instance.Top = top;
-            instance.End = end;
-            instance.Bottom = bottom; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Zero { get; set; }
-        public virtual double Start { get; set; }
-        public virtual double Top { get; set; }
-        public virtual double End { get; set; }
-        public virtual double Bottom { get; set; }
-        internal virtual double _Start { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual double _Top { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual double _End { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual double _Bottom { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual double _Left { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual double _Right { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool IsNonNegative { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Flipped { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Subtract(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry other) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Add(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry other) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns the difference between two [EdgeInsetsDirectional] objects.
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Unary(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional other) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns the sum of two [EdgeInsetsDirectional] objects.
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional AddOperator(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional other) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns the [EdgeInsetsDirectional] object with each dimension negated.
-        ///
-        /// This is the same as multiplying the object by -1.0.
-        /// </Summary>
-        public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Unary() { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Scales the [EdgeInsetsDirectional] object in each dimension by the given factor.
-        /// </Summary>
-        public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional MultiplyOperator(double other) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Divides the [EdgeInsetsDirectional] object in each dimension by the given factor.
-        /// </Summary>
-        public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional DivideOperator(double other) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Integer divides the [EdgeInsetsDirectional] object in each dimension by the given factor.
-        /// </Summary>
-        public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional DivideIntegerResultOperator(double other) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Computes the remainder in each dimension by the given factor.
-        /// </Summary>
-        public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional ModuloOperator(double other) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Linearly interpolate between two [EdgeInsetsDirectional].
-        ///
-        /// If either is null, this function interpolates from [EdgeInsetsDirectional.zero].
-        ///
-        /// To interpolate between two [EdgeInsetsGeometry] objects of arbitrary type
-        /// (either [EdgeInsets] or [EdgeInsetsDirectional]), consider the
-        /// [EdgeInsetsGeometry.lerp] static method.
-        ///
-        /// {@macro dart.ui.shadow.lerp}
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Lerp(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional a, FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional b, double t) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Painting.Edgeinsets.EdgeInsets Resolve(TextDirection direction) { throw new NotImplementedException(); }
-
-        #endregion
+        return default(EdgeInsets);
     }
 
 
-    public class _MixedEdgeInsets : FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry
+
+    public new bool Equals(@Object other)
     {
-        #region constructors
-        public static _MixedEdgeInsets FromLRSETB(double _left, double _right, double _start, double _end, double _top, double _bottom)
-        {
-            var instance = new _MixedEdgeInsets(); instance._Left = _left;
-            instance._Right = _right;
-            instance._Start = _start;
-            instance._End = _end;
-            instance._Top = _top;
-            instance._Bottom = _bottom; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal new double _Left { get; set; }
-        internal new double _Right { get; set; }
-        internal new double _Start { get; set; }
-        internal new double _End { get; set; }
-        internal new double _Top { get; set; }
-        internal new double _Bottom { get; set; }
-        public virtual bool IsNonNegative { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Painting.Edgeinsets._MixedEdgeInsets Unary() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Painting.Edgeinsets._MixedEdgeInsets MultiplyOperator(double other) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Painting.Edgeinsets._MixedEdgeInsets DivideOperator(double other) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Painting.Edgeinsets._MixedEdgeInsets DivideIntegerResultOperator(double other) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Painting.Edgeinsets._MixedEdgeInsets ModuloOperator(double other) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Painting.Edgeinsets.EdgeInsets Resolve(TextDirection direction) { throw new NotImplementedException(); }
-
-        #endregion
+        return other is EdgeInsetsGeometry && other._Left == _Left && other._Right == _Right && other._Start == _Start && other._End == _End && other._Top == _Top && other._Bottom == _Bottom;
     }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// An immutable set of offsets in each of the four cardinal directions.
+///
+/// Typically used for an offset from each of the four sides of a box. For
+/// example, the padding inside a box can be represented using this class.
+///
+/// The [EdgeInsets] class specifies offsets in terms of visual edges, left,
+/// top, right, and bottom. These values are not affected by the
+/// [TextDirection]. To support both left-to-right and right-to-left layouts,
+/// consider using [EdgeInsetsDirectional], which is expressed in terms of
+/// _start_, top, _end_, and bottom, where start and end are resolved in terms
+/// of a [TextDirection] (typically obtained from the ambient [Directionality]).
+///
+/// {@tool snippet}
+///
+/// Here are some examples of how to create [EdgeInsets] instances:
+///
+/// Typical eight-pixel margin on all sides:
+///
+/// ```dart
+/// const EdgeInsets.all(8.0)
+/// ```
+/// {@end-tool}
+/// {@tool snippet}
+///
+/// Eight pixel margin above and below, no horizontal margins:
+///
+/// ```dart
+/// const EdgeInsets.symmetric(vertical: 8.0)
+/// ```
+/// {@end-tool}
+/// {@tool snippet}
+///
+/// Left margin indent of 40 pixels:
+///
+/// ```dart
+/// const EdgeInsets.only(left: 40.0)
+/// ```
+/// {@end-tool}
+///
+/// See also:
+///
+///  * [Padding], a widget that accepts [EdgeInsets] to describe its margins.
+///  * [EdgeInsetsDirectional], which (for properties and arguments that accept
+///    the type [EdgeInsetsGeometry]) allows the horizontal insets to be
+///    specified in a [TextDirection]-aware manner.
+/// </Summary>
+public class EdgeInsets : FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry
+{
+    #region constructors
+    public static EdgeInsets FromLTRB(double left, double top, double right, double bottom)
+
+}
+public static EdgeInsets All(double value)
+
+}
+public static EdgeInsets Only(double left = 0.0, double top = 0.0, double right = 0.0, double bottom = 0.0)
+
+}
+public static EdgeInsets Symmetric(double vertical = 0.0, double horizontal = 0.0)
+
+}
+public static EdgeInsets FromWindowPadding(WindowPadding padding, double devicePixelRatio)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Zero { get; set; }
+public virtual double Left { get; set; }
+public virtual double Top { get; set; }
+public virtual double Right { get; set; }
+public virtual double Bottom { get; set; }
+internal virtual double _Left { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+internal virtual double _Top { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+internal virtual double _Right { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+internal virtual double _Bottom { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+internal virtual double _Start { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+internal virtual double _End { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterBinding.UI.Offset TopLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterBinding.UI.Offset TopRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterBinding.UI.Offset BottomLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterBinding.UI.Offset BottomRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Flipped { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Returns a new rect that is bigger than the given rect in each direction by
+/// the amount of inset in each direction. Specifically, the left edge of the
+/// rect is moved left by [left], the top edge of the rect is moved up by
+/// [top], the right edge of the rect is moved right by [right], and the
+/// bottom edge of the rect is moved down by [bottom].
+///
+/// See also:
+///
+///  * [inflateSize], to inflate a [Size] rather than a [Rect].
+///  * [deflateRect], to deflate a [Rect] rather than inflating it.
+/// </Summary>
+public virtual Rect InflateRect(FlutterBinding.UI.Rect rect)
+{
+    return Rect.FromLTRB(rect.Left - Left, rect.Top - Top, rect.Right + Right, rect.Bottom + Bottom);
+}
+
+
+
+
+/// <Summary>
+/// Returns a new rect that is smaller than the given rect in each direction by
+/// the amount of inset in each direction. Specifically, the left edge of the
+/// rect is moved right by [left], the top edge of the rect is moved down by
+/// [top], the right edge of the rect is moved left by [right], and the
+/// bottom edge of the rect is moved up by [bottom].
+///
+/// If the argument's [Rect.size] is smaller than [collapsedSize], then the
+/// resulting rectangle will have negative dimensions.
+///
+/// See also:
+///
+///  * [deflateSize], to deflate a [Size] rather than a [Rect].
+///  * [inflateRect], to inflate a [Rect] rather than deflating it.
+/// </Summary>
+public virtual Rect DeflateRect(FlutterBinding.UI.Rect rect)
+{
+    return Rect.FromLTRB(rect.Left + Left, rect.Top + Top, rect.Right - Right, rect.Bottom - Bottom);
+}
+
+
+
+
+public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Subtract(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry other)
+{
+    if (other is EdgeInsets) return this - other;
+    return base.Subtract(other);
+}
+
+
+
+
+public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Add(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry other)
+{
+    if (other is EdgeInsets) return this + other;
+    return base.Add(other);
+}
+
+
+
+
+public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Clamp(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry min, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry max)
+{
+    return EdgeInsets.FromLTRB(_Left.Clamp(min._Left, max._Left) as double, _Top.Clamp(min._Top, max._Top) as double, _Right.Clamp(min._Right, max._Right) as double, _Bottom.Clamp(min._Bottom, max._Bottom) as double);
+}
+
+
+
+
+/// <Summary>
+/// Returns the difference between two [EdgeInsets].
+/// </Summary>
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Unary(FlutterSDK.Painting.Edgeinsets.EdgeInsets other)
+{
+    return EdgeInsets.FromLTRB(Left - other.Left, Top - other.Top, Right - other.Right, Bottom - other.Bottom);
+}
+
+
+
+
+/// <Summary>
+/// Returns the sum of two [EdgeInsets].
+/// </Summary>
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets AddOperator(FlutterSDK.Painting.Edgeinsets.EdgeInsets other)
+{
+    return EdgeInsets.FromLTRB(Left + other.Left, Top + other.Top, Right + other.Right, Bottom + other.Bottom);
+}
+
+
+
+
+/// <Summary>
+/// Returns the [EdgeInsets] object with each dimension negated.
+///
+/// This is the same as multiplying the object by -1.0.
+/// </Summary>
+public new FlutterSDK.Painting.Edgeinsets.EdgeInsets Unary()
+{
+    return EdgeInsets.FromLTRB(-Left, -Top, -Right, -Bottom);
+}
+
+
+
+
+/// <Summary>
+/// Scales the [EdgeInsets] in each dimension by the given factor.
+/// </Summary>
+public new FlutterSDK.Painting.Edgeinsets.EdgeInsets MultiplyOperator(double other)
+{
+    return EdgeInsets.FromLTRB(Left * other, Top * other, Right * other, Bottom * other);
+}
+
+
+
+
+/// <Summary>
+/// Divides the [EdgeInsets] in each dimension by the given factor.
+/// </Summary>
+public new FlutterSDK.Painting.Edgeinsets.EdgeInsets DivideOperator(double other)
+{
+    return EdgeInsets.FromLTRB(Left / other, Top / other, Right / other, Bottom / other);
+}
+
+
+
+
+/// <Summary>
+/// Integer divides the [EdgeInsets] in each dimension by the given factor.
+/// </Summary>
+public new FlutterSDK.Painting.Edgeinsets.EdgeInsets DivideIntegerResultOperator(double other)
+{
+    return EdgeInsets.FromLTRB((Left~/ other).ToDouble(), (Top~/ other).ToDouble(), (Right~/ other).ToDouble(), (Bottom~/ other).ToDouble());
+}
+
+
+
+
+/// <Summary>
+/// Computes the remainder in each dimension by the given factor.
+/// </Summary>
+public new FlutterSDK.Painting.Edgeinsets.EdgeInsets ModuloOperator(double other)
+{
+    return EdgeInsets.FromLTRB(Left % other, Top % other, Right % other, Bottom % other);
+}
+
+
+
+
+/// <Summary>
+/// Linearly interpolate between two [EdgeInsets].
+///
+/// If either is null, this function interpolates from [EdgeInsets.zero].
+///
+/// {@macro dart.ui.shadow.lerp}
+/// </Summary>
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Lerp(FlutterSDK.Painting.Edgeinsets.EdgeInsets a, FlutterSDK.Painting.Edgeinsets.EdgeInsets b, double t)
+{
+
+    if (a == null && b == null) return null;
+    if (a == null) return b * t;
+    if (b == null) return a * (1.0 - t);
+    return EdgeInsets.FromLTRB(Ui.Dart:uiDefaultClass.LerpDouble(a.Left, b.Left, t), Ui.Dart:uiDefaultClass.LerpDouble(a.Top, b.Top, t), Ui.Dart:uiDefaultClass.LerpDouble(a.Right, b.Right, t), Ui.Dart:uiDefaultClass.LerpDouble(a.Bottom, b.Bottom, t));
+}
+
+
+
+
+public new FlutterSDK.Painting.Edgeinsets.EdgeInsets Resolve(TextDirection direction) => this;
+
+
+
+/// <Summary>
+/// Creates a copy of this EdgeInsets but with the given fields replaced
+/// with the new values.
+/// </Summary>
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets CopyWith(double left = default(double), double top = default(double), double right = default(double), double bottom = default(double))
+{
+    return EdgeInsets.Only(left: left == default(double) ? this.left : left, top: top == default(double) ? this.top : top, right: right == default(double) ? this.right : right, bottom: bottom == default(double) ? this.bottom : bottom);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// An immutable set of offsets in each of the four cardinal directions, but
+/// whose horizontal components are dependent on the writing direction.
+///
+/// This can be used to indicate padding from the left in [TextDirection.ltr]
+/// text and padding from the right in [TextDirection.rtl] text without having
+/// to be aware of the current text direction.
+///
+/// See also:
+///
+///  * [EdgeInsets], a variant that uses physical labels (left and right instead
+///    of start and end).
+/// </Summary>
+public class EdgeInsetsDirectional : FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry
+{
+    #region constructors
+    public static EdgeInsetsDirectional FromSTEB(double start, double top, double end, double bottom)
+
+}
+public static EdgeInsetsDirectional Only(double start = 0.0, double top = 0.0, double end = 0.0, double bottom = 0.0)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Zero { get; set; }
+public virtual double Start { get; set; }
+public virtual double Top { get; set; }
+public virtual double End { get; set; }
+public virtual double Bottom { get; set; }
+internal virtual double _Start { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+internal virtual double _Top { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+internal virtual double _End { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+internal virtual double _Bottom { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+internal virtual double _Left { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+internal virtual double _Right { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual bool IsNonNegative { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Flipped { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Subtract(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry other)
+{
+    if (other is EdgeInsetsDirectional) return this - other;
+    return base.Subtract(other);
+}
+
+
+
+
+public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Add(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry other)
+{
+    if (other is EdgeInsetsDirectional) return this + other;
+    return base.Add(other);
+}
+
+
+
+
+/// <Summary>
+/// Returns the difference between two [EdgeInsetsDirectional] objects.
+/// </Summary>
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Unary(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional other)
+{
+    return EdgeInsetsDirectional.FromSTEB(Start - other.Start, Top - other.Top, End - other.End, Bottom - other.Bottom);
+}
+
+
+
+
+/// <Summary>
+/// Returns the sum of two [EdgeInsetsDirectional] objects.
+/// </Summary>
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional AddOperator(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional other)
+{
+    return EdgeInsetsDirectional.FromSTEB(Start + other.Start, Top + other.Top, End + other.End, Bottom + other.Bottom);
+}
+
+
+
+
+/// <Summary>
+/// Returns the [EdgeInsetsDirectional] object with each dimension negated.
+///
+/// This is the same as multiplying the object by -1.0.
+/// </Summary>
+public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Unary()
+{
+    return EdgeInsetsDirectional.FromSTEB(-Start, -Top, -End, -Bottom);
+}
+
+
+
+
+/// <Summary>
+/// Scales the [EdgeInsetsDirectional] object in each dimension by the given factor.
+/// </Summary>
+public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional MultiplyOperator(double other)
+{
+    return EdgeInsetsDirectional.FromSTEB(Start * other, Top * other, End * other, Bottom * other);
+}
+
+
+
+
+/// <Summary>
+/// Divides the [EdgeInsetsDirectional] object in each dimension by the given factor.
+/// </Summary>
+public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional DivideOperator(double other)
+{
+    return EdgeInsetsDirectional.FromSTEB(Start / other, Top / other, End / other, Bottom / other);
+}
+
+
+
+
+/// <Summary>
+/// Integer divides the [EdgeInsetsDirectional] object in each dimension by the given factor.
+/// </Summary>
+public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional DivideIntegerResultOperator(double other)
+{
+    return EdgeInsetsDirectional.FromSTEB((Start~/ other).ToDouble(), (Top~/ other).ToDouble(), (End~/ other).ToDouble(), (Bottom~/ other).ToDouble());
+}
+
+
+
+
+/// <Summary>
+/// Computes the remainder in each dimension by the given factor.
+/// </Summary>
+public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional ModuloOperator(double other)
+{
+    return EdgeInsetsDirectional.FromSTEB(Start % other, Top % other, End % other, Bottom % other);
+}
+
+
+
+
+/// <Summary>
+/// Linearly interpolate between two [EdgeInsetsDirectional].
+///
+/// If either is null, this function interpolates from [EdgeInsetsDirectional.zero].
+///
+/// To interpolate between two [EdgeInsetsGeometry] objects of arbitrary type
+/// (either [EdgeInsets] or [EdgeInsetsDirectional]), consider the
+/// [EdgeInsetsGeometry.lerp] static method.
+///
+/// {@macro dart.ui.shadow.lerp}
+/// </Summary>
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Lerp(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional a, FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional b, double t)
+{
+
+    if (a == null && b == null) return null;
+    if (a == null) return b * t;
+    if (b == null) return a * (1.0 - t);
+    return EdgeInsetsDirectional.FromSTEB(Ui.Dart:uiDefaultClass.LerpDouble(a.Start, b.Start, t), Ui.Dart:uiDefaultClass.LerpDouble(a.Top, b.Top, t), Ui.Dart:uiDefaultClass.LerpDouble(a.End, b.End, t), Ui.Dart:uiDefaultClass.LerpDouble(a.Bottom, b.Bottom, t));
+}
+
+
+
+
+public new FlutterSDK.Painting.Edgeinsets.EdgeInsets Resolve(TextDirection direction)
+{
+
+    switch (direction) { case TextDirection.Rtl: return EdgeInsets.FromLTRB(End, Top, Start, Bottom); case TextDirection.Ltr: return EdgeInsets.FromLTRB(Start, Top, End, Bottom); }
+    return null;
+}
+
+
+
+#endregion
+}
+
+
+public class _MixedEdgeInsets : FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry
+{
+    #region constructors
+    public static _MixedEdgeInsets FromLRSETB(double _left, double _right, double _start, double _end, double _top, double _bottom)
+
+}
+#endregion
+
+#region fields
+internal new double _Left { get; set; }
+internal new double _Right { get; set; }
+internal new double _Start { get; set; }
+internal new double _End { get; set; }
+internal new double _Top { get; set; }
+internal new double _Bottom { get; set; }
+public virtual bool IsNonNegative { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Painting.Edgeinsets._MixedEdgeInsets Unary()
+{
+    return _MixedEdgeInsets.FromLRSETB(-_Left, -_Right, -_Start, -_End, -_Top, -_Bottom);
+}
+
+
+
+
+public new FlutterSDK.Painting.Edgeinsets._MixedEdgeInsets MultiplyOperator(double other)
+{
+    return _MixedEdgeInsets.FromLRSETB(_Left * other, _Right * other, _Start * other, _End * other, _Top * other, _Bottom * other);
+}
+
+
+
+
+public new FlutterSDK.Painting.Edgeinsets._MixedEdgeInsets DivideOperator(double other)
+{
+    return _MixedEdgeInsets.FromLRSETB(_Left / other, _Right / other, _Start / other, _End / other, _Top / other, _Bottom / other);
+}
+
+
+
+
+public new FlutterSDK.Painting.Edgeinsets._MixedEdgeInsets DivideIntegerResultOperator(double other)
+{
+    return _MixedEdgeInsets.FromLRSETB((_Left~/ other).ToDouble(), (_Right~/ other).ToDouble(), (_Start~/ other).ToDouble(), (_End~/ other).ToDouble(), (_Top~/ other).ToDouble(), (_Bottom~/ other).ToDouble());
+}
+
+
+
+
+public new FlutterSDK.Painting.Edgeinsets._MixedEdgeInsets ModuloOperator(double other)
+{
+    return _MixedEdgeInsets.FromLRSETB(_Left % other, _Right % other, _Start % other, _End % other, _Top % other, _Bottom % other);
+}
+
+
+
+
+public new FlutterSDK.Painting.Edgeinsets.EdgeInsets Resolve(TextDirection direction)
+{
+
+    switch (direction) { case TextDirection.Rtl: return EdgeInsets.FromLTRB(_End + _Left, _Top, _Start + _Right, _Bottom); case TextDirection.Ltr: return EdgeInsets.FromLTRB(_Start + _Left, _Top, _End + _Right, _Bottom); }
+    return null;
+}
+
+
+
+#endregion
+}
 
 }

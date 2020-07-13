@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -479,426 +479,809 @@ namespace FlutterSDK.Widgets.Scrollable
         #region constructors
         public Scrollable(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Widgets.Scrollable.ViewportBuilder viewportBuilder = default(FlutterSDK.Widgets.Scrollable.ViewportBuilder), FlutterSDK.Widgets.Scrollable.ScrollIncrementCalculator incrementCalculator = default(FlutterSDK.Widgets.Scrollable.ScrollIncrementCalculator), bool excludeFromSemantics = false, int semanticChildCount = default(int), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
         : base(key: key)
-        {
-            this.AxisDirection = axisDirection;
-            this.Controller = controller;
-            this.Physics = physics;
-            this.ViewportBuilder = viewportBuilder;
-            this.IncrementCalculator = incrementCalculator;
-            this.ExcludeFromSemantics = excludeFromSemantics;
-            this.SemanticChildCount = semanticChildCount;
-            this.DragStartBehavior = dragStartBehavior; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get; set; }
-        public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller { get; set; }
-        public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics { get; set; }
-        public virtual FlutterSDK.Widgets.Scrollable.ViewportBuilder ViewportBuilder { get; set; }
-        public virtual FlutterSDK.Widgets.Scrollable.ScrollIncrementCalculator IncrementCalculator { get; set; }
-        public virtual bool ExcludeFromSemantics { get; set; }
-        public virtual int SemanticChildCount { get; set; }
-        public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
-        public virtual FlutterSDK.Painting.Basictypes.Axis Axis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get; set; }
+    public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller { get; set; }
+    public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics { get; set; }
+    public virtual FlutterSDK.Widgets.Scrollable.ViewportBuilder ViewportBuilder { get; set; }
+    public virtual FlutterSDK.Widgets.Scrollable.ScrollIncrementCalculator IncrementCalculator { get; set; }
+    public virtual bool ExcludeFromSemantics { get; set; }
+    public virtual int SemanticChildCount { get; set; }
+    public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
+    public virtual FlutterSDK.Painting.Basictypes.Axis Axis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new FlutterSDK.Widgets.Scrollable.ScrollableState CreateState() { throw new NotImplementedException(); }
+    public new FlutterSDK.Widgets.Scrollable.ScrollableState CreateState() => new ScrollableState();
 
 
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-
-        /// <Summary>
-        /// The state from the closest instance of this class that encloses the given context.
-        ///
-        /// Typical usage is as follows:
-        ///
-        /// ```dart
-        /// ScrollableState scrollable = Scrollable.of(context);
-        /// ```
-        ///
-        /// Calling this method will create a dependency on the closest [Scrollable]
-        /// in the [context], if there is one.
-        /// </Summary>
-        public virtual FlutterSDK.Widgets.Scrollable.ScrollableState Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Provides a heuristic to determine if expensive frame-bound tasks should be
-        /// deferred for the [context] at a specific point in time.
-        ///
-        /// Calling this method does _not_ create a dependency on any other widget.
-        /// This also means that the value returned is only good for the point in time
-        /// when it is called, and callers will not get updated if the value changes.
-        ///
-        /// The heuristic used is determined by the [physics] of this [Scrollable]
-        /// via [ScrollPhysics.recommendDeferredScrolling]. That method is called with
-        /// the current [activity]'s [ScrollActivity.velocity].
-        ///
-        /// If there is no [Scrollable] in the widget tree above the [context], this
-        /// method returns false.
-        /// </Summary>
-        public virtual bool RecommendDeferredLoadingForContext(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Scrolls the scrollables that enclose the given context so as to make the
-        /// given context visible.
-        /// </Summary>
-        public virtual Future<object> EnsureVisible(FlutterSDK.Widgets.Framework.BuildContext context, double alignment = 0.0, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Widgets.Scrollposition.ScrollPositionAlignmentPolicy alignmentPolicy = default(FlutterSDK.Widgets.Scrollposition.ScrollPositionAlignmentPolicy)) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _ScrollableScope : FlutterSDK.Widgets.Framework.InheritedWidget
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
     {
-        #region constructors
-        public _ScrollableScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Scrollable.ScrollableState scrollable = default(FlutterSDK.Widgets.Scrollable.ScrollableState), FlutterSDK.Widgets.Scrollposition.ScrollPosition position = default(FlutterSDK.Widgets.Scrollposition.ScrollPosition), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key, child: child)
-        {
-            this.Scrollable = scrollable;
-            this.Position = position; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Widgets.Scrollable.ScrollableState Scrollable { get; set; }
-        public virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition Position { get; set; }
-        #endregion
-
-        #region methods
-
-        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Scrollable._ScrollableScope old) { throw new NotImplementedException(); }
-        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
-
-        #endregion
+        base.DebugFillProperties(properties);
+        properties.Add(new EnumProperty<AxisDirection>("axisDirection", AxisDirection));
+        properties.Add(new DiagnosticsProperty<ScrollPhysics>("physics", Physics));
     }
+
+
 
 
     /// <Summary>
-    /// State object for a [Scrollable] widget.
+    /// The state from the closest instance of this class that encloses the given context.
     ///
-    /// To manipulate a [Scrollable] widget's scroll position, use the object
-    /// obtained from the [position] property.
+    /// Typical usage is as follows:
     ///
-    /// To be informed of when a [Scrollable] widget is scrolling, use a
-    /// [NotificationListener] to listen for [ScrollNotification] notifications.
+    /// ```dart
+    /// ScrollableState scrollable = Scrollable.of(context);
+    /// ```
     ///
-    /// This class is not intended to be subclassed. To specialize the behavior of a
-    /// [Scrollable], provide it with a [ScrollPhysics].
+    /// Calling this method will create a dependency on the closest [Scrollable]
+    /// in the [context], if there is one.
     /// </Summary>
-    public class ScrollableState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Scrollable.Scrollable>, IScrollContext, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    public virtual FlutterSDK.Widgets.Scrollable.ScrollableState Of(FlutterSDK.Widgets.Framework.BuildContext context)
     {
-        #region constructors
-        public ScrollableState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition _Position { get; set; }
-        internal virtual FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior _Configuration { get; set; }
-        internal virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics _Physics { get; set; }
-        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _ScrollSemanticsKey { get; set; }
-        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Gesturedetector.RawGestureDetectorState> _GestureDetectorKey { get; set; }
-        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _IgnorePointerKey { get; set; }
-        internal virtual Dictionary<Type, FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactory<FlutterSDK.Gestures.Recognizer.GestureRecognizer>> _GestureRecognizers { get; set; }
-        internal virtual bool _ShouldIgnorePointer { get; set; }
-        internal virtual bool _LastCanDrag { get; set; }
-        internal virtual FlutterSDK.Painting.Basictypes.Axis _LastAxisDirection { get; set; }
-        internal virtual FlutterSDK.Gestures.Drag.Drag _Drag { get; set; }
-        internal virtual FlutterSDK.Widgets.Scrollactivity.ScrollHoldController _Hold { get; set; }
-        public virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition Position { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Widgets.Framework.BuildContext NotificationContext { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Widgets.Framework.BuildContext StorageContext { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        private void _UpdatePosition() { throw new NotImplementedException(); }
-
-
-        public new void DidChangeDependencies() { throw new NotImplementedException(); }
-
-
-        private bool _ShouldUpdatePosition(FlutterSDK.Widgets.Scrollable.Scrollable oldWidget) { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Widgets.Scrollable.Scrollable oldWidget) { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        public new void SetSemanticsActions(HashSet<SemanticsAction> actions) { throw new NotImplementedException(); }
-
-
-        public new void SetCanDrag(bool canDrag) { throw new NotImplementedException(); }
-
-
-        public new void SetIgnorePointer(bool value) { throw new NotImplementedException(); }
-
-
-        private void _HandleDragDown(FlutterSDK.Gestures.Dragdetails.DragDownDetails details) { throw new NotImplementedException(); }
-
-
-        private void _HandleDragStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details) { throw new NotImplementedException(); }
-
-
-        private void _HandleDragUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details) { throw new NotImplementedException(); }
-
-
-        private void _HandleDragEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details) { throw new NotImplementedException(); }
-
-
-        private void _HandleDragCancel() { throw new NotImplementedException(); }
-
-
-        private void _DisposeHold() { throw new NotImplementedException(); }
-
-
-        private void _DisposeDrag() { throw new NotImplementedException(); }
-
-
-        private double _TargetScrollOffsetForPointerScroll(FlutterSDK.Gestures.Events.PointerScrollEvent @event) { throw new NotImplementedException(); }
-
-
-        private void _ReceivedPointerSignal(FlutterSDK.Gestures.Events.PointerSignalEvent @event) { throw new NotImplementedException(); }
-
-
-        private void _HandlePointerScroll(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+        _ScrollableScope widget = context.DependOnInheritedWidgetOfExactType();
+        return widget?.Scrollable;
     }
+
+
 
 
     /// <Summary>
-    /// With [_ScrollSemantics] certain child [SemanticsNode]s can be
-    /// excluded from the scrollable area for semantics purposes.
+    /// Provides a heuristic to determine if expensive frame-bound tasks should be
+    /// deferred for the [context] at a specific point in time.
     ///
-    /// Nodes, that are to be excluded, have to be tagged with
-    /// [RenderViewport.excludeFromScrolling] and the [RenderAbstractViewport] in
-    /// use has to add the [RenderViewport.useTwoPaneSemantics] tag to its
-    /// [SemanticsConfiguration] by overriding
-    /// [RenderObject.describeSemanticsConfiguration].
+    /// Calling this method does _not_ create a dependency on any other widget.
+    /// This also means that the value returned is only good for the point in time
+    /// when it is called, and callers will not get updated if the value changes.
     ///
-    /// If the tag [RenderViewport.useTwoPaneSemantics] is present on the viewport,
-    /// two semantics nodes will be used to represent the [Scrollable]: The outer
-    /// node will contain all children, that are excluded from scrolling. The inner
-    /// node, which is annotated with the scrolling actions, will house the
-    /// scrollable children.
+    /// The heuristic used is determined by the [physics] of this [Scrollable]
+    /// via [ScrollPhysics.recommendDeferredScrolling]. That method is called with
+    /// the current [activity]'s [ScrollActivity.velocity].
+    ///
+    /// If there is no [Scrollable] in the widget tree above the [context], this
+    /// method returns false.
     /// </Summary>
-    public class _ScrollSemantics : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
+    public virtual bool RecommendDeferredLoadingForContext(FlutterSDK.Widgets.Framework.BuildContext context)
     {
-        #region constructors
-        public _ScrollSemantics(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Scrollposition.ScrollPosition position = default(FlutterSDK.Widgets.Scrollposition.ScrollPosition), bool allowImplicitScrolling = default(bool), int semanticChildCount = default(int), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key, child: child)
+        _ScrollableScope widget = context.GetElementForInheritedWidgetOfExactType()?.Widget as _ScrollableScope;
+        if (widget == null)
         {
-            this.Position = position;
-            this.AllowImplicitScrolling = allowImplicitScrolling;
-            this.SemanticChildCount = semanticChildCount; throw new NotImplementedException();
+            return false;
         }
-        #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition Position { get; set; }
-        public virtual bool AllowImplicitScrolling { get; set; }
-        public virtual int SemanticChildCount { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Scrollable._RenderScrollSemantics CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Scrollable._RenderScrollSemantics renderObject) { throw new NotImplementedException(); }
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
-
-        #endregion
+        return widget.Position.RecommendDeferredLoading(context);
     }
 
 
-    public class _RenderScrollSemantics : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-    {
-        #region constructors
-        public _RenderScrollSemantics(FlutterSDK.Widgets.Scrollposition.ScrollPosition position = default(FlutterSDK.Widgets.Scrollposition.ScrollPosition), bool allowImplicitScrolling = default(bool), int semanticChildCount = default(int), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-        : base(child)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition _Position { get; set; }
-        internal virtual bool _AllowImplicitScrolling { get; set; }
-        internal virtual int _SemanticChildCount { get; set; }
-        internal virtual FlutterSDK.Semantics.Semantics.SemanticsNode _InnerNode { get; set; }
-        public virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition Position { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool AllowImplicitScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual int SemanticChildCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config) { throw new NotImplementedException(); }
-
-
-        public new void AssembleSemanticsNode(FlutterSDK.Semantics.Semantics.SemanticsNode node, FlutterSDK.Semantics.Semantics.SemanticsConfiguration config, Iterable<FlutterSDK.Semantics.Semantics.SemanticsNode> children) { throw new NotImplementedException(); }
-
-
-        public new void ClearSemantics() { throw new NotImplementedException(); }
-
-        #endregion
-    }
 
 
     /// <Summary>
-    /// A details object that describes the type of scroll increment being requested
-    /// of a [ScrollIncrementCalculator] function, as well as the current metrics
-    /// for the scrollable.
+    /// Scrolls the scrollables that enclose the given context so as to make the
+    /// given context visible.
     /// </Summary>
-    public class ScrollIncrementDetails
+    public virtual Future<object> EnsureVisible(FlutterSDK.Widgets.Framework.BuildContext context, double alignment = 0.0, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Widgets.Scrollposition.ScrollPositionAlignmentPolicy alignmentPolicy = default(FlutterSDK.Widgets.Scrollposition.ScrollPositionAlignmentPolicy))
     {
-        #region constructors
-        public ScrollIncrementDetails(FlutterSDK.Widgets.Scrollable.ScrollIncrementType type = default(FlutterSDK.Widgets.Scrollable.ScrollIncrementType), FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics))
-        : base()
+        List<Future<void>> futures = new List<Future<void>>() { };
+        ScrollableState scrollable = ScrollableDefaultClass.Scrollable.Of(context);
+        while (scrollable != null)
         {
-            this.Type = type;
-            this.Metrics = metrics; throw new NotImplementedException();
+            futures.Add(scrollable.Position.EnsureVisible(context.FindRenderObject(), alignment: alignment, duration: duration, curve: curve, alignmentPolicy: alignmentPolicy));
+            context = scrollable.Context;
+            scrollable = ScrollableDefaultClass.Scrollable.Of(context);
         }
-        #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Scrollable.ScrollIncrementType Type { get; set; }
-        public virtual FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics Metrics { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
+        if (futures.IsEmpty() || duration == Dart:coreDefaultClass.Duration.Zero)return Future<void>.Value();
+        if (futures.Count == 1) return futures.Single();
+        return Dart:asyncDefaultClass.Future.Wait(futures).Then((List<void> _) => =>null);
     }
 
+
+
+    #endregion
+}
+
+
+public class _ScrollableScope : FlutterSDK.Widgets.Framework.InheritedWidget
+{
+    #region constructors
+    public _ScrollableScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Scrollable.ScrollableState scrollable = default(FlutterSDK.Widgets.Scrollable.ScrollableState), FlutterSDK.Widgets.Scrollposition.ScrollPosition position = default(FlutterSDK.Widgets.Scrollposition.ScrollPosition), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key, child: child)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Scrollable.ScrollableState Scrollable { get; set; }
+public virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition Position { get; set; }
+#endregion
+
+#region methods
+
+public new bool UpdateShouldNotify(FlutterSDK.Widgets.Scrollable._ScrollableScope old)
+{
+    return Position != old.Position;
+}
+
+
+public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget)
+{
+    return Position != old.Position;
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// State object for a [Scrollable] widget.
+///
+/// To manipulate a [Scrollable] widget's scroll position, use the object
+/// obtained from the [position] property.
+///
+/// To be informed of when a [Scrollable] widget is scrolling, use a
+/// [NotificationListener] to listen for [ScrollNotification] notifications.
+///
+/// This class is not intended to be subclassed. To specialize the behavior of a
+/// [Scrollable], provide it with a [ScrollPhysics].
+/// </Summary>
+public class ScrollableState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Scrollable.Scrollable>, IScrollContext, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+{
+    #region constructors
+    public ScrollableState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition _Position { get; set; }
+    internal virtual FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior _Configuration { get; set; }
+    internal virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics _Physics { get; set; }
+    internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _ScrollSemanticsKey { get; set; }
+    internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Gesturedetector.RawGestureDetectorState> _GestureDetectorKey { get; set; }
+    internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _IgnorePointerKey { get; set; }
+    internal virtual Dictionary<Type, FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactory<FlutterSDK.Gestures.Recognizer.GestureRecognizer>> _GestureRecognizers { get; set; }
+    internal virtual bool _ShouldIgnorePointer { get; set; }
+    internal virtual bool _LastCanDrag { get; set; }
+    internal virtual FlutterSDK.Painting.Basictypes.Axis _LastAxisDirection { get; set; }
+    internal virtual FlutterSDK.Gestures.Drag.Drag _Drag { get; set; }
+    internal virtual FlutterSDK.Widgets.Scrollactivity.ScrollHoldController _Hold { get; set; }
+    public virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition Position { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Widgets.Framework.BuildContext NotificationContext { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Widgets.Framework.BuildContext StorageContext { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    private void _UpdatePosition()
+    {
+        _Configuration = ScrollconfigurationDefaultClass.ScrollConfiguration.Of(Context);
+        _Physics = _Configuration.GetScrollPhysics(Context);
+        if (Widget.Physics != null) _Physics = Widget.Physics.ApplyTo(_Physics);
+        ScrollController controller = Widget.Controller;
+        ScrollPosition oldPosition = Position;
+        if (oldPosition != null)
+        {
+            controller?.Detach(oldPosition);
+        Dart: asyncDefaultClass.ScheduleMicrotask(oldPosition.Dispose);
+        }
+
+        _Position = controller?.CreateScrollPosition(_Physics, this, oldPosition) ?? new ScrollPositionWithSingleContext(physics: _Physics, context: this, oldPosition: oldPosition);
+
+        controller?.Attach(Position);
+    }
+
+
+
+
+    public new void DidChangeDependencies()
+    {
+        base.DidChangeDependencies();
+        _UpdatePosition();
+    }
+
+
+
+
+    private bool _ShouldUpdatePosition(FlutterSDK.Widgets.Scrollable.Scrollable oldWidget)
+    {
+        ScrollPhysics newPhysics = Widget.Physics;
+        ScrollPhysics oldPhysics = oldWidget.Physics;
+        do
+        {
+            if (newPhysics?.GetType() != oldPhysics?.GetType()) return true;
+            newPhysics = newPhysics?.Parent;
+            oldPhysics = oldPhysics?.Parent;
+        }
+        while (newPhysics != null || oldPhysics != null);
+        return Widget.Controller?.GetType() != oldWidget.Controller?.GetType();
+    }
+
+
+
+
+    public new void DidUpdateWidget(FlutterSDK.Widgets.Scrollable.Scrollable oldWidget)
+    {
+        base.DidUpdateWidget(oldWidget);
+        if (Widget.Controller != oldWidget.Controller)
+        {
+            oldWidget.Controller?.Detach(Position);
+            Widget.Controller?.Attach(Position);
+        }
+
+        if (_ShouldUpdatePosition(oldWidget)) _UpdatePosition();
+    }
+
+
+
+
+    public new void Dispose()
+    {
+        Widget.Controller?.Detach(Position);
+        Position.Dispose();
+        base.Dispose();
+    }
+
+
+
+
+    public new void SetSemanticsActions(HashSet<SemanticsAction> actions)
+    {
+        if (_GestureDetectorKey.CurrentState != null) _GestureDetectorKey.CurrentState.ReplaceSemanticsActions(actions);
+    }
+
+
+
+
+    public new void SetCanDrag(bool canDrag)
+    {
+        if (canDrag == _LastCanDrag && (!canDrag || Widget.Axis == _LastAxisDirection)) return;
+        if (!canDrag)
+        {
+            _GestureRecognizers = new Dictionary<Type, GestureRecognizerFactory> { };
+        }
+        else
+        {
+            switch (Widget.Axis)
+            {
+                case Axis.Vertical:
+                    _GestureRecognizers = new Dictionary<Type, GestureRecognizerFactory>{{MonodragDefaultClass.VerticalDragGestureRecognizer, new GestureRecognizerFactoryWithHandlers<VerticalDragGestureRecognizer>(() => =>new VerticalDragGestureRecognizer(), (VerticalDragGestureRecognizer instance) => {
+..OnDown=_HandleDragDown..OnStart=_HandleDragStart..OnUpdate=_HandleDragUpdate..OnEnd=_HandleDragEnd..OnCancel=_HandleDragCancel..MinFlingDistance=_Physics?.MinFlingDistance..MinFlingVelocity=_Physics?.MinFlingVelocity..MaxFlingVelocity=_Physics?.MaxFlingVelocity..DragStartBehavior=Widget.DragStartBehavior;
+}
+)}}; break;
+                case Axis.Horizontal:
+                    _GestureRecognizers = new Dictionary<Type, GestureRecognizerFactory>{{MonodragDefaultClass.HorizontalDragGestureRecognizer, new GestureRecognizerFactoryWithHandlers<HorizontalDragGestureRecognizer>(() => =>new HorizontalDragGestureRecognizer(), (HorizontalDragGestureRecognizer instance) => {
+..OnDown=_HandleDragDown..OnStart=_HandleDragStart..OnUpdate=_HandleDragUpdate..OnEnd=_HandleDragEnd..OnCancel=_HandleDragCancel..MinFlingDistance=_Physics?.MinFlingDistance..MinFlingVelocity=_Physics?.MinFlingVelocity..MaxFlingVelocity=_Physics?.MaxFlingVelocity..DragStartBehavior=Widget.DragStartBehavior;
+}
+)}}; break;
+            }
+        }
+
+        _LastCanDrag = canDrag;
+        _LastAxisDirection = Widget.Axis;
+        if (_GestureDetectorKey.CurrentState != null) _GestureDetectorKey.CurrentState.ReplaceGestureRecognizers(_GestureRecognizers);
+    }
+
+
+
+
+    public new void SetIgnorePointer(bool value)
+    {
+        if (_ShouldIgnorePointer == value) return;
+        _ShouldIgnorePointer = value;
+        if (_IgnorePointerKey.CurrentContext != null)
+        {
+            RenderIgnorePointer renderBox = _IgnorePointerKey.CurrentContext.FindRenderObject() as RenderIgnorePointer;
+            renderBox.Ignoring = _ShouldIgnorePointer;
+        }
+
+    }
+
+
+
+
+    private void _HandleDragDown(FlutterSDK.Gestures.Dragdetails.DragDownDetails details)
+    {
+
+
+        _Hold = Position.Hold(_DisposeHold);
+    }
+
+
+
+
+    private void _HandleDragStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details)
+    {
+
+        _Drag = Position.Drag(details, _DisposeDrag);
+
+
+    }
+
+
+
+
+    private void _HandleDragUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details)
+    {
+
+        _Drag?.Update(details);
+    }
+
+
+
+
+    private void _HandleDragEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details)
+    {
+
+        _Drag?.End(details);
+
+    }
+
+
+
+
+    private void _HandleDragCancel()
+    {
+
+        _Hold?.Cancel();
+        _Drag?.Cancel();
+
+
+    }
+
+
+
+
+    private void _DisposeHold()
+    {
+        _Hold = null;
+    }
+
+
+
+
+    private void _DisposeDrag()
+    {
+        _Drag = null;
+    }
+
+
+
+
+    private double _TargetScrollOffsetForPointerScroll(FlutterSDK.Gestures.Events.PointerScrollEvent @event)
+    {
+        double delta = Widget.Axis == Axis.Horizontal ? @event.ScrollDelta.Dx : @event.ScrollDelta.Dy;
+        if (BasictypesDefaultClass.AxisDirectionIsReversed(Widget.AxisDirection))
+        {
+            delta *= -1;
+        }
+
+        return Math.Dart:mathDefaultClass.Min(Math.Dart:mathDefaultClass.Max(Position.Pixels + delta, Position.MinScrollExtent), Position.MaxScrollExtent);
+    }
+
+
+
+
+    private void _ReceivedPointerSignal(FlutterSDK.Gestures.Events.PointerSignalEvent @event)
+    {
+        if (@event is PointerScrollEvent && Position != null)
+        {
+            double targetScrollOffset = _TargetScrollOffsetForPointerScroll(((PointerScrollEvent)@event));
+            if (targetScrollOffset != Position.Pixels)
+            {
+                BindingDefaultClass.GestureBinding.Instance.PointerSignalResolver.Register(((PointerScrollEvent)@event), _HandlePointerScroll);
+            }
+
+        }
+
+    }
+
+
+
+
+    private void _HandlePointerScroll(FlutterSDK.Gestures.Events.PointerEvent @event)
+    {
+
+        if (_Physics != null && !_Physics.ShouldAcceptUserOffset(Position))
+        {
+            return;
+        }
+
+        double targetScrollOffset = _TargetScrollOffsetForPointerScroll(@event as PointerScrollEvent);
+        if (targetScrollOffset != Position.Pixels)
+        {
+            Position.JumpTo(targetScrollOffset);
+        }
+
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+
+        Widget result = new _ScrollableScope(scrollable: this, position: Position, child: new Listener(onPointerSignal: _ReceivedPointerSignal, child: new RawGestureDetector(key: _GestureDetectorKey, gestures: _GestureRecognizers, behavior: HitTestBehavior.Opaque, excludeFromSemantics: Widget.ExcludeFromSemantics, child: new Semantics(explicitChildNodes: !Widget.ExcludeFromSemantics, child: new IgnorePointer(key: _IgnorePointerKey, ignoring: _ShouldIgnorePointer, ignoringSemantics: false, child: Widget.ViewportBuilder(context, Position))))));
+        if (!Widget.ExcludeFromSemantics)
+        {
+            result = new _ScrollSemantics(key: _ScrollSemanticsKey, child: result, position: Position, allowImplicitScrolling: Widget?.Physics?.AllowImplicitScrolling ?? _Physics.AllowImplicitScrolling, semanticChildCount: Widget.SemanticChildCount);
+        }
+
+        return _Configuration.BuildViewportChrome(context, result, Widget.AxisDirection);
+    }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new DiagnosticsProperty<ScrollPosition>("position", Position));
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// With [_ScrollSemantics] certain child [SemanticsNode]s can be
+/// excluded from the scrollable area for semantics purposes.
+///
+/// Nodes, that are to be excluded, have to be tagged with
+/// [RenderViewport.excludeFromScrolling] and the [RenderAbstractViewport] in
+/// use has to add the [RenderViewport.useTwoPaneSemantics] tag to its
+/// [SemanticsConfiguration] by overriding
+/// [RenderObject.describeSemanticsConfiguration].
+///
+/// If the tag [RenderViewport.useTwoPaneSemantics] is present on the viewport,
+/// two semantics nodes will be used to represent the [Scrollable]: The outer
+/// node will contain all children, that are excluded from scrolling. The inner
+/// node, which is annotated with the scrolling actions, will house the
+/// scrollable children.
+/// </Summary>
+public class _ScrollSemantics : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
+{
+    #region constructors
+    public _ScrollSemantics(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Scrollposition.ScrollPosition position = default(FlutterSDK.Widgets.Scrollposition.ScrollPosition), bool allowImplicitScrolling = default(bool), int semanticChildCount = default(int), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key, child: child)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition Position { get; set; }
+public virtual bool AllowImplicitScrolling { get; set; }
+public virtual int SemanticChildCount { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Scrollable._RenderScrollSemantics CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    return new _RenderScrollSemantics(position: Position, allowImplicitScrolling: AllowImplicitScrolling, semanticChildCount: SemanticChildCount);
+}
+
+
+
+
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Scrollable._RenderScrollSemantics renderObject)
+{
+    ..AllowImplicitScrolling = AllowImplicitScrolling..Position = Position..SemanticChildCount = SemanticChildCount;
+}
+
+
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+{
+    ..AllowImplicitScrolling = AllowImplicitScrolling..Position = Position..SemanticChildCount = SemanticChildCount;
+}
+
+
+
+#endregion
+}
+
+
+public class _RenderScrollSemantics : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+{
+    #region constructors
+    public _RenderScrollSemantics(FlutterSDK.Widgets.Scrollposition.ScrollPosition position = default(FlutterSDK.Widgets.Scrollposition.ScrollPosition), bool allowImplicitScrolling = default(bool), int semanticChildCount = default(int), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+    : base(child)
+
+position.AddListener(MarkNeedsSemanticsUpdate);
+}
+
+
+#endregion
+
+#region fields
+internal virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition _Position { get; set; }
+internal virtual bool _AllowImplicitScrolling { get; set; }
+internal virtual int _SemanticChildCount { get; set; }
+internal virtual FlutterSDK.Semantics.Semantics.SemanticsNode _InnerNode { get; set; }
+public virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition Position { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual bool AllowImplicitScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual int SemanticChildCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config)
+{
+    base.DescribeSemanticsConfiguration(config);
+    config.IsSemanticBoundary = true;
+    if (Position.HaveDimensions)
+    {
+        ..HasImplicitScrolling = AllowImplicitScrolling..ScrollPosition = _Position.Pixels..ScrollExtentMax = _Position.MaxScrollExtent..ScrollExtentMin = _Position.MinScrollExtent..ScrollChildCount = SemanticChildCount;
+    }
+
+}
+
+
+
+
+public new void AssembleSemanticsNode(FlutterSDK.Semantics.Semantics.SemanticsNode node, FlutterSDK.Semantics.Semantics.SemanticsConfiguration config, Iterable<FlutterSDK.Semantics.Semantics.SemanticsNode> children)
+{
+    if (children.IsEmpty() || !children.First.IsTagged(ViewportDefaultClass.RenderViewport.UseTwoPaneSemantics))
+    {
+        base.AssembleSemanticsNode(node, config, children);
+        return;
+    }
+
+    _InnerNode = (_InnerNode == null ? new SemanticsNode(showOnScreen: ShowOnScreen) : _InnerNode);
+    ..IsMergedIntoParent = node.IsPartOfNodeMerging..Rect = Dart:uiDefaultClass.Offset.Zero & node.Rect.Size;
+    int firstVisibleIndex = default(int);
+    List<SemanticsNode> excluded = new List<SemanticsNode>() { _InnerNode };
+    List<SemanticsNode> included = new List<SemanticsNode>() { };
+    foreach (SemanticsNode child in children)
+    {
+
+        if (child.IsTagged(ViewportDefaultClass.RenderViewport.ExcludeFromScrolling))
+        {
+            excluded.Add(child);
+        }
+        else
+        {
+            if (!child.HasFlag(Dart: uiDefaultClass.SemanticsFlag.IsHidden)) firstVisibleIndex = (firstVisibleIndex == null ? child.IndexInParent : firstVisibleIndex);
+            included.Add(child);
+        }
+
+    }
+
+    config.ScrollIndex = firstVisibleIndex;
+    node.UpdateWith(config: null, childrenInInversePaintOrder: excluded);
+    _InnerNode.UpdateWith(config: config, childrenInInversePaintOrder: included);
+}
+
+
+
+
+public new void ClearSemantics()
+{
+    base.ClearSemantics();
+    _InnerNode = null;
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A details object that describes the type of scroll increment being requested
+/// of a [ScrollIncrementCalculator] function, as well as the current metrics
+/// for the scrollable.
+/// </Summary>
+public class ScrollIncrementDetails
+{
+    #region constructors
+    public ScrollIncrementDetails(FlutterSDK.Widgets.Scrollable.ScrollIncrementType type = default(FlutterSDK.Widgets.Scrollable.ScrollIncrementType), FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics))
+    : base()
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Scrollable.ScrollIncrementType Type { get; set; }
+public virtual FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics Metrics { get; set; }
+#endregion
+
+#region methods
+#endregion
+}
+
+
+/// <Summary>
+/// An [Intent] that represents scrolling the nearest scrollable by an amount
+/// appropriate for the [type] specified.
+///
+/// The actual amount of the scroll is determined by the
+/// [Scrollable.incrementCalculator], or by its defaults if that is not
+/// specified.
+/// </Summary>
+public class ScrollIntent : FlutterSDK.Widgets.Actions.Intent
+{
+    #region constructors
+    public ScrollIntent(FlutterSDK.Painting.Basictypes.AxisDirection direction = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Widgets.Scrollable.ScrollIncrementType type = default(FlutterSDK.Widgets.Scrollable.ScrollIncrementType))
+    : base(ScrollableDefaultClass.ScrollAction.Key)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Painting.Basictypes.AxisDirection Direction { get; set; }
+public virtual FlutterSDK.Widgets.Scrollable.ScrollIncrementType Type { get; set; }
+#endregion
+
+#region methods
+
+public new bool IsEnabled(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    return ScrollableDefaultClass.Scrollable.Of(context) != null;
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// An [Action] that scrolls the [Scrollable] that encloses the current
+/// [primaryFocus] by the amount configured in the [ScrollIntent] given to it.
+///
+/// If [Scrollable.incrementCalculator] is null for the scrollable, the default
+/// for a [ScrollIntent.type] set to [ScrollIncrementType.page] is 80% of the
+/// size of the scroll window, and for [ScrollIncrementType.line], 50 logical
+/// pixels.
+/// </Summary>
+public class ScrollAction : FlutterSDK.Widgets.Actions.Action
+{
+    #region constructors
+    public ScrollAction()
+    : base(Key)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
+#endregion
+
+#region methods
+
+private double _CalculateScrollIncrement(FlutterSDK.Widgets.Scrollable.ScrollableState state, FlutterSDK.Widgets.Scrollable.ScrollIncrementType type = default(FlutterSDK.Widgets.Scrollable.ScrollIncrementType))
+{
+
+
+
+
+
+
+
+    if (state.Widget.IncrementCalculator != null)
+    {
+        return state.Widget.IncrementCalculator(new ScrollIncrementDetails(type: type, metrics: state.Position));
+    }
+
+    switch (type) { case ScrollIncrementType.Line: return 50.0; case ScrollIncrementType.Page: return 0.8 * state.Position.ViewportDimension; }
+    return 0.0;
+}
+
+
+
+
+private double _GetIncrement(FlutterSDK.Widgets.Scrollable.ScrollableState state, FlutterSDK.Widgets.Scrollable.ScrollIntent intent)
+{
+    double increment = _CalculateScrollIncrement(state, type: intent.Type);
+    switch (intent.Direction) { case AxisDirection.Down: switch (state.AxisDirection) { case AxisDirection.Up: return -increment; break; case AxisDirection.Down: return increment; break; case AxisDirection.Right: case AxisDirection.Left: return 0.0; } break; case AxisDirection.Up: switch (state.AxisDirection) { case AxisDirection.Up: return increment; break; case AxisDirection.Down: return -increment; break; case AxisDirection.Right: case AxisDirection.Left: return 0.0; } break; case AxisDirection.Left: switch (state.AxisDirection) { case AxisDirection.Right: return -increment; break; case AxisDirection.Left: return increment; break; case AxisDirection.Up: case AxisDirection.Down: return 0.0; } break; case AxisDirection.Right: switch (state.AxisDirection) { case AxisDirection.Right: return increment; break; case AxisDirection.Left: return -increment; break; case AxisDirection.Up: case AxisDirection.Down: return 0.0; } break; }
+    return 0.0;
+}
+
+
+
+
+public new void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Widgets.Scrollable.ScrollIntent intent)
+{
+    ScrollableState state = ScrollableDefaultClass.Scrollable.Of(node.Context);
+
+
+
+
+
+    if (state.Widget.Physics != null && !state.Widget.Physics.ShouldAcceptUserOffset(state.Position))
+    {
+        return;
+    }
+
+    double increment = _GetIncrement(state, intent);
+    if (increment == 0.0)
+    {
+        return;
+    }
+
+    state.Position.MoveTo(state.Position.Pixels + increment, duration: new TimeSpan(milliseconds: 100), curve: CurvesDefaultClass.Curves.EaseInOut);
+}
+
+
+public new void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Widgets.Actions.Intent intent)
+{
+    ScrollableState state = ScrollableDefaultClass.Scrollable.Of(node.Context);
+
+
+
+
+
+    if (state.Widget.Physics != null && !state.Widget.Physics.ShouldAcceptUserOffset(state.Position))
+    {
+        return;
+    }
+
+    double increment = _GetIncrement(state, intent);
+    if (increment == 0.0)
+    {
+        return;
+    }
+
+    state.Position.MoveTo(state.Position.Pixels + increment, duration: new TimeSpan(milliseconds: 100), curve: CurvesDefaultClass.Curves.EaseInOut);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Describes the type of scroll increment that will be performed by a
+/// [ScrollAction] on a [Scrollable].
+///
+/// This is used to configure a [ScrollIncrementDetails] object to pass to a
+/// [ScrollIncrementCalculator] function on a [Scrollable].
+///
+/// {@template flutter.widgets.scrollable.scroll_increment_type.intent}
+/// This indicates the *intent* of the scroll, not necessarily the size. Not all
+/// scrollable areas will have the concept of a "line" or "page", but they can
+/// respond to the different standard key bindings that cause scrolling, which
+/// are bound to keys that people use to indicate a "line" scroll (e.g.
+/// control-arrowDown keys) or a "page" scroll (e.g. pageDown key). It is
+/// recommended that at least the relative magnitudes of the scrolls match
+/// expectations.
+/// {@endtemplate}
+/// </Summary>
+public enum ScrollIncrementType
+{
 
     /// <Summary>
-    /// An [Intent] that represents scrolling the nearest scrollable by an amount
-    /// appropriate for the [type] specified.
+    /// Indicates that the [ScrollIncrementCalculator] should return the scroll
+    /// distance it should move when the user requests to scroll by a "line".
     ///
-    /// The actual amount of the scroll is determined by the
-    /// [Scrollable.incrementCalculator], or by its defaults if that is not
-    /// specified.
+    /// The distance a "line" scrolls refers to what should happen when the key
+    /// binding for "scroll down/up by a line" is triggered. It's up to the
+    /// [ScrollIncrementCalculator] function to decide what that means for a
+    /// particular scrollable.
     /// </Summary>
-    public class ScrollIntent : FlutterSDK.Widgets.Actions.Intent
-    {
-        #region constructors
-        public ScrollIntent(FlutterSDK.Painting.Basictypes.AxisDirection direction = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Widgets.Scrollable.ScrollIncrementType type = default(FlutterSDK.Widgets.Scrollable.ScrollIncrementType))
-        : base(ScrollableDefaultClass.ScrollAction.Key)
-        {
-            this.Direction = direction;
-            this.Type = type; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Painting.Basictypes.AxisDirection Direction { get; set; }
-        public virtual FlutterSDK.Widgets.Scrollable.ScrollIncrementType Type { get; set; }
-        #endregion
-
-        #region methods
-
-        public new bool IsEnabled(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
+    Line,
     /// <Summary>
-    /// An [Action] that scrolls the [Scrollable] that encloses the current
-    /// [primaryFocus] by the amount configured in the [ScrollIntent] given to it.
+    /// Indicates that the [ScrollIncrementCalculator] should return the scroll
+    /// distance it should move when the user requests to scroll by a "page".
     ///
-    /// If [Scrollable.incrementCalculator] is null for the scrollable, the default
-    /// for a [ScrollIntent.type] set to [ScrollIncrementType.page] is 80% of the
-    /// size of the scroll window, and for [ScrollIncrementType.line], 50 logical
-    /// pixels.
+    /// The distance a "page" scrolls refers to what should happen when the key
+    /// binding for "scroll down/up by a page" is triggered. It's up to the
+    /// [ScrollIncrementCalculator] function to decide what that means for a
+    /// particular scrollable.
     /// </Summary>
-    public class ScrollAction : FlutterSDK.Widgets.Actions.Action
-    {
-        #region constructors
-        public ScrollAction()
-        : base(Key)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
-        #endregion
-
-        #region methods
-
-        private double _CalculateScrollIncrement(FlutterSDK.Widgets.Scrollable.ScrollableState state, FlutterSDK.Widgets.Scrollable.ScrollIncrementType type = default(FlutterSDK.Widgets.Scrollable.ScrollIncrementType)) { throw new NotImplementedException(); }
-
-
-        private double _GetIncrement(FlutterSDK.Widgets.Scrollable.ScrollableState state, FlutterSDK.Widgets.Scrollable.ScrollIntent intent) { throw new NotImplementedException(); }
-
-
-        public new void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Widgets.Scrollable.ScrollIntent intent) { throw new NotImplementedException(); }
-        public new void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Widgets.Actions.Intent intent) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// Describes the type of scroll increment that will be performed by a
-    /// [ScrollAction] on a [Scrollable].
-    ///
-    /// This is used to configure a [ScrollIncrementDetails] object to pass to a
-    /// [ScrollIncrementCalculator] function on a [Scrollable].
-    ///
-    /// {@template flutter.widgets.scrollable.scroll_increment_type.intent}
-    /// This indicates the *intent* of the scroll, not necessarily the size. Not all
-    /// scrollable areas will have the concept of a "line" or "page", but they can
-    /// respond to the different standard key bindings that cause scrolling, which
-    /// are bound to keys that people use to indicate a "line" scroll (e.g.
-    /// control-arrowDown keys) or a "page" scroll (e.g. pageDown key). It is
-    /// recommended that at least the relative magnitudes of the scrolls match
-    /// expectations.
-    /// {@endtemplate}
-    /// </Summary>
-    public enum ScrollIncrementType
-    {
-
-        /// <Summary>
-        /// Indicates that the [ScrollIncrementCalculator] should return the scroll
-        /// distance it should move when the user requests to scroll by a "line".
-        ///
-        /// The distance a "line" scrolls refers to what should happen when the key
-        /// binding for "scroll down/up by a line" is triggered. It's up to the
-        /// [ScrollIncrementCalculator] function to decide what that means for a
-        /// particular scrollable.
-        /// </Summary>
-        Line,
-        /// <Summary>
-        /// Indicates that the [ScrollIncrementCalculator] should return the scroll
-        /// distance it should move when the user requests to scroll by a "page".
-        ///
-        /// The distance a "page" scrolls refers to what should happen when the key
-        /// binding for "scroll down/up by a page" is triggered. It's up to the
-        /// [ScrollIncrementCalculator] function to decide what that means for a
-        /// particular scrollable.
-        /// </Summary>
-        Page,
-    }
+    Page,
+}
 
 }

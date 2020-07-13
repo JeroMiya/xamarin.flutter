@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -628,765 +628,1042 @@ namespace FlutterSDK.Painting.Imageprovider
     {
         #region constructors
         public ImageConfiguration(FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle), double devicePixelRatio = default(double), Locale locale = default(Locale), TextDirection textDirection = default(TextDirection), Size size = default(Size), FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform))
-        {
-            this.Bundle = bundle;
-            this.DevicePixelRatio = devicePixelRatio;
-            this.Locale = locale;
-            this.TextDirection = textDirection;
-            this.Size = size;
-            this.Platform = platform; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Services.Assetbundle.AssetBundle Bundle { get; set; }
-        public virtual double DevicePixelRatio { get; set; }
-        public virtual Locale Locale { get; set; }
-        public virtual TextDirection TextDirection { get; set; }
-        public virtual Size Size { get; set; }
-        public virtual FlutterSDK.Foundation.Platform.TargetPlatform Platform { get; set; }
-        public virtual FlutterSDK.Painting.Imageprovider.ImageConfiguration Empty { get; set; }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Services.Assetbundle.AssetBundle Bundle { get; set; }
+    public virtual double DevicePixelRatio { get; set; }
+    public virtual Locale Locale { get; set; }
+    public virtual TextDirection TextDirection { get; set; }
+    public virtual Size Size { get; set; }
+    public virtual FlutterSDK.Foundation.Platform.TargetPlatform Platform { get; set; }
+    public virtual FlutterSDK.Painting.Imageprovider.ImageConfiguration Empty { get; set; }
+    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
-
-        /// <Summary>
-        /// Creates an object holding the configuration information for an [ImageProvider].
-        ///
-        /// All the arguments are optional. Configuration information is merely
-        /// advisory and best-effort.
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Imageprovider.ImageConfiguration CopyWith(FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle), double devicePixelRatio = default(double), Locale locale = default(Locale), TextDirection textDirection = default(TextDirection), Size size = default(Size), FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform)) { throw new NotImplementedException(); }
-
-
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
-
-
-        #endregion
-    }
-
+    #region methods
 
     /// <Summary>
-    /// Identifies an image without committing to the precise final asset. This
-    /// allows a set of images to be identified and for the precise image to later
-    /// be resolved based on the environment, e.g. the device pixel ratio.
+    /// Creates an object holding the configuration information for an [ImageProvider].
     ///
-    /// To obtain an [ImageStream] from an [ImageProvider], call [resolve],
-    /// passing it an [ImageConfiguration] object.
-    ///
-    /// [ImageProvider] uses the global [imageCache] to cache images.
-    ///
-    /// The type argument `T` is the type of the object used to represent a resolved
-    /// configuration. This is also the type used for the key in the image cache. It
-    /// should be immutable and implement the [==] operator and the [hashCode]
-    /// getter. Subclasses should subclass a variant of [ImageProvider] with an
-    /// explicit `T` type argument.
-    ///
-    /// The type argument does not have to be specified when using the type as an
-    /// argument (where any image provider is acceptable).
-    ///
-    /// The following image formats are supported: {@macro flutter.dart:ui.imageFormats}
-    ///
-    /// ## Lifecycle of resolving an image
-    ///
-    /// The [ImageProvider] goes through the following lifecycle to resolve an
-    /// image, once the [resolve] method is called:
-    ///
-    ///   1. Create an [ImageStream] using [createStream] to return to the caller.
-    ///      This stream will be used to communicate back to the caller when the
-    ///      image is decoded and ready to display, or when an error occurs.
-    ///   2. Obtain the key for the image using [obtainKey].
-    ///      Calling this method can throw exceptions into the zone asynchronously
-    ///      or into the callstack synchronously. To handle that, an error handler
-    ///      is created that catches both synchronous and asynchronous errors, to
-    ///      make sure errors can be routed to the correct consumers.
-    ///      The error handler is passed on to [resolveStreamForKey] and the
-    ///      [ImageCache].
-    ///   3. If the key is successfully obtained, schedule resolution of the image
-    ///      using that key. This is handled by [resolveStreamForKey]. That method
-    ///      may fizzle if it determines the image is no longer necessary, use the
-    ///      provided [ImageErrorListener] to report an error, set the completer
-    ///      from the cache if possible, or call [load] to fetch the encoded image
-    ///      bytes and schedule decoding.
-    ///   4. The [load] method is responsible for both fetching the encoded bytes
-    ///      and decoding them using the provided [DecoderCallback]. It is called
-    ///      in a context that uses the [ImageErrorListener] to report errors back.
-    ///
-    /// Subclasses normally only have to implement the [load] and [obtainKey]
-    /// methods. A subclass that needs finer grained control over the [ImageStream]
-    /// type must override [createStream]. A subclass that needs finer grained
-    /// control over the resolution, such as delaying calling [load], must override
-    /// [resolveStreamForKey].
-    ///
-    /// The [resolve] method is marked as [nonVirtual] so that [ImageProvider]s can
-    /// be properly composed, and so that the base class can properly set up error
-    /// handling for subsequent methods.
-    ///
-    /// ## Using an [ImageProvider]
-    ///
-    /// {@tool snippet}
-    ///
-    /// The following shows the code required to write a widget that fully conforms
-    /// to the [ImageProvider] and [Widget] protocols. (It is essentially a
-    /// bare-bones version of the [widgets.Image] widget.)
-    ///
-    /// ```dart
-    /// class MyImage extends StatefulWidget {
-    ///   const MyImage({
-    ///     Key key,
-    ///     @required this.imageProvider,
-    ///   }) : assert(imageProvider != null),
-    ///        super(key: key);
-    ///
-    ///   final ImageProvider imageProvider;
-    ///
-    ///   @override
-    ///   _MyImageState createState() => _MyImageState();
-    /// }
-    ///
-    /// class _MyImageState extends State<MyImage> {
-    ///   ImageStream _imageStream;
-    ///   ImageInfo _imageInfo;
-    ///
-    ///   @override
-    ///   void didChangeDependencies() {
-    ///     super.didChangeDependencies();
-    ///     // We call _getImage here because createLocalImageConfiguration() needs to
-    ///     // be called again if the dependencies changed, in case the changes relate
-    ///     // to the DefaultAssetBundle, MediaQuery, etc, which that method uses.
-    ///     _getImage();
-    ///   }
-    ///
-    ///   @override
-    ///   void didUpdateWidget(MyImage oldWidget) {
-    ///     super.didUpdateWidget(oldWidget);
-    ///     if (widget.imageProvider != oldWidget.imageProvider)
-    ///       _getImage();
-    ///   }
-    ///
-    ///   void _getImage() {
-    ///     final ImageStream oldImageStream = _imageStream;
-    ///     _imageStream = widget.imageProvider.resolve(createLocalImageConfiguration(context));
-    ///     if (_imageStream.key != oldImageStream?.key) {
-    ///       // If the keys are the same, then we got the same image back, and so we don't
-    ///       // need to update the listeners. If the key changed, though, we must make sure
-    ///       // to switch our listeners to the new image stream.
-    ///       final ImageStreamListener listener = ImageStreamListener(_updateImage);
-    ///       oldImageStream?.removeListener(listener);
-    ///       _imageStream.addListener(listener);
-    ///     }
-    ///   }
-    ///
-    ///   void _updateImage(ImageInfo imageInfo, bool synchronousCall) {
-    ///     setState(() {
-    ///       // Trigger a build whenever the image changes.
-    ///       _imageInfo = imageInfo;
-    ///     });
-    ///   }
-    ///
-    ///   @override
-    ///   void dispose() {
-    ///     _imageStream.removeListener(ImageStreamListener(_updateImage));
-    ///     super.dispose();
-    ///   }
-    ///
-    ///   @override
-    ///   Widget build(BuildContext context) {
-    ///     return RawImage(
-    ///       image: _imageInfo?.image, // this is a dart:ui Image object
-    ///       scale: _imageInfo?.scale ?? 1.0,
-    ///     );
-    ///   }
-    /// }
-    /// ```
-    /// {@end-tool}
+    /// All the arguments are optional. Configuration information is merely
+    /// advisory and best-effort.
     /// </Summary>
-    public class ImageProvider<T>
+    public virtual FlutterSDK.Painting.Imageprovider.ImageConfiguration CopyWith(FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle), double devicePixelRatio = default(double), Locale locale = default(Locale), TextDirection textDirection = default(TextDirection), Size size = default(Size), FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform))
     {
-        #region constructors
-        public ImageProvider()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Resolves this image provider using the given `configuration`, returning
-        /// an [ImageStream].
-        ///
-        /// This is the public entry-point of the [ImageProvider] class hierarchy.
-        ///
-        /// Subclasses should implement [obtainKey] and [load], which are used by this
-        /// method. If they need to change the implementation of [ImageStream] used,
-        /// they should override [createStream]. If they need to manage the actual
-        /// resolution of the image, they should override [resolveStreamForKey].
-        ///
-        /// See the Lifecycle documentation on [ImageProvider] for more information.
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Imagestream.ImageStream Resolve(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Called by [resolve] to create the [ImageStream] it returns.
-        ///
-        /// Subclasses should override this instead of [resolve] if they need to
-        /// return some subclass of [ImageStream]. The stream created here will be
-        /// passed to [resolveStreamForKey].
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Imagestream.ImageStream CreateStream(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns the cache location for the key that this [ImageProvider] creates.
-        ///
-        /// The location may be [ImageCacheStatus.untracked], indicating that this
-        /// image provider's key is not available in the [ImageCache].
-        ///
-        /// The `cache` and `configuration` parameters must not be null. If the
-        /// `handleError` parameter is null, errors will be reported to
-        /// [FlutterError.onError], and the method will return null.
-        ///
-        /// A completed return value of null indicates that an error has occurred.
-        /// </Summary>
-        public virtual Future<FlutterSDK.Painting.Imagecache.ImageCacheStatus> ObtainCacheStatus(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration), FlutterSDK.Painting.Imagestream.ImageErrorListener handleError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener)) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// This method is used by both [resolve] and [obtainCacheStatus] to ensure
-        /// that errors thrown during key creation are handled whether synchronous or
-        /// asynchronous.
-        /// </Summary>
-        private void _CreateErrorHandlerAndKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration, FlutterSDK.Painting.Imageprovider._KeyAndErrorHandlerCallback<T> successCallback, FlutterSDK.Painting.Imageprovider._AsyncKeyErrorHandler<T> errorCallback) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Called by [resolve] with the key returned by [obtainKey].
-        ///
-        /// Subclasses should override this method rather than calling [obtainKey] if
-        /// they need to use a key directly. The [resolve] method installs appropriate
-        /// error handling guards so that errors will bubble up to the right places in
-        /// the framework, and passes those guards along to this method via the
-        /// [handleError] parameter.
-        ///
-        /// It is safe for the implementation of this method to call [handleError]
-        /// multiple times if multiple errors occur, or if an error is thrown both
-        /// synchronously into the current part of the stack and thrown into the
-        /// enclosing [Zone].
-        ///
-        /// The default implementation uses the key to interact with the [ImageCache],
-        /// calling [ImageCache.putIfAbsent] and notifying listeners of the [stream].
-        /// Implementers that do not call super are expected to correctly use the
-        /// [ImageCache].
-        /// </Summary>
-        public virtual void ResolveStreamForKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration, FlutterSDK.Painting.Imagestream.ImageStream stream, T key, FlutterSDK.Painting.Imagestream.ImageErrorListener handleError) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Evicts an entry from the image cache.
-        ///
-        /// Returns a [Future] which indicates whether the value was successfully
-        /// removed.
-        ///
-        /// The [ImageProvider] used does not need to be the same instance that was
-        /// passed to an [Image] widget, but it does need to create a key which is
-        /// equal to one.
-        ///
-        /// The [cache] is optional and defaults to the global image cache.
-        ///
-        /// The [configuration] is optional and defaults to
-        /// [ImageConfiguration.empty].
-        ///
-        /// {@tool snippet}
-        ///
-        /// The following sample code shows how an image loaded using the [Image]
-        /// widget can be evicted using a [NetworkImage] with a matching URL.
-        ///
-        /// ```dart
-        /// class MyWidget extends StatelessWidget {
-        ///   final String url = '...';
-        ///
-        ///   @override
-        ///   Widget build(BuildContext context) {
-        ///     return Image.network(url);
-        ///   }
-        ///
-        ///   void evictImage() {
-        ///     final NetworkImage provider = NetworkImage(url);
-        ///     provider.evict().then<void>((bool success) {
-        ///       if (success)
-        ///         debugPrint('removed image!');
-        ///     });
-        ///   }
-        /// }
-        /// ```
-        /// {@end-tool}
-        /// </Summary>
-        public virtual Future<bool> Evict(FlutterSDK.Painting.Imagecache.ImageCache cache = default(FlutterSDK.Painting.Imagecache.ImageCache), FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration)) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Converts an ImageProvider's settings plus an ImageConfiguration to a key
-        /// that describes the precise image to load.
-        ///
-        /// The type of the key is determined by the subclass. It is a value that
-        /// unambiguously identifies the image (_including its scale_) that the [load]
-        /// method will fetch. Different [ImageProvider]s given the same constructor
-        /// arguments and [ImageConfiguration] objects should return keys that are
-        /// '==' to each other (possibly by using a class for the key that itself
-        /// implements [==]).
-        /// </Summary>
-        public virtual Future<T> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Converts a key into an [ImageStreamCompleter], and begins fetching the
-        /// image.
-        ///
-        /// The [decode] callback provides the logic to obtain the codec for the
-        /// image.
-        ///
-        /// See also:
-        ///
-        ///  * [ResizeImage], for modifying the key to account for cache dimensions.
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(T key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode) { throw new NotImplementedException(); }
-
-
-        #endregion
+        return new ImageConfiguration(bundle: bundle ?? this.Bundle, devicePixelRatio: devicePixelRatio == default(double) ? this.devicePixelRatio : devicePixelRatio, locale: locale ?? this.Locale, textDirection: textDirection ?? this.TextDirection, size: size ?? this.Size, platform: platform ?? this.Platform);
     }
 
 
-    /// <Summary>
-    /// Key for the image obtained by an [AssetImage] or [ExactAssetImage].
-    ///
-    /// This is used to identify the precise resource in the [imageCache].
-    /// </Summary>
-    public class AssetBundleImageKey
+
+
+    public new bool Equals(@Object other)
     {
-        #region constructors
-        public AssetBundleImageKey(FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle), string name = default(string), double scale = default(double))
-        : base()
-        {
-            this.Bundle = bundle;
-            this.Name = name;
-            this.Scale = scale; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Services.Assetbundle.AssetBundle Bundle { get; set; }
-        public virtual string Name { get; set; }
-        public virtual double Scale { get; set; }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
-
-
-        #endregion
+        if (other.GetType() != GetType()) return false;
+        return other is ImageConfiguration && other.Bundle == Bundle && other.DevicePixelRatio == DevicePixelRatio && other.Locale == Locale && other.TextDirection == TextDirection && other.Size == Size && other.Platform == Platform;
     }
 
 
-    /// <Summary>
-    /// A subclass of [ImageProvider] that knows about [AssetBundle]s.
-    ///
-    /// This factors out the common logic of [AssetBundle]-based [ImageProvider]
-    /// classes, simplifying what subclasses must implement to just [obtainKey].
-    /// </Summary>
-    public class AssetBundleImageProvider : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider.AssetBundleImageKey>
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Identifies an image without committing to the precise final asset. This
+/// allows a set of images to be identified and for the precise image to later
+/// be resolved based on the environment, e.g. the device pixel ratio.
+///
+/// To obtain an [ImageStream] from an [ImageProvider], call [resolve],
+/// passing it an [ImageConfiguration] object.
+///
+/// [ImageProvider] uses the global [imageCache] to cache images.
+///
+/// The type argument `T` is the type of the object used to represent a resolved
+/// configuration. This is also the type used for the key in the image cache. It
+/// should be immutable and implement the [==] operator and the [hashCode]
+/// getter. Subclasses should subclass a variant of [ImageProvider] with an
+/// explicit `T` type argument.
+///
+/// The type argument does not have to be specified when using the type as an
+/// argument (where any image provider is acceptable).
+///
+/// The following image formats are supported: {@macro flutter.dart:ui.imageFormats}
+///
+/// ## Lifecycle of resolving an image
+///
+/// The [ImageProvider] goes through the following lifecycle to resolve an
+/// image, once the [resolve] method is called:
+///
+///   1. Create an [ImageStream] using [createStream] to return to the caller.
+///      This stream will be used to communicate back to the caller when the
+///      image is decoded and ready to display, or when an error occurs.
+///   2. Obtain the key for the image using [obtainKey].
+///      Calling this method can throw exceptions into the zone asynchronously
+///      or into the callstack synchronously. To handle that, an error handler
+///      is created that catches both synchronous and asynchronous errors, to
+///      make sure errors can be routed to the correct consumers.
+///      The error handler is passed on to [resolveStreamForKey] and the
+///      [ImageCache].
+///   3. If the key is successfully obtained, schedule resolution of the image
+///      using that key. This is handled by [resolveStreamForKey]. That method
+///      may fizzle if it determines the image is no longer necessary, use the
+///      provided [ImageErrorListener] to report an error, set the completer
+///      from the cache if possible, or call [load] to fetch the encoded image
+///      bytes and schedule decoding.
+///   4. The [load] method is responsible for both fetching the encoded bytes
+///      and decoding them using the provided [DecoderCallback]. It is called
+///      in a context that uses the [ImageErrorListener] to report errors back.
+///
+/// Subclasses normally only have to implement the [load] and [obtainKey]
+/// methods. A subclass that needs finer grained control over the [ImageStream]
+/// type must override [createStream]. A subclass that needs finer grained
+/// control over the resolution, such as delaying calling [load], must override
+/// [resolveStreamForKey].
+///
+/// The [resolve] method is marked as [nonVirtual] so that [ImageProvider]s can
+/// be properly composed, and so that the base class can properly set up error
+/// handling for subsequent methods.
+///
+/// ## Using an [ImageProvider]
+///
+/// {@tool snippet}
+///
+/// The following shows the code required to write a widget that fully conforms
+/// to the [ImageProvider] and [Widget] protocols. (It is essentially a
+/// bare-bones version of the [widgets.Image] widget.)
+///
+/// ```dart
+/// class MyImage extends StatefulWidget {
+///   const MyImage({
+///     Key key,
+///     @required this.imageProvider,
+///   }) : assert(imageProvider != null),
+///        super(key: key);
+///
+///   final ImageProvider imageProvider;
+///
+///   @override
+///   _MyImageState createState() => _MyImageState();
+/// }
+///
+/// class _MyImageState extends State<MyImage> {
+///   ImageStream _imageStream;
+///   ImageInfo _imageInfo;
+///
+///   @override
+///   void didChangeDependencies() {
+///     super.didChangeDependencies();
+///     // We call _getImage here because createLocalImageConfiguration() needs to
+///     // be called again if the dependencies changed, in case the changes relate
+///     // to the DefaultAssetBundle, MediaQuery, etc, which that method uses.
+///     _getImage();
+///   }
+///
+///   @override
+///   void didUpdateWidget(MyImage oldWidget) {
+///     super.didUpdateWidget(oldWidget);
+///     if (widget.imageProvider != oldWidget.imageProvider)
+///       _getImage();
+///   }
+///
+///   void _getImage() {
+///     final ImageStream oldImageStream = _imageStream;
+///     _imageStream = widget.imageProvider.resolve(createLocalImageConfiguration(context));
+///     if (_imageStream.key != oldImageStream?.key) {
+///       // If the keys are the same, then we got the same image back, and so we don't
+///       // need to update the listeners. If the key changed, though, we must make sure
+///       // to switch our listeners to the new image stream.
+///       final ImageStreamListener listener = ImageStreamListener(_updateImage);
+///       oldImageStream?.removeListener(listener);
+///       _imageStream.addListener(listener);
+///     }
+///   }
+///
+///   void _updateImage(ImageInfo imageInfo, bool synchronousCall) {
+///     setState(() {
+///       // Trigger a build whenever the image changes.
+///       _imageInfo = imageInfo;
+///     });
+///   }
+///
+///   @override
+///   void dispose() {
+///     _imageStream.removeListener(ImageStreamListener(_updateImage));
+///     super.dispose();
+///   }
+///
+///   @override
+///   Widget build(BuildContext context) {
+///     return RawImage(
+///       image: _imageInfo?.image, // this is a dart:ui Image object
+///       scale: _imageInfo?.scale ?? 1.0,
+///     );
+///   }
+/// }
+/// ```
+/// {@end-tool}
+/// </Summary>
+public class ImageProvider<T>
+{
+    #region constructors
+    public ImageProvider()
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Resolves this image provider using the given `configuration`, returning
+/// an [ImageStream].
+///
+/// This is the public entry-point of the [ImageProvider] class hierarchy.
+///
+/// Subclasses should implement [obtainKey] and [load], which are used by this
+/// method. If they need to change the implementation of [ImageStream] used,
+/// they should override [createStream]. If they need to manage the actual
+/// resolution of the image, they should override [resolveStreamForKey].
+///
+/// See the Lifecycle documentation on [ImageProvider] for more information.
+/// </Summary>
+public virtual FlutterSDK.Painting.Imagestream.ImageStream Resolve(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration)
+{
+
+    ImageStream stream = CreateStream(configuration);
+    _CreateErrorHandlerAndKey(configuration, (T key, ImageErrorListener errorHandler) =>
     {
-        #region constructors
-        public AssetBundleImageProvider()
+        ResolveStreamForKey(configuration, stream, key, errorHandler);
+    }
+    , (T key, object exception, StackTrace stack) => async {
+        await null;
+        _ErrorImageCompleter imageCompleter = new _ErrorImageCompleter();
+        stream.SetCompleter(imageCompleter);
+        InformationCollector collector = default(InformationCollector);
+
+        imageCompleter.SetError(exception: exception, stack: stack, context: new ErrorDescription("while resolving an image"), silent: true, informationCollector: collector);
+    }
+);
+    return stream;
+}
+
+
+
+
+/// <Summary>
+/// Called by [resolve] to create the [ImageStream] it returns.
+///
+/// Subclasses should override this instead of [resolve] if they need to
+/// return some subclass of [ImageStream]. The stream created here will be
+/// passed to [resolveStreamForKey].
+/// </Summary>
+public virtual FlutterSDK.Painting.Imagestream.ImageStream CreateStream(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration)
+{
+    return new ImageStream();
+}
+
+
+
+
+/// <Summary>
+/// Returns the cache location for the key that this [ImageProvider] creates.
+///
+/// The location may be [ImageCacheStatus.untracked], indicating that this
+/// image provider's key is not available in the [ImageCache].
+///
+/// The `cache` and `configuration` parameters must not be null. If the
+/// `handleError` parameter is null, errors will be reported to
+/// [FlutterError.onError], and the method will return null.
+///
+/// A completed return value of null indicates that an error has occurred.
+/// </Summary>
+public virtual Future<FlutterSDK.Painting.Imagecache.ImageCacheStatus> ObtainCacheStatus(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration), FlutterSDK.Painting.Imagestream.ImageErrorListener handleError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener))
+{
+
+    Completer<ImageCacheStatus> completer = new Completer<ImageCacheStatus>();
+    _CreateErrorHandlerAndKey(configuration, (T key, ImageErrorListener innerHandleError) =>
+    {
+        completer.Complete(BindingDefaultClass.PaintingBinding.Instance.ImageCache.StatusForKey(key));
+    }
+    , (T key, object exception, StackTrace stack) => async {
+        if (handleError != null)
         {
-            throw new NotImplementedException();
+            handleError(exception, stack);
         }
-        #endregion
+        else
+        {
+            InformationCollector collector = default(InformationCollector);
 
-        #region fields
-        #endregion
+            AssertionsDefaultClass.FlutterError.OnError(new FlutterErrorDetails(context: new ErrorDescription("while checking the cache location of an image"), informationCollector: collector, exception: exception, stack: stack));
+            completer.Complete(null);
+        }
 
-        #region methods
-
-        /// <Summary>
-        /// Converts a key into an [ImageStreamCompleter], and begins fetching the
-        /// image using [loadAsync].
-        /// </Summary>
-        public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider.AssetBundleImageKey key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode) { throw new NotImplementedException(); }
+    }
+);
+    return completer.Future;
+}
 
 
-        /// <Summary>
-        /// Fetches the image from the asset bundle, decodes it, and returns a
-        /// corresponding [ImageInfo] object.
-        ///
-        /// This function is used by [load].
-        /// </Summary>
-        private Future<SKCodec> _LoadAsync(FlutterSDK.Painting.Imageprovider.AssetBundleImageKey key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode) { throw new NotImplementedException(); }
 
-        #endregion
+
+/// <Summary>
+/// This method is used by both [resolve] and [obtainCacheStatus] to ensure
+/// that errors thrown during key creation are handled whether synchronous or
+/// asynchronous.
+/// </Summary>
+private void _CreateErrorHandlerAndKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration, FlutterSDK.Painting.Imageprovider._KeyAndErrorHandlerCallback<T> successCallback, FlutterSDK.Painting.Imageprovider._AsyncKeyErrorHandler<T> errorCallback)
+{
+    T obtainedKey = default(T);
+    bool didError = false;
+    Future<void> HandleError(object exception, StackTrace stack) => async {
+        if (didError)
+        {
+            return;
+        }
+
+        if (!didError)
+        {
+            errorCallback(obtainedKey, exception, stack);
+        }
+
+        didError = true;
+    }
+
+    Zone dangerZone = Dart:asyncDefaultClass.Zone.Current.Fork(specification: new ZoneSpecification(handleUncaughtError: (Zone zone, ZoneDelegate delegate, Zone parent, object error, StackTrace stackTrace) => {
+    HandleError(error, stackTrace);
+}
+));
+dangerZone.RunGuarded(() =>
+{
+Future<T> key = default(Future<T>);
+try
+{
+    key = ObtainKey(configuration);
+}
+catch (error,stackTrace){
+    HandleError(error, stackTrace);
+    return;
+}
+
+key.Then((T key) =>
+{
+obtainedKey = key;
+try
+{
+    successCallback(key, HandleError);
+}
+catch (error,stackTrace){
+    HandleError(error, stackTrace);
+}
+
+}
+).CatchError(HandleError);
+}
+);
+}
+
+
+
+
+/// <Summary>
+/// Called by [resolve] with the key returned by [obtainKey].
+///
+/// Subclasses should override this method rather than calling [obtainKey] if
+/// they need to use a key directly. The [resolve] method installs appropriate
+/// error handling guards so that errors will bubble up to the right places in
+/// the framework, and passes those guards along to this method via the
+/// [handleError] parameter.
+///
+/// It is safe for the implementation of this method to call [handleError]
+/// multiple times if multiple errors occur, or if an error is thrown both
+/// synchronously into the current part of the stack and thrown into the
+/// enclosing [Zone].
+///
+/// The default implementation uses the key to interact with the [ImageCache],
+/// calling [ImageCache.putIfAbsent] and notifying listeners of the [stream].
+/// Implementers that do not call super are expected to correctly use the
+/// [ImageCache].
+/// </Summary>
+public virtual void ResolveStreamForKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration, FlutterSDK.Painting.Imagestream.ImageStream stream, T key, FlutterSDK.Painting.Imagestream.ImageErrorListener handleError)
+{
+    if (stream.Completer != null)
+    {
+        ImageStreamCompleter completer = BindingDefaultClass.PaintingBinding.Instance.ImageCache.PutIfAbsent(key, () => =>stream.Completer, onError: handleError);
+
+        return;
+    }
+
+    ImageStreamCompleter completer = BindingDefaultClass.PaintingBinding.Instance.ImageCache.PutIfAbsent(key, () => =>Load(key, BindingDefaultClass.PaintingBinding.Instance.InstantiateImageCodec), onError: handleError);
+    if (completer != null)
+    {
+        stream.SetCompleter(completer);
+    }
+
+}
+
+
+
+
+/// <Summary>
+/// Evicts an entry from the image cache.
+///
+/// Returns a [Future] which indicates whether the value was successfully
+/// removed.
+///
+/// The [ImageProvider] used does not need to be the same instance that was
+/// passed to an [Image] widget, but it does need to create a key which is
+/// equal to one.
+///
+/// The [cache] is optional and defaults to the global image cache.
+///
+/// The [configuration] is optional and defaults to
+/// [ImageConfiguration.empty].
+///
+/// {@tool snippet}
+///
+/// The following sample code shows how an image loaded using the [Image]
+/// widget can be evicted using a [NetworkImage] with a matching URL.
+///
+/// ```dart
+/// class MyWidget extends StatelessWidget {
+///   final String url = '...';
+///
+///   @override
+///   Widget build(BuildContext context) {
+///     return Image.network(url);
+///   }
+///
+///   void evictImage() {
+///     final NetworkImage provider = NetworkImage(url);
+///     provider.evict().then<void>((bool success) {
+///       if (success)
+///         debugPrint('removed image!');
+///     });
+///   }
+/// }
+/// ```
+/// {@end-tool}
+/// </Summary>
+public virtual Future<bool> Evict(FlutterSDK.Painting.Imagecache.ImageCache cache = default(FlutterSDK.Painting.Imagecache.ImageCache), FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration))
+async
+{
+    cache = (cache == null ? BindingDefaultClass.ImageCache : cache);
+    T key = await ObtainKey(configuration);
+    return cache.Evict(key);
+}
+
+
+
+
+/// <Summary>
+/// Converts an ImageProvider's settings plus an ImageConfiguration to a key
+/// that describes the precise image to load.
+///
+/// The type of the key is determined by the subclass. It is a value that
+/// unambiguously identifies the image (_including its scale_) that the [load]
+/// method will fetch. Different [ImageProvider]s given the same constructor
+/// arguments and [ImageConfiguration] objects should return keys that are
+/// '==' to each other (possibly by using a class for the key that itself
+/// implements [==]).
+/// </Summary>
+public virtual Future<T> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration)
+{
+    return default(Future<T>);
+}
+
+
+/// <Summary>
+/// Converts a key into an [ImageStreamCompleter], and begins fetching the
+/// image.
+///
+/// The [decode] callback provides the logic to obtain the codec for the
+/// image.
+///
+/// See also:
+///
+///  * [ResizeImage], for modifying the key to account for cache dimensions.
+/// </Summary>
+public virtual FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(T key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode)
+{
+    return default(ImageStreamCompleter);
+}
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Key for the image obtained by an [AssetImage] or [ExactAssetImage].
+///
+/// This is used to identify the precise resource in the [imageCache].
+/// </Summary>
+public class AssetBundleImageKey
+{
+    #region constructors
+    public AssetBundleImageKey(FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle), string name = default(string), double scale = default(double))
+    : base()
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Services.Assetbundle.AssetBundle Bundle { get; set; }
+public virtual string Name { get; set; }
+public virtual double Scale { get; set; }
+public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new bool Equals(@Object other)
+{
+    if (other.GetType() != GetType()) return false;
+    return other is AssetBundleImageKey && other.Bundle == Bundle && other.Name == Name && other.Scale == Scale;
+}
+
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A subclass of [ImageProvider] that knows about [AssetBundle]s.
+///
+/// This factors out the common logic of [AssetBundle]-based [ImageProvider]
+/// classes, simplifying what subclasses must implement to just [obtainKey].
+/// </Summary>
+public class AssetBundleImageProvider : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider.AssetBundleImageKey>
+{
+    #region constructors
+    public AssetBundleImageProvider()
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Converts a key into an [ImageStreamCompleter], and begins fetching the
+/// image using [loadAsync].
+/// </Summary>
+public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider.AssetBundleImageKey key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode)
+{
+    InformationCollector collector = default(InformationCollector);
+
+    return new MultiFrameImageStreamCompleter(codec: _LoadAsync(key, decode), scale: key.Scale, informationCollector: collector);
+}
+
+
+
+
+/// <Summary>
+/// Fetches the image from the asset bundle, decodes it, and returns a
+/// corresponding [ImageInfo] object.
+///
+/// This function is used by [load].
+/// </Summary>
+private Future<SKCodec> _LoadAsync(FlutterSDK.Painting.Imageprovider.AssetBundleImageKey key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode)
+async
+{
+    ByteData data = default(ByteData);
+    try
+    {
+        data = await key.Bundle.Load(key.Name);
+    }
+on FlutterError{
+        BindingDefaultClass.PaintingBinding.Instance.ImageCache.Evict(key);
+        throw;
+    }
+
+    if (data == null)
+    {
+        BindingDefaultClass.PaintingBinding.Instance.ImageCache.Evict(key);
+        throw new StateError("Unable to read data");
+    }
+
+    return await decode(data.Buffer.AsUint8List());
+}
+
+
+
+#endregion
+}
+
+
+public class _SizeAwareCacheKey
+{
+    #region constructors
+    public _SizeAwareCacheKey(@Object providerCacheKey, int width, int height)
+
+}
+#endregion
+
+#region fields
+public virtual @Object ProviderCacheKey { get; set; }
+public virtual int Width { get; set; }
+public virtual int Height { get; set; }
+public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new bool Equals(@Object other)
+{
+    if (other.GetType() != GetType()) return false;
+    return other is _SizeAwareCacheKey && other.ProviderCacheKey == ProviderCacheKey && other.Width == Width && other.Height == Height;
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Instructs Flutter to decode the image at the specified dimensions
+/// instead of at its native size.
+///
+/// This allows finer control of the size of the image in [ImageCache] and is
+/// generally used to reduce the memory footprint of [ImageCache].
+///
+/// The decoded image may still be displayed at sizes other than the
+/// cached size provided here.
+/// </Summary>
+public class ResizeImage : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider._SizeAwareCacheKey>
+{
+    #region constructors
+    public ResizeImage(FlutterSDK.Painting.Imageprovider.ImageProvider<object> imageProvider, int width = default(int), int height = default(int))
+    : base()
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> ImageProvider { get; set; }
+public virtual int Width { get; set; }
+public virtual int Height { get; set; }
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Composes the `provider` in a [ResizeImage] only when `cacheWidth` and
+/// `cacheHeight` are not both null.
+///
+/// When `cacheWidth` and `cacheHeight` are both null, this will return the
+/// `provider` directly.
+/// </Summary>
+public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> ResizeIfNeeded(int cacheWidth, int cacheHeight, FlutterSDK.Painting.Imageprovider.ImageProvider<object> provider)
+{
+    if (cacheWidth != null || cacheHeight != null)
+    {
+        return new ResizeImage(provider, width: cacheWidth, height: cacheHeight);
+    }
+
+    return provider;
+}
+
+
+
+
+public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider._SizeAwareCacheKey key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode)
+{
+    DecoderCallback decodeResize = (Uint8List bytes, {
+        int cacheWidthint cacheHeigh) => {
+
+            return decode(bytes, cacheWidth: Width, cacheHeight: Height);
+        }
+    ;
+        return ImageProvider.Load(key.ProviderCacheKey, decodeResize);
     }
 
 
-    public class _SizeAwareCacheKey
+
+
+public new Future<FlutterSDK.Painting.Imageprovider._SizeAwareCacheKey> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration)
+{
+    Completer<_SizeAwareCacheKey> completer = default(Completer<_SizeAwareCacheKey>);
+    SynchronousFuture<_SizeAwareCacheKey> result = default(SynchronousFuture<_SizeAwareCacheKey>);
+    ImageProvider.ObtainKey(configuration).Then((object key) =>
     {
-        #region constructors
-        public _SizeAwareCacheKey(@Object providerCacheKey, int width, int height)
+        if (completer == null)
         {
-            this.ProviderCacheKey = providerCacheKey;
-            this.Width = width;
-            this.Height = height; throw new NotImplementedException();
+            result = new SynchronousFuture<_SizeAwareCacheKey>(new _SizeAwareCacheKey(key, Width, Height));
         }
-        #endregion
+        else
+        {
+            completer.Complete(new _SizeAwareCacheKey(key, Width, Height));
+        }
 
-        #region fields
-        public virtual @Object ProviderCacheKey { get; set; }
-        public virtual int Width { get; set; }
-        public virtual int Height { get; set; }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
-
-        #endregion
+    }
+    );
+    if (result != null)
+    {
+        return result;
     }
 
+    completer = new Completer<_SizeAwareCacheKey>();
+    return completer.Future;
+}
 
-    /// <Summary>
-    /// Instructs Flutter to decode the image at the specified dimensions
-    /// instead of at its native size.
-    ///
-    /// This allows finer control of the size of the image in [ImageCache] and is
-    /// generally used to reduce the memory footprint of [ImageCache].
-    ///
-    /// The decoded image may still be displayed at sizes other than the
-    /// cached size provided here.
-    /// </Summary>
-    public class ResizeImage : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider._SizeAwareCacheKey>
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Fetches the given URL from the network, associating it with the given scale.
+///
+/// The image will be cached regardless of cache headers from the server.
+///
+/// When a network image is used on the Web platform, the [cacheWidth] and
+/// [cacheHeight] parameters of the [DecoderCallback] are ignored as the Web
+/// engine delegates image decoding of network images to the Web, which does
+/// not support custom decode sizes.
+///
+/// See also:
+///
+///  * [Image.network] for a shorthand of an [Image] widget backed by [NetworkImage].
+/// </Summary>
+public class NetworkImage : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider.NetworkImage>
+{
+    #region constructors
+    public NetworkImage(string url, double scale = default(double), Dictionary<string, string> headers = default(Dictionary<string, string>))
+    : base()
+
+}
+#endregion
+
+#region fields
+public virtual string Url { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual double Scale { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual Dictionary<string, string> Headers { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider.NetworkImage key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode)
+{
+    return default(ImageStreamCompleter);
+}
+
+#endregion
+}
+
+
+/// <Summary>
+/// Decodes the given [File] object as an image, associating it with the given
+/// scale.
+///
+/// See also:
+///
+///  * [Image.file] for a shorthand of an [Image] widget backed by [FileImage].
+/// </Summary>
+public class FileImage : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider.FileImage>
+{
+    #region constructors
+    public FileImage(File file, double scale = 1.0)
+    : base()
+
+}
+#endregion
+
+#region fields
+public virtual File File { get; set; }
+public virtual double Scale { get; set; }
+public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new Future<FlutterSDK.Painting.Imageprovider.FileImage> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration)
+{
+    return new SynchronousFuture<FileImage>(this);
+}
+
+
+
+
+public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider.FileImage key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode)
+{
+    return new MultiFrameImageStreamCompleter(codec: _LoadAsync(key, decode), scale: key.Scale, informationCollector: () => sync *{
+yield new ErrorDescription($"'Path: {File?.Path}'");
+}
+);
+}
+
+
+
+
+private Future<SKCodec> _LoadAsync(FlutterSDK.Painting.Imageprovider.FileImage key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode)
+async
+{
+
+    Uint8List bytes = await File.ReadAsBytes();
+    if (bytes.LengthInBytes == 0)
     {
-        #region constructors
-        public ResizeImage(FlutterSDK.Painting.Imageprovider.ImageProvider<object> imageProvider, int width = default(int), int height = default(int))
-        : base()
-        {
-            this.ImageProvider = imageProvider;
-            this.Width = width;
-            this.Height = height; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> ImageProvider { get; set; }
-        public virtual int Width { get; set; }
-        public virtual int Height { get; set; }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Composes the `provider` in a [ResizeImage] only when `cacheWidth` and
-        /// `cacheHeight` are not both null.
-        ///
-        /// When `cacheWidth` and `cacheHeight` are both null, this will return the
-        /// `provider` directly.
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> ResizeIfNeeded(int cacheWidth, int cacheHeight, FlutterSDK.Painting.Imageprovider.ImageProvider<object> provider) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider._SizeAwareCacheKey key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode) { throw new NotImplementedException(); }
-
-
-        public new Future<FlutterSDK.Painting.Imageprovider._SizeAwareCacheKey> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) { throw new NotImplementedException(); }
-
-        #endregion
+        BindingDefaultClass.PaintingBinding.Instance.ImageCache.Evict(key);
+        throw new StateError($"'{File} is empty and cannot be loaded as an image.'");
     }
 
-
-    /// <Summary>
-    /// Fetches the given URL from the network, associating it with the given scale.
-    ///
-    /// The image will be cached regardless of cache headers from the server.
-    ///
-    /// When a network image is used on the Web platform, the [cacheWidth] and
-    /// [cacheHeight] parameters of the [DecoderCallback] are ignored as the Web
-    /// engine delegates image decoding of network images to the Web, which does
-    /// not support custom decode sizes.
-    ///
-    /// See also:
-    ///
-    ///  * [Image.network] for a shorthand of an [Image] widget backed by [NetworkImage].
-    /// </Summary>
-    public class NetworkImage : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider.NetworkImage>
-    {
-        #region constructors
-        public NetworkImage(string url, double scale = default(double), Dictionary<string, string> headers = default(Dictionary<string, string>))
-        : base()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual string Url { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual double Scale { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual Dictionary<string, string> Headers { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider.NetworkImage key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode) { throw new NotImplementedException(); }
-
-        #endregion
-    }
+    return await decode(bytes);
+}
 
 
-    /// <Summary>
-    /// Decodes the given [File] object as an image, associating it with the given
-    /// scale.
-    ///
-    /// See also:
-    ///
-    ///  * [Image.file] for a shorthand of an [Image] widget backed by [FileImage].
-    /// </Summary>
-    public class FileImage : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider.FileImage>
-    {
-        #region constructors
-        public FileImage(File file, double scale = 1.0)
-        : base()
-        {
-            this.File = file;
-            this.Scale = scale; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual File File { get; set; }
-        public virtual double Scale { get; set; }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new Future<FlutterSDK.Painting.Imageprovider.FileImage> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) { throw new NotImplementedException(); }
 
 
-        public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider.FileImage key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode) { throw new NotImplementedException(); }
+public new bool Equals(@Object other)
+{
+    if (other.GetType() != GetType()) return false;
+    return other is FileImage && other.File?.Path == File?.Path && other.Scale == Scale;
+}
 
 
-        private Future<SKCodec> _LoadAsync(FlutterSDK.Painting.Imageprovider.FileImage key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode) { throw new NotImplementedException(); }
 
 
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+#endregion
+}
 
 
-        #endregion
-    }
+/// <Summary>
+/// Decodes the given [Uint8List] buffer as an image, associating it with the
+/// given scale.
+///
+/// The provided [bytes] buffer should not be changed after it is provided
+/// to a [MemoryImage]. To provide an [ImageStream] that represents an image
+/// that changes over time, consider creating a new subclass of [ImageProvider]
+/// whose [load] method returns a subclass of [ImageStreamCompleter] that can
+/// handle providing multiple images.
+///
+/// See also:
+///
+///  * [Image.memory] for a shorthand of an [Image] widget backed by [MemoryImage].
+/// </Summary>
+public class MemoryImage : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider.MemoryImage>
+{
+    #region constructors
+    public MemoryImage(Uint8List bytes, double scale = 1.0)
+    : base()
+
+}
+#endregion
+
+#region fields
+public virtual Uint8List Bytes { get; set; }
+public virtual double Scale { get; set; }
+public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new Future<FlutterSDK.Painting.Imageprovider.MemoryImage> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration)
+{
+    return new SynchronousFuture<MemoryImage>(this);
+}
 
 
-    /// <Summary>
-    /// Decodes the given [Uint8List] buffer as an image, associating it with the
-    /// given scale.
-    ///
-    /// The provided [bytes] buffer should not be changed after it is provided
-    /// to a [MemoryImage]. To provide an [ImageStream] that represents an image
-    /// that changes over time, consider creating a new subclass of [ImageProvider]
-    /// whose [load] method returns a subclass of [ImageStreamCompleter] that can
-    /// handle providing multiple images.
-    ///
-    /// See also:
-    ///
-    ///  * [Image.memory] for a shorthand of an [Image] widget backed by [MemoryImage].
-    /// </Summary>
-    public class MemoryImage : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider.MemoryImage>
-    {
-        #region constructors
-        public MemoryImage(Uint8List bytes, double scale = 1.0)
-        : base()
-        {
-            this.Bytes = bytes;
-            this.Scale = scale; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual Uint8List Bytes { get; set; }
-        public virtual double Scale { get; set; }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new Future<FlutterSDK.Painting.Imageprovider.MemoryImage> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) { throw new NotImplementedException(); }
 
 
-        public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider.MemoryImage key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode) { throw new NotImplementedException(); }
+public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider.MemoryImage key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode)
+{
+    return new MultiFrameImageStreamCompleter(codec: _LoadAsync(key, decode), scale: key.Scale);
+}
 
 
-        private Future<SKCodec> _LoadAsync(FlutterSDK.Painting.Imageprovider.MemoryImage key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode) { throw new NotImplementedException(); }
 
 
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+private Future<SKCodec> _LoadAsync(FlutterSDK.Painting.Imageprovider.MemoryImage key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode)
+{
+
+    return decode(Bytes);
+}
 
 
-        #endregion
-    }
 
 
-    /// <Summary>
-    /// Fetches an image from an [AssetBundle], associating it with the given scale.
-    ///
-    /// This implementation requires an explicit final [assetName] and [scale] on
-    /// construction, and ignores the device pixel ratio and size in the
-    /// configuration passed into [resolve]. For a resolution-aware variant that
-    /// uses the configuration to pick an appropriate image based on the device
-    /// pixel ratio and size, see [AssetImage].
-    ///
-    /// ## Fetching assets
-    ///
-    /// When fetching an image provided by the app itself, use the [assetName]
-    /// argument to name the asset to choose. For instance, consider a directory
-    /// `icons` with an image `heart.png`. First, the [pubspec.yaml] of the project
-    /// should specify its assets in the `flutter` section:
-    ///
-    /// ```yaml
-    /// flutter:
-    ///   assets:
-    ///     - icons/heart.png
-    /// ```
-    ///
-    /// Then, to fetch the image and associate it with scale `1.5`, use
-    ///
-    /// ```dart
-    /// AssetImage('icons/heart.png', scale: 1.5)
-    /// ```
-    ///
-    /// ## Assets in packages
-    ///
-    /// To fetch an asset from a package, the [package] argument must be provided.
-    /// For instance, suppose the structure above is inside a package called
-    /// `my_icons`. Then to fetch the image, use:
-    ///
-    /// ```dart
-    /// AssetImage('icons/heart.png', scale: 1.5, package: 'my_icons')
-    /// ```
-    ///
-    /// Assets used by the package itself should also be fetched using the [package]
-    /// argument as above.
-    ///
-    /// If the desired asset is specified in the `pubspec.yaml` of the package, it
-    /// is bundled automatically with the app. In particular, assets used by the
-    /// package itself must be specified in its `pubspec.yaml`.
-    ///
-    /// A package can also choose to have assets in its 'lib/' folder that are not
-    /// specified in its `pubspec.yaml`. In this case for those images to be
-    /// bundled, the app has to specify which ones to include. For instance a
-    /// package named `fancy_backgrounds` could have:
-    ///
-    /// ```
-    /// lib/backgrounds/background1.png
-    /// lib/backgrounds/background2.png
-    /// lib/backgrounds/background3.png
-    /// ```
-    ///
-    /// To include, say the first image, the `pubspec.yaml` of the app should specify
-    /// it in the `assets` section:
-    ///
-    /// ```yaml
-    ///   assets:
-    ///     - packages/fancy_backgrounds/backgrounds/background1.png
-    /// ```
-    ///
-    /// The `lib/` is implied, so it should not be included in the asset path.
-    ///
-    /// See also:
-    ///
-    ///  * [Image.asset] for a shorthand of an [Image] widget backed by
-    ///    [ExactAssetImage] when using a scale.
-    /// </Summary>
-    public class ExactAssetImage : FlutterSDK.Painting.Imageprovider.AssetBundleImageProvider
-    {
-        #region constructors
-        public ExactAssetImage(string assetName, double scale = 1.0, FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle), string package = default(string))
-        : base()
-        {
-            this.AssetName = assetName;
-            this.Scale = scale;
-            this.Bundle = bundle;
-            this.Package = package; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual string AssetName { get; set; }
-        public virtual double Scale { get; set; }
-        public virtual FlutterSDK.Services.Assetbundle.AssetBundle Bundle { get; set; }
-        public virtual string Package { get; set; }
-        public virtual string KeyName { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new Future<FlutterSDK.Painting.Imageprovider.AssetBundleImageKey> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) { throw new NotImplementedException(); }
+public new bool Equals(@Object other)
+{
+    if (other.GetType() != GetType()) return false;
+    return other is MemoryImage && other.Bytes == Bytes && other.Scale == Scale;
+}
 
 
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
-        #endregion
-    }
+#endregion
+}
 
 
-    public class _ErrorImageCompleter : FlutterSDK.Painting.Imagestream.ImageStreamCompleter
-    {
-        #region constructors
-        public _ErrorImageCompleter()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+/// <Summary>
+/// Fetches an image from an [AssetBundle], associating it with the given scale.
+///
+/// This implementation requires an explicit final [assetName] and [scale] on
+/// construction, and ignores the device pixel ratio and size in the
+/// configuration passed into [resolve]. For a resolution-aware variant that
+/// uses the configuration to pick an appropriate image based on the device
+/// pixel ratio and size, see [AssetImage].
+///
+/// ## Fetching assets
+///
+/// When fetching an image provided by the app itself, use the [assetName]
+/// argument to name the asset to choose. For instance, consider a directory
+/// `icons` with an image `heart.png`. First, the [pubspec.yaml] of the project
+/// should specify its assets in the `flutter` section:
+///
+/// ```yaml
+/// flutter:
+///   assets:
+///     - icons/heart.png
+/// ```
+///
+/// Then, to fetch the image and associate it with scale `1.5`, use
+///
+/// ```dart
+/// AssetImage('icons/heart.png', scale: 1.5)
+/// ```
+///
+/// ## Assets in packages
+///
+/// To fetch an asset from a package, the [package] argument must be provided.
+/// For instance, suppose the structure above is inside a package called
+/// `my_icons`. Then to fetch the image, use:
+///
+/// ```dart
+/// AssetImage('icons/heart.png', scale: 1.5, package: 'my_icons')
+/// ```
+///
+/// Assets used by the package itself should also be fetched using the [package]
+/// argument as above.
+///
+/// If the desired asset is specified in the `pubspec.yaml` of the package, it
+/// is bundled automatically with the app. In particular, assets used by the
+/// package itself must be specified in its `pubspec.yaml`.
+///
+/// A package can also choose to have assets in its 'lib/' folder that are not
+/// specified in its `pubspec.yaml`. In this case for those images to be
+/// bundled, the app has to specify which ones to include. For instance a
+/// package named `fancy_backgrounds` could have:
+///
+/// ```
+/// lib/backgrounds/background1.png
+/// lib/backgrounds/background2.png
+/// lib/backgrounds/background3.png
+/// ```
+///
+/// To include, say the first image, the `pubspec.yaml` of the app should specify
+/// it in the `assets` section:
+///
+/// ```yaml
+///   assets:
+///     - packages/fancy_backgrounds/backgrounds/background1.png
+/// ```
+///
+/// The `lib/` is implied, so it should not be included in the asset path.
+///
+/// See also:
+///
+///  * [Image.asset] for a shorthand of an [Image] widget backed by
+///    [ExactAssetImage] when using a scale.
+/// </Summary>
+public class ExactAssetImage : FlutterSDK.Painting.Imageprovider.AssetBundleImageProvider
+{
+    #region constructors
+    public ExactAssetImage(string assetName, double scale = 1.0, FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle), string package = default(string))
+    : base()
 
-        #region fields
-        #endregion
+}
+#endregion
 
-        #region methods
+#region fields
+public virtual string AssetName { get; set; }
+public virtual double Scale { get; set; }
+public virtual FlutterSDK.Services.Assetbundle.AssetBundle Bundle { get; set; }
+public virtual string Package { get; set; }
+public virtual string KeyName { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
 
-        public virtual void SetError(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode context = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode), object exception = default(object), StackTrace stack = default(StackTrace), FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector), bool silent = false) { throw new NotImplementedException(); }
+#region methods
 
-        #endregion
-    }
+public new Future<FlutterSDK.Painting.Imageprovider.AssetBundleImageKey> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration)
+{
+    return new SynchronousFuture<AssetBundleImageKey>(new AssetBundleImageKey(bundle: Bundle ?? configuration.Bundle ?? AssetbundleDefaultClass.RootBundle, name: KeyName, scale: Scale));
+}
 
 
-    /// <Summary>
-    /// The exception thrown when the HTTP request to load a network image fails.
-    /// </Summary>
-    public class NetworkImageLoadException : IException
-    {
-        #region constructors
-        public NetworkImageLoadException(int statusCode = default(int), Uri uri = default(Uri))
-        : base()
-        {
-            this.StatusCode = statusCode;
-            this.Uri = uri; throw new NotImplementedException();
-        }
-        #endregion
 
-        #region fields
-        public virtual int StatusCode { get; set; }
-        internal virtual string _Message { get; set; }
-        public virtual Uri Uri { get; set; }
-        #endregion
 
-        #region methods
+public new bool Equals(@Object other)
+{
+    if (other.GetType() != GetType()) return false;
+    return other is ExactAssetImage && other.KeyName == KeyName && other.Scale == Scale && other.Bundle == Bundle;
+}
 
-        #endregion
-    }
+
+
+
+#endregion
+}
+
+
+public class _ErrorImageCompleter : FlutterSDK.Painting.Imagestream.ImageStreamCompleter
+{
+    #region constructors
+    public _ErrorImageCompleter()
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public virtual void SetError(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode context = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode), object exception = default(object), StackTrace stack = default(StackTrace), FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector), bool silent = false)
+{
+    ReportError(context: context, exception: exception, stack: stack, informationCollector: informationCollector, silent: silent);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// The exception thrown when the HTTP request to load a network image fails.
+/// </Summary>
+public class NetworkImageLoadException : IException
+{
+    #region constructors
+    public NetworkImageLoadException(int statusCode = default(int), Uri uri = default(Uri))
+    : base()
+
+}
+#endregion
+
+#region fields
+public virtual int StatusCode { get; set; }
+internal virtual string _Message { get; set; }
+public virtual Uri Uri { get; set; }
+#endregion
+
+#region methods
+
+#endregion
+}
 
 }

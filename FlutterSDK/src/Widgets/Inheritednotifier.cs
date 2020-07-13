@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -683,58 +683,102 @@ namespace FlutterSDK.Widgets.Inheritednotifier
         #region constructors
         public InheritedNotifier(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), T notifier = default(T), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
-        {
-            this.Notifier = notifier; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual T Notifier { get; set; }
-        #endregion
+    #region fields
+    public virtual T Notifier { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<T> oldWidget) { throw new NotImplementedException(); }
-
-
-        public new _InheritedNotifierElement<T> CreateElement() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _InheritedNotifierElement<T> : FlutterSDK.Widgets.Framework.InheritedElement
+    public new bool UpdateShouldNotify(FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<T> oldWidget)
     {
-        #region constructors
-        public _InheritedNotifierElement(FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<T> widget)
-        : base(widget)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual bool _Dirty { get; set; }
-        public virtual FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<T> Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void Update(FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<T> newWidget) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build() { throw new NotImplementedException(); }
-
-
-        private void _HandleUpdate() { throw new NotImplementedException(); }
-
-
-        public new void NotifyClients(FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<T> oldWidget) { throw new NotImplementedException(); }
-
-
-        public new void Unmount() { throw new NotImplementedException(); }
-
-        #endregion
+        return oldWidget.Notifier != Notifier;
     }
+
+
+
+
+    public new _InheritedNotifierElement<T> CreateElement() => new _InheritedNotifierElement<T>(this);
+
+
+    #endregion
+}
+
+
+public class _InheritedNotifierElement<T> : FlutterSDK.Widgets.Framework.InheritedElement
+{
+    #region constructors
+    public _InheritedNotifierElement(FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<T> widget)
+    : base(widget)
+
+widget.Notifier?.AddListener(_HandleUpdate);
+}
+
+
+#endregion
+
+#region fields
+internal virtual bool _Dirty { get; set; }
+public virtual FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<T> Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new void Update(FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<T> newWidget)
+{
+    T oldNotifier = Widget.Notifier;
+    T newNotifier = newWidget.Notifier;
+    if (oldNotifier != newNotifier)
+    {
+        oldNotifier?.RemoveListener(_HandleUpdate);
+        newNotifier?.AddListener(_HandleUpdate);
+    }
+
+    base.Update(newWidget);
+}
+
+
+
+
+public new FlutterSDK.Widgets.Framework.Widget Build()
+{
+    if (_Dirty) NotifyClients(Widget);
+    return base.Build();
+}
+
+
+
+
+private void _HandleUpdate()
+{
+    _Dirty = true;
+    MarkNeedsBuild();
+}
+
+
+
+
+public new void NotifyClients(FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<T> oldWidget)
+{
+    base.NotifyClients(oldWidget);
+    _Dirty = false;
+}
+
+
+
+
+public new void Unmount()
+{
+    Widget.Notifier?.RemoveListener(_HandleUpdate);
+    base.Unmount();
+}
+
+
+
+#endregion
+}
 
 }

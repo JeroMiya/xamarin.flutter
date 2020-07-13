@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -395,254 +395,360 @@ namespace FlutterSDK.Material.Expansionpanel
     {
         #region constructors
         public _SaltedKey(S salt, V value)
-        {
-            this.Salt = salt;
-            this.Value = value; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual S Salt { get; set; }
-        public virtual V Value { get; set; }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    public virtual S Salt { get; set; }
+    public virtual V Value { get; set; }
+    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
-
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// A material expansion panel. It has a header and a body and can be either
-    /// expanded or collapsed. The body of the panel is only visible when it is
-    /// expanded.
-    ///
-    /// Expansion panels are only intended to be used as children for
-    /// [ExpansionPanelList].
-    ///
-    /// See [ExpansionPanelList] for a sample implementation.
-    ///
-    /// See also:
-    ///
-    ///  * [ExpansionPanelList]
-    ///  * <https://material.io/design/components/lists.html#types>
-    /// </Summary>
-    public class ExpansionPanel
+    public new bool Equals(@Object other)
     {
-        #region constructors
-        public ExpansionPanel(FlutterSDK.Material.Expansionpanel.ExpansionPanelHeaderBuilder headerBuilder = default(FlutterSDK.Material.Expansionpanel.ExpansionPanelHeaderBuilder), FlutterSDK.Widgets.Framework.Widget body = default(FlutterSDK.Widgets.Framework.Widget), bool isExpanded = false, bool canTapOnHeader = false)
-        : base()
-        {
-            this.HeaderBuilder = headerBuilder;
-            this.Body = body;
-            this.IsExpanded = isExpanded;
-            this.CanTapOnHeader = canTapOnHeader; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Material.Expansionpanel.ExpansionPanelHeaderBuilder HeaderBuilder { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Body { get; set; }
-        public virtual bool IsExpanded { get; set; }
-        public virtual bool CanTapOnHeader { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
+        if (other.GetType() != GetType()) return false;
+        return other is _SaltedKey<S, V> && other.Salt == Salt && other.Value == Value;
     }
 
 
-    /// <Summary>
-    /// An expansion panel that allows for radio-like functionality.
-    /// This means that at any given time, at most, one [ExpansionPanelRadio]
-    /// can remain expanded.
-    ///
-    /// A unique identifier [value] must be assigned to each panel.
-    /// This identifier allows the [ExpansionPanelList] to determine
-    /// which [ExpansionPanelRadio] instance should be expanded.
-    ///
-    /// See [ExpansionPanelList.radio] for a sample implementation.
-    /// </Summary>
-    public class ExpansionPanelRadio : FlutterSDK.Material.Expansionpanel.ExpansionPanel
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// A material expansion panel. It has a header and a body and can be either
+/// expanded or collapsed. The body of the panel is only visible when it is
+/// expanded.
+///
+/// Expansion panels are only intended to be used as children for
+/// [ExpansionPanelList].
+///
+/// See [ExpansionPanelList] for a sample implementation.
+///
+/// See also:
+///
+///  * [ExpansionPanelList]
+///  * <https://material.io/design/components/lists.html#types>
+/// </Summary>
+public class ExpansionPanel
+{
+    #region constructors
+    public ExpansionPanel(FlutterSDK.Material.Expansionpanel.ExpansionPanelHeaderBuilder headerBuilder = default(FlutterSDK.Material.Expansionpanel.ExpansionPanelHeaderBuilder), FlutterSDK.Widgets.Framework.Widget body = default(FlutterSDK.Widgets.Framework.Widget), bool isExpanded = false, bool canTapOnHeader = false)
+    : base()
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Material.Expansionpanel.ExpansionPanelHeaderBuilder HeaderBuilder { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget Body { get; set; }
+public virtual bool IsExpanded { get; set; }
+public virtual bool CanTapOnHeader { get; set; }
+#endregion
+
+#region methods
+#endregion
+}
+
+
+/// <Summary>
+/// An expansion panel that allows for radio-like functionality.
+/// This means that at any given time, at most, one [ExpansionPanelRadio]
+/// can remain expanded.
+///
+/// A unique identifier [value] must be assigned to each panel.
+/// This identifier allows the [ExpansionPanelList] to determine
+/// which [ExpansionPanelRadio] instance should be expanded.
+///
+/// See [ExpansionPanelList.radio] for a sample implementation.
+/// </Summary>
+public class ExpansionPanelRadio : FlutterSDK.Material.Expansionpanel.ExpansionPanel
+{
+    #region constructors
+    public ExpansionPanelRadio(@Object value = default(@Object), FlutterSDK.Material.Expansionpanel.ExpansionPanelHeaderBuilder headerBuilder = default(FlutterSDK.Material.Expansionpanel.ExpansionPanelHeaderBuilder), FlutterSDK.Widgets.Framework.Widget body = default(FlutterSDK.Widgets.Framework.Widget), bool canTapOnHeader = false)
+    : base(body: body, headerBuilder: headerBuilder, canTapOnHeader: canTapOnHeader)
+
+}
+#endregion
+
+#region fields
+public virtual @Object Value { get; set; }
+#endregion
+
+#region methods
+#endregion
+}
+
+
+/// <Summary>
+/// A material expansion panel list that lays out its children and animates
+/// expansions.
+///
+/// Note that [expansionCallback] behaves differently for [ExpansionPanelList]
+/// and [ExpansionPanelList.radio].
+///
+/// {@tool dartpad --template=stateful_widget_scaffold}
+///
+/// Here is a simple example of how to implement ExpansionPanelList.
+///
+/// ```dart preamble
+/// // stores ExpansionPanel state information
+/// class Item {
+///   Item({
+///     this.expandedValue,
+///     this.headerValue,
+///     this.isExpanded = false,
+///   });
+///
+///   String expandedValue;
+///   String headerValue;
+///   bool isExpanded;
+/// }
+///
+/// List<Item> generateItems(int numberOfItems) {
+///   return List.generate(numberOfItems, (int index) {
+///     return Item(
+///       headerValue: 'Panel $index',
+///       expandedValue: 'This is item number $index',
+///     );
+///   });
+/// }
+/// ```
+///
+/// ```dart
+/// List<Item> _data = generateItems(8);
+///
+/// @override
+/// Widget build(BuildContext context) {
+///   return SingleChildScrollView(
+///     child: Container(
+///       child: _buildPanel(),
+///     ),
+///   );
+/// }
+///
+/// Widget _buildPanel() {
+///   return ExpansionPanelList(
+///     expansionCallback: (int index, bool isExpanded) {
+///       setState(() {
+///         _data[index].isExpanded = !isExpanded;
+///       });
+///     },
+///     children: _data.map<ExpansionPanel>((Item item) {
+///       return ExpansionPanel(
+///         headerBuilder: (BuildContext context, bool isExpanded) {
+///           return ListTile(
+///             title: Text(item.headerValue),
+///           );
+///         },
+///         body: ListTile(
+///           title: Text(item.expandedValue),
+///           subtitle: Text('To delete this panel, tap the trash can icon'),
+///           trailing: Icon(Icons.delete),
+///           onTap: () {
+///             setState(() {
+///               _data.removeWhere((currentItem) => item == currentItem);
+///             });
+///           }
+///         ),
+///         isExpanded: item.isExpanded,
+///       );
+///     }).toList(),
+///   );
+/// }
+/// ```
+/// {@end-tool}
+///
+/// See also:
+///
+///  * [ExpansionPanel]
+///  * [ExpansionPanelList.radio]
+///  * <https://material.io/design/components/lists.html#types>
+/// </Summary>
+public class ExpansionPanelList : FlutterSDK.Widgets.Framework.StatefulWidget
+{
+    #region constructors
+    public ExpansionPanelList(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Material.Expansionpanel.ExpansionPanel> children = default(List<FlutterSDK.Material.Expansionpanel.ExpansionPanel>), FlutterSDK.Material.Expansionpanel.ExpansionPanelCallback expansionCallback = default(FlutterSDK.Material.Expansionpanel.ExpansionPanelCallback), TimeSpan animationDuration = default(TimeSpan), FlutterSDK.Painting.Edgeinsets.EdgeInsets expandedHeaderPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets))
+    : base(key: key)
+
+}
+public static ExpansionPanelList Radio(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Material.Expansionpanel.ExpansionPanel> children = default(List<FlutterSDK.Material.Expansionpanel.ExpansionPanel>), FlutterSDK.Material.Expansionpanel.ExpansionPanelCallback expansionCallback = default(FlutterSDK.Material.Expansionpanel.ExpansionPanelCallback), TimeSpan animationDuration = default(TimeSpan), @Object initialOpenPanelValue = default(@Object), FlutterSDK.Painting.Edgeinsets.EdgeInsets expandedHeaderPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets))
+
+}
+#endregion
+
+#region fields
+public virtual List<FlutterSDK.Material.Expansionpanel.ExpansionPanel> Children { get; set; }
+public virtual FlutterSDK.Material.Expansionpanel.ExpansionPanelCallback ExpansionCallback { get; set; }
+public virtual TimeSpan AnimationDuration { get; set; }
+internal virtual bool _AllowOnlyOnePanelOpen { get; set; }
+public virtual @Object InitialOpenPanelValue { get; set; }
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets ExpandedHeaderPadding { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() => new _ExpansionPanelListState();
+
+
+#endregion
+}
+
+
+public class _ExpansionPanelListState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Expansionpanel.ExpansionPanelList>
+{
+    #region constructors
+    public _ExpansionPanelListState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Material.Expansionpanel.ExpansionPanelRadio _CurrentOpenPanel { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
     {
-        #region constructors
-        public ExpansionPanelRadio(@Object value = default(@Object), FlutterSDK.Material.Expansionpanel.ExpansionPanelHeaderBuilder headerBuilder = default(FlutterSDK.Material.Expansionpanel.ExpansionPanelHeaderBuilder), FlutterSDK.Widgets.Framework.Widget body = default(FlutterSDK.Widgets.Framework.Widget), bool canTapOnHeader = false)
-        : base(body: body, headerBuilder: headerBuilder, canTapOnHeader: canTapOnHeader)
+        base.InitState();
+        if (Widget._AllowOnlyOnePanelOpen)
         {
-            this.Value = value; throw new NotImplementedException();
+
+            if (Widget.InitialOpenPanelValue != null)
+            {
+                _CurrentOpenPanel = SearchPanelByValue(Widget.Children.Cast(), Widget.InitialOpenPanelValue);
+            }
+
         }
-        #endregion
 
-        #region fields
-        public virtual @Object Value { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
-    /// <Summary>
-    /// A material expansion panel list that lays out its children and animates
-    /// expansions.
-    ///
-    /// Note that [expansionCallback] behaves differently for [ExpansionPanelList]
-    /// and [ExpansionPanelList.radio].
-    ///
-    /// {@tool dartpad --template=stateful_widget_scaffold}
-    ///
-    /// Here is a simple example of how to implement ExpansionPanelList.
-    ///
-    /// ```dart preamble
-    /// // stores ExpansionPanel state information
-    /// class Item {
-    ///   Item({
-    ///     this.expandedValue,
-    ///     this.headerValue,
-    ///     this.isExpanded = false,
-    ///   });
-    ///
-    ///   String expandedValue;
-    ///   String headerValue;
-    ///   bool isExpanded;
-    /// }
-    ///
-    /// List<Item> generateItems(int numberOfItems) {
-    ///   return List.generate(numberOfItems, (int index) {
-    ///     return Item(
-    ///       headerValue: 'Panel $index',
-    ///       expandedValue: 'This is item number $index',
-    ///     );
-    ///   });
-    /// }
-    /// ```
-    ///
-    /// ```dart
-    /// List<Item> _data = generateItems(8);
-    ///
-    /// @override
-    /// Widget build(BuildContext context) {
-    ///   return SingleChildScrollView(
-    ///     child: Container(
-    ///       child: _buildPanel(),
-    ///     ),
-    ///   );
-    /// }
-    ///
-    /// Widget _buildPanel() {
-    ///   return ExpansionPanelList(
-    ///     expansionCallback: (int index, bool isExpanded) {
-    ///       setState(() {
-    ///         _data[index].isExpanded = !isExpanded;
-    ///       });
-    ///     },
-    ///     children: _data.map<ExpansionPanel>((Item item) {
-    ///       return ExpansionPanel(
-    ///         headerBuilder: (BuildContext context, bool isExpanded) {
-    ///           return ListTile(
-    ///             title: Text(item.headerValue),
-    ///           );
-    ///         },
-    ///         body: ListTile(
-    ///           title: Text(item.expandedValue),
-    ///           subtitle: Text('To delete this panel, tap the trash can icon'),
-    ///           trailing: Icon(Icons.delete),
-    ///           onTap: () {
-    ///             setState(() {
-    ///               _data.removeWhere((currentItem) => item == currentItem);
-    ///             });
-    ///           }
-    ///         ),
-    ///         isExpanded: item.isExpanded,
-    ///       );
-    ///     }).toList(),
-    ///   );
-    /// }
-    /// ```
-    /// {@end-tool}
-    ///
-    /// See also:
-    ///
-    ///  * [ExpansionPanel]
-    ///  * [ExpansionPanelList.radio]
-    ///  * <https://material.io/design/components/lists.html#types>
-    /// </Summary>
-    public class ExpansionPanelList : FlutterSDK.Widgets.Framework.StatefulWidget
+
+
+    public new void DidUpdateWidget(FlutterSDK.Material.Expansionpanel.ExpansionPanelList oldWidget)
     {
-        #region constructors
-        public ExpansionPanelList(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Material.Expansionpanel.ExpansionPanel> children = default(List<FlutterSDK.Material.Expansionpanel.ExpansionPanel>), FlutterSDK.Material.Expansionpanel.ExpansionPanelCallback expansionCallback = default(FlutterSDK.Material.Expansionpanel.ExpansionPanelCallback), TimeSpan animationDuration = default(TimeSpan), FlutterSDK.Painting.Edgeinsets.EdgeInsets expandedHeaderPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets))
-        : base(key: key)
+        base.DidUpdateWidget(oldWidget);
+        if (Widget._AllowOnlyOnePanelOpen)
         {
-            this.Children = children;
-            this.ExpansionCallback = expansionCallback;
-            this.AnimationDuration = animationDuration;
-            this.ExpandedHeaderPadding = expandedHeaderPadding; throw new NotImplementedException();
+
+            if (!oldWidget._AllowOnlyOnePanelOpen)
+            {
+                _CurrentOpenPanel = SearchPanelByValue(Widget.Children.Cast(), Widget.InitialOpenPanelValue);
+            }
+
         }
-        public static ExpansionPanelList Radio(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Material.Expansionpanel.ExpansionPanel> children = default(List<FlutterSDK.Material.Expansionpanel.ExpansionPanel>), FlutterSDK.Material.Expansionpanel.ExpansionPanelCallback expansionCallback = default(FlutterSDK.Material.Expansionpanel.ExpansionPanelCallback), TimeSpan animationDuration = default(TimeSpan), @Object initialOpenPanelValue = default(@Object), FlutterSDK.Painting.Edgeinsets.EdgeInsets expandedHeaderPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets))
+        else
         {
-            var instance = new ExpansionPanelList(key: key); instance.Children = children;
-            instance.ExpansionCallback = expansionCallback;
-            instance.AnimationDuration = animationDuration;
-            instance.InitialOpenPanelValue = initialOpenPanelValue;
-            instance.ExpandedHeaderPadding = expandedHeaderPadding; throw new NotImplementedException();
+            _CurrentOpenPanel = null;
         }
-        #endregion
 
-        #region fields
-        public virtual List<FlutterSDK.Material.Expansionpanel.ExpansionPanel> Children { get; set; }
-        public virtual FlutterSDK.Material.Expansionpanel.ExpansionPanelCallback ExpansionCallback { get; set; }
-        public virtual TimeSpan AnimationDuration { get; set; }
-        internal virtual bool _AllowOnlyOnePanelOpen { get; set; }
-        public virtual @Object InitialOpenPanelValue { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets ExpandedHeaderPadding { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() { throw new NotImplementedException(); }
-
-        #endregion
     }
 
 
-    public class _ExpansionPanelListState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Expansionpanel.ExpansionPanelList>
+
+
+    private bool _AllIdentifiersUnique()
     {
-        #region constructors
-        public _ExpansionPanelListState()
-        { }
-        #endregion
+        Dictionary<object, bool> identifierMap = new Dictionary<object, bool> { };
+        foreach (ExpansionPanelRadio child in Widget.Children.Cast())
+        {
+            identifierMap[child.Value] = true;
+        }
 
-        #region fields
-        internal virtual FlutterSDK.Material.Expansionpanel.ExpansionPanelRadio _CurrentOpenPanel { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Material.Expansionpanel.ExpansionPanelList oldWidget) { throw new NotImplementedException(); }
-
-
-        private bool _AllIdentifiersUnique() { throw new NotImplementedException(); }
-
-
-        private bool _IsChildExpanded(int index) { throw new NotImplementedException(); }
-
-
-        private void _HandlePressed(bool isExpanded, int index) { throw new NotImplementedException(); }
-
-
-        public virtual FlutterSDK.Material.Expansionpanel.ExpansionPanelRadio SearchPanelByValue(List<FlutterSDK.Material.Expansionpanel.ExpansionPanelRadio> panels, @Object value) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        return identifierMap.Length == Widget.Children.Count;
     }
+
+
+
+
+    private bool _IsChildExpanded(int index)
+    {
+        if (Widget._AllowOnlyOnePanelOpen)
+        {
+            ExpansionPanelRadio radioWidget = Widget.Children[index] as ExpansionPanelRadio;
+            return _CurrentOpenPanel?.Value == radioWidget.Value;
+        }
+
+        return Widget.Children[index].IsExpanded;
+    }
+
+
+
+
+    private void _HandlePressed(bool isExpanded, int index)
+    {
+        if (Widget.ExpansionCallback != null) Widget.ExpansionCallback(index, isExpanded);
+        if (Widget._AllowOnlyOnePanelOpen)
+        {
+            ExpansionPanelRadio pressedChild = Widget.Children[index] as ExpansionPanelRadio;
+            for (int childIndex = 0; childIndex < Widget.Children.Count; childIndex += 1)
+            {
+                ExpansionPanelRadio child = Widget.Children[childIndex] as ExpansionPanelRadio;
+                if (Widget.ExpansionCallback != null && childIndex != index && child.Value == _CurrentOpenPanel?.Value) Widget.ExpansionCallback(childIndex, false);
+            }
+
+            SetState(() =>
+            {
+                _CurrentOpenPanel = isExpanded ? null : pressedChild;
+            }
+            );
+        }
+
+    }
+
+
+
+
+    public virtual FlutterSDK.Material.Expansionpanel.ExpansionPanelRadio SearchPanelByValue(List<FlutterSDK.Material.Expansionpanel.ExpansionPanelRadio> panels, @Object value)
+    {
+        foreach (ExpansionPanelRadio panel in panels)
+        {
+            if (panel.Value == value) return panel;
+        }
+
+        return null;
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        List<MergeableMaterialItem> items = new List<MergeableMaterialItem>() { };
+        for (int index = 0; index < Widget.Children.Count; index += 1)
+        {
+            if (_IsChildExpanded(index) && index != 0 && !_IsChildExpanded(index - 1)) items.Add(new MaterialGap(key: new _SaltedKey<BuildContext, int>(context, index * 2 - 1)));
+            ExpansionPanel child = Widget.Children[index];
+            Widget headerWidget = child.HeaderBuilder(context, _IsChildExpanded(index));
+            Widget expandIconContainer = new Container(margin: EdgeInsetsDirectional.Only(end: 8.0), child: new ExpandIcon(isExpanded: _IsChildExpanded(index), padding: EdgeInsets.All(16.0), onPressed: !child.CanTapOnHeader ? (bool isExpanded) => =>_HandlePressed(isExpanded, index):null ));
+        if (!child.CanTapOnHeader)
+        {
+            MaterialLocalizations localizations = MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context);
+            expandIconContainer = new Semantics(label: _IsChildExpanded(index) ? localizations.ExpandedIconTapHint : localizations.CollapsedIconTapHint, container: true, child: expandIconContainer);
+        }
+
+        Widget header = new Row(children: new List<Widget>() { new Expanded(child: new AnimatedContainer(duration: Widget.AnimationDuration, curve: CurvesDefaultClass.Curves.FastOutSlowIn, margin: _IsChildExpanded(index) ? Widget.ExpandedHeaderPadding : EdgeinsetsDefaultClass.EdgeInsets.Zero, child: new ConstrainedBox(constraints: new BoxConstraints(minHeight: ExpansionpanelDefaultClass._KPanelHeaderCollapsedHeight), child: headerWidget))), expandIconContainer });
+        if (child.CanTapOnHeader)
+        {
+            header = new MergeSemantics(child: new InkWell(onTap: () => =>_HandlePressed(_IsChildExpanded(index), index), child: header));
+        }
+
+        items.Add(new MaterialSlice(key: new _SaltedKey<BuildContext, int>(context, index * 2), child: new Column(children: new List<Widget>() { header, new AnimatedCrossFade(firstChild: new Container(height: 0.0), secondChild: child.Body, firstCurve: new Interval(0.0, 0.6, curve: CurvesDefaultClass.Curves.FastOutSlowIn), secondCurve: new Interval(0.4, 1.0, curve: CurvesDefaultClass.Curves.FastOutSlowIn), sizeCurve: CurvesDefaultClass.Curves.FastOutSlowIn, crossFadeState: _IsChildExpanded(index) ? CrossFadeState.ShowSecond : CrossFadeState.ShowFirst, duration: Widget.AnimationDuration) })));
+        if (_IsChildExpanded(index) && index != Widget.Children.Count - 1) items.Add(new MaterialGap(key: new _SaltedKey<BuildContext, int>(context, index * 2 + 1)));
+    }
+
+return new MergeableMaterial(hasDividers:true , children:items);
+}
+
+
+
+#endregion
+}
 
 }

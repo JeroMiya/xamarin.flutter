@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -466,247 +466,531 @@ namespace FlutterSDK.Widgets.App
         #region constructors
         public WidgetsApp(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> navigatorKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState>), FlutterSDK.Widgets.Navigator.RouteFactory onGenerateRoute = default(FlutterSDK.Widgets.Navigator.RouteFactory), FlutterSDK.Widgets.App.InitialRouteListFactory onGenerateInitialRoutes = default(FlutterSDK.Widgets.App.InitialRouteListFactory), FlutterSDK.Widgets.Navigator.RouteFactory onUnknownRoute = default(FlutterSDK.Widgets.Navigator.RouteFactory), List<FlutterSDK.Widgets.Navigator.NavigatorObserver> navigatorObservers = default(List<FlutterSDK.Widgets.Navigator.NavigatorObserver>), string initialRoute = default(string), FlutterSDK.Widgets.App.PageRouteFactory pageRouteBuilder = default(FlutterSDK.Widgets.App.PageRouteFactory), FlutterSDK.Widgets.Framework.Widget home = default(FlutterSDK.Widgets.Framework.Widget), Dictionary<string, object> routes = default(Dictionary<string, object>), FlutterSDK.Widgets.Framework.TransitionBuilder builder = default(FlutterSDK.Widgets.Framework.TransitionBuilder), string title = default(string), FlutterSDK.Widgets.App.GenerateAppTitle onGenerateTitle = default(FlutterSDK.Widgets.App.GenerateAppTitle), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), Locale locale = default(Locale), Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> localizationsDelegates = default(Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>>), FlutterSDK.Widgets.App.LocaleListResolutionCallback localeListResolutionCallback = default(FlutterSDK.Widgets.App.LocaleListResolutionCallback), FlutterSDK.Widgets.App.LocaleResolutionCallback localeResolutionCallback = default(FlutterSDK.Widgets.App.LocaleResolutionCallback), Iterable<Locale> supportedLocales = default(Iterable<Locale>), bool showPerformanceOverlay = false, bool checkerboardRasterCacheImages = false, bool checkerboardOffscreenLayers = false, bool showSemanticsDebugger = false, bool debugShowWidgetInspector = false, bool debugShowCheckedModeBanner = true, FlutterSDK.Widgets.Widgetinspector.InspectorSelectButtonBuilder inspectorSelectButtonBuilder = default(FlutterSDK.Widgets.Widgetinspector.InspectorSelectButtonBuilder), Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> shortcuts = default(Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent>), Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> actions = default(Dictionary<FlutterSDK.Foundation.Key.LocalKey, object>))
         : base(key: key)
+    
+}
+    #endregion
+
+    #region fields
+    public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> NavigatorKey { get; set; }
+    public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnGenerateRoute { get; set; }
+    public virtual FlutterSDK.Widgets.App.InitialRouteListFactory OnGenerateInitialRoutes { get; set; }
+    public virtual FlutterSDK.Widgets.App.PageRouteFactory PageRouteBuilder { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget Home { get; set; }
+    public virtual Dictionary<string, object> Routes { get; set; }
+    public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnUnknownRoute { get; set; }
+    public virtual string InitialRoute { get; set; }
+    public virtual List<FlutterSDK.Widgets.Navigator.NavigatorObserver> NavigatorObservers { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.TransitionBuilder Builder { get; set; }
+    public virtual string Title { get; set; }
+    public virtual FlutterSDK.Widgets.App.GenerateAppTitle OnGenerateTitle { get; set; }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
+    public virtual FlutterBinding.UI.Color Color { get; set; }
+    public virtual Locale Locale { get; set; }
+    public virtual Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> LocalizationsDelegates { get; set; }
+    public virtual FlutterSDK.Widgets.App.LocaleListResolutionCallback LocaleListResolutionCallback { get; set; }
+    public virtual FlutterSDK.Widgets.App.LocaleResolutionCallback LocaleResolutionCallback { get; set; }
+    public virtual Iterable<Locale> SupportedLocales { get; set; }
+    public virtual bool ShowPerformanceOverlay { get; set; }
+    public virtual bool CheckerboardRasterCacheImages { get; set; }
+    public virtual bool CheckerboardOffscreenLayers { get; set; }
+    public virtual bool ShowSemanticsDebugger { get; set; }
+    public virtual bool DebugShowWidgetInspector { get; set; }
+    public virtual FlutterSDK.Widgets.Widgetinspector.InspectorSelectButtonBuilder InspectorSelectButtonBuilder { get; set; }
+    public virtual bool DebugShowCheckedModeBanner { get; set; }
+    public virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> Shortcuts { get; set; }
+    public virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> Actions { get; set; }
+    public virtual bool ShowPerformanceOverlayOverride { get; set; }
+    public virtual bool DebugShowWidgetInspectorOverride { get; set; }
+    public virtual bool DebugAllowBannerOverride { get; set; }
+    internal virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> _DefaultShortcuts { get; set; }
+    internal virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> _DefaultWebShortcuts { get; set; }
+    internal virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> _DefaultMacOsShortcuts { get; set; }
+    public virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> DefaultActions { get; set; }
+    public virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> DefaultShortcuts { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new FlutterSDK.Widgets.App._WidgetsAppState CreateState() => new _WidgetsAppState();
+
+
+    #endregion
+}
+
+
+public class _WidgetsAppState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.App.WidgetsApp>, IWidgetsBindingObserver
+{
+    #region constructors
+    public _WidgetsAppState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> _Navigator { get; set; }
+    internal virtual Locale _Locale { get; set; }
+    internal virtual Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> _LocalizationsDelegates { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
+    {
+        base.InitState();
+        _UpdateNavigator();
+        _Locale = _ResolveLocales(BindingDefaultClass.WidgetsBinding.Instance.Window.Locales, Widget.SupportedLocales);
+        BindingDefaultClass.WidgetsBinding.Instance.AddObserver(this);
+    }
+
+
+
+
+    public new void DidUpdateWidget(FlutterSDK.Widgets.App.WidgetsApp oldWidget)
+    {
+        base.DidUpdateWidget(oldWidget);
+        if (Widget.NavigatorKey != oldWidget.NavigatorKey) _UpdateNavigator();
+    }
+
+
+
+
+    public new void Dispose()
+    {
+        BindingDefaultClass.WidgetsBinding.Instance.RemoveObserver(this);
+        base.Dispose();
+    }
+
+
+
+
+    private void _UpdateNavigator()
+    {
+        _Navigator = Widget.NavigatorKey ?? new GlobalObjectKey<NavigatorState>(this);
+    }
+
+
+
+
+    private FlutterSDK.Widgets.Navigator.Route<object> _OnGenerateRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings)
+    {
+        string name = settings.Name;
+        WidgetBuilder pageContentBuilder = name == NavigatorDefaultClass.Navigator.DefaultRouteName && Widget.Home != null ? (BuildContext context) => =>Widget.Home:Widget.Routes[name];
+        if (pageContentBuilder != null)
         {
-            this.NavigatorKey = navigatorKey;
-            this.OnGenerateRoute = onGenerateRoute;
-            this.OnGenerateInitialRoutes = onGenerateInitialRoutes;
-            this.OnUnknownRoute = onUnknownRoute;
-            this.NavigatorObservers = navigatorObservers;
-            this.InitialRoute = initialRoute;
-            this.PageRouteBuilder = pageRouteBuilder;
-            this.Home = home;
-            this.Routes = routes;
-            this.Builder = builder;
-            this.Title = title;
-            this.OnGenerateTitle = onGenerateTitle;
-            this.TextStyle = textStyle;
-            this.Color = color;
-            this.Locale = locale;
-            this.LocalizationsDelegates = localizationsDelegates;
-            this.LocaleListResolutionCallback = localeListResolutionCallback;
-            this.LocaleResolutionCallback = localeResolutionCallback;
-            this.SupportedLocales = supportedLocales;
-            this.ShowPerformanceOverlay = showPerformanceOverlay;
-            this.CheckerboardRasterCacheImages = checkerboardRasterCacheImages;
-            this.CheckerboardOffscreenLayers = checkerboardOffscreenLayers;
-            this.ShowSemanticsDebugger = showSemanticsDebugger;
-            this.DebugShowWidgetInspector = debugShowWidgetInspector;
-            this.DebugShowCheckedModeBanner = debugShowCheckedModeBanner;
-            this.InspectorSelectButtonBuilder = inspectorSelectButtonBuilder;
-            this.Shortcuts = shortcuts;
-            this.Actions = actions; throw new NotImplementedException();
+
+            Route<object> route = Widget.PageRouteBuilder(settings, pageContentBuilder);
+
+            return route;
         }
-        #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> NavigatorKey { get; set; }
-        public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnGenerateRoute { get; set; }
-        public virtual FlutterSDK.Widgets.App.InitialRouteListFactory OnGenerateInitialRoutes { get; set; }
-        public virtual FlutterSDK.Widgets.App.PageRouteFactory PageRouteBuilder { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Home { get; set; }
-        public virtual Dictionary<string, object> Routes { get; set; }
-        public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnUnknownRoute { get; set; }
-        public virtual string InitialRoute { get; set; }
-        public virtual List<FlutterSDK.Widgets.Navigator.NavigatorObserver> NavigatorObservers { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.TransitionBuilder Builder { get; set; }
-        public virtual string Title { get; set; }
-        public virtual FlutterSDK.Widgets.App.GenerateAppTitle OnGenerateTitle { get; set; }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
-        public virtual FlutterBinding.UI.Color Color { get; set; }
-        public virtual Locale Locale { get; set; }
-        public virtual Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> LocalizationsDelegates { get; set; }
-        public virtual FlutterSDK.Widgets.App.LocaleListResolutionCallback LocaleListResolutionCallback { get; set; }
-        public virtual FlutterSDK.Widgets.App.LocaleResolutionCallback LocaleResolutionCallback { get; set; }
-        public virtual Iterable<Locale> SupportedLocales { get; set; }
-        public virtual bool ShowPerformanceOverlay { get; set; }
-        public virtual bool CheckerboardRasterCacheImages { get; set; }
-        public virtual bool CheckerboardOffscreenLayers { get; set; }
-        public virtual bool ShowSemanticsDebugger { get; set; }
-        public virtual bool DebugShowWidgetInspector { get; set; }
-        public virtual FlutterSDK.Widgets.Widgetinspector.InspectorSelectButtonBuilder InspectorSelectButtonBuilder { get; set; }
-        public virtual bool DebugShowCheckedModeBanner { get; set; }
-        public virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> Shortcuts { get; set; }
-        public virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> Actions { get; set; }
-        public virtual bool ShowPerformanceOverlayOverride { get; set; }
-        public virtual bool DebugShowWidgetInspectorOverride { get; set; }
-        public virtual bool DebugAllowBannerOverride { get; set; }
-        internal virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> _DefaultShortcuts { get; set; }
-        internal virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> _DefaultWebShortcuts { get; set; }
-        internal virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> _DefaultMacOsShortcuts { get; set; }
-        public virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> DefaultActions { get; set; }
-        public virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> DefaultShortcuts { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.App._WidgetsAppState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
+        if (Widget.OnGenerateRoute != null) return Widget.OnGenerateRoute(settings);
+        return null;
     }
 
 
-    public class _WidgetsAppState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.App.WidgetsApp>, IWidgetsBindingObserver
+
+
+    private FlutterSDK.Widgets.Navigator.Route<object> _OnUnknownRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings)
     {
-        #region constructors
-        public _WidgetsAppState()
-        { }
-        #endregion
 
-        #region fields
-        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> _Navigator { get; set; }
-        internal virtual Locale _Locale { get; set; }
-        internal virtual Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> _LocalizationsDelegates { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+        Route<object> result = Widget.OnUnknownRoute(settings);
 
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Widgets.App.WidgetsApp oldWidget) { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        private void _UpdateNavigator() { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Widgets.Navigator.Route<object> _OnGenerateRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Widgets.Navigator.Route<object> _OnUnknownRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings) { throw new NotImplementedException(); }
-
-
-        public new Future<bool> DidPopRoute() { throw new NotImplementedException(); }
-
-
-        public new Future<bool> DidPushRoute(string route) { throw new NotImplementedException(); }
-
-
-        private Locale _ResolveLocales(List<Locale> preferredLocales, Iterable<Locale> supportedLocales) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// The default locale resolution algorithm.
-        ///
-        /// Custom resolution algorithms can be provided through
-        /// [WidgetsApp.localeListResolutionCallback] or
-        /// [WidgetsApp.localeResolutionCallback].
-        ///
-        /// When no custom locale resolution algorithms are provided or if both fail
-        /// to resolve, Flutter will default to calling this algorithm.
-        ///
-        /// This algorithm prioritizes speed at the cost of slightly less appropriate
-        /// resolutions for edge cases.
-        ///
-        /// This algorithm will resolve to the earliest preferred locale that
-        /// matches the most fields, prioritizing in the order of perfect match,
-        /// languageCode+countryCode, languageCode+scriptCode, languageCode-only.
-        ///
-        /// In the case where a locale is matched by languageCode-only and is not the
-        /// default (first) locale, the next preferred locale with a
-        /// perfect match can supersede the languageCode-only match if it exists.
-        ///
-        /// When a preferredLocale matches more than one supported locale, it will
-        /// resolve to the first matching locale listed in the supportedLocales.
-        ///
-        /// When all preferred locales have been exhausted without a match, the first
-        /// countryCode only match will be returned.
-        ///
-        /// When no match at all is found, the first (default) locale in
-        /// [supportedLocales] will be returned.
-        ///
-        /// To summarize, the main matching priority is:
-        ///
-        ///  1. [Locale.languageCode], [Locale.scriptCode], and [Locale.countryCode]
-        ///  1. [Locale.languageCode] and [Locale.scriptCode] only
-        ///  1. [Locale.languageCode] and [Locale.countryCode] only
-        ///  1. [Locale.languageCode] only (with caveats, see above)
-        ///  1. [Locale.countryCode] only when all [preferredLocales] fail to match
-        ///  1. Returns the first element of [supportedLocales] as a fallback
-        ///
-        /// This algorithm does not take language distance (how similar languages are to each other)
-        /// into account, and will not handle edge cases such as resolving `de` to `fr` rather than `zh`
-        /// when `de` is not supported and `zh` is listed before `fr` (German is closer to French
-        /// than Chinese).
-        /// </Summary>
-        public virtual Locale BasicLocaleListResolution(List<Locale> preferredLocales, Iterable<Locale> supportedLocales) { throw new NotImplementedException(); }
-
-
-        public new void DidChangeLocales(List<Locale> locales) { throw new NotImplementedException(); }
-
-
-        private bool _DebugCheckLocalizations(Locale appLocale) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        return result;
     }
 
 
-    /// <Summary>
-    /// Builds [MediaQuery] from `window` by listening to [WidgetsBinding].
-    ///
-    /// It is performed in a standalone widget to rebuild **only** [MediaQuery] and
-    /// its dependents when `window` changes, instead of rebuilding the entire widget tree.
-    /// </Summary>
-    public class _MediaQueryFromWindow : FlutterSDK.Widgets.Framework.StatefulWidget
+
+
+    public new Future<bool> DidPopRoute()
+async
+{
+
+NavigatorState navigator = _Navigator?.CurrentState;
+if (navigator==null )return false ;
+return await navigator.MaybePop();
+}
+
+
+
+
+public new Future<bool> DidPushRoute(string route)
+async
+{
+
+    NavigatorState navigator = _Navigator?.CurrentState;
+    if (navigator == null) return false;
+    navigator.PushNamed(route);
+    return true;
+}
+
+
+
+
+private Locale _ResolveLocales(List<Locale> preferredLocales, Iterable<Locale> supportedLocales)
+{
+    if (Widget.LocaleListResolutionCallback != null)
     {
-        #region constructors
-        public _MediaQueryFromWindow(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key)
+        Locale locale = Widget.LocaleListResolutionCallback(preferredLocales, Widget.SupportedLocales);
+        if (locale != null) return locale;
+    }
+
+    if (Widget.LocaleResolutionCallback != null)
+    {
+        Locale locale = Widget.LocaleResolutionCallback(preferredLocales != null && preferredLocales.IsNotEmpty ? preferredLocales.First : null, Widget.SupportedLocales);
+        if (locale != null) return locale;
+    }
+
+    return BasicLocaleListResolution(preferredLocales, supportedLocales);
+}
+
+
+
+
+/// <Summary>
+/// The default locale resolution algorithm.
+///
+/// Custom resolution algorithms can be provided through
+/// [WidgetsApp.localeListResolutionCallback] or
+/// [WidgetsApp.localeResolutionCallback].
+///
+/// When no custom locale resolution algorithms are provided or if both fail
+/// to resolve, Flutter will default to calling this algorithm.
+///
+/// This algorithm prioritizes speed at the cost of slightly less appropriate
+/// resolutions for edge cases.
+///
+/// This algorithm will resolve to the earliest preferred locale that
+/// matches the most fields, prioritizing in the order of perfect match,
+/// languageCode+countryCode, languageCode+scriptCode, languageCode-only.
+///
+/// In the case where a locale is matched by languageCode-only and is not the
+/// default (first) locale, the next preferred locale with a
+/// perfect match can supersede the languageCode-only match if it exists.
+///
+/// When a preferredLocale matches more than one supported locale, it will
+/// resolve to the first matching locale listed in the supportedLocales.
+///
+/// When all preferred locales have been exhausted without a match, the first
+/// countryCode only match will be returned.
+///
+/// When no match at all is found, the first (default) locale in
+/// [supportedLocales] will be returned.
+///
+/// To summarize, the main matching priority is:
+///
+///  1. [Locale.languageCode], [Locale.scriptCode], and [Locale.countryCode]
+///  1. [Locale.languageCode] and [Locale.scriptCode] only
+///  1. [Locale.languageCode] and [Locale.countryCode] only
+///  1. [Locale.languageCode] only (with caveats, see above)
+///  1. [Locale.countryCode] only when all [preferredLocales] fail to match
+///  1. Returns the first element of [supportedLocales] as a fallback
+///
+/// This algorithm does not take language distance (how similar languages are to each other)
+/// into account, and will not handle edge cases such as resolving `de` to `fr` rather than `zh`
+/// when `de` is not supported and `zh` is listed before `fr` (German is closer to French
+/// than Chinese).
+/// </Summary>
+public virtual Locale BasicLocaleListResolution(List<Locale> preferredLocales, Iterable<Locale> supportedLocales)
+{
+    if (preferredLocales == null || preferredLocales.IsEmpty())
+    {
+        return supportedLocales.First;
+    }
+
+    Dictionary<string, Locale> allSupportedLocales = new HashMap<string, Locale>();
+    Dictionary<string, Locale> languageAndCountryLocales = new HashMap<string, Locale>();
+    Dictionary<string, Locale> languageAndScriptLocales = new HashMap<string, Locale>();
+    Dictionary<string, Locale> languageLocales = new HashMap<string, Locale>();
+    Dictionary<string, Locale> countryLocales = new HashMap<string, Locale>();
+    foreach (Locale locale in supportedLocales)
+    {
+        allSupportedLocales[$"'{locale.LanguageCode}_{locale.ScriptCode}_{locale.CountryCode}'"] = (allSupportedLocales[$"'{locale.LanguageCode}_{locale.ScriptCode}_{locale.CountryCode}'"] == null ? locale : allSupportedLocales[$"'{locale.LanguageCode}_{locale.ScriptCode}_{locale.CountryCode}'"]);
+        languageAndScriptLocales[$"'{locale.LanguageCode}_{locale.ScriptCode}'"] = (languageAndScriptLocales[$"'{locale.LanguageCode}_{locale.ScriptCode}'"] == null ? locale : languageAndScriptLocales[$"'{locale.LanguageCode}_{locale.ScriptCode}'"]);
+        languageAndCountryLocales[$"'{locale.LanguageCode}_{locale.CountryCode}'"] = (languageAndCountryLocales[$"'{locale.LanguageCode}_{locale.CountryCode}'"] == null ? locale : languageAndCountryLocales[$"'{locale.LanguageCode}_{locale.CountryCode}'"]);
+        languageLocales[locale.LanguageCode] = (languageLocales[locale.LanguageCode] == null ? locale : languageLocales[locale.LanguageCode]);
+        countryLocales[locale.CountryCode] = (countryLocales[locale.CountryCode] == null ? locale : countryLocales[locale.CountryCode]);
+    }
+
+    Locale matchesLanguageCode = default(Locale);
+    Locale matchesCountryCode = default(Locale);
+    for (int localeIndex = 0; localeIndex < preferredLocales.Count; localeIndex += 1)
+    {
+        Locale userLocale = preferredLocales[localeIndex];
+        if (allSupportedLocales.ContainsKey($"'{userLocale.LanguageCode}_{userLocale.ScriptCode}_{userLocale.CountryCode}'"))
         {
-            this.Child = child; throw new NotImplementedException();
+            return userLocale;
         }
-        #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
+        if (userLocale.ScriptCode != null)
+        {
+            Locale match = languageAndScriptLocales[$"'{userLocale.LanguageCode}_{userLocale.ScriptCode}'"];
+            if (match != null)
+            {
+                return match;
+            }
 
-        #region methods
+        }
 
-        public new FlutterSDK.Widgets.App._MediaQueryFromWindowsState CreateState() { throw new NotImplementedException(); }
+        if (userLocale.CountryCode != null)
+        {
+            Locale match = languageAndCountryLocales[$"'{userLocale.LanguageCode}_{userLocale.CountryCode}'"];
+            if (match != null)
+            {
+                return match;
+            }
 
-        #endregion
+        }
+
+        if (matchesLanguageCode != null)
+        {
+            return matchesLanguageCode;
+        }
+
+        Locale match = languageLocales[userLocale.LanguageCode];
+        if (match != null)
+        {
+            matchesLanguageCode = match;
+            if (localeIndex == 0 && !(localeIndex + 1 < preferredLocales.Count && preferredLocales[localeIndex + 1].LanguageCode == userLocale.LanguageCode))
+            {
+                return matchesLanguageCode;
+            }
+
+        }
+
+        if (matchesCountryCode == null && userLocale.CountryCode != null)
+        {
+            match = countryLocales[userLocale.CountryCode];
+            if (match != null)
+            {
+                matchesCountryCode = match;
+            }
+
+        }
+
     }
 
+    Locale resolvedLocale = matchesLanguageCode ?? matchesCountryCode ?? supportedLocales.First;
+    return resolvedLocale;
+}
 
-    public class _MediaQueryFromWindowsState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.App._MediaQueryFromWindow>, IWidgetsBindingObserver
+
+
+
+public new void DidChangeLocales(List<Locale> locales)
+{
+    Locale newLocale = _ResolveLocales(locales, Widget.SupportedLocales);
+    if (newLocale != _Locale)
     {
-        #region constructors
-        public _MediaQueryFromWindowsState()
-        { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void DidChangeAccessibilityFeatures() { throw new NotImplementedException(); }
-
-
-        public new void DidChangeMetrics() { throw new NotImplementedException(); }
-
-
-        public new void DidChangeTextScaleFactor() { throw new NotImplementedException(); }
-
-
-        public new void DidChangePlatformBrightness() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-        #endregion
+        SetState(() =>
+        {
+            _Locale = newLocale;
+        }
+        );
     }
+
+}
+
+
+
+
+private bool _DebugCheckLocalizations(Locale appLocale)
+{
+
+    return true;
+}
+
+
+
+
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    Widget navigator = default(Widget);
+    if (_Navigator != null)
+    {
+        navigator = new Navigator(key: _Navigator, initialRoute: BindingDefaultClass.WidgetsBinding.Instance.Window.DefaultRouteName != NavigatorDefaultClass.Navigator.DefaultRouteName ? BindingDefaultClass.WidgetsBinding.Instance.Window.DefaultRouteName : Widget.InitialRoute ?? BindingDefaultClass.WidgetsBinding.Instance.Window.DefaultRouteName, onGenerateRoute: _OnGenerateRoute, onGenerateInitialRoutes: Widget.OnGenerateInitialRoutes == null ? NavigatorDefaultClass.Navigator.DefaultGenerateInitialRoutes : (NavigatorState navigator, string initialRouteName) =>
+        {
+            return Widget.OnGenerateInitialRoutes(initialRouteName);
+        }
+        , onUnknownRoute: _OnUnknownRoute, observers: Widget.NavigatorObservers);
+    }
+
+    Widget result = default(Widget);
+    if (Widget.Builder != null)
+    {
+        result = new Builder(builder: (BuildContext context) =>
+        {
+            return Widget.Builder(context, navigator);
+        }
+        );
+    }
+    else
+    {
+
+        result = navigator;
+    }
+
+    if (Widget.TextStyle != null)
+    {
+        result = new DefaultTextStyle(style: Widget.TextStyle, child: result);
+    }
+
+    PerformanceOverlay performanceOverlay = default(PerformanceOverlay);
+    if (Widget.ShowPerformanceOverlay || AppDefaultClass.WidgetsApp.ShowPerformanceOverlayOverride)
+    {
+        performanceOverlay = PerformanceOverlay.AllEnabled(checkerboardRasterCacheImages: Widget.CheckerboardRasterCacheImages, checkerboardOffscreenLayers: Widget.CheckerboardOffscreenLayers);
+    }
+    else if (Widget.CheckerboardRasterCacheImages || Widget.CheckerboardOffscreenLayers)
+    {
+        performanceOverlay = new PerformanceOverlay(checkerboardRasterCacheImages: Widget.CheckerboardRasterCacheImages, checkerboardOffscreenLayers: Widget.CheckerboardOffscreenLayers);
+    }
+
+    if (performanceOverlay != null)
+    {
+        result = new Stack(children: new List<Widget>() { result, new Positioned(top: 0.0, left: 0.0, right: 0.0, child: performanceOverlay) });
+    }
+
+    if (Widget.ShowSemanticsDebugger)
+    {
+        result = new SemanticsDebugger(child: result);
+    }
+
+
+    Widget title = default(Widget);
+    if (Widget.OnGenerateTitle != null)
+    {
+        title = new Builder(builder: (BuildContext context) =>
+        {
+            string title = Widget.OnGenerateTitle(context);
+
+            return new Title(title: title, color: Widget.Color, child: result);
+        }
+        );
+    }
+    else
+    {
+        title = new Title(title: Widget.Title, color: Widget.Color, child: result);
+    }
+
+    Locale appLocale = Widget.Locale != null ? _ResolveLocales(new List<Locale>() { Widget.Locale }, Widget.SupportedLocales) : _Locale;
+
+    return new Shortcuts(shortcuts: Widget.Shortcuts ?? AppDefaultClass.WidgetsApp.DefaultShortcuts, debugLabel: "<Default WidgetsApp Shortcuts>", child: new Actions(actions: Widget.Actions ?? AppDefaultClass.WidgetsApp.DefaultActions, child: new FocusTraversalGroup(policy: new ReadingOrderTraversalPolicy(), child: new _MediaQueryFromWindow(child: new Localizations(locale: appLocale, delegates: _LocalizationsDelegates.ToList(), child: title)))));
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Builds [MediaQuery] from `window` by listening to [WidgetsBinding].
+///
+/// It is performed in a standalone widget to rebuild **only** [MediaQuery] and
+/// its dependents when `window` changes, instead of rebuilding the entire widget tree.
+/// </Summary>
+public class _MediaQueryFromWindow : FlutterSDK.Widgets.Framework.StatefulWidget
+{
+    #region constructors
+    public _MediaQueryFromWindow(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.App._MediaQueryFromWindowsState CreateState() => new _MediaQueryFromWindowsState();
+
+
+#endregion
+}
+
+
+public class _MediaQueryFromWindowsState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.App._MediaQueryFromWindow>, IWidgetsBindingObserver
+{
+    #region constructors
+    public _MediaQueryFromWindowsState()
+    { }
+    #endregion
+
+    #region fields
+    #endregion
+
+    #region methods
+
+    public new void InitState()
+    {
+        base.InitState();
+        BindingDefaultClass.WidgetsBinding.Instance.AddObserver(this);
+    }
+
+
+
+
+    public new void DidChangeAccessibilityFeatures()
+    {
+        SetState(() =>
+        {
+        }
+        );
+    }
+
+
+
+
+    public new void DidChangeMetrics()
+    {
+        SetState(() =>
+        {
+        }
+        );
+    }
+
+
+
+
+    public new void DidChangeTextScaleFactor()
+    {
+        SetState(() =>
+        {
+        }
+        );
+    }
+
+
+
+
+    public new void DidChangePlatformBrightness()
+    {
+        SetState(() =>
+        {
+        }
+        );
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        return new MediaQuery(data: MediaQueryData.FromWindow(BindingDefaultClass.WidgetsBinding.Instance.Window), child: Widget.Child);
+    }
+
+
+
+
+    public new void Dispose()
+    {
+        BindingDefaultClass.WidgetsBinding.Instance.RemoveObserver(this);
+        base.Dispose();
+    }
+
+
+
+    #endregion
+}
 
 }

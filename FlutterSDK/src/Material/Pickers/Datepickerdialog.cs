@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -421,82 +421,157 @@ namespace FlutterSDK.Material.Pickers.Datepickerdialog
         #region constructors
         public _DatePickerDialog(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), DateTime initialDate = default(DateTime), DateTime firstDate = default(DateTime), DateTime lastDate = default(DateTime), FlutterSDK.Material.Pickers.Datepickercommon.DatePickerEntryMode initialEntryMode = default(FlutterSDK.Material.Pickers.Datepickercommon.DatePickerEntryMode), FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate selectableDayPredicate = default(FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate), string cancelText = default(string), string confirmText = default(string), string helpText = default(string), FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode initialCalendarMode = default(FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode), string errorFormatText = default(string), string errorInvalidText = default(string), string fieldHintText = default(string), string fieldLabelText = default(string))
         : base(key: key)
-        {
-            this.InitialEntryMode = initialEntryMode;
-            this.SelectableDayPredicate = selectableDayPredicate;
-            this.CancelText = cancelText;
-            this.ConfirmText = confirmText;
-            this.HelpText = helpText;
-            this.InitialCalendarMode = initialCalendarMode;
-            this.ErrorFormatText = errorFormatText;
-            this.ErrorInvalidText = errorInvalidText;
-            this.FieldHintText = fieldHintText;
-            this.FieldLabelText = fieldLabelText; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual DateTime InitialDate { get; set; }
-        public virtual DateTime FirstDate { get; set; }
-        public virtual DateTime LastDate { get; set; }
-        public virtual FlutterSDK.Material.Pickers.Datepickercommon.DatePickerEntryMode InitialEntryMode { get; set; }
-        public virtual FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate SelectableDayPredicate { get; set; }
-        public virtual string CancelText { get; set; }
-        public virtual string ConfirmText { get; set; }
-        public virtual string HelpText { get; set; }
-        public virtual FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode InitialCalendarMode { get; set; }
-        public virtual string ErrorFormatText { get; set; }
-        public virtual string ErrorInvalidText { get; set; }
-        public virtual string FieldHintText { get; set; }
-        public virtual string FieldLabelText { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Material.Pickers.Datepickerdialog._DatePickerDialogState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
+    
 
 
-    public class _DatePickerDialogState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Pickers.Datepickerdialog._DatePickerDialog>
+
+
+}
+
+
+    #endregion
+
+    #region fields
+    public virtual DateTime InitialDate { get; set; }
+    public virtual DateTime FirstDate { get; set; }
+    public virtual DateTime LastDate { get; set; }
+    public virtual FlutterSDK.Material.Pickers.Datepickercommon.DatePickerEntryMode InitialEntryMode { get; set; }
+    public virtual FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate SelectableDayPredicate { get; set; }
+    public virtual string CancelText { get; set; }
+    public virtual string ConfirmText { get; set; }
+    public virtual string HelpText { get; set; }
+    public virtual FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode InitialCalendarMode { get; set; }
+    public virtual string ErrorFormatText { get; set; }
+    public virtual string ErrorInvalidText { get; set; }
+    public virtual string FieldHintText { get; set; }
+    public virtual string FieldLabelText { get; set; }
+    #endregion
+
+    #region methods
+
+    public new FlutterSDK.Material.Pickers.Datepickerdialog._DatePickerDialogState CreateState() => new _DatePickerDialogState();
+
+
+    #endregion
+}
+
+
+public class _DatePickerDialogState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Pickers.Datepickerdialog._DatePickerDialog>
+{
+    #region constructors
+    public _DatePickerDialogState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Material.Pickers.Datepickercommon.DatePickerEntryMode _EntryMode { get; set; }
+    internal virtual DateTime _SelectedDate { get; set; }
+    internal virtual bool _AutoValidate { get; set; }
+    internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _CalendarPickerKey { get; set; }
+    internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Form.FormState> _FormKey { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
     {
-        #region constructors
-        public _DatePickerDialogState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Material.Pickers.Datepickercommon.DatePickerEntryMode _EntryMode { get; set; }
-        internal virtual DateTime _SelectedDate { get; set; }
-        internal virtual bool _AutoValidate { get; set; }
-        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _CalendarPickerKey { get; set; }
-        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Form.FormState> _FormKey { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        private void _HandleOk() { throw new NotImplementedException(); }
-
-
-        private void _HandleCancel() { throw new NotImplementedException(); }
-
-
-        private void _HandelEntryModeToggle() { throw new NotImplementedException(); }
-
-
-        private void _HandleDateChanged(DateTime date) { throw new NotImplementedException(); }
-
-
-        private Size _DialogSize(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        base.InitState();
+        _EntryMode = Widget.InitialEntryMode;
+        _SelectedDate = Widget.InitialDate;
+        _AutoValidate = false;
     }
+
+
+
+
+    private void _HandleOk()
+    {
+        if (_EntryMode == DatePickerEntryMode.Input)
+        {
+            FormState form = _FormKey.CurrentState;
+            if (!form.Validate())
+            {
+                SetState(() => =>_AutoValidate = true);
+                return;
+            }
+
+            form.Save();
+        }
+
+        NavigatorDefaultClass.Navigator.Pop(Context, _SelectedDate);
+    }
+
+
+
+
+    private void _HandleCancel()
+    {
+        NavigatorDefaultClass.Navigator.Pop(Context);
+    }
+
+
+
+
+    private void _HandelEntryModeToggle()
+    {
+        SetState(() =>
+        {
+            switch (_EntryMode) { case DatePickerEntryMode.Calendar: _AutoValidate = false; _EntryMode = DatePickerEntryMode.Input; break; case DatePickerEntryMode.Input: _FormKey.CurrentState.Save(); _EntryMode = DatePickerEntryMode.Calendar; break; }
+        }
+        );
+    }
+
+
+
+
+    private void _HandleDateChanged(DateTime date)
+    {
+        SetState(() => =>_SelectedDate = date);
+    }
+
+
+
+
+    private Size _DialogSize(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        Orientation orientation = MediaqueryDefaultClass.MediaQuery.Of(context).Orientation;
+        switch (_EntryMode) { case DatePickerEntryMode.Calendar: switch (orientation) { case Orientation.Portrait: return DatepickerdialogDefaultClass._CalendarPortraitDialogSize; case Orientation.Landscape: return DatepickerdialogDefaultClass._CalendarLandscapeDialogSize; } break; case DatePickerEntryMode.Input: switch (orientation) { case Orientation.Portrait: return DatepickerdialogDefaultClass._InputPortraitDialogSize; case Orientation.Landscape: return DatepickerdialogDefaultClass._InputLandscapeDialogSize; } break; }
+        return null;
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        ThemeData theme = ThemeDefaultClass.Theme.Of(context);
+        ColorScheme colorScheme = theme.ColorScheme;
+        MaterialLocalizations localizations = MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context);
+        Orientation orientation = MediaqueryDefaultClass.MediaQuery.Of(context).Orientation;
+        TextTheme textTheme = theme.TextTheme;
+        double textScaleFactor = Math.Dart:mathDefaultClass.Min(MediaqueryDefaultClass.MediaQuery.Of(context).TextScaleFactor, 1.3);
+        string dateText = _SelectedDate != null ? localizations.FormatMediumDate(_SelectedDate) : "Date";
+        Color dateColor = colorScheme.Brightness == Brightness.Light ? colorScheme.OnPrimary : colorScheme.OnSurface;
+        TextStyle dateStyle = orientation == Orientation.Landscape ? textTheme.Headline5?.CopyWith(color: dateColor) : textTheme.Headline4?.CopyWith(color: dateColor);
+        Widget actions = new ButtonBar(buttonTextTheme: ButtonTextTheme.Primary, layoutBehavior: ButtonBarLayoutBehavior.Constrained, children: new List<Widget>() { new FlatButton(child: new Text(Widget.CancelText ?? localizations.CancelButtonLabel), onPressed: _HandleCancel), new FlatButton(child: new Text(Widget.ConfirmText ?? localizations.OkButtonLabel), onPressed: _HandleOk) });
+        Widget picker = default(Widget);
+        IconData entryModeIcon = default(IconData);
+        string entryModeTooltip = default(string);
+        switch (_EntryMode) { case DatePickerEntryMode.Calendar: picker = new CalendarDatePicker(key: _CalendarPickerKey, initialDate: _SelectedDate, firstDate: Widget.FirstDate, lastDate: Widget.LastDate, onDateChanged: _HandleDateChanged, selectableDayPredicate: Widget.SelectableDayPredicate, initialCalendarMode: Widget.InitialCalendarMode); entryModeIcon = IconsDefaultClass.Icons.Edit; entryModeTooltip = "Switch to input"; break; case DatePickerEntryMode.Input: picker = new Form(key: _FormKey, autovalidate: _AutoValidate, child: new InputDatePickerFormField(initialDate: _SelectedDate, firstDate: Widget.FirstDate, lastDate: Widget.LastDate, onDateSubmitted: _HandleDateChanged, onDateSaved: _HandleDateChanged, selectableDayPredicate: Widget.SelectableDayPredicate, errorFormatText: Widget.ErrorFormatText, errorInvalidText: Widget.ErrorInvalidText, fieldHintText: Widget.FieldHintText, fieldLabelText: Widget.FieldLabelText, autofocus: true)); entryModeIcon = IconsDefaultClass.Icons.Calendar_today; entryModeTooltip = "Switch to calendar"; break; }
+        Widget header = new DatePickerHeader(helpText: Widget.HelpText ?? "SELECT DATE", titleText: dateText, titleStyle: dateStyle, orientation: orientation, isShort: orientation == Orientation.Landscape, icon: entryModeIcon, iconTooltip: entryModeTooltip, onIconPressed: _HandelEntryModeToggle);
+        Size dialogSize = _DialogSize(context) * textScaleFactor;
+        DialogTheme dialogTheme = ThemeDefaultClass.Theme.Of(context).DialogTheme;
+        return new Dialog(child: new AnimatedContainer(width: dialogSize.Width, height: dialogSize.Height, duration: DatepickerdialogDefaultClass._DialogSizeAnimationDuration, curve: CurvesDefaultClass.Curves.EaseIn, child: new MediaQuery(data: MediaqueryDefaultClass.MediaQuery.Of(context).CopyWith(textScaleFactor: textScaleFactor), child: new Builder(builder: (BuildContext context) =>
+        {
+            switch (orientation) { case Orientation.Portrait: return new Column(mainAxisSize: MainAxisSize.Min, crossAxisAlignment: CrossAxisAlignment.Stretch, children: new List<Widget>() { header, new Expanded(child: picker), actions }); case Orientation.Landscape: return new Row(mainAxisSize: MainAxisSize.Min, crossAxisAlignment: CrossAxisAlignment.Stretch, children: new List<Widget>() { header, new Flexible(child: new Column(mainAxisSize: MainAxisSize.Min, crossAxisAlignment: CrossAxisAlignment.Stretch, children: new List<Widget>() { new Expanded(child: picker), actions })) }); }
+            return null;
+        }
+        ))), insetPadding: EdgeInsets.Symmetric(horizontal: 16.0, vertical: 24.0), shape: dialogTheme.Shape ?? new RoundedRectangleBorder(borderRadius: BorderRadius.All(Radius.Circular(4.0))), clipBehavior: Clip.AntiAlias);
+    }
+
+
+
+    #endregion
+}
 
 }

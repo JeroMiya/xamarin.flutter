@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -312,13 +312,32 @@ namespace FlutterSDK.Gestures.Binding
         internal virtual Dictionary<int, FlutterSDK.Gestures.Hittest.HitTestResult> _HitTests { get; set; }
         public virtual FlutterSDK.Gestures.Binding.GestureBinding Instance { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
-        public new void InitInstances() { throw new NotImplementedException(); }
+        public new void InitInstances()
+        {
+            base.InitInstances();
+            _Instance = this;
+            Window.OnPointerDataPacket = _HandlePointerDataPacket;
+        }
 
 
-        public new void Unlocked() { throw new NotImplementedException(); }
 
 
-        private void _HandlePointerDataPacket(PointerDataPacket packet) { throw new NotImplementedException(); }
+        public new void Unlocked()
+        {
+            base.Unlocked();
+            _FlushPointerEventQueue();
+        }
+
+
+
+
+        private void _HandlePointerDataPacket(PointerDataPacket packet)
+        {
+            _PendingPointerEvents.AddAll(ConverterDefaultClass.PointerEventConverter.Expand(packet.Data, Window.DevicePixelRatio));
+            if (!Locked) _FlushPointerEventQueue();
+        }
+
+
 
 
         /// <Summary>
@@ -327,19 +346,69 @@ namespace FlutterSDK.Gestures.Binding
         /// The pointer event will be dispatched before the next pointer event and
         /// before the end of the microtask but not within this function call.
         /// </Summary>
-        public virtual void CancelPointer(int pointer) { throw new NotImplementedException(); }
+        public virtual void CancelPointer(int pointer)
+        {
+            if (_PendingPointerEvents.IsEmpty() && !Locked) Dart: asyncDefaultClass.ScheduleMicrotask(_FlushPointerEventQueue);
+            _PendingPointerEvents.AddFirst(new PointerCancelEvent(pointer: pointer));
+        }
 
 
-        private void _FlushPointerEventQueue() { throw new NotImplementedException(); }
 
 
-        private void _HandlePointerEvent(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
+        private void _FlushPointerEventQueue()
+        {
+
+            while (_PendingPointerEvents.IsNotEmpty) _HandlePointerEvent(_PendingPointerEvents.RemoveFirst());
+        }
+
+
+
+
+        private void _HandlePointerEvent(FlutterSDK.Gestures.Events.PointerEvent @event)
+        {
+
+            HitTestResult hitTestResult = default(HitTestResult);
+            if (@event is PointerDownEvent || @event is PointerSignalEvent)
+            {
+
+                hitTestResult = new HitTestResult();
+                HitTest(hitTestResult, ((PointerDownEvent)@event).Position);
+                if (((PointerDownEvent)@event) is PointerDownEvent)
+                {
+                    _HitTests[((PointerDownEvent)@event).Pointer] = hitTestResult;
+                }
+
+
+            }
+            else if (@event is PointerUpEvent || @event is PointerCancelEvent)
+            {
+                hitTestResult = _HitTests.Remove(((PointerUpEvent)@event).Pointer);
+            }
+            else if (@event.Down)
+            {
+                hitTestResult = _HitTests[@event.Pointer];
+            }
+
+
+            if (hitTestResult != null || @event is PointerHoverEvent || @event is PointerAddedEvent || @event is PointerRemovedEvent)
+            {
+                DispatchEvent(((PointerHoverEvent)@event), hitTestResult);
+            }
+
+        }
+
+
 
 
         /// <Summary>
         /// Determine which [HitTestTarget] objects are located at a given position.
         /// </Summary>
-        public new void HitTest(FlutterSDK.Gestures.Hittest.HitTestResult result, FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
+        public new void HitTest(FlutterSDK.Gestures.Hittest.HitTestResult result, FlutterBinding.UI.Offset position)
+        {
+            result.Add(new HitTestEntry(this));
+        }
+
+
 
 
         /// <Summary>
@@ -350,10 +419,66 @@ namespace FlutterSDK.Gestures.Binding
         /// might throw. The [hitTestResult] argument may only be null for
         /// [PointerHoverEvent], [PointerAddedEvent], or [PointerRemovedEvent] events.
         /// </Summary>
-        public new void DispatchEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Hittest.HitTestResult hitTestResult) { throw new NotImplementedException(); }
+        public new void DispatchEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Hittest.HitTestResult hitTestResult)
+        {
+
+            if (hitTestResult == null)
+            {
+
+                try
+                {
+                    PointerRouter.Route(@event);
+                }
+                catch (exception,stack){
+                    AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetailsForPointerEventDispatcher(exception: exception, stack: stack, library: "gesture library", context: new ErrorDescription("while dispatching a non-hit-tested pointer event"), @event: @event, hitTestEntry: null, informationCollector: () => sync *{
+yield new DiagnosticsProperty<PointerEvent>("Event", @event, style:DiagnosticsTreeStyle.ErrorProperty);
+                }
+));
+                }
+
+                return;
+            }
+
+            foreach (HitTestEntry entry in hitTestResult.Path)
+            {
+                try
+                {
+                    entry.Target.HandleEvent(@event.Transformed(entry.Transform), entry);
+                }
+                catch (exception,stack){
+                    AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetailsForPointerEventDispatcher(exception: exception, stack: stack, library: "gesture library", context: new ErrorDescription("while dispatching a pointer event"), @event: @event, hitTestEntry: entry, informationCollector: () => sync *{
+yield new DiagnosticsProperty<PointerEvent>("Event", @event, style:DiagnosticsTreeStyle.ErrorProperty);
+                    yield new DiagnosticsProperty<HitTestTarget>("Target", entry.Target, style: DiagnosticsTreeStyle.ErrorProperty);
+                }
+));
+                }
+
+            }
+
+        }
 
 
-        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Hittest.HitTestEntry entry) { throw new NotImplementedException(); }
+
+
+        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Hittest.HitTestEntry entry)
+        {
+            PointerRouter.Route(@event);
+            if (@event is PointerDownEvent)
+            {
+                GestureArena.Close(((PointerDownEvent)@event).Pointer);
+            }
+            else if (@event is PointerUpEvent)
+            {
+                GestureArena.Sweep(((PointerUpEvent)@event).Pointer);
+            }
+            else if (@event is PointerSignalEvent)
+            {
+                PointerSignalResolver.Resolve(((PointerSignalEvent)@event));
+            }
+
+        }
+
+
 
     }
     public static class GestureBindingMixin
@@ -395,19 +520,17 @@ namespace FlutterSDK.Gestures.Binding
         #region constructors
         public FlutterErrorDetailsForPointerEventDispatcher(object exception = default(object), StackTrace stack = default(StackTrace), string library = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsNode context = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode), FlutterSDK.Gestures.Events.PointerEvent @event = default(FlutterSDK.Gestures.Events.PointerEvent), FlutterSDK.Gestures.Hittest.HitTestEntry hitTestEntry = default(FlutterSDK.Gestures.Hittest.HitTestEntry), FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector), bool silent = false)
         : base(exception: exception, stack: stack, library: library, context: context, informationCollector: informationCollector, silent: silent)
-        {
-            this.@event = @event;
-            this.HitTestEntry = hitTestEntry; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Gestures.Events.PointerEvent @event { get; set; }
-        public virtual FlutterSDK.Gestures.Hittest.HitTestEntry HitTestEntry { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Gestures.Events.PointerEvent @event { get; set; }
+    public virtual FlutterSDK.Gestures.Hittest.HitTestEntry HitTestEntry { get; set; }
+    #endregion
 
-        #region methods
-        #endregion
-    }
+    #region methods
+    #endregion
+}
 
 }

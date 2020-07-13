@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -508,279 +508,594 @@ namespace FlutterSDK.Rendering.Flex
         #region constructors
         public RenderFlex(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Painting.Basictypes.Axis direction = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize), FlutterSDK.Rendering.Flex.MainAxisAlignment mainAxisAlignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment), FlutterSDK.Rendering.Flex.CrossAxisAlignment crossAxisAlignment = default(FlutterSDK.Rendering.Flex.CrossAxisAlignment), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Basictypes.VerticalDirection verticalDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection), TextBaseline textBaseline = default(TextBaseline))
         : base()
+    
+AddAll(children);
+    }
+
+
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Painting.Basictypes.Axis _Direction { get; set; }
+    internal virtual FlutterSDK.Rendering.Flex.MainAxisAlignment _MainAxisAlignment { get; set; }
+    internal virtual FlutterSDK.Rendering.Flex.MainAxisSize _MainAxisSize { get; set; }
+    internal virtual FlutterSDK.Rendering.Flex.CrossAxisAlignment _CrossAxisAlignment { get; set; }
+    internal virtual TextDirection _TextDirection { get; set; }
+    internal virtual FlutterSDK.Painting.Basictypes.VerticalDirection _VerticalDirection { get; set; }
+    internal virtual TextBaseline _TextBaseline { get; set; }
+    internal virtual double _Overflow { get; set; }
+    public virtual FlutterSDK.Painting.Basictypes.Axis Direction { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Rendering.Flex.MainAxisAlignment MainAxisAlignment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Rendering.Flex.MainAxisSize MainAxisSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Rendering.Flex.CrossAxisAlignment CrossAxisAlignment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Painting.Basictypes.VerticalDirection VerticalDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual TextBaseline TextBaseline { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    internal virtual bool _DebugHasNecessaryDirections { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    internal virtual bool _HasOverflow { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child)
+    {
+        if (!(child.ParentData is FlexParentData)) child.ParentData = new FlexParentData();
+    }
+
+
+    public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
+    {
+        if (!(child.ParentData is FlexParentData)) child.ParentData = new FlexParentData();
+    }
+
+
+
+
+    private double _GetIntrinsicSize(FlutterSDK.Painting.Basictypes.Axis sizingDirection = default(FlutterSDK.Painting.Basictypes.Axis), double extent = default(double), FlutterSDK.Rendering.Flex._ChildSizingFunction childSize = default(FlutterSDK.Rendering.Flex._ChildSizingFunction))
+    {
+        if (_Direction == sizingDirection)
         {
-            throw new NotImplementedException();
+            double totalFlex = 0.0;
+            double inflexibleSpace = 0.0;
+            double maxFlexFractionSoFar = 0.0;
+            RenderBox child = FirstChild;
+            while (child != null)
+            {
+                int flex = _GetFlex(child);
+                totalFlex += flex;
+                if (flex > 0)
+                {
+                    double flexFraction = childSize(child, extent) / _GetFlex(child);
+                    maxFlexFractionSoFar = Math.Dart:mathDefaultClass.Max(maxFlexFractionSoFar, flexFraction);
+                }
+                else
+                {
+                    inflexibleSpace += childSize(child, extent);
+                }
+
+                FlexParentData childParentData = child.ParentData as FlexParentData;
+                child = childParentData.NextSibling;
+            }
+
+            return maxFlexFractionSoFar * totalFlex + inflexibleSpace;
         }
-        #endregion
+        else
+        {
+            double availableMainSpace = extent;
+            int totalFlex = 0;
+            double inflexibleSpace = 0.0;
+            double maxCrossSize = 0.0;
+            RenderBox child = FirstChild;
+            while (child != null)
+            {
+                int flex = _GetFlex(child);
+                totalFlex += flex;
+                double mainSize = default(double);
+                double crossSize = default(double);
+                if (flex == 0)
+                {
+                    switch (_Direction) { case Axis.Horizontal: mainSize = child.GetMaxIntrinsicWidth(Dart: coreDefaultClass.Double.Infinity); crossSize = childSize(child, mainSize); break; case Axis.Vertical: mainSize = child.GetMaxIntrinsicHeight(Dart: coreDefaultClass.Double.Infinity); crossSize = childSize(child, mainSize); break; }
+                    inflexibleSpace += mainSize;
+                    maxCrossSize = Math.Dart:mathDefaultClass.Max(maxCrossSize, crossSize);
+                }
 
-        #region fields
-        internal virtual FlutterSDK.Painting.Basictypes.Axis _Direction { get; set; }
-        internal virtual FlutterSDK.Rendering.Flex.MainAxisAlignment _MainAxisAlignment { get; set; }
-        internal virtual FlutterSDK.Rendering.Flex.MainAxisSize _MainAxisSize { get; set; }
-        internal virtual FlutterSDK.Rendering.Flex.CrossAxisAlignment _CrossAxisAlignment { get; set; }
-        internal virtual TextDirection _TextDirection { get; set; }
-        internal virtual FlutterSDK.Painting.Basictypes.VerticalDirection _VerticalDirection { get; set; }
-        internal virtual TextBaseline _TextBaseline { get; set; }
-        internal virtual double _Overflow { get; set; }
-        public virtual FlutterSDK.Painting.Basictypes.Axis Direction { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Rendering.Flex.MainAxisAlignment MainAxisAlignment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Rendering.Flex.MainAxisSize MainAxisSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Rendering.Flex.CrossAxisAlignment CrossAxisAlignment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Painting.Basictypes.VerticalDirection VerticalDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual TextBaseline TextBaseline { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual bool _DebugHasNecessaryDirections { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual bool _HasOverflow { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+                FlexParentData childParentData = child.ParentData as FlexParentData;
+                child = childParentData.NextSibling;
+            }
 
-        #region methods
+            double spacePerFlex = Math.Dart:mathDefaultClass.Max(0.0, (availableMainSpace - inflexibleSpace) / totalFlex);
+            child = FirstChild;
+            while (child != null)
+            {
+                int flex = _GetFlex(child);
+                if (flex > 0) maxCrossSize = Math.Dart:mathDefaultClass.Max(maxCrossSize, childSize(child, spacePerFlex * flex));
+                FlexParentData childParentData = child.ParentData as FlexParentData;
+                child = childParentData.NextSibling;
+            }
 
-        public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
-        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
+            return maxCrossSize;
+        }
 
-
-        private double _GetIntrinsicSize(FlutterSDK.Painting.Basictypes.Axis sizingDirection = default(FlutterSDK.Painting.Basictypes.Axis), double extent = default(double), FlutterSDK.Rendering.Flex._ChildSizingFunction childSize = default(FlutterSDK.Rendering.Flex._ChildSizingFunction)) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new double ComputeDistanceToActualBaseline(TextBaseline baseline) { throw new NotImplementedException(); }
-
-
-        private int _GetFlex(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Rendering.Flex.FlexFit _GetFit(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
-
-
-        private double _GetCrossSize(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
-
-
-        private double _GetMainSize(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
-
-
-        public new void PerformLayout() { throw new NotImplementedException(); }
-
-
-        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
-
-
-        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
-
-
-        public new string ToStringShort() { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
     }
 
 
-    /// <Summary>
-    /// How the child is inscribed into the available space.
-    ///
-    /// See also:
-    ///
-    ///  * [RenderFlex], the flex render object.
-    ///  * [Column], [Row], and [Flex], the flex widgets.
-    ///  * [Expanded], the widget equivalent of [tight].
-    ///  * [Flexible], the widget equivalent of [loose].
-    /// </Summary>
-    public enum FlexFit
+
+
+    public new double ComputeMinIntrinsicWidth(double height)
+    {
+        return _GetIntrinsicSize(sizingDirection: Axis.Horizontal, extent: height, childSize: (RenderBox child, double extent) => =>child.GetMinIntrinsicWidth(extent));
+    }
+
+
+
+
+    public new double ComputeMaxIntrinsicWidth(double height)
+    {
+        return _GetIntrinsicSize(sizingDirection: Axis.Horizontal, extent: height, childSize: (RenderBox child, double extent) => =>child.GetMaxIntrinsicWidth(extent));
+    }
+
+
+
+
+    public new double ComputeMinIntrinsicHeight(double width)
+    {
+        return _GetIntrinsicSize(sizingDirection: Axis.Vertical, extent: width, childSize: (RenderBox child, double extent) => =>child.GetMinIntrinsicHeight(extent));
+    }
+
+
+
+
+    public new double ComputeMaxIntrinsicHeight(double width)
+    {
+        return _GetIntrinsicSize(sizingDirection: Axis.Vertical, extent: width, childSize: (RenderBox child, double extent) => =>child.GetMaxIntrinsicHeight(extent));
+    }
+
+
+
+
+    public new double ComputeDistanceToActualBaseline(TextBaseline baseline)
+    {
+        if (_Direction == Axis.Horizontal) return DefaultComputeDistanceToHighestActualBaseline(baseline);
+        return DefaultComputeDistanceToFirstActualBaseline(baseline);
+    }
+
+
+
+
+    private int _GetFlex(FlutterSDK.Rendering.Box.RenderBox child)
+    {
+        FlexParentData childParentData = child.ParentData as FlexParentData;
+        return childParentData.Flex ?? 0;
+    }
+
+
+
+
+    private FlutterSDK.Rendering.Flex.FlexFit _GetFit(FlutterSDK.Rendering.Box.RenderBox child)
+    {
+        FlexParentData childParentData = child.ParentData as FlexParentData;
+        return childParentData.Fit ?? FlexFit.Tight;
+    }
+
+
+
+
+    private double _GetCrossSize(FlutterSDK.Rendering.Box.RenderBox child)
+    {
+        switch (_Direction) { case Axis.Horizontal: return child.Size.Height; case Axis.Vertical: return child.Size.Width; }
+        return null;
+    }
+
+
+
+
+    private double _GetMainSize(FlutterSDK.Rendering.Box.RenderBox child)
+    {
+        switch (_Direction) { case Axis.Horizontal: return child.Size.Width; case Axis.Vertical: return child.Size.Height; }
+        return null;
+    }
+
+
+
+
+    public new void PerformLayout()
     {
 
-        /// <Summary>
-        /// The child is forced to fill the available space.
-        ///
-        /// The [Expanded] widget assigns this kind of [FlexFit] to its child.
-        /// </Summary>
-        Tight,
-        /// <Summary>
-        /// The child can be at most as large as the available space (but is
-        /// allowed to be smaller).
-        ///
-        /// The [Flexible] widget assigns this kind of [FlexFit] to its child.
-        /// </Summary>
-        Loose,
+        BoxConstraints constraints = this.Constraints;
+        int totalFlex = 0;
+        int totalChildren = 0;
+
+        double maxMainSize = _Direction == Axis.Horizontal ? constraints.MaxWidth : constraints.MaxHeight;
+        bool canFlex = maxMainSize < Dart:coreDefaultClass.Double.Infinity;
+        double crossSize = 0.0;
+        double allocatedSize = 0.0;
+        RenderBox child = FirstChild;
+        RenderBox lastFlexChild = default(RenderBox);
+        while (child != null)
+        {
+            FlexParentData childParentData = child.ParentData as FlexParentData;
+            totalChildren++;
+            int flex = _GetFlex(child);
+            if (flex > 0)
+            {
+
+                totalFlex += childParentData.Flex;
+                lastFlexChild = child;
+            }
+            else
+            {
+                BoxConstraints innerConstraints = default(BoxConstraints);
+                if (CrossAxisAlignment == CrossAxisAlignment.Stretch)
+                {
+                    switch (_Direction) { case Axis.Horizontal: innerConstraints = new BoxConstraints(minHeight: constraints.MaxHeight, maxHeight: constraints.MaxHeight); break; case Axis.Vertical: innerConstraints = new BoxConstraints(minWidth: constraints.MaxWidth, maxWidth: constraints.MaxWidth); break; }
+                }
+                else
+                {
+                    switch (_Direction) { case Axis.Horizontal: innerConstraints = new BoxConstraints(maxHeight: constraints.MaxHeight); break; case Axis.Vertical: innerConstraints = new BoxConstraints(maxWidth: constraints.MaxWidth); break; }
+                }
+
+                child.Layout(innerConstraints, parentUsesSize: true);
+                allocatedSize += _GetMainSize(child);
+                crossSize = Math.Dart:mathDefaultClass.Max(crossSize, _GetCrossSize(child));
+            }
+
+
+            child = childParentData.NextSibling;
+        }
+
+        double freeSpace = Math.Dart:mathDefaultClass.Max(0.0, (canFlex ? maxMainSize : 0.0) - allocatedSize);
+        double allocatedFlexSpace = 0.0;
+        double maxBaselineDistance = 0.0;
+        if (totalFlex > 0 || CrossAxisAlignment == CrossAxisAlignment.Baseline)
+        {
+            double spacePerFlex = canFlex && totalFlex > 0 ? (freeSpace / totalFlex) : Dart:coreDefaultClass.Double.Nan;
+            child = FirstChild;
+            double maxSizeAboveBaseline = 0;
+            double maxSizeBelowBaseline = 0;
+            while (child != null)
+            {
+                int flex = _GetFlex(child);
+                if (flex > 0)
+                {
+                    double maxChildExtent = canFlex ? (child == lastFlexChild ? (freeSpace - allocatedFlexSpace) : spacePerFlex * flex) : Dart:coreDefaultClass.Double.Infinity;
+                    double minChildExtent = default(double);
+                    switch (_GetFit(child)) { case FlexFit.Tight: minChildExtent = maxChildExtent; break; case FlexFit.Loose: minChildExtent = 0.0; break; }
+
+                    BoxConstraints innerConstraints = default(BoxConstraints);
+                    if (CrossAxisAlignment == CrossAxisAlignment.Stretch)
+                    {
+                        switch (_Direction) { case Axis.Horizontal: innerConstraints = new BoxConstraints(minWidth: minChildExtent, maxWidth: maxChildExtent, minHeight: constraints.MaxHeight, maxHeight: constraints.MaxHeight); break; case Axis.Vertical: innerConstraints = new BoxConstraints(minWidth: constraints.MaxWidth, maxWidth: constraints.MaxWidth, minHeight: minChildExtent, maxHeight: maxChildExtent); break; }
+                    }
+                    else
+                    {
+                        switch (_Direction) { case Axis.Horizontal: innerConstraints = new BoxConstraints(minWidth: minChildExtent, maxWidth: maxChildExtent, maxHeight: constraints.MaxHeight); break; case Axis.Vertical: innerConstraints = new BoxConstraints(maxWidth: constraints.MaxWidth, minHeight: minChildExtent, maxHeight: maxChildExtent); break; }
+                    }
+
+                    child.Layout(innerConstraints, parentUsesSize: true);
+                    double childSize = _GetMainSize(child);
+
+                    allocatedSize += childSize;
+                    allocatedFlexSpace += maxChildExtent;
+                    crossSize = Math.Dart:mathDefaultClass.Max(crossSize, _GetCrossSize(child));
+                }
+
+                if (CrossAxisAlignment == CrossAxisAlignment.Baseline)
+                {
+
+                    double distance = child.GetDistanceToBaseline(TextBaseline, onlyReal: true);
+                    if (distance != null)
+                    {
+                        maxBaselineDistance = Math.Dart:mathDefaultClass.Max(maxBaselineDistance, distance);
+                        maxSizeAboveBaseline = Math.Dart:mathDefaultClass.Max(distance, maxSizeAboveBaseline);
+                        maxSizeBelowBaseline = Math.Dart:mathDefaultClass.Max(child.Size.Height - distance, maxSizeBelowBaseline);
+                        crossSize = maxSizeAboveBaseline + maxSizeBelowBaseline;
+                    }
+
+                }
+
+                FlexParentData childParentData = child.ParentData as FlexParentData;
+                child = childParentData.NextSibling;
+            }
+
+        }
+
+        double idealSize = canFlex && MainAxisSize == MainAxisSize.Max ? maxMainSize : allocatedSize;
+        double actualSize = default(double);
+        double actualSizeDelta = default(double);
+        switch (_Direction) { case Axis.Horizontal: Size = constraints.Constrain(new Size(idealSize, crossSize)); actualSize = Size.Width; crossSize = Size.Height; break; case Axis.Vertical: Size = constraints.Constrain(new Size(crossSize, idealSize)); actualSize = Size.Height; crossSize = Size.Width; break; }
+        actualSizeDelta = actualSize - allocatedSize;
+        _Overflow = Math.Dart:mathDefaultClass.Max(0.0, -actualSizeDelta);
+        double remainingSpace = Math.Dart:mathDefaultClass.Max(0.0, actualSizeDelta);
+        double leadingSpace = default(double);
+        double betweenSpace = default(double);
+        bool flipMainAxis = !(FlexDefaultClass._StartIsTopLeft(Direction, TextDirection, VerticalDirection) ?? true);
+        switch (_MainAxisAlignment) { case MainAxisAlignment.Start: leadingSpace = 0.0; betweenSpace = 0.0; break; case MainAxisAlignment.End: leadingSpace = remainingSpace; betweenSpace = 0.0; break; case MainAxisAlignment.Center: leadingSpace = remainingSpace / 2.0; betweenSpace = 0.0; break; case MainAxisAlignment.SpaceBetween: leadingSpace = 0.0; betweenSpace = totalChildren > 1 ? remainingSpace / (totalChildren - 1) : 0.0; break; case MainAxisAlignment.SpaceAround: betweenSpace = totalChildren > 0 ? remainingSpace / totalChildren : 0.0; leadingSpace = betweenSpace / 2.0; break; case MainAxisAlignment.SpaceEvenly: betweenSpace = totalChildren > 0 ? remainingSpace / (totalChildren + 1) : 0.0; leadingSpace = betweenSpace; break; }
+        double childMainPosition = flipMainAxis ? actualSize - leadingSpace : leadingSpace;
+        child = FirstChild;
+        while (child != null)
+        {
+            FlexParentData childParentData = child.ParentData as FlexParentData;
+            double childCrossPosition = default(double);
+            switch (_CrossAxisAlignment)
+            {
+                case CrossAxisAlignment.Start: case CrossAxisAlignment.End: childCrossPosition = FlexDefaultClass._StartIsTopLeft(BasictypesDefaultClass.FlipAxis(Direction), TextDirection, VerticalDirection) == (_CrossAxisAlignment == CrossAxisAlignment.Start) ? 0.0 : crossSize - _GetCrossSize(child); break;
+                case CrossAxisAlignment.Center: childCrossPosition = crossSize / 2.0 - _GetCrossSize(child) / 2.0; break;
+                case CrossAxisAlignment.Stretch: childCrossPosition = 0.0; break;
+                case CrossAxisAlignment.Baseline:
+                    childCrossPosition = 0.0; if (_Direction == Axis.Horizontal)
+                    {
+
+                        double distance = child.GetDistanceToBaseline(TextBaseline, onlyReal: true);
+                        if (distance != null) childCrossPosition = maxBaselineDistance - distance;
+                    }
+                    break;
+            }
+            if (flipMainAxis) childMainPosition -= _GetMainSize(child);
+            switch (_Direction) { case Axis.Horizontal: childParentData.Offset = new Offset(childMainPosition, childCrossPosition); break; case Axis.Vertical: childParentData.Offset = new Offset(childCrossPosition, childMainPosition); break; }
+            if (flipMainAxis)
+            {
+                childMainPosition -= betweenSpace;
+            }
+            else
+            {
+                childMainPosition += _GetMainSize(child) + betweenSpace;
+            }
+
+            child = childParentData.NextSibling;
+        }
+
     }
 
+
+
+
+    public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
+    {
+        return DefaultHitTestChildren(result, position: position);
+    }
+
+
+
+
+    public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+    {
+        if (!_HasOverflow)
+        {
+            DefaultPaint(context, offset);
+            return;
+        }
+
+        if (Size.IsEmpty()) return;
+        context.PushClipRect(NeedsCompositing, offset, Dart: uiDefaultClass.Offset.Zero & Size, DefaultPaint);
+
+    }
+
+
+
+
+    public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child) => _HasOverflow ? Dart : uiDefaultClass.Offset.Zero & Size:null ;
+
+
+
+public new string ToStringShort()
+    {
+        string header = base.ToStringShort();
+        if (_Overflow is double && _HasOverflow) header += " OVERFLOWING";
+        return header;
+    }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new EnumProperty<Axis>("direction", Direction));
+        properties.Add(new EnumProperty<MainAxisAlignment>("mainAxisAlignment", MainAxisAlignment));
+        properties.Add(new EnumProperty<MainAxisSize>("mainAxisSize", MainAxisSize));
+        properties.Add(new EnumProperty<CrossAxisAlignment>("crossAxisAlignment", CrossAxisAlignment));
+        properties.Add(new EnumProperty<TextDirection>("textDirection", TextDirection, defaultValue: null));
+        properties.Add(new EnumProperty<VerticalDirection>("verticalDirection", VerticalDirection, defaultValue: null));
+        properties.Add(new EnumProperty<TextBaseline>("textBaseline", TextBaseline, defaultValue: null));
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// How the child is inscribed into the available space.
+///
+/// See also:
+///
+///  * [RenderFlex], the flex render object.
+///  * [Column], [Row], and [Flex], the flex widgets.
+///  * [Expanded], the widget equivalent of [tight].
+///  * [Flexible], the widget equivalent of [loose].
+/// </Summary>
+public enum FlexFit
+{
 
     /// <Summary>
-    /// How much space should be occupied in the main axis.
+    /// The child is forced to fill the available space.
     ///
-    /// During a flex layout, available space along the main axis is allocated to
-    /// children. After allocating space, there might be some remaining free space.
-    /// This value controls whether to maximize or minimize the amount of free
-    /// space, subject to the incoming layout constraints.
-    ///
-    /// See also:
-    ///
-    ///  * [Column], [Row], and [Flex], the flex widgets.
-    ///  * [Expanded] and [Flexible], the widgets that controls a flex widgets'
-    ///    children's flex.
-    ///  * [RenderFlex], the flex render object.
-    ///  * [MainAxisAlignment], which controls how the free space is distributed.
+    /// The [Expanded] widget assigns this kind of [FlexFit] to its child.
     /// </Summary>
-    public enum MainAxisSize
-    {
+    Tight,
+    /// <Summary>
+    /// The child can be at most as large as the available space (but is
+    /// allowed to be smaller).
+    ///
+    /// The [Flexible] widget assigns this kind of [FlexFit] to its child.
+    /// </Summary>
+    Loose,
+}
 
-        /// <Summary>
-        /// Minimize the amount of free space along the main axis, subject to the
-        /// incoming layout constraints.
-        ///
-        /// If the incoming layout constraints have a large enough
-        /// [BoxConstraints.minWidth] or [BoxConstraints.minHeight], there might still
-        /// be a non-zero amount of free space.
-        ///
-        /// If the incoming layout constraints are unbounded, and any children have a
-        /// non-zero [FlexParentData.flex] and a [FlexFit.tight] fit (as applied by
-        /// [Expanded]), the [RenderFlex] will assert, because there would be infinite
-        /// remaining free space and boxes cannot be given infinite size.
-        /// </Summary>
-        Min,
-        /// <Summary>
-        /// Maximize the amount of free space along the main axis, subject to the
-        /// incoming layout constraints.
-        ///
-        /// If the incoming layout constraints have a small enough
-        /// [BoxConstraints.maxWidth] or [BoxConstraints.maxHeight], there might still
-        /// be no free space.
-        ///
-        /// If the incoming layout constraints are unbounded, the [RenderFlex] will
-        /// assert, because there would be infinite remaining free space and boxes
-        /// cannot be given infinite size.
-        /// </Summary>
-        Max,
-    }
 
+/// <Summary>
+/// How much space should be occupied in the main axis.
+///
+/// During a flex layout, available space along the main axis is allocated to
+/// children. After allocating space, there might be some remaining free space.
+/// This value controls whether to maximize or minimize the amount of free
+/// space, subject to the incoming layout constraints.
+///
+/// See also:
+///
+///  * [Column], [Row], and [Flex], the flex widgets.
+///  * [Expanded] and [Flexible], the widgets that controls a flex widgets'
+///    children's flex.
+///  * [RenderFlex], the flex render object.
+///  * [MainAxisAlignment], which controls how the free space is distributed.
+/// </Summary>
+public enum MainAxisSize
+{
 
     /// <Summary>
-    /// How the children should be placed along the main axis in a flex layout.
+    /// Minimize the amount of free space along the main axis, subject to the
+    /// incoming layout constraints.
     ///
-    /// See also:
+    /// If the incoming layout constraints have a large enough
+    /// [BoxConstraints.minWidth] or [BoxConstraints.minHeight], there might still
+    /// be a non-zero amount of free space.
     ///
-    ///  * [Column], [Row], and [Flex], the flex widgets.
-    ///  * [RenderFlex], the flex render object.
+    /// If the incoming layout constraints are unbounded, and any children have a
+    /// non-zero [FlexParentData.flex] and a [FlexFit.tight] fit (as applied by
+    /// [Expanded]), the [RenderFlex] will assert, because there would be infinite
+    /// remaining free space and boxes cannot be given infinite size.
     /// </Summary>
-    public enum MainAxisAlignment
-    {
+    Min,
+    /// <Summary>
+    /// Maximize the amount of free space along the main axis, subject to the
+    /// incoming layout constraints.
+    ///
+    /// If the incoming layout constraints have a small enough
+    /// [BoxConstraints.maxWidth] or [BoxConstraints.maxHeight], there might still
+    /// be no free space.
+    ///
+    /// If the incoming layout constraints are unbounded, the [RenderFlex] will
+    /// assert, because there would be infinite remaining free space and boxes
+    /// cannot be given infinite size.
+    /// </Summary>
+    Max,
+}
 
-        /// <Summary>
-        /// Place the children as close to the start of the main axis as possible.
-        ///
-        /// If this value is used in a horizontal direction, a [TextDirection] must be
-        /// available to determine if the start is the left or the right.
-        ///
-        /// If this value is used in a vertical direction, a [VerticalDirection] must be
-        /// available to determine if the start is the top or the bottom.
-        /// </Summary>
-        Start,
-        /// <Summary>
-        /// Place the children as close to the end of the main axis as possible.
-        ///
-        /// If this value is used in a horizontal direction, a [TextDirection] must be
-        /// available to determine if the end is the left or the right.
-        ///
-        /// If this value is used in a vertical direction, a [VerticalDirection] must be
-        /// available to determine if the end is the top or the bottom.
-        /// </Summary>
-        End,
-        /// <Summary>
-        /// Place the children as close to the middle of the main axis as possible.
-        /// </Summary>
-        Center,
-        /// <Summary>
-        /// Place the free space evenly between the children.
-        /// </Summary>
-        SpaceBetween,
-        /// <Summary>
-        /// Place the free space evenly between the children as well as half of that
-        /// space before and after the first and last child.
-        /// </Summary>
-        SpaceAround,
-        /// <Summary>
-        /// Place the free space evenly between the children as well as before and
-        /// after the first and last child.
-        /// </Summary>
-        SpaceEvenly,
-    }
 
+/// <Summary>
+/// How the children should be placed along the main axis in a flex layout.
+///
+/// See also:
+///
+///  * [Column], [Row], and [Flex], the flex widgets.
+///  * [RenderFlex], the flex render object.
+/// </Summary>
+public enum MainAxisAlignment
+{
 
     /// <Summary>
-    /// How the children should be placed along the cross axis in a flex layout.
+    /// Place the children as close to the start of the main axis as possible.
     ///
-    /// See also:
+    /// If this value is used in a horizontal direction, a [TextDirection] must be
+    /// available to determine if the start is the left or the right.
     ///
-    ///  * [Column], [Row], and [Flex], the flex widgets.
-    ///  * [RenderFlex], the flex render object.
+    /// If this value is used in a vertical direction, a [VerticalDirection] must be
+    /// available to determine if the start is the top or the bottom.
     /// </Summary>
-    public enum CrossAxisAlignment
-    {
+    Start,
+    /// <Summary>
+    /// Place the children as close to the end of the main axis as possible.
+    ///
+    /// If this value is used in a horizontal direction, a [TextDirection] must be
+    /// available to determine if the end is the left or the right.
+    ///
+    /// If this value is used in a vertical direction, a [VerticalDirection] must be
+    /// available to determine if the end is the top or the bottom.
+    /// </Summary>
+    End,
+    /// <Summary>
+    /// Place the children as close to the middle of the main axis as possible.
+    /// </Summary>
+    Center,
+    /// <Summary>
+    /// Place the free space evenly between the children.
+    /// </Summary>
+    SpaceBetween,
+    /// <Summary>
+    /// Place the free space evenly between the children as well as half of that
+    /// space before and after the first and last child.
+    /// </Summary>
+    SpaceAround,
+    /// <Summary>
+    /// Place the free space evenly between the children as well as before and
+    /// after the first and last child.
+    /// </Summary>
+    SpaceEvenly,
+}
 
-        /// <Summary>
-        /// Place the children with their start edge aligned with the start side of
-        /// the cross axis.
-        ///
-        /// For example, in a column (a flex with a vertical axis) whose
-        /// [TextDirection] is [TextDirection.ltr], this aligns the left edge of the
-        /// children along the left edge of the column.
-        ///
-        /// If this value is used in a horizontal direction, a [TextDirection] must be
-        /// available to determine if the start is the left or the right.
-        ///
-        /// If this value is used in a vertical direction, a [VerticalDirection] must be
-        /// available to determine if the start is the top or the bottom.
-        /// </Summary>
-        Start,
-        /// <Summary>
-        /// Place the children as close to the end of the cross axis as possible.
-        ///
-        /// For example, in a column (a flex with a vertical axis) whose
-        /// [TextDirection] is [TextDirection.ltr], this aligns the right edge of the
-        /// children along the right edge of the column.
-        ///
-        /// If this value is used in a horizontal direction, a [TextDirection] must be
-        /// available to determine if the end is the left or the right.
-        ///
-        /// If this value is used in a vertical direction, a [VerticalDirection] must be
-        /// available to determine if the end is the top or the bottom.
-        /// </Summary>
-        End,
-        /// <Summary>
-        /// Place the children so that their centers align with the middle of the
-        /// cross axis.
-        ///
-        /// This is the default cross-axis alignment.
-        /// </Summary>
-        Center,
-        /// <Summary>
-        /// Require the children to fill the cross axis.
-        ///
-        /// This causes the constraints passed to the children to be tight in the
-        /// cross axis.
-        /// </Summary>
-        Stretch,
-        /// <Summary>
-        /// Place the children along the cross axis such that their baselines match.
-        ///
-        /// If the main axis is vertical, then this value is treated like [start]
-        /// (since baselines are always horizontal).
-        /// </Summary>
-        Baseline,
-    }
+
+/// <Summary>
+/// How the children should be placed along the cross axis in a flex layout.
+///
+/// See also:
+///
+///  * [Column], [Row], and [Flex], the flex widgets.
+///  * [RenderFlex], the flex render object.
+/// </Summary>
+public enum CrossAxisAlignment
+{
+
+    /// <Summary>
+    /// Place the children with their start edge aligned with the start side of
+    /// the cross axis.
+    ///
+    /// For example, in a column (a flex with a vertical axis) whose
+    /// [TextDirection] is [TextDirection.ltr], this aligns the left edge of the
+    /// children along the left edge of the column.
+    ///
+    /// If this value is used in a horizontal direction, a [TextDirection] must be
+    /// available to determine if the start is the left or the right.
+    ///
+    /// If this value is used in a vertical direction, a [VerticalDirection] must be
+    /// available to determine if the start is the top or the bottom.
+    /// </Summary>
+    Start,
+    /// <Summary>
+    /// Place the children as close to the end of the cross axis as possible.
+    ///
+    /// For example, in a column (a flex with a vertical axis) whose
+    /// [TextDirection] is [TextDirection.ltr], this aligns the right edge of the
+    /// children along the right edge of the column.
+    ///
+    /// If this value is used in a horizontal direction, a [TextDirection] must be
+    /// available to determine if the end is the left or the right.
+    ///
+    /// If this value is used in a vertical direction, a [VerticalDirection] must be
+    /// available to determine if the end is the top or the bottom.
+    /// </Summary>
+    End,
+    /// <Summary>
+    /// Place the children so that their centers align with the middle of the
+    /// cross axis.
+    ///
+    /// This is the default cross-axis alignment.
+    /// </Summary>
+    Center,
+    /// <Summary>
+    /// Require the children to fill the cross axis.
+    ///
+    /// This causes the constraints passed to the children to be tight in the
+    /// cross axis.
+    /// </Summary>
+    Stretch,
+    /// <Summary>
+    /// Place the children along the cross axis such that their baselines match.
+    ///
+    /// If the main axis is vertical, then this value is treated like [start]
+    /// (since baselines are always horizontal).
+    /// </Summary>
+    Baseline,
+}
 
 }

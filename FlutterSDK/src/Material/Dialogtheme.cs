@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -406,55 +406,83 @@ namespace FlutterSDK.Material.Dialogtheme
     {
         #region constructors
         public DialogTheme(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Painting.Textstyle.TextStyle titleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
-        {
-            this.BackgroundColor = backgroundColor;
-            this.Elevation = elevation;
-            this.Shape = shape;
-            this.TitleTextStyle = titleTextStyle;
-            this.ContentTextStyle = contentTextStyle; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-        public virtual double Elevation { get; set; }
-        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle TitleTextStyle { get; set; }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle ContentTextStyle { get; set; }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+    public virtual double Elevation { get; set; }
+    public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle TitleTextStyle { get; set; }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle ContentTextStyle { get; set; }
+    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        /// <Summary>
-        /// Creates a copy of this object but with the given fields replaced with the
-        /// new values.
-        /// </Summary>
-        public virtual FlutterSDK.Material.Dialogtheme.DialogTheme CopyWith(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Painting.Textstyle.TextStyle titleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle)) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// The data from the closest [DialogTheme] instance given the build context.
-        /// </Summary>
-        public virtual FlutterSDK.Material.Dialogtheme.DialogTheme Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Linearly interpolate between two dialog themes.
-        ///
-        /// The arguments must not be null.
-        ///
-        /// {@macro dart.ui.shadow.lerp}
-        /// </Summary>
-        public virtual FlutterSDK.Material.Dialogtheme.DialogTheme Lerp(FlutterSDK.Material.Dialogtheme.DialogTheme a, FlutterSDK.Material.Dialogtheme.DialogTheme b, double t) { throw new NotImplementedException(); }
-
-
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+    /// <Summary>
+    /// Creates a copy of this object but with the given fields replaced with the
+    /// new values.
+    /// </Summary>
+    public virtual FlutterSDK.Material.Dialogtheme.DialogTheme CopyWith(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Painting.Textstyle.TextStyle titleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
+    {
+        return new DialogTheme(backgroundColor: backgroundColor ?? this.BackgroundColor, elevation: elevation == default(double) ? this.elevation : elevation, shape: shape ?? this.Shape, titleTextStyle: titleTextStyle ?? this.TitleTextStyle, contentTextStyle: contentTextStyle ?? this.ContentTextStyle);
     }
+
+
+
+
+    /// <Summary>
+    /// The data from the closest [DialogTheme] instance given the build context.
+    /// </Summary>
+    public virtual FlutterSDK.Material.Dialogtheme.DialogTheme Of(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        return ThemeDefaultClass.Theme.Of(context).DialogTheme;
+    }
+
+
+
+
+    /// <Summary>
+    /// Linearly interpolate between two dialog themes.
+    ///
+    /// The arguments must not be null.
+    ///
+    /// {@macro dart.ui.shadow.lerp}
+    /// </Summary>
+    public virtual FlutterSDK.Material.Dialogtheme.DialogTheme Lerp(FlutterSDK.Material.Dialogtheme.DialogTheme a, FlutterSDK.Material.Dialogtheme.DialogTheme b, double t)
+    {
+
+        return new DialogTheme(backgroundColor: Dart:uiDefaultClass.Color.Lerp(a?.BackgroundColor, b?.BackgroundColor, t), elevation: Dart:uiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t), titleTextStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.TitleTextStyle, b?.TitleTextStyle, t), contentTextStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.ContentTextStyle, b?.ContentTextStyle, t));
+    }
+
+
+
+
+    public new bool Equals(@Object other)
+    {
+        if (Dart:coreDefaultClass.Identical(this, other))return true;
+        if (other.GetType() != GetType()) return false;
+        return other is DialogTheme && other.BackgroundColor == BackgroundColor && other.Elevation == Elevation && other.Shape == Shape && other.TitleTextStyle == TitleTextStyle && other.ContentTextStyle == ContentTextStyle;
+    }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new ColorProperty("backgroundColor", BackgroundColor));
+        properties.Add(new DiagnosticsProperty<ShapeBorder>("shape", Shape, defaultValue: null));
+        properties.Add(new DoubleProperty("elevation", Elevation));
+        properties.Add(new DiagnosticsProperty<TextStyle>("titleTextStyle", TitleTextStyle, defaultValue: null));
+        properties.Add(new DiagnosticsProperty<TextStyle>("contentTextStyle", ContentTextStyle, defaultValue: null));
+    }
+
+
+
+    #endregion
+}
 
 }

@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -435,24 +435,21 @@ namespace FlutterSDK.Physics.Tolerance
     {
         #region constructors
         public Tolerance(double distance = default(double), double time = default(double), double velocity = default(double))
-        {
-            this.Distance = distance;
-            this.Time = time;
-            this.Velocity = velocity; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        internal virtual double _EpsilonDefault { get; set; }
-        public virtual FlutterSDK.Physics.Tolerance.Tolerance DefaultTolerance { get; set; }
-        public virtual double Distance { get; set; }
-        public virtual double Time { get; set; }
-        public virtual double Velocity { get; set; }
-        #endregion
+    #region fields
+    internal virtual double _EpsilonDefault { get; set; }
+    public virtual FlutterSDK.Physics.Tolerance.Tolerance DefaultTolerance { get; set; }
+    public virtual double Distance { get; set; }
+    public virtual double Time { get; set; }
+    public virtual double Velocity { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        #endregion
-    }
+    #endregion
+}
 
 }

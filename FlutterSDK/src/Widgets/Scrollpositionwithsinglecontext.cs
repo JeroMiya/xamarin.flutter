@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -454,82 +454,241 @@ namespace FlutterSDK.Widgets.Scrollpositionwithsinglecontext
         #region constructors
         public ScrollPositionWithSingleContext(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Widgets.Scrollcontext.ScrollContext context = default(FlutterSDK.Widgets.Scrollcontext.ScrollContext), double initialPixels = 0.0, bool keepScrollOffset = true, FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition = default(FlutterSDK.Widgets.Scrollposition.ScrollPosition), string debugLabel = default(string))
         : base(physics: physics, context: context, keepScrollOffset: keepScrollOffset, oldPosition: oldPosition, debugLabel: debugLabel)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+if (Pixels==null &&initialPixels!=null )CorrectPixels(initialPixels);
+if (Activity==null )GoIdle();
 
-        #region fields
-        internal virtual double _HeldPreviousVelocity { get; set; }
-        internal virtual FlutterSDK.Rendering.Viewportoffset.ScrollDirection _UserScrollDirection { get; set; }
-        internal virtual FlutterSDK.Widgets.Scrollactivity.ScrollDragController _CurrentDrag { get; set; }
-        public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Rendering.Viewportoffset.ScrollDirection UserScrollDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new double SetPixels(double newPixels) { throw new NotImplementedException(); }
-
-
-        public new void Absorb(FlutterSDK.Widgets.Scrollposition.ScrollPosition other) { throw new NotImplementedException(); }
-
-
-        public new void ApplyNewDimensions() { throw new NotImplementedException(); }
-
-
-        public new void BeginActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivity newActivity) { throw new NotImplementedException(); }
-
-
-        public new void ApplyUserOffset(double delta) { throw new NotImplementedException(); }
-
-
-        public new void GoIdle() { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Start a physics-driven simulation that settles the [pixels] position,
-        /// starting at a particular velocity.
-        ///
-        /// This method defers to [ScrollPhysics.createBallisticSimulation], which
-        /// typically provides a bounce simulation when the current position is out of
-        /// bounds and a friction simulation when the position is in bounds but has a
-        /// non-zero velocity.
-        ///
-        /// The velocity should be in logical pixels per second.
-        /// </Summary>
-        public new void GoBallistic(double velocity) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Set [userScrollDirection] to the given value.
-        ///
-        /// If this changes the value, then a [UserScrollNotification] is dispatched.
-        /// </Summary>
-        public virtual void UpdateUserScrollDirection(FlutterSDK.Rendering.Viewportoffset.ScrollDirection value) { throw new NotImplementedException(); }
-
-
-        public new Future<object> AnimateTo(double to, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)) { throw new NotImplementedException(); }
-
-
-        public new void JumpTo(double value) { throw new NotImplementedException(); }
-
-
-        public new void JumpToWithoutSettling(double value) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Scrollactivity.ScrollHoldController Hold(VoidCallback holdCancelCallback) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Gestures.Drag.Drag Drag(FlutterSDK.Gestures.Dragdetails.DragStartDetails details, VoidCallback dragCancelCallback) { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        public new void DebugFillDescription(List<string> description) { throw new NotImplementedException(); }
-
-        #endregion
     }
+
+
+    #endregion
+
+    #region fields
+    internal virtual double _HeldPreviousVelocity { get; set; }
+    internal virtual FlutterSDK.Rendering.Viewportoffset.ScrollDirection _UserScrollDirection { get; set; }
+    internal virtual FlutterSDK.Widgets.Scrollactivity.ScrollDragController _CurrentDrag { get; set; }
+    public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Rendering.Viewportoffset.ScrollDirection UserScrollDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new double SetPixels(double newPixels)
+    {
+
+        return base.SetPixels(newPixels);
+    }
+
+
+
+
+    public new void Absorb(FlutterSDK.Widgets.Scrollposition.ScrollPosition other)
+    {
+        base.Absorb(other);
+        if (!(other is ScrollPositionWithSingleContext))
+        {
+            GoIdle();
+            return;
+        }
+
+        Activity.UpdateDelegate(this);
+        ScrollPositionWithSingleContext typedOther = other as ScrollPositionWithSingleContext;
+        _UserScrollDirection = typedOther._UserScrollDirection;
+
+        if (typedOther._CurrentDrag != null)
+        {
+            _CurrentDrag = typedOther._CurrentDrag;
+            _CurrentDrag.UpdateDelegate(this);
+            typedOther._CurrentDrag = null;
+        }
+
+    }
+
+
+
+
+    public new void ApplyNewDimensions()
+    {
+        base.ApplyNewDimensions();
+        Context.SetCanDrag(Physics.ShouldAcceptUserOffset(this));
+    }
+
+
+
+
+    public new void BeginActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivity newActivity)
+    {
+        _HeldPreviousVelocity = 0.0;
+        if (newActivity == null) return;
+
+        base.BeginActivity(newActivity);
+        _CurrentDrag?.Dispose();
+        _CurrentDrag = null;
+        if (!Activity.IsScrolling) UpdateUserScrollDirection(ScrollDirection.Idle);
+    }
+
+
+
+
+    public new void ApplyUserOffset(double delta)
+    {
+        UpdateUserScrollDirection(delta > 0.0 ? ScrollDirection.Forward : ScrollDirection.Reverse);
+        SetPixels(Pixels - Physics.ApplyPhysicsToUserOffset(this, delta));
+    }
+
+
+
+
+    public new void GoIdle()
+    {
+        BeginActivity(new IdleScrollActivity(this));
+    }
+
+
+
+
+    /// <Summary>
+    /// Start a physics-driven simulation that settles the [pixels] position,
+    /// starting at a particular velocity.
+    ///
+    /// This method defers to [ScrollPhysics.createBallisticSimulation], which
+    /// typically provides a bounce simulation when the current position is out of
+    /// bounds and a friction simulation when the position is in bounds but has a
+    /// non-zero velocity.
+    ///
+    /// The velocity should be in logical pixels per second.
+    /// </Summary>
+    public new void GoBallistic(double velocity)
+    {
+
+        Simulation simulation = Physics.CreateBallisticSimulation(this, velocity);
+        if (simulation != null)
+        {
+            BeginActivity(new BallisticScrollActivity(this, simulation, Context.Vsync));
+        }
+        else
+        {
+            GoIdle();
+        }
+
+    }
+
+
+
+
+    /// <Summary>
+    /// Set [userScrollDirection] to the given value.
+    ///
+    /// If this changes the value, then a [UserScrollNotification] is dispatched.
+    /// </Summary>
+    public virtual void UpdateUserScrollDirection(FlutterSDK.Rendering.Viewportoffset.ScrollDirection value)
+    {
+
+        if (UserScrollDirection == value) return;
+        _UserScrollDirection = value;
+        DidUpdateScrollDirection(value);
+    }
+
+
+
+
+    public new Future<object> AnimateTo(double to, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
+    {
+        if (UtilsDefaultClass.NearEqual(to, Pixels, Physics.Tolerance.Distance))
+        {
+            JumpTo(to);
+            return Future<void>.Value();
+        }
+
+        DrivenScrollActivity activity = new DrivenScrollActivity(this, from: Pixels, to: to, duration: duration, curve: curve, vsync: Context.Vsync);
+        BeginActivity(activity);
+        return activity.Done;
+    }
+
+
+
+
+    public new void JumpTo(double value)
+    {
+        GoIdle();
+        if (Pixels != value)
+        {
+            double oldPixels = Pixels;
+            ForcePixels(value);
+            DidStartScroll();
+            DidUpdateScrollPositionBy(Pixels - oldPixels);
+            DidEndScroll();
+        }
+
+        GoBallistic(0.0);
+    }
+
+
+
+
+    public new void JumpToWithoutSettling(double value)
+    {
+        GoIdle();
+        if (Pixels != value)
+        {
+            double oldPixels = Pixels;
+            ForcePixels(value);
+            DidStartScroll();
+            DidUpdateScrollPositionBy(Pixels - oldPixels);
+            DidEndScroll();
+        }
+
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Scrollactivity.ScrollHoldController Hold(VoidCallback holdCancelCallback)
+    {
+        double previousVelocity = Activity.Velocity;
+        HoldScrollActivity holdActivity = new HoldScrollActivity(@delegate: this, onHoldCanceled: holdCancelCallback);
+        BeginActivity(holdActivity);
+        _HeldPreviousVelocity = previousVelocity;
+        return holdActivity;
+    }
+
+
+
+
+    public new FlutterSDK.Gestures.Drag.Drag Drag(FlutterSDK.Gestures.Dragdetails.DragStartDetails details, VoidCallback dragCancelCallback)
+    {
+        ScrollDragController drag = new ScrollDragController(@delegate: this, details: details, onDragCanceled: dragCancelCallback, carriedVelocity: Physics.CarriedMomentum(_HeldPreviousVelocity), motionStartDistanceThreshold: Physics.DragStartDistanceMotionThreshold);
+        BeginActivity(new DragScrollActivity(this, drag));
+
+        _CurrentDrag = drag;
+        return drag;
+    }
+
+
+
+
+    public new void Dispose()
+    {
+        _CurrentDrag?.Dispose();
+        _CurrentDrag = null;
+        base.Dispose();
+    }
+
+
+
+
+    public new void DebugFillDescription(List<string> description)
+    {
+        base.DebugFillDescription(description);
+        description.Add($"'{Context.GetType()}'");
+        description.Add($"'{Physics}'");
+        description.Add($"'{Activity}'");
+        description.Add($"'{UserScrollDirection}'");
+    }
+
+
+
+    #endregion
+}
 
 }

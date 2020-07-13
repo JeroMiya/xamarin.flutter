@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -443,29 +443,44 @@ namespace FlutterSDK.Widgets.Imageicon
         #region constructors
         public ImageIcon(FlutterSDK.Painting.Imageprovider.ImageProvider<object> image, FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double size = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), string semanticLabel = default(string))
         : base(key: key)
-        {
-            this.Image = image;
-            this.Size = size;
-            this.Color = color;
-            this.SemanticLabel = semanticLabel; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> Image { get; set; }
-        public virtual double Size { get; set; }
-        public virtual FlutterBinding.UI.Color Color { get; set; }
-        public virtual string SemanticLabel { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> Image { get; set; }
+    public virtual double Size { get; set; }
+    public virtual FlutterBinding.UI.Color Color { get; set; }
+    public virtual string SemanticLabel { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        IconThemeData iconTheme = IconthemeDefaultClass.IconTheme.Of(context);
+        double iconSize = size == default(double) ? iconTheme.size : size;
+        if (Image == null) return new Semantics(label: SemanticLabel, child: new SizedBox(width: iconSize, height: iconSize));
+        double iconOpacity = iconTheme.Opacity;
+        Color iconColor = Color ?? iconTheme.Color;
+        if (iconOpacity != null && iconOpacity != 1.0) iconColor = iconColor.WithOpacity(iconColor.Opacity * iconOpacity);
+        return new Semantics(label: SemanticLabel, child: new Image(image: Image, width: iconSize, height: iconSize, color: iconColor, fit: BoxFit.ScaleDown, alignment: AlignmentDefaultClass.Alignment.Center, excludeFromSemantics: true));
     }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new DiagnosticsProperty<ImageProvider>("image", Image, ifNull: "<empty>", showName: false));
+        properties.Add(new DoubleProperty("size", Size, defaultValue: null));
+        properties.Add(new ColorProperty("color", Color, defaultValue: null));
+    }
+
+
+
+    #endregion
+}
 
 }

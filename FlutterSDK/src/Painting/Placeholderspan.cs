@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -482,50 +482,83 @@ namespace FlutterSDK.Painting.Placeholderspan
         #region constructors
         public PlaceholderSpan(PlaceholderAlignment alignment = default(PlaceholderAlignment), TextBaseline baseline = default(TextBaseline), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle))
         : base(style: style)
+    
+}
+    #endregion
+
+    #region fields
+    public virtual PlaceholderAlignment Alignment { get; set; }
+    public virtual TextBaseline Baseline { get; set; }
+    #endregion
+
+    #region methods
+
+    /// <Summary>
+    /// [PlaceholderSpan]s are flattened to a `0xFFFC` object replacement character in the
+    /// plain text representation when `includePlaceholders` is true.
+    /// </Summary>
+    public new void ComputeToPlainText(StringBuffer buffer, bool includeSemanticsLabels = true, bool includePlaceholders = true)
+    {
+        if (includePlaceholders)
         {
-            this.Alignment = alignment;
-            this.Baseline = baseline; throw new NotImplementedException();
+            buffer.Write("\uFFFC");
         }
-        #endregion
 
-        #region fields
-        public virtual PlaceholderAlignment Alignment { get; set; }
-        public virtual TextBaseline Baseline { get; set; }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// [PlaceholderSpan]s are flattened to a `0xFFFC` object replacement character in the
-        /// plain text representation when `includePlaceholders` is true.
-        /// </Summary>
-        public new void ComputeToPlainText(StringBuffer buffer, bool includeSemanticsLabels = true, bool includePlaceholders = true) { throw new NotImplementedException(); }
-
-
-        public new void ComputeSemanticsInformation(List<FlutterSDK.Painting.Inlinespan.InlineSpanSemanticsInformation> collector) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// The [visitTextSpan] method is invalid on [PlaceholderSpan]s
-        /// </Summary>
-        public new bool VisitTextSpan(Func<bool, TextSpan> visitor) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Populates the `semanticsOffsets` and `semanticsElements` with the appropriate data
-        /// to be able to construct a [SemanticsNode].
-        ///
-        /// [PlaceholderSpan]s have a text length of 1, which corresponds to the object
-        /// replacement character (0xFFFC) that is inserted to represent it.
-        ///
-        /// Null is added to `semanticsElements` for [PlaceholderSpan]s.
-        /// </Summary>
-        public new void DescribeSemantics(FlutterSDK.Painting.Inlinespan.Accumulator offset, List<int> semanticsOffsets, List<object> semanticsElements) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
     }
+
+
+
+
+    public new void ComputeSemanticsInformation(List<FlutterSDK.Painting.Inlinespan.InlineSpanSemanticsInformation> collector)
+    {
+        collector.Add(InlinespanDefaultClass.InlineSpanSemanticsInformation.Placeholder);
+    }
+
+
+
+
+    /// <Summary>
+    /// The [visitTextSpan] method is invalid on [PlaceholderSpan]s
+    /// </Summary>
+    public new bool VisitTextSpan(Func<bool, TextSpan> visitor)
+    {
+
+        return false;
+    }
+
+
+
+
+    /// <Summary>
+    /// Populates the `semanticsOffsets` and `semanticsElements` with the appropriate data
+    /// to be able to construct a [SemanticsNode].
+    ///
+    /// [PlaceholderSpan]s have a text length of 1, which corresponds to the object
+    /// replacement character (0xFFFC) that is inserted to represent it.
+    ///
+    /// Null is added to `semanticsElements` for [PlaceholderSpan]s.
+    /// </Summary>
+    public new void DescribeSemantics(FlutterSDK.Painting.Inlinespan.Accumulator offset, List<int> semanticsOffsets, List<object> semanticsElements)
+    {
+        semanticsOffsets.Add(offset.Value);
+        semanticsOffsets.Add(offset.Value + 1);
+        semanticsElements.Add(null);
+        offset.Increment(1);
+    }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new EnumProperty<Ui.PlaceholderAlignment>("alignment", Alignment, defaultValue: null));
+        properties.Add(new EnumProperty<TextBaseline>("baseline", Baseline, defaultValue: null));
+    }
+
+
+
+    #endregion
+}
 
 }

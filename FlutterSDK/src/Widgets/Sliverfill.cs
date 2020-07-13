@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -388,7 +388,7 @@ using FlutterSDK.Material.Inputborder;
 using FlutterSDK.Material.Reorderablelist;
 using FlutterSDK.Material.Time;
 using FlutterSDK.Material.Typography;
-using file:///C:/src/xamarin.flutter/flutter/lib/scheduler.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/scheduler.dart;
 using FlutterSDK.Material.Navigationrailtheme;
 using FlutterSDK.Material.Navigationrail;
 using FlutterSDK.Material.Pagetransitionstheme;
@@ -451,421 +451,482 @@ namespace FlutterSDK.Widgets.Sliverfill
         #region constructors
         public SliverFillViewport(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Sliver.SliverChildDelegate @delegate = default(FlutterSDK.Widgets.Sliver.SliverChildDelegate), double viewportFraction = 1.0, bool padEnds = true)
         : base(key: key)
-        {
-            this.@delegate = @delegate;
-            this.ViewportFraction = viewportFraction;
-            this.PadEnds = padEnds; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual double ViewportFraction { get; set; }
-        public virtual bool PadEnds { get; set; }
-        public virtual FlutterSDK.Widgets.Sliver.SliverChildDelegate @delegate { get; set; }
-        #endregion
+    #region fields
+    public virtual double ViewportFraction { get; set; }
+    public virtual bool PadEnds { get; set; }
+    public virtual FlutterSDK.Widgets.Sliver.SliverChildDelegate @delegate { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _SliverFillViewportRenderObjectWidget : FlutterSDK.Widgets.Sliver.SliverMultiBoxAdaptorWidget
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
     {
-        #region constructors
-        public _SliverFillViewportRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Sliver.SliverChildDelegate @delegate = default(FlutterSDK.Widgets.Sliver.SliverChildDelegate), double viewportFraction = 1.0)
-        : base(key: key, @delegate: @delegate)
-        {
-            this.ViewportFraction = viewportFraction; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual double ViewportFraction { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Rendering.Sliverfill.RenderSliverFillViewport CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Sliverfill.RenderSliverFillViewport renderObject) { throw new NotImplementedException(); }
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
-
-        #endregion
+        return new _SliverFractionalPadding(viewportFraction: PadEnds ? (1 - ViewportFraction).Clamp(0, 1) / 2 : 0, sliver: new _SliverFillViewportRenderObjectWidget(viewportFraction: ViewportFraction, @delegate: @Delegate));
     }
 
 
-    public class _SliverFractionalPadding : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
-    {
-        #region constructors
-        public _SliverFractionalPadding(double viewportFraction = 0, FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(child: sliver)
-        {
-            this.ViewportFraction = viewportFraction; throw new NotImplementedException();
-        }
-        #endregion
 
-        #region fields
-        public virtual double ViewportFraction { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+    #endregion
+}
 
 
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Sliverfill._RenderSliverFractionalPadding renderObject) { throw new NotImplementedException(); }
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
+public class _SliverFillViewportRenderObjectWidget : FlutterSDK.Widgets.Sliver.SliverMultiBoxAdaptorWidget
+{
+    #region constructors
+    public _SliverFillViewportRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Sliver.SliverChildDelegate @delegate = default(FlutterSDK.Widgets.Sliver.SliverChildDelegate), double viewportFraction = 1.0)
+    : base(key: key, @delegate: @delegate)
 
-        #endregion
-    }
+}
+#endregion
 
+#region fields
+public virtual double ViewportFraction { get; set; }
+#endregion
 
-    public class _RenderSliverFractionalPadding : FlutterSDK.Rendering.Sliverpadding.RenderSliverEdgeInsetsPadding
-    {
-        #region constructors
-        public _RenderSliverFractionalPadding(double viewportFraction = 0)
-        : base()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+#region methods
 
-        #region fields
-        internal virtual FlutterSDK.Rendering.Sliver.SliverConstraints _LastResolvedConstraints { get; set; }
-        internal virtual double _ViewportFraction { get; set; }
-        internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets _ResolvedPadding { get; set; }
-        public virtual double ViewportFraction { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets ResolvedPadding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        private void _MarkNeedsResolution() { throw new NotImplementedException(); }
+public new FlutterSDK.Rendering.Sliverfill.RenderSliverFillViewport CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    SliverMultiBoxAdaptorElement element = context as SliverMultiBoxAdaptorElement;
+    return new RenderSliverFillViewport(childManager: element, viewportFraction: ViewportFraction);
+}
 
 
-        private void _Resolve() { throw new NotImplementedException(); }
 
 
-        public new void PerformLayout() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// A sliver that contains a single box child that fills the remaining space in
-    /// the viewport.
-    ///
-    /// [SliverFillRemaining] will size its [child] to fill the viewport in the
-    /// cross axis. The extent of the sliver and its child's size in the main axis
-    /// is computed conditionally, described in further detail below.
-    ///
-    /// Typically this will be the last sliver in a viewport, since (by definition)
-    /// there is never any room for anything beyond this sliver.
-    ///
-    /// ## Main Axis Extent
-    ///
-    /// ### When [SliverFillRemaining] has a scrollable child
-    ///
-    /// The [hasScrollBody] flag indicates whether the sliver's child has a
-    /// scrollable body. This value is never null, and defaults to true. A common
-    /// example of this use is a [NestedScrollView]. In this case, the sliver will
-    /// size its child to fill the maximum available extent.
-    ///
-    /// ### When [SliverFillRemaining] does not have a scrollable child
-    ///
-    /// When [hasScrollBody] is set to false, the child's size is taken into account
-    /// when considering the extent to which it should fill the space. The extent to
-    /// which the preceding slivers have been scrolled is also taken into
-    /// account in deciding how to layout this sliver.
-    ///
-    /// [SliverFillRemaining] will size its [child] to fill the viewport in the
-    /// main axis if that space is larger than the child's extent, and the
-    /// the amount of space that has been scrolled beforehand has not exceeded the
-    /// main axis extent of the viewport.
-    ///
-    /// {@tool dartpad --template=stateless_widget_scaffold}
-    ///
-    /// In this sample the [SliverFillRemaining] sizes its [child] to fill the
-    /// remaining extent of the viewport in both axes. The icon is centered in the
-    /// sliver, and would be in any computed extent for the sliver.
-    ///
-    /// ```dart
-    /// Widget build(BuildContext context) {
-    ///   return CustomScrollView(
-    ///     slivers: <Widget>[
-    ///       SliverToBoxAdapter(
-    ///         child: Container(
-    ///           color: Colors.amber[300],
-    ///           height: 150.0,
-    ///         ),
-    ///       ),
-    ///       SliverFillRemaining(
-    ///         hasScrollBody: false,
-    ///         child: Container(
-    ///           color: Colors.blue[100],
-    ///           child: Icon(
-    ///             Icons.sentiment_very_satisfied,
-    ///             size: 75,
-    ///             color: Colors.blue[900],
-    ///           ),
-    ///         ),
-    ///       ),
-    ///     ],
-    ///   );
-    /// }
-    /// ```
-    /// {@end-tool}
-    ///
-    /// [SliverFillRemaining] will defer to the size of its [child] if the
-    /// child's size exceeds the remaining space in the viewport.
-    ///
-    /// {@tool dartpad --template=stateless_widget_scaffold}
-    ///
-    /// In this sample the [SliverFillRemaining] defers to the size of its [child]
-    /// because the child's extent exceeds that of the remaining extent of the
-    /// viewport's main axis.
-    ///
-    /// ```dart
-    /// Widget build(BuildContext context) {
-    ///   return CustomScrollView(
-    ///     slivers: <Widget>[
-    ///       SliverFixedExtentList(
-    ///         itemExtent: 100.0,
-    ///         delegate: SliverChildBuilderDelegate(
-    ///           (BuildContext context, int index) {
-    ///             return Container(
-    ///               color: index % 2 == 0
-    ///                 ? Colors.amber[200]
-    ///                 : Colors.blue[200],
-    ///             );
-    ///           },
-    ///           childCount: 3,
-    ///         ),
-    ///       ),
-    ///       SliverFillRemaining(
-    ///         hasScrollBody: false,
-    ///         child: Container(
-    ///           color: Colors.orange[300],
-    ///           child: Padding(
-    ///             padding: const EdgeInsets.all(50.0),
-    ///             child: FlutterLogo(size: 100),
-    ///           ),
-    ///         ),
-    ///       ),
-    ///     ],
-    ///   );
-    /// }
-    /// ```
-    /// {@end-tool}
-    ///
-    /// [SliverFillRemaining] will defer to the size of its [child] if the
-    /// [precedingScrollExtent] exceeded the length of the viewport's main axis.
-    ///
-    /// {@tool dartpad --template=stateless_widget_scaffold}
-    ///
-    /// In this sample the [SliverFillRemaining] defers to the size of its [child]
-    /// because the [precedingScrollExtent] of the [SliverConstraints] has gone
-    /// beyond that of the viewport's main axis.
-    ///
-    /// ```dart
-    /// Widget build(BuildContext context) {
-    ///   return CustomScrollView(
-    ///     slivers: <Widget>[
-    ///       SliverFixedExtentList(
-    ///         itemExtent: 130.0,
-    ///         delegate: SliverChildBuilderDelegate(
-    ///           (BuildContext context, int index) {
-    ///             return Container(
-    ///               color: index % 2 == 0
-    ///                 ? Colors.indigo[200]
-    ///                 : Colors.orange[200],
-    ///             );
-    ///           },
-    ///           childCount: 5,
-    ///         ),
-    ///       ),
-    ///       SliverFillRemaining(
-    ///         hasScrollBody: false,
-    ///         child: Container(
-    ///           child: Padding(
-    ///             padding: const EdgeInsets.all(50.0),
-    ///             child: Icon(
-    ///               Icons.pan_tool,
-    ///               size: 60,
-    ///               color: Colors.blueGrey,
-    ///             ),
-    ///           ),
-    ///         ),
-    ///       ),
-    ///     ],
-    ///   );
-    /// }
-    /// ```
-    /// {@end-tool}
-    ///
-    /// For [ScrollPhysics] that allow overscroll, such as
-    /// [BouncingScrollPhysics], setting the [fillOverscroll] flag to true allows
-    /// the size of the [child] to _stretch_, filling the overscroll area. It does
-    /// this regardless of the path chosen to provide the child's size.
-    ///
-    /// {@animation 250 500 https://flutter.github.io/assets-for-api-docs/assets/widgets/sliver_fill_remaining_fill_overscroll.mp4}
-    ///
-    /// {@tool sample --template=stateless_widget_scaffold}
-    ///
-    /// In this sample the [SliverFillRemaining]'s child stretches to fill the
-    /// overscroll area when [fillOverscroll] is true. This sample also features a
-    /// button that is pinned to the bottom of the sliver, regardless of size or
-    /// overscroll behavior. Try switching [fillOverscroll] to see the difference.
-    ///
-    /// This sample only shows the overscroll behavior on devices that support
-    /// overscroll.
-    ///
-    /// ```dart
-    /// Widget build(BuildContext context) {
-    ///   return CustomScrollView(
-    ///     // The ScrollPhysics are overridden here to illustrate the functionality
-    ///     // of fillOverscroll on all devices this sample may be run on.
-    ///     // fillOverscroll only changes the behavior of your layout when applied
-    ///     // to Scrollables that allow for overscroll. BouncingScrollPhysics are
-    ///     // one example, which are provided by default on the iOS platform.
-    ///     physics: BouncingScrollPhysics(),
-    ///     slivers: <Widget>[
-    ///       SliverToBoxAdapter(
-    ///         child: Container(
-    ///           color: Colors.tealAccent[700],
-    ///           height: 150.0,
-    ///         ),
-    ///       ),
-    ///       SliverFillRemaining(
-    ///         hasScrollBody: false,
-    ///         // Switch for different overscroll behavior in your layout.
-    ///         // If your ScrollPhysics do not allow for overscroll, setting
-    ///         // fillOverscroll to true will have no effect.
-    ///         fillOverscroll: true,
-    ///         child: Container(
-    ///           color: Colors.teal[100],
-    ///           child: Align(
-    ///             alignment: Alignment.bottomCenter,
-    ///             child: Padding(
-    ///               padding: const EdgeInsets.all(16.0),
-    ///               child: RaisedButton(
-    ///                 onPressed: () {
-    ///                   /* Place your onPressed code here! */
-    ///                 },
-    ///                 child: Text('Bottom Pinned Button!'),
-    ///               ),
-    ///             ),
-    ///           ),
-    ///         ),
-    ///       ),
-    ///     ],
-    ///   );
-    /// }
-    /// ```
-    /// {@end-tool}
-    ///
-    ///
-    /// See also:
-    ///
-    ///  * [SliverFillViewport], which sizes its children based on the
-    ///    size of the viewport, regardless of what else is in the scroll view.
-    ///  * [SliverList], which shows a list of variable-sized children in a
-    ///    viewport.
-    /// </Summary>
-    public class SliverFillRemaining : FlutterSDK.Widgets.Framework.StatelessWidget
-    {
-        #region constructors
-        public SliverFillRemaining(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool hasScrollBody = true, bool fillOverscroll = false)
-        : base(key: key)
-        {
-            this.Child = child;
-            this.HasScrollBody = hasScrollBody;
-            this.FillOverscroll = fillOverscroll; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual bool HasScrollBody { get; set; }
-        public virtual bool FillOverscroll { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Sliverfill.RenderSliverFillViewport renderObject)
+{
+    renderObject.ViewportFraction = ViewportFraction;
+}
 
 
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _SliverFillRemainingWithScrollable : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
-    {
-        #region constructors
-        public _SliverFillRemainingWithScrollable(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key, child: child)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Rendering.Sliverfill.RenderSliverFillRemainingWithScrollable CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+{
+    renderObject.ViewportFraction = ViewportFraction;
+}
 
 
-    public class _SliverFillRemainingWithoutScrollable : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
-    {
-        #region constructors
-        public _SliverFillRemainingWithoutScrollable(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key, child: child)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
 
-        #region fields
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Rendering.Sliverfill.RenderSliverFillRemaining CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
+#endregion
+}
 
 
-    public class _SliverFillRemainingAndOverscroll : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
-    {
-        #region constructors
-        public _SliverFillRemainingAndOverscroll(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key, child: child)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+public class _SliverFractionalPadding : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
+{
+    #region constructors
+    public _SliverFractionalPadding(double viewportFraction = 0, FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(child: sliver)
 
-        #region fields
-        #endregion
+}
+#endregion
 
-        #region methods
+#region fields
+public virtual double ViewportFraction { get; set; }
+#endregion
 
-        public new FlutterSDK.Rendering.Sliverfill.RenderSliverFillRemainingAndOverscroll CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+#region methods
 
-        #endregion
-    }
+public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new _RenderSliverFractionalPadding(viewportFraction: ViewportFraction);
+
+
+
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Sliverfill._RenderSliverFractionalPadding renderObject)
+{
+    renderObject.ViewportFraction = ViewportFraction;
+}
+
+
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+{
+    renderObject.ViewportFraction = ViewportFraction;
+}
+
+
+
+#endregion
+}
+
+
+public class _RenderSliverFractionalPadding : FlutterSDK.Rendering.Sliverpadding.RenderSliverEdgeInsetsPadding
+{
+    #region constructors
+    public _RenderSliverFractionalPadding(double viewportFraction = 0)
+    : base()
+
+}
+#endregion
+
+#region fields
+internal virtual FlutterSDK.Rendering.Sliver.SliverConstraints _LastResolvedConstraints { get; set; }
+internal virtual double _ViewportFraction { get; set; }
+internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets _ResolvedPadding { get; set; }
+public virtual double ViewportFraction { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets ResolvedPadding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+private void _MarkNeedsResolution()
+{
+    _ResolvedPadding = null;
+    MarkNeedsLayout();
+}
+
+
+
+
+private void _Resolve()
+{
+    if (_ResolvedPadding != null && _LastResolvedConstraints == Constraints) return;
+
+    double paddingValue = Constraints.ViewportMainAxisExtent * ViewportFraction;
+    _LastResolvedConstraints = Constraints;
+    switch (Constraints.Axis) { case Axis.Horizontal: _ResolvedPadding = EdgeInsets.Symmetric(horizontal: paddingValue); break; case Axis.Vertical: _ResolvedPadding = EdgeInsets.Symmetric(vertical: paddingValue); break; }
+    return;
+}
+
+
+
+
+public new void PerformLayout()
+{
+    _Resolve();
+    base.PerformLayout();
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A sliver that contains a single box child that fills the remaining space in
+/// the viewport.
+///
+/// [SliverFillRemaining] will size its [child] to fill the viewport in the
+/// cross axis. The extent of the sliver and its child's size in the main axis
+/// is computed conditionally, described in further detail below.
+///
+/// Typically this will be the last sliver in a viewport, since (by definition)
+/// there is never any room for anything beyond this sliver.
+///
+/// ## Main Axis Extent
+///
+/// ### When [SliverFillRemaining] has a scrollable child
+///
+/// The [hasScrollBody] flag indicates whether the sliver's child has a
+/// scrollable body. This value is never null, and defaults to true. A common
+/// example of this use is a [NestedScrollView]. In this case, the sliver will
+/// size its child to fill the maximum available extent.
+///
+/// ### When [SliverFillRemaining] does not have a scrollable child
+///
+/// When [hasScrollBody] is set to false, the child's size is taken into account
+/// when considering the extent to which it should fill the space. The extent to
+/// which the preceding slivers have been scrolled is also taken into
+/// account in deciding how to layout this sliver.
+///
+/// [SliverFillRemaining] will size its [child] to fill the viewport in the
+/// main axis if that space is larger than the child's extent, and the
+/// the amount of space that has been scrolled beforehand has not exceeded the
+/// main axis extent of the viewport.
+///
+/// {@tool dartpad --template=stateless_widget_scaffold}
+///
+/// In this sample the [SliverFillRemaining] sizes its [child] to fill the
+/// remaining extent of the viewport in both axes. The icon is centered in the
+/// sliver, and would be in any computed extent for the sliver.
+///
+/// ```dart
+/// Widget build(BuildContext context) {
+///   return CustomScrollView(
+///     slivers: <Widget>[
+///       SliverToBoxAdapter(
+///         child: Container(
+///           color: Colors.amber[300],
+///           height: 150.0,
+///         ),
+///       ),
+///       SliverFillRemaining(
+///         hasScrollBody: false,
+///         child: Container(
+///           color: Colors.blue[100],
+///           child: Icon(
+///             Icons.sentiment_very_satisfied,
+///             size: 75,
+///             color: Colors.blue[900],
+///           ),
+///         ),
+///       ),
+///     ],
+///   );
+/// }
+/// ```
+/// {@end-tool}
+///
+/// [SliverFillRemaining] will defer to the size of its [child] if the
+/// child's size exceeds the remaining space in the viewport.
+///
+/// {@tool dartpad --template=stateless_widget_scaffold}
+///
+/// In this sample the [SliverFillRemaining] defers to the size of its [child]
+/// because the child's extent exceeds that of the remaining extent of the
+/// viewport's main axis.
+///
+/// ```dart
+/// Widget build(BuildContext context) {
+///   return CustomScrollView(
+///     slivers: <Widget>[
+///       SliverFixedExtentList(
+///         itemExtent: 100.0,
+///         delegate: SliverChildBuilderDelegate(
+///           (BuildContext context, int index) {
+///             return Container(
+///               color: index % 2 == 0
+///                 ? Colors.amber[200]
+///                 : Colors.blue[200],
+///             );
+///           },
+///           childCount: 3,
+///         ),
+///       ),
+///       SliverFillRemaining(
+///         hasScrollBody: false,
+///         child: Container(
+///           color: Colors.orange[300],
+///           child: Padding(
+///             padding: const EdgeInsets.all(50.0),
+///             child: FlutterLogo(size: 100),
+///           ),
+///         ),
+///       ),
+///     ],
+///   );
+/// }
+/// ```
+/// {@end-tool}
+///
+/// [SliverFillRemaining] will defer to the size of its [child] if the
+/// [precedingScrollExtent] exceeded the length of the viewport's main axis.
+///
+/// {@tool dartpad --template=stateless_widget_scaffold}
+///
+/// In this sample the [SliverFillRemaining] defers to the size of its [child]
+/// because the [precedingScrollExtent] of the [SliverConstraints] has gone
+/// beyond that of the viewport's main axis.
+///
+/// ```dart
+/// Widget build(BuildContext context) {
+///   return CustomScrollView(
+///     slivers: <Widget>[
+///       SliverFixedExtentList(
+///         itemExtent: 130.0,
+///         delegate: SliverChildBuilderDelegate(
+///           (BuildContext context, int index) {
+///             return Container(
+///               color: index % 2 == 0
+///                 ? Colors.indigo[200]
+///                 : Colors.orange[200],
+///             );
+///           },
+///           childCount: 5,
+///         ),
+///       ),
+///       SliverFillRemaining(
+///         hasScrollBody: false,
+///         child: Container(
+///           child: Padding(
+///             padding: const EdgeInsets.all(50.0),
+///             child: Icon(
+///               Icons.pan_tool,
+///               size: 60,
+///               color: Colors.blueGrey,
+///             ),
+///           ),
+///         ),
+///       ),
+///     ],
+///   );
+/// }
+/// ```
+/// {@end-tool}
+///
+/// For [ScrollPhysics] that allow overscroll, such as
+/// [BouncingScrollPhysics], setting the [fillOverscroll] flag to true allows
+/// the size of the [child] to _stretch_, filling the overscroll area. It does
+/// this regardless of the path chosen to provide the child's size.
+///
+/// {@animation 250 500 https://flutter.github.io/assets-for-api-docs/assets/widgets/sliver_fill_remaining_fill_overscroll.mp4}
+///
+/// {@tool sample --template=stateless_widget_scaffold}
+///
+/// In this sample the [SliverFillRemaining]'s child stretches to fill the
+/// overscroll area when [fillOverscroll] is true. This sample also features a
+/// button that is pinned to the bottom of the sliver, regardless of size or
+/// overscroll behavior. Try switching [fillOverscroll] to see the difference.
+///
+/// This sample only shows the overscroll behavior on devices that support
+/// overscroll.
+///
+/// ```dart
+/// Widget build(BuildContext context) {
+///   return CustomScrollView(
+///     // The ScrollPhysics are overridden here to illustrate the functionality
+///     // of fillOverscroll on all devices this sample may be run on.
+///     // fillOverscroll only changes the behavior of your layout when applied
+///     // to Scrollables that allow for overscroll. BouncingScrollPhysics are
+///     // one example, which are provided by default on the iOS platform.
+///     physics: BouncingScrollPhysics(),
+///     slivers: <Widget>[
+///       SliverToBoxAdapter(
+///         child: Container(
+///           color: Colors.tealAccent[700],
+///           height: 150.0,
+///         ),
+///       ),
+///       SliverFillRemaining(
+///         hasScrollBody: false,
+///         // Switch for different overscroll behavior in your layout.
+///         // If your ScrollPhysics do not allow for overscroll, setting
+///         // fillOverscroll to true will have no effect.
+///         fillOverscroll: true,
+///         child: Container(
+///           color: Colors.teal[100],
+///           child: Align(
+///             alignment: Alignment.bottomCenter,
+///             child: Padding(
+///               padding: const EdgeInsets.all(16.0),
+///               child: RaisedButton(
+///                 onPressed: () {
+///                   /* Place your onPressed code here! */
+///                 },
+///                 child: Text('Bottom Pinned Button!'),
+///               ),
+///             ),
+///           ),
+///         ),
+///       ),
+///     ],
+///   );
+/// }
+/// ```
+/// {@end-tool}
+///
+///
+/// See also:
+///
+///  * [SliverFillViewport], which sizes its children based on the
+///    size of the viewport, regardless of what else is in the scroll view.
+///  * [SliverList], which shows a list of variable-sized children in a
+///    viewport.
+/// </Summary>
+public class SliverFillRemaining : FlutterSDK.Widgets.Framework.StatelessWidget
+{
+    #region constructors
+    public SliverFillRemaining(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool hasScrollBody = true, bool fillOverscroll = false)
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+public virtual bool HasScrollBody { get; set; }
+public virtual bool FillOverscroll { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    if (HasScrollBody) return new _SliverFillRemainingWithScrollable(child: Child);
+    if (!FillOverscroll) return new _SliverFillRemainingWithoutScrollable(child: Child);
+    return new _SliverFillRemainingAndOverscroll(child: Child);
+}
+
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new DiagnosticsProperty<Widget>("child", Child));
+    List<string> flags = new List<string>() { };
+    if (flags.IsEmpty()) flags.Add("nonscrollable");
+    properties.Add(new IterableProperty<string>("mode", flags));
+}
+
+
+
+#endregion
+}
+
+
+public class _SliverFillRemainingWithScrollable : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
+{
+    #region constructors
+    public _SliverFillRemainingWithScrollable(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key, child: child)
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public new FlutterSDK.Rendering.Sliverfill.RenderSliverFillRemainingWithScrollable CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new RenderSliverFillRemainingWithScrollable();
+
+
+#endregion
+}
+
+
+public class _SliverFillRemainingWithoutScrollable : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
+{
+    #region constructors
+    public _SliverFillRemainingWithoutScrollable(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key, child: child)
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public new FlutterSDK.Rendering.Sliverfill.RenderSliverFillRemaining CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new RenderSliverFillRemaining();
+
+
+#endregion
+}
+
+
+public class _SliverFillRemainingAndOverscroll : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
+{
+    #region constructors
+    public _SliverFillRemainingAndOverscroll(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key, child: child)
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public new FlutterSDK.Rendering.Sliverfill.RenderSliverFillRemainingAndOverscroll CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new RenderSliverFillRemainingAndOverscroll();
+
+
+#endregion
+}
 
 }

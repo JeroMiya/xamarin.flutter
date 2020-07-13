@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -396,49 +396,66 @@ namespace FlutterSDK.Material.Elevationoverlay
     {
         #region constructors
         internal ElevationOverlay()
+    
+}
+    #endregion
+
+    #region fields
+    #endregion
+
+    #region methods
+
+    /// <Summary>
+    /// Applies an elevation overlay color to a surface color to indicate
+    /// the level of elevation in a dark theme.
+    ///
+    /// If the surrounding [Theme.applyElevationOverlayColor] is true, and
+    /// [color] is [Theme.colorScheme.surface] then this will return
+    /// a version of the given color with a semi-transparent [Theme.colorScheme.onSurface]
+    /// overlaid on top of it. The opacity of the overlay is controlled by the
+    /// [elevation].
+    ///
+    /// Otherwise it will just return the [color] unmodified.
+    ///
+    /// See also:
+    ///
+    ///  * [ThemeData.applyElevationOverlayColor] which controls the whether
+    ///    an overlay color will be applied to indicate elevation.
+    ///  * [overlayColor] which computes the needed overlay color.
+    /// </Summary>
+    public virtual Color ApplyOverlay(FlutterSDK.Widgets.Framework.BuildContext context, FlutterBinding.UI.Color color, double elevation)
+    {
+        ThemeData theme = ThemeDefaultClass.Theme.Of(context);
+        if (elevation > 0.0 && theme.ApplyElevationOverlayColor && color == theme.ColorScheme.Surface)
         {
-            throw new NotImplementedException();
+            return Dart:uiDefaultClass.Color.AlphaBlend(OverlayColor(context, elevation), color);
         }
-        #endregion
 
-        #region fields
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Applies an elevation overlay color to a surface color to indicate
-        /// the level of elevation in a dark theme.
-        ///
-        /// If the surrounding [Theme.applyElevationOverlayColor] is true, and
-        /// [color] is [Theme.colorScheme.surface] then this will return
-        /// a version of the given color with a semi-transparent [Theme.colorScheme.onSurface]
-        /// overlaid on top of it. The opacity of the overlay is controlled by the
-        /// [elevation].
-        ///
-        /// Otherwise it will just return the [color] unmodified.
-        ///
-        /// See also:
-        ///
-        ///  * [ThemeData.applyElevationOverlayColor] which controls the whether
-        ///    an overlay color will be applied to indicate elevation.
-        ///  * [overlayColor] which computes the needed overlay color.
-        /// </Summary>
-        public virtual Color ApplyOverlay(FlutterSDK.Widgets.Framework.BuildContext context, FlutterBinding.UI.Color color, double elevation) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Computes the appropriate overlay color used to indicate elevation in
-        /// dark themes.
-        ///
-        /// See also:
-        ///
-        ///  * https://material.io/design/color/dark-theme.html#properties which
-        ///    specifies the exact overlay values for a given elevation.
-        /// </Summary>
-        public virtual Color OverlayColor(FlutterSDK.Widgets.Framework.BuildContext context, double elevation) { throw new NotImplementedException(); }
-
-        #endregion
+        return color;
     }
+
+
+
+
+    /// <Summary>
+    /// Computes the appropriate overlay color used to indicate elevation in
+    /// dark themes.
+    ///
+    /// See also:
+    ///
+    ///  * https://material.io/design/color/dark-theme.html#properties which
+    ///    specifies the exact overlay values for a given elevation.
+    /// </Summary>
+    public virtual Color OverlayColor(FlutterSDK.Widgets.Framework.BuildContext context, double elevation)
+    {
+        ThemeData theme = ThemeDefaultClass.Theme.Of(context);
+        double opacity = (4.5 * Math.Dart:mathDefaultClass.Log(elevation + 1) + 2)/ 100.0;
+        return theme.ColorScheme.OnSurface.WithOpacity(opacity);
+    }
+
+
+
+    #endregion
+}
 
 }

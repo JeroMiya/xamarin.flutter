@@ -290,7 +290,7 @@ using FlutterSDK.Widgets.Animatedsize;
 using FlutterSDK.Widgets.Scrollposition;
 using FlutterSDK.Widgets.Spacer;
 using FlutterSDK.Widgets.Scrollview;
-using file:///C:/src/xamarin.flutter/flutter/lib/foundation.dart;
+using file:///C:/Users/JBell/source/repos/xamarin.flutter/flutter/lib/foundation.dart;
 using FlutterSDK.Foundation._Bitfieldio;
 using FlutterSDK.Foundation._Isolatesio;
 using FlutterSDK.Foundation._Platformio;
@@ -414,105 +414,34 @@ namespace FlutterSDK.Material.Chiptheme
         #region constructors
         public ChipTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Chiptheme.ChipThemeData data = default(FlutterSDK.Material.Chiptheme.ChipThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
-        {
-            this.Data = data; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Material.Chiptheme.ChipThemeData Data { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Material.Chiptheme.ChipThemeData Data { get; set; }
+    #endregion
 
-        #region methods
-
-        /// <Summary>
-        /// Returns the data from the closest [ChipTheme] instance that encloses
-        /// the given context.
-        ///
-        /// Defaults to the ambient [ThemeData.chipTheme] if there is no
-        /// [ChipTheme] in the given build context.
-        ///
-        /// {@tool snippet}
-        ///
-        /// ```dart
-        /// class Spaceship extends StatelessWidget {
-        ///   @override
-        ///   Widget build(BuildContext context) {
-        ///     return ChipTheme(
-        ///       data: ChipTheme.of(context).copyWith(backgroundColor: Colors.red),
-        ///       child: ActionChip(
-        ///         label: const Text('Launch'),
-        ///         onPressed: () { print('We have liftoff!'); },
-        ///       ),
-        ///     );
-        ///   }
-        /// }
-        /// ```
-        /// {@end-tool}
-        ///
-        /// See also:
-        ///
-        ///  * [ChipThemeData], which describes the actual configuration of a chip
-        ///    theme.
-        /// </Summary>
-        public virtual FlutterSDK.Material.Chiptheme.ChipThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
-
-
-        public new bool UpdateShouldNotify(FlutterSDK.Material.Chiptheme.ChipTheme oldWidget) { throw new NotImplementedException(); }
-        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
+    #region methods
 
     /// <Summary>
-    /// Holds the color, shape, and text styles for a material design chip theme.
+    /// Returns the data from the closest [ChipTheme] instance that encloses
+    /// the given context.
     ///
-    /// Use this class to configure a [ChipTheme] widget, or to set the
-    /// [ThemeData.chipTheme] for a [Theme] widget.
-    ///
-    /// To obtain the current ambient chip theme, use [ChipTheme.of].
-    ///
-    /// The parts of a chip are:
-    ///
-    ///  * The "avatar", which is a widget that appears at the beginning of the
-    ///    chip. This is typically a [CircleAvatar] widget.
-    ///  * The "label", which is the widget displayed in the center of the chip.
-    ///    Typically this is a [Text] widget.
-    ///  * The "delete icon", which is a widget that appears at the end of the chip.
-    ///  * The chip is disabled when it is not accepting user input. Only some chips
-    ///    have a disabled state: [InputChip], [ChoiceChip], and [FilterChip].
-    ///
-    /// The simplest way to create a ChipThemeData is to use [copyWith] on the one
-    /// you get from [ChipTheme.of], or create an entirely new one with
-    /// [ChipThemeData..fromDefaults].
+    /// Defaults to the ambient [ThemeData.chipTheme] if there is no
+    /// [ChipTheme] in the given build context.
     ///
     /// {@tool snippet}
     ///
     /// ```dart
-    /// class CarColor extends StatefulWidget {
-    ///   @override
-    ///   State createState() => _CarColorState();
-    /// }
-    ///
-    /// class _CarColorState extends State<CarColor> {
-    ///   Color _color = Colors.red;
-    ///
+    /// class Spaceship extends StatelessWidget {
     ///   @override
     ///   Widget build(BuildContext context) {
     ///     return ChipTheme(
-    ///       data: ChipTheme.of(context).copyWith(backgroundColor: Colors.lightBlue),
-    ///       child: ChoiceChip(
-    ///         label: Text('Light Blue'),
-    ///         onSelected: (bool value) {
-    ///           setState(() {
-    ///             _color = value ? Colors.lightBlue : Colors.red;
-    ///           });
-    ///         },
-    ///         selected: _color == Colors.lightBlue,
+    ///       data: ChipTheme.of(context).copyWith(backgroundColor: Colors.red),
+    ///       child: ActionChip(
+    ///         label: const Text('Launch'),
+    ///         onPressed: () { print('We have liftoff!'); },
     ///       ),
     ///     );
     ///   }
@@ -522,99 +451,242 @@ namespace FlutterSDK.Material.Chiptheme
     ///
     /// See also:
     ///
-    ///  * [Chip], a chip that displays information and can be deleted.
-    ///  * [InputChip], a chip that represents a complex piece of information, such
-    ///    as an entity (person, place, or thing) or conversational text, in a
-    ///    compact form.
-    ///  * [ChoiceChip], allows a single selection from a set of options. Choice
-    ///    chips contain related descriptive text or categories.
-    ///  * [FilterChip], uses tags or descriptive words as a way to filter content.
-    ///  * [ActionChip], represents an action related to primary content.
-    ///  * [CircleAvatar], which shows images or initials of entities.
-    ///  * [Wrap], A widget that displays its children in multiple horizontal or
-    ///    vertical runs.
-    ///  * [ChipTheme] widget, which can override the chip theme of its
-    ///    children.
-    ///  * [Theme] widget, which performs a similar function to [ChipTheme],
-    ///    but for overall themes.
-    ///  * [ThemeData], which has a default [ChipThemeData].
+    ///  * [ChipThemeData], which describes the actual configuration of a chip
+    ///    theme.
     /// </Summary>
-    public class ChipThemeData : IDiagnosticable
+    public virtual FlutterSDK.Material.Chiptheme.ChipThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context)
     {
-        #region constructors
-        public ChipThemeData(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color deleteIconColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondarySelectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedShadowColor = default(FlutterBinding.UI.Color), bool showCheckmark = default(bool), FlutterBinding.UI.Color checkmarkColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle secondaryLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), Brightness brightness = default(Brightness), double elevation = default(double), double pressElevation = default(double))
-        : base()
-        {
-            this.BackgroundColor = backgroundColor;
-            this.DeleteIconColor = deleteIconColor;
-            this.DisabledColor = disabledColor;
-            this.SelectedColor = selectedColor;
-            this.SecondarySelectedColor = secondarySelectedColor;
-            this.ShadowColor = shadowColor;
-            this.SelectedShadowColor = selectedShadowColor;
-            this.ShowCheckmark = showCheckmark;
-            this.CheckmarkColor = checkmarkColor;
-            this.LabelPadding = labelPadding;
-            this.Padding = padding;
-            this.Shape = shape;
-            this.LabelStyle = labelStyle;
-            this.SecondaryLabelStyle = secondaryLabelStyle;
-            this.Brightness = brightness;
-            this.Elevation = elevation;
-            this.PressElevation = pressElevation; throw new NotImplementedException();
-        }
-        public static ChipThemeData FromDefaults(Brightness brightness = default(Brightness), FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondaryColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
-        {
-            var instance = new ChipThemeData(); throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-        public virtual FlutterBinding.UI.Color DeleteIconColor { get; set; }
-        public virtual FlutterBinding.UI.Color DisabledColor { get; set; }
-        public virtual FlutterBinding.UI.Color SelectedColor { get; set; }
-        public virtual FlutterBinding.UI.Color SecondarySelectedColor { get; set; }
-        public virtual FlutterBinding.UI.Color ShadowColor { get; set; }
-        public virtual FlutterBinding.UI.Color SelectedShadowColor { get; set; }
-        public virtual bool ShowCheckmark { get; set; }
-        public virtual FlutterBinding.UI.Color CheckmarkColor { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry LabelPadding { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
-        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle LabelStyle { get; set; }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle SecondaryLabelStyle { get; set; }
-        public virtual Brightness Brightness { get; set; }
-        public virtual double Elevation { get; set; }
-        public virtual double PressElevation { get; set; }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Creates a copy of this object but with the given fields replaced with the
-        /// new values.
-        /// </Summary>
-        public virtual FlutterSDK.Material.Chiptheme.ChipThemeData CopyWith(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color deleteIconColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondarySelectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedShadowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color checkmarkColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle secondaryLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), Brightness brightness = default(Brightness), double elevation = default(double), double pressElevation = default(double)) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Linearly interpolate between two chip themes.
-        ///
-        /// The arguments must not be null.
-        ///
-        /// {@macro dart.ui.shadow.lerp}
-        /// </Summary>
-        public virtual FlutterSDK.Material.Chiptheme.ChipThemeData Lerp(FlutterSDK.Material.Chiptheme.ChipThemeData a, FlutterSDK.Material.Chiptheme.ChipThemeData b, double t) { throw new NotImplementedException(); }
-
-
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+        ChipTheme inheritedTheme = context.DependOnInheritedWidgetOfExactType();
+        return inheritedTheme?.Data ?? ThemeDefaultClass.Theme.Of(context).ChipTheme;
     }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
+    {
+        ChipTheme ancestorTheme = context.FindAncestorWidgetOfExactType();
+        return Dart:coreDefaultClass.Identical(this, ancestorTheme) ? child : new ChipTheme(data: Data, child: child);
+    }
+
+
+
+
+    public new bool UpdateShouldNotify(FlutterSDK.Material.Chiptheme.ChipTheme oldWidget) => Data != oldWidget.Data;
+
+    public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Data != oldWidget.Data;
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Holds the color, shape, and text styles for a material design chip theme.
+///
+/// Use this class to configure a [ChipTheme] widget, or to set the
+/// [ThemeData.chipTheme] for a [Theme] widget.
+///
+/// To obtain the current ambient chip theme, use [ChipTheme.of].
+///
+/// The parts of a chip are:
+///
+///  * The "avatar", which is a widget that appears at the beginning of the
+///    chip. This is typically a [CircleAvatar] widget.
+///  * The "label", which is the widget displayed in the center of the chip.
+///    Typically this is a [Text] widget.
+///  * The "delete icon", which is a widget that appears at the end of the chip.
+///  * The chip is disabled when it is not accepting user input. Only some chips
+///    have a disabled state: [InputChip], [ChoiceChip], and [FilterChip].
+///
+/// The simplest way to create a ChipThemeData is to use [copyWith] on the one
+/// you get from [ChipTheme.of], or create an entirely new one with
+/// [ChipThemeData..fromDefaults].
+///
+/// {@tool snippet}
+///
+/// ```dart
+/// class CarColor extends StatefulWidget {
+///   @override
+///   State createState() => _CarColorState();
+/// }
+///
+/// class _CarColorState extends State<CarColor> {
+///   Color _color = Colors.red;
+///
+///   @override
+///   Widget build(BuildContext context) {
+///     return ChipTheme(
+///       data: ChipTheme.of(context).copyWith(backgroundColor: Colors.lightBlue),
+///       child: ChoiceChip(
+///         label: Text('Light Blue'),
+///         onSelected: (bool value) {
+///           setState(() {
+///             _color = value ? Colors.lightBlue : Colors.red;
+///           });
+///         },
+///         selected: _color == Colors.lightBlue,
+///       ),
+///     );
+///   }
+/// }
+/// ```
+/// {@end-tool}
+///
+/// See also:
+///
+///  * [Chip], a chip that displays information and can be deleted.
+///  * [InputChip], a chip that represents a complex piece of information, such
+///    as an entity (person, place, or thing) or conversational text, in a
+///    compact form.
+///  * [ChoiceChip], allows a single selection from a set of options. Choice
+///    chips contain related descriptive text or categories.
+///  * [FilterChip], uses tags or descriptive words as a way to filter content.
+///  * [ActionChip], represents an action related to primary content.
+///  * [CircleAvatar], which shows images or initials of entities.
+///  * [Wrap], A widget that displays its children in multiple horizontal or
+///    vertical runs.
+///  * [ChipTheme] widget, which can override the chip theme of its
+///    children.
+///  * [Theme] widget, which performs a similar function to [ChipTheme],
+///    but for overall themes.
+///  * [ThemeData], which has a default [ChipThemeData].
+/// </Summary>
+public class ChipThemeData : IDiagnosticable
+{
+    #region constructors
+    public ChipThemeData(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color deleteIconColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondarySelectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedShadowColor = default(FlutterBinding.UI.Color), bool showCheckmark = default(bool), FlutterBinding.UI.Color checkmarkColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle secondaryLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), Brightness brightness = default(Brightness), double elevation = default(double), double pressElevation = default(double))
+    : base()
+
+}
+public static ChipThemeData FromDefaults(Brightness brightness = default(Brightness), FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondaryColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
+
+
+
+
+
+if (primaryColor != null)
+{
+    brightness = ThemedataDefaultClass.ThemeData.EstimateBrightnessForColor(primaryColor);
+}
+
+int backgroundAlpha = 0x1f;
+int deleteIconAlpha = 0xde;
+int disabledAlpha = 0x0c;
+int selectAlpha = 0x3d;
+int textLabelAlpha = 0xde;
+ShapeBorder shape = new StadiumBorder();
+EdgeInsetsGeometry labelPadding = EdgeInsets.Symmetric(horizontal: 8.0);
+EdgeInsetsGeometry padding = EdgeInsets.All(4.0);
+primaryColor = primaryColor ?? (brightness == Brightness.Light ? ColorsDefaultClass.Colors.Black : ColorsDefaultClass.Colors.White);
+Color backgroundColor = primaryColor.WithAlpha(backgroundAlpha);
+Color deleteIconColor = primaryColor.WithAlpha(deleteIconAlpha);
+Color disabledColor = primaryColor.WithAlpha(disabledAlpha);
+Color selectedColor = primaryColor.WithAlpha(selectAlpha);
+Color secondarySelectedColor = secondaryColor.WithAlpha(selectAlpha);
+TextStyle secondaryLabelStyle = labelStyle.CopyWith(color: secondaryColor.WithAlpha(textLabelAlpha));
+labelStyle = labelStyle.CopyWith(color: primaryColor.WithAlpha(textLabelAlpha));
+return new ChipThemeData(backgroundColor: backgroundColor, deleteIconColor: deleteIconColor, disabledColor: disabledColor, selectedColor: selectedColor, secondarySelectedColor: secondarySelectedColor, labelPadding: labelPadding, padding: padding, shape: shape, labelStyle: labelStyle, secondaryLabelStyle: secondaryLabelStyle, brightness: brightness);
+}
+
+
+#endregion
+
+#region fields
+public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+public virtual FlutterBinding.UI.Color DeleteIconColor { get; set; }
+public virtual FlutterBinding.UI.Color DisabledColor { get; set; }
+public virtual FlutterBinding.UI.Color SelectedColor { get; set; }
+public virtual FlutterBinding.UI.Color SecondarySelectedColor { get; set; }
+public virtual FlutterBinding.UI.Color ShadowColor { get; set; }
+public virtual FlutterBinding.UI.Color SelectedShadowColor { get; set; }
+public virtual bool ShowCheckmark { get; set; }
+public virtual FlutterBinding.UI.Color CheckmarkColor { get; set; }
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry LabelPadding { get; set; }
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+public virtual FlutterSDK.Painting.Textstyle.TextStyle LabelStyle { get; set; }
+public virtual FlutterSDK.Painting.Textstyle.TextStyle SecondaryLabelStyle { get; set; }
+public virtual Brightness Brightness { get; set; }
+public virtual double Elevation { get; set; }
+public virtual double PressElevation { get; set; }
+public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Creates a copy of this object but with the given fields replaced with the
+/// new values.
+/// </Summary>
+public virtual FlutterSDK.Material.Chiptheme.ChipThemeData CopyWith(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color deleteIconColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondarySelectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedShadowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color checkmarkColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle secondaryLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), Brightness brightness = default(Brightness), double elevation = default(double), double pressElevation = default(double))
+{
+    return new ChipThemeData(backgroundColor: backgroundColor ?? this.BackgroundColor, deleteIconColor: deleteIconColor ?? this.DeleteIconColor, disabledColor: disabledColor ?? this.DisabledColor, selectedColor: selectedColor ?? this.SelectedColor, secondarySelectedColor: secondarySelectedColor ?? this.SecondarySelectedColor, shadowColor: shadowColor ?? this.ShadowColor, selectedShadowColor: selectedShadowColor ?? this.SelectedShadowColor, checkmarkColor: checkmarkColor ?? this.CheckmarkColor, labelPadding: labelPadding ?? this.LabelPadding, padding: padding ?? this.Padding, shape: shape ?? this.Shape, labelStyle: labelStyle ?? this.LabelStyle, secondaryLabelStyle: secondaryLabelStyle ?? this.SecondaryLabelStyle, brightness: brightness ?? this.Brightness, elevation: elevation == default(double) ? this.elevation : elevation, pressElevation: pressElevation == default(double) ? this.pressElevation : pressElevation);
+}
+
+
+
+
+/// <Summary>
+/// Linearly interpolate between two chip themes.
+///
+/// The arguments must not be null.
+///
+/// {@macro dart.ui.shadow.lerp}
+/// </Summary>
+public virtual FlutterSDK.Material.Chiptheme.ChipThemeData Lerp(FlutterSDK.Material.Chiptheme.ChipThemeData a, FlutterSDK.Material.Chiptheme.ChipThemeData b, double t)
+{
+
+    if (a == null && b == null) return null;
+    return new ChipThemeData(backgroundColor: Dart:uiDefaultClass.Color.Lerp(a?.BackgroundColor, b?.BackgroundColor, t), deleteIconColor: Dart:uiDefaultClass.Color.Lerp(a?.DeleteIconColor, b?.DeleteIconColor, t), disabledColor: Dart:uiDefaultClass.Color.Lerp(a?.DisabledColor, b?.DisabledColor, t), selectedColor: Dart:uiDefaultClass.Color.Lerp(a?.SelectedColor, b?.SelectedColor, t), secondarySelectedColor: Dart:uiDefaultClass.Color.Lerp(a?.SecondarySelectedColor, b?.SecondarySelectedColor, t), shadowColor: Dart:uiDefaultClass.Color.Lerp(a?.ShadowColor, b?.ShadowColor, t), selectedShadowColor: Dart:uiDefaultClass.Color.Lerp(a?.SelectedShadowColor, b?.SelectedShadowColor, t), checkmarkColor: Dart:uiDefaultClass.Color.Lerp(a?.CheckmarkColor, b?.CheckmarkColor, t), labelPadding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.LabelPadding, b?.LabelPadding, t), padding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.Padding, b?.Padding, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t), labelStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.LabelStyle, b?.LabelStyle, t), secondaryLabelStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.SecondaryLabelStyle, b?.SecondaryLabelStyle, t), brightness: t < 0.5 ? a?.Brightness ?? Brightness.Light : b?.Brightness ?? Brightness.Light, elevation: Dart:uiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), pressElevation: Dart:uiDefaultClass.LerpDouble(a?.PressElevation, b?.PressElevation, t));
+}
+
+
+
+
+public new bool Equals(@Object other)
+{
+    if (Dart:coreDefaultClass.Identical(this, other)){
+        return true;
+    }
+
+    if (other.GetType() != GetType())
+    {
+        return false;
+    }
+
+    return other is ChipThemeData && other.BackgroundColor == BackgroundColor && other.DeleteIconColor == DeleteIconColor && other.DisabledColor == DisabledColor && other.SelectedColor == SelectedColor && other.SecondarySelectedColor == SecondarySelectedColor && other.ShadowColor == ShadowColor && other.SelectedShadowColor == SelectedShadowColor && other.CheckmarkColor == CheckmarkColor && other.LabelPadding == LabelPadding && other.Padding == Padding && other.Shape == Shape && other.LabelStyle == LabelStyle && other.SecondaryLabelStyle == SecondaryLabelStyle && other.Brightness == Brightness && other.Elevation == Elevation && other.PressElevation == PressElevation;
+}
+
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    ThemeData defaultTheme = ThemeData.Fallback();
+    ChipThemeData defaultData = ChipThemeData.FromDefaults(secondaryColor: defaultTheme.PrimaryColor, brightness: defaultTheme.Brightness, labelStyle: defaultTheme.TextTheme.BodyText1);
+    properties.Add(new ColorProperty("backgroundColor", BackgroundColor, defaultValue: defaultData.BackgroundColor));
+    properties.Add(new ColorProperty("deleteIconColor", DeleteIconColor, defaultValue: defaultData.DeleteIconColor));
+    properties.Add(new ColorProperty("disabledColor", DisabledColor, defaultValue: defaultData.DisabledColor));
+    properties.Add(new ColorProperty("selectedColor", SelectedColor, defaultValue: defaultData.SelectedColor));
+    properties.Add(new ColorProperty("secondarySelectedColor", SecondarySelectedColor, defaultValue: defaultData.SecondarySelectedColor));
+    properties.Add(new ColorProperty("shadowColor", ShadowColor, defaultValue: defaultData.ShadowColor));
+    properties.Add(new ColorProperty("selectedShadowColor", SelectedShadowColor, defaultValue: defaultData.SelectedShadowColor));
+    properties.Add(new ColorProperty("checkMarkColor", CheckmarkColor, defaultValue: defaultData.CheckmarkColor));
+    properties.Add(new DiagnosticsProperty<EdgeInsetsGeometry>("labelPadding", LabelPadding, defaultValue: defaultData.LabelPadding));
+    properties.Add(new DiagnosticsProperty<EdgeInsetsGeometry>("padding", Padding, defaultValue: defaultData.Padding));
+    properties.Add(new DiagnosticsProperty<ShapeBorder>("shape", Shape, defaultValue: defaultData.Shape));
+    properties.Add(new DiagnosticsProperty<TextStyle>("labelStyle", LabelStyle, defaultValue: defaultData.LabelStyle));
+    properties.Add(new DiagnosticsProperty<TextStyle>("secondaryLabelStyle", SecondaryLabelStyle, defaultValue: defaultData.SecondaryLabelStyle));
+    properties.Add(new EnumProperty<Brightness>("brightness", Brightness, defaultValue: defaultData.Brightness));
+    properties.Add(new DoubleProperty("elevation", Elevation, defaultValue: defaultData.Elevation));
+    properties.Add(new DoubleProperty("pressElevation", PressElevation, defaultValue: defaultData.PressElevation));
+}
+
+
+
+#endregion
+}
 
 }
